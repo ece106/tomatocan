@@ -1,0 +1,76 @@
+<% @title="CrowdPublish.TV - The Future of Empowerment is Your Story - " + @user.name + "'s blog" %>
+<%= render 'userform' %>
+
+<table >
+      <tr>      <td > 
+<% if @user == current_user %>
+  <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
+  <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %> </tr>
+<% end %> </table>
+
+
+<div id="fanbook" style="position:absolute; overflow:hidden; left:0px; top:200px; z-index:3">
+
+<% if @user.books.any? %>
+  <span class="Body-C6"><%= @user.name %>'s Books:</span>
+  <% @user.books.each do |book| %>
+    <table CELLPADDING="0" CELLSPACING="8" WIDTH="300">
+    <%= form_for(book) do |f| %>
+      <tr>      <td > </td><td style="line-height:94%">
+      <div style="float:left;width:65%;">
+      <b><%= book.title %></div>
+      <div style="float:right;width:35%;">
+      &nbsp<%= book.genre %></div></td></tr> 
+      <tr><td width="50"; style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:70%" >
+      <% if book.coverpicurl != nil %>
+        <% if book.coverpicurl.match /http/ %>
+          <a href= <%= book.bookpurchaseurl %>> <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
+        <% else %>
+          <% if book.title.match /[A-Za-z]/ %> 
+            <span class="Body-D2">
+            <%= book.title %><i>
+            <%= book.title %> <target="_blank"></font></i></a> 
+            <br>by <%= @user.name %>
+          <% end %>
+        <% end %>
+      <% end %></span></td><td><i><%= book.fiftychar %></i></td></tr>
+    <% end %>
+    </table>
+  <% end %>
+<% end %>
+
+
+<br>
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 30000,
+  width: 250,
+  height: 230,
+  theme: {
+    shell: {
+      background: '#ddbb99',
+      color: '#773355'
+    },
+    tweets: {
+      background: '#ddccaa',
+      color: '#221111',
+      links: '#901A2A'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: false,
+    live: false,
+    behavior: 'all'
+  }
+}).render().setUser('<%= @user.twitter %>').start();
+</script>
+</div>
+
+<div id="blog" style="position:absolute; overflow:hidden; left:300px; top:60px; z-index:3">
+<iframe frameborder="0" width="710" src= "<%= @user.blogurl %>" height="1000"></iframe>
+</div>

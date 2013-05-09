@@ -1,0 +1,41 @@
+<% @title="CrowdPublish.TV - The Future of Empowerment is Your Story - @user.name"  %>
+
+<!-- // rails generate migration add_pics_to_books coverpic:string
+rails generate migration add_price_to_books price:float
+
+bundle exec rake db:migrate
+heroku run rake db:migrate
+-->
+
+<%= render 'userform' %>
+
+<% if @user == current_user %>
+  <%= button_to "Edit Book Info", edit_user_path(current_user), :method=> :get %><br>
+  <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %>
+<% end %>
+<p>
+
+
+<div id="name" style="position:absolute; left:170px; top:70px; width:220px">
+  &nbsp&nbsp&nbsp&nbsp<%= @user.genre1 %><p>
+  &nbsp&nbsp&nbsp&nbsp<%= @user.genre2 %><p>
+  &nbsp&nbsp&nbsp&nbsp<%= @user.genre3 %>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+
+<div id="fanbook" style="position:absolute; overflow:hidden; left:380px; top:50px; z-index:3">
+  <table CELLPADDING="0" CELLSPACING="8" WIDTH="620">
+  <tr>
+    <td></td>    <td></td>
+    <td><span class="Body-C6"><%= @user.name %>'s Books:</span></td>
+  </tr>
+</table>
+
+  <% if @user.books.any? %>
+      <%= render @books %>
+  <% end %>
+
+</div>
+</body>

@@ -1,0 +1,89 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :ustreamvid %><br />
+    <%= f.text_area :ustreamvid %>
+  </div>
+  <div class="field">
+    <%= f.label :ustreamsocial %><br />
+    <%= f.text_field :ustreamsocial %>
+  </div>
+  <div class="field">
+    <%= f.label :twitter %><br />
+    <%= f.text_field :twitter %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook %><br />
+    <%= f.text_field :facebook %>
+  </div>
+  <div class="field">
+    <%= f.label :pinterest %><br />
+    <%= f.text_field :pinterest %>
+  </div>
+  <div class="field">
+    <%= f.label :youtube %><br />
+    <%= f.text_field :youtube %>
+  </div>
+  <div class="field">
+    <%= f.label :genre1 %><br />
+    <%= f.text_field :genre1 %>
+  </div>
+  <div class="field">
+    <%= f.label :genre2 %><br />
+    <%= f.text_field :genre2 %>
+  </div>
+  <div class="field">
+    <%= f.label :genre3 %><br />
+    <%= f.text_field :genre3 %>
+  </div>
+  <div class="field">
+    <%= f.label :blogurl %><br />
+    <%= f.text_field :blogurl %>
+  </div>
+  <div class="field">
+    <%= f.label :profilepicurl %><br />
+    <%= f.text_field :profilepicurl %>
+  </div>
+  <div class="field">
+    <%= f.label :profilepic %><br />
+    <%= f.text_field :profilepic %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br />
+    <%= f.number_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :about %><br />
+    <%= f.text_area :about %>
+  </div>
+  <div class="field">
+    <%= f.label :password_digest %><br />
+    <%= f.text_field :password_digest %>
+  </div>
+  <div class="field">
+    <%= f.label :remember_token %><br />
+    <%= f.text_field :remember_token %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

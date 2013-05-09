@@ -1,0 +1,38 @@
+<title> CrowdPublish.tv - <%= @user.name %> site</title>
+
+<% if @user.profilepic != nil %>
+  <%= image_tag(@user.profilepic.to_s, :size => "150x150") %>
+<% else %>
+  <% if @user.profilepicurl != nil %>
+    <% if @user.profilepicurl.match /http/ %>
+      <img src= <%= @user.title %> border=0 width=150 height=150><p>
+    <% else %>
+      <img src= "http://gurutapas.com/images/whiteBk.jpg" border=0 width=150 height=150><p>
+    <% end %>
+  <% else %>
+   <img src= "http://gurutapas.com/images/whiteBk.jpg" border=0 width=150 height=150><p>
+  <% end %>
+<% end %>
+
+
+<div id="name" style="position:absolute; left:170px; top:0px; width:220px">
+  <h2><%= @user.name %></h2>
+</div>
+
+<div style="position:absolute; left:380px; top:0px; width:650px; height:30px;">
+<img src= "http://gurutapas.com/images/purpleBar.png" alt="" title="" border=0 height="25" width="650" ></div>
+
+<div id="txt_5" style="position:absolute; left:400px; top:5px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<span class="Body-C8">
+
+<a href="http://CrowdPublish.tv" style="color:#ffffff;">CrowdPublishTV Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="<%= booklist_user_path %>" style="color:#ffffff;" title="<%= @user.name %>"> <%= @user.name %> Books </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="<%= blog_user_path %>" style="color:#ffffff;">Blog </a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="<%= user_path %>" style="color:#ffffff;">Live Events</a></span>
+</div>
+
+
+

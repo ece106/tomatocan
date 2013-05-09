@@ -1,0 +1,39 @@
+<% @title="GuruTapas: Appetizers of Knowledge - Author Sign In" %>
+<!--
+<body 
+a:link {color: #2c3651;}
+a:visited {color: #1f5b8b;}
+a:hover {color: #2c3651;}
+a:active {color: #2c3651;}
+
+.Body-C2        {
+        font-family:"Gabriola", serif; font-weight:700; font-size:32.0px; 
+        line-height:1.84em; color:#64140f; 
+        }
+-->
+
+<%= render 'form' %>
+
+<div id="signup" style="position:absolute; overflow:hidden; 
+left:100px; top:300px; z-index:3">
+
+Sign up & sign in to hang out and learn with GuruTapas members.
+</div>
+
+<div id="signup" style="position:absolute; overflow:hidden; 
+left:100px; top:330px; z-index:3; align:left">
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= f.label :email %>: 
+  <%= f.text_field :email %><br>
+  
+  <%= f.label :password %>:
+  <%= f.password_field :password %><br>
+
+  <%= f.submit "Sign in" %>
+<% end %>
+
+<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+
+</div>
