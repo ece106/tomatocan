@@ -1,34 +1,34 @@
 <% @title="CrowdPublish.TV - interact with " + @user.name + " here live!" %>
 <%= render 'userform' %>
 
-<table >      <tr>      <td > 
+<div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:140px; z-index:3">
 <% if @user == current_user %>
+  <table><tr><td>
   <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
-  <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %> </tr>
-<% end %> </table>
+  <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
+<% end %> 
+  <span class="Body-C5"><%= @user.name %>'s Books:</span>
+</div>
 
 <div id="fanbook" style="position:absolute; overflow:hidden; left:0px; top:200px; z-index:3">
 
-
 <% if @user.books.any? %>
-  <span class="Body-C6"><%= @user.name %>'s Books:</span>
   <% @user.books.each do |book| %>
     <table CELLPADDING="0" CELLSPACING="8" WIDTH="370">
     <%= form_for(book) do |f| %>
       <tr>      <td > </td><td style="line-height:94%">
       <div style="float:left;width:75%;">
-      <b> <%= book.title %></div>
+      <a href= ../books/<%= book.id %>> <b><%= book.title %></b> <title= "Purchase <%= book.title %>" target="_blank"></a></div>
       <div style="float:right;width:25%;">
       &nbsp<%= book.genre %></div></td></tr> 
       <tr><td width="50"; style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:70%" >
       <% if book.coverpicurl != nil %>
         <% if book.coverpicurl.match /http/ %>
-          <a href= <%= book.bookpurchaseurl %>> <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
+          <a href= ../books/<%= book.id %>> <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
         <% else %>
           <% if book.title.match /[A-Za-z]/ %> 
             <span class="Body-D2">
-            <%= book.title %><i>
-            <%= book.title %> <target="_blank"></font></i></a> 
+            <a href= ../book/<%= book.id %>> <i><%= book.title %></i> <title= "Purchase <%= book.title %>" target="_blank"></a>
             <br>by <%= @user.name %>
           <% end %>
         <% end %>

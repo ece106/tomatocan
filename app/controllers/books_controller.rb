@@ -1,19 +1,51 @@
 class BooksController < ApplicationController
-  # GET /books
-  # GET /books.json
-  def index
-    @books = Book.all
+  before_filter :signed_in_user
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @books }
+  def buy
+# no longer used
+    @book = Book.find(params[:id])
+#    @purchase = @book.purchases.build(params[:purchase])
+
+#    @purchase = Purchase.new(params[:purchase])
+#    @purchase = Purchase.new
+    @purchase = @book.purchases.new
+  end
+
+  def create
+    @book = current_user.books.build(params[:book])
+    if @book.save
+      redirect_to author_path(current_user)
+    else
+      redirect_to edit_author_path(current_user)
     end
+   end
+
+  def edit
+    @booklist = Book.find(params[:author_id])
+    @book = Book.find(params[:id])
+    @purchases = @book.purchases
+    if @book.save
+      redirect_to author_path(current_user)
+    else
+      redirect_to edit_author_path(current_user)
+    end
+   end
+
+#34
+  def update
+    @bklist = Book.find(params[:id])
+      if @bklist.update_attributes(params[:book])
+         redirect_to user_path(current_user)
+      else
+         redirect_to edit_user_path(current_user)
+      end
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
     @book = Book.find(params[:id])
+#    @purchases = @book.purchases
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,63 +53,9 @@ class BooksController < ApplicationController
     end
   end
 
-  # GET /books/new
-  # GET /books/new.json
-  def new
-    @book = Book.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @book }
-    end
-  end
-
-  # GET /books/1/edit
-  def edit
-    @book = Book.find(params[:id])
-  end
-
-  # POST /books
-  # POST /books.json
-  def create
-    @book = Book.new(params[:book])
-
-    respond_to do |format|
-      if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render json: @book, status: :created, location: @book }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /books/1
-  # PUT /books/1.json
-  def update
-    @book = Book.find(params[:id])
-
-    respond_to do |format|
-      if @book.update_attributes(params[:book])
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /books/1
-  # DELETE /books/1.json
   def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
+  end
 
-    respond_to do |format|
-      format.html { redirect_to books_url }
-      format.json { head :ok }
-    end
+  def new
   end
 end

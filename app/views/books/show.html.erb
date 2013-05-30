@@ -6,6 +6,7 @@
   <% user = User.find(userid) %>
 
 <table CELLPADDING="0" CELLSPACING="8" WIDTH="800">
+
  <tr>
     <td > </td>
     <td>
@@ -22,10 +23,10 @@
      <img src=<%= @book.coverpicurl %> width="50" height="65" ></a>
    <% else %>
       <% if @book.title.match /[A-Za-z]/ %> 
-      <span class="Body-D2">
-           <font color="880000" ><i>
-      <%= @book.title %> </font></i></a> 
-      <br>by <%= user.name %>
+        <span class="Body-D2">
+        <font color="880000" ><i>
+        <%= @book.title %> </font></i></a> <br>
+        <a href= ../users/<%= userid %>> by <%= user.name %></a>
 
       <% end %>
    <% end %>

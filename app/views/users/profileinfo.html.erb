@@ -1,14 +1,14 @@
-<% @title="GuruTapas: Appetizers of Knowledge - author "  %>
-<%= render 'authorform' %>
+<% @title="CrowdPublish.TV: The Future of Empowerment is Your Story - edit user profile "  %>
+<%= render 'userform' %>
 
-<% if @author == current_user %>
+<% if @user == current_user %>
 
-<%= form_for(@author) do |f| %>
+<%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
 
 <div id="bkinp" style="position:absolute; overflow:hidden; left:160px; top:50px; z-index:3">
 
-<%= f.text_area :genre, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
+<%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
 <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
 <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %></div>
 
@@ -26,7 +26,7 @@
     <%= f.file_field :profilepic %>
 <br>
 
-    <%= f.text_area :title, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %><br>
+    <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %><br>
 If you don't have a profile pic on the web, you can upload a picture at <a href = "http://photobucket.com" target="_blank"> Photobucket</a> 
 </td></tr></table>
 
@@ -40,7 +40,7 @@ left:400px; top:50px; z-index:3"><span class="Body-C0">
     <td><%= f.password_field :password %></td>
 
 
-    <td> &nbsp&nbsp&nbsp&nbsp <%= f.submit "Save Author Info" %>
+    <td> &nbsp&nbsp&nbsp&nbsp <%= f.submit "Save user Info" %>
     </td>
   </tr>
   <tr>
@@ -50,7 +50,7 @@ left:400px; top:50px; z-index:3"><span class="Body-C0">
 </table>
 
 For security, you must enter & confirm password every time you visit this page.
-Save often. After saving, you will be directed to your Author profile. You may come back to this page for continue to enter your information.
+Save often. After saving, you will be directed to your user profile. You may come back to this page for continue to enter your information.
 </div>
 
 <div id="signup" style="position:absolute; overflow:hidden; 
@@ -59,25 +59,25 @@ left:380px; top:200px; z-index:3">
     Soon we will automate linking your account with Ustream during signup. But at this time, enter the information found in your Ustream dashboard under Channel - Advanced. The code to Embed the live video player will look something like this: 
 <br>	<font face="Courier New"> [iframe src="http://www.ustream.tv/embed/247796" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;">/iframe></font> <br> 
 Paste it into the box below. <br />
-    <%= f.text_area :Ustreamid, :cols => 62, :rows => 3 %>
+    <%= f.text_area :ustreamvid, :cols => 62, :rows => 3 %>
 
 On the same Channel - Advanced page in your Ustream dashboard, click on the Social Stream tab right above the live video player code. You will see code to Embed the social stream, chat, and videos, which will look similar to this: 
 <br>	<font face="Courier New"> [iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/247796">/iframe></font><br>
 Paste it into the box below. <br />
-    <%= f.text_area :Ustreamchat, :cols => 62, :rows => 3 %>
+    <%= f.text_area :ustreamsocial, :cols => 62, :rows => 3 %>
   </div>
 
 <% end %>
 <% end %>
 
-<div id="authorlist" style="position:absolute; overflow:hidden; left:0px; top:330px; z-index:3">
+<div id="userlist" style="position:absolute; overflow:hidden; left:0px; top:330px; z-index:3">
 
-<%= form_for(@author, :html => { :multipart => true }) do |f| %>
-  <% if @author.errors.any? %>
+<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
       <ul>
-      <% @author.errors.full_messages.each do |msg| %>
+      <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
