@@ -1,241 +1,216 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Ruby on Rails: Welcome aboard</title>
-    <style type="text/css" media="screen">
-      body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
-      }
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Generator" content="Serif WebPlus Starter Edition   (2.0.1.11)">
+<title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
+<style type="text/css">
+<!--
+body {margin: 0px; padding: 0px;}
+a:link {color: #2c3651;}
+a:visited {color: #1f5b8b;}
+a:hover {color: #2c3651;}
+a:active {color: #2c3651;}
+.Body-P
+        {
+        margin:0.0px 0.0px 12.0px 0.0px; text-align:center; font-weight:400; 
+        }
+.Body-P0
+        {
+        margin:0.0px 0.0px 12.0px 0.0px; text-align:left; font-weight:400; 
+        }
+.Body-P1
+        {
+        margin:0.0px 0.0px 5.0px 0.0px; text-align:left; font-weight:400; 
+        }
+.Body-P2
+        {
+        margin:0.0px 0.0px 12.0px 0.0px; text-align:right; font-weight:400; 
+        }
+.Normal-P
+        {
+        margin:0.0px 0.0px 8.0px 0.0px; text-align:left; font-weight:400; 
+        }
+.Body-C
+        {
+        font-family:"Comic Sans MS", cursive; font-size:24.0px; 
+        line-height:1.38em; 
+        }
+.Body-C0
+        {
+        font-family:"Verdana", sans-serif; font-weight:700; font-size:13.0px; 
+        line-height:1.23em; 
+        }
+.Body-C1
+        {
+        font-family:"Verdana", sans-serif; font-size:13.0px; 
+        line-height:1.23em; 
+        }
+.Body-C2
+        {
+        font-family:"Tahoma", sans-serif; font-weight:700; font-size:21.0px; 
+        line-height:1.19em; color:#440068; 
+        }
+.Body-C3
+        {
+        font-family:"Verdana", sans-serif; font-size:12.0px; 
+        line-height:1.17em; 
+        }
+.Body-C4
+        {
+        font-family:"Verdana", sans-serif; font-weight:700; font-size:12.0px; 
+        line-height:1.17em; 
+        }
+.Body-C5
+        {
+        font-family:"Arial", sans-serif; font-size:19.0px; line-height:1.21em; 
+        }
+.Body-C6
+        {
+        font-family:"Comic Sans MS", cursive; font-size:13.0px; 
+        line-height:1.38em; 
+        }
+.Body-C7
+        {
+        font-family:"Arial Black", sans-serif; font-weight:700; 
+        font-size:21.0px; line-height:1.43em; 
+        }
+.Body-C8
+        {
+        font-family:"Arial Black", sans-serif; font-weight:700; 
+        font-size:21.0px; line-height:1.43em; color:#c7c5c8; 
+        }
+.Normal-C
+        {
+        font-family:"Arial", sans-serif; font-weight:700; font-size:16.0px; 
+        line-height:1.25em; color:#ffffff; 
+        }
+-->
+</style>
+<script type="text/javascript" src="wpscripts/jspngfix.js"></script>
+<script type="text/javascript"><!--
+var blankSrc = "wpscripts/blank.gif";
+--></script>
+</head>
 
-      h1 {
-        font-size: 28px;
-        color: #000;
-      }
-
-      a  {color: #03c}
-      a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
-      }
-
-
-      #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
-      }
-
-      #sidebar {
-        float: right;
-        width: 175px;
-      }
-
-      #footer {
-        clear: both;
-      }
-
-      #header, #about, #getting-started {
-        padding-left: 75px;
-        padding-right: 30px;
-      }
-
-
-      #header {
-        background-image: url("/assets/rails.png");
-        background-repeat: no-repeat;
-        background-position: top left;
-        height: 64px;
-      }
-      #header h1, #header h2 {margin: 0}
-      #header h2 {
-        color: #888;
-        font-weight: normal;
-        font-size: 16px;
-      }
-
-
-      #about h3 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-
-      #about-content {
-        background-color: #ffd;
-        border: 1px solid #fc0;
-        margin-left: -55px;
-        margin-right: -10px;
-      }
-      #about-content table {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 11px;
-        border-collapse: collapse;
-      }
-      #about-content td {
-        padding: 10px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-      }
-      #about-content td.name  {color: #555}
-      #about-content td.value {color: #000}
-
-      #about-content ul {
-        padding: 0;
-        list-style-type: none;
-      }
-
-      #about-content.failure {
-        background-color: #fcc;
-        border: 1px solid #f00;
-      }
-      #about-content.failure p {
-        margin: 0;
-        padding: 10px;
-      }
-
-
-      #getting-started {
-        border-top: 1px solid #ccc;
-        margin-top: 25px;
-        padding-top: 15px;
-      }
-      #getting-started h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      #getting-started h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-        margin-bottom: 25px;
-      }
-      #getting-started ol {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #getting-started li {
-        font-size: 18px;
-        color: #888;
-        margin-bottom: 25px;
-      }
-      #getting-started li h2 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 18px;
-        color: #333;
-      }
-      #getting-started li p {
-        color: #555;
-        font-size: 13px;
-      }
-
-
-      #sidebar ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #sidebar ul h3 {
-        margin-top: 25px;
-        font-size: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-      #sidebar li {
-        list-style-type: none;
-      }
-      #sidebar ul.links li {
-        margin-bottom: 5px;
-      }
-
-      .filename {
-        font-style: italic;
-      }
-    </style>
+<body text="#000000" style="background-color:#ffffff; text-align:center; height:700px;">
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;height:700px;">
+<div id="txt_3" style="position:absolute; left:54px; top:552px; width:115px; height:49px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P"><span class="Body-C">Authors: </span></p>
+</div>
+<div id="txt_8" style="position:absolute; left:54px; top:403px; width:113px; height:51px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P"><span class="Body-C">Readers: </span></p>
+<p class="Body-P0"><span class="Body-C">&nbsp;</span></p>
+</div>
+<div id="txt_9" style="position:absolute; left:0px; top:437px; width:322px; height:109px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P1"><span class="Body-C0"><a href="http://gurutapas.heroku.com/bookworms" style="text-decoration:none;">Sign up for your own Bookworm page</a></span></p>
+<p class="Body-P1"><span class="Body-C1">Chat with other bookworms</span></p>
+<p class="Body-P1"><span class="Body-C1">Host live streaming book club discussions</span></p>
+<p class="Body-P1"><span class="Body-C1">Meet people who have similar reading interests </span></p>
+<p class="Body-P1"><span class="Body-C1">Coming soon: Buy ebooks</span></p>
+</div>
+<div id="txt_10" style="position:absolute; left:1px; top:586px; width:276px; height:90px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P1"><span class="Body-C0"><a href="http://gurutapas.herokuapp.com/authors/new" style="text-decoration:none;">Sign up for your own Author site</a></span></p>
+<p class="Body-P1"><span class="Body-C1">Host live streaming talks </span></p>
+<p class="Body-P1"><span class="Body-C1">Keep in touch with fans</span></p>
+<p class="Body-P1"><span class="Body-C1">Coming soon: Sell ebooks</span></p>
+<p class="Body-P1"><span class="Body-C1">&nbsp;</span></p>
+</div>
+<div style="position:absolute; left:527px; top:675px; width:192px; height:25px;">
+    <div id="frag_21" style="text-align:left;">
+    <!--ONESTAT SCRIPTCODE START-->
+    <!--
+    // Modification of this code is not allowed and will permanently disable your account!
+    // Account ID : 436141
+    // Website URL: http://mysite.verizon.net/vze2sdqh/hotcoolengineers/
+    // Copyright (C) 2002-2007 OneStat.com All Rights Reserved
+    -->
+    <div id="OneStatTag"><table border='0' cellpadding='0' cellspacing='0'><tr><td align='center'>
     <script type="text/javascript">
-      function about() {
-        info = document.getElementById('about-content');
-        if (window.XMLHttpRequest)
-          { xhr = new XMLHttpRequest(); }
-        else
-          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
-        xhr.open("GET","rails/info/properties",false);
-        xhr.send("");
-        info.innerHTML = xhr.responseText;
-        info.style.display = 'block'
-      }
+    <!--
+    function OneStat_Pageview()
+    {
+        var d=document;
+        var sid="436141";
+        var CONTENTSECTION="";
+        var osp_URL=d.URL;
+        var osp_Title=d.title;
+        var t=new Date();
+        var p="http"+(d.URL.indexOf('https:')==0?'s':'')+"://stat.onestat.com/stat.aspx?tagver=2&sid="+sid;
+        p+="&url="+escape(osp_URL);
+        p+="&ti="+escape(osp_Title);
+        p+="&section="+escape(CONTENTSECTION);
+        p+="&rf="+escape(parent==self?document.referrer:top.document.referrer);
+        p+="&tz="+escape(t.getTimezoneOffset());
+        p+="&ch="+escape(t.getHours());
+        p+="&js=1";
+        p+="&ul="+escape(navigator.appName=="Netscape"?navigator.language:navigator.userLanguage);
+        if(typeof(screen)=="object"){
+           p+="&sr="+screen.width+"x"+screen.height;p+="&cd="+screen.colorDepth;
+           p+="&jo="+(navigator.javaEnabled()?"Yes":"No");
+        }
+        d.write('<a href="http://www.onestatfree.com/aspx/login.aspx?sid='+sid+'" target=_blank><img id="ONESTAT_TAG" border="0" src="'+p+'" alt="This site tracked by OneStatFree.com. Get your own free site tracker."></'+'a>');
+    }
+    
+    OneStat_Pageview();
+    //-->
     </script>
-  </head>
-  <body>
-    <div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <h3>Browse the documentation</h3>
-            <ul class="links">
-              <li><a href="http://guides.rubyonrails.org/">Rails Guides</a></li>
-              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
-              <li><a href="http://www.ruby-doc.org/core/">Ruby core</a></li>
-              <li><a href="http://www.ruby-doc.org/stdlib/">Ruby standard library</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div id="content">
-        <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
-        </div>
-
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
-        </div>
-
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get rolling:</h2>
-
-          <ol>
-            <li>
-              <h2>Use <code>rails generate</code> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
-            </li>
-
-            <li>
-              <h2>Set up a default route and remove <span class="filename">public/index.html</span></h2>
-              <p>Routes are set up in <span class="filename">config/routes.rb</span>.</p>
-            </li>
-
-            <li>
-              <h2>Create your database</h2>
-              <p>Run <code>rake db:create</code> to create your database. If you're not using SQLite (the default), edit <span class="filename">config/database.yml</span> with your username and password.</p>
-            </li>
-          </ol>
-        </div>
-      </div>
-
-      <div id="footer">&nbsp;</div>
-    </div>
-  </body>
+    <noscript>
+    <a href="http://www.onestatfree.com"><img border="0" src="http://stat.onestat.com/stat.aspx?tagver=2&amp;sid=436141&amp;js=No&amp;" ALT="detect click fraud"></a>
+    </noscript>
+    </td></tr><tr><td align='center'><div style="COLOR:black;display:none;FONT-FAMILY:'Verdana';"><a href="http://www.onestat.com" style="text-decoration:none;">detect click fraud</a><br></div></td></tr></table></div>
+    <!--ONESTAT SCRIPTCODE END-->
+    </div></div>
+<div id="txt_22" style="position:absolute; left:0px; top:290px; width:408px; height:112px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P"><span class="Body-C2">CrowdPublishTV helps authors &amp; fans interact directly &amp; build community</span></p>
+<p class="Body-P"><span class="Body-C3">Sign up as either an </span><span class="Body-C4"><a href="http://gurutapas.heroku.com/authors" style="text-decoration:none;">Author</a></span><span class="Body-C3"> or </span><span class="Body-C4"><a href="http://gurutapas.heroku.com/bookworms" style="text-decoration:none;">Bookworm</a></span><span class="Body-C3"> to stay updated on site features as we roll
+    them out</span></p>
+</div>
+<div style="position:absolute; left:428px; top:237px; width:422px; height:413px;">
+    <div id="frag_23" style="text-align:left;">
+    <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>
+    </div></div>
+<div id="txt_25" style="position:absolute; left:565px; top:234px; width:285px; height:48px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P"><span class="Body-C5">Socialize around your books, experiences, or expertise:</span></p>
+<p class="Body-P0"><span class="Body-C5">&nbsp;</span></p>
+</div>
+<div style="position:absolute; left:3px; top:2px; width:232px; height:233px;">
+    <img src="wpimages/wp8d5184bd.png" width="232" height="233" border="0" id="pic_94" name="pic_94" title="" alt="" onload="OnLoadPngFix()"></div>
+<div style="position:absolute; left:367px; top:2px; width:482px; height:220px;">
+    <div id="frag_22" style="text-align:left;">
+    <iframe src="http://www.ustream.tv/embed/13434383" width="500" height="221" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free live streaming by Ustream</a>
+    </div></div>
+<div id="txt_6" style="position:absolute; left:0px; top:236px; width:286px; height:45px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P2"><span class="Body-C6">
+This site is still in alpha stage development. <br>
+Questions? Contact Lisa@CrowdPublish.TV</span></p>
+</div>
+<div id="txt_23" style="position:absolute; left:373px; top:131px; width:477px; height:43px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P0"><span class="Body-C7">The Future of Empowerment is Your Story</span></p>
+</div>
+<div id="txt_24" style="position:absolute; left:371px; top:129px; width:479px; height:43px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Body-P0"><span class="Body-C8">The Future of Empowerment is Your Story</span></p>
+</div>
+<div style="position:absolute; left:238px; top:2px; width:129px; height:221px;">
+    <map id="map0" name="map0">
+        <area shape="poly" coords="50,145,45,143,22,143,18,147,18,175,50,175" href="http://facebook.com/crowdpublishtv" target="_blank" alt="">
+        <area shape="poly" coords="100,172,100,145,98,143,70,143,68,149,68,173,71,175,99,175" href="http://twitter.com/crowdpublishtv" target="_blank" alt="">
+        <area shape="poly" coords="101,213,101,186,99,184,71,184,69,190,69,214,72,216,100,216" href="http://crowdpublishtv.wordpress.com/" target="_blank" alt="">
+    </map>
+    <img src="wpimages/wp8819f7aa.png" width="129" height="221" border="0" id="pic_39" name="pic_39" title="" alt="" onload="OnLoadPngFix()" usemap="#map0"></div>
+<div id="txt_5" style="position:absolute; left:246px; top:6px; width:118px; height:144px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<p class="Normal-P"><span class="Normal-C"><a href="index.html" style="color:#ffffff;text-decoration:none;">Home</a> &nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p class="Normal-P"><span class="Normal-C"><a href="howwk.html" style="color:#ffffff;text-decoration:none;" title="What GuruTapas is intended to become">How it works</a> &nbsp;&nbsp;</span></p>
+<p class="Normal-P"><span class="Normal-C"><a href="http://gurutapas.heroku.com/calendar" style="color:#ffffff;text-decoration:none;">Event Calendar</a><a href="http://budgetjustified.com" style="color:#ffffff;text-decoration:none;"> </a></span></p>
+<p class="Normal-P"><span class="Normal-C"><a href="http://gurutapas.heroku.com/authors" style="color:#ffffff;text-decoration:none;" title="View the list of authors in the GuruTapas community - or sign up to be a GuruTapas author">Authors</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p class="Normal-P"><span class="Normal-C"><a href="http://gurutapas.heroku.com" style="color:#ffffff;text-decoration:none;">Bookworms</a></span></p>
+</div>
+<div style="position:absolute; left:257px; top:185px; width:32px; height:32px;">
+    <a href="http://linkedin.com/in/lisaannschaefer"  target="_blank"><img src="wpimages/wpc25f729f.png" width="32" height="32" border="0" id="pic_91" name="pic_91" title="" alt="" onload="OnLoadPngFix()"></a></div>
+<div style="position:absolute; left:3px; top:-3px; width:120px; height:26px;">
+    <div id="frag_24" style="text-align:left;">
+    <link rel="shortcut icon" href="http://crowdpublish.tv/crowdpublishtvLogo.ico">
+    </div></div>
+</div>
+</body>
 </html>
