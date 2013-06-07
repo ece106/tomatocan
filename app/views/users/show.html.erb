@@ -3,13 +3,17 @@
 
 <div id="uvid" style="position:absolute; overflow:hidden; left:0px; top:220px; z-index:3">
   <% if @user.ustreamvid? %>
-    <%= @user.ustreamvid.html_safe %>
+    <% if @user.ustreamvid.match /<iframe src="http:\/\/www.ustream.tv\/embed/ %>
+      <%= @user.ustreamvid.html_safe %>
+    <% end %>
   <% end %>
 </div>
 
 <div id="usocial" style="position:absolute; overflow:hidden; left:600px; top:220px; z-index:3">
   <% if @user.ustreamsocial? %>
-    <%= @user.ustreamsocial.html_safe %>
+    <% if @user.ustreamsocial.match /<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http:\/\/www.ustream.tv\/socialstream/ %>
+      <%= @user.ustreamsocial.html_safe %>
+    <% end %>
   <% end %>
 </div>
 
