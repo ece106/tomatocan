@@ -5,12 +5,12 @@
 <% else %>
   <% if @user.profilepicurl != nil %>
     <% if @user.profilepicurl.match /http/ %>
-      <img src= <%= @user.title %> border=0 width=150 height=150><p>
+      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
     <% else %>
-      <img src= "../assets/whiteBk.jpg" border=0 width=150 height=150><p>
+      <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
     <% end %>
   <% else %>
-   <img src= "../assets/whiteBk.jpg" border=0 width=150 height=150><p>
+   <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
   <% end %>
 <% end %>
 
@@ -20,7 +20,7 @@
 </div>
 
 <div style="position:absolute; left:380px; top:0px; width:650px; height:30px;">
-<img src= "../assets/purpleBar.png" alt="" title="" border=0 height="25" width="650" ></div>
+<img src= "../../assets/purpleBar.png" alt="" title="" border=0 height="25" width="650" ></div>
 
 <div id="txt_5" style="position:absolute; left:400px; top:5px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
 <span class="Body-C2">

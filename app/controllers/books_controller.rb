@@ -14,9 +14,9 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(params[:book])
     if @book.save
-      redirect_to author_path(current_user)
+      redirect_to user_path(current_user)
     else
-      redirect_to edit_author_path(current_user)
+      redirect_to edit_user_path(current_user)
     end
    end
 

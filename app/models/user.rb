@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :genre1, :genre2, :genre3, :twitter, :Ustreamvid, :Ustreamchat, :title, :blogurl, :profilepic, :profilepicurl
+  attr_accessible :name, :email, :password, :password_confirmation, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl
 
   has_secure_password
 
