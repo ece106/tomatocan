@@ -1,5 +1,52 @@
-<h1>New book</h1>
+<%= form_for(@book) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Back', books_path %>
+  <div class="field">
+    <%= f.label :id %><br />
+    <%= f.text_field :id %>
+  </div>
+  <div class="field">
+    <%= f.label :coverpicurl %><br />
+    <%= f.text_field :coverpicurl %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :blurb %><br />
+    <%= f.text_field :blurb %>
+  </div>
+  <div class="field">
+    <%= f.label :author_id %><br />
+    <%= f.text_field :author_id %>
+  </div>
+  <div class="field">
+    <%= f.label :genre %><br />
+    <%= f.text_field :genre %>
+  </div>
+  <div class="field">
+    <%= f.label :blogurl %><br />
+    <%= f.text_field :blogurl %>
+  </div>
+    <%= f.label :coverpic %><br />
+    <%= f.text_field :coverpic %>
+  </div>
+  <div class="field">
+    <%= f.label :fiftychar %><br />
+    <%= f.text_field :fiftychar %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
