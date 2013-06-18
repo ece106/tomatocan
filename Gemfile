@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby "1.9.2"
 
 gem 'fog', '1.6.0'
 gem 'carrierwave'

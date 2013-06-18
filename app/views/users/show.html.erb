@@ -19,7 +19,35 @@
 
 <div id="fanbook" style="position:absolute; left:380px; top:35px; width:600px; height:200px; z-index:3; overflow: auto;">
 
-
+<% if @user.books.any? %>
+  <table CELLPADDING="0" CELLSPACING="8" WIDTH="450">
+  <% @user.books.each do |book| %>
+    <%= form_for(book) do |f| %>
+      <tr><td width="50"; style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:70%" >
+      
+      <% if book.coverpicurl != nil %>
+        <% if book.coverpicurl.match /http/ %>
+          <a href= ../books/<%= book.id %>> <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
+        <% else %>
+          <% if book.title.match /[A-Za-z]/ %> 
+            <span class="Body-D2">
+            <a href= ../book/<%= book.id %>> <i><%= book.title %></i> <title= "Purchase <%= book.title %>" target="_blank"></a>
+            <br>by <%= @user.name %>
+          <% end %>
+        <% end %>
+      <% end %></span></td>
+      
+      <td style="line-height:94%">
+      <div style="float:left;width:75%;">
+      <a href= ../books/<%= book.id %>> <b><%= book.title %></b> <title= "Purchase <%= book.title %>" target="_blank"></a></div>
+      <div style="float:right;width:25%;">
+      &nbsp<%= book.genre %></div>
+      <br><span class="Body-C6"><%= book.fiftychar %></span>
+    </td></tr> 
+    <% end %>
+  <% end %>
+  </table>
+<% end %>
 
 </div>
 
