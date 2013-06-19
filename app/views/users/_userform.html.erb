@@ -5,25 +5,26 @@
 <% if @user.profilepic != nil %>
   <%= image_tag(@user.profilepic.to_s, :size => "150x150") %>
 <% else %>
-<% 
-=end %>
-
   <% if @user.profilepicurl != nil %>
     <% if @user.profilepicurl.match /http/ %>
       <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
     <% else %>
       <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
     <% end %>
-  <% end %>
-
-<% 
-=begin %>
   <% else %>
    <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
   <% end %>
 <% end %>
 <% 
 =end %>
+
+
+    <% if @user.profilepicurl.match /http/ %>
+      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
+    <% else %>
+      <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
+    <% end %>
+
 
 <div id="name" style="position:absolute; left:170px; top:0px; width:220px">
   <h2><%= @user.name %></h2>
