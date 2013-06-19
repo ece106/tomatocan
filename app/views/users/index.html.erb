@@ -20,7 +20,7 @@
    <% if user.profilepicurl.match /http/ %>
       <%= link_to(image_tag(user.profilepicurl, :size => "50x50", :profilepicurl => user.name), user)  %>
    <% else %>
-   <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50", :profilepicurl => user.name), user)  %>   
+   <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50"), user)  %>   
    <% end %>
 <% else %>
       <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50", :profilepicurl => user.name), user)  %> 

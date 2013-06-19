@@ -56,6 +56,10 @@
 
 <%= link_to 'New User', new_user_path %>
 
+\COPY users (name,email,ustreamvid,ustreamsocial,twitter,facebook,pinterest,youtube,genre1,genre2,genre3,blogurl,profilepicurl,profilepic,author,about,password_digest,remember_token,created_at,updated_at) FROM authorsNoIndex.csv delimiter ',';
+
+Name,Email,Ustreamvid,Ustreamsocial,Twitter,Facebook,Pinterest,Youtube,Genre1,Genre2,Genre3,Blogurl,Profilepicurl,Profilepic,Author,About,Password digest,Remember token
+
 "candalily@gmail.com"
 "gooberone1@yahoo.com"
 "jewel@jeweledministries.com"

@@ -39,3 +39,7 @@
 <br />
 
 <%= link_to 'New Book', new_book_path %>
+
+title,blurb,releasedate,author,genre,fiftychar,price,bookpdf,coverpic,coverpicurl
+
+\COPY books (title,blurb,releasedate,author_id,genre,fiftychar,price,bookpdf,coverpic,coverpicurl,created_at,updated_at,user_id) FROM booksNoIndex.csv delimiter ',';
