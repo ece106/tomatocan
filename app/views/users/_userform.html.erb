@@ -19,11 +19,15 @@
 =end %>
 
 
+  <% if @user.profilepic != nil %>
     <% if @user.profilepicurl.match /http/ %>
       <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
     <% else %>
-      <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
+      <img src= "http://gurutapas.com/images/whiteBk.jpg" border=0 width=150 height=150><p>
     <% end %>
+  <% else %>
+    <img src= "http://gurutapas.com/images/whiteBk.jpg" border=0 width=150 height=150><p>
+  <% end %>
 
 
 <div id="name" style="position:absolute; left:170px; top:0px; width:220px">
