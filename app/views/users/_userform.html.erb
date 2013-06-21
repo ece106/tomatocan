@@ -19,7 +19,7 @@
 =end %>
 
 
-  <% if @user.profilepic != nil %>
+  <% if @user.profilepicurl != nil %>
     <% if @user.profilepicurl.match /http/ %>
       <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
     <% else %>
@@ -32,6 +32,7 @@
 
 <div id="name" style="position:absolute; left:170px; top:0px; width:220px">
   <h2><%= @user.name %></h2>
+<%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
 </div>
 
 <div style="position:absolute; left:380px; top:0px; width:650px; height:30px;">
