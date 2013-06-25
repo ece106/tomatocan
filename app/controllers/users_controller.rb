@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     @booklist = Book.where(:user_id => @user.id)
 
     if @user.update_attributes(params[:user])
-#      sign_in @user
+      sign_in @user
       redirect_to @user
     else
       render 'profileinfo'
