@@ -100,19 +100,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @booklist = Book.where(:user_id => @user.id)
 
-#    respond_to do |format|
-      if @user.update_attributes(params[:user])
-              print "AUTHOR UUUUUUUUUUUUUUUPDATE IF"
-        sign_in @user
-        redirect_to @user
-#        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-#        format.json { head :ok }
-      else
-        render 'profileinfo'
-#        format.html { render action: "edit" }
-#        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-#    end
+    if @user.update_attributes(params[:user])
+      print "AUTHOR UUUUUUUUUUUUUUUPDATE IF"
+      sign_in @user
+      redirect_to @user
+    else
+      render 'profileinfo'
+    end
   end
 
   # DELETE /users/1
@@ -133,12 +127,12 @@ class UsersController < ApplicationController
     def signed_in_user
       unless signed_in?
         store_location
-        redirect_to signin_path, notice: "Please sign in." 
+        redirect_to signin_url, notice: "Please sign in." 
       end
     end
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(signin_path) unless current_user?(@user)
+      redirect_to(signin_url) unless current_user?(@user)
     end
 end
