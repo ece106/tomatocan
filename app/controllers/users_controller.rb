@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-include SessionsHelper
-
   before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :correct_user,   only: [:edit, :update]
   # GET /users
@@ -104,7 +102,6 @@ include SessionsHelper
     @booklist = Book.where(:user_id => @user.id)
 
     if @user.update_attributes(params[:user])
-      print "AUTHOR UUUUUUUUUUUUUUUPDATE IF"
       sign_in @user
       redirect_to @user
     else
