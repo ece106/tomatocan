@@ -1,4 +1,6 @@
 Crowdpublishtv::Application.routes.draw do
+  devise_for :users
+
   resources :books
   resources :users
   resources :plans
@@ -7,7 +9,7 @@ Crowdpublishtv::Application.routes.draw do
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
-  resources :sessions, only: [:create, :destroy, :new]
+#  resources :sessions, only: [:create, :destroy, :new]
 
   match '/profileinfo',  to: 'users#profileinfo'
   match '/infoerror',  to: 'users#inputerror'
@@ -15,6 +17,9 @@ Crowdpublishtv::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+#  match '/sessions/user',  to: 'users#show'
+#  match 'user_root_path', to: 'users/current_user'
+  root :to => "home#index"
 
   get "attachments/show"
 

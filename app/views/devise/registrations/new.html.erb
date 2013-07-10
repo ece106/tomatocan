@@ -1,0 +1,29 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+<div id="signup" style="position:absolute; overflow:hidden; 
+left:100px; top:330px; z-index:3; align:left">
+Sign up & sign in to hang out and learn with CrowdPublish.TV members.
+
+<table >
+  <tr>
+    <td align="left">Full Name:</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+<table>
+
+  <%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %>
+<br>
+  <%= f.label :password %><br />
+  <%= f.password_field :password %>
+<br>
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %>	
+<br>
+  <%= f.submit "Sign up" %>
+<% end %>
+
+<%= render "devise/shared/links" %>

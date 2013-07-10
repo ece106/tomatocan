@@ -1,7 +1,14 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-  has_secure_password
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl
+
+#  has_secure_password
 
 ####  mount_uploader :profilepic, ProfilepicUploader
 
@@ -17,11 +24,18 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true 
+#  validates :password, presence: true, length: { minimum: 6 }
+#  validates :password_confirmation, presence: true 
 
 
-print "AAAAAAAAAAAAUTHOR model ENDSTUFF called"
+  def authenticate(email, password)
+    if user = find_by_email(email)
+      if user.password == encrypt_password(password, user.salt)
+        user
+      end
+    end
+  end
+
 
   private
 #22

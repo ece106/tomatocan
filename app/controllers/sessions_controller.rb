@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   def new
   end
 
+=begin
   def create
     user = User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
@@ -13,6 +14,7 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+=end
 
   # DELETE /sessions/1
   # DELETE /sessions/1.json

@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_filter :signed_in_user
+#  before_filter :signed_in_user
+  before_filter :authenticate_user!
 
   def buy
 # no longer used

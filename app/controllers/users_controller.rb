@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:index, :edit, :update]
-  before_filter :correct_user,   only: [:edit, :update]
+#  before_filter :authenticate_user!
+
+#  before_filter :signed_in_user, only: [:index, :edit, :update]
+#  before_filter :correct_user,   only: [:edit, :update]
   # GET /users
   # GET /users.json
   def index
@@ -16,7 +18,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json 16
   def show
-    @user = User.find(params[:id])
+#    @user = User.find(params[:id])
+    @user = current_user
     @books = @user.books
     respond_to do |format|
       format.html # show.html.erb
@@ -124,6 +127,7 @@ class UsersController < ApplicationController
 
   private
 
+=begin
     def signed_in_user
       unless signed_in?
         store_location
@@ -135,4 +139,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(signin_url) unless current_user?(@user)
     end
+=end
+
 end
