@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @books = @user.books
-    @book = current_user.books.build if signed_in?
+    @book = current_user.books.build # if signed_in?
     @booklist = Book.where(:user_id => @user.id)
   end
 
@@ -89,12 +89,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-      if @user.save
-        sign_in @user
-        redirect_to @user
-      else
-        render 'new'
-      end
+#      if @user.save
+#        sign_in @user
+#        redirect_to @user
+#      else
+#        render 'new'
+#      end
   end
 
 
@@ -104,12 +104,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @booklist = Book.where(:user_id => @user.id)
 
-    if @user.update_attributes(params[:user])
-      sign_in @user
-      redirect_to @user
-    else
-      render 'profileinfo'
-    end
+#    if @user.update_attributes(params[:user])
+#      sign_in @user
+#      redirect_to @user
+#    else
+#      render 'profileinfo'
+#    end
   end
 
   # DELETE /users/1
