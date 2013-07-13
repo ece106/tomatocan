@@ -23,10 +23,10 @@ group :development do
 end
 
 group :production do
-#   gem 'pg' 
+   gem 'pg' 
 # rake db:create:all
 # rails s -e production
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+#  gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
 # Gems used only for assets and not required
