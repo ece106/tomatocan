@@ -13,13 +13,21 @@ Crowdpublishtv::Application.routes.draw do
 
   match '/profileinfo',  to: 'users#profileinfo'
   match '/infoerror',  to: 'users#inputerror'
-  match '/bookadded',  to: 'books#anothernew'
-  match '/signup',  to: 'users#new'
+  match '/me', to: 'users#booklist'
+#  match '/bookadded',  to: 'books#anothernew'
+#  match '/signup',  to: 'users#new'
 #  match '/signin',  to: 'sessions#new'
 #  match '/signout', to: 'sessions#destroy', via: :delete
 #  match '/sessions/user',  to: 'users#show'
 #  match 'user_root_path', to: 'users/current_user'
-  root :to => "home#index"
+
+  devise_for :users
+  authenticated :user do
+    root :to => "users#booklist"
+  end
+
+#  devise_for :users
+#  root :to => "devise/sessions#new"
 
   get "attachments/show"
 
@@ -37,27 +45,10 @@ Crowdpublishtv::Application.routes.draw do
     end
   end
 
+  devise_for :users
   resources :users do
     member do
-      get 'profileinfo'
-    end
-  end
-
-  resources :users do
-    member do
-      get 'blog'
-    end
-  end
-
-  resources :users do
-    member do
-      get 'interact'
-    end
-  end
-
-  resources :users do
-    member do
-      get 'booklist'
+      get 'booklist', 'blog', 'profileinfo'
     end
   end
 

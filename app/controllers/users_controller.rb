@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json 16
   def show
-#    @user = User.find(params[:id])
-    @user = current_user
+    @user = User.find(params[:id])
+#    @user = current_user
     @books = @user.books
     respond_to do |format|
       format.html # show.html.erb
@@ -88,13 +88,12 @@ class UsersController < ApplicationController
   # POST /users.json  86
   def create
     @user = User.new(params[:user])
-
-#      if @user.save
-#        sign_in @user
-#        redirect_to @user
-#      else
-#        render 'new'
-#      end
+      if @user.save
+        sign_in @user
+        redirect_to @user
+      else
+        render 'sign_in'
+      end
   end
 
 
@@ -104,12 +103,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @booklist = Book.where(:user_id => @user.id)
 
-#    if @user.update_attributes(params[:user])
-#      sign_in @user
-#      redirect_to @user
-#    else
-#      render 'profileinfo'
-#    end
+    if @user.update_attributes(params[:user])
+      sign_in @user
+      redirect_to @user
+    else
+      render 'profileinfo'
+    end
   end
 
   # DELETE /users/1

@@ -2,8 +2,12 @@
 
 <%= render 'form' %>
 
+<%
+=begin %>
 <div id="userlist" style="position:absolute; overflow:hidden; left:255px; top:250px; z-index:3">
 <%= button_to "Sign up ", new_user_path, :method=> :get %></div>
+<%
+=end %>
 
 <div id="userlist" style="position:absolute; overflow:hidden; left:100px; top:290px; z-index:3">
 
@@ -12,7 +16,7 @@
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> <p>
   <% end %>
 </div>
 

@@ -33,6 +33,8 @@
   </tr>
     <tr><td><%= f.text_area :coverpicurl, :cols => 70, :rows => 1, placeholder: "URL to a picture of the cover of your book" %><p>
 
+<%
+=begin %>
     Upload a picture of your book cover 
     <%= f.file_field :coverpic %>
 </tr>
@@ -40,6 +42,8 @@
     Upload your ebook, as a pdf or other electronic file 
     <%= f.file_field :bookpdf %>
 </tr>
+<%
+=end %>
 
   </table>
   <%= f.submit "Enter New Book" %>
