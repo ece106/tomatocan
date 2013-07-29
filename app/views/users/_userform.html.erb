@@ -1,5 +1,11 @@
 <title> CrowdPublish.tv - <%= @user.name %> site</title>
 
+<% if @user.genre1 ; @genreone = @user.genre1 else @genreone = " "  end
+if @user.genre2 ; @genretwo = @user.genre2 else @genretwo = " " end
+if @user.genre3 ; @genrethree = @user.genre3 else @genrethree = " " end %>
+
+<meta name="description" content="<%= "Read about author " + @user.name + " books: " + @genreone + " " + @genretwo + " " + @genrethree %>" />
+
 <% 
 =begin %>
 <% if @user.profilepic != nil %>
