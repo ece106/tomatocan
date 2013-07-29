@@ -4,7 +4,7 @@
 if @user.genre2 ; @genretwo = @user.genre2 else @genretwo = " " end
 if @user.genre3 ; @genrethree = @user.genre3 else @genrethree = " " end %>
 
-<meta name="description" content="<%= "Read about author " + @user.name + " books: " + @genreone + " " + @genretwo + " " + @genrethree %>" />
+<meta name="description" content=<%= "Read about author " + @user.name + " books: " + @genreone + " " + @genretwo + " " + @genrethree %> />
 
 <% 
 =begin %>
