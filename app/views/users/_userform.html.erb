@@ -1,10 +1,14 @@
 <title> CrowdPublish.tv - <%= @user.name %> site</title>
 
-<% if @user.genre1 ; @genreone = @user.genre1 else @genreone = " "  end
-if @user.genre2 ; @genretwo = @user.genre2 else @genretwo = " " end
-if @user.genre3 ; @genrethree = @user.genre3 else @genrethree = " " end %>
+<% @descname = @user.name.gsub(/ +/, '_')
+if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '_') else @genreone = "_"  end
+if @user.genre2 ; @genretwo = @user.genre2.gsub(/ +/, '_') else @genretwo = "_" end
+if @user.genre3 ; @genrethree = @user.genre3.gsub(/ +/, '_') else @genrethree = "_" end %>
 
-<meta name="description" content= <%= "Readaboutauthor" + @user.name + "_books:_" + @genreone + "_" + @genretwo + "_" + @genrethree %> />
+
+<% content_for :forusers do %>
+  <meta name="description" content= <%= "Read_about_author" + @descname + "'s_books:_" + @genreone + "_" + @genretwo + "_" + @genrethree %> />
+<% end %>
 
 <% 
 =begin %>
