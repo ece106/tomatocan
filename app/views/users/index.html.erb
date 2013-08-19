@@ -4,25 +4,27 @@
 
 <%
 =begin %>
-<div id="userlist" style="position:absolute; overflow:hidden; left:255px; top:250px; z-index:3">
+<div id="userlist" style="position:absolute; overflow:hidden; left:455px; top:340px; z-index:3">
 <%= button_to "Sign up ", new_user_path, :method=> :get %></div>
+<%= link_to "Sign up", new_user_registration_path %> or
 <%
 =end %>
 
-<div id="userlist" style="position:absolute; overflow:hidden; left:100px; top:290px; z-index:3">
-
-<div id="user_nav">
+<div id="usernav" style="position:absolute; overflow:hidden; left:100px; top:280px; z-index:3">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> <p>
+    Already a member? <%= link_to "SIGN IN", new_user_session_path %> <p>
   <% end %>
-</div>
+</div></div>
 
-<span class="Body-C5">CrowdPublish.TV Featured People</span>
-<table CELLPADDING="0" CELLSPACING="10" WIDTH="800" >
+<div id="userlist" style="position:absolute; overflow:hidden; left:390px; top:315px; z-index:3">
+
+<table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
   <tr>
+    <th></th><th><span class="Body-C3">  Featured People</span></th></tr>
+<tr>
     <th></th>
     <th align="left">&nbsp&nbsp&nbsp&nbspName</th>
     <th align="left">&nbsp&nbsp&nbsp&nbspWriting Genres</th>

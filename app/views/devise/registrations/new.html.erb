@@ -2,9 +2,11 @@
 
 <%= render 'form' %>
 
-<div id="signup" style="position:absolute; overflow:hidden; left:255px; top:250px; z-index:3">
+<div id="signuptext" style="position:absolute; overflow:hidden; left:400px; top:300px; z-index:3">
 <h3>Sign up to hang out and learn with CrowdPublish.TV members.
-</h3>
+</h3></div>
+
+<div id="signup" style="position:absolute; overflow:hidden; left:420px; top:350px; z-index:3">
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -23,6 +25,10 @@
   <br>
   <%= f.submit "Sign up" %>
 <% end %>
+</div>
 
+<div id="signup" style="position:absolute; overflow:hidden; left:700px; top:350px; z-index:3">
+
+Already a member? <p>
 <%= render "devise/shared/links" %>
 </div>

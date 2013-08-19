@@ -2,7 +2,7 @@
 
 <%= render 'form' %>
 
-<div id="user" style="position:absolute; overflow:hidden; left:255px; top:250px; z-index:3">
+<div id="user" style="position:absolute; overflow:hidden; left:400px; top:300px; z-index:3">
 <h2>Sign in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -20,6 +20,9 @@
 
   <div><%= f.submit "Sign in" %></div>
 <% end %>
+</div>
 
+<div id="user" style="position:absolute; overflow:hidden; left:740px; top:353px; z-index:3">
+Not a member? <p>
 <%= render "devise/shared/links" %>
 </div>
