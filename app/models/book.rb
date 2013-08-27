@@ -2,6 +2,7 @@ class Book < ActiveRecord::Base
   attr_accessible :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :bookpdf, :coverpic
   belongs_to :user
 #  has_many :purchases
+  has_many :reviews
 
   validates :user_id, presence: true
   default_scope order: 'books.releasedate DESC'

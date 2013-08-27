@@ -40,14 +40,13 @@ You must enter & confirm password every time you visit this page.
     <div id="signup" style="position:absolute; overflow:hidden; 
 left:380px; top:40px; z-index:3">
 
-    Soon we will automate linking your account with Ustream during signup. But at this time, sign up at <a href= http://Ustream.TV> Ustream <title= "Ustream" target="_blank"></a> in another browser tab then return to this page.
-    <p>Go to your Ustream dashboard (click on the icon in upper right of your <a href= http://Ustream.TV> Ustream.TV <title= "Ustream" target="_blank"></a> page). Scroll down under <b>Channel</b> and click on <font color = "0000FF"> Embed</font>. The code to Embed the <font color = "0000FF"> Live </font> video player will look something like this: 
-<br>	<font face="Courier New"> [iframe src="http://www.ustream.tv/embed/247796" width="608" height="368" ... (verbose code in here) ...  Live Video streaming by Ustream /a> </font> <br> 
-Copy & paste it into the box below. <br />
+    In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Home Page to your own livestreaming video, sign up at <a href= "http://Ustream.TV" target="_blank"> Ustream </a>. 
+    <p>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Click on <b>Channel Settings</b> then click on <font color = "0000FF"> Embed</font> on the left side of your screen. You will see the code to Embed the <font color = "0000FF"> Live </font> video player. It looks something like the default code below. 
+<br> 
+Copy & paste the Live code from your Ustream account to replace the default code below. <br />
     <%= f.text_area :ustreamvid, :cols => 62, :rows => 3 %>
-    <p>On the same Embed page, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to this: 
-    <br>	<font face="Courier New"> [iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream /247796">/iframe></font><br>
-    Copy & paste it into the box below. <br />
+    <p>On the same Embed page in your Ustream account, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to the default code below. 
+    Copy & paste the Social Stream code from your Ustream account to replace the default code below. <br />
     <%= f.text_area :ustreamsocial, :cols => 62, :rows => 3 %>
     </div>
 
