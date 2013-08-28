@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   after_initialize :assign_defaults_on_new_User, if: 'new_record?'
   
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl
+  attr_accessible :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl
 
 #  has_secure_password
 
@@ -32,8 +32,7 @@ class User < ActiveRecord::Base
 
   private
   def assign_defaults_on_new_User
-    self.ustreamsocial = '<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>'
-    self.ustreamvid = '<iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free desktop streaming application by Ustream</a>'
+    self.author = 1
   end
 
 #  def authenticate(email, password)

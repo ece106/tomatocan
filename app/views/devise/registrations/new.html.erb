@@ -6,7 +6,7 @@
 <h3>Sign up to hang out and learn with CrowdPublish.TV members.
 </h3></div>
 
-<div id="signup" style="position:absolute; overflow:hidden; left:420px; top:350px; z-index:3">
+<div id="signup" style="position:absolute; overflow:hidden; left:390px; top:350px; z-index:3">
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -17,7 +17,16 @@
   Email<br />
   <%= f.email_field :email, :autofocus => true %>
   <br>
-  Password <br />
+Which kind of account do you wish
+<br>to use? (This can be changed later.)
+<p><%= radio_button_tag(:author, 1) %>
+<%= label_tag(:author_child, "Reader . . .") %>
+<br><%= radio_button_tag(:author, 2) %>
+<%= label_tag(:author_adult, "Author . . .") %>
+<br><%= radio_button_tag(:author, 3) %>
+<%= label_tag(:author_adult, "Organization") %>
+
+<p>  Password <br />
   <%= f.password_field :password %>
   <br>
   Enter password again <br />
@@ -27,7 +36,7 @@
 <% end %>
 </div>
 
-<div id="signup" style="position:absolute; overflow:hidden; left:700px; top:350px; z-index:3">
+<div id="signup" style="position:absolute; overflow:hidden; left:700px; top:355px; z-index:3">
 
 Already a member? <p>
 <%= render "devise/shared/links" %>

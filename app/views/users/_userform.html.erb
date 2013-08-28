@@ -1,14 +1,42 @@
-<title> CrowdPublish.TV - <%= @user.name %> site</title>
-
+<title> CrowdPublish.TV - <%= @user.name %>'s site</title>
 <% @descname = @user.name.gsub(/ +/, '-')
 if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_"  end
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-
 <% content_for :forusers do %>
   <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %> />
 <% end %>
+
+<div style="position:absolute; left:0px; top:0px">
+  <img src= "../../assets/purpleBar.png" alt="" title="" border=0 height="35" width="1010" ></div>
+
+<div id="pic" style="position:absolute; left:0px; top:35px;">
+  <% if @user.profilepicurl != nil %>
+    <% if @user.profilepicurl.match /http/ %>
+      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
+    <% else %>
+      <img src= "http://crowdpublish.tv/images/whiteBk.jpg" border=0 width=150 height=150><p>
+    <% end %>
+  <% else %>
+    <img src= "http://crowdpublish.tv/images/whiteBk.jpg" border=0 width=150 height=150><p>
+  <% end %>
+</div>
+
+<div id="name" style="position:absolute; left:170px; top:35px; width:220px">
+  <h2><%= @user.name %></h2>
+<%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
+</div>
+
+<div id="usermenu" style="position:absolute; left:10px; top:7px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<span class="Body-C9">
+  <a href="<%= booklist_user_path %>" style="color:#ffffff;" title="<%= @user.name %>"> <%= @user.name %> Books </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="<%= blog_user_path %>" style="color:#ffffff;">Blog </a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="<%= user_path %>" style="color:#ffffff;">Live Events</a></div>
+<div id="crowdmenu" style="position:absolute; left:500px; top:7px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
+<span class="Body-C9">
+  <a href="http://CrowdPublish.tv" style="color:#ffffff;">CrowdPublishTV Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
+</span></div>
 
 <% 
 =begin %>
@@ -27,38 +55,4 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% end %>
 <% 
 =end %>
-
-
-  <% if @user.profilepicurl != nil %>
-    <% if @user.profilepicurl.match /http/ %>
-      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
-    <% else %>
-      <img src= "http://crowdpublish.tv/images/whiteBk.jpg" border=0 width=150 height=150><p>
-    <% end %>
-  <% else %>
-    <img src= "http://crowdpublish.tv/images/whiteBk.jpg" border=0 width=150 height=150><p>
-  <% end %>
-
-
-<div id="name" style="position:absolute; left:170px; top:0px; width:220px">
-  <h2><%= @user.name %></h2>
-<%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
-</div>
-
-<div style="position:absolute; left:380px; top:0px; width:650px; height:30px;">
-<img src= "../../assets/purpleBar.png" alt="" title="" border=0 height="25" width="650" ></div>
-
-<div id="txt_5" style="position:absolute; left:400px; top:5px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
-<span class="Body-C2">
-
-<a href="http://CrowdPublish.tv" style="color:#ffffff;">CrowdPublishTV Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="<%= booklist_user_path %>" style="color:#ffffff;" title="<%= @user.name %>"> <%= @user.name %> Books </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="<%= blog_user_path %>" style="color:#ffffff;">Blog </a>&nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="<%= user_path %>" style="color:#ffffff;">Live Events</a></span>
-</div>
-
-
 

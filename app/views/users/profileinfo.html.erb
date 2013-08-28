@@ -12,14 +12,19 @@
     <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
     <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %></div>
 
-    <div id="bkinp" style="position:absolute; overflow:hidden; left:0px; top:350px; z-index:3; width:350px;">
-    Upload a picture of yourself (square is best)
-    <br><%= f.file_field :profilepic %> OR
-
-    <br> <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %>
+    <div id="bkinp" style="position:absolute; overflow:hidden; left:0px; top:340px; z-index:3; width:350px;">
+    <p> <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %>
     <br><%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "URL to your blog" %>
     <br>  <%= f.text_area :twitter, :cols => 40, :rows => 1, placeholder: "Twitter handle (Without the '@' symbol)" %>
+<p>Change account type:
+<p><%= radio_button_tag(:author, 1) %>
+<%= label_tag(:author_child, "Reader") %>
+<br><%= radio_button_tag(:author, 2) %>
+<%= label_tag(:author_adult, "Author") %>
+<br><%= radio_button_tag(:author, 3) %>
+<%= label_tag(:author_adult, "Organization") %>
     </div>
+  
 
     <div id="passwd" style="position:absolute; overflow:hidden; width:350px; left:0px; top:160px; z-index:3"><span class="Body-C0">
     <table>
@@ -44,10 +49,20 @@ left:380px; top:40px; z-index:3">
     <p>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Click on <b>Channel Settings</b> then click on <font color = "0000FF"> Embed</font> on the left side of your screen. You will see the code to Embed the <font color = "0000FF"> Live </font> video player. It looks something like the default code below. 
 <br> 
 Copy & paste the Live code from your Ustream account to replace the default code below. <br />
-    <%= f.text_area :ustreamvid, :cols => 62, :rows => 3 %>
+    <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder:  '<iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href= "http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free desktop streaming application by Ustream</a>' %>
     <p>On the same Embed page in your Ustream account, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to the default code below. 
     Copy & paste the Social Stream code from your Ustream account to replace the default code below. <br />
-    <%= f.text_area :ustreamsocial, :cols => 62, :rows => 3 %>
+    <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>' %>
+
+<%
+=begin %>
+    Upload a picture of yourself (square is best)
+    <br><%= f.file_field :profilepic %> OR
+<%
+=end %>
+
+    <p>Tell us all about yourself. <br />
+    <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>
     </div>
 
   <% end %>
