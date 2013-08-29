@@ -1,5 +1,5 @@
 <% @title="CrowdPublish.TV: The Future of Empowerment is Your Story - edit user profile "  %>
-<%= render 'authorform' %>
+<%= render 'userform' %>
 
 <% if @user == current_user %>
 
@@ -17,11 +17,11 @@
     <br><%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "URL to your blog" %>
     <br>  <%= f.text_area :twitter, :cols => 40, :rows => 1, placeholder: "Twitter handle (Without the '@' symbol)" %>
 <p>Change account type:
-<p><%= f.radio_button(:author, 1) %>
+<p><%= radio_button_tag(:author, 1) %>
 <%= label_tag(:author_child, "Reader") %>
-<br><%= f.radio_button(:author, 2) %>
+<br><%= radio_button_tag(:author, 2) %>
 <%= label_tag(:author_adult, "Author") %>
-<br><%= f.radio_button(:author, 3) %>
+<br><%= radio_button_tag(:author, 3) %>
 <%= label_tag(:author_adult, "Organization") %>
     </div>
   

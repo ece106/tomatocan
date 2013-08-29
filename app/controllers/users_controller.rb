@@ -43,13 +43,32 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def profileinfo
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
     end
   end
-
+  def readerprofileinfo
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # readerprofileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def editbookreview
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # editbookreview.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def editauthorreview
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # editauthorreview.html.erb
+      format.json { render json: @user }
+    end
+  end
 
   # GET /users/1  52
   # GET /users/1.json

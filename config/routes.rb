@@ -14,13 +14,12 @@ Crowdpublishtv::Application.routes.draw do
 #  resources :sessions, only: [:create, :destroy, :new]
 
   match '/profileinfo',  to: 'users#profileinfo'
+  match '/readerprofileinfo',  to: 'users#readerprofileinfo'
+  match '/orgprofileinfo',  to: 'users#orgprofileinfo'
+  match '/editbookreview',  to: 'users#editbookreview'
+  match '/editauthorreview',  to: 'users#editauthorreview'
   match '/infoerror',  to: 'users#inputerror'
   match '/me', to: 'users#booklist'
-#  match '/bookadded',  to: 'books#anothernew'
-#  match '/signup',  to: 'users#new'
-#  match '/signin',  to: 'sessions#new'
-#  match '/signout', to: 'sessions#destroy', via: :delete
-#  match '/sessions/user',  to: 'users#show'
 #  match 'user_root_path', to: 'users/current_user'
 
   devise_for :users
@@ -50,10 +49,9 @@ Crowdpublishtv::Application.routes.draw do
   devise_for :users
   resources :users do
     member do
-      get 'booklist', 'blog', 'profileinfo'
+      get 'booklist', 'blog', 'profileinfo', 'readerprofileinfo', 'orgprofileinfo', 'editbookreview', 'editauthorreview'
     end
   end
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,9 +1,39 @@
 <% @title="CrowdPublish.TV - interact with " + @user.name + " here live!" %>
+<% if @user.author == 1 %>
+  <%= render 'readerform' %>
 
-<%= render 'userform' %>
-<%= render 'authorsidebar' %>
+  <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
+    <% if @user.ustreamvid? %>
+    <% end %>
+  </div>
 
-<div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
+  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
+    <% if @user == current_user %>
+      <table><tr>
+      <td><%=  button_to "Edit Profile", readerprofileinfo_user_path(current_user), :method=> :get %> </td>
+
+<% 
+=begin %>
+      <td><%= button_to "Edit Book Reviews", editbookreview_user_path(current_user), :method=> :get %> </td>
+      <td><%= button_to "Edit Author Reviews", editauthorreview_user_path(current_user), :method=> :get %></td>
+<% 
+=end %>
+
+      </tr></table> 
+Soon readers will be able to click on CrowdPublish.TV authors' books to enter reviews.
+    <% end %> 
+  </div>
+  <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
+    <%= @user.about %>
+  </div>
+<% end %>
+
+
+<% if @user.author == 2 %>
+  <%= render 'authorform' %>
+  <%= render 'authorsidebar' %>
+
+  <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
   <% if @user.ustreamvid? %>
     <% if @user.ustreamvid.match /<iframe src="http:\/\/www.ustream.tv\/embed/ %>
       <%= @user.ustreamvid.html_safe %>
@@ -11,9 +41,9 @@
     <% elsif %>
       <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free desktop streaming application by Ustream</a>
   <% end %>
-</div>
+  </div>
 
-<div id="usocial" style="position:absolute; overflow:hidden; left:400px; top:370px; z-index:3">
+  <div id="usocial" style="position:absolute; overflow:hidden; left:400px; top:370px; z-index:3">
   <% if @user.ustreamsocial? %>
     <% if @user.ustreamsocial.match /<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http:\/\/www.ustream.tv\/socialstream/ %>
       <%= @user.ustreamsocial.html_safe %>
@@ -21,12 +51,13 @@
   <% elsif %>
     <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe> 
    <% end %>
-</div>
+  </div>
 
-<div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
-<% if @user == current_user %>
-  <table><tr><td>
-  <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
-  <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
-<% end %> 
-</div>
+  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
+  <% if @user == current_user %>
+    <table><tr><td>
+    <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
+    <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
+  <% end %> 
+  </div>
+<% end %>
