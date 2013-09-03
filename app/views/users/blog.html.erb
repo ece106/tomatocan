@@ -1,13 +1,23 @@
 <% @title="CrowdPublish.TV - The Future of Empowerment is Your Story - " + @user.name + "'s blog" %>
-<%= render 'userform' %>
 
-<table >
-      <tr>      <td > 
-<% if @user == current_user %>
-  <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
-  <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %> </tr>
-<% end %> </table>
+<% if @user.author == 1 %>
+  <%= render 'readerform' %>
+<% end %>
+<% if @user.author == 2 %>
+  <%= render 'authorform' %>
+  <%= render 'authorsidebar' %>
+<% end %>
+<% if @user.author == 3 %>
+  <%= render 'orgform' %>
+<% end %>
 
+  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
+  <% if @user == current_user %>
+    <table><tr><td>
+    <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
+    <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
+  <% end %> 
+  </div>
 
 <div id="fanbook" style="position:absolute; overflow:hidden; left:0px; top:200px; z-index:3">
 

@@ -7,19 +7,14 @@ bundle exec rake db:migrate
 heroku run rake db:migrate
 -->
 
-<%= render 'userform' %>
+<%= render 'authorform' %>
 
-<% if @user == current_user %>
-  <%= button_to "Edit Book Info", edit_user_path(current_user), :method=> :get %><br>
-  <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %>
-<% end %>
-<p>
-
-
-<div id="name" style="position:absolute; left:170px; top:70px; width:220px">
-  &nbsp&nbsp&nbsp&nbsp<%= @user.genre1 %><p>
-  &nbsp&nbsp&nbsp&nbsp<%= @user.genre2 %><p>
-  &nbsp&nbsp&nbsp&nbsp<%= @user.genre3 %>
+<div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
+  <% if @user == current_user %>
+    <table><tr><td>
+    <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
+    <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
+  <% end %> 
 </div>
 
 <p id="notice"><%= notice %></p>
