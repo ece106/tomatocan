@@ -33,9 +33,6 @@
   <% end %>
   </table>
 <% elsif %>
-  <% if @user == current_user %>
-    <p>The following book description will be replaced with a listing of your books after you enter information about your books. <p>
-  <% end %>
   <table CELLPADDING="0" CELLSPACING="8" WIDTH="400">
   <tr><td width="50"; style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:70%" >
   <a href= "http://BudgetJustified.com" ><img src= "http://budgetjustified.com/wpimages/wp392d9a3d.png" width="50" height="65"  title= "Purchase Budget Justified by Lisa Schaefer" target="_blank"></a>
@@ -49,6 +46,9 @@
 <br><br><br>A few years ago, an FAA employee masturbated in front of a female engineering contractor. The next day the woman was fired. So rather than go back to another FAA contractor position, she used her talents to produce Budget Justified, a movie, web series, and video-short reenacting what she witnessed in FAA and contractor offices.</span></div>
     </td></tr>  </table>
   
+  <% if @user == current_user %>
+    <p>The following book description will be replaced with a listing of your books after you enter information about your books. <p>
+  <% end %>
 
 <% end %>
 

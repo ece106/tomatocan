@@ -1,33 +1,4 @@
 <% @title="CrowdPublish.TV interact with " + @user.name + " here live!" %>
-<% if @user.author == 1 %>
-  <%= render 'readerform' %>
-
-  <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
-    <% if @user.ustreamvid? %>
-    <% end %>
-  </div>
-
-  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
-    <% if @user == current_user %>
-      <table><tr>
-      <td><%=  button_to "Edit Profile", readerprofileinfo_user_path(current_user), :method=> :get %> </td>
-
-<% 
-=begin %>
-      <td><%= button_to "Edit Book Reviews", editbookreview_user_path(current_user), :method=> :get %> </td>
-      <td><%= button_to "Edit Author Reviews", editauthorreview_user_path(current_user), :method=> :get %></td>
-<% 
-=end %>
-
-      </tr></table> 
-Soon readers will be able to click on CrowdPublish.TV authors' books to enter reviews.
-    <% end %> 
-  </div>
-  <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
-    <%= @user.about %>
-  </div>
-<% end %>
-
 
 <% if @user.author == 2 %>
   <%= render 'authorform' %>
@@ -60,10 +31,7 @@ Soon readers will be able to click on CrowdPublish.TV authors' books to enter re
     <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
   <% end %> 
   </div>
-<% end %>
-
-
-<% if @user.author == 3 %>
+<% elsif @user.author == 3 %>
   <%= render 'orgform' %>
 
   <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
@@ -87,6 +55,34 @@ Soon organizations will be able to click on CrowdPublish.TV authors' books to en
   </div>
 
   <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:250px; z-index:3">
+    <%= @user.about %>
+  </div>
+
+<% elsif  %>
+  <%= render 'readerform' %>
+
+  <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
+    <% if @user.ustreamvid? %>
+    <% end %>
+  </div>
+
+  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
+    <% if @user == current_user %>
+      <table><tr>
+      <td><%=  button_to "Edit Profile", readerprofileinfo_user_path(current_user), :method=> :get %> </td>
+
+<% 
+=begin %>
+      <td><%= button_to "Edit Book Reviews", editbookreview_user_path(current_user), :method=> :get %> </td>
+      <td><%= button_to "Edit Author Reviews", editauthorreview_user_path(current_user), :method=> :get %></td>
+<% 
+=end %>
+
+      </tr></table> 
+Soon readers will be able to click on CrowdPublish.TV authors' books to enter reviews.
+    <% end %> 
+  </div>
+  <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
     <%= @user.about %>
   </div>
 <% end %>
