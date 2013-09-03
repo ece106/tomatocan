@@ -55,6 +55,13 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def orgprofileinfo
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # orgprofileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
   def editbookreview
     @user = User.find(params[:id])
     respond_to do |format|

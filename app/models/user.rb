@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   after_initialize :assign_defaults_on_new_User, if: 'new_record?'
   
-  attr_accessible :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl
+  attr_accessible :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook
 
 #  has_secure_password
 
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   private
   def assign_defaults_on_new_User
-    self.author = 1
+    self.author = 2
   end
 
 #  def authenticate(email, password)

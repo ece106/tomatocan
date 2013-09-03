@@ -5,7 +5,7 @@ if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo 
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
 <% content_for :forusers do %>
-  <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_reading_website:" + @genreone + @genretwo + @genrethree %> />
+  <meta name="description" content= <%= "Read_about_" + @descname + "'s_reading&reviews_website:" + @genreone + @genretwo + @genrethree %> />
 <% end %>
 
 <div style="position:absolute; left:0px; top:0px">
