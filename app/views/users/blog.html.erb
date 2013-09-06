@@ -1,4 +1,12 @@
-<% @title="CrowdPublish.TV - The Future of Empowerment is Your Story - " + @user.name + "'s blog" %>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrowdPublish.TV <%  @user.name %> 's blog</title>
+<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
+<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
+</head>
 
 <% if @user.author == 2 %>
   <%= render 'authorform' %>
@@ -19,8 +27,9 @@
 
 <div id="blog" style="position:absolute; overflow:hidden; left:400px; top:60px; z-index:3">
 
-<% if @user.blogurl.match /http/ %>
-  <iframe frameborder="0" width="710" src= "<%= @user.blogurl %>" height="1000"></iframe>
+<% if @user.blogurl %>
+  <% if @user.blogurl.match /http/ %>
+    <iframe frameborder="0" width="900" src= "<%= @user.blogurl %>" height="1000"></iframe>
 
 <% elsif @user.twitter %>
 
