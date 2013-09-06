@@ -11,22 +11,27 @@
     <tr>
 <td style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:90%" >
 
-<% if book.coverpicurl != nil %>
-    <%= image_tag(book.coverpicurl.to_s, :size => "50x65") %>
+<%
+=begin %>
+<% if book.coverpic != nil %>
+    <%= image_tag(book.coverpic.to_s, :size => "50x65") %>
 <% else %>
-    <% if book.coverpicurl != nil %>
-      <% if book.coverpicurl.match /http/ %>
-        <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
-      <% else %>
-        <% if book.title.match /[A-Za-z]/ %> 
-          <span class="Body-D2">
-          <a href= http://CrowdPublish.TV style="color: #880000" title= "Purchase <%= book.title %>"> <font color="880000" ><i>
-          <%= book.title %> <target="_blank"></font></i></a> 
-          <br>by <%= @user.name %>
-        <% end %>
+<%
+=end %>
+
+  <% if book.coverpicurl != nil %>
+    <% if book.coverpicurl.match /http/ %>
+      <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
+    <% else %>
+      <% if book.title.match /[A-Za-z]/ %> 
+        <span class="Body-D2">
+        <a href= http://CrowdPublish.TV style="color: #880000" title= "Purchase <%= book.title %>"> <font color="880000" ><i>
+        <%= book.title %> <target="_blank"></font></i></a> 
+        <br>by <%= @user.name %>
       <% end %>
     <% end %>
-<% end %></span>
+  <% end %>
+</span>
 
 </td><td> <i><%= book.fiftychar %></i></td>
 </tr>

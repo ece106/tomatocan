@@ -4,6 +4,8 @@ class Book < ActiveRecord::Base
 #  has_many :purchases
   has_many :reviews
 
+  validates :fiftychar, length: { maximum: 140 }
+  validates :blurb, length: { maximum: 2000 }
   validates :user_id, presence: true
   default_scope order: 'books.releasedate DESC'
 
