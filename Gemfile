@@ -2,11 +2,12 @@ source 'http://rubygems.org'
 ruby "1.9.2"
 
 gem 'devise', '~> 2.2.4'
-gem 'fog', '1.6.0'
+gem 'fog'   #, '1.6.0'
 gem 'carrierwave'
 gem 'stripe'
 gem "debugger-pry", :require => "debugger/pry"
 gem 'aws-s3'
+gem 'aws-sdk'
 
 gem 'rails', '3.1.0'
 gem 'bcrypt-ruby', '3.0.1'

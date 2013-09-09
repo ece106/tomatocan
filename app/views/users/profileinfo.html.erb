@@ -3,7 +3,7 @@
 
 <% if @user == current_user %>
 
-  <%= form_for(@user) do |f| %>
+  <%= form_for @user, :html => {:multipart => true} do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
 
     <div id="bkinp" style="position:absolute; overflow:hidden; left:160px; top:50px; z-index:3">
@@ -13,6 +13,9 @@
     <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %></div>
 
     <div id="bkinp" style="position:absolute; overflow:hidden; left:0px; top:360px; z-index:3; width:350px;">
+    <p>Upload a picture of yourself (square is best)
+    <br><%= f.file_field :profilepic %> OR
+
     <p> <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %>
     <br><%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "URL to your blog" %>
     <br>  <%= f.text_area :twitter, :cols => 40, :rows => 1, placeholder: "Twitter handle (Without the '@' symbol)" %>
@@ -53,13 +56,6 @@ Copy & paste the Live code from your Ustream account to replace the default code
     <p>On the same Embed page in your Ustream account, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to the default code below. 
     Copy & paste the Social Stream code from your Ustream account to replace the default code below. <br />
     <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>' %>
-
-<%
-=begin %>
-    Upload a picture of yourself (square is best)
-    <br><%= f.file_field :profilepic %> OR
-<%
-=end %>
 
     <p>Tell us all about yourself. <br />
     <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>

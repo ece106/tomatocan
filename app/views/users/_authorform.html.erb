@@ -12,7 +12,16 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <img src= "../../assets/purpleBar.png" alt="" title="" border=0 height="35" width="1010" ></div>
 
 <div id="pic" style="position:absolute; left:0px; top:35px;">
-  <% if @user.profilepicurl != nil %>
+  <% if @user.profilepic %>
+
+<%
+=begin %>
+    <%= ### FOR LOCAL FILES image_tag(@user.profilepic.to_s, :size => "150x150") %>
+<%
+=end %>
+
+    <%= image_tag("https://s3.amazonaws.com/authorprofile/uploads/#{@user.profilepic}", :size => "150x150") %>
+  <% elsif @user.profilepicurl %>
     <% if @user.profilepicurl.match /http/ %>
       <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
     <% else %>
@@ -38,22 +47,4 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <span class="Body-C2">
   <a href="http://CrowdPublish.tv" style="color:#ffffff;">CrowdPublishTV Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
 </span></div>
-
-<% 
-=begin %>
-<% if @user.profilepic != nil %>
-  <%= image_tag(@user.profilepic.to_s, :size => "150x150") %>
-<% else %>
-  <% if @user.profilepicurl != nil %>
-    <% if @user.profilepicurl.match /http/ %>
-      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
-    <% else %>
-      <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
-    <% end %>
-  <% else %>
-   <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
-  <% end %>
-<% end %>
-<% 
-=end %>
 

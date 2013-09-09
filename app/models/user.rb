@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
 #  has_secure_password
 
-####  mount_uploader :profilepic, ProfilepicUploader
+  mount_uploader :profilepic, ProfilepicUploader
 
   before_save { |user| user.email = email.downcase }
 #  before_save :create_remember_token
