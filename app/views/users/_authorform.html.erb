@@ -20,7 +20,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <%
 =end %>
 
-    <%= image_tag("https://s3.amazonaws.com/authorprofile/uploads/#{@user.profilepic}", :size => "150x150") %>
+    <%= image_tag("https://s3.amazonaws.com/authorprofile/uploads/user/profilepic/#{@user.id}/#{@user.profilepic}", :size => "150x150") %>
   <% elsif @user.profilepicurl %>
     <% if @user.profilepicurl.match /http/ %>
       <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
