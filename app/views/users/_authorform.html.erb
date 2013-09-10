@@ -34,6 +34,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 
 <div id="name" style="position:absolute; left:170px; top:35px; width:220px">
   <h2><%= @user.name %></h2>
+  
 <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
 </div>
 
