@@ -16,11 +16,10 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 
 <%
 =begin %>
-    <%= ### FOR LOCAL FILES image_tag(@user.profilepic.to_s, :size => "150x150") %>
+    <%= image_tag(@user.profilepic, :size => "150x150") %>
 <%
 =end %>
-
-    <%= image_tag(@user.profilepic, :size => "150x150") %>
+    
   <% elsif @user.profilepicurl %>
     <% if @user.profilepicurl.match /http/ %>
       <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
@@ -34,7 +33,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 
 <div id="name" style="position:absolute; left:170px; top:35px; width:220px">
   <h2><%= @user.name %></h2>
-  
+
 <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
 </div>
 
