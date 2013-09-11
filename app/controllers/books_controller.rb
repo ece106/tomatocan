@@ -32,7 +32,6 @@ class BooksController < ApplicationController
     end
    end
 
-#34
   def update
     @bklist = Book.find(params[:id])
       if @bklist.update_attributes(params[:book])
@@ -43,7 +42,6 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1
-  # GET /books/1.json
   def show
     @book = Book.find(params[:id])
 #    @purchases = @book.purchases

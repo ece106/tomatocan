@@ -86,13 +86,11 @@
     <%= f.date_select :releasedate %>
 
 <p>
-
     Upload a picture of your book cover 
     <%= f.file_field :coverpic %>
 
- </td>
-  </tr>
-    <tr><td><%= f.text_area :coverpicurl, :cols => 70, :rows => 1, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .tga, or .png)" %> <br> *This MUST include the 'http://' part of the URL in order to work. Do not post the URL to a webSITE. Only PICTURES will work. (In the near future you'll be able to upload pictures.) <br> 
+ </td></tr>  <tr><td>
+   <%= f.text_area :coverpicurl, :cols => 70, :rows => 1, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .tga, or .png)" %> <br> *This MUST include the 'http://' part of the URL in order to work. Do not post the URL to a webSITE. Only PICTURES will work. (In the near future you'll be able to upload pictures.) ... OR<br> 
     <div style="float:left;width:62%;">
       Upload your ebook, as a pdf (for iBooks & PCs)...... </div>
     <div style="float:right;width:38%;">
