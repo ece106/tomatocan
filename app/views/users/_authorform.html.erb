@@ -14,11 +14,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <div id="pic" style="position:absolute; left:0px; top:35px;">
   <% if @user.profilepic %>
 
-<%
-=begin %>
     <%= image_tag(@user.profilepic, :size => "150x150") %>
-<%
-=end %>
     
   <% elsif @user.profilepicurl %>
     <% if @user.profilepicurl.match /http/ %>
