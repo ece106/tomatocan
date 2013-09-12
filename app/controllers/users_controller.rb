@@ -114,12 +114,12 @@ class UsersController < ApplicationController
   # POST /users.json  86
   def create
     @user = User.new(params[:user])
-      if @user.save
-        sign_in @user
-        redirect_to @user
-      else
-        render 'sign_in'
-      end
+    if @user.save
+      sign_in @user
+      redirect_to @user
+    else
+      render 'sign_in'
+    end
   end
 
 

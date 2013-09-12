@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_initialize :assign_defaults_on_new_User, if: 'new_record?'
+  after_initialize :assign_defaults_on_new_user, if: 'new_record?'
   
   attr_accessible :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook
 
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true 
 
   private
-  def assign_defaults_on_new_User
+  def assign_defaults_on_new_user
     self.author = 2
   end
 
