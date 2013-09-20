@@ -10,7 +10,7 @@
 <%
 =end %>
 
-<div id="usernav" style="position:absolute; overflow:hidden; left:100px; top:280px; z-index:3">
+<div id="usernav" style="position:absolute; overflow:hidden; left:100px; top:300px; z-index:3">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
@@ -19,12 +19,14 @@
   <% end %>
 </div></div>
 
-<div id="userlist" style="position:absolute; overflow:hidden; left:390px; top:315px; z-index:3">
+<div id="userlist" style="position:absolute; overflow:hidden; left:390px; top:320px; z-index:3">
 
 <table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
   <tr>
-    <th></th><th><span class="Body-C3">  Featured People</span></th></tr>
-<tr>
+    <th></th>
+    <th><span class="Body-C3">  Featured People</span></th>
+  </tr>
+  <tr>
     <th></th>
     <th align="left">&nbsp&nbsp&nbsp&nbspName</th>
     <th align="left">&nbsp&nbsp&nbsp&nbspWriting Genres</th>

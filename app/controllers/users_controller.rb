@@ -4,8 +4,7 @@ class UsersController < ApplicationController
 
 #  before_filter :signed_in_user, only: [:index, :edit, :update]
 #  before_filter :correct_user,   only: [:edit, :update]
-  # GET /users
-  # GET /users.json
+  
   def index
     @users = User.all
 
@@ -15,11 +14,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json 16
   def show
-    @user = User.find(params[:id])
-#    @user = current_user
+    @user = User.find_by_permalink(params[:id])
+  #  @user = User.find(params[:id])
+  #  @user = current_user
     @books = @user.books
     respond_to do |format|
       format.html # show.html.erb
@@ -27,8 +25,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1  26
-  # GET /users/1.json
   def blog
     @user = User.find(params[:id])
 
@@ -77,10 +73,9 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1  52
   # GET /users/1.json
   def booklist
-    @user = User.find(params[:id])
+    #  @user = User.find(params[:urlname])
     @books = @user.books
     respond_to do |format|
       format.html # booklist.html.erb
@@ -90,7 +85,6 @@ class UsersController < ApplicationController
 
 
   # GET /users/new
-  # GET /users/new.json 65
   def new
     @user = User.new
 

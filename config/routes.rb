@@ -1,17 +1,12 @@
 Crowdpublishtv::Application.routes.draw do
-  resources :reviews
 
-  devise_for :users
-
-  resources :books
-  resources :users
   resources :plans
   resources :purchases
   resources :events
+  resources :reviews
+#  resources 'users/:permalink', :to => 'User#show'
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-
-#  resources :sessions, only: [:create, :destroy, :new]
 
   match '/profileinfo',  to: 'users#profileinfo'
   match '/readerprofileinfo',  to: 'users#readerprofileinfo'
@@ -22,14 +17,6 @@ Crowdpublishtv::Application.routes.draw do
   match '/me', to: 'users#booklist'
 #  match 'user_root_path', to: 'users/current_user'
 
-  devise_for :users
-  authenticated :user do
-    root :to => "users#booklist"
-  end
-
-#  devise_for :users
-#  root :to => "devise/sessions#new"
-
   get "attachments/show"
 
   resources :users do
@@ -38,20 +25,21 @@ Crowdpublishtv::Application.routes.draw do
 
   resources :books do
     resources :purchases
-  end
-
-  resources :books do
     member do
       get 'buy'
     end
   end
 
-  devise_for :users
+  devise_for :users  #, :path_prefix => 'my'
+  authenticated :user do
+    root :to => "users#show"
+  end
   resources :users do
     member do
-      get 'booklist', 'blog', 'profileinfo', 'readerprofileinfo', 'orgprofileinfo', 'editbookreview', 'editauthorreview'
+      get 'booklist', 'blog', 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
     end
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

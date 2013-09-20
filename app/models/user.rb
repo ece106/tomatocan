@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   after_initialize :assign_defaults_on_new_user, if: 'new_record?'
   
-  attr_accessible :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook
+  attr_accessible :permalink, :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook
 
 #  has_secure_password
 
@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :books, :dependent => :destroy
   has_many :reviews
 
+  validates :permalink, presence:   true,
+                    uniqueness: { case_sensitive: false }
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,
@@ -29,6 +31,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true
 #  validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true 
+
+  def to_param
+    permalink
+  end
 
   private
   def assign_defaults_on_new_user

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130911045635) do
+ActiveRecord::Schema.define(:version => 201309200000000) do
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -71,12 +71,11 @@ ActiveRecord::Schema.define(:version => 20130911045635) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "bookmobi"
-    t.string   "bookepub"
-    t.string   "bookkobo"
+    t.string   "permalink"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["permalink"], :name => "index_users_on_permalink", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
