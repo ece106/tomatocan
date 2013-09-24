@@ -15,7 +15,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/editauthorreview',  to: 'reviews#editauthorreview'
   match '/infoerror',  to: 'users#inputerror'
   match '/me', to: 'users#booklist'
-#  match 'user_root_path', to: 'users/current_user'
+  #  match 'user_root_path', to: 'users/current_user'
 
   get "attachments/show"
 
@@ -30,7 +30,15 @@ Crowdpublishtv::Application.routes.draw do
     end
   end
 
-  devise_for :users  #, :path_prefix => 'my'
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get "signup", :to => 'devise/registrations#new', :as => :new_user_registration
+    post "signup", :to => 'devise/registrations#create', :as => :user_registration
+    #get '/:user' => "users#show", :as => :user
+  end
   authenticated :user do
     root :to => "users#show"
   end
@@ -40,7 +48,8 @@ Crowdpublishtv::Application.routes.draw do
     end
   end
 
-
+  match '/:id' => "users#show", :as => :user_profile
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
