@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def blog
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
 
     respond_to do |format|
       format.html # blog.html.erb
@@ -38,35 +38,35 @@ class UsersController < ApplicationController
   # GET /users/1  40
   # GET /users/1.json
   def profileinfo
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
     end
   end
   def readerprofileinfo
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     respond_to do |format|
       format.html # readerprofileinfo.html.erb
       format.json { render json: @user }
     end
   end
   def orgprofileinfo
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     respond_to do |format|
       format.html # orgprofileinfo.html.erb
       format.json { render json: @user }
     end
   end
   def editbookreview
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     respond_to do |format|
       format.html # editbookreview.html.erb
       format.json { render json: @user }
     end
   end
   def editauthorreview
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     respond_to do |format|
       format.html # editauthorreview.html.erb
       format.json { render json: @user }
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
 
   # GET /users/1.json
   def booklist
-    #  @user = User.find(params[:urlname])
+    @user = User.find_by_permalink(params[:id])
     @books = @user.books
     respond_to do |format|
       format.html # booklist.html.erb
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit 76
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     @books = @user.books
     @book = current_user.books.build # if signed_in?
     @booklist = Book.where(:user_id => @user.id)

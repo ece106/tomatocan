@@ -13,7 +13,10 @@
     <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
     </div>
 
-    <div id="bkinp" style="position:absolute; overflow:hidden; left:0px; top:250px; z-index:3; width:350px;">
+    <div id="bkinp" style="position:absolute; overflow:hidden; left:0px; top:230px; z-index:3; width:350px;">
+    FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurl)
+    <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "your custom URL handle" %> 
+
     <p>Upload a picture of yourself (square is best)
     <br><%= f.file_field :profilepic %> OR
 
