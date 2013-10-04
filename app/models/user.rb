@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   has_many :books, :dependent => :destroy
   has_many :reviews
 
-  validates :permalink, presence:   true,
+  validates :permalink, presence: true, length: { maximum: 20 },
+                    format:     { with: /\A[\w+]+\z/ },
                     uniqueness: { case_sensitive: false }
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -30,6 +31,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true
 #  validates :password, presence: true, length: { minimum: 6 }
+#  devise now handles email validations
   validates :password_confirmation, presence: true 
 
   def to_param
