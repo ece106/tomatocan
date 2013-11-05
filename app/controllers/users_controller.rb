@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   # POST /users       
   # POST /users.json  86
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:id])
     if @user.save
       sign_in @user
       redirect_to @user
@@ -120,7 +120,7 @@ class UsersController < ApplicationController
   # PUT /users/1 99
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     @booklist = Book.where(:user_id => @user.id)
 
     if @user.update_attributes(params[:user])
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     @user.destroy
 
     respond_to do |format|

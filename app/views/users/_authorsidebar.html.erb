@@ -7,27 +7,23 @@
   <% @user.books.each do |book| %>
     <%= form_for(book) do |f| %>
       <tr><td width="50"; style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:70%" >
-      
-      <% if book.coverpicurl != nil %>
-        <% if book.coverpicurl.match /http/ %>
-          <a href= ../books/<%= book.id %>> <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
-        <% else %>
-          <% if book.title.match /[A-Za-z]/ %> 
-            <span class="Body-D2">
-            <a href= ../book/<%= book.id %>> <i><%= book.title %></i> <title= "Purchase <%= book.title %>" target="_blank"></a>
-            <br>by <%= @user.name %>
-          <% end %>
-        <% end %>
-      <% end %></span></td>
-      
+      <% if book.coverpic.present? && book.coverpic != '' %>
+        <%= image_tag(book.coverpic, :size => "50x65") %>
+      <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
+        <img src=<%= book.coverpicurl %> width="50" height="65" ></a>
+      <% elsif book.title.match(/[A-Za-z]/) %> 
+        <span class="Body-D2">
+        <font color="880000" ><i><%= book.title %> </font></i><br>
+        <a href= ../books/<%= book.id %>> by <%= @user.name %></a>
+      <% end %>
+
       <td style="line-height:94%">
       <div style="float:left;width:75%;">
       <a href= ../books/<%= book.id %>> <b><%= book.title %></b> <title= "Purchase <%= book.title %>" target="_blank"></a></div>
-
       <div style="float:right;width:25%;">
       &nbsp<%= book.genre %></div>
-
       <div><span class="Body-C6"><%= book.fiftychar %></span></div>
+
     </td></tr> 
     <% end %>
   <% end %>
