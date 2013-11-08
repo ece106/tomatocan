@@ -1,12 +1,16 @@
 class Book < ActiveRecord::Base
   attr_accessible :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :bookpdf, :coverpic
   belongs_to :user
-#  has_many :purchases
   has_many :reviews
+  has_many :purchases
 
+  validates :title, presence: true
   validates :fiftychar, length: { maximum: 140 }
   validates :blurb, length: { maximum: 2000 }
   validates :user_id, presence: true
+  validates :price, :presence => true,
+            :numericality => true,
+            :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
   default_scope order: 'books.releasedate DESC'
 
   mount_uploader :coverpic, ProfilepicUploader

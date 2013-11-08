@@ -1,0 +1,37 @@
+<%= render 'form' %>
+
+<div style="position:absolute; left:350px; top:350px; text-align:left">
+
+<%= form_for @purchase do |f| %>
+  <% if @purchase.errors.any? %>
+    <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
+    <% @purchase.errors.full_messages.each do |msg| %>
+      <%= msg %>
+    <% end %>
+  <% end %>
+
+  <%= f.hidden_field :stripe_card_token %>
+  <%= f.hidden_field :book_id %>
+
+
+  <% if @purchase.stripe_card_token.present? %>
+    Credit card has been provided.
+  <% else %>
+    <%= label_tag :card_number, "Credit Card Number" %>
+    <%= text_field_tag :card_number, nil, name: nil %><p>
+
+    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+    <%= text_field_tag :card_code, nil, name: nil %><p>
+
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  <% end %>
+
+<div id="stripe_error">
+  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+</div>
+
+  <%= f.submit "Purchase" %>
+<% end %>
+</div>

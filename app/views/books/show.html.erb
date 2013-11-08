@@ -8,29 +8,27 @@
 <table CELLPADDING="0" CELLSPACING="8" WIDTH="800">
   <tr>
   <td > </td> <td>
-<div style="float:left;width:55%;"> <b>
+  <div style="float:left;width:55%;"> <b>
 <%= @book.title %></b> by <%= user.name %></a></div>
   <div style="float:right;width:45%;">
-&nbsp&nbsp<%= @book.genre %></div>
-</td></tr> <tr>
-<td style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:90%" >
+&nbsp&nbsp<%= @book.genre %>  </div>
+  </td></tr> <tr>
+  <td style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:90%" >
   <% if @book.coverpic.present? && @book.coverpic != '' %>
     <%= image_tag(@book.coverpic, :size => "50x65") %>
-  <% elsif @book.coverpicurl.present? && @book.coverpicurl.match /http/ %>
+  <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) %>
     <img src=<%= @book.coverpicurl %> width="50" height="65" ></a>
   <% elsif @book.title.match /[A-Za-z]/ %> 
     <span class="Body-D2">
     <font color="880000" ><i><%= @book.title %> </font></i><br>
     <a href= ../books/<%= @book.id %>> by <%= user.name %></a>
    <% end %>
-<% end %></span>
+</span>
 
 </td><td> <i><%= @book.blurb %></i></td>
 </tr><tr><td></td>
 
-<td><%= link_to "Buy Now", new_purchase_path(:book_id => @book.id) %></td>
+<td>$<%= sprintf('%.2f', @book.price) %> USD <%= link_to "...Buy Now", new_purchase_path(:book_id => @book.id) %></td>
 
 </table>
-
-
 </div>

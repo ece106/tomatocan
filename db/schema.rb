@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 201309200000000) do
     t.string   "bookkobo"
   end
 
+  create_table "purchases", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "book_id"
+    t.string   "stripe_customer_token"
+    t.integer  "plan_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reviews", :force => true do |t|
     t.text     "blurb"
     t.integer  "user_id"

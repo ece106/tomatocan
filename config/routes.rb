@@ -1,5 +1,7 @@
 Crowdpublishtv::Application.routes.draw do
 
+  resources :purchases
+
   resources :plans
   resources :purchases
   resources :events

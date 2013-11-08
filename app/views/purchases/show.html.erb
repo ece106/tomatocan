@@ -1,0 +1,16 @@
+<%= render 'form' %>
+
+<div style="position:absolute; left:100px; top:280px; text-align:left">
+
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <b>  <% book = Book.find(@purchase.book_id) %>
+  <%= book.title %> </b>
+  By
+  <% author = Author.find(book.author_id) %>
+  <%= author.name %>
+</p>
+
+</div>
