@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 #  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }  # ,  :storage => :s3 }
 
   has_many :books, :dependent => :destroy
-  has_many :reviews
+  has_many :reviews  #, :purchases
 
   validates :permalink, presence: true, length: { maximum: 20 },
                     format:     { with: /\A[\w+]+\z/ },

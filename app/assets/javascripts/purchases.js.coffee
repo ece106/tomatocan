@@ -18,10 +18,10 @@ purchase =
 
   processCard: ->
     card =
-      number: $('#card_number').val()
+      {number: $('#card_number').val()
       cvc: $('#card_code').val()
       expMonth: $('#card_month').val()
-      expYear: $('#card_year').val()
+      expYear: $('#card_year').val()}
     Stripe.createToken(card, purchase.handleStripeResponse)
 
   handleStripeResponse: (status, response) ->

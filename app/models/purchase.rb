@@ -1,29 +1,29 @@
 class Purchase < ActiveRecord::Base
 
-  attr_accessible :stripe_customer_token, :author_id, :book_id, :stripe_card_token
+  attr_accessible :stripe_customer_token, :book_id, :stripe_card_token, :user_id
   attr_accessor :stripe_card_token
   
   belongs_to :book
-
+  #belongs_to :user
 
   def save_with_payment
     if valid?
-
       customer = Stripe::Customer.create(
         :card => stripe_card_token,
-        :description => "customer email" 
+        :description => "get user email address, product" 
       )
       self.stripe_customer_token = customer.id
-
+      #self.user_id = current_user.id
 
       charge = Stripe::Charge.create(
-        :amount => 1000,
+        :amount => 500,
         :currency => "usd",
         :customer => customer.id,
-#        :card => stripe_card_token,
+        # :card => stripe_card_token,
         :description => "book title"
       )
       save!
+      #save_stripe_customer_id(user, customer.id)
     end
 
   rescue Stripe::InvalidRequestError => e

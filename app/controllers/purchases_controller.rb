@@ -39,6 +39,7 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(params[:purchase])
 #    @book = Book.find(params[:book_id])
 #    raise params.to_yaml
+    @purchase.user_id = current_user.id
 
     if @purchase.save_with_payment
       redirect_to @purchase, :notice => "Thank you for purchasing this book!"

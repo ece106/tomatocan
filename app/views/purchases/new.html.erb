@@ -12,6 +12,7 @@
 
   <%= f.hidden_field :stripe_card_token %>
   <%= f.hidden_field :book_id %>
+  <%= f.hidden_field :user_id %>
 
 
   <% if @purchase.stripe_card_token.present? %>
@@ -25,7 +26,7 @@
 
     <%= label_tag :card_month, "Card Expiration" %>
     <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+8}, {name: nil, id: "card_year"} %>
   <% end %>
 
 <div id="stripe_error">
