@@ -19,12 +19,12 @@
     <% if @user.ustreamsocial.match /<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http:\/\/www.ustream.tv\/socialstream/ %>
       <%= @user.ustreamsocial.html_safe %>
     <% end %>
-  <% elsif %>
+  <% else %>
     <% if @user == current_user %>
       <br><br>Replace the default Ustream code on your Edit page with the code from your Ustream account and livestream YOUR book discussion here!
     <% end %>
     <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
-   <% end %>
+  <% end %>
   </div>
 
   <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
