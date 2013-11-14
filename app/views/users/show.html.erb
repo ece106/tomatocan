@@ -20,7 +20,9 @@
       <%= @user.ustreamsocial.html_safe %>
     <% end %>
   <% elsif %>
-    <br><br>Replace the default Ustream code on your Edit page with the code from your Ustream account and livestream YOUR book discussion here!
+    <% if @user == current_user %>
+      <br><br>Replace the default Ustream code on your Edit page with the code from your Ustream account and livestream YOUR book discussion here!
+    <% end %>
     <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
    <% end %>
   </div>
