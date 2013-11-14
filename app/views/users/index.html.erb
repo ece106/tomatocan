@@ -35,7 +35,7 @@
   <tr>
     <td> 
   <% if user.profilepic.present? && user.profilepic != '' %>
-    <%= image_tag(@user.profilepic, :size => "150x150") %>
+    <%= image_tag(user.profilepic, :size => "150x150") %>
   <% elsif user.profilepicurl %>
     <% if user.profilepicurl.match /http/ %>
       <%= link_to(image_tag(user.profilepicurl, :size => "50x50", :profilepicurl => user.name), user)  %>
