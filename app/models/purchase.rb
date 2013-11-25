@@ -4,7 +4,7 @@ class Purchase < ActiveRecord::Base
   attr_accessor :stripe_card_token
   
   belongs_to :book
-  #belongs_to :user
+  belongs_to :user
 
   def save_with_payment
     if valid?

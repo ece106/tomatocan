@@ -9,13 +9,13 @@
 
 <%= form_for@book, :html => {:multipart => true} do |f| %>
   <%= render 'shared/error_messages' %>
-  <center><span class="Body-C5">Enter Book info</span></center>
+  <center><span class="Body-C5">Enter Book info (items with * are required)</span></center> 
   <%= f.hidden_field :user_id %>
 
   <table width="400">
   <tr><td>
     <div style="float:left;width:75%;">
-    * Book title </div>
+    <b>* Book title </b></div>
     <div style="float:right;width:25%;">
       Genre </div>
   </td></tr><tr><td>
@@ -24,7 +24,7 @@
     <div style="float:right;width:25%;">
     <%= f.text_area :genre, :cols => 15, :rows => 1, placeholder: "Genre" %></div>
   </td></tr><tr><td>
-     * Price (in USD - do not include the dollar sign) <%= f.text_field :price %>
+     <b>* Price </b>(in USD - do not include the dollar sign) <%= f.text_field :price %>
   </td></tr><tr><td>
     Book jacket blurb (2000 characters max)<br>
     <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
