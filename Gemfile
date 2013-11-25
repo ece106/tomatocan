@@ -5,7 +5,7 @@ gem 'devise', '~> 2.2.4'
 gem 'fog'   #, '1.6.0'
 gem 'carrierwave'
 gem 'stripe'
-gem "debugger-pry", :require => "debugger/pry"
+#gem "debugger-pry", :require => "debugger/pry"
 gem 'aws-s3'
 gem 'aws-sdk'
 
@@ -19,7 +19,7 @@ gem 'event-calendar', :require => 'event_calendar'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-group :development do
+group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
