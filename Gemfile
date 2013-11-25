@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "1.9.2"
+ruby "1.9.2p321"
 
 gem 'devise', '~> 2.2.4'
 gem 'fog'   #, '1.6.0'
