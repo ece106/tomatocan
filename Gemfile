@@ -3,6 +3,7 @@ ruby "1.9.2"
 
 gem 'devise', '~> 2.2.4'
 gem 'fog'   #, '1.6.0'
+gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
 #gem "debugger-pry", :require => "debugger/pry"
