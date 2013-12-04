@@ -37,12 +37,17 @@ class PurchasesController < ApplicationController
   # POST /purchases.json
   def create
     @purchase = Purchase.new(params[:purchase])
-#    @book = Book.find(params[:book_id])
+    @book = Book.find(@purchase.book_id)
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
 
     if @purchase.save_with_payment
       redirect_to @purchase, :notice => "Thank you for purchasing this book!"
+      if @book.bookpdf.present?
+@book.coverpic   #download book        @book.bookpdf   #download book
+        print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      end
+      #send shipment info to author
     else
       redirect_to(:back, :notice => "Your order did not go through. Try again.")
     end

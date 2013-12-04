@@ -8,7 +8,7 @@ class Book < ActiveRecord::Base
   validates :fiftychar, length: { maximum: 140 }
   validates :blurb, length: { maximum: 2000 }
   validates :user_id, presence: true
-  validates :price, 
+  validates :price, presence: true,
             :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
   default_scope order: 'books.releasedate DESC'
 

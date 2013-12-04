@@ -12,9 +12,7 @@
 
   <%= f.hidden_field :stripe_card_token %>
   <%= f.hidden_field :book_id %>
-  <%= f.hidden_field :user_id %>
-
-
+  
   <% if @purchase.stripe_card_token.present? %>
     Credit card has been provided.
   <% else %>
