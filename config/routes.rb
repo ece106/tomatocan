@@ -20,6 +20,7 @@ Crowdpublishtv::Application.routes.draw do
   #  match 'user_root_path', to: 'users/current_user'
 
   get "attachments/show"
+  get "attachments/download" 
 
   resources :users do
     resources :books

@@ -44,7 +44,10 @@ class PurchasesController < ApplicationController
     if @purchase.save_with_payment
       redirect_to @purchase, :notice => "Thank you for purchasing this book!"
       if @book.bookpdf.present?
-@book.coverpic   #download book        @book.bookpdf   #download book
+        data = open("https://authorprofile.s3.amazonaws.com/book/14/bookpdf") #@book.bookpdf.to_s) 
+        send_data data.read, filename: "LisaSchaeferCV.pdf", type: "application/pdf", disposition: 'inline', stream: 'true', buffer_size: '4096' 
+
+        #redirect_to(@book.bookpdf.to_s)
         print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       end
       #send shipment info to author

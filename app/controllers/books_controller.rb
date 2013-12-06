@@ -2,16 +2,6 @@ class BooksController < ApplicationController
 #  before_filter :signed_in_user
   before_filter :authenticate_user!
 
-  def buy
-# no longer used
-    @book = Book.find(params[:id])
-#    @purchase = @book.purchases.build(params[:purchase])
-
-#    @purchase = Purchase.new(params[:purchase])
-#    @purchase = Purchase.new
-    @purchase = @book.purchases.new
-  end
-
   def create
     @book = current_user.books.build(params[:book])
     if @book.save
@@ -43,6 +33,8 @@ class BooksController < ApplicationController
 
   # GET /books/1
   def show
+        data = open("https://authorprofile.s3.amazonaws.com/book/14/bookpdf") #@book.bookpdf.to_s) 
+        send_data data.read, filename: "LisaSchaeferCV.pdf", type: "application/pdf", disposition: 'inline', stream: 'true', buffer_size: '4096' 
     @book = Book.find(params[:id])
 #    @purchases = @book.purchases
 
