@@ -33,8 +33,8 @@ class BooksController < ApplicationController
 
   # GET /books/1
   def show
-       data = open("https://authorprofile.s3.amazonaws.com/book/14/bookpdf") #@book.bookpdf.to_s) 
-        send_data data.read, filename: "LisaSchaeferCV.pdf", type: "application/pdf", disposition: 'inline', stream: 'true', buffer_size: '4096' 
+#downloadtest        data = open("https://authorprofile.s3.amazonaws.com/book/14/bookpdf") #@book.bookpdf.to_s) 
+#        send_data data.read, filename: "LisaSchaeferCV.pdf", type: "application/pdf", disposition: 'inline', stream: 'true', buffer_size: '4096' 
     @book = Book.find(params[:id])
 #    @purchases = @book.purchases
 
@@ -42,6 +42,8 @@ class BooksController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @book }
     end
+#downloadtest        data = open("https://authorprofile.s3.amazonaws.com/book/14/bookpdf") #@book.bookpdf.to_s) 
+#        send_data data.read, filename: "LisaSchaeferCV.pdf", type: "application/pdf", disposition: 'inline', stream: 'true', buffer_size: '4096' 
   end
 
   def destroy
