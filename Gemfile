@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-ruby "1.9.2"
 
 gem 'mandrill'
 gem 'devise', '~> 2.2.4'
@@ -22,7 +21,8 @@ gem 'event-calendar', :require => 'event_calendar'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'pg'
+#  gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
 group :production do
@@ -30,6 +30,7 @@ group :production do
 # rake db:create:all
 # rails s -e production
 #  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'rails_12factor'
 end
 
 # Gems used only for assets and not required

@@ -40,6 +40,7 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
+    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.4)
     carrierwave (0.5.8)
@@ -93,9 +94,12 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     nokogiri (1.6.1-x86-mingw32)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     pg (0.17.1-x86-mingw32)
     polyglot (0.3.3)
     rack (1.3.10)
@@ -115,6 +119,11 @@ GEM
       activesupport (= 3.1.0)
       bundler (~> 1.0)
       railties (= 3.1.0)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (3.1.0)
       actionpack (= 3.1.0)
       activesupport (= 3.1.0)
@@ -139,9 +148,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.8-x86-mingw32)
-    sqlite3-ruby (1.3.3)
-      sqlite3 (>= 1.3.3)
     stripe (1.9.9)
       mime-types (~> 1.25)
       multi_json (>= 1.0.4, < 2)
@@ -159,6 +165,7 @@ GEM
       json (>= 1.8.0)
     unf (0.1.3)
       unf_ext
+    unf_ext (0.0.6)
     unf_ext (0.0.6-x86-mingw32)
     uuidtools (2.1.4)
     warden (1.2.3)
@@ -166,6 +173,7 @@ GEM
     xml-simple (1.1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -181,8 +189,8 @@ DEPENDENCIES
   mandrill
   pg
   rails (= 3.1.0)
+  rails_12factor
   sass-rails (~> 3.1.0)
-  sqlite3-ruby
   stripe
   turn
   uglifier
