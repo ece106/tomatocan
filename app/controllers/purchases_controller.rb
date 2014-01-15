@@ -1,17 +1,13 @@
 class PurchasesController < ApplicationController
-  # GET /purchases
   # GET /purchases.json
   def index
     @purchases = Purchase.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @purchases }
     end
   end
-
   # GET /purchases/1
-  # GET /purchases/1.json 14
   def show
     @purchase = Purchase.find(params[:id])
 
@@ -20,21 +16,17 @@ class PurchasesController < ApplicationController
       format.json { render json: @purchase }
     end
   end
-
   # GET /purchases/new
-  # GET /purchases/new.json 25
   def new
     @book = Book.find(params[:book_id])
     @purchase = @book.purchases.new
+    @purchase.bookfiletype = params[:bookfiletype]
   end
-
   # GET /purchases/1/edit 29
   def edit
     @purchase = Purchase.find(params[:id])
   end
-
   # POST /purchases 34
-  # POST /purchases.json
   def create
     @purchase = Purchase.new(params[:purchase])
     @book = Book.find(@purchase.book_id)
@@ -42,20 +34,27 @@ class PurchasesController < ApplicationController
     @purchase.user_id = current_user.id
 
     if @purchase.save_with_payment
-#      redirect_to @purchase, :notice => "Thank you for purchasing this book!"
-      if @book.bookpdf.present?
-        redirect_to @book.bookpdf.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
+      redirect_to @purchase, :notice => "Thank you for purchasing this book!"
+      if @purchase.bookfiletype == "pdf" && @book.bookpdf.present?
+###TEMP STOP DOWNLOAD        redirect_to @book.bookpdf.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
 
 #        data = open("https://authorprofile.s3.amazonaws.com/book/14/bookpdf") #@book.bookpdf.to_s) 
-#        send_data data.read, filename: "LisaSchaeferCV.pdf", type: "application/pdf", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
+#        send_data data.read, filename: "LisaSchaeferCV.docx", type: "application/pdf", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
       end
-      #send shipment info to author
+      if @purchase.bookfiletype == "mobi" && @book.bookmobi.present?
+###TEMP STOP DOWNLOAD        redirect_to @book.bookmobi.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
+      end
+      if @purchase.bookfiletype == "epub" && @book.bookepub.present?
+###TEMP STOP DOWNLOAD        redirect_to @book.bookepub.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
+      end
+      if @purchase.bookfiletype == "kobo" && @book.bookkobo.present?
+###TEMP STOP DOWNLOAD        redirect_to @book.bookkobo.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
+      end
     else
       redirect_to(:back, :notice => "Your order did not go through. Try again.")
     end
   end
 
-  # PUT /purchases/1
   # PUT /purchases/1.json
   def update
     @purchase = Purchase.find(params[:id])
@@ -70,8 +69,6 @@ class PurchasesController < ApplicationController
       end
     end
   end
-
-  # DELETE /purchases/1
   # DELETE /purchases/1.json
   def destroy
     @purchase = Purchase.find(params[:id])

@@ -1,18 +1,13 @@
 # encoding: utf-8
 
-class ProfilepicUploader < CarrierWave::Uploader::Base
-#class BookpdfUploader
-#class BookmobiUploader
-#class BookepubUploader
-#class BookkoboUploader
-#class CoverpicUploader
+class BookpdfUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-####  storage :file
+  #storage :file
   storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -20,10 +15,8 @@ class ProfilepicUploader < CarrierWave::Uploader::Base
   def store_dir
     "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
 #    "#{model.class.to_s.underscore}/#{model.id}"
-  end
-
-  def cache_dir
-    "#{Rails.root}/tmp/uploads"
+#    "#{User.id}/#{model.id}"
+    #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -46,7 +39,7 @@ class ProfilepicUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_white_list
-     %w(jpg jpeg gif png)
+     %w(pdf)
    end
 
   # Override the filename of the uploaded files:

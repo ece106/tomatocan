@@ -12,12 +12,15 @@ class Book < ActiveRecord::Base
             :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
   default_scope order: 'books.releasedate DESC'
 
-  mount_uploader :coverpic, ProfilepicUploader
-  mount_uploader :bookpdf, ProfilepicUploader
-  mount_uploader :bookmobi, ProfilepicUploader
-  mount_uploader :bookepub, ProfilepicUploader
-  mount_uploader :bookkobo, ProfilepicUploader
-#  mount_uploader :image, ImageUploader
-#  mount_uploader :coverpic, CoverpicUploader
+#  mount_uploader :coverpic, ProfilepicUploader
+#  mount_uploader :bookpdf, ProfilepicUploader
+#  mount_uploader :bookmobi, ProfilepicUploader
+#  mount_uploader :bookepub, ProfilepicUploader
+#  mount_uploader :bookkobo, ProfilepicUploader
+  mount_uploader :coverpic, CoverpicUploader
+  mount_uploader :bookpdf, BookpdfUploader
+  mount_uploader :bookmobi, BookmobiUploader
+  mount_uploader :bookepub, BookepubUploader
+  mount_uploader :bookkobo, BookkoboUploader
 
 end

@@ -1,12 +1,13 @@
 class Purchase < ActiveRecord::Base
 
-  attr_accessible :stripe_customer_token, :book_id, :stripe_card_token, :user_id
+  attr_accessible :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id
   attr_accessor :stripe_card_token
   
   belongs_to :book
   belongs_to :user
   validates :user_id, presence: true
   validates :book_id, presence: true
+#  validates :bookfiletype, presence: true
 
   def save_with_payment
     if valid?

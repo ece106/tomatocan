@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 201309200000000) do
     t.datetime "updated_at"
     t.string   "stripe_card_token"
     t.integer  "user_id"
+    t.string   "bookfiletype"
   end
 
   create_table "reviews", :force => true do |t|

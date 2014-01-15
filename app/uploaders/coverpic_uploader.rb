@@ -1,30 +1,22 @@
 # encoding: utf-8
 
-class ProfilepicUploader < CarrierWave::Uploader::Base
-#class BookpdfUploader
-#class BookmobiUploader
-#class BookepubUploader
-#class BookkoboUploader
-#class CoverpicUploader
+class CoverpicUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-####  storage :file
-  storage :fog
+#  storage :file
+   storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
+     "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
 #    "#{model.class.to_s.underscore}/#{model.id}"
-  end
-
-  def cache_dir
-    "#{Rails.root}/tmp/uploads"
-  end
+#    "#{User.id}/#{model.id}"
+ end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

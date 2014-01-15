@@ -7,7 +7,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to user_path(current_user)
     else
-      redirect_to edit_user_path(current_user), :notice => "....................................................................................................Your book was not saved. Check the required info."
+      redirect_to edit_user_path(current_user), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
     end
    end
 
@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to author_path(current_user)
     else
-      redirect_to edit_author_path(current_user), :notice => "....................................................................................................Your book was not saved. Check the required info."
+      redirect_to edit_author_path(current_user), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
     end
    end
 

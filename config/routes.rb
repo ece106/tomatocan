@@ -17,6 +17,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/editauthorreview',  to: 'reviews#editauthorreview'
   match '/infoerror',  to: 'users#inputerror'
   match '/me', to: 'users#booklist'
+  match 'bookpdf_path', to: 'purchases/new'
   #  match 'user_root_path', to: 'users/current_user'
 
   get "attachments/show"

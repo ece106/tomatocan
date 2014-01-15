@@ -9,14 +9,12 @@ class User < ActiveRecord::Base
   
   attr_accessible :permalink, :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook
 
-#  has_secure_password
-
   mount_uploader :profilepic, ProfilepicUploader
 
   before_save { |user| user.email = email.downcase }
 #  before_save :create_remember_token
-
 #  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }  # ,  :storage => :s3 }
+#  has_secure_password
 
   has_many :books, :dependent => :destroy
   has_many :reviews
