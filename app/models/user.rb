@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   after_initialize :assign_defaults_on_new_user, if: 'new_record?'
   
-  attr_accessible :permalink, :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook
+#  attr_accessible :permalink, :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook
 
   mount_uploader :profilepic, ProfilepicUploader
 

@@ -79,4 +79,12 @@ class PurchasesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+
+    def purchase_params
+      params.require(:purchase).permit(  :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id)
+    end
+
 end

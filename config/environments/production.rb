@@ -1,7 +1,11 @@
 Crowdpublishtv::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-config.action_mailer.default_url_options = { :host => 'http://crowdpublishtv.herokuapp.com' }
+# Force all access to the app over SSL, use Strict-Transport-Security,
+  # and use secure cookies.
+  config.force_ssl = false  #otherwise heroku reroute will say i'm a liar
+
+  config.action_mailer.default_url_options = { :host => 'http://crowdpublishtv.herokuapp.com' }
 
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -14,13 +18,17 @@ config.action_mailer.default_url_options = { :host => 'http://crowdpublishtv.her
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  #  config.assets.compress = true  #used when rails 3
+  config.assets.js_compressor = :uglifier
+  # config.assets.css_compressor = :sass
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = false   #rails4 app has this true
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  config.eager_load = true    #needed for version upgrade rails 4, ruby1.9.3
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
@@ -29,11 +37,11 @@ config.action_mailer.default_url_options = { :host => 'http://crowdpublishtv.her
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  # See everything in the log (default is :info, otherwise :debug)
+  config.log_level = :info    #used in rails4
 
-  # See everything in the log (default is :info)
-  # config.log_level = :debug
+  # Version of your assets, change this if you want to expire all your assets.
+  config.assets.version = '1.0'   #added for rails4
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
@@ -59,4 +67,7 @@ config.action_mailer.default_url_options = { :host => 'http://crowdpublishtv.her
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new   #added for rails4
 end

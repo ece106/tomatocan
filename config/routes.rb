@@ -8,20 +8,28 @@ Crowdpublishtv::Application.routes.draw do
   resources :reviews
 #  resources 'users/:permalink', :to => 'User#show'
 
-  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}, via: 'get'
 
-  match '/profileinfo',  to: 'users#profileinfo'
-  match '/readerprofileinfo',  to: 'users#readerprofileinfo'
-  match '/orgprofileinfo',  to: 'users#orgprofileinfo'
-  match '/editbookreview',  to: 'reviews#editbookreview'
-  match '/editauthorreview',  to: 'reviews#editauthorreview'
-  match '/infoerror',  to: 'users#inputerror'
-  match '/me', to: 'users#booklist'
-  match 'bookpdf_path', to: 'purchases/new'
+  match '/profileinfo' => 'users#profileinfo', :as => 'profileinfo', via: 'get'
+  match '/readerprofileinfo',  to: 'users#readerprofileinfo', via: 'get'
+  match '/orgprofileinfo',  to: 'users#orgprofileinfo', via: 'get'
+  match '/editbookreview',  to: 'reviews#editbookreview', via: 'get'
+  match '/editauthorreview',  to: 'reviews#editauthorreview', via: 'get'
+  match '/me', to: 'users#booklist', via: 'get'
   #  match 'user_root_path', to: 'users/current_user'
 
   get "attachments/show"
   get "attachments/download" 
+
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
+    post "signup", :to => 'devise/registrations#create', :as => :user_signup
+    #get '/:user' => "users#show", :as => :user
+  end
 
   resources :users do
     resources :books
@@ -34,25 +42,16 @@ Crowdpublishtv::Application.routes.draw do
     end
   end
 
-  devise_for :users, :skip => [:sessions]
-  as :user do
-    get 'login' => 'devise/sessions#new', :as => :new_user_session
-    post 'login' => 'devise/sessions#create', :as => :user_session
-    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
-    get "signup", :to => 'devise/registrations#new', :as => :new_user_registration
-    post "signup", :to => 'devise/registrations#create', :as => :user_registration
-    #get '/:user' => "users#show", :as => :user
-  end
   authenticated :user do
-    root :to => "users#show"
+    root to: "users#show"
   end
   resources :users do
     member do
       get 'booklist', 'blog', 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
     end
-  end
+  end 
 
-  match '/:id' => "users#show", :as => :user_profile
+  match '/:id' => "users#show", :as => :user_profile, via: 'get'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

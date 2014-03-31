@@ -30,7 +30,8 @@ Crowdpublishtv::Application.configure do
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
+  #config.whiny_nils = true    #deprecated
+  config.eager_load = false    #needed for version upgrade rails 4, ruby1.9.3
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
@@ -42,12 +43,16 @@ Crowdpublishtv::Application.configure do
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
-  # Only use best-standards-support built into browsers
-  config.action_dispatch.best_standards_support = :builtin
+  # Only use best-standards-support built into browsers 
+  config.action_dispatch.best_standards_support = :builtin  #Is it needed in rails 4?
 
   # Do not compress assets
-  config.assets.compress = false
+  config.assets.compress = false   #Is it needed in rails 4?
 
   # Expands the lines which load the assets
   config.assets.debug = true
+ # Raise an error on page load if there are pending migrations
+  config.active_record.migration_error = :page_load # good for upgrade rails 4?
+
 end
+

@@ -52,4 +52,13 @@ class BooksController < ApplicationController
 
   def new
   end
+
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+
+    def book_params
+      params.require(:book).permit( :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :bookpdf, :coverpic)
+    end
+  
 end

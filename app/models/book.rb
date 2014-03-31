@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
-  attr_accessible :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :bookpdf, :coverpic
+#  attr_accessible :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :bookpdf, :coverpic
   belongs_to :user
   has_many :reviews
   has_many :purchases

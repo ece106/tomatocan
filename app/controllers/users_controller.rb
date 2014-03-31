@@ -146,6 +146,10 @@ class UsersController < ApplicationController
 
   private
 
+    def user_params
+      params.require(:user).permit(  :permalink, :name, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook)
+    end
+
 =begin
     def signed_in_user
       unless signed_in?
