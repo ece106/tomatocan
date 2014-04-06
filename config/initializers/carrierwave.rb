@@ -8,7 +8,8 @@ CarrierWave.configure do |config|
     config.storage = :fog
     config.fog_credentials = {
       :provider               => 'AWS',
-      :persistent             => false,
+      :aws_access_key_id      => 'AKIAJZ7IPSARCJKICDYQ',
+      :aws_secret_access_key  => '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',     :persistent             => false,
 
 #      :connect_timeout=>60
       :region             => 'us-east-1'
