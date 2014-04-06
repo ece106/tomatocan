@@ -31,25 +31,25 @@
     <th align="left">&nbsp&nbsp&nbsp&nbspName</th>
     <th align="left">&nbsp&nbsp&nbsp&nbspWriting Genres</th>
   </tr>
-<% @users.each do |user| %>
+<% @users.each do |u| %>
   <tr>
     <td> 
-  <% if user.profilepic.present? && user.profilepic != '' %>
-    <%= image_tag(user.profilepic, :size => "50x50") %>
-  <% elsif user.profilepicurl %>
-    <% if user.profilepicurl.match /http/ %>
-      <%= link_to(image_tag(user.profilepicurl, :size => "50x50", :profilepicurl => user.name), user)  %>
+  <% if u.profilepic.present? && u.profilepic != '' %>
+    <%= image_tag(u.profilepic, :size => "50x50") %>
+  <% elsif u.profilepicurl %>
+    <% if u.profilepicurl.match /http/ %>
+      <%= link_to(image_tag(u.profilepicurl, :size => "50x50", :profilepicurl => u.name), user_profile_path(u.permalink))  %>
     <% else %>
-    <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50"), user)  %>   
+    <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50"), user_profile_path(u.permalink))  %> 
     <% end %>
   <% else %>
-      <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50", :profilepicurl => user.name), user) %> 
+      <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50", :profilepicurl => u.name), user_profile_path(u.id)) %> 
   <% end %>
 
 </td>
     <td color="#443c55" align="left">
-      <%= link_to user.name, user %></td>
-    <td align="left"> <%= user.genre1 %>, <%= user.genre2 %>, <%= user.genre3 %></td>
+      <%= link_to u.name, user_profile_path(u.id) %></td>
+     align="left"> <%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %></td>
   </tr>
 
 <% end %>

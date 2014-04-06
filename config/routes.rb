@@ -21,20 +21,16 @@ Crowdpublishtv::Application.routes.draw do
   get "attachments/show"
   get "attachments/download" 
 
-  devise_for :users, :skip => [:sessions]
-  as :user do
-    get 'login' => 'devise/sessions#new', :as => :new_user_session
-    post 'login' => 'devise/sessions#create', :as => :user_session
-    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
-    get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
-    post "signup", :to => 'devise/registrations#create', :as => :user_signup
-    #get '/:user' => "users#show", :as => :user
-  end
-
   resources :users do
     resources :books
+    member do
+      get 'booklist', 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
+      get 'blog' => "users#blog", :as => :blog
+    end
   end
 
+  match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
+  
   resources :books do
     resources :purchases
     member do
@@ -45,14 +41,17 @@ Crowdpublishtv::Application.routes.draw do
   authenticated :user do
     root to: "users#show"
   end
-  resources :users do
-    member do
-      get 'booklist', 'blog', 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
-    end
-  end 
 
-  match '/:id' => "users#show", :as => :user_profile, via: 'get'
-  
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
+    post "signup", :to => 'devise/registrations#create', :as => :user_signup
+    #get '/:user' => "users#show", :as => :user
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

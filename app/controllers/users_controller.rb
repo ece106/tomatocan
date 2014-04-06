@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
 #  before_filter :authenticate_user!
-
 #  before_filter :signed_in_user, only: [:index, :edit, :update]
 #  before_filter :correct_user,   only: [:edit, :update]
   
@@ -35,7 +34,7 @@ class UsersController < ApplicationController
   end
 
 
-  # GET /users/1  40
+  # GET /users/1  
   # GET /users/1.json
   def profileinfo
     @user = User.find_by_permalink(params[:id])
@@ -88,10 +87,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.json { render json: @user }
+#    end
   end
 
 
@@ -107,7 +106,7 @@ class UsersController < ApplicationController
   # POST /users       
   # POST /users.json  86
   def create
-    @user = User.new(params[:id])
+    @user = User.new(user_params)
     if @user.save
       sign_in @user
       redirect_to @user

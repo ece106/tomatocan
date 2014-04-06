@@ -7,7 +7,7 @@
 
 <div id="bkinp" style="position:absolute; overflow:hidden; left:380px; top:100px; z-index:3">
 
-<%= form_for@book, :html => {:multipart => true} do |f| %>
+<%= form_for @book, :html => {:multipart => true} do |f| %>
   <%= render 'shared/error_messages' %>
   <center><span class="Body-C5">Enter Book info (items with * are required)</span></center> 
   <%= f.hidden_field :user_id %>

@@ -9,7 +9,7 @@ class Book < ActiveRecord::Base
   validates :blurb, length: { maximum: 2000 }
   validates :user_id, presence: true
   validates :price, presence: true,
-            :format => { :with => /^\d+??(?:\.\d{0,2})?$/ }
+            :format => { :with => /\A\d+??(?:\.\d{0,2})?\z/ }
   default_scope order: 'books.releasedate DESC'
 
 #  mount_uploader :coverpic, ProfilepicUploader
