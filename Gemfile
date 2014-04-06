@@ -17,7 +17,7 @@ gem 'rails', '4.0.2'
 gem  'bootstrap-sass', '2.3.2.0'
 gem "will_paginate", "~> 3.0.4" 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+#gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'bcrypt'
 gem 'turbolinks'
 #gem "paperclip", "~> 2.0"
