@@ -1,0 +1,1 @@
+Crowdpublishtv::Application.config.secret_token = '1175ab185f93b74cafa5572da869eb1c5d7e53ec46e7c9e76cc180e4f277c6888e9ce1a491f8a701a517351b96e6899d3148b240d7114623aaea618b18d28249'
