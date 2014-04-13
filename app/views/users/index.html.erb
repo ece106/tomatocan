@@ -1,5 +1,6 @@
 <% @title="CrowdPublish.TV Community " %>
 
+
 <%= render 'form' %>
 
 <%
@@ -10,7 +11,7 @@
 <%
 =end %>
 
-<div id="usernav" style="position:absolute; overflow:hidden; left:100px; top:300px; z-index:3">
+<div id="usernav" style="position:absolute; overflow:hidden; left:300px; top:300px; z-index:3">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
@@ -19,7 +20,7 @@
   <% end %>
 </div></div>
 
-<div id="userlist" style="position:absolute; overflow:hidden; left:390px; top:320px; z-index:3">
+<div id="userlist" style="position:absolute; overflow:hidden; left:550px; top:320px; z-index:3">
 
 <table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
   <tr>
@@ -28,31 +29,32 @@
   </tr>
   <tr>
     <th></th>
-    <th align="left">&nbsp&nbsp&nbsp&nbspName</th>
-    <th align="left">&nbsp&nbsp&nbsp&nbspWriting Genres</th>
+    <th align="left"> &nbsp&nbsp&nbsp&nbsp Name</th>
+    <th align="left"> &nbsp&nbsp&nbsp&nbsp Writing Genres</th>
   </tr>
 <% @users.each do |u| %>
   <tr>
     <td> 
-  <% if u.profilepic.present? && u.profilepic != '' %>
-    <%= image_tag(u.profilepic, :size => "50x50") %>
-  <% elsif u.profilepicurl %>
-    <% if u.profilepicurl.match /http/ %>
-      <%= link_to(image_tag(u.profilepicurl, :size => "50x50", :profilepicurl => u.name), user_profile_path(u.permalink))  %>
+    <% if u.profilepic.present? && u.profilepic != '' %>
+      <%= image_tag(u.profilepic, :size => "50x50") %>
+    <% elsif u.profilepicurl %>
+      <% if u.profilepicurl.match /http/ %>
+        <%= link_to(image_tag(u.profilepicurl, :size => "50x50", :profilepicurl => u.name), user_profile_path(u.permalink))  %>
+      <% else %>
+        <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "50x50"), user_profile_path(u.permalink))  %> 
+      <% end %>
     <% else %>
-    <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50"), user_profile_path(u.permalink))  %> 
+      <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "50x50", :profilepicurl => u.name), user_profile_path(u.permalink)) %> 
     <% end %>
-  <% else %>
-      <%= link_to(image_tag("http://gurutapas.com/images/whiteBk.jpg", :size => "50x50", :profilepicurl => u.name), user_profile_path(u.id)) %> 
-  <% end %>
 
-</td>
+    </td>
     <td color="#443c55" align="left">
-      <%= link_to u.name, user_profile_path(u.id) %></td>
-     align="left"> <%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %></td>
+      <%= link_to u.name, user_profile_path(u.permalink) %>
+    </td>
+    <td align="left"> <%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
+    </td>
   </tr>
 
 <% end %>
 </table>
 </div>
-
