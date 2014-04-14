@@ -9,23 +9,19 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% end %>
 
 <div style="position:absolute; left:0px; top:0px">
-  <img src= "assets/purpleBar.png" alt="" title="" border=0 height="35" width="1010" ></div>
+  <img src= "assets/purpleBar.png" alt="" height="35" width="1010" ></div>
 
 <div id="pic" style="position:absolute; left:0px; top:35px;">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
-
-    <%= image_tag(@user.profilepic, :size => "150x150") %>
-    
+    <%= image_tag @user.profilepic, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
     <% if @user.profilepicurl.match(/http/) %>
-      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150>
-      <br />
+      <%= image_tag @user.profilepicurl, :size => "150x150" %><br >
     <% else %>
-      <img src= "assets/whiteBk.jpg" border=0 width=150 height=150>
-      <br /> 
+      <%= image_tag "whiteBk.jpg", :size => "150x150" %>
     <% end %>
   <% else %>
-    <img src= "assets/whiteBk.jpg" border=0 width=150 height=150><p>
+    <%= image_tag "whiteBk.jpg", :size => "150x150" %>
   <% end %>
 </div>
 
@@ -34,18 +30,11 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
 </div>
 
-<authorform class="authorform" style="position:absolute; left:10px; top:7px; overflow:hidden;">
-<div class= "authorform" >
+<div class="menu" style="position:absolute; left:10px; top:7px; overflow:hidden;">
     <%= link_to @user.name + " Books", booklist_user_path(@user.permalink) %>
 
   <a href="<%= booklist_user_path(@user.id) %>" style="color:#ffffff;" title="<%= @user.name %>"> <%= @user.name %> Books </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="<%= blog_user_path(@user.id) %>" style="color:#ffffff;">Blog </a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="<%= user_path(@user.id) %>" style="color:#ffffff;">Live Events</a>
-</div>
-</authorform>
-
-<div id="crowdmenu" style="position:absolute; left:500px; top:7px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
-<span class="Body-C2">
   <a href="http://CrowdPublish.tv" style="color:#ffffff;">CrowdPublishTV Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
-</span>
 </div>
