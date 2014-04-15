@@ -1,7 +1,12 @@
 Crowdpublishtv::Application.routes.draw do
 
-  resources :purchases
+#  root to: 'static_pages#home'
+  get "attachments/show"
+  match 'home', to: 'static_pages#home', via: 'get'
+  match 'howwork', to: 'static_pages#howwork', via: 'get'
 
+  resources :purchases
+   
   resources :plans
   resources :purchases
   resources :events

@@ -1,5 +1,7 @@
 <% @title="CrowdPublish.TV Community " %>
 
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;height:700px;">
+
 <%= render 'form' %>
 
 <%
@@ -10,16 +12,7 @@
 <%
 =end %>
 
-<div id="usernav" style="position:absolute; overflow:hidden; left:300px; top:300px; z-index:3">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    Already a member? <%= link_to "SIGN IN", new_user_session_path %> <p>
-  <% end %>
-</div>
-
-<div id="userlist" style="position:absolute; overflow:hidden; left:550px; top:320px; z-index:3">
+<div id="userlist" style="position:absolute; overflow:hidden; left:300px; top:320px; z-index:3">
 
 <table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
   <tr>
@@ -56,4 +49,5 @@
 
 <% end %>
 </table>
+</div>
 </div>
