@@ -9,7 +9,8 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% end %>
 
 <div style="position:absolute; left:0px; top:0px">
-  <img src= "assets/purpleBar.png" alt="" height="35" width="1010" ></div>
+    <%= image_tag "purpleBar.png", :size => "1010x35" %>
+</div>
 
 <div id="pic" style="position:absolute; left:0px; top:35px;">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
@@ -30,11 +31,9 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
 </div>
 
-<div class="menu" style="position:absolute; left:10px; top:7px; overflow:hidden;">
-    <%= link_to @user.name + " Books", booklist_user_path(@user.permalink) %>
-
-  <a href="<%= booklist_user_path(@user.id) %>" style="color:#ffffff;" title="<%= @user.name %>"> <%= @user.name %> Books </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="<%= blog_user_path(@user.id) %>" style="color:#ffffff;">Blog </a>&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="<%= user_path(@user.id) %>" style="color:#ffffff;">Live Events</a>
+<div class="menu" style="position:absolute; left:10px; top:7px; ">
+  <%= link_to @user.name + " Books ", user_booklist_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="<%= user_profile_path(@user.permalink) %>" style="color:#ffffff;">Live Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="http://CrowdPublish.tv" style="color:#ffffff;">CrowdPublishTV Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
 </div>

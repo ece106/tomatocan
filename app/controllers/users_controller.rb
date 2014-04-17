@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def blog
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
 
     respond_to do |format|
       format.html # blog.html.erb
@@ -36,35 +36,35 @@ class UsersController < ApplicationController
   # GET /users/1  
   # GET /users/1.json
   def profileinfo
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
     end
   end
   def readerprofileinfo
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # readerprofileinfo.html.erb
       format.json { render json: @user }
     end
   end
   def orgprofileinfo
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # orgprofileinfo.html.erb
       format.json { render json: @user }
     end
   end
   def editbookreview
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # editbookreview.html.erb
       format.json { render json: @user }
     end
   end
   def editauthorreview
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # editauthorreview.html.erb
       format.json { render json: @user }
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
   # GET /users/1.json
   def booklist
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     @books = @user.books
     respond_to do |format|
       format.html # booklist.html.erb
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit 76
   def edit
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     @books = @user.books
     @book = current_user.books.build # if signed_in?
     @booklist = Book.where(:user_id => @user.id)
@@ -108,9 +108,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      redirect_to @user
+      redirect_to '/' + @user.permalink
     else
-      render 'sign_in'
+      render 'login'
     end
   end
 
@@ -118,7 +118,7 @@ class UsersController < ApplicationController
   # PUT /users/1 99
   # PUT /users/1.json
   def update
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     @booklist = Book.where(:user_id => @user.id)
 
     if @user.update_attributes(params[:user])
@@ -132,7 +132,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json 
   def destroy
-    @user = User.find_by_permalink(params[:id])
+    @user = User.find_by_permalink(params[:permalink])
     @user.destroy
 
     respond_to do |format|

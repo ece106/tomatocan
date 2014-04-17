@@ -12,42 +12,45 @@
 <%
 =end %>
 
-<div id="userlist" style="position:absolute; overflow:hidden; left:300px; top:320px; z-index:3">
+<div class="indexlist" style="position:absolute; overflow:hidden; left:0px; top:340px; ">
 
 <table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
   <tr>
     <th></th>
-    <th><span class="featured">  Featured People</span></th>
+    <th><div class="featured">  Featured </div></th>
+    <th><div class="featured">  Booklovers </div></th>
   </tr>
-  <tr>
-    <th></th>
-    <th align="left"> &nbsp&nbsp&nbsp&nbsp Name</th>
-    <th align="left"> &nbsp&nbsp&nbsp&nbsp Writing Genres</th>
-  </tr>
-<% @users.each do |u| %>
-  <tr>
-    <td> 
-    <% if u.profilepic.present? && u.profilepic != '' %>
-      <%= image_tag(u.profilepic, :size => "50x50") %>
-    <% elsif u.profilepicurl %>
-      <% if u.profilepicurl.match /http/ %>
-        <%= link_to(image_tag(u.profilepicurl, :size => "50x50", :profilepicurl => u.name), user_profile_path(u.permalink))  %>
-      <% else %>
-        <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "50x50"), user_profile_path(u.permalink))  %> 
-      <% end %>
-    <% else %>
-      <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "50x50", :profilepicurl => u.name), user_profile_path(u.permalink)) %> 
+  <% @row = 0 %>
+  <% @users.each do |u| %>
+
+    <% if @row/5.0 == (@row/5.0).to_i %>
+      <tr>
     <% end %>
+    <% @row = @row + 1 %>
 
+    <td valign="top"> 
+    <% if u.profilepic.present? && u.profilepic != '' %> 
+      <%= image_tag(u.profilepic, :size => "170x170",  :title => u.name ) %>
+    <% elsif u.profilepicurl %>
+      <% if u.profilepicurl.match /http/ %> 
+        <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink))  %>
+      <% else %> <div style=" vertical-align: bottom;">
+        <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "170x170",  :title => u.name), user_profile_path(u.permalink))  %> </div> 
+      <% end %>
+    <% else %> <div style=" vertical-align: bottom;"> 
+      <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> </div> 
+    <% end %>
+    
+    <br><%= link_to u.name, user_profile_path(u.permalink) %>
+    <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
     </td>
-    <td color="#443c55" align="left">
-      <%= link_to u.name, user_profile_path(u.permalink) %>
-    </td>
-    <td align="left"> <%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
-    </td>
-  </tr>
 
-<% end %>
+    <% if @row/5.0 == (@row/5.0).to_i %>
+      </tr>
+    <% end %>
+  <% end %>
+  
+
 </table>
 </div>
 </div>

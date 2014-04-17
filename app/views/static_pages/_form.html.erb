@@ -4,7 +4,7 @@
     <%= link_to "#{current_user.name}", current_user %> <p>
   <% end %>
 
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;height:700px;">
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;height:700px;">
 
   <div style="position:absolute; left:401px; top:0px; width:501px; height:220px;">
     <div id="frag_22" style="text-align:left;">
@@ -69,12 +69,7 @@
 </div>
 
 <div class="copyalpha" style="position:absolute; left:0px; top:1170px; width:225px; overflow:hidden;">
-  This site is still in alpha stage development <br><br>Questions? Contact Lisa@CrowdPublish.TV <br><br><br> (C) Copyright 2013, RoleModel Enterprises, LLC. All Rights Reserved.
-</div>
-
-<div class = "featured" style="position:absolute; left:29px; top:490px; ">
-  Featured Books <p>
-  <a href="http://BudgetJustified.com"  target="_blank"><img src="/assets/bjBkCover170.png" ></a>
+  This site is still in alpha stage development <br><br>Questions? Contact Lisa@CrowdPublish.TV <br><br><br> (C) Copyright 2014, RoleModel Enterprises, LLC. All Rights Reserved.
 </div>
 
 <div style="position:absolute; left:0px; top:190px; width:900px; height:74px;">
@@ -94,13 +89,13 @@
   <% else %>
   <img src="/assets/bubbleButton165.png" width="165" height="50">
     <div class="signupbutton" style="position:absolute; left:35px; top:10px;">
-    <a href="/signup">SIGN UP! &nbsp;</a> 
+    <%= link_to 'SIGN UP!', "/signup" %>
     </div><br>
     Already a member? <%= link_to "SIGN IN", new_user_session_path %> <p>
   <% end %>
 </div>
 
-<div style="position:absolute; left:10px; top:0px;">
+<div style="position:absolute; left:0px; top:0px;">
   <img src="/assets/crowdpublishLogo.png" width="200" height="199">
 </div>
 <div style="position:absolute; left:188px; top:150px;">
