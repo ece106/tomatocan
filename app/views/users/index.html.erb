@@ -13,12 +13,14 @@
 =end %>
 
 <div class="indexlist" style="position:absolute; overflow:hidden; left:0px; top:340px; ">
+  <img src="/assets/futureEmpStory.png" width="712" height="38"><p>
 
 <table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
   <tr>
     <th></th>
     <th><div class="featured">  Featured </div></th>
     <th><div class="featured">  Booklovers </div></th>
+    <th><div class="featured">  & Authors </div></th>
   </tr>
   <% @row = 0 %>
   <% @users.each do |u| %>
@@ -41,8 +43,8 @@
       <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> </div> 
     <% end %>
     
-    <br><%= link_to u.name, user_profile_path(u.permalink) %>
-    <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
+    <%= link_to u.name, user_profile_path(u.permalink) %>
+    <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
     </td>
 
     <% if @row/5.0 == (@row/5.0).to_i %>

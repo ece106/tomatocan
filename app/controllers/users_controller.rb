@@ -118,14 +118,14 @@ class UsersController < ApplicationController
   # PUT /users/1 99
   # PUT /users/1.json
   def update
-    @user = User.find_by_permalink(params[:permalink])
-    @booklist = Book.where(:user_id => @user.id)
+    @user = User.find(params[:id])
+ #   @booklist = Book.where(:user_id => @user.id)
 
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       sign_in @user
-      redirect_to @user
+      redirect_to '/' + @user.permalink
     else
-      render 'profileinfo'
+      redirect_to '/' + @user.profileinfo
     end
   end
 

@@ -33,9 +33,9 @@ class User < ActiveRecord::Base
 #  devise now handles email validations
   validates :password_confirmation, presence: true 
 
-  def to_param
-    permalink
-  end
+#  def to_param
+#    permalink
+#  end
 
   private
   def assign_defaults_on_new_user

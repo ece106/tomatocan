@@ -30,7 +30,7 @@ Crowdpublishtv::Application.routes.draw do
     resources :books
     member do
       get 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
- #     get 'blog' => "users#blog", :as => :blog
+      get 'blog' => "users#blog", :as => :blog
     end
   end
 
@@ -57,8 +57,12 @@ Crowdpublishtv::Application.routes.draw do
 
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
-  match '/:permalink/booklist' => "users#booklist", :as => :user_booklist, via: 'get'
-  
+  match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
+  match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
+  match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
+  match '/:permalink/orgprofileinfo' => "users#orgprofileinfo", :as => :user_orgprofileinfo, via: 'get'
+  match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

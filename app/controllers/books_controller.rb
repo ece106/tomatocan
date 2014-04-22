@@ -3,31 +3,31 @@ class BooksController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    @book = current_user.books.build(params[:book])
+    @book = current_user.books.build(book_params)
     if @book.save
-      redirect_to user_path(current_user)
+      redirect_to user_profile_path(current_user.permalink)
     else
-      redirect_to edit_user_path(current_user), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
+      redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
     end
    end
 
   def edit
-    @booklist = Book.find(params[:author_id])
+   # @booklist = Book.find(params[:author_id])
     @book = Book.find(params[:id])
     @purchases = @book.purchases
     if @book.save
-      redirect_to author_path(current_user)
+      redirect_to user_profile_path(current_user.permalink)
     else
-      redirect_to edit_author_path(current_user), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
+      redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
     end
    end
 
   def update
-    @bklist = Book.find(params[:id])
-      if @bklist.update_attributes(params[:book])
-         redirect_to user_path(current_user)
+    @book = Book.find(params[:id])
+      if @book.update_attributes(book_params)
+         redirect_to user_profile_path(current_user.permalink)
       else
-         redirect_to edit_user_path(current_user), :notice => "....................................................................................................Your book was not saved. Check the required info."
+         redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info."
       end
   end
 
@@ -58,7 +58,7 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def book_params
-      params.require(:book).permit( :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :bookpdf, :coverpic)
+      params.require(:book).permit( :bookpdf, :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :coverpic)
     end
   
 end

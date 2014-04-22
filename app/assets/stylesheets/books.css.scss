@@ -1,3 +1,73 @@
-// Place all the styles related to the Books controller here.
-// They will automatically be included in application.css.
+// automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//<style type="text/css">
+//<!--
+body {margin: 0px; padding: 0px;}
+ a:link { text-decoration: none; }
+ a:visited { text-decoration: none; }
+ a:hover {  text-decoration: none; color:blue; background-color:transparent;}
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+.covertitle
+        {
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:12.0px; line-height:0.9em; color:#880000; font-style:italic; 
+        }
+
+.covername
+        {
+        line-height:0.9em; margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:12.0px; color:#2c3651;  
+        }
+.blurb
+        {
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:16.0px; line-height:1.0em; color:#2c3651; 
+        }
+.fifty
+        {
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:12.0px; line-height:0.9em; color:#2c3651; font-style:italic;
+        }
+
+.copyalpha
+        {
+        margin:0.0px 0.0px 0.0px 0.0px; text-align:left; font-size:12.0px;
+        }
+.indexlist
+        {
+        font-family:"Tahoma", sans-serif; margin:0.0px 0.0px 0.0px 0.0px; text-align:center; font-size:14.0px;   
+        }
+.featured
+        {
+        font-family:"Verdana", sans-serif; font-weight:700; font-size:24.0px; text-align:center; 
+        line-height:1.13em; color:#1e1e46; 
+        }
+.helps
+        {
+        font-family:"Tahoma", sans-serif; font-weight:700; font-size:21.0px; text-align:center; 
+        line-height:1.19em; color:#1e1e46; 
+        }
+.socialize
+        {
+        font-family:"Arial", sans-serif; font-size:19.0px; line-height:1.21em; text-align:center; 
+        color:#1e1e46; 
+        }
+.signupbutton
+        {
+        font-family:"Arial Black", sans-serif; font-weight:700; 
+        font-size:21.0px; line-height:1.43em; 
+        }
+.signin
+        {
+        font-family:"Arial", sans-serif; font-weight:700; font-size:12.0px; 
+        color:#2c3651; 
+        }
+
+.menu
+        { text-decoration: none; color: #fff; font-size:16.0px;
+        }
+
+//-->

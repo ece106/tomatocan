@@ -9,9 +9,9 @@
     <% if @user.ustreamvid.match /<iframe src="http:\/\/www.ustream.tv\/embed/ %>
       <%= @user.ustreamvid.html_safe %>
     <% end %>
-    <% elsif %>
-      <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank"></a>
-      <% end %>
+  <% elsif %>
+    <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank"></a>
+  <% end %>
   </div>
 
   <div id="usocial" style="position:absolute; overflow:hidden; left:400px; top:370px; z-index:3">
@@ -30,10 +30,12 @@
   <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
   <% if @user == current_user %>
     <table><tr><td>
-    <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
-    <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
+    <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), :method=> :get %> </td>
+    <td><%= button_to "Edit Books", user_edit_path(current_user.permalink), :method=> :get %>
+      as</td></tr></table> 
   <% end %> 
   </div>
+
 <% elsif @user.author == 3 %>
   <%= render 'orgform' %>
 
