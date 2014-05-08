@@ -1,36 +1,17 @@
 <% @title="CrowdPublish.TV - The Future of Empowerment is Your Story - @user.name"  %>
 
-<!-- // rails generate migration add_pics_to_books coverpic:string
-rails generate migration add_price_to_books price:float
-
-bundle exec rake db:migrate
-heroku run rake db:migrate
--->
-
 <%= render 'authorform' %>
 
-<div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
-  <% if @user == current_user %>
-    <table><tr><td>
-    <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
-    <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
-  <% end %> 
-</div>
+  <div id="uvid" style="position:absolute; overflow:hidden; left:0px; top:250px; width:300; z-index:3">
+    <%= @user.about %>
+  </div>
 
 <p id="notice"><%= notice %></p>
 
-
-<div id="fanbook" style="position:absolute; overflow:hidden; left:380px; top:50px; z-index:3">
-  <table CELLPADDING="0" CELLSPACING="8" WIDTH="620">
-  <tr>
-    <td></td>    <td></td>
-    <td><span class="Body-C6"><%= @user.name %>'s Books:</span></td>
-  </tr>
-</table>
+<div id="fanbook" style="position:absolute; left:380px; top:50px;">
+  <div class= "featured"><%= @user.name %>'s Books:</div>
 
   <% if @user.books.any? %>
       <%= render @books %>
   <% end %>
-
 </div>
-</body>

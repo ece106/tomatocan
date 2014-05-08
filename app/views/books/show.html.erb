@@ -6,10 +6,10 @@
 
 <table CELLPADDING="0" CELLSPACING="8" WIDTH="800">
   <tr>
-    <td class="copyalpha" style="width:50px;"> </td> <td>
-      <div style="float:left;width:55%;"> <b>
+    <td style="width:50px;"> </td> <td>
+      <div class="socialize" style="float:left;width:75%;"> <b>
       <%= @book.title %></b> by <%= user.name %></a></div>
-      <div style="float:right;width:45%;">
+      <div style="float:right;width:25%;">
       &nbsp&nbsp<%= @book.genre %>  </div>
     </td>
   </tr> 
@@ -18,29 +18,36 @@
     <% if @book.coverpic.present? && @book.coverpic != '' %>
       <%= image_tag(@book.coverpic, :size => "100x130") %>
     <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) %>
-      <%= image_tag(@book.coverpicurl, :size => "100x130" %>
+      <%= image_tag(@book.coverpicurl, :size => "100x130") %>
     <% elsif @book.title.match /[A-Za-z]/ %> 
-      <span class="covertitle">
-      <%= @book.title %> <br>
-      <a href= ../books/<%= @book.id %>> by <%= user.name %></a>
-      </span>
+      <div class="covertitle">
+        <%= @book.title %> </div><br> 
+      <div class="covername">
+        <%= user.name %></a>
+      </div>
     <% end %>
     </td>
     <td class="blurb"> <%= @book.blurb %></td>
   </tr>
-  <tr><td></td>
+</table>
+</div>
+
+<div class="buybook" style="position:absolute; left:350px; top:550px; text-align:left;">
+<table CELLPADDING="0" CELLSPACING="8" WIDTH="600">
+  <tr>
     <td>$<%= sprintf('%.2f', @book.price) %> USD 
-    <% if @book.bookpdf.present? && @book.bookpdf != '' %>
-      <%= link_to "...Buy as pdf (iBooks & PCs)", new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf") %>
+    </td>  
+    <td><% if @book.bookpdf.present? && @book.bookpdf != '' %>
+      <%= link_to "Buy ebook as pdf (iBooks & PCs)", new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf") %>
     <% end %>
-    <% if @book.bookmobi.present? && @book.bookmobi != '' %>
-      </td></tr><tr><td></td><td> <%= link_to "....................Buy as mobi (Kindle)", new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi") %>
-    <% end %>
-    <% if @book.bookepub.present? && @book.bookepub != '' %>
-      </td></tr><tr><td></td><td> <%= link_to "....................Buy as epub (Adobe & Nook)", new_purchase_path(:book_id => @book.id, :bookfiletype => "epub") %>
-    <% end %>
+    <% # if @book.bookmobi.present? && @book.bookmobi != '' %>
+      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as mobi (Kindle)", new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi") %>
+    <% # end %>
+    <% # if @book.bookepub.present? && @book.bookepub != '' %>
+      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as epub (Adobe & Nook)", new_purchase_path(:book_id => @book.id, :bookfiletype => "epub") %>
+    <% # end %>
     <% if @book.bookkobo.present? && @book.bookkobo != '' %>
-      </td></tr><tr><td></td><td> <%= link_to "....................Buy as kobo (Sony)", new_purchase_path(:book_id => @book.id, :bookfiletype => "kobo") %>
+      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as kobo (Sony)", new_purchase_path(:book_id => @book.id, :bookfiletype => "kobo") %>
     <% end %>
     </td>
   </tr>

@@ -9,51 +9,39 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% end %>
 
 <div style="position:absolute; left:0px; top:0px">
-  <img src= "../../assets/purpleBar.png" alt="" title="" border=0 height="35" width="1010" ></div>
+    <%= image_tag "purpleBar.png", :size => "1010x35" %>
+</div>
 
 <div id="pic" style="position:absolute; left:0px; top:35px;">
-  <% if @user.profilepicurl != nil %>
-    <% if @user.profilepicurl.match /http/ %>
-      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
+  <% if @user.profilepic.present? && @user.profilepic != '' %>
+    <%= image_tag @user.profilepic, :size => "150x150" %>
+  <% elsif @user.profilepicurl %>
+    <% if @user.profilepicurl.match(/http/) %>
+      <%= image_tag @user.profilepicurl, :size => "150x150" %><br >
     <% else %>
-      <img src= "http://crowdpublish.tv/images/whiteBk.jpg" border=0 width=150 height=150><p>
+      <%= image_tag "whiteBk.jpg", :size => "150x150" %>
     <% end %>
   <% else %>
-    <img src= "http://crowdpublish.tv/images/whiteBk.jpg" border=0 width=150 height=150><p>
+    <%= image_tag "whiteBk.jpg", :size => "150x150" %>
   <% end %>
 </div>
 
-<div id="name" style="position:absolute; left:170px; top:35px; width:220px">
+<div class="name" style="position:absolute; left:170px; top:35px; width:220px">
   <h2><%= @user.name %></h2>
-<%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
+  <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
 </div>
 
-<div id="usermenu" style="position:absolute; left:10px; top:7px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
-<span class="Body-C9">
-  <a href="<%= user_path %>" style="color:#ffffff;" title="<%= @user.name %>"> <%= @user.name %> Book Reviews </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="<%= blog_user_path %>" style="color:#ffffff;">Blog </a>&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="usermenu" style="position:absolute; left:10px; top:7px; width:728px; height:53px;">
+  <%= link_to @user.name + " Book Reviews ", user_booklist_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
 </div>
-
-<div id="crowdmenu" style="position:absolute; left:500px; top:7px; width:728px; height:53px;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box; overflow:hidden;">
-<span class="Body-C2">
-  <a href="http://CrowdPublish.tv" style="color:#ffffff;">CrowdPublishTV Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
-</span></div>
-
-<% 
-=begin %>
-<% if @user.profilepic != nil %>
-  <%= image_tag(@user.profilepic.to_s, :size => "150x150") %>
-<% else %>
-  <% if @user.profilepicurl != nil %>
-    <% if @user.profilepicurl.match /http/ %>
-      <img src= <%= @user.profilepicurl %> border=0 width=150 height=150><p>
-    <% else %>
-      <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
-    <% end %>
+<div class="usermenu" style="position:absolute; left:800px; top:7px; ">
+  <% if user_signed_in? %>
+    <%= link_to " Sign out ", destroy_user_session_path, :method => :delete, :style => 'color:#FFFFFF'%>
   <% else %>
-   <img src= "../../assets/whiteBk.jpg" border=0 width=150 height=150><p>
+    <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <%= link_to "Sign in", new_user_session_path, :style => 'color:#FFFFFF'%> 
   <% end %>
-<% end %>
-<% 
-=end %>
-
+</div>

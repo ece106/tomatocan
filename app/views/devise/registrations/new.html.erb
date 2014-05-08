@@ -1,46 +1,39 @@
 <% @title="CrowdPublish.TV Community " %>
 
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;">
+
 <%= render 'form' %>
 
-<div id="signuptext" style="position:absolute; overflow:hidden; left:400px; top:300px; z-index:3">
-<h3>Sign up to hang out and learn with CrowdPublish.TV members.
-</h3></div>
-
-<div id="signup" style="position:absolute; overflow:hidden; left:390px; top:350px; z-index:3">
+<div id="signup" style="position:absolute; overflow:hidden; left:10px; top:320px; ">
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  Username - numbers and letters ONLY <br>(Will be used in your unique URL. <br> Cannot be changed later.)<br />
-  <%= f.text_field :permalink %>
-  <br> 
+  Username - numbers and letters ONLY (Will be used in your unique URL.)<br />
+  <%= f.text_field :permalink, :autofocus => true %>  <p> 
   Full name<br />
-  <%= f.text_field :name %>
-  <br> 
+  <%= f.text_field :name, :autofocus => true %>  <p>
   Email<br />
-  <%= f.email_field :email, :autofocus => true %>
-  <br>
-Which kind of account do you wish
-<br>to use? (This can be changed later.)
-<p><%= radio_button_tag(:author, 1) %>
-<%= label_tag(:author_child, "Reader . . .") %>
-<br><%= radio_button_tag(:author, 2) %>
-<%= label_tag(:author_adult, "Author . . .") %>
-<br><%= radio_button_tag(:author, 3) %>
-<%= label_tag(:author_adult, "Organization") %>
+  <%= f.email_field :email, :autofocus => true %>  <p>
 
-<p>  Password <br />
-  <%= f.password_field :password %>
-  <br>
+  Which kind of account do you wish to use? (This can be changed later.)
+  <br><%= radio_button_tag(:author, 1) %>
+  <%= label_tag(:author_child, "Reader . . .") %>
+  <br><%= radio_button_tag(:author, 2) %>
+  <%= label_tag(:author_adult, "Author . . .") %>
+  <br><%= radio_button_tag(:author, 3) %>
+  <%= label_tag(:author_adult, "Organization") %>
+
+  <p>  Password <br />
+  <%= f.password_field :password %><br>
   Enter password again <br />
-  <%= f.password_field :password_confirmation %>	
-  <br>
+  <%= f.password_field :password_confirmation %><p>
   <%= f.submit "Sign up" %>
 <% end %>
 </div>
 
-<div id="signup" style="position:absolute; overflow:hidden; left:700px; top:355px; z-index:3">
-
-Already a member? <p>
-<%= render "devise/shared/links" %>
+<div id="signup" style="position:absolute; left:670px; top:365px; ">
+  Already a member? <p>
+  <%= render "devise/shared/links" %>
+</div>
 </div>

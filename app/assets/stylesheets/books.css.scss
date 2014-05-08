@@ -7,12 +7,19 @@ body {margin: 0px; padding: 0px;}
  a:link { text-decoration: none; }
  a:visited { text-decoration: none; }
  a:hover {  text-decoration: none; color:blue; background-color:transparent;}
+ a:active {color: #885599;}
+
 .alignleft {
 	float: left;
 }
 .alignright {
 	float: right;
 }
+
+.buybook
+        {
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:16.0px; color:#880000; 
+        }
 
 .covertitle
         {
@@ -21,15 +28,15 @@ body {margin: 0px; padding: 0px;}
 
 .covername
         {
-        line-height:0.9em; margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:12.0px; color:#2c3651;  
+        line-height:0.9em; margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:11.0px; color:#2c3651;  
         }
 .blurb
         {
-        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:16.0px; line-height:1.0em; color:#2c3651; 
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:left; font-size:16.0px; line-height:1.0em; color:#2c3651; 
         }
 .fifty
         {
-        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:center; font-size:12.0px; line-height:0.9em; color:#2c3651; font-style:italic;
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:left; font-size:12.0px; line-height:0.9em; color:#2c3651;
         }
 
 .copyalpha

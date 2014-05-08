@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+  class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
 
   mount_uploader :profilepic, ProfilepicUploader
 
+  before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
+
 #  before_save :create_remember_token
 #  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }  # ,  :storage => :s3 }
 #  has_secure_password
@@ -28,7 +30,7 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true
+  validates :password, presence: true # :if => :should_validate_password?  # :on => :create
 #  validates :password, presence: true, length: { minimum: 6 }
 #  devise now handles email validations
   validates :password_confirmation, presence: true 
@@ -36,6 +38,10 @@ class User < ActiveRecord::Base
 #  def to_param
 #    permalink
 #  end
+
+  def should_validate_password?
+    updating_password || new_record?
+  end
 
   private
   def assign_defaults_on_new_user

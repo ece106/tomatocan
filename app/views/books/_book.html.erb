@@ -3,34 +3,11 @@
     <td > </td>
     <td>
     <div style="float:left;width:75%;">
-      <b><%= link_to(book.title, book)  %></b> </a></div>
+      <b><%= link_to(book.title, book) %></b> </a></div>
     <div style="float:right;width:25%;">&nbsp&nbsp<%= book.genre %></div>
     </td></tr>
   <tr>
-    <td style="width:50px;height:65px;background-color:#dddddd; " >
-
-<%
-=begin %>
-<% if book.coverpic != nil %>
-    <%= image_tag(book.coverpic.to_s, :size => "50x65") %>
-<% else %>
-<%
-  <% if book.coverpicurl != nil %>
-    <% if book.coverpicurl.match /http/ %>
-      <img src=<%= book.coverpicurl %> width="50" height="65" title= "Purchase <%= book.title %>" target="_blank"></a>
-    <% else %>
-      <% if book.title.match /[A-Za-z]/ %> 
-        <span class="Body-D2">
-        <a href= http://CrowdPublish.TV style="color: #880000" title= "Purchase <%= book.title %>"> <font color="880000" ><i>
-        <%= book.title %> <target="_blank"></font></i></a> 
-        <br>by <%= @user.name %>
-      <% end %>
-    <% end %>
-  <% end %>
-</span>
-    </td><td> <i><%= book.blurb %></i>
-<%
-=end %>
+    <td style="width:75px;height:98px;background-color:#dddddd; " >
 
     <% if book.coverpic.present? && book.coverpic != '' %>
       <%= image_tag(book.coverpic, :size => "75x98", :title => "Purchase " + book.title) %>
@@ -38,13 +15,13 @@
       <%= image_tag(book.coverpicurl, :size => "75x98", :title => "Purchase " + book.title) %>
     <% elsif book.title.match /[A-Za-z]/ %> 
       <div class="covertitle">
-      <%= link_to book.title, book_path(:id => book.id), :title => "Purchase " + book.title %><br></div>
-      <div class="covername">
-      <%= link_to  "by " + @user.name, book_path(:id => book.id), :title => "Purchase " + book.title %>
+      <%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %><p></div>
+      <div class="covername" style= "color:#2c3651">
+      <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
       </div>
     <% end %>
     </td>
-    <td class="blurb"> <%= book.blurb %></td>
+    <td class="blurb" style= "color:2c3651"> <%= book.blurb %></td>
 </td>
   </tr>
 </table>

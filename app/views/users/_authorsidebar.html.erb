@@ -1,47 +1,51 @@
 <title> CrowdPublish.TV - <%= @user.name %> site</title>
 
-<div id="fanbook" style="position:absolute; left:0px; top:190px; width:400px; z-index:3; overflow: auto;">
+<div id="fanbook" style="position:absolute; left:0px; top:190px; width:400px; ">
 
 <% if @user.books.any? %>
   <table CELLPADDING="0" CELLSPACING="8" WIDTH="400">
   <% @user.books.each do |book| %>
     <%= form_for(book) do |f| %>
-      <tr><td width="50"; style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:70%" >
-      <% if book.coverpic.present? && book.coverpic != '' %>
-        <%= image_tag(book.coverpic, :size => "50x65") %>
-      <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
-        <img src=<%= book.coverpicurl %> width="50" height="65" ></a>
-      <% elsif book.title.match(/[A-Za-z]/) %> 
-        <span class="Body-D2">
-        <font color="880000" ><i><%= book.title %> </font></i><br>
-        <a href= ../books/<%= book.id %>> by <%= @user.name %></a>
-      <% end %>
-
+      <tr><td width="50"; style="width:50px;height:70px;background-color:#dddddd;  text-align: center; line-height:70%" >
+        <% if book.coverpic.present? && book.coverpic != '' %>
+          <%= image_tag(book.coverpic, :size => "50x65", :title => "Purchase " + book.title) %>
+        <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
+          <%= image_tag(book.coverpicurl, :size => "50x65", :title => "Purchase " + book.title) %>
+        <% elsif book.title.match /[A-Za-z]/ %> 
+          <div class="covertitle">
+            <%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %><p></div>
+          <div class="covername" style= "color:#2c3651">
+            <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
+          </div>
+        <% end %>
+      </td>
       <td style="line-height:94%">
-      <div style="float:left;width:75%;">
-      <a href= ../../books/<%= book.id %>> <b><%= book.title %></b> <title= "Purchase <%= book.title %>" target="_blank"></a></div>
-      <div style="float:right;width:25%;">
-      &nbsp<%= book.genre %></div>
-      <div><span class="Body-C6"><%= book.fiftychar %></span></div>
-
-    </td></tr> 
+        <div style="float:left;width:75%; font-weight:bold">
+          <%= link_to book.title, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Purchase " + book.title %>
+        </div>
+        <div style="float:right;width:25%;">
+          &nbsp<%= book.genre %></div>
+        <div class="fifty"><%= book.fiftychar %></div>
+      </td></tr> 
     <% end %>
   <% end %>
   </table>
 <% elsif %>
   <table CELLPADDING="0" CELLSPACING="8" WIDTH="400">
-  <tr><td width="50"; style="width:50px;height:65px;background-color:#dddddd;  text-align: center; line-height:70%" >
-  <a href= "http://BudgetJustified.com" ><img src= "/assets/bjBkCover170.png" width="50" height="65"  title= "Purchase Budget Justified by Lisa Schaefer" target ="_blank"></a>
+    <tr><td width="50"; style="width:50px;height:70px;background-color:#dddddd;  text-align: center; line-height:70%" >
+      <%= link_to image_tag("bjBkCover170.png", :size => "50x65"), "http://BudgetJustified.com", :title => "Budget Justified", :target => "_blank" %>
       <td style="line-height:94%">
-      <div style="float:left;width:70%;">
-      <a href= "http://BudgetJustified.com/book.html" <b>Budget Justified: The Waste, Fraud & Abuse of Government Workers... by Lisa Schaefer</b> <title= "Purchase Budget Justified: The Waste, Fraud & Abuse of Government Workers" target="_blank"></a></div>
-      <div style="float:right;width:30%;">
-      Nonfiction Comedy/Drama</div>
-
-      <div><span class="Body-C6">
-<br><br><br>A few years ago, an FAA employee did something shockingly obscene in front of a female engineering contractor. The next day the woman was fired. So rather than go back to another FAA contractor position, she used her talents to produce Budget Justified, a movie, web series, and video-short reenacting what she witnessed in FAA and contractor offices.</span></div>
-    </td></tr>  </table>
-  
+        <div class="sidebartitle" style="float:left;width:70%;">
+          <%= link_to "Budget Justified: The Waste, Fraud & Abuse of Government Workers... by Lisa Schaefer", "http://BudgetJustified.com/book.html", :title => "Purchase Budget Justified: The Waste, Fraud & Abuse of Government Workers", :target => "_blank" %>
+        </div>
+        <div style="float:right;width:30%;">
+          Nonfiction Comedy/Drama
+        </div>
+        <div class="fifty">
+          <br><br><br>A few years ago, an FAA employee did something shockingly obscene in front of a female engineering contractor. The next day the woman was fired. So rather than go back to another FAA contractor position, she used her talents to produce Budget Justified, a movie, web series, and video-short reenacting what she witnessed in FAA and contractor offices.
+        </div>
+    </td></tr> 
+  </table>
   <% if @user == current_user %>
     <p>The above book description will be replaced with a listing of your books after you enter information about your books. <p>
   <% end %>
@@ -49,6 +53,3 @@
 <% end %>
 
 </div>
-
-
-

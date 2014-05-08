@@ -4,17 +4,17 @@
   <%= render 'authorform' %>
   <%= render 'authorsidebar' %>
 
-  <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
+  <div id="uvid" style="position:absolute; left:400px; top:35px; z-index:3">
   <% if @user.ustreamvid? %>
-    <% if @user.ustreamvid.match /<iframe src="http:\/\/www.ustream.tv\/embed/ %>
+    <% if @user.ustreamvid.match /<iframe src="www.ustream.tv\/embed/ %>
       <%= @user.ustreamvid.html_safe %>
     <% end %>
   <% elsif %>
-    <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank"></a>
+    <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /></a>
   <% end %>
   </div>
 
-  <div id="usocial" style="position:absolute; overflow:hidden; left:400px; top:370px; z-index:3">
+  <div id="usocial" style="position:absolute; left:400px; top:370px; ">
   <% if @user.ustreamsocial? %>
     <% if @user.ustreamsocial.match /<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http:\/\/www.ustream.tv\/socialstream/ %>
       <%= @user.ustreamsocial.html_safe %>
@@ -27,54 +27,44 @@
   <% end %>
   </div>
 
-  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
-  <% if @user == current_user %>
-    <table><tr><td>
-    <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), :method=> :get %> </td>
-    <td><%= button_to "Edit Books", user_edit_path(current_user.permalink), :method=> :get %>
-      as</td></tr></table> 
-  <% end %> 
-  </div>
-
 <% elsif @user.author == 3 %>
   <%= render 'orgform' %>
 
-  <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
+  <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; ">
     <% if @user.ustreamvid? %>
     <% end %>
   </div>
 
-  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; width:350px; z-index:3">
+  <div id="edit buttons" style="position:absolute; left:0px; top:170px; width:350px;">
     <% if @user == current_user %>
       <table><tr>
-      <td><%=  button_to "Edit Profile", orgprofileinfo_user_path(current_user), :method=> :get %> </td>
-
+      <td><%=  button_to "Edit Profile", orgprofileinfo_user_path(current_user.permalink), :method=> :get %> </td>
       </tr></table> 
-Soon organizations will be able to click on CrowdPublish.TV authors' books to enter reviews.
+      Soon organizations will be able to click on CrowdPublish.TV authors' books to enter reviews.
     <% end %> 
   </div>
 
-  <div id="uvid" style="position:absolute; overflow:auto; left:400px; top:50px; width:550px; height:180px; z-index:3"><span class="Body-C3">
+  <div id="uvid" style="position:absolute; left:400px; top:50px; width:550px; height:180px; ">
     <%= @user.youtube %> <p>
-    <%= @user.pinterest %> <p></span> 
+    <%= @user.pinterest %> <p>
   </div>
 
-  <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:250px; z-index:3">
+  <div class="blurb" style="position:absolute; left:400px; top:250px; z-index:3">
     <%= @user.about %>
   </div>
 
-<% elsif  %>
+<% else  %>
   <%= render 'readerform' %>
 
-  <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
-    <% if @user.ustreamvid? %>
+  <div id="reviews" style="position:absolute; left:400px; top:35px; ">
+    <% if @user.ustreamvid? %> 
     <% end %>
   </div>
 
-  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
+  <div id="edit buttons" style="position:absolute; left:0px; top:170px;">
     <% if @user == current_user %>
       <table><tr>
-      <td><%=  button_to "Edit Profile", readerprofileinfo_user_path(current_user), :method=> :get %> </td>
+      <td><%=  button_to "Edit Profile", readerprofileinfo_user_path(current_user.permalink), :method=> :get %> </td>
 
 <% 
 =begin %>
@@ -84,10 +74,10 @@ Soon organizations will be able to click on CrowdPublish.TV authors' books to en
 =end %>
 
       </tr></table> 
-Soon readers will be able to click on CrowdPublish.TV authors' books to enter reviews.
+      Soon readers will be able to click on CrowdPublish.TV authors' books to enter reviews.
     <% end %> 
   </div>
-  <div id="uvid" style="position:absolute; overflow:hidden; left:400px; top:35px; z-index:3">
+  <div class="blurb" style="position:absolute; overflow:hidden; left:400px; top:35px;">
     <%= @user.about %>
   </div>
 <% end %>
