@@ -8,10 +8,10 @@
     <%= form_for(book) do |f| %>
       <tr><td width="50"; style="width:50px;height:70px;background-color:#dddddd;  text-align: center; line-height:70%" >
         <% if book.coverpic.present? && book.coverpic != '' %>
-          <%= image_tag(book.coverpic, :size => "50x65", :title => "Purchase " + book.title) %>
+          <%= link_to image_tag(book.coverpic, :size => "50x65", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
         <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
-          <%= image_tag(book.coverpicurl, :size => "50x65", :title => "Purchase " + book.title) %>
-        <% elsif book.title.match /[A-Za-z]/ %> 
+          <%= link_to image_tag(book.coverpicurl, :size => "50x65", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+        <% elsif book.title.match /[0-9A-Za-z]/ %> 
           <div class="covertitle">
             <%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %><p></div>
           <div class="covername" style= "color:#2c3651">

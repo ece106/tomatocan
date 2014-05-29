@@ -10,14 +10,15 @@
     <td style="width:75px;height:98px;background-color:#dddddd; " >
 
     <% if book.coverpic.present? && book.coverpic != '' %>
-      <%= image_tag(book.coverpic, :size => "75x98", :title => "Purchase " + book.title) %>
+      <%= link_to image_tag(book.coverpic, :size => "75x98", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+      
     <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
-      <%= image_tag(book.coverpicurl, :size => "75x98", :title => "Purchase " + book.title) %>
-    <% elsif book.title.match /[A-Za-z]/ %> 
+      <%= link_to image_tag(book.coverpicurl, :size => "75x98", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+    <% elsif book.title.match /[0-9A-Za-z]/ %> 
       <div class="covertitle">
-      <%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %><p></div>
+        <%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %><p></div>
       <div class="covername" style= "color:#2c3651">
-      <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
+        <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
       </div>
     <% end %>
     </td>

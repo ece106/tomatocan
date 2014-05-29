@@ -8,9 +8,9 @@
   <tr>
     <td style="width:50px;"> </td> <td>
       <div class="socialize" style="float:left;width:75%;"> <b>
-      <%= @book.title %></b> by <%= user.name %></a></div>
+        <%= @book.title %></b> by <%= user.name %></a></div>
       <div style="float:right;width:25%;">
-      &nbsp&nbsp<%= @book.genre %>  </div>
+        &nbsp&nbsp<%= @book.genre %>  </div>
     </td>
   </tr> 
   <tr>
@@ -23,8 +23,7 @@
       <div class="covertitle">
         <%= @book.title %> </div><br> 
       <div class="covername">
-        <%= user.name %></a>
-      </div>
+        <%= user.name %></a>  </div>
     <% end %>
     </td>
     <td class="blurb"> <%= @book.blurb %></td>
@@ -38,16 +37,16 @@
     <td>$<%= sprintf('%.2f', @book.price) %> USD 
     </td>  
     <td><% if @book.bookpdf.present? && @book.bookpdf != '' %>
-      <%= link_to "Buy ebook as pdf (iBooks & PCs)", new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf") %>
+      <%= link_to "Buy ebook as pdf (iBooks & PCs)", new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :style => 'color:#880000' %>
     <% end %>
     <% # if @book.bookmobi.present? && @book.bookmobi != '' %>
-      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as mobi (Kindle)", new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi") %>
+      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as mobi (Kindle)", new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :style => 'color:#880000' %>
     <% # end %>
     <% # if @book.bookepub.present? && @book.bookepub != '' %>
-      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as epub (Adobe & Nook)", new_purchase_path(:book_id => @book.id, :bookfiletype => "epub") %>
+      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as epub (Adobe & Nook)", new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :style => 'color:#880000' %>
     <% # end %>
     <% if @book.bookkobo.present? && @book.bookkobo != '' %>
-      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as kobo (Sony)", new_purchase_path(:book_id => @book.id, :bookfiletype => "kobo") %>
+      </td></tr><tr><td></td><td> <%= link_to "Buy ebook as kobo (Sony)", new_purchase_path(:book_id => @book.id, :bookfiletype => "kobo"), :style => 'color:#880000' %>
     <% end %>
     </td>
   </tr>

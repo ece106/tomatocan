@@ -37,8 +37,9 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
 </div>
-<div class="usermenu" style="position:absolute; left:800px; top:7px; ">
+<div class="usermenu" style="position:absolute; left:750px; top:7px; ">
   <% if user_signed_in? %>
+    <%= link_to "#{current_user.name}", current_user, :style => 'color:#FFFFFF'  %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= link_to " Sign out ", destroy_user_session_path, :method => :delete, :style => 'color:#FFFFFF'%>
   <% else %>
     <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
