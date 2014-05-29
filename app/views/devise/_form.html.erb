@@ -13,7 +13,7 @@
   </div>
 
 <div style="position:absolute; left:129px; top:0px; width:280px; height:208px;">
-  <img src="/assets/grayfade.png" width="280" height="208" border="0">
+  <%= image_tag("grayfade.png", :size => "280x208" ) %>
 </div>
 
 <div style="position:absolute; left:0px; top:1675px; width:192px; height:25px;">
@@ -75,31 +75,30 @@
 <div style="position:absolute; left:0px; top:190px; width:900px; height:74px;">
   <%= image_tag "whitebar.png" %>
 </div>
-<div class="helps" style="position:absolute; left:202px; top:214px; width:418px; overflow:hidden;">
+<div class="helps" style="position:absolute; left:202px; top:214px; width:418px; ">
   CrowdPublishTV helps authors &amp; fans interact directly &amp; build community
 </div>
-<div class="socialize" style="position:absolute; left:632px; top:216px; width:268px; height:48px; overflow:hidden;">
+<div class="socialize" style="position:absolute; left:632px; top:216px; width:268px; height:48px;">
   Socialize around your books, experiences, or expertise
 </div>
 
 <div style="position:absolute; left:21px; top:212px; width:200px;">
   <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. <p> Not you?
+    Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <% else %>
-  <img src="/assets/bubbleButton165.png" width="165" height="50">
+    <%= image_tag("bubbleButton165.png", :size => "165x50") %>
     <div class="signupbutton" style="position:absolute; left:35px; top:10px;">
-    <%= link_to 'SIGN UP!', "/signup" %>
+      <%= link_to 'SIGN UP!', "/signup" %>
     </div><br>
     Already a member? <%= link_to "SIGN IN", new_user_session_path %> <p>
   <% end %>
 </div>
 
 <div style="position:absolute; left:0px; top:0px;">
-  <img src="/assets/crowdpublishLogo.png" width="200" height="199">
+  <%= image_tag("crowdpublishLogo.png", :size => "200x199") %>
 </div>
 <div style="position:absolute; left:0px; top:290px; width:930px;">
     <hr noshade>
 </div>
-
 </div>
