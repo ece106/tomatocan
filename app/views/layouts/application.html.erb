@@ -7,6 +7,7 @@
   <link rel="shortcut icon" type="favicon.ico" href="/assets/crowdpublishtvLogo.ico"/>
   <%= csrf_meta_tags %>
   <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
+  <%# tag :meta, :name => "stripe-key", :content => 'STRIPE_PUBLIC_KEY' %>
   
   <% if content_for? :forusers %>
     <%= yield :forusers %>

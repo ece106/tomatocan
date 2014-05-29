@@ -4,8 +4,8 @@
 
 <%= render 'form' %>
 
-<div class="indexlist" style="position:absolute; overflow:hidden; left:0px; top:340px; ">
-  <img src="/assets/futureEmpStory.png" width="712" height="38"><p>
+<div class="indexlist" style="position:absolute; left:0px; top:340px; ">
+  <%= image_tag("futureEmpStory.png", :size => "712x38") %><p>
 
 <table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
   <tr>
@@ -24,7 +24,7 @@
 
     <td valign="top"> 
     <% if u.profilepic.present? && u.profilepic != '' %> 
-      <%= image_tag(u.profilepic, :size => "170x170",  :title => u.name ) %>
+      <%= link_to(image_tag(u.profilepic, :size => "170x170",  :title => u.name ), user_profile_path(u.permalink)) %>
     <% elsif u.profilepicurl %>
       <% if u.profilepicurl.match /http/ %> 
         <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink))  %>
