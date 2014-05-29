@@ -9,11 +9,14 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201309200000000) do
+ActiveRecord::Schema.define(version: 201309200000000) do
 
-  create_table "books", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "books", force: true do |t|
     t.string   "title"
     t.text     "blurb"
     t.date     "releasedate"
@@ -32,7 +35,48 @@ ActiveRecord::Schema.define(:version => 201309200000000) do
     t.string   "bookkobo"
   end
 
-  create_table "purchases", :force => true do |t|
+  create_table "certs", force: true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feed_entries", force: true do |t|
+    t.string   "name"
+    t.text     "summary"
+    t.string   "url"
+    t.datetime "published_at"
+    t.string   "guid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", force: true do |t|
+    t.string   "title"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "posts", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchases", force: true do |t|
     t.integer  "author_id"
     t.integer  "book_id"
     t.string   "stripe_customer_token"
@@ -44,7 +88,7 @@ ActiveRecord::Schema.define(:version => 201309200000000) do
     t.string   "bookfiletype"
   end
 
-  create_table "reviews", :force => true do |t|
+  create_table "reviews", force: true do |t|
     t.text     "blurb"
     t.integer  "user_id"
     t.integer  "book_id"
@@ -53,7 +97,7 @@ ActiveRecord::Schema.define(:version => 201309200000000) do
     t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.text     "ustreamvid"
@@ -74,11 +118,11 @@ ActiveRecord::Schema.define(:version => 201309200000000) do
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -86,9 +130,9 @@ ActiveRecord::Schema.define(:version => 201309200000000) do
     t.string   "permalink"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["permalink"], :name => "index_users_on_permalink", :unique => true
-  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["permalink"], name: "index_users_on_permalink", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
