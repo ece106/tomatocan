@@ -29,10 +29,10 @@
       <% if u.profilepicurl.match /http/ %> 
         <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink))  %>
       <% else %> <div style=" vertical-align: bottom;">
-        <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "170x170",  :title => u.name), user_profile_path(u.permalink))  %> </div> 
+        <%= link_to(image_tag("whiteBk.jpg", :size => "170x170",  :title => u.name), user_profile_path(u.permalink))  %> </div> 
       <% end %>
     <% else %> <div style=" vertical-align: bottom;"> 
-      <%= link_to(image_tag("/assets/whiteBk.jpg", :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> </div> 
+      <%= link_to(image_tag("whiteBk.jpg", :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> </div> 
     <% end %>
     
     <%= link_to u.name, user_profile_path(u.permalink) %>

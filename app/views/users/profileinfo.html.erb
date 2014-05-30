@@ -37,13 +37,13 @@
     </div>
 
     <div id="bkinp" style="position:absolute; left:0px; top:320px; width:350px;">
-      FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurl)
+      FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
       <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
 
       <br>URL to your blog <br>
       <%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "Blog URL" %>
-      <br>Twitter handle (don't include the '@' symbol) 
-      <%= f.text_area :twitter, :cols => 40, :rows => 1, placeholder: "Twitter" %>
+      <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
+      <div class="featured"> @<%= f.text_area :twitter, :cols => 20, :rows => 1, placeholder: "Twitter" %> </div>
 
       <p>Change account type:
       <p><%= f.radio_button(:author, 1) %>
