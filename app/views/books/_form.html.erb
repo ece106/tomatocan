@@ -1,9 +1,5 @@
 <title>CrowdPublish.TV: The Future of Empowerment is Your Story </title>
 
-  <% if user_signed_in? %>
-    <%= link_to "#{current_user.name}", current_user %> <p>
-  <% end %>
-
 <div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;height:700px;">
 
   <div style="position:absolute; left:401px; top:0px; width:501px; height:220px;">
@@ -59,6 +55,10 @@
   <%= link_to 'How it works', "/howwork", :style => 'color:#FFFFFF' %><p>
   <%= link_to 'Members', users_path, :style => 'color:#FFFFFF' %><p>
   <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %><p>
+  <% if user_signed_in? %>
+    <%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %> <p>
+  <% end %>
+
 </div>
 
 <div style="position:absolute; left:230px; top:5px;">

@@ -19,7 +19,7 @@
       <%= image_tag(@book.coverpic, :size => "100x130") %>
     <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) %>
       <%= image_tag(@book.coverpicurl, :size => "100x130") %>
-    <% elsif @book.title.match /[A-Za-z]/ %> 
+    <% elsif @book.title.match /[0-9A-Za-z]/ %> 
       <div class="covertitle">
         <%= @book.title %> </div><br> 
       <div class="covername">
