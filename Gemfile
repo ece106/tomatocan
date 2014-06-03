@@ -20,6 +20,7 @@ gem "will_paginate", "~> 3.0.4"
 #gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'bcrypt'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
 
