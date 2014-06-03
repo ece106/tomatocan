@@ -13,27 +13,32 @@
   <%= render 'authorsidebar' %>
 <% elsif @user.author == 3 %>
   <%= render 'orgform' %>
-<% elsif %>
+<% else %>
   <%= render 'readerform' %>
 <% end %>
 
-  <div id="edit buttons" style="position:absolute; overflow:hidden; left:0px; top:170px; z-index:3">
-  <% if @user == current_user %>
-    <table><tr><td>
-    <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %> </td>
-    <td><%= button_to "Edit Books", edit_user_path(current_user), :method=> :get %></td></tr></table> 
-  <% end %> 
-  </div>
-
-<div id="blog" style="position:absolute; left:400px; top:60px; ">
-
 <% if @user.blogurl %>
   <% if @user.blogurl.match /http/ %>
-    <iframe frameborder="0" width="900" src= "<%= @user.blogurl %>" height="1000"></iframe>
-
+    <div class="blog" style="position:absolute; left:400px; top:80px; width:1000px; ">
+      <iframe frameborder="0" width="900" src= "<%= @user.blogurl %>" height="1000"></iframe>
+    </div>
+    <% if @user.twitter %>
+      <div style="position:absolute; left:0px; top:200px; width:300px;">
+        <a class="twitter-timeline"    
+        data-widget-id="375760459510464512"
+        data-screen-name="<%= @user.twitter %>" data-show-replies="false"
+        data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
+      </div>
+    <% end %>
   <% elsif @user.twitter %>
-
+    <div class="blog" style="position:absolute; left:400px; top:80px; width:1000px; ">
+      <a class="twitter-timeline"    
+      data-widget-id="375760459510464512"
+      data-screen-name="<%= @user.twitter %>" data-show-replies="false"
+      data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
+    </div>
   <% end %>
 <% end %>
-
 </div>
+
+

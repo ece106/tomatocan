@@ -2,16 +2,18 @@
 
 <%= render 'authorform' %>
 
-  <div id="uvid" style="position:absolute; overflow:hidden; left:0px; top:250px; width:300; z-index:3">
-    <%= @user.about %>
-  </div>
+<div id="uvid" style="position:absolute; overflow:hidden; left:0px; top:220px; width:300px;">
+  <%= @user.about %>
+</div>
 
 <p id="notice"><%= notice %></p>
 
 <div id="fanbook" style="position:absolute; left:380px; top:50px;">
   <div class= "featured"><%= @user.name %>'s Books:</div>
-
+  <br>
   <% if @user.books.any? %>
-      <%= render @books %>
+    <%= render @books %>
+  <% else %>
+    <br><br><br><%= @user.name %> doesn't have any books listed yet
   <% end %>
 </div>

@@ -15,7 +15,8 @@
 </div>
 
 <% if @user == current_user %>
-  <%= form_for(@user) do |f| %>
+
+  <%= form_for @user, :html => {:multipart => true} do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
 
   <div class="copyalpha" style="position:absolute; left:0px; top:35px;">
@@ -25,30 +26,35 @@
     <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %>
   </div>
 
-    <div id="bkinp" style="position:absolute; overflow:hidden; left:160px; top:50px; z-index:3">
-      <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Your club's main topic" %><br>
-      <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Club's sub topic" %><br>
-      <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Other interest" %><br>
+    <div id="bkinp" style="position:absolute; left:160px; top:25px; width:190px;">
+      <h2><%= @user.name %></h2>
+    </div>
+    <div id="bkinp" style="position:absolute; left:160px; top:190px; width:190px;">
+      Three genres that categorize your work <br>
+      <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
+      <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
+      <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
     </div>
 
     <div id="bkinp" style="position:absolute; left:0px; top:320px; width:350px;">
       FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
       <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
 
-      <br>URL to your organization's website <br>
+      <br>URL to your blog <br>
       <%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "Blog URL" %>
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="featured"> @<%= f.text_area :twitter, :cols => 20, :rows => 1, placeholder: "Twitter" %> </div>
 
       <p>Change account type:
       <p><%= f.radio_button(:author, 1) %>
-      <%= label_tag(:author_adult, "Reader") %>
+      <%= label_tag(:author_child, "Reader") %>
       <br><%= f.radio_button(:author, 2) %>
       <%= label_tag(:author_adult, "Author") %>
       <br><%= f.radio_button(:author, 3) %>
       <%= label_tag(:author_adult, "Organization") %>
     </div>
   
+
     <div class="password" style="position:absolute; left:380px; top:40px;">
     <table>
       <tr>
@@ -66,12 +72,17 @@
     </div>
 
     <div id="signup" style="position:absolute; left:380px; top:200px;">
-      <p>Tell us all about your organization, members, & its mission. <br />
-      <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Us' %>
-      <p> When & where is your next meeting? <br>
-      <%= f.text_area :youtube, :cols => 70, :rows => 2, placeholder: "Next club meeting - date, time, location" %>
-      <p> What will the meeting be about? <br>
-      <%= f.text_area :pinterest, :cols => 70, :rows => 3, placeholder: "Meeting topic, speakers" %>
+      In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Home Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
+      <p>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Click on <b>Channel Settings</b> then click on <font color = "0000FF"> Embed</font> on the left side of your screen. You will see the code to Embed the <font color = "0000FF"> Live </font> video player. It looks something like the default code below. 
+<br> 
+Copy & paste the Live code from your Ustream account to replace the default code below. <br />
+    <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder:  '<iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href= "http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free desktop streaming application by Ustream</a>' %>
+    <p>On the same Embed page in your Ustream account, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to the default code below. 
+    Copy & paste the Social Stream code from your Ustream account to replace the default code below. <br />
+    <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>' %>
+
+    <p>Tell us all about yourself. <br />
+    <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>
     </div>
   <% end %>
 <% end %>
@@ -80,8 +91,9 @@
     <%= image_tag "purpleBar.png", :size => "1010x35" %>
 </div>
 <div class="usermenu" style="position:absolute; left:10px; top:7px; ">
+  <%= link_to @user.name + " Books ", user_booklist_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " About " + @user.name, user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
 </div>
 <div class="usermenu" style="position:absolute; left:750px; top:7px; ">
@@ -94,20 +106,19 @@
   <% end %>
 </div>
 
-
-<div id="userlist" style="position:absolute; left:0px; top:330px; ">
-  <%= form_for(@user, :html => { :multipart => true }) do |f| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
+<div id="userlist" style="position:absolute; left:0px; top:330px;">
+<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
     <% end %>
+    </ul>
+    </div>
   <% end %>
-</div>
+  </div>
+<% end %>
 
 </body>

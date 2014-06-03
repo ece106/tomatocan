@@ -50,7 +50,7 @@ Crowdpublishtv::Application.routes.draw do
   resources :users do
     resources :books
     member do
-      get 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
+#      get 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
       get 'blog' => "users#blog", :as => :blog
     end
   end

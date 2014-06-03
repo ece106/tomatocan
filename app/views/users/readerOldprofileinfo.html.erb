@@ -1,0 +1,72 @@
+<% @title="CrowdPublish.TV: The Future of Empowerment is Your Story - edit user profile "  %>
+<%= render 'readerform' %>
+
+<% if @user == current_user %>
+
+  <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+
+    <div id="bkinp" style="position:absolute; left:160px; top:50px; ">
+      <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Your favorite genre" %><br>
+      <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Next favorite genre" %><br>
+      <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre you often read" %>
+    </div>
+
+    <div id="bkinp" style="position:absolute; overflow:hidden; left:0px; top:360px; z-index:3; width:350px;">
+      <p> <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %>
+      <br><%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "URL to your blog" %>
+      <br>  <%= f.text_area :twitter, :cols => 40, :rows => 1, placeholder: "Twitter handle (Without the '@' symbol)" %>
+      <p>Change account type:
+      <p><%= f.radio_button(:author, 1) %>
+      <%= label_tag(:author_child, "Reader") %>
+      <br><%= f.radio_button(:author, 2) %>
+      <%= label_tag(:author_adult, "Author") %>
+      <br><%= f.radio_button(:author, 3) %>
+      <%= label_tag(:author_adult, "Organization") %>
+    </div>
+  
+    <div id="passwd" style="position:absolute; width:350px; left:0px; top:190px;">
+      <table>
+        <tr>
+          <td> Password:</td>
+          <td><%= f.password_field :password %></td>
+        </tr> <tr>
+          <td>Password Confirmation:</td>
+          <td><%= f.password_field :password_confirmation %></td>
+        </tr> 
+      </table>
+
+      <center><%= f.submit "Save user Info" %> </center>
+      You must enter & confirm password every time you visit this page.
+      After saving, you will be directed to your user profile. You may come back to this page to edit your info.
+    </div>
+
+    <div id="signup" style="position:absolute; left:380px; top:40px;">
+<%
+=begin %>
+    Upload a picture of yourself (square is best)
+    <br><%= f.file_field :profilepic %> OR
+<%
+=end %>
+
+      <p>Tell us all about yourself. <br />
+      <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>
+    </div>
+  <% end %>
+<% end %>
+
+<div id="userlist" style="position:absolute; left:0px; top:330px;">
+  <%= form_for(@user, :html => { :multipart => true }) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+</body>

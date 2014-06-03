@@ -32,9 +32,8 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 </div>
 
 <div class="usermenu" style="position:absolute; left:10px; top:7px; width:728px; height:53px;">
-  <%= link_to @user.name + " Book Reviews ", user_booklist_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to " About " + @user.name, user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
 </div>
 <div class="usermenu" style="position:absolute; left:750px; top:7px; ">
@@ -45,4 +44,12 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
     <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
     <%= link_to "Sign in", new_user_session_path, :style => 'color:#FFFFFF'%> 
   <% end %>
+</div>
+
+<div id="edit buttons" style="position:absolute; left:0px; top:170px;">
+  <% if @user == current_user %>
+    <table><tr><td>
+    <%= button_to "Edit Profile", user_readerprofileinfo_path(@user.permalink), :method=> :get %> </td>
+    </tr></table> 
+  <% end %> 
 </div>

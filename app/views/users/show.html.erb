@@ -1,3 +1,13 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrowdPublish.TV <%  @user.name %> 's blog</title>
+<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
+<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
+</head>
+
 <% @title="CrowdPublish.TV interact with " + @user.name + " here live!" %>
 
 <% if @user.author == 2 %>
@@ -29,55 +39,34 @@
 
 <% elsif @user.author == 3 %>
   <%= render 'orgform' %>
-
-  <div id="reviews" style="position:absolute; overflow:hidden; left:400px; top:35px; ">
-    <% if @user.ustreamvid? %>
-    <% end %>
-  </div>
-
-  <div id="edit buttons" style="position:absolute; left:0px; top:170px; width:350px;">
-    <% if @user == current_user %>
-      <table><tr>
-      <td><%=  button_to "Edit Profile", orgprofileinfo_user_path(current_user.permalink), :method=> :get %> </td>
-      </tr></table> 
-      Soon organizations will be able to click on CrowdPublish.TV authors' books to enter reviews.
-    <% end %> 
-  </div>
-
   <div id="uvid" style="position:absolute; left:400px; top:50px; width:550px; height:180px; ">
     <%= @user.youtube %> <p>
     <%= @user.pinterest %> <p>
   </div>
-
-  <div class="blurb" style="position:absolute; left:400px; top:250px; z-index:3">
+  <div class="blurb" style="position:absolute; left:450px; top:75px; width:500px;">
     <%= @user.about %>
   </div>
+   <% if @user.twitter %>
+      <div style="position:absolute; left:0px; top:200px; width:300px;">
+        <a class="twitter-timeline"    
+        data-widget-id="375760459510464512"
+        data-screen-name="<%= @user.twitter %>" data-show-replies="false"
+        data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
+      </div>
+    <% end %>
 
 <% else  %>
   <%= render 'readerform' %>
-
-  <div id="reviews" style="position:absolute; left:400px; top:35px; ">
-    <% if @user.ustreamvid? %> 
-    <% end %>
-  </div>
-
-  <div id="edit buttons" style="position:absolute; left:0px; top:170px;">
-    <% if @user == current_user %>
-      <table><tr>
-      <td><%=  button_to "Edit Profile", readerprofileinfo_user_path(current_user.permalink), :method=> :get %> </td>
-
-<% 
-=begin %>
-      <td><%= button_to "Edit Book Reviews", editbookreview_user_path(current_user), :method=> :get %> </td>
-      <td><%= button_to "Edit Author Reviews", editauthorreview_user_path(current_user), :method=> :get %></td>
-<% 
-=end %>
-
-      </tr></table> 
-      Soon readers will be able to click on CrowdPublish.TV authors' books to enter reviews.
-    <% end %> 
-  </div>
-  <div class="blurb" style="position:absolute; overflow:hidden; left:400px; top:35px;">
+  <div class="blurb" style="position:absolute; left:450px; top:75px; width:500px;">
     <%= @user.about %>
   </div>
+   <% if @user.twitter %>
+      <div style="position:absolute; left:0px; top:200px; width:300px;">
+        <a class="twitter-timeline"    
+        data-widget-id="375760459510464512"
+        data-screen-name="<%= @user.twitter %>" data-show-replies="false"
+        data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
+      </div>
+    <% end %>
+    
 <% end %>
