@@ -18,9 +18,9 @@ gem  'bootstrap-sass', '2.3.2.0'
 gem "will_paginate", "~> 3.0.4" 
 # Use ActiveModel has_secure_password
 #gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'jquery-turbolinks'
 gem 'bcrypt'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
 
