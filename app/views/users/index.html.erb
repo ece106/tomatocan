@@ -17,30 +17,42 @@
   <% @row = 0 %>
   <% @users.each do |u| %>
 
-    <% if @row/5.0 == (@row/5.0).to_i %>
-      <tr>
-    <% end %>
-    <% @row = @row + 1 %>
-
-    <td valign="top"> 
     <% if u.profilepic.present? && u.profilepic != '' %> 
-      <%= link_to(image_tag(u.profilepic, :size => "170x170",  :title => u.name ), user_profile_path(u.permalink)) %>
+      <td valign="top"> 
+      <% if @row/5.0 == (@row/5.0).to_i %>
+        <tr>
+      <% end %>
+      <% @row = @row + 1 %>
+      <%= link_to(image_tag(u.profilepic, :size => "170x170",  :title => u.name ), user_profile_path(u.permalink)) %> <br>
+      <%= link_to u.name, user_profile_path(u.permalink) %>
+      <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
+      </td>
+      <% if @row/5.0 == (@row/5.0).to_i %>
+        </tr>
+      <% end %>
     <% elsif u.profilepicurl %>
       <% if u.profilepicurl.match /http/ %> 
-        <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink))  %>
-      <% else %> <div style=" vertical-align: bottom;">
-        <%= link_to(image_tag("whiteBk.jpg", :size => "170x170",  :title => u.name), user_profile_path(u.permalink))  %> </div> 
+        <td valign="top"> 
+        <% if @row/5.0 == (@row/5.0).to_i %>
+          <tr>
+        <% end %>
+        <% @row = @row + 1 %>
+        <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> <br>
+        <%= link_to u.name, user_profile_path(u.permalink) %>
+        <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
+        </td>
+        <% if @row/5.0 == (@row/5.0).to_i %>
+          </tr>
+        <% end %>
+      <% # else %> 
+        <div style=" vertical-align: bottom;">
+        <% #= link_to(image_tag("whiteBk.jpg", :size => "170x170",  :title => u.name), user_profile_path(u.permalink))  %> 
+        </div> 
       <% end %>
-    <% else %> <div style=" vertical-align: bottom;"> 
-      <%= link_to(image_tag("whiteBk.jpg", :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> </div> 
-    <% end %>
-    
-    <%= link_to u.name, user_profile_path(u.permalink) %>
-    <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
-    </td>
-
-    <% if @row/5.0 == (@row/5.0).to_i %>
-      </tr>
+    <% # else %> 
+      <div style=" vertical-align: bottom;"> 
+      <% #= link_to(image_tag("whiteBk.jpg", :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> 
+      </div> 
     <% end %>
   <% end %>
   
