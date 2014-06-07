@@ -31,18 +31,20 @@
         </tr>
       <% end %>
     <% elsif u.profilepicurl %>
-      <% if u.profilepicurl.match /http/ %> 
-        <% if @row/5.0 == (@row/5.0).to_i %>
-          <tr>
-        <% end %>
-        <% @row = @row + 1 %>
-        <td valign="top"> 
-          <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> <br>
-          <%= link_to u.name, user_profile_path(u.permalink) %>
-          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
-        </td>
-        <% if @row/5.0 == (@row/5.0).to_i %>
-          </tr>
+      <% if u.profilepicurl.match /http/  %> 
+        <% if u.profilepicurl.match /jpeg|jpg|gif|png|tif/  %> 
+          <% if @row/5.0 == (@row/5.0).to_i %>
+            <tr>
+          <% end %>
+          <% @row = @row + 1 %>
+          <td valign="top"> 
+            <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> <br>
+            <%= link_to u.name, user_profile_path(u.permalink) %>
+            <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
+          </td>
+          <% if @row/5.0 == (@row/5.0).to_i %>
+            </tr>
+          <% end %>
         <% end %>
       <% # else %> 
         <div style=" vertical-align: bottom;">
