@@ -46,15 +46,7 @@
             </tr>
           <% end %>
         <% end %>
-      <% # else %> 
-        <div style=" vertical-align: bottom;">
-        <% #= link_to(image_tag("whiteBk.jpg", :size => "170x170",  :title => u.name), user_profile_path(u.permalink))  %> 
-        </div> 
       <% end %>
-    <% # else %> 
-      <div style=" vertical-align: bottom;"> 
-      <% #= link_to(image_tag("whiteBk.jpg", :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> 
-      </div> 
     <% end %>
   <% end %>
   
