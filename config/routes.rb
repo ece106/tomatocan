@@ -11,7 +11,7 @@ Crowdpublishtv::Application.routes.draw do
 
   match 'home', to: 'static_pages#home', via: 'get'
   match 'howwork', to: 'static_pages#howwork', via: 'get'
-  match 'localauthorscene', to: 'static_pages#localauthorscene', via: 'get'
+  match 'localauthorsscene', to: 'static_pages#localauthorsscene', via: 'get'
 
   resources :purchases
    
