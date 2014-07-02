@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 201309200000000) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "books", force: true do |t|
     t.string   "title"
     t.text     "blurb"
@@ -35,43 +32,10 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "bookkobo"
   end
 
-  create_table "certs", force: true do |t|
-    t.string   "title"
-    t.integer  "user_id"
-    t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "events", force: true do |t|
     t.string   "name"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "feed_entries", force: true do |t|
-    t.string   "name"
-    t.text     "summary"
-    t.string   "url"
-    t.datetime "published_at"
-    t.string   "guid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "jobs", force: true do |t|
-    t.string   "title"
-    t.string   "location"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
-  create_table "posts", force: true do |t|
-    t.text     "content"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
