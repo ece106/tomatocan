@@ -1,6 +1,6 @@
 <title>CrowdPublish.TV: The Future of Empowerment is Your Story </title>
 
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;height:700px;">
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;height:100px;">
 
   <div style="position:absolute; left:401px; top:0px; width:501px; height:220px;">
     <div id="frag_22" style="text-align:left;">
@@ -12,7 +12,7 @@
   <%= image_tag("grayfade.png", :size => "280x208" ) %>
 </div>
 
-<div style="position:absolute; left:0px; top:1675px; width:192px; height:25px;">
+<div style="position:absolute; left:50px; top:50px; width:10px; height:10px;">
     <!--ONESTAT SCRIPTCODE START-->
   <div id="OneStatTag"><table border='0' cellpadding='0' cellspacing='0'><tr><td align='center'>
     <script type="text/javascript">
@@ -50,26 +50,23 @@
   <!--ONESTAT SCRIPTCODE END-->
 </div>
 
-<div class="menu" style="position:absolute; left:298px; top:16px; overflow:hidden; ">
-  <%= link_to 'Home', root_path, :style => 'color:#FFFFFF' %><p>
-  <%= link_to 'How it works', "/howwork", :style => 'color:#FFFFFF' %><p>
-  <%= link_to 'Members', users_path, :style => 'color:#FFFFFF' %><p>
-  <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %><p>
+<div class="menu" style="position:absolute; left:298px; top:0px; overflow:hidden; ">
+  <p><%= link_to 'Home', root_path, :style => 'color:#FFFFFF' %>
+  <p><%= link_to 'How it works', "/howwork", :style => 'color:#FFFFFF' %>
+  <p><%= link_to 'Members', users_path, :style => 'color:#FFFFFF' %>
   <% if user_signed_in? %>
-    <%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %> <p>
+    <p><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %> <p>
+  <% else %>
+    <p><%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>
+    <p><%= link_to 'Sign in', "/login", :style => 'color:#FFFFFF' %>
   <% end %>
 
 </div>
 
-<div style="position:absolute; left:230px; top:5px;">
-  <%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %><br>
-  <%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %><br>
-  <%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %><br>
-  <%= link_to image_tag("blog.png"), "http://crowdpublishtv.wordpress.com", :target => "_blank" %>
-</div>
-
-<div class="copyalpha" style="position:absolute; left:0px; top:1170px; width:225px; overflow:hidden;">
-  This site is still in alpha stage development <br><br>Questions? Contact Lisa@CrowdPublish.TV <br><br><br> (C) Copyright 2014, RoleModel Enterprises, LLC. All Rights Reserved.
+<div style="position:absolute; left:230px; top:15px;">
+  <%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %>
+  <p><%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %>
+  <p><%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
 </div>
 
 <div style="position:absolute; left:0px; top:190px; width:900px; height:74px;">
@@ -98,7 +95,7 @@
 <div style="position:absolute; left:0px; top:0px;">
   <%= image_tag("crowdpublishLogo.png", :size => "200x199") %>
 </div>
-<div style="position:absolute; left:0px; top:290px; width:930px;">
+<div style="position:absolute; left:0px; top:270px; width:930px;">
     <hr noshade>
 </div>
 </div>

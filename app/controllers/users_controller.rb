@@ -154,5 +154,15 @@ class UsersController < ApplicationController
       redirect_to(signin_url) unless current_user?(@user)
     end
 =end
+    def resolve_layout
+      case action_name
+      when 'show'
+        'application'
+      when 'booklist'
+        'application'
+      else
+        'application'
+      end
+    end
 
 end
