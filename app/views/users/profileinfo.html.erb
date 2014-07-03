@@ -29,14 +29,14 @@
     <div id="bkinp" style="position:absolute; left:160px; top:25px; width:190px;">
       <h2><%= @user.name %></h2>
     </div>
-    <div id="bkinp" style="position:absolute; left:160px; top:190px; width:190px;">
+    <div class="blacktxt" style="position:absolute; left:160px; top:190px; width:190px;">
       Three genres that categorize your work <br>
       <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
       <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
       <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
     </div>
 
-    <div id="bkinp" style="position:absolute; left:0px; top:320px; width:350px;">
+    <div class="blacktxt" style="position:absolute; left:0px; top:320px; width:350px;">
       FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
       <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
 
@@ -45,13 +45,15 @@
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="featured"> @<%= f.text_area :twitter, :cols => 20, :rows => 1, placeholder: "Twitter" %> </div>
 
-      <p>Change account type:
-      <p><%= f.radio_button(:author, 1) %>
+    <div class="blacktxt" >
+      <br>Change account type:
+      <br><%= f.radio_button(:author, 1) %>
       <%= label_tag(:author_child, "Reader") %>
       <br><%= f.radio_button(:author, 2) %>
       <%= label_tag(:author_adult, "Author") %>
       <br><%= f.radio_button(:author, 3) %>
       <%= label_tag(:author_adult, "Organization") %>
+    </div>
     </div>
   
 
@@ -71,7 +73,7 @@
       After saving, you will be directed to your user profile. You may come back to this page to edit your info.
     </div>
 
-    <div id="signup" style="position:absolute; left:380px; top:200px;">
+    <div class="blacktxt" style="position:absolute; left:380px; top:200px;">
       In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Home Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
       <br>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Click on <b>Channel Settings</b> then click on <font color = "0000FF"> Embed</font> on the left side of your screen. You will see the code to Embed the <font color = "0000FF"> Live </font> video player. It looks something like the default code below. 
 <br> 
