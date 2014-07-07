@@ -40,11 +40,11 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -81,3 +81,10 @@ class EventsController < ApplicationController
     end
   end
 end
+
+
+  private
+
+    def event_params
+      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :rsvp, :user_id)
+    end

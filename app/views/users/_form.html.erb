@@ -56,6 +56,7 @@
   <p><%= link_to 'Members', users_path, :style => 'color:#FFFFFF' %>
   <% if user_signed_in? %>
     <p><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %> <p>
+    <p><%= link_to 'Sign out', "/signout", :style => 'color:#FFFFFF' %>
   <% else %>
     <p><%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>
     <p><%= link_to 'Sign in', "/login", :style => 'color:#FFFFFF' %>

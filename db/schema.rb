@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "end_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "desc"
+    t.string   "address"
+    t.string   "rsvp"
+    t.integer  "user_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "purchases", force: true do |t|

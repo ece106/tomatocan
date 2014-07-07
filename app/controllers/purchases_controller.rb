@@ -9,7 +9,7 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/1
   def show
-    @purchase = Purchase.find(params[:id])
+    @purchase = Purchase.find(purchase_params)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +28,7 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 34
   def create
-    @purchase = Purchase.new(params[:purchase])
+    @purchase = Purchase.new(purchase_params)
     @book = Book.find(@purchase.book_id)
 #    raise params.to_yaml
     @purchase.user_id = current_user.id

@@ -1,5 +1,30 @@
-<% @title="GuruTapas: Appetizers of Knowledge - edit event" %>
+a<% @title="GuruTapas: Appetizers of Knowledge - Upcoming Book Events in DC" %>
 
-  HI
+<%= render 'form' %>
 
-</div>
+<div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" >
+
+<h1>Listing of events</h1>
+
+<table width="900">
+  <tr>
+    <th>Event & Info/RSVP</th>
+    <th>When</th>
+    <th>Where</th>
+  </tr>
+
+<% @events.sort_by{|t| t.start_at}.each do |event| %>
+  <% if event.start_at.to_i >= Time.now.to_i - 18000  %>
+  <tr>
+    <td width="200"><%= link_to event.name, event %></td>
+    <td width="200"><%= event.start_at %></td>
+    <td><%= event.address %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Event', new_event_path %>
+</div>	

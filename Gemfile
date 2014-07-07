@@ -21,6 +21,7 @@ gem "will_paginate", "~> 3.0.4"
 gem 'jquery-turbolinks'
 gem 'bcrypt'
 gem 'turbolinks'
+gem 'geocoder'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
 

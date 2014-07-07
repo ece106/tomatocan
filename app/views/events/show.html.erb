@@ -1,0 +1,36 @@
+<% @title="CrowdPublish.TV - Upcoming Book Event in DC" %>
+<!--rails generate migration add_fields_to_events desc:text address:string rsvp:string address:string user_id:integer
+rails generate migration add_login_to_events personname:string email:string
+-->
+<p id="notice"><%= notice %></p>
+<%= render 'form' %>
+
+<div id="calendar" style="position:absolute; left:100px; top:340px; width:900px; height:757px; text-align:left">
+
+<p>
+  <b>Event title:</b>
+  <%= @event.name %>
+</p>
+<p>
+
+  <b>Start time:</b>
+  <%= @event.start_at %>
+</p>
+<p>
+  <b>End time:</b>
+  <%= @event.end_at %>
+</p>
+<p>
+  <b>Event description:</b>
+  <%= @event.desc %>
+</p>
+<p>
+  <b>Where:</b>
+  <%= @event.address %><p>
+  <%= @event.latitude %><p>
+  <%= @event.longitude %>
+</p>
+<p>	
+  <%= link_to 'RSVP here', @event.rsvp %>
+</p>
+</div>
