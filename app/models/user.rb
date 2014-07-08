@@ -18,8 +18,9 @@
 #  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }  # ,  :storage => :s3 }
 #  has_secure_password
 
-  has_many :books, :dependent => :destroy
+  has_many :books #, :dependent => :destroy
   has_many :reviews
+  has_many :events
   has_many :purchases
   default_scope order: 'users.updated_at DESC'
 

@@ -1,5 +1,7 @@
 Crowdpublishtv::Application.routes.draw do
 
+  resources :groups
+
 #  authenticated :user do
 #    root to: "users#show"
      root to: "static_pages#home"

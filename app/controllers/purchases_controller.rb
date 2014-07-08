@@ -60,8 +60,8 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
 
     respond_to do |format|
-      if @purchase.update_attributes(params[:purchase])
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+      if @purchase.update_attributes(purchase_params)
+        format.html { redirect_to @purchase }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

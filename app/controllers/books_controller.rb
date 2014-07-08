@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     else
       redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
     end
-   end
+  end
 
   def edit
    # @booklist = Book.find(params[:author_id])
@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     else
       redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
     end
-   end
+  end
 
   def update
     @book = Book.find(params[:id])

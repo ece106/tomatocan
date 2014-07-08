@@ -1,8 +1,14 @@
-a<% @title="GuruTapas: Appetizers of Knowledge - Upcoming Book Events in DC" %>
+<% @title="CrowdPublish.TV - Upcoming Book Events in DC" %>
 
 <%= render 'form' %>
 
 <div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" >
+
+  <%= form_tag events_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  <% end %>
 
 <h1>Listing of events</h1>
 

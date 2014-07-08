@@ -1,8 +1,15 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+    if params[:search].present?
+      @events = Event.near(params[:search], 5, order: 'distance')
+    else
+      @events = Event.near(params[:search], 15, order: 'distance') #near current_user(lat long)
+    end
+#   redirect_to calendar OR calendar is events index
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +21,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @user = User.find(@event.user_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,11 +33,6 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @event }
-    end
   end
 
   # GET /events/1/edit
@@ -40,7 +43,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    @event = current_user.events.build(event_params)
 
     respond_to do |format|
       if @event.save
@@ -59,7 +62,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.update_attributes(event_params)
         format.html { redirect_to @event }
         format.json { head :ok }
       else

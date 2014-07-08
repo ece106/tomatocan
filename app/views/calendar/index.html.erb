@@ -4,3 +4,16 @@
 <h1>Calendar</h1>
 
 <%= raw(event_calendar) %>
+
+<div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" >
+
+  <%= form_tag calendar_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  <% end %>
+
+<br />
+
+<%= link_to 'New Event', new_event_path %>
+</div>	

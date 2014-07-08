@@ -6,19 +6,27 @@ rails generate migration add_login_to_events personname:string email:string
 <%= render 'form' %>
 
 <div id="calendar" style="position:absolute; left:100px; top:340px; width:900px; height:757px; text-align:left">
+<p>
+  <%= link_to "Edit", edit_event_path(@event) %> |
+  <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+</p>
 
 <p>
   <b>Event title:</b>
   <%= @event.name %>
 </p>
 <p>
+  <b>Event host:
+  <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
+</p>
+<p>
 
   <b>Start time:</b>
-  <%= @event.start_at %>
+  <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %>
 </p>
 <p>
   <b>End time:</b>
-  <%= @event.end_at %>
+  <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %>
 </p>
 <p>
   <b>Event description:</b>
@@ -27,10 +35,9 @@ rails generate migration add_login_to_events personname:string email:string
 <p>
   <b>Where:</b>
   <%= @event.address %><p>
-  <%= @event.latitude %><p>
-  <%= @event.longitude %>
 </p>
-<p>	
-  <%= link_to 'RSVP here', @event.rsvp %>
-</p>
+
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}" %>
+
 </div>
