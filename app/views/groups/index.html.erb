@@ -28,7 +28,7 @@ Need to change your location? <%= link_to 'Edit zip code or address', user_profi
     <tr>
       <th>Group Name</th>
       <th>Address</th>
-      <th>Type</th>
+      <th>Group Type</th>
       <th></th>
     </tr>
   </thead>
@@ -38,7 +38,7 @@ Need to change your location? <%= link_to 'Edit zip code or address', user_profi
       <tr>
         <td><%= link_to group.name, group %></td>
         <td><%= group.address %></td>
-        <td><%= group.type %></td>
+        <td><%= group.grouptype %></td>
         <td>
           <% if group.user_id == current_user.id %>
             <%= link_to 'Edit Group', edit_group_path(group.id) %> 

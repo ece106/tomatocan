@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer  "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "grouptype"
   end
 
   create_table "purchases", force: true do |t|

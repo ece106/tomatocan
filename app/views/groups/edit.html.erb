@@ -1,7 +1,9 @@
 <div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
-<%= render 'form' %>
 
-<div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" >
+  <%= render 'form' %>
+
+<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
+
 <% if @group.user_id == current_user.id %>
   <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' } %>
 <h1>Editing group</h1>
@@ -32,8 +34,19 @@
     <%= f.text_area :about %>
   </div>
   <div class="field">
-    <%= f.label :type %><br>
-    <%= f.number_field :type %>
+      <p>Group type:
+      <p><%= f.radio_button(:grouptype, 1) %>
+      <%= label_tag(:grouptype_child, "Writers Small Group") %>
+      <br><%= f.radio_button(:grouptype, 2) %>
+      <%= label_tag(:grouptype_adult, "Book Club") %>
+      <br><%= f.radio_button(:grouptype, 3) %>
+      <%= label_tag(:grouptype_adult, "Writers Organization") %>
+      <br><%= f.radio_button(:grouptype, 4) %>
+      <%= label_tag(:grouptype_adult, "Library") %>
+      <br><%= f.radio_button(:grouptype, 5) %>
+      <%= label_tag(:grouptype_adult, "Book Store") %>
+      <br><%= f.radio_button(:grouptype, 6) %>
+      <%= label_tag(:grouptype_adult, "Other") %>
   </div>
   <div class="actions">
     <%= f.submit %>

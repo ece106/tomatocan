@@ -31,8 +31,19 @@
     <%= f.text_area :about, :cols => 62, :rows => 5 %>
   </div>
   <div class="field">
-    <%= f.label :type %><br>
-    <%= f.number_field :type %>
+      <p>Group type:
+      <p><%= f.radio_button(:grouptype, 1) %>
+      <%= label_tag(:grouptype_child, "Writers Small Group") %>
+      <br><%= f.radio_button(:grouptype, 2) %>
+      <%= label_tag(:grouptype_adult, "Book Club") %>
+      <br><%= f.radio_button(:grouptype, 3) %>
+      <%= label_tag(:grouptype_adult, "Writers Organization") %>
+      <br><%= f.radio_button(:grouptype, 4) %>
+      <%= label_tag(:grouptype_adult, "Library") %>
+      <br><%= f.radio_button(:grouptype, 5) %>
+      <%= label_tag(:grouptype_adult, "Book Store") %>
+      <br><%= f.radio_button(:grouptype, 6) %>
+      <%= label_tag(:grouptype_adult, "Other") %>
   </div>
 
 

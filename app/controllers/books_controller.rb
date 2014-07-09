@@ -58,7 +58,7 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def book_params
-      params.require(:book).permit( :bookpdf, :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :coverpic)
+      params.require(:book).permit( :bookaudio, :bookpdf, :bookepub, :bookmobi, :bookkobo, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :coverpic)
     end
   
 end
