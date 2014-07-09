@@ -1,36 +1,48 @@
+<%= render 'form' %>
+
+<div id="calendar" style="position:absolute; left:0px; top:300px; width:900px; height:757px;" >
+  <%= form_tag groups_path, :method => :get do %>
+      <table >
+      <tr>
+        <th>Address</th>
+        <th>Distance (miles)</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><%= text_field_tag :search, params[:search] %></td>
+        <td><%= text_field_tag :dist, params[:dist] %></td>
+        <td><%= submit_tag "Search Near", :name => nil %></td>
+      </tr>
+    </table>  
+  <% end %>
+
 <h1>Listing groups</h1>
+
+If there's no group,
+"No groups near you yet. " <br>
+<%= link_to 'Create a New Writers Group in Your Community!', new_group_path %> <br>
+
+Need to change your location? Edit Zip Code in profile
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Address</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>User</th>
       <th>About</th>
-      <th>Grouppic</th>
       <th>Type</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Group host</th>
     </tr>
   </thead>
 
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.name %></td>
+        <td><%= link_to group.name, group %></td>
         <td><%= group.address %></td>
-        <td><%= group.latitude %></td>
-        <td><%= group.longitude %></td>
-        <td><%= group.user_id %></td>
         <td><%= group.about %></td>
-        <td><%= group.grouppic %></td>
         <td><%= group.type %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= group.user_id %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +50,4 @@
 
 <br>
 
-<%= link_to 'New Group', new_group_path %>
+</div>

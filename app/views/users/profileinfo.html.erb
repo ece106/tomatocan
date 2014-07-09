@@ -22,8 +22,8 @@
   <div class="copyalpha" style="position:absolute; left:0px; top:35px;">
     <p>Upload a picture of yourself<br> (square is best)
     <br><%= f.file_field :profilepic %><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    OR<br> URL to a picture of you <br>
-    <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %>
+    OR - URL to a picture of you <br>
+    <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
   </div>
 
     <div id="bkinp" style="position:absolute; left:160px; top:25px; width:190px;">
@@ -45,7 +45,6 @@
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="featured"> @<%= f.text_area :twitter, :cols => 20, :rows => 1, placeholder: "Twitter" %> </div>
 
-    <div class="blacktxt" >
       <br>Change account type:
       <br><%= f.radio_button(:author, 1) %>
       <%= label_tag(:author_child, "Reader") %>
@@ -53,7 +52,10 @@
       <%= label_tag(:author_adult, "Author") %>
       <br><%= f.radio_button(:author, 3) %>
       <%= label_tag(:author_adult, "Organization") %>
-    </div>
+  
+      <br><br>Change your zip code, address, or city <br>
+      <%= f.text_area :address, :cols => 40, :rows => 1 %>
+
     </div>
   
 

@@ -1,19 +1,27 @@
 <!-- Probably move the stylesheet to you layout. Also make sure you include the javascript. -->
 <%= stylesheet_link_tag "event_calendar" %>
 
-<h1>Calendar</h1>
+<%= render 'form' %>
 
-<%= raw(event_calendar) %>
-
-<div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" >
-
+<div id="calendar" style="position:absolute; left:0px; top:280px; width:1200px; height:757px;" >
   <%= form_tag calendar_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Near", :name => nil %>
-  <% end %>
+      <table >
+      <tr>
+        <th>Address</th>
+        <th>Distance (miles)</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><%= text_field_tag :search, params[:search] %></td>
+        <td><%= text_field_tag :dist, params[:dist] %></td>
+        <td><%= submit_tag "Search Near", :name => nil %></td>
+      </tr>
+    </table>  
+  <% end %><br>
 
-<br />
+    <%= link_to '--------- Or - Create New Event', new_event_path %>
+    <%= link_to '--------- See a list of Upcoming Events & times', events_path %>
 
-<%= link_to 'New Event', new_event_path %>
+  <br><%= raw(event_calendar) %>
+  <br />
 </div>	

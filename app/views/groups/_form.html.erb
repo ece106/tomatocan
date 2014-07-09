@@ -1,49 +1,107 @@
-<%= form_for(@group) do |f| %>
-  <% if @group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+<title>CrowdPublish.TV: The Future of Empowerment is Your Story </title>
 
-      <ul>
-      <% @group.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;height:100px;">
+
+  <div style="position:absolute; left:401px; top:0px; width:501px; height:240px;">
+    <div id="frag_22" style="text-align:left;">
+      <iframe src="http://www.ustream.tv/embed/13434383" width="500" height="230" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free live streaming by Ustream</a>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :about %><br>
-    <%= f.text_area :about %>
-  </div>
-  <div class="field">
-    <%= f.label :grouppic %><br>
-    <%= f.text_field :grouppic %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br>
-    <%= f.number_field :type %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div style="position:absolute; left:129px; top:0px; width:280px; height:220px;">
+  <%= image_tag("grayfade.png", :size => "280x220" ) %>
+</div>
+
+<div style="position:absolute; left:50px; top:50px; width:10px; height:10px;">
+    <!--ONESTAT SCRIPTCODE START-->
+  <div id="OneStatTag"><table border='0' cellpadding='0' cellspacing='0'><tr><td align='center'>
+    <script type="text/javascript">
+    <!--
+    function OneStat_Pageview()    {
+        var d=document;
+        var sid="436141";
+        var CONTENTSECTION="";
+        var osp_URL=d.URL;
+        var osp_Title=d.title;
+        var t=new Date();
+        var p="http"+(d.URL.indexOf('https:')==0?'s':'')+"://stat.onestat.com/stat.aspx?tagver=2&sid="+sid;
+        p+="&url="+escape(osp_URL);
+        p+="&ti="+escape(osp_Title);
+        p+="&section="+escape(CONTENTSECTION);
+        p+="&rf="+escape(parent==self?document.referrer:top.document.referrer);
+        p+="&tz="+escape(t.getTimezoneOffset());
+        p+="&ch="+escape(t.getHours());
+        p+="&js=1";
+        p+="&ul="+escape(navigator.appName=="Netscape"?navigator.language:navigator.userLanguage);
+        if(typeof(screen)=="object"){
+           p+="&sr="+screen.width+"x"+screen.height;p+="&cd="+screen.colorDepth;
+           p+="&jo="+(navigator.javaEnabled()?"Yes":"No");
+        }
+        d.write('<a href="http://www.onestatfree.com/aspx/login.aspx?sid='+sid+'" target=_blank><img id="ONESTAT_TAG" border="0" src="'+p+'" alt="This site tracked by OneStatFree.com. Get your own free site tracker."></'+'a>');
+    }
+    OneStat_Pageview();
+    //-->
+    </script>
+    <noscript>
+    <a href="http://www.onestatfree.com"><img border="0" src="http://stat.onestat.com/stat.aspx?tagver=2&amp;sid=436141&amp;js=No&amp;" ALT="detect click fraud"></a>
+    </noscript>
+    </td></tr><tr><td align='center'><div style="COLOR:black;display:none;FONT-FAMILY:'Verdana';"><a href="http://www.onestat.com" style="text-decoration:none;">detect click fraud</a><br>
+  </div></td></tr></table></div>
+  <!--ONESTAT SCRIPTCODE END-->
+</div>
+
+<div class="menu" style="position:absolute; left:298px; top:5px; overflow:hidden; ">
+  <%= link_to 'Home', root_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Events Near You!', events_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Groups Near You!', groups_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Members to Watch', users_path, :style => 'color:#FFFFFF' %>
+</div>
+<div class="smmenu" style="position:absolute; left:298px; top:110px; overflow:hidden; ">
+  <% if user_signed_in? %>
+    <br><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %>
+    <br><%= link_to 'Sign out', "/signout", :style => 'color:#FFFFFF' %>
+  <% else %>
+    <br><%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>
+    <br><%= link_to 'Sign in', "/login", :style => 'color:#FFFFFF' %>
+  <% end %>
+  <br><%= link_to 'About', "/howwork", :style => 'color:#FFFFFF' %>
+
+</div>
+
+<div style="position:absolute; left:230px; top:15px;">
+  <%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %>
+  <p><%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %>
+  <p><%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
+</div>
+
+<div style="position:absolute; left:0px; top:200px; width:900px; height:65px;">
+  <%= image_tag "whitebar.png" %>
+</div>
+<div class="helps" style="position:absolute; left:202px; top:214px; width:418px; ">
+  CrowdPublishTV helps authors &amp; fans interact directly &amp; build community
+</div>
+<div class="socialize" style="position:absolute; left:632px; top:216px; width:268px; height:48px;">
+  Socialize around your books, experiences, or expertise
+</div>
+
+<div style="position:absolute; left:10px; top:212px; width:170px;">
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= image_tag("bubbleButton165.png", :size => "165x50") %>
+    <div class="signupbutton" style="position:absolute; left:35px; top:10px;">
+      <%= link_to 'SIGN UP!', "/signup" %>
+    </div><br>
+    Already a member? <%= link_to "SIGN IN", new_user_session_path %> <p>
+  <% end %>
+</div>
+
+<div style="position:absolute; left:0px; top:0px;">
+  <%= image_tag("crowdpublishLogo.png", :size => "200x199") %>
+</div>
+<div style="position:absolute; left:0px; top:270px; width:930px;">
+    <hr noshade>
+</div>
+</div>

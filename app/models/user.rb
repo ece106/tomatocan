@@ -1,4 +1,6 @@
   class User < ActiveRecord::Base
+    geocoded_by :address
+    after_validation :geocode, :if => :address_changed?
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -20,6 +22,7 @@
 
   has_many :books #, :dependent => :destroy
   has_many :reviews
+  has_many :groupss
   has_many :events
   has_many :purchases
   default_scope order: 'users.updated_at DESC'

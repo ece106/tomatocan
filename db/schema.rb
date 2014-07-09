@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "bookmobi"
     t.string   "bookepub"
     t.string   "bookkobo"
+    t.string   "bookaudio"
   end
 
   create_table "events", force: true do |t|
@@ -111,6 +112,9 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "permalink"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -2,17 +2,33 @@
 
 <%= render 'form' %>
 
-<div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" >
+<div id="calendar" style="position:absolute; left:0px; top:300px; width:900px; height:757px;" >
 
   <%= form_tag events_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Near", :name => nil %>
+      <table >
+      <tr>
+        <th>Address</th>
+        <th>Distance (miles)</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><%= text_field_tag :search, params[:search] %></td>
+        <td><%= text_field_tag :dist, params[:dist] %></td>
+        <td><%= submit_tag "Search Near", :name => nil %></td>
+      </tr>
+    </table>  
   <% end %>
 
 <h1>Listing of events</h1>
 
+<%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
+Need to change your location? <%= link_to 'Edit profile', user_profileinfo_path(current_user.permalink) %> <br><br>
+
+
 <table width="900">
+
+If there's no events,
+"No events near you yet." <br><br>
   <tr>
     <th>Event & Info/RSVP</th>
     <th>When</th>
@@ -32,5 +48,4 @@
 
 <br />
 
-<%= link_to 'New Event', new_event_path %>
 </div>	

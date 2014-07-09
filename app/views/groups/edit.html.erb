@@ -1,6 +1,44 @@
-<h1>Editing group</h1>
-
 <%= render 'form' %>
 
+<div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" >
+<h1>Editing group</h1>
+
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :about %><br>
+    <%= f.text_area :about %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.number_field :type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 <%= link_to 'Show', @group %> |
+        <%= link_to 'Edit group', edit_group_path(@group) %>
+        <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', groups_path %>
+</div>

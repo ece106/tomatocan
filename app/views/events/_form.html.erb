@@ -2,14 +2,14 @@
 
 <div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;height:100px;">
 
-  <div style="position:absolute; left:401px; top:0px; width:501px; height:220px;">
+  <div style="position:absolute; left:401px; top:0px; width:501px; height:240px;">
     <div id="frag_22" style="text-align:left;">
-      <iframe src="http://www.ustream.tv/embed/13434383" width="500" height="221" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free live streaming by Ustream</a>
+      <iframe src="http://www.ustream.tv/embed/13434383" width="500" height="230" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free live streaming by Ustream</a>
     </div>
   </div>
 
-<div style="position:absolute; left:129px; top:0px; width:280px; height:208px;">
-  <%= image_tag("grayfade.png", :size => "280x208" ) %>
+<div style="position:absolute; left:129px; top:0px; width:280px; height:220px;">
+  <%= image_tag("grayfade.png", :size => "280x220" ) %>
 </div>
 
 <div style="position:absolute; left:50px; top:50px; width:10px; height:10px;">
@@ -50,16 +50,22 @@
   <!--ONESTAT SCRIPTCODE END-->
 </div>
 
-<div class="menu" style="position:absolute; left:298px; top:0px; overflow:hidden; ">
-  <p><%= link_to 'Home', root_path, :style => 'color:#FFFFFF' %>
-  <p><%= link_to 'How it works', "/howwork", :style => 'color:#FFFFFF' %>
-  <p><%= link_to 'Members', users_path, :style => 'color:#FFFFFF' %>
+<div class="menu" style="position:absolute; left:298px; top:5px; overflow:hidden; ">
+  <%= link_to 'Home', root_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Events Near You!', events_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Groups Near You!', groups_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Members to Watch', users_path, :style => 'color:#FFFFFF' %>
+</div>
+<div class="smmenu" style="position:absolute; left:298px; top:110px; overflow:hidden; ">
   <% if user_signed_in? %>
-    <p><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %> <p>
+    <br><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %>
+    <br><%= link_to 'Sign out', "/signout", :style => 'color:#FFFFFF' %>
   <% else %>
-    <p><%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>
-    <p><%= link_to 'Sign in', "/login", :style => 'color:#FFFFFF' %>
+    <br><%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>
+    <br><%= link_to 'Sign in', "/login", :style => 'color:#FFFFFF' %>
   <% end %>
+  <br><%= link_to 'About', "/howwork", :style => 'color:#FFFFFF' %>
 
 </div>
 
@@ -69,7 +75,7 @@
   <p><%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
 </div>
 
-<div style="position:absolute; left:0px; top:190px; width:900px; height:74px;">
+<div style="position:absolute; left:0px; top:200px; width:900px; height:65px;">
   <%= image_tag "whitebar.png" %>
 </div>
 <div class="helps" style="position:absolute; left:202px; top:214px; width:418px; ">

@@ -52,6 +52,9 @@
       <%= label_tag(:author_adult, "Author") %>
       <br><%= f.radio_button(:author, 3) %>
       <%= label_tag(:author_adult, "Organization") %>
+ 
+      <br><br>Change your zip code, address, or city <br>
+      <%= f.text_area :address, :cols => 40, :rows => 1 %>
     </div>
 
     <div class="password" style="position:absolute; left:380px; top:40px;">

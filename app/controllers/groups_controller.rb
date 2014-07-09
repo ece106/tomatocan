@@ -4,6 +4,11 @@ class GroupsController < ApplicationController
   # GET /groups
   def index
     @groups = Group.all
+    if params[:search].present?
+      @groups = Group.near(params[:search], params[:dist], order: 'distance')
+    else
+      @groups = Group.near([current_user.latitude, current_user.longitude], 15, order: 'distance') #near current_user(lat long)
+    end
   end
 
   # GET /groups/1
@@ -21,7 +26,7 @@ class GroupsController < ApplicationController
 
   # POST /groups
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.build(group_params)
 
     if @group.save
       redirect_to @group, notice: 'Group was successfully created.'

@@ -7,9 +7,9 @@ class CalendarController < ApplicationController
 
     @events = Event.all
     if params[:search].present?
-      @events = Event.near(params[:search], 5)
+      @events = Event.near(params[:search], params[:dist]) 
     else
-      @events = Event.near("9559 pine cluster circle, 22181")
+      @events = Event.near([current_user.latitude, current_user.longitude])
       # Event where address = "online"
     end
 

@@ -1,15 +1,13 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  # GET /events
   # GET /events.json
   def index
     @events = Event.all
     if params[:search].present?
-      @events = Event.near(params[:search], 5, order: 'distance')
+      @events = Event.near(params[:search], params[:dist], order: 'distance') # 5 should be a params[:lim]
     else
-      @events = Event.near(params[:search], 15, order: 'distance') #near current_user(lat long)
+      @events = Event.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
     end
-#   redirect_to calendar OR calendar is events index
 
     respond_to do |format|
       format.html # index.html.erb

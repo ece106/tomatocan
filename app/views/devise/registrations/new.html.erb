@@ -15,6 +15,8 @@
   <%= f.text_field :name, :autofocus => true %>  <p>
   Email<br />
   <%= f.email_field :email, :autofocus => true %>  <p>
+  Zip Code; City, State; or City, Country<br />
+  <%= f.text_field :address, :autofocus => true %>  <p>
 
   Which kind of account do you wish to use? (This can be changed later.)
   <br><%= radio_button_tag(:author, 1) %>
