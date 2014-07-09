@@ -1,5 +1,44 @@
-<h1>New group</h1>
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
 
 <%= render 'form' %>
 
-<%= link_to 'Back', groups_path %>
+<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
+
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    Group Name <br>
+    <%= f.text_field :name, :size => 60 %>
+  </div>
+  <div class="field">
+    Address or zip code of typical meeting place <br>
+    <%= f.text_field :address, :size => 60 %>
+  </div>
+  <div class="field">
+    About group: How often do you usually meet? What would people likely join your group for? <br>
+    <%= f.text_area :about, :cols => 62, :rows => 5 %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.number_field :type %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+</div>

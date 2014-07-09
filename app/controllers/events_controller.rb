@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     if params[:search].present?
-      @events = Event.near(params[:search], params[:dist], order: 'distance') # 5 should be a params[:lim]
+      @events = Event.near(params[:search], params[:dist], order: 'distance') 
     else
       @events = Event.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
     end

@@ -1,27 +1,22 @@
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
+
+  <%= render 'form' %>
+
+<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @group.name %>
+  <strong><%= @group.name %></strong>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Usual meeting place:</strong>
   <%= @group.address %>
 </p>
 
 <p>
-  <strong>Latitude:</strong>
-  <%= @group.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @group.longitude %>
-</p>
-
-<p>
-  <strong>User:</strong>
+  <strong>Group Host:</strong>
   <%= @group.user_id %>
 </p>
 
@@ -31,14 +26,12 @@
 </p>
 
 <p>
-  <strong>Grouppic:</strong>
-  <%= @group.grouppic %>
-</p>
-
-<p>
   <strong>Type:</strong>
   <%= @group.type %>
 </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+  <% if @group.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_group_path(@group) %> |
+  <% end %>
+</div>
+</div>

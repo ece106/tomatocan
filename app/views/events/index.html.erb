@@ -1,4 +1,5 @@
 <% @title="CrowdPublish.TV - Upcoming Book Events in DC" %>
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
 
 <%= render 'form' %>
 
@@ -22,30 +23,35 @@
 <h1>Listing of events</h1>
 
 <%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
-Need to change your location? <%= link_to 'Edit profile', user_profileinfo_path(current_user.permalink) %> <br><br>
+Need to change your location? <%= link_to 'Edit zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
 
-
-<table width="900">
-
-If there's no events,
-"No events near you yet." <br><br>
+<% if @events.count != 0 %>
+  <table >
   <tr>
-    <th>Event & Info/RSVP</th>
+    <th>Event </th>
     <th>When</th>
     <th>Where</th>
+    <th></th>
   </tr>
 
-<% @events.sort_by{|t| t.start_at}.each do |event| %>
-  <% if event.start_at.to_i >= Time.now.to_i - 18000  %>
+    <% @events.sort_by{|t| t.start_at}.each do |event| %>
+      <% if event.start_at.to_i >= Time.now.to_i - 18000  %>
   <tr>
-    <td width="200"><%= link_to event.name, event %></td>
-    <td width="200"><%= event.start_at %></td>
+    <td ><%= link_to event.name, event %></td>
+    <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
     <td><%= event.address %></td>
+    <td>
+      <% if event.user_id == current_user.id %>
+        <%= link_to 'Edit Event', edit_event_path(event.id) %> 
+      <% end %>
+    </td>  
   </tr>
-  <% end %>
-<% end %>
-</table>
-
-<br />
+      <% end %>
+    <% end %>
+  </table>
+<% else %>
+  *** No events near you yet ***
+<% end %>  
 
 </div>	
+</div>

@@ -7,8 +7,10 @@ rails generate migration add_login_to_events personname:string email:string
 
 <div id="calendar" style="position:absolute; left:100px; top:340px; width:900px; height:757px; text-align:left">
 <p>
-  <%= link_to "Edit", edit_event_path(@event) %> |
-  <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+  <% if @event.user_id == current_user.id %>
+    <%= link_to "Edit", edit_event_path(@event) %> |
+    <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+  <% end %>
 </p>
 
 <p>

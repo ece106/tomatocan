@@ -1,8 +1,9 @@
 <% @title="CrowdPublish.TV - Post an event" %>
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
 
 <%= render 'form' %>
 
-<div id="calendar" style="position:absolute; left:0px; top:340px; width:900px; height:757px;" align:"left">
+<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
 
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
@@ -50,4 +51,5 @@
   </div>
 <% end %>
 
+</div>
 </div>

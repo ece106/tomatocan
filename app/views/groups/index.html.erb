@@ -1,6 +1,7 @@
+<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
 <%= render 'form' %>
 
-<div id="calendar" style="position:absolute; left:0px; top:300px; width:900px; height:757px;" >
+<div id="groups" style="position:absolute; left:0px; top:300px; width:900px; height:757px;" >
   <%= form_tag groups_path, :method => :get do %>
       <table >
       <tr>
@@ -18,20 +19,17 @@
 
 <h1>Listing groups</h1>
 
-If there's no group,
-"No groups near you yet. " <br>
-<%= link_to 'Create a New Writers Group in Your Community!', new_group_path %> <br>
+<%= link_to 'Create a New Writers Group ', new_group_path %> in Your Community!<br><br>
+Need to change your location? <%= link_to 'Edit zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
 
-Need to change your location? Edit Zip Code in profile
-
-<table>
+<% if @groups.count != 0 %>
+  <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Group Name</th>
       <th>Address</th>
-      <th>About</th>
       <th>Type</th>
-      <th>Group host</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -40,14 +38,19 @@ Need to change your location? Edit Zip Code in profile
       <tr>
         <td><%= link_to group.name, group %></td>
         <td><%= group.address %></td>
-        <td><%= group.about %></td>
         <td><%= group.type %></td>
-        <td><%= group.user_id %></td>
+        <td>
+          <% if group.user_id == current_user.id %>
+            <%= link_to 'Edit Group', edit_group_path(group.id) %> 
+          <% end %>
+        </td>  
       </tr>
     <% end %>
   </tbody>
-</table>
+  </table>
+<% else %>
+  *** No groups near you yet ***
+<% end %>  
 
-<br>
-
+</div>
 </div>
