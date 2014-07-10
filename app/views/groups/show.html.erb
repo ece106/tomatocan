@@ -17,7 +17,7 @@
 
 <p>
   <strong>Group Host:</strong>
-  <%= @group.user_id %>
+  <%= link_to @user.name, user_profile_path(@user.permalink) %>
 </p>
 
 <p>
@@ -27,11 +27,19 @@
 
 <p>
   <strong>Group Type:</strong>
-  <%= @group.grouptype %>
-</p>
+          <% if @group.grouptype == 1 %> Writers Small Group 
+          <% elsif @group.grouptype == 2 %> Book Club
+          <% elsif @group.grouptype == 3 %> Writers Organization
+          <% elsif @group.grouptype == 4 %> Library
+          <% elsif @group.grouptype == 5 %> Book Store
+          <% else @group.grouptype == 6 %> Other
+          <% end %></p>
 
   <% if @group.user_id == current_user.id %>
     <%= link_to 'Edit', edit_group_path(@group) %> |
   <% end %>
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %>
+
 </div>
 </div>

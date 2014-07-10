@@ -17,7 +17,7 @@
         <td><%= text_field_tag :search, params[:search] %></td>
         <td><%= text_field_tag :dist, params[:dist] %></td>
         <td><%= submit_tag "Search Near", :name => nil %></td>
-        <td>See a list of all nearby <%= link_to '  Upcoming Events & times', events_path %></td>
+        <td>See all nearby <%= link_to ' in-person Upcoming Events & times as a LIST', events_path %></td>
       </tr>
     </table>  
   <% end %>

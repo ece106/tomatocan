@@ -2,9 +2,9 @@
 
 <div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;height:100px;">
 
-  <div style="position:absolute; left:401px; top:0px; width:501px; height:240px;">
+  <div style="position:absolute; left:401px; top:0px; width:501px; height:245px;">
     <div id="frag_22" style="text-align:left;">
-      <iframe src="http://www.ustream.tv/embed/13434383" width="500" height="230" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free live streaming by Ustream</a>
+      <iframe src="http://www.ustream.tv/embed/13434383" width="500" height="235" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free live streaming by Ustream</a>
     </div>
   </div>
 
@@ -50,14 +50,16 @@
   <!--ONESTAT SCRIPTCODE END-->
 </div>
 
-<div class="menu" style="position:absolute; left:298px; top:5px; overflow:hidden; ">
+<div class="menu" style="position:absolute; left:280px; top:2px; overflow:hidden; ">
   <%= link_to 'Home', root_path, :style => 'color:#FFFFFF' %>
-  <br><%= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
-  <br><%= link_to 'Events Near You!', events_path, :style => 'color:#FFFFFF' %>
+  <% #= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'Events Near You!', calendar_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'List Your Event', new_event_path, :style => 'color:#FFFFFF' %>
   <br><%= link_to 'Groups Near You!', groups_path, :style => 'color:#FFFFFF' %>
+  <br><%= link_to 'List Your Group', new_group_path, :style => 'color:#FFFFFF' %>
   <br><%= link_to 'Members to Watch', users_path, :style => 'color:#FFFFFF' %>
 </div>
-<div class="smmenu" style="position:absolute; left:298px; top:110px; overflow:hidden; ">
+<div class="smmenu" style="position:absolute; left:280px; top:125px; overflow:hidden; ">
   <% if user_signed_in? %>
     <br><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF' %>
     <br><%= link_to 'Sign out', "/signout", :style => 'color:#FFFFFF' %>
@@ -69,36 +71,36 @@
 
 </div>
 
-<div style="position:absolute; left:230px; top:15px;">
+<div style="position:absolute; left:220px; top:15px;">
   <%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %>
   <p><%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %>
   <p><%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
 </div>
 
-<div style="position:absolute; left:0px; top:200px; width:900px; height:65px;">
+<div style="position:absolute; left:0px; top:205px; width:900px; height:60px;">
   <%= image_tag "whitebar.png" %>
 </div>
-<div class="helps" style="position:absolute; left:202px; top:214px; width:418px; ">
+<div class="helps" style="position:absolute; left:202px; top:214px; width:460px; ">
   CrowdPublishTV helps authors &amp; fans interact directly &amp; build community
 </div>
-<div class="socialize" style="position:absolute; left:632px; top:216px; width:268px; height:48px;">
+<div class="socialize" style="position:absolute; left:660px; top:216px; width:280px; height:48px;">
   Socialize around your books, experiences, or expertise
 </div>
 
-<div style="position:absolute; left:10px; top:212px; width:170px;">
+<div style="position:absolute; left:10px; top:208px; width:200px;">
   <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
+    <br>Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <% else %>
-    <%= image_tag("bubbleButton165.png", :size => "165x50") %>
-    <div class="signupbutton" style="position:absolute; left:35px; top:10px;">
+    <%= image_tag("bubbleButton165.png", :size => "155x40") %>
+    <div class="signupbutton" style="position:absolute; left:25px; top:6px;">
       <%= link_to 'SIGN UP!', "/signup" %>
     </div><br>
     Already a member? <%= link_to "SIGN IN", new_user_session_path %> <p>
   <% end %>
 </div>
 
-<div style="position:absolute; left:0px; top:0px;">
+<div style="position:absolute; left:0px; top:5px;">
   <%= image_tag("crowdpublishLogo.png", :size => "200x199") %>
 </div>
 <div style="position:absolute; left:0px; top:270px; width:930px;">

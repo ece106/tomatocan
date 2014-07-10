@@ -1,9 +1,9 @@
 <% @title="CrowdPublish.TV - Upcoming Book Events in DC" %>
 <div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<div id="calendar" style="position:absolute; left:0px; top:300px; width:900px; height:757px;" >
+<div id="calendar" style="position:absolute; left:0px; top:300px; width:1000px; height:757px;" >
 
   <%= form_tag events_path, :method => :get do %>
       <table >
@@ -11,11 +11,13 @@
         <th>Address</th>
         <th>Distance (miles)</th>
         <th></th>
+        <th> Find in-person events in your Local area (5 - 20 miles) </th>
       </tr>
       <tr>
         <td><%= text_field_tag :search, params[:search] %></td>
         <td><%= text_field_tag :dist, params[:dist] %></td>
         <td><%= submit_tag "Search Near", :name => nil %></td>
+        <td> Or in your MicroLocal area (1 - 5 miles) </td>
       </tr>
     </table>  
   <% end %>
@@ -23,7 +25,7 @@
 <h1>Listing of events</h1>
 
 <%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
-Need to change your location? <%= link_to 'Edit zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
+Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
 
 <% if @events.count != 0 %>
   <table >

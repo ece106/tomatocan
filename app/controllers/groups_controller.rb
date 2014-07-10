@@ -14,6 +14,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   def show
+    @user = User.find(@group.user_id)
   end
 
   # GET /groups/new
