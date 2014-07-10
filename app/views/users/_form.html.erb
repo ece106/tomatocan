@@ -78,20 +78,20 @@
 <div style="position:absolute; left:0px; top:200px; width:900px; height:65px;">
   <%= image_tag "whitebar.png" %>
 </div>
-<div class="helps" style="position:absolute; left:202px; top:214px; width:418px; ">
+<div class="helps" style="position:absolute; left:202px; top:214px; width:460px; ">
   CrowdPublishTV helps authors &amp; fans interact directly &amp; build community
 </div>
-<div class="socialize" style="position:absolute; left:632px; top:216px; width:268px; height:48px;">
+<div class="socialize" style="position:absolute; left:660px; top:216px; width:280px; height:48px;">
   Socialize around your books, experiences, or expertise
 </div>
 
-<div style="position:absolute; left:10px; top:212px; width:170px;">
+<div style="position:absolute; left:10px; top:208px; width:200px;">
   <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
+    <br>Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <% else %>
-    <%= image_tag("bubbleButton165.png", :size => "165x50") %>
-    <div class="signupbutton" style="position:absolute; left:35px; top:10px;">
+    <%= image_tag("bubbleButton165.png", :size => "155x40") %>
+    <div class="signupbutton" style="position:absolute; left:25px; top:6px;">
       <%= link_to 'SIGN UP!', "/signup" %>
     </div><br>
     Already a member? <%= link_to "SIGN IN", new_user_session_path %> <p>
