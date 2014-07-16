@@ -1,32 +1,35 @@
 CrowdPublishTV
+- Merchandise model, separate from ebooks
+* Get Stripe working
+- Create bookaudio uploader
+- Sell books without navigating away from live video
+
 - Signup with facebook and twitter
 - Calendar of livestream events
 - Convert permalink to lowercase
-- Merchandise model, separate from ebooks
-- Change table padding to be class-specific
-- Put _form in app.html.erb, not indiv view folders
-- Better CSS so author page not squished to side - menubar resize w/window
-- Buttons to purchase ebooks
-- Create bookaudio uploader
-- Gem for video instead of ustream?
 - _Online_ groups & events checkbox, db column
 - Hover over calendar & see times
 - Get profileinfo out of user model
-- Explain what group types are
 - Limit group search by grouptype
 - Page where logged out user can search for groups, events, see nearby by IP address
-- Get <% user = User.find(userid) %> out of books show.erb & in controller show method
+- Gem for video instead of ustream?
+- Explain what group types are
 - Line returns not recognized in txt fields
 - Recurring events
-- Deposit $ in checking account
-- Sell books without navigating away from live video
+
+- Put _form in app.html.erb, not indiv view folders
+- Better CSS so author page not squished to side - menubar resize w/window
+- Eliminate so many CSS types & clean up centered stuff in readerprofileinfo
+- Buttons to purchase ebooks
+- Get <% user = User.find(userid) %> out of books show.erb & in controller show method
+
+* Deposit $ in checking account
 
 
 
 
 Local Authors Scene
 - Recruit more book groups to attend July 26
-- Get email list from Linda
 - Bill: Sept mtg 3 mo in advance
 - Meetup: anyone interested in livestream event
 - Find someone to do twitter & Facebook, outreach

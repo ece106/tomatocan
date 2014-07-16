@@ -63,7 +63,6 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
-  match '/:permalink/orgprofileinfo' => "users#orgprofileinfo", :as => :user_orgprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
     
   resources :books do

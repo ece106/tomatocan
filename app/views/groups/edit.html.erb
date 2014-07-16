@@ -22,30 +22,32 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    Group Name <br>
+    <%= f.text_field :name, :size => 60 %>
   </div>
   <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    Address or zip code of typical meeting place <br>
+    <%= f.text_field :address, :size => 60 %>
   </div>
   <div class="field">
-    <%= f.label :about %><br>
-    <%= f.text_area :about %>
+    About group: How often do you usually meet? What would people likely join your group for? <br>
+    <%= f.text_area :about, :cols => 62, :rows => 5 %>
   </div>
   <div class="field">
       <p>Group type:
       <p><%= f.radio_button(:grouptype, 1) %>
-      <%= label_tag(:grouptype_child, "Writers Small Group") %>
+      <%= label_tag(:grouptype_child, "Critique Group") %>
       <br><%= f.radio_button(:grouptype, 2) %>
       <%= label_tag(:grouptype_adult, "Book Club") %>
       <br><%= f.radio_button(:grouptype, 3) %>
       <%= label_tag(:grouptype_adult, "Writers Organization") %>
       <br><%= f.radio_button(:grouptype, 4) %>
-      <%= label_tag(:grouptype_adult, "Library") %>
+      <%= label_tag(:grouptype_adult, "Informal Neighborhood Writer Gathering") %>
       <br><%= f.radio_button(:grouptype, 5) %>
-      <%= label_tag(:grouptype_adult, "Book Store") %>
+      <%= label_tag(:grouptype_adult, "Library") %>
       <br><%= f.radio_button(:grouptype, 6) %>
+      <%= label_tag(:grouptype_adult, "Book Store") %>
+      <br><%= f.radio_button(:grouptype, 7) %>
       <%= label_tag(:grouptype_adult, "Other") %>
   </div>
   <div class="actions">
