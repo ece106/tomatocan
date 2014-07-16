@@ -14,7 +14,16 @@
   <%= image_tag("futureEmpStory.png", :size => "712x38") %>
   <p>
 
-Get on the email list for updates (no more than twice a month) on DC metro area Local Author Scene news and events <p>
+We're gathering booklovers in the DC metro area to network, collaborate, and promote events that support local authors. Come to the Local Authors Scene meetings the last Saturday of each month (enter your DC area zip code  
+  <% if user_signed_in? %>
+    <%= link_to 'in your profile', user_profileinfo_path(current_user.permalink) %> 
+  <% else %>   
+    into your profile when you <%= link_to 'Sign Up', "/signup" %> 
+  <% end %>
+and see <%= link_to 'Calendar', calendar_path %>). 
+<p>PLEASE POST <%= link_to 'EVENTS', new_event_path %> & <%= link_to 'ORGANIZATIONS', new_group_path %> on the new <%= link_to 'Calendar', new_event_path %> and <%= link_to 'Organizations List', new_group_path %> so local people can find you. Make sure to enter your zip code!<p>
+
+Sign up below for the email list to receive updates (no more than twice a month) on DC metro area Local Authors Scene events. <p>
 
 <!-- Begin MailChimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
