@@ -11,20 +11,30 @@
 
 <div id="txt_13" style="position:absolute; left:73px; top:320px; width:694px; height:667px;">
 
-  <%= image_tag("futureEmpStory.png", :size => "712x38") %>
+  <%= image_tag("futureEmpStory.png", :size => "712x25") %>
   <p>
 
-We're gathering booklovers in the DC metro area to network, collaborate, and promote events that support local authors. Come to the Local Authors Scene meetings the last Saturday of each month (enter your DC area zip code  
+<b>JULY'S MEETING IS AT THE OAKTON LIBRARY </b><br> 
+10304 Lynnhaven Pl, Oakton, VA 22124 <br>
+Saturday July 26 1:00 – 3:00pm <p>
+All book enthusiasts are encouraged to attend. There will be opportunity to announce news & events for your club or books.
+Please send an invitation to your colleagues! <%= link_to 'http://www.eventbrite.com/e/local-authors-scene-ii-tickets-12113135715', "http://www.eventbrite.com/e/local-authors-scene-ii-tickets-12113135715" %> <p>
+
+
+We're gathering booklovers in the DC metro area to network, collaborate, and promote events that support local & indie authors. Come to the Local Authors Scene meetings the last Saturday of each month (enter your DC area zip code  
   <% if user_signed_in? %>
     <%= link_to 'in your profile', user_profileinfo_path(current_user.permalink) %> 
   <% else %>   
     into your profile when you <%= link_to 'Sign Up', "/signup" %> 
   <% end %>
 and see <%= link_to 'Calendar', calendar_path %>). 
-<p>PLEASE POST <%= link_to 'EVENTS', new_event_path %> & <%= link_to 'ORGANIZATIONS', new_group_path %> on the new <%= link_to 'Calendar', new_event_path %> and <%= link_to 'Organizations List', new_group_path %> so local people can find you. Make sure to enter your zip code!<p>
+<p>PLEASE POST <%= link_to 'EVENTS', new_event_path %> & <%= link_to 'ORGANIZATIONS', new_group_path %> on the new <%= link_to 'Calendar', new_event_path %> and the new <%= link_to 'Organizations List', new_group_path %> so local people can find your book-related groups & events. <p>
 
 Sign up below for the email list to receive updates (no more than twice a month) on DC metro area Local Authors Scene events. <p>
 
+Let me know if you have questions! Lisa@CrowdPublish.TV <p>
+
+(The August 23 meeting is at the Patrick Henry Library in Vienna, and the September 27 meeting is at the Lorton Library. We will also meet for lunch at the National Book Festival on Sat. August 30 at the DC Convention Center and will meet for one of the talks at the GMU campus for Fall for the Book Sept. 11-18. - See <%= link_to 'Calendar', calendar_path %>. )
 <!-- Begin MailChimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
 <style type="text/css">
