@@ -10,9 +10,9 @@ class CalendarController < ApplicationController
     if params[:search].present?
       @events = Event.near(params[:search], params[:dist]) 
     elsif user_signed_in?
-      @groups = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
+      @events = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
     else
-      @groups = Event.near(request.location, 25, order: 'distance')
+      @events = Event.near(request.location, 25, order: 'distance')
       # Event where address = "online"
     end
 

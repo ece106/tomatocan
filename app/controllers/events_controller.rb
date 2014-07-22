@@ -6,9 +6,9 @@ class EventsController < ApplicationController
     if params[:search].present?
       @events = Event.near(params[:search], params[:dist], order: 'distance') 
     elsif user_signed_in?
-      @groups = Event.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
+      @events = Event.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
     else
-      @groups = Event.near(request.location, 15, order: 'distance')
+      @events = Event.near(request.location, 15, order: 'distance')
     end
 
     respond_to do |format|
