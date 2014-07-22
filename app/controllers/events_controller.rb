@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index]
+  before_action :authenticate_user!, :except: [:index]
   # GET /events.json
   def index
     @events = Event.all
