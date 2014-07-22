@@ -45,8 +45,10 @@
     <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
     <td><%= event.address %></td>
     <td>
-      <% if event.user_id == current_user.id %>
-        <%= link_to 'Edit Event', edit_event_path(event.id) %> 
+      <% if user_signed_in? %>
+        <% if event.user_id == current_user.id %>
+          <%= link_to 'Edit Event', edit_event_path(event.id) %> 
+        <% end %>
       <% end %>
     </td>  
   </tr>
