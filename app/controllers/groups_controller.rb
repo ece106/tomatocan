@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
     elsif user_signed_in?
       @groups = Group.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
     else
-      @groups = Group.near(request.location, 15, order: 'distance')
+      @groups = Group.near([request.location.latitude, request.location.longitude], 15, order: 'distance')
     end
   end
 

@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     elsif user_signed_in?
       @events = Event.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
     else
-      @events = Event.near(request.location, 15, order: 'distance')
+      @events = Event.near([request.location.latitude, request.location.longitude], 15, order: 'distance')
     end
 
     respond_to do |format|
