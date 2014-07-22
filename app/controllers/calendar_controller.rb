@@ -1,5 +1,5 @@
 class CalendarController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
+#  before_filter :authenticate_user!, :except => [:index]
   
   def index
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
@@ -10,7 +10,10 @@ class CalendarController < ApplicationController
     if params[:search].present?
       @events = Event.near(params[:search], params[:dist]) 
     else
-      @events = Event.near([current_user.latitude, current_user.longitude], 25)
+    elsif user_signed_in?
+      @groups = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
+    else
+      @groups = Event.near(request.location, 25, order: 'distance')
       # Event where address = "online"
     end
 

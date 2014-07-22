@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   # GET /groups
@@ -7,8 +7,10 @@ class GroupsController < ApplicationController
     @groups = Group.all
     if params[:search].present?
       @groups = Group.near(params[:search], params[:dist], order: 'distance')
+    elsif user_signed_in?
+      @groups = Group.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
     else
-      @groups = Group.near([current_user.latitude, current_user.longitude], 15, order: 'distance') #near current_user(lat long)
+      @groups = Group.near(request.location, 15, order: 'distance')
     end
   end
 

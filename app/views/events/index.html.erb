@@ -25,7 +25,9 @@
 <h1>Listing of events</h1>
 
 <%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
-Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
+<% if user_signed_in? %>
+  Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
+<% end %>
 
 <% if @events.count != 0 %>
   <table >

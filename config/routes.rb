@@ -14,7 +14,7 @@ Crowdpublishtv::Application.routes.draw do
   match 'home', to: 'static_pages#home', via: 'get'
   match 'howwork', to: 'static_pages#howwork', via: 'get'
   match 'localauthorsscene', to: 'static_pages#localauthorsscene', via: 'get'
-
+  
   resources :purchases
    
   resources :plans
@@ -27,6 +27,7 @@ Crowdpublishtv::Application.routes.draw do
     get 'login' => 'devise/sessions#new', :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get 'localauthors' => 'devise/registrations#localauthorsscene', :as => :localauthors
     get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
     post "signup", :to => 'devise/registrations#create', :as => :user_signup
     #get 'users' => "users#index", :as => :users

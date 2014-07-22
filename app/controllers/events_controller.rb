@@ -1,12 +1,14 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
   # GET /events.json
   def index
     @events = Event.all
     if params[:search].present?
       @events = Event.near(params[:search], params[:dist], order: 'distance') 
+    elsif user_signed_in?
+      @groups = Event.near([current_user.latitude, current_user.longitude], 15, order: 'distance') 
     else
-      @events = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
+      @groups = Event.near(request.location, 15, order: 'distance')
     end
 
     respond_to do |format|
