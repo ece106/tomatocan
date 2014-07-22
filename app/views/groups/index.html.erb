@@ -42,7 +42,7 @@
       <tr>
         <td><%= link_to group.name, group %></td>
         <td><%= group.address %></td>
-        <td><% if group.grouptype == 1 %> Writers Small Group 
+        <td><% if group.grouptype == 1 %> Critique Group 
           <% elsif group.grouptype == 2 %> Book Club
           <% elsif group.grouptype == 3 %> Writers Organization
           <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering
@@ -54,7 +54,7 @@
         <td>
           <% if user_signed_in? %>
             <% if group.user_id == current_user.id %>
-              <%= link_to 'Edit Group', edit_group_path(group.id) %> 
+              <%= link_to 'Edit', edit_group_path(group.id) %> 
             <% end %>
           <% end %>
         </td>  
