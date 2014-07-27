@@ -21,17 +21,17 @@
 
 <h1>Listing groups</h1>
 
-<%= link_to 'Create a New Writers Group ', new_group_path %> in Your Community!<br><br>
+<%= link_to 'Create a New Book Group ', new_group_path %> in Your Community!<br><br>
 <% if user_signed_in? %>
   Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
 <% end %>
 
 <% if @groups.count != 0 %>
-  <table>
+  <table CELLPADDING="0" CELLSPACING="8" >
   <thead>
     <tr>
       <th>Group Name</th>
-      <th>Address</th>
+      <th>Where We Meet</th>
       <th>Group Type</th>
       <th></th>
     </tr>

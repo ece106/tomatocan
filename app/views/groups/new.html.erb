@@ -2,7 +2,7 @@
 
 <%= render 'form' %>
 
-<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
+<div id="calendar" style="position:absolute; left:0px; top:300px; width:900px; height:757px;" align:"left">
 
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
@@ -27,7 +27,7 @@
     <%= f.text_field :address, :size => 60 %>
   </div>
   <div class="field">
-    About group: How often do you usually meet? What would people likely join your group for? <br>
+    About group: How often do you usually meet? What would people likely join your group for? <br> How can people find you?<br>
     <%= f.text_area :about, :cols => 62, :rows => 5 %>
   </div>
   <div class="field">

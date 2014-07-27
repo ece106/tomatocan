@@ -98,15 +98,6 @@ Copy & paste the Live code from your Ustream account to replace the default code
   <%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
 </div>
-<div class="usermenu" style="position:absolute; left:750px; top:7px; ">
-  <% if user_signed_in? %>
-    <%= link_to "#{current_user.name}", current_user, :style => 'color:#FFFFFF'  %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to " Sign out ", destroy_user_session_path, :method => :delete, :style => 'color:#FFFFFF'%>
-  <% else %>
-    <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    <%= link_to "Sign in", new_user_session_path, :style => 'color:#FFFFFF'%> 
-  <% end %>
-</div>
 
 <div id="userlist" style="position:absolute; left:0px; top:330px;">
 <%= form_for(@user, :html => { :multipart => true }) do |f| %>

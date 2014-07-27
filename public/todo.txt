@@ -4,24 +4,34 @@ CrowdPublishTV
 - Create bookaudio uploader
 - Sell books without navigating away from live video
 
+* Alert users to what the problem is when mistakes in editing profile
 - Signup with facebook and twitter
 - Calendar of livestream events
+- Password reset
 - Convert permalink to lowercase
 - _Online_ groups & events checkbox, db column
 - Hover over calendar & see times
-- Get profileinfo out of user model
-- Limit group search by grouptype
-- Page where logged out user can search for groups, events, see nearby by IP address
+- Get profileinfo out of user model & into its own model
+- Group search by grouptype
 - Gem for video instead of ustream?
-- Explain what group types are
 - Line returns not recognized in txt fields
 - Recurring events
 - Associate groups with events
-- Put your map underneath your calendar
 - Filter events by group, so members can view as that group's calendar page
+- Put your map underneath your calendar with all events pinpointed
+- Only current month can be searched for address and distance in calendar view
+- Hit counts for authors site, events
+- Gaming/rewards
+- Wall for fans to leave comments
+- Friend/following 
+- Auto-recruit - a recruit is automatic friend
+- Add comment scaffolding
+- Add (early adopter) badges to profiles
+- RSVPs for events
+- Author & club email lists, fans can opt out
 
-- Put _form in app.html.erb, not indiv view folders
-- Better CSS so author page not squished to side - menubar resize w/window
+- Put _form in app.html.erb, not indiv view folders & move onestat to js file
+* Better CSS so author page not squished to side - menubar resize w/window
 - Eliminate so many CSS types & clean up centered stuff in readerprofileinfo
 - Buttons to purchase ebooks
 - Get <% user = User.find(userid) %> out of books show.erb & in controller show method
@@ -29,7 +39,7 @@ CrowdPublishTV
 
 * Deposit $ in checking account
 * TOS
-
+* Recruit remote adopters & Scene adopters - what would make them engage
 
 
 
@@ -38,21 +48,12 @@ Local Authors Scene
 - Bill: Sept mtg 3 mo in advance
 - Meetup: anyone interested in livestream event
 - Find someone to do twitter & Facebook, outreach
-- Change meetup dates
 - Look into lunch at Natl Book
-- Make flyers for Natl Book about Loc Author Scene w/CrowdPublish.tv signup
+- Make flyers for Natl Book & libraries about Loc Author Scene w/CrowdPublish.tv signup
 - What can we do at Fall For Book
-
-* Get orgs, book clubs - post their groups manually
-* Get meetups to post their events & groups
+- Ask Libraries to post events supportive of local/indie authors, who's in charge
+* Get orgs, book clubs, meetups - post their groups manually
 * Invite DC twitter, Arl Library to LAS
-* Post on Monkeys FB page
-
-Manually post meetups & orgs, then contact them to sign up & edit
-Post on meetup & FB pages inviting to come July 26
-Orgs - Linda's email
-Bookstores - Bill's email
-Ask Libraries to post events supportive of local/indie authors, who's in charge
 
 
 
@@ -64,4 +65,66 @@ SentenceZing
 - Set up Quicken
 - Set up bank account
 - Set up another SCORE session
+
+
+
+
+@@What will this be
+- Club sites: meetup, news, member list
+- Authors sites: sales, blog, online talks
+
+- Blogs http://rubydoc.info/gems/blogit/
+- Sell ebooks
+- Sell merch
+- RSVP
+- email members/fans
+- Live video
+- Much better design
+- Custom pages
+- Facebook-like comments from fans
+
+@@User interaction evolution: 
+Author: Web page, recruit others, book sales, comments, livestream events
+Club: Post events, recruit members, comments, post news (blog gem?)
+
+
+@@Author points for: 
+Logging on x days in a row
+Adding Content: profile info, Blog posts, events, comments
+Receiving hits, comments
+Recruiting friends to sign up
+Purchasing
+Sales
+Posting things to sell
+Hosting livestream event
+Friending users, clubs - only when purchase, recruit, club moderator approves
+
+@@booklover points for: 
+Logging on x days in a row
+Adding Content: profile info, reviews, comments
+Recruiting friends to sign up
+Purchasing
+Friending users, clubs - only when purchase, recruit, club moderator approves
+
+@@Club Points for:
+Adding Content: profile info, Blog posts, events, comments
+Receiving hits, comments
+# members affiliated
+
+
+________________________
+Signups, interaction, $
+
+
+Take attendance
+Distribute minutes
+Announce next meeting
+Any other announcements
+Survey questions:
+1. If you clicked on the signup button, would you enter your info
+2. Is the Live Events item on author menu confusing
+3. What would you do if you wanted to post an event?
+
+
+
 
