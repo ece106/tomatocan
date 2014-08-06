@@ -8,11 +8,42 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %> />
 <% end %>
 
-<div style="position:absolute; left:0px; top:0px">
-    <%= image_tag "purpleBar.png", :size => "1010x35" %>
-</div>
 
-<div id="pic" style="position:absolute; left:0px; top:35px;">
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+      <nav>
+        <ul class="nav pull-left">
+          <div class="usermenu"> 
+            <ul class="nav">
+              <li><%= link_to @user.name + " Books ", user_booklist_path(@user.permalink), :style => 'color:#FFFFFF' %>
+              <li><%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>
+              <li><%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>
+              <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
+            </ul>    
+          </div>
+        </ul>
+
+        <ul class="nav pull-right">
+          <div class="usermenu" >
+            <ul class="nav">
+              <% if user_signed_in? %>
+                <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF'  %> 
+                <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete, :style => 'color:#FFFFFF'%>
+              <% else %>
+                <li><%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %> 
+                <li><%= link_to "Sign in", new_user_session_path, :style => 'color:#FFFFFF'%> 
+              <% end %>
+            </ul>  
+          </div>
+        </ul>
+      </nav>
+  </div>
+</header>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+<div id="pic" style="position:absolute; left:0px; top:40px;">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
@@ -26,27 +57,11 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <% end %>
 </div>
 
-<div class="username" style="position:absolute; left:170px; top:35px; width:220px">
+<div class="username" style="position:absolute; left:170px; top:50px; width:220px">
   <%= @user.name %>
   <div class="usergenre" >
     <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
   </div>
-</div>
-
-<div class="usermenu" style="position:absolute; left:10px; top:7px; ">
-  <%= link_to @user.name + " Books ", user_booklist_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
-</div>
-<div class="usermenu" style="position:absolute; left:750px; top:7px; ">
-  <% if user_signed_in? %>
-    <%= link_to "#{current_user.name}", user_profile_path(current_user.permalink), :style => 'color:#FFFFFF'  %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to " Sign out ", destroy_user_session_path, :method => :delete, :style => 'color:#FFFFFF'%>
-  <% else %>
-    <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
-    <%= link_to "Sign in", new_user_session_path, :style => 'color:#FFFFFF'%> 
-  <% end %>
 </div>
 
 <div id="edit buttons" style="position:absolute; left:0px; top:170px;">

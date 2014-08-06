@@ -1,55 +1,34 @@
-<% @title="CrowdPublish.TV Community " %>
+<%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
+    <title>CrowdPublishTV members</title>
 
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
-
-<%= render 'form' %>
-
-<div class="indexlist" style="position:absolute; left:0px; top:320px; ">
-  <%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
-
-<table CELLPADDING="0" CELLSPACING="10" WIDTH="600" >
-  <tr>
-    <th></th>
-    <th><div class="featured">  Featured </div></th>
-    <th><div class="featured">  Booklovers </div></th>
-    <th><div class="featured">  & Authors </div></th>
-  </tr>
-  <% @row = 0 %>
+<% @row = 0 %>
+<div class="row" >
   <% @users.each do |u| %>
 
     <% if u.profilepic.present? && u.profilepic != '' %> 
-      <% if @row/5.0 == (@row/5.0).to_i %>
-        <tr>
-      <% end %>
-      <% @row = @row + 1 %>
-      <td valign="top"> 
-        <%= link_to(image_tag(u.profilepic, :size => "170x170",  :title => u.name ), user_profile_path(u.permalink)) %> <br>
-        <%= link_to u.name, user_profile_path(u.permalink) %>
-        <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
-      </td>
-      <% if @row/5.0 == (@row/5.0).to_i %>
-        </tr>
-      <% end %>
+      <div class="span3" >
+        <div class="row" style="vertical-align:center; horizontal-align:center; height:170px; overflow:hidden; " >
+          <%= link_to(image_tag(u.profilepic, :size => "170x170",  :title => u.name ), user_profile_path(u.permalink)) %> 
+        </div>
+        <div class="row" >
+          <%= link_to u.name, user_profile_path(u.permalink) %>
+          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
+        </div>
+      </div> 
     <% elsif u.profilepicurl %>
       <% if u.profilepicurl.match /http/  %> 
         <% if u.profilepicurl.match /jpeg|jpg|gif|png|tif/  %> 
-          <% if @row/5.0 == (@row/5.0).to_i %>
-            <tr>
-          <% end %>
-          <% @row = @row + 1 %>
-          <td valign="top"> 
-            <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> <br>
-            <%= link_to u.name, user_profile_path(u.permalink) %>
-            <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
-          </td>
-          <% if @row/5.0 == (@row/5.0).to_i %>
-            </tr>
-          <% end %>
+           <div class="span3" >
+             <div class="row" style="vertical-align:center; horizontal-align:center; height:170px; overflow:hidden;" >
+              <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> 
+            </div>
+            <div class="row" >
+              <%= link_to u.name, user_profile_path(u.permalink) %>
+              <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
+            </div>
+          </div>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
-  
-</table>
-</div>
 </div>

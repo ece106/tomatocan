@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout :resolve_layout
 
 #  before_filter :authenticate_user!
 #  before_filter :signed_in_user, only: [:index, :edit, :update]
@@ -141,28 +142,14 @@ class UsersController < ApplicationController
       params.require(:user).permit(:permalink, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude)
     end
 
-=begin
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "Please sign in." 
-      end
-    end
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(signin_url) unless current_user?(@user)
-    end
-=end
     def resolve_layout
       case action_name
-      when 'show'
-        'application'
-      when 'booklist'
+      when "index"
         'application'
       else
-        'application'
+        'userpgtemplate'
       end
     end
 
 end
+

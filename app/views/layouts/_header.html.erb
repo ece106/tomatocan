@@ -1,0 +1,109 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+<div class="container">
+<nav>
+
+<div class="row">
+  <div class="span3">
+    <%= image_tag("crowdpublishLogo.png", :size => "200x199") %>
+  </div>
+
+  <div class="span1"><br><br>
+    <p><%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %>
+    <p><%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %>
+    <p><%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
+  </div>
+
+<div class="span2">
+  <div class="menu" >
+    <%= link_to 'Home', root_path, :style => 'color:#2c3651' %>
+    <% #= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
+    <br><%= link_to 'Events Near You!', calendar_path, :style => 'color:#2c3651'  %>
+    <br><%= link_to 'List Your Event', new_event_path, :style => 'color:#2c3651' %>
+    <br><%= link_to 'Groups Near You!', groups_path, :style => 'color:#2c3651' %>
+    <br><%= link_to 'List Your Group', new_group_path, :style => 'color:#2c3651' %>
+    <br><%= link_to 'Members to Watch', users_path, :style => 'color:#2c3651'  %>
+  </div>
+  <div class="smmenu" >
+    <% if user_signed_in? %>
+      <br><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#2c3651'  %>
+      <br><%= link_to 'Sign out', "/signout", :style => 'color:#2c3651' %>
+    <% else %>
+      <br><%= link_to 'SIGN UP!', "/signup", :style => 'color:#2c3651'  %>
+      <br><%= link_to 'Sign in', "/login", :style => 'color:#2c3651'  %>
+    <% end %>
+    <br><%= link_to 'About', "/howwork", :style => 'color:#2c3651'  %>
+  </div>
+</div>
+
+  <div class="span6">
+    <div id="frag_22" style="text-align:left; width:500px; height:205px; overflow:hidden; ">
+      <iframe src="http://www.ustream.tv/embed/13434383" width="510" height="240" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br />
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span3">
+    <% if user_signed_in? %>
+      Signed in as <%= current_user.email %>. Not you?
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %>
+      <br>
+      Already a member? <%= link_to "SIGN IN", new_user_session_path %> 
+    <% end %>
+  </div>
+  <div class="span5">
+    <div class="helps" >
+      CrowdPublishTV helps authors &amp; fans interact directly &amp; build community
+    </div>
+  </div>
+  <div class="span4">
+    <div class="socialize" >
+      Socialize around your books, experiences, or expertise
+    </div>
+  </div>
+</div>
+
+  <hr noshade>
+
+<div style="width:1px; height:1px; overflow:hidden; ">
+    <!--ONESTAT SCRIPTCODE START This belongs in something.js-->
+  <div id="OneStatTag"><table border='0' cellpadding='0' cellspacing='0'><tr><td align='center'>
+    <script type="text/javascript">
+    <!--
+    function OneStat_Pageview()    {
+        var d=document;
+        var sid="436141";
+        var CONTENTSECTION="";
+        var osp_URL=d.URL;
+        var osp_Title=d.title;
+        var t=new Date();
+        var p="http"+(d.URL.indexOf('https:')==0?'s':'')+"://stat.onestat.com/stat.aspx?tagver=2&sid="+sid;
+        p+="&url="+escape(osp_URL);
+        p+="&ti="+escape(osp_Title);
+        p+="&section="+escape(CONTENTSECTION);
+        p+="&rf="+escape(parent==self?document.referrer:top.document.referrer);
+        p+="&tz="+escape(t.getTimezoneOffset());
+        p+="&ch="+escape(t.getHours());
+        p+="&js=1";
+        p+="&ul="+escape(navigator.appName=="Netscape"?navigator.language:navigator.userLanguage);
+        if(typeof(screen)=="object"){
+           p+="&sr="+screen.width+"x"+screen.height;p+="&cd="+screen.colorDepth;
+           p+="&jo="+(navigator.javaEnabled()?"Yes":"No");
+        }
+        d.write('<a href="http://www.onestatfree.com/aspx/login.aspx?sid='+sid+'" target=_blank><img id="ONESTAT_TAG" border="0" src="'+p+'" alt="This site tracked by OneStatFree.com. Get your own free site tracker."></'+'a>');
+    }
+    OneStat_Pageview();
+    //-->
+    </script>
+    <noscript>
+    <a href="http://www.onestatfree.com"><img border="0" src="http://stat.onestat.com/stat.aspx?tagver=2&amp;sid=436141&amp;js=No&amp;" ALT="detect click fraud"></a>
+    </noscript>
+    </td></tr><tr><td align='center'><div style="COLOR:black;display:none;FONT-FAMILY:'Verdana';"><a href="http://www.onestat.com" style="text-decoration:none;">detect click fraud</a><br>
+  </div></td></tr></table></div>
+  <!--ONESTAT SCRIPTCODE END-->
+</div>
+
+</nav>
+</header>

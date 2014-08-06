@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CrowdPublish.TV <%  @user.name %> 's blog</title>
+<title> <%  @user.name %> </title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -8,7 +8,7 @@
 <meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
-<% @title="CrowdPublish.TV interact with " + @user.name + " here live!" %>
+<% @title=" interact with " + @user.name + " here live!" %>
 
 <% if @user.author == 2 %>
   <%= render 'authorform' %>
@@ -20,7 +20,7 @@
       <%= @user.ustreamvid.html_safe %>
     <% end %>
   <% elsif %>
-    <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /></a>
+    <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
   <% end %>
   </div>
 
@@ -36,24 +36,6 @@
     <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
   <% end %>
   </div>
-
-<% elsif @user.author == 3 %>
-  <%= render 'orgform' %>
-  <div id="uvid" style="position:absolute; left:400px; top:50px; width:550px; height:180px; ">
-    <%= @user.youtube %> <p>
-    <%= @user.pinterest %> <p>
-  </div>
-  <div class="blurb" style="position:absolute; left:450px; top:75px; width:500px;">
-    <%= @user.about %>
-  </div>
-   <% if @user.twitter %>
-      <div style="position:absolute; left:0px; top:200px; width:300px;">
-        <a class="twitter-timeline"    
-        data-widget-id="375760459510464512"
-        data-screen-name="<%= @user.twitter %>" data-show-replies="false"
-        data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
-      </div>
-    <% end %>
 
 <% else  %>
   <%= render 'readerform' %>
