@@ -15,6 +15,7 @@
   <%= render 'authorsidebar' %>
 
   <div class="row" >
+    <div class="col-md-8 col-md-offset-4" >
     <% if @user.ustreamvid? %>
       <% if @user.ustreamvid.match /<iframe src="www.ustream.tv\/embed/ %>
         <%= @user.ustreamvid.html_safe %>
@@ -22,19 +23,22 @@
     <% elsif %>
       <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
     <% end %>
+    </div>
   </div>
 
   <div class="row" >
-  <% if @user.ustreamsocial? %>
-    <% if @user.ustreamsocial.match /<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http:\/\/www.ustream.tv\/socialstream/ %>
-      <%= @user.ustreamsocial.html_safe %>
+    <div class="col-md-8 col-md-offset-4" >
+    <% if @user.ustreamsocial? %>
+      <% if @user.ustreamsocial.match /<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http:\/\/www.ustream.tv\/socialstream/ %>
+        <%= @user.ustreamsocial.html_safe %>
+      <% end %>
+    <% else %>
+      <% if @user == current_user %>
+        <br><br>Replace the default Ustream code on your Edit page with the code from your Ustream account and livestream YOUR book discussion here!
+      <% end %>
+      <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
     <% end %>
-  <% else %>
-    <% if @user == current_user %>
-      <br><br>Replace the default Ustream code on your Edit page with the code from your Ustream account and livestream YOUR book discussion here!
-    <% end %>
-    <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
-  <% end %>
+    </div>
   </div>
 
 <% else  %>
