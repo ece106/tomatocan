@@ -14,7 +14,8 @@ gem 'aws-sdk'
 gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '4.0.2'
-gem  'bootstrap-sass', '2.3.2.0'
+gem  'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 #gem 'sprockets'
 gem "will_paginate", "~> 3.0.4" 
 # Use ActiveModel has_secure_password
