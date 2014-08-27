@@ -146,6 +146,8 @@ class UsersController < ApplicationController
       case action_name
       when "index"
         'application'
+      when "profileinfo"
+        'editinfotemplate'
       else
         'userpgtemplate'
       end

@@ -9,6 +9,7 @@ $grayMediumLight: #eaeaea;
 
 html {
   text-align: left;
+  width: 100%;
   overflow-y: scroll;
 }
 
@@ -41,12 +42,41 @@ textarea {
 
 .navbar-userpage {
     color:#2c3651;
+    background-color: #2c3651;
+    border-color: #fff;
+    border-radius:0;
 }
 
 .navbar-custom {
     background-color:#fff;
-    color:#ffffff;
+    color:#2c3651;
     border-radius:0;
+}
+.navbar .navbar-custom > li > a:hover,
+.navbar .navbar-custom > li > a:focus {
+    color: #2c3651;
+    background-color: #fff;
+}
+.navbar .navbar-custom > .active > a, 
+.navbar .navbar-custom > .active > a:hover, 
+.navbar .navbar-custom > .active > a:focus {
+    color: #2c3651;
+    background-color: #fff ;
+}
+
+.navbar .navbar-nav > li > a {
+    color: #fff;
+}
+.navbar .navbar-nav > li > a:hover,
+.navbar .navbar-nav > li > a:focus {
+    color: #fff;
+    background-color: #2c3651;
+}
+.navbar .navbar-nav > .active > a, 
+.navbar .navbar-nav > .active > a:hover, 
+.navbar .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #2c3651;
 }
 
 /* typography */
@@ -58,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 h2 {
@@ -72,11 +102,23 @@ p {
 }
 
 
+/* header */
+
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+
 /* footer */
 
 footer {
   margin-top: 45px;
   padding-top: 5px;
+  margin-right: 10px;
   border-top: 1px solid #000;
   color: black;
   a {
@@ -109,3 +151,9 @@ footer {
   @extend .control-group;
   @extend .error;
 } 
+
+sidebar { 
+  float:left; 
+  width:350px; 
+  background-color: #eeeaf2;
+  }

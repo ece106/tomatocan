@@ -1,16 +1,13 @@
-<%= render 'form' %>
-
-<div style="position:absolute; left:350px; top:350px; text-align:left">
+<div class="row">
+  <div class="col-md-9 col-md-offset-3 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left">
 
 <p id="notice"><%= notice %></p>
 
-
-<p>
   <b>  <% book = Book.find(@purchase.book_id) %>
   <%= book.title %> </b>
   By
   <% user = User.find(book.user_id) %>
   <%= user.name %>
-</p>
 
+  </div>
 </div>

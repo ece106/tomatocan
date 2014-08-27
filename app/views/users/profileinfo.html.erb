@@ -1,6 +1,6 @@
 <% @title="CrowdPublish.TV: The Future of Empowerment is Your Story - edit user profile "  %>
 
-<div id="pic" style="position:absolute; left:0px; top:35px; opacity:0.4;">
+  <div style="position:absolute; left:0px; top:50px; opacity:0.4; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
@@ -12,7 +12,10 @@
   <% else %>
     <%= image_tag "whiteBk.jpg", :size => "150x150" %>
   <% end %>
-</div>
+  </div>
+
+<div class="row" >
+  <div class="col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left opacity:0.4;">
 
 <% if @user == current_user %>
 
@@ -68,8 +71,8 @@
       </tr> 
     </table>
 
-    <center><%= f.submit "Save user Info" %> </center>
-      You must enter & confirm password every time you visit this page.
+    <center><%= f.submit "Save Profile" %> </center>
+      You must enter & confirm password every time you Save Profile info.
       After saving, you will be directed to your user profile. You may come back to this page to edit your info.
     </div>
 
@@ -88,15 +91,7 @@ Copy & paste the Live code from your Ustream account to replace the default code
     </div>
   <% end %>
 <% end %>
-
-<div style="position:absolute; left:0px; top:0px">
-    <%= image_tag "purpleBar.png", :size => "1010x35" %>
-</div>
-<div class="usermenu" style="position:absolute; left:10px; top:7px; ">
-  <%= link_to @user.name + " Books ", user_booklist_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " Live Events ", user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
+  </div>
 </div>
 
 <div id="userlist" style="position:absolute; left:0px; top:330px;">

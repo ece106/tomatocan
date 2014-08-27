@@ -9,12 +9,9 @@
 </head>
 
 <% if @user.author == 2 %>
-  <%= render 'authorform' %>
-  <%= render 'authorsidebar' %>
 <% elsif @user.author == 3 %>
-  <%= render 'orgform' %>
 <% else %>
-  <%= render 'readerform' %>
+  <% #= render 'readerform' %>
 <% end %>
 
 <% if @user.blogurl %>

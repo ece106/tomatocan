@@ -1,0 +1,72 @@
+<sidebar class>
+<div class="row">
+  <div class="col-md-5 col-sm-5 col-xs-4" >
+    <% if @user.profilepic.present? && @user.profilepic != '' %>
+      <%= image_tag @user.profilepic, :size => "150x150" %>
+    <% elsif @user.profilepicurl %>
+      <% if @user.profilepicurl.match(/http/) %>
+        <%= image_tag @user.profilepicurl, :size => "150x150" %><br >
+      <% else %>
+        <%= image_tag "whiteBk.jpg", :size => "150x150" %>
+      <% end %>
+    <% else %>
+      <%= image_tag "whiteBk.jpg", :size => "150x150" %>
+    <% end %>
+
+    <% if @user == current_user %>
+      <%= button_to "Edit Profile", user_profileinfo_path(@user.permalink), :method=> :get %>
+      <%= button_to "Edit Books", user_edit_path(@user.permalink), :method=> :get %>
+    <% end %> 
+  </div>
+
+  <div class="col-md-7 col-sm-7 col-xs-8" >
+    <div class="username" >
+      <%= @user.name %>
+    </div>
+    <div class="usergenre" >
+      <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
+    </div>
+  </div>
+</div>
+
+<div class="row" >
+<% if @user.books.any? %>
+  <% @user.books.each do |book| %>
+    <%= form_for(book) do |f| %>
+    <div class="col-md-3 col-sm-3 col-xs-3" >
+      <div class="fanbook" style="width:50px;height:70px;background-color:#cccfcc;  text-align: center; line-height:70%" >
+        <% if book.coverpic.present? && book.coverpic != '' %>
+          <%= link_to image_tag(book.coverpic, :size => "50x65", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
+        <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
+          <%= link_to image_tag(book.coverpicurl, :size => "50x65", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+        <% elsif book.title.match /[0-9A-Za-z]/ %> 
+          <div class="covertitle">
+            <br><%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %>
+          <p></div>
+          <div class="covername" style= "color:#2c3651">
+            <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-8" >
+      <div class="fanbook" style="line-height:94%">
+        <div style="float:left;width:75%; font-weight:bold">
+          <%= link_to book.title, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Purchase " + book.title %>
+        </div>
+        <div style="float:right;width:25%;">
+          &nbsp<%= book.genre %></div>
+        <div class="fifty"><%= book.fiftychar %></div>
+      </div>
+    </div>
+    <% end #form_for %>
+  <% end #@user.bks.each do %>
+<% else %>
+  <% if @user == current_user %>
+    <p>Edit/List your books - even the ones In Progress - so this sidebar won't be empty!. </p>
+  <% end %>
+<% end %>
+
+</div>
+  
+</sidebar>

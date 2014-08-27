@@ -3,47 +3,44 @@
 <nav>
 
 <div class="row">
-  <div class="col-md-3">
-    <%= image_tag("crowdpublishLogo.png", :size => "200x199") %>
+  <div class="col-md-4 col-sm-6 col-xs-6">
+    <%= image_tag("cpLogo150.png", class: 'img-responsive', alt: "Responsive image") %>
+    <br><%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %>
+    <%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %>
+    <%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
   </div>
 
-  <div class="col-md-1"><br><br>
-    <p><%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %>
-    <p><%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %>
-    <p><%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
+  <div class="col-md-3 col-sm-6 col-xs-6">
+    <div class="menu" style="text-align:left; " >
+      <%= link_to 'Home', root_path %>
+      <% #= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
+      <br><%= link_to 'Events Near You!', calendar_path  %>
+      <br><%= link_to 'List Your Event', new_event_path %>
+      <br><%= link_to 'Groups Near You!', groups_path %>
+      <br><%= link_to 'List Your Group', new_group_path %>
+      <br><%= link_to 'Members to Watch', users_path  %>
+    </div>
+    <div class="smmenu" style="text-align:left; " >
+      <% if user_signed_in? %>
+        <br><%= link_to "My profile", user_profile_path(current_user.permalink) %>
+        <br><%= link_to 'Sign out', "/signout" %>
+      <% else %>
+        <br><%= link_to 'SIGN UP!', "/signup" %>
+        <br><%= link_to 'Sign in', "/login" %>
+      <% end %>
+      <br><%= link_to 'About', "/howwork" %>
+    </div>
   </div>
 
-<div class="col-md-2">
-  <div class="menu" >
-    <%= link_to 'Home', root_path, :style => 'color:#2c3651' %>
-    <% #= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
-    <br><%= link_to 'Events Near You!', calendar_path, :style => 'color:#2c3651'  %>
-    <br><%= link_to 'List Your Event', new_event_path, :style => 'color:#2c3651' %>
-    <br><%= link_to 'Groups Near You!', groups_path, :style => 'color:#2c3651' %>
-    <br><%= link_to 'List Your Group', new_group_path, :style => 'color:#2c3651' %>
-    <br><%= link_to 'Members to Watch', users_path, :style => 'color:#2c3651'  %>
-  </div>
-  <div class="smmenu" >
-    <% if user_signed_in? %>
-      <br><%= link_to "My profile", user_profile_path(current_user.permalink), :style => 'color:#2c3651'  %>
-      <br><%= link_to 'Sign out', "/signout", :style => 'color:#2c3651' %>
-    <% else %>
-      <br><%= link_to 'SIGN UP!', "/signup", :style => 'color:#2c3651'  %>
-      <br><%= link_to 'Sign in', "/login", :style => 'color:#2c3651'  %>
-    <% end %>
-    <br><%= link_to 'About', "/howwork", :style => 'color:#2c3651'  %>
-  </div>
-</div>
-
-  <div class="col-md-6">
+  <div class="col-md-5 col-sm-12 col-xs-12">
     <div id="frag_22" style="text-align:left; width:450px; height:205px; overflow:hidden; ">
       <iframe src="http://www.ustream.tv/embed/13434383" width="460" height="240" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br />
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-3">
+<div class="row" style="margin-top:10px;">
+  <div class="col-md-3 col-sm-12 col-xs-12">
     <div class="blacktxt" >
     <% if user_signed_in? %>
       Signed in as <%= current_user.email %>. Not you?
@@ -55,12 +52,12 @@
     <% end %>
   </div>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-5 col-sm-6 col-xs-12">
     <div class="helps" >
       CrowdPublishTV helps authors &amp; fans interact directly &amp; build community
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-6 col-xs-12 ">
     <div class="socialize" >
       Socialize around your books, experiences, or expertise
     </div>

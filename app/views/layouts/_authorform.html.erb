@@ -1,0 +1,35 @@
+<title> CrowdPublish.TV - <%= @user.name %>'s site</title>
+<% @descname = @user.name.gsub(/ +/, '-')
+if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_"  end
+if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
+if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
+
+<% content_for :forusers do %>
+  <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %> />
+<% end %>
+
+<header class="navbar navbar-userpage">
+  <div class="navbar-inner">
+        <ul class="nav pull-left">
+            <ul class="nav navbar-nav">
+              <li><%= link_to @user.name + " Books ", user_booklist_path(@user.permalink) %>
+              <li><%= link_to " Blog ", user_blog_path(@user.permalink) %>
+              <li><%= link_to " Live Events ", user_profile_path(@user.permalink) %>
+              <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
+            </ul>    
+        </ul>
+
+          <div class="usermenu" >
+            <ul class="nav navbar-nav navbar-right">
+              <% if user_signed_in? %>
+                <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
+                <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
+              <% else %>
+                <li><%= link_to 'SIGN UP!', "/signup" %> 
+                <li><%= link_to "Sign in", new_user_session_path %> 
+              <% end %>
+            </ul>  
+          </div>
+  </div>
+</header>
+

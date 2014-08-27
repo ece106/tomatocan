@@ -11,11 +11,10 @@
 <% @title=" interact with " + @user.name + " here live!" %>
 
 <% if @user.author == 2 %>
-  <%= render 'authorform' %>
-  <%= render 'authorsidebar' %>
 
   <div class="row" >
-    <div class="col-md-8 col-md-offset-4" >
+    <div class="col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left">
+jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
     <% if @user.ustreamvid? %>
       <% if @user.ustreamvid.match /<iframe src="www.ustream.tv\/embed/ %>
         <%= @user.ustreamvid.html_safe %>

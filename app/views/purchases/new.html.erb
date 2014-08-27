@@ -1,8 +1,7 @@
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-9 col-md-offset-3 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left">
 
-<div style="position:absolute; left:350px; top:350px; text-align:left">
-
-*** We are still in testing mode. Purchases cannot be made at this time. *** <p></p>>
+*** We are still in testing mode. Purchases cannot be made at this time. *** <p></p>
 
 <%= form_for @purchase do |f| %>
   <% if @purchase.errors.any? %>
@@ -19,7 +18,7 @@
   <% if @purchase.stripe_card_token.present? %>
     Credit card has been provided.
   <% else %>
-    <%= label_tag :card_number, "Credit Card Number" %>
+    <p><%= label_tag :card_number, "Credit Card Number" %>
     <%= text_field_tag :card_number, nil, name: nil %><p>
 
     <%= label_tag :card_code, "Security Code on Card (CVV)" %>
@@ -36,4 +35,5 @@
 
   <%= f.submit "Purchase" %>
 <% end %>
+  </div>
 </div>

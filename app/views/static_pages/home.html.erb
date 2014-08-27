@@ -4,53 +4,67 @@
 <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
 </head>
 
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;">
+<div class="row">
+  <div class="col-md-4" >
+    <div class="helps">
+      Readers:
+    </div>
+    <div class="blacktxt">
+      <%= link_to 'Sign up for your own Booklover page', "/signup" %><br>
+      Chat with other booklovers<br>
+      Meet people who have similar interests <br>
+      Coming soon: Buy ebooks
+    </div>
+  </div>
 
-<%= render 'form' %>
+  <div class="col-md-4" >
+    <div class="helps">
+      Authors:
+    </div>
+    <div class="blacktxt">
+      <%= link_to 'Sign up for your own Author site', "/signup" %><br>
+      Host live streaming talks <br>
+      List your books <br> 
+      <%= link_to 'List your online & in-person events', new_event_path %> <br>
+      Keep in touch with fans<br>
+      Coming soon: Sell ebooks
+    </div>
+  </div>
 
-<div class="helps" style="position:absolute; left:50px; top:305px;">
-  Readers:
-</div>
-<div class="blacktxt" style="position:absolute; left:0px; top:335px; width:318px; ">
-  <%= link_to 'Sign up for your own Booklover page', "/signup" %><br>
-  Chat with other booklovers<br>
-  Meet people who have similar interests <br>
-  Coming soon: Buy ebooks
-</div>
-
-<div class="helps" style="position:absolute; left:320px; top:305px;">
-  Authors:
-</div>
-<div class="blacktxt" style="position:absolute; left:320px; top:335px; width:256px; overflow:hidden;">
-  <%= link_to 'Sign up for your own Author site', "/signup" %><br>
-  Host live streaming talks <br>
-  List your books <br> 
-  <%= link_to 'List your online & in-person events', new_event_path %> <br>
-  Keep in touch with fans<br>
-  Coming soon: Sell ebooks
-</div>
-
-<div class="helps" style="position:absolute; left:600px; top:305px ">
-  Clubs &amp; Organizations:
-</div>
-<div id="blacktxt" style="position:absolute; left:600px; top:335px; width:400px;  ">
-  <%= link_to 'Sign up for a Club site', new_group_path %><br>
-  <%= link_to 'List your Club location so local booklovers can find you', new_group_path %> <br>
-  <%= link_to 'List your events so local booklovers can attend', new_event_path %> <br>
-  Coming soon: List members & their books (if applicable)
+  <div class="col-md-4" >
+    <div class="helps">
+      Clubs &amp; Organizations:
+    </div>
+    <div class="blacktxt">
+      <%= link_to 'Sign up for a Club site', new_group_path %><br>
+      <%= link_to 'List your Club location so local booklovers can find you', new_group_path %> <br>
+      <%= link_to 'List your events so local booklovers can attend', new_event_path %> <br>
+      Coming soon: List members & their books (if applicable)
+    </div>
+  </div>
 </div>
 
-<div class="helps" style="position:absolute; left:120px; top:520px ">
-    <%= link_to 'DC, VIRGINIA, MARYLAND Booklovers: Join the LOCAL AUTHORS SCENE', "/localauthorsscene" %><p>
+<div class="row" style="margin-top:20px;" >
+  <div class="col-md-12" >
+    <div class="helps" >
+      <%= link_to 'DC, VIRGINIA, MARYLAND Booklovers: Join the LOCAL AUTHORS SCENE', "/localauthorsscene" %><p>
+  </div>
+  </div>
 </div>
 
-<div class = "featured" style="position:absolute; left:29px; top:600px; ">
-   <p>
-  <% # link_to image_tag("bjBkCover170.png"), "http://BudgetJustified.com", :target => "_blank" %>
+<div class="row" style="margin-top:20px;" >
+  <div class="col-md-12" >
+    <%= image_tag("futureEmpStory.png", :size => "712x25") %>
+  </div>
 </div>
-<div class = "copyalpha" style="position:absolute; left:150px; top:570px;">
-  <%= image_tag("futureEmpStory.png", :size => "712x25") %>
-  <br><br><br><br> This site is still in alpha stage development 
-  <br><br>Questions? Contact Lisa@CrowdPublish.TV 
-  <br><br>(C) Copyright 2014, RoleModel Enterprises, LLC. All Rights Reserved.
+
+<div class="row" style="margin-top:60px;" >
+  <div class="col-md-12" >
+    <div class = "copyalpha" >
+      This site is still in alpha stage development 
+      <br><br>Questions? Contact Lisa@CrowdPublish.TV 
+      <br><br>(C) Copyright 2014, RoleModel Enterprises, LLC. All Rights Reserved.
+    </div>
+  </div>
 </div>
+

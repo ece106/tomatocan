@@ -4,12 +4,13 @@ class Book < ActiveRecord::Base
   has_many :reviews
   has_many :purchases
 
+  after_initialize :assign_defaults_on_new_book
+
   validates :title, presence: true
   validates :fiftychar, length: { maximum: 140 }
   validates :blurb, length: { maximum: 2000 }
   validates :user_id, presence: true
-  validates :price, presence: true,
-            :format => { :with => /\A\d+??(?:\.\d{0,2})?\z/ }
+ # validates :price, presence: true, :format => { :with => /\A\d+??(?:\.\d{0,2})?\z/ }
   default_scope order: 'books.releasedate DESC'
 
 #  mount_uploader :coverpic, ProfilepicUploader
@@ -22,5 +23,10 @@ class Book < ActiveRecord::Base
   mount_uploader :bookmobi, BookmobiUploader
   mount_uploader :bookepub, BookepubUploader
   mount_uploader :bookkobo, BookkoboUploader
+
+  private
+  def assign_defaults_on_new_book
+    self.price = 4.99
+  end
 
 end
