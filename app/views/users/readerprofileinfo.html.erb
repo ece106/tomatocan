@@ -1,6 +1,6 @@
-<% @title="CrowdPublish.TV: The Future of Empowerment is Your Story - edit user profile "  %>
+<% @title=" edit user profile "  %>
 
-<div id="pic" style="position:absolute; left:0px; top:35px; opacity:0.4;">
+<div style="position:absolute; left:0px; top:50px; opacity:0.4; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
@@ -19,25 +19,21 @@
   <%= form_for @user, :html => {:multipart => true} do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
 
-  <div class="copyalpha" style="position:absolute; left:0px; top:35px;">
-    <p>Upload a picture of yourself<br> (square is best)
-    <br><%= f.file_field :profilepic %><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    OR<br> URL to a picture of you <br>
-    <%= f.text_area :profilepicurl, :cols => 40, :rows => 1, placeholder:  "URL for profile pic (Square is best)" %>
-  </div>
-
-    <div id="bkinp" style="position:absolute; left:160px; top:25px; width:190px;">
-      <h2><%= @user.name %></h2>
+  <div class="col-md-5 col-sm-6 col-xs-5 " style="text-align:left">
+    <div class="copyalpha" >
+      Upload a picture of yourself (square is best)
+      <br><%= f.file_field :profilepic %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      OR - URL to a picture of you <br>
+      <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
     </div>
-    <div id="bkinp" style="position:absolute; left:160px; top:190px; width:190px;">
-      Three genres that categorize your work <br>
-      <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre that you read" %><br>
+
+    <div class="blacktxt" >
+      <br>Three genres that categorize your work <br>
+      <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
       <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
       <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
-    </div>
 
-    <div id="bkinp" style="position:absolute; left:0px; top:320px; width:350px;">
-      FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
+      <br>FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
       <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
 
       <br>URL to your blog <br>
@@ -45,17 +41,12 @@
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="featured"> @<%= f.text_area :twitter, :cols => 20, :rows => 1, placeholder: "Twitter" %> </div>
 
-      <p>Change account type:
-      <p><%= f.radio_button(:author, 1) %>
-      <%= label_tag(:author_child, "Reader") %>
-      <br><%= f.radio_button(:author, 2) %>
-      <%= label_tag(:author_adult, "Author") %>
- 
-      <br><br>Change your zip code, address, or city <br>
-      <%= f.text_area :address, :cols => 40, :rows => 1 %>
     </div>
+  </div>
+  
 
-    <div class="password" style="position:absolute; left:380px; top:40px;">
+  <div class="col-md-7 col-sm-6 col-xs-7 " style="text-align:left">
+    <div class="password" >
     <table>
       <tr>
         <td> Password:</td>
@@ -65,38 +56,27 @@
         <td><%= f.password_field :password_confirmation %></td>
       </tr> 
     </table>
-
-    <center><%= f.submit "Save user Info" %> </center>
-      You must enter & confirm password every time you visit this page.
-      After saving, you will be directed to your user profile. You may come back to this page to edit your info.
+      <center><%= f.submit "Save Profile" %> </center>
+      You must enter & confirm password every time you Save Profile info.
+      After saving, you will be directed to your user profile. You may come back to this page to edit your info.<br><br>
     </div>
 
-    <div id="signup" style="position:absolute; left:380px; top:200px;">
-      <p>Tell us all about yourself. <br />
+    <div class="blacktxt" >
+      <br>Tell us all about yourself. <br />
       <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>
+      <br>Change your zip code, address, or city <br>
+      <%= f.text_area :address, :cols => 40, :rows => 1 %>
+      <br>Change account type:
+      <br><%= f.radio_button(:author, 1) %>
+      <%= label_tag(:author_child, "Reader") %>
+      <br><%= f.radio_button(:author, 2) %>
+      <%= label_tag(:author_adult, "Author") %>
     </div>
+  </div>
   <% end %>
 <% end %>
 
-<div style="position:absolute; left:0px; top:0px">
-    <%= image_tag "purpleBar.png", :size => "1010x35" %>
-</div>
-<div class="usermenu" style="position:absolute; left:10px; top:7px; ">
-<%= link_to " Blog ", user_blog_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " About " + @user.name, user_profile_path(@user.permalink), :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to " CrowdPublishTV Home ", root_path(@user.permalink), :style => 'color:#FFFFFF' %>
-</div>
-<div class="usermenu" style="position:absolute; left:750px; top:7px; ">
-  <% if user_signed_in? %>
-    <%= link_to "#{current_user.name}", current_user, :style => 'color:#FFFFFF'  %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= link_to " Sign out ", destroy_user_session_path, :method => :delete, :style => 'color:#FFFFFF'%>
-  <% else %>
-    <%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    <%= link_to "Sign in", new_user_session_path, :style => 'color:#FFFFFF'%> 
-  <% end %>
-</div>
-
-<div id="userlist" style="position:absolute; left:0px; top:330px;">
+<div id="userlist" >
 <%= form_for(@user, :html => { :multipart => true }) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -110,5 +90,3 @@
   <% end %>
   </div>
 <% end %>
-
-</body>

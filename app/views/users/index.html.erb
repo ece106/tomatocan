@@ -7,25 +7,21 @@
   <% @users.each do |u| %>
 
     <% if u.profilepic.present? && u.profilepic != '' %> 
-      <div class="col-md-3 col-sm-2" >
-        <div class="row" style="vertical-align:center; horizontal-align:center; height:170px; overflow:hidden; " >
+      <div class="col-md-3 col-sm-4 col-xs-6" >
+        <div class="row" style="vertical-align:top; horizontal-align:center; height:230px; overflow:hidden; " >
           <%= link_to(image_tag(u.profilepic, :size => "170x170",  :title => u.name ), user_profile_path(u.permalink)) %> 
-        </div>
-        <div class="row" >
-          <%= link_to u.name, user_profile_path(u.permalink) %>
-          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
+          <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
         </div>
       </div> 
     <% elsif u.profilepicurl %>
       <% if u.profilepicurl.match /http/  %> 
         <% if u.profilepicurl.match /jpeg|jpg|gif|png|tif/  %> 
-           <div class="col-md-3 col-sm-2" >
-             <div class="row" style="vertical-align:center; horizontal-align:center; height:170px; overflow:hidden;" >
+          <div class="col-md-3 col-sm-4 col-xs-6 " >
+            <div class="row" style="vertical-align:top; horizontal-align:center; height:230px; overflow:hidden;" >
               <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> 
-            </div>
-            <div class="row" >
-              <%= link_to u.name, user_profile_path(u.permalink) %>
-              <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %><p>
+              <br><%= link_to u.name, user_profile_path(u.permalink) %>
+              <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
             </div>
           </div>
         <% end %>

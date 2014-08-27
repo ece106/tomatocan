@@ -29,23 +29,23 @@
   </div>
 </div>
 
-<div class="row" >
 <% if @user.books.any? %>
   <% @user.books.each do |book| %>
     <%= form_for(book) do |f| %>
-    <div class="col-md-3 col-sm-3 col-xs-3" >
-      <div class="fanbook" style="width:50px;height:70px;background-color:#cccfcc;  text-align: center; line-height:70%" >
+    <div class="row"  style="margin-top:5px;" >
+    <div class="col-md-4 col-sm-4 col-xs-4" >
+      <div class="fanbook" style="width:60px;height:85px;background-color:#cccfcc;  text-align: center; line-height:70%" >
         <% if book.coverpic.present? && book.coverpic != '' %>
-          <%= link_to image_tag(book.coverpic, :size => "50x65", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
+          <%= link_to image_tag(book.coverpic, :size => "60x85", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
         <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
-          <%= link_to image_tag(book.coverpicurl, :size => "50x65", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+          <%= link_to image_tag(book.coverpicurl, :size => "60x85", :title => "Purchase " + book.title), book_path(:id => book.id) %>
         <% elsif book.title.match /[0-9A-Za-z]/ %> 
           <div class="covertitle">
             <br><%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %>
           <p></div>
           <div class="covername" style= "color:#2c3651">
             <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
-          </div>
+          </div><br>
         <% end %>
       </div>
     </div>
@@ -56,8 +56,9 @@
         </div>
         <div style="float:right;width:25%;">
           &nbsp<%= book.genre %></div>
-        <div class="fifty"><%= book.fiftychar %></div>
+        <div class="fifty"><%= book.fiftychar %></div><br>
       </div>
+    </div>
     </div>
     <% end #form_for %>
   <% end #@user.bks.each do %>
@@ -67,6 +68,5 @@
   <% end %>
 <% end %>
 
-</div>
   
 </sidebar>

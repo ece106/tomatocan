@@ -1,6 +1,6 @@
-<% @title="CrowdPublish.TV: The Future of Empowerment is Your Story - edit user profile "  %>
+<% @title=" edit user profile "  %>
 
-  <div style="position:absolute; left:0px; top:50px; opacity:0.4; ">
+<div style="position:absolute; left:0px; top:50px; opacity:0.4; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
@@ -12,35 +12,28 @@
   <% else %>
     <%= image_tag "whiteBk.jpg", :size => "150x150" %>
   <% end %>
-  </div>
-
-<div class="row" >
-  <div class="col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left opacity:0.4;">
+</div>
 
 <% if @user == current_user %>
 
   <%= form_for @user, :html => {:multipart => true} do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
 
-  <div class="copyalpha" style="position:absolute; left:0px; top:35px;">
-    <p>Upload a picture of yourself<br> (square is best)
-    <br><%= f.file_field :profilepic %><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    OR - URL to a picture of you <br>
-    <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
-  </div>
-
-    <div id="bkinp" style="position:absolute; left:160px; top:25px; width:190px;">
-      <h2><%= @user.name %></h2>
+  <div class="col-md-5 col-sm-6 col-xs-5 " style="text-align:left">
+    <div class="copyalpha" >
+      Upload a picture of yourself (square is best)
+      <br><%= f.file_field :profilepic %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      OR - URL to a picture of you <br>
+      <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
     </div>
-    <div class="blacktxt" style="position:absolute; left:160px; top:190px; width:190px;">
-      Three genres that categorize your work <br>
+
+    <div class="blacktxt" >
+      <br>Three genres that categorize your work <br>
       <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
       <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
       <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
-    </div>
 
-    <div class="blacktxt" style="position:absolute; left:0px; top:320px; width:350px;">
-      FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
+      <br>FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
       <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
 
       <br>URL to your blog <br>
@@ -48,20 +41,21 @@
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="featured"> @<%= f.text_area :twitter, :cols => 20, :rows => 1, placeholder: "Twitter" %> </div>
 
+      <br>Change your zip code, address, or city <br>
+      <%= f.text_area :address, :cols => 40, :rows => 1 %>
+
       <br>Change account type:
       <br><%= f.radio_button(:author, 1) %>
       <%= label_tag(:author_child, "Reader") %>
       <br><%= f.radio_button(:author, 2) %>
       <%= label_tag(:author_adult, "Author") %>
-  
-      <br><br>Change your zip code, address, or city <br>
-      <%= f.text_area :address, :cols => 40, :rows => 1 %>
-
     </div>
+  </div>
   
 
-    <div class="password" style="position:absolute; left:380px; top:40px;">
-    <table>
+  <div class="col-md-7 col-sm-6 col-xs-7 " style="text-align:left">
+    <div class="password" >
+      <table>
       <tr>
         <td> Password:</td>
         <td><%= f.password_field :password %></td>
@@ -69,32 +63,32 @@
         <td>Password Confirmation:</td>
         <td><%= f.password_field :password_confirmation %></td>
       </tr> 
-    </table>
+      </table>
 
-    <center><%= f.submit "Save Profile" %> </center>
+      <center><%= f.submit "Save Profile" %> </center>
       You must enter & confirm password every time you Save Profile info.
-      After saving, you will be directed to your user profile. You may come back to this page to edit your info.
+      After saving, you will be directed to your user profile. You may come back to this page to edit your info.<br><br>
     </div>
 
-    <div class="blacktxt" style="position:absolute; left:380px; top:200px;">
+    <div class="blacktxt" >
       In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Home Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
-      <br>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Click on <b>Channel Settings</b> then click on <font color = "0000FF"> Embed</font> on the left side of your screen. You will see the code to Embed the <font color = "0000FF"> Live </font> video player. It looks something like the default code below. 
-<br> 
-Copy & paste the Live code from your Ustream account to replace the default code below. <br />
-    <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder:  '<iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href= "http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free desktop streaming application by Ustream</a>' %>
-    <br>On the same Embed page in your Ustream account, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to the default code below. 
-    Copy & paste the Social Stream code from your Ustream account to replace the default code below. <br />
-    <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>' %>
 
-    <p>Tell us all about yourself. <br />
-    <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>
+      <br><br>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Click on <b>Channel Settings</b> then click on <font color = "0000FF"> Embed</font> on the left side of your screen. You will see the code to Embed the <font color = "0000FF"> Live </font> video player. It looks something like the default code below. 
+
+      <br> Copy & paste the Live code from your Ustream account to replace the default code below. <br />
+      <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder:  '<iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href= "http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free desktop streaming application by Ustream</a>' %>
+      <br>On the same Embed page in your Ustream account, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to the default code below. 
+      Copy & paste the Social Stream code from your Ustream account to replace the default code below. <br />
+      <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>' %>
+
+      <br>Tell us all about yourself. <br />
+      <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>
     </div>
+  </div>
   <% end %>
 <% end %>
-  </div>
-</div>
 
-<div id="userlist" style="position:absolute; left:0px; top:330px;">
+<div id="userlist" >
 <%= form_for(@user, :html => { :multipart => true }) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -108,5 +102,3 @@ Copy & paste the Live code from your Ustream account to replace the default code
   <% end %>
   </div>
 <% end %>
-
-</body>
