@@ -1,8 +1,4 @@
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
-
-  <%= render 'form' %>
-
-<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
+<div id="calendar"  align:"left">
 
 <% if @group.user_id == current_user.id %>
   <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -32,8 +28,7 @@
   <div class="field">
     About group: How often do you usually meet? What would people likely join your group for? <br>
     <%= f.text_area :about, :cols => 62, :rows => 5 %>
-  </div>
-  <div class="field">
+  <div class="field" style= "text-align:left">
       <p>Group type:
       <p><%= f.radio_button(:grouptype, 1) %>
       <%= label_tag(:grouptype_child, "Critique Group") %>
@@ -50,6 +45,7 @@
       <br><%= f.radio_button(:grouptype, 7) %>
       <%= label_tag(:grouptype_adult, "Other") %>
   </div>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
@@ -59,6 +55,5 @@
  
 <% end %>
 
-<%= link_to 'Back', groups_path %>
 </div>
 </div>

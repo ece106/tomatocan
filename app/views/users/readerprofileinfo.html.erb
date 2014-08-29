@@ -1,6 +1,6 @@
 <% @title=" edit user profile "  %>
 
-<div style="position:absolute; left:0px; top:50px; opacity:0.4; ">
+<div style="position:absolute; left:0px; top:50px; opacity:0.3; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
@@ -20,14 +20,12 @@
     <%= render 'shared/error_messages', :object => f.object %>
 
   <div class="col-md-5 col-sm-6 col-xs-5 " style="text-align:left">
-    <div class="copyalpha" >
+    <div class="blacktxt" >
       Upload a picture of yourself (square is best)
       <br><%= f.file_field :profilepic %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       OR - URL to a picture of you <br>
       <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
-    </div>
 
-    <div class="blacktxt" >
       <br>Three genres that categorize your work <br>
       <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
       <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>

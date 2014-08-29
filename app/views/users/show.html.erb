@@ -20,10 +20,7 @@
     <% elsif %>
       <iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
     <% end %>
-  </div>
 
-  <div class="row" >
-    <div class="col-md-8 col-md-offset-4" >
     <% if @user.ustreamsocial? %>
       <% if @user.ustreamsocial.match /<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http:\/\/www.ustream.tv\/socialstream/ %>
         <%= @user.ustreamsocial.html_safe %>
@@ -34,20 +31,20 @@
       <% end %>
       <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
     <% end %>
-    </div>
   </div>
 
 <% else  %>
-  <div class="blurb" >
-    <%= @user.about %>
-  </div>
-   <% if @user.twitter %>
-      <div class="row">
+  <div class="row" >
+    <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
+      <div class="blurb" >
+        <%= @user.about %>
+      </div><br><br>
+      <% if @user.twitter %>
         <a class="twitter-timeline"    
         data-widget-id="375760459510464512"
         data-screen-name="<%= @user.twitter %>" data-show-replies="false"
         data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
-      </div>
-    <% end %>
-    
+      <% end %>
+    </div>
+  </div>
 <% end %>

@@ -1,9 +1,7 @@
 <% @title="CrowdPublish.TV - Post an event" %>
 <div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
 
-<%= render 'form' %>
-
-<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
+<div id="calendar" style="position:absolute; width:900px; height:757px;" align:"left">
 
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
@@ -21,7 +19,7 @@
 
   <div class="field">
     Event title......
-    <%= f.text_field :name, :size => 60 %><p>
+    <%= f.text_field :name, :size => 94 %><p>
   </div>
 
   <div class="field">
@@ -35,11 +33,11 @@
   </div>
   <div class="field">
     Description of event<br />
-    <%= f.text_area :desc, :cols => 162, :rows => 5 %><p>
+    <%= f.text_area :desc, :cols => 110, :rows => 5 %><p>
   </div>
   <div class="field">
     If an in-person event, street address where this event will take place, otherwise enter "online" <br />
-    <%= f.text_field :address, :size => 180 %><p>
+    <%= f.text_field :address, :size => 108 %><p>
   </div>
   <div class="actions">
     <%= f.submit %>

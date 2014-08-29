@@ -1,27 +1,34 @@
-<table CELLPADDING="0" CELLSPACING="8" WIDTH="620">
-  <tr>
-    <td > </td>
-    <td>
-    <div style="float:left;width:75%;">
-      <b><%= link_to(book.title, book) %></b> </a></div>
-    <div style="float:right;width:25%;">&nbsp&nbsp<%= book.genre %></div>
-    </td></tr>
-  <tr>
-    <td style="width:75px;height:98px;background-color:#dddddd; " >
+<div class="row" >
+  <div class="col-lg-9 col-lg-offset-2 col-md-9 col-md-offset-2 col-sm-9 col-sm-offset-2 col-xs-11 " >
+    <div class="blurb" style= "text-align:left; ">
+      <b><%= link_to(book.title, book) %></b>
+    </div>  
+  </div>
+  <div class="col-md-1 col-sm-1 col-xs-1 ">
+    <%= book.genre %>
+  </div>
+</div>
 
+<div class="row" >
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " style="width:100px; height:133px; background-color:#dddddd; " >
     <% if book.coverpic.present? && book.coverpic != '' %>
-      <%= link_to image_tag(book.coverpic, :size => "75x98", :title => "Purchase " + book.title), book_path(:id => book.id) %>
-      
+      <%= link_to image_tag(book.coverpic, :size => "100x133", :title => "Purchase " + book.title), book_path(:id => book.id) %>
     <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
-      <%= link_to image_tag(book.coverpicurl, :size => "75x98", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+      <%= link_to image_tag(book.coverpicurl, :size => "100x133", :title => "Purchase " + book.title), book_path(:id => book.id) %>
     <% elsif book.title.match /[0-9A-Za-z]/ %> 
       <div class="covertitle">
-        <%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %><p></div>
+        <br><%= link_to book.title, book_path(:id => book.id), :style => 'color:#880000', :title => "Purchase " + book.title %><br><br>
+      </div>
       <div class="covername" style= "color:#2c3651">
         <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
       </div>
     <% end %>
-    </td>
-    <td class="blurb" style= "color:2c3651"> <%= book.blurb %></td>
-  </tr>
-</table>
+  </div>
+  <div class="col-lg-9 col-md-9 col-md-offset-0 col-sm-9 col-xs-9 " >
+    <div class="blurb" style= "color:2c3651"> <%= book.blurb %>
+    </div>
+  </div>
+</div>
+<div class="row" >
+  <br><br>
+</div>
