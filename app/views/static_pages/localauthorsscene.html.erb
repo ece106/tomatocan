@@ -4,48 +4,38 @@
 <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
 </head>
 
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:950px;">
-
-<div id="txt_13" style="position:absolute; left:65px; top:365px;">
-  <%= image_tag("bubbleButton165.png", :size => "155x40") %>
-</div>
-
-<div id="txt_13" style="position:absolute; left:73px; top:320px; width:800px;">
-  <%= image_tag("futureEmpStory.png", :size => "712x25") %><br><br>
+<div class="row" >
+  <div class="col-sm-10 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+    <%= image_tag("futureEmpStory.png", :size => "712x25") %><br><br>
   
-  <table CELLPADDING="0" CELLSPACING="8" WIDTH="700">
-    <tr>
-      <td style=> 
         <div class="signupbutton" > 
-          <%= link_to ' SIGN UP ', "/signup" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for the Local Authors Scene!</div>
-        <div class="sidebartitle"  style="float:right;width:75%;">
-          Make sure to enter your DC area zip code</div>
-      </td>
-    </tr> 
+          <%= image_tag("bubbleButton165.png", :size => "155x40") %>
+          for the Local Authors Scene!
+        </div><br>
 
-    <tr>
-      <td > 
-        <br>
+
 Come to the Local Authors Scene meetings the 4th Saturday of each month.<br>
-<b>AUGUST'S MEETING IS AT THE PATRICK HENRY LIBRARY IN VIENNA </b><br> 
-101 Maple Avenue East, Vienna, VA<br>
-Saturday August 23 1:00 – 3:00pm <p>
+<b>SEPTEMBER'S MEETING IS AT THE LORTON LIBRARY </b><br> 
+9520 Richmond Highway, Lorton, VA<br>
+Saturday September 27 1:00 – 3:00pm <br><br>
 
-INVITE 7 (or more!) OF YOUR COLLEAGUES by sending them this link:<br> http://CrowdPublish.TV/localauthorsscene<br> The more everyone spreads the word, the more buzz there will be about your books!<p>
+INVITE 7 (or more!) OF YOUR COLLEAGUES by sending them this link:<br> 
+    <div class="sidebartitle" >
+        http://CrowdPublish.TV/localauthorsscene
+    </div> 
+The more everyone spreads the word, the more buzz there will be about your books!
+<br><br>
 
-<%= link_to 'POST YOUR BOOK SIGNINGS & OTHER EVENTS SUPPORTIVE OF LOCAL AUTHORS', new_event_path %> on the new <%= link_to 'Calendar', calendar_path %> We're gathering booklovers in the DC metro area to network, collaborate, and promote events that support local & indie authors. <p>
+<%= link_to 'POST YOUR BOOK SIGNINGS & OTHER EVENTS SUPPORTIVE OF LOCAL AUTHORS', new_event_path %> on the new <%= link_to 'Calendar', calendar_path %> We're gathering booklovers in the DC metro area to network, collaborate, and promote events that support local & indie authors. <br><br>
 
 <%= link_to 'POST YOUR BOOK ORGANIZATIONS', new_group_path %> (critique groups, coffee klatches, book clubs, etc.) on the new <%= link_to 'Organizations List', new_group_path %> so booklovers can find your book-related groups & events
 <% if !user_signed_in? %>
    (You must be <%= link_to 'signed in', "/signup" %> to post. Make sure you enter your DC area zip code in your profile.)  
 <% end %>.
-<p>
+<br><br>
 
-Let me know if you have questions! Lisa@CrowdPublish.TV <p> 
+Let me know if you have questions! Lisa@CrowdPublish.TV <br><br> 
 
-(The September 27 meeting is a self-publishing panel at the Lorton Library. We will also meet for lunch at the National Book Festival on Sat. August 30 at the DC Convention Center and will meet at Sherwood Center in Fairfax for a for Fall for the Book panel at 3:00 Sept. 14 and at the GWU Manassas campus for a Fall for the Book event at 6:00 on Sept. 18. Carpool to Manassas leaves Vienna at 5:00. - See <%= link_to 'Calendar', calendar_path %>. )
+(The October 25 meeting will be a talk by Poet Laureate Robert Scott at the John Marshal Library in Alexandria. We will also meet at the Sherwood Center in Fairfax for a for Fall for the Book panel at 3:00 Sun Sept. 14 and at the GWU Manassas campus for a Fall for the Book event at 6:00 on Thu Sept. 18. Carpool to Manassas leaves Vienna at 5:00. - See <%= link_to 'Calendar', calendar_path %>. )
  
-      </td>
-    </tr> 
-  </table>
-</div>
+</div></div>

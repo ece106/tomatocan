@@ -1,10 +1,11 @@
-<div style="background-color:transparent;text-align:left;margin-left:auto;margin-right:auto;position:relative;width:850px;">
-
-  <%= render 'form' %>
-
-<div id="calendar" style="position:absolute; left:0px; top:310px; width:900px; height:757px;" align:"left">
+<div class="row" >
+  <div class="col-md-8 col-sm-offset-2 col-sm-9 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
 
 <p id="notice"><%= notice %></p>
+
+  <% if @group.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_group_path(@group) %> |
+  <% end %><br><br>
 
 <p>
   <strong><%= @group.name %></strong>
@@ -19,7 +20,7 @@
   <strong>Group Host:</strong>
   <%= link_to @user.name, user_profile_path(@user.permalink) %>
 </p>
-
+  
 <p>
   <strong>About:</strong>
   <%= @group.about %>
@@ -36,11 +37,7 @@
           <% else @group.grouptype == 7 %> Other
           <% end %></p>
 
-  <% if @group.user_id == current_user.id %>
-    <%= link_to 'Edit', edit_group_path(@group) %> |
-  <% end %>
+  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %>
 
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@group.latitude}%2C#{@group.longitude}" %>
-
-</div>
+  </div>
 </div>

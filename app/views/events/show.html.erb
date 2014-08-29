@@ -1,15 +1,12 @@
 <% @title="CrowdPublish.TV - Upcoming Book Event in DC" %>
-<!--rails generate migration add_fields_to_events desc:text address:string rsvp:string address:string user_id:integer
-rails generate migration add_login_to_events personname:string email:string
--->
-<p id="notice"><%= notice %></p>
-<%= render 'form' %>
+<div class="row" >
+  <div class="col-md-8 col-sm-offset-2 col-sm-9 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+    <p id="notice"><%= notice %></p>
 
-<div id="calendar" style="position:absolute; left:100px; top:340px; width:900px; height:757px; text-align:left">
 <p>
   <% if @event.user_id == current_user.id %>
     <%= link_to "Edit", edit_event_path(@event) %> |
-    <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+    <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> 
   <% end %>
 </p>
 
@@ -42,4 +39,5 @@ rails generate migration add_login_to_events personname:string email:string
 
 <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}" %>
 
+  </div>
 </div>

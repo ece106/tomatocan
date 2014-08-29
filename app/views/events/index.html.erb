@@ -1,6 +1,6 @@
-<div id="calendar" >
+<div id="groups" style="position:absolute; width:1000px; height:757px;" >
 
-  <%= form_tag events_path, :method => :get do %>
+    <%= form_tag events_path, :method => :get do %>
       <table >
       <tr>
         <th>Address</th>
@@ -14,8 +14,8 @@
         <td><%= submit_tag "Search Near", :name => nil %></td>
         <td> Or in your MicroLocal area (1 - 5 miles) </td>
       </tr>
-    </table>  
-  <% end %>
+      </table>  
+    <% end %>
 
 <h1>Listing of events</h1>
 
