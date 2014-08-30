@@ -86,6 +86,8 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.latitude = request.location.latitude
+    @user.longitude = request.location.longitude
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -103,8 +105,6 @@ class UsersController < ApplicationController
   # POST /users.json 
   def create
     @user = User.new(user_params)
-    @user.latitude = request.location.latitude
-    @user.longitude = request.location.longitude
     if @user.save
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
