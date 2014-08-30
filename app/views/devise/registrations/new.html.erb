@@ -28,7 +28,8 @@
   <%= f.password_field :password_confirmation %><p>
   <%= f.submit "Sign up" %>
 
-   <%= request.location.longitude %>
+  <%= f.hidden_field :latitude, :value => request.location.latitude %>
+  <%= f.hidden_field :longitude, :value => request.location.longitude %>
 
 <% end %>
 
