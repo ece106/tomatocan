@@ -25,7 +25,7 @@
     <div class="smmenu" style="text-align:left; " >
       <% if user_signed_in? %>
         <br><%= link_to "My profile", user_profile_path(current_user.permalink) %>
-        <br><%= link_to 'Sign out', "/signout" %>
+        <br><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
       <% else %>
         <br><%= link_to 'SIGN UP!', "/signup" %>
         <br><%= link_to 'Sign in', "/login" %>

@@ -103,6 +103,8 @@ class UsersController < ApplicationController
   # POST /users.json 
   def create
     @user = User.new(user_params)
+    @user.latitude = request.location.latitude
+    @user.longitude = request.location.longitude
     if @user.save
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)

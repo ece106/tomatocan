@@ -1,6 +1,8 @@
   class User < ActiveRecord::Base
     geocoded_by :address
+    reverse_geocoded_by :latitude, :longitude
     after_validation :geocode, :if => :address_changed?
+    after_validation :reverse_geocode, :if => :latitude_changed?
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -51,6 +53,8 @@
   private
   def assign_defaults_on_new_user
     self.author = 2
+#    self.latitude = request.location.latitude
+#    self.longitude = request.location.longitude
   end
 
 #  def authenticate(email, password)
