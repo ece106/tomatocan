@@ -86,8 +86,8 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.latitude = params[:latitude]
-    @user.longitude = params[:longitude]
+    @user.latitude = request.location.latitude
+    @user.longitude = request.location.longitude
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
