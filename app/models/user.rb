@@ -53,8 +53,6 @@
   private
   def assign_defaults_on_new_user
     self.author = 2
-#    self.latitude = request.location.latitude
-#    self.longitude = request.location.longitude
   end
 
 #  def authenticate(email, password)

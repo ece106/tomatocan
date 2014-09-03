@@ -1,10 +1,7 @@
-<% userid = @book.user_id %>
-<% user = User.find(userid) %>
-
 <div class="row" >
   <div class="col-md-6 col-sm-10 col-xs-12">
     <div class="socialize" > 
-      <b><%= @book.title %></b> by <%= user.name %>
+      <b><%= @book.title %></b> by <%= @user.name %>
     </div>
   </div>
   <div class="col-md-6 col-sm-2 col-xs-12">
@@ -23,7 +20,7 @@
             <br><%= @book.title %> <br> <br>  
           </div>
           <div class="covername" >
-            <%= user.name %> 
+            <%= @user.name %> 
           </div>
         <% end %>
   </div>

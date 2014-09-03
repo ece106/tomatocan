@@ -24,16 +24,16 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-      if @book.update_attributes(book_params)
-         redirect_to user_profile_path(current_user.permalink)
-      else
-         redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info."
-      end
+    if @book.update_attributes(book_params)
+      redirect_to user_profile_path(current_user.permalink)
+    else
+      redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info."
+    end
   end
 
-  # GET /books/1
   def show
     @book = Book.find(params[:id])
+    @user = User.find(@book.user_id)
 #    @purchases = @book.purchases
 
     respond_to do |format|

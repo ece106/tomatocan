@@ -1,10 +1,4 @@
 TODAY
-- Make flyers for Natl Book & libraries about Loc Author Scene w/CrowdPublish.tv signup
-- Make a Signup For Event model
-
-BEFORE NEXT HEROKU PUSH
-- signup Button needs text
-- reader menubar
 
 
 CrowdPublishTV
@@ -13,8 +7,9 @@ CrowdPublishTV
 - Create bookaudio uploader
 - Sell books without navigating away from live video
 
+- Authors' speaking calendar
+- Event registration (eventbrite)
 * Alert users to what the mistake is in editing profile (prob w/devise resource)
-* Add zipcode to profile on signup using geocode gem
 - Signup with facebook and twitter
 - Calendar of livestream events
 - Password reset
@@ -41,24 +36,20 @@ CrowdPublishTV
 - Author & club email lists, fans can opt out
 - Club pages have permalinks
 
-- Put _form in app.html.erb, not indiv view folders & move onestat to js file
-- Eliminate so many CSS types & clean up centered stuff in readerprofileinfo
+- Move onestat to js file
+- Eliminate so many CSS types 
 - Buttons to purchase ebooks
-- Get <% user = User.find(userid) %> out of books show.erb & in controller show method
-- Change table margins so users#show doesn't have a big gray box
 - Shadowbox for TOS & so users don't navigate away from page when buying books
 
-* TOS
-* Recruit remote adopters & Scene adopters - what would make them engage
-
+* Recruit remote adopters & Scsene adopters - what would make them engage
+- Open source mit-like license
 
 
 Local Authors Scene
-- Recruit more book groups to attend Aug
+- Recruit more book groups to attend
 - Bill: Sept mtg 3 mo in advance
 - Meetup: anyone interested in livestream event
 - Find someone to do twitter & Facebook, outreach
-- Look into lunch at Natl Book
 - Ask Libraries to post events supportive of local/indie authors, who's in charge
 * Get orgs, book clubs, meetups - post their groups manually
 
@@ -66,7 +57,6 @@ Local Authors Scene
 
 
 SentenceZing
-- Review Operating Agreement
 - Talk to Chris about tshirts
 - How to submit Articles of Incorporation & $
 
@@ -87,7 +77,7 @@ SentenceZing
 - RSVP
 - email members/fans
 - Live video
-- Much better design
+- Speaking calendar filtered by author
 - Custom pages
 - Facebook-like comments from fans
 
