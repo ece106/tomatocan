@@ -1,10 +1,7 @@
-<% @title="CrowdPublish.TV - The Future of Empowerment is Your Story "  %>
-
-<%= render 'authorsidebar' %>
+<div class="col-md-5 col-sm-6 col-xs-5 " style="text-align:left">
 
 <% if @user == current_user %>
 
-<div id="bkinp" style="position:absolute; overflow:hidden; left:400px; top:100px;">
 
 <%= form_for @book, :html => {:multipart => true} do |f| %>
   <%= render 'shared/error_messages' %>
@@ -133,8 +130,7 @@
    <% end %>
 <% end %>
 
-</div>
-
 <p id="notice"><%= notice %></p>
+</div>
 
 </body>
