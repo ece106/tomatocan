@@ -1,0 +1,21 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrowdPublish.TV <%  @user.name %> 's calendar</title>
+<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
+<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
+</head>
+
+<div class="row" >
+  <div class="col-lg-8 col-md-7 col-sm-5 col-xs-12 " style= "text-align:left" >
+    <%= stylesheet_link_tag "event_calendar" %>
+
+    <div id="calendar" >
+        See all <%= @user.name %> <%= link_to ' Upcoming Events & times as a LIST', user_eventlist_path %>
+      <br><br><%= raw(event_calendar) %>
+      <br />
+    </div>
+  </div>
+</div>  

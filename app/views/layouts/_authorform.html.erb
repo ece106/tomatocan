@@ -14,17 +14,18 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
       <ul class="nav navbar-nav">
         <% if @user.author == 2 %>
           <li><%= link_to @user.name + " Books ", user_booklist_path(@user.permalink) %>
-          <li><%= link_to " Live Events ", user_profile_path(@user.permalink) %>
+          <li><%= link_to " Live Event ", user_profile_path(@user.permalink) %>
+          <li><%= link_to " Calendar ", user_calendar_path(@user.permalink) %>
         <% else %>
           <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
         <% end %>
           <li><%= link_to " Blog ", user_blog_path(@user.permalink) %>
-          <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
       </ul>    
     </ul>
 
     <div class="usermenu" >
       <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
         <% if user_signed_in? %>
           <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
           <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>

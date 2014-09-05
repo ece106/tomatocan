@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       format.json { render json: @users }
     end
   end
-
   def show
     @user = User.find_by_permalink(params[:permalink])
 #    @user = User.find(params[:id])
@@ -23,19 +22,29 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-
   def blog
     @user = User.find_by_permalink(params[:permalink])
-
     respond_to do |format|
       format.html # blog.html.erb
       format.json { render json: @user }
     end
   end
-
-
-  # GET /users/1  
-  # GET /users/1.json
+  def calendar
+    @month = (params[:month] || (Time.zone || Time).now.month).to_i
+    @year = (params[:year] || (Time.zone || Time).now.year).to_i
+    @shown_month = Date.civil(@year, @month)
+    @user = User.find_by_permalink(params[:permalink])
+    @events = Event.all 
+    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :user_id => @user.id } ) 
+  end
+  def eventlist
+    @user = User.find_by_permalink(params[:permalink])
+    @events = Event.all( :conditions => { :user_id => @user.id } ) 
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
+  end
   def profileinfo
     @user = User.find_by_permalink(params[:permalink])
 #    @user.updating_password = false

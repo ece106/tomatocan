@@ -1,0 +1,33 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrowdPublish.TV <%  @user.name %> 's calendar</title>
+<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
+<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
+</head>
+
+<div class="row" >
+  <div class="col-md-7 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+<% if @events.count != 0 %>
+  <table >
+  <tr>
+    <th>Event </th>
+    <th>When</th>
+    <th>Where</th>
+  </tr>
+
+    <% @events.sort_by{|t| t.start_at}.each do |event| %>
+      <% if event.start_at.to_i >= Time.now.to_i - 18000  %>
+  <tr>
+    <td ><%= link_to event.name, event %></td>
+    <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
+    <td><%= event.address %></td>
+  </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>  
+  </div>
+</div>  
