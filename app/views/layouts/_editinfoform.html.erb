@@ -11,12 +11,12 @@
           <li><%= link_to " About ", user_profile_path(@user.permalink) %>
         <% end %>
           <li><%= link_to " Blog ", user_blog_path(@user.permalink) %>
-          <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
       </ul>    
     </ul>
 
     <div class="usermenu" >
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
         <% if user_signed_in? %>
           <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
         <% else %>

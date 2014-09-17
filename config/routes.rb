@@ -17,7 +17,6 @@ Crowdpublishtv::Application.routes.draw do
   match 'tos', to: 'static_pages#tos', via: 'get'
   
   resources :purchases
-   
   resources :plans
   resources :purchases
   resources :events

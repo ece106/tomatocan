@@ -131,6 +131,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
     else
+#      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       redirect_to user_profileinfo_path(current_user.permalink)
     end
   end

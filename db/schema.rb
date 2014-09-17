@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 201309200000000) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "books", force: true do |t|
     t.string   "title"
     t.text     "blurb"
@@ -55,7 +58,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer  "user_id"
     t.text     "about"
     t.string   "grouppic"
-    t.integer  "type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "grouptype"

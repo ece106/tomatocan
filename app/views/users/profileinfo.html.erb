@@ -16,8 +16,11 @@
 
 <% if @user == current_user %>
 
+  <%#= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
   <%= form_for @user, :html => {:multipart => true} do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
+    <%= devise_error_messages! %>
 
   <div class="col-md-5 col-sm-6 col-xs-5 " style="text-align:left">
     <div class="blacktxt" >
@@ -47,6 +50,7 @@
       <%= label_tag(:author_child, "Reader") %>
       <br><%= f.radio_button(:author, 2) %>
       <%= label_tag(:author_adult, "Author") %>
+ 
     </div>
   </div>
   
@@ -66,6 +70,7 @@
       <center><%= f.submit "Save Profile" %> </center>
       You must enter & confirm password every time you Save Profile info.
       After saving, you will be directed to your user profile. You may come back to this page to edit your info.<br><br>
+
     </div>
 
     <div class="blacktxt" >
