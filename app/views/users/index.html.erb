@@ -16,7 +16,7 @@
       </div> 
     <% elsif u.profilepicurl %>
       <% if u.profilepicurl.match /http/  %> 
-        <% if u.profilepicurl.match /jpeg|jpg|gif|png|tif/  %> 
+        <% if u.profilepicurl.match /jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/  %> 
           <div class="col-md-3 col-sm-4 col-xs-6 " >
             <div class="row" style="vertical-align:top; horizontal-align:center; height:230px; overflow:hidden;" >
               <%= link_to(image_tag(u.profilepicurl, :size => "170x170", :title => u.name), user_profile_path(u.permalink)) %> 

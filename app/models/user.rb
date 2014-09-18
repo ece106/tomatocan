@@ -7,7 +7,7 @@
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable #, :validatable
 
   after_initialize :assign_defaults_on_new_user, if: 'new_record?'
   
@@ -23,15 +23,22 @@
   has_many :purchases
   default_scope order: 'users.updated_at DESC'
 
+#  validates_uniqueness_of    :email,     :case_sensitive => false, :allow_blank => true, :if => :email_changed?
+  validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
+  validates_presence_of    :password, :on=>:create
+  validates_confirmation_of    :password, :on=>:create
+  validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
+
   validates :permalink, presence: true, length: { maximum: 20 },
                     format:     { with: /\A[\w+]+\z/ },
                     uniqueness: { case_sensitive: false }
   validates :name, presence: true, length: { maximum: 50 }
+#  validates :twitter, length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
   validates :email, presence:   true,
-                    format:     { with: VALID_EMAIL_REGEX },
+#                    format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-#  devise now handles email validations
 #  validates :password, presence: true # :if => :should_validate_password?  # :on => :create
 #  validates :password_confirmation, presence: true 
 

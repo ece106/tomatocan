@@ -44,21 +44,6 @@
   
 
   <div class="col-md-7 col-sm-6 col-xs-7 " style="text-align:left">
-    <div class="password" >
-    <table>
-      <tr>
-        <td> Password:</td>
-        <td><%= f.password_field :password %></td>
-      </tr> <tr>
-        <td>Password Confirmation:</td>
-        <td><%= f.password_field :password_confirmation %></td>
-      </tr> 
-    </table>
-      <center><%= f.submit "Save Profile" %> </center>
-      You must enter & confirm password every time you Save Profile info.
-      After saving, you will be directed to your user profile. You may come back to this page to edit your info.<br><br>
-    </div>
-
     <div class="blacktxt" >
       <br>Tell us all about yourself. <br />
       <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %>

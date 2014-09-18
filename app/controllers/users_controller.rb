@@ -125,7 +125,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
- #   @booklist = Book.where(:user_id => @user.id)
 
     if @user.update_attributes(user_params)
       sign_in @user
