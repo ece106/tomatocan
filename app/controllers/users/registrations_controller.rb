@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
        devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:permalink, :name, :updating_password, :email, :password, :author, :password_confirmation, :remember_me, :address, :latitude, :longitude)}
     end
 
-  def update    #I don't update registrations is at this point
+  def update    #I don't update registrations at this point
     account_update_params = devise_parameter_sanitizer.sanitize(:account_update)
 
     # required for settings form to submit when password is left blank
