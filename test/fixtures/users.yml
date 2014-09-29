@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   name: MyString
   email: fake@fake.com
   ustreamvid: MyText
@@ -17,10 +18,11 @@ one:
   profilepic: MyString
   author: 1
   about: MyText
-  password_digest: MyString
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   remember_token: MyString
 
 two:
+  id: 2
   name: MyString2
   email: MyString2
   ustreamvid: MyText2

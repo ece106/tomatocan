@@ -18,25 +18,27 @@ class GroupsControllerTest < ActionController::TestCase
   end
 
   test "should create group" do
-    post :create, session: { email: "fake@fake.com", password: 'invalid' }
+    post :create, session: { email: "fake@fake.com", password: 'password' }
     assert_difference('Group.count') do
       post :create, group: { about: @group.about, address: @group.address, grouppic: @group.grouppic, latitude: @group.latitude, longitude: @group.longitude, name: @group.name, grouptype: @group.grouptype, user_id: @group.user_id }
     end
-
     assert_redirected_to group_path(assigns(:group))
   end
 
   test "should show group" do
-    get :show, id: @group
+    @group = groups(:one)
+    get :show, id: @group, session: { email: "fake@fake.com", password: 'password' }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @group
+    @group = groups(:one)
+      get :edit, id: @group, session: { email: "fake@fake.com", password: 'password' }
     assert_response :success
   end
 
   test "should update group" do
+    @group = groups(:one)
     patch :update, id: @group, group: { about: @group.about, address: @group.address, grouppic: @group.grouppic, latitude: @group.latitude, longitude: @group.longitude, name: @group.name, grouptype: @group.grouptype, user_id: @group.user_id }
     assert_redirected_to group_path(assigns(:group))
   end
@@ -45,7 +47,6 @@ class GroupsControllerTest < ActionController::TestCase
     assert_difference('Group.count', -1) do
       delete :destroy, id: @group
     end
-
     assert_redirected_to groups_path
   end
 end
