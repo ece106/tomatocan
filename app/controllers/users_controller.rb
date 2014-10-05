@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
+  # GET /users/new I don't think this is used
   def new
     @user = User.new
     respond_to do |format|

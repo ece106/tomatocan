@@ -6,6 +6,7 @@ one:
   email: fake@fake.com
   ustreamvid: MyText
   ustreamsocial: MyString
+  permalink: user1
   twitter: MyString
   facebook: MyString
   pinterest: MyString
@@ -18,15 +19,16 @@ one:
   profilepic: MyString
   author: 1
   about: MyText
-  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString
 
 two:
   id: 2
   name: MyString2
-  email: MyString2
+  email: MyString2@fake.com
   ustreamvid: MyText2
   ustreamsocial: MyString2
+  permalink: user2
   twitter: MyString2
   facebook: MyString2
   pinterest: MyString2
@@ -39,5 +41,5 @@ two:
   profilepic: MyString2
   author: 2
   about: MyText2
-  password_digest: MyString2
+  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString2

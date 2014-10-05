@@ -42,7 +42,7 @@
 #  validates :password, presence: true # :if => :should_validate_password?  # :on => :create
 #  validates :password_confirmation, presence: true 
 
-  def should_validate_password?
+  def should_validate_password?  # I don't think this is used
     updating_password || new_record?
   end
 
