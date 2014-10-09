@@ -2,6 +2,15 @@ class BooksController < ApplicationController
 #  before_filter :signed_in_user
   before_filter :authenticate_user!
 
+  def index # This will be a result of some filters
+    @books = Book.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+    end
+  end
+
   def create
     @book = current_user.books.build(book_params)
     if @book.save
@@ -11,7 +20,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
+  def edit #I don't think this is used
    # @booklist = Book.find(params[:author_id])
     @book = Book.find(params[:id])
     @purchases = @book.purchases
@@ -47,10 +56,7 @@ class BooksController < ApplicationController
 #redirect_to "https://authorprofile.s3.amazonaws.com/book/14/bookpdf/LisaSchaeferCV.docx"
   end
 
-  def destroy
-  end
-
-  def new
+  def destroy # Put in something that assigns the book to CrowdPublishTV admin when a user wants to delete
   end
 
 

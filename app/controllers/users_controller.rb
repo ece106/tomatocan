@@ -135,7 +135,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1.json 
+  # DELETE /users/1.json # Should replace this with a bool. No destroying users, just different status
   def destroy
     @user = User.find_by_permalink(params[:permalink])
     @user.destroy
