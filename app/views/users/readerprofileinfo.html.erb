@@ -1,6 +1,6 @@
 <% @title=" edit user profile "  %>
 
-<div style="position:absolute; left:0px; top:50px; opacity:0.3; ">
+<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
@@ -35,7 +35,7 @@
       <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
 
       <br>URL to your blog <br>
-      <%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "Blog URL" %>
+      <%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "http://BlogURL.com" %>
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="blacktxt" style="vertical-align: text-top">
         <b>@</b> <%= f.text_area :twitter, :cols => 37, :rows => 1, placeholder: "twitterhandle" %>

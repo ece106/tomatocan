@@ -19,7 +19,8 @@ one:
   profilepic: MyString
   author: 1
   about: MyText
-  password_digest: <%= BCrypt::Password.create("password") %>
+  encrypted_password: <%= User.new.send(:password_digest, "user123") %>
+#  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString
 
 two:
@@ -41,5 +42,6 @@ two:
   profilepic: MyString2
   author: 2
   about: MyText2
-  password_digest: <%= BCrypt::Password.create("password") %>
+  encrypted_password: <%= User.new.send(:password_digest, "user123") %>
+#  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString2

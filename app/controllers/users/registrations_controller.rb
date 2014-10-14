@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-    def profileinfo
+    def profileinfo #I'm pretty sure I dont this
       @user = User.find(current_user.permalink)
       build_resource(@user)
       respond_with self.resource

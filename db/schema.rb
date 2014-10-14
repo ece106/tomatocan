@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "grouptype"
+    t.string   "permalink"
   end
 
   create_table "purchases", force: true do |t|

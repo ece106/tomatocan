@@ -11,7 +11,7 @@ CarrierWave.configure do |config|
       :aws_access_key_id      => ENV['AWS_KEY'],    
       :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],  
 #      :aws_access_key_id      => 'AWS_KEY',
-#D      :aws_secret_access_key  => 'AWS_SECRET_KEY', 
+#      :aws_secret_access_key  => 'AWS_SECRET_KEY', 
       :persistent             => false,
 
 #      :connect_timeout=>60

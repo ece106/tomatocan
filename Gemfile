@@ -27,8 +27,10 @@ gem 'geocoder'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
 
-group :development, :test do
-#  gem 'sqlite3-ruby', :require => 'sqlite3'
+group :test, :development do
+#  gem 'factory_girl_rails'
+#  gem 'capybara'
+#  gem 'mocha', '~> 1.1.0'
 end
 
 group :production do

@@ -7,7 +7,7 @@
       <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
       <ul>
-      <% @event.errors.full_messages.each do |msg| %>
+      <% @group.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -19,6 +19,11 @@
     Group Name <br>
     <%= f.text_field :name, :size => 80 %>
   </div>
+  <div class="field">
+    Group page URL ending (http://www.CrowdPublish.TV/yourgroupurl) - numbers and letters ONLY <br />
+    <%= f.text_field :permalink, :size => 80, placeholder:  "YourGroupURL"  %>  <p> 
+  </div>
+
   <div class="field">
     Address or zip code of typical meeting place <br>
     <%= f.text_field :address, :size => 80 %>
