@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
-    geocoded_by :address
-    reverse_geocoded_by :latitude, :longitude
-    after_validation :geocode, :if => :address_changed?
-    after_validation :reverse_geocode, :if => :latitude_changed?
+  extend FriendlyId
+  friendly_id :permalink, use: :slugged
+
+  geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :geocode, :if => :address_changed?
+  after_validation :reverse_geocode, :if => :latitude_changed?
   # Other default devise modules available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
   devise :database_authenticatable, :registerable,

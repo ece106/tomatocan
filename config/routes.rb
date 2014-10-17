@@ -67,13 +67,20 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
-    
+ 
+  resources :groups, path: ''
+  match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
+
+#  get '/:friendly_id', to: 'groups#show' 
+
   resources :books do
     resources :purchases
     member do
       get 'buy'
     end
   end
+
+#  get "*friendly_id" => "groups#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

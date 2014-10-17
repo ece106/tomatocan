@@ -1,8 +1,8 @@
 <% @title="CrowdPublish.TV - The Future of Empowerment is Your Story - @user.name"  %>
 
-    <div class="blurb" >
-      <%= @user.about %>
-    </div><br><br>
+<div class="blurb" >
+  <%= simple_format @user.about.gsub(/\n/, '<br>') %>
+</div><br><br>
 
 <div class="row" >
   <div class="col-lg-7 col-md-6 col-sm-11 col-sm-offset-1 col-xs-12 " >

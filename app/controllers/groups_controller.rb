@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user! , except: [:index, :show]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  layout :resolve_layout
 
-  # GET /groups
   def index
     @groups = Group.all
     if params[:search].present?
@@ -14,18 +14,38 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1
   def show
     @user = User.find(@group.user_id)
   end
 
-  # GET /groups/new
+  def blog
+    respond_to do |format|
+      format.html # blog.html.erb
+      format.json { render json: @group }
+    end
+  end
+  def calendar
+    @month = (params[:month] || (Time.zone || Time).now.month).to_i
+    @year = (params[:year] || (Time.zone || Time).now.year).to_i
+    @shown_month = Date.civil(@year, @month)
+    @events = Event.all 
+    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group_id => @group.id } ) 
+  end
+  def eventlist
+    @events = Event.all( :conditions => { :user_id => @group.id } ) 
+    respond_to do |format|
+      format.html 
+      format.json { render json: @group }
+    end
+  end
   def new
     @group = Group.new
   end
 
   # GET /groups/1/edit
   def edit
+    @group.slug = nil
+    @group.save!
   end
 
   # POST /groups
@@ -57,11 +77,23 @@ class GroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
-      @group = Group.find(params[:id])
+      @group = Group.friendly.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def group_params
       params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about, :grouppic, :permalink )
     end
+
+    def resolve_layout
+      case action_name
+      when "index"
+        'application'
+      when "edit"
+        'grouptemplate'
+      else
+        'grouptemplate'
+      end
+    end
+
 end

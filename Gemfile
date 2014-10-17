@@ -24,6 +24,7 @@ gem 'jquery-turbolinks'
 gem 'bcrypt'
 gem 'turbolinks'
 gem 'geocoder'
+gem 'friendly_id', '~> 5.0.0'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
 

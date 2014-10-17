@@ -60,13 +60,6 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def orgprofileinfo
-    @user = User.find_by_permalink(params[:permalink])
-    respond_to do |format|
-      format.html # orgprofileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
   def editbookreview
     @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|

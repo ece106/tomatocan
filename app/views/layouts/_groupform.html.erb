@@ -1,0 +1,32 @@
+<title> CrowdPublish.TV - <%= @group.name %>'s site</title>
+<% @descname = @group.name.gsub(/ +/, '-') %>
+
+<% content_for :forusers do %>
+  <meta name="description" content= <%= @descname + " on CrowdPublishTV" %>
+<% end %>
+
+<header class="navbar navbar-grouppage">
+  <div class="navbar-inner">
+    <ul class="nav pull-left">
+      <ul class="nav navbar-nav">
+          <li><%= link_to @group.name + " Calendar ", group_calendar_path(@group.id) %>
+          <li><%= link_to " About ", group_path(@group.id) %>
+          <li><%= link_to " Blog ", group_path(@group.id) %>
+      </ul>    
+    </ul>
+
+    <div class="usermenu" >
+      <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to " CrowdPublishTV Home ", root_path %>
+        <% if user_signed_in? %>
+          <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
+          <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <li><%= link_to 'SIGN UP!', "/signup" %> 
+          <li><%= link_to "Sign in", new_user_session_path %> 
+        <% end %>
+      </ul>  
+    </div>
+  </div>
+</header>
+

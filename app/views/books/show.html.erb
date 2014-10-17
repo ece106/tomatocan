@@ -13,8 +13,8 @@
   <div class="col-md-2 col-sm-4 col-xs-4" style="width:100px;height:130px;background-color:#dddddd; vertical-align:middle; margin-right:10px; ">
         <% if @book.coverpic.present? && @book.coverpic != '' %>
           <%= image_tag(@book.coverpic, :size => "100x130") %>
-        <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) %>
-          <%= image_tag(@book.coverpicurl, :size => "100x130") %>
+        <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) && @book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %> 
+            <%= image_tag(@book.coverpicurl, :size => "100x130") %>
         <% elsif @book.title.match /[0-9A-Za-z]/ %> 
           <div class="covertitle">
             <br><%= @book.title %> <br> <br>  
