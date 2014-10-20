@@ -28,11 +28,13 @@ class GroupsController < ApplicationController
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @shown_month = Date.civil(@year, @month)
+    @group = Group.friendly.find(params[:permalink])
     @events = Event.all 
-    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group_id => @group.id } ) 
+    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group1id => @group.id } )
   end
   def eventlist
-    @events = Event.all( :conditions => { :user_id => @group.id } ) 
+    @group = Group.friendly.find(params[:permalink])
+    @events = Event.all( :conditions => { :group1id => @group.id }) # || :group2id => @group.id || :group3id => @group.id } ) 
     respond_to do |format|
       format.html 
       format.json { render json: @group }

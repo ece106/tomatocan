@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "group1id"
+    t.integer  "group2id"
+    t.integer  "group3id"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -76,6 +79,9 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer  "grouptype"
     t.string   "permalink"
     t.string   "slug"
+    t.string   "newsurl"
+    t.string   "twitter"
+    t.string   "facebook"
   end
 
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree

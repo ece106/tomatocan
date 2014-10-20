@@ -70,6 +70,8 @@ Crowdpublishtv::Application.routes.draw do
  
   resources :groups, path: ''
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
+  match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
+  match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
 
 #  get '/:friendly_id', to: 'groups#show' 
 
