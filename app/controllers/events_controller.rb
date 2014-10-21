@@ -32,6 +32,7 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
+    @groups = Group.all
     @event = Event.new
   end
 

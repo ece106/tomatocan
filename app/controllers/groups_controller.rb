@@ -18,7 +18,8 @@ class GroupsController < ApplicationController
     @user = User.find(@group.user_id)
   end
 
-  def blog
+  def news
+    @group = Group.friendly.find(params[:permalink])
     respond_to do |format|
       format.html # blog.html.erb
       format.json { render json: @group }
@@ -34,7 +35,9 @@ class GroupsController < ApplicationController
   end
   def eventlist
     @group = Group.friendly.find(params[:permalink])
-    @events = Event.all( :conditions => { :group1id => @group.id }) # || :group2id => @group.id || :group3id => @group.id } ) 
+    @events = Event.all( :conditions => { :group1id => @group.id  }) # || :group2id => @group.id || :group3id => @group.id } ) 
+    @events = Event.all( :conditions => { :group2id => @group.id  }) + @events
+    @events = Event.all( :conditions => { :group3id => @group.id  }) + @events
     respond_to do |format|
       format.html 
       format.json { render json: @group }
@@ -84,7 +87,7 @@ class GroupsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def group_params
-      params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about, :grouppic, :permalink )
+      params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about, :grouppic, :permalink, :twitter, :newsurl )
     end
 
     def resolve_layout

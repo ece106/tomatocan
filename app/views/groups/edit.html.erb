@@ -51,6 +51,13 @@
       <br><%= f.radio_button(:grouptype, 7) %>
       <%= label_tag(:grouptype_adult, "Other") %>
   </div>
+  <div class="field">
+      <br>URL to your organization's blog or similar type of webpage you'd like to embed in your CrowdPublish.TV site (e.g. meetup or facebook page) <br>
+      <%= f.text_area :newsurl, :cols => 40, :rows => 1, placeholder: "http://NewsfeedURL.com" %>
+      <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
+      <div class="blacktxt" style="vertical-align: text-top">
+        <b>@</b> <%= f.text_area :twitter, :cols => 37, :rows => 1, placeholder: "twitterhandle" %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
