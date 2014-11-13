@@ -49,8 +49,6 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-    @group.slug = nil
-    @group.save!
   end
 
   # POST /groups
@@ -67,6 +65,8 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   def update
     if @group.update(group_params)
+      @group.slug = nil
+      @group.save!
       redirect_to @group
     else
       render action: 'edit'
@@ -92,7 +92,7 @@ class GroupsController < ApplicationController
 
     def resolve_layout
       case action_name
-      when "index"
+      when "index", "new"
         'application'
       when "edit"
         'grouptemplate'

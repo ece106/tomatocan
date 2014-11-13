@@ -32,7 +32,12 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
-    @groups = Group.all
+    @tempval = 0
+    if current_user.address
+      @groups = Group.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
+    else
+      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance')
+    end
     @event = Event.new
   end
 
@@ -90,5 +95,5 @@ end
   private
 
     def event_params
-      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :rsvp, :user_id)
+      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :rsvp, :user_id, :group1id, :group2id, :group3id )
     end

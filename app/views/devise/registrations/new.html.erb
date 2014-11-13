@@ -29,7 +29,9 @@
   <%= f.password_field :password %><br>
   Enter password again <br />
   <%= f.password_field :password_confirmation %><p>
-  <%= f.submit "Sign up" %>
+  I agree to the CrowdPublishTV
+  <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %>
+  <br><br/>  <%= f.submit "Sign up" %>
 
 <% end %>
 

@@ -1,7 +1,7 @@
 <% @title=" Community " %>
 
 <div class="row" >
-  <div class="col-md-3 col-sm-offset-2 col-sm-4 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+  <div class="col-md-4 col-sm-offset-2 col-sm-5 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
 
 <div class="featured" >
   Sign in
@@ -19,9 +19,9 @@
     <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
   <% end -%>
 
-<p>
-
-  <div><%= f.submit "Sign in" %></div>
+<br>  I still agree to the CrowdPublishTV
+  <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %>
+    <br><br><div><%= f.submit "Sign in" %></div>
 <% end %>
   </div>
   <div class="col-md-4 col-sm-4 col-xs-12 " style= "text-align:left" >
