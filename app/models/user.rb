@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  extend FriendlyId
-  friendly_id :permalink, use: :slugged
+#  extend FriendlyId
+#  friendly_id :permalink, use: :slugged
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
