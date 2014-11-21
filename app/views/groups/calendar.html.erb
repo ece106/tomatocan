@@ -13,7 +13,10 @@
     <%= stylesheet_link_tag "event_calendar" %>
 
     <div id="calendar" >
-        See all <%= @group.name %>'s <%= link_to " upcoming events as a LIST", group_eventlist_path %>
+      See all <%= @group.name %>'s <%= link_to " upcoming events as a LIST", group_eventlist_path %>
+      <br><br>
+      Are you a member of <%= @group.name %>? <%= link_to " Post an event on the " + @group.name + " calendar", new_event_path %>
+
       <br><br><%= raw(event_calendar) %>
       <br />
     </div>
