@@ -9,9 +9,8 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.hidden_field :latitude, :value => request.location.latitude %>
-  <%= f.hidden_field :longitude, :value => request.location.longitude %>
-
+  <%= f.hidden_field :latitude, :value => (request.location.latitude ? request.location.latitude : 38.909) %>
+  <%= f.hidden_field :longitude, :value => (request.location.longitude ? request.location.latitude : -77.292)%>
 
   <p>Username - numbers and letters ONLY (Will be used in your unique URL.)<br />
   <%= f.text_field :permalink, :autofocus => true %>  <p> 

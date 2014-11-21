@@ -38,18 +38,20 @@
     <%= f.text_field :address, :size => 80 %><p>
   </div>
   <div class="field">
-<% 
-=begin %>
    You can select up to 3 groups/organizations near you ( <%= link_to "Need to change your location?", user_profileinfo_path(current_user.permalink) %> ) for placing your event on their calendar (the group moderator will delete your event from the calendar if it does not meet that group's criteria for posting events) <br><br> 
 
+    <%= f.collection_select(:group1id, @groups.all, :id, :name, prompt: true) %>
+    <%= f.collection_select(:group2id, @groups.all, :id, :name, prompt: true) %>
+    <%= f.collection_select(:group3id, @groups.all, :id, :name, prompt: true) %>
+    <br><br>
+    If no groups are showing up, you may need to change your Home location <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> 
+    <br><br>
+<% 
+=begin %>
     <% i = 0 %>
-
-
     <% @groups.each do |group| %>
-
       <%= f.check_box(:group1id ) %>
       <%= label_tag(:grouptype_child, group.name ) %>
-
       <% #= f.check_box(:group1id, { :multiple => true }, "group.id") %>
       <%= group.name %> <br>
         <% @tempval = group.id %>
@@ -61,6 +63,6 @@
   </div>
     <%= f.submit %>
 <% end %>
-
+<br><br>
 </div>
 </div>
