@@ -14,7 +14,7 @@
       <%= image_tag "whiteBk.jpg", :size => "150x150" %>
     <% end %>
 
-    <% if @group.user_id == current_user.id %>
+    <% if current_user && @group.user_id == current_user.id %>
         <%= button_to "Edit Group", edit_group_path(@group.permalink), :method=> :get %>
     <% end %> 
   </div>
