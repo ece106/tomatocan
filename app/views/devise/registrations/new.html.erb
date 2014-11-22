@@ -11,7 +11,7 @@
 
   <%= f.hidden_field :latitude, :value => (request.location ? request.location.latitude : 38.895) %>
   <%= f.hidden_field :longitude, :value => (request.location ? request.location.longitude : -77.037)%>
-
+  
   <p>Username - numbers and letters ONLY (Will be used in your unique URL.)<br />
   <%= f.text_field :permalink, :autofocus => true %>  <p> 
   Full name<br />
