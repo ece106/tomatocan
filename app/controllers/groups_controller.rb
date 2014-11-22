@@ -9,8 +9,8 @@ class GroupsController < ApplicationController
       @groups = Group.near(params[:search], params[:dist], order: 'distance')
     elsif user_signed_in? && current_user.address
       @groups = Group.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
-#    elsif request.location 
-#      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
+    elsif request.location 
+      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
     else
       @groups = Group.near("Washington, DC", 100, order: 'distance')
     end
