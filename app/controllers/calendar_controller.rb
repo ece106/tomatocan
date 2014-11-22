@@ -14,7 +14,7 @@ class CalendarController < ApplicationController
 #    elsif request.location 
 #      @events = Event.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
     else  
-      @events = Event.near(20016, 100, order: 'distance')
+      @events = Event.near("Washington, DC", 100, order: 'distance')
       # Event where address = "online"
     end
 

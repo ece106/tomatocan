@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
 #    elsif request.location 
 #      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
     else
-      @groups = Group.near(20016, 100, order: 'distance')
+      @groups = Group.near("Washington, DC", 100, order: 'distance')
     end
   end
 
