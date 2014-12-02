@@ -53,6 +53,9 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    @events = Event.all( :conditions => { :group1id => @group.id  }) 
+    @events = Event.all( :conditions => { :group2id => @group.id  }) + @events
+    @events = Event.all( :conditions => { :group3id => @group.id  }) + @events
   end
 
   # POST /groups
