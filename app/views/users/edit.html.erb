@@ -2,8 +2,20 @@
 
 <% if @user == current_user %>
 
-
+<p id="notice"><%= notice %></p>
 <%= form_for @book, :html => {:multipart => true} do |f| %>
+    <% if @book.errors.any? %> 
+    This Error message isn't working
+      <div id="error_explanation">
+          <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+          <ul>
+            <% @book.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+      </div>
+    <% end %>
+
   <%= render 'shared/error_messages' %>
   <center><span class="Body-C5">Enter Book info (items with * are required)</span></center> 
   <%= f.hidden_field :user_id %>
@@ -24,8 +36,13 @@
   </td></tr><tr><td>
     Book jacket blurb (2000 characters max)<br>
     <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
+      <span class="blurbcount"></span><br><br>
     Sentence about book (140 characters max) <br>
-    <%= f.text_area :fiftychar, :cols => 70, :rows => 1, placeholder: "Brief sentence about book - MUST be less than a hundred characters" %>
+    <div class="textarea">
+      <%= f.text_area :fiftychar, :cols => 70, :rows => 1, placeholder: "Brief sentence about book - MUST be less than 140 characters" %>
+          <span class="charcount"></span>
+    </div><br>
+
   </td></tr> <tr><td>
     Date book is estimated to be or was released
     <%= f.date_select :releasedate %>
@@ -60,6 +77,15 @@
   </table>
   <%= f.submit "Save New Book" %>
 <% end %>
+
+<br>There are a few situations where book information will fail to save. If you are having trouble saving your book info, please check for these errors: <br>
+1. Uploading a file that is not .pdf in the iBook/PC info field, or not a .mobi for Kindle, etc. <br>
+2. Uploading a file that is not .jpg, .gif, .jpeg, or .png in the book cover field <br>
+3. Entering a URL that does not end in .jpg, .gif, .jpeg, or .png for a picture of your book cover (this URL is not used if you upload a picture of your book cover, so no need to do both) <br>
+4. Entering more than 140 characters into the field for Sentence about book <br>
+5. Entering more than 2000 characters into the field for Book jacket blurb <br>
+6. Leaving title field blank
+
 <br><br><br>
 
 <% if @user.books.any? %>
@@ -80,7 +106,7 @@
     <div style="float:right;width:25%;">
     <%= f.text_area :genre, :cols => 15, :rows => 1, placeholder: "Genre" %></div>
   </td></tr><tr><td>
-    <b>* Price </b>(in USD) $<%= f.text_field :price %>
+    <b>Price </b>(in USD) $<%= f.text_field :price %>
   </td></tr><tr><td>
     Book jacket blurb (2000 character max) <br>
     <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
@@ -130,7 +156,6 @@
    <% end %>
 <% end %>
 
-<p id="notice"><%= notice %></p>
 </div>
 
 </body>

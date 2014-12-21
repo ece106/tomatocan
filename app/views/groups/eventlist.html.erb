@@ -22,11 +22,22 @@
 
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
           <% if event.start_at.to_i >= Time.now.to_i - 18000  %>
-          <tr>
-          <td ><%= link_to event.name, event %></td>
-          <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
-          <td><%= event.address %></td>
-          <td><%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <tr>
+            <td ><%= link_to event.name, event %></td>
+            <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
+            <td><%= event.address %></td>
+            <td>
+            <%= form_for(event) do |f| %>
+              <% if event.group1id == @group.id %>
+                <%= f.hidden_field :group1id, :value => 0 %>
+              <% elsif event.group2id == @group.id %>
+                <%= f.hidden_field :group2id, :value => 0 %>
+              <% elsif event.group3id == @group.id %>
+                <%= f.hidden_field :group3id, :value => 0 %>
+              <% end %>
+              <%= f.submit %>
+            <% end %>
+            </td>
           </tr>
           <% end %>
         <% end %>

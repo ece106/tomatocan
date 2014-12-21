@@ -19,7 +19,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
@@ -31,7 +30,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new
   # GET /events/new.json
   def new
     @tempval = 0
@@ -48,7 +46,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  # POST /events
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
@@ -64,7 +61,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
@@ -80,7 +76,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])

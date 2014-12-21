@@ -30,3 +30,46 @@
         d.write('<a href="http://www.onestatfree.com/aspx/login.aspx?sid='+sid+'" target=_blank ><img id="ONESTAT_TAG" width = "0" height="0" border="0" src="'+p+'" ></'+'a>');
     }
     OneStat_Pageview();
+
+function updateCountdown() 
+{  
+  var remaining = 140 - jQuery('#book_fiftychar').val().length;
+  jQuery('.charcount').text(remaining + ' characters remaining');
+  if(remaining <= 0)
+  {
+      $("input.btn.btn-large.btn-primary").attr("disabled", "true");
+  }
+  else
+  {
+      $("input.btn.btn-large.btn-primary").removeAttr("disabled");
+  }
+}
+
+jQuery(document).ready(function($) 
+{
+  updateCountdown();
+  $('#book_fiftychar').change(updateCountdown);
+  $('#book_fiftychar').keyup(updateCountdown);
+});
+
+function blurbCountdown() 
+{  
+  var remaining = 2000 - jQuery('#book_blurb').val().length;
+  jQuery('.blurbcount').text(remaining + ' characters remaining');
+  if(remaining <= 0)
+  {
+      $("input.btn.btn-large.btn-primary").attr("disabled", "true");
+  }
+  else
+  {
+      $("input.btn.btn-large.btn-primary").removeAttr("disabled");
+  }
+}
+
+jQuery(document).ready(function($) 
+{
+  blurbCountdown();
+  $('#book_blurb').change(blurbCountdown);
+  $('#book_blurb').keyup(blurbCountdown);
+});
+

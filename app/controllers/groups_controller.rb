@@ -47,6 +47,13 @@ class GroupsController < ApplicationController
       format.json { render json: @group }
     end
   end
+  def deleteevent
+    @group = Group.friendly.find(params[:permalink])
+
+    @events = Event.all( :conditions => { :group1id => @group.id  }) # || :group2id => @group.id || :group3id => @group.id } ) 
+    @events = Event.all( :conditions => { :group2id => @group.id  }) + @events
+    @events = Event.all( :conditions => { :group3id => @group.id  }) + @events
+  end
   def new
     @group = Group.new
   end

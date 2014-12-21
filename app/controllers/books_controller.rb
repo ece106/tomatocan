@@ -16,7 +16,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to user_profile_path(current_user.permalink)
     else
-      redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
+      redirect_to user_edit_path(current_user.permalink), :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
     end
   end
 
@@ -27,7 +27,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to user_profile_path(current_user.permalink)
     else
-      redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info (*) or filetypes."
+      redirect_to user_edit_path(current_user.permalink), :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
     end
   end
 
@@ -36,7 +36,7 @@ class BooksController < ApplicationController
     if @book.update_attributes(book_params)
       redirect_to user_profile_path(current_user.permalink)
     else
-      redirect_to user_edit_path(current_user.permalink), :notice => "....................................................................................................Your book was not saved. Check the required info."
+      redirect_to user_edit_path(current_user.permalink), :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
     end
   end
 
