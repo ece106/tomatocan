@@ -110,8 +110,11 @@
   </td></tr><tr><td>
     Book jacket blurb (2000 character max) <br>
     <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
+          <span class="signup"></span><br><br>
+
     Sentence about book (140 characters max) <br>
     <%= f.text_area :fiftychar, :cols => 70, :rows => 1, placeholder: "Brief sentence about book - MUST be less than a hundred characters" %>
+          <span class=""></span><br><br>
   </td></tr> <tr><td>
     Date book is estimated to be or was released
     <%= f.date_select :releasedate %>

@@ -73,3 +73,25 @@ jQuery(document).ready(function($)
   $('#book_blurb').keyup(blurbCountdown);
 });
 
+//editblurbcount doesn't work
+function editblurbCountdown() 
+{  
+  var remaining = 2000 - jQuery('#booklist_blurb').val().length;
+  jQuery('.signup').text(remaining + ' characters remaining');
+  if(remaining <= 0)
+  {
+      $("input.btn.btn-large.btn-primary").attr("disabled", "true");
+  }
+  else
+  {
+      $("input.btn.btn-large.btn-primary").removeAttr("disabled");
+  }
+}
+
+jQuery(document).ready(function($) 
+{
+  editblurbCountdown();
+  $('#booklist_blurb').change(editblurbCountdown);
+  $('#booklist_blurb').keyup(editblurbCountdown);
+});
+
