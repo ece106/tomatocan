@@ -25,7 +25,7 @@
         <% end %>
   </div>
   <div class="col-md-10 ">
-    <div class="blurb">   <%= simple_format @book.blurb.gsub(/\n/, '<br>') %>
+    <div class="blurb">   <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
     </div>
   </div>
 </div>
