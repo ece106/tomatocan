@@ -16,14 +16,18 @@
     <th>Event </th>
     <th>When</th>
     <th>Where</th>
+    <th></th>
   </tr>
 
     <% @events.sort_by{|t| t.start_at}.each do |event| %>
       <% if event.start_at.to_i >= Time.now.to_i - 18000  %>
   <tr>
-    <td ><%= link_to event.name, event %></td>
-    <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
-    <td><%= event.address %></td>
+    <td><%= link_to event.name, event %><br><br></td>
+    <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
+    <td><%= event.address %><br><br></td>
+    <td><% if @user.id == current_user.id %>
+          <%= link_to "Edit", edit_event_path(event) %>
+        <% end %><br><br></td>
   </tr>
       <% end %>
     <% end %>
