@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "name"
     t.string   "email"
     t.text     "ustreamvid"
-    t.string   "ustreamsocial"
+    t.text     "ustreamsocial"
     t.string   "twitter"
     t.string   "facebook"
     t.string   "pinterest"
