@@ -79,15 +79,17 @@
       Tell us all about yourself. <br />
       <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %><br>
 
-      In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Home Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
+      <br>In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Home Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
 
-      <br><br>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Click on <b>Channel Settings</b> then click on <font color = "0000FF"> Embed</font> on the left side of your screen. You will see the code to Embed the <font color = "0000FF"> Live </font> video player. It looks something like the default code below. 
+      <br><br>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Under <b>Channel</b> click on <font color = "0000FF"> Embed</font>. Click on the Create Embed button for the <b>Player</b>. A new tab will open. The code to Embed the video player will be in the lower left corner of your screen. It looks something like the default code below. </br>
 
-      <br> Copy & paste the Live code from your Ustream account to replace the default code below. <br />
-      <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder:  '<iframe src="http://www.ustream.tv/embed/13434383" width="608" height="368" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe><br /><a href= "http://www.ustream.tv/producer?utm_campaign=Embed+Producer+Promotion&utm_source=Web&utm_medium=Embed&utm_term=Producer+Page&utm_utm_content=Free+desktop+streaming+application+by+Ustream" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Free desktop streaming application by Ustream</a>' %>
-      <br>On the same Embed page in your Ustream account, click on the <font color = "0000FF">Social Stream</font> tab. You will see code similar to the default code below. 
-      Copy & paste the Social Stream code from your Ustream account to replace the default code below. <br />
-      <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>' %>
+      <br> Copy & paste the <b>Player</b> code from your Ustream account to replace the default code below. <br /> 
+      <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder: '<iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="480" height="302"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>' %>
+
+
+      <br>On the same Embed page in your Ustream account, click on the Create Embed button for <b>Social</b>. The code to Embed the video player will be in the lower left corner of the new tab that opens.  
+      Copy & paste the <b>Social</b> code from your Ustream account to replace the default code below. <br />
+      <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe src="http://www.ustream.tv/socialstream/13434383" style="border: 0 none transparent;" frameborder="no" width="320" height="302"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>' %>
 
     </div>
   </div>
