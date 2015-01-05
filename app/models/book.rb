@@ -23,7 +23,7 @@ class Book < ActiveRecord::Base
 
   private
   def assign_defaults_on_new_book
-    self.price = 4.99
+    self.price = self.price || 4.99
   end
 
 end

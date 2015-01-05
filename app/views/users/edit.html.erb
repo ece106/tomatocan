@@ -32,7 +32,7 @@
     <div style="float:right;width:25%;">
     <%= f.text_area :genre, :cols => 15, :rows => 1, placeholder: "Genre" %></div>
   </td></tr><tr><td>
-     <b>Price </b>(in USD) $<%= f.text_field :price %>
+     <b>Price </b>(in USD) $<%= f.text_field :price, placeholder: "4.99"  %>
   </td></tr><tr><td>
     Book jacket blurb (2000 characters max)<br>
     <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
