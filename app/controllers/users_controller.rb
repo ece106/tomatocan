@@ -38,8 +38,9 @@ class UsersController < ApplicationController
     @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :user_id => @user.id } ) 
   end
   def eventlist
+    currtime = Time.now
     @user = User.find_by_permalink(params[:permalink])
-    @events = Event.all( :conditions => { :user_id => @user.id } ) 
+    @events = Event.where( "start_at > ? AND user_id = ?", currtime, @user.id )
     respond_to do |format|
       format.html 
       format.json { render json: @user }
