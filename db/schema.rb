@@ -142,6 +142,9 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "slug"
+    t.text     "youtube1"
+    t.text     "youtube2"
+    t.text     "youtube3"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -46,6 +46,14 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def stream
+    @user = User.find_by_permalink(params[:permalink])
+    @books = @user.books
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
   def profileinfo
     @user = User.find_by_permalink(params[:permalink])
 #    @user.updating_password = false
@@ -144,7 +152,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:permalink, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude)
+      params.require(:user).permit(:permalink, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, :youtube3)
     end
 
     def resolve_layout

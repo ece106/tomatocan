@@ -52,6 +52,9 @@
       <br><%= f.radio_button(:author, 2) %>
       <%= label_tag(:author_adult, "Author") %>
  
+      <br>Tell us all about yourself. <br />
+      <%= f.text_area :about, :cols => 50, :rows => 7, placeholder: 'About Me' %><br>
+
       <br>Change your name<br> <%= f.text_area :name, :cols => 40, :rows => 1 %>
       <br><br><center><%= f.submit "Save Profile" %> </center>
     </div>
@@ -76,10 +79,16 @@
     </div>
 
     <div class="blacktxt" >
-      Tell us all about yourself. <br />
-      <%= f.text_area :about, :cols => 70, :rows => 7, placeholder: 'About Me' %><br>
+      <br> Underneath your YouTube video, click on <b>Share</b> then click on <b>Embed</b>. Copy the code that appears and paste to replace the default code below. <br /> 
+      Video 1: <br>
+      <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+      <br> Video 2: <br /> 
+      <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+      <br> Video 3: <br /> 
+      <%= f.text_area :youtube3, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
 
-      <br>In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Home Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
+
+      <br>In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Stream Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
 
       <br><br>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Under <b>Channel</b> click on <font color = "0000FF"> Embed</font>. Click on the Create Embed button for the <b>Player</b>. A new tab will open. The code to Embed the video player will be in the lower left corner of your screen. It looks something like the default code below. </br>
 
