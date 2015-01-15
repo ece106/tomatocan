@@ -13,8 +13,8 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
     <ul class="nav pull-left">
       <ul class="nav navbar-nav">
         <% if @user.author == 2 %>
-          <li><%= link_to @user.name + " Books ", user_booklist_path(@user.permalink) %>
-          <li><%= link_to " About ", user_profile_path(@user.permalink) %>
+          <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
+          <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
           <li><%= link_to " Live Event ", user_stream_path(@user.permalink) %>
           <li><%= link_to " Calendar ", user_calendar_path(@user.permalink) %>
         <% else %>

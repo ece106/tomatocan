@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "bookepub"
     t.string   "bookkobo"
     t.string   "bookaudio"
+    t.text     "youtube1"
+    t.text     "youtube2"
   end
 
   create_table "events", force: true do |t|

@@ -1,40 +1,41 @@
-<div class="col-md-5 col-sm-6 col-xs-5 " style="text-align:left">
-
-<% if @user == current_user %>
-
-<p id="notice"><%= notice %></p>
-<%= form_for @book, :html => {:multipart => true} do |f| %>
-    <% if @book.errors.any? %> 
-    This Error message isn't working
-      <div id="error_explanation">
+<div class="col-md-8 col-sm-10 col-xs-12 " style="text-align:left">
+  <% if @user == current_user %>
+    <p id="notice"><%= notice %></p>
+    <%= form_for @book, :html => {:multipart => true} do |f| %>
+      <% if @book.errors.any? %> 
+        This Error message isn't working
+        <div id="error_explanation">
           <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
           <ul>
             <% @book.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
           </ul>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
 
-  <%= render 'shared/error_messages' %>
-  <center><span class="Body-C5">Enter Book info (items with * are required)</span></center> 
-  <%= f.hidden_field :user_id %>
+    <%= render 'shared/error_messages' %>
+    <div class="blacktxt" >
+      <center><span class="Body-C5">Enter Book info (items with * are required)</span></center> 
+      <%= f.hidden_field :user_id %>
 
-  <table width="400">
-  <tr><td>
-    <div style="float:left;width:75%;">
-    <b>* Book title </b></div>
-    <div style="float:right;width:25%;">
-      Genre </div>
-  </td></tr><tr><td>
-      <div style="float:left;width:75%;">
-    <%= f.text_area :title, :cols => 50, :rows => 2, placeholder: "Book title" %></div>
+      <table width="400">
+        <tr><td>
+          <div style="float:left;width:75%;">
+            <b>* Book title </b></div>
+          <div style="float:right;width:25%;">
+            Genre </div>
+          </td></tr><tr><td>
+          <div style="float:left;width:75%;">
+            <div class="profilebox" >
+        <%= f.text_area :title, :cols => 50, :rows => 2, placeholder: "Book title" %></div>
+       </div>
     <div style="float:right;width:25%;">
     <%= f.text_area :genre, :cols => 15, :rows => 1, placeholder: "Genre" %></div>
   </td></tr><tr><td>
      <b>Price </b>(in USD) $<%= f.text_field :price, placeholder: "4.99"  %>
   </td></tr><tr><td>
-    Book jacket blurb (2000 characters max)<br>
+    <br>Book jacket blurb (2000 characters max)<br>
     <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
       <span class="blurbcount"></span><br><br>
     Sentence about book (140 characters max) <br>
@@ -52,27 +53,27 @@
     URL for a picture of your book cover
     <%= f.text_area :coverpicurl, :cols => 70, :rows => 1, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .jpeg, or .png)" %><br> The easiest way to obtain the URL is to go to a site that has a picture of your book cover, right click on the PICTURE, select Copy IMAGE url, and paste here. This MUST include the 'http://' part of the URL in order to work. DO NOT PASTE A URL TO A webSITE. Only PICTURES with urls that end in .JPG, .JPEG, .PNG, or .GIF will work.  
     </td></tr> <tr><td>
-    We recommend uploading files for ALL 4 of the following formats (so your customers have more options for the type of ereader they own)
-    <div style="float:left;width:62%;">
-      Upload your ebook, as a pdf (for iBooks & PCs)...... </div>
-    <div style="float:right;width:38%;">
+    We recommend uploading files for ALL 3 of the following formats (so your customers have more options for the type of ereader they own)
+    <div style="float:left;width:70%;">
+      Upload your ebook, as a pdf (for iBooks, PCs, & Kobo) </div>
+    <div style="float:right;width:30%;">
       <%= f.file_field :bookpdf %> </div><br>
     </td></tr> <tr><td>
-    <div style="float:left;width:62%;">
-      Upload your ebook, as a mobi (for Kindle).............</div>
-    <div style="float:right;width:38%;">
+    <div style="float:left;width:70%;">
+      Upload your ebook, as a mobi (for Kindle) </div>
+    <div style="float:right;width:30%;">
       <%= f.file_field :bookmobi %> </div><br>
     </td></tr> <tr><td>
-    <div style="float:left;width:62%;">
-      Upload your ebook, as an epub (for Adobe & Nook)... </div>
-    <div style="float:right;width:38%;">
+    <div style="float:left;width:70%;">
+      Upload your ebook, as an epub (for Adobe, Nook, & Sony kobo) </div>
+    <div style="float:right;width:30%;">
       <%= f.file_field :bookepub %> </div><br>
     </td></tr> <tr><td>
-    <div style="float:left;width:62%;">
-      Upload your ebook, as a epub or pdf (for Sony kobo)...............</div> 
-    <div style="float:right;width:38%;">
-      <%= f.file_field :bookkobo %> </div><br>
-    </td></tr>
+      <br>If you have a video about your brand on <b>YouTube</b>, go to that video's page. Underneath the video, click on <i>Share</i> then click on <i>Embed</i>. Copy the code that appears and paste to replace the default code below. <br /> 
+      Video 1: <br>
+      <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+      <br> Video 2: <br /> 
+      <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
 
   </table>
   <%= f.submit "Save New Book" %>
@@ -124,36 +125,35 @@
     URL for a picture of your book cover
    <%= f.text_area :coverpicurl, :cols => 70, :rows => 1, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .jpeg, or .png)" %> <br> This MUST include the 'http://' part of the URL in order to work. Do not post the URL to a webSITE. Only PICTURES will work. 
  </td></tr> <tr><td>  
-    We recommend uploading files for ALL 4 of the following formats (so your customers have more options for the type of ereader they own)
+    We recommend uploading files for ALL 3 of the following formats (so your customers have more options for the type of ereader they own)
      
-    <div style="float:left;width:62%;">
-      Upload your ebook, as a pdf (for iBooks & PCs)...... </div>
-    <div style="float:right;width:38%;">
+    <div style="float:left;width:70%;">
+      Upload your ebook, as a pdf (for iBooks, PCs, & Kobo) </div>
+    <div style="float:right;width:30%;">
       <%= f.file_field :bookpdf %> </div><br>
     </td></tr> <tr><td>
-    <div style="float:left;width:62%;">
-      Upload your ebook, as a mobi (for Kindle).............</div>
-    <div style="float:right;width:38%;">
+    <div style="float:left;width:70%;">
+      Upload your ebook, as a mobi (for Kindle) </div>
+    <div style="float:right;width:30%;">
       <%= f.file_field :bookmobi %> </div><br>
     </td></tr> <tr><td>
-    <div style="float:left;width:62%;">
-      Upload your ebook, as an epub (for Adobe & Nook)... </div>
-    <div style="float:right;width:38%;">
+    <div style="float:left;width:70%;">
+      Upload your ebook, as an epub (for Adobe, Nook, & Kobo) </div>
+    <div style="float:right;width:30%;">
       <%= f.file_field :bookepub %> </div><br>
     </td></tr> <tr><td>
-    <div style="float:left;width:62%;">
-      Upload your ebook, as a kobo (Sony)...................</div> 
-    <div style="float:right;width:38%;">
-      <%= f.file_field :bookkobo %> </div><br>
 </tr>
     <tr><td>
 
+      Video 1: <br>
+      <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+      <br> Video 2: <br /> 
+      <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
  </td>
 </tr>
   </table>
 
-  <%= f.submit("Save Changes for " + bk.title ) %>
-<br><br><br>
+  <%= f.submit("Save Changes for " + bk.title ) %><br><br><br>
         <% end %>
       <% end %>
    <% end %>

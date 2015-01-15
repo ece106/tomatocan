@@ -21,31 +21,34 @@
     <%= render 'shared/error_messages', :object => f.object %>
     <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
 
-  <div class="col-md-5 col-sm-6 col-xs-5 " style="text-align:left">
+  <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
     <div class="blacktxt" >
       Upload a picture of yourself (square is best)
       <br><%= f.file_field :profilepic %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       OR - URL to a picture of you <br>
-      <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
-
+      <div class="profilebox" >
+        <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
+      </div>
       <br>Three genres that categorize your work <br>
-      <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
-      <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
-      <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
-
-      <br>FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)
-      <br><%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
-
+      <div class="profilebox" >
+        <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
+        <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
+        <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
+      </div> 
       <br>URL to your blog <br>
-      <%= f.text_area :blogurl, :cols => 40, :rows => 1, placeholder: "http://BlogURL.com" %>
+      <div class="profilebox" >
+        <%= f.text_area :blogurl, :cols => 40, :rows => 2, placeholder: "http://BlogURL.com" %>
+      </div>
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="blacktxt" style="vertical-align: text-top">
-        <b>@</b> <%= f.text_area :twitter, :cols => 37, :rows => 1, placeholder: "twitterhandle" %>
+        <b>@</b> 
+        <%= f.text_area :twitter, :cols => 30, :rows => 1, placeholder: "twitterhandle" %>
       </div>
 
       <br>Change your zip code, address, or city (this is used to calculate Groups & Events Near You) <br>
-      <%= f.text_area :address, :cols => 40, :rows => 1 %>
-
+      <div class="profilebox" >
+        <%= f.text_area :address, :cols => 40, :rows => 1 %>
+      </div>
       <br>Change account type:
       <br><%= f.radio_button(:author, 1) %>
       <%= label_tag(:author_child, "Reader") %>
@@ -53,15 +56,22 @@
       <%= label_tag(:author_adult, "Author") %>
  
       <br>Tell us all about yourself. <br />
-      <%= f.text_area :about, :cols => 40, :rows => 7, placeholder: 'About Me' %><br>
-
-      <br>Change your name<br> <%= f.text_area :name, :cols => 40, :rows => 1 %>
-      <br><br><center><%= f.submit "Save Profile" %> </center>
+      <div class="profilebox" >
+        <%= f.text_area :about, :cols => 40, :rows => 7, placeholder: 'About Me' %>
+      </div>
+      <br>FOR A LIMITED TIME you will be allowed to change your custom URL handle (e.g. www.CrowdPublish.TV/yourcustomurlhandle)  
+      <div class="profilebox" >
+        <%= f.text_area :permalink, :cols => 40, :rows => 1, placeholder:  "Your custom URL handle" %> 
+      </div>
+      <br>Change your name<br> 
+      <div class="profilebox" >
+        <%= f.text_area :name, :cols => 40, :rows => 1 %>
+      </div><br><br>
     </div>
   </div>
   
 
-  <div class="col-md-7 col-sm-6 col-xs-7 " style="text-align:left">
+  <div class="col-md-7 col-sm-6 col-xs-12 " style="text-align:left">
     <div class="row" >
       <div class="password" >
         <div class="col-md-4 col-sm-4 col-xs-4 " style="text-align:left">
@@ -79,29 +89,37 @@
     </div>
 
     <div class="blacktxt" >
-      <br> Underneath your YouTube video, click on <b>Share</b> then click on <b>Embed</b>. Copy the code that appears and paste to replace the default code below. <br /> 
+      <br>If you have a video about you or your brand on <b>YouTube</b>, go to that video's page. Underneath the video, click on <i>Share</i> then click on <i>Embed</i>. Copy the code that appears and paste to replace the default code below. <br /> 
       Video 1: <br>
-      <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
-      <br> Video 2: <br /> 
-      <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
-      <br> Video 3: <br /> 
-      <%= f.text_area :youtube3, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
-
+      <div class="profilebox" >
+        <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+      </div>
+      Video 2: <br /> 
+      <div class="profilebox" >
+        <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+      </div>
+      Video 3: <br /> 
+      <div class="profilebox" >
+        <%= f.text_area :youtube3, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+      </div>
 
       <br>In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Stream Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
 
-      <br><br>Go to your Ustream dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Under <b>Channel</b> click on <font color = "0000FF"> Embed</font>. Click on the Create Embed button for the <b>Player</b>. A new tab will open. The code to Embed the video player will be in the lower left corner of your screen. It looks something like the default code below. </br>
+      <br><br>Go to your <b>Ustream</b> dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Under <i>Channel</i> click on <font color = "0000FF"> Embed</font>. Click on the Create Embed button for the <i>Player</i>. A new tab will open. The code to Embed the video player will be in the lower left corner of your screen. It looks something like the default code below. </br>
 
       <br> Copy & paste the <b>Player</b> code from your Ustream account to replace the default code below. <br /> 
-      <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder: '<iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="480" height="302"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>' %>
-
+      <div class="profilebox" >
+        <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder: '<iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="480" height="302"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>' %>
+      </div>
 
       <br>On the same Embed page in your Ustream account, click on the Create Embed button for <b>Social</b>. The code to Embed the video player will be in the lower left corner of the new tab that opens.  
       Copy & paste the <b>Social</b> code from your Ustream account to replace the default code below. <br />
-      <%= f.text_area :ustreamsocial, :cols => 70, :rows => 3, placeholder: '<iframe src="http://www.ustream.tv/socialstream/13434383" style="border: 0 none transparent;" frameborder="no" width="320" height="302"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>' %>
-
+      <div class="profilebox" >
+        <%= f.text_area :ustreamsocial, :cols => 70, :rows => 5, placeholder: '<iframe src="http://www.ustream.tv/socialstream/13434383" style="border: 0 none transparent;" frameborder="no" width="320" height="302"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>' %>
+      </div>
     </div>
-  </div>
+      <br><br><center><%= f.submit "Save Profile" %> </center><br><br>
+  </div><br><br>
   <% end %>
 <% end %>
 
