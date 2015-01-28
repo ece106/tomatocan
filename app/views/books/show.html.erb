@@ -9,40 +9,44 @@
   </div>
 </div>
 
-<div class="row"  style="margin-top:10px;">
-  <div class="col-md-3 col-sm-4 col-xs-6" style="width:200px;height:260px;background-color:#dddddd; vertical-align:middle; margin-right:10px; ">
+<div class="row"  style="margin-top:10px">
+  <div class="col-md-3 col-sm-3 col-xs-4" style="width:200px;height:260px;background-color:#dddddd; vertical-align:middle">
         <% if @book.coverpic.present? && @book.coverpic != '' %>
-          <%= image_tag(@book.coverpic, :size => "200x260") %>
+          <%= image_tag(@book.coverpic, :size => "200x260") %> 
         <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) && @book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %> 
-            <%= image_tag(@book.coverpicurl, :size => "200x260") %>
+            <%= image_tag(@book.coverpicurl, :size => "200x260") %> 
+            <br><br> fddf <%= @book.title %>
         <% elsif @book.title.match /[0-9A-Za-z]/ %> 
-          <div class="covertitle">
+          <div class="signupbutton">
             <br><%= @book.title %> <br> <br>  
           </div>
-          <div class="covername" >
+          <div class="password" >
             <%= @user.name %> 
-          </div>
+          </div> 
         <% end %>
       <br><br>$<%= sprintf('%.2f', @book.price) %> USD <br><br>
 
       <% # if @book.bookpdf.present? && @book.bookpdf != '' %>
-        <%= link_to image_tag("buypdf.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :method=> :get %>
+        <%= link_to image_tag("buypdf.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :method=> :get %> <br>
       <% # end # put some buttons here %>
       <% # if @book.bookmobi.present? && @book.bookmobi != '' %>
-        <%= link_to image_tag("buymobi.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :method=> :get %>
+        <%= link_to image_tag("buymobi.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :method=> :get %> <br>
       <% # end %>
       <% # if @book.bookepub.present? && @book.bookepub != '' %>
-        <%= link_to image_tag("buyepub.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :method=> :get %>
-      <% # end %>
+        <%= link_to image_tag("buyepub.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :method=> :get %> <br>
+      <% # end %> 
+      <br>......
   </div>
 
-  <div class="col-md-6 col-sm-4 col-xs-6">
-    <div class="blurb">   <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
+  <div class="col-md-5 col-sm-4 col-xs-6" style="margin-left:15px">
+    <div class="blurb">  
+      <% if @book.blurb %> 
+        <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
+      <% end %>
     </div>
   </div>
 
-
-  <div class="col-md-3 col-sm-4 col-xs-12 ">
+  <div class="col-md-4 col-sm-4 col-xs-11 ">
     <% if @book.youtube1? %> 
       <% if @book.youtube1.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
         <%= @book.youtube1.html_safe %> <br><br>

@@ -29,7 +29,9 @@
 </p>
 <p>
   <b>Event description:</b>
-  <%= simple_format @event.desc.gsub(/\n/, '<br>') %>
+  <% if @event.desc %> 
+    <%= simple_format @event.desc.gsub(/\n/, '<br>') %>
+  <% end %>
 </p>
 <p>
   <b>Where:</b>

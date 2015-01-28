@@ -61,7 +61,9 @@
   <div class="row" >
     <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
       <div class="blurb" >
-        <%= simple_format @user.about.gsub(/\n/, '<br>') %>
+        <% if @user.about %> 
+          <%= simple_format @user.about.gsub(/\n/, '<br>') %>
+        <% end %>  
       </div><br><br>
       <% if @user.twitter %>
         <a class="twitter-timeline"    
