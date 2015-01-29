@@ -46,6 +46,14 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def groups
+    @user = User.find_by_permalink(params[:permalink])
+    @groups = Group.where( "user_id = ?", @user.id )
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
+  end
   def stream
     @user = User.find_by_permalink(params[:permalink])
     @books = @user.books

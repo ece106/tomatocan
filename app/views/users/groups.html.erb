@@ -1,0 +1,67 @@
+<div id="groups"  >
+  <%= form_tag groups_path, :method => :get do %>
+      <table >
+      <tr>
+        <th>Address</th>
+        <th>Distance (miles)</th>
+        <th></th>
+        <th> Find in-person groups in your Local area (5 - 20 miles) </th>
+      </tr>
+      <tr>
+        <td><%= text_field_tag :search, params[:search] %></td>
+        <td><%= text_field_tag :dist, params[:dist] %></td>
+        <td><%= submit_tag "Search Near", :name => nil %></td>
+        <td> Or in your MicroLocal area (1 - 5 miles) </td>
+      </tr>
+    </table>  
+  <% end %>
+
+<h1><%= @user.name %>'s groups</h1>
+
+<%= link_to 'Create a New Book Group ', new_group_path %> in Your Community!<br><br>
+<% if user_signed_in? %>
+  Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
+<% end %>
+
+<% if @groups.count != 0 %>
+  <table CELLPADDING="0" CELLSPACING="8" >
+  <thead>
+    <tr>
+      <th>Group Name</th>
+      <th>Where We Meet</th>
+      <th>Group Type</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= link_to group.name, group %></td>
+        <td><%= group.address %></td>
+        <td><% if group.grouptype == 1 %> Critique Group 
+          <% elsif group.grouptype == 2 %> Book Club
+          <% elsif group.grouptype == 3 %> Writers Organization
+          <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering
+          <% elsif group.grouptype == 5 %> Library
+          <% elsif group.grouptype == 6 %> Book Store
+          <% else group.grouptype == 7 %> Other
+          <% end %>
+        </td>
+        <td>
+          <% if user_signed_in? %>
+            <% if group.user_id == current_user.id %>
+              <%= link_to 'Edit', edit_group_path(group.id) %> 
+            <% end %>
+          <% end %>
+        </td>  
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+<% else %>
+  *** You do not have any groups to edit ***
+<% end %>  
+
+</div>
+</div>

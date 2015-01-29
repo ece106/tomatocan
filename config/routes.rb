@@ -68,6 +68,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
+  match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
  
   resources :groups, path: ''
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
