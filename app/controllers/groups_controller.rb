@@ -108,10 +108,10 @@ class GroupsController < ApplicationController
       case action_name
       when "index", "new"
         'application'
-      when "edit"
+      when "edit", "show", "calendar", "eventlist", "news" 
         'grouptemplate'
       else
-        'grouptemplate'
+        'application'
       end
     end
 
