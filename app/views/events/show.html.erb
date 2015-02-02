@@ -3,10 +3,13 @@
   <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 " style= "text-align:left" >
     <p id="notice"><%= notice %></p>
 
-  <% if @event.user_id == current_user.id %>
-    <%= link_to "Edit", edit_event_path(@event) %> |
-    <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
-  <% else %>
+    <% if user_signed_in? %>
+      <% if @event.user_id == current_user.id %>
+        <%= link_to "Edit", edit_event_path(@event) %> |
+        <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+      <% end %>
+    <% end %>
+  
     RSVP FOR THIS EVENT
     <%= form_for(@rsvp) do |f| %>
       <% if @rsvp.errors.any? %>
@@ -20,11 +23,10 @@
         </div>
       <% end %>
 
-      <%= f.hidden_field :event_id, :value => @event.id %>
-      Number of guests you'll bring: <%= f.number_field :guests %>
-      <%= f.submit "RSVP" %>
-    <% end %>
-  <% end %><br>
+        <%= f.hidden_field :event_id, :value => @event.id %>
+        Number of guests you'll bring: <%= f.number_field :guests %>
+        <%= f.submit "RSVP" %>
+    <% end %><br>
 
 <p>
   <b>Event title:</b>
@@ -63,13 +65,10 @@
         <% nguests = Rsvp.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
 
         <% nguests.each do |nguest| %>
-          <% if nguest.guests > 0 %>
+          <% if nguest.guests %>
             + <%= nguest.guests %> 
           <% end %>
         <% end %><br>
       <% end %>
   </div>
 </div>  
-
-
-

@@ -12,7 +12,7 @@
   <%= form_tag events_path, :method => :get do %>
       <table >
       <tr>
-        <th>Address</th>
+        <th>Address or Zip code</th>
         <th>Distance (miles)</th>
         <th></th>
         <th> Find in-person events in your Local area (5 - 20 miles) </th>
@@ -60,7 +60,7 @@
     <% else %>  
       <%= @user.name %> hasn't posted any upcoming events
     <% end %>  
-    <%= link_to "View past events", user_oldevents_path %><br><br><br>
+    <%= link_to "View past events", user_pastevents_path %><br><br><br>
 
     <% if @user.id == current_user.id %>
       <b>My RSVPs</b><br>

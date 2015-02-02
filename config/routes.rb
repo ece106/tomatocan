@@ -64,7 +64,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
   match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
   match '/:permalink/eventlist' => "users#eventlist", :as => :user_eventlist, via: 'get'
-  match '/:permalink/oldevents' => "users#prevevents", :as => :user_oldevents, via: 'get'
+  match '/:permalink/pastevents' => "users#prevevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/calendar' => "users#calendar", :as => :user_calendar, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
