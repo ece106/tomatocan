@@ -1,3 +1,13 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrowdPublish.TV <%  @user.name %> 's groups</title>
+<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
+<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
+</head>
+
 <div id="groups"  >
   <%= form_tag groups_path, :method => :get do %>
       <table >
@@ -18,10 +28,7 @@
 
 <h1><%= @user.name %>'s groups</h1>
 
-<%= link_to 'Create a New Book Group ', new_group_path %> in Your Community!<br><br>
-<% if user_signed_in? %>
-  Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
-<% end %>
+Create a <%= button_to "New Group", new_group_path, :method=> :get %> in Your Community!<br><br>
 
 <% if @groups.count != 0 %>
   <table CELLPADDING="0" CELLSPACING="8" >

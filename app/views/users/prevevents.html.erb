@@ -34,53 +34,28 @@
       <% end %> 
     <% end %> 
 
-    <% if @events.count != 0 %>
-      <table >
-      <tr>
-        <th>Event </th>
-        <th>When</th>
-        <th>Where</th>
-        <th></th>
-      </tr>
+<% if @events.count != 0 %>
+  <table >
+  <tr>
+    <th>Event </th>
+    <th>When</th>
+    <th>Where</th>
+    <th></th>
+  </tr>
 
-      <% @events.sort_by{|t| t.start_at}.each do |event| %>
-        <tr>
-        <td><%= link_to event.name, event %><br><br></td>
-        <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
-        <td><%= event.address %><br><br></td>
-        <td>
-        <% if user_signed_in? %>
-          <% if @user.id == current_user.id %>
-            <%= link_to "Edit", edit_event_path(event) %>
-          <% end %>
-        <% end %><br><br></td>
-        </tr>
-      <% end %>
-      </table>
-    <% else %>  
-      <%= @user.name %> hasn't posted any upcoming events
-    <% end %>  
-    <%= link_to "View past events", user_oldevents_path %><br><br><br>
-
-    <% if @user.id == current_user.id %>
-      <b>My RSVPs</b><br>
-      <table >
-      <tr>
-        <th>Event </th>
-        <th>When</th>
-        <th>Where</th>
-        <th></th>
-      </tr>
-      <% @rsvpevents.each do |rsvpevent| %>
-        <tr>
-        <td><%= link_to rsvpevent.name, rsvpevent %><br><br></td>
-        <td><%= rsvpevent.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
-        <td><%= rsvpevent.address %><br><br></td>
-        </tr>
-      <% end %>
-      </table>
-    <% end %> 
+    <% @events.sort_by{|t| t.start_at}.each do |event| %>
+  <tr>
+    <td><%= link_to event.name, event %><br><br></td>
+    <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
+    <td><%= event.address %><br><br></td>
+    <td>
+       </td>
+  </tr>
+    <% end %>
+  </table>
+<% else %>  
+  <%= @user.name %> hasn't posted any upcoming events
+<% end %>  
+  <%= link_to "View your upcoming events", user_eventlist_path %>
   </div>
 </div>  
-
-

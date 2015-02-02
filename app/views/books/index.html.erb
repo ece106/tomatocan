@@ -1,0 +1,35 @@
+<%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
+    <title>CrowdPublishTV members</title>
+
+<div class="featured">  Featured Books </div><br>
+
+<div class="row" >
+  <% @books.each do |book| %>
+
+    <% if book.coverpic.present? && book.coverpic != '' %> 
+      <div class="col-md-2 col-sm-3 col-xs-4" >
+        <div class="row" style="vertical-align:top; horizontal-align:center; height:220px; overflow:hidden; " >
+          <%= link_to(image_tag(book.coverpic, :size => "100x133",  :title => book.title ), book_path(book.id)) %> 
+          <br><%= link_to book.title, book_path(:id => book.id) %>
+          <% usr = User.find(book.user_id) %>
+          <br>by <%= link_to usr.name, user_profile_path(usr.permalink) %>
+          <br><%= book.genre %>
+        </div>
+      </div> 
+    <% elsif book.coverpicurl %>
+      <% if book.coverpicurl.match /http/  %> 
+        <% if book.coverpicurl.match /jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/  %> 
+          <div class="col-md-2 col-sm-3 col-xs-4" >
+            <div class="row" style="vertical-align:top; horizontal-align:center; height:220px; overflow:hidden;" >
+              <%= link_to(image_tag(book.coverpicurl, :size => "100x133", :title => book.title ), book_path(book.id)) %> 
+              <br><%= link_to book.title, book_path(:id => book.id) %>
+              <% usr = User.find(book.user_id) %>
+              <br>by <%= link_to usr.name, user_profile_path(usr.permalink) %>
+              <br><%= book.genre %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

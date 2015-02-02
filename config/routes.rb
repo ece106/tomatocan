@@ -1,7 +1,5 @@
 Crowdpublishtv::Application.routes.draw do
 
-  resources :groups
-
 #  authenticated :user do
 #    root to: "users#show"
      root to: "static_pages#home"
@@ -16,6 +14,8 @@ Crowdpublishtv::Application.routes.draw do
   match 'localauthorsscene', to: 'static_pages#localauthorsscene', via: 'get'
   match 'tos', to: 'static_pages#tos', via: 'get'
   
+  resources :rsvps
+  resources :groups
   resources :purchases
   resources :plans
   resources :purchases
@@ -59,10 +59,12 @@ Crowdpublishtv::Application.routes.draw do
     end
   end
 
+  match '/books' => "books#index", :as => :allbooks, via: 'get'
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
   match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
   match '/:permalink/eventlist' => "users#eventlist", :as => :user_eventlist, via: 'get'
+  match '/:permalink/oldevents' => "users#prevevents", :as => :user_oldevents, via: 'get'
   match '/:permalink/calendar' => "users#calendar", :as => :user_calendar, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'

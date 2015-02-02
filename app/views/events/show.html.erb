@@ -1,14 +1,30 @@
 <% @title="CrowdPublish.TV - Upcoming Book Event in DC" %>
 <div class="row" >
-  <div class="col-md-8 col-sm-offset-2 col-sm-9 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+  <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 " style= "text-align:left" >
     <p id="notice"><%= notice %></p>
 
-<p>
   <% if @event.user_id == current_user.id %>
     <%= link_to "Edit", edit_event_path(@event) %> |
-    <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> 
-  <% end %>
-</p>
+    <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+  <% else %>
+    RSVP FOR THIS EVENT
+    <%= form_for(@rsvp) do |f| %>
+      <% if @rsvp.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+          <ul>
+          <% @rsvp.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.hidden_field :event_id, :value => @event.id %>
+      Number of guests you'll bring: <%= f.number_field :guests %>
+      <%= f.submit "RSVP" %>
+    <% end %>
+  <% end %><br>
 
 <p>
   <b>Event title:</b>
@@ -19,7 +35,6 @@
   <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
 </p>
 <p>
-
   <b>Start time:</b>
   <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %>
 </p>
@@ -38,8 +53,23 @@
   <%= @event.address %><p>
 </p>
 
-
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}" %>
-
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}" %><br><br><br>
   </div>
-</div>
+
+  <div class="col-md-3 col-sm-3 col-xs-3 " style= "text-align:left" >
+      <b><%= @rsvpusers.sum(:guests) + @rsvpusers.count %> guests said they'll be there</b><br> 
+      <% @rsvpusers.each do |rsvpuser| %>
+        <%= link_to rsvpuser.name, rsvpuser %>
+        <% nguests = Rsvp.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
+
+        <% nguests.each do |nguest| %>
+          <% if nguest.guests > 0 %>
+            + <%= nguest.guests %> 
+          <% end %>
+        <% end %><br>
+      <% end %>
+  </div>
+</div>  
+
+
+

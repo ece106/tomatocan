@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /events.json
   def index
     @events = Event.all
@@ -23,6 +23,8 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user = User.find(@event.user_id)
+    @rsvp = Rsvp.new
+    @rsvpusers = @event.users
 
     respond_to do |format|
       format.html # show.html.erb

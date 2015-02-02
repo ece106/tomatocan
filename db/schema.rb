@@ -109,6 +109,12 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "updated_at"
   end
 
+  create_table "rsvps", force: true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+    t.integer "guests"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
