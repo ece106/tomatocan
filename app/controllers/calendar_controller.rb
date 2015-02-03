@@ -6,15 +6,15 @@ class CalendarController < ApplicationController
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @shown_month = Date.civil(@year, @month)
 
-    @events = Event.all
+    @events = Event.where( "start_at > ?", Time.now )
     if params[:search].present?
       @events = Event.near(params[:search], params[:dist]) 
-    elsif user_signed_in? && current_user.address
-      @events = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
-    elsif request.location 
-      @events = Event.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
-    else  
-      @events = Event.near("Washington, DC", 100, order: 'distance')
+#    elsif user_signed_in? && current_user.address
+#      @events = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
+#    elsif request.location 
+#      @events = Event.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
+#    else  
+#      @events = Event.near("Washington, DC", 100, order: 'distance')
       # Event where address = "online"
     end
 

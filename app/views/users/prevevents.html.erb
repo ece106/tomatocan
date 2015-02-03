@@ -56,10 +56,10 @@
 <% else %>  
   <%= @user.name %> hasn't posted any past events
 <% end %>  
-  <%= link_to "View upcoming events", user_eventlist_path %>
+  <%= link_to "View upcoming events", user_eventlist_path %><br><br>
 
     <% if @user.id == current_user.id %>
-      <b>My past RSVPs</b><br>
+      <b>My past RSVPs</b><br><br>
       <table >
       <tr>
         <th>Event </th>

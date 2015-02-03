@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "updated_at"
     t.text     "desc"
     t.string   "address"
-    t.string   "rsvp"
     t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"

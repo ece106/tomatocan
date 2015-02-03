@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     currtime = Time.now
     @user = User.find_by_permalink(params[:permalink])
     @events = Event.where( "start_at > ? AND user_id = ?", currtime, @user.id )
-    @rsvpevents = @user.events.where( "start_at > ?", currtime )
+    @rsvpevents = @user.events.where( "start_at > ?".to_i, currtime.to_i - 20000 )
     respond_to do |format|
       format.html 
       format.json { render json: @user }
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     currtime = Time.now
     @user = User.find_by_permalink(params[:permalink])
     @events = Event.where( "start_at < ? AND user_id = ?", currtime, @user.id )
-    @rsvpevents = @user.events.where( "start_at > ?", currtime )
+    @rsvpevents = @user.events.where( "start_at < ?".to_i, currtime.to_i - 20000 )
     respond_to do |format|
       format.html 
       format.json { render json: @user }

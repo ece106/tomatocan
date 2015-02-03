@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.where( "start_at > ?", Time.now )
-   if params[:search].present?
+    if params[:search].present?
       @events = Event.near(params[:search], params[:dist], order: 'distance') 
 #    elsif user_signed_in? && current_user.address
 #      @events = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
@@ -54,9 +54,12 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+#        redirect_to @event
         format.html { redirect_to @event }
         format.json { render json: @event, status: :created, location: @event }
       else
+#        format.html { redirect_to new_event_path }
+ #       redirect_to new_event_path, :notice => "Your event was not saved. Check for improper input."
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -94,5 +97,5 @@ end
   private
 
     def event_params
-      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :rsvp, :user_id, :group1id, :group2id, :group3id )
+      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :user_id, :group1id, :group2id, :group3id )
     end
