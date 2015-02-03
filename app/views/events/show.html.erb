@@ -54,7 +54,11 @@
   <%= @event.address %><p>
 </p>
 
+  <% if @event.address != "online" %> 
     <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=11&markers=#{@event.latitude}%2C#{@event.longitude}" %><br><br><br>
+  <% else %>
+    at <%= link_to @user.name + "'s livestream site", user_stream_path(@user.permalink) %> </b>
+  <% end %>
   </div>
 
   <div class="col-md-3 col-sm-3 col-xs-3 " style= "text-align:left" >
@@ -71,3 +75,4 @@
       <% end %>
   </div>
 </div>  
+<br><br>

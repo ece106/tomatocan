@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @user = User.find(@event.user_id)
+    @user = User.find(@event.usrid)
     @rsvp = Rsvp.new
     @rsvpusers = @event.users
 
@@ -97,5 +97,5 @@ end
   private
 
     def event_params
-      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :user_id, :group1id, :group2id, :group3id )
+      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
     end

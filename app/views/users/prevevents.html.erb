@@ -58,8 +58,8 @@
 <% end %>  
   <%= link_to "View upcoming events", user_eventlist_path %><br><br>
 
-    <% if @user.id == current_user.id %>
-      <b>My past RSVPs</b><br><br>
+  <% if @rsvpevents.count != 0 %>
+      <b><%= @user.name %>'s past RSVPs</b><br><br>
       <table >
       <tr>
         <th>Event </th>
@@ -75,7 +75,9 @@
         </tr>
       <% end %>
       </table>
-    <% end %> 
+  <% else %>  
+    <%= @user.name %> hasn't RSVPd to any past events
+  <% end %> 
 
 
   </div>

@@ -1,9 +1,9 @@
 class Event < ActiveRecord::Base
   has_event_calendar
+#  belongs_to :user
   has_many :rsvps
   has_many :users, :through => :rsvps
-  belongs_to :user
-  validates :user_id, presence: true
+  validates :usrid, presence: true
   validates :name, presence: true
   geocoded_by :address
 

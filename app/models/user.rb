@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :books 
   has_many :reviews
   has_many :groups
-  has_many :events
+#  has_many :events
   has_many :purchases
   has_many :rsvps
   has_many :events, :through => :rsvps

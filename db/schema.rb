@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer  "group1id"
     t.integer  "group2id"
     t.integer  "group3id"
+    t.integer  "usrid"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
