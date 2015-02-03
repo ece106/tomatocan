@@ -62,7 +62,9 @@
     <% end %>  
     <%= link_to "View past events", user_pastevents_path %><br><br><br>
 
-    <% if @user.id == current_user.id %>
+    <% if @rsvpevents.count != 0 %>
+      <b><%= @user.name %>'s past RSVPs</b><br><br>
+      <% # if @user.id == current_user.id %>
       <b>My RSVPs</b><br><br>
       <table >
       <tr>
@@ -79,6 +81,8 @@
         </tr>
       <% end %>
       </table>
+    <% else %>  
+      <%= @user.name %> hasn't RSVPd to any past events
     <% end %> 
   </div>
 </div>  
