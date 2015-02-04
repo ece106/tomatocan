@@ -63,6 +63,9 @@
 
   <div class="col-md-3 col-sm-3 col-xs-3 " style= "text-align:left" >
       <b><%= @rsvpusers.sum(:guests) + @rsvpusers.count %> guests said they'll be there</b><br> 
+      <br> -- RSVPs are a new feature -- 
+      <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: http://www.CrowdPublish.TV/events/<%= @event.id %> <br><br>
+
       <% @rsvpusers.each do |rsvpuser| %>
         <%= link_to rsvpuser.name, rsvpuser %>
         <% nguests = Rsvp.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
