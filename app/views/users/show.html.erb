@@ -21,13 +21,7 @@
   <div class="row" >
     <div class="col-md-5 col-sm-4 col-xs-7 " >
     <% if @user.youtube1? %>
-      <% if @user.youtube1.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube1.html_safe %>
-      <% elsif @user.youtube1.match /<iframe width="420" height="315" src="https:\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube1.html_safe %>
-      <% elsif @user.youtube1.match /<iframe width="560" height="315" src="\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube1.html_safe %>
-      <% elsif @user.youtube1.match /<iframe width="560" height="315" src="https:\/\/www.youtube.com\/embed/ %>
+      <% if @user.youtube1.match(/<iframe/) && @user.youtube1.match(/\/\/www.youtube.com\/embed/) %>
         <%= @user.youtube1.html_safe %>
       <% end %>
     <% else %>
@@ -38,26 +32,13 @@
     <% end %>
     <br>
     <% if @user.youtube2? %>
-      <% if @user.youtube2.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube2.html_safe %>
-      <% elsif @user.youtube2.match /<iframe width="420" height="315" src="https:\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube2.html_safe %>
-      <% elsif @user.youtube2.match /<iframe width="560" height="315" src="\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube2.html_safe %>
-      <% elsif @user.youtube2.match /<iframe width="560" height="315" src="https:\/\/www.youtube.com\/embed/ %>
+      <% if @user.youtube2.match(/<iframe/) && @user.youtube2.match(/\/\/www.youtube.com\/embed/) %>
         <%= @user.youtube2.html_safe %>
       <% end %>
     <% end %>
     <br>
     <% if @user.youtube3? %>
-      <% if @user.youtube3.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube3.html_safe %>
-      <% elsif @user.youtube3.match /<iframe width="420" height="315" src="https:\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube3.html_safe %>
-      <% elsif @user.youtube3.match /<iframe width="560" height="315" src="\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube3.html_safe %>
-      <% elsif @user.youtube3.match /<iframe width="560" height="315" src="https:\/\/www.youtube.com\/embed/ %>
-        <%= @user.youtube3.html_safe %>
+      <% if @user.youtube3.match(/<iframe/) && @user.youtube3.match(/\/\/www.youtube.com\/embed/) %>
       <% end %>
     <% end %>
 
