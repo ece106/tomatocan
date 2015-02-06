@@ -10,6 +10,12 @@
 
 <% @title=" Watch " + @user.name + " videos here!" %>
 
+<div class="blurb" >
+  <% if @user.about %> 
+    <%= simple_format @user.about.gsub(/\r\n/, '<br>') %>
+  <% end %>
+</div><br><br>
+
 <% if @user.author == 2 %>
 
   <div class="row" >
@@ -17,7 +23,11 @@
     <% if @user.youtube1? %>
       <% if @user.youtube1.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
         <%= @user.youtube1.html_safe %>
+      <% elsif @user.youtube1.match /<iframe width="420" height="315" src="https:\/\/www.youtube.com\/embed/ %>
+        <%= @user.youtube1.html_safe %>
       <% elsif @user.youtube1.match /<iframe width="560" height="315" src="\/\/www.youtube.com\/embed/ %>
+        <%= @user.youtube1.html_safe %>
+      <% elsif @user.youtube1.match /<iframe width="560" height="315" src="https:\/\/www.youtube.com\/embed/ %>
         <%= @user.youtube1.html_safe %>
       <% end %>
     <% else %>
@@ -30,7 +40,11 @@
     <% if @user.youtube2? %>
       <% if @user.youtube2.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
         <%= @user.youtube2.html_safe %>
+      <% elsif @user.youtube2.match /<iframe width="420" height="315" src="https:\/\/www.youtube.com\/embed/ %>
+        <%= @user.youtube2.html_safe %>
       <% elsif @user.youtube2.match /<iframe width="560" height="315" src="\/\/www.youtube.com\/embed/ %>
+        <%= @user.youtube2.html_safe %>
+      <% elsif @user.youtube2.match /<iframe width="560" height="315" src="https:\/\/www.youtube.com\/embed/ %>
         <%= @user.youtube2.html_safe %>
       <% end %>
     <% end %>
@@ -38,7 +52,11 @@
     <% if @user.youtube3? %>
       <% if @user.youtube3.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
         <%= @user.youtube3.html_safe %>
+      <% elsif @user.youtube3.match /<iframe width="420" height="315" src="https:\/\/www.youtube.com\/embed/ %>
+        <%= @user.youtube3.html_safe %>
       <% elsif @user.youtube3.match /<iframe width="560" height="315" src="\/\/www.youtube.com\/embed/ %>
+        <%= @user.youtube3.html_safe %>
+      <% elsif @user.youtube3.match /<iframe width="560" height="315" src="https:\/\/www.youtube.com\/embed/ %>
         <%= @user.youtube3.html_safe %>
       <% end %>
     <% end %>
@@ -60,11 +78,6 @@
 <% else  %>
   <div class="row" >
     <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
-      <div class="blurb" >
-        <% if @user.about %> 
-          <%= simple_format @user.about.gsub(/\n/, '<br>') %>
-        <% end %>  
-      </div><br><br>
       <% if @user.twitter %>
         <a class="twitter-timeline"    
         data-widget-id="375760459510464512"
