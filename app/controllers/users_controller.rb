@@ -135,6 +135,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 #    @user.latitude = request.location.latitude
 #    @user.longitude = request.location.longitude
+
+    if @user.youtube1.match(/\/\/www.youtube.com\/embed/)
+      dummy=0
+    else
+      @user.youtube1 = parse_youtube @user.youtube1
+    end
     if @user.save
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
@@ -147,7 +153,27 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
 
+    if @user.latitude
+      dummy = 0
+    else
+      @user.update_attribute(:latitude, request.location.latitude)
+      @user.update_attribute(:longitude, request.location.longitude)
+    end
+
     if @user.update_attributes(user_params)
+      if @user.youtube1.match(/\/\/www.youtube.com\/watch/)
+        youtube1parsed = parse_youtube @user.youtube1
+        @user.update_attribute(:youtube1, youtube1parsed)
+      end
+      if @user.youtube2.match(/\/\/www.youtube.com\/watch/)
+        youtube2parsed = parse_youtube @user.youtube2
+        @user.update_attribute(:youtube2, youtube2parsed)
+      end
+      if @user.youtube1.match(/\/\/www.youtube.com\/watch/)
+        youtube3parsed = parse_youtube @user.youtube3
+        @user.update_attribute(:youtube3, youtube3parsed)
+      end
+
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
     else
@@ -183,6 +209,11 @@ class UsersController < ApplicationController
       else
         'userpgtemplate'
       end
+    end
+
+    def parse_youtube url
+       regex = /(?:.be\/|\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+       url.match(regex)[1]
     end
 
 end
