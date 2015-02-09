@@ -5,44 +5,46 @@
 </head>
 
 <div class="row">
-  <div class="col-md-4" >
+  <div class="col-xl-3 col-lg-3 col-md-4" >
     <div class="helps">
       Readers:
     </div>
     <div class="blacktxt">
-      <%= link_to 'Sign up for your own Booklover page', "/signup" %><br>
-      Chat with other booklovers<br>
-      Meet people who have similar interests <br>
-      <i>Coming soon: Buy ebooks & merchandise<br>
-      Review books</i>
+      <%= link_to 'Sign up for your own book reviews page', "/signup" %>
+      <br><%= link_to 'Find literary events near you', calendar_path  %>
+      <br><%= link_to 'Find book clubs near you', groups_path %>
+      <br><%= link_to 'Find online Livestreaming book discussions', calendar_path  %>
+      <br><i>Coming soon: Buy ebooks & merchandise<br>
+      Review books on CrowdPublish.TV</i>
     </div>
   </div>
 
-  <div class="col-md-4" >
+  <div class="col-xl-5 col-lg-5 col-md-4" >
     <div class="helps">
       Authors:
     </div>
     <div class="blacktxt">
       <%= link_to 'Sign up for your own Author site', "/signup" %><br>
       Post your videos <br>
-      Host live streaming talks <br>
+      Host livestreaming talks <br>
       List your books <br> 
-      <%= link_to 'List your online & in-person events', new_event_path %> <br>
-      Keep in touch with fans<br>
+      <%= link_to 'Get RSVPs for your Livestreamed & in-person readings', new_event_path %> <br>
+      <%= link_to 'Find critique groups & writer organizations near you', groups_path %><br>
+      <%= link_to 'Network with authors and readers at events near you', calendar_path  %><br>
       <i>Coming soon: Sell ebooks & merchandise<br> 
       Crowdfund your book-in-progress<br>
       Livestreaming author parties</i>
     </div>
   </div>
 
-  <div class="col-md-4" >
+  <div class="col-xl-4 col-lg-4 col-md-4" >
     <div class="helps">
-      Clubs &amp; Organizations:
+      Clubs & Organizations:
     </div>
     <div class="blacktxt">
-      <%= link_to 'Sign up for a Club site', new_group_path %><br>
-      <%= link_to 'List your Club location so local booklovers can find you', new_group_path %> <br>
-      <%= link_to 'List your events so local booklovers can RSVP', new_event_path %> <br>
+      <%= link_to 'Get a free site for your Book Club, Critique Group, or Writer Organization', new_group_path %><br>
+      <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
+      <%= link_to 'Collect RSVPs for your events', new_event_path %> <br>
       <i>Coming soon: List members & their books (if applicable)</i>
     </div>
   </div>
@@ -51,7 +53,7 @@
 <div class="row" style="margin-top:20px;" >
   <div class="col-md-12" >
     <div class="helps" >
-      <%= link_to 'DC, VIRGINIA, MARYLAND Booklovers: Join the LOCAL AUTHORS SCENE', "/localauthorsscene" %><p>
+      <%= link_to 'DC, VIRGINIA, MARYLAND Writers & Readers: Join the LOCAL AUTHORS SCENE', "/localauthorsscene" %><p>
   </div>
   </div>
 </div>
@@ -62,13 +64,16 @@
   </div>
 </div>
 
-<div class="row" style="margin-top:60px;" >
-  <div class="col-md-12" >
+<div class="row" style="margin-top:15px;" >
+  <div class="col-md-5" >
     <div class = "copyalpha" >
-      This site is still in alpha stage development 
+      <br><br>This site is still in alpha stage development 
       <br><br>Questions? Contact Lisa@CrowdPublish.TV 
       <br><br>(C) Copyright 2015, RoleModel Enterprises, LLC. All Rights Reserved.
     </div>
+  </div>
+  <div class="col-md-5" >
+    <iframe width="550" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
   </div>
 </div>
 <br><br>

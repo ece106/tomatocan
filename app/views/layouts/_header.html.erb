@@ -3,11 +3,17 @@
 <nav>
 
 <div class="row">
-  <div class="col-md-3 col-sm-7 col-xs-7">
+  <div class="col-md-2 col-sm-7 col-xs-7">
     <%= image_tag("cpLogo150.png", class: 'img-responsive', alt: "Responsive image") %>
-    <br><%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %>
-    <%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %>
-    <%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
+    <div class="menu" style="text-align:center; " >
+      <% if user_signed_in? %>
+        <br><%= link_to "My profile", user_profile_path(current_user.permalink) %>
+        <br><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <br><%= link_to 'Sign in', "/login" %>
+      <% end %>
+      <br><%= link_to 'About', "/howwork" %>
+    </div>
   </div>
   <div class="col-md-1">
   </div>
@@ -18,40 +24,32 @@
       <% #= link_to 'Online Events', calendar_path, :style => 'color:#FFFFFF' %>
       <br><%= link_to 'Events Near You!', calendar_path  %>
       <br><%= link_to 'List Your Event', new_event_path %>
-      <br><%= link_to 'Groups Near You!', groups_path %>
-      <br><%= link_to 'List Your Group', new_group_path %>
-      <br><%= link_to 'Members to Watch', users_path  %>
-    </div>
-    <div class="smmenu" style="text-align:left; " >
-      <% if user_signed_in? %>
-        <br><%= link_to "My profile", user_profile_path(current_user.permalink) %>
-        <br><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <br><%= link_to 'SIGN UP!', "/signup" %>
-        <br><%= link_to 'Sign in', "/login" %>
-      <% end %>
-      <br><%= link_to 'About', "/howwork" %>
+      <br><%= link_to 'Clubs & Organizations Near You!', groups_path %>
+      <br><%= link_to 'List Your Book Club', new_group_path %>
+      <br><%= link_to 'List Your Writers Group', new_group_path %>
+      <br><%= link_to 'Members to Watch', users_path  %> <br>
+    <br><%= link_to image_tag("facebk.png", :size => "32x32"), "http://facebook.com/CrowdPublishTV", :target => "_blank" %> &nbsp&nbsp&nbsp
+    <%= link_to image_tag("twitter.png", :size => "32x32"), "http://twitter.com/CrowdPublishTV", :target => "_blank" %> &nbsp&nbsp&nbsp
+    <%= link_to image_tag("linkedin.png", :size => "32x32"), "http://linkedin.com/in/lisaannschaefer", :target => "_blank" %>  
     </div>
   </div>
 
-  <div class="col-md-5 col-sm-12 col-xs-12">
-    <div id="frag_22" style="text-align:left; width:450px; height:205px; overflow:hidden; ">
-      <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="460" height="240"></iframe>
+  <div class="col-md-6 col-sm-12 col-xs-12">
+    <div id="frag_22" style="text-align:left; width:470px; height:235px; overflow:hidden; ">
+      <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="480" height="270"></iframe>
 
     </div>
   </div>
 </div>
 
 <div class="row" style="margin-top:10px;">
-  <div class="col-md-3 col-sm-12 col-xs-12">
+  <div class="col-md-2 col-sm-12 col-xs-12">
     <div class="blacktxt" style= "text-align:center;">
     <% if user_signed_in? %>
       Signed in as <%= current_user.email %>. Not you?
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
     <% else %>
       <%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %>
-      <br>
-      Already a member? <%= link_to "SIGN IN", new_user_session_path %> 
     <% end %>
     </div>
   </div>

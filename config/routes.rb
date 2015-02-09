@@ -13,7 +13,9 @@ Crowdpublishtv::Application.routes.draw do
   match 'howwork', to: 'static_pages#howwork', via: 'get'
   match 'localauthorsscene', to: 'static_pages#localauthorsscene', via: 'get'
   match 'tos', to: 'static_pages#tos', via: 'get'
-  
+
+  match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
+
   resources :rsvps
   resources :groups
   resources :purchases

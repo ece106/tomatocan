@@ -1,6 +1,6 @@
 <div id="groups" style="position:absolute; width:1000px; height:757px;" >
 
-    <%= form_tag events_path, :method => :get do %>
+    <%= form_tag events_pastevents_path, :method => :get do %>
       <table >
       <tr>
         <th>Address</th>
@@ -17,9 +17,9 @@
       </table>  
     <% end %>
 
-<br><%= link_to 'Browse Past Events', events_path %><br>
+<br><%= link_to 'Browse Upcoming Events', events_path %><br>
 
-<h1>Upcoming Events</h1>
+<h1>Past Events</h1>
 
 <%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
 <% if user_signed_in? %>

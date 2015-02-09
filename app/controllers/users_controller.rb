@@ -136,11 +136,6 @@ class UsersController < ApplicationController
 #    @user.latitude = request.location.latitude
 #    @user.longitude = request.location.longitude
 
-    if @user.youtube1.match(/\/\/www.youtube.com\/embed/)
-      dummy=0
-    else
-      @user.youtube1 = parse_youtube @user.youtube1
-    end
     if @user.save
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
