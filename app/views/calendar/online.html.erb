@@ -1,0 +1,29 @@
+<div class="row" >
+  <div class=" col-xs-12 " style= "text-align:left" >
+
+<!-- Probably move the stylesheet to you layout. Also make sure you include the javascript. -->
+<%= stylesheet_link_tag "event_calendar" %>
+
+<div id="calendar" >
+  <%= form_tag calendar_path, :method => :get do %>
+    <table >
+      <tr>
+        <th>Address or Zip code</th>
+        <th>Distance (miles)</th>
+        <th></th>
+        <th><%= link_to ' Create New Event', new_event_path %> </th>
+      </tr>
+      <tr>
+        <td><%= text_field_tag :search, params[:search] %></td>
+        <td><%= text_field_tag :dist, params[:dist] %></td>
+        <td><%= submit_tag "Search Near", :name => nil %></td>
+        <td>See all nearby <%= link_to ' in-person Upcoming Events & times as a LIST', events_path %></td>
+      </tr>
+    </table>  
+  <% end %>
+  In addition to posting online livestreaming CrowdPublishTV events hosted on author pages, we're working on getting people to post in-person events supportive of Local Authors. We're concentrating on getting people active in the DC metro area first. If you'd like to spearhead an effort to organize people in your local area to post & attend events supportive of local authors, let us know! Lisa@CrowdPublish.TV
+  <br><br><%= raw(event_calendar) %>
+  <br />
+</div>
+  </div>
+</div>	

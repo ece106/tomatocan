@@ -15,6 +15,8 @@ Crowdpublishtv::Application.routes.draw do
   match 'tos', to: 'static_pages#tos', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
+  match '/events/online' => "events#online", :as => :events_online, via: 'get'
+  match '/calendar/online' => "calendar#online", :as => :calendar_online, via: 'get'
 
   resources :rsvps
   resources :groups

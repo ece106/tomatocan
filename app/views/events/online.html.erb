@@ -17,14 +17,11 @@
       </table>  
     <% end %>
 
-<br><%= link_to 'Browse Past Events', events_pastevents_path %><br>
+<br><%= link_to 'Browse In-Person Events', events_path %><br>
 
-<h1>Upcoming Events</h1>
+<h1>Upcoming Online Events</h1>
 
 <%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
-<% if user_signed_in? %>
-  Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
-<% end %>
 
 <% if @events.count != 0 %>
   <table >
@@ -40,12 +37,8 @@
     <td ><%= link_to event.name, event %></td>
     <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
     <td>
-      <% if event.address == "online" %> 
         <% user = User.find(event.usrid) %>
         <%= link_to user.name + "'s livestream site", user_stream_path(user.permalink) %> </b>
-      <% else %>
-        <%= event.address %>
-      <% end %>
     </td>
     <td>
       <% if user_signed_in? %>
@@ -61,5 +54,38 @@
   *** No events near you yet ***
 <% end %>  
 
+<br><br>
+<h1>Past Online Events</h1>
+
+<% if @pastevents.count != 0 %>
+  <table >
+  <tr>
+    <th>Event </th>
+    <th>When</th>
+    <th>Where</th>
+    <th></th>
+  </tr>
+
+  <% @pastevents.sort_by{|t| t.start_at}.each do |pastevent| %>
+    <tr>
+    <td ><%= link_to pastevent.name, pastevent %></td>
+    <td ><%= pastevent.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
+    <td>
+        <% user = User.find(pastevent.usrid) %>
+        <%= link_to user.name + "'s livestream site", user_stream_path(user.permalink) %> </b>
+    </td>
+    <td>
+      <% if user_signed_in? %>
+        <% if pastevent.usrid == current_user.id %>
+          <%= link_to 'Edit Event', edit_event_path(pastevent.id) %> 
+        <% end %>
+      <% end %>
+    </td>  
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  *** No past online events ***
+<% end %>  
 </div>	
 </div>
