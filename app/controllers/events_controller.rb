@@ -76,6 +76,12 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        if @event.address.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
+          @event.update_attribute(:address, "online")
+        end
+        if @event.desc.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
+          @event.update_attribute(:desc, "URLs are not allowed in event descriptions. If you are hosting a livestreaming event, simply leave the address as the default 'online' and viewers will be given a link to your Live Events page on CrowdPublish.TV")
+        end
 #        redirect_to @event
         format.html { redirect_to @event }
         format.json { render json: @event, status: :created, location: @event }
@@ -94,6 +100,12 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(event_params)
+        if @event.address.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
+          @event.update_attribute(:address, "online")
+        end
+        if @event.desc.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
+          @event.update_attribute(:desc, "URLs are not allowed in event descriptions. If you are hosting a livestreaming event, simply leave the address as the default 'online' and viewers will be given a link to your Live Events page on CrowdPublish.TV")
+        end
         format.html { redirect_to @event }
         format.json { head :ok }
       else

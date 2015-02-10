@@ -12,11 +12,11 @@
   <%= f.hidden_field :latitude, :value => (request.location ? request.location.latitude : 38.899) %>
   <%= f.hidden_field :longitude, :value => (request.location ? request.location.longitude : -77.037)%>
   
-  <p>Username - numbers and letters ONLY (Will be used in your unique URL.)<br />
-  <%= f.text_field :permalink, :autofocus => true %>  <p> 
-  Full name<br />
+  <p><b>Username</b> - numbers and letters ONLY (must be less than 20 characters)<br />
+  www.CrowdPublish.TV/<%= f.text_field :permalink, :autofocus => true, placeholder: "username" %>  <p> 
+  <b>Full name</b><br />
   <%= f.text_field :name, :autofocus => true %>  <p>
-  Email<br />
+  <b>Email</b><br />
   <%= f.email_field :email, :autofocus => true %>  <p>
   <br />
 

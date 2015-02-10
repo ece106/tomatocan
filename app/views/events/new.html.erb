@@ -17,7 +17,7 @@
   <%= f.hidden_field :usrid, value: current_user.id %>
 
   <div class="field">
-    Event title<br>
+    <b>Event title</b><br>
     <%= f.text_field :name, :size => 80 %><p>
   </div>
 
@@ -31,16 +31,19 @@
     <%= f.datetime_select :end_at, :ampm => true, :default => 10.days.from_now, :minute_step => 15 %>
   </div>
   <div class="field">
-    Description of event<br />
+    <b>Description of event</b><br />
+    <i>NOTE: Descriptions containing URLs will not be saved. If you are hosting a livestreaming event, simply leave the address below as the default 'online' and viewers will be given a link to your Live Events page on CrowdPublish.TV" </i><br>
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
   </div>
   <div class="field">
+    <b>Address</b><br>
     If an in-person event, street address where this event will take place, otherwise enter "online" <br />
     (An online event would be a livestream that will take place on your http://www.CrowdPublish.TV/<%= current_user.permalink %>/stream page) <br>
+    <i>NOTE: Potential in-person attendees will be searching for your group by distance, thus you are advised to enter a zip code or city, state in your address for events occurring at a physical location</i><br>
     <%= f.text_field :address, :size => 80, placeholder: "online" %><p>
   </div>
   <div class="field">
-   You can select up to 3 groups/organizations near you ( <%= link_to "Need to change your zip code?", user_profileinfo_path(current_user.permalink) %> ) for placing your event on their calendar (the group moderator will delete your event from the calendar if it does not meet that group's criteria for posting events) <br><br> 
+    You can select up to 3 groups/organizations near you ( <%= link_to "Need to change your zip code?", user_profileinfo_path(current_user.permalink) %> ) for placing your event on their calendar (the group moderator will delete your event from the calendar if it does not meet that group's criteria for posting events) <br>
 
     <%= f.collection_select(:group1id, @groups.all, :id, :name, prompt: true) %>
     <%= f.collection_select(:group2id, @groups.all, :id, :name, prompt: true) %>
