@@ -19,9 +19,9 @@
 
 <br><%= link_to 'Browse In-Person Events', events_path %><br>
 
-<h1>Upcoming Online Events</h1>
+<h1>Upcoming Livestreamed Readings</h1>
 
-<%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
+<%= link_to 'Create a New Book-Related Event', new_event_path %>  in Your Community!<br><br>
 
 <% if @events.count != 0 %>
   <table >
@@ -55,7 +55,7 @@
 <% end %>  
 
 <br><br>
-<h1>Past Online Events</h1>
+<h1>Past Livestreamed Readings</h1>
 
 <% if @pastevents.count != 0 %>
   <table >
