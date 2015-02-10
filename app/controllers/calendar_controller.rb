@@ -8,7 +8,7 @@ class CalendarController < ApplicationController
 
     @events = Event.all
     if params[:search].present?
-      if params[:dist].present?
+      if params[:dist].present? && is_number?(params[:dist])
         @events = Event.near(params[:search], params[:dist]) 
       else
         @events = Event.near(params[:search], 50) 
@@ -26,6 +26,12 @@ class CalendarController < ApplicationController
 
 #    @event_strips = Event.event_strips_for_month(@shown_month, :include => :some_relation, :conditions => 'some_relations.some_column = true')
     @event_strips = @events.event_strips_for_month(@shown_month) 
-
   end
+
+  private
+
+    def is_number?(obj)
+      obj.to_s == obj.to_i.to_s
+    end
+
 end

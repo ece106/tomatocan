@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   def index
     if params[:search].present?
-      if params[:dist].present?
+      if params[:dist].present? && is_number?(params[:dist])
         @groups = Group.near(params[:search], params[:dist], order: 'distance')
       else  
         @groups = Group.near(params[:search], 50, order: 'distance')
@@ -116,6 +116,10 @@ class GroupsController < ApplicationController
       else
         'application'
       end
+    end
+
+    def is_number?(obj)
+      obj.to_s == obj.to_i.to_s
     end
 
 end

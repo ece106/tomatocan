@@ -3,8 +3,9 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.where( "start_at > ?", Time.now )
+
     if params[:search].present?
-      if params[:dist].present?
+      if params[:dist].present? && is_number?(params[:dist])
         @events = @events.near(params[:search], params[:dist], order: 'distance') 
       else
         @events = @events.near(params[:search], 50, order: 'distance') 
@@ -26,7 +27,7 @@ class EventsController < ApplicationController
   def pastevents
     @events = Event.where( "start_at < ?", Time.now )
     if params[:search].present?
-      if params[:dist].present?
+      if params[:dist].present? && is_number?(params[:dist])
         @events = @events.near(params[:search], params[:dist], order: 'distance') 
       else
         @events = @events.near(params[:search], 50, order: 'distance') 
@@ -112,11 +113,15 @@ class EventsController < ApplicationController
       format.json { head :ok }
     end
   end
-end
-
 
   private
 
     def event_params
       params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
     end
+
+    def is_number?(obj)
+      obj.to_s == obj.to_i.to_s
+    end
+
+end
