@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @shown_month = Date.civil(@year, @month)
     @user = User.find_by_permalink(params[:permalink])
     @events = Event.all 
-    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :user_id => @user.id } ) 
+    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :usrid => @user.id } ) 
   end
   def eventlist
     currtime = Time.now

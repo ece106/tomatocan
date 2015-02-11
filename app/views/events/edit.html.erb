@@ -35,8 +35,8 @@
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
   </div>
   <div class="field">
-    Street address (if in-person) or "online"<br />
-    <%= f.text_field :address, :size => 80 %><p>
+    Street address (if in-person) or "livestream"<br />
+    <%= f.text_field :address, :size => 80, placeholder: "livestream"  %><p>
   </div>
   <div class="actions">
     <%= f.submit %>

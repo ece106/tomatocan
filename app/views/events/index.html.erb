@@ -40,7 +40,7 @@
     <td ><%= link_to event.name, event %></td>
     <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
     <td>
-      <% if event.address == "online" %> 
+      <% if event.address == "livestream" %> 
         <% user = User.find(event.usrid) %>
         <%= link_to user.name + "'s livestream site", user_stream_path(user.permalink) %> </b>
       <% else %>

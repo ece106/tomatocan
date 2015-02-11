@@ -23,7 +23,7 @@
       <% end %>
 
         <%= f.hidden_field :event_id, :value => @event.id %>
-        Number of guests you'll bring: <%= f.number_field :guests, placeholder: "optional" %>
+        Number of guests you'll bring: <%= f.number_field :guests, placeholder: "leave blank if none" %>
         <%= f.submit "RSVP" %>
     <% end %><br>
 
@@ -54,7 +54,7 @@
   <%= @event.address %><p>
 </p>
 
-  <% if @event.address != "online" %> 
+  <% if @event.address != "livestream" %> 
     <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=11&markers=#{@event.latitude}%2C#{@event.longitude}" %><br><br><br>
   <% else %>
     at <%= link_to @user.name + "'s livestream site", user_stream_path(@user.permalink) %> </b>
