@@ -23,7 +23,7 @@
       <% end %>
 
         <%= f.hidden_field :event_id, :value => @event.id %>
-        Number of guests you'll bring: <%= f.number_field :guests %>
+        Number of guests you'll bring: <%= f.number_field :guests, placeholder: "optional" %>
         <%= f.submit "RSVP" %>
     <% end %><br>
 

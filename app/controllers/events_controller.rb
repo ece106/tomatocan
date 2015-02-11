@@ -76,6 +76,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        if @event.name.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
+          @event.update_attribute(:name, "Online Event")
+        end
         if @event.address.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
           @event.update_attribute(:address, "online")
         end
@@ -100,6 +103,12 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(event_params)
+        if @event.end_at > @event.start_at + 3.days
+          @event.update_attribute(:end_at, @event.start_at + 3.days)
+        end
+        if @event.name.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
+          @event.update_attribute(:name, "Online Event")
+        end
         if @event.address.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
           @event.update_attribute(:address, "online")
         end
