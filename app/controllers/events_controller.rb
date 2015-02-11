@@ -76,6 +76,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        if @event.end_at > @event.start_at + 3.days
+          @event.update_attribute(:end_at, @event.start_at + 3.days)
+        end
         if @event.name.match(/http|.com|.org|.net|.tv|amazon|eventbrite|.uk/)
           @event.update_attribute(:name, "Online Event")
         end
