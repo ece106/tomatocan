@@ -156,15 +156,19 @@ class UsersController < ApplicationController
     end
 
     if @user.update_attributes(user_params)
-      if @user.youtube1.match(/\/\/www.youtube.com\/watch/)
+      if @user.ustreamvid.match(/\/\/ustream.tv\/embed/)
+        ustreamparsed = parse_ustream @user.ustreamvid
+        @user.update_attribute(:ustreamvid, ustreamparsed)
+      end
+      if @user.youtube1.match(/\/\/youtube.com/) || @user.youtube1.match(/\/\/youtu.be/)
         youtube1parsed = parse_youtube @user.youtube1
         @user.update_attribute(:youtube1, youtube1parsed)
       end
-      if @user.youtube2.match(/\/\/www.youtube.com\/watch/)
+      if @user.youtube2.match(/\/\/youtube.com/) || @user.youtube2.match(/\/\/youtu.be/)
         youtube2parsed = parse_youtube @user.youtube2
         @user.update_attribute(:youtube2, youtube2parsed)
       end
-      if @user.youtube1.match(/\/\/www.youtube.com\/watch/)
+      if @user.youtube1.match(/\/\/youtube.com/) || @user.youtube3.match(/\/\/youtu.be/)
         youtube3parsed = parse_youtube @user.youtube3
         @user.update_attribute(:youtube3, youtube3parsed)
       end
@@ -192,7 +196,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:permalink, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, :youtube3)
+      params.require(:user).permit(:permalink, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, :youtube3, :videodesc1, :videodesc2, :videodesc3)
     end
 
     def resolve_layout
@@ -207,7 +211,12 @@ class UsersController < ApplicationController
     end
 
     def parse_youtube url
-       regex = /(?:.be\/|\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|youtube.com\/embed\/|\/(?=p\/))([\w\/\-]+)/
+       url.match(regex)[1]
+    end
+
+    def parse_ustream url
+       regex = /(?:.be\/|ustream.tv\/embed\/|\/(?=p\/))([\w\/\-]+)/
        url.match(regex)[1]
     end
 

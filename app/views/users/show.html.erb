@@ -10,57 +10,72 @@
 
 <% @title=" Watch " + @user.name + " videos here!" %>
 
-<div class="blurb" >
-  <% if @user.about %> 
-    <%= simple_format @user.about.gsub(/\r\n/, '<br>') %>
-  <% end %>
-</div><br><br>
-
+<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 " >
+  <div class="profilebox" >
+    <% if @user.about %> 
+      <%= simple_format @user.about.gsub(/\r\n/, '<br>') %>
+    <% end %>
+  </div><br><br>
+  
 <% if @user.author == 2 %>
 
   <div class="row" >
-    <div class="col-md-5 col-sm-4 col-xs-7 " >
-    <% if @user.youtube1? %>
-      <% if @user.youtube1.match(/<iframe/) && @user.youtube1.match(/\/\/www.youtube.com\/embed/) %>
-        <%= @user.youtube1.html_safe %>
-      <% elsif @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
-        <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+    <div class="col-lg-7 col-md-9 col-sm-10 col-xs-12 " >
+      <% if @user.youtube1? %>
+        <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
+          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+        <% elsif @user.youtube1.match(/<iframe/) && @user.youtube1.match(/\/\/www.youtube.com\/embed/) %>
+          <%= @user.youtube1.html_safe %>
+        <% end %>
+      <% else %>
+        <% if @user == current_user %>
+          <br><br>Replace the default YouTube code on your Edit page with the code from your YouTube account and display YOUR videos here!
+        <% end %>
+        <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="408" height="330"></iframe>
       <% end %>
-    <% else %>
-      <% if @user == current_user %>
-        <br><br>Replace the default YouTube code on your Edit page with the code from your YouTube account and display YOUR videos here!
-      <% end %>
-      <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="408" height="330"></iframe>
-    <% end %>
-    <br>
-    <% if @user.youtube2? %>
-      <% if @user.youtube2.match(/<iframe/) && @user.youtube2.match(/\/\/www.youtube.com\/embed/) %>
-        <%= @user.youtube2.html_safe %>
-      <% elsif @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
-        <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube2 %>" frameborder="0" allowfullscreen></iframe>
-      <% end %>
-    <% end %>
-    <br>
-    <% if @user.youtube3? %>
-      <% if @user.youtube3.match(/<iframe/) && @user.youtube3.match(/\/\/www.youtube.com\/embed/) %>
-        <%= @user.youtube3.html_safe %>
-      <% elsif @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
-        <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube3 %>" frameborder="0" allowfullscreen></iframe>
-      <% end %>
-    <% end %>
-
-    <% if @user.ustreamsocial? %>
-      <% if @user.ustreamsocial.match /<iframe src="http:\/\/www.ustream.tv\/socialstream/ %>
-        <%= @user.ustreamsocial.html_safe %>
-      <% elsif @user.ustreamsocial.match /<iframe src="https:\/\/www.ustream.tv\/socialstream/ %>
-        <%= @user.ustreamsocial.html_safe %>
-      <% end %>
-    <% end %>
-
     </div>
-    <div class="col-md-3 col-sm-4 col-xs-7 " >
-
+    <div class="col-lg-4 col-md-8 col-sm-8 col-xs-9 " style="margin-left:10px">
+      <div class="profilebox" >
+        <%= @user.videodesc1 %><br><br>
+      </div>
     </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-lg-7 col-md-9 col-sm-10 col-xs-12 " >
+      <% if @user.youtube2? %>
+        <% if @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
+          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube2 %>" frameborder="0" allowfullscreen></iframe>
+        <% elsif @user.youtube2.match(/<iframe/) && @user.youtube2.match(/\/\/www.youtube.com\/embed/) %>
+          <%= @user.youtube2.html_safe %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-lg-4 col-md-8 col-sm-8 col-xs-9 " style="margin-left:10px">
+      <div class="profilebox" >
+        <%= @user.videodesc2 %><br><br>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-lg-7 col-md-9 col-sm-10 col-xs-12 " >
+      <% if @user.youtube3? %>
+        <% if @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
+          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube3 %>" frameborder="0" allowfullscreen></iframe>
+        <% elsif @user.youtube3.match(/<iframe/) && @user.youtube3.match(/\/\/www.youtube.com\/embed/) %>
+          <%= @user.youtube3.html_safe %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-lg-4 col-md-8 col-sm-8 col-xs-9 " style="margin-left:10px">
+      <div class="profilebox" >
+        <%= @user.videodesc3 %><br><br>
+      </div>
+    </div>
+  </div>
+
+    <br><br>
 
 <% else  %>
   <div class="row" >
@@ -74,3 +89,5 @@
     </div>
   </div>
 <% end %>
+
+</div>

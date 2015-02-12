@@ -14,7 +14,9 @@
 
   <div class="row" >
     <% if @user.ustreamvid? %>
-      <% if @user.ustreamvid.match /<iframe src="http:\/\/www.ustream.tv\/embed/ %>
+      <% if @user.ustreamvid.match(/[0-9A-Za-z]/) && @user.ustreamvid.length < 20 %>
+        <iframe src="http://www.ustream.tv/embed/<%= @user.ustreamvid %>?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="508" height="390"></iframe>
+      <% elsif @user.ustreamvid.match /<iframe src="http:\/\/www.ustream.tv\/embed/ %>
         <%= @user.ustreamvid.html_safe %>
       <% elsif @user.ustreamvid.match /<iframe src="https:\/\/www.ustream.tv\/embed/ %>
         <%= @user.ustreamvid.html_safe %>
@@ -24,17 +26,17 @@
         <br><br>Replace the default Ustream code on your Edit page with the code from your Ustream account and livestream YOUR book discussion here!
       <% end %>
       <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="408" height="330"></iframe>
-
     <% end %>
 
-    <% if @user.ustreamsocial? %>
+    <% if @user.ustreamvid.match(/[0-9A-Za-z]/) && @user.ustreamvid.length < 20 %>
+        <iframe src="http://www.ustream.tv/socialstream/<%= @user.ustreamvid %>" style="border: 0 none transparent;" frameborder="no" width="320" height="500"></iframe><br /> 
+    <% elsif @user.ustreamsocial? %>
       <% if @user.ustreamsocial.match /<iframe src="http:\/\/www.ustream.tv\/socialstream/ %>
         <%= @user.ustreamsocial.html_safe %>
       <% elsif @user.ustreamsocial.match /<iframe src="https:\/\/www.ustream.tv\/socialstream/ %>
         <%= @user.ustreamsocial.html_safe %>
       <% end %>
     <% else %>
-
       <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
     <% end %>
   </div>

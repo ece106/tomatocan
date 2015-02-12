@@ -5,10 +5,12 @@
     <ul class="nav pull-left">
       <ul class="nav navbar-nav">
         <% if current_user.author == 2 %>
-          <li><%= link_to @user.name + " Books ", user_booklist_path(@user.permalink) %>
-          <li><%= link_to " Live Events ", user_profile_path(@user.permalink) %>
+          <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
+          <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
+          <li><%= link_to " Live Event ", user_stream_path(@user.permalink) %>
+          <li><%= link_to " Calendar ", user_calendar_path(@user.permalink) %>
         <% else %>
-          <li><%= link_to " About ", user_profile_path(@user.permalink) %>
+          <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
         <% end %>
           <li><%= link_to " Blog ", user_blog_path(@user.permalink) %>
       </ul>    

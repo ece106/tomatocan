@@ -32,12 +32,15 @@ class User < ActiveRecord::Base
   validates_confirmation_of    :password, :on=>:create
   validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
 
-  validates :permalink, presence: true, length: { maximum: 20 },
+  validates :permalink, presence: true, length: { maximum: 20, message: "must be less than 20 characters" },
                     format:     { with: /\A[\w+]+\z/ },
                     uniqueness: { case_sensitive: false }
   validates :name, presence: true, length: { maximum: 50 }
 #  validates :twitter, length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :videodesc1, length: { maximum: 255 }
+  validates :videodesc2, length: { maximum: 255 }
+  validates :videodesc3, length: { maximum: 255 }
 
   validates :email, presence:   true,
                     uniqueness: { case_sensitive: false }

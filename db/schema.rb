@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "bookaudio"
     t.text     "youtube1"
     t.text     "youtube2"
+    t.string   "videodesc1"
+    t.string   "videodesc2"
+    t.string   "videodesc3"
   end
 
   create_table "events", force: true do |t|
@@ -153,6 +156,9 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.text     "youtube1"
     t.text     "youtube2"
     t.text     "youtube3"
+    t.string   "videodesc1"
+    t.string   "videodesc2"
+    t.string   "videodesc3"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

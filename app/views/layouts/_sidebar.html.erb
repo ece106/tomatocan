@@ -37,6 +37,7 @@
   </div>
 </div>
 
+<div class="row">
 <% if @user.author == 2 %>
   <% if @user.books.any? %>
     <% @user.books.each do |book| %>
@@ -81,5 +82,5 @@
 
 
 <% end %>
-  
+</div>
 </sidebar>
