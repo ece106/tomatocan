@@ -89,33 +89,36 @@
     </div>
 
     <div class="blacktxt" >
-      <br>If you have a video about you or your brand on <b>YouTube</b>, enter the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
+      <br>If you have a video about you or your brand on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
       Video 1: <br>
       <div class="profilebox" >
-        <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch/frlviTJcVUo' %>
+        <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
       </div>
       Video 2: <br /> 
       <div class="profilebox" >
-        <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch/frlviTJcVUo' %>
+        <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
       </div>
       Video 3: <br /> 
       <div class="profilebox" >
-        <%= f.text_area :youtube3, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch/frlviTJcVUo' %>
+        <%= f.text_area :youtube3, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
       </div>
-      
+
       <br>Enter short (less than 255 characters) descriptions of your videos below<br>
       Video 1: <br>
       <div class="profilebox" >
         <%= f.text_area :videodesc1, :cols => 70, :rows => 2 %>
       </div>
+      <span class="viddesc1usercount"></span><br>
       Video 2: <br>
       <div class="profilebox" >
         <%= f.text_area :videodesc2, :cols => 70, :rows => 2 %>
       </div>
+      <span class="viddesc2usercount"></span><br>
       Video 3: <br>
       <div class="profilebox" >
         <%= f.text_area :videodesc3, :cols => 70, :rows => 2 %>
       </div>
+      <span class="viddesc3usercount"></span><br>
 
       <br>In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Stream Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
 

@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "videodesc1"
     t.string   "videodesc2"
     t.string   "videodesc3"
+    t.string   "bkvideodesc1"
+    t.string   "bkvideodesc2"
   end
 
   create_table "events", force: true do |t|

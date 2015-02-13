@@ -42,7 +42,7 @@
       </div>
       <span class="blurbcount"></span>
       <div class="editbooktxt">
-        <br>Sentence about book (140 characters max) 
+        <br><b>Sentence</b> about book (140 characters max) 
       </div>
       <div class="profilebox" >
         <%= f.text_area :fiftychar, :cols => 70, :rows => 1, placeholder: "Brief sentence about book - MUST be less than 140 characters" %>
@@ -57,7 +57,7 @@
         URL for a picture of your book cover
       </div>
       <div class="profilebox" >
-        <%= f.text_area :coverpicurl, :cols => 70, :rows => 1, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .jpeg, or .png)" %><br> 
+        <%= f.text_area :coverpicurl, :cols => 70, :rows => 2, placeholder: "http://www.crowdpublish.tv/assets/cpLogo150-2587456d58eb819e80664461d758693b.png" %><br> 
       </div>
       <div class="sidebartitle" >
         The easiest way to obtain the URL is to go to a site that has a picture of your book cover, right click on the PICTURE, select Copy IMAGE url, and paste here. This MUST include the 'http://' part of the URL in order to work. DO NOT PASTE A URL TO A webSITE. Only PICTURES with urls that end in .JPG, .JPEG, .PNG, or .GIF will work. <br><br>
@@ -81,14 +81,25 @@
           <%= f.file_field :bookepub %> </div><br>
       </div>
       <div class="editbooktxt" >
-        <br><br>If you have a video about your book on <b>YouTube</b>, go to that video's page. Underneath the video, click on <i>Share</i> then click on <i>Embed</i>. Copy the code that appears and paste to replace the default code below. <br /> 
+        <br><br>If you have a video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
       </div>
       <div class="profilebox" >
         Video 1: <br>
-        <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
-        <br> Video 2: <br /> 
-        <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
+        <%= f.text_area :youtube1, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %><br>
+        <br>Video 2:<br /> 
+        <%= f.text_area :youtube2, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
       </div>
+      <br><b>Enter short descriptions </b> (less than 255 characters) of your videos below<br>
+      Video 1:<br>
+      <div class="profilebox" >
+        <%= f.text_area :bkvideodesc1, :cols => 70, :rows => 2 %>
+      </div>
+      <span class="youtube1bookcount"></span><br>
+      Video 2: <br>
+      <div class="profilebox" >
+        <%= f.text_area :bkvideodesc2, :cols => 70, :rows => 2 %>
+      </div>
+      <span class="youtube2bookcount"></span>
 
       <%= f.submit "Save New Book" %>
     <% end %>
@@ -100,7 +111,7 @@
 4. Entering more than 140 characters into the field for Sentence about book <br>
 5. Entering more than 2000 characters into the field for Book jacket blurb <br>
 6. Leaving title field blank<br>
-7. Entering text into Video fields that does not begin with either <i>iframe width="420" height="315" src="//www.youtube.com/embed/</i> OR <i>iframe width="560" height="315" src="//www.youtube.com/embed/</i>
+7. Entering text into Video fields that does not contain a YouTube.com URL</i>
 <br><br><br>
 
     <% if @user.books.any? %>
@@ -135,7 +146,6 @@
           <div class="profilebox" >
             <%= f.text_area :fiftychar, :cols => 70, :rows => 1, placeholder: "Brief sentence about book - MUST be less than 140 characters" %>
           </div>
-
           <div class="editbooktxt" >
             <br>Release date or estimated release date
             <%= f.date_select :releasedate %><br>
@@ -144,7 +154,7 @@
             URL for a picture of your book cover
           </div>
           <div class="profilebox" >
-            <%= f.text_area :coverpicurl, :cols => 70, :rows => 1, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .jpeg, or .png)" %><br> 
+            <%= f.text_area :coverpicurl, :cols => 70, :rows => 2, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .jpeg, or .png)" %><br> 
           </div>
           <div class="sidebartitle" >
             The easiest way to obtain the URL is to go to a site that has a picture of your book cover, right click on the PICTURE, select Copy IMAGE url, and paste here. This MUST include the 'http://' part of the URL in order to work. DO NOT PASTE A URL TO A webSITE. Only PICTURES with urls that end in .JPG, .JPEG, .PNG, or .GIF will work. <br><br>
@@ -167,15 +177,24 @@
             <div style="float:right;width:30%;">
               <%= f.file_field :bookepub %> </div><br>
           </div>
-          <div class="editbooktxt" >
-            <br><br>If you have a video about your book on <b>YouTube</b>, go to that video's page. Underneath the video, click on <i>Share</i> then click on <i>Embed</i>. Copy the code that appears and paste to replace the default code below. <br /> 
-          </div>
-          <div class="profilebox" >
-            Video 1: <br>
-            <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
-            <br> Video 2: <br /> 
-            <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: '<iframe width="420" height="315" src="//www.youtube.com/embed/frlviTJcVUo" frameborder="0" allowfullscreen></iframe>' %>
-          </div>
+      <div class="editbooktxt" >
+        <br><br>If you have a video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
+      </div>
+      <div class="profilebox" >
+        Video 1: <br>
+        <%= f.text_area :youtube1, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch/frlviTJcVUo' %>
+        <br> Video 2: <br /> 
+        <%= f.text_area :youtube2, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch/frlviTJcVUo' %>
+      </div>
+      <br>Enter short (less than 255 characters) descriptions of your videos below<br>
+      Video 1: <br>
+      <div class="profilebox" >
+        <%= f.text_area :bkvideodesc1, :cols => 70, :rows => 2 %>
+      </div>
+      Video 2: <br>
+      <div class="profilebox" >
+        <%= f.text_area :bkvideodesc2, :cols => 70, :rows => 2 %>
+      </div>
 
           <%= f.submit("Save Changes for " + bk.title ) %><br><br><br>
         <% end %>

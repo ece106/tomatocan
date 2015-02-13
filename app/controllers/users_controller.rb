@@ -156,19 +156,19 @@ class UsersController < ApplicationController
     end
 
     if @user.update_attributes(user_params)
-      if @user.ustreamvid.match(/\/\/ustream.tv\/embed/)
+      if @user.ustreamvid.match(/ustream.tv\/embed/)
         ustreamparsed = parse_ustream @user.ustreamvid
         @user.update_attribute(:ustreamvid, ustreamparsed)
       end
-      if @user.youtube1.match(/\/\/youtube.com/) || @user.youtube1.match(/\/\/youtu.be/)
+      if @user.youtube1.match(/youtube.com/) || @user.youtube1.match(/youtu.be/)
         youtube1parsed = parse_youtube @user.youtube1
         @user.update_attribute(:youtube1, youtube1parsed)
       end
-      if @user.youtube2.match(/\/\/youtube.com/) || @user.youtube2.match(/\/\/youtu.be/)
+      if @user.youtube2.match(/youtube.com/) || @user.youtube2.match(/youtu.be/)
         youtube2parsed = parse_youtube @user.youtube2
         @user.update_attribute(:youtube2, youtube2parsed)
       end
-      if @user.youtube1.match(/\/\/youtube.com/) || @user.youtube3.match(/\/\/youtu.be/)
+      if @user.youtube3.match(/youtube.com/) || @user.youtube3.match(/youtu.be/)
         youtube3parsed = parse_youtube @user.youtube3
         @user.update_attribute(:youtube3, youtube3parsed)
       end
@@ -211,8 +211,8 @@ class UsersController < ApplicationController
     end
 
     def parse_youtube url
-       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|youtube.com\/embed\/|\/(?=p\/))([\w\/\-]+)/
-       url.match(regex)[1]
+      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+      url.match(regex)[1]
     end
 
     def parse_ustream url

@@ -14,17 +14,14 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(book_params)
     if @book.save
-      redirect_to user_profile_path(current_user.permalink)
-    else
-      redirect_to user_edit_path(current_user.permalink), :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
-    end
-  end
-
-  def edit #I don't think this is used
-   # @booklist = Book.find(params[:author_id])
-    @book = Book.find(params[:id])
-    @purchases = @book.purchases
-    if @book.save
+      if @book.youtube1.match(/youtube.com/) || @book.youtube1.match(/youtu.be/)
+        youtube1parsed = parse_youtube @book.youtube1
+        @book.update_attribute(:youtube1, youtube1parsed)
+      end
+      if @book.youtube2.match(/youtube.com/) || @book.youtube2.match(/youtu.be/)
+        youtube2parsed = parse_youtube @book.youtube2
+        @book.update_attribute(:youtube2, youtube2parsed)
+      end
       redirect_to user_profile_path(current_user.permalink)
     else
       redirect_to user_edit_path(current_user.permalink), :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
@@ -34,6 +31,14 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update_attributes(book_params)
+      if @book.youtube1.match(/youtube.com/) || @book.youtube1.match(/youtu.be/)
+        youtube1parsed = parse_youtube @book.youtube1
+        @book.update_attribute(:youtube1, youtube1parsed)
+      end
+      if @book.youtube2.match(/youtube.com/) || @book.youtube2.match(/youtu.be/)
+        youtube2parsed = parse_youtube @book.youtube2
+        @book.update_attribute(:youtube2, youtube2parsed)
+      end
       redirect_to user_profile_path(current_user.permalink)
     else
       redirect_to user_edit_path(current_user.permalink), :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
@@ -64,7 +69,12 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def book_params
-      params.require(:book).permit( :bookaudio, :bookpdf, :bookepub, :bookmobi, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :coverpic, :youtube1, :youtube2, :videodesc1, :videodesc2)
+      params.require(:book).permit( :bookaudio, :bookpdf, :bookepub, :bookmobi, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :coverpic, :youtube1, :youtube2, :bkvideodesc1, :bkvideodesc2)
+    end
+
+    def parse_youtube url
+       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|youtube.com\/embed\/|\/(?=p\/))([\w\/\-]+)/
+       url.match(regex)[1]
     end
   
 end

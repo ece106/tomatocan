@@ -9,53 +9,94 @@
   </div>
 </div>
 
-<div class="row"  style="margin-top:10px">
-  <div class="col-md-3 col-sm-3 col-xs-4" style="width:200px;height:260px;background-color:#dddddd; vertical-align:middle">
+<div class="row" >
+  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12" style="margin-top:15px">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6" >
+      <div class="grayness" style="width:200px;height:260px;background-color:#dddddd; vertical-align:middle">
         <% if @book.coverpic.present? && @book.coverpic != '' %>
           <%= image_tag(@book.coverpic, :size => "200x260") %> 
         <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) && @book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %> 
             <%= image_tag(@book.coverpicurl, :size => "200x260") %> 
-            <br><br> fddf <%= @book.title %>
+            <br><br> 
         <% elsif @book.title.match /[0-9A-Za-z]/ %> 
           <div class="signupbutton">
-            <br><%= @book.title %> <br> <br>  
+            <br><%= @book.title %> 
           </div>
           <div class="password" >
             <%= @user.name %> 
           </div> 
         <% end %>
-      <br><br>$<%= sprintf('%.2f', @book.price) %> USD <br><br>
+      </div> 
+    </div> 
 
-      <% # if @book.bookpdf.present? && @book.bookpdf != '' %>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6" style="margin-top:20px">
+      <div class="signupbutton">
+        <br>$<%= sprintf('%.2f', @book.price) %> USD <br><br>
         <%= link_to image_tag("buypdf.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :method=> :get %> <br>
-      <% # end # put some buttons here %>
-      <% # if @book.bookmobi.present? && @book.bookmobi != '' %>
         <%= link_to image_tag("buymobi.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :method=> :get %> <br>
-      <% # end %>
-      <% # if @book.bookepub.present? && @book.bookepub != '' %>
+        <% # if @book.bookepub.present? && @book.bookepub != '' %>
         <%= link_to image_tag("buyepub.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :method=> :get %> <br>
-      <% # end %> 
-      <br>......
-  </div>
-
-  <div class="col-md-5 col-sm-4 col-xs-6" style="margin-left:15px">
-    <div class="profilebox">  
-      <% if @book.blurb %> 
-        <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
-      <% end %>
+        <% # end %> 
+        <br>
+      </div>
     </div>
-  </div>
+  </div> 
 
-  <div class="col-md-4 col-sm-4 col-xs-11 ">
-    <% if @book.youtube1? %> 
-      <% if @book.youtube1.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %>
-        <%= @book.youtube1.html_safe %> <br><br>
-      <% end %>
+  <% if @book.youtube2? %> 
+    <% if (@book.youtube1.match(/[0-9A-Za-z]/) && @book.youtube1.length < 20) || (@book.youtube1.match(/<iframe/) && @book.youtube1.match(/\/\/www.youtube.com\/embed/)) %>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" style="margin-top:20px">
+        <div class="profilebox" style="margin-left:50px">  
+          <% if @book.blurb %> 
+            <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
+          <% end %><br><br>
+        </div>
+
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
+          <% if @book.youtube1? %> 
+            <% if @book.youtube1.match(/[0-9A-Za-z]/) && @book.youtube1.length < 20 %>
+              <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @book.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+            <% elsif @book.youtube1.match(/<iframe/) && @book.youtube1.match(/\/\/www.youtube.com\/embed/) %>
+              <%= @book.youtube1.html_safe %>
+            <% end %>
+          <% end %><br>
+          <div class="profilebox" style="margin-left:35px">
+            <br><%= @book.bkvideodesc1 %><br><br><br>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+          <% if @book.youtube2? %> 
+            <% if @book.youtube2.match(/[0-9A-Za-z]/) && @book.youtube2.length < 20 %>
+              <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @book.youtube2 %>" frameborder="0" allowfullscreen></iframe>
+            <% elsif @book.youtube2.match(/<iframe/) && @book.youtube2.match(/\/\/www.youtube.com\/embed/) %>
+              <%= @book.youtube2.html_safe %>
+            <% end %>
+          <% end %><br>
+          <div class="profilebox" style="margin-left:35px">
+            <br><%= @book.bkvideodesc2 %><br><br>
+          </div>
+        </div>
+      </div>
     <% end %>
-    <% if @book.youtube2? %> 
-      <% if @book.youtube2.match /<iframe width="420" height="315" src="\/\/www.youtube.com\/embed/ %> 
-        <%= @book.youtube2.html_safe %>
-      <% end %>
-    <% end %>
-  </div>
+  <% else %> 
+
+      <div class="col-md-5 col-sm-4 col-xs-6" style="margin-left:15px">
+        <div class="profilebox">  
+          <% if @book.blurb %> 
+            <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
+          <% end %><br><br>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-11 ">
+        <% if @book.youtube1? %> 
+          <% if @book.youtube1.match(/[0-9A-Za-z]/) && @book.youtube1.length < 20 %>
+            <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @book.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+          <% elsif @book.youtube1.match(/<iframe/) && @book.youtube1.match(/\/\/www.youtube.com\/embed/) %>
+            <%= @book.youtube1.html_safe %>
+          <% end %>
+        <% end %><br><br>
+        <div class="profilebox" >
+          <%= @book.bkvideodesc1 %><br><br>
+        </div>
+      </div>
+  <% end %>
 </div>

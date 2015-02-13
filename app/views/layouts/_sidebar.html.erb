@@ -42,7 +42,7 @@
   <% if @user.books.any? %>
     <% @user.books.each do |book| %>
       <%= form_for(book) do |f| %>
-        <div class="row"  style="margin-top:5px;" >
+        <div class="row"  style="margin-top:5px; margin-left:1px;" >
           <div class="col-md-3 col-sm-3 col-xs-3" >
             <div class="fanbook" style="width:75px;height:100px;background-color:#cccfcc;  text-align: center; line-height:70%" >
               <% if book.coverpic.present? && book.coverpic != '' %>
@@ -61,13 +61,13 @@
           </div>
           <div class="col-md-9 col-sm-9 col-xs-9" >
             <div class="fanbook" style="line-height:94%">
-              <div style="float:left;width:75%; font-weight:bold">
+              <div style="float:left;width:65%; font-weight:bold">
                 <%= link_to book.title, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Purchase " + book.title %>
               </div>
-              <div style="float:right;width:25%;">
+              <div style="float:right;width:35%;">
                 &nbsp<%= book.genre %>
               </div>
-              <div class="fifty"><%= book.fiftychar %></div><br>
+              <div class="fifty"><br><br><%= link_to book.fiftychar, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Purchase " + book.title  %></div><br>
             </div>
           </div>
         </div>
