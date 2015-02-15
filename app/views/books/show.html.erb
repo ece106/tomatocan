@@ -10,7 +10,7 @@
 </div>
 
 <div class="row" >
-  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12" style="margin-top:15px">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-top:15px">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6" >
       <div class="grayness" style="width:200px;height:260px;background-color:#dddddd; vertical-align:middle">
         <% if @book.coverpic.present? && @book.coverpic != '' %>
@@ -44,8 +44,8 @@
 
   <% if @book.youtube2? %> 
     <% if (@book.youtube1.match(/[0-9A-Za-z]/) && @book.youtube1.length < 20) || (@book.youtube1.match(/<iframe/) && @book.youtube1.match(/\/\/www.youtube.com\/embed/)) %>
-      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" style="margin-top:20px">
-        <div class="profilebox" style="margin-left:50px">  
+      <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12" style="margin-top:20px">
+        <div class="profilebox" >  
           <% if @book.blurb %> 
             <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
           <% end %><br><br>
@@ -79,14 +79,14 @@
     <% end %>
   <% else %> 
 
-      <div class="col-md-5 col-sm-4 col-xs-6" style="margin-left:15px">
+      <div class="col-md-5 col-sm-4 col-xs-12" style="margin-left:15px">
         <div class="profilebox">  
           <% if @book.blurb %> 
             <%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
           <% end %><br><br>
         </div>
       </div>
-      <div class="col-md-4 col-sm-4 col-xs-11 ">
+      <div class="col-md-3 col-sm-3  col-xs-11 ">
         <% if @book.youtube1? %> 
           <% if @book.youtube1.match(/[0-9A-Za-z]/) && @book.youtube1.length < 20 %>
             <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @book.youtube1 %>" frameborder="0" allowfullscreen></iframe>
