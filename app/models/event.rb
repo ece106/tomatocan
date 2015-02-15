@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
 
   private
   def assign_defaults_on_new_event
-    self.address = "livestream"
+    self.address = "livestream" unless self.address
   end
 
 end

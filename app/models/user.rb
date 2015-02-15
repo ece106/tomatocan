@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
   private
   def assign_defaults_on_new_user
-    self.author = 2
+    self.author = 2 unless self.author
   end
 
 end
