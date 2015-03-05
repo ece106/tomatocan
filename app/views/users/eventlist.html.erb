@@ -63,7 +63,7 @@
     <%= link_to "View past events", user_pastevents_path %><br><br><br>
 
     <% if @rsvpevents.count != 0 %>
-      <b><%= @user.name %>'s past RSVPs</b><br><br>
+      <b><%= @user.name %>'s RSVPs</b><br><br>
       <% # if @user.id == current_user.id heroku is having problems with id in this line %>
       <b>My RSVPs</b><br><br>
       <table >
