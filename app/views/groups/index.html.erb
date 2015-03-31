@@ -1,6 +1,6 @@
 <div id="groups" style="position:absolute; width:1000px; height:757px;" >
   <%= form_tag groups_path, :method => :get do %>
-      <table >
+    <table >
       <tr>
         <th>Address</th>
         <th>Distance (miles)</th>
@@ -16,52 +16,52 @@
     </table>  
   <% end %>
 
-<h1>Listing groups</h1>
+  <h2>Registered Book Clubs & Writers Groups</h2>
 
-<%= link_to 'Create a New Book Group ', new_group_path %> in Your Community!<br><br>
-<% if user_signed_in? %>
-  Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
-<% end %>
+  <%= link_to 'Create a New Book Group ', new_group_path %> in Your Community!<br><br>
+  <% if user_signed_in? %>
+    Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
+  <% end %>
 
-<% if @groups.count != 0 %>
-  <table CELLPADDING="0" CELLSPACING="8" >
-  <thead>
-    <tr>
-      <th>Group Name</th>
-      <th>Where We Meet</th>
-      <th>Group Type</th>
-      <th></th>
-    </tr>
-  </thead>
+  <% if @groups.count != 0 %>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Group Name</th>
+          <th>Where We Meet</th>
+          <th>Group Type</th>
+          <th></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= link_to group.name, group %></td>
-        <td><%= group.address %></td>
-        <td><% if group.grouptype == 1 %> Critique Group 
-          <% elsif group.grouptype == 2 %> Book Club
-          <% elsif group.grouptype == 3 %> Writers Organization
-          <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering
-          <% elsif group.grouptype == 5 %> Library
-          <% elsif group.grouptype == 6 %> Book Store
-          <% else group.grouptype == 7 %> Other
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+            <td><%= link_to group.name, group %></td>
+            <td><%= group.address %></td>
+            <td><% if group.grouptype == 1 %> Critique Group 
+              <% elsif group.grouptype == 2 %> Book Club
+              <% elsif group.grouptype == 3 %> Writers Organization
+              <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering
+              <% elsif group.grouptype == 5 %> Library
+              <% elsif group.grouptype == 6 %> Book Store
+              <% else group.grouptype == 7 %> Other
+              <% end %>
+            </td>
+            <td>
+              <% if user_signed_in? %>
+                <% if group.user_id == current_user.id %>
+                  <%= link_to 'Edit', edit_group_path(group.id) %> 
+                <% end %>
+              <% end %>
+            </td>  
+            </tr>
           <% end %>
-        </td>
-        <td>
-          <% if user_signed_in? %>
-            <% if group.user_id == current_user.id %>
-              <%= link_to 'Edit', edit_group_path(group.id) %> 
-            <% end %>
-          <% end %>
-        </td>  
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-<% else %>
-  *** No groups near you yet ***
-<% end %>  
-
-</div>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    *** No groups near you yet ***
+  <% end %>  
 </div>

@@ -4,25 +4,17 @@
 <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
 </head>
 
-<div class="row">
-  <div class="col-xl-3 col-lg-3 col-md-4" >
-    <div class="helps">
-      Readers:
-    </div>
-    <div class="blacktxt">
-      <%= link_to 'Sign up for your own book reviews page', "/signup" %>
-      <br><%= link_to 'Find literary events near you', calendar_path  %>
-      <br><%= link_to 'Find book clubs near you', groups_path %>
-      <br><%= link_to 'Find online Livestreaming book discussions', calendar_path  %>
-      <br><i>Coming soon: Buy ebooks & merchandise<br>
-      Review books on CrowdPublish.TV</i>
-    </div>
-  </div>
+<ul class="nav nav-pills nav-stacked navbar-left" id="myTab">
+  <li class="active"><a href="#authors" data-toggle="tab">For Authors</a></li>
+  <li><a href="#readers" data-toggle="tab">For Readers</a></li>
+  <li><a href="#orgs" data-toggle="tab">For Clubs & Organizations</a></li>
+  <li><a href="#space" data-toggle="tab"> .</a></li>
+  <li><a href="#space2" data-toggle="tab"> .</a></li>
+</ul>
 
-  <div class="col-xl-5 col-lg-5 col-md-4" >
-    <div class="helps">
-      Authors:
-    </div>
+<div class="row" style="margin-left:350px;" >
+<div class="tab-content">
+  <div class="tab-pane active" id="authors">
     <div class="blacktxt">
       <%= link_to 'Sign up for your own Author site', "/signup" %><br>
       Post your videos <br>
@@ -36,11 +28,17 @@
       Livestreaming author parties</i>
     </div>
   </div>
-
-  <div class="col-xl-4 col-lg-4 col-md-4" >
-    <div class="helps">
-      Clubs & Organizations:
+  <div class="tab-pane" id="readers">
+    <div class="blacktxt">
+      <%= link_to 'Sign up for your own book reviews page', "/signup" %>
+      <br><%= link_to 'Find literary events near you', calendar_path  %>
+      <br><%= link_to 'Find book clubs near you', groups_path %>
+      <br><%= link_to 'Find online Livestreaming book discussions', calendar_path  %>
+      <br><i>Coming soon: Buy ebooks & merchandise<br>
+      Review books on CrowdPublish.TV</i>
     </div>
+  </div>
+  <div class="tab-pane" id="orgs">
     <div class="blacktxt">
       <%= link_to 'Get a free site for your Book Club, Critique Group, or Writer Organization', new_group_path %><br>
       <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
@@ -48,6 +46,11 @@
       <i>Coming soon: List members & their books (if applicable)</i>
     </div>
   </div>
+  <div class="tab-pane" id="space"> .
+  </div>
+  <div class="tab-pane" id="space2"> .
+  </div>
+</div>
 </div>
 
 <div class="row" style="margin-top:20px;" >
