@@ -66,7 +66,8 @@
       <br>Change your name <br> 
       <div class="profilebox" >
         <%= f.text_area :name, :cols => 40, :rows => 1 %>
-      </div><br><br>
+      </div>
+      <br><br><center><%= f.submit "Save Profile" %> </center><br><br>
     </div>
   </div>
   
@@ -120,7 +121,7 @@
       </div>
       <span class="viddesc3usercount"></span><br>
 
-      <br>In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Stream Page to your own livestreaming video, sign up at <font color = "00FF00"> <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a> </font>. 
+      <br>In future versions of CrowdPublish.TV, we will automate linking your account with livestreaming video during signup. But for now, to change the default CrowdPublish.TV video on your Author Stream Page to your own livestreaming video, you can sign up at  <a href= "http://Ustream.TV" target="_blank", color=> Ustream </a>. 
 
       <br><br>Go to your <b>Ustream</b> dashboard (click on the icon in upper right of your <a href= "http://Ustream.TV" target="_blank"> Ustream.TV </a> page). Under <i>Channel</i> click on <font color = "0000FF"> Embed</font>. Click on the Create Embed button for the <i>Player</i>. A new tab will open. The code to Embed the video player will be in the lower left corner of your screen. It looks something like the default code below. </br>
 
@@ -128,8 +129,12 @@
       <div class="profilebox" >
         <%= f.text_area :ustreamvid, :cols => 70, :rows => 5, placeholder: '<iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="480" height="302"></iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>' %>
       </div>
+
+      <br>If you already regularly use a livestreaming site other than ustream (such as vokle.com, livestream.com, twitch.tv etc.) enter the URL to your show here:<br> 
+      <div class="profilebox" >
+        <%= f.text_area :ustreamvid, :cols => 70, :rows => 1, placeholder: 'https://www.vokle.com/series/43300-diva-dr-afshans-show' %><br><br><br><br>
+      </div>
     </div>
-      <br><br><center><%= f.submit "Save Profile" %> </center><br><br>
   </div><br><br>
   <% end %>
 <% end %>

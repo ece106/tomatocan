@@ -4,9 +4,14 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.email_field :email, :autofocus => true %></div><br>
 
   <div><%= f.submit "Send me reset password instructions" %></div>
 <% end %>
+
+<br>
+If you do not see an email sent from 'CrowdPublish.star' within the next 5 minutes, 
+<br>please check your spam folder.
+<br><br>
 
 <%= render "devise/shared/links" %>
