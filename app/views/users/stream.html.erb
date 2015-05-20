@@ -10,38 +10,35 @@
 
 <% @title = " interact with " + @user.name + " here live!" %>
 
-<iframe width="400" height="370" src="http://player.cinchcast.com/?platformId=1&assetType=multi&userurl=drafshanhashmi&itemcount=6" frameborder="0" allowfullscreen></iframe><div style="font-size: 10px;text-align: center;width:400px;">Check Out Entertainment Podcasts at Blog Talk Radio with <a href="http://www.blogtalkradio.com/drafshanhashmi" rel="nofollow">Dr Afshan Hashmi</a> on BlogTalkRadio</div>
-
 <% if @user.author == 2 %>
+
+  <% if @user.blogtalkradio? %>
+    <% if @user.blogtalkradio.match /player.cinchcast.com/  %>
+      <%= @user.blogtalkradio.html_safe %>
+    <% end %>
+  <% end %>
 
   <div class="row" >
     <% if @user.ustreamvid? %>
       <% if @user.ustreamvid.match(/[0-9A-Za-z]/) && @user.ustreamvid.length < 20 %>
-        <iframe src="http://www.ustream.tv/embed/<%= @user.ustreamvid %>?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="508" height="390"></iframe>
-        <iframe src="http://www.ustream.tv/socialstream/<%= @user.ustreamvid %>" style="border: 0 none transparent;" frameborder="no" width="320" height="500"></iframe><br /> 
-
-        <% if @user.ustreamsocial? %>
-          <% if @user.ustreamsocial.match /<iframe src="http:\/\/www.ustream.tv\/socialstream/ %>
-            <%= @user.ustreamsocial.html_safe %>
-          <% elsif @user.ustreamsocial.match /<iframe src="https:\/\/www.ustream.tv\/socialstream/ %>
-            <%= @user.ustreamsocial.html_safe %>
-          <% end %>
-        <% else %>
-          <iframe width="468" scrolling="no" height="586" frameborder="0" style="border: 0px none transparent;" src="http://www.ustream.tv/socialstream/13434383"></iframe>  
-        <% end %>
+        <iframe src="http://www.ustream.tv/embed/<%= @user.ustreamvid %>?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="508" height="390"></iframe> aaa
+        <iframe src="http://www.ustream.tv/socialstream/<%= @user.ustreamvid %>" style="border: 0 none transparent;" frameborder="no" width="320" height="500"></iframe><br /> bbb
 
       <% elsif @user.ustreamvid.match /<iframe src="http:\/\/www.ustream.tv\/embed/ %>
         <%= @user.ustreamvid.html_safe %>
       <% elsif @user.ustreamvid.match /<iframe src="https:\/\/www.ustream.tv\/embed/ %>
         <%= @user.ustreamvid.html_safe %>
-
-      <% elsif @user.ustreamvid.match /<iframe src="http:\/\/www.vokle.com/  %>
-        <div class="blog">
-          <iframe frameborder="0" width="800" src= "<%= @user.ustreamvid %>" height="730"></iframe>
-        </div>
       <% end %>
-    <% else %>
-      <% if @user == current_user %>
+    <% end %>
+
+    <% if @user.ustreamsocial.match /https:\/\/www.vokle.com/  %>
+      <div class="blog">
+        <iframe frameborder="0" width="1000" src= "<%= @user.ustreamsocial %>" height="1500"></iframe>
+      </div>
+    <% end %>
+
+    <% if @user == current_user %>
+      <% if !@user.ustreamvid? && !@user.ustreamsocial? %>
         <br><br>Replace the default Ustream code on your Edit page with the code from your Ustream account and livestream YOUR book discussion here!
       <% end %>
       <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="408" height="330"></iframe>
