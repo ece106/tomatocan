@@ -6,7 +6,11 @@ class UsersController < ApplicationController
 #  before_filter :correct_user,   only: [:edit, :update]
   
   def index
-    @users = User.all
+#    @users = User.all  # The following is redundant if someone has profilepic and profilepicurl
+    @userspic = User.where.not( profilepic: '' )
+    @userspicurl = User.where.not( profilepicurl: '' )
+    @userswithpic = @userspic + @userspicurl
+    @users = @userswithpic.paginate(:page => params[:page], :per_page => 32)
 
     respond_to do |format|
       format.html # index.html.erb
