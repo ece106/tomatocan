@@ -32,12 +32,14 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6" style="margin-top:20px">
       <div class="signupbutton">
         <br>$<%= sprintf('%.2f', @book.price) %> USD <br><br>
-        <%= link_to image_tag("buypdf.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :method=> :get %> <br>
-        <%= link_to image_tag("buymobi.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :method=> :get %> <br>
-        <% # if @book.bookepub.present? && @book.bookepub != '' %>
-        <%= link_to image_tag("buyepub.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :method=> :get %> <br>
-        <% # end %> 
-        <br>
+        <div data-no-turbolink> 
+          <%= link_to image_tag("buypdf.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :method=> :get %> <br>
+        </div>
+          <%= link_to image_tag("buymobi.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :method=> :get %> <br>
+          <% # if @book.bookepub.present? && @book.bookepub != '' %>
+          <%= link_to image_tag("buyepub.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :method=> :get %> <br>
+          <% # end %> 
+          <br>
       </div>
     </div>
   </div> 
