@@ -181,7 +181,7 @@ class UsersController < ApplicationController
       redirect_to user_profile_path(current_user.permalink)
     else
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
-      redirect_to user_profileinfo_path(current_user.permalink)
+      redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
     end
   end
 
@@ -216,12 +216,16 @@ class UsersController < ApplicationController
 
     def parse_youtube url
       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-      url.match(regex)[1]
+      if url.match(regex)
+        url.match(regex)[1]
+      end
     end
 
     def parse_ustream url
-       regex = /(?:.be\/|ustream.tv\/embed\/|\/(?=p\/))([\w\/\-]+)/
-       url.match(regex)[1]
+      regex = /(?:.be\/|ustream.tv\/embed\/|\/(?=p\/))([\w\/\-]+)/
+      if url.match(regex)
+        url.match(regex)[1]
+      end
     end
 
 end

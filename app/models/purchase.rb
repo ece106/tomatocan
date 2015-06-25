@@ -1,7 +1,7 @@
 class Purchase < ActiveRecord::Base
 
 #  attr_accessible :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id
-  attr_reader :stripe_card_token, :stripe_customer_token
+#  attr_reader :stripe_card_token
   
   belongs_to :book
   belongs_to :user
@@ -9,25 +9,25 @@ class Purchase < ActiveRecord::Base
   validates :book_id, presence: true
 #  validates :bookfiletype, presence: true
 
-#  token = params[:stripe_card_token] wtf is this
-
   def save_with_payment
     if valid?
+#      @author = User.find(self.author_id)
+      @book = Book.find(self.book_id)
+      @purchaser = User.find(self.user_id)
+
       customer = Stripe::Customer.create(
-        :card => stripe_card_token,
-#        :source => token,
         :source => stripe_card_token,
-        :description => "get user email address, product" 
+        :description => @book.title, 
+        :email => @purchaser.email
       )
       self.stripe_customer_token = customer.id
-      #self.user_id = current_user.id
 
       charge = Stripe::Charge.create(
-        :amount => 500, #@book.price # how know what book - purchases#create method?
+        :amount => (@book.price * 100).to_i, 
         :currency => "usd",
         :customer => customer.id,
         #  :card => stripe_card_token,
-        :description => "book title" # customer email address
+        :description => @book.title 
       )
       save!
       #save_stripe_customer_id(user, customer.id)

@@ -1,4 +1,5 @@
 <% @title=" edit user profile "  %>
+<p class="flash"><%= flash.notice %></p>
 
 <div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
@@ -39,7 +40,7 @@
       <div class="profilebox" >
         <%= f.text_area :blogurl, :cols => 40, :rows => 2, placeholder: "http://BlogURL.com" %>
       </div>
-      <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
+      <br>Twitter handle (do not include the '@' symbol nor the entire url) <br>
       <div class="profilebox" style="vertical-align: text-top">
         <b style="vertical-align: super">@</b> 
         <%= f.text_area :twitter, :cols => 30, :rows => 1, placeholder: "twitterhandle" %>

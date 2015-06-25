@@ -9,7 +9,7 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/1
   def show
-    @purchase = Purchase.find(purchase_params)
+    @purchase = Purchase.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,6 +32,8 @@ class PurchasesController < ApplicationController
     @book = Book.find(@purchase.book_id)
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
+    @purchase.author_id = @book.user.id
+    token = params[:stripe_card_token]
 
     if @purchase.save_with_payment
       redirect_to @purchase, :notice => "Thank you for purchasing this book!"
@@ -84,7 +86,7 @@ class PurchasesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def purchase_params
-      params.require(:purchase).permit(  :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id)
+      params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id, :author_id)
     end
 
 end

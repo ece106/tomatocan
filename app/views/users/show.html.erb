@@ -36,7 +36,9 @@
     </div>
     <div class="col-lg-4 col-md-8 col-sm-8 col-xs-9 " style="margin-left:10px">
       <div class="profilebox" >
-        <%= @user.videodesc1 %><br><br>
+        <% if @user.videodesc1 %> 
+          <br><%= simple_format @user.videodesc1.gsub(/\r\n/, '<br>') %><br><br>
+        <% end %>
       </div>
     </div>
   </div>
@@ -53,7 +55,9 @@
     </div>
     <div class="col-lg-4 col-md-8 col-sm-8 col-xs-9 " style="margin-left:10px">
       <div class="profilebox" >
-        <%= @user.videodesc2 %><br><br>
+        <% if @user.videodesc2 %> 
+          <br><%= simple_format @user.videodesc2.gsub(/\r\n/, '<br>') %><br><br>
+        <% end %>
       </div>
     </div>
   </div>
@@ -70,7 +74,9 @@
     </div>
     <div class="col-lg-4 col-md-8 col-sm-8 col-xs-9 " style="margin-left:10px">
       <div class="profilebox" >
-        <%= @user.videodesc3 %><br><br>
+        <% if @user.videodesc3 %> 
+          <br><%= simple_format @user.videodesc3.gsub(/\r\n/, '<br>') %><br><br>
+        <% end %>
       </div>
     </div>
   </div>

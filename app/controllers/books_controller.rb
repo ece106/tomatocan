@@ -73,8 +73,10 @@ class BooksController < ApplicationController
     end
 
     def parse_youtube url
-       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|youtube.com\/embed\/|\/(?=p\/))([\w\/\-]+)/
-       url.match(regex)[1]
+      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|youtube.com\/embed\/|\/(?=p\/))([\w\/\-]+)/
+      if url.match(regex)
+        url.match(regex)[1]
+      end
     end
   
 end
