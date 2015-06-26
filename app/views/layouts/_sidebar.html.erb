@@ -1,17 +1,19 @@
 <sidebar class>
 <div class="row">
   <div class="col-md-5 col-sm-5 col-xs-5" >
+    <div style="vertical-align:top; horizontal-align:center; height:150px; width:150px; overflow:hidden;" >
     <% if @user.profilepic.present? && @user.profilepic != '' %>
-      <%= image_tag @user.profilepic, :size => "150x150" %>
+      <%= image_tag @user.profilepic, :height => "150" %>
     <% elsif @user.profilepicurl %>
       <% if @user.profilepicurl.match(/http/) %>
-        <%= image_tag @user.profilepicurl, :size => "150x150" %><br >
+        <%= image_tag @user.profilepicurl, :height => "150" %><br >
       <% else %>
-        <%= image_tag "whiteBk.jpg", :size => "150x150" %>
+        <%= image_tag "whiteBk.jpg", :height => "150" %>
       <% end %>
     <% else %>
-      <%= image_tag "whiteBk.jpg", :size => "150x150" %>
+      <%= image_tag "whiteBk.jpg", :height => "150" %>
     <% end %>
+    </div>
 
     <% if @user == current_user %>
       <% if @user.author == 2 %>
@@ -44,7 +46,7 @@
       <%= form_for(book) do |f| %>
         <div class="row" style="margin-top:20px; margin-left:1px;" >
           <div class="col-md-3 col-sm-3 col-xs-3" >
-            <div class="fanbook" style="width:75px;height:100px;background-color:#cccfcc;  text-align: center; line-height:70%" >
+            <div class="fanbook" style="width:75px;height:100px;background-color:#bbdd99;  text-align: center; line-height:70%" >
               <% if book.coverpic.present? && book.coverpic != '' %>
                 <%= link_to image_tag(book.coverpic, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
               <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>
