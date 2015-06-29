@@ -14,6 +14,8 @@ class Purchase < ActiveRecord::Base
 #      @author = User.find(self.author_id)
       @book = Book.find(self.book_id)
       @purchaser = User.find(self.user_id)
+      self.pricesold = @book.price
+      self.author_id = @book.user.id
 
       customer = Stripe::Customer.create(
         :source => stripe_card_token,

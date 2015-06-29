@@ -32,7 +32,6 @@ class PurchasesController < ApplicationController
     @book = Book.find(@purchase.book_id)
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
-    @purchase.author_id = @book.user.id
     token = params[:stripe_card_token]
 
     if @purchase.save_with_payment
