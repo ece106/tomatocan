@@ -17,22 +17,27 @@ class Purchase < ActiveRecord::Base
       self.pricesold = @book.price
       self.author_id = @book.user.id
 
-      customer = Stripe::Customer.create(
-        :source => stripe_card_token,
-        :description => @book.title, 
-        :email => @purchaser.email
-      )
-      self.stripe_customer_token = customer.id
+      if(p = Purchase.find_by_user_id(self.user_id)) 
+        customer_id = p.stripe_customer_token
+      else
+        customer = Stripe::Customer.create(
+          :source => stripe_card_token,
+          :description => @purchaser.name, 
+          :email => @purchaser.email
+        )
+        customer_id = customer.id
+      end
+
+      self.stripe_customer_token = customer_id # I think this should be stored in User.stripetoken instead
 
       charge = Stripe::Charge.create(
         :amount => (@book.price * 100).to_i, 
         :currency => "usd",
-        :customer => customer.id,
+        :customer => customer_id,
         #  :card => stripe_card_token,
         :description => @book.title 
       )
       save!
-      #save_stripe_customer_id(user, customer.id)
     end
 
   rescue Stripe::InvalidRequestError => e

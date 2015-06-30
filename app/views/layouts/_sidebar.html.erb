@@ -5,7 +5,7 @@
     <% if @user.profilepic.present? && @user.profilepic != '' %>
       <%= image_tag @user.profilepic, :height => "150" %>
     <% elsif @user.profilepicurl %>
-      <% if @user.profilepicurl.match(/http/)&& @user.profilepicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
+      <% if @user.profilepicurl.match(/http/) && @user.profilepicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
         <%= image_tag @user.profilepicurl, :height => "150" %><br >
       <% else %>
         <%= image_tag "whiteBk.jpg", :height => "150" %>
@@ -49,7 +49,7 @@
             <div class="fanbook" style="width:75px;height:100px;background-color:#bbdd99;  text-align: center; line-height:70%" >
               <% if book.coverpic.present? && book.coverpic != '' %>
                 <%= link_to image_tag(book.coverpic, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
-              <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) && @book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
+              <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) && book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
                 <%= link_to image_tag(book.coverpicurl, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id) %>
               <% elsif book.title.match /[0-9A-Za-z]/ %> 
                 <br><%= link_to book.title, book_path(:id => book.id), :class => 'covertitle', :style => 'color:#880000', :title => "Purchase " + book.title %><br><br>
