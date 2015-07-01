@@ -85,6 +85,16 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def managesales
+    @user = User.find_by_permalink(params[:permalink])
+    if true #new accnt
+      @user.create_stripe_account
+    end
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
   def readerprofileinfo
     @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
@@ -152,9 +162,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
 
-    if @user.latitude
-      dummy = 0
-    else
+    unless @user.latitude
       @user.update_attribute(:latitude, request.location.latitude)
       @user.update_attribute(:longitude, request.location.longitude)
     end

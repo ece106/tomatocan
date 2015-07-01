@@ -1,0 +1,89 @@
+<% @title=" edit user profile "  %>
+<p class="flash"><%= flash.notice %></p>
+
+<div style="position:absolute; left:0px; top:70px ">
+  <% if @user.profilepic.present? && @user.profilepic != '' %>
+    <%= image_tag @user.profilepic, :size => "150x150" %>
+  <% elsif @user.profilepicurl %>
+    <% if @user.profilepicurl.match(/http/) %>
+      <%= image_tag @user.profilepicurl, :size => "150x150" %><br >
+    <% else %>
+      <%= image_tag "whiteBk.jpg", :size => "150x150" %>
+    <% end %>
+  <% else %>
+    <%= image_tag "whiteBk.jpg", :size => "150x150" %>
+  <% end %>
+</div>
+
+<% if @user == current_user %>
+
+  <%= form_for @user, :html => {:multipart => true} do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
+
+    <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
+      <div class="blacktxt" >
+
+-Create a new scaffolding called stripeacnt? Users has_one stripeacnt
+what would be advantage of having this as separate table? Doesnt seem to have many attribs
+-Can only access page to create stripeacnt from Author edit page
+-Can only access create stripeacnt if don't already have, ow they have button to Manage stripeacnt
+  Name
+  Address
+  Date of birth
+  Last 4 digits of their Social Security number
+
+    <%= f.collection_select(@country, {"AT", "AU", "BE", "CA", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "JP", "LU", "MX", "NL", "NO", "SE", "US"}, :id, :name, prompt: true) %>
+
+
+      <div class="profilebox" >
+        <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
+      </div>
+      </div>
+      <br>Change account type:
+      <br><%= f.radio_button(:author, 1) %>
+      <%= label_tag(:author_child, "Reader") %>
+      <br><%= f.radio_button(:author, 2) %>
+      <%= label_tag(:author_adult, "Author") %>
+ 
+      <br><br><center><%= f.submit "Save Profile" %> </center><br><br>
+    </div>
+  
+
+    <div class="col-md-7 col-sm-6 col-xs-12 " style="text-align:left">
+      <div class="row" >
+        <div class="password" >
+          <div class="col-md-4 col-sm-4 col-xs-4 " style="text-align:left">
+            Change password <br><br>
+            Confirm new password   
+          </div>
+          <div class="col-md-5 col-sm-5 col-xs-5 " style="text-align:left">
+            <%= f.password_field :password %><br><br>
+            <%= f.password_field :password_confirmation %>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3 " >
+          <center><%= f.submit "Save Profile" %> </center><br><br>
+        </div>
+      </div>
+
+    <div class="blacktxt" >
+      Video 1: <br>
+    </div><br><br><br>
+  <% end %>
+<% end %>
+
+<div id="userlist" >
+<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    </div>
+  <% end %>
+  </div>
+<% end %>

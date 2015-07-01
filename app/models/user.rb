@@ -45,6 +45,16 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     uniqueness: { case_sensitive: false }
 
+  def create_stripe_account
+    Stripe.api_key = Stripe.api_key # PLATFORM_SECRET_KEY
+    Stripe::Account.create(
+      {
+        :country => "AT", @country #should be selected from a dropdown box
+        :managed => true
+      }
+    )  
+  end
+
   private
   def assign_defaults_on_new_user
     self.author = 2 unless self.author
