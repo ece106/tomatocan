@@ -6,10 +6,11 @@ class UsersController < ApplicationController
 #  before_filter :correct_user,   only: [:edit, :update]
   
   def index
-#    @users = User.all  # The following is redundant if someone has profilepic and profilepicurl
-    @userspic = User.where.not( profilepic: '' )
-    @userspicurl = User.where.not( profilepicurl: '' )
-    @userswithpic = @userspic + @userspicurl
+    picregex = /jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/
+
+    @userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
+      OR (profilepicurl SIMILAR TO 'http%' AND 
+      profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
     @users = @userswithpic.paginate(:page => params[:page], :per_page => 32)
 
     respond_to do |format|
