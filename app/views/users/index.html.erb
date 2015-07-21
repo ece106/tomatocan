@@ -11,7 +11,6 @@
           <%= link_to(image_tag(u.profilepic, :height => "170",  :title => u.name ), user_profile_path(u.permalink)) %> 
         <% elsif u.profilepicurl.present? %>
           <%= link_to(image_tag(u.profilepicurl, :height => "170", :title => u.name), user_profile_path(u.permalink)) %> 
-          <% end %>
         <% end %>
         <br><%= link_to u.name, user_profile_path(u.permalink) %>
         <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
