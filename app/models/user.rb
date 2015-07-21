@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     Stripe.api_key = Stripe.api_key # PLATFORM_SECRET_KEY
     Stripe::Account.create(
       {
-        :country => "AT", @country #should be selected from a dropdown box
+        :country => "AT", # @country #should be selected from a dropdown box
         :managed => true
       }
     )  

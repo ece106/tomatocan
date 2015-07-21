@@ -21,6 +21,7 @@
         <%= button_to "Edit Books", user_edit_path(@user.permalink), :method=> :get %>
         <%= button_to "Edit Your Groups", user_groups_path, :method=> :get %>
         <%= button_to "Edit Your Events", user_eventlist_path(@user.permalink), :method=> :get %>
+        <%#= button_to "$$$", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_6Ws7cje29FmtiJa6Lwh9DcxsehbXBC4Q&scope=read_write", :method=> :get %>
       <% else %> 
         <%= button_to "Edit Profile", user_readerprofileinfo_path(@user.permalink), :method=> :get %>
         <%= button_to "Edit Your Groups", groups_path, :method=> :get %>
