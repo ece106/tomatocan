@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-#  before_filter :authenticate_user!
-#  before_filter :signed_in_user, only: [:index, :edit, :update]
-#  before_filter :correct_user,   only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeacnt]
+#  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
     picregex = /jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/
@@ -88,9 +87,13 @@ class UsersController < ApplicationController
   end
   def managesales
     @user = User.find_by_permalink(params[:permalink])
-    if true #new accnt
-      @user.create_stripe_account
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
     end
+  end
+  def createstripeacnt
+    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
@@ -163,6 +166,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
 
+    if params[:user][:managestripeacnt] == "openaccount"
+      @user.countryofbank = params[:countryofbank]  #should I change so [:user] is part of the param
+      @user.create_stripe_account
+    elsif params[:user][:managestripeacnt] == "editaccount"
+      @user.edit_stripe_account
+    end
+
     unless @user.latitude
       @user.update_attribute(:latitude, request.location.latitude)
       @user.update_attribute(:longitude, request.location.longitude)
@@ -187,7 +197,11 @@ class UsersController < ApplicationController
       end
 
       sign_in @user
-      redirect_to user_profile_path(current_user.permalink)
+      if params[:user][:managestripeacnt] == "openaccount"
+        redirect_to user_managesales_path(current_user.permalink)
+      else
+        redirect_to user_profile_path(current_user.permalink)
+      end
     else
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
@@ -209,7 +223,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:permalink, :blogtalkradio, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, :youtube3, :videodesc1, :videodesc2, :videodesc3)
+      params.require(:user).permit(:permalink, :blogtalkradio, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, :youtube3, :countryofbank, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, :stripeid)
     end
 
     def resolve_layout

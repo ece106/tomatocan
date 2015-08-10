@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 #  extend FriendlyId
 #  friendly_id :permalink, use: :slugged
+  attr_accessor :countryofbank, :managestripeacnt, :first_name
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
@@ -46,11 +47,27 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
 
   def create_stripe_account
-    Stripe.api_key = Stripe.api_key # PLATFORM_SECRET_KEY
+    country = self.countryofbank
+    emailaddress = self.email
+#    Stripe.api_key = Stripe.api_key # PLATFORM_SECRET_KEY
     Stripe::Account.create(
       {
-        :country => "AT", # @country #should be selected from a dropdown box
-        :managed => true
+        :country => country, # @country #should be selected from a dropdown box
+        :managed => true,
+        :email => emailaddress
+      }
+    )  
+  end
+
+  def edit_stripe_account
+    stripeid = self.stripeid
+    country = self.countryofbank
+    emailaddress = self.email
+    stripeinfo = Stripe::Account.retrieve(stripeid)
+    Stripe::Account.save(
+      {
+        :country => country, # @country #should be selected from a dropdown box
+        :email => emailaddress
       }
     )  
   end

@@ -1,0 +1,46 @@
+<% @title=" edit user profile "  %>
+<p class="flash"><%= flash.notice %></p>
+
+<% if @user == current_user %>
+  <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
+    <div class="blacktxt" >
+      <%= form_for @user, :html => {:multipart => true} do |f| %>
+        <%= render 'shared/error_messages', :object => f.object %>
+        <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
+
+        To create a new account, select the country where your bank account is registered. The payment processing company we use can handle transactions for bank accounts in 
+        <table>
+          <tr><td>US </td><td>Canada</td><td>Great Britain</td></tr>
+          <tr><td>Austria</td><td>Australia</td><td>Belgium</td></tr>
+          <tr><td>Switzerland</td><td>Germany</td><td>Denmark</td></tr>
+          <tr><td>Spain</td><td>Finland</td><td>France</td></tr>
+          <tr><td>Ireland</td><td>Italy</td><td>Japan</td></tr>
+          <tr><td>Luxembourg</td><td>Mexico</td><td>the Netherlands</td></tr>
+          <tr><td>Norway</td><td>Sweden</td></tr>
+        </table  >
+        <br> Select the country code where your bank account exists
+        <br><%= select_tag :countryofbank, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "JP", "LU", "MX", "NL", "NO", "SE"], prompt: true) %><br>
+        <%= f.hidden_field(:managestripeacnt, :value => "openaccount") %>
+
+        <center><%= f.submit "Create Account" %> </center><br>
+      <% end %>
+      At this time, we are unable to support accounts with banks in countries other than those listed above. Please check this page again in the future to find out if our payment processor has added countries.
+    </div>
+  </div>
+<% end %>
+
+<div id="userlist" >
+<%= form_for(@user, :html => { :multipart => true }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    </div>
+  <% end %>
+  </div>
+<% end %>
+</div>

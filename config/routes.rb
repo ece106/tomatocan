@@ -74,6 +74,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/pastevents' => "users#prevevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/calendar' => "users#calendar", :as => :user_calendar, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
+  match '/:permalink/createstripeacnt' => "users#createstripeacnt", :as => :user_createstripeacnt, via: 'get'
   match '/:permalink/managesales' => "users#managesales", :as => :user_managesales, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'

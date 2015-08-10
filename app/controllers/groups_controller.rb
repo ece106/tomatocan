@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :show]
+  before_action :authenticate_user! , only: [:edit, :update]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   layout :resolve_layout
 

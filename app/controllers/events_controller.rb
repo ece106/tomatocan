@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+#  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   # GET /events.json
   def index
     @events = Event.where( "start_at > ?", Time.now )
