@@ -169,6 +169,8 @@ class UsersController < ApplicationController
     if params[:user][:managestripeacnt] == "openaccount"
       @user.countryofbank = params[:countryofbank]  #should I change so [:user] is part of the param
       @user.create_stripe_account
+      puts @user.stripeid + "YYYYYYYYYYYYYYYYYYYYYYYYYY"
+      @user.update_attribute(:stripeid, @user.stripeid )
     elsif params[:user][:managestripeacnt] == "editaccount"
       @user.edit_stripe_account
     end
@@ -223,7 +225,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:permalink, :blogtalkradio, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, :youtube3, :countryofbank, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, :stripeid)
+      params.require(:user).permit(:permalink, :blogtalkradio, :name, :updating_password, :email, :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, :youtube3, :countryofbank, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, :stripeid, :stripeaccountid)
     end
 
     def resolve_layout

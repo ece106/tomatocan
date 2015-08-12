@@ -1,89 +1,152 @@
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="CrowdPublish.TV" content="eBay for authors - with video!">
-<title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="CrowdPublish.TV" content="like eBay for authors - with video!">
+  <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
 </head>
 
-<ul class="nav nav-pills nav-stacked navbar-left" id="myTab">
-  <li class="active"><a href="#authors" data-toggle="tab">For Authors</a></li>
-  <li><a href="#readers" data-toggle="tab">For Readers</a></li>
-  <li><a href="#orgs" data-toggle="tab">Book Clubs & Writer Organizations</a></li>
-  <li><a href="#space" data-toggle="tab"> .</a></li>
-  <li><a href="#space2" data-toggle="tab"> .</a></li>
-</ul>
+<div class="row">
+  <div class="accordion" id="accordion2">
+    <div class="col-md-3 col-sm-6 col-xs-6">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
+            <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Authors</font></b>
+          </a>
+        </div>
+        <div class="blacktxt">
+          <li>List your books </li>
+          <li>Post your videos</li>
+          <li>Post your speaking calendar</li>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <div class="blacktxt">
+              <li>Host livestreaming talks </li>
+              <li><%= link_to 'Sign up for your own Author site', "/signup" %></li>
+              <li><%= link_to 'Get RSVPs for your Livestreamed & in-person readings', new_event_path %> </li>
+              <%= link_to 'Find critique groups & writer organizations near you', groups_path %><br>
+              <%= link_to 'Network with authors and readers at events near you', calendar_path  %><br>
+              <i>Coming soon: Sell ebooks & merchandise<br> 
+                Crowdfund your book-in-progress<br>
+                Livestreaming author parties</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="accordion-group">
+          <div class="accordion-heading"> 
+            <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
+              <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Readers</font></b>
+            </a>
+          </div>
+          <div class="blacktxt">
+            <li><%= link_to 'Sign up for your own book reviews page', "/signup" %></li>
+            <li><%= link_to 'Find literary events near you', calendar_path  %></li>
+            <li><%= link_to 'Find book clubs near you', groups_path %></li>
+          </div>
+          <div id="collapseTwo" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <br><%= link_to 'Find online Livestreaming book discussions', calendar_path  %>
+              <br><i>Coming soon: Buy ebooks & merchandise<br>
+              Review books on CrowdPublish.TV</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6" >
+        <div class="accordion-group">
+          <div class="accordion-heading"> 
+            <a class="accordion-toggle" data-toggle="collapse" href="#collapse3">
+              <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Book Clubs</font></b>
+            </a>
+          </div>
+          <div class="blacktxt">
+            <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
+          </div>
+          <div id="collapse3" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <li><%= link_to 'Get a free site for your Book Club', new_group_path %></li>
+              <li><%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> </li>
+              <%= link_to 'Collect RSVPs for your events', new_event_path %> <br>
+              <i>Coming soon: List members & their books (if applicable)</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6" >
+        <div class="accordion-group">
+          <div class="accordion-heading"> 
+            <a class="accordion-toggle" data-toggle="collapse" href="#collapse4">
+              <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Writer Organizations</font></b>
+            </a>
+          </div>
+          <div class="blacktxt">
+            <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
+          </div>
 
-<div class="row" style="margin-left:350px;" >
-<div class="tab-content">
-  <div class="tab-pane active" id="authors">
-    <div class="blacktxt">
-      <%= link_to 'Sign up for your own Author site', "/signup" %><br>
-      Post your videos <br>
-      Host livestreaming talks <br>
-      List your books <br> 
-      <%= link_to 'Get RSVPs for your Livestreamed & in-person readings', new_event_path %> <br>
-      <%= link_to 'Find critique groups & writer organizations near you', groups_path %><br>
-      <%= link_to 'Network with authors and readers at events near you', calendar_path  %><br>
-      <i>Coming soon: Sell ebooks & merchandise<br> 
-      Crowdfund your book-in-progress<br>
-      Livestreaming author parties</i>
+          <div id="accordion-toggle" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%= link_to 'Get a free site for your Book Club', new_group_path %><br>
+              <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
+              <%= link_to 'Collect RSVPs for your events', new_event_path %> <br>
+              <i>Coming soon: List members & their books (if applicable)</i>
+            </div>
+          </div>
+  <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggle  ">
+    <span>
+      ...more
+    </span>
+    <span class="hiddenomore">
+      ...less
+    </span>
+  </a>
+
+          </div>
+      </div>
     </div>
   </div>
-  <div class="tab-pane" id="readers">
-    <div class="blacktxt">
-      <%= link_to 'Sign up for your own book reviews page', "/signup" %>
-      <br><%= link_to 'Find literary events near you', calendar_path  %>
-      <br><%= link_to 'Find book clubs near you', groups_path %>
-      <br><%= link_to 'Find online Livestreaming book discussions', calendar_path  %>
-      <br><i>Coming soon: Buy ebooks & merchandise<br>
-      Review books on CrowdPublish.TV</i>
+
+  <script>
+  $('.hiddenomore').removeClass('hiddenomore').hide();
+  $('.accordion-toggle').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  </script>
+
+
+  <div class="row" style="margin-top:20px;" >
+    <div class="col-md-12" >
+      <div class="helps" >
+        <br><%= link_to 'DC, VIRGINIA, MARYLAND Authors & Readers: Join the LOCAL AUTHORS SCENE', "/localauthorsscene" %><p>
+      </div>
     </div>
   </div>
-  <div class="tab-pane" id="orgs">
-    <div class="blacktxt">
-      <%= link_to 'Get a free site for your Book Club, Critique Group, or Writer Organization', new_group_path %><br>
-      <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
-      <%= link_to 'Collect RSVPs for your events', new_event_path %> <br>
-      <i>Coming soon: List members & their books (if applicable)</i>
+
+  <div class="row" style="margin-top:20px;" >
+    <div class="col-md-12" >
+      <div class="indexlist" >
+        <%= link_to 'CrowdPublishTV is now accepting applications for internships & apprenticeships', "/apprenticeships" %><p>
+      </div>
     </div>
   </div>
-  <div class="tab-pane" id="space"> .
-  </div>
-  <div class="tab-pane" id="space2"> .
-  </div>
-</div>
-</div>
 
-<div class="row" style="margin-top:20px;" >
-  <div class="col-md-12" >
-    <div class="helps" >
-      <%= link_to 'DC, VIRGINIA, MARYLAND Writers & Readers: Join the LOCAL AUTHORS SCENE', "/localauthorsscene" %><p>
-  </div>
-  </div>
-</div>
-
-<div class="row" style="margin-top:20px;" >
-  <div class="col-md-12" >
-    <div class="indexlist" >
-      <%= link_to 'CrowdPublishTV is now accepting applications for internships & apprenticeships', "/apprenticeships" %><p>
-  </div>
-  </div>
-</div>
-
-<div class="row" style="margin-top:20px;" >
-  <div class="col-md-12" >
-    <%= image_tag("futureEmpStory.png", :size => "712x25") %>
-  </div>
-</div>
-
-<div class="row" style="margin-top:15px;" >
-  <div class="col-md-5" >
-    <div class = "copyalpha" >
-      <br><br>This site is still in alpha stage development 
-      <br><br>Questions? Contact info@CrowdPublish.TV 
-      <br><br>(C) Copyright 2015, RoleModel Enterprises, LLC. All Rights Reserved.
+  <div class="row" style="margin-top:20px;" >
+    <div class="col-md-12" >
+      <%= image_tag("futureEmpStory.png", :size => "712x25") %>
     </div>
   </div>
-  <div class="col-md-5" >
+
+  <div class="row" style="margin-top:15px;" >
+    <div class="col-md-5" >
+      <div class = "copyalpha" >
+        <br><br>This site is still in alpha stage development 
+        <br><br>Questions? Contact info@CrowdPublish.TV 
+        <br><br>(C) Copyright 2015, RoleModel Enterprises, LLC. All Rights Reserved.
+      </div>
+    </div>
+    <div class="col-md-5" >
+    </div>
   </div>
-</div>
-<br><br>
+  <br><br>

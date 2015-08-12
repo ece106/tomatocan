@@ -10,11 +10,9 @@
     <div class="menu" style="text-align:center; " >
       <% if user_signed_in? %>
         <br><%= link_to "My profile", user_profile_path(current_user.permalink) %>
-        <br><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
       <% else %>
         <br><%= link_to 'Sign in', "/login" %>
       <% end %>
-      <br><%= link_to 'About', "/howwork" %>
     </div>
     <div class="blacktxt" style= "text-align:center;">
       <% if user_signed_in? %>
@@ -27,13 +25,16 @@
   </div>
 
   <div class="col-md-7 col-sm-7 col-xs-7">
-    <div class="menu" style="text-align:left; margin-left:20px;" >
+    <div class="menu" style="text-align:left; margin-left:30px;" >
       <%= link_to 'Home', root_path %>
+<!--
       <br><%= link_to 'Events Near You!', calendar_path  %>
       <br><%= link_to 'Post Your Event', new_event_path %>
       <br><%= link_to 'Clubs & Organizations Near You!', groups_path %>
       <br><%= link_to 'Get a Page for Your Club', new_group_path %>
-      <br><%= link_to 'Featured Members to Watch', users_path  %> <br>
+-->
+      <br><%= link_to 'Featured Members', users_path  %> 
+      <br><%= link_to 'About', "/howwork" %>
     </div><br><br>
 
     <div class="blacktxt" style= "text-align:center;">
