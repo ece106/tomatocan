@@ -9,36 +9,48 @@
     <div class="col-md-3 col-sm-6 col-xs-6">
       <div class="accordion-group">
         <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-            <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Authors</font></b>
+          <a class="accordion-toggle" data-toggle="collapse" href="#accordion-togglea">
+            <%= image_tag("person.png", :size => "75x75") %> <br><b><font size="2">For Authors</font></b>
           </a>
         </div>
         <div class="blacktxt">
+          <li><%= link_to 'Sign up for your free Author web site', "/signup" %></li>
           <li>List your books </li>
           <li>Post your videos</li>
-          <li>Post your speaking calendar</li>
         </div>
-        <div id="collapseOne" class="accordion-body collapse">
+        <div id="accordion-togglea" class="accordion-body collapse">
           <div class="accordion-inner">
             <div class="blacktxt">
+              <li>Modify content on your site on your own, in minutes</li>
+              <li>Post your speaking calendar</li>
+              <li>Post your blog & blogtalkradio shows</li>
               <li>Host livestreaming talks </li>
-              <li><%= link_to 'Sign up for your own Author site', "/signup" %></li>
               <li><%= link_to 'Get RSVPs for your Livestreamed & in-person readings', new_event_path %> </li>
-              <%= link_to 'Find critique groups & writer organizations near you', groups_path %><br>
-              <%= link_to 'Network with authors and readers at events near you', calendar_path  %><br>
-              <i>Coming soon: Sell ebooks & merchandise<br> 
-                Crowdfund your book-in-progress<br>
-                Livestreaming author parties</i>
-              </div>
+              <li><%= link_to 'Find critique groups & writer organizations near you', groups_path %></li>
+              <li><%= link_to 'Network with authors and readers at events near you', calendar_path  %></li>
+              <i>Coming soon: <br>
+              <li>Sell ebooks & merchandise</li> 
+              <li>Crowdfund your book-in-progress</li>
+              <li>Livestreaming author parties</li>
+              ...plus future features to help you sell your books</i>
             </div>
           </div>
+        </div>
+          <a class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddenamore">
+              ...less
+            </span>
+          </a>
         </div>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-6">
         <div class="accordion-group">
           <div class="accordion-heading"> 
-            <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-              <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Readers</font></b>
+            <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggler">
+              <%= image_tag("person.png", :size => "75x75") %> <br><b><font size="2">For Readers</font></b>
             </a>
           </div>
           <div class="blacktxt">
@@ -46,71 +58,111 @@
             <li><%= link_to 'Find literary events near you', calendar_path  %></li>
             <li><%= link_to 'Find book clubs near you', groups_path %></li>
           </div>
-          <div id="collapseTwo" class="accordion-body collapse">
+          <div id="accordion-toggler" class="accordion-body collapse">
             <div class="accordion-inner">
-              <br><%= link_to 'Find online Livestreaming book discussions', calendar_path  %>
-              <br><i>Coming soon: Buy ebooks & merchandise<br>
-              Review books on CrowdPublish.TV</i>
+              <div class="blacktxt">
+                <li><%= link_to 'Find online Livestreaming book discussions', calendar_path %></li>
+                <i>Coming soon: <br>
+                <li>Buy ebooks & merchandise</li>
+                <li>Post book reviews </li>
+                <li>Follow authors & other readers</li></i>
+              </div>
             </div>
           </div>
+          <a class="accordion-toggler" data-toggle="collapse" href="#accordion-toggler ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddenrmore">
+              ...less
+            </span>
+          </a>
         </div>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-6" >
         <div class="accordion-group">
           <div class="accordion-heading"> 
-            <a class="accordion-toggle" data-toggle="collapse" href="#collapse3">
-              <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Book Clubs</font></b>
+            <a class="accordion-toggle" data-toggle="collapse" href="#accordion-togglec">
+              <%= image_tag("people.png", :size => "75x75") %> <br><b><font size="2">For Book Clubs</font></b>
             </a>
           </div>
           <div class="blacktxt">
-            <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
+            <li><%= link_to 'Get a free site for your Book Club', new_group_path %></li>
+            <li><%= link_to 'Zipcode-enabled search so potential members can join you', new_group_path %> </li>
+            <li><%= link_to 'Collect RSVPs for your events', new_event_path %> </li>
           </div>
-          <div id="collapse3" class="accordion-body collapse">
+          <div id="accordion-togglec" class="accordion-body collapse">
             <div class="accordion-inner">
-              <li><%= link_to 'Get a free site for your Book Club', new_group_path %></li>
-              <li><%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> </li>
-              <%= link_to 'Collect RSVPs for your events', new_event_path %> <br>
-              <i>Coming soon: List members & their books (if applicable)</i>
+              <div class="blacktxt">
+                <li>Post your event calendar</li>
+                <li>Post your news & announcements</li>
+                <i>Coming soon: <br>
+                <li>Maintain your list of members</li></i>
+              </div>
             </div>
           </div>
+          <a class="accordion-togglec" data-toggle="collapse" href="#accordion-togglec ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddencmore">
+              ...less
+            </span>
+          </a>
         </div>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-6" >
         <div class="accordion-group">
           <div class="accordion-heading"> 
-            <a class="accordion-toggle" data-toggle="collapse" href="#collapse4">
-              <%= image_tag("futureEmpStory.png", :size => "75x75") %> <br><b><font size="2">For Writer Organizations</font></b>
+            <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggleo">
+              <%= image_tag("people.png", :size => "75x75") %> <br><b><font size="2">For Writer Organizations</font></b>
             </a>
           </div>
           <div class="blacktxt">
-            <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
+                <li><%= link_to 'Get a free site for your Critique Group or Writer Organization', new_group_path %></li>
+                <li>Post your event calendar</li>
+                <li>Post your news & announcements</li>
           </div>
-
-          <div id="accordion-toggle" class="accordion-body collapse">
+          <div id="accordion-toggleo" class="accordion-body collapse">
             <div class="accordion-inner">
-              <%= link_to 'Get a free site for your Book Club', new_group_path %><br>
-              <%= link_to 'List your meeting zipcode so potential members can find you', new_group_path %> <br>
-              <%= link_to 'Collect RSVPs for your events', new_event_path %> <br>
-              <i>Coming soon: List members & their books (if applicable)</i>
+              <div class="blacktxt">
+                <li><%= link_to 'Collect RSVPs for your events', new_event_path %> </li>
+                <li><%= link_to 'Zipcode-enabled search so potential members can join you', new_group_path %> </li>
+                <i>Coming soon: <br>
+                <li>Maintain your list of members</li>
+                <li>Feature members & their books on your organization's site</li></i>
+              </div>
             </div>
           </div>
-  <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggle  ">
-    <span>
-      ...more
-    </span>
-    <span class="hiddenomore">
-      ...less
-    </span>
-  </a>
+          <a class="accordion-toggleo" data-toggle="collapse" href="#accordion-toggleo ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddenomore">
+              ...less
+            </span>
+          </a>
 
-          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
+  $('.hiddenamore').removeClass('hiddenamore').hide();
+  $('.accordion-togglea').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hiddenrmore').removeClass('hiddenrmore').hide();
+  $('.accordion-toggler').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hiddencmore').removeClass('hiddencmore').hide();
+  $('.accordion-togglec').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
   $('.hiddenomore').removeClass('hiddenomore').hide();
-  $('.accordion-toggle').click(function() {
+  $('.accordion-toggleo').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
   </script>
