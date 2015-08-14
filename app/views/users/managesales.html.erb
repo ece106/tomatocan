@@ -8,8 +8,10 @@
         <%= render 'shared/error_messages', :object => f.object %>
         <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
           Please provide the following info
-          <% if params[:countryofbank] == "IE" %>
-            Enter your legal first name associated with your bank account <%= f.text_field(:first_name) %><br>
+          <% if @user.countryofaccount == "IE" %>
+            Enter your legal first name associated with your bank account <%= f.text_field(:firstname)%><br>
+            Enter your legal last name associated with your bank account <%= f.text_field(:lastname) %><br> 
+            <%= f.text_field(:day) %>
             legal_entity.first_name, 
             legal_entity.last_name, 
             legal_entity.dob.day, 
@@ -19,7 +21,9 @@
             bank_account, 
             tos_acceptance.ip, 
             tos_acceptance.date
-          <% elsif params[:countryofbank] == "US" %>
+          <% elsif @user.countryofaccount == "US" %>
+          <% elsif @user.countryofaccount == "GB" %>
+          <% elsif @user.countryofaccount == "NO" %>
           <% end %>
         <br>(["US", "CA", "GB", "AT", "AU", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "JP", "LU", "MX", "NL", "NO", "SE"])<br>
         <%= f.hidden_field(:managestripeacnt, :value => "editaccount") %>

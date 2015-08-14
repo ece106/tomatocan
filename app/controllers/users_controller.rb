@@ -87,6 +87,8 @@ class UsersController < ApplicationController
   end
   def managesales
     @user = User.find_by_permalink(params[:permalink])
+    @user.retrieve_stripe_account
+#    @user.countryofaccount
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
@@ -169,8 +171,7 @@ class UsersController < ApplicationController
     if params[:user][:managestripeacnt] == "openaccount"
       @user.countryofbank = params[:countryofbank]  #should I change so [:user] is part of the param
       @user.create_stripe_account
-      puts @user.stripeid + "YYYYYYYYYYYYYYYYYYYYYYYYYY"
-      @user.update_attribute(:stripeid, @user.stripeid )
+      @user.update_attribute(:stripeid, @user.stripeaccountid )
     elsif params[:user][:managestripeacnt] == "editaccount"
       @user.edit_stripe_account
     end

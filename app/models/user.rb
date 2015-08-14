@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 #  extend FriendlyId
 #  friendly_id :permalink, use: :slugged
-  attr_accessor :countryofbank, :managestripeacnt, :first_name, :stripeaccountid 
+  attr_accessor :countryofbank, :managestripeacnt, :first_name, :stripeaccountid, :countryofaccount, :firstname, :lastname
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
@@ -60,15 +60,21 @@ class User < ActiveRecord::Base
     @stripeaccountid = stripeaccount.id 
   end
 
+  def retrieve_stripe_account
+    stripeinfo = Stripe::Account.retrieve(stripeid)
+    @countryofaccount = stripeinfo.country
+  end
+
   def edit_stripe_account
+    #if countryofaccount == "US" then save certain parameters
     stripeid = self.stripeid
     country = self.countryofbank
     emailaddress = self.email
-    stripeinfo = Stripe::Account.retrieve(stripeid)
     Stripe::Account.save(
       {
         :country => country, # @country #should be selected from a dropdown box
-        :email => emailaddress
+        :first_name => @firstname
+        :last_name => @lastname
       }
     )  
   end
