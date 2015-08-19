@@ -1,34 +1,42 @@
 <% @title=" edit user profile "  %>
 <p class="flash"><%= flash.notice %></p>
 
+<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
+  <% if @user.profilepic.present? && @user.profilepic != '' %>
+    <%= image_tag @user.profilepic, :height => "150" %>
+  <% elsif @user.profilepicurl %>
+    <% if @user.profilepicurl.match(/http/) %>
+      <%= image_tag @user.profilepicurl, :height => "150" %><br >
+    <% else %>
+      <%= image_tag "whiteBk.jpg", :height => "150" %>
+    <% end %>
+  <% else %>
+    <%= image_tag "whiteBk.jpg", :height => "150" %>
+  <% end %>
+</div>
+
 <% if @user == current_user %>
-  <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
+  <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
-      <%= form_for @user, :html => {:multipart => true} do |f| %>
+
+      <%= form_for @user, :url => { :action => "updatebankaccount" } do |f| %>
+      <%#= form_for @user, :html => {:multipart => true} do |f| %>
         <%= render 'shared/error_messages', :object => f.object %>
         <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
-          Please provide the following info
-          <% if @user.countryofaccount == "IE" %>
-            Enter your legal first name associated with your bank account <%= f.text_field(:firstname)%><br>
-            Enter your legal last name associated with your bank account <%= f.text_field(:lastname) %><br> 
-            <%= f.text_field(:day) %>
-            legal_entity.first_name, 
-            legal_entity.last_name, 
-            legal_entity.dob.day, 
-            legal_entity.dob.month, 
-            legal_entity.dob.year, 
-            legal_entity.type, 
+          Because your country is <%= @countryofaccount %>, we need the following info before transfers can be made to your bank account:<br>
+          <%# if @countryofaccount == "IE" #We'll use fields_reqd hash here %>  
+            SSN<%= text_field_tag(:ssn) %><br>
+            <br>
+                      <table></table><tr><td>Legal first name associated with your bank account </td><td>Legal last name associated with your bank account </td></tr>
+          <tr><td><%= f.text_field :firstname, :size => 10 %></td><td><%= f.text_field :lastname, :size => 10 %></td></tr></table>
+
             bank_account, 
             tos_acceptance.ip, 
             tos_acceptance.date
-          <% elsif @user.countryofaccount == "US" %>
-          <% elsif @user.countryofaccount == "GB" %>
-          <% elsif @user.countryofaccount == "NO" %>
-          <% end %>
-        <br>(["US", "CA", "GB", "AT", "AU", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "JP", "LU", "MX", "NL", "NO", "SE"])<br>
-        <%= f.hidden_field(:managestripeacnt, :value => "editaccount") %>
+          <% # end %>
+        <br>(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "LU", "NL", "NO", "SE"])<br>
 
-        <center><%= f.submit "Create Account" %> </center><br>
+        <center><%= f.submit "Update Account" %> </center><br>
       <% end %>
     </div>
   </div>

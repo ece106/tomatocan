@@ -34,7 +34,7 @@ Crowdpublishtv::Application.routes.draw do
     get 'login' => 'devise/sessions#new', :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
-    get 'localauthors' => 'devise/registrations#localauthorsscene', :as => :localauthors
+    #get 'localauthors' => 'devise/registrations#localauthorsscene', :as => :localauthors
     get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
     post "signup", :to => 'devise/registrations#create', :as => :user_signup
     #get 'users' => "users#index", :as => :users
@@ -86,6 +86,8 @@ Crowdpublishtv::Application.routes.draw do
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
 
+  patch '/:permalink/managesales' => 'users#updatebankaccount'
+  patch '/:permalink/createstripeacnt' => 'users#createbankaccount'
 #  get '/:friendly_id', to: 'groups#show' 
 
   resources :books do

@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 #  extend FriendlyId
 #  friendly_id :permalink, use: :slugged
-  attr_accessor :countryofbank, :managestripeacnt, :first_name, :stripeaccountid, :countryofaccount, :firstname, :lastname
+  attr_accessor :countryofbank, :managestripeacnt, :first_name, :stripeaccountid, :countryofaccount,
+  :firstname, :lastname, :birthmonth, :birthday, :birthyear, :accounttype, :mailaddress, :ssn
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
@@ -46,34 +47,40 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     uniqueness: { case_sensitive: false }
 
-  def create_stripe_account
-    country = self.countryofbank
-    emailaddress = self.email
-#    Stripe.api_key = Stripe.api_key # PLATFORM_SECRET_KEY
+  def create_bank_account
+    puts self.accounttype + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+    puts @lastname + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
     stripeaccount = Stripe::Account.create(
       {
-        :country => country, # @country #should be selected from a dropdown box
+        :country => self.countryofbank, # @country #should be selected from a dropdown box
         :managed => true,
-        :email => emailaddress
+        :email => self.email,
+# legal_entity.dob.day, legal_entity.dob.month, legal_entity.dob.year, legal_entity.type, legal_entity.address.line1, legal_entity.address.city, legal_entity.address.postal_code, bank_account, tos_acceptance.ip, tos_acceptance.date
+        :legal_entity => {
+          :type => self.accounttype,
+          :last_name => self.lastname
+        }
       }
     )  
+    stripeaccount.legal_entity = 
+      {:first_name => self.firstname, :last_name => self.lastname}
+    
     @stripeaccountid = stripeaccount.id 
+ #   stripeaccount.save
   end
 
-  def retrieve_stripe_account
-    stripeinfo = Stripe::Account.retrieve(stripeid)
-    @countryofaccount = stripeinfo.country
+  def retrieve_bank_account
+    @account = Stripe::Account.retrieve(stripeid)
+    @countryofaccount = @account.country
   end
 
-  def edit_stripe_account
-    #if countryofaccount == "US" then save certain parameters
-    stripeid = self.stripeid
-    country = self.countryofbank
-    emailaddress = self.email
-    Stripe::Account.save(
+  def save_bank_account
+    #account = 
+    #use fields_needed hash for 
+    puts @firstname + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+    self.account.save(
       {
-        :country => country, # @country #should be selected from a dropdown box
-        :first_name => @firstname
+        :first_name => @firstname,
         :last_name => @lastname
       }
     )  

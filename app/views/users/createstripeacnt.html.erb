@@ -1,46 +1,54 @@
 <% @title=" edit user profile "  %>
 <p class="flash"><%= flash.notice %></p>
 
+<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
+  <% if @user.profilepic.present? && @user.profilepic != '' %>
+    <%= image_tag @user.profilepic, :height => "150" %>
+  <% elsif @user.profilepicurl %>
+    <% if @user.profilepicurl.match(/http/) %>
+      <%= image_tag @user.profilepicurl, :height => "150" %><br >
+    <% else %>
+      <%= image_tag "whiteBk.jpg", :height => "150" %>
+    <% end %>
+  <% else %>
+    <%= image_tag "whiteBk.jpg", :height => "150" %>
+  <% end %>
+</div>
+
 <% if @user == current_user %>
-  <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
+  <div class="col-md-12 " style="text-align:left">
     <div class="blacktxt" >
-      <%= form_for @user, :html => {:multipart => true} do |f| %>
-        <%= render 'shared/error_messages', :object => f.object %>
-        <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
+      <%= form_for @user, :url => { :action => "createbankaccount" } do |f| %>
 
-        To create a new account, select the country where your bank account is registered. The payment processing company we use can handle transactions for bank accounts in 
+        To create a new account, enter the following information:<br>
+        Does your bank account belong to a business or to an individual: <%= select_tag :accounttype, options_for_select(["individual", "company"], prompt: true) %><br><br>
         <table>
-          <tr><td>US </td><td>Canada</td><td>Great Britain</td></tr>
-          <tr><td>Austria</td><td>Australia</td><td>Belgium</td></tr>
-          <tr><td>Switzerland</td><td>Germany</td><td>Denmark</td></tr>
-          <tr><td>Spain</td><td>Finland</td><td>France</td></tr>
-          <tr><td>Ireland</td><td>Italy</td><td>Japan</td></tr>
-          <tr><td>Luxembourg</td><td>Mexico</td><td>the Netherlands</td></tr>
-          <tr><td>Norway</td><td>Sweden</td></tr>
-        </table  >
-        <br> Select the country code where your bank account exists
-        <br><%= select_tag :countryofbank, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "JP", "LU", "MX", "NL", "NO", "SE"], prompt: true) %><br>
-        <%= f.hidden_field(:managestripeacnt, :value => "openaccount") %>
+          <tr><td>Legal first name associated with your bank account </td><td>Legal last name associated with your bank account </td></tr>
+          <tr><td><%= f.text_field :firstname, :size => 30 %></td><td><%= f.text_field :lastname, :size => 30 %></td></tr>
+        </table > <br>
+        <table>
+          <tr><td>Month of Birth </td><td>Day of Birth </td><td>Year of Birth </td></tr>
+          <tr><td><%= text_field_tag :birthmonth, '', :size => 5 %></td><td><%= text_field_tag :birthday, :size => 5 %></td><td><%= text_field_tag :birthyear, :size => 5 %></td></tr>
+        </table > <br>
 
-        <center><%= f.submit "Create Account" %> </center><br>
+        The payment processing company we use can handle transactions for bank accounts in: 
+        <table>
+          <tr><td>US </td><td>Canada</td><td>Great Britain</td><td>Austria</td></tr>
+          <tr><td>Australia</td><td>Belgium</td><td>Germany</td><td>Denmark</td></tr>
+          <tr><td>Spain</td><td>Finland</td><td>France</td><td>Ireland</td></tr>
+          <tr><td>Italy</td><td>Norway</td><td>Luxembourg</td><td>Sweden</td></tr>
+          <tr><td>the Netherlands</td></tr>
+        </table >
+        Select the country code where your bank account exists
+        <br><%= select_tag :countryofbank, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br>
+
+        Mailing address associated with your bank account (address of your business or residence) <br>
+        <%= text_area :mailaddress, :rows => 4, :cols => 60 %>
+        <%#= hidden_field_tag(:managestripeacnt, :value => "openaccount") %>
+
+        <center><%= submit_tag "Create Account" %> </center><br>
       <% end %>
       At this time, we are unable to support accounts with banks in countries other than those listed above. Please check this page again in the future to find out if our payment processor has added countries.
     </div>
   </div>
 <% end %>
-
-<div id="userlist" >
-<%= form_for(@user, :html => { :multipart => true }) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-    </div>
-  <% end %>
-  </div>
-<% end %>
-</div>
