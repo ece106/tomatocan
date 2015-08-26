@@ -15,4 +15,4 @@ jQuery(document).ready(function($) {
   $('.accordion-toggleo').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
-})
+});
