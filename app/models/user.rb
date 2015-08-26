@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 #  extend FriendlyId
 #  friendly_id :permalink, use: :slugged
-  attr_accessor :countryofbank, :managestripeacnt, :first_name, :stripeaccountid, :countryofaccount,
-  :firstname, :lastname, :birthmonth, :birthday, :birthyear, :accounttype, :mailaddress, :ssn
+  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
+  :bankaccountnumber, :countryoftax
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
@@ -47,44 +47,60 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     uniqueness: { case_sensitive: false }
 
-  def create_bank_account
-    puts self.accounttype + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
-    puts @lastname + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
-    stripeaccount = Stripe::Account.create(
+  def retrieve_bank_account #is this used
+    @account = Stripe::Account.retrieve(stripeid)
+    @countryoftax = @account.country
+  end
+
+  def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank)
+    puts currency
+    puts bankaccountnumber
+    puts routingnumber
+    puts countryofbank
+    puts "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+
+    if @countryoftax == "CA"
+      if currency == "CAD"
+        countryofbank = "CA"
+      end  
+    elsif self.countryoftax == "US"
+      currency = "USD"
+      countryofbank = "US"
+    elsif currency == "USD"
+      countryofbank = "US"
+    elsif currency == "GBP"
+      countryofbank = "GB"
+    elsif currency == "DKK"
+      countryofbank = "DK"
+    elsif currency == "NOK" 
+      countryofbank = "NO"
+    elsif currency == "SEK" 
+      countryofbank = "SE"
+    elsif self.countryoftax == "AU"
+      currency = "AUD"
+      countryofbank = "AU"
+    end
+    account = Stripe::Account.retrieve(self.stripeid)
+    puts currency
+    puts bankaccountnumber
+    puts routingnumber
+    puts countryofbank
+    puts "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+    temp = account.external_accounts.create(
       {
-        :country => self.countryofbank, # @country #should be selected from a dropdown box
-        :managed => true,
-        :email => self.email,
-# legal_entity.dob.day, legal_entity.dob.month, legal_entity.dob.year, legal_entity.type, legal_entity.address.line1, legal_entity.address.city, legal_entity.address.postal_code, bank_account, tos_acceptance.ip, tos_acceptance.date
-        :legal_entity => {
-          :type => self.accounttype,
-          :last_name => self.lastname
+        :external_account => {
+          :object => "bank_account",
+          :country => "US", #countryofbank, 
+          :currency => "USD", #currency, 
+          :routing_number => routingnumber,
+          :account_number => bankaccountnumber
         }
       }
-    )  
-    stripeaccount.legal_entity = 
-      {:first_name => self.firstname, :last_name => self.lastname}
-    
-    @stripeaccountid = stripeaccount.id 
- #   stripeaccount.save
-  end
-
-  def retrieve_bank_account
-    @account = Stripe::Account.retrieve(stripeid)
-    @countryofaccount = @account.country
-  end
-
-  def save_bank_account
-    #account = 
-    #use fields_needed hash for 
-    puts @firstname + "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
-    self.account.save(
-      {
-        :first_name => @firstname,
-        :last_name => @lastname
-      }
-    )  
-  end
+    )
+    puts temp.country
+    puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    account.save
+  end    
 
   private
   def assign_defaults_on_new_user

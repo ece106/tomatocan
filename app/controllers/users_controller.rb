@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeacnt]
+  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def createstripeacnt
+  def createstripeaccount
     @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # profileinfo.html.erb
@@ -163,20 +163,46 @@ class UsersController < ApplicationController
     end
   end
 
-  def createbankaccount
+  def createstripeacnt
+    #Should this be in model? model method didnt value added beyond submitting user email to stripe 
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    @user.lastname = params[:user][:lastname]
-    @user.accounttype = params[:accounttype]
-    @user.create_bank_account
-    @user.update_attribute(:stripeid, @user.stripeaccountid )
-    redirect_to user_profile_path(current_user.permalink)
-  end
-  def updatebankaccount
-    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+    account = Stripe::Account.create(
+      {
+        :country => params[:countryoftax], 
+        :managed => true,
+        :email => @user.email,
+        :legal_entity => {
+          :type => params[:accounttype],
+          :first_name => params[:firstname],
+          :last_name => params[:lastname],
+          :dob => {
+            :day => params[:birthday],
+            :month => params[:birthmonth],
+            :year => params[:birthyear]
+          }
+        }
+      }
+    )  
+    @user.update_attribute(:stripeid, account.id )
     account = Stripe::Account.retrieve(@user.stripeid)
-#    @user.save_bank_account
-    account.legal_entity.first_name = params[:user][:firstname]
-    account.legal_entity.last_name = params[:user][:lastname]
+    account.tos_acceptance.ip = request.remote_ip
+    account.tos_acceptance.date = Time.now.to_i        
+    account.save
+    redirect_to user_managesales_path(current_user.permalink)
+  end
+  def updatestripeacnt
+    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+    @user.add_bank_account(params[:currency], params[:bankaccountnumber], params[:routingnumber], params[:countryofbank])
+    account = Stripe::Account.retrieve(@user.stripeid)
+    account.legal_entity.address.line1 = params[:line1]
+    unless params[:line2] == ""
+      account.legal_entity.address.line2 = params[:line2]
+    end  
+    account.legal_entity.address.city = params[:city]
+    account.legal_entity.address.postal_code = params[:postal_code]
+#if CA, US
+    account.legal_entity.address.state = params[:state]
+
     account.save
     redirect_to user_profile_path(current_user.permalink)
   end
@@ -208,6 +234,7 @@ class UsersController < ApplicationController
       end
 
       sign_in @user
+      redirect_to user_profile_path(current_user.permalink)
     else
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
@@ -233,16 +260,16 @@ class UsersController < ApplicationController
         :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, 
         :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, 
         :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
-        :youtube3, :countryofbank, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
+        :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
-        :birthday, :birthyear, :mailaddress)
+        :birthday, :birthyear, :mailaddress, :countryoftax, :countryofbank, :currency)
     end
 
     def resolve_layout
       case action_name
       when "index"
         'application'
-      when "profileinfo", "readerprofileinfo", "createstripeacnt", "managestripeacnt"
+      when "profileinfo", "readerprofileinfo", "createstripeaccount", "managesales"
         'editinfotemplate'
       else
         'userpgtemplate'

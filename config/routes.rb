@@ -74,7 +74,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/pastevents' => "users#prevevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/calendar' => "users#calendar", :as => :user_calendar, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
-  match '/:permalink/createstripeacnt' => "users#createstripeacnt", :as => :user_createstripeacnt, via: 'get'
+  match '/:permalink/createstripeaccount' => "users#createstripeaccount", :as => :user_createstripeaccount, via: 'get'
   match '/:permalink/managesales' => "users#managesales", :as => :user_managesales, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
@@ -86,8 +86,8 @@ Crowdpublishtv::Application.routes.draw do
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
 
-  patch '/:permalink/managesales' => 'users#updatebankaccount'
-  patch '/:permalink/createstripeacnt' => 'users#createbankaccount'
+  post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
+  post '/:permalink/createstripeacnt' => 'users#createstripeacnt', :as => :user_createstripeacnt
 #  get '/:friendly_id', to: 'groups#show' 
 
   resources :books do

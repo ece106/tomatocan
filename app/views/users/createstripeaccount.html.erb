@@ -18,7 +18,7 @@
 <% if @user == current_user %>
   <div class="col-md-12 " style="text-align:left">
     <div #class="blacktxt" >
-      <%= form_tag user_createmanagedacnt_path %>
+      <%= form_tag user_createstripeacnt_path %>
 
         To create a new account, the following information is legally required before you can receive payments:<br>
         Does your bank account belong to a business or to an individual: <%= select_tag :accounttype, options_for_select(["individual", "company"], prompt: true) %><br><br>
@@ -40,9 +40,11 @@
           <tr><td>the Netherlands</td></tr>
         </table >
         Select the code for the country where you have a tax ID
-        <br><%= select_tag :countryofbank, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br>
+        <br><%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br>
 
-        <center><%= submit_tag "Create Account" %> </center><br>
+        <center><br>I accept the Terms of Service <br>
+
+        <%= submit_tag "Create Account" %> </center><br>
       <% #end %>
       At this time, we are unable to support users in countries other than those listed above. Please check this page again in the future to find out if our payment processor has added countries.
     </div>

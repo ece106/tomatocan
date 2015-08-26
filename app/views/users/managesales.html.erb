@@ -19,41 +19,56 @@
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
 
-      <%= form_for @user, :url => { :action => "updatebankaccount" } do |f| %>
-      <%#= form_for @user, :html => {:multipart => true} do |f| %>
-        <%= render 'shared/error_messages', :object => f.object %>
-        <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
-          Because your country is <%= @countryofaccount %>, we need the following info before transfers can be made to your bank account:<br>
-          <%# if @countryofaccount == "IE" #We'll use fields_reqd hash here %>  
-            SSN<%= text_field_tag(:ssn) %><br>
+      <%= form_tag user_updatestripeacnt_path %>
+        The following information must be submitted before transfers can be made to your bank account:<br><br>
+        Businesses and residents with tax IDs in 
+        <% if @user.countryoftax == "US" %> 
+          the US must have their bank accounts located in the US, in USD.
+        <% elsif @user.countryoftax == "AU" %> 
+          Australia must have their bank accounts located in Australia, in AUD.
+        <% elsif @user.countryoftax == "CA" %>  
+          Canada may have their bank accounts located in either Canada or the US. Select the currency your bank account uses <%= select_tag :currency, options_for_select(["USD", "CAD"], prompt: true) %> <br>
+          If your bank account is in USD, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["US", "CA"], prompt: true), include_blank: true %><br>  
+        <% elsif @user.countryoftax.match(/DK|NO|SE|FI/) %>
+          Denmark, Norway, Sweden, and Finland may connect 
+            <li>DKK bank accounts located in Denmark</li>
+            <li>NOK bank accounts located in Norway</li>
+            <li>SEK bank accounts located in Sweden</li>
+            <li>GBP bank accounts located in Great Britain</li>
+            <li>USD bank accounts located in the US</li> - or
+            <li>EUR bank accounts located in AT, BE, CH, DE, DK, ES, FI, FR, GB, IE, IT, LU, NL, NO, or SE</li>
+          Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "EUR", "DKK", "NOK", "SEK", "GBP"], prompt: true) %><br>
+          If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
+        <% elsif  @user.countryoftax.match(/AT|BE|DE|ES|FR|GB|IE|IT|LU|NL/) %>  
+          Austria, Belgium, Germany, Spain, France, Great Britain, Ireland, Italy, Luxembourg, and the Netherlands may connect 
+            <li>USD bank accounts located in the US</li>
+            <li>GBP bank accounts located in Great Britain</li> - or
+            <li>EUR bank accounts located in AT, BE, CH, DE, DK, ES, FI, FR, GB, IE, IT, LU, NL, NO, or SE</li>
+          Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "GBP", "EUR"], prompt: true) %><br>s
+          If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
+        <% end %> <br> <br>
+        <table>
+          <tr><td>Bank account number: </td><td><%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br></td></tr>
+          <tr><td>Routing number for your bank: </td><td><%= text_field_tag :routingnumber, '', :size => 30 %><br><br></td></tr>
+          <tr><td></td><td>You must also submit the business or personal address you use for tax correspondence </td></tr>
+          <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %> Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
+          <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %> <br>
+        <% if @user.countryoftax.match(/US|CA/) %> 
+          <tr><td>State</td><td> <%= text_field_tag :state, '', :size => 5 %> <br>
+        <% end %>  
+          <tr><td>Zip Code</td><td> <%= text_field_tag :postal_code, '', :size => 30 %> </td></tr>
+        </table > <br>
+
+        <br><center><%= submit_tag "Update Account" %> </center><br>
+
+<br><br>    <% @user.account.verification.fields_needed.each do |x| %>
+              <%= x %>   <br>
+            <% end %>  
+
             <br>
-                      <table></table><tr><td>Legal first name associated with your bank account </td><td>Legal last name associated with your bank account </td></tr>
-          <tr><td><%= f.text_field :firstname, :size => 10 %></td><td><%= f.text_field :lastname, :size => 10 %></td></tr></table>
 
-            bank_account, 
-            tos_acceptance.ip, 
-            tos_acceptance.date
-          <% # end %>
-        <br>(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "LU", "NL", "NO", "SE"])<br>
-
-        <center><%= f.submit "Update Account" %> </center><br>
-      <% end %>
     </div>
   </div>
 <% end %>
 
-<div id="userlist" >
-<%= form_for(@user, :html => { :multipart => true }) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-    </div>
-  <% end %>
-  </div>
-<% end %>
-</div>
+<%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>
