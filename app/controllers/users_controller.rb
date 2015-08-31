@@ -87,7 +87,17 @@ class UsersController < ApplicationController
   end
   def managesales
     @user = User.find_by_permalink(params[:permalink])
-    @user.retrieve_bank_account
+    account = Stripe::Account.retrieve(@user.stripeid)
+    @countryoftax = account.country
+     respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def addbankaccount
+    @user = User.find_by_permalink(params[:permalink])
+    @account = Stripe::Account.retrieve(@user.stripeid)
+    @countryoftax = @account.country
      respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
@@ -188,12 +198,14 @@ class UsersController < ApplicationController
     account.tos_acceptance.ip = request.remote_ip
     account.tos_acceptance.date = Time.now.to_i        
     account.save
-    redirect_to user_managesales_path(current_user.permalink)
+    redirect_to user_addbankaccount_path(current_user.permalink)
   end
   def updatestripeacnt
+  end
+  def addbankacnt
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    @user.add_bank_account(params[:currency], params[:bankaccountnumber], params[:routingnumber], params[:countryofbank])
     account = Stripe::Account.retrieve(@user.stripeid)
+    @user.add_bank_account(account.country, params[:currency], params[:bankaccountnumber], params[:routingnumber], params[:countryofbank])
     account.legal_entity.address.line1 = params[:line1]
     unless params[:line2] == ""
       account.legal_entity.address.line2 = params[:line2]
@@ -262,14 +274,14 @@ class UsersController < ApplicationController
         :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
         :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
-        :birthday, :birthyear, :mailaddress, :countryoftax, :countryofbank, :currency)
+        :birthday, :birthyear, :mailaddress, :countryofbank, :currency)
     end
 
     def resolve_layout
       case action_name
       when "index"
         'application'
-      when "profileinfo", "readerprofileinfo", "createstripeaccount", "managesales"
+      when "profileinfo", "readerprofileinfo", "createstripeaccount", "managesales", "addbankaccount"
         'editinfotemplate'
       else
         'userpgtemplate'

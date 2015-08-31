@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 #  extend FriendlyId
 #  friendly_id :permalink, use: :slugged
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
-  :bankaccountnumber, :countryoftax
+  :bankaccountnumber
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
@@ -47,23 +47,12 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     uniqueness: { case_sensitive: false }
 
-  def retrieve_bank_account #is this used
-    @account = Stripe::Account.retrieve(stripeid)
-    @countryoftax = @account.country
-  end
-
-  def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank)
-    puts currency
-    puts bankaccountnumber
-    puts routingnumber
-    puts countryofbank
-    puts "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
-
-    if @countryoftax == "CA"
+  def add_bank_account(countryoftax, currency, bankaccountnumber, routingnumber, countryofbank)
+    if countryoftax == "CA"
       if currency == "CAD"
         countryofbank = "CA"
       end  
-    elsif self.countryoftax == "US"
+    elsif countryoftax == "US"
       currency = "USD"
       countryofbank = "US"
     elsif currency == "USD"
@@ -76,29 +65,26 @@ class User < ActiveRecord::Base
       countryofbank = "NO"
     elsif currency == "SEK" 
       countryofbank = "SE"
-    elsif self.countryoftax == "AU"
+    elsif countryoftax == "AU"
       currency = "AUD"
       countryofbank = "AU"
     end
     account = Stripe::Account.retrieve(self.stripeid)
-    puts currency
-    puts bankaccountnumber
-    puts routingnumber
-    puts countryofbank
-    puts "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
     temp = account.external_accounts.create(
       {
         :external_account => {
           :object => "bank_account",
-          :country => "US", #countryofbank, 
-          :currency => "USD", #currency, 
+          :country => countryofbank, 
+          :currency => currency, 
           :routing_number => routingnumber,
           :account_number => bankaccountnumber
         }
       }
     )
     puts temp.country
-    puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    puts temp.currency
+    puts temp.routing_number
+    puts temp.account #might want to save account token in users hasmany accounts table so I can access later
     account.save
   end    
 

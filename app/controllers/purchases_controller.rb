@@ -33,6 +33,8 @@ class PurchasesController < ApplicationController
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
     token = params[:stripe_card_token]
+    puts token
+    puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
 
     if @purchase.save_with_payment
       redirect_to @purchase, :notice => "Thank you for purchasing this book!"
