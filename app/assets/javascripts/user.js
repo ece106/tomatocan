@@ -15,4 +15,8 @@ jQuery(document).ready(function($) {
   $('.accordion-toggleo').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hiddencardform').removeClass('hiddencardform').hide();
+  $('.togglecard').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
 });

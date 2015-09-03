@@ -7,18 +7,62 @@ Authors will be notified when this feature is functional & when the TOS are upda
 <%= form_for @purchase do |f| %>
   <% if @purchase.errors.any? %>
     <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
-    <% @purchase.errors.full_messages.each do |msg| %>
+    <% @purchase.errors.full_messages.each do |msg| %> 
       <%= msg %>
     <% end %>
   <% end %>
-
-  <%= f.hidden_field :stripe_card_token %>
   <%= f.hidden_field :bookfiletype %>
   <%= f.hidden_field :book_id %>
-  
-  <% if @purchase.stripe_card_token.present? %>
-    Credit card has been provided.
+  <% if current_user.stripe_customer_token.present? %>
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <div id="accordion-togglea" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="blacktxt">
+                  <%= label_tag :card_number, "Credit Card Number" %>
+                  <%= text_field_tag :card_number, nil, name: nil %><br><br>
+
+                  <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+                  <%= text_field_tag :card_code, nil, name: nil %><br><br>
+
+                  <%= label_tag :card_month, "Card Expiration" %>
+                  <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+                  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
+                  <%= f.submit "Buy now" %><br><br>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea ">
+      <span>
+        You are using default card ending *<%= @last4 %>, Expiration <%= @expmonth %>-<%= @expyear %><br>
+          <%= f.submit "Buy now" %><br><br>
+        <a class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea" onclick="return newcard();" >
+          Enter a different card
+        </a>
+      </span>
+       <span class="hiddenamore">
+        <a class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea" onclick="return existingcard();">
+          Use default card ending *<%= @last4 %> instead
+      </span>
+      </a>
+    </div><br><br>
+    <script >
+      var card = 'global variable card';
+      function newcard () {
+        card = 'New card';
+      }
+      function existingcard () {
+        card = "existingcustomer";
+      }  
+    </script>
+
   <% else %>
+    <%= f.hidden_field :stripe_card_token %>
     <p><%= label_tag :card_number, "Credit Card Number" %>
     <%= text_field_tag :card_number, nil, name: nil %><p>
 
@@ -27,14 +71,14 @@ Authors will be notified when this feature is functional & when the TOS are upda
 
     <%= label_tag :card_month, "Card Expiration" %>
     <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+8}, {name: nil, id: "card_year"} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
+    <%= f.submit "Purchase" %>
   <% end %>
 
 <div id="stripe_error">
   <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
 </div>
 
-  <%= f.submit "Purchase" %>
-<% end %>
+  <% end %>
   </div>
 </div>

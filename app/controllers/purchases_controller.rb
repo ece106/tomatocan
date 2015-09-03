@@ -21,6 +21,14 @@ class PurchasesController < ApplicationController
     @book = Book.find(params[:book_id])
     @purchase = @book.purchases.new
     @purchase.bookfiletype = params[:bookfiletype]
+    if current_user.stripe_customer_token.present?
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_token);
+      sourceid = customer.default_source
+      card = customer.sources.retrieve(sourceid)
+      @last4 = card.last4
+      @expmonth = card.exp_month
+      @expyear = card.exp_year
+    end
   end
   # GET /purchases/1/edit 29
   def edit
@@ -33,8 +41,6 @@ class PurchasesController < ApplicationController
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
     token = params[:stripe_card_token]
-    puts token
-    puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
 
     if @purchase.save_with_payment
       redirect_to @purchase, :notice => "Thank you for purchasing this book!"

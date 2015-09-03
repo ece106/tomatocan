@@ -24,9 +24,9 @@
 
   <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
     <div class="blacktxt" >
-      Upload a picture of yourself (square is best)
+      To change your profile picture, upload a picture of yourself (square is best)
       <br><%= f.file_field :profilepic %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      OR - URL to a picture of you <br>
+      OR - Enter the URL of a picture of you (must end in jpg, gif, or png) <br>
       <div class="profilebox" >
         <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
       </div>

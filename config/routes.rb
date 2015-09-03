@@ -25,7 +25,6 @@ Crowdpublishtv::Application.routes.draw do
   resources :groups
   resources :purchases
   resources :plans
-  resources :purchases
   resources :events
   resources :reviews
 
@@ -82,7 +81,6 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
  
-  resources :groups, path: ''
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'

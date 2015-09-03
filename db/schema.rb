@@ -165,6 +165,8 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string   "blogradio"
     t.text     "blogtalkradio"
     t.string   "stripeid"
+    t.string   "stripe_customer_token"
+    t.string   "stripe"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

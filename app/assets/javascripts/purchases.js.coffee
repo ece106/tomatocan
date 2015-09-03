@@ -5,25 +5,30 @@ jQuery ->
 purchase =
   setupForm: ->
     $('#new_purchase').submit ->
+      alert(card)
       $('input[type=submit]').prop('disabled', true)
       if $('#card_number').length
-        purchase.processCard()
-        false
+        if card == "existingcustomer"
+          alert(card + " existing")
+          true
+        else
+          alert(card + " purch.process")
+          purchase.processCard()
+          false
       else
+        alert(card + " else")
         true
 
   processCard: ->
+    alert($('#card_number').val() + " process")
     card =
       {number: $('#card_number').val()
       cvc: $('#card_code').val()
       expMonth: $('#card_month').val()
       expYear: $('#card_year').val()}
-    alert($('#card_month').val() + $('#card_year').val())
     Stripe.createToken(card, purchase.handleStripeResponse)
-    alert('what happens here')
 
   handleStripeResponse: (status, response) ->
-    alert('ho')
     if status == 200
       alert(response.id)
       $('#purchase_stripe_card_token').val(response.id)
