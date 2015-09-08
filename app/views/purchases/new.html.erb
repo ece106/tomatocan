@@ -5,14 +5,15 @@
 Authors will be notified when this feature is functional & when the TOS are updated to include policies for authors to receive their payments.<br><br><br>
 
 <%= form_for @purchase do |f| %>
+  <%= f.hidden_field :stripe_card_token %>
+  <%= f.hidden_field :bookfiletype %>
+  <%= f.hidden_field :book_id %>
   <% if @purchase.errors.any? %>
     <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
     <% @purchase.errors.full_messages.each do |msg| %> 
       <%= msg %>
     <% end %>
   <% end %>
-  <%= f.hidden_field :bookfiletype %>
-  <%= f.hidden_field :book_id %>
   <% if current_user.stripe_customer_token.present? %>
     <div class="accordion" id="accordion2">
       <div class="accordion-group">
@@ -62,7 +63,6 @@ Authors will be notified when this feature is functional & when the TOS are upda
     </script>
 
   <% else %>
-    <%= f.hidden_field :stripe_card_token %>
     <p><%= label_tag :card_number, "Credit Card Number" %>
     <%= text_field_tag :card_number, nil, name: nil %><p>
 

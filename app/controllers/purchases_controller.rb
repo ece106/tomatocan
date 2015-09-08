@@ -36,11 +36,14 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 34
   def create
+    puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    puts params[:purchase][:stripe_card_token]
+    puts params[:purchase][:bookfiletype]  
+    puts params[:card_number]  
     @purchase = Purchase.new(purchase_params)
     @book = Book.find(@purchase.book_id)
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
-    token = params[:stripe_card_token]
 
     if @purchase.save_with_payment
       redirect_to @purchase, :notice => "Thank you for purchasing this book!"

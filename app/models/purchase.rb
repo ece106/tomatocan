@@ -19,8 +19,7 @@ class Purchase < ActiveRecord::Base
       if(@purchaser.stripe_customer_token) 
         customer_id = @purchaser.stripe_customer_token
         customer = Stripe::Customer.retrieve(customer_id)
-        customer.source = stripe_card_token
-        customer.save
+        card = customer.sources.create(:source => stripe_card_token)
       elsif valid?
         customer = Stripe::Customer.create(
           :source => stripe_card_token,
@@ -28,14 +27,14 @@ class Purchase < ActiveRecord::Base
           :email => @purchaser.email
         )
         customer_id = customer.id
+        card = customer.default_source
         @purchaser.update_attribute(:stripe_customer_token, customer_id)
       end
-
       charge = Stripe::Charge.create(
         :amount => (@book.price * 100).to_i, 
         :currency => "usd",
         :customer => customer_id,
-        :source => stripe_card_token,
+        :source => card,
         :description => @book.title 
       )
       save!
