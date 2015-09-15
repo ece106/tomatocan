@@ -36,10 +36,6 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 34
   def create
-    puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
-    puts params[:purchase][:stripe_card_token]
-    puts params[:purchase][:bookfiletype]  
-    puts params[:card_number]  
     @purchase = Purchase.new(purchase_params)
     @book = Book.find(@purchase.book_id)
 #    raise params.to_yaml
