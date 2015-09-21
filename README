@@ -1,7 +1,9 @@
 Copyright © 2015, RoleModel Enterprises, LLC. All rights reserved.
 
 
-The code will be used to provide free web sites for authors to sell their merchandise, give livestreaming talks, and otherwise communicate with their existing and potential fans. Toward this end, developers may add whatever features they wish to the code. Please check the Issues list on CrowdPublishTV's GitHub page for ideas of what current priorities are. 
+The code will be used to provide free web sites for authors who own their rights to sell their merchandise, give livestreaming talks, and otherwise communicate with their existing and potential fans. Toward this end, developers may add whatever features they wish to the code. Think of this as becoming ebay, meetup, livestream, book reviews, facebook page, blog, & mailchimp for authors, reviewers/readers, book clubs, and writer organizations all in one.
+
+Please check the Issues list on CrowdPublishTV's GitHub page for ideas of what current priorities are. 
 
 The intention of this repository is to be used as a project for developers of all skill levels to improve their skills by contributing code and by assisting junior developers with their code contributions. The founder, Lisa Schaefer, Ph.D., has taught a beginners Ruby on Rails course at George Mason University and encourages women entrepreneurs to be the primary mentors, mentees, and leaders in this project. Dr. Schaefer also advocates for women's voices to be heard and heeded in the software development community.
 
@@ -9,19 +11,17 @@ CrowdPublish.TV is an experiment in using a live project to teach Ruby on Rails.
 
 In the future, there will be a discussion among senior contributors on how senior developers would have opportunities for compensation for their work. The intention is to develop a new business model outside of the way current startup businesses are funded. Venture capital firms give high preference to male-owned and male-developed startups. They justify this discrimination by calling it "pattern matching," meaning that they fund people who look like other people they have previously funded. Instead of trying to break into the boys' game, women must create their own game, outside the male-created system, where women retain ownership of their inventions and do not rely on entities that do not value their worth.
 
-Redistribution and use of small samples of code in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+RoleModel Enterprises, LLC, owns the copyright to all code contributed to this repository. Contributors waive their rights to copyright, but may reuse their code contributions and the knowledge gained from working on this project, provided it meets the following criteria:
 
-Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 
-Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+2. Redistributions in binary form are not permitted.
 
-Redistribution of the entire code repository is not permitted. Use of the entire code repository is encouraged, but only for developers and their mentees who are using it for the specific educational purposes.
+3. Redistribution of the entire code repository is not permitted. Use of the entire code repository is encouraged, but only for developers and their mentees who are using it for the specific educational purposes endorsed by RoleModel Enterprises, LLC.
+
+4. Neither the name of CrowdPublish.TV, RoleModel Enterprises, LLC, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 RoleModel Enterprises, LLC, will use the code to empower the community of authors and artists who own their rights. Other individuals and organizations may use the code for educational purposes only. 
-
-Contributors waive their rights to copyright, but may reuse their code contributions and the knowledge gained from working on this project, provided it meets the following criteria:
-
-Neither the name of CrowdPublish.TV, RoleModel Enterprises, LLC, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright owner of contributors be liable for any direct, indirect, incidental, special, exemplary or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
  
@@ -34,18 +34,12 @@ To determine current skill level
 
 Note: Potential mentees with the highest skill level will be matched with mentors who have the highest skill level. Which means that potential mentors with the best skill set will get the more advanced mentees. Thus it is in your best interest to show off your current skills so you can work with others who are best positioned to challenge you. Refer to http://github.com/crowdpublishtv/crowdpublishtv and use tutorials, google, etc. to help you figure out the answers. 
 
-1. What is the design of the CrowdPublish.TV database? Submit as a jpg or png (You may draw on paper & submit as a photo)
-
-2. Which file/view is the users' home page? What information do authors get to display on their home page? Where is this information stored in the CrowdPublish.TV database?
-
-3. What pages/views do authors get in their web site when they sign up for CrowdPublish.TV?
-
-4. What are the default views for all Rails apps?
-
-5. What are the routes that were added to the CrowdPublish.TV app so the non-default views could be displayed?
-
-6. What are the methods that were added to the CrowdPublish.TV app so the non-default views could be displayed? What file are they in?
-
-7. Where is the method to add_bank_account to users? What gem does it use?
-
-
+1. What is the design of the CrowdPublish.TV database? Submit as a jpg or png (You may draw on paper & submit as a photo) 
+2. Which file/view is the users' home page? What information do authors get to display on their home page? Where is this information stored in the CrowdPublish.TV database? 
+3. What pages/views do authors get in their web site when they sign up for CrowdPublish.TV? 
+4. What are the default views for all Rails apps? 
+5. What are the routes that were added to the CrowdPublish.TV app so the non-default/extra views for user pages could be displayed? 
+6. What are the methods that were added to the CrowdPublish.TV app so the non-default/extra user views/pages could be displayed? What file are they in? 
+7. Where is the method to add_bank_account to users? What gem does it use? 
+8. Fork a copy of the crowdpublishtv github repo (url above) into your github account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the CrowdPublishTV admin pull your changes.  
+9. Summarize your Ruby & Rails skill level/what you know in your own words.
