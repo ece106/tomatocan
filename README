@@ -47,6 +47,21 @@ Note: Potential mentees with the highest skill level will be matched with mentor
 
 TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
-You should be able to get something working with the code as-is. However, you will not have real AWS, Devise, or Stripe keys. If you have AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/keys.rb with your own. Just be sure to keep that file listed in .gitignore.
+You should be able to get something working with the code as-is. However, you will not have real AWS, Devise, or Stripe keys. If you have AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your own. Just be sure to keep that file listed in .gitignore.
+
+Files To Check/Change: 
+
+* config/initializers/carrierwave.rb: 
+Make sure
+      :aws_access_key_id      => 'AWS_KEY',         #and
+      :aws_secret_access_key  => 'AWS_SECRET_KEY', 
+are NOT commented out.
+
+* app/views/layouts/application.html.erb: 
+Make sure 
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
+is NOT commented out.
+
+The ENV variables may already be commented out, depending upon what the last developer pushed. ENV variables are for heroku. Therefore the last commit before pushing to heroku must have those variables set. The non-ENV variables use the initializer files, which are for use on local machines. 
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors).
