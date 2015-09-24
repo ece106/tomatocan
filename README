@@ -43,3 +43,10 @@ Note: Potential mentees with the highest skill level will be matched with mentor
 7. Where is the method to add_bank_account to users? What gem does it use? 
 8. Fork a copy of the crowdpublishtv github repo (url above) into your github account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the CrowdPublishTV admin pull your changes.  
 9. Summarize your Ruby & Rails skill level/what you know in your own words.
+
+
+TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
+
+You should be able to get something working with the code as-is. However, you will not have real AWS, Devise, or Stripe keys. If you have AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/keys.rb with your own. Just be sure to keep that file listed in .gitignore.
+
+Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors).
