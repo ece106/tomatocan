@@ -1,39 +1,13 @@
+
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
 development:
-  adapter: postgresql
-  encoding: utf8
-  database: dev
-  pool: 5
-  username: lisa
-  password:
+  <<: *default
+  database: db/development.sqlite3
 
-test: &TEST
-  adapter: postgresql
-  encoding: utf8
-  database: testdb
-  pool: 5
-  username: 
-  password:
-
-production:
-  adapter: postgresql
-  encoding: utf8
-  database: crowdpublishtvdb_production
-  pool: 5
-  username: 
-  password:
-
-
-#Delete everything above and uncomment the following to use crowdpublishtv code locally:
-
-#default: &default
-#  adapter: sqlite3
-#  pool: 5
-#  timeout: 5000
-
-#development:
-#  <<: *default
-#  database: db/development.sqlite3
-
-#test:
-#  <<: *default
-#  database: db/test.sqlite3
+test:
+  <<: *default
+  database: db/test.sqlite3
