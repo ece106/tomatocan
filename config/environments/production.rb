@@ -34,6 +34,7 @@ config.action_mailer.smtp_settings = {
   # config.assets.css_compressor = :sass
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.initialize_on_precompile = false
   config.assets.compile = false   #rails4 app has this true
 
   # Generate digests for assets URLs
