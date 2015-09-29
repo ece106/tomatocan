@@ -16,7 +16,7 @@ config.action_mailer.smtp_settings = {
   # and use secure cookies.
   config.force_ssl = false  #otherwise heroku reroute will say i'm a liar
 
-  config.action_mailer.default_url_options = { :host => 'http://www.crowdpublish.tv' }
+  config.action_mailer.default_url_options = { :host => 'http://www.crowdpublish.tv', :protocol => 'http' }
 
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -24,10 +24,6 @@ config.action_mailer.smtp_settings = {
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
 
  # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
