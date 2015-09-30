@@ -228,29 +228,13 @@ class UsersController < ApplicationController
     end
 
     if @user.update_attributes(user_params)
-      if @user.ustreamvid.match(/ustream.tv\/embed/)
-        ustreamparsed = parse_ustream @user.ustreamvid
-        @user.update_attribute(:ustreamvid, ustreamparsed)
-      end
-      if @user.youtube1.match(/youtube.com/) || @user.youtube1.match(/youtu.be/)
-        youtube1parsed = parse_youtube @user.youtube1
-        @user.update_attribute(:youtube1, youtube1parsed)
-      end
-      if @user.youtube2.match(/youtube.com/) || @user.youtube2.match(/youtu.be/)
-        youtube2parsed = parse_youtube @user.youtube2
-        @user.update_attribute(:youtube2, youtube2parsed)
-      end
-      if @user.youtube3.match(/youtube.com/) || @user.youtube3.match(/youtu.be/)
-        youtube3parsed = parse_youtube @user.youtube3
-        @user.update_attribute(:youtube3, youtube3parsed)
-      end
-
+      @user.parse_ustreamyoutube
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
     else
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
-    end
+    end  
   end
 
   # DELETE /users/1.json # Should replace this with a bool. No destroying users, just different status
@@ -285,20 +269,6 @@ class UsersController < ApplicationController
         'editinfotemplate'
       else
         'userpgtemplate'
-      end
-    end
-
-    def parse_youtube url
-      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-      if url.match(regex)
-        url.match(regex)[1]
-      end
-    end
-
-    def parse_ustream url
-      regex = /(?:.be\/|ustream.tv\/embed\/|\/(?=p\/))([\w\/\-]+)/
-      if url.match(regex)
-        url.match(regex)[1]
       end
     end
 

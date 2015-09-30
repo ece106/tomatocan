@@ -15,7 +15,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_difference('User.count', 1) do
       post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink'  }
     end
-    puts "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc"
 
     assert_redirected_to user_profile_path(assigns(:user).permalink)
   end
@@ -33,16 +32,14 @@ class UsersControllerTest < ActionController::TestCase
 #  end
 
   test "should update user" do
-    puts "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"
-    user =  post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink'  }
-    log_in_as user
-    patch :update, user, user: { name: "New Name", password: 'secret12', password_confirmation: 'secret12' }
-    puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTtttttt"
-    puts @user.permalink
-    puts @user.name
-#    why is user not logged in
-#    assert_redirected_to "http://test.host/samlink"
-    assert_redirected_to user_profile_path(assigns(:user).permalink)
+    user = User.find(users(:one))
+    sign_in user
+    puts user.name
+    patch :update, :id => user.id, user: { name: "New Name", youtube1: "randomchar" }
+    user = User.find(users(:one))
+    puts user.name
+    assert_equal(user.name, "New Name") 
+    assert_redirected_to user_profile_path(user.permalink)
   end
 
 #  test "should destroy user" do  # I don't want to allow - put in a Disable bool instead

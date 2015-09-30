@@ -88,9 +88,49 @@ class User < ActiveRecord::Base
     account.save
   end    
 
+  def parse_ustreamyoutube
+      if self.ustreamvid.match(/ustream.tv\/embed/)
+        ustreamparsed = parse_ustream self.ustreamvid
+        self.update_attribute(:ustreamvid, ustreamparsed)
+      end
+    if self.youtube1 #I don't think I need this
+      if self.youtube1.match(/youtube.com/) || self.youtube1.match(/youtu.be/)
+        youtube1parsed = parse_youtube self.youtube1
+        self.update_attribute(:youtube1, youtube1parsed)
+      end
+    end
+    if self.youtube2 
+      if self.youtube2.match(/youtube.com/) || self.youtube2.match(/youtu.be/)
+        youtube2parsed = parse_youtube self.youtube2
+        self.update_attribute(:youtube2, youtube2parsed)
+      end
+    end
+    if self.youtube3
+      if self.youtube3.match(/youtube.com/) || self.youtube3.match(/youtu.be/)
+        youtube3parsed = parse_youtube self.youtube3
+        self.update_attribute(:youtube3, youtube3parsed)
+      end
+    end
+  end  
+
   private
   def assign_defaults_on_new_user
     self.author = 2 unless self.author
   end
+
+    def parse_youtube url
+      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+      if url.match(regex)
+        url.match(regex)[1]
+      end
+    end
+
+    def parse_ustream url
+      regex = /(?:.be\/|ustream.tv\/embed\/|\/(?=p\/))([\w\/\-]+)/
+      if url.match(regex)
+        url.match(regex)[1]
+      end
+    end
+
 
 end
