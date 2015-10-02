@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user = User.find(@event.usrid)
-    @rsvp = Rsvp.new
+    @rsvp = Rsvpq.new
     @rsvpusers = @event.users
 
     respond_to do |format|

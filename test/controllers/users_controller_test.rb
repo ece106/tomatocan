@@ -31,6 +31,10 @@ class UsersControllerTest < ActionController::TestCase
 #    assert_response :success
 #  end
 
+  test "should createstripeacnt" do
+
+  end  
+
   test "should update user" do
     user = User.find(users(:one))
     sign_in user

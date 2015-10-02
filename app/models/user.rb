@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
   has_many :groups
 #  has_many :events
   has_many :purchases
-  has_many :rsvps
-  has_many :events, :through => :rsvps
+  has_many :rsvpqs
+  has_many :events, :through => :rsvpqs
   default_scope order: 'users.updated_at DESC'
 
   validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?

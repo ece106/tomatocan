@@ -55,6 +55,9 @@ Make sure
       :aws_secret_access_key  => 'AWS_SECRET_KEY', 
 are NOT commented out.
 
+* gemfile
+Delete 'pg' and replace with 'sqlite3'
+
 * app/views/layouts/application.html.erb: 
 Make sure 
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
@@ -89,3 +92,12 @@ development:
 test:
   <<: *default
   database: db/test.sqlite3
+
+
+Then type bundle install at the command line
+Then type rake db:migrate
+
+
+config_eagerload is set to nil ????????
+events/new not working 
+rsvps not existing

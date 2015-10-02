@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RsvpTest < ActiveSupport::TestCase
+class RsvpqTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

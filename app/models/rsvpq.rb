@@ -1,4 +1,4 @@
-class Rsvp < ActiveRecord::Base
+class Rsvpq < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
   validates :user_id, presence: true

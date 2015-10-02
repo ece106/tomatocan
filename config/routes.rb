@@ -21,7 +21,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/events/online' => "events#online", :as => :events_online, via: 'get'
   match '/calendar/online' => "calendar#online", :as => :calendar_online, via: 'get'
 
-  resources :rsvps
+  resources :rsvpqs
   resources :groups
   resources :purchases
   resources :plans

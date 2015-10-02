@@ -68,7 +68,7 @@
 
       <% @rsvpusers.each do |rsvpuser| %>
         <%= link_to rsvpuser.name, rsvpuser %>
-        <% nguests = Rsvp.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
+        <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
 
         <% nguests.each do |nguest| %>
           <% if nguest.guests %>
