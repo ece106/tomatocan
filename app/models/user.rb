@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
   validates_presence_of    :password, :on=>:create
   validates_confirmation_of    :password, :on=>:create
+  validates_presence_of :password_confirmation, :on => :update, :unless => lambda{ |user| user.password.blank? }
   validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
 
   validates :permalink, presence: true, length: { maximum: 20, message: "must be less than 20 characters" },
