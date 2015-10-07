@@ -47,13 +47,13 @@ Note: Potential mentees with the highest skill level will be matched with mentor
 
 TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
-Files To Check/Change/Creat: 
+Files To Check/Change/Create: 
 
 * config/initializers/carrierwave.rb: 
 Make sure
-      :aws_access_key_id      => 'AWS_KEY',         #and
+      :aws_access_key_id      => 'AWS_KEY', 
       :aws_secret_access_key  => 'AWS_SECRET_KEY', 
-are NOT commented out.
+is NOT commented out.
 
 * gemfile
 Delete 'pg' and replace with 'sqlite3'
@@ -94,5 +94,10 @@ test:
   database: db/test.sqlite3
 
 
-Then type bundle install at the command line
-Then type rake db:migrate
+Then type 
+>bundle install 
+at the command line to install all the necessary gems.
+
+Then type 
+>rake db:migrate
+at the command line to build the database with the correct schema.
