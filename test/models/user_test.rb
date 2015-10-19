@@ -7,78 +7,67 @@ class TestUser < ActiveSupport::TestCase
     @user = users(:one)
   end
 
-  [:email, :name, :permalink, :password, :password_confirmation].each do |field|
-    define_method "#{field.to_s}_must_not_be_empty" do
-      @user = User.new
-      @user.send "#{field.to_s}=", nil
-      refute @user.valid?
-      refute_empty @user.errors[field]
-    end
-  end
-
   [:email, :name, :permalink, :password ].each do |field|
     test "#{field.to_s}_must_not_be_empty" do
       user = User.new
-      user.send "#{field.to_s}=", nil
+      user.send "#{field.to_s}=", nil #what does this line do
       refute user.valid?
       refute_empty user.errors[field] #must be in same test as above line in order to have usererrors
     end
   end
 
-    test "password_confirmation_must_not_be_empty_when_password_present" do
-      user = users(:one) 
-      user.update(password: "11111111")
-      user.send "password_confirmation=", nil
-      refute user.valid?
-      refute_empty user.errors[:password_confirmation] 
-    end
+  test "1_password_confirmation_must_not_be_empty_when_password_present" do
+    @user.update(password: "11111111") #is this testing the model or is it integration testing
+    @user.send "password_confirmation=", nil
+    refute_empty @user.errors[:password_confirmation] 
+  end
 
-  test "user attributes must not be empty" do 
+  test "2_name_and_permalink_must not be empty" do 
     user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
 #    @user = build(:user, name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink', address: '22181' )
-      refute user.valid?
+      #refute user.valid? #but this line isn't needed here
+      refute_empty user.errors[:name] 
+      refute_empty user.errors[:permalink] 
 #    assert @user.errors.any?
 #    assert @user.errors[:name].any?
   end
 
-  test "password and password_confirmation should match" do
-    @user = users(:two) 
-    @user.password = "hihihihi"
-    @user.password_confirmation = "hihihihi"
-    assert @user.valid?
+  test "3 password and password_confirmation should match" do
+    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hooooooo", email: "m@example.com", permalink: "qwerty")
+    assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
+      refute_empty user.errors[:password_confirmation]  #perhaps not needed because paswd_conf not in db
   end
 
-  test "password and password_confirmation should be at least 8 char" do
-    @user = users(:two) 
+  test "4 password should be at least 8 char" do
     @user.password = "hihihi"
     @user.password_confirmation = "hihihi"
-    refute @user.valid?
+    assert @user.invalid?, "password is at least 8 char" #needed here - perhaps when using @user created in setup?
+    refute_empty @user.errors[:password] 
+    puts "password errors " + @user.errors[:password].to_s
   end
 
   test "email of existing user should be unique" do # this doesn't hit db
-    user2 = users(:two)
-    puts
-    puts user2.email 
-    puts
-    puts user2.name 
-    user2.email = "fake@fake.com"
-    puts user2.email 
-    refute user2.valid?, "email unique"
+    @user.email = "MyString2@fake.com"
+    refute @user.valid?, "email unique" #not saving to db - needed here
+    puts "email unique errors " + @user.errors[:email].to_s
+    refute_empty @user.errors[:email] 
   end 
 
-  test "email of new user should be unique" do
-    user1 = User.create(name: "Dummy1", email: "m@example.com")
-    user2 = User.create(name: "Dummy2", email: "m@example.com")
-    refute user2.valid?, "email unique"
+  test "f email of new user should be unique" do
+    user1 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "mo@example.com", permalink: "qwerty")
+    user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "mo@example.com", permalink: "qwat")
+      refute_empty user2.errors[:email] #refute user2.valid not needed for this
+    assert user2.errors[:email].any?, "email unique" # refute user.valid not needed for .any
   end
 
-  test "email should be email" do
-    user = users(:one)
-    user.email = "email"
-    refute user.valid?, "email format valid"
+  test "g email should be an email address" do
+    @user.email = "email.com"
+    refute @user.valid?, "email format valid" #needed here
+    puts "email format errors " + @user.errors[:email].to_s #why does refute @user.valid have to be before email errors for the errors to print
+    refute_empty @user.errors[:email] #why does this count as 2 assertions
   end 
   
-  test "should have format of email address" do
+  test "h should have format of email address" do
     user = User.create(name: "Dummy", email: "example.com")
     refute_match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, user.email)
   end

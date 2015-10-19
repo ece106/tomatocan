@@ -41,7 +41,7 @@ class UsersControllerTest < ActionController::TestCase
     puts user.name
     patch :update, :id => user.id, user: { name: "New Name", youtube1: "randomchar" }
     user = User.find(users(:one))
-    puts user.name
+      puts user.name
     assert_equal(user.name, "New Name") 
     assert_redirected_to user_profile_path(user.permalink)
   end

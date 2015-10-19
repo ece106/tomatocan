@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
-  default_scope order: 'users.updated_at DESC'
+#  default_scope order: 'users.updated_at DESC'
+  scope :updated_at, -> { where(order: 'DESC') }
+#scope :red, -> { where(color: 'red') }
 
   validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
   validates_presence_of    :password, :on=>:create

@@ -7,10 +7,10 @@ class UsersController < ApplicationController
   def index
     picregex = /jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/
 
-    @userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
+    userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
       OR (profilepicurl SIMILAR TO 'http%' AND 
       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
-    @users = @userswithpic.paginate(:page => params[:page], :per_page => 32)
+    @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
 
     respond_to do |format|
       format.html # index.html.erb
