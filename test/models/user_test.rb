@@ -3,8 +3,8 @@ require 'test_helper'
 class TestUser < ActiveSupport::TestCase
   def setup
 #    @request.env['devise.mapping'] = Devise.mappings[:user]
-#    sign_in @user
     @user = users(:one)
+#    sign_in @user  #why dont I need this for model
   end
 
   [:email, :name, :permalink, :password ].each do |field|
