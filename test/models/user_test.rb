@@ -7,6 +7,23 @@ class TestUser < ActiveSupport::TestCase
 #    sign_in @user  #why dont I need this for model
   end
 
+  test "after_validation_geocode" do
+    oldlatitude = @user.latitude
+    @user.address = "20022"
+    @user.save
+    puts "latitude " + @user.latitude.to_s
+    refute_match(@user.latitude, oldlatitude)
+  end
+
+  test "after_validation_reverse_geocode" do
+    oldaddress = @user.address
+    @user.latitude = 20.2
+    @user.longitude = 20.2
+    @user.save
+    puts "new address " + @user.address
+    refute_match(@user.address, oldaddress)
+  end
+
   [:email, :name, :permalink, :password ].each do |field|
     test "#{field.to_s}_must_not_be_empty" do
       user = User.new
@@ -16,13 +33,13 @@ class TestUser < ActiveSupport::TestCase
     end
   end
 
-  test "1_password_confirmation_must_not_be_empty_when_password_present" do
+  test "password_confirmation_must_not_be_empty_when_password_present" do
     @user.update(password: "11111111") #is this testing the model or is it integration testing
     @user.send "password_confirmation=", nil
     refute_empty @user.errors[:password_confirmation] 
   end
 
-  test "2_name_and_permalink_must not be empty" do 
+  test "name_and_permalink_must not be empty" do 
     user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
 #    @user = build(:user, name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink', address: '22181' )
       #refute user.valid? #but this line isn't needed here
@@ -32,11 +49,11 @@ class TestUser < ActiveSupport::TestCase
 #    assert @user.errors[:name].any?
   end
 
-  test "3 password and password_confirmation should match" do
-    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hooooooo", email: "m@example.com", permalink: "qwerty")
-    assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
-      refute_empty user.errors[:password_confirmation]  #perhaps not needed because paswd_conf not in db
-  end
+    test "3 password and password_confirmation should match" do
+      user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hooooooo", email: "m@example.com", permalink: "qwerty")
+      assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
+        refute_empty user.errors[:password_confirmation]  #perhaps not needed because paswd_conf not in db
+    end
 
   test "4 password should be at least 8 char" do
     @user.password = "hihihi"
@@ -80,4 +97,24 @@ class TestUser < ActiveSupport::TestCase
     user2.email = "email"
     refute_match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, user2.email)
   end
+
+# redundant tests
+
+  test "redundant_test_new_user_must_have_reqd_variables" do
+    user = User.new
+    user.permalink = "Dummydummy"
+    user.name = "Dummydummy"
+    user.email = "uio@ujk.com"
+    user.password = "Dummydummy"
+    user.password_confirmation = "Dummydummy"
+    assert user.valid?
+    assert_empty user.errors[:email] 
+  end
+
+  test "redundant_test_create_user_must_have_reqd_variables" do
+    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "mo@example.com", permalink: "qwerty")
+    assert_empty user.errors[:email] 
+    assert user.errors[:email].any?, "email unique" 
+  end
+
 end
