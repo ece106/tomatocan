@@ -4,50 +4,46 @@ class User < ActiveRecord::Base
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
   :bankaccountnumber
 
+  has_many :books 
+  has_many :reviews
+  has_many :groups
+  has_many :purchases
+  has_many :rsvpqs
+  has_many :events, :through => :rsvpqs
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable 
+  mount_uploader :profilepic, ProfilepicUploader
+
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
   after_validation :geocode, :if => :address_changed?
   after_validation :reverse_geocode, :if => :latitude_changed?
   # Other default devise modules available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable 
-
-  after_initialize :assign_defaults_on_new_user, if: 'new_record?'
-  
-  mount_uploader :profilepic, ProfilepicUploader
-
-  before_save { |user| user.permalink = permalink.downcase }
-  before_save { |user| user.email = email.downcase }
-
-  has_many :books 
-  has_many :reviews
-  has_many :groups
-#  has_many :events
-  has_many :purchases
-  has_many :rsvpqs
-  has_many :events, :through => :rsvpqs
-#  default_scope order: 'users.updated_at DESC'
   scope :updated_at, -> { where(order: 'DESC') }
+  after_initialize :assign_defaults_on_new_user, if: 'new_record?'
 
-  validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
-  validates_presence_of    :password, :on=>:create
-  validates_confirmation_of    :password, :on=>:create
-  validates_presence_of :password_confirmation, :on => :update, :unless => lambda{ |user| user.password.blank? }
-  validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
-
-  validates :permalink, presence: true, length: { maximum: 20, message: "must be less than 20 characters" },
-                    format:     { with: /\A[\w+]+\z/ },
+  validates :email, presence: true,
                     uniqueness: { case_sensitive: false }
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name,  presence: true, length: { maximum: 50 }
+  validates :permalink, presence: true, length: { maximum: 20, message: "must be less than 20 characters" },
+                        format:     { with: /\A[\w+]+\z/ },
+                        uniqueness: { case_sensitive: false }
+  validates_presence_of :password, :on=>:create
+  validates_presence_of :password_confirmation, :on => :update, :unless => lambda{ |user| user.password.blank? }
+  validates_confirmation_of :password, :on=>:create
+  validates_length_of   :password, :within => Devise.password_length, :allow_blank => true
+  validates_format_of   :email, :with  => Devise.email_regexp, 
+                                :allow_blank => true, 
+                                :if => :email_changed?
 #  validates :twitter, length: { maximum: 20 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :videodesc1, length: { maximum: 255 }
   validates :videodesc2, length: { maximum: 255 }
   validates :videodesc3, length: { maximum: 255 }
 
-  validates :email, presence:   true,
-                    uniqueness: { case_sensitive: false }
+  before_save { |user| user.permalink = permalink.downcase }
+  before_save { |user| user.email = email.downcase }
 
   def add_bank_account(countryoftax, currency, bankaccountnumber, routingnumber, countryofbank)
     if countryoftax == "CA"
@@ -133,6 +129,5 @@ class User < ActiveRecord::Base
         url.match(regex)[1]
       end
     end
-
 
 end

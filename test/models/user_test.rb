@@ -29,17 +29,17 @@ class TestUser < ActiveSupport::TestCase
       user = User.new
       user.send "#{field.to_s}=", nil #what does this line do
       refute user.valid?
-      refute_empty user.errors[field] #must be in same test as above line in order to have usererrors
+      refute_empty user.errors[field] #must be in same test as above line in order to have usererrors not be nil
     end
   end
 
   test "password_confirmation_must_not_be_empty_when_password_present" do
-    @user.update(password: "11111111") #is this testing the model or is it integration testing
+    @user.update(password: "garblygook") #is this testing the model or is it integration testing
     @user.send "password_confirmation=", nil
     refute_empty @user.errors[:password_confirmation] 
   end
 
-  test "name_and_permalink_must not be empty" do 
+  test "name_and_permalink_must_not_be_empty" do 
     user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
 #    @user = build(:user, name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink', address: '22181' )
       #refute user.valid? #but this line isn't needed here
@@ -92,10 +92,10 @@ class TestUser < ActiveSupport::TestCase
   test "should have format of email address2" do
     user1 = users(:one)
     user1.email = "email@lisa.org"
-    assert_match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, user1.email)
+    assert_match(/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, user1.email) #This is supposedly the regex from Devise
     user2 = users(:one)
     user2.email = "email"
-    refute_match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, user2.email)
+    refute_match(/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, user2.email)
   end
 
 # redundant tests
@@ -115,6 +115,28 @@ class TestUser < ActiveSupport::TestCase
     user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "mo@example.com", permalink: "qwerty")
     assert_empty user.errors[:email] 
     assert user.errors[:email].any?, "email unique" 
+  end
+
+  test "1what_if_lat_lon_and_address_are_changed" do
+    oldaddress = @user.address
+    oldlatitude = @user.latitude
+    @user.latitude = 20.2
+    @user.longitude = 20.2
+    @user.address = "20022"
+    puts
+    puts "latitude " + @user.latitude.to_s
+    puts "new address " + @user.address
+    @user.save
+    puts
+    puts "latitude " + @user.latitude.to_s
+    puts "new address " + @user.address
+    refute_match(@user.address, oldaddress)
+  end
+
+  test "email_still_must_not_be_empty" do
+    @user.send "email=", nil 
+    refute @user.valid?
+    refute_empty @user.errors[:email]
   end
 
 end
