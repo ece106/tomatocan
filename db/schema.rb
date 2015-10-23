@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20130201000000000) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "books", force: true do |t|
     t.string   "title"
     t.text     "blurb"
@@ -68,10 +65,10 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -91,7 +88,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string   "facebook"
   end
 
-  add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
+  add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true
 
   create_table "purchases", force: true do |t|
     t.integer  "author_id"
@@ -127,7 +124,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string   "name"
     t.string   "email"
     t.text     "ustreamvid"
-    t.text     "ustreamsocial"
+    t.text     "ustreamsocial",          limit: 255
     t.string   "twitter"
     t.string   "facebook"
     t.string   "pinterest"
@@ -144,11 +141,11 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",                 default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -171,10 +168,10 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string   "stripe"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["permalink"], name: "index_users_on_permalink", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["permalink"], name: "index_users_on_permalink", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true
 
 end
