@@ -35,8 +35,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :on=>:create
   validates_length_of   :password, :within => Devise.password_length, :allow_blank => true
   validates_format_of   :email, :with  => Devise.email_regexp, 
-                                :allow_blank => true, 
-                                :if => :email_changed?
+                                :allow_blank => true, :if => :email_changed?
 #  validates :twitter, length: { maximum: 20 }
   validates :videodesc1, length: { maximum: 255 }
   validates :videodesc2, length: { maximum: 255 }

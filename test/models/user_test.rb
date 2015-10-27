@@ -44,6 +44,7 @@ class TestUser < ActiveSupport::TestCase
     assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
   end
 
+#validates_length_of :password, :within => Devise.password_length, :allow_blank => true
   test "password should be at least 8 char" do
     @user.password = "hihihi"
     @user.password_confirmation = "hihihi"
@@ -58,55 +59,55 @@ class TestUser < ActiveSupport::TestCase
     assert_empty @user.errors[:password] 
   end
 
-  test "email of existing user should be unique" do # this doesn't hit db
-    @user.email = "MyString2@fake.com"
-    refute @user.valid?, "email unique" #not saving to db - needed here
-    puts "email unique errors " + @user.errors[:email].to_s
-    refute_empty @user.errors[:email] 
-  end 
-
-  test "permalink must be unique" do # this doesn't hit db
-    @user.permalink = "MyString2@fake.com"
-    refute @user.valid?, "email unique" #not saving to db - needed here
-    puts "email unique errors " + @user.errors[:email].to_s
-    refute_empty @user.errors[:email] 
-  end 
-
-  [:email, :password ].each do |field|
-  test "#{field.to_s} must be unique" do # this doesn't hit db
-    @user.email = "MyString2@fake.com"
-    refute @user.valid?, "email unique" #not saving to db - needed here
-    puts "email unique errors " + @user.errors[:email].to_s
-    refute_empty @user.errors[:email] 
-  end 
-
+#validates :email, presence: true, uniqueness: { case_sensitive: false }
   test "email of new user should be unique" do
-    user1 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "mo@example.com", permalink: "qwerty")
-    user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "mo@example.com", permalink: "qwat")
-      refute_empty user2.errors[:email] #refute user2.valid not needed for this
+    user1 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
+                        email: "mo@example.com", permalink: "qwerty")
+    user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
+                        email: "mo@example.com", permalink: "qwat")
+    refute_empty user2.errors[:email] #refute user2.valid not needed for this
     assert user2.errors[:email].any?, "email unique" # refute user.valid not needed for .any
   end
 
-  test "email should be an email address" do
-    @user.email = "email.com"
-    refute @user.valid?, "email format valid" #needed here
-    puts "email format errors " + @user.errors[:email].to_s #why does refute @user.valid have to be before email errors for the errors to print
-    refute_empty @user.errors[:email] #why does this count as 2 assertions
+#validates :permalink, uniqueness: { case_sensitive: false }
+  test "permalink must be unique" do
+    @user.permalink = "MyPermalink"
+    @user.save
+    user2 = users(:two)
+    user2.permalink = "mypermaLink"
+    refute user2.valid?, "permalink unique" 
+    refute_empty user2.errors[:permalink] 
   end 
-  
+
+#validates :permalink, format:     { with: /\A[\w+]+\z/ }
+  test "permalink must be alphanumeric" do
+    @user.permalink = "whatthe@#$%&!"
+    refute @user.valid?, "permalink alphanumeric" 
+    refute_empty @user.errors[:permalink] 
+  end 
+
+#  validates_format_of   :email, :with  => Devise.email_regexp, 
   test "should have format of email address" do
-    user = User.create(name: "Dummy", email: "example.com")
-    refute_match(/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, user.email)
+    @user.email = "email@lisa.org"
+    assert @user.valid?, "wrong email format" 
+    assert_empty @user.errors[:email] 
+    user2 = users(:two)
+    user2.email = "email"
+    refute user2.valid?, "proper email format" 
+    refute_empty user2.errors[:email] 
   end
 
-  test "should have format of email address2" do
-    user1 = users(:one)
-    user1.email = "email@lisa.org"
-    assert_match(/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, user1.email) #This is supposedly the regex from Devise
-    user2 = users(:one)
-    user2.email = "email"
-    refute_match(/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, user2.email)
+#validates :videodesc1, length: { maximum: 255 }
+  [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
+    test "#{field.to_s}_must_be_less_than255char" do
+      viddesc = @user.send "#{field.to_s}=", "supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
+      refute @user.valid?, "video description is short enough" 
+      refute_empty @user.errors[field] 
+    end
   end
+
+
+#validates :permalink, format: { with: /\A[\w+]+\z/ }
 
 # redundant tests
 
