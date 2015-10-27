@@ -1,9 +1,5 @@
 source 'http://rubygems.org'
-<<<<<<< HEAD
 ruby "2.2.3"
-=======
-ruby "2.0.0"
->>>>>>> ac190d2bd3d8b709d5c90dd1e5c983a7786510c2
 
 gem 'sqlite3'
 gem 'mandrill'	

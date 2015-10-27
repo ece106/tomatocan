@@ -61,6 +61,9 @@ Delete 'pg' and replace with 'sqlite3'
 
 * app/views/layouts/application.html.erb: 
 Make sure 
+  <%#= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
+is commented out.
+Make sure 
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
 is NOT commented out.
 
@@ -74,6 +77,7 @@ AWS_KEY = 'morefake'
 AWS_SECRET_KEY = 'pretend' 
 STRIPE_SECRET_KEY = "madeup"
 STRIPE_PUBLIC_KEY = "allfake"
+GMAIL_PWD = "superfake"
 Stripe.api_key = STRIPE_SECRET_KEY
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your accounts' keys. 
