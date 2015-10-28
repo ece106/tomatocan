@@ -177,20 +177,23 @@ sidebar {
   float:left; 
   width:350px; 
   background-color: #eeeaf2;
-  padding: 30px 10px;
+  padding-left: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
   .wrapper {
     .profile-pic {
       margin-right: 10px;
       padding: 0;
-      width: 45.9%;
+      vertical-align: top;
+      width: 150px;
+      overflow: hidden;
     }
     .author-info {
       padding: 0;
-      width: 27%;
     }
   }
   .author-books {
-    form.edit_book {
+    .edit_book {
       margin-top: 20px;
       .book-cover {
         padding-left: 0;
@@ -204,4 +207,8 @@ sidebar {
       }
     }
   }
+}
+
+center .info-content {
+  padding-left: 0;
 }
