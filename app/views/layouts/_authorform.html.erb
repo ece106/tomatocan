@@ -9,33 +9,29 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% end %>
 
 <header class="navbar navbar-userpage">
-  <div class="navbar-inner">
-    <ul class="nav pull-left">
-      <ul class="nav navbar-nav">
-        <% if @user.author == 2 %>
-          <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
-          <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
-          <li><%= link_to " Live Event ", user_stream_path(@user.permalink) %>
-          <li><%= link_to " Calendar ", user_calendar_path(@user.permalink) %>
-        <% else %>
-          <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
-        <% end %>
-          <li><%= link_to " Blog ", user_blog_path(@user.permalink) %>
-      </ul>    
+  <div class="navbar-inner clearfix">
+    <ul class="nav navbar-nav pull-left">
+      <% if current_user.author == 2 %>
+        <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
+        <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
+        <li><%= link_to " Live Event ", user_stream_path(@user.permalink) %>
+        <li><%= link_to " Calendar ", user_calendar_path(@user.permalink) %>
+      <% else %>
+        <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
+      <% end %>
+        <li><%= link_to " Blog ", user_blog_path(@user.permalink) %>
     </ul>
 
-    <div class="usermenu" >
-      <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
-        <% if user_signed_in? %>
-          <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
-          <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
-        <% else %>
-          <li><%= link_to 'SIGN UP!', "/signup" %> 
-          <li><%= link_to "Sign in", new_user_session_path %> 
-        <% end %>
-      </ul>  
-    </div>
+    <ul class="nav navbar-nav pull-right usermenu">
+        <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
+      <% if user_signed_in? %>
+        <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
+        <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <li><%= link_to 'SIGN UP!', "/signup" %> 
+        <li><%= link_to "Sign in", new_user_session_path %> 
+      <% end %>
+    </ul>
   </div>
 </header>
 
