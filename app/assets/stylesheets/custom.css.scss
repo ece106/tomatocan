@@ -124,6 +124,14 @@ p {
     }
   }
 
+header.navbar {
+  border-radius: 0;
+  top: -20px;
+  ul > li:last-child {
+    margin-right: 0;
+  }
+}
+
 /* footer */
 
 footer {
@@ -161,10 +169,39 @@ footer {
 .field_with_errors {
   @extend .control-group !optional;
   @extend .error !optional;
-} 
+}
+
+// Sidebar
 
 sidebar { 
   float:left; 
   width:350px; 
   background-color: #eeeaf2;
+  padding: 30px 10px;
+  .wrapper {
+    .profile-pic {
+      margin-right: 10px;
+      padding: 0;
+      width: 45.9%;
+    }
+    .author-info {
+      padding: 0;
+      width: 27%;
+    }
   }
+  .author-books {
+    form.edit_book {
+      margin-top: 20px;
+      .book-cover {
+        padding-left: 0;
+        width: 27%
+      }
+      .book-info {
+        .fifty {
+          line-height: 1.1em;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+}
