@@ -100,14 +100,20 @@ class TestUser < ActiveSupport::TestCase
 #validates :videodesc1, length: { maximum: 255 }
   [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
     test "#{field.to_s}_must_be_less_than255char" do
-      viddesc = @user.send "#{field.to_s}=", "supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
+      @user.send "#{field.to_s}=", "supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
       refute @user.valid?, "video description is short enough" 
       refute_empty @user.errors[field] 
     end
   end
 
-
 #validates :permalink, format: { with: /\A[\w+]+\z/ }
+
+  test "make all permalinks lowercase" do
+    @user.permalink = "LisaLisa"
+    @user.save
+    puts @user.permalink
+    assert_match(/[a-z]/, @user.permalink)
+  end
 
 # redundant tests
 

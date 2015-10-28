@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby "2.2.3"
 
-gem 'sqlite3'
+gem 'pg'
 gem 'mandrill'	
 gem 'devise', '~> 3.2.4'
 gem 'fog'   #, '1.6.0'
