@@ -115,6 +115,28 @@ class TestUser < ActiveSupport::TestCase
     assert_match(/[a-z]/, @user.permalink)
   end
 
+#before_save { |user| user.email = email.downcase }
+
+  test "make all emails lowercase" do
+    @user.email = "you@CrowdPublish.TV"
+    @user.save
+    assert_match(/[a-z]+@+[a-z]+\.+[a-z]/, @user.email)
+  end
+
+#def add_bank_account
+
+  test "add bank account" do
+
+  end
+
+
+#def parse_ustreamyoutube
+
+  test "parse ustream and youtube" do
+
+  end
+
+
 # redundant tests
 
   test "redundant_test_name_and_permalink_must_not_be_empty" do 
