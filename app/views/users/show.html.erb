@@ -10,7 +10,7 @@
 
 <% @title=" Watch " + @user.name + " videos here!" %>
 
-<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 " >
+<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 info-content" >
   <div class="profilebox" >
     <% if @user.about %> 
       <%= simple_format @user.about.gsub(/\r\n/, '<br>') %>
