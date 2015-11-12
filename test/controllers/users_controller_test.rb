@@ -37,17 +37,13 @@ class UsersControllerTest < ActionController::TestCase
   end  
 
   test "should update user" do
-#    user = User.find(users(:one))
- #   sign_in user
     puts @user.name
     patch :update, :id => @user.id, user: { name: "New Name", youtube1: "randomchar" }
     user = User.find(@user)
-      puts user.name
+    puts user.name
     assert_equal(user.name, "New Name") 
     assert_redirected_to user_profile_path(user.permalink)
   end
-
-#  test "should destroy user" do  # I don't want to allow - put in a Disable bool instead
 
 end
 

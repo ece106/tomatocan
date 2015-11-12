@@ -112,7 +112,7 @@ class TestUser < ActiveSupport::TestCase
     @user.permalink = "LisaLisa"
     @user.save
     puts @user.permalink
-    assert_match(/[a-z]/, @user.permalink)
+    assert_match(/[a-z0-9]/, @user.permalink)
   end
 
 #before_save { |user| user.email = email.downcase }
@@ -120,22 +120,50 @@ class TestUser < ActiveSupport::TestCase
   test "make all emails lowercase" do
     @user.email = "you@CrowdPublish.TV"
     @user.save
-    assert_match(/[a-z]+@+[a-z]+\.+[a-z]/, @user.email)
+    assert_match(/[a-z0-9]+@+[a-z0-9]+\.+[a-z]/, @user.email)
   end
 
 #def add_bank_account
 
-  test "add bank account" do
+  test "add bank account" do #this test only works for new account or account with countryoftax=GB
+    # should test view to make sure users can't enter currency/countryofbank incompatible with countryoftax
+    # having specific acct_number in fixture is bad way to test. Figure out a way to test using a relevant acct
+    @user.add_bank_account('GBP', '000123456789', '110000000', 'GB', 'address line1',
+                        'address line2', 'city ilivein', '11111', 'AZ')
+    assert @user.valid?, "cant have that currency in that country" 
+    assert_empty @user.errors[:account] 
+###  assert that an account object is not empty
 
   end
 
+  test "stripe accounts" do
+#    Retrieve accounts object and make sure correct info there
+  end
+
+  test "external accounts" do
+#    Retrieve external_accounts object and make sure correct info there
+  end
 
 #def parse_ustreamyoutube
-
-  test "parse ustream and youtube" do
-
+  test "parse ustream" do
+    @user.ustreamvid = "http://www.ustream.tv/embed/21534532?html5ui style=border: 0 none transparent;  webkitallowfullscreen allowfullscreen frameborder=></iframe><br /><a href=http://www.ustream.tv/ style=adding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-we"
+    ustreamtemp = @user.ustreamvid
+    @user.save
+    refute_match(ustreamtemp, @user.ustreamvid)
   end
 
+    test "parse youtube" do
+      @user.youtube1 = "http://youtube.com/watch?v=/frlviTJc"
+      @user.genre1 = "yaaah"
+    @user.permalink = "LisaLisa"
+puts @user.permalink
+      @user.save
+    puts @user.permalink
+      puts "lllllllllllllllllllllllllllllllllllllf"
+      puts @user.genre1
+      puts @user.youtube1
+      refute_match("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
+    end
 
 # redundant tests
 

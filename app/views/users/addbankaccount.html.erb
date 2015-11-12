@@ -19,7 +19,7 @@
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
 
-      <%= form_tag user_updatestripeacnt_path %>
+      <%= form_tag user_addbankacnt_path %>
         The following information must be submitted before transfers can be made to your bank account:<br><br>
         Businesses and residents with tax IDs in 
         <% if @countryoftax == "US" %> 
@@ -28,7 +28,7 @@
           Australia must have their bank accounts located in Australia, in AUD.
         <% elsif @countryoftax == "CA" %>  
           Canada may have their bank accounts located in either Canada or the US. Select the currency your bank account uses <%= select_tag :currency, options_for_select(["USD", "CAD"], prompt: true) %> <br>
-          If your bank account is in USD, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["US", "CA"], prompt: true), include_blank: true %><br>  
+          If your bank account currency is USD, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["US", "CA"], prompt: true), include_blank: true %><br>  
         <% elsif @countryoftax.match(/DK|NO|SE|FI/) %>
           Denmark, Norway, Sweden, and Finland may connect 
             <li>DKK bank accounts located in Denmark</li>
@@ -38,14 +38,14 @@
             <li>USD bank accounts located in the US</li> - or
             <li>EUR bank accounts located in AT, BE, CH, DE, DK, ES, FI, FR, GB, IE, IT, LU, NL, NO, or SE</li>
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "EUR", "DKK", "NOK", "SEK", "GBP"], prompt: true) %><br>
-          If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
+          If your bank account currency is EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
         <% elsif  @countryoftax.match(/AT|BE|DE|ES|FR|GB|IE|IT|LU|NL/) %>  
           Austria, Belgium, Germany, Spain, France, Great Britain, Ireland, Italy, Luxembourg, and the Netherlands may connect 
             <li>USD bank accounts located in the US</li>
             <li>GBP bank accounts located in Great Britain</li> - or
             <li>EUR bank accounts located in AT, BE, CH, DE, DK, ES, FI, FR, GB, IE, IT, LU, NL, NO, or SE</li>
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "GBP", "EUR"], prompt: true) %><br>
-          If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
+          If your bank account currency is EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
         <% end %> <br> <br>
         <table>
           <tr><td>Bank account number: </td><td><%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br></td></tr>

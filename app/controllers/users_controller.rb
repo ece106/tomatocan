@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount]
+  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
@@ -96,22 +96,6 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def addbankaccount
-    @user = User.find_by_permalink(params[:permalink])
-    @account = Stripe::Account.retrieve(@user.stripeid)
-    @countryoftax = @account.country
-     respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def createstripeaccount
-    @user = User.find_by_permalink(params[:permalink])
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
   def readerprofileinfo
     @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
@@ -161,6 +145,39 @@ class UsersController < ApplicationController
     @booklist = Book.where(:user_id => @user.id)
   end
 
+  def addbankaccount #add financial institution # to stripe acct just created
+    @user = User.find_by_permalink(params[:permalink])
+    @account = Stripe::Account.retrieve(@user.stripeid)
+    @countryoftax = @account.country
+     respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
+    @user = User.find_by_permalink(params[:permalink])
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def createstripeacnt  #called from button on createstripeaccount page
+    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+    @user.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
+                          params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip) 
+    redirect_to user_addbankaccount_path(current_user.permalink)
+  end
+  def updatestripeacnt
+    # need to make it so people can enter a new bank acct if they change
+  end
+  def addbankacnt   #called from button on addbankaccount page
+    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+#    account = Stripe::Account.retrieve(@user.stripeid)
+    @user.add_bank_account(params[:currency], params[:bankaccountnumber], 
+          params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
+          params[:city], params[:postal_code], params[:state])
+    redirect_to user_profile_path(current_user.permalink)
+  end
   # POST /users.json 
   def create
     @user = User.new(user_params)
@@ -173,52 +190,6 @@ class UsersController < ApplicationController
     else
       render 'signup'
     end
-  end
-
-  def createstripeacnt
-    #Should this be in model? model method didnt value added beyond submitting user email to stripe 
-    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    account = Stripe::Account.create(
-      {
-        :country => params[:countryoftax], 
-        :managed => true,
-        :email => @user.email,
-        :legal_entity => {
-          :type => params[:accounttype],
-          :first_name => params[:firstname],
-          :last_name => params[:lastname],
-          :dob => {
-            :day => params[:birthday],
-            :month => params[:birthmonth],
-            :year => params[:birthyear]
-          }
-        }
-      }
-    )  
-    @user.update_attribute(:stripeid, account.id )
-    account = Stripe::Account.retrieve(@user.stripeid)
-    account.tos_acceptance.ip = request.remote_ip
-    account.tos_acceptance.date = Time.now.to_i        
-    account.save
-    redirect_to user_addbankaccount_path(current_user.permalink)
-  end
-  def updatestripeacnt
-  end
-  def addbankacnt
-    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    account = Stripe::Account.retrieve(@user.stripeid)
-    @user.add_bank_account(account.country, params[:currency], params[:bankaccountnumber], params[:routingnumber], params[:countryofbank])
-    account.legal_entity.address.line1 = params[:line1]
-    unless params[:line2] == ""
-      account.legal_entity.address.line2 = params[:line2]
-    end  
-    account.legal_entity.address.city = params[:city]
-    account.legal_entity.address.postal_code = params[:postal_code]
-#if CA, US
-    account.legal_entity.address.state = params[:state]
-
-    account.save
-    redirect_to user_profile_path(current_user.permalink)
   end
   # PUT /users/1.json
   def update
