@@ -1,7 +1,4 @@
-Copyright © 2015, RoleModel Enterprises, LLC. All rights reserved.
-
-
-The code will be used to provide free web sites for authors who own their rights to sell their merchandise, give livestreaming talks, and otherwise communicate with their existing and potential fans. Toward this end, developers may add whatever features they wish to the code. Think of this as becoming ebay, meetup, livestream, book reviews, facebook page, blog, crowdfunding, calendar, mailchimp, & website for authors, reviewers/readers, book clubs, and writer organizations all in one.
+The code will be used to provide free web sites for authors who own their rights to sell their merchandise, give livestreaming talks, and otherwise communicate with their existing and potential fans. Toward this end, developers may add whatever features they wish to the code. Think of this as becoming Ebay, Meetup, Livestream, book reviews, Facebook page, blog, crowdfunding, calendar, Mailchimp, & website for authors, reviewers/readers, book clubs, and writer organizations all in one.
 
 Please check the Issues list on CrowdPublishTV's GitHub page for ideas of what current priorities are. 
 
@@ -25,53 +22,60 @@ RoleModel Enterprises, LLC, will use the code to empower the community of author
 
 This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright owner of contributors be liable for any direct, indirect, incidental, special, exemplary or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
  
-This Readme file may change at any time.
+This README file may change at any time.
 
 
 
-QUIZ FOR POTENTIAL DEVELOPERS
+### QUIZ FOR POTENTIAL DEVELOPERS
 To determine current skill level -
-Send your responses to info@CrowdPublish.TV & we'll respond with instructions on how to join our Monday evening google hangouts & improve your Ruby on Rails & TDD skills along with us.
+Send your responses to info@CrowdPublish.TV & we'll respond with instructions on how to join our Monday evening Google hangouts & improve your Ruby on Rails & TDD skills along with us.
 
-Note: Potential mentees with the highest skill level will be matched with mentors who have the highest skill level. Which means that potential mentors with the best skill set will get the more advanced mentees. Thus it is in your best interest to show off your current skills so you can work with others who are best positioned to challenge you. Refer to http://github.com/crowdpublishtv/crowdpublishtv and use tutorials, google, etc. to help you figure out the answers. 
+Note: Potential mentees with the highest skill level will be matched with mentors who have the highest skill level. Which means that potential mentors with the best skill set will get the more advanced mentees. Thus it is in your best interest to show off your current skills so you can work with others who are best positioned to challenge you. Refer to http://github.com/crowdpublishtv/crowdpublishtv and use tutorials, Google, etc. to help you figure out the answers. 
 
-1. What is the design of the CrowdPublish.TV database? Submit as a jpg or png (You may draw on paper & submit as a photo) 
+1. What is the design of the CrowdPublish.TV database? Submit as a jpg or png (You may draw on paper & submit as a photo).
 2. Which file/view is the users' home page? What information do authors get to display on their home page? Where is this information stored in the CrowdPublish.TV database? 
 3. What pages/views do authors get in their web site when they sign up for CrowdPublish.TV? 
 4. What are the default views for all Rails apps? 
 5. What are the routes that were added to the CrowdPublish.TV app so the non-default/extra views for user pages could be displayed? 
 6. What are the methods that were added to the CrowdPublish.TV app so the non-default/extra user views/pages could be displayed? What file are they in? 
 7. Where is the method to add_bank_account to users? What gem does it use? 
-8. Fork a copy of the crowdpublishtv github repo (url above) into your github account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the CrowdPublishTV admin pull your changes.  
+8. Fork a copy of the crowdpublishtv github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the CrowdPublishTV admin pull your changes.  
 9. Summarize your Ruby & Rails skill level/what you know in your own words.
 
 
-TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
+### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
 Files To Check/Change/Create: 
 
 * config/initializers/carrierwave.rb: 
 Make sure
-      :aws_access_key_id      => 'AWS_KEY', 
-      :aws_secret_access_key  => 'AWS_SECRET_KEY', 
+```      :aws_access_key_id      => 'AWS_KEY', 
+      :aws_secret_access_key  => 'AWS_SECRET_KEY',
+```
 is NOT commented out.
 
 * gemfile
 Delete 'pg' and replace with 'sqlite3'
 
 * app/views/layouts/application.html.erb: 
-Make sure 
+Make sure
+```
   <%#= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
+```
 is commented out.
-Make sure 
-  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
+
+Make sure
+```
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+```
 is NOT commented out.
 
-The ENV variables may already be commented out, depending upon what the last developer pushed. ENV variables are for heroku. Therefore the last commit before pushing to heroku must have those variables set. The non-ENV variables use the initializer files, which are for use on local machines. 
+The ENV variables may already be commented out, depending upon what the last developer pushed. ENV variables are for Heroku. Therefore the last commit before pushing to Heroku must have those variables set. The non-ENV variables use the initializer files, which are for use on local machines. 
 
 * config/initializers/fakekeys.rb: 
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
+```
 DEVISE_SECRET_KEY = 'fake'
 AWS_KEY = 'morefake'
 AWS_SECRET_KEY = 'pretend' 
@@ -79,12 +83,17 @@ STRIPE_SECRET_KEY = "madeup"
 STRIPE_PUBLIC_KEY = "allfake"
 GMAIL_PWD = "superfake"
 Stripe.api_key = STRIPE_SECRET_KEY
+```
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your accounts' keys. 
 
+```
 *config/database.yml
+```
+
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
+```
 default: &default
   adapter: sqlite3
   pool: 5
@@ -97,16 +106,24 @@ development:
 test:
   <<: *default
   database: db/test.sqlite3
+```
 
-
-Then type 
->bundle install 
+Then type
+```
+>bundle install
+```
 at the command line to install all the necessary gems.
 
-Then type 
+Then type
+```
 >rake db:migrate
+```
 at the command line to build the database with the correct schema.
 
 Then type
+```
 >bin/rails server
+```
 at the command line to start the server
+
+Copyright &copy; 2015, RoleModel Enterprises, LLC. All rights reserved.
