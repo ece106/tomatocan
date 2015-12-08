@@ -49,7 +49,7 @@ Note: Potential mentees with the highest skill level will be matched with mentor
 7. Where is the method to add_bank_account to users? What gem does it use?
 
 8. Fork a copy of the crowdpublishtv github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the CrowdPublishTV admin pull your changes.
-  
+
 9. Summarize your Ruby & Rails skill level/what you know in your own words.
 
 
@@ -135,6 +135,6 @@ Then type
 ```
 >bin/rails server
 ```
-at the command line to start the server
+at the command line to start the server.
 
 Copyright &copy; 2015, RoleModel Enterprises, LLC. All rights reserved.
