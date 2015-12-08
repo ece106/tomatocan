@@ -49,7 +49,8 @@ Files To Check/Change/Create:
 
 * config/initializers/carrierwave.rb: 
 Make sure
-```      :aws_access_key_id      => 'AWS_KEY', 
+```      
+      :aws_access_key_id      => 'AWS_KEY', 
       :aws_secret_access_key  => 'AWS_SECRET_KEY',
 ```
 is NOT commented out.
@@ -87,9 +88,7 @@ Stripe.api_key = STRIPE_SECRET_KEY
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your accounts' keys. 
 
-```
 *config/database.yml
-```
 
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
@@ -98,11 +97,13 @@ default: &default
   adapter: sqlite3
   pool: 5
   timeout: 5000
-
+```
+```
 development:
   <<: *default
   database: db/development.sqlite3
-
+```
+```
 test:
   <<: *default
   database: db/test.sqlite3
