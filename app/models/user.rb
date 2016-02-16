@@ -47,6 +47,9 @@ class User < ActiveRecord::Base
   def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank, line1,
                         line2, city, postalcode, state)
     account = Stripe::Account.retrieve(self.stripeid) #acct tokens are user.stripeid
+    puts currency
+    puts countryofbank
+    puts "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
     if account.country == "CA"   #called from controller after create acct button clicked
       if currency == "CAD"
         countryofbank = "CA"
@@ -93,12 +96,8 @@ class User < ActiveRecord::Base
     account.legal_entity.address.state = state
     account.save
 
-puts "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
-    puts temp.country
     puts temp.currency
-#    puts account.currency
-    puts temp.countryofbank
-    puts temp.routing_number
+    puts countryofbank
     puts temp.account #might want to save account token in users hasmany accounts table so I can access later
   end    
 
@@ -133,24 +132,21 @@ puts "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
         ustreamparsed = parse_ustream self.ustreamvid
         self.update_attribute(:ustreamvid, ustreamparsed)
       end
-    if self.youtube1 #I don't think I need this
+      puts "hhhhhhhhhhhhhwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+
       if self.youtube1.match(/youtube.com/) || self.youtube1.match(/youtu.be/)
+puts "hhhhhhhhhhhhhhhhsssssssssssssssssssssssssssss"
         youtube1parsed = parse_youtube self.youtube1
         self.update_attribute(:youtube1, youtube1parsed)
       end
-    end
-    if self.youtube2 
       if self.youtube2.match(/youtube.com/) || self.youtube2.match(/youtu.be/)
         youtube2parsed = parse_youtube self.youtube2
         self.update_attribute(:youtube2, youtube2parsed)
       end
-    end
-    if self.youtube3
       if self.youtube3.match(/youtube.com/) || self.youtube3.match(/youtu.be/)
         youtube3parsed = parse_youtube self.youtube3
         self.update_attribute(:youtube3, youtube3parsed)
       end
-    end
   end  
 
   private
@@ -159,6 +155,7 @@ puts "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
   end
 
     def parse_youtube url
+puts "hhhhhhhhhhhhhhhhhhhhhhhhhuuuuuuuuuuu"
       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
       if url.match(regex)
         url.match(regex)[1]

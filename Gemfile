@@ -9,7 +9,7 @@ gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
-#gem "debugger-pry", :require => "debugger/pry"
+gem 'pry'
 gem 'aws-s3'
 gem 'aws-sdk'
 gem 'event-calendar', :require => 'event_calendar'

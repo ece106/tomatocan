@@ -5,12 +5,13 @@ class UsersController < ApplicationController
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
-    picregex = /jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/
+#    userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
+#      OR (profilepicurl SIMILAR TO 'http%' AND 
+#      profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
+#    @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
 
-    userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
-      OR (profilepicurl SIMILAR TO 'http%' AND 
-      profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
-    @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
+    userswithyoutube = User.where("youtube1 NOT LIKE '%[^a-z0-9_-]%'")
+    @users = userswithyoutube.paginate(:page => params[:page], :per_page => 18)
 
     respond_to do |format|
       format.html # index.html.erb
