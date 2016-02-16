@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 #      profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
 #    @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
 
-    userswithyoutube = User.where("youtube1 NOT LIKE '%[^a-z0-9_-]%'")
+    userswithyoutube = User.where("LENGTH(youtube1) < 20 ")
     @users = userswithyoutube.paginate(:page => params[:page], :per_page => 18)
 
     respond_to do |format|

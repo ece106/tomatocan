@@ -5,15 +5,15 @@
 
 <div class="row" >
   <% @users.each do |u| %> 
-    <div class="col-md-4 col-sm-6 col-xs-12" > 
-      <div class="row" style="vertical-align:top; horizontal-align:center; height:310px; width:395px; overflow:hidden;" >
-        <% if u.youtube1.length < 20 %>
+    <% if u.youtube1.length < 20 %>
+      <div class="col-md-4 col-sm-6 col-xs-12" > 
+        <div class="row" style="vertical-align:top; horizontal-align:center; height:310px; width:395px; overflow:hidden;" >
           <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
-        <% end %>
-        <br><%= link_to u.name, user_profile_path(u.permalink) %>
-        <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
+          <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
 <br>  <%= will_paginate @users %> <br><br><br><br>
