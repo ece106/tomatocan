@@ -35,7 +35,7 @@ config.action_mailer.smtp_settings = {
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.initialize_on_precompile = false
-  config.assets.compile = false   #rails4 app has this true
+  config.assets.compile = true   #rails4 app has this true, had to set true when background png not showing on heroku
 
   # Generate digests for assets URLs
   config.assets.digest = true
