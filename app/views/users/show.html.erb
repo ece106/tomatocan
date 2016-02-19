@@ -13,9 +13,9 @@
 <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 info-content" >
   <div class="profilebox" >
     <% if @user.about %> 
-      <%= simple_format @user.about.gsub(/\r\n/, '<br>') %>
+      <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
     <% end %>
-  </div><br><br>
+  </div>
   
 <% if @user.author == 2 %>
 
@@ -29,7 +29,7 @@
         <% end %>
       <% else %>
         <% if @user == current_user %>
-          <br><br>Replace the default YouTube code on your Edit page with the code from your YouTube account and display YOUR videos here!
+          Replace the default YouTube code on your Edit page with the code from your YouTube account and display YOUR videos here!
         <% end %>
         <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="408" height="330"></iframe>
       <% end %>

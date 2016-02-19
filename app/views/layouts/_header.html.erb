@@ -1,69 +1,57 @@
 <header class="navbar navbar-custom">
-<div class="container">
-<nav>
+  <div class="container">
+    <nav>
 
-<div class="row">
-<div class="col-md-5 col-sm-12 col-xs-12">
-<div class="row">
-  <div class="col-md-5 col-sm-5 col-xs-5">
-    <%= image_tag("cpLogo150.png", class: 'img-responsive', alt: "Responsive image") %>
-    <div class="menu" style="text-align:center; " >
+      <div class="headerimage row">
+        <div class="whitetitle">
+          Where authors who own their rights grow their Crowd
+        </div>
+
+        <div class="col-md-6 ">
+          <%= link_to image_tag("cpLogo150.png", class: 'img-responsive', alt: "Responsive image"), root_path %>
+          <div class="whitetxt" >
+            <% if user_signed_in? %>
+            <% else %>
+              <%= link_to "Sign up & get a free Author or Reviewer site", "/signup", {:style=>'color:#FFFFFF;'} %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="whitetxt col-md-6 " >
+          <% if user_signed_in? %>
+          <% else %>
+            <%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %>
+            <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %>
+          <% end %>
+          <br><br> Help improve CrowdPublish.TV!
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="48ALUTCSBS5F4">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+          </form>
+        </div> <br>
+      </div>
       <% if user_signed_in? %>
-        <br><%= link_to "My profile", user_profile_path(current_user.permalink) %>
-      <% else %>
-        <br><%= link_to 'Sign in', "/login" %>
+        <div class="menu col-md-5 ">
+          <%= link_to current_user.name + "'s page", user_profile_path(current_user.permalink) %>
+        </div>
+        <div class="blacktxt col-md-7 ">
+          Signed in as <%= current_user.email %>. Not you?
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        </div>
       <% end %>
     </div>
-    <div class="blacktxt" style= "text-align:center;">
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %>
-      <% end %><br><br>
-    </div>
-  </div>
-
-  <div class="col-md-7 col-sm-7 col-xs-7">
-    <div class="menu" style="text-align:left; margin-left:30px;" >
-      <%= link_to 'Home', root_path %>
-<!--
-      <br><%= link_to 'Events Near You!', calendar_path  %>
-      <br><%= link_to 'Post Your Event', new_event_path %>
-      <br><%= link_to 'Clubs & Organizations Near You!', groups_path %>
-      <br><%= link_to 'Get a Page for Your Club', new_group_path %>
--->
-      <br><%= link_to 'Featured Members', users_path  %> 
-      <br><%= link_to 'About', "/howwork" %>
-    </div><br><br>
-
-    <div class="blacktxt" style= "text-align:center;">
-      Help us continue to improve CrowdPublish.TV!
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="48ALUTCSBS5F4">
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-      </form>
-    </div> <br>
-  </div>
-</div>
-<div class="row">
-  <div class="helps" >
-    CrowdPublishTV helps authors who own their rights build community
-  </div>
-</div>
-</div>
-
-  <div class="col-md-7 col-sm-12 col-xs-12">
-    <div id="frag_22" style="text-align:left; width:690px; height:360px; overflow:hidden; ">
-      <iframe src="http://www.ustream.tv/embed/13434383?wmode=direct" style="border: 0 none transparent;" frameborder="no" width="715" height="370"></iframe>
-    </div>
-  </div>
-</div>
-
-  <hr noshade>
-
-
-</nav>
+  </nav>
 </header>
+
+<!--
+          <div class="col-md-7 col-sm-7 col-xs-7">
+            <div class="menu" style="text-align:left; margin-left:30px;" >
+              <br><%= link_to 'Events Near You!', calendar_path  %>
+              <br><%= link_to 'Post Your Event', new_event_path %>
+              <br><%= link_to 'Clubs & Organizations Near You!', groups_path %>
+              <br><%= link_to 'Get a Page for Your Club', new_group_path %>
+              <br><%= link_to 'Future of Books', "/howwork" %>
+            </div><br><br>
+          -->

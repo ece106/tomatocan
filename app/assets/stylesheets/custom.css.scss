@@ -18,7 +18,13 @@ body {
 }
 
 body2 {
-  padding-top: 60px;
+  padding-top: 0px;
+}
+
+.headerimage {
+  background-image: image-url('crowddark.png');
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
 
 section {
@@ -135,7 +141,7 @@ header.navbar {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 25px;
   padding-top: 5px;
   margin-right: 10px;
   border-top: 1px solid #000;
@@ -176,10 +182,11 @@ footer {
 sidebar { 
   float:left; 
   width:350px; 
-  background-color: #eeeaf2;
+  background-color: #D3C9AE;
   padding-left: 0px;
-  padding-top: 5px;
+  padding-top: 20px; 
   padding-bottom: 10px;
+  margin-top: -40px; //don't know why there's a huge margin without this
   .wrapper {
     .profile-pic {
       margin-right: 5px;
@@ -214,4 +221,5 @@ sidebar {
 
 center .info-content {
   padding-left: 0;
+  margin-top: -20px;
 }

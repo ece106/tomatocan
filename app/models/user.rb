@@ -128,6 +128,7 @@ class User < ActiveRecord::Base
   end
 
   def parse_ustreamyoutube
+    if self.ustreamvid
       if self.ustreamvid.match(/ustream.tv\/embed/)
         ustreamparsed = parse_ustream self.ustreamvid
         self.update_attribute(:ustreamvid, ustreamparsed)
@@ -147,6 +148,7 @@ puts "hhhhhhhhhhhhhhhhsssssssssssssssssssssssssssss"
         youtube3parsed = parse_youtube self.youtube3
         self.update_attribute(:youtube3, youtube3parsed)
       end
+    end
   end  
 
   private

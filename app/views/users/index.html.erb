@@ -1,19 +1,18 @@
-<%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
-    <title>CrowdPublishTV members</title>
-
-<div class="featured">  Featured Booklovers & Authors </div><br>
-
-<div class="row" >
+<title>CrowdPublishTV members</title>
   <% @users.each do |u| %> 
-    <% if u.youtube1.length < 20 %>
-      <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class="row" style="vertical-align:top; horizontal-align:center; height:310px; width:395px; overflow:hidden;" >
-          <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
-          <br><%= link_to u.name, user_profile_path(u.permalink) %>
-          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
-        </div>
+    <div class="col-md-3 col-sm-4 col-xs-6" >
+      <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:170px; overflow:hidden;" >
+        <% if u.profilepic.present? %> 
+          <%= link_to(image_tag(u.profilepic, :height => "170",  :title => u.name ), user_profile_path(u.permalink)) %> 
+        <% elsif u.profilepicurl.present? %>
+          <%= link_to(image_tag(u.profilepicurl, :height => "170", :title => u.name), user_profile_path(u.permalink)) %> 
+        <% end %>
+        <br><%= link_to u.name, user_profile_path(u.permalink) %>
+        <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
       </div>
-    <% end %>
+    </div>
   <% end %>
-</div>
-<br>  <%= will_paginate @users %> <br><br><br><br>
+<%= will_paginate @users %> <br>
+<%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
+
+<br><br><br>
