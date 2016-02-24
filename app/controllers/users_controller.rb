@@ -194,7 +194,7 @@ class UsersController < ApplicationController
     end
 
     if @user.update_attributes(user_params)
-      @user.parse_ustreamyoutube
+      @user.parse_youtube
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
     else
@@ -220,7 +220,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:permalink, :blogtalkradio, :name, :updating_password, :email, 
         :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, 
-        :twitter, :ustreamvid, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, 
+        :twitter, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, 
         :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
         :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
