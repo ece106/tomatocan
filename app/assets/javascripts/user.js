@@ -20,3 +20,4 @@ jQuery(document).ready(function($) {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
 });
+

@@ -8,7 +8,9 @@ The intention of this repository is to be used as a project for developers of al
 
 CrowdPublish.TV is an experiment in using a live project to teach Ruby on Rails. During her 12 years of university education, Dr. Schaefer felt that academic exercises were a poor use of time compared to projects that would be used for real world business applications. She was disappointed that coursework did not result in knowledge of how the skills would be used in a real project. Internships did not bridge that gap, rather interns were required to learn a completely different set of skills at each new workplace. Dr. Schaefer wanted to propose courses in which the students' work would be used in a real life practical business application. The students who demonstrate improvement in skills while working on CrowdPublish.TV would have the opportunity to be promoted to mentors (much like students become Teaching Assistants in graduate school). Mentors who demonstrate mastery of skills would graduate to more supervisory roles.
 
-In the future, there will be a discussion among senior contributors on how senior developers would have opportunities for compensation for their work. The intention is to develop a new business model outside of the way current startup businesses are funded. Venture capital firms give high preference to male-owned and male-developed startups. They justify this discrimination by calling it "pattern matching," meaning that they fund people who look like other people they have previously funded. Instead of trying to break into the boys' game, women must create their own game, outside the male-created system, where women retain ownership of their inventions and do not rely on entities that do not value their worth. I believe that this model will benefit many men who are also not interested in the current system of startup funding and business practices.
+The compensation to developers who participate in CrowdPublish.TV coding is free mentorship - no need to pay for code schools. Those who participate fully and consistently will receive recommendations to future employers. 
+
+As CrowdPublish.TV grows to the point where a stable crew of developers can be supported, there will be a discussion among senior contributors on how senior developers would have opportunities for compensation for their work. The intention is to develop a new business model outside of the way current startup businesses are funded. Venture capital firms give high preference to male-owned and male-developed startups. They justify this discrimination by calling it "pattern matching," meaning that they fund people who look like other people they have previously funded. Instead of trying to break into the boys' game, women must create their own game, outside the male-created system, where women retain ownership of their inventions and do not rely on entities that do not value their worth. I believe that this model will benefit many men who are also not interested in the current system of startup funding and business practices.
 
 RoleModel Enterprises, LLC, owns the copyright to all code, design, and graphics contributed to this repository. Contributors grant copyright of any code, design, and graphics they contribute to this repository to RoleModel Enterprises, LLC. Contributors may reuse their code contributions and the knowledge gained from working on this project, provided it meets the following criteria:
 
@@ -63,28 +65,26 @@ Make sure
       :aws_access_key_id      => 'AWS_KEY', 
       :aws_secret_access_key  => 'AWS_SECRET_KEY',
 ```
-is NOT commented out.
+       is NOT commented out.
 
-* gemfile
-Delete 'pg' and replace with 'sqlite3'
+* gemfile: 
+    Delete 'pg' and replace with 'sqlite3'
 
 * app/views/layouts/application.html.erb: 
-Make sure
+    Make sure
 ```
   <%#= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
 ```
-is commented out.
-
-Make sure
+    is commented out and that
 ```
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 ```
-is NOT commented out.
+    is NOT commented out.
 
 The ENV variables may already be commented out, depending upon what the last developer pushed. ENV variables are for Heroku. Therefore the last commit before pushing to Heroku must have those variables set. The non-ENV variables use the initializer files, which are for use on local machines. 
 
 * config/initializers/fakekeys.rb: 
-Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
+    Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
 ```
 DEVISE_SECRET_KEY = 'fake'
@@ -96,11 +96,11 @@ GMAIL_PWD = "superfake"
 Stripe.api_key = STRIPE_SECRET_KEY
 ```
 
-Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your accounts' keys. 
+    Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your accounts' keys. 
 
 *config/database.yml
 
-Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
+    Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
 ```
 default: &default
@@ -137,4 +137,4 @@ Then type
 ```
 at the command line to start the server.
 
-Copyright &copy; 2015, RoleModel Enterprises, LLC. All rights reserved.
+Copyright &copy; 2016, RoleModel Enterprises, LLC. All rights reserved.

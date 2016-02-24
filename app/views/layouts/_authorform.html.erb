@@ -14,7 +14,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
       <% if @user.author == 2 %>
         <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
         <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
-        <li><%= link_to " Live Event ", user_stream_path(@user.permalink) %>
+        <li><%= link_to " Live Event ", "https://hangouts.google.com/hangouts/_/62ad7a57cfcmeka7cah3bqymtaa", :target => "_blank" %>
         <li><%= link_to " Calendar ", user_calendar_path(@user.permalink) %>
       <% else %>
         <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
