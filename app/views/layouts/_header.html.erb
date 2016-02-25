@@ -3,42 +3,46 @@
     <nav>
 
       <div class="headerimage row">
-        <div class="whitetitle">
+        <div class="whitetitle", style="position:relative; z-index: 9999;">
           Where authors who own their rights grow their Crowd
         </div>
 
-        <div class="col-md-6 ">
+        <div class="col-md-4 col-sm-12 col-xs-12 ", style = "margin-top: -25px">
           <%= link_to image_tag("cpLogo150.png", class: 'img-responsive', alt: "Responsive image"), root_path %>
-          <div class="whitetxt" >
-            <% if user_signed_in? %>
-            <% else %>
-              <%= link_to "Sign up & get a free Author or Reviewer site", "/signup", {:style=>'color:#FFFFFF;'} %>
-            <% end %>
-          </div>
+          <% if user_signed_in? %>
+            <div class="whitetxt", style=" height:55px;" >
+              <%= link_to "Browse " + current_user.name + "'s Site", user_profile_path(current_user.permalink), {:style=>'color:#FFFFFF;'} %>
+            </div> 
+           <% else %>
+            <div class="usermenu", style=" height:80px;" >
+              <br><%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %>
+              <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br>
+            </div> 
+           <% end %>
+          <div class="usermenu", style=" height:90px;" >
+            Participate in the evolution of CrowdPublish.TV!
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="48ALUTCSBS5F4">
+              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+              <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+          </div> 
+          <% if user_signed_in? %>
+            <div class="usermenu">
+              Signed in as <%= current_user.email %>. Not you?
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :style=>'color:#EFBFFF;' %>
+            </div>
+          <% end %>
         </div>
 
-        <div class="whitetxt col-md-6 " >
-          <% if user_signed_in? %>
-            <%= link_to "Browse " + current_user.name + "'s Site", user_profile_path(current_user.permalink), {:style=>'color:#FFFFFF;'} %>
-          <% else %>
-            <%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %>
-            <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %>
-          <% end %>
-          <br><br> Participate in the evolution of CrowdPublish.TV!
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="48ALUTCSBS5F4">
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-          </form>
-        </div> <br>
-      </div>
-      <% if user_signed_in? %>
-        <div class="blacktxt ">
-          Signed in as <%= current_user.email %>. Not you?
-          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <div class="col-md-8 col-sm-12 col-xs-12", style = "margin-top: -45px; position:relative; z-index: 1;">
+          <div id="frag_22" style="text-align:left; width:670px; height:340px; overflow:hidden; ">
+            <iframe src="http://www.ustream.tv/embed/13434383?wmode=opaque" style="border: 0 none transparent;" frameborder="no" width="680" height="380" text-align="left" ></iframe>
+          </div>
         </div>
-      <% end %>
+      </div>
+
     </nav>
   </div>
 </header>

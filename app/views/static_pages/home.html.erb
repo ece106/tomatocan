@@ -4,19 +4,19 @@
   <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
 </head>
 
-<div class="row", style = "margin-top: -35px">
+<div class="row", style = "margin-top: -40px">
   <div class="accordion" id="accordion2">
     <div class="col-md-3 col-sm-6 col-xs-6">
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" href="#accordion-togglea">
-            <%= image_tag("person.png", :size => "75x75") %> <br><b><font size="2">For Authors</font></b>
+            <%= image_tag("person.png", :size => "75x75") %> <br><b>For Authors</b>
           </a>
         </div>
         <div class="blacktxt">
           <li><%= link_to 'Sign up for a free Author web site', "/signup" %></li>
           <li>Post your books, videos, blog </li>
-          <li>Modify content on your site on your own, in minutes</li>
+          <li>Modify your own site content</li>
         </div>
         <div id="accordion-togglea" class="accordion-body collapse">
           <div class="accordion-inner">
@@ -48,12 +48,12 @@
         <div class="accordion-group">
           <div class="accordion-heading"> 
             <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggler">
-              <%= image_tag("person.png", :size => "75x75") %> <br><b><font size="2">For Readers</font></b>
+              <%= image_tag("person.png", :size => "75x75") %> <br><b>For Readers</b>
             </a>
           </div>
           <div class="blacktxt">
             <li><%= link_to 'Sign up for a book reviews page', "/signup" %></li>
-            <li><%= link_to 'Find livestreaming book discussions ', calendar_path %></li>
+            <li><%= link_to 'Join livestream book discussions ', calendar_path %></li>
             <li><%= link_to 'Find literary events near you', calendar_path  %></li>
           </div>
           <div id="accordion-toggler" class="accordion-body collapse">
@@ -81,19 +81,18 @@
         <div class="accordion-group">
           <div class="accordion-heading"> 
             <a class="accordion-toggle" data-toggle="collapse" href="#accordion-togglec">
-              <%= image_tag("people.png", :size => "75x75") %> <br><b><font size="2">For Book Clubs</font></b>
+              <%= image_tag("people.png", :size => "75x75") %> <br><b>For Book Clubs</b>
             </a>
           </div>
           <div class="blacktxt">
-            <li><%= link_to 'Get a free site for your Book Club', new_group_path %></li>
-            <li><%= link_to 'Zipcode-enabled search so potential members can join you', new_group_path %> </li>
-            <li><%= link_to 'Collect RSVPs for your events', new_event_path %> </li>
+            <li><%= link_to 'Get a free site for your Club', new_group_path %></li>
+            <li>Post your meeting calendar</li>
+            <li>Post news & announcements</li>
           </div>
           <div id="accordion-togglec" class="accordion-body collapse">
             <div class="accordion-inner">
               <div class="blacktxt">
-                <li>Post your event calendar</li>
-                <li>Post your news & announcements</li>
+                <li><%= link_to 'Collect RSVPs for your meetings', new_event_path %> </li>
                 <i>Coming soon: <br>
                 <li>Maintain your list of members</li></i>
               </div>
@@ -113,18 +112,17 @@
         <div class="accordion-group">
           <div class="accordion-heading"> 
             <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggleo">
-              <%= image_tag("people.png", :size => "75x75") %> <br><b><font size="2">For Writer Organizations</font></b>
+              <%= image_tag("people.png", :size => "75x75") %> <br><b>For Writer Organizations</b>
             </a>
           </div>
           <div class="blacktxt">
                 <li><%= link_to 'Get a free site for your Critique Group or Writer Organization', new_group_path %></li>
-                <li>Post your event calendar</li>
-                <li>Post your news & announcements</li>
+                <li><%= link_to 'Collect RSVPs for your events', new_event_path %> </li>
           </div>
           <div id="accordion-toggleo" class="accordion-body collapse">
             <div class="accordion-inner">
               <div class="blacktxt">
-                <li><%= link_to 'Collect RSVPs for your events', new_event_path %> </li>
+                <li>Post news, announcements, & event calendar</li>
                 <li><%= link_to 'Zipcode-enabled search so potential members can join you', new_group_path %> </li>
                 <i>Coming soon: <br>
                 <li>Maintain your list of members</li>
