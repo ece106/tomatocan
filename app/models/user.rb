@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
     account.save
   end
 
-  def parse_youtube
+  def get_youtube_id
       if self.youtube1.match(/youtube.com/) || self.youtube1.match(/youtu.be/)
 puts "hhhhhhhhhhhhhhhhsssssssssssssssssssssssssssss"
         youtube1parsed = parse_youtube self.youtube1

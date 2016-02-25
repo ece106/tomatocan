@@ -194,7 +194,7 @@ class UsersController < ApplicationController
     end
 
     if @user.update_attributes(user_params)
-      @user.parse_youtube
+      @user.get_youtube_id
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
     else

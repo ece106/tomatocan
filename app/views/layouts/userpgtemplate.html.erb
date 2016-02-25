@@ -3,8 +3,8 @@
 <head>
   <title><%= full_title(yield(:title)) + " " + @user.name %></title>
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
-  <link rel="shortcut icon" type="favicon.ico" href="http://www.crowdpublish.tv/assets/crowdpublishLogo-a2376e7a854a42464a6f7cba888b27ce.png"/>
+  <%= javascript_include_tag "https://js.stripe.com/v2/", "application", 'data-turbolinks-track' => true %>
+  <link rel="shortcut icon" type="favicon.ico" href="http://www.crowdpublish.tv/assets/crowdPublishIcon.png"/>
   <%= csrf_meta_tags %>
   <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
   <%# tag :meta, :name => "stripe-key", :content => 'STRIPE_PUBLIC_KEY' %>
@@ -23,7 +23,7 @@
   </div> 
   
 <body>
-  <center class="clearfix col-lg-9 col-md-9">
+  <center class="clearfix col-lg-9 col-md-9 col-sm-7 col-xs-12">
     <div class="container">
       <%= yield %>
     </div> 
