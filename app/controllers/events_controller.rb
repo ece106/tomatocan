@@ -59,6 +59,8 @@ class EventsController < ApplicationController
     @tempval = 0
     if current_user.address
       @groups = Group.near([current_user.latitude, current_user.longitude], 50, order: 'distance') 
+    else
+      @groups = Group.where("id=1")
     end
     @event = Event.new
   end
