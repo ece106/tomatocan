@@ -188,7 +188,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
 
-    unless @user.latitude > 0.0 or @user.latitude < 0.0  #put this in the model and make a method call? Should method be called after attribs updated?
+    unless @user.latitude.is_a?(Numeric) #put this in the model and make a method call? Should method be called after attribs updated?
       @user.update_attribute(:latitude, request.location.latitude)
       @user.update_attribute(:longitude, request.location.longitude)
     end
