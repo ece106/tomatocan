@@ -189,12 +189,18 @@ class UsersController < ApplicationController
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
     if @user.latitude
       unless @user.latitude.is_a?(Numeric)  #put this in the model and make a method call? Should method be called after attribs updated?
-        @user.update_attribute(:latitude, request.location.latitude)
-        @user.update_attribute(:longitude, request.location.longitude)
+        loc = request.location
+        if loc
+          @user.update_attribute(:latitude, loc.latitude)
+          @user.update_attribute(:longitude, loc.longitude)
+        end
       end
     else
-        @user.update_attribute(:latitude, request.location.latitude)
-        @user.update_attribute(:longitude, request.location.longitude)
+      loc = request.location
+      if loc
+        @user.update_attribute(:latitude, loc.latitude)
+        @user.update_attribute(:longitude, loc.longitude)
+      end
     end
 
     if @user.update_attributes(user_params)
