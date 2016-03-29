@@ -38,6 +38,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @book = Book.find(@purchase.book_id)
+    @user = User.find(@book.user_id)
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
 
@@ -58,6 +59,8 @@ class PurchasesController < ApplicationController
       if @purchase.bookfiletype == "kobo" && @book.bookkobo.present?
 ###TEMP STOP DOWNLOAD        redirect_to @book.bookkobo.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
       end
+
+
     else
       redirect_to(:back, :notice => "Your order did not go through. Try again.")
     end

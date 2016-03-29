@@ -5,22 +5,20 @@ jQuery ->
 purchase =
   setupForm: ->
     $('#new_purchase').submit ->
-      alert(card)
       $('input[type=submit]').prop('disabled', true)
       if $('#card_number').length
-        if card == "existingcustomer"
-          alert(card + " existing")
+        alert("length")
+        if false #  card == "existingcustomer"  don't want to keep making new customers
+          alert("cust exist")
           true
         else
-          alert(card + " purch.process")
+          alert("new cust ")
           purchase.processCard()
           false
       else
-        alert(card + " else")
         true
 
   processCard: ->
-    alert($('#card_number').val() + " process")
     card =
       {number: $('#card_number').val()
       cvc: $('#card_code').val()
@@ -30,10 +28,8 @@ purchase =
 
   handleStripeResponse: (status, response) ->
     if status == 200
-      alert(response.id)
       $('#purchase_stripe_card_token').val(response.id)
       $('#new_purchase')[0].submit()
     else
-      alert(response.error.message) 
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)

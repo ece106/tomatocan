@@ -156,12 +156,65 @@ class UsersController < ApplicationController
   end
   def createstripeacnt  #called from button on createstripeaccount page
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    @user.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
+    current_user.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
                           params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip) 
     redirect_to user_addbankaccount_path(current_user.permalink)
   end
   def updatestripeacnt
     # need to make it so people can enter a new bank acct if they change
+  end
+  def dashboard
+    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+    @mysales = Purchase.where('purchases.author_id = ?', current_user.id)
+
+    @monthinfo = []
+    month = current_user.created_at
+    while month < Date.today do
+      purchs = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
+        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), current_user.id)
+      purch = purchs.group(:book_id)
+      counthash = purch.count
+      earningshash = purch.sum(:pricesold)
+      for bookid, countsold in counthash
+        book = Book.find(bookid)
+        @monthinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
+          monthearnings: earningshash[bookid]} 
+      end
+      month = month + 1.month
+    end  
+
+#the rest of this method needs work
+    @titleinfo = []
+
+
+    @totalinfo = []
+    @mysales.each do |sale| 
+      booksold = Book.find(sale.book_id) 
+      customer = User.find(sale.user_id) 
+      @totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+    end
+
+    aggregatetitle = []
+    @totalinfo.each do |e| 
+
+        current_item = @totalinfo.select {|s| s[:soldtitle] }
+        if current_item
+          aggregatetitle << current_item
+        else
+          numsold = current_item.numsold +1
+          current_item = {soldtitle: booksold.title, numsold: numsold }
+          aggregatetitle << current_item
+        end
+    end
+#    puts aggregatetitle
+
+    @mypurchases = current_user.purchases
+    @purchasesinfo = []
+    @mypurchases.each do |bought| 
+      bookbought = Book.find(bought.book_id) 
+      author = User.find(bookbought.user_id) 
+      @purchasesinfo << {purchasetitle: bookbought.title, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
+    end
   end
   def addbankacnt   #called from button on addbankaccount page
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
@@ -234,7 +287,7 @@ class UsersController < ApplicationController
         :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
         :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
-        :birthday, :birthyear, :mailaddress, :countryofbank, :currency)
+        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax)
     end
 
     def resolve_layout

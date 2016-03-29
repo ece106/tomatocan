@@ -1,5 +1,5 @@
-#Excon.defaults[:write_timeout] = 10000
-#  Excon.defaults = Excon.defaults.merge(:write_timeout => 10.minutes.to_i)
+#Excon.defaults[:write_timeout] = 1000
+#  Excon.defaults = Excon.defaults.mere(:write_timeout => 10.minutes.to_i)
 
 CarrierWave.configure do |config|
 
@@ -11,8 +11,8 @@ CarrierWave.configure do |config|
 
       :aws_access_key_id      => ENV['AWS_KEY'],    
       :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],  
-#      :aws_access_key_id      => 'AWS_KEY',
-#      :aws_secret_access_key  => 'AWS_SECRET_KEY', 
+      :aws_access_key_id      => 'AWS_KEY',
+      :aws_secret_access_key  => 'AWS_SECRET_KEY', 
 
       :persistent             => false,
 

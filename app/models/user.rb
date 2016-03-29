@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 #  extend FriendlyId
 #  friendly_id :permalink, use: :slugged
-  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
+  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax 
   :bankaccountnumber
 
   has_many :books 
@@ -70,8 +70,8 @@ class User < ActiveRecord::Base
     elsif account.country == "AU"
       currency = "AUD"
       countryofbank = "AU"
-    elsif countryofbank == "AT"|"BE"|"CH"|"DE"|"DK"|"ES"|"FI"|"FR"|"GB"|"IE"|"IT"|"LU"|
-                           "NL"|"NO"|"SE"
+    elsif countryofbank == "AT"||"BE"||"CH"||"DE"||"DK"||"ES"||"FI"||"FR"||"GB"||"IE"||"IT"||"LU"||
+                           "NL"||"NO"||"SE"
       currency = "EUR"
     end
     temp = account.external_accounts.create(
@@ -149,7 +149,6 @@ puts "hhhhhhhhhhhhhhhhsssssssssssssssssssssssssssss"
   end
 
     def parse_youtube url
-puts "hhhhhhhhhhhhhhhhhhhhhhhhhuuuuuuuuuuu"
       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
       if url.match(regex)
         url.match(regex)[1]
