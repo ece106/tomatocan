@@ -18,19 +18,16 @@ class Purchase < ActiveRecord::Base
 
       if(@purchaser.stripe_customer_token) 
         puts @purchaser.stripe_customer_token
-        puts "LLLLLLLLLLLLLLLLLLLLLLLLLLLL"
         customer_id = @purchaser.stripe_customer_token
         customer = Stripe::Customer.retrieve(customer_id)
         card = customer.sources.create(:source => stripe_card_token)
       else #if valid?
-        puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKJJJJJJJJJJJJ"
         customer = Stripe::Customer.create(
           :source => stripe_card_token,
           :description => @purchaser.name, 
           :email => @purchaser.email
         )
         puts stripe_card_token
-        puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKK"
         customer_id = customer.id
         card = customer.default_source
         @purchaser.update_attribute(:stripe_customer_token, customer_id)

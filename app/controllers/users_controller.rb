@@ -165,57 +165,15 @@ class UsersController < ApplicationController
   end
   def dashboard
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    @mysales = Purchase.where('purchases.author_id = ?', current_user.id)
-
-    @monthinfo = []
-    month = current_user.created_at
-    while month < Date.today do
-      purchs = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), current_user.id)
-      purch = purchs.group(:book_id)
-      counthash = purch.count
-      earningshash = purch.sum(:pricesold)
-      for bookid, countsold in counthash
-        book = Book.find(bookid)
-        @monthinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
-          monthearnings: earningshash[bookid]} 
-      end
-      month = month + 1.month
-    end  
-
-#the rest of this method needs work
-    @titleinfo = []
-
-
-    @totalinfo = []
-    @mysales.each do |sale| 
-      booksold = Book.find(sale.book_id) 
-      customer = User.find(sale.user_id) 
-      @totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, soldwhen: sale.created_at.to_date, whobought: customer.name} 
-    end
-
-    aggregatetitle = []
-    @totalinfo.each do |e| 
-
-        current_item = @totalinfo.select {|s| s[:soldtitle] }
-        if current_item
-          aggregatetitle << current_item
-        else
-          numsold = current_item.numsold +1
-          current_item = {soldtitle: booksold.title, numsold: numsold }
-          aggregatetitle << current_item
-        end
-    end
-#    puts aggregatetitle
-
-    @mypurchases = current_user.purchases
-    @purchasesinfo = []
-    @mypurchases.each do |bought| 
-      bookbought = Book.find(bought.book_id) 
-      author = User.find(bookbought.user_id) 
-      @purchasesinfo << {purchasetitle: bookbought.title, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
-    end
+    usr = current_user
+    @user.calcdashboard(usr)
+    @monthinfo = @user.monthinfo
+    @incomeinfo = @user.incomeinfo
+    @filetypeinfo = @user.filetypeinfo
+    @totalinfo = @user.totalinfo
+    @purchasesinfo = @user.purchasesinfo
   end
+
   def addbankacnt   #called from button on addbankaccount page
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
 #    account = Stripe::Account.retrieve(@user.stripeid)

@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
 #  extend FriendlyId
 #  friendly_id :permalink, use: :slugged
-  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax 
-  :bankaccountnumber
+  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
+  :countryoftax, :bankaccountnumber, :monthinfo, :incomeinfo, :filetypeinfo, :totalinfo, 
+  :purchasesinfo
 
   has_many :books 
   has_many :reviews
@@ -49,7 +50,6 @@ class User < ActiveRecord::Base
     account = Stripe::Account.retrieve(self.stripeid) #acct tokens are user.stripeid
     puts currency
     puts countryofbank
-    puts "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
     if account.country == "CA"   #called from controller after create acct button clicked
       if currency == "CAD"
         countryofbank = "CA"
@@ -129,7 +129,6 @@ class User < ActiveRecord::Base
 
   def get_youtube_id
       if self.youtube1.match(/youtube.com/) || self.youtube1.match(/youtu.be/)
-puts "hhhhhhhhhhhhhhhhsssssssssssssssssssssssssssss"
         youtube1parsed = parse_youtube self.youtube1
         self.update_attribute(:youtube1, youtube1parsed)
       end
@@ -143,10 +142,57 @@ puts "hhhhhhhhhhhhhhhhsssssssssssssssssssssssssssss"
       end
   end  
 
+  def calcdashboard(usr) # dashboard currently only shows ebook sales info. Poll users for metrics later
+    self.monthinfo = []
+    self.incomeinfo = []
+    month = usr.created_at
+    while month < Date.today do
+      monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
+        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), usr.id)
+      booksales = monthsales.group(:book_id)
+      counthash = booksales.count
+      earningshash = booksales.sum(:pricesold)
+      for bookid, countsold in counthash
+        book = Book.find(bookid)
+        self.monthinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
+          monthearnings: earningshash[bookid]} 
+      end
+      earnings = monthsales.sum(:pricesold)
+      self.incomeinfo <<  {month: month.strftime("%B %Y"), monthtotal: earnings} 
+      month = month + 1.month
+    end
+
+    self.filetypeinfo = []
+    mysales = Purchase.where('purchases.author_id = ?', usr.id)
+    titlegroup = mysales.group(:book_id, :bookfiletype)
+    counthash = titlegroup.count
+    puts counthash
+    for bookidfiletype, counttype in counthash
+      book = Book.find(bookidfiletype[0])
+      self.filetypeinfo << {title: book.title, filetype: bookidfiletype[1], quantity: counttype} 
+    end
+
+    self.totalinfo = []
+    mysales = Purchase.where('purchases.author_id = ?', usr.id)
+    mysales.each do |sale| 
+      booksold = Book.find(sale.book_id) 
+      customer = User.find(sale.user_id) 
+      self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+    end
+
+    mypurchases = usr.purchases
+    self.purchasesinfo = []
+    mypurchases.each do |bought| 
+      bookbought = Book.find(bought.book_id) 
+      author = User.find(bookbought.user_id) 
+      self.purchasesinfo << {purchasetitle: bookbought.title, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
+    end
+  end  
+
   private
-  def assign_defaults_on_new_user
-    self.author = 2 unless self.author
-  end
+    def assign_defaults_on_new_user
+      self.author = 2 unless self.author
+    end
 
     def parse_youtube url
       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
@@ -155,7 +201,7 @@ puts "hhhhhhhhhhhhhhhhsssssssssssssssssssssssssssss"
       end
     end
 
-    def parse_ustream url
+    def parse_ustream url #i believe this is no longer used
       regex = /(?:ustream.tv\/embed\/|\/(?=p\/))([\w\/\-]+)/
       if url.match(regex)
         url.match(regex)[1]

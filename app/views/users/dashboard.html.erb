@@ -15,22 +15,27 @@
       </table><br>
 
       <div style='font-size:110%;'><b>Income each month<br></b></div>
-      <br><br>
+      <table>
+        <tr style='font-weight:bold;'><td><b>Month</td><td>Total Earned (USD)</b></td></tr>
+        <% @incomeinfo.each do |book| %>
+          <tr><td><%= book[:month] %></td><td> <%= number_with_precision(book[:monthtotal], :precision => 2) %></td></tr>
+        <% end %>
+      </table><br>
       
-      <div style='font-size:110%;'><b>Number of each book sold</b></div>
+      <div style='font-size:110%;'><b>Number of each ebook sold</b></div>
       <table>
         <tr style='font-weight:bold;'><td><b>Title</td><td>Format</td><td>Quantity Sold</b></td></tr>
-        <% @titleinfo.sort_by{|sale| sale[:soldwhen]}.each do |book| %>
-          <tr><td><i><%= book[:soldtitle] %> </i> </td><td> <%= @soldinfo[:bookfiletype] %> </td><td> <%= book[:soldprice] %> </td></tr>
+        <% @filetypeinfo.each do |book| %>
+          <tr><td><i><%= book[:title] %> </i> </td><td><%= book[:filetype] %> </td><td><%= book[:quantity] %> </td></tr>
         <% end %>
-      </table>      x pdf, y mobi, z kobo<br>
+      </table>    
       Other merch will have different attributes<br><br>
      
 
-      <div style='font-size:110%;'><b>List of each sale<br></b></div>
+      <div style='font-size:110%;'><b>List of each ebook sale<br></b></div>
       <table>
         <tr style='font-weight:bold;'><td>Title</td><td>Price Sold</td><td>Sales Date</td><td>Customer Name</td></tr>
-        <% @totalinfo.sort_by{|sale| sale[:soldwhen]}.each do |book| %>
+        <% @totalinfo.sort_by{|s| s[:soldwhen]}.each do |book| %>
           <tr><td><i><%= book[:soldtitle] %> </i> </td><td> <%= book[:soldprice] %> </td><td> <%= book[:soldwhen] %></td><td> <%= book[:whobought] %></td></tr>
         <% end %>
       </table>Hide this list in js dropdown<br><br><br>
@@ -38,7 +43,7 @@
       <div style='font-size:130%;'><b>Books you've purchased<br></b></div>
       <table>
         <tr style='font-weight:bold;'><td><b>Title</td><td>Author</td><td>Price Paid</td><td>Purchase Date</b></td></tr>
-        <% @purchasesinfo.sort_by{ |purch| purch[:purchasedwhen] }.each do |book| %>
+        <% @purchasesinfo.sort_by{ |p| p[:purchasedwhen] }.each do |book| %>
           <tr><td><i><%= book[:purchasetitle] %> </i> </td><td> <%= book[:purchaseauthor] %> </td><td> <%= book[:purchaseprice] %> </td><td> <%= book[:purchasedwhen] %></td></tr>
         <% end %>
       </table>
