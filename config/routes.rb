@@ -21,6 +21,9 @@ Crowdpublishtv::Application.routes.draw do
   match '/events/online' => "events#online", :as => :events_online, via: 'get'
   match '/calendar/online' => "calendar#online", :as => :calendar_online, via: 'get'
 
+  match '/static_pages/monthly' => "static_pages#monthly", :as => :static_page_monthly, via: 'get'
+  post '/static_pages/payeveryone' => 'static_pages#payeveryone', :as => :static_page_payeveryone
+
   resources :rsvpqs
   resources :groups
   resources :purchases
@@ -85,7 +88,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
-
+  
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt
   post '/:permalink/createstripeacnt' => 'users#createstripeacnt', :as => :user_createstripeacnt

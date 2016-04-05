@@ -7,14 +7,8 @@ purchase =
     $('#new_purchase').submit ->
       $('input[type=submit]').prop('disabled', true)
       if $('#card_number').length
-        alert("length")
-        if false #  card == "existingcustomer"  don't want to keep making new customers
-          alert("cust exist")
-          true
-        else
-          alert("new cust ")
-          purchase.processCard()
-          false
+        purchase.processCard()
+        false
       else
         true
 
@@ -33,3 +27,9 @@ purchase =
     else
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)
+
+
+
+#      if carduse == "existingcustomer" # no need to process card
+#        alert("cust exist") 
+#        true  

@@ -10,7 +10,6 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   def show
     @purchase = Purchase.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @purchase }
@@ -30,11 +29,11 @@ class PurchasesController < ApplicationController
       @expyear = card.exp_year
     end
   end
-  # GET /purchases/1/edit 29
+  # GET /purchases/1/edit 
   def edit
     @purchase = Purchase.find(params[:id])
   end
-  # POST /purchases 34
+  # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
     @book = Book.find(@purchase.book_id)

@@ -48,8 +48,6 @@ class User < ActiveRecord::Base
   def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank, line1,
                         line2, city, postalcode, state)
     account = Stripe::Account.retrieve(self.stripeid) #acct tokens are user.stripeid
-    puts currency
-    puts countryofbank
     if account.country == "CA"   #called from controller after create acct button clicked
       if currency == "CAD"
         countryofbank = "CA"
@@ -117,11 +115,16 @@ class User < ActiveRecord::Base
             :month => birthmonth,
             :year => birthyear
           }
+        } ,
+        :transfer_schedule => {
+          :delay_days => 2,
+          :interval => "weekly",
+          :weekly_anchor => "Monday"
         }
       }
     )  
     self.update_attribute(:stripeid, account.id )
-    account = Stripe::Account.retrieve(self.stripeid)
+    account = Stripe::Account.retrieve(self.stripeid) #do I need this
     account.tos_acceptance.ip = userip
     account.tos_acceptance.date = Time.now.to_i        
     account.save
@@ -151,13 +154,13 @@ class User < ActiveRecord::Base
         AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), usr.id)
       booksales = monthsales.group(:book_id)
       counthash = booksales.count
-      earningshash = booksales.sum(:pricesold)
+      earningshash = booksales.sum(:authorcut)
       for bookid, countsold in counthash
         book = Book.find(bookid)
         self.monthinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
           monthearnings: earningshash[bookid]} 
       end
-      earnings = monthsales.sum(:pricesold)
+      earnings = monthsales.sum(:authorcut)
       self.incomeinfo <<  {month: month.strftime("%B %Y"), monthtotal: earnings} 
       month = month + 1.month
     end
@@ -166,7 +169,6 @@ class User < ActiveRecord::Base
     mysales = Purchase.where('purchases.author_id = ?', usr.id)
     titlegroup = mysales.group(:book_id, :bookfiletype)
     counthash = titlegroup.count
-    puts counthash
     for bookidfiletype, counttype in counthash
       book = Book.find(bookidfiletype[0])
       self.filetypeinfo << {title: book.title, filetype: bookidfiletype[1], quantity: counttype} 
@@ -177,7 +179,7 @@ class User < ActiveRecord::Base
     mysales.each do |sale| 
       booksold = Book.find(sale.book_id) 
       customer = User.find(sale.user_id) 
-      self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+      self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
     end
 
     mypurchases = usr.purchases
