@@ -15,9 +15,26 @@ jQuery(document).ready(function($) {
   $('.accordion-toggleo').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
-  $('.hiddencardform').removeClass('hiddencardform').hide();
-  $('.togglecard').click(function() {
-    $(this).find('span').each(function() { $(this).toggle(); });
+
+
+  $('.cardinfo').hide();
+  $('.buynewcard').hide();
+  $('.usedefault').hide();
+  $('.usedefault').click(function() {
+    $('.last4').show();
+    $('.diffcard').show();
+    $('.buyexistingcard').show();
+    $('.cardinfo').hide();
+    $('.buynewcard').hide();
+    $('.usedefault').hide();
+  });
+  $('.diffcard').click(function() {
+    $('.cardinfo').show();
+    $('.buynewcard').show();
+    $('.usedefault').show();
+    $('.last4').hide();
+    $('.diffcard').hide();
+    $('.buyexistingcard').hide();
   });
 });
 

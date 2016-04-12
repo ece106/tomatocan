@@ -6,11 +6,16 @@ purchase =
   setupForm: ->
     $('#new_purchase').submit ->
       $('input[type=submit]').prop('disabled', true)
-      if $('#card_number').length
-        purchase.processCard()
-        false
+      if carduse == "existingcustomer" # no need to process card
+        alert("cust exist") 
+        true        
       else
-        true
+        if $('#card_number').length
+          alert("new custmr") 
+          purchase.processCard()
+          false
+        else
+          true
 
   processCard: ->
     card =
@@ -27,9 +32,4 @@ purchase =
     else
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)
-
-
-
-#      if carduse == "existingcustomer" # no need to process card
-#        alert("cust exist") 
-#        true  
+      

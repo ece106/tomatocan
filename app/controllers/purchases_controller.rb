@@ -35,6 +35,7 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 
   def create
+    puts "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc"
     @purchase = Purchase.new(purchase_params)
     @book = Book.find(@purchase.book_id)
     @user = User.find(@book.user_id)
