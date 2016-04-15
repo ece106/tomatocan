@@ -80,7 +80,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def managesales
+  def manageaccounts
     @user = User.find_by_permalink(params[:permalink])
     account = Stripe::Account.retrieve(@user.stripeid)
     @countryoftax = account.country
@@ -222,17 +222,6 @@ class UsersController < ApplicationController
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
     end  
-  end
-
-  # DELETE /users/1.json # Should replace this with a bool. No destroying users, just different status
-  def destroy
-    @user = User.find_by_permalink(params[:permalink])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :ok }
-    end
   end
 
 

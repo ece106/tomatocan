@@ -15,7 +15,7 @@ class Purchase < ActiveRecord::Base
       @book = Book.find(self.book_id)
       @purchaser = User.find(self.user_id)
       self.pricesold = @book.price
-      self.authorcut = @book.price * 0.8 - 0.3 #this calc may be different for different products & different currencies. It's an important part of the CrowdPublishTV business model. Perhaps it should be somewhere more prominent
+      self.authorcut = ((@book.price * 80).to_i).to_f/100 #this calc may be different for different products & different currencies. It's an important part of the CrowdPublishTV business model. Perhaps it should be somewhere more prominent
       self.author_id = @book.user_id #do I need to save this in purchase incase bookauthor changes?
       author = User.find(@book.user_id) #but what if purchase consisted of items from several authors
       authoraccount = Stripe::Account.retrieve(author.stripeid) 
@@ -23,23 +23,20 @@ class Purchase < ActiveRecord::Base
       if(@purchaser.stripe_customer_token) 
         customer_id = @purchaser.stripe_customer_token
         customer = Stripe::Customer.retrieve(customer_id)
-puts "UUUUUUUUUUUUUUUUUUUUUUsing existing card"
         #card = customer.sources.create(:source => stripe_card_token) #I think this is only if existing/previous customer wants to enter new card
-        card_id = customer.default_source
-        cardtoken = Stripe::Token.create(
-          {:customer => customer_id, :card => card_id},
-          {:stripe_account => authoraccount.id } # id of the connected account
-        )
       else #if valid?
         customer = Stripe::Customer.create(
           :source => stripe_card_token,
           :description => @purchaser.name, # what info do I really want here
           :email => @purchaser.email
         )
-        customer_id = customer.id
-        cardtoken = customer.default_source
-        @purchaser.update_attribute(:stripe_customer_token, customer_id)
+        @purchaser.update_attribute(:stripe_customer_token, customer.id)
       end
+      card_id = customer.default_source
+      cardtoken = Stripe::Token.create(
+        {:customer => customer.id, :card => card_id},
+        {:stripe_account => authoraccount.id } # id of the connected account
+      )
       charge = Stripe::Charge.create( {
         :amount => (@book.price * 100).to_i,  #this is the amt charged to the customer's credit card
         :currency => "usd",

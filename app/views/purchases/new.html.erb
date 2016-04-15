@@ -16,17 +16,15 @@
       <% end %>
       <% if current_user.stripe_customer_token.present? %>
         <div class="cardinfo" >
-          <div class="blacktxt">
-            <%= label_tag :card_number, "Credit Card Number" %>
-            <%= text_field_tag :card_number, nil, name: nil %><br><br>
+          <%= label_tag :card_number, "Credit Card Number" %>
+          <%= text_field_tag :card_number, nil, name: nil %><br><br>
 
-            <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-            <%= text_field_tag :card_code, nil, name: nil %><br><br>
+          <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+          <%= text_field_tag :card_code, nil, name: nil %><br><br>
 
-            <%= label_tag :card_month, "Card Expiration" %>
-            <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
-          </div>
+          <%= label_tag :card_month, "Card Expiration" %>
+          <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+          <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
         </div>
         <div class="buynewcard">
           <%= f.submit "Buy now" %><br><br>
@@ -38,19 +36,12 @@
         <div class="last4">
           You are using default card ending *<%= @last4 %>, Expiration <%= @expmonth %>-<%= @expyear %><br>
         </div>
+        <div class="buyexistingcard" onclick="return existingcard();">
+          <%= f.submit "Buy now" %>
+        </div><br>
         <a class="diffcard" data-toggle="collapse" href="#toggd">
           Enter a different card
-        </a>
-        <div class="buyexistingcard" onclick="return existingcard();">
-          <%= f.submit "Buy now" %><br><br>
-        </div><br><br><br><br>
-
-        <script >
-        var carduse = 'global variable card';
-        function existingcard () {
-          carduse = "existingcustomer";
-        }  
-        </script>
+        </a><br><br><br><br>
 
       <% else %>
         <p><%= label_tag :card_number, "Credit Card Number" %>
@@ -72,3 +63,9 @@
     <% end %>
   </div>
 </div>
+<script>
+  var carduse = 'global variable card';
+  function existingcard () {
+    carduse = "existingcustomer";
+  }  
+</script>

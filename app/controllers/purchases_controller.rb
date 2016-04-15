@@ -21,7 +21,7 @@ class PurchasesController < ApplicationController
     @purchase = @book.purchases.new
     @purchase.bookfiletype = params[:bookfiletype]
     if current_user.stripe_customer_token.present?
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_token);
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
       sourceid = customer.default_source
       card = customer.sources.retrieve(sourceid)
       @last4 = card.last4
@@ -35,7 +35,6 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 
   def create
-    puts "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc"
     @purchase = Purchase.new(purchase_params)
     @book = Book.find(@purchase.book_id)
     @user = User.find(@book.user_id)

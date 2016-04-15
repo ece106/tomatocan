@@ -2,6 +2,7 @@
 <p class="flash"><%= flash.notice %></p>
 
 <% if @user == current_user %>
+<% if @user.stripesignup.present? %>
   <div class="col-md-10 " style="text-align:left">
     <div class="blacktxt" >
 
@@ -39,6 +40,7 @@
           <tr><td><i><%= book[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(book[:authorcut], :precision => 2) %> </td><td> <%= book[:soldwhen] %></td><td> <%= book[:whobought] %></td></tr>
         <% end %>
       </table>Hide this list in js dropdown<br><br><br>
+<% end %>
     
       <div style='font-size:130%;'><b>Books you've purchased<br></b></div>
       <table>

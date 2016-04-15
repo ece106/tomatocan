@@ -36,5 +36,6 @@ jQuery(document).ready(function($) {
     $('.diffcard').hide();
     $('.buyexistingcard').hide();
   });
+
 });
 

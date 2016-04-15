@@ -119,11 +119,12 @@ class User < ActiveRecord::Base
         :transfer_schedule => {
           :delay_days => 2,
           :interval => "weekly",
-          :weekly_anchor => "Monday"
+          :weekly_anchor => "monday"
         }
       }
     )  
     self.update_attribute(:stripeid, account.id )
+    self.update_attribute(:stripesignup, Time.now )
     account = Stripe::Account.retrieve(self.stripeid) #do I need this
     account.tos_acceptance.ip = userip
     account.tos_acceptance.date = Time.now.to_i        
@@ -148,8 +149,12 @@ class User < ActiveRecord::Base
   def calcdashboard(usr) # dashboard currently only shows ebook sales info. Poll users for metrics later
     self.monthinfo = []
     self.incomeinfo = []
-    month = usr.created_at
-    while month < Date.today do
+    if stripesignup.present?
+      month = usr.stripesignup
+    else
+      month = Time.now
+    end  
+    while month < Date.today + 1.month do
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
         AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), usr.id)
       booksales = monthsales.group(:book_id)
@@ -161,7 +166,7 @@ class User < ActiveRecord::Base
           monthearnings: earningshash[bookid]} 
       end
       earnings = monthsales.sum(:authorcut)
-      self.incomeinfo <<  {month: month.strftime("%B %Y"), monthtotal: earnings} 
+      self.incomeinfo << {month: month.strftime("%B %Y"), monthtotal: earnings} 
       month = month + 1.month
     end
 
