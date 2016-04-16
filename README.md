@@ -63,7 +63,7 @@ CrowdPublish.TV is an experiment in using a live project to teach Ruby on Rails.
 
 The compensation to developers who participate in CrowdPublish.TV coding is free mentorship - no need to pay for code schools. Those who participate fully and consistently will receive recommendations to future employers. 
 
-As CrowdPublish.TV grows to the point where a stable crew of developers can be supported, there will be a discussion among senior contributors on how senior developers would have opportunities for compensation for their work. The intention is to develop a new business model outside of the way current startup businesses are funded. Venture capital firms give high preference to male-owned and male-developed startups. They justify this discrimination by calling it "pattern matching," meaning that they fund people who look like other people they have previously funded. Instead of trying to break into the boys' game, women must create their own game, outside the male-created system, where women retain ownership of their inventions and do not rely on entities that do not value their worth. I believe that this model will benefit many men who are also not interested in the current system of startup funding and business practices.
+As CrowdPublish.TV grows to the point where a stable crew of developers can be supported, there will be a discussion among senior contributors on how senior developers would have opportunities for compensation for their work. The intention is to develop a new business model outside of the way current startup businesses are funded. Venture capital firms give high preference to male-owned and male-developed startups. They justify this discrimination by calling it "pattern matching," meaning that they fund people who look like other people they have previously funded. Instead of trying to break into the boys' game, women must create their own game, outside the male-created system, where women retain ownership of their inventions and do not rely on entities that do not value their worth. This model will benefit many men who are also not interested in the current system of startup funding and business practices.
 
 RoleModel Enterprises, LLC, owns the copyright to all code, design, and graphics contributed to this repository. Contributors grant copyright of any code, design, and graphics they contribute to this repository to RoleModel Enterprises, LLC. Contributors may reuse their code contributions and the knowledge gained from working on this project, provided it meets the following criteria:
 
@@ -85,9 +85,9 @@ This README file may change at any time.
 
 ### QUIZ FOR POTENTIAL DEVELOPERS
 To determine current skill level -
-Send your responses to info@CrowdPublish.TV & we'll respond with instructions on how to join our Monday evening Google hangouts & improve your Ruby on Rails & TDD skills along with us.
+Send your responses to info@CrowdPublish.TV. 
 
-Note: Potential mentees with the highest skill level will be matched with mentors who have the highest skill level. Which means that potential mentors with the best skill set will get the more advanced mentees. Thus it is in your best interest to show off your current skills so you can work with others who are best positioned to challenge you. Refer to http://github.com/crowdpublishtv/crowdpublishtv and use tutorials, Google, etc. to help you figure out the answers. 
+Refer to http://github.com/crowdpublishtv/crowdpublishtv and use tutorials, Google, etc. to help you figure out the answers. 
 
 1. What is the design of the CrowdPublish.TV database? Submit as a jpg or png (You may draw on paper & submit as a photo).
 
@@ -106,6 +106,8 @@ Note: Potential mentees with the highest skill level will be matched with mentor
 8. Fork a copy of the crowdpublishtv github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the CrowdPublishTV admin pull your changes.
 
 9. Summarize your Ruby & Rails skill level/what you know in your own words.
+
+When you have completed the quiz, download and start working on the tutorial at https://github.com/crowdpublishtv/crowdpublishtv/blob/master/public/LearnRailsIn2Minutes.odt 
 
 
 ### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
