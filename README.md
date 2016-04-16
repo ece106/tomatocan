@@ -24,18 +24,20 @@ Criteria for :
 6. Women will be given higher priority
 
 The Mentoring Program:
+The CrowdPublish.TV Ruby Mentoring Program is meant for people who have already gone through beginner Ruby learning materials, such as the Michael Hartl RailsTutorial. It is the 'next step' for gaining experience in working on a live app with a small team and a mentor. 
+
 After candidates have been selected, we will start meeting online once a week for 1.5 to 2 hours to discuss the previous week's action items that were accomplished throughout the week. Candidates will have the opportunity for occasional one-on-one mentoring throughout the week also. 
 
-The first 10 weeks of the program will focus on the CrowdPublish.TV test suite. Upon completion of the first 10 weeks, we will assess progress. Candidates will have input into the next steps and the direction of the program. 
+The first 10 weeks of the program will focus on the CrowdPublish.TV test suite. Upon completion of the first 10 weeks, we will assess progress. Candidates will have input into the next steps and the future direction of the program. 
 
-Possible direction the first 10 weeks:
+Possible direction after the first 10 weeks:
 - Two or three new candiates are selected and some of the original 6 stay on to mentor the next group.
 - Six new candidates are brought on and each get assigned to pair program with one of the original 6
 - Continue for another 10 weeks, taking on increasingly difficult tasks without taking in new candidates
 - Some combination of the above, or a different direction not thought of yet
 
 Written job references:
-Upon completion of the first 10 weeks, Dr. Schaefer would be willing to serve as a reference for  candidates to potential employers. There are several things to consider when working toward a written reference regarding employment skills:
+Upon completion of the first 10 weeks, Dr. Schaefer would be willing to serve as a reference for candidates to potential employers. There are several things to consider when working toward a written reference regarding employment skills:
 1. Skill level – Were you able to complete your agreed-upon tasks correctly
 2. Diligence – Did you complete all the tasks you agreed to do in a timely manner
 3. Commitment level – Did you take on meaningful tasks and continue with the program
