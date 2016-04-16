@@ -1,6 +1,5 @@
 # CrowdPublish.TV
 
-*****
 CROWDPUBLISH.TV MENTORSHIP PROGRAM
 
 Application Deadline: 
@@ -34,7 +33,7 @@ After candidates have been selected, we will start meeting online once a week fo
 The first 10 weeks of the program will focus on the CrowdPublish.TV test suite. Upon completion of the first 10 weeks, we will assess progress. Candidates will have input into the next steps and the future direction of the program. 
 
 Possible direction after the first 10 weeks:
-- Two or three new candiates are selected and some of the original 6 stay on to mentor the next group.
+- Two or three new candidates are selected and some of the original 6 stay on to mentor the next group.
 - Six new candidates are brought on and each get assigned to pair program with one of the original 6
 - Continue for another 10 weeks, taking on increasingly difficult tasks without taking in new candidates
 - Some combination of the above, or a different direction not thought of yet
@@ -47,9 +46,9 @@ Upon completion of the first 10 weeks, Dr. Schaefer would be willing to serve as
 - 3. Commitment level – Did you take on meaningful tasks and continue with the program
 
 For those who do not become one of the first 6:
-Lurk in the hangouts. Even if you aren't part of the mentor program, you can work on similar tasks and push to the CrowdPublish.TV github repo for review. 
 
-Work on the tutorial. Those who show skill, diligence, and commitment on the tutorial tasks will very likely be accepted to the mentor program in the next round.
+- Lurk in the hangouts. Even if you aren't part of the mentor program, you can work on similar tasks and push to the CrowdPublish.TV github repo for review. 
+- Work on the tutorial. Those who show skill, diligence, and commitment on the tutorial tasks will very likely be accepted to the mentor program in the next round.
 
 ******
 
