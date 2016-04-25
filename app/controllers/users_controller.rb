@@ -207,7 +207,9 @@ class UsersController < ApplicationController
         end
       end
     else
+      puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss"
       loc = request.location
+      puts loc
       if loc.present?
         @user.update_attribute(:latitude, loc.latitude)
         @user.update_attribute(:longitude, loc.longitude)
