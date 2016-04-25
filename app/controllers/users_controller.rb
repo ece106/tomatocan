@@ -210,6 +210,8 @@ class UsersController < ApplicationController
       puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss"
       begin
         loc = request.location
+        lat = loc.latitude
+        lon = loc.longitude
       rescue Errno::EHOSTUNREACH, Errno::ETIMEDOUT, Errno::ENETUNREACH, Geocoder::NetworkError
         # primary service unreachable, try secondary...
         _page = Net::HTTP.get(URI('https://geoip-db.com/json/geoip.php'))
@@ -218,10 +220,10 @@ class UsersController < ApplicationController
       end
       
       puts loc
-      if loc.present?
-        @user.update_attribute(:latitude, loc.latitude)
-        @user.update_attribute(:longitude, loc.longitude)
-      end
+#      if loc.present?
+#        @user.update_attribute(:latitude, lat)
+#        @user.update_attribute(:longitude, lon)
+#      end
     end
 
     if @user.update_attributes(user_params)
