@@ -198,17 +198,17 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    if @user.latitude
+    if @user.latitude.present?
       unless @user.latitude.is_a?(Numeric)  #put this in the model and make a method call? Should method be called after attribs updated?
         loc = request.location
-        if loc
+        if loc.present?
           @user.update_attribute(:latitude, loc.latitude)
           @user.update_attribute(:longitude, loc.longitude)
         end
       end
     else
       loc = request.location
-      if loc
+      if loc.present?
         @user.update_attribute(:latitude, loc.latitude)
         @user.update_attribute(:longitude, loc.longitude)
       end
