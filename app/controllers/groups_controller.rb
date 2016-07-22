@@ -21,6 +21,11 @@ class GroupsController < ApplicationController
 
   def show
     @user = User.find(@group.user_id)
+    @currprojects = []
+    Book.find_each do |book|
+      author = User.find(book.user_id)
+      @currprojects <<  {projtitle: book.title, authorname: author.name, fiftychar: book.fiftychar } 
+    end
   end
 
   def news

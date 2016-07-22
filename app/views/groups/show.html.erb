@@ -6,6 +6,16 @@
 <p>
   <h2><%= @group.name %></h2>
 </p>
+
+Projects we support: <br>
+      <table>
+        <tr style='font-weight:bold;'><td><b>Project</td><td>Creator</b></td><td></td></tr>
+        <% @currprojects.each do |proj| %>
+          <tr><td style='font-weight:bold;'><%= proj[:projtitle] %></td><td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], users_path ) %></td></tr>
+          <tr><td><%= proj[:fiftychar] %><br><br></td></tr>
+        <% end %>
+      </table><br>
+
 <p>
   <% if @group.grouptype == 1 %> Critique Group 
   <% elsif @group.grouptype == 2 %> Book Club
@@ -13,7 +23,7 @@
   <% elsif @group.grouptype == 4 %> Informal Neighborhood Writer Gathering
   <% elsif @group.grouptype == 5 %> Library
   <% elsif @group.grouptype == 6 %> Book Store
-  <% else @group.grouptype == 7 %> Other
+  <% else @group.grouptype == 7 %> 
   <% end %></p>
 <p>
   <strong>Usual meeting place or neighborhood:</strong>
@@ -32,7 +42,11 @@
   <% end %>
 </p>
 
-  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=12&markers=#{@group.latitude}%2C#{@group.longitude}" %>
+  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=12&markers=#{@group.latitude}%2C#{@group.longitude}" %><br><br>
+
+Campaigns we have supported in the past:<br>
+
+
 
   </div>
 </div>

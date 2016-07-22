@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @merchandise.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @merchandise.user_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @merchandise.price %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @merchandise.desc %>
+</p>
+
+<p>
+  <strong>Itempic:</strong>
+  <%= @merchandise.itempic %>
+</p>
+
+<%= link_to 'Edit', edit_merchandise_path(@merchandise) %> |
+<%= link_to 'Back', merchandises_path %>

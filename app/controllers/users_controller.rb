@@ -64,6 +64,14 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def projects
+    @user = User.find_by_permalink(params[:permalink])
+    @projects = Project.where( "user_id = ?", @user.id )
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
+  end
   def stream
     @user = User.find_by_permalink(params[:permalink])
     @books = @user.books
@@ -207,12 +215,10 @@ class UsersController < ApplicationController
         end
       end
     else
-      puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss"
       begin
         loc = request.location
         lat = loc.latitude
         lon = loc.longitude
-        puts lat
       rescue Errno::EHOSTUNREACH, Errno::ETIMEDOUT, Errno::ENETUNREACH, Geocoder::NetworkError
         # primary service unreachable, try secondary...
         _page = Net::HTTP.get(URI('https://geoip-db.com/json/geoip.php'))
@@ -220,10 +226,10 @@ class UsersController < ApplicationController
         puts "RESCUE"
         puts lat
         lon = JSON.parse(_page)['longitude'].to_f
+        # I'm pretty sure none of this is happening since most new signups still do not have a lat lon
+        # Also, this supposedly will give the address of heroku's servers in Ashburn
       end
       
-      puts loc
-puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
       if lat.present?
         @user.update_attribute(:latitude, lat)
       end

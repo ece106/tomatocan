@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
+  has_many :projects 
+  has_many :merchandises #,through => :projects #but merchandise doesnt have to belong to a project 
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable 

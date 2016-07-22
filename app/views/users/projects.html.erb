@@ -1,0 +1,31 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CrowdPublish.TV <%  @user.name %> 's projects</title>
+<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
+<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
+</head>
+
+<div id="projects"  >
+
+<h1><%= @user.name %>'s projects</h1>
+
+Create a <%= button_to "New Project", new_project_path, :method=> :get %> <br><br>
+
+<% if @projects.count != 0 %>
+  <% @projects.each do |project| %>
+    <%= link_to project.name, project %><br>
+    <% if user_signed_in? %>
+      <% if project.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_project_path(project.id) %> 
+      <% end %>
+    <% end %>
+  <% end %>
+<% else %>
+  *** You do not have any projects to edit ***
+<% end %>  
+
+</div>
+</div>

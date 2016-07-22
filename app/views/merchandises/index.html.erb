@@ -1,0 +1,35 @@
+<h1>Listing merchandises</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th>Price</th>
+      <th>Desc</th>
+      <th>Itempic</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @merchandises.each do |merchandise| %>
+      <tr>
+        <td><%= merchandise.name %></td>
+        <td><%= merchandise.user_id %></td>
+        <td><%= merchandise.price %></td>
+        <td><%= merchandise.desc %></td>
+        <td><%= merchandise.itempic %></td>
+        <td><%= link_to 'Show', merchandise %></td>
+        <td><%= link_to 'Edit', edit_merchandise_path(merchandise) %></td>
+        <td><%= link_to 'Destroy', merchandise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Merchandise', new_merchandise_path %>

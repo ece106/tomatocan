@@ -22,8 +22,10 @@ Crowdpublishtv::Application.routes.draw do
   match '/calendar/online' => "calendar#online", :as => :calendar_online, via: 'get'
 
   match '/static_pages/monthly' => "static_pages#monthly", :as => :static_page_monthly, via: 'get'
-  post '/static_pages/payeveryone' => 'static_pages#payeveryone', :as => :static_page_payeveryone
+  post '/static_pages/payeveryone' => 'static_pages#payeveryone', :as => :static_page_payeveryone #I think stripe handles this
 
+  resources :merchandises
+  resources :projects
   resources :rsvpqs
   resources :groups
   resources :purchases
@@ -84,10 +86,13 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
+  match '/:permalink/projects' => "users#projects", :as => :user_projects, via: 'get'
  
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
+
+  match '/projects/:permalink/merchandise' => "projects#merchandise", :as => :project_merchandise, via: 'get'
   
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt
