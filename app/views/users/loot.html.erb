@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CrowdPublish.TV <%  @user.name %> 's projects</title>
+<title>CrowdPublish.TV <%  @user.name %> 's Loot</title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -10,26 +10,28 @@
 
 <div class="blacktxt"  >
 
-<h1><%= @user.name %>'s projects</h1>
+<h1><%= @user.name %>'s Loot</h1>
 
 <% if @user == current_user %>
-  Create a <%= button_to "New Project", new_project_path, :method=> :get %> <br><br>
+  Create a <%= button_to "New Item", new_merchandise_path, :method=> :get %> <br><br>
 <% end %>  
 
-<% if @projects.count != 0 %>
+<% if @loot.count != 0 %>
   <table>
-  <% @projects.each do |project| %>
-    <tr><td><%= link_to project.name, project %></td>
+  <% @loot.each do |merchandise| %>
+    <tr><td><%= link_to merchandise.name, merchandise %></td>
     <% if user_signed_in? %>
-      <% if project.user_id == current_user.id %>
-        <td><%= link_to 'Edit', edit_project_path(project.id) %> </td>
+      <% if merchandise.user_id == current_user.id %>
+        <td><%= button_to 'Edit', edit_merchandise_path(merchandise.id) %> </td>
       <% end %>
     <% end %>
+    <td>$<%= sprintf('%.2f', merchandise.price) %> USD </td> 
+    <td><%= link_to image_tag("buypdf.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => merchandise.id), :method=> :get %> </td>
     </tr>
   <% end %>
   </table>
 <% else %>
-  *** You do not have any projects to edit ***
+  *** You do not have any loot to edit ***
 <% end %>  
 
 </div>

@@ -17,9 +17,15 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/new
   def new
-    @book = Book.find(params[:book_id])
-    @purchase = @book.purchases.new
-    @purchase.bookfiletype = params[:bookfiletype]
+    if params[:book_id].present?
+      @book = Book.find(params[:book_id])
+      @purchase = @book.purchases.new
+      @purchase.bookfiletype = params[:bookfiletype]
+    end  
+    if params[:merchandise_id].present?
+      @merchandise = Merchandise.find(params[:merchandise_id])
+      @purchase = @merchandise.purchases.new
+    end 
     if current_user.stripe_customer_token.present?
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
       sourceid = customer.default_source
@@ -36,13 +42,20 @@ class PurchasesController < ApplicationController
   # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
-    @book = Book.find(@purchase.book_id)
-    @user = User.find(@book.user_id)
+    if @purchase.book_id?
+      puts "Whats bookid doing here"
+      @book = Book.find(@purchase.book_id) #where is @book used
+      @user = @book.user_id
+    end  
+    if @purchase.merchandise_id?
+      @merchandise = Merchandise.find(@purchase.merchandise_id)
+      @user = @merchandise.user_id
+    end 
+
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
-
     if @purchase.save_with_payment
-      redirect_to @purchase, :notice => "Thank you for purchasing this book!"
+      redirect_to @purchase, :notice => "Thank you for purchasing this item!"
       if @purchase.bookfiletype == "pdf" && @book.bookpdf.present?
 ###TEMP STOP DOWNLOAD        redirect_to @book.bookpdf.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
 
@@ -94,7 +107,7 @@ class PurchasesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def purchase_params
-      params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id, :author_id)
+      params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id)
     end
 
 end

@@ -98,6 +98,9 @@ ActiveRecord::Schema.define(version: 20160701000000000) do
     t.string   "itempic"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
+    t.datetime "deadline"
+    t.float    "goal"
   end
 
   create_table "projects", force: true do |t|
@@ -126,6 +129,7 @@ ActiveRecord::Schema.define(version: 20160701000000000) do
     t.float    "pricesold"
     t.decimal  "authorcut",             precision: 8, scale: 2
     t.date     "paid"
+    t.integer  "merchandise_id"
   end
 
   create_table "reviews", force: true do |t|

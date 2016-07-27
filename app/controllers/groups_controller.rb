@@ -22,9 +22,9 @@ class GroupsController < ApplicationController
   def show
     @user = User.find(@group.user_id)
     @currprojects = []
-    Book.find_each do |book|
-      author = User.find(book.user_id)
-      @currprojects <<  {projtitle: book.title, authorname: author.name, fiftychar: book.fiftychar } 
+    Project.find_each do |proj|
+      author = User.find(proj.user_id)
+      @currprojects <<  {projtitle: proj.name, authorname: author.name, desc: proj.mission, id: proj.id } 
     end
   end
 

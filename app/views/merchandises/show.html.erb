@@ -1,29 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @merchandise.name %>
-</p>
+<div class="blacktxt">
+  <h4><%= @merchandise.name %> </h4>
+  $<%= sprintf('%.2f', @merchandise.price) %> USD  
+  <%= link_to image_tag("buypdf.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => @merchandise.id), :method=> :get %> <br>
 
-<p>
-  <strong>User:</strong>
-  <%= @merchandise.user_id %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @merchandise.price %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
+  <%= @author.name %><br><br>
   <%= @merchandise.desc %>
-</p>
-
-<p>
-  <strong>Itempic:</strong>
-  <%= @merchandise.itempic %>
-</p>
-
-<%= link_to 'Edit', edit_merchandise_path(@merchandise) %> |
-<%= link_to 'Back', merchandises_path %>
+</div>

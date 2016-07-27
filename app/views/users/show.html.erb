@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> <%  @user.name %> </title>
+<title> <% "Support " + @user.name + " projects" %> </title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -11,13 +11,19 @@
 <% @title=" Watch " + @user.name + " videos here!" %>
 
 <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 info-content" >
-  <div class="profilebox" >
-    <% if @user.about %> 
-      <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
-    <% end %>
-  </div>
   
 <% if @user.author == 2 %>
+  <% if @projects %>
+    Support my current project!<br><br>
+    <table>
+      <% @projects.each do |proj| %>
+        <tr><td style='font-weight:bold;'><%= link_to(proj.name, project_path(proj.permalink)) %></td><td><%= button_to(name = "Support " + proj.name, project_path(proj.permalink)) %></td></tr>
+        <tr><td><%= truncate(proj.mission , :length => 200, :separator => ' ') %><br><br></td></tr>
+      <% end %>
+    <table>
+  <% end %>
+
+  <br><br>
 
   <div class="row" >
     <div class="col-lg-7 col-md-9 col-sm-10 col-xs-12 " >
@@ -84,6 +90,11 @@
     <br><br>
 
 <% else  %>
+  <div class="profilebox" >
+    <% if @user.about %> 
+      <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
+    <% end %>
+  </div>
   <div class="row" >
     <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
       <% if @user.twitter %>

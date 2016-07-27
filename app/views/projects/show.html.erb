@@ -1,24 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<div class="blacktxt">
+  <h3><%= @project.name %> </h3>
+  <%= @author.name %><br><br>
+  <strong>Mission:</strong>  <%= @project.mission %><br><br>
+  <strong>Loot:</strong>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user_id %>
-</p>
+  <% if @merchandise %>
+    <table>
+      <% @merchandise.each do |merch| %>
+        <tr><td style='font-weight:bold;'><%= link_to(merch.name, merchandise_path(merch.id)) %></td><td><%= button_to(name = "Buy " + merch.name, merchandise_path(@project.id)) %></td></tr>
+        <tr><td><%= truncate(merch.desc , :length => 200, :separator => ' ') %><br><br></td></tr>
+      <% end %>
+    <table>
+  <% end %>
 
-<p>
-  <strong>Mission:</strong>
-  <%= @project.mission %>
-</p>
-
-<p>
-  <strong>Projectpic:</strong>
-  <%= @project.projectpic %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+</div>

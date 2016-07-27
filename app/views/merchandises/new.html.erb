@@ -1,7 +1,7 @@
 <div class="row" >
   <div class="col-md-7 col-sm-offset-2 col-sm-8 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
 
-<h3>Enter A Reward For Your Project</h3>
+<h3>Enter Loot</h3>
 
 <%= form_for(@merchandise) do |f| %>
   <% if @merchandise.errors.any? %>
@@ -16,16 +16,12 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="blacktxt">
     <b>Reward Name </b><br>
     <%= f.text_field :name, :size => 80, placeholder: "The Best Project Ever" %><br><br>
-  </div>
-  <div class="field">
     <b>About this reward </b><br>
       What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
-  </div>
-  <div class="field">
     <b>Price </b><br>
     <%= f.text_field :price, :size => 80, placeholder: "$10.00" %>
   </div>

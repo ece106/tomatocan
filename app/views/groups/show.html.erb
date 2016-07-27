@@ -11,8 +11,8 @@ Projects we support: <br>
       <table>
         <tr style='font-weight:bold;'><td><b>Project</td><td>Creator</b></td><td></td></tr>
         <% @currprojects.each do |proj| %>
-          <tr><td style='font-weight:bold;'><%= proj[:projtitle] %></td><td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], users_path ) %></td></tr>
-          <tr><td><%= proj[:fiftychar] %><br><br></td></tr>
+          <tr><td style='font-weight:bold;'><%= proj[:projtitle] %></td><td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:id]) ) %></td></tr>
+          <tr><td><%= proj[:desc] %><br><br></td></tr>
         <% end %>
       </table><br>
 

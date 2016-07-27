@@ -87,12 +87,14 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
   match '/:permalink/projects' => "users#projects", :as => :user_projects, via: 'get'
+  match '/:permalink/loot' => "users#loot", :as => :user_loot, via: 'get'
  
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
 
   match '/projects/:permalink/merchandise' => "projects#merchandise", :as => :project_merchandise, via: 'get'
+  match '/projects/:permalink/newloot' => "projects#newloot", :as => :project_newloot, via: 'get'
   
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt
@@ -100,6 +102,12 @@ Crowdpublishtv::Application.routes.draw do
 #  get '/:friendly_id', to: 'groups#show' 
 
   resources :books do
+    resources :purchases
+    member do
+      get 'buy'
+    end
+  end
+  resources :merchandises do
     resources :purchases
     member do
       get 'buy'

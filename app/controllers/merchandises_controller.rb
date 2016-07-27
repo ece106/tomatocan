@@ -8,6 +8,7 @@ class MerchandisesController < ApplicationController
 
   # GET /merchandises/1
   def show
+    @author = User.find(@merchandise.user_id)
   end
 
   # GET /merchandises/new
@@ -24,9 +25,9 @@ class MerchandisesController < ApplicationController
     @merchandise = current_user.merchandises.build(merchandise_params)
 
     if @merchandise.save
-      redirect_to new_merchandise_path, notice: 'Reward was successfully created.'
+      redirect_to user_profile_path(current_user.permalink), notice: 'Loot was successfully created.'
     else
-      render action: 'new'
+      render action: 'new', :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
     end
   end
 
@@ -53,6 +54,6 @@ class MerchandisesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def merchandise_params
-      params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic)
+      params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :project_id, :goal, :deadline)
     end
 end

@@ -8,6 +8,12 @@
 <meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
+  <div class="profilebox" >
+    <% if @user.about %> 
+      <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
+    <% end %>
+  </div>
+
 <% if @user.blogurl %>
   <% if @user.blogurl.match /http/ %>
     <div class="blog">

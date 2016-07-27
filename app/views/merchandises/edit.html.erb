@@ -1,6 +1,29 @@
-<h1>Editing merchandise</h1>
+<h3>Enter Loot</h3>
 
-<%= render 'form' %>
+<%= form_for(@merchandise) do |f| %>
+  <% if @merchandise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@merchandise.errors.count, "error") %> prohibited this merchandise from being saved:</h2>
 
-<%= link_to 'Show', @merchandise %> |
-<%= link_to 'Back', merchandises_path %>
+      <ul>
+      <% @merchandise.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="blacktxt">
+    <b>Item Name </b><br>
+    <%= f.text_field :name, :size => 80, placeholder: "The Best Project Ever" %><br><br>
+    <b>About this item </b><br>
+      What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
+    <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
+    <b>Price </b>(in USD) $<%= f.text_field :price, placeholder: "10.00" %><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<br><br>

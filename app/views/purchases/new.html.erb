@@ -8,6 +8,7 @@
       <%= f.hidden_field :stripe_card_token %>
       <%= f.hidden_field :bookfiletype %>
       <%= f.hidden_field :book_id %>
+      <%= f.hidden_field :merchandise_id %>
       <% if @purchase.errors.any? %>
         <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
         <% @purchase.errors.full_messages.each do |msg| %> 

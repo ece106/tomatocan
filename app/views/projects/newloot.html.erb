@@ -1,0 +1,37 @@
+<div class="blacktxt">
+
+<%= form_for @merchandise, :html => {:multipart => true} do |f| %>
+    <b>Reward Name </b><br>
+    <%= f.text_field :name, :size => 80, placeholder: "Great Loot" %><br><br>
+    <b>About this reward </b><br>
+      What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
+    <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
+    <b>Price </b><br>
+    <%= f.text_field :price, :size => 80, placeholder: "$10.00" %>
+
+    <%= f.hidden_field :project_id, value: @project.id %>
+
+
+    <%= f.submit "Save New Loot" %>
+<% end %>
+
+<br><br><br>
+
+<% if @project.merchandises.any? %>
+  <% @lootlist.each do |loot| %>
+    <%= form_for(loot) do |f| %>
+
+      <b>Reward Name </b><br>
+      <%= f.text_field :name, :size => 80, placeholder: "Great Loot" %><br><br>
+      <b>About this reward </b><br>
+      What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
+      <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
+      <b>Price </b><br>
+      <%= f.text_field :price, :size => 80, placeholder: "$10.00" %>
+
+      <%= f.submit("Save Changes for " + loot.name ) %><br><br><br>
+    <% end %>
+  <% end %>
+<% end %>
+<br><br>
+</div>
