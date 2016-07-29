@@ -1,37 +1,14 @@
 <sidebar class>
-<div class="row">
-  <div class="col-md-5 col-sm-5 col-xs-5" >
-    <% if @group.grouppic.present? && @group.grouppic != '' %>
-      <%= image_tag @group.grouppic, :size => "150x150" %>
-    <% #elsif @user.profilepicurl %>
-      <% #if @user.profilepicurl.match(/http/) %>
-        <% #= image_tag @user.profilepicurl, :size => "150x150" %> 
-        <br>
-      <% # else %>
-        <% #= image_tag "whiteBk.jpg", :size => "150x150" %>
-      <% #end %>
-    <% else %>
-      <%= image_tag "whiteBk.jpg", :size => "150x150" %>
-    <% end %>
+  <div class="groupname" >
+    <%= @group.name %>
+  </div><br>
+  <% if current_user && @group.user_id == current_user.id %>
+    <%= button_to "Edit Group", edit_group_path(@group.permalink), :method=> :get %>
+    <br><br>
+  <% end %> 
+  <strong>About Us:</strong>
+  <% if @group.about %> 
+    <%= simple_format @group.about.gsub(/\n/, '<br>') %>
+  <% end %>
 
-    <% if current_user && @group.user_id == current_user.id %>
-        <%= button_to "Edit Group", edit_group_path(@group.permalink), :method=> :get %>
-    <% end %> 
-  </div>
-
-  <div class="col-md-7 col-sm-7 col-xs-7" >
-    <div class="groupname" >
-      <%= @group.name %>
-    </div>
-  </div>
-</div>
-
-        <div class="row"  style="margin-top:5px;" >
-          <div class="col-md-12 col-sm-12 col-xs-12" >
-            <div class="fanbook" >
-              <br>List of Members (coming soon)<br><br>
-            </div>
-          </div>
-        </div>
-  
 </sidebar>

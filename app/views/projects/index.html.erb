@@ -1,33 +1,24 @@
-<h1>Listing projects</h1>
+<h3>Current Projects To Support</h3>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
+      <th>Creator</th>
       <th>Mission</th>
-      <th>Projectpic</th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @projects.each do |project| %>
+    <% @support.each do |project| %>
       <tr>
-        <td><%= project.name %></td>
-        <td><%= project.user_id %></td>
-        <td><%= project.mission %></td>
-        <td><%= project.projectpic %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= project[:name] %></td>
+        <td><%= project[:creator] %></td>
+        <td><%= project[:mission] %></td>
+        <td><%= link_to 'Support', project %></td> <% "Run code to send email to author asking permission to post. Add record to Agreements with project_id and group_id=group that curruser owns" %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+<br><br>

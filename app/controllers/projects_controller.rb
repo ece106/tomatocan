@@ -4,6 +4,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all
+    @support = []
+    active = Project.where("deadline > ?", Time.now) 
+    active.find_each do |proj|
+      author = User.find(proj.user_id).name
+      @support <<  {name: proj.name, creator: author, mission: proj.mission} 
+    end 
   end
 
   # GET /projects/1
@@ -61,6 +67,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def project_params
-      params.require(:project).permit(:name, :user_id, :mission, :projectpic, :permalink)
+      params.require(:project).permit(:name, :user_id, :mission, :projectpic, :permalink, :deadline)
     end
 end

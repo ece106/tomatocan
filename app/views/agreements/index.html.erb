@@ -1,0 +1,29 @@
+<h1>Listing agreements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Group</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @agreements.each do |agreement| %>
+      <tr>
+        <td><%= agreement.project_id %></td>
+        <td><%= agreement.group_id %></td>
+        <td><%= link_to 'Show', agreement %></td>
+        <td><%= link_to 'Edit', edit_agreement_path(agreement) %></td>
+        <td><%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Agreement', new_agreement_path %>

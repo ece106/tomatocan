@@ -1,5 +1,7 @@
 Crowdpublishtv::Application.routes.draw do
 
+  resources :agreements
+
 #  authenticated :user do
 #    root to: "users#show"
      root to: "static_pages#home"
@@ -88,6 +90,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
   match '/:permalink/projects' => "users#projects", :as => :user_projects, via: 'get'
   match '/:permalink/loot' => "users#loot", :as => :user_loot, via: 'get'
+  match '/:permalink/pastprojects' => "users#pastprojects", :as => :user_pastprojects, via: 'get'
  
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'

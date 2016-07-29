@@ -14,6 +14,16 @@ class UsersController < ApplicationController
     @user = User.find_by_permalink(params[:permalink])
 #    @user = User.find(params[:id])
     @books = @user.books
+    @project = @user.projects("created_at").last
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def pastprojects
+    @user = User.find_by_permalink(params[:permalink])
+#    @user = User.find(params[:id])
     @projects = @user.projects.sort! { |a, b| a.created_at <=> b.created_at }
 
     respond_to do |format|

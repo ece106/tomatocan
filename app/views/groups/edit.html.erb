@@ -1,7 +1,7 @@
 <div class="row" >
   <div class="col-md-7 col-sm-offset-2 col-sm-8 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
     <% if @group.user_id == current_user.id %>
-      <%= link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% "link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' } Don't really want this capability right now" %>
       <h1>Edit group data</h1>
 
 <%= form_for(@group) do |f| %>
@@ -20,23 +20,23 @@
   <div class="field">
     Group Name <br>
     <%= f.text_field :name, :size => 80 %>
-  </div>
+  </div><br>
   <div class="field">
     Group page URL ending (http://www.CrowdPublish.TV/yourgroupurl) - numbers and letters ONLY. <br />
-    <%= f.text_field :permalink, :size => 80, placeholder:  "YourGroupURL"  %>  <p> 
-  </div>
+    <%= f.text_field :permalink, :size => 80, placeholder:  "YourGroupURL"  %>  
+  </div><br>
 
   <div class="field">
     Address or zip code of typical meeting place <br>
     <%= f.text_field :address, :size => 80 %>
-  </div>
+  </div><br>
   <div class="field">
     About group: How often do you usually meet? What would people likely join your group for? <br>
     <%= f.text_area :about, :cols => 82, :rows => 5 %>
-  </div>
+  </div><br>
   <div class="field" style= "text-align:left">
-      <p>Group type:
-      <p><%= f.radio_button(:grouptype, 1) %>
+      Group type:
+      <br><%= f.radio_button(:grouptype, 1) %>
       <%= label_tag(:grouptype_child, "Critique Group") %>
       <br><%= f.radio_button(:grouptype, 2) %>
       <%= label_tag(:grouptype_adult, "Book Club") %>
@@ -50,22 +50,22 @@
       <%= label_tag(:grouptype_adult, "Book Store") %>
       <br><%= f.radio_button(:grouptype, 7) %>
       <%= label_tag(:grouptype_adult, "Other") %>
-  </div>
+  </div><br>
   <div class="field">
-      <br>URL to your organization's blog or similar type of webpage you'd like to embed in your CrowdPublish.TV site (e.g. meetup or facebook page) <br>
+      URL to your organization's blog or similar type of webpage you'd like to embed in your CrowdPublish.TV site (e.g. meetup or facebook page) <br>
       <%= f.text_area :newsurl, :cols => 40, :rows => 1, placeholder: "http://NewsfeedURL.com" %>
+  </div>    
       <br>Twitter handle (don't include the '@' symbol nor the entire url) <br>
       <div class="blacktxt" style="vertical-align: text-top">
         <b>@</b> <%= f.text_area :twitter, :cols => 37, :rows => 1, placeholder: "twitterhandle" %>
-  </div>
+  </div><br>
   <div class="actions">
     <%= f.submit %>
-  </div>
+  </div><br>
 <% end %>
 
-<%= link_to 'View Group', @group %>
- 
+<%= link_to 'View Group home page', @group %>
 <% end %>
 
 </div>
-</div>
+</div><br><br>

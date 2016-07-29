@@ -3,19 +3,8 @@
 
 <p id="notice"><%= notice %></p>
 
-<% if @purchase.book_id.present? %>
-  <% book = Book.find(@purchase.book_id) %>
-  <b><%= book.title %> </b>
-  <% user = User.find(book.user_id) %>
-  <br>by
-<% end %>
-<% if @purchase.merchandise_id.present? %>
-  <% loot = Merchandise.find(@purchase.merchandise_id) %>
-  <b><%= loot.name %> </b>
-  <% user = User.find(loot.user_id) %>
-  <br>from
-<% end %>
-  <%= user.name %>
+  <b><%= @itemname %> </b>
+  <br>by <%= @user.name %>
 
   </div>
 </div>

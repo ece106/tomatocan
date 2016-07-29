@@ -10,6 +10,16 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   def show
     @purchase = Purchase.find(params[:id])
+    if @purchase.book_id.present?
+      book = Book.find(@purchase.book_id) 
+      @itemname = book.title
+      id = book.user_id
+    elsif @purchase.merchandise_id.present?
+      loot = Merchandise.find(@purchase.merchandise_id) 
+      @itemname = loot.name
+      id = loot.user_id
+    end  
+    @user = User.find(id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @purchase }

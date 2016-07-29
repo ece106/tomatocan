@@ -5,6 +5,9 @@ class Group < ActiveRecord::Base
   before_save { |group| group.permalink = permalink.downcase }
 
   belongs_to :user
+  has_many :agreements
+  has_many :projects, through: :agreements
+
   validates :user_id, presence: true
   validates :name, presence: true
   validates :address, presence: true

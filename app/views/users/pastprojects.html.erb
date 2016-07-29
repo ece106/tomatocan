@@ -13,11 +13,12 @@
 <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12 info-content" >
   
 <% if @user.author == 2 %>
-  <% if @project %>
-    Support my current project!<br><br>
+  <% if @projects %>
     <table>
-        <tr><td style='font-weight:bold;'><%= link_to(@project.name, project_path(@project.permalink)) %></td><td><%= button_to(name = "Support " + @project.name, project_path(@project.permalink)) %></td></tr>
-        <tr><td><%= truncate(@project.mission , :length => 200, :separator => ' ') %><br><br></td></tr>
+      <% @projects.each do |proj| %>
+        <tr><td style='font-weight:bold;'><%= link_to(proj.name, project_path(proj.permalink)) %></td><td><%= button_to(name = "Support " + proj.name, project_path(proj.permalink)) %></td></tr>
+        <tr><td><%= truncate(proj.mission , :length => 200, :separator => ' ') %><br><br></td></tr>
+      <% end %>
     <table>
   <% end %>
 

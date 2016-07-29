@@ -51,6 +51,7 @@ textarea {
     background-color: #2c3651;
     border-color: #fff;
     border-radius:0;
+    padding-right: 10px;
 }
 
 .navbar-grouppage {
@@ -58,6 +59,7 @@ textarea {
     background-color: #681ace;
     border-color: #fff;
     border-radius:0;
+    padding-right: 10px;
 }
 
 .navbar-custom {
@@ -182,11 +184,12 @@ footer {
 sidebar { 
   float:left; 
   width:350px; 
+  min-height: 100vh;
   background-color: #D3C9AE;
-  padding-left: 0px;
+  padding-left: 5px;
   padding-top: 20px; 
-  padding-bottom: 10px;
-  margin-top: -40px; //don't know why there's a huge margin without this
+  padding-bottom: 20px;
+  margin-top: -40px; //don't know why there's a huge white margin without this
   .wrapper {
     .profile-pic {
       margin-right: 5px;

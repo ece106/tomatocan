@@ -3,15 +3,16 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h2><%= @group.name %></h2>
-</p>
+    <% if @group.grouppic.present? && @group.grouppic != '' %>
+      <%= image_tag @group.grouppic, :size => "750x150" %>
+    <% end %>
 
-Projects we support: <br>
+    <h2>Projects we support: </h2>
       <table>
         <tr style='font-weight:bold;'><td><b>Project</td><td>Creator</b></td><td></td></tr>
         <% @currprojects.each do |proj| %>
-          <tr><td style='font-weight:bold;'><%= proj[:projtitle] %></td><td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:id]) ) %></td></tr>
+          <tr><td style='font-weight:bold;'><%= proj[:projtitle] %></td><td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:id]) ) %></td></tr> 
+          <% "Instead of projpath, this should go to purchases_new(group_id, curruser, merch_id)" %>
           <tr><td><%= proj[:desc] %><br><br></td></tr>
         <% end %>
       </table><br>
@@ -35,13 +36,6 @@ Projects we support: <br>
   <%= link_to @user.name, user_profile_path(@user.permalink) %>
 </p>
   
-<p>
-  <strong>About:</strong>
-  <% if @group.about %> 
-    <%= simple_format @group.about.gsub(/\n/, '<br>') %>
-  <% end %>
-</p>
-
   <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=12&markers=#{@group.latitude}%2C#{@group.longitude}" %><br><br>
 
 Campaigns we have supported in the past:<br>
