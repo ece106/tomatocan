@@ -17,12 +17,12 @@ Stage 3. Interview over Google Hangouts: After at least 3 tests have been pushed
 
 Criteria for candidate selection: 
 
-- 1. Quality of responses to quiz questions
-- 2. Quality & coverage of tests written for Stage 2
-- 3. Self motivated / ability to meet deadlines without being reminded
-- 4. Judgment skills / ability to figure out useful solutions related to the tutorial on your own
-- 5. Interview demeanor/interest in project
-- 6. Women will be given higher priority
+1. Quality of responses to quiz questions
+2. Quality & coverage of tests written for Stage 2
+3. Self motivated / ability to meet deadlines without being reminded
+4. Judgment skills / ability to figure out useful solutions related to the tutorial on your own
+5. Interview demeanor/interest in project
+6. Women will be given higher priority
 
 The Mentoring Program:
 
@@ -41,9 +41,10 @@ Possible direction after the first 10 weeks:
 Written job references:
 
 Upon completion of the first 10 weeks, Dr. Schaefer would be willing to serve as a reference for candidates to potential employers. There are several things to consider when working toward a written reference regarding employment skills:
-- 1. Skill level – Were you able to complete your agreed-upon tasks correctly
-- 2. Diligence – Did you complete all the tasks you agreed to do in a timely manner
-- 3. Commitment level – Did you take on meaningful tasks and continue with the program
+
+1. Skill level – Were you able to complete your agreed-upon tasks correctly?
+2. Diligence – Did you complete all the tasks you agreed to do in a timely manner?
+3. Commitment level – Did you take on meaningful tasks and continue with the program?
 
 For those who do not become one of the first 6:
 
