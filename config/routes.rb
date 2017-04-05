@@ -102,6 +102,9 @@ Crowdpublishtv::Application.routes.draw do
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt
   post '/:permalink/createstripeacnt' => 'users#createstripeacnt', :as => :user_createstripeacnt
+
+  post '/projects/addprojecttogroup'
+
 #  get '/:friendly_id', to: 'groups#show' 
 
   resources :books do

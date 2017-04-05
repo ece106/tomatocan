@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.find_by_permalink(params[:permalink])
 #    @user = User.find(params[:id])
     @books = @user.books
-    @project = @user.projects("created_at").last
+    @project = @user.projects.order('created_at').last #do i want all projects that havent met deadline
 
     respond_to do |format|
       format.html # show.html.erb
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   end
   def projects
     @user = User.find_by_permalink(params[:permalink])
-    @projects = Project.where( "user_id = ?", @user.id )
+    @projects = Project.where( "user_id = ?", @user.id ).order('created_at')
     respond_to do |format|
       format.html 
       format.json { render json: @user }

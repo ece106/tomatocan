@@ -27,14 +27,17 @@ class MerchandisesController < ApplicationController
     if @merchandise.save
       redirect_to user_profile_path(current_user.permalink), notice: 'Loot was successfully created.'
     else
-      render action: 'new', :notice => "Your book was not saved. Check the required info (*), filetypes, or character counts."
+      render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
     end
   end
 
   # PATCH/PUT /merchandises/1
   def update
-    if @merchandise.update(merchandise_params)
-      redirect_to @merchandise, notice: 'Merchandise was successfully updated.'
+    if merchandise_params[:project_id].present? && @merchandise.update(merchandise_params)
+      @project = Project.find(@merchandise.project_id)
+      redirect_to edit_project_path(@project.id), notice: 'Loot was successfully added to project.'
+    elsif @merchandise.update(merchandise_params)
+      redirect_to @merchandise, notice: 'Loot was successfully updated.'
     else
       render action: 'edit'
     end

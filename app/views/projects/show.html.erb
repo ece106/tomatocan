@@ -9,10 +9,17 @@
   <% if @merchandise %>
     <table>
       <% @merchandise.each do |merch| %>
-        <tr><td style='font-weight:bold;'><%= link_to(merch.name, merchandise_path(merch.id)) %></td><td><%= button_to(name = "Buy " + merch.name, merchandise_path(@project.id)) %></td></tr>
+        <tr><td style='font-weight:bold;'><%= link_to(merch.name, merchandise_path(merch.id)) %></td><td><%= link_to image_tag("buynow.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => merch.id), method: :get %> </td></tr>
         <tr><td><%= truncate(merch.desc , :length => 200, :separator => ' ') %><br><br></td></tr>
+
       <% end %>
     <table>
   <% end %>
 
-</div>
+  <% if user_signed_in? %>
+    <% if @project.user_id == current_user.id %>
+      <%= button_to(name = "Edit Project", edit_project_path(@project.id), :method => :get) %>
+    <% end %>
+  <% end %>
+
+</div><br><br><br>

@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user! , only: [:edit, :update, :new]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner, only: [:show, :edit, :update, :destroy]
   layout :resolve_layout
 
   def index
@@ -20,13 +21,26 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @user = User.find(@group.user_id)
+    currtime = Time.now
     @currprojects = []
-    @group.projects.find_each do |proj|
-puts "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
-puts proj
+    @group.projects.where("deadline > ?", currtime).find_each do |proj|
       author = User.find(proj.user_id)
-      @currprojects <<  {projtitle: proj.name, authorname: author.name, desc: proj.mission, id: proj.id } 
+      if proj.projectpic.present?
+        picture = proj.projectpic
+      else
+        picture = "whiteBk.jpg"  
+      end
+      @currprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
+    end
+    @pastprojects = []
+    @group.projects.where("deadline < ?", currtime).find_each do |proj|
+      author = User.find(proj.user_id)
+      if proj.projectpic.present?
+        picture = proj.projectpic
+      else
+        picture = "whiteBk.jpg"  
+      end
+      @pastprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
     end
   end
 
@@ -109,9 +123,13 @@ puts proj
       @group = Group.friendly.find(params[:id])
     end
 
+    def set_owner
+      @user = User.find(@group.user_id)
+    end
+
     # Only allow a trusted parameter "white list" through.
     def group_params
-      params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about, :grouppic, :permalink, :twitter, :newsurl )
+      params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about, :grouppic, :permalink, :twitter, :newsurl, :callaction )
     end
 
     def resolve_layout

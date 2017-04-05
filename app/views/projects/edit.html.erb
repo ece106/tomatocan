@@ -1,31 +1,58 @@
 <h4>Edit <%= @project.name %></h4>
 
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<% if user_signed_in? %>
+  <% if @project.user_id == current_user.id %>
+      <div class="blacktxt" style= "text-align:left">
+        <br><b>Add Loot to be sold in support of Project <%= @project.name %>: </b><br>
+        <% if @dropdown.any? %>
+          <% @dropdown.each do |loot| %>
+            <%= form_for(loot) do |f| %>
+              <%= f.hidden_field :project_id, :value => @project.id %> 
+              <%= f.submit("Add " + loot.name ) %><br> 
+              <div class="covername"> <br> </div>
+            <% end %>
+          <% end %>
+        <% elsif @lootlist.any? %>
+          Please add merchandise to your account that you are able to sell and deliver in support of <%= project.name %> 
+          <%= button_to(name = "Create Loot", new_merchandise_path, :method => :get) %>
+        <% end %>  
+      </div>
 
-      <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <div class="blacktxt" style= "text-align:left">
+        <br><b>Create a new item of Loot to sell </b><br>
+        <%= button_to(name = "Enter Item Info", new_merchandise_path, :method => :get) %>
+      </div><br>
+  
+    <%= form_for(@project) do |f| %>
+      <% if @project.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+          <ul>
+          <% @project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
+
+      <div class="blacktxt">
+        <b>Project Name </b><br>
+        <%= f.text_field :name, :size => 80, placeholder: "The Best Project Ever" %>
+        <br><br>
+        <b>URL ending</b> - numbers and letters ONLY. <br />
+        www.CrowdPublish.TV/projects/<%= f.text_field :permalink, :size => 50, placeholder:  "YourprojectURLEnding" %>  <br><br>
+        <b>About project </b><br>
+        What is your mission statement? What will you accomplish? (You may add to this later)<br>
+        <%= f.text_area :mission, :cols => 82, :rows => 7 %><br><br>
+        <b>Deadline </b><br>
+        When does this project expire?<br>
+        <%= f.date_select :deadline %><br>
+      </div>
+
+      <div class="field" style= "text-align:left">
+        <br><br><%= f.submit %><br>
+      </div>
+   
+    <% end %>
   <% end %>
-
-  <div class="blacktxt">
-    <b>Project Name </b><br>
-    <%= f.text_field :name, :size => 80, placeholder: "The Best Project Ever" %>
-    <br><br>
-    <b>URL ending</b> - numbers and letters ONLY. <br />
-    www.CrowdPublish.TV/projects/<%= f.text_field :permalink, :size => 50, placeholder:  "YourprojectURLEnding" %>  <br><br>
-    <b>About project </b><br>
-    What is your mission statement? What will you accomplish? (You may add to this later)<br>
-    <%= f.text_area :mission, :cols => 82, :rows => 7 %><br><br>
-    <b>Deadline </b><br>
-    When does this project expire?<br>
-    <%= f.date_select :deadline %><br>
-  </div>
-
-    <%= f.submit %><br>
 <% end %><br><br><br>

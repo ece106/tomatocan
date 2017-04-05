@@ -1,46 +1,47 @@
-<div class="row" >
-  <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " style= "text-align:left"  >
-
 <p id="notice"><%= notice %></p>
 
-    <% if @group.grouppic.present? && @group.grouppic != '' %>
-      <%= image_tag @group.grouppic, :size => "750x150" %>
+  <% if @group.grouppic.present? && @group.grouppic != '' %>
+    <%= image_tag @group.grouppic, :size => "850x150" %>
+  <% else %>  
+    <%= image_tag "crowddark.png", :size => "850x150" %>
+  <% end %>
+
+  <h2>Projects we support: </h2>
+  <% if @currprojects.present? %>  
+    <table>
+      <% @currprojects.each do |proj| %>
+        <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), project_path(proj[:permalink]) %></td>
+        <td style='font-weight:bold; font-size:22px;'><%= link_to proj[:projtitle], project_path(proj[:permalink]) %></td>
+        <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:permalink]), method: "get" ) %></td></tr> 
+        <% "Instead of projpath, this should get to purchases_new(group_id, curruser, merch_id)" %>
+        <tr><td></td><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %><br><br></td></tr>
+      <% end %>
+    </table>
+  <% else %>
+    We are not supporting any projects at this time. 
+    <% if @pastprojects.present? %>
+      Please support one of our past authors and artists by clicking a button below to their completed project.
+    <% end %><br><br><br>
+  <% end %>  
+
+  <div class="support" >
+    <% if @group.callaction.present? %> 
+      <%= simple_format @group.callaction.gsub(/\n/, '<br>') %><br><br><br>
+    <% elsif @currprojects.present? %>  
+      Please support our projects by clicking on a button above.<br><br><br>
     <% end %>
-
-    <h2>Projects we support: </h2>
-      <table>
-        <tr style='font-weight:bold;'><td><b>Project</td><td>Creator</b></td><td></td></tr>
-        <% @currprojects.each do |proj| %>
-          <tr><td style='font-weight:bold;'><%= proj[:projtitle] %></td><td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:id]) ) %></td></tr> 
-          <% "Instead of projpath, this should go to purchases_new(group_id, curruser, merch_id)" %>
-          <tr><td><%= proj[:desc] %><br><br></td></tr>
-        <% end %>
-      </table><br>
-
-<p>
-  <% if @group.grouptype == 1 %> Critique Group 
-  <% elsif @group.grouptype == 2 %> Book Club
-  <% elsif @group.grouptype == 3 %> Writers Organization
-  <% elsif @group.grouptype == 4 %> Informal Neighborhood Writer Gathering
-  <% elsif @group.grouptype == 5 %> Library
-  <% elsif @group.grouptype == 6 %> Book Store
-  <% else @group.grouptype == 7 %> 
-  <% end %></p>
-<p>
-  <strong>Usual meeting place or neighborhood:</strong>
-  <%= @group.address %>
-</p>
-
-<p>
-  <strong>Group Host:</strong>
-  <%= link_to @user.name, user_profile_path(@user.permalink) %>
-</p>
-  
-  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=12&markers=#{@group.latitude}%2C#{@group.longitude}" %><br><br>
-
-Campaigns we have supported in the past:<br>
-
-
-
   </div>
-</div>
+
+  <% if @pastprojects.present? %>
+    <h4>CrowdPublish.TV Projects we've supported in the past:</h4>
+    <table>
+      <% @pastprojects.each do |proj| %>
+        <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), project_path(proj[:permalink]) %></td>
+          <td style='font-weight:bold;'><%= link_to proj[:projtitle], project_path(proj[:permalink]) %></td>
+          <td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:permalink]), method: "get" ) %></td></tr> 
+        <tr><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %><br><br></td></tr>
+      <% end %>
+    </table><br>
+  <% end %>
+
+<br><br>

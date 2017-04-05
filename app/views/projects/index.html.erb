@@ -15,8 +15,9 @@
       <tr>
         <td><%= project[:name] %></td>
         <td><%= project[:creator] %></td>
-        <td><%= project[:mission] %></td>
-        <td><%= link_to 'Support', project %></td> <% "Run code to send email to author asking permission to post. Add record to Agreements with project_id and group_id=group that curruser owns" %>
+        <td><%= truncate(project[:mission], :length => 200, :separator => ' ') %></td>
+        <td><%= link_to 'Support', project_path(project[:id]) %></td> <% "Run code to send email to author asking permission to post. Add record to Agreements with project_id and group_id=group that curruser owns" %>
+        <td><%= link_to image_tag("groupsupport.png"), project_addprojecttogroup_path, method: :post %></td>
       </tr>
     <% end %>
   </tbody>

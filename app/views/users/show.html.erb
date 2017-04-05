@@ -14,9 +14,9 @@
   
 <% if @user.author == 2 %>
   <% if @project %>
-    Support my current project!<br><br>
+    <h1>Support my current project!</h1><br><br>
     <table>
-        <tr><td style='font-weight:bold;'><%= link_to(@project.name, project_path(@project.permalink)) %></td><td><%= button_to(name = "Support " + @project.name, project_path(@project.permalink)) %></td></tr>
+        <tr><td style='font-weight:bold;'><%= link_to(@project.name, project_path(@project.permalink)) %></td><td><%= button_to(name = "Support " + @project.name, project_path(@project.permalink), method: :get) %></td></tr>
         <tr><td><%= truncate(@project.mission , :length => 200, :separator => ' ') %><br><br></td></tr>
     <table>
   <% end %>

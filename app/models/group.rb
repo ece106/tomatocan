@@ -8,6 +8,9 @@ class Group < ActiveRecord::Base
   has_many :agreements
   has_many :projects, through: :agreements
 
+  mount_uploader :grouppic, GrouppicUploader
+
+
   validates :user_id, presence: true
   validates :name, presence: true
   validates :address, presence: true
@@ -17,7 +20,5 @@ class Group < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
-
-#  mount_uploader :profilepic, ProfilepicUploader
 
 end

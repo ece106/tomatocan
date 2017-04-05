@@ -8,14 +8,22 @@ class ProjectsController < ApplicationController
     active = Project.where("deadline > ?", Time.now) 
     active.find_each do |proj|
       author = User.find(proj.user_id).name
-      @support <<  {name: proj.name, creator: author, mission: proj.mission} 
+      @support <<  {name: proj.name, creator: author, mission: proj.mission, id: proj.id} 
     end 
+    @currusergroup = Group.where("user_id > ?", current_user.id) 
+  end
+
+  def addprojecttogroup
+    puts "HHHHHHHHHHHHHHOOOOOOOOOOOOO"
+    #Agreements.group_id = @currusergroup.id 
+    #@project_id = project.id
   end
 
   # GET /projects/1
   def show
     @merchandise = @project.merchandises
     @author = User.find(@project.user_id)
+    @merchandises = @author.merchandises
   end
 
   # GET /projects/new
@@ -23,15 +31,23 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  def newloot
+  def newloot  
     @project = Project.find_by_permalink(params[:permalink])
     @merchandises = @project.merchandises
     @merchandise = @project.merchandises.build 
     @lootlist = Merchandise.where(:project_id => @project.id)
+    dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('project_id IS NULL')
+    dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("project_id != ?", @project.id)
+    @dropdown = dropdown1 + dropdown2
   end
 
   # GET /projects/1/edit
   def edit
+    @lootlist = Merchandise.where( "user_id = ?", current_user.id)
+    dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('project_id IS NULL')
+    dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("project_id != ?", @project.id)
+    @dropdown = dropdown1 + dropdown2
+    @merchandise = @project.merchandises.build 
   end
 
   # POST /projects

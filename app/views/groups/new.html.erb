@@ -14,28 +14,27 @@
     </div>
   <% end %>
 
-
   <div class="field">
     <b>Group Name </b><br>
-    <%= f.text_field :name, :size => 80, placeholder: "The Best Booklovers Ever" %>
-  </div>
+    <%= f.text_field :name, :size => 80, placeholder: "The Best CrowdPublishers Ever" %>
+  </div><br>
   <div class="field">
-    <b>URL ending</b> - numbers and letters ONLY. <br />
-    www.CrowdPublish.TV/groups/<%= f.text_field :permalink, :size => 50, placeholder:  "YourGroupURLEnding" %>  <p>
-  </div>
+    <b>URL ending</b> for your group's page - numbers and letters ONLY. <br />
+    http://www.CrowdPublish.TV/<%= f.text_field :permalink, :size => 30, placeholder:  "YourGroupURL"  %>  
+  </div><br>
 
   <div class="field">
     <b>Address</b> or zip code of typical meeting place <br>
     <i>NOTE: Potential members will be searching for your group by distance, thus you are advised to enter a zip code or City, State in your address</i><br>
     <%= f.text_field :address, :size => 80, placeholder: "Washington, DC, 20016" %>
-  </div>
+  </div><br>
   <div class="field">
     <b>About group </b><br>
       How often do you usually meet? What would people likely join your group for? How can people find you?<br>
     <%= f.text_area :about, :cols => 82, :rows => 7 %>
-  </div>
+  </div><br>
   <div class="field">
-      <p>Group type:
+      <b>Group type:</b>
       <p><%= f.radio_button(:grouptype, 1) %>
       <%= label_tag(:grouptype_child, "Critique Group") %>
       <br><%= f.radio_button(:grouptype, 2) %>
@@ -51,7 +50,10 @@
       <br><%= f.radio_button(:grouptype, 7) %>
       <%= label_tag(:grouptype_adult, "Other") %>
   </div>
-
+  <div class="field">
+    Upload a picture that represents your group (.jpg, .gif, .jpeg, or .png) - <i>750x150px works best</i>
+    <br><%= f.file_field :grouppic %> 
+  </div><br>
 
   <div class="actions">
     <%= f.submit %>

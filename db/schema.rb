@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160701000000000) do
     t.string   "newsurl"
     t.string   "twitter"
     t.string   "facebook"
+    t.text     "callaction"
   end
 
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree

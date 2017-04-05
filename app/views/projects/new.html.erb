@@ -20,10 +20,10 @@
     www.CrowdPublish.TV/projects/<%= f.text_field :permalink, :size => 50, placeholder:  "YourprojectURLEnding" %>  <br><br>
     <b>About project </b><br>
       What is your mission statement? What will you accomplish? (You may add to this later)<br>
-    <%= f.text_area :mission, :cols => 82, :rows => 7 %>
+    <%= f.text_area :mission, :cols => 82, :rows => 7 %><br><br>
     <b>Deadline </b><br>
     When does this project expire?<br>
-    <%= f.date_select :deadline %><br>
+    <%= f.date_select :deadline %><br><br>
 
     <%= f.submit %><br>
 <% end %><br><br><br>

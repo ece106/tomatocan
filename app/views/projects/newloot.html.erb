@@ -1,4 +1,5 @@
 <div class="blacktxt">
+<% "do i use this file for anything?" %>
 
 <%= form_for @merchandise, :html => {:multipart => true} do |f| %>
     <b>Reward Name </b><br>
@@ -7,15 +8,29 @@
       What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
     <b>Price </b><br>
-    <%= f.text_field :price, :size => 80, placeholder: "$10.00" %>
+    <%= f.text_field :price, :size => 80, placeholder: "$10.00" %><br>
 
     <%= f.hidden_field :project_id, value: @project.id %>
-
-
+    <div class="covername"> <br> </div>
     <%= f.submit "Save New Loot" %>
 <% end %>
 
-<br><br><br>
+    <h3> - OR - </h3>
+
+        <br><b>Add existing Loot to Project <%= @project.name %>: </b><br>
+        <% if @dropdown.any? %>
+          <% @dropdown.each do |loot| %>
+            <%= form_for(loot) do |f| %>
+              <%= f.hidden_field :project_id, :value => @project.id %> 
+              <%= f.submit("Add " + loot.name ) %><br> 
+              <div class="covername"> <br> </div>
+            <% end %>
+          <% end %>
+        <% elsif @lootlist.any? %>
+          Please add merchandise to your account that you are able to sell and deliver in support of <%= project.name %> 
+          <%= button_to(name = "Create Loot", new_merchandise_path, :method => :get) %>
+        <% end %>
+
 
 <% if @project.merchandises.any? %>
   <% @lootlist.each do |loot| %>
@@ -27,7 +42,7 @@
       What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
       <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
       <b>Price </b><br>
-      <%= f.text_field :price, :size => 80, placeholder: "$10.00" %>
+      <%= f.text_field :price, :size => 80, placeholder: "$10.00" %> <br><br>
 
       <%= f.submit("Save Changes for " + loot.name ) %><br><br><br>
     <% end %>
