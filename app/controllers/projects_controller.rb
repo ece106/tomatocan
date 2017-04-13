@@ -4,19 +4,33 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all
-    @support = []
+
+    currusergroups = Group.where("user_id = ?", current_user.id)
+    @usrgrpnameid = []
+    currusergroups.find_each do |group|
+      @usrgrpnameid <<  [group.name, group.id] 
+    end 
+    @numusrgroups = currusergroups.count 
+
+    #but some projects expire
+    #don't want 1 group to support 80 projects. 3 might be enough
+#    numprojgroupsupports = Agreement.where("group_id = ?", @currgroup.id).count
+
+    @support = []  #All projects available to be supported
     active = Project.where("deadline > ?", Time.now) 
     active.find_each do |proj|
       author = User.find(proj.user_id).name
-      @support <<  {name: proj.name, creator: author, mission: proj.mission, id: proj.id} 
+        @support <<  {name: proj.name, creator: author, mission: proj.mission, id: proj.id} 
     end 
-    @currusergroup = Group.where("user_id > ?", current_user.id) 
   end
 
   def addprojecttogroup
-    puts "HHHHHHHHHHHHHHOOOOOOOOOOOOO"
-    #Agreements.group_id = @currusergroup.id 
-    #@project_id = project.id
+    @agreement = Agreement.new
+    @agreement.update_attribute(:group_id, params[:currgroupid]) 
+    @agreement.update_attribute(:project_id, params[:projectid])
+    redirect_to projects_path
+    #if numprojgroupsupports >= 3, no more buttons
+    #if Agreement.where("group_id" = @currgroup.id) group already supports project, dont show button
   end
 
   # GET /projects/1
@@ -83,6 +97,7 @@ class ProjectsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def project_params
-      params.require(:project).permit(:name, :user_id, :mission, :projectpic, :permalink, :deadline)
+      params.require(:project).permit(:name, :user_id, :mission, :projectpic, :permalink, 
+        :deadline, :currgroupid, :projectid)
     end
 end

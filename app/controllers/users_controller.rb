@@ -10,17 +10,32 @@ class UsersController < ApplicationController
       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
     @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
   end
+
   def show
     @user = User.find_by_permalink(params[:permalink])
 #    @user = User.find(params[:id])
     @books = @user.books
     @project = @user.projects.order('created_at').last #do i want all projects that havent met deadline
 
+    currusergroups = Group.where("user_id = ?", current_user.id)
+    @usrgrpnameid = []
+    currusergroups.find_each do |group|
+      @usrgrpnameid <<  [group.name, group.id] 
+    end 
+    @numusrgroups = currusergroups.count 
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
     end
   end
+  def addprojecttogroup
+    @agreement = Agreement.new
+    @agreement.update_attribute(:group_id, params[:currgroupid]) 
+    @agreement.update_attribute(:project_id, params[:projectid])
+    redirect_to projects_path
+  end
+
   def pastprojects
     @user = User.find_by_permalink(params[:permalink])
 #    @user = User.find(params[:id])

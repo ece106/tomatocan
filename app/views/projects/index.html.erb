@@ -1,25 +1,41 @@
 <h3>Current Projects To Support</h3>
+<%= form_for(Agreement.new) do |f| %> 
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Creator</th>
-      <th>Mission</th>
-      <th></th>
-    </tr>
-  </thead>
+  <% if @numusrgroups > 0 %>
+    <h4>When a group affiliates with a project, the project supports the group! 
+      <br>Have your group affiliate one of the projects below & it will appear on your group's home page:</h4><br> 
+  <% end %>
+  <% if @numusrgroups > 1 %>
+    Select one of your groups to affiliate with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
+  <% end %>
 
-  <tbody>
-    <% @support.each do |project| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= project[:name] %></td>
-        <td><%= project[:creator] %></td>
-        <td><%= truncate(project[:mission], :length => 200, :separator => ' ') %></td>
-        <td><%= link_to 'Support', project_path(project[:id]) %></td> <% "Run code to send email to author asking permission to post. Add record to Agreements with project_id and group_id=group that curruser owns" %>
-        <td><%= link_to image_tag("groupsupport.png"), project_addprojecttogroup_path, method: :post %></td>
+        <th>Name</th>
+        <th>Creator</th>
+        <th>Mission</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @support.each do |project| %>
+        <tr>
+          <td><%= project[:name] %></td>
+          <td><%= project[:creator] %></td>
+          <td><%= truncate(project[:mission], :length => 200, :separator => ' ') %></td>
+          <td><%= link_to 'Support', project_path(project[:id]) %>
+          </td> <% "Run code to send email to author asking permission to post. " %>
+          <td>
+            <% if @numusrgroups > 0 %>
+              <%= f.hidden_field :project_id, :value => project[:id] %>
+              <%= submit_tag "Affiliate" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br><br>

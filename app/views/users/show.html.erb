@@ -14,14 +14,22 @@
   
 <% if @user.author == 2 %>
   <% if @project %>
-    <h1>Support my current project!</h1><br><br>
+    <h1>Support my current project!</h1><br>
     <table>
-        <tr><td style='font-weight:bold;'><%= link_to(@project.name, project_path(@project.permalink)) %></td><td><%= button_to(name = "Support " + @project.name, project_path(@project.permalink), method: :get) %></td></tr>
-        <tr><td><%= truncate(@project.mission , :length => 200, :separator => ' ') %><br><br></td></tr>
+      <tr><td style='font-weight:bold;'><%= link_to(@project.name, project_path(@project.permalink)) %></td><td><%= button_to(name = "Support " + @project.name, project_path(@project.permalink), method: :get) %></td></tr>
+      <tr><td><%= truncate(@project.mission , :length => 200, :separator => ' ') %><br><br> </td></tr> 
+      <% if @numusrgroups > 0 %>
+        <%= form_for(Agreement.new) do |f| %> 
+            <tr><td><h4>Affiliate your group with my project and you'll receive 10% of the proceeds from any supporter you refer from your group's home page.</h4>
+            <% if @numusrgroups > 1 %>
+              Select one of your groups to affiliate with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br><br>
+            <% end %> </td>
+              <%= f.hidden_field :project_id, :value => @project.id %>
+              <td><%= submit_tag "Affiliate" %></td></tr>
+          <% end %>
+        <% end %>
     <table>
   <% end %>
-
-  <br><br>
 
   <div class="row" >
     <div class="col-lg-7 col-md-9 col-sm-10 col-xs-12 " >
