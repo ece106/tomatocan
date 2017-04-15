@@ -97,13 +97,12 @@ Crowdpublishtv::Application.routes.draw do
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
 
   match '/projects/:permalink/merchandise' => "projects#merchandise", :as => :project_merchandise, via: 'get'
-  match '/projects/:permalink/newloot' => "projects#newloot", :as => :project_newloot, via: 'get'
+  match '/projects/:permalink/patronperk' => "projects#patronperk", :as => :project_patronperk, via: 'get'
+  match '/projects/:permalink/standardperks' => "projects#standardperks", :as => :project_standardperks, via: 'get'
   
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt
   post '/:permalink/createstripeacnt' => 'users#createstripeacnt', :as => :user_createstripeacnt
-
-  post '/projects/addprojecttogroup' => 'projects#addprojecttogroup', :as => :project_addprojecttogroup
 
 #  get '/:friendly_id', to: 'groups#show' 
 

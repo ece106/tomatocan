@@ -23,9 +23,15 @@ class MerchandisesController < ApplicationController
   # POST /merchandises
   def create
     @merchandise = current_user.merchandises.build(merchandise_params)
-
-    if @merchandise.save
-      redirect_to user_profile_path(current_user.permalink), notice: 'Loot was successfully created.'
+puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
+puts merchandise_params[:project_id]
+    if @merchandise.save 
+      if merchandise_params[:project_id] == nil
+        redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
+      else
+        project = Project.find_by_id(merchandise_params[:project_id])
+        redirect_to project_standardperks_path(project.permalink), notice: 'Patron Perk was successfully created.'
+      end  
     else
       render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
     end
@@ -35,9 +41,9 @@ class MerchandisesController < ApplicationController
   def update
     if merchandise_params[:project_id].present? && @merchandise.update(merchandise_params)
       @project = Project.find(@merchandise.project_id)
-      redirect_to edit_project_path(@project.id), notice: 'Loot was successfully added to project.'
+      redirect_to edit_project_path(@project.id), notice: 'Patron Perk was successfully added to project.'
     elsif @merchandise.update(merchandise_params)
-      redirect_to @merchandise, notice: 'Loot was successfully updated.'
+      redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else
       render action: 'edit'
     end

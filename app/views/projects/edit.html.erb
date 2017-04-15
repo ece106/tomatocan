@@ -3,24 +3,24 @@
 <% if user_signed_in? %>
   <% if @project.user_id == current_user.id %>
       <div class="blacktxt" style= "text-align:left">
-        <br><b>Add Loot to be sold in support of Project <%= @project.name %>: </b><br>
+        <br><b>Add Patron Perk to be sold in support of Project <%= @project.name %>: </b><br>
         <% if @dropdown.any? %>
-          <% @dropdown.each do |loot| %>
-            <%= form_for(loot) do |f| %>
+          <% @dropdown.each do |perk| %>
+            <%= form_for(perk) do |f| %>
               <%= f.hidden_field :project_id, :value => @project.id %> 
-              <%= f.submit("Add " + loot.name ) %><br> 
+              <%= f.submit("Add " + perk.name ) %><br> 
               <div class="covername"> <br> </div>
             <% end %>
           <% end %>
-        <% elsif @lootlist.any? %>
+        <% elsif @perklist.any? %>
           Please add merchandise to your account that you are able to sell and deliver in support of <%= project.name %> 
-          <%= button_to(name = "Create Loot", new_merchandise_path, :method => :get) %>
+          <%= button_to(name = "Create Perk", new_merchandise_path, :method => :get) %>
         <% end %>  
       </div>
 
       <div class="blacktxt" style= "text-align:left">
-        <br><b>Create a new item of Loot to sell </b><br>
-        <%= button_to(name = "Enter Item Info", new_merchandise_path, :method => :get) %>
+        <br><b>Create a new Patron Perk </b><br>
+        <%= button_to(name = "Enter Perk Info", new_merchandise_path, :method => :get) %>
       </div><br>
   
     <%= form_for(@project) do |f| %>

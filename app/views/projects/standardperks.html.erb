@@ -1,0 +1,55 @@
+<div class="blacktxt">
+
+<h4>Start by adding a few of the suggested Patron Perks listed below. On the following page you'll be able to list custom Perks and add your existing Perks to <i><%= @project.name %></i> </h4>
+
+
+<%= form_for(Merchandise.new) do |f| %>
+    <%= f.hidden_field :project_id, value: @project.id %>
+
+    <b>Reward Name </b><br>
+    <%= f.text_field :name, :size => 80, placeholder: @author.name + "'s Personal Recipe for Something Delicious" %><br><br>
+    <b>About this reward </b><br>
+      What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
+    <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
+    <b>Price </b><br>
+    <%= f.text_field :price, :size => 80, placeholder: "$15.00" %><br>
+    <%= button_to "Create Recipe Perk", { :controller => 'projects', :id => @project.id}, :method => :post %><br><br>
+<% end %>
+
+<br><br>
+</div>
+
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="blacktxt">
+          Create an Advance Chapter Access perk
+        </div>
+        <div id="accordion-togglea" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <div class="blacktxt">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :project_id, value: @project.id %>
+                <b>Reward Name </b><br>
+                <%= f.text_field :name, :size => 80, placeholder: "Advance access to read a chapter of " + @project.name + " before it's released" %><br><br>
+                <b>About this reward </b><br>
+                What is this product? Main reason someone might want this item? (You may add to this later)<br>
+                <%= f.text_area :desc, :cols => 82, :rows => 7, placeholder: "I will email the chapter" %><br><br>
+                <b>Price </b><br>
+                <%= f.text_field :price, :size => 80, placeholder: "$30.00" %><br>
+                <%= button_to "Create Chapter Advance Perk", { :controller => 'projects', :id => @project.id, :method => :post} %><br><br>
+              <% end %>
+            </div>
+          </div>
+        </div>
+          <a class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea ">
+            <span>
+              ...Display <b>Advance Chapter Access</b> input form
+            </span>
+            <span class="hiddenamore">
+              ...Hide <b>Advance Chapter Access</b> input form
+            </span>
+          </a><br><br>
+        </div>
+      </div>
+    </div>
+<br><br><br>

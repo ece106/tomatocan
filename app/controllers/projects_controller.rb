@@ -24,15 +24,6 @@ class ProjectsController < ApplicationController
     end 
   end
 
-  def addprojecttogroup
-    @agreement = Agreement.new
-    @agreement.update_attribute(:group_id, params[:currgroupid]) 
-    @agreement.update_attribute(:project_id, params[:projectid])
-    redirect_to projects_path
-    #if numprojgroupsupports >= 3, no more buttons
-    #if Agreement.where("group_id" = @currgroup.id) group already supports project, dont show button
-  end
-
   # GET /projects/1
   def show
     @merchandise = @project.merchandises
@@ -45,19 +36,25 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  def newloot  
+  def patronperk
     @project = Project.find_by_permalink(params[:permalink])
     @merchandises = @project.merchandises
     @merchandise = @project.merchandises.build 
-    @lootlist = Merchandise.where(:project_id => @project.id)
+    @perklist = Merchandise.where(:project_id => @project.id)
     dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('project_id IS NULL')
     dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("project_id != ?", @project.id)
     @dropdown = dropdown1 + dropdown2
   end
 
+  def standardperks
+    @project = Project.find_by_permalink(params[:permalink])
+    @author = User.find_by_id(@project.user_id)
+    @merchandise = @project.merchandises.build 
+  end
+
   # GET /projects/1/edit
   def edit
-    @lootlist = Merchandise.where( "user_id = ?", current_user.id)
+    @perklist = Merchandise.where( "user_id = ?", current_user.id)
     dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('project_id IS NULL')
     dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("project_id != ?", @project.id)
     @dropdown = dropdown1 + dropdown2
@@ -68,7 +65,7 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.build(project_params)
     if @project.save
-      redirect_to project_newloot_path(@project.permalink), notice: 'Project was successfully created.'
+      redirect_to project_patronperk_path(@project.permalink), notice: 'Project was successfully created.'
     else
       render action: 'new'
     end

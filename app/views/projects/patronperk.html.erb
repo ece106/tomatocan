@@ -1,9 +1,8 @@
 <div class="blacktxt">
-<% "do i use this file for anything?" %>
 
 <%= form_for @merchandise, :html => {:multipart => true} do |f| %>
     <b>Reward Name </b><br>
-    <%= f.text_field :name, :size => 80, placeholder: "Great Loot" %><br><br>
+    <%= f.text_field :name, :size => 80, placeholder: "Great Patron Perk" %><br><br>
     <b>About this reward </b><br>
       What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
@@ -12,39 +11,39 @@
 
     <%= f.hidden_field :project_id, value: @project.id %>
     <div class="covername"> <br> </div>
-    <%= f.submit "Save New Loot" %>
+    <%= f.submit "Save New Perk" %>
 <% end %>
 
     <h3> - OR - </h3>
 
-        <br><b>Add existing Loot to Project <%= @project.name %>: </b><br>
+        <br><b>Add existing Patron Perks to Project <i><%= @project.name %></i>: </b><br>
         <% if @dropdown.any? %>
-          <% @dropdown.each do |loot| %>
-            <%= form_for(loot) do |f| %>
+          <% @dropdown.each do |perk| %>
+            <%= form_for(perk) do |f| %>
               <%= f.hidden_field :project_id, :value => @project.id %> 
-              <%= f.submit("Add " + loot.name ) %><br> 
+              <%= f.submit("Add " + perk.name ) %><br> 
               <div class="covername"> <br> </div>
             <% end %>
           <% end %>
-        <% elsif @lootlist.any? %>
+        <% elsif @perklist.any? %>
           Please add merchandise to your account that you are able to sell and deliver in support of <%= project.name %> 
-          <%= button_to(name = "Create Loot", new_merchandise_path, :method => :get) %>
+          <%= button_to(name = "Create Patron Perk", new_merchandise_path, :method => :get) %>
         <% end %>
 
 
 <% if @project.merchandises.any? %>
-  <% @lootlist.each do |loot| %>
-    <%= form_for(loot) do |f| %>
+  <% @perklist.each do |perk| %>
+    <%= form_for(perk) do |f| %>
 
       <b>Reward Name </b><br>
-      <%= f.text_field :name, :size => 80, placeholder: "Great Loot" %><br><br>
-      <b>About this reward </b><br>
+      <%= f.text_field :name, :size => 80, placeholder: "Great Patron Perk" %><br><br>
+      <b>About this perk </b><br>
       What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
       <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
       <b>Price </b><br>
       <%= f.text_field :price, :size => 80, placeholder: "$10.00" %> <br><br>
 
-      <%= f.submit("Save Changes for " + loot.name ) %><br><br><br>
+      <%= f.submit("Save Changes for " + perk.name ) %><br><br><br>
     <% end %>
   <% end %>
 <% end %>

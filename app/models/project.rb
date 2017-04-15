@@ -16,8 +16,4 @@ class Project < ActiveRecord::Base
 
   before_save { |project| project.permalink = permalink.downcase }
 
-  def addprojecttogroup
-
-  end  
-
 end

@@ -32,7 +32,6 @@ class PurchasesController < ApplicationController
       @purchase = @book.purchases.new
       @purchase.bookfiletype = params[:bookfiletype]
     end  
-    puts "HHHHHHHHHHHHHHHHHHHHHHHHHHHOO"
     puts params[:merchandise_id]
     if params[:merchandise_id].present?
       @merchandise = Merchandise.find(params[:merchandise_id])
