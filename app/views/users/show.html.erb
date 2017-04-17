@@ -18,8 +18,9 @@
     <table>
       <tr><td style='font-weight:bold;'><%= link_to(@project.name, project_path(@project.permalink)) %></td><td><%= button_to(name = "Support " + @project.name, project_path(@project.permalink), method: :get) %></td></tr>
       <tr><td><%= truncate(@project.mission , :length => 200, :separator => ' ') %><br><br> </td></tr> 
-      <% if @numusrgroups > 0 %>
-        <%= form_for(Agreement.new) do |f| %> 
+      <% if user_signed_in? %>
+        <% if @numusrgroups > 0 %>
+          <%= form_for(Agreement.new) do |f| %> 
             <tr><td><h4>Affiliate your group with my project and you'll receive 10% of the proceeds from any supporter you refer from your group's home page.</h4>
             <% if @numusrgroups > 1 %>
               Select one of your groups to affiliate with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br><br>
@@ -28,6 +29,7 @@
               <td><%= submit_tag "Affiliate" %></td></tr>
           <% end %>
         <% end %>
+      <% end %>
     <table>
   <% end %>
 

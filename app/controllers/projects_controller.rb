@@ -4,15 +4,15 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = Project.all
+    if user_signed_in?
+      currusergroups = Group.where("user_id = ?", current_user.id)
+      @usrgrpnameid = []
+      currusergroups.find_each do |group|
+        @usrgrpnameid <<  [group.name, group.id] 
+      end 
+      @numusrgroups = currusergroups.count 
+    end  
 
-    currusergroups = Group.where("user_id = ?", current_user.id)
-    @usrgrpnameid = []
-    currusergroups.find_each do |group|
-      @usrgrpnameid <<  [group.name, group.id] 
-    end 
-    @numusrgroups = currusergroups.count 
-
-    #but some projects expire
     #don't want 1 group to support 80 projects. 3 might be enough
 #    numprojgroupsupports = Agreement.where("group_id = ?", @currgroup.id).count
 

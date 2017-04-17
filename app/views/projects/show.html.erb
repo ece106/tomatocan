@@ -4,14 +4,20 @@
   <h3><%= @project.name %> </h3>
   <%= @author.name %><br><br>
   <strong>Mission:</strong>  <%= @project.mission %><br><br>
-  <strong>Loot:</strong>
 
   <% if @merchandise %>
+    <% if !user_signed_in? %>
+      <%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %>
+      or <%= link_to 'Sign in', "/login" %> to get Patron Perks<br><br>
+    <% end %>
+    <strong>Patron Perks:</strong>
     <table>
       <% @merchandise.each do |merch| %>
-        <tr><td style='font-weight:bold;'><%= link_to(merch.name, merchandise_path(merch.id)) %></td><td><%= link_to image_tag("buynow.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => merch.id), method: :get %> </td></tr>
+        <tr><td style='font-weight:bold;'><%= link_to(merch.name, merchandise_path(merch.id)) %></td><td>
+        <% if user_signed_in? %>
+          <%= link_to image_tag("buynow.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => merch.id), method: :get %> </td></tr>
+        <% end %>
         <tr><td><%= truncate(merch.desc , :length => 200, :separator => ' ') %><br><br></td></tr>
-
       <% end %>
     <table>
   <% end %>
