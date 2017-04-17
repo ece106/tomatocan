@@ -23,8 +23,6 @@ class MerchandisesController < ApplicationController
   # POST /merchandises
   def create
     @merchandise = current_user.merchandises.build(merchandise_params)
-puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa"
-puts merchandise_params[:project_id]
     if @merchandise.save 
       if merchandise_params[:project_id] == nil
         redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
