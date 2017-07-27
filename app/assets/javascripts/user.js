@@ -15,6 +15,18 @@ jQuery(document).ready(function($) {
   $('.accordion-toggleo').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hidden3more').removeClass('hidden3more').hide();
+  $('.accordion-toggle3').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden4more').removeClass('hidden4more').hide();
+  $('.accordion-toggle4').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden5more').removeClass('hidden5more').hide();
+  $('.accordion-toggle5').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
 
 
   $('.cardinfo').hide();

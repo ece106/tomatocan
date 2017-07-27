@@ -89,7 +89,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
   match '/:permalink/projects' => "users#projects", :as => :user_projects, via: 'get'
-  match '/:permalink/loot' => "users#loot", :as => :user_loot, via: 'get'
+  match '/:permalink/treasure' => "users#treasure", :as => :user_treasure, via: 'get'
   match '/:permalink/pastprojects' => "users#pastprojects", :as => :user_pastprojects, via: 'get'
  
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'

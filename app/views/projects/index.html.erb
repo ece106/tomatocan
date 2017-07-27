@@ -6,6 +6,10 @@
       <h4>When a group affiliates with a project, the project supports the group! 
       <br>Have your group affiliate one of the projects below & it will appear on your group's home page:</h4><br> 
     <% end %>
+    <% if @numusrgroups == 1 %>
+      You are the admin for the <%= @usrgrpnameid[0][0] %> group<br><br> 
+      <%= f.hidden_field :group_id, :value => @usrgrpnameid[0][1] %>
+    <% end %>
     <% if @numusrgroups > 1 %>
       Select one of your groups to affiliate with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
     <% end %>
@@ -14,7 +18,7 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Project</th>
         <th>Creator</th>
         <th>Mission</th>
         <th></th>

@@ -4,7 +4,7 @@
   <h4><%= @merchandise.name %> </h4>
   $<%= sprintf('%.2f', @merchandise.price) %> USD  
   <% if user_signed_in? %>
-    <%= link_to image_tag("buypdf.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => @merchandise.id), :method=> :get %> <br>
+    <%= link_to image_tag("buynow.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => @merchandise.id), :method=> :get %> <br>
   <% else %>
     <br><%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %> to support 
   <% end %>

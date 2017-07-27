@@ -101,9 +101,9 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def loot
+  def treasure
     @user = User.find_by_permalink(params[:permalink])
-    @loot = Merchandise.where( "user_id = ?", @user.id )
+    @treasure = Merchandise.where( "user_id = ?", @user.id )
     respond_to do |format|
       format.html 
       format.json { render json: @user }

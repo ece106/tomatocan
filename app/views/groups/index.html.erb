@@ -16,12 +16,9 @@
     </table>  
   <% end %>
 
-  <h2>Registered Book Clubs & Writers Groups</h2>
+  <h2>Groups On CrowdPublish.TV</h2>
 
-  <%= link_to 'Create a New Book Group ', new_group_path %> in Your Community!<br><br>
-  <% if user_signed_in? %>
-    Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
-  <% end %>
+  <%= link_to 'Create a New Group ', new_group_path %> in Your Community!<br><br>
 
   <% if @groups.count != 0 %>
     <div class="table-responsive">

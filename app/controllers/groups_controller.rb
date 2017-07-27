@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user! , only: [:edit, :update, :new]
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :set_owner, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :calendar, :news]
+  before_action :set_owner, only: [:show, :edit, :update, :destroy, :calendar, :news]
   layout :resolve_layout
 
   def index
@@ -11,12 +11,12 @@ class GroupsController < ApplicationController
       else  
         @groups = Group.near(params[:search], 50, order: 'distance')
       end
-    elsif user_signed_in? && current_user.address
-      @groups = Group.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
-    elsif request.location 
-      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
+#    elsif user_signed_in? && current_user.address
+#      @groups = Group.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
+#    elsif request.location 
+#      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
     else
-      @groups = Group.near("Washington, DC", 100, order: 'distance')
+      @groups = Group.all
     end
   end
 
@@ -120,7 +120,11 @@ class GroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
-      @group = Group.friendly.find(params[:id])
+      if params[:id].present?
+        @group = Group.friendly.find(params[:id])
+      else  
+        @group = Group.find_by_permalink(params[:permalink])
+      end
     end
 
     def set_owner

@@ -10395,16 +10395,14 @@ return jQuery;
 
     // Default way to get an element's href. May be overridden at $.rails.href.
     href: function(element) {
-      return element.attr('href');
+      return element[0].href;
     },
 
     // Submits "remote" forms and links with ajax
     handleRemote: function(element) {
-      var method, url, data, elCrossDomain, crossDomain, withCredentials, dataType, options;
+      var method, url, data, withCredentials, dataType, options;
 
       if (rails.fire(element, 'ajax:before')) {
-        elCrossDomain = element.data('cross-domain');
-        crossDomain = elCrossDomain === undefined ? null : elCrossDomain;
         withCredentials = element.data('with-credentials') || null;
         dataType = element.data('type') || ($.ajaxSettings && $.ajaxSettings.dataType);
 
@@ -10456,7 +10454,7 @@ return jQuery;
           error: function(xhr, status, error) {
             element.trigger('ajax:error', [xhr, status, error]);
           },
-          crossDomain: crossDomain
+          crossDomain: rails.isCrossDomain(url)
         };
 
         // There is no withCredentials for IE6-8 when
@@ -10476,6 +10474,31 @@ return jQuery;
       }
     },
 
+    // Determines if the request is a cross domain request.
+    isCrossDomain: function(url) {
+      var originAnchor = document.createElement("a");
+      originAnchor.href = location.href;
+      var urlAnchor = document.createElement("a");
+
+      try {
+        urlAnchor.href = url;
+        // This is a workaround to a IE bug.
+        urlAnchor.href = urlAnchor.href;
+
+        // If URL protocol is false or is a string containing a single colon
+        // *and* host are false, assume it is not a cross-domain request
+        // (should only be the case for IE7 and IE compatibility mode).
+        // Otherwise, evaluate protocol and host of the URL against the origin
+        // protocol and host
+        return !(((!urlAnchor.protocol || urlAnchor.protocol === ':') && !urlAnchor.host) ||
+          (originAnchor.protocol + "//" + originAnchor.host ===
+            urlAnchor.protocol + "//" + urlAnchor.host));      //
+      } catch (e) {
+        // If there is an error parsing the URL, assume it is crossDomain.
+        return true;
+      }
+    },
+
     // Handles "data-method" on links such as:
     // <a href="/users/5" data-method="delete" rel="nofollow" data-confirm="Are you sure?">Delete</a>
     handleMethod: function(link) {
@@ -10487,7 +10510,7 @@ return jQuery;
         form = $('<form method="post" action="' + href + '"></form>'),
         metadataInput = '<input name="_method" value="' + method + '" type="hidden" />';
 
-      if (csrfParam !== undefined && csrfToken !== undefined) {
+      if (csrfParam !== undefined && csrfToken !== undefined && !rails.isCrossDomain(href)) {
         metadataInput += '<input name="' + csrfParam + '" value="' + csrfToken + '" type="hidden" />';
       }
 
@@ -12872,6 +12895,10 @@ return jQuery;
 
 
 
+(function() {
+
+
+}).call(this);
 !function(d,s,id){
   var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
   if(!d.getElementById(id)){
@@ -13027,6 +13054,14 @@ else if ( urlArray[4] == "edit?")  {
 
 }).call(this);
 (function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
   var purchase;
 
   jQuery(function() {
@@ -13037,26 +13072,21 @@ else if ( urlArray[4] == "edit?")  {
   purchase = {
     setupForm: function() {
       return $('#new_purchase').submit(function() {
-        alert(card);
         $('input[type=submit]').prop('disabled', true);
-        if ($('#card_number').length) {
-          if (card === "existingcustomer") {
-            alert(card + " existing");
-            return true;
-          } else {
-            alert(card + " purch.process");
+        if (carduse === "existingcustomer") {
+          return true;
+        } else {
+          if ($('#card_number').length) {
             purchase.processCard();
             return false;
+          } else {
+            return true;
           }
-        } else {
-          alert(card + " else");
-          return true;
         }
       });
     },
     processCard: function() {
       var card;
-      alert($('#card_number').val() + " process");
       card = {
         number: $('#card_number').val(),
         cvc: $('#card_code').val(),
@@ -13067,11 +13097,9 @@ else if ( urlArray[4] == "edit?")  {
     },
     handleStripeResponse: function(status, response) {
       if (status === 200) {
-        alert(response.id);
         $('#purchase_stripe_card_token').val(response.id);
         return $('#new_purchase')[0].submit();
       } else {
-        alert(response.error.message);
         $('#stripe_error').text(response.error.message);
         return $('input[type=submit]').attr('disabled', false);
       }
@@ -13112,11 +13140,38 @@ jQuery(document).ready(function($) {
   $('.accordion-toggleo').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
-  $('.hiddencardform').removeClass('hiddencardform').hide();
-  $('.togglecard').click(function() {
+  $('.hidden1more').removeClass('hidden1more').hide();
+  $('.accordion-toggle1').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hiddenbmore').removeClass('hiddenbmore').hide();
+  $('.accordion-toggleb').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+
+
+  $('.cardinfo').hide();
+  $('.buynewcard').hide();
+  $('.usedefault').hide();
+  $('.usedefault').click(function() {
+    $('.last4').show();
+    $('.diffcard').show();
+    $('.buyexistingcard').show();
+    $('.cardinfo').hide();
+    $('.buynewcard').hide();
+    $('.usedefault').hide();
+  });
+  $('.diffcard').click(function() {
+    $('.cardinfo').show();
+    $('.buynewcard').show();
+    $('.usedefault').show();
+    $('.last4').hide();
+    $('.diffcard').hide();
+    $('.buyexistingcard').hide();
+  });
+
 });
+
 (function() {
 
 
