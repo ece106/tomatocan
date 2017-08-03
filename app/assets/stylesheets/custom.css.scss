@@ -27,6 +27,18 @@ body2 {
   padding-bottom: 0px;
 }
 
+.groupimage { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+grouptext { 
+   position: absolute; 
+   bottom: 45px; 
+   left: 60px;
+   text-shadow: 1px 1px #ffffff;
+}
+
 section {
   overflow: auto;
 }

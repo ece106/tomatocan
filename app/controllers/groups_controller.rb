@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user! , only: [:edit, :update, :new]
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :calendar, :news]
-  before_action :set_owner, only: [:show, :edit, :update, :destroy, :calendar, :news]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
+  before_action :set_owner, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
   layout :resolve_layout
 
   def index
@@ -16,7 +16,9 @@ class GroupsController < ApplicationController
 #    elsif request.location 
 #      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
     else
-      @groups = Group.all
+      neargroups = Group.near([request.location.latitude, request.location.longitude], 50000, order: 'distance') 
+      remaininggroups = Group.all - neargroups
+      @groups = neargroups + remaininggroups
     end
   end
 
@@ -45,7 +47,6 @@ class GroupsController < ApplicationController
   end
 
   def news
-    @group = Group.friendly.find(params[:permalink])
     respond_to do |format|
       format.html # blog.html.erb
       format.json { render json: @group }
@@ -55,14 +56,12 @@ class GroupsController < ApplicationController
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @shown_month = Date.civil(@year, @month)
-    @group = Group.friendly.find(params[:permalink])
     @events = Event.all 
     @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group1id => @group.id } )
     @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group2id => @group.id } ) + @event_strips
     @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group3id => @group.id } ) + @event_strips
   end
   def eventlist
-    @group = Group.friendly.find(params[:permalink])
     @events = Event.all( :conditions => { :group1id => @group.id  }) # || :group2id => @group.id || :group3id => @group.id } ) 
     @events = Event.all( :conditions => { :group2id => @group.id  }) + @events
     @events = Event.all( :conditions => { :group3id => @group.id  }) + @events

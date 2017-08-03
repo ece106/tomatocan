@@ -1,4 +1,7 @@
-<h3>Enter Loot</h3>
+<h3>Edit Treasure</h3>
+
+
+<% if @merchandise.user_id == current_user.id %>
 
 <%= form_for(@merchandise) do |f| %>
   <% if @merchandise.errors.any? %>
@@ -25,5 +28,6 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
 <% end %>
 <br><br>

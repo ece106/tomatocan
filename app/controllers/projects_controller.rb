@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
     @merchandise = @project.merchandises
     @author = User.find(@project.user_id)
     @merchandises = @author.merchandises
+    @groupid = params[:groupid]
   end
 
   # GET /projects/new

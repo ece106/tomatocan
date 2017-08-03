@@ -118,7 +118,8 @@ class PurchasesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def purchase_params
-      params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id)
+      params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut,
+        :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id)
     end
 
 end

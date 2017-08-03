@@ -19,17 +19,25 @@ class Purchase < ActiveRecord::Base
       @book = Book.find(self.book_id)
       self.pricesold = @book.price 
       self.authorcut = ((@book.price * 80).to_i).to_f/100 #this calc may be different for different products & different currencies. It's an important part of the CrowdPublishTV business model. Perhaps it should be somewhere more prominent
-      self.author_id = @book.user_id #do I need to save this in purchase incase bookauthor changes?
+      self.author_id = @book.user_id 
+      if self.group_id.present?
+        self.groupcut = ((@book.price * 10).to_i).to_f/100
+      end
       author = User.find(@book.user_id) #but what if purchase consisted of items from several authors
       amt = (@book.price * 100).to_i 
-      desc = @book.title, # what info do I really want here 
-      appfee = ((@book.price - self.authorcut)*100).to_i  #how much crowdpublishtv keeps: crowdpublishtv is charged a fee by stripe, so must keep more than that fee
+      desc = @book.title, # what info do we really want here 
+      appfee = ((@book.price - self.authorcut - self.groupcut)*100).to_i  #how much crowdpublishtv keeps: crowdpublishtv is charged a fee by stripe, so must keep more than that fee
     end  
     if self.merchandise_id.present?
       @merchandise = Merchandise.find(self.merchandise_id)
       self.pricesold = @merchandise.price
       self.authorcut = ((@merchandise.price * 80).to_i).to_f/100
       self.author_id = @merchandise.user_id 
+puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      if self.group_id.present?
+puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb"
+        self.groupcut = ((@merchandise.price * 10).to_i).to_f/100
+      end
       author = User.find(@merchandise.user_id)
       amt = (@merchandise.price * 100).to_i 
       desc = @merchandise.name 
@@ -64,8 +72,6 @@ class Purchase < ActiveRecord::Base
         },
         {:stripe_account => authoraccount.id }
       )
-    puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSsstripeid"
-    puts author.stripeid
       save!
 
   rescue Stripe::InvalidRequestError => e
@@ -78,7 +84,6 @@ class Purchase < ActiveRecord::Base
   private
 
     def book_id_or_merchandise_id
-      puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
       if book_id.blank? && merchandise_id.blank?
         errors.add(:base, "You have to buy either a book or merchandise")
       end

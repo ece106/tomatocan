@@ -21,43 +21,30 @@
   <%= link_to 'Create a New Group ', new_group_path %> in Your Community!<br><br>
 
   <% if @groups.count != 0 %>
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>Group Name</th>
-          <th>Where We Meet</th>
-          <th>Group Type</th>
-          <th></th>
-          </tr>
-        </thead>
+    <% @groups.each do |group| %>
 
-        <tbody>
-          <% @groups.each do |group| %>
-            <tr>
-            <td><%= link_to group.name, group %></td>
-            <td><%= group.address %></td>
-            <td><% if group.grouptype == 1 %> Critique Group 
+      <div class="col-md-4 col-sm-6 col-xs-12" > 
+        <div class= "groupimage" style="vertical-align:center; horizontal-align:center; height:190px; width:350px; overflow:hidden" >
+          <%= link_to (image_tag group.grouppic, :style => "opacity:0.5; filter:alpha(opacity=50);", :size => "300x150"), group_path(group.id) 
+          %>
+
+          <br><grouptext><%= link_to group.name, group %>
+          <br><% if group.grouptype == 1 %> Critique Group 
               <% elsif group.grouptype == 2 %> Book Club
               <% elsif group.grouptype == 3 %> Writers Organization
               <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering
               <% elsif group.grouptype == 5 %> Library
               <% elsif group.grouptype == 6 %> Book Store
-              <% else group.grouptype == 7 %> Other
               <% end %>
-            </td>
-            <td>
+          <br><%= group.address %>
               <% if user_signed_in? %>
                 <% if group.user_id == current_user.id %>
                   <%= link_to 'Edit', edit_group_path(group.id) %> 
                 <% end %>
-              <% end %>
-            </td>  
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+              <% end %></grouptext>
+        </div>
+      </div>
+    <% end %> 
   <% else %>
     *** No groups near you yet ***
   <% end %>  

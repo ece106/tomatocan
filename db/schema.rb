@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(version: 20160701000000000) do
     t.decimal  "authorcut",             precision: 8, scale: 2
     t.date     "paid"
     t.integer  "merchandise_id"
+    t.integer  "group_id"
+    t.decimal  "groupcut",              precision: 8, scale: 2
   end
 
   create_table "reviews", force: true do |t|
