@@ -17,6 +17,13 @@
           <%= msg %>
         <% end %>
       <% end %>
+
+      <div class="field">
+        Enter entire shipping address where treasure is to be sent <br>
+        Address:
+        <%= f.text_area :shipaddress, :cols => 50, :rows => 3 %><p>
+      </div>
+
       <% if current_user.stripe_customer_token.present? %>
         <div class="cardinfo" >
           <%= label_tag :card_number, "Credit Card Number" %>

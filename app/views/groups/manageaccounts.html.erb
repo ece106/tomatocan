@@ -1,21 +1,21 @@
-<% @title=" add group bank account "  %>
+<% @title=" manage group account "  %>
 <p class="flash"><%= flash.notice %></p>
 
 <% if @group.user_id == current_user.id %>
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
 
-      <%= form_tag group_addbankacnt_path %>
+      <%= form_tag group_updatestripeacnt_path %>
         The following information must be submitted before transfers can be made to your bank account:<br><br>
         Businesses and residents with tax IDs in 
-        <% if @countryoftax == "US" %> 
+        <% if @group.countryoftax == "US" %> 
           the US must have their bank accounts located in the US, in USD.
-        <% elsif @countryoftax == "AU" %> 
+        <% elsif @group.countryoftax == "AU" %> 
           Australia must have their bank accounts located in Australia, in AUD.
-        <% elsif @countryoftax == "CA" %>  
+        <% elsif @group.countryoftax == "CA" %>  
           Canada may have their bank accounts located in either Canada or the US. Select the currency your bank account uses <%= select_tag :currency, options_for_select(["USD", "CAD"], prompt: true) %> <br>
-          If your bank account currency is USD, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["US", "CA"], prompt: true), include_blank: true %><br>  
-        <% elsif @countryoftax.match(/DK|NO|SE|FI/) %>
+          If your bank account is in USD, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["US", "CA"], prompt: true), include_blank: true %><br>  
+        <% elsif @group.countryoftax.match(/DK|NO|SE|FI/) %>
           Denmark, Norway, Sweden, and Finland may connect 
             <li>DKK bank accounts located in Denmark</li>
             <li>NOK bank accounts located in Norway</li>
@@ -24,33 +24,30 @@
             <li>USD bank accounts located in the US</li> - or
             <li>EUR bank accounts located in AT, BE, CH, DE, DK, ES, FI, FR, GB, IE, IT, LU, NL, NO, or SE</li>
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "EUR", "DKK", "NOK", "SEK", "GBP"], prompt: true) %><br>
-          If your bank account currency is EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
-        <% elsif  @countryoftax.match(/AT|BE|DE|ES|FR|GB|IE|IT|LU|NL/) %>  
+          If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
+        <% elsif  @group.countryoftax.match(/AT|BE|DE|ES|FR|GB|IE|IT|LU|NL/) %>  
           Austria, Belgium, Germany, Spain, France, Great Britain, Ireland, Italy, Luxembourg, and the Netherlands may connect 
             <li>USD bank accounts located in the US</li>
             <li>GBP bank accounts located in Great Britain</li> - or
             <li>EUR bank accounts located in AT, BE, CH, DE, DK, ES, FI, FR, GB, IE, IT, LU, NL, NO, or SE</li>
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "GBP", "EUR"], prompt: true) %><br>
-          If your bank account currency is EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
+          If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
         <% end %> <br> <br>
         <table>
           <tr><td>Bank account number: </td><td><%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br></td></tr>
-          <tr><td><% if @countryoftax.match(/US/) %> 
-            ACH (not wire) 
-          <% end %>
-          Routing number for your bank: </td><td><%= text_field_tag :routingnumber, '', :size => 30 %><br><br></td></tr>
+          <tr><td>Routing number for your bank: </td><td><%= text_field_tag :routingnumber, '', :size => 30 %><br><br></td></tr>
           <tr><td></td><td>You must also submit the business or personal address you use for tax correspondence </td></tr>
           <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %> Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
-          <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %>
-        <% if @countryoftax.match(/US|CA/) %> 
-          State <%= text_field_tag :state, '', :size => 5 %> 
-        <% end %>, <%= @countryoftax %> </td></tr><br>
+          <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %> <br>
+        <% if @group.countryoftax.match(/US|CA/) %> 
+          <tr><td>State</td><td> <%= text_field_tag :state, '', :size => 5 %> <br>
+        <% end %>  
           <tr><td>Zip Code</td><td> <%= text_field_tag :postal_code, '', :size => 30 %> </td></tr>
         </table > <br>
 
         <br><center><%= submit_tag "Update Account" %> </center><br>
 
-<br><br>    <% @account.verification.fields_needed.each do |x| %>
+<br><br>    <% @group.account.verification.fields_needed.each do |x| %>
               <%= x %>   <br>
             <% end %>  
 

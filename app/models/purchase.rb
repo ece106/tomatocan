@@ -33,9 +33,7 @@ class Purchase < ActiveRecord::Base
       self.pricesold = @merchandise.price
       self.authorcut = ((@merchandise.price * 80).to_i).to_f/100
       self.author_id = @merchandise.user_id 
-puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       if self.group_id.present?
-puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb"
         self.groupcut = ((@merchandise.price * 10).to_i).to_f/100
       end
       author = User.find(@merchandise.user_id)

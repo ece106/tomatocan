@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user! , only: [:edit, :update, :new]
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
-  before_action :set_owner, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
+  before_action :set_group #, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
+  before_action :set_owner #, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
   layout :resolve_layout
 
   def index
@@ -110,6 +110,43 @@ class GroupsController < ApplicationController
     end
   end
 
+  def manageaccounts
+    account = Stripe::Account.retrieve(@group.stripeid)
+    @countryoftax = account.country
+     respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @group }
+    end
+  end
+  def addbankaccount #add financial institution # to stripe acct just created
+    @account = Stripe::Account.retrieve(@group.stripeid)
+    @countryoftax = @account.country
+     respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @group1 }
+    end
+  end
+  def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @group }
+    end
+  end
+  def createstripeacnt  #called from button on createstripeaccount page
+    @group.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
+                          params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip) 
+    redirect_to group_addbankaccount_path(@group.permalink)
+  end
+  def updatestripeacnt
+    # need to make it so people can enter a new bank acct if they change
+  end
+  def addbankacnt   #called from button on addbankaccount page
+    @group.add_bank_account(params[:currency], params[:bankaccountnumber], 
+          params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
+          params[:city], params[:postal_code], params[:state])
+    redirect_to group_path(@group.permalink)
+  end
+
   # DELETE /groups/1
   def destroy
     @group.destroy
@@ -132,7 +169,10 @@ class GroupsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def group_params
-      params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about, :grouppic, :permalink, :twitter, :newsurl, :callaction )
+      params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about,
+        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl,
+        :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
+        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax )
     end
 
     def resolve_layout

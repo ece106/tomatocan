@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701000000000) do
+ActiveRecord::Schema.define(version: 20130201000000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,9 @@ ActiveRecord::Schema.define(version: 20160701000000000) do
     t.string   "twitter"
     t.string   "facebook"
     t.text     "callaction"
+    t.string   "stripeid"
+    t.string   "stripe_customer_token"
+    t.datetime "stripesignup"
   end
 
   add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
@@ -141,6 +144,8 @@ ActiveRecord::Schema.define(version: 20160701000000000) do
     t.integer  "merchandise_id"
     t.integer  "group_id"
     t.decimal  "groupcut",              precision: 8, scale: 2
+    t.string   "shipaddress"
+    t.string   "fulfillstatus"
   end
 
   create_table "reviews", force: true do |t|
