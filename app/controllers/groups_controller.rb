@@ -134,7 +134,7 @@ class GroupsController < ApplicationController
   end
   def createstripeacnt  #called from button on createstripeaccount page
     @group.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
-                          params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip) 
+                          params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
     redirect_to group_addbankaccount_path(@group.permalink)
   end
   def updatestripeacnt

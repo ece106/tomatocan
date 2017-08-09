@@ -2,12 +2,14 @@
 <p class="flash"><%= flash.notice %></p>
 
 <% if @group.user_id == current_user.id %>
+<% if @group.stripeid.match(/acct/) %>
+<% else %>
   <div class="col-md-12 " style="text-align:left">
     <div #class="blacktxt" >
       <%= form_tag group_createstripeacnt_path %>
 
         To create a new account, the following information is legally required before you can receive payments:<br>
-        Does your bank account belong to a business or to an individual: <%= select_tag :accounttype, options_for_select(["individual", "company"], prompt: true) %><br><br>
+        Does your bank account belong to a business or to an individual: <%= select_tag :accounttype, options_for_select(["company", "individual"], prompt: true) %><br><br>
         <table>
           <tr><td>Legal first name associated with your bank account </td><td>Legal last name associated with your bank account </td></tr>
           <tr><td><%= text_field_tag :firstname, '', :size => 30 %></td><td><%= text_field_tag :lastname, '', :size => 30 %></td></tr>
@@ -34,5 +36,8 @@
       <% #end %>
       At this time, we are unable to support users in countries other than those listed above. Please check this page again in the future to find out if our payment processor has added countries.
     </div>
+    <br><br><br><br>
   </div>
 <% end %>
+<% end %>
+<br><br><br><br>

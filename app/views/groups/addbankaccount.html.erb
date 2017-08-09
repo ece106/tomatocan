@@ -1,25 +1,11 @@
-<% @title=" edit user profile "  %>
+<% @title=" add group bank account "  %>
 <p class="flash"><%= flash.notice %></p>
 
-<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
-  <% if @user.profilepic.present? && @user.profilepic != '' %>
-    <%= image_tag @user.profilepic, :height => "150" %>
-  <% elsif @user.profilepicurl %>
-    <% if @user.profilepicurl.match(/http/) %>
-      <%= image_tag @user.profilepicurl, :height => "150" %><br >
-    <% else %>
-      <%= image_tag "whiteBk.jpg", :height => "150" %>
-    <% end %>
-  <% else %>
-    <%= image_tag "whiteBk.jpg", :height => "150" %>
-  <% end %>
-</div>
-
-<% if @user == current_user %>
+<% if @group.user_id == current_user.id %>
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
 
-      <%= form_tag user_addbankacnt_path %>
+      <%= form_tag group_addbankacnt_path %>
         The following information must be submitted before transfers can be made to your bank account:<br><br>
         Businesses and residents with tax IDs in 
         <% if @countryoftax == "US" %> 
@@ -53,7 +39,7 @@
             ACH (not wire) 
           <% end %>
           Routing number for your bank: </td><td><%= text_field_tag :routingnumber, '', :size => 30 %><br><br></td></tr>
-          <tr><td></td><td>You must also submit the business or personal address you use for tax correspondence </td></tr>
+          <tr><td></td><td>You must also submit the business or personal address <%= @group.name %> uses for tax correspondence </td></tr>
           <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %> Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
           <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %>
         <% if @countryoftax.match(/US|CA/) %> 

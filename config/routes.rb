@@ -99,9 +99,9 @@ Crowdpublishtv::Application.routes.draw do
   match '/groups/:permalink/addbankaccount' => "groups#addbankaccount", :as => :group_addbankaccount, via: 'get'
   match '/groups/:permalink/manageaccounts' => "groups#manageaccounts", :as => :group_manageaccounts, via: 'get'
 
-  post '/groups/:permalink/managesales' => 'groups#updatestripeacnt', :as => :user_updatestripeacnt
-  post '/groups/:permalink/addbankaccount' => 'groups#addbankacnt', :as => :user_addbankacnt
-  post '/groups/:permalink/createstripeacnt' => 'groups#createstripeacnt', :as => :user_createstripeacnt
+  post '/groups/:permalink/managesales' => 'groups#updatestripeacnt', :as => :group_updatestripeacnt
+  post '/groups/:permalink/addbankaccount' => 'groups#addbankacnt', :as => :group_addbankacnt
+  post '/groups/:permalink/createstripeacnt' => 'groups#createstripeacnt', :as => :group_createstripeacnt
 
   match '/projects/:permalink/merchandise' => "projects#merchandise", :as => :project_merchandise, via: 'get'
   match '/projects/:permalink/patronperk' => "projects#patronperk", :as => :project_patronperk, via: 'get'
