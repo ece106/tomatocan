@@ -4,12 +4,15 @@
   </div><br>
   <% if current_user && @group.user_id == current_user.id %>
     <%= button_to "Edit Group", edit_group_path(@group.permalink), :method=> :get %><br>
-    <% if @group.stripeid.match(/acct/) %>
-      <%= button_to "Edit Group Bank Account", group_path(@group.permalink), :method=> :get %><br>
+    <% if @group.stripeid.present? %>
+      <% if @group.stripeid.match(/acct/) #is this correct?%>
+        <%= button_to "Edit Group Bank Account", group_manageaccounts_path(@group.permalink), :method=> :get %><br>
+      <% else %> 
+        <%= button_to "Add Group Bank Account", group_addbankaccount_path(@group.permalink), :method=> :get %><br>
+      <% end %> 
     <% else %> 
-      <%= button_to "Add Group Bank Account", group_createstripeaccount_path(@group.permalink), :method=> :get %><br>
+      <%= button_to "Get Paid", group_createstripeaccount_path(@group.permalink), :method=> :get %><br>
     <% end %> 
-    <div class="covername"> <br> </div>
     <%= button_to "Support A Project", projects_path, :method=> :get %>
     <br><br>
   <% end %> 

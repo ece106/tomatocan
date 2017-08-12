@@ -2,16 +2,20 @@
 <p class="flash"><%= flash.notice %></p>
 
 <% if @group.user_id == current_user.id %>
-<% if @group.stripeid.match(/acct/) %>
-<% else %>
-  <div class="col-md-12 " style="text-align:left">
-    <div #class="blacktxt" >
+  <% if @group.stripeid.present? %>
+    <% if @group.stripeid.match(/acct/) %>
+      ****** Your group already has begun the process of connecting a financial account. You may add a bank account <%= link_to "here", group_addbankaccount_path(@group.permalink) %> or edit your account information  <%= link_to "here", group_manageaccounts_path(@group.permalink) %> 
+    <% end %>
+  ******
+  <% else %>
+    <div class="blacktxt" style="text-align:left">
       <%= form_tag group_createstripeacnt_path %>
-
         To create a new account, the following information is legally required before you can receive payments:<br>
-        Does your bank account belong to a business or to an individual: <%= select_tag :accounttype, options_for_select(["company", "individual"], prompt: true) %><br><br>
+        Does your bank account belong to a business/company or to an individual: <%= select_tag :accounttype, options_for_select(["company", "individual"], prompt: true) %><br><br>
+        If a company/business account, Legal business name associated with your bank account 
+        <%= text_field_tag :bizname, '', :size => 60 %><br><br>
         <table>
-          <tr><td>Legal first name associated with your bank account </td><td>Legal last name associated with your bank account </td></tr>
+          <tr><td>First name of someone who has signature authority for your bank account </td><td>Last name </td></tr>
           <tr><td><%= text_field_tag :firstname, '', :size => 30 %></td><td><%= text_field_tag :lastname, '', :size => 30 %></td></tr>
         </table > <br>
         <table>
@@ -19,7 +23,14 @@
           <tr><td><%= select_tag :birthmonth, options_for_select(1..12) %></td><td><%= select_tag :birthday, options_for_select(1..31) %></td><td><%= select_tag :birthyear, options_for_select(1920..2000) %></td></tr>
         </table > <br>
 
-        The payment processing company we use can handle transactions for businesses and individuals who have tax IDs in the following countries: 
+        Select the code for the country where your bank account has a tax ID:
+        <%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %>
+
+        <center><br>I accept the Terms of Service <br>
+
+        <%= submit_tag "Create Account" %> </center><br><br>
+      
+        The payment processing company CrowdPublish.TV uses can handle transactions for businesses and individuals who have tax IDs in the following countries: 
         <table>
           <tr><td>US </td><td>Canada</td><td>Great Britain</td><td>Austria</td></tr>
           <tr><td>Australia</td><td>Belgium</td><td>Germany</td><td>Denmark</td></tr>
@@ -27,15 +38,7 @@
           <tr><td>Italy</td><td>Norway</td><td>Luxembourg</td><td>Sweden</td></tr>
           <tr><td>the Netherlands</td></tr>
         </table >
-        Select the code for the country where you have a tax ID
-        <br><%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br>
-
-        <center><br>I accept the Terms of Service <br>
-
-        <%= submit_tag "Create Account" %> </center><br>
-      <% #end %>
-      At this time, we are unable to support users in countries other than those listed above. Please check this page again in the future to find out if our payment processor has added countries.
-    </div>
+      At this time, we are unable to support users in countries other than those listed. Please check this page again in the future to find out if our payment processor has added countries.
     <br><br><br><br>
   </div>
 <% end %>

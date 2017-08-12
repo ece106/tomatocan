@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user! , only: [:edit, :update, :new]
-  before_action :set_group #, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
-  before_action :set_owner #, only: [:show, :edit, :update, :destroy, :calendar, :news, :eventlist]
+  before_action :set_group, except: [:new, :index, :create]
+  before_action :set_owner, except: [:new, :index, :create]
   layout :resolve_layout
 
   def index
@@ -112,6 +112,12 @@ class GroupsController < ApplicationController
 
   def manageaccounts
     account = Stripe::Account.retrieve(@group.stripeid)
+    @streetaddress = account.legal_entity.address.line1
+    @suite = account.legal_entity.address.line2
+    @city = account.legal_entity.address.city
+    @state = account.legal_entity.address.state
+    @zip = account.legal_entity.address.postal_code
+    @fieldsneeded = account.verification.fields_needed
     @countryoftax = account.country
      respond_to do |format|
       format.html # profileinfo.html.erb
@@ -119,8 +125,9 @@ class GroupsController < ApplicationController
     end
   end
   def addbankaccount #add financial institution # to stripe acct just created
-    @account = Stripe::Account.retrieve(@group.stripeid)
-    @countryoftax = @account.country
+    account = Stripe::Account.retrieve(@group.stripeid)
+    @fieldsneeded = account.verification.fields_needed
+    @countryoftax = account.country
      respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @group1 }
@@ -134,16 +141,18 @@ class GroupsController < ApplicationController
   end
   def createstripeacnt  #called from button on createstripeaccount page
     @group.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
-                          params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
+          params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
     redirect_to group_addbankaccount_path(@group.permalink)
   end
   def updatestripeacnt
-    # need to make it so people can enter a new bank acct if they change
+    @group.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
+      params[:state]) 
+    redirect_to group_path(@group.permalink)
   end
   def addbankacnt   #called from button on addbankaccount page
     @group.add_bank_account(params[:currency], params[:bankaccountnumber], 
           params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
-          params[:city], params[:postal_code], params[:state])
+          params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
     redirect_to group_path(@group.permalink)
   end
 
@@ -163,7 +172,7 @@ class GroupsController < ApplicationController
       end
     end
 
-    def set_owner
+    def set_owner 
       @user = User.find(@group.user_id)
     end
 
@@ -172,14 +181,14 @@ class GroupsController < ApplicationController
       params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about,
         :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl,
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
-        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax )
+        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn )
     end
 
     def resolve_layout
       case action_name
       when "index", "new"
         'application'
-      when "edit", "show", "calendar", "eventlist", "news" 
+      when "edit", "show", "calendar", "eventlist", "news", "profileinfo", "readerprofileinfo", "createstripeaccount", "manageaccounts", "addbankaccount"
         'grouptemplate'
       else
         'application'

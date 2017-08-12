@@ -2,21 +2,18 @@
 <p class="flash"><%= flash.notice %></p>
 
 <% if @group.user_id == current_user.id %>
+  <% if @group.stripeid.present? %>
+<% if @group.stripeid.match(/acct/) %>
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
-
-      <%= form_tag group_addbankacnt_path %>
-        The following information must be submitted before transfers can be made to your bank account:<br><br>
-        Businesses and residents with tax IDs in 
-        <% if @countryoftax == "US" %> 
-          the US must have their bank accounts located in the US, in USD.
-        <% elsif @countryoftax == "AU" %> 
-          Australia must have their bank accounts located in Australia, in AUD.
-        <% elsif @countryoftax == "CA" %>  
-          Canada may have their bank accounts located in either Canada or the US. Select the currency your bank account uses <%= select_tag :currency, options_for_select(["USD", "CAD"], prompt: true) %> <br>
+        This page is for adding a new bank account to your CrowdPublish.TV financial info. If you wish to edit your existing bank account information, do so <%= link_to "here", group_manageaccounts_path(@group.permalink) %><br><br>
+        <%= form_tag group_addbankacnt_path %>
+        FILL OUT ALL FIELDS BELOW. This information is required before transfers can be made to your bank account:<br><br>
+        <% if @countryoftax == "CA" %> 
+          Businesses and residents with tax IDs in Canada may have their bank accounts located in either Canada or the US. Select the currency your bank account uses <%= select_tag :currency, options_for_select(["USD", "CAD"], prompt: true) %> <br>
           If your bank account currency is USD, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["US", "CA"], prompt: true), include_blank: true %><br>  
         <% elsif @countryoftax.match(/DK|NO|SE|FI/) %>
-          Denmark, Norway, Sweden, and Finland may connect 
+          Businesses and residents with tax IDs in Denmark, Norway, Sweden, and Finland may connect 
             <li>DKK bank accounts located in Denmark</li>
             <li>NOK bank accounts located in Norway</li>
             <li>SEK bank accounts located in Sweden</li>
@@ -26,13 +23,13 @@
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "EUR", "DKK", "NOK", "SEK", "GBP"], prompt: true) %><br>
           If your bank account currency is EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
         <% elsif  @countryoftax.match(/AT|BE|DE|ES|FR|GB|IE|IT|LU|NL/) %>  
-          Austria, Belgium, Germany, Spain, France, Great Britain, Ireland, Italy, Luxembourg, and the Netherlands may connect 
+          Businesses and residents with tax IDs in Austria, Belgium, Germany, Spain, France, Great Britain, Ireland, Italy, Luxembourg, and the Netherlands may connect 
             <li>USD bank accounts located in the US</li>
             <li>GBP bank accounts located in Great Britain</li> - or
             <li>EUR bank accounts located in AT, BE, CH, DE, DK, ES, FI, FR, GB, IE, IT, LU, NL, NO, or SE</li>
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "GBP", "EUR"], prompt: true) %><br>
           If your bank account currency is EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
-        <% end %> <br> <br>
+        <% end %> <br>
         <table>
           <tr><td>Bank account number: </td><td><%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br></td></tr>
           <tr><td><% if @countryoftax.match(/US/) %> 
@@ -46,18 +43,28 @@
           State <%= text_field_tag :state, '', :size => 5 %> 
         <% end %>, <%= @countryoftax %> </td></tr><br>
           <tr><td>Zip Code</td><td> <%= text_field_tag :postal_code, '', :size => 30 %> </td></tr>
+          <tr><td><br><br></td></tr>
+          <tr><td>Employer tax ID Number (EIN)<br><br></td><td> <%= text_field_tag :ein, '', :size => 30, :placeholder => "12-3456789" %> <br><br></td></tr>
+          <tr><td>Last 4 digits of Social Security Number (SSN) of person who has signature authority for this account</td><td> <%= text_field_tag :ssn, '', :size => 30, :placeholder => "4321" %> </td></tr>
         </table > <br>
 
-        <br><center><%= submit_tag "Update Account" %> </center><br>
+        <center><%= submit_tag "Update Account" %> </center><br>
 
-<br><br>    <% @account.verification.fields_needed.each do |x| %>
-              <%= x %>   <br>
-            <% end %>  
+        Payments cannot be received until you submit: <br>
+        <% @fieldsneeded.each do |x| %>
+          <%= x %>   <br>
+        <% end %>  
 
-            <br>
-
-    </div>
+        <% if @countryoftax == "US" %> 
+          Businesses and residents with tax IDs in the US must have their bank accounts located in the US, in USD.
+        <% elsif @countryoftax == "AU" %> 
+        Businesses and residents with tax IDs in Australia must have their bank accounts located in Australia, in AUD.
+        <% end %>  
+    </div><br><br><br>
   </div>
+<% else %>
+<% end %>
+  <% end %>
 <% end %>
 
 <%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>

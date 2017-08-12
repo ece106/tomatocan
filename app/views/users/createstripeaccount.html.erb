@@ -16,6 +16,10 @@
 </div>
 
 <% if @user == current_user %>
+<% if @user.stripeid.present? %>
+<% if @user.stripeid.match(/acct/) %>
+  You already have a stripe account
+<% else %>
   <div class="col-md-12 " style="text-align:left">
     <div #class="blacktxt" >
       <%= form_tag user_createstripeacnt_path %>
@@ -31,6 +35,13 @@
           <tr><td><%= select_tag :birthmonth, options_for_select(1..12) %></td><td><%= select_tag :birthday, options_for_select(1..31) %></td><td><%= select_tag :birthyear, options_for_select(1920..2000) %></td></tr>
         </table > <br>
 
+        Select the code for the country where you have a tax ID
+        <%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br>
+
+        <center>I accept the Terms of Service <br>
+
+        <%= submit_tag "Create Account" %> </center><br><br>
+
         The payment processing company we use can handle transactions for businesses and individuals who have tax IDs in the following countries: 
         <table>
           <tr><td>US </td><td>Canada</td><td>Great Britain</td><td>Austria</td></tr>
@@ -39,14 +50,9 @@
           <tr><td>Italy</td><td>Norway</td><td>Luxembourg</td><td>Sweden</td></tr>
           <tr><td>the Netherlands</td></tr>
         </table >
-        Select the code for the country where you have a tax ID
-        <br><%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br>
-
-        <center><br>I accept the Terms of Service <br>
-
-        <%= submit_tag "Create Account" %> </center><br>
-      <% #end %>
-      At this time, we are unable to support users in countries other than those listed above. Please check this page again in the future to find out if our payment processor has added countries.
+      At this time, we are unable to support users in countries other than those listed. Please check this page again in the future to find out if our payment processor has added countries.<br>
     </div>
   </div>
+<% end %>
+<% end %>
 <% end %>

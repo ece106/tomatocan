@@ -2,6 +2,10 @@ class Group < ActiveRecord::Base
   extend FriendlyId
   friendly_id :permalink, use: :slugged
 
+#  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
+#  :countryoftax, :bankaccountnumber, :monthinfo, :incomeinfo, :filetypeinfo, :totalinfo, 
+#  :purchasesinfo, :ssn, :ein   #what would we need attraccessor for
+
   before_save { |group| group.permalink = permalink.downcase }
 
   belongs_to :user
@@ -20,9 +24,29 @@ class Group < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
-  def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank, line1,
-                        line2, city, postalcode, state)
+  def manage_account(line1, line2, city, zip, state)
     account = Stripe::Account.retrieve(self.stripeid) #acct tokens are user.stripeid
+    unless line1 == ""
+      account.legal_entity.address.line1 = line1
+    end  
+    unless line2 == ""
+      account.legal_entity.address.line2 = line2
+    end  
+    unless city == ""
+      account.legal_entity.address.city = city
+    end  
+    unless state == ""
+      account.legal_entity.address.state = state
+    end  
+    unless zip == ""
+      account.legal_entity.address.zip = zip
+    end  
+    account.save
+  end  
+
+  def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank, line1,
+                        line2, city, postalcode, state, ein, ssn)
+    account = Stripe::Account.retrieve(self.stripeid) 
     if account.country == "CA"   #called from controller after create acct button clicked
       if currency == "CAD"
         countryofbank = "CA"
@@ -67,14 +91,13 @@ class Group < ActiveRecord::Base
     account.legal_entity.address.postal_code = postalcode
 #if CA, US
     account.legal_entity.address.state = state
+    account.legal_entity.business_tax_id = ein
+    account.legal_entity.ssn_last_4 = ssn
     account.save
-
-    puts temp.currency
-    puts countryofbank
-    puts temp.account #might want to save account token in users hasmany accounts table so I can access later
   end    
 
-  def createstripeacnt(countryoftax, accounttype, firstname, lastname, birthday, birthmonth, birthyear, userip, email) 
+  def createstripeacnt(countryoftax, accounttype, firstname, lastname, bizname, 
+    birthday, birthmonth, birthyear, userip, email) 
     #called from controller, this creates a managed acct for an author
     account = Stripe::Account.create(
       {
@@ -82,6 +105,7 @@ class Group < ActiveRecord::Base
         :managed => true,
         :email => email,
         :legal_entity => {
+          :business_name => bizname,
           :type => accounttype,
           :first_name => firstname,
           :last_name => lastname,
