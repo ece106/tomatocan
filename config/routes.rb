@@ -83,6 +83,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/createstripeaccount' => "users#createstripeaccount", :as => :user_createstripeaccount, via: 'get'
   match '/:permalink/addbankaccount' => "users#addbankaccount", :as => :user_addbankaccount, via: 'get'
   match '/:permalink/manageaccounts' => "users#manageaccounts", :as => :user_manageaccounts, via: 'get'
+  match '/:permalink/correcterrors' => "users#correcterrors", :as => :user_correcterrors, via: 'get'
   match '/:permalink/dashboard' => "users#dashboard", :as => :user_dashboard, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
@@ -98,10 +99,12 @@ Crowdpublishtv::Application.routes.draw do
   match '/groups/:permalink/createstripeaccount' => "groups#createstripeaccount", :as => :group_createstripeaccount, via: 'get'
   match '/groups/:permalink/addbankaccount' => "groups#addbankaccount", :as => :group_addbankaccount, via: 'get'
   match '/groups/:permalink/manageaccounts' => "groups#manageaccounts", :as => :group_manageaccounts, via: 'get'
+  match '/groups/:permalink/correcterrors' => "groups#correcterrors", :as => :group_correcterrors, via: 'get'
 
   post '/groups/:permalink/managesales' => 'groups#updatestripeacnt', :as => :group_updatestripeacnt
   post '/groups/:permalink/addbankaccount' => 'groups#addbankacnt', :as => :group_addbankacnt
   post '/groups/:permalink/createstripeacnt' => 'groups#createstripeacnt', :as => :group_createstripeacnt
+  post '/groups/:permalink/correcterr' => 'groups#correcterr', :as => :group_correcterr
 
   match '/projects/:permalink/merchandise' => "projects#merchandise", :as => :project_merchandise, via: 'get'
   match '/projects/:permalink/patronperk' => "projects#patronperk", :as => :project_patronperk, via: 'get'
@@ -110,6 +113,7 @@ Crowdpublishtv::Application.routes.draw do
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt
   post '/:permalink/createstripeacnt' => 'users#createstripeacnt', :as => :user_createstripeacnt
+  post '/:permalink/correcterr' => 'users#correcterr', :as => :user_correcterr
 
 #  get '/:friendly_id', to: 'groups#show' 
 

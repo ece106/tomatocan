@@ -40,10 +40,11 @@
           <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30, :placeholder => @streetaddress %> 
             Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
           <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %> <br>
-        <% if @countryoftax.match(/US|CA/) %> 
-          <tr><td>State</td><td> <%= text_field_tag :state, '', :size => 5 %> <br>
-        <% end %>  
-          <tr><td>Zip Code</td><td> <%= text_field_tag :zip, '', :size => 30 %> </td></tr>
+          <% if @countryoftax.match(/US|CA/) %> 
+            <tr><td>State</td><td> <%= text_field_tag :state, '', :size => 5 %> <br>
+          <% end %>  
+          <tr><td>Zip Code</td><td> <%= text_field_tag :zip, '', :size => 30 %> <br><br></td></tr>
+          <tr><td>email</td><td> <%= text_field_tag :email, '', :size => 30 %> </td></tr>
         </table > <br>
 
         <center><%= submit_tag "Update Account" %> </center><br><br>
@@ -60,5 +61,3 @@
 <% end %>
   <% end %>
 <% end %>
-
-<%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>

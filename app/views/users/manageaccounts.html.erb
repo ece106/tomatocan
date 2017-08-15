@@ -16,11 +16,12 @@
 </div>
 
 <% if @user == current_user %>
+  <% if @user.stripeid.present? %>
+<% if @user.stripeid.match(/acct/) %>
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
 
       <%= form_tag user_updatestripeacnt_path %>
-        The following information must be submitted before transfers can be made to your bank account:<br><br>
         Businesses and residents with tax IDs in 
         <% if @countryoftax == "US" %> 
           the US must have their bank accounts located in the US, in USD.
@@ -47,28 +48,31 @@
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "GBP", "EUR"], prompt: true) %><br>
           If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
         <% end %> <br> <br>
+        Bank account numbers, routing numbers, EIN, and SSN cannot be edited for bank accounts that have already been approved. If you need to add a new bank account, add the new account's information <%= link_to "here", user_addbankaccount_path(@user.permalink) %>. <br><br>
         <table>
-          <tr><td>Bank account number: </td><td><%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br></td></tr>
-          <tr><td>Routing number for your bank: </td><td><%= text_field_tag :routingnumber, '', :size => 30 %><br><br></td></tr>
-          <tr><td></td><td>You must also submit the business or personal address you use for tax correspondence </td></tr>
-          <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %> Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
+          <tr><td></td><td>Address you use for tax correspondence </td></tr>
+          <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30, :placeholder => @streetaddress %> 
+            Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
           <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %> <br>
         <% if @countryoftax.match(/US|CA/) %> 
           <tr><td>State</td><td> <%= text_field_tag :state, '', :size => 5 %> <br>
         <% end %>  
-          <tr><td>Zip Code</td><td> <%= text_field_tag :postal_code, '', :size => 30 %> </td></tr>
+          <tr><td>Zip Code</td><td> <%= text_field_tag :zip, '', :size => 30 %> </td></tr>
         </table > <br>
 
-        <br><center><%= submit_tag "Update Account" %> </center><br>
+        <center><%= submit_tag "Update Account" %> </center><br><br>
+        Payments cannot be received until you submit: <br>
+        <% if @fieldsneeded %>  
+          <% @fieldsneeded.each do |x| %>
+            <%= x %>   <br>
+          <% end %>  
+        <% end %>  
 
-<br><br>    <% @fieldsneeded.each do |x| %>
-              <%= x %>   <br>
-            <% end %>  
-
-            <br>
-
+        <br>
     </div>
   </div>
+<% end %>
+  <% end %>
 <% end %>
 
 <%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>

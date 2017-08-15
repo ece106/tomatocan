@@ -7,7 +7,7 @@
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
         This page is for adding a new bank account to your CrowdPublish.TV financial info. If you wish to edit your existing bank account information, do so <%= link_to "here", group_manageaccounts_path(@group.permalink) %><br><br>
-        <%= form_tag group_addbankacnt_path %>
+      <%= form_tag group_addbankacnt_path %>
         FILL OUT ALL FIELDS BELOW. This information is required before transfers can be made to your bank account:<br><br>
         <% if @countryoftax == "CA" %> 
           Businesses and residents with tax IDs in Canada may have their bank accounts located in either Canada or the US. Select the currency your bank account uses <%= select_tag :currency, options_for_select(["USD", "CAD"], prompt: true) %> <br>
@@ -32,12 +32,13 @@
         <% end %> <br>
         <table>
           <tr><td>Bank account number: </td><td><%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br></td></tr>
-          <tr><td><% if @countryoftax.match(/US/) %> 
+          <tr><td>
+          <% if @countryoftax.match(/US/) %> 
             ACH (not wire) 
           <% end %>
           Routing number for your bank: </td><td><%= text_field_tag :routingnumber, '', :size => 30 %><br><br></td></tr>
           <tr><td></td><td>You must also submit the business or personal address <%= @group.name %> uses for tax correspondence </td></tr>
-          <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %> Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
+          <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %>  Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
           <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %>
         <% if @countryoftax.match(/US|CA/) %> 
           State <%= text_field_tag :state, '', :size => 5 %> 
@@ -48,21 +49,20 @@
           <tr><td>Last 4 digits of Social Security Number (SSN) of person who has signature authority for this account</td><td> <%= text_field_tag :ssn, '', :size => 30, :placeholder => "4321" %> </td></tr>
         </table > <br>
 
-        <center><%= submit_tag "Update Account" %> </center><br>
+      <center><%= submit_tag "Update Account" %> </center><br>
 
-        Payments cannot be received until you submit: <br>
-        <% @fieldsneeded.each do |x| %>
-          <%= x %>   <br>
-        <% end %>  
+      Payments cannot be received until you submit: <br>
+      <% @fieldsneeded.each do |x| %>
+        <%= x %>   <br>
+      <% end %>  
 
-        <% if @countryoftax == "US" %> 
-          Businesses and residents with tax IDs in the US must have their bank accounts located in the US, in USD.
-        <% elsif @countryoftax == "AU" %> 
+      <% if @countryoftax == "US" %> 
+        Businesses and residents with tax IDs in the US must have their bank accounts located in the US, in USD.
+      <% elsif @countryoftax == "AU" %> 
         Businesses and residents with tax IDs in Australia must have their bank accounts located in Australia, in AUD.
-        <% end %>  
+      <% end %>  
     </div><br><br><br>
   </div>
-<% else %>
 <% end %>
   <% end %>
 <% end %>

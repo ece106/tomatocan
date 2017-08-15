@@ -24,7 +24,7 @@ class Group < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
-  def manage_account(line1, line2, city, zip, state)
+  def manage_account(line1, line2, city, zip, state )
     account = Stripe::Account.retrieve(self.stripeid) #acct tokens are user.stripeid
     unless line1 == ""
       account.legal_entity.address.line1 = line1
@@ -40,6 +40,70 @@ class Group < ActiveRecord::Base
     end  
     unless zip == ""
       account.legal_entity.address.zip = zip
+    end
+    #should we auto update user's email here incase they changed their email in CrowdPublish.TV db?
+    account.save
+  end  
+
+  def correct_errors(countryofbank, currency, routingnumber, bankaccountnumber, 
+    countryoftax, bizname, accounttype, firstname, lastname, birthday, birthmonth, birthyear, 
+    line1, city, zip, state, ein, ssn4)
+    account = Stripe::Account.retrieve(self.stripeid)
+    unless countryofbank == ""
+      account.external_account.country = countryofbank
+    end  
+    unless currency == ""
+      account.external_account.currency = currency
+    end
+    unless routingnumber == ""
+      account.external_account.routing_number = routingnumber
+    end
+    unless bankaccountnumber == ""
+      account.external_account.bank_account = bankaccountnumber
+    end
+
+    unless countryoftax == ""
+      account.country = countryoftax
+    end  
+    unless bizname == ""
+      account.legal_entity.accounttype = bizname
+    end  
+    unless accounttype == ""
+      account.legal_entity.accounttype = type
+    end  
+    unless firstname == ""
+      account.legal_entity.first_name = firstname
+    end
+    unless lastname == ""
+      account.legal_entity.last_name = lastname
+    end
+    unless birthday == ""
+      account.legal_entity.dob.day = birthday
+    end  
+    unless birthmonth == ""
+      account.legal_entity.dob.month = birthmonth
+    end  
+    unless birthday == ""
+      account.legal_entity.dob.year = birthyear
+    end  
+
+    unless line1 == ""
+      account.legal_entity.address.line1 = line1
+    end
+    unless city == ""
+      account.legal_entity.address.city = city
+    end  
+    unless state == ""
+      account.legal_entity.address.state = state
+    end  
+    unless zip == ""
+      account.legal_entity.address.zip = zip
+    end  
+    unless ein == ""
+      account.legal_entity.business_tax_id = ein
+    end  
+    unless ssn4 == ""
+      account.legal_entity.ssn_last_4 = ssn4
     end  
     account.save
   end  
@@ -96,7 +160,7 @@ class Group < ActiveRecord::Base
     account.save
   end    
 
-  def createstripeacnt(countryoftax, accounttype, firstname, lastname, bizname, 
+  def create_stripe_acnt(countryoftax, accounttype, firstname, lastname, bizname, 
     birthday, birthmonth, birthyear, userip, email) 
     #called from controller, this creates a managed acct for an author
     account = Stripe::Account.create(

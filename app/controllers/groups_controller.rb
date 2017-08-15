@@ -110,6 +110,13 @@ class GroupsController < ApplicationController
     end
   end
 
+  def correcterrors
+    account = Stripe::Account.retrieve(@group.stripeid)
+     respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @group }
+    end
+  end
   def manageaccounts
     account = Stripe::Account.retrieve(@group.stripeid)
     @streetaddress = account.legal_entity.address.line1
@@ -119,6 +126,7 @@ class GroupsController < ApplicationController
     @zip = account.legal_entity.address.postal_code
     @fieldsneeded = account.verification.fields_needed
     @countryoftax = account.country
+    @email = account.email
      respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @group }
@@ -139,14 +147,21 @@ class GroupsController < ApplicationController
       format.json { render json: @group }
     end
   end
+  def correcterr  #called from button on correcterror page
+    @group.correct_errors(params[:countryofbank], params[:currency], params[:routingnumber], params[:bankaccountnumber], 
+      params[:countryoftax], params[:bizname], params[:accounttype], params[:firstname], 
+      params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], 
+      params[:line1], params[:city], params[:zip], params[:state], params[:ein], params[:ssn4]) 
+    redirect_to group_path(@group.permalink)
+  end
   def createstripeacnt  #called from button on createstripeaccount page
-    @group.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
+    @group.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
           params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
     redirect_to group_addbankaccount_path(@group.permalink)
   end
   def updatestripeacnt
     @group.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
-      params[:state]) 
+      params[:state], params[:email]) 
     redirect_to group_path(@group.permalink)
   end
   def addbankacnt   #called from button on addbankaccount page
