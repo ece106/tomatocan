@@ -1,14 +1,15 @@
 <% @title=" add group bank account "  %>
 <p class="flash"><%= flash.notice %></p>
 
+<% if user_signed_in? %>
 <% if @group.user_id == current_user.id %>
   <% if @group.stripeid.present? %>
 <% if @group.stripeid.match(/acct/) %>
   <div class="col-md-8 " style="text-align:left">
     <div class="blacktxt" >
-        This page is for adding a new bank account to your CrowdPublish.TV financial info. If you wish to edit your existing bank account information, do so <%= link_to "here", group_manageaccounts_path(@group.permalink) %><br><br>
+        This page is for adding a new bank account to your CrowdPublish.TV financial info. If you wish to edit your existing bank account information, do so on the <%= link_to "Manage Accounts", group_manageaccounts_path(@group.permalink) %> page.<br><br>
       <%= form_tag group_addbankacnt_path %>
-        FILL OUT ALL FIELDS BELOW. This information is required before transfers can be made to your bank account:<br><br>
+        FILL OUT ALL FIELDS BELOW. This information is required before transfers can be made to your bank account:<br>
         <% if @countryoftax == "CA" %> 
           Businesses and residents with tax IDs in Canada may have their bank accounts located in either Canada or the US. Select the currency your bank account uses <%= select_tag :currency, options_for_select(["USD", "CAD"], prompt: true) %> <br>
           If your bank account currency is USD, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["US", "CA"], prompt: true), include_blank: true %><br>  
@@ -51,11 +52,6 @@
 
       <center><%= submit_tag "Update Account" %> </center><br>
 
-      Payments cannot be received until you submit: <br>
-      <% @fieldsneeded.each do |x| %>
-        <%= x %>   <br>
-      <% end %>  
-
       <% if @countryoftax == "US" %> 
         Businesses and residents with tax IDs in the US must have their bank accounts located in the US, in USD.
       <% elsif @countryoftax == "AU" %> 
@@ -63,8 +59,11 @@
       <% end %>  
     </div><br><br><br>
   </div>
+<% else %>
+  To add a bank account you must first submit name, birthdate, country on the <%= link_to "Create Stripe Account", group_createstripeaccount_path(@group.permalink) %> page.
 <% end %>
   <% end %>
+<% end %>
 <% end %>
 
 <%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>

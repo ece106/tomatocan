@@ -17,33 +17,37 @@
 
     <% if @user == current_user %>
       <% if @user.author == 2 #user is an author %>
-        <%= button_to "Edit Profile", user_profileinfo_path(@user.permalink), :method=> :get %>
+        <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
-        <%= button_to "Edit Books", user_edit_path(@user.permalink), :method=> :get %>
+        <%= button_to "Edit Books", user_edit_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
-        <%= button_to "Edit Merchandise", user_treasure_path(@user.permalink), :method=> :get %>
+        <%= button_to "Edit Merchandise", user_treasure_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
         <%= button_to "Edit Groups", user_groups_path, :method=> :get %>
         <div class="covername"> <br> </div>
-        <%= button_to "Edit Events", user_eventlist_path(@user.permalink), :method=> :get %>
+        <%= button_to "Edit Events", user_eventlist_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
-        <%= button_to "Edit Projects", user_projects_path(@user.permalink), :method=> :get %>
+        <%= button_to "Edit Projects", user_projects_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
-        <% if @user.stripeid.present? %>
-          <% if @user.stripeid.match(/acct/) %>
-            <%= button_to "Edit $ Account", user_manageaccounts_path(@user.permalink), :method=> :get %><br>
+        <% if current_user.stripeid.present? %>
+          <% if current_user.stripeid.match(/acct/) %>
+            <% if @fieldsneeded.present? %>
+              <%= button_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), {:style => "background-color:red", :method=> :get} %><br>
+            <% else %> 
+              <%= button_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), :method=> :get %><br>
+            <% end %> 
           <% else %> 
-            <%= button_to "Add Bank Account", user_addbankaccount_path(@user.permalink), :method=> :get %><br>
+            <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), :method=> :get %><br>
           <% end %> 
         <% else %> 
-          <%= button_to "Get Paid", user_createstripeaccount_path(@user.permalink), :method=> :get %><br>
+          <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), :method=> :get %><br>
         <% end %> 
       <% else #user is NOT an author therefore has not written any books %> 
-        <%= button_to "Edit Profile", user_readerprofileinfo_path(@user.permalink), :method=> :get %>
+        <%= button_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
         <%= button_to "Edit Groups", groups_path, :method=> :get %>
         <div class="covername"> <br> </div>
-        <%= button_to "Edit Events", user_eventlist_path(@user.permalink), :method=> :get %>
+        <%= button_to "Edit Events", user_eventlist_path(current_user.permalink), :method=> :get %>
       <% end %> 
     <% end %> 
   </div>

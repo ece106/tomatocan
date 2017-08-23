@@ -6,7 +6,11 @@
     <%= button_to "Edit Group", edit_group_path(@group.permalink), :method=> :get %><br>
     <% if @group.stripeid.present? %>
       <% if @group.stripeid.match(/acct/) #is this correct?%>
-        <%= button_to "Edit Group Bank Account", group_manageaccounts_path(@group.permalink), :method=> :get %><br>
+        <% if @fieldsneeded.present? %>
+          <%= button_to "Correct Bank Account Errors", group_correcterrors_path(@group.permalink), {:style => "background-color:red", :method=> :get} %><br>
+        <% else %> 
+          <%= button_to "Edit Group Bank Account", group_manageaccounts_path(@group.permalink), :method=> :get %><br>
+        <% end %> 
       <% else %> 
         <%= button_to "Add Group Bank Account", group_addbankaccount_path(@group.permalink), :method=> :get %><br>
       <% end %> 

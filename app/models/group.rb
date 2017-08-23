@@ -49,67 +49,68 @@ class Group < ActiveRecord::Base
     countryoftax, bizname, accounttype, firstname, lastname, birthday, birthmonth, birthyear, 
     line1, city, zip, state, ein, ssn4)
     account = Stripe::Account.retrieve(self.stripeid)
-    unless countryofbank == ""
+    unless countryofbank == "" || countryofbank == nil
       account.external_account.country = countryofbank
     end  
-    unless currency == ""
+    unless currency == "" || currency == nil
       account.external_account.currency = currency
     end
-    unless routingnumber == ""
+    unless routingnumber == "" || routingnumber == nil
       account.external_account.routing_number = routingnumber
     end
-    unless bankaccountnumber == ""
+    unless bankaccountnumber == "" || bankaccountnumber == nil
       account.external_account.bank_account = bankaccountnumber
     end
 
-    unless countryoftax == ""
+    unless countryoftax == "" || countryoftax == nil
       account.country = countryoftax
     end  
-    unless bizname == ""
+    unless bizname == "" || bizname == nil
       account.legal_entity.accounttype = bizname
     end  
-    unless accounttype == ""
+    unless accounttype == "" || accounttype == nil
       account.legal_entity.accounttype = type
     end  
-    unless firstname == ""
+    unless firstname == "" || firstname == nil
       account.legal_entity.first_name = firstname
     end
-    unless lastname == ""
+    unless lastname == "" || lastname == nil
       account.legal_entity.last_name = lastname
     end
-    unless birthday == ""
+    unless birthday == "" || birthday == nil
       account.legal_entity.dob.day = birthday
     end  
-    unless birthmonth == ""
+    unless birthmonth == "" || birthmonth == nil
       account.legal_entity.dob.month = birthmonth
     end  
-    unless birthday == ""
+    unless birthday == "" || birthday == nil
       account.legal_entity.dob.year = birthyear
     end  
 
-    unless line1 == ""
+    unless line1 == "" || line1 == nil
       account.legal_entity.address.line1 = line1
     end
-    unless city == ""
+    unless city == "" || city == nil
       account.legal_entity.address.city = city
     end  
-    unless state == ""
+    unless state == "" || state == nil
       account.legal_entity.address.state = state
     end  
-    unless zip == ""
+    unless zip == "" || zip == nil
       account.legal_entity.address.zip = zip
     end  
-    unless ein == ""
+    unless ein == "" || ein == nil
       account.legal_entity.business_tax_id = ein
     end  
-    unless ssn4 == ""
+    unless ssn4 == "" || ssn4 == nil
       account.legal_entity.ssn_last_4 = ssn4
     end  
     account.save
   end  
 
   def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank, line1,
-                        line2, city, postalcode, state, ein, ssn)
+                        line2, city, postalcode, state, ein, ssn) 
+    # actual stripe acct object was created in group's stripe customer acct on the createstripeaccount page. Here they're just adding their bank account number
     account = Stripe::Account.retrieve(self.stripeid) 
     if account.country == "CA"   #called from controller after create acct button clicked
       if currency == "CAD"

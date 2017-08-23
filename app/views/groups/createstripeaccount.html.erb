@@ -1,10 +1,11 @@
 <% @title=" edit group stripe account "  %>
 <p class="flash"><%= flash.notice %></p>
 
+<% if user_signed_in? %>
 <% if @group.user_id == current_user.id %>
   <% if @group.stripeid.present? %>
     <% if @group.stripeid.match(/acct/) %>
-      ****** Your group already has begun the process of connecting a financial account. You may add a bank account <%= link_to "here", group_addbankaccount_path(@group.permalink) %> or edit your account information  <%= link_to "here", group_manageaccounts_path(@group.permalink) %> 
+      ****** Your group already has begun the process of connecting a financial account. You may add a bank account on the <%= link_to "Add Bank Account", group_addbankaccount_path(@group.permalink) %> page or edit your information for an existing account on the <%= link_to "Manage Account", group_manageaccounts_path(@group.permalink) %> 
     <% end %>
   ******
   <% else %>
@@ -42,4 +43,5 @@
       <br><br><br><br>
     </div>
   <% end %>
+<% end %>
 <% end %>

@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user! , only: [:edit, :update, :new]
   before_action :set_group, except: [:new, :index, :create]
   before_action :set_owner, except: [:new, :index, :create]
+  before_action :check_fieldsneeded, except: [:new, :index, :create]
   layout :resolve_layout
 
   def index
@@ -110,8 +111,21 @@ class GroupsController < ApplicationController
     end
   end
 
-  def correcterrors
+  def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @group }
+    end
+  end
+  def addbankaccount #add financial institution # to stripe acct just created
     account = Stripe::Account.retrieve(@group.stripeid)
+    @countryoftax = account.country
+     respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @group1 }
+    end
+  end
+  def correcterrors
      respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @group }
@@ -132,20 +146,16 @@ class GroupsController < ApplicationController
       format.json { render json: @group }
     end
   end
-  def addbankaccount #add financial institution # to stripe acct just created
-    account = Stripe::Account.retrieve(@group.stripeid)
-    @fieldsneeded = account.verification.fields_needed
-    @countryoftax = account.country
-     respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @group1 }
-    end
+  def createstripeacnt  #called from button on createstripeaccount page
+    @group.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
+          params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
+    redirect_to group_addbankaccount_path(@group.permalink)
   end
-  def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @group }
-    end
+  def addbankacnt   #called from button on addbankaccount page
+    @group.add_bank_account(params[:currency], params[:bankaccountnumber], 
+          params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
+          params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
+    redirect_to group_path(@group.permalink)
   end
   def correcterr  #called from button on correcterror page
     @group.correct_errors(params[:countryofbank], params[:currency], params[:routingnumber], params[:bankaccountnumber], 
@@ -154,20 +164,9 @@ class GroupsController < ApplicationController
       params[:line1], params[:city], params[:zip], params[:state], params[:ein], params[:ssn4]) 
     redirect_to group_path(@group.permalink)
   end
-  def createstripeacnt  #called from button on createstripeaccount page
-    @group.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
-          params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
-    redirect_to group_addbankaccount_path(@group.permalink)
-  end
-  def updatestripeacnt
+  def updatestripeacnt  #called from button on manageaccount page
     @group.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
       params[:state], params[:email]) 
-    redirect_to group_path(@group.permalink)
-  end
-  def addbankacnt   #called from button on addbankaccount page
-    @group.add_bank_account(params[:currency], params[:bankaccountnumber], 
-          params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
-          params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
     redirect_to group_path(@group.permalink)
   end
 
@@ -191,6 +190,13 @@ class GroupsController < ApplicationController
       @user = User.find(@group.user_id)
     end
 
+    def check_fieldsneeded
+      if @group.stripeid.present? 
+        account = Stripe::Account.retrieve(@group.stripeid)
+        @fieldsneeded = account.verification.fields_needed
+      end
+    end
+
     # Only allow a trusted parameter "white list" through.
     def group_params
       params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about,
@@ -203,7 +209,7 @@ class GroupsController < ApplicationController
       case action_name
       when "index", "new"
         'application'
-      when "edit", "show", "calendar", "eventlist", "news", "profileinfo", "readerprofileinfo", "createstripeaccount", "manageaccounts", "addbankaccount"
+      when "edit", "show", "calendar", "eventlist", "news", "profileinfo", "readerprofileinfo", "createstripeaccount", "manageaccounts", "addbankaccount", "correcterrors"
         'grouptemplate'
       else
         'application'

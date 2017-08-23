@@ -1,29 +1,31 @@
 <% @title=" edit group stripe account "  %>
 <p class="flash"><%= flash.notice %></p>
 
+<% if user_signed_in? %>
 <% if @group.user_id == current_user.id %>
   <% if @group.stripeid.present? %>
     <% if @group.stripeid.match(/acct/) %>
       <div class="blacktxt" style="text-align:left">
       <%= form_tag group_correcterr_path %>
 
-        There are errors in the information submitted for verifying your bank account. Payments cannot be received until you correct the following information: <br>
         <% if @fieldsneeded.present? %>
+          There are errors in the information submitted for verifying your bank account. Payments cannot be received until you correct the following information: <br><br>
           <% @fieldsneeded.each do |x| %>
-            - * <%= x.split('.')[-1] %>   <br>
-
             <% if x.split('.')[-1] == "country" %>
               Select the code for the country where your bank account is:
               <%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "CH" "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "currency" %>  
-              Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "CAD", "AUD" "EUR", "DKK", "NOK", "SEK", "GBP"], prompt: true) %><br><br>
+              Select the currency of your bank account: 
+              <%= select_tag :currency, options_for_select(["USD", "CAD", "AUD" "EUR", "DKK", "NOK", "SEK", "GBP"], prompt: true) %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "routing_number" %>
-              Routing number for your bank: <%= text_field_tag :routingnumber, '', :size => 30 %><br><br>
+              Routing number for your bank: 
+              <%= text_field_tag :routingnumber, '', :size => 30 %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "account_number" %>  
-              Bank account number: <%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br>
+              Bank account number: 
+              <%= text_field_tag :bankaccountnumber, '', :size => 30 %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "country" %>
               Select the code for the country where your bank account has a tax ID:
@@ -34,14 +36,16 @@
               <%= text_field_tag :bizname, '', :size => 60 %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "type" %>  
-              Does your bank account belong to a business/company or to an individual: <%= select_tag :accounttype, options_for_select(["company", "individual"], prompt: true) %><br><br>
+              Does your bank account belong to a business/company or to an individual: 
+              <%= select_tag :accounttype, options_for_select(["company", "individual"], prompt: true) %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "first_name" %>
               First name of someone who has signature authority for your bank account 
               <%= text_field_tag :firstname, '', :size => 30 %> <br><br>
             <% end %> 
             <% if x.split('.')[-1] == "last_name" %>  
-              Last name <%= text_field_tag :lastname, '', :size => 30 %> <br><br>
+              Last name of person who has signature authority for your bank account
+              <%= text_field_tag :lastname, '', :size => 30 %> <br><br>
             <% end %> 
             <% if x.split('.')[-1] == "month" %>  
               Month of birth of person with signature authority bank account 
@@ -57,7 +61,8 @@
             <% end %> 
             <% if x.split('.')[-1] == "line1" %>
               Business or personal address <%= @group.name %> uses for tax correspondence <br>
-              Street Address <%= text_field_tag :line1, '', :size => 30 %>  
+              Street Address <%= text_field_tag :line1, '', :size => 30 %> 
+            <% end %> 
             <% if x.split('.')[-1] == "city" %>  
               Business or personal address <%= @group.name %> uses for tax correspondence <br>
               City <%= text_field_tag :city, '', :size => 30 %><br><br>
@@ -78,14 +83,14 @@
             <% end %> 
 
           <% end %>  
+          <%= submit_tag "Update Account" %> </center><br><br>
         <% end %>  
 
-        <center><br>I accept the Terms of Service <br>
-
-        <%= submit_tag "Update Account" %> </center><br><br>
-      
         <br><br><br><br>
       </div>
+    <% else %>
+      To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", group_addbankaccount_path(@group.permalink) %> page.
     <% end %>
   <% end %>
+<% end %>
 <% end %>

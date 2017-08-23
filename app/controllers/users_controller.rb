@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
+  before_action :check_fieldsneeded, except: [:new, :index, :create]
   before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
@@ -304,10 +305,17 @@ class UsersController < ApplicationController
       case action_name
       when "index"
         'application'
-      when "profileinfo", "readerprofileinfo", "createstripeaccount", "manageaccounts", "managesales", "addbankaccount"
+      when "profileinfo", "readerprofileinfo", "createstripeaccount", "manageaccounts", "managesales", "addbankaccount", "correcterrors"
         'editinfotemplate'
       else
         'userpgtemplate'
+      end
+    end
+
+    def check_fieldsneeded
+      if current_user.stripeid.present? 
+        account = Stripe::Account.retrieve(current_user.stripeid)
+        @fieldsneeded = account.verification.fields_needed
       end
     end
 
