@@ -115,6 +115,9 @@ Crowdpublishtv::Application.routes.draw do
   post '/:permalink/createstripeacnt' => 'users#createstripeacnt', :as => :user_createstripeacnt
   post '/:permalink/correcterr' => 'users#correcterr', :as => :user_correcterr
 
+  post '/:permalink/approveagreement' => 'users#approveagreement', :as => :approveagreement_user
+  post '/:permalink/declineagreement' => 'users#declineagreement', :as => :declineagreement_user
+
 #  get '/:friendly_id', to: 'groups#show' 
 
   resources :books do

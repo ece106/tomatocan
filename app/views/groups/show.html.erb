@@ -1,47 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div style = "color:white; text-shadow: 2px 2px #000000;">
+<% if @group.grouppic.present? && @group.grouppic != '' %>
+  <div style="background-image: url(<%= @group.grouppic %>); width:100%;">
+<% else %>  
+  <div style="background-image: url(<%= asset_path "crowddark.png" %>); width:100%; margin-top:-60px; vertical-align: top;">
+<% end %>
+  <p id="notice"><%= notice %></p>
 
-  <% if @group.grouppic.present? && @group.grouppic != '' %>
-    <%= image_tag @group.grouppic, :size => "850x150" %>
-  <% else %>  
-    <%= image_tag "crowddark.png", :size => "850x150" %>
-  <% end %>
-
-  <h2>Projects we support: </h2>
+  <br><h2>Projects we support: </h2>
   <% if @currprojects.present? %>  
-    <table>
+    <table >
       <% @currprojects.each do |proj| %>
         <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), project_path(proj[:permalink], :groupid => @group.id) %></td>
         <td style='font-weight:bold; font-size:22px;'><%= link_to proj[:projtitle], project_path(proj[:permalink], :groupid => @group.id) %></td>
-        <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:permalink], :groupid => @group.id), method: "get" ) %></td></tr> 
+        <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= button_to(name = "Support ", project_path(proj[:permalink], :groupid => @group.id), method: "get", style: "color:black" ) %></td></tr> 
         <% "Instead of projpath, this should route to purchases_new(group_id, curruser, merch_id). Of what merch? A default for each proj? " %>
-        <tr><td></td><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %><br><br></td></tr>
+        <tr><td></td><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %></td></tr>
       <% end %>
     </table>
   <% else %>
     We are not supporting any projects at this time. 
     <% if @pastprojects.present? %>
       Please support our past authors and artists by clicking a button below.
-    <% end %><br><br><br>
-  <% end %>  
-
-  <div class="support" >
-    <% if @group.callaction.present? %> 
-      <%= simple_format @group.callaction.gsub(/\n/, '<br>') %><br><br><br>
-    <% elsif @currprojects.present? %>  
-      Please support our projects by clicking on a button above.<br><br><br>
     <% end %>
+  <% end %>  <br><br>
+</div>
+</div>
+
+  <div class="support" ><br>
+    <% if @group.callaction.present? %> 
+      <%= simple_format @group.callaction.gsub(/\n/, '<br>') %>
+    <% elsif @currprojects.present? %>  
+      Please support our projects by clicking on a button above.
+    <% end %><br>
   </div>
 
   <% if @pastprojects.present? %>
     <h4>CrowdPublish.TV Projects we've supported in the past:</h4>
     <table>
       <% @pastprojects.each do |proj| %>
-        <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), project_path(proj[:permalink]) %></td>
+        <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), user_profile_path(proj[:authorlink]) %></td>
           <td style='font-weight:bold;'><%= link_to proj[:projtitle], project_path(proj[:permalink]) %></td>
-          <td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:projtitle], project_path(proj[:permalink]), method: "get" ) %></td></tr> 
+          <td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:authorname], user_profile_path(proj[:authorlink]), method: "get" ) %></td></tr> 
         <tr><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %><br><br></td></tr>
       <% end %>
     </table><br>
   <% end %>
+</div>  
 
 <br><br>

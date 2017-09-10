@@ -62,6 +62,8 @@
 <% else %>
   To add a bank account you must first submit name, birthdate, country on the <%= link_to "Create Stripe Account", group_createstripeaccount_path(@group.permalink) %> page.
 <% end %>
+  <% else %>
+    To add a bank account you must first submit name, birthdate, country on the <%= link_to "Create Stripe Account", group_createstripeaccount_path(@group.permalink) %> page.
   <% end %>
 <% end %>
 <% end %>

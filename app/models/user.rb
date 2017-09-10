@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-#  extend FriendlyId
-#  friendly_id :permalink, use: :slugged
+# We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
   :countryoftax, :bankaccountnumber, :monthinfo, :incomeinfo, :filetypeinfo, :totalinfo, 
   :purchasesinfo
@@ -47,9 +46,44 @@ class User < ActiveRecord::Base
   before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
 
+  def create_stripe_acnt(countryoftax, accounttype, firstname, lastname, bizname, 
+    birthday, birthmonth, birthyear, userip, email) 
+    #called from controller, this creates a managed acct for an author
+    account = Stripe::Account.create(
+      {
+        :country => countryoftax, 
+        :managed => true,
+        :email => email,
+        :legal_entity => {
+          :business_name => bizname,
+          :type => accounttype,
+          :first_name => firstname,
+          :last_name => lastname,
+          :dob => {
+            :day => birthday,
+            :month => birthmonth,
+            :year => birthyear
+          }
+        } ,
+        :transfer_schedule => {
+          :delay_days => 2,
+          :interval => "weekly",
+          :weekly_anchor => "monday"
+        }
+      }
+    )  
+    self.update_attribute(:stripeid, account.id )
+    self.update_attribute(:stripesignup, Time.now )
+    account = Stripe::Account.retrieve(self.stripeid) #do I need this
+    account.tos_acceptance.ip = userip
+    account.tos_acceptance.date = Time.now.to_i        
+    account.save
+  end
+
   def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank, line1,
-                        line2, city, postalcode, state)
-    account = Stripe::Account.retrieve(self.stripeid) #acct tokens are user.stripeid
+                        line2, city, postalcode, state, ein, ssn) 
+    # actual stripe acct object was created in group's stripe customer acct on the createstripeaccount page. Here they're just adding their bank account number
+    account = Stripe::Account.retrieve(self.stripeid) 
     if account.country == "CA"   #called from controller after create acct button clicked
       if currency == "CAD"
         countryofbank = "CA"
@@ -94,44 +128,105 @@ class User < ActiveRecord::Base
     account.legal_entity.address.postal_code = postalcode
 #if CA, US
     account.legal_entity.address.state = state
+    account.legal_entity.business_tax_id = ein
+    account.legal_entity.ssn_last_4 = ssn
     account.save
-
-    puts temp.currency
-    puts countryofbank
-    puts temp.account #might want to save account token in users hasmany accounts table so I can access later
   end    
 
-  def createstripeacnt(countryoftax, accounttype, firstname, lastname, birthday, birthmonth, birthyear, userip) 
-    #called from controller, this creates a managed acct for an author
-    account = Stripe::Account.create(
-      {
-        :country => countryoftax, 
-        :managed => true,
-        :email => self.email,
-        :legal_entity => {
-          :type => accounttype,
-          :first_name => firstname,
-          :last_name => lastname,
-          :dob => {
-            :day => birthday,
-            :month => birthmonth,
-            :year => birthyear
-          }
-        } ,
-        :transfer_schedule => {
-          :delay_days => 2,
-          :interval => "weekly",
-          :weekly_anchor => "monday"
-        }
-      }
-    )  
-    self.update_attribute(:stripeid, account.id )
-    self.update_attribute(:stripesignup, Time.now )
-    account = Stripe::Account.retrieve(self.stripeid) #do I need this
-    account.tos_acceptance.ip = userip
-    account.tos_acceptance.date = Time.now.to_i        
+  def manage_account(line1, line2, city, zip, state )
+    account = Stripe::Account.retrieve(self.stripeid) #acct tokens are user.stripeid
+    unless line1 == ""
+      account.legal_entity.address.line1 = line1
+    end  
+    unless line2 == ""
+      account.legal_entity.address.line2 = line2
+    end  
+    unless city == ""
+      account.legal_entity.address.city = city
+    end  
+    unless state == ""
+      account.legal_entity.address.state = state
+    end  
+    unless zip == ""
+      account.legal_entity.address.zip = zip
+    end
+    #should we auto update user's email here incase they changed their email in CrowdPublish.TV db?
     account.save
-  end
+  end  
+
+  def correct_errors(countryofbank, currency, routingnumber, bankaccountnumber, 
+    countryoftax, bizname, accounttype, firstname, lastname, birthday, birthmonth, birthyear, 
+    line1, city, zip, state, ein, ssn4)
+    account = Stripe::Account.retrieve(self.stripeid)
+    unless countryofbank == "" || countryofbank == nil
+      account.external_account.country = countryofbank
+    end  
+    unless currency == "" || currency == nil
+      account.external_account.currency = currency
+    end
+    unless routingnumber == "" || routingnumber == nil
+      account.external_account.routing_number = routingnumber
+    end
+    unless bankaccountnumber == "" || bankaccountnumber == nil
+      account.external_account.bank_account = bankaccountnumber
+    end
+
+    unless countryoftax == "" || countryoftax == nil
+      account.country = countryoftax
+    end  
+    unless bizname == "" || bizname == nil
+      account.legal_entity.accounttype = bizname
+    end  
+    unless accounttype == "" || accounttype == nil
+      account.legal_entity.accounttype = type
+    end  
+    unless firstname == "" || firstname == nil
+      account.legal_entity.first_name = firstname
+    end
+    unless lastname == "" || lastname == nil
+      account.legal_entity.last_name = lastname
+    end
+    unless birthday == "" || birthday == nil
+      account.legal_entity.dob.day = birthday
+    end  
+    unless birthmonth == "" || birthmonth == nil
+      account.legal_entity.dob.month = birthmonth
+    end  
+    unless birthday == "" || birthday == nil
+      account.legal_entity.dob.year = birthyear
+    end  
+
+    unless line1 == "" || line1 == nil
+      account.legal_entity.address.line1 = line1
+    end
+    unless city == "" || city == nil
+      account.legal_entity.address.city = city
+    end  
+    unless state == "" || state == nil
+      account.legal_entity.address.state = state
+    end  
+    unless zip == "" || zip == nil
+      account.legal_entity.address.zip = zip
+    end  
+    unless ein == "" || ein == nil
+      account.legal_entity.business_tax_id = ein
+    end  
+    unless ssn4 == "" || ssn4 == nil
+      account.legal_entity.ssn_last_4 = ssn4
+    end  
+    account.save
+  end  
+
+  def approve_agreement(agreeid) 
+    agreement = Agreement.find(agreeid)
+    agreement.approved = DateTime.now
+    agreement.save
+  end  
+  def decline_agreement(agreeid) 
+    agreement = Agreement.find(agreeid)
+    agreement.approved = DateTime.new(1)
+    agreement.save
+  end  
 
   def get_youtube_id
       if self.youtube1.match(/youtube.com/) || self.youtube1.match(/youtu.be/)
@@ -148,17 +243,17 @@ class User < ActiveRecord::Base
       end
   end  
 
-  def calcdashboard(usr) # dashboard currently only shows ebook sales info. Poll users for metrics later
+  def calcdashboard # dashboard currently only shows ebook sales info. Poll users for metrics later
     self.monthinfo = []
     self.incomeinfo = []
     if stripesignup.present?
-      month = usr.stripesignup
+      month = self.stripesignup
     else
       month = Time.now
     end  
     while month < Date.today + 1.month do
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), usr.id)
+        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), self.id)
       booksales = monthsales.group(:book_id)
       counthash = booksales.count
       earningshash = booksales.sum(:authorcut)
@@ -173,7 +268,7 @@ class User < ActiveRecord::Base
     end
 
     self.filetypeinfo = []
-    mysales = Purchase.where('purchases.author_id = ?', usr.id)
+    mysales = Purchase.where('purchases.author_id = ?', self.id)
     titlegroup = mysales.group(:book_id, :bookfiletype)
     counthash = titlegroup.count
     for bookidfiletype, counttype in counthash
@@ -182,14 +277,14 @@ class User < ActiveRecord::Base
     end
 
     self.totalinfo = []
-    mysales = Purchase.where('purchases.author_id = ?', usr.id)
+    mysales = Purchase.where('purchases.author_id = ?', self.id)
     mysales.each do |sale| 
       booksold = Book.find(sale.book_id) 
       customer = User.find(sale.user_id) 
       self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
     end
 
-    mypurchases = usr.purchases
+    mypurchases = self.purchases
     self.purchasesinfo = []
     mypurchases.each do |bought| 
       bookbought = Book.find(bought.book_id) 
@@ -199,7 +294,7 @@ class User < ActiveRecord::Base
   end  
 
   private
-    def assign_defaults_on_new_user
+    def assign_defaults_on_new_user #the Author column should have been a string since integer is not obvious nor descriptive
       self.author = 2 unless self.author
     end
 

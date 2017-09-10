@@ -27,24 +27,34 @@ class GroupsController < ApplicationController
     currtime = Time.now
     @currprojects = []
     @group.projects.where("deadline > ?", currtime).find_each do |proj|
-      author = User.find(proj.user_id)
-      if proj.projectpic.present?
-        picture = proj.projectpic
-      else
-        picture = "whiteBk.jpg"  
+      approvedagreemt = Agreement.where("group_id = ? AND project_id = ?", @group.id, proj.id )
+      if approvedagreemt[0].approved.present?
+        if approvedagreemt[0].approved > '0002-01-01'
+          author = User.find(proj.user_id)
+          if proj.projectpic.present?
+            picture = proj.projectpic
+          else
+            picture = "whiteBk.jpg"  
+          end
+          @currprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
+        end
       end
-      @currprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
     end
     @pastprojects = []
     @group.projects.where("deadline < ?", currtime).find_each do |proj|
-      author = User.find(proj.user_id)
-      if proj.projectpic.present?
-        picture = proj.projectpic
-      else
-        picture = "whiteBk.jpg"  
+      approvedagreemt = Agreement.where("group_id = ? AND project_id = ?", @group.id, proj.id )
+      if approvedagreemt[0].approved.present?
+        if approvedagreemt[0].approved > '0002-01-01'
+          author = User.find(proj.user_id)
+          if proj.projectpic.present?
+            picture = proj.projectpic
+          else
+            picture = "whiteBk.jpg"  
+          end
+          @pastprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink, authorlink: author.permalink } 
+        end
       end
-      @pastprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
-    end
+    end  
   end
 
   def news
@@ -118,62 +128,75 @@ class GroupsController < ApplicationController
     end
   end
   def addbankaccount #add financial institution # to stripe acct just created
-    account = Stripe::Account.retrieve(@group.stripeid)
-    @countryoftax = account.country
-     respond_to do |format|
+    if @group.stripeid.present? 
+      account = Stripe::Account.retrieve(@group.stripeid)
+      @countryoftax = account.country
+    end  
+    respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @group1 }
     end
   end
   def correcterrors
-     respond_to do |format|
+    respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @group }
     end
   end
   def manageaccounts
-    account = Stripe::Account.retrieve(@group.stripeid)
-    @streetaddress = account.legal_entity.address.line1
-    @suite = account.legal_entity.address.line2
-    @city = account.legal_entity.address.city
-    @state = account.legal_entity.address.state
-    @zip = account.legal_entity.address.postal_code
-    @fieldsneeded = account.verification.fields_needed
-    @countryoftax = account.country
-    @email = account.email
-     respond_to do |format|
+    if @group.stripeid.present? 
+      account = Stripe::Account.retrieve(@group.stripeid)
+      @streetaddress = account.legal_entity.address.line1
+      @suite = account.legal_entity.address.line2
+      @city = account.legal_entity.address.city
+      @state = account.legal_entity.address.state
+      @zip = account.legal_entity.address.postal_code
+      @fieldsneeded = account.verification.fields_needed
+      @countryoftax = account.country
+      @email = account.email
+    end  
+    respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @group }
     end
   end
   def createstripeacnt  #called from button on createstripeaccount page
     @group.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
-          params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
+        params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
     redirect_to group_addbankaccount_path(@group.permalink)
   end
   def addbankacnt   #called from button on addbankaccount page
     @group.add_bank_account(params[:currency], params[:bankaccountnumber], 
-          params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
-          params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
+        params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
+        params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
     redirect_to group_path(@group.permalink)
   end
   def correcterr  #called from button on correcterror page
     @group.correct_errors(params[:countryofbank], params[:currency], params[:routingnumber], params[:bankaccountnumber], 
-      params[:countryoftax], params[:bizname], params[:accounttype], params[:firstname], 
-      params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], 
-      params[:line1], params[:city], params[:zip], params[:state], params[:ein], params[:ssn4]) 
+        params[:countryoftax], params[:bizname], params[:accounttype], params[:firstname], 
+        params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], 
+        params[:line1], params[:city], params[:zip], params[:state], params[:ein], params[:ssn4]) 
     redirect_to group_path(@group.permalink)
   end
   def updatestripeacnt  #called from button on manageaccount page
     @group.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
-      params[:state], params[:email]) 
+        params[:state], params[:email]) 
     redirect_to group_path(@group.permalink)
+  end
+
+  def dashboard # this needs work
+    @group.calcdashboard
+    @monthinfo = @group.monthinfo
+    @incomeinfo = @group.incomeinfo
+    @filetypeinfo = @group.filetypeinfo
+    @totalinfo = @group.totalinfo
+    @purchasesinfo = @group.purchasesinfo
   end
 
   # DELETE /groups/1
   def destroy
-    @group.destroy
-    redirect_to groups_url, notice: 'Group was successfully destroyed.'
+    #create new column to flag for disabling display
+    redirect_to groups_url, notice: 'Group was successfully disabled.'
   end
 
   private

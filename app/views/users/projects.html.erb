@@ -13,24 +13,39 @@
 <h1><%= @user.name %>'s projects</h1>
 
 <% if @user == current_user %>
-  Create a <%= button_to "New Project", new_project_path, :method=> :get %> <br><br>
-<% end %>  
+  <%= button_to "Create a New Project", new_project_path, :method=> :get %><br>
+  <table>
+    <% @outstandingagreements.each do |agree| %>
+      <tr>
+        <td><%= button_to [:approveagreement, @user] do %>
+          <strong>Approve </strong>
+          <%= hidden_field_tag :agreeid, agree[:agreeid] %>
+        <% end %></td>
+        <td><%= button_to [:declineagreement, @user] do %>
+          <strong>Decline </strong>
+          <%= hidden_field_tag :agreeid, agree[:agreeid] %>
+        <% end %></td>
+        <td><%= link_to agree[:groupname], group_path(agree[:grouppermalink]) %> wants to affiliate with <%= agree[:projectname]  %> </td>
+      </tr>  
+    <% end %>  
+  </table> 
+<% end %>
 
 <% if @projects.count != 0 %>
   <table>
   <% @projects.each do |project| %>
-    <tr><td><%= link_to project.name, project %></td>
+    <tr><td><br><%= link_to project.name, project %></td>
+      <td><br><%= project.mission %></td>
     <% if user_signed_in? %>
       <% if project.user_id == current_user.id %>
-        <td><%= link_to 'Edit', edit_project_path(project.id) %> </td>
+        <td><br><%= link_to 'Edit', edit_project_path(project.id) %> </td>
       <% end %>
     <% end %>
     </tr>
   <% end %>
   </table>
-<% else %>
-  *** You do not have any projects to edit ***
+<% else %><br><br>
+  *** <%= @user.name %> does not have any active projects ***
 <% end %>  
 
-</div>
 </div>

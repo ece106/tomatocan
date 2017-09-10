@@ -15,6 +15,11 @@
     <% end %>
   <% end %>
 
+  <% @agreedeclined.find_each do |d| %>
+    YOUR REQUEST TO PARTNER WITH <%= Project.find(d.project_id).name %> for 
+    <%= Group.find(d.group_id).name %> HAS BEEN DECLINED.<br>
+  <% end %>
+
   <table>
     <thead>
       <tr>
@@ -32,7 +37,7 @@
           <td><%= project[:creator] %></td>
           <td><%= truncate(project[:mission], :length => 200, :separator => ' ') %></td>
           <td><%= link_to 'Support', project_path(project[:id]) %>
-          </td> <% "Run code to send email to author asking permission to post. " %>
+          </td> <% "Write code to send email to author asking permission to post. " %>
           <td>
             <% if user_signed_in? %>
               <% if @numusrgroups > 0 %>

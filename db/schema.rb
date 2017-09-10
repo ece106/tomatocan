@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "approved"
   end
 
   create_table "books", force: true do |t|

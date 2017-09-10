@@ -12,6 +12,22 @@ class ProjectsController < ApplicationController
       end 
       @numusrgroups = currusergroups.count 
     end  
+    threemonthago = Time.now - 3.months
+    @agreedeclined=Agreement.joins(:group).where("user_id = ? AND agreements.created_at > ? AND approved < ? ", current_user.id, threemonthago, '0002-01-01' )
+
+puts "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+x = Project.where( id: Agreement.where( group_id: Group.where("id = ?", current_user.id)))
+y = Agreement.where( group_id: Group.where("id = ?", current_user.id))
+x.find_each do |j|
+  puts j.name
+  puts "MMMMMMMMMMMMMMMMMMMM"
+end
+puts "?????????????????"
+y.find_each do |j|
+  puts j.project_id
+  puts "NNNNNNNNNNNNNNNN"
+end
+puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
 
     #don't want 1 group to support 80 projects. 3 might be enough
 #    numprojgroupsupports = Agreement.where("group_id = ?", @currgroup.id).count

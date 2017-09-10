@@ -63,6 +63,8 @@
 <% else %>
   To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", group_addbankaccount_path(@group.permalink) %> page.
 <% end %>
+  <% else %>
+    To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", group_addbankaccount_path(@group.permalink) %> page.
   <% end %>
 <% end %>
 <% end %>

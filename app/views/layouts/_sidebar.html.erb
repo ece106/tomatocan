@@ -14,10 +14,27 @@
       <%= image_tag "whiteBk.jpg", :height => "150" %>
     <% end %>
     </div>
+  </div>
+
+  <div class="col-md-9 col-sm-9 col-xs-9 author-info" >
+    <div class="username" >
+      <%= @user.name %>
+    </div>
+    <div class="usergenre" >
+      <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
+    </div>
+  </div>
+</div>
 
     <% if @user == current_user %>
       <% if @user.author == 2 #user is an author %>
         <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), :method=> :get %>
+        <div class="covername"> <br> </div>
+        <% if @mynullagreements.count != 0 %>
+          <%= button_to "You have agreement(s) to approve. Click here.", user_projects_path(current_user.permalink), {:style => "background-color:red", :method=> :get} %>
+        <% else %> 
+          <%= button_to "Edit Projects", user_projects_path(current_user.permalink), :method=> :get %>
+        <% end %> 
         <div class="covername"> <br> </div>
         <%= button_to "Edit Books", user_edit_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
@@ -26,8 +43,6 @@
         <%= button_to "Edit Groups", user_groups_path, :method=> :get %>
         <div class="covername"> <br> </div>
         <%= button_to "Edit Events", user_eventlist_path(current_user.permalink), :method=> :get %>
-        <div class="covername"> <br> </div>
-        <%= button_to "Edit Projects", user_projects_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
         <% if current_user.stripeid.present? %>
           <% if current_user.stripeid.match(/acct/) %>
@@ -50,17 +65,6 @@
         <%= button_to "Edit Events", user_eventlist_path(current_user.permalink), :method=> :get %>
       <% end %> 
     <% end %> 
-  </div>
-
-  <div class="col-md-9 col-sm-9 col-xs-9 author-info" >
-    <div class="username" >
-      <%= @user.name %>
-    </div>
-    <div class="usergenre" >
-      <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
-    </div>
-  </div>
-</div>
 
 <div class="author-books">
 <% if @user.author == 2 %>

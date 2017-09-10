@@ -2,9 +2,9 @@
 <p class="flash"><%= flash.notice %></p>
 
 <% if user_signed_in? %>
-<% if @group.user_id == current_user.id %>
-  <% if @group.stripeid.present? %>
-    <% if @group.stripeid.match(/acct/) %>
+<% if @user.id == current_user.id %>
+  <% if @user.stripeid.present? %>
+    <% if @user.stripeid.match(/acct/) %>
       <div class="blacktxt" style="text-align:left">
       <%= form_tag group_correcterr_path %>
 
@@ -89,10 +89,11 @@
         <br><br><br><br>
       </div>
     <% else %>
-      To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", group_addbankaccount_path(@group.permalink) %> page.
+      To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", user_addbankaccount_path(current_user.permalink) %> page.
     <% end %>
   <% else %>
-    To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", group_addbankaccount_path(@group.permalink) %> page.
+    To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", user_addbankaccount_path(current_user.permalink) %> page.
   <% end %>
 <% end %>
 <% end %>
+  

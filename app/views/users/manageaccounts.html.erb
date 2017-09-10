@@ -1,21 +1,8 @@
-<% @title=" edit user profile "  %>
+<% @title=" manage financial account "  %>
 <p class="flash"><%= flash.notice %></p>
 
-<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
-  <% if @user.profilepic.present? && @user.profilepic != '' %>
-    <%= image_tag @user.profilepic, :height => "150" %>
-  <% elsif @user.profilepicurl %>
-    <% if @user.profilepicurl.match(/http/) %>
-      <%= image_tag @user.profilepicurl, :height => "150" %><br >
-    <% else %>
-      <%= image_tag "whiteBk.jpg", :height => "150" %>
-    <% end %>
-  <% else %>
-    <%= image_tag "whiteBk.jpg", :height => "150" %>
-  <% end %>
-</div>
-
-<% if @user == current_user %>
+<% if user_signed_in? %>
+<% if @user.id == current_user.id %>
   <% if @user.stripeid.present? %>
 <% if @user.stripeid.match(/acct/) %>
   <div class="col-md-8 " style="text-align:left">
@@ -48,31 +35,36 @@
           Select the currency of your bank account: <%= select_tag :currency, options_for_select(["USD", "GBP", "EUR"], prompt: true) %><br>
           If your bank account is in EUR, select the country of your bank account: <%= select_tag :countryofbank, options_for_select(["AT", "BE", "CH", "DE", "DK", "ES", "FI", "FR", "GB", "IE", "IT", "LU", "NL", "NO", "SE"], prompt: true), include_blank: true %><br>
         <% end %> <br> <br>
-        Bank account numbers, routing numbers, EIN, and SSN cannot be edited for bank accounts that have already been approved. If you need to add a new bank account, add the new account's information <%= link_to "here", user_addbankaccount_path(@user.permalink) %>. <br><br>
+        Bank account numbers, routing numbers, EIN, and SSN cannot be edited for bank accounts that have already been approved. If you need to add a new bank account, add the new account's information on the <%= link_to "Add Bank Account", user_addbankaccount_path(current_user.permalink) %> page. <br><br>
         <table>
           <tr><td></td><td>Address you use for tax correspondence </td></tr>
           <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30, :placeholder => @streetaddress %> 
             Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
           <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %> <br>
-        <% if @countryoftax.match(/US|CA/) %> 
-          <tr><td>State</td><td> <%= text_field_tag :state, '', :size => 5 %> <br>
-        <% end %>  
-          <tr><td>Zip Code</td><td> <%= text_field_tag :zip, '', :size => 30 %> </td></tr>
+          <% if @countryoftax.match(/US|CA/) %> 
+            <tr><td>State</td><td> <%= text_field_tag :state, '', :size => 5 %> <br>
+          <% end %>  
+          <tr><td>Zip Code</td><td> <%= text_field_tag :zip, '', :size => 30 %> <br><br></td></tr>
+          <tr><td>email</td><td> <%= text_field_tag :email, '', :size => 30 %> </td></tr>
         </table > <br>
 
-        <center><%= submit_tag "Update Account" %> </center><br><br>
+        <center><%= submit_tag "Update Account" %> </center><br>
         Payments cannot be received until you submit: <br>
         <% if @fieldsneeded %>  
           <% @fieldsneeded.each do |x| %>
-            <%= x %>   <br>
-          <% end %>  
+            <%= x.split('.')[-1] %>   <br>
+          <% end %> <br> 
+          If you do not see a way to fix the missing information here, you will need to make corrections on the <%= link_to "Correct Errors", user_correcterrors_path(current_user.permalink) %> page. 
         <% end %>  
 
         <br>
     </div>
   </div>
+<% else %>
+  To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", user_addbankaccount_path(current_user.permalink) %> page.
 <% end %>
+  <% else %>
+    To manage account data you must first add a bank account on the <%= link_to "Add Bank Account", user_addbankaccount_path(current_user.permalink) %> page.
   <% end %>
 <% end %>
-
-<%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>
+<% end %>

@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
+  before_action :set_user, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :check_fieldsneeded, except: [:new, :index, :create]
-  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount]
+  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
+  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
@@ -13,8 +15,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_permalink(params[:permalink])
-#    @user = User.find(params[:id])
     @books = @user.books
     @project = @user.projects.order('created_at').last #do i want all projects that havent met deadline
 
@@ -40,17 +40,13 @@ class UsersController < ApplicationController
   end
 
   def pastprojects
-    @user = User.find_by_permalink(params[:permalink])
-#    @user = User.find(params[:id])
     @projects = @user.projects.sort! { |a, b| a.created_at <=> b.created_at }
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
     end
   end
   def blog
-    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # blog.html.erb
       format.json { render json: @user }
@@ -60,13 +56,11 @@ class UsersController < ApplicationController
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @shown_month = Date.civil(@year, @month)
-    @user = User.find_by_permalink(params[:permalink])
     @events = Event.all 
     @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :usrid => @user.id } ) 
   end
   def eventlist
     currtime = Time.now
-    @user = User.find_by_permalink(params[:permalink])
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @rsvpevents = rsvps.where( "start_at > ?", currtime ) 
     @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
@@ -77,7 +71,6 @@ class UsersController < ApplicationController
   end
   def prevevents
     currtime = Time.now
-    @user = User.find_by_permalink(params[:permalink])
     @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @rsvpevents = rsvps.where( "start_at < ?", currtime ) 
@@ -87,7 +80,6 @@ class UsersController < ApplicationController
     end
   end
   def groups
-    @user = User.find_by_permalink(params[:permalink])
     @groups = Group.where( "user_id = ?", @user.id )
     respond_to do |format|
       format.html 
@@ -95,15 +87,20 @@ class UsersController < ApplicationController
     end
   end
   def projects
-    @user = User.find_by_permalink(params[:permalink])
     @projects = Project.where( "user_id = ?", @user.id ).order('created_at')
+    @outstandingagreements = []
+    @mynullagreements.each do |agree|
+      project = Project.find(agree.project_id)
+      group = Group.find(agree.group_id) 
+      @outstandingagreements << {projectname: project.name, groupname: group.name, 
+        agreeid: agree.id, grouppermalink: group.permalink }
+    end
     respond_to do |format|
       format.html 
       format.json { render json: @user }
     end
   end
   def treasure
-    @user = User.find_by_permalink(params[:permalink])
     @treasure = Merchandise.where( "user_id = ?", @user.id )
     respond_to do |format|
       format.html 
@@ -111,7 +108,6 @@ class UsersController < ApplicationController
     end
   end
   def stream
-    @user = User.find_by_permalink(params[:permalink])
     @books = @user.books
     respond_to do |format|
       format.html # show.html.erb
@@ -119,7 +115,6 @@ class UsersController < ApplicationController
     end
   end
   def profileinfo
-    @user = User.find_by_permalink(params[:permalink])
 #    @user.updating_password = false
     respond_to do |format|
       format.html # profileinfo.html.erb
@@ -127,21 +122,18 @@ class UsersController < ApplicationController
     end
   end
   def readerprofileinfo
-    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # readerprofileinfo.html.erb
       format.json { render json: @user }
     end
   end
   def editbookreview
-    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # editbookreview.html.erb
       format.json { render json: @user }
     end
   end
   def editauthorreview
-    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # editauthorreview.html.erb
       format.json { render json: @user }
@@ -150,7 +142,6 @@ class UsersController < ApplicationController
 
   # GET /users/1.json
   def booklist
-    @user = User.find_by_permalink(params[:permalink])
     @books = @user.books
     respond_to do |format|
       format.html # booklist.html.erb
@@ -169,60 +160,86 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit 76
   def edit
-    @user = User.find_by_permalink(params[:permalink])
     @books = @user.books
     @book = current_user.books.build # if signed_in?
     @booklist = Book.where(:user_id => @user.id)
   end
 
-  def manageaccounts
-    @user = User.find_by_permalink(params[:permalink])
-    account = Stripe::Account.retrieve(@user.stripeid)
-    @fieldsneeded = account.verification.fields_needed
-    @countryoftax = account.country
-     respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def addbankaccount #add financial institution # to stripe acct just created
-    @user = User.find_by_permalink(params[:permalink])
-    account = Stripe::Account.retrieve(@user.stripeid)
-    @fieldsneeded = account.verification.fields_needed
-    @countryoftax = account.country
-     respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
   def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
-    @user = User.find_by_permalink(params[:permalink])
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
     end
   end
+  def addbankaccount #add financial institution # to stripe acct just created
+    if current_user.stripeid.present?
+      account = Stripe::Account.retrieve(current_user.stripeid)
+      @fieldsneeded = account.verification.fields_needed
+      @countryoftax = account.country
+    end
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def correcterrors
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
+  def manageaccounts
+    if current_user.stripeid.present?
+      account = Stripe::Account.retrieve(current_user.stripeid)
+      @streetaddress = account.legal_entity.address.line1
+      @suite = account.legal_entity.address.line2
+      @city = account.legal_entity.address.city
+      @state = account.legal_entity.address.state
+      @zip = account.legal_entity.address.postal_code
+      @fieldsneeded = account.verification.fields_needed
+      @countryoftax = account.country
+      @email = account.email
+    end
+    respond_to do |format|
+      format.html # profileinfo.html.erb
+      format.json { render json: @user }
+    end
+  end
+
   def createstripeacnt  #called from button on createstripeaccount page
-    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    current_user.createstripeacnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
-                          params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip) 
+    current_user.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
+        params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
     redirect_to user_addbankaccount_path(current_user.permalink)
   end
   def addbankacnt   #called from button on addbankaccount page
-    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-#    account = Stripe::Account.retrieve(@user.stripeid)
-    @user.add_bank_account(params[:currency], params[:bankaccountnumber], 
-          params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
-          params[:city], params[:postal_code], params[:state])
+    current_user.add_bank_account(params[:currency], params[:bankaccountnumber], 
+        params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
+        params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
     redirect_to user_profile_path(current_user.permalink)
   end
-  def updatestripeacnt
-    # need to make it so people can enter a new bank acct if they change
+  def correcterr  #called from button on correcterror page
+    current_user.correct_errors(params[:countryofbank], params[:currency], params[:routingnumber], params[:bankaccountnumber], 
+        params[:countryoftax], params[:bizname], params[:accounttype], params[:firstname], 
+        params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], 
+        params[:line1], params[:city], params[:zip], params[:state], params[:ein], params[:ssn4]) 
+    redirect_to user_path(current_user.permalink)
   end
+  def updatestripeacnt  #called from button on manageaccount page
+    current_user.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
+        params[:state], params[:email]) 
+    redirect_to user_path(current_user.permalink)
+  end
+  def approveagreement  #called from button on project page
+    current_user.approve_agreement(params[:agreeid]) 
+    redirect_to user_projects_path(current_user.permalink)
+  end
+  def declineagreement  #called from button on project page
+    current_user.decline_agreement(params[:agreeid])  
+    redirect_to user_projects_path(current_user.permalink)
+  end
+
   def dashboard
-    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-    usr = current_user
-    @user.calcdashboard(usr)
+    @user.calcdashboard
     @monthinfo = @user.monthinfo
     @incomeinfo = @user.incomeinfo
     @filetypeinfo = @user.filetypeinfo
@@ -235,7 +252,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 #    @user.latitude = request.location.latitude
 #    @user.longitude = request.location.longitude
-
     if @user.save
       sign_in @user
       redirect_to user_profile_path(current_user.permalink)
@@ -245,7 +261,6 @@ class UsersController < ApplicationController
   end
   # PUT /users/1.json
   def update
-    @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
     if @user.latitude.present?
       unless @user.latitude.is_a?(Numeric)  #put this in the model and make a method call? Should method be called after attribs updated?
         loc = request.location
@@ -298,14 +313,15 @@ class UsersController < ApplicationController
         :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
         :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
-        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax)
+        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn,
+        :agreeid )
     end
 
     def resolve_layout
       case action_name
       when "index"
         'application'
-      when "profileinfo", "readerprofileinfo", "createstripeaccount", "manageaccounts", "managesales", "addbankaccount", "correcterrors"
+      when "profileinfo", "readerprofileinfo", "managesales"
         'editinfotemplate'
       else
         'userpgtemplate'
@@ -319,5 +335,14 @@ class UsersController < ApplicationController
       end
     end
 
+    def check_outstandingagreements
+      allmyagreements = Agreement.where('project_id IN 
+        (SELECT id FROM projects WHERE projects.user_id = ?)', @user.id)
+      @mynullagreements = allmyagreements.where("approved IS NULL" )
+    end
+
+    def set_user 
+      @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+    end
 end
 
