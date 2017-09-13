@@ -31,21 +31,39 @@
   </table> 
 <% end %>
 
-<% if @projects.count != 0 %>
+<% if @activeprojects.count != 0 %>
+  <h2>Current projects</h2>
   <table>
-  <% @projects.each do |project| %>
-    <tr><td><br><%= link_to project.name, project %></td>
-      <td><br><%= project.mission %></td>
+  <% @activeprojects.each do |proj| %>
+    <tr><td><br><%= link_to proj.name, proj %></td>
+      <td><br><%= proj.mission %></td>
     <% if user_signed_in? %>
-      <% if project.user_id == current_user.id %>
-        <td><br><%= link_to 'Edit', edit_project_path(project.id) %> </td>
+      <% if proj.user_id == current_user.id %>
+        <td><br><%= link_to 'Edit', edit_project_path(proj.id) %> </td>
+      <% end %>
+    <% end %>
+    </tr>
+  <% end %>
+  </table>
+<% else %><br>
+  *** <%= @user.name %> does not have any active projects ***<br><br>
+<% end %>  
+
+<% if @pastprojects.count != 0 %>
+  <h2>Past projects</h2>
+  <table>
+  <% @pastprojects.each do |proj| %>
+    <tr><td><br><%= link_to proj.name, proj %></td>
+      <td><br><%= proj.mission %></td>
+    <% if user_signed_in? %>
+      <% if proj.user_id == current_user.id %>
+        <td><br><%= link_to 'Edit', edit_project_path(proj.id) %> </td>
       <% end %>
     <% end %>
     </tr>
   <% end %>
   </table>
 <% else %><br><br>
-  *** <%= @user.name %> does not have any active projects ***
+  *** <%= @user.name %> does not have any past projects ***
 <% end %>  
-
 </div>

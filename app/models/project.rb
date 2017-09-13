@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   friendly_id :permalink, use: :slugged
 
   before_save { |project| project.permalink = permalink.downcase }
+  mount_uploader :projectpic, ProjectpicUploader
 
   has_many :merchandises 
   belongs_to :user

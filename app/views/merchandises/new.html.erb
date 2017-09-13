@@ -25,6 +25,10 @@
     <b>Price </b><br>
     <%= f.text_field :price, :size => 80, placeholder: "$10.00" %>
   </div>
+      <div class="field">
+        Upload a picture that represents the item you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
+        <br><%= f.file_field :itempic %> 
+      </div><br>
 
   <div class="actions">
     <%= f.submit %>

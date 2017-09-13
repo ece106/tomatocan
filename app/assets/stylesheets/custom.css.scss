@@ -38,6 +38,18 @@ grouptext {
    left: 60px;
    text-shadow: 1px 1px #ffffff;
 }
+projecttext { 
+   vertical-align: top;
+   position: absolute;
+   text-align: left;
+   top: 0px;
+   left: 10px;
+   color: #fff;
+   text-shadow: 1px 1px #000000;
+   a:link { color : #ddbbff;}
+   a:visited { color : #ddbbff;}
+   a:hover { text-decoration: none; color : #60f; text-shadow: 1px 1px #fff;}
+}
 
 section {
   overflow: auto;
@@ -203,7 +215,7 @@ sidebar {
   padding-bottom: 20px;
   margin-top: -40px; //don't know why there's a huge white margin without this
   .wrapper {
-    .profile-pic {
+    .profile-pic {        //is this used anymore
       margin-right: 5px;
       margin-left: -15px; //where is this extra 15 px from
       padding: 0;
@@ -237,4 +249,50 @@ sidebar {
 center .info-content {
   padding-left: 0;
   margin-top: -20px;
+}
+
+// for user site sidebar
+#wrapper {
+  padding-left: 350px;
+  transition: all 0.4s ease 0s;
+}
+#sidebar-wrapper {
+  margin-top: -40px; 
+  margin-left: -365px;
+  left: 350px;
+  width: 350px;
+  background: #c6beCc;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+}
+#page-content-wrapper {
+  width: 100%;
+}
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 350px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width:767px) {
+    #wrapper {
+      padding-left: 0;
+    }
+    #sidebar-wrapper {
+      left: 0;
+    }
+    #wrapper.active {
+      position: relative;
+      left: 350px;
+    }
+    #wrapper.active #sidebar-wrapper {
+      left: 350px;
+      width: 350px;
+      transition: all 0.4s ease 0s;
+    }
 }

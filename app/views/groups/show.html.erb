@@ -10,8 +10,12 @@
   <% if @currprojects.present? %>  
     <table >
       <% @currprojects.each do |proj| %>
-        <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), project_path(proj[:permalink], :groupid => @group.id) %></td>
-        <td style='font-weight:bold; font-size:22px;'><%= link_to proj[:projtitle], project_path(proj[:permalink], :groupid => @group.id) %></td>
+        <% if proj[:pic].present? && proj[:pic] != '' %>
+          <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), project_path(proj[:permalink], :groupid => @group.id) %></td>
+        <% else %>
+          <tr><td><%= link_to (image_tag "crowddark.png", :size => "75x75"), project_path(proj[:permalink], :groupid => @group.id) %></td>
+        <% end %>
+        <td style= 'font-weight:bold; font-size:22px'><%= link_to proj[:projtitle], project_path(proj[:permalink], :groupid => @group.id), style: "color:#ddbbff" %></td>
         <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= button_to(name = "Support ", project_path(proj[:permalink], :groupid => @group.id), method: "get", style: "color:black" ) %></td></tr> 
         <% "Instead of projpath, this should route to purchases_new(group_id, curruser, merch_id). Of what merch? A default for each proj? " %>
         <tr><td></td><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %></td></tr>

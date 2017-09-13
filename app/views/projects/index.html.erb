@@ -1,9 +1,11 @@
+<body style=" vlink:green; link:green; alink:green">
 <h3>Current Projects To Support</h3>
 <%= form_for(Agreement.new) do |f| %> 
 
   <% if user_signed_in? %>
     <% if @numusrgroups > 0 %>
       <h4>When a group affiliates with a project, the project supports the group! 
+      <br>If the project creator accepts your affiliation, you will receive a percentage of their proceeds. 
       <br>Have your group affiliate one of the projects below & it will appear on your group's home page:</h4><br> 
     <% end %>
     <% if @numusrgroups == 1 %>
@@ -16,39 +18,39 @@
   <% end %>
 
   <% @agreedeclined.find_each do |d| %>
-    YOUR REQUEST TO PARTNER WITH <%= Project.find(d.project_id).name %> for 
-    <%= Group.find(d.group_id).name %> HAS BEEN DECLINED.<br>
+    Your request to partner with <%= Project.find(d.project_id).name %> for 
+    <%= Group.find(d.group_id).name %> has been declined.<br>
   <% end %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Project</th>
-        <th>Creator</th>
-        <th>Mission</th>
-        <th></th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% @support.each do |project| %>
-        <tr>
-          <td><%= project[:name] %></td>
-          <td><%= project[:creator] %></td>
-          <td><%= truncate(project[:mission], :length => 200, :separator => ' ') %></td>
-          <td><%= link_to 'Support', project_path(project[:id]) %>
-          </td> <% "Write code to send email to author asking permission to post. " %>
-          <td>
-            <% if user_signed_in? %>
-              <% if @numusrgroups > 0 %>
-                <%= f.hidden_field :project_id, :value => project[:id] %>
-                <%= submit_tag "Affiliate" %>
-              <% end %>
+  <% if @support.count != 0 %>
+    <% @support.each do |proj| %>
+
+      <div class="col-md-4 col-sm-6 col-xs-12" > 
+        <div class= "groupimage" style="vertical-align: top; height:190px; width:300px; overflow:hidden" >
+          <% if proj[:projpic].present? && proj[:projpic] != '' %>
+            <% groupthumb = proj[:projpic] %>
+          <% else %>
+            <% groupthumb = "crowddark.png" %>
+          <% end %>
+
+          <%= link_to (image_tag groupthumb, :style => "opacity:0.7; max-height:150px"), project_path(proj[:permalink])
+          %>
+          <projecttext style="vertical-align: top"><table style="width:290px"><tr><td style="padding:0px; font-size:22px"><%= link_to proj[:name], project_path(proj[:permalink]) %></td>
+          <td style="text-align:right; padding:0px; color: #000" ><%= button_to 'Support', project_path(proj[:permalink]) %></td></tr></table>
+          <%= proj[:creator] %>
+          <% "Write code to send email to author asking permission to post. " %>
+                    <br><%= truncate(proj[:mission], :length => 160, :separator => ' ') %></projecttext>
+          <% if user_signed_in? %>
+            <% if @numusrgroups > 0 %>
+              <%= f.hidden_field :project_id, :value => proj[:permalink] %>
+              <%= submit_tag "Affiliate with your group" %>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
 <br><br>
+</body>

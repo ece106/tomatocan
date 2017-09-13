@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CrowdPublish.TV <%  @user.name %> 's Treasure</title>
+<title>CrowdPublish.TV <%  @user.name %> 's Patron Perks</title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -10,19 +10,19 @@
 
 <div class="blacktxt"  >
 
-<h1><%= @user.name %>'s Treasure</h1>
+<h1><%= @user.name %>'s Patron Perks</h1>
 
 <% if @user == current_user %>
-  Create a <%= button_to "New Treasure", new_merchandise_path, :method=> :get %> <br><br>
+  Create a <%= button_to "New Perk", new_merchandise_path, :method=> :get %> <br><br>
 <% end %>  
 
 <% if !user_signed_in? %>
-  <%= link_to 'Sign in', "/login" %> to purchase treasures <br>
+  <%= link_to 'Sign in', "/login" %> to support <%= @user%> <br>
 <% end %>  
 
-<% if @treasure.count != 0 %>
+<% if @perks.count != 0 %>
   <table>
-  <% @treasure.each do |merchandise| %>
+  <% @perks.each do |merchandise| %>
     <tr><td><%= link_to merchandise.name, merchandise %></td>
     <% if user_signed_in? %>
       <% if merchandise.user_id == current_user.id %>
@@ -38,7 +38,7 @@
   <% end %>
   </table>
 <% else %>
-  *** You do not have any Treasure to edit ***
+  *** You do not have any Patron Perks to edit ***
 <% end %>  
 
 </div>

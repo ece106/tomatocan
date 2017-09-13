@@ -24,8 +24,14 @@
     <% @groups.each do |group| %>
 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class= "groupimage" style="vertical-align:center; horizontal-align:center; height:190px; width:350px; overflow:hidden" >
-          <%= link_to (image_tag group.grouppic, :style => "opacity:0.5; filter:alpha(opacity=50);", :size => "300x150"), group_path(group.id) 
+        <div class= "groupimage" style="vertical-align:center; horizontal-align:center; height:190px; width:300px; right-margin:50px; overflow:hidden" >
+          <% if group.grouppic.present? && group.grouppic != '' %>
+            <% groupthumb = group.grouppic %>
+          <% else %>
+            <% groupthumb = "crowddark.png" %>
+          <% end %>
+
+          <%= link_to (image_tag groupthumb, :style => "opacity:0.5; filter:alpha(opacity=50); max-height:150px"), group_path(group.id) 
           %>
 
           <br><grouptext><%= link_to group.name, group %>

@@ -1,7 +1,10 @@
-<sidebar class="clearfix col-lg-3 col-md-3">
-<div class="wrapper clearfix">
-  <div class="profile-pic col-md-3 col-sm-3 col-xs-3" >
-    <div>
+<div id="wrapper">
+  <div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+
+  <div class="container" >
+  <div class="row" >
+  <table><tr><td>
     <% if @user.profilepic.present? && @user.profilepic != '' %>
       <%= image_tag @user.profilepic, :height => "150" %>
     <% elsif @user.profilepicurl %>
@@ -13,19 +16,17 @@
     <% else %>
       <%= image_tag "whiteBk.jpg", :height => "150" %>
     <% end %>
-    </div>
-  </div>
-
-  <div class="col-md-9 col-sm-9 col-xs-9 author-info" >
+  </td><td>
     <div class="username" >
       <%= @user.name %>
     </div>
     <div class="usergenre" >
       <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
     </div>
+  </td></tr></table>
   </div>
-</div>
 
+  <div class="row" >
     <% if @user == current_user %>
       <% if @user.author == 2 #user is an author %>
         <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), :method=> :get %>
@@ -38,7 +39,7 @@
         <div class="covername"> <br> </div>
         <%= button_to "Edit Books", user_edit_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
-        <%= button_to "Edit Merchandise", user_treasure_path(current_user.permalink), :method=> :get %>
+        <%= button_to "Edit Merchandise", user_merchandise_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
         <%= button_to "Edit Groups", user_groups_path, :method=> :get %>
         <div class="covername"> <br> </div>
@@ -65,13 +66,14 @@
         <%= button_to "Edit Events", user_eventlist_path(current_user.permalink), :method=> :get %>
       <% end %> 
     <% end %> 
+  </div>
 
+<div class="row" >
 <div class="author-books">
 <% if @user.author == 2 %>
   <% if @user.books.any? %>
     <% @user.books.each do |book| %>
       <%= form_for(book) do |f| %>
-        <div class="clearfix">
           <div class="col-md-3 col-sm-3 col-xs-3 book-cover">
             <div class="fanbook" style="width:75px;height:100px;background-color:#bbdd99; line-height:0.9em; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid" >
               <% if book.coverpic.present? && book.coverpic != '' %>
@@ -95,7 +97,6 @@
             </div>
             <div class="fifty"><br><%= link_to book.fiftychar, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Purchase " + book.title  %> </div><br>
           </div>
-        </div>
       <% end #form_for %>
     <% end #@user.bks.each do %>
   <% else %>
@@ -104,7 +105,10 @@
     <% end %>
   <% end %>
 <% else # sidebar for reader%>
-
 <% end %>
 </div>
-</sidebar>
+</div>
+</ul>
+</div>
+</div>
+</div>

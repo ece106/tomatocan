@@ -8,26 +8,17 @@ class ProjectsController < ApplicationController
       currusergroups = Group.where("user_id = ?", current_user.id)
       @usrgrpnameid = []
       currusergroups.find_each do |group|
-        @usrgrpnameid <<  [group.name, group.id] 
+        @usrgrpnameid << [group.name, group.id] 
       end 
       @numusrgroups = currusergroups.count 
     end  
     threemonthago = Time.now - 3.months
     @agreedeclined=Agreement.joins(:group).where("user_id = ? AND agreements.created_at > ? AND approved < ? ", current_user.id, threemonthago, '0002-01-01' )
 
-puts "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
-x = Project.where( id: Agreement.where( group_id: Group.where("id = ?", current_user.id)))
-y = Agreement.where( group_id: Group.where("id = ?", current_user.id))
-x.find_each do |j|
-  puts j.name
-  puts "MMMMMMMMMMMMMMMMMMMM"
-end
-puts "?????????????????"
-y.find_each do |j|
-  puts j.project_id
-  puts "NNNNNNNNNNNNNNNN"
-end
-puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
+#x = Project.where(id: Agreement.select("project_id").where( group_id: Group.where("user_id = ?", current_user.id)) )
+# x = all projects the user has already requested to affiliate with, over all of the user's groups.
+# Don't want to display projects that user/group has already requested to affiliate with. However
+#   if curr_user manages more than one group, all user's groups should be able to support the same project
 
     #don't want 1 group to support 80 projects. 3 might be enough
 #    numprojgroupsupports = Agreement.where("group_id = ?", @currgroup.id).count
@@ -37,16 +28,16 @@ puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
     active.find_each do |proj|
       author = User.find(proj.user_id).name
         support <<  {name: proj.name, creator: author, mission: proj.mission, 
-          id: proj.id, deadline: proj.deadline} 
+          permalink: proj.permalink, deadline: proj.deadline, projpic: proj.projectpic} 
     end 
     @support = support.sort_by{|e| e[:deadline]}
   end
 
   # GET /projects/1
   def show
-    @merchandise = @project.merchandises
+    @merchandise = @project.merchandises.order(price: :asc)
     @author = User.find(@project.user_id)
-    @merchandises = @author.merchandises
+    @merchandises = @author.merchandises  #I don't think we need this
     @groupid = params[:groupid]
   end
 

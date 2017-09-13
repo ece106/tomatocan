@@ -48,6 +48,10 @@
         When does this project expire?<br>
         <%= f.date_select :deadline %><br>
       </div>
+      <div class="field">
+        Upload a picture that represents your project (.jpg, .gif, .jpeg, or .png) - <i>a wide, short picture works best</i>
+        <br><%= f.file_field :projectpic %> 
+      </div><br>
 
       <div class="field" style= "text-align:left">
         <br><br><%= f.submit %><br>

@@ -87,7 +87,9 @@ class UsersController < ApplicationController
     end
   end
   def projects
-    @projects = Project.where( "user_id = ?", @user.id ).order('created_at')
+    currtime = Time.now
+    @activeprojects = Project.where( "user_id = ? AND deadline > ?", @user.id, currtime).order('created_at')
+    @pastprojects = Project.where( "user_id = ? AND deadline < ?", @user.id, currtime).order('created_at')
     @outstandingagreements = []
     @mynullagreements.each do |agree|
       project = Project.find(agree.project_id)
@@ -100,8 +102,8 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def treasure
-    @treasure = Merchandise.where( "user_id = ?", @user.id )
+  def perks
+    @perks = Merchandise.where( "user_id = ?", @user.id )
     respond_to do |format|
       format.html 
       format.json { render json: @user }
