@@ -1,4 +1,8 @@
-<div class="col-md-8 col-sm-8 col-xs-12 " style="text-align:left">
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container">
+
   <% if @user == current_user %>
     <p id="notice"><%= notice %></p>
     <%= form_for @book, :html => {:multipart => true} do |f| %>
@@ -19,16 +23,16 @@
       <%= f.hidden_field :user_id %>
 
       <div class="editbooktxt" >
-        <div style="float:left;width:75%;">
+        <div style="float:left;width:50%;">
           <b>* Book title </b></div>
-        <div style="float:right;width:25%;">
+        <div style="float:left;width:25%;">
           Genre <br></div>
       </div>
       <div class="profilebox" >
-        <div style="float:left;width:75%;">
+        <div style="float:left;width:50%;">
           <%= f.text_area :title, :cols => 50, :rows => 2, placeholder: "Book title" %>
         </div>
-        <div style="float:right;width:25%;">
+        <div style="float:left;width:25%;">
           <%= f.text_area :genre, :cols => 15, :rows => 1, placeholder: "Genre" %>
         </div><br>
       </div><br><br>
@@ -53,58 +57,49 @@
         <br>Release date or estimated release date
         <%= f.date_select :releasedate %><br>
         <br>Upload a picture of the bookcover (.jpg, .gif, .jpeg, or .png)
-        <br><%= f.file_field :coverpic %> -- OR -- <br>
-        URL for a picture of your book cover
-      </div>
-      <div class="profilebox" >
-        <%= f.text_area :coverpicurl, :cols => 70, :rows => 2, placeholder: "http://www.crowdpublish.tv/assets/cpLogo150-2587456d58eb819e80664461d758693b.png" %><br> 
-      </div>
-      <div class="sidebartitle" >
-        The easiest way to obtain the URL is to go to a site that has a picture of your book cover, right click on the PICTURE, select Copy IMAGE url, and paste here. This MUST include the 'http://' part of the URL in order to work. DO NOT PASTE A URL TO A webSITE. Only PICTURES with urls that end in .JPG, .JPEG, .PNG, or .GIF will work. <br><br>
+        <br><%= f.file_field :coverpic %><br>
       </div>
         
       <div class="editbooktxt" >
         We recommend uploading files for ALL 3 of the following formats (so your customers have more options for the type of ereader they own)<br>
       </div>
-      <div class="blacktxt" >
-        <div style="float:left;width:70%;">
+      <div class="blacktxt">
+        <table><tr><td>
+        <div style="float:left;width:60%;">
           Upload your ebook, as a pdf (for iBooks, PCs, & Kobo) </div>
-        <div style="float:right;width:30%;">
-          <%= f.file_field :bookpdf %> </div><br>
-        <div style="float:left;width:70%;">
+        <div style="float:left;width:40%;">
+          <%= f.file_field :bookpdf %> </div></td></tr><tr><td>
+        <div style="float:left;width:60%;">
           Upload your ebook, as a mobi (for Kindle) </div>
-        <div style="float:right;width:30%;">
-          <%= f.file_field :bookmobi %> </div><br>
-        <div style="float:left;width:70%;">
+        <div style="float:left;width:40%;">
+          <%= f.file_field :bookmobi %> </div></td></tr><tr><td>
+        <div style="float:left;width:60%;">
           Upload your ebook, as an epub (for Adobe, Nook, & Sony kobo) </div>
-        <div style="float:right;width:30%;">
-          <%= f.file_field :bookepub %> </div><br>
+        <div style="float:left;width:40%;">
+          <%= f.file_field :bookepub %> </div></td></tr><br>
+        </table>
       </div>
       <div class="editbooktxt" >
-        <br><br>If you have a video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
+        <br><br>If you have video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
       </div>
       <div class="profilebox" >
         Video 1: <br>
         <%= f.text_area :youtube1, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %><br>
         <br>Video 2:<br /> 
-        <%= f.text_area :youtube2, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
-      </div>
-      <br><b>Enter short descriptions </b> (less than 255 characters) of your videos below<br>
+        <%= f.text_area :youtube2, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %><br><br>
+      <b>Enter short descriptions </b> (less than 255 characters) of your videos below<br>
       Video 1:<br>
       <div class="profilebox" >
         <%= f.text_area :bkvideodesc1, :cols => 70, :rows => 2 %>
-      </div>
       <span class="youtube1bookcount"></span><br>
       Video 2: <br>
-      <div class="profilebox" >
         <%= f.text_area :bkvideodesc2, :cols => 70, :rows => 2 %>
-      </div>
       <span class="youtube2bookcount"></span>
 
-      <%= f.submit "Save New Book" %>
+      <%= f.submit "Save New Book" %><br>
     <% end %>
 
-<br>There are a few situations where book information will fail to save. If you are having trouble saving your book info, please check for these errors: <br>
+ <br>There are a few situations where book information will fail to save. If you are having trouble saving your book info, please check for these errors: <br>
 1. Uploading a file that is not a .pdf for iBook/PC, or not a .mobi for Kindle, etc. <br>
 2. Uploading a file that is not a .jpg, .gif, .jpeg, or .png for book cover <br>
 3. Entering a URL that does not end in .jpg, .gif, .jpeg, or .png for a picture of your book cover (this URL is not used if you upload a picture of your book cover, so no need to do both) <br>
@@ -113,6 +108,7 @@
 6. Leaving title field blank<br>
 7. Entering text into Video fields that does not contain a YouTube.com URL</i>
 <br><br><br>
+      </div>
 
     <% if @user.books.any? %>
       <% @booklist.each do |bk| %>
@@ -150,33 +146,28 @@
             <br>Release date or estimated release date
             <%= f.date_select :releasedate %><br>
             <br>Upload a picture of the bookcover (.jpg, .gif, .jpeg, or .png)
-            <br><%= f.file_field :coverpic %> -- OR -- <br>
-            URL for a picture of your book cover
-          </div>
-          <div class="profilebox" >
-            <%= f.text_area :coverpicurl, :cols => 70, :rows => 2, placeholder: "URL to a PICTURE of bookcover (must end in .jpg, .gif, .jpeg, or .png)" %><br> 
-          </div>
-          <div class="sidebartitle" >
-            The easiest way to obtain the URL is to go to a site that has a picture of your book cover, right click on the PICTURE, select Copy IMAGE url, and paste here. This MUST include the 'http://' part of the URL in order to work. DO NOT PASTE A URL TO A webSITE. Only PICTURES with urls that end in .JPG, .JPEG, .PNG, or .GIF will work. <br><br>
+            <br><%= f.file_field :coverpic %> <br>
           </div>
         
           <div class="editbooktxt" >
             We recommend uploading files for ALL 3 of the following formats (so your customers have more options for the type of ereader they own)<br>
           </div>
-          <div class="blacktxt" >
-            <div style="float:left;width:70%;">
-              Upload your ebook, as a pdf (for iBooks, PCs, & Kobo) </div>
-            <div style="float:right;width:30%;">
-              <%= f.file_field :bookpdf %> </div><br>
-            <div style="float:left;width:70%;">
-              Upload your ebook, as a mobi (for Kindle) </div>
-            <div style="float:right;width:30%;">
-              <%= f.file_field :bookmobi %> </div><br>
-            <div style="float:left;width:70%;">
-              Upload your ebook, as an epub (for Adobe, Nook, & Sony kobo) </div>
-            <div style="float:right;width:30%;">
-              <%= f.file_field :bookepub %> </div><br>
-          </div>
+      <div class="blacktxt">
+        <table><tr><td>
+        <div style="float:left;width:60%;">
+          Upload your ebook, as a pdf (for iBooks, PCs, & Kobo) </div>
+        <div style="float:left;width:40%;">
+          <%= f.file_field :bookpdf %> </div></td></tr><tr><td>
+        <div style="float:left;width:60%;">
+          Upload your ebook, as a mobi (for Kindle) </div>
+        <div style="float:left;width:40%;">
+          <%= f.file_field :bookmobi %> </div></td></tr><tr><td>
+        <div style="float:left;width:60%;">
+          Upload your ebook, as an epub (for Adobe, Nook, & Sony kobo) </div>
+        <div style="float:left;width:40%;">
+          <%= f.file_field :bookepub %> </div></td></tr><br>
+        </table>
+      </div>
       <div class="editbooktxt" >
         <br><br>If you have a video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
       </div>
@@ -185,15 +176,11 @@
         <%= f.text_area :youtube1, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch/frlviTJcVUo' %>
         <br> Video 2: <br /> 
         <%= f.text_area :youtube2, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch/frlviTJcVUo' %>
-      </div>
-      <br>Enter short (less than 255 characters) descriptions of your videos below<br>
-      Video 1: <br>
-      <div class="profilebox" >
-        <%= f.text_area :bkvideodesc1, :cols => 70, :rows => 2 %>
-      </div>
-      Video 2: <br>
-      <div class="profilebox" >
-        <%= f.text_area :bkvideodesc2, :cols => 70, :rows => 2 %>
+        <br>Enter short (less than 255 characters) descriptions of your videos below<br>
+        Video 1: <br>
+          <%= f.text_area :bkvideodesc1, :cols => 70, :rows => 2 %><br>
+        Video 2: <br>
+          <%= f.text_area :bkvideodesc2, :cols => 70, :rows => 2 %>
       </div>
 
           <%= f.submit("Save Changes for " + bk.title ) %><br><br><br>
@@ -203,4 +190,6 @@
   <% end %>
 
 </div>
-</body>
+</div>
+</div>
+</div>

@@ -8,8 +8,12 @@
 <meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
-<div class="blacktxt"  >
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container">
 
+<div class="blacktxt"  >
 <h1><%= @user.name %>'s Patron Perks</h1>
 
 <% if @user == current_user %>
@@ -42,4 +46,6 @@
 <% end %>  
 
 </div>
+</div></div>
+</div></div>
 </div>

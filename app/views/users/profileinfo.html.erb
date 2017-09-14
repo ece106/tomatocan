@@ -1,7 +1,7 @@
 <% @title=" edit user profile "  %>
 <p class="flash"><%= flash.notice %></p>
 
-<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
+<div style="position:absolute; left:0px; top:7s0px; opacity:0.3; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :height => "150" %>
   <% elsif @user.profilepicurl %>

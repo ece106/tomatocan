@@ -8,16 +8,19 @@
 <meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container">
+
 <div id="groups"  >
   <%= form_tag events_path, :method => :get do %>
-      <table >
-      <tr>
+    <table ><tr>
         <th>Address or Zip code</th>
         <th>Distance (miles)</th>
         <th></th>
         <th> Find in-person events in your Local area (5 - 20 miles) </th>
-      </tr>
-      <tr>
+      </tr>      <tr>
         <td><%= text_field_tag :search, params[:search] %></td>
         <td><%= text_field_tag :dist, params[:dist] %></td>
         <td><%= submit_tag "Search Near", :name => nil %></td>
@@ -35,23 +38,20 @@
     <% end %> 
 
 <% if @events.count != 0 %>
-  <table >
-  <tr>
+  <table >  <tr>
     <th>Event </th>
     <th>When</th>
     <th>Where</th>
     <th></th>
   </tr>
-
-    <% @events.sort_by{|t| t.start_at}.each do |event| %>
+  <% @events.sort_by{|t| t.start_at}.each do |event| %>
   <tr>
     <td><%= link_to event.name, event %><br><br></td>
     <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
     <td><%= event.address %><br><br></td>
-    <td>
-       </td>
+    <td> </td>
   </tr>
-    <% end %>
+  <% end %>
   </table>
 <% else %>  
   <%= @user.name %> hasn't posted any past events
@@ -59,9 +59,8 @@
   <%= link_to "View upcoming events", user_eventlist_path %><br><br>
 
   <% if @rsvpevents.count != 0 %>
-      <b><%= @user.name %>'s past RSVPs</b><br><br>
-      <table >
-      <tr>
+    <b><%= @user.name %>'s past RSVPs</b><br><br>
+    <table >  <tr>
         <th>Event </th>
         <th>When</th>
         <th>Where</th>
@@ -74,11 +73,14 @@
         <td><%= rsvpevent.address %><br><br></td>
         </tr>
       <% end %>
-      </table>
+    </table>
   <% else %>  
     <%= @user.name %> hasn't RSVPd to any past events
   <% end %> 
 
-
   </div>
+</div>  
+</div>
+</div>  
+</div>
 </div>  

@@ -77,7 +77,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
   match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
   match '/:permalink/eventlist' => "users#eventlist", :as => :user_eventlist, via: 'get'
-  match '/:permalink/pastevents' => "users#prevevents", :as => :user_pastevents, via: 'get'
+  match '/:permalink/pastevents' => "users#pastevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/calendar' => "users#calendar", :as => :user_calendar, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/createstripeaccount' => "users#createstripeaccount", :as => :user_createstripeaccount, via: 'get'
@@ -90,8 +90,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
   match '/:permalink/projects' => "users#projects", :as => :user_projects, via: 'get'
-  match '/:permalink/perks' => "users#merchandise", :as => :user_merchandise, via: 'get'
-  match '/:permalink/pastprojects' => "users#pastprojects", :as => :user_pastprojects, via: 'get'
+  match '/:permalink/perks' => "users#perks", :as => :user_merchandise, via: 'get'
  
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'

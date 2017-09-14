@@ -12,32 +12,33 @@
 
 <div id="wrapper">
   <div id="page-content-wrapper">
-        <div class="page-content">
-            <div class="container">
+    <div class="page-content">
+      <div class="container">
   
 <% if @user.author == 2 %>
-  <div class="row">
+  <div class="row" style="text-align:left">
   <% if @project %>
     <h1>Support my current project!</h1><br>
     <table>
-      <tr><td style='font-weight:bold;'><%= link_to(@project.name, project_path(@project.permalink)) %></td><td><%= button_to(name = "Support " + @project.name, project_path(@project.permalink), method: :get) %></td></tr>
-      <tr><td><%= truncate(@project.mission , :length => 200, :separator => ' ') %><br><br> </td></tr> 
+      <tr><td style='font-size:22px; float:left;width:50%;'><%= link_to(@project.name, project_path(@project.permalink)) %>
+        <div style = 'font-size:14px;'><%= truncate(@project.mission , :length => 200, :separator => ' ') %></div><br> </td>
+      <td style="float:left;width:30%;"><%= button_to(name = "Support Project", project_path(@project.permalink), method: :get) %></td></tr>
       <% if user_signed_in? %>
         <% if @numusrgroups > 0 %>
           <%= form_for(Agreement.new) do |f| %> 
-            <tr><td><h4>Affiliate your group with my project and you'll receive 10% of the proceeds from any supporter you refer from your group's home page.</h4>
+            <tr><td style="float:left;width:50%;">Affiliate your group with my project and you'll receive 10% of the proceeds from any supporter you refer from your group's home page.<br><br>
             <% if @numusrgroups > 1 %>
               Select one of your groups to affiliate with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br><br>
             <% end %> </td>
               <%= f.hidden_field :project_id, :value => @project.id %>
-              <td><%= submit_tag "Affiliate" %></td></tr>
+              <td style="float:left;width:30%;"><%= submit_tag "Affiliate" %></td></tr>
           <% end %>
         <% end %>
       <% end %>
     </table>
   <% end %>
   </div>
-
+  
   <div class="row" >
     <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 " >
       <% if @user.youtube1? %>

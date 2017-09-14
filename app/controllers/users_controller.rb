@@ -39,13 +39,6 @@ class UsersController < ApplicationController
     redirect_to projects_path
   end
 
-  def pastprojects
-    @projects = @user.projects.sort! { |a, b| a.created_at <=> b.created_at }
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
-  end
   def blog
     respond_to do |format|
       format.html # blog.html.erb
@@ -69,7 +62,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def prevevents
+  def pastevents
     currtime = Time.now
     @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
@@ -323,7 +316,7 @@ class UsersController < ApplicationController
       case action_name
       when "index"
         'application'
-      when "profileinfo", "readerprofileinfo", "managesales"
+      when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount"
         'editinfotemplate'
       else
         'userpgtemplate'
@@ -331,9 +324,11 @@ class UsersController < ApplicationController
     end
 
     def check_fieldsneeded
-      if current_user.stripeid.present? 
-        account = Stripe::Account.retrieve(current_user.stripeid)
-        @fieldsneeded = account.verification.fields_needed
+      if user_signed_in?
+        if current_user.stripeid.present? 
+          account = Stripe::Account.retrieve(current_user.stripeid)
+          @fieldsneeded = account.verification.fields_needed
+        end
       end
     end
 

@@ -8,15 +8,14 @@
 <meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container">
 <% @title = " interact with " + @user.name + " here live!" %>
 <% if @user.author == 2 %>
-  <div class="row" >  
-
-    <div class="col-lg-12 " style = "text-align: left; margin-left: -35px; margin-top: -40px" >
       <iframe frameborder="0" width="1000" src= "//hangouts.google.com/hangouts/_/62ad7a57cfcmeka7cah3bqymtaa" height="500"></iframe>
-    </div>
-  </div>
-  <div class="row" >  
+   <% "seems that hangouts don't embed" %>
     <% if @user.ustreamsocial.match /https:\/\/www.vokle.com/  %>
       <div class="blog">
         <iframe frameborder="0" width="1000" src= "<%= @user.ustreamsocial %>" height="1500"></iframe>
@@ -29,8 +28,6 @@
     <% end %>
 
 <% else  %>
-  <div class="row" >
-    <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
       <div class="blurb" >
         <%= simple_format @user.about.gsub(/\n/, '<br>') %>
       </div><br><br>
@@ -40,6 +37,8 @@
         data-screen-name="<%= @user.twitter %>" data-show-replies="false"
         data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
       <% end %>
-    </div>
-  </div>
 <% end %>
+</div>
+</div>
+</div>
+</div>
