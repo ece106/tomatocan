@@ -87,13 +87,13 @@
             </div><br>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-8 book-info">
-              <div class="fanbook" style= "font-weight:bold">
+              <div class="fanbook" style="font-weight:bold; max-width:250px; overflow:wrap">
                 <%= link_to book.title, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title %>
               </div>
               <div class="fanbook">
                 &nbsp<%= book.genre %><br>
               </div>
-            <div class="fifty"><br><%= link_to book.fiftychar, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title  %> </div><br>
+            <div class="fifty" style="max-width:250px; overflow:wrap"><br><%= link_to book.fiftychar, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title  %> </div><br>
           </div>
         <% end #form_for %>
       </div>

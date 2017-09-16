@@ -1,0 +1,178 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="CrowdPublish.TV" content="like eBay for authors - with video!">
+  <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
+</head>
+
+<div class="row", style = "margin-top: -40px">
+  <div class="accordion" id="accordion2">
+    <div class="col-md-3 col-sm-6 col-xs-6">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" href="#accordion-togglea">
+            <%= image_tag("person.png", :size => "75x75") %> <br><b>For Authors</b>
+          </a>
+        </div>
+        <div class="blacktxt">
+          <li><%= link_to 'Sign up for a free Author web site', "/signup" %></li>
+          <li>Post your books, videos, blog </li>
+          <li>Modify your own site content</li>
+        </div>
+        <div id="accordion-togglea" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <div class="blacktxt">
+              <li>Post your speaking calendar</li>
+              <li>Host livestreaming talks </li>
+              <li><%= link_to 'Get RSVPs for your Livestreamed & in-person readings', new_event_path %> </li>
+              <li><%= link_to 'Find critique groups & writer organizations near you', groups_path %></li>
+              <li><%= link_to 'Network with authors and readers at events near you', calendar_path  %></li>
+              <i>Coming soon: <br>
+              <li>Sell ebooks & merchandise</li> 
+              <li>Crowdfund your book-in-progress</li>
+              <li>Livestreaming author parties</li><br>
+              ...We'll continue to add features to help you reach out to your fans & make CrowdPublish.TV the only site you need to keep in touch</i>
+            </div>
+          </div>
+        </div>
+          <a class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddenamore">
+              ...less
+            </span>
+          </a><br><br>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="accordion-group">
+          <div class="accordion-heading"> 
+            <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggler">
+              <%= image_tag("person.png", :size => "75x75") %> <br><b>For Readers</b>
+            </a>
+          </div>
+          <div class="blacktxt">
+            <li><%= link_to 'Sign up for a book reviews page', "/signup" %></li>
+            <li><%= link_to 'Join livestream book discussions ', calendar_path %></li>
+            <li><%= link_to 'Find literary events near you', calendar_path  %></li>
+          </div>
+          <div id="accordion-toggler" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <div class="blacktxt">
+                <li><%= link_to 'Find book clubs near you', groups_path %></li>
+                <i>Coming soon: <br>
+                <li>Buy ebooks & merchandise</li>
+                <li>Post book reviews </li>
+                <li>Follow authors & other readers</li></i>
+              </div>
+            </div>
+          </div>
+          <a class="accordion-toggler" data-toggle="collapse" href="#accordion-toggler ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddenrmore">
+              ...less
+            </span>
+          </a><br><br>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6" >
+        <div class="accordion-group">
+          <div class="accordion-heading"> 
+            <a class="accordion-toggle" data-toggle="collapse" href="#accordion-togglec">
+              <%= image_tag("people.png", :size => "75x75") %> <br><b>For Book Clubs</b>
+            </a>
+          </div>
+          <div class="blacktxt">
+            <li><%= link_to 'Get a free site for your Club', new_group_path %></li>
+            <li>Post your meeting calendar</li>
+            <li>Post news & announcements</li>
+          </div>
+          <div id="accordion-togglec" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <div class="blacktxt">
+                <li><%= link_to 'Collect RSVPs for your meetings', new_event_path %> </li>
+                <i>Coming soon: <br>
+                <li>Maintain your list of members</li></i>
+              </div>
+            </div>
+          </div>
+          <a class="accordion-togglec" data-toggle="collapse" href="#accordion-togglec ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddencmore">
+              ...less
+            </span>
+          </a><br><br>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6" >
+        <div class="accordion-group">
+          <div class="accordion-heading"> 
+            <a class="accordion-toggle" data-toggle="collapse" href="#accordion-toggleo">
+              <%= image_tag("people.png", :size => "75x75") %> <br><b>For Writer Organizations</b>
+            </a>
+          </div>
+          <div class="blacktxt">
+                <li><%= link_to 'Get a free site for your Critique Group or Writer Organization', new_group_path %></li>
+                <li><%= link_to 'Collect RSVPs for your events', new_event_path %> </li>
+          </div>
+          <div id="accordion-toggleo" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <div class="blacktxt">
+                <li>Post news, announcements, & event calendar</li>
+                <li><%= link_to 'Zipcode-enabled search so potential members can join you', new_group_path %> </li>
+                <i>Coming soon: <br>
+                <li>Maintain your list of members</li>
+                <li>Feature members & their books on your organization's site</li></i>
+              </div>
+            </div>
+          </div>
+          <a class="accordion-toggleo" data-toggle="collapse" href="#accordion-toggleo ">
+            <span>
+              ...more
+            </span>
+            <span class="hiddenomore">
+              ...less
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="helps" >
+    Members to Watch
+  </div><br>
+  <% if user_signed_in? %>
+    Your video moves to the top of the page every time you update your profile!<br>
+  <% end %>
+  <% @users.each do |u| %> 
+      <div class="col-md-4 col-sm-6 col-xs-12" > 
+        <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
+          <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+          <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
+        </div>
+      </div>
+  <% end %>
+  <div class="indexlist" >
+    <b>Browse more videos by CrowdPublish.TV authors</b><br> <%= will_paginate @users %> <br>
+  </div>
+<%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
+
+  <div class="row" style="margin-top:15px;" >
+    <div class="col-md-5" >
+      <div class = "copyalpha" >
+        <br><br>This site is still in alpha stage development 
+        <br><br>Questions? Contact info@CrowdPublish.TV 
+        <br><br>(C) Copyright 2016, RoleModel Enterprises, LLC. All Rights Reserved.
+      </div>
+    </div>
+    <div class="col-md-5" >
+    </div>
+  </div>
+  <br><br>

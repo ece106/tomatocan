@@ -35,12 +35,13 @@
         }
 .whitetxt
         {
-        font-family:"Arial", sans-serif; margin:0.0px 0.0px 0.0px 0.0px; text-align:center; font-size:22px; line-height:.9em; color:#fff; 
-        a:link { text-decoration: none; color : #fff;}
+        font-family:"Arial", sans-serif; margin:0.0px 0.0px 0.0px 0.0px; text-align:center; font-size:22px; line-height:1em; color:#fff; 
+        a:link { text-decoration: none; color : #EFBFFF;}
+        a:visited { text-decoration: none; color : #EFBFFF;}
         }
 .whitetitle
         {
-        font-family:"Tahoma", sans-serif; margin:0.0px 0.0px 20.0px 0.0px; text-align:center; font-size:38px; line-height:1.6em; color:#fff; font-weight:bold; 
+        font-family:"Arial", sans-serif; margin:0.0px 0.0px 20.0px 0.0px; text-align:center; font-size:42px; line-height:1.6em; color:#fff; font-weight:bold; 
         }
 .blacktxta
         {
@@ -71,7 +72,7 @@
         font-family:"Tahoma", sans-serif; margin:0.0px 0.0px 0.0px 0.0px; text-align:center; font-size:14.0px; line-height:.14em;
         }
 .fanbook
-        {
+        { line-height:.95em;
           table td, th {
             padding:0px 0px 0px 0px;
           }
@@ -87,7 +88,9 @@
         }
 .username
         {
-        font-family:"Tahoma", sans-serif; font-weight:700; font-size:21.0px; text-align:left; line-height:1.19em; color:#1e1e46; 
+        font-family:"Tahoma", sans-serif; font-weight:700; font-size:21.0px; text-align:center; line-height:1.19em; color:#1e1e46; 
+           a:link { color : #fff;}
+        a:visited { color : #fff;}
         }
 .profilebox
         {
@@ -95,7 +98,7 @@
         }
 .usergenre
         {
-        font-family:"Tahoma", sans-serif; font-weight:200; font-size:14.0px; text-align:left; line-height:1.6em; color:#1e1e46; margin-left:5px;
+        font-family:"Tahoma", sans-serif; font-weight:400; font-size:14.0px; text-align:left; line-height:1.6em; color:#1e1e46; margin-left:5px;
         }
 .socialize
         {
@@ -142,7 +145,8 @@
         font-family:"Arial", sans-serif; font-weight:700; font-size:12.0px; color:#2c3651; 
         }
 .usermenu
-        { text-decoration: none; color: #fff; font-size:14.0px; align:left;
+        { text-decoration: none; color: #fff; font-size:14.0px; align:left; a:link {color: #EFBFFF;}
+        a:visited { color : #EFBFFF;}
         }
 .menu
         { margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; line-height:1.5em; text-decoration: none; color: #fff; font-size:19.0px; 

@@ -1,18 +1,17 @@
-<div id="groups" style="position:absolute; width:1000px; height:757px;" >
+<div id="groups" style="position:absolute; " >
   <%= form_tag groups_path, :method => :get do %>
     <table >
       <tr>
         <th>Address</th>
         <th>Distance (miles)</th>
         <th></th>
-        <th> Find in-person groups in your Local area (5 - 20 miles) </th>
+        <th> Find in-person groups in your Local area </th>
       </tr>
       <tr>
         <td><%= text_field_tag :search, params[:search] %></td>
         <td><%= text_field_tag :dist, params[:dist] %></td>
         <td><%= submit_tag "Search Near", :name => nil %></td>
-        <td> Or in your MicroLocal area (1 - 5 miles) </td>
-      </tr>
+        </tr>
     </table>  
   <% end %>
 
@@ -34,8 +33,9 @@
           <%= link_to (image_tag groupthumb, :style => "opacity:0.5; filter:alpha(opacity=50); max-height:150px"), group_path(group.id) 
           %>
 
-          <br><grouptext><%= link_to group.name, group %>
-          <br><% if group.grouptype == 1 %> Critique Group 
+          <grouptext>
+          <div style="font-size:22px"><%= link_to group.name, group, :style => "font" %></div>
+            <% if group.grouptype == 1 %> Critique Group 
               <% elsif group.grouptype == 2 %> Book Club
               <% elsif group.grouptype == 3 %> Writers Organization
               <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering

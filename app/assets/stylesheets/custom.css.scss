@@ -26,6 +26,16 @@ body2 {
   padding-top: 0px;
   padding-bottom: 0px;
 }
+.supportgroupimage {
+  background-image: image-url('camelback.JPG');
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.hsmovieimage {
+  background-image: image-url('paintingPoster.png');
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
 
 .groupimage { 
    position: relative; 
@@ -36,7 +46,11 @@ grouptext {
    position: absolute; 
    bottom: 45px; 
    left: 60px;
-   text-shadow: 1px 1px #ffffff;
+   color: #fff;
+   text-shadow: 1px 1px #000;
+   a:link { color : #62f;}
+   a:visited { color : #62f;}
+   a:hover { text-decoration: none; color : #75b; text-shadow: 1px 1px #000;}
 }
 projecttext { 
    vertical-align: top;

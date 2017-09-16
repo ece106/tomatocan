@@ -26,10 +26,6 @@
     <div class="blacktxt" >
       To change your profile picture, upload a picture of yourself (square is best)
       <br><%= f.file_field :profilepic %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      OR - Enter the URL of a picture of you (must end in jpg, gif, or png) <br>
-      <div class="profilebox" >
-        <%= f.text_area :profilepicurl, :cols => 40, :rows => 2, placeholder:  "URL for profile pic (Square is best)" %>
-      </div>
       <br>Three genres that categorize your work <br>
       <div class="profilebox" >
         <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
