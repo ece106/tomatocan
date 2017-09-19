@@ -3,4 +3,10 @@ class Merchandise < ActiveRecord::Base
   belongs_to :project
   has_many :purchases
   mount_uploader :itempic, MerchpicUploader
+  after_initialize :assign_defaults_on_new_merch, if: 'new_record?'
+
+  private
+    def assign_defaults_on_new_merch 
+      self.price = 10.0 unless self.price
+    end
 end

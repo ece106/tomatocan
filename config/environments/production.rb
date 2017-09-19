@@ -16,7 +16,8 @@ config.action_mailer.smtp_settings = {
   # and use secure cookies.
   config.force_ssl = false  #otherwise heroku reroute will say i'm a liar
 
-  config.action_mailer.default_url_options = { :host => 'http://www.crowdpublish.tv', :protocol => 'http' }
+  config.action_mailer.default_url_options = { 
+    :host => 'http://www.crowdpublish.tv', :protocol => 'http' }
 
   # Code is not reloaded between requests
   config.cache_classes = true

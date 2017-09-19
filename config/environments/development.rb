@@ -7,7 +7,7 @@ config.action_mailer.smtp_settings = {
    :user_name => "crowdpublishtv.star@gmail.com",
    :password  => 'GMAIL_PWD', # SMTP password is any valid API key
    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
-   :domain => 'www.crowdpublish.tv', # your domain to identify your server when connecting
+#   :domain => 'www.crowdpublish.tv', # your domain to identify your server when connecting
  }
 
 config.action_mailer.default_url_options = {
