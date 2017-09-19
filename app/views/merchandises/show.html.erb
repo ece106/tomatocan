@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <div class="blacktxt">
+  <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
+    <%= image_tag(@merchandise.itempic, size: '200x500') %>
+  <% end %>
+
+
   <h4><%= @merchandise.name %> </h4>
   $<%= sprintf('%.2f', @merchandise.price) %> USD  
   <% if user_signed_in? %>
