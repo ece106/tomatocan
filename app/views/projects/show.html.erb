@@ -2,12 +2,18 @@
 
 <div class="blacktxt">
   <% if @project.projectpic.present? && @project.projectpic != '' %>
-    <%= image_tag(@project.projectpic, size: '200x500') %>
+    <%= image_tag(@project.projectpic, size: '500x200') %>
+  <% end %>
+  <h3><%= @project.name %> </h3>
+  <%= @author.name %>
+
+  <% if user_signed_in? %>
+    <% if @project.user_id == current_user.id %>
+      <%= button_to(name = "Edit Project", edit_project_path(@project.id), :method => :get) %>
+    <% end %>
   <% end %>
 
-  <h3><%= @project.name %> </h3>
-  <%= @author.name %><br><br>
-  <strong>Mission:</strong>  <%= @project.mission %><br><br>
+  <br><br>  <strong>Mission:</strong>  <%= @project.mission %><br><br>
 
   <% if @merchandise.present? %>
     <% if !user_signed_in? %>
@@ -16,10 +22,8 @@
     <% end %>
   
     <h3>Patron Perks </h3>
-
     <% @merchandise.each do |merch| %>
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class= "groupimage" style="vertical-align:center; horizontal-align:center; height:190px; width:300px; right-margin:50px; overflow:hidden" >
           <% if merch.itempic.present? && merch.itempic != '' %>
             <% itemthumb = merch.itempic %>
           <% else %>
@@ -34,15 +38,9 @@
             <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get %> </td></tr></table>
           <% end %>
           <%= truncate(merch.desc , :length => 200, :separator => ' ') %><br><br>
-        </div>
       </div>
     <% end %> 
   <% end %>
 
-  <% if user_signed_in? %>
-    <% if @project.user_id == current_user.id %>
-      <%= button_to(name = "Edit Project", edit_project_path(@project.id), :method => :get) %>
-    <% end %>
-  <% end %>
-
-</div><br><br><br>
+<br><br><br>
+</div>

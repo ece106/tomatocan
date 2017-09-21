@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   
   validates :user_id, presence: true
   validates :name, presence: true
-  validates :permalink, presence: true, format: { with: /\A[\w+]+\z/ }, length: { maximum: 20 },
+  validates :permalink, presence: true, format: { with: /\A[\w+]+\z/ }, length: { maximum: 40 },
                 uniqueness: { case_sensitive: false }
 
   before_save { |project| project.permalink = permalink.downcase }

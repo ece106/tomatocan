@@ -1,5 +1,10 @@
 class GrouppicUploader < CarrierWave::Uploader::Base
-  storage :fog
+
+  if Rails.env.development? || Rails.env.test?
+    storage :file 
+  else
+    storage :fog
+  end
 
   def store_dir
     "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"

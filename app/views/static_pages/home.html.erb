@@ -7,29 +7,32 @@
 
 <div class="row" > 
 
-<div class="supportgroupimage col-md-4 col-sm-6 col-xs-12" > 
-    <div class="username" style="text-shadow: 1px 1px #000; width:350px; height:200px;">
-      <%= link_to "Find an organization that supports our authors", groups_path, :size => "400x200" %>
+  <a href="<% groups_path %>"> 
+<div class="supportgroupimage col-md-4 col-sm-6 col-xs-12 "> 
+    <div class="username" style="text-shadow: 1px 1px #000; width:350px; height:200px;"><br>
+      <%= link_to "Organizations that support our authors & filmmakers", groups_path, title: "Find the page for the Organization that referred you to CrowdPublish.TV" %>
+      <%= link_to image_tag("transparent.png", size: "350x130", title: "Find the page for the Organization that referred you to CrowdPublish.TV"), groups_path %> 
     </div>
 </div>
+  </a>
 
 <div class="col-md-4 col-sm-6 col-xs-12" > 
 <div class="relative">
-<div id="myCarousel" class="carousel slide" data-ride="carousel"  style="width: 400px; height: 200px; margin: 0 auto">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
+<div id="myCarousel" class="carousel" data-ride="carousel"  style="width: 400px; height: 200px; margin: 0 auto">
   <!-- Wrapper for slides -->
   <div class="carousel-inner" style="width:400px; height:200px;">
     <div class="item active">
-      <%= image_tag "cpLogo150.png" %> 
+      <%= link_to image_tag("cpLogo150.png"), projects_path %> 
+      <div class="carousel-caption username">
+        <%= link_to "Support a Project", projects_path %>
+      </div>    
     </div>
-    <% @authorwithpic.find_each do |pic| %>
+    <% @projwithpic.find_each do |pic| %>
       <div class="item" >
-        <%= image_tag(pic.profilepicurl, :size => "400x200") %> 
+        <%= link_to image_tag(pic.projectpic, :size => "400x200"), projects_path %> 
+        <div class="carousel-caption username">
+          <%= link_to "Find a Project To Support", projects_path %>
+        </div>    
       </div>
     <% end %> 
   </div>
@@ -44,17 +47,15 @@
   </a>
 </div>
 </div>
-  <div class="username">
-    Find a project to support
-  </div>
 </div>
 
-<div class="hsmovieimage col-md-4 col-sm-6 col-xs-12" > 
-    <div class="username" style="text-shadow: 1px 1px #000; width:350px; height:200px;">
-      <% "link_to the project page" %>
-      <%= link_to "Get involved in Lisa's 80's Catholic High School Movie", groups_path %>
+  <div class="hsmovieimage col-md-4 col-sm-6 col-xs-12" > 
+    <div class="username" style="text-shadow: 1px 1px #000; width:350px; height:200px;" >
+      <%= link_to "Featured Project: ", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie " %><br>
+      <%= link_to "Lisa's 80's Catholic High School Movie", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie" %>
+      <%= link_to image_tag("transparent.png", size: "350x130", title: "Lisas 80s Catholic High School Movie"), "/projects/lisas80scatholichighschoolmovie" %> 
     </div>
-</div>
+  </div>
 
 </div>
 
