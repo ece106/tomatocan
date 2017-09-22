@@ -8,6 +8,15 @@ class StaticPagesController < ApplicationController
     @authorwithpic = User.where("profilepicurl IS NOT NULL AND profilepicurl != '' ")
     @projwithpic = Project.where("projectpic IS NOT NULL AND projectpic != '' ")
     @groupwithpic = Group.where("grouppic IS NOT NULL AND grouppic != '' ")
+
+    if user_signed_in?
+      @orglink = groups_path
+      @titlecaption = "Find the page for the Organization that referred you to CrowdPublish.TV"
+    else
+      @orglink = "/login"
+      @titlecaption = "Sign Me Up!"
+    end
+
   end
 
   def howwork

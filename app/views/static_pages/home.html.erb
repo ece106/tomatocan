@@ -4,7 +4,7 @@
   <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
 </head>
 
-<div class="row">
+<div class="hometop">
   <div class="authorhomeimage col-md-6 col-sm-8 col-xs-12 homeheight">
     <%= image_tag("cpLogo150.png") %><br><br> 
     <div class="whitetxt", style="position:relative; z-index: 9999;">
@@ -33,44 +33,45 @@
               <%= link_to "Writing or movie projects", "/signup" %>
             </div>   
             <div class="usermenu" >
-              <br><%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br><br>.
+              <br><%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br>.
             </div> 
           <% end %>
   </div>
 
-  <div class="readerhomeimage col-md-6 col-sm-6 col-xs-12 homeheight">
+  <div class="readerhomeimage col-md-6 col-sm-6 col-xs-12 homeheight" style=" padding-top:60px;">
     <div class="whitetxt" >
       Readers & Fans 
-    </div><br><br>  
-    <div class="username" style="text-shadow: 1px 1px #000; width:350px;">
+    </div>
+    <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
 
       <% if user_signed_in? %>
-          <br><br><%= link_to "Get sneak preview access to books & movies", projects_path %>
+          <br><%= link_to "Get sneak preview access to books & movies", projects_path %>
       <% else %>
-          <%= link_to "SIGN UP", "/signup", title: "Sign Me Up!" %> &nbsp&nbsp&nbsp&nbsp&nbsp
-          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <%= link_to 'Sign in', "/login", {:style=>'color:#888; font-size:14px'}  %><br>
+          <br><%= link_to "SIGN UP", "/signup", title: "Sign Me Up!", style:"font-size:28px" %> 
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+          <%= link_to 'Sign in', "/login", {:style=>'color:#ddd; font-size:14px'}  %><br>
           <%= link_to "For sneak preview access to books & movies!", "/signup", title: "Sign Me Up!" %>
-      <% end %><br><br><br>
+      <% end %><br><br><br><br><br><br>
     </div>
 
     <div class="whitetxt" >
-      Organizations 
+      <%= link_to "Organizations ", groups_path, title: "Find the page for the Organization that referred you to CrowdPublish.TV" %>
     </div><br>
     <div class="username" style="text-shadow: 1px 1px #000; width:350px;">
-      <%= link_to " that support our authors & filmmakers", groups_path, title: "Find the page for the Organization that referred you to CrowdPublish.TV" %>
+      <%= link_to "Support our authors & filmmakers and get $$$", @orglink, title: @titlecaption %>
       <br><br><br>
-    </div>
-
-    <div class="hsmovieimage" style="width:400px; height:200px;"> 
-      <%= link_to "Featured Project: ", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie " %><br>
-      <%= link_to "Lisa's 80's Catholic High School Movie", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie" %>
-      <%= link_to image_tag("transparent.png", size: "370x130", title: "Lisas 80s Catholic High School Movie"), "/projects/lisas80scatholichighschoolmovie" %> 
     </div>
 
   </div>
 </div>
 
-<br><br><br><br>
+    <div class="hsmovieimage username" style="height:300px; text-shadow: 1px 1px #000; margin-top:20px; padding-top:40px; text-align:center; font-size:28px"> 
+      <%= link_to "Featured Project: ", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie " %><br><br><br>
+      <%= link_to "Lisa's 80's Catholic High School Movie", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie" %><br>
+      <%= link_to image_tag("transparent.png", size: "370x130", title: "Lisas 80s Catholic High School Movie"), "/projects/lisas80scatholichighschoolmovie" %> 
+    </div>
+
+<br><br>
 <div class="row" > 
   <div class="helps" >
     Authors to Watch
