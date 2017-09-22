@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  layout :resolve_layout
+
   def home
     userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 2)
     authorsvidorder = userswithyoutube.order('updated_at DESC')
@@ -11,4 +13,13 @@ class StaticPagesController < ApplicationController
   def howwork
   end
 
+  private
+    def resolve_layout
+      case action_name
+      when "home"
+        'homepg'
+      else
+        'application'
+      end
+    end
 end

@@ -21,6 +21,25 @@ body2 {
   padding-top: 0px;
 }
 
+.row {
+  display: flex; /* equal height of the children */
+}
+.homeheight {
+  flex: 1; /* additionally, equal width */
+  padding: 1em;
+}
+.readerhomeimage {
+  background-image: image-url('crowdblur.png');
+  margin-top: -20px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+}
+.authorhomeimage {
+  background-color: #6f6580;
+  margin-top: -20px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+}
 .headerimage {
   background-image: image-url('crowddark.png');
   padding-top: 0px;
@@ -76,6 +95,19 @@ textarea {
   h1 {
     margin-bottom: 10px;
   }
+}
+
+carousel-inner>.item {
+    position: relative;
+    max-height: 200px;
+}
+.carousel-caption {
+    position: absolute;
+    top: 7%;
+    transform: translateY(-7%);
+    left: 23%;
+    transform: translateX(-23%);
+    width: 340px;
 }
 
 .navbar-default {

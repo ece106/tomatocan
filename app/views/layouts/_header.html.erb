@@ -7,7 +7,7 @@
           CrowdFunding, CrowdSelling, CrowdEngagement for Authors & Filmmakers
         </div>
 
-        <div class="col-md-6 col-sm-6 col-xs-12 ">
+        <div class="col-md-6 col-sm-8 col-xs-12 ">
           <% if user_signed_in? %>
             <div class="whitetxt", style=" height:40px;" >
               Signed in as <%= link_to current_user.name, user_profile_path(current_user.permalink) %>
@@ -19,21 +19,17 @@
             <div class="whitetxt", style=" height:20px;" >
             </div> 
           <% else %>
-            <div class="whitetxt" style="text-align:left">
-              * Sell your writings, videos, etc.<br>
-              * Get funding & buzz for your next project <br>
-              * Get leading-edge access to upcoming books & movies!
-            </div> 
-              <%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %> 
+            <div class="lavenderlink" style="width:500px">
+              <div style="font-size:28px"><%= link_to "SIGN UP ", "/signup" %></div>
+              <%= link_to "To get $$$ & buzz for your ", "/signup" %><br>
+              <%= link_to "Writing or movie projects", "/signup" %>
+            </div>   
             <div class="usermenu" >
               <br><%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br><br>.
             </div> 
           <% end %>
         </div>
-        <div class="col-md-2 col-sm-6 col-xs-12 ", style = "margin-top: -25px">
-          <%= link_to (image_tag "cpLogo150.png"), root_path %><br><br>
-        </div>
-        <div class="col-md-4 col-sm-10 col-xs-12", style = "position:relative; z-index: 1;">
+        <div class="col-md-6 col-sm-4 col-xs-12", style = "position:relative; text-align:center; z-index: 1;">
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
               <input type="hidden" name="cmd" value="_s-xclick">
               <input type="hidden" name="hosted_button_id" value="48ALUTCSBS5F4">
