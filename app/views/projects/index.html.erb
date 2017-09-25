@@ -3,17 +3,16 @@
 <%= form_for(Agreement.new) do |f| %> 
 
   <% if user_signed_in? %>
-    <% if @numusrgroups > 0 %>
-      <h4>When a group affiliates with a project, the project supports the group! 
-      <br>If the project creator accepts your affiliation, you will receive a percentage of their proceeds. 
-      <br>Have your group affiliate one of the projects below & it will appear on your group's home page:</h4><br> 
-    <% end %>
     <% if @numusrgroups == 1 %>
-      You are the admin for the <%= @usrgrpnameid[0][0] %> group<br><br> 
+      You are the admin for the <%= @usrgrpnameid[0][0] %> organization<br><br> 
       <%= f.hidden_field :group_id, :value => @usrgrpnameid[0][1] %>
     <% end %>
     <% if @numusrgroups > 1 %>
-      Select one of your groups to affiliate with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
+      Select one of your groups to partner with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
+    <% end %>
+    <% if @numusrgroups > 0 %>
+      <div class = "blacktxt">If the project creator accepts your partnership request, your organization will receive 5% of the proceeds for Patron Perks purchased through a referal from your CrowdPublish.TV Organization Page. 
+      <br>Partner one of the projects below & it will appear on your Organization Page:</div><br> 
     <% end %>
   <% end %>
 
@@ -23,8 +22,8 @@
   <% end %>
 
 
-  <% if @support.count != 0 %>
-    <% @support.each do |proj| %>
+  <% if @partnerproj.count != 0 %>
+    <% @partnerproj.each do |proj| %>
 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
         <div class= "groupimage" style="vertical-align: top; height:190px; width:300px; overflow:hidden" >
@@ -34,19 +33,21 @@
             <% groupthumb = "crowddark.png" %>
           <% end %>
 
-          <%= link_to (image_tag groupthumb, :style => "opacity:0.7; max-height:150px"), project_path(proj[:permalink])
+          <%= link_to (image_tag groupthumb, :style => "filter: brightness(50%); max-height:150px;"), project_path(proj[:permalink])
           %>
-          <projecttext style="vertical-align: top"><table style="width:290px"><tr><td style="padding:0px; font-size:22px"><%= link_to proj[:name], project_path(proj[:permalink]) %></td>
-          <td style="text-align:right; padding:0px; color: #000" ><%= button_to 'Support', project_path(proj[:permalink]) %></td></tr></table>
-          <%= proj[:creator] %>
-          <% "Write code to send email to author asking permission to post. " %>
-                    <br><%= truncate(proj[:mission], :length => 160, :separator => ' ') %></projecttext>
-          <% if user_signed_in? %>
-            <% if @numusrgroups > 0 %>
-              <%= f.hidden_field :project_id, :value => proj[:permalink] %>
-              <%= submit_tag "Affiliate with your group" %>
+          <projecttext >
+            <div style="padding:0px; font-size:22px"><%= link_to proj[:name], project_path(proj[:permalink]) %>
+            </div>
+            <%= proj[:creator] %>
+            <% "Write code to send email to author asking permission to post. " %>
+            <br><%= link_to truncate(proj[:mission], :length => 160, :separator => ' '), project_path(proj[:permalink]) %>...
+            <% if user_signed_in? %>
+              <% if @numusrgroups > 0 %>
+                <% projid = proj[:id] %>
+                <div style = "color:#000"> <%= button_tag 'Partner', value: projid, type: :submit, name: "agreement[project_id]" %></div>
+              <% end %>
             <% end %>
-          <% end %>
+          </projecttext>
         </div>
       </div>
     <% end %>

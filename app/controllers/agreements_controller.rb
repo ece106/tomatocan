@@ -22,7 +22,6 @@ class AgreementsController < ApplicationController
   # POST /agreements
   def create
     @agreement = Agreement.new(agreement_params)
-
     if @agreement.save
       redirect_to @agreement, notice: 'Agreement was successfully created.'
     else

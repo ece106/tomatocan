@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all #Is this used?
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
       @usrgrpnameid = []
@@ -23,14 +22,14 @@ class ProjectsController < ApplicationController
     #don't want 1 group to support 80 projects. 3 might be enough
 #    numprojgroupsupports = Agreement.where("group_id = ?", @currgroup.id).count
 
-    support = []  #All projects available to be supported
+    partner = []  #All projects available to be supported
     active = Project.where("deadline > ?", Time.now)
     active.find_each do |proj|
       author = User.find(proj.user_id).name
-        support <<  {name: proj.name, creator: author, mission: proj.mission, 
+      partner <<  {name: proj.name, creator: author, mission: proj.mission, id: proj.id,
           permalink: proj.permalink, deadline: proj.deadline, projpic: proj.projectpic} 
     end 
-    @support = support.sort_by{|e| e[:deadline]}
+    @partnerproj = partner.sort_by{|e| e[:deadline]}
   end
 
   # GET /projects/1
