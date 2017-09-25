@@ -1,4 +1,4 @@
-<body style=" vlink:green; link:green; alink:green">
+<body >
 <h3>Current Projects To Support</h3>
 <%= form_for(Agreement.new) do |f| %> 
 
@@ -8,7 +8,7 @@
       <%= f.hidden_field :group_id, :value => @usrgrpnameid[0][1] %>
     <% end %>
     <% if @numusrgroups > 1 %>
-      Select one of your groups to partner with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
+      Select one of your organizations to partner with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
     <% end %>
     <% if @numusrgroups > 0 %>
       <div class = "blacktxt">If the project creator accepts your partnership request, your organization will receive 5% of the proceeds for Patron Perks purchased through a referal from your CrowdPublish.TV Organization Page. 
@@ -16,11 +16,10 @@
     <% end %>
   <% end %>
 
-  <% @agreedeclined.find_each do |d| %>
-    Your request to partner with <%= Project.find(d.project_id).name %> for 
-    <%= Group.find(d.group_id).name %> has been declined.<br>
-  <% end %>
-
+    <% @agreedeclined.find_each do |d| %>
+      Your request to partner with <%= Project.find(d.project_id).name %> for 
+      <%= Group.find(d.group_id).name %> has been declined.<br>
+    <% end %>
 
   <% if @partnerproj.count != 0 %>
     <% @partnerproj.each do |proj| %>

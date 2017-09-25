@@ -15,9 +15,9 @@
     </table>  
   <% end %>
 
-  <h2>Groups On CrowdPublish.TV</h2>
+  <h2>Organizations On CrowdPublish.TV</h2>
 
-  <%= link_to 'Create a New Group ', new_group_path %> in Your Community!<br><br>
+  Earn money for your favorite organization by becoming a Patron of a project through the organization's page  <br><br>
 
   <% if @groups.count != 0 %>
     <% @groups.each do |group| %>
@@ -35,14 +35,14 @@
 
           <grouptext>
           <div style="font-size:22px"><%= link_to group.name, group, :style => "font" %></div>
-            <% if group.grouptype == 1 %> Critique Group 
+            <% if group.grouptype == 1 %> Support a Project with Us!
               <% elsif group.grouptype == 2 %> Book Club
               <% elsif group.grouptype == 3 %> Writers Organization
               <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering
               <% elsif group.grouptype == 5 %> Library
               <% elsif group.grouptype == 6 %> Book Store
-              <% end %>
-          <br><%= group.address %>
+              <% elsif group.grouptype == 7 %> Critique Group
+              <% end %><br>
               <% if user_signed_in? %>
                 <% if group.user_id == current_user.id %>
                   <%= link_to 'Edit', edit_group_path(group.id) %> 

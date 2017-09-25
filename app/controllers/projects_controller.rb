@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     if user_signed_in?
-      currusergroups = Group.where("user_id = ?", current_user.id)
+      currentuserid = current_user.id
+      currusergroups = Group.where("user_id = ?", currentuserid)
       @usrgrpnameid = []
       currusergroups.find_each do |group|
         @usrgrpnameid << [group.name, group.id] 
@@ -12,8 +13,9 @@ class ProjectsController < ApplicationController
       @numusrgroups = currusergroups.count 
     end  
     threemonthago = Time.now - 3.months
-    @agreedeclined=Agreement.joins(:group).where("user_id = ? AND agreements.created_at > ? AND approved < ? ", current_user.id, threemonthago, '0002-01-01' )
-
+    
+    @agreedeclined=Agreement.joins(:group).where("user_id = ? AND agreements.created_at > ? 
+      AND approved < ? ", currentuserid, threemonthago, '0002-01-01' )
 #x = Project.where(id: Agreement.select("project_id").where( group_id: Group.where("user_id = ?", current_user.id)) )
 # x = all projects the user has already requested to affiliate with, over all of the user's groups.
 # Don't want to display projects that user/group has already requested to affiliate with. However

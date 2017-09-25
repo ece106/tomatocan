@@ -17,9 +17,9 @@ class GroupsController < ApplicationController
 #    elsif request.location 
 #      @groups = Group.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
     else
-      neargroups = Group.near([request.location.latitude, request.location.longitude], 50000, order: 'distance') 
-      remaininggroups = Group.all - neargroups
-      @groups = neargroups + remaininggroups
+      #neargroups = Group.near([request.location.latitude, request.location.longitude], 50000, order: 'distance') 
+      #remaininggroups = Group.all - neargroups
+      @groups = Group.all
     end
   end
 

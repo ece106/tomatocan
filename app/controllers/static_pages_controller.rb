@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
       @orglink = groups_path
       @titlecaption = "Find the page for the Organization that referred you to CrowdPublish.TV"
     else
-      @orglink = "/login"
+      @orglink = "/signup"
       @titlecaption = "Sign Me Up!"
     end
 

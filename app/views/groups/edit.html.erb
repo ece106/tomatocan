@@ -2,12 +2,12 @@
   <div class="col-md-7 col-sm-offset-2 col-sm-8 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
     <% if @group.user_id == current_user.id %>
       <% "link_to 'Delete Group', @group, method: :delete, data: { confirm: 'Are you sure?' } Don't really want this capability right now" %>
-      <h1>Edit group data</h1>
+      <h1>Edit organization info</h1>
 
 <%= form_for(@group) do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this organization from being saved:</h2>
 
       <ul>
       <% @group.errors.full_messages.each do |msg| %>
@@ -18,11 +18,11 @@
   <% end %>
 
   <div class="field">
-    <b>Group Name </b><br>
+    <b>Organization Name </b><br>
     <%= f.text_field :name, :size => 80 %>
   </div><br>
   <div class="field">
-    <b>URL ending</b> for your group's page - numbers and letters ONLY. <br />
+    <b>URL ending</b> for your organiztions's page - numbers and letters ONLY. <br />
     http://www.CrowdPublish.TV/<%= f.text_field :permalink, :size => 30, placeholder:  "YourGroupURL"  %>  
   </div><br>
 
@@ -31,28 +31,27 @@
     <%= f.text_field :address, :size => 80 %>
   </div><br>
   <div class="field">
-    <b>About group</b> How often do you usually meet? What would people likely join your group for? <br>
+    <b>About organization</b>  <br>
     <%= f.text_area :about, :cols => 82, :rows => 5 %>
   </div><br>
   <div class="field">
-    <b>Get More Involement</b> This is a call to action that will appear on your main page when your group is supporting an active project. What would you like to ask them to do? Come to your gatherings? Join your cause? Volunteer at an event? Support your sponsored projects? Be specific. <br>
+    <b>Get More Involvement</b> This is a call to action that will appear on your main page when your organization is supporting an active project. What would you like to ask them to do? Come to your gatherings? Join your cause? Volunteer at an event? Support your sponsored projects? Be specific. <br>
     <%= f.text_area :callaction, :cols => 82, :rows => 5, placeholder: "Please support our projects by clicking on the button above." %>
   </div><br>
   <div class="field" style= "text-align:left">
-      Group type:
-      <br><%= f.radio_button(:grouptype, 1) %>
-      <%= label_tag(:grouptype_child, "Critique Group") %>
+      Organization type:
+      <b>Organization's primary purpose for engaging with CrowdPublish.TV members:</b>
+      <p><%= f.radio_button(:grouptype, 1) %>
+      <%= label_tag(:grouptype_child, "Project Supporter") %>
       <br><%= f.radio_button(:grouptype, 2) %>
       <%= label_tag(:grouptype_adult, "Book Club") %>
       <br><%= f.radio_button(:grouptype, 3) %>
       <%= label_tag(:grouptype_adult, "Writers Organization") %>
       <br><%= f.radio_button(:grouptype, 4) %>
-      <%= label_tag(:grouptype_adult, "Informal Neighborhood Writer Gathering") %>
-      <br><%= f.radio_button(:grouptype, 5) %>
-      <%= label_tag(:grouptype_adult, "Library") %>
-      <br><%= f.radio_button(:grouptype, 6) %>
-      <%= label_tag(:grouptype_adult, "Book Store") %>
+      <%= label_tag(:grouptype_adult, "Informal Neighborhood Writer & Reader Gathering") %>
       <br><%= f.radio_button(:grouptype, 7) %>
+      <%= label_tag(:grouptype_adult, "Critique Group") %>
+      <br><%= f.radio_button(:grouptype, 0) %>
       <%= label_tag(:grouptype_adult, "Other") %>
   </div>
   <br><b>Twitter</b> handle (don't include the '@' symbol nor the entire url) <br> 
@@ -60,7 +59,7 @@
         <b>@</b> <%= f.text_area :twitter, :cols => 37, :rows => 1, placeholder: "twitterhandle" %>
   </div><br>
   <div class="field">
-    Upload a picture that represents your group (.jpg, .gif, .jpeg, or .png) - <i>750x150px works best</i>
+    Upload a banner picture that represents your group (.jpg, .gif, .jpeg, or .png) - <i>750x150px works best</i>
     <br><%= f.file_field :grouppic %> 
   </div><br>
   <div class="field">
@@ -72,7 +71,7 @@
   </div><br>
 <% end %>
 
-<%= link_to 'View Group home page', @group %>
+<%= link_to 'View Organization home page', @group %>
 <% end %>
 
 </div>

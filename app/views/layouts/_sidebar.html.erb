@@ -43,8 +43,6 @@
         <div class="covername"> <br> </div>
         <%= button_to "Edit Groups", user_groups_path, :method=> :get %>
         <div class="covername"> <br> </div>
-        <%= button_to "Edit Events", user_eventlist_path(current_user.permalink), :method=> :get %>
-        <div class="covername"> <br> </div>
         <% if current_user.stripeid.present? %>
           <% if current_user.stripeid.match(/acct/) %>
             <% if @fieldsneeded.present? %>
@@ -62,8 +60,6 @@
         <%= button_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), :method=> :get %>
         <div class="covername"> <br> </div>
         <%= button_to "Edit Groups", groups_path, :method=> :get %>
-        <div class="covername"> <br> </div>
-        <%= button_to "Edit Events", user_eventlist_path(current_user.permalink), :method=> :get %>
       <% end %> 
     <% end %> 
   </div>

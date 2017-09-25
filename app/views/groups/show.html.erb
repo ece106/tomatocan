@@ -24,17 +24,23 @@
   <% else %>
     We are not supporting any projects at this time. 
     <% if @pastprojects.present? %>
-      Please support our past authors and artists by clicking a button below.
+      Support our past authors and filmmakers by selecting a project below.
     <% end %>
   <% end %>  <br><br>
 </div>
 </div>
 
   <div class="support" ><br>
+    <% if @currprojects.present? %>  
+      <% if @currprojects.count == 1 %> 
+        Help us earn funds by supporting this project.
+      <% else %>
+        Help us earn funds by supporting one of these projects.
+      <% end %><br>
+    <% end %>
+
     <% if @group.callaction.present? %> 
       <%= simple_format @group.callaction.gsub(/\n/, '<br>') %>
-    <% elsif @currprojects.present? %>  
-      Please support our projects by clicking on a button above.
     <% end %><br>
   </div>
 
