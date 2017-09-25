@@ -33,7 +33,7 @@
   <div class="col-md-7 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
     <% if user_signed_in? %>
       <% if @user.id == current_user.id %>
-        <%= button_to "Add New Event", new_event_path, :method=> :get %> <br>
+        <%= button_to "Add Event", new_event_path, :method=> :get %> <br>
       <% end %> 
     <% end %> 
     <% if @events.count != 0 %>
