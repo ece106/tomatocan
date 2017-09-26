@@ -18,7 +18,7 @@
     <%= stylesheet_link_tag "event_calendar" %>
 
     <div id="calendar" >
-      See all <%= @user.name %>'s <%= link_to " upcoming book signings, Livestream Talks & other events as a LIST", user_eventlist_path %>
+      See all <%= @user.name %>'s <%= link_to " upcoming book signings, speaking engagements & other events as a list", user_eventlist_path %>
       <% if user_signed_in? %>
         <% if @user.id == current_user.id %>
           <%= button_to "Add Event", new_event_path, :method=> :get %>
