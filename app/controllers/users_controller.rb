@@ -16,8 +16,9 @@ class UsersController < ApplicationController
 
   def show
     @books = @user.books
-    @project = @user.projects.order('created_at').last #do i want all projects that havent met deadline
-
+    @project = @user.projects.order('created_at').last #only last proj created displayed on user home, regardless of deadline. 
+    @numusrproj = @user.projects.count
+    @numusrgroups = 0 
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
       @usrgrpnameid = []

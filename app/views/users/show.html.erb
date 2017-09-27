@@ -8,7 +8,7 @@
 <meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
-<% @title=" Watch " + @user.name + " videos here!" %>
+<% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
 <div id="wrapper">
   <div id="page-content-wrapper">
@@ -16,28 +16,38 @@
       <div class="container">
   
 <% if @user.author == 2 %>
-  <div class="row" style="text-align:left">
+
   <% if @project %>
-    <h1>Support my current project!</h1><br>
-    <table>
-      <tr><td style='font-size:22px; float:left;width:50%;'><%= link_to(@project.name, project_path(@project.permalink)) %>
-        <div style = 'font-size:14px;'><%= truncate(@project.mission , :length => 200, :separator => ' ') %></div><br> </td>
-      <td style="float:left;width:30%;"><%= button_to(name = "Support Project", project_path(@project.permalink), method: :get) %></td></tr>
-      <% if user_signed_in? %>
-        <% if @numusrgroups > 0 %>
-          <%= form_for(Agreement.new) do |f| %> 
-            <tr><td style="float:left;width:50%;">Affiliate your group with my project and you'll receive 5% of the proceeds from any supporter you refer from your group's home page.<br><br>
-            <% if @numusrgroups > 1 %>
-              Select one of your groups to affiliate with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br><br>
-            <% end %> </td>
-              <%= f.hidden_field :project_id, :value => @project.id %>
-              <td style="float:left;width:30%;"><%= submit_tag "Affiliate" %></td></tr>
-          <% end %>
+    <div style="float:left;">
+      <h2>Get Sneak Preview access to my current projects!</h2><br>
+    </div>
+    <div style="float:left; text-align:left; width:700px">
+      <%= form_for(Agreement.new) do |f| %> 
+        <% if @numusrgroups = 1 %>
+          Partner <%= @usrgrpnameid[0][0] %> with my project and your organization will receive 5% of the proceeds from any Project Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
+           <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
         <% end %>
+        <% if @numusrgroups > 1 %>
+          Select one of your organizations to partner with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
+        <% end %>
+
+          <table>
+            <tr><td>
+              <% if @numusrgroups > 0 %>
+                <%= button_tag 'Partner', value: @project.id, type: :submit, name: "agreement[project_id]" %>
+              <% end %>
+            </td>
+            <td style='font-size:22px'><%= link_to(@project.name, project_path(@project.permalink)) %></td></tr>
       <% end %>
-    </table>
+            <tr><td ><%= button_to(name = "Get Access", project_path(@project.permalink), method: :get) %></td>
+            <td class = 'blacktxt'><%= truncate(@project.mission , :length => 200, :separator => ' ') %> </td></tr>
+          </table><br>
+
+      <% if @numusrproj > 1 %>
+        <%= link_to("View my past projects", user_projects_path(@user.permalink)) %><br><br>
+      <% end %>
+    </div>
   <% end %>
-  </div>
   
   <div class="row" >
     <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 " >

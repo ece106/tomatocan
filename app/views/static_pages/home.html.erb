@@ -61,6 +61,17 @@
       <%= link_to "Publicize your favorite project and get $$$", @orglink, title: @titlecaption %>
       <br><br><br>
     </div>
+        <% if user_signed_in? %>
+          <div class="navbar-inner clearfix usermenu">
+            <ul class="nav navbar-nav pull-left">
+              <li><%= link_to "Projects", projects_path %>
+              <li><%= link_to "Orgs", groups_path %>
+              <li><%= link_to "Authors/Filmmakers", users_path %>
+              <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+            </ul>
+          </div> 
+      <% end %>
 
   </div>
 </div>

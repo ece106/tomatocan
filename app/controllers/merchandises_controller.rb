@@ -39,7 +39,7 @@ class MerchandisesController < ApplicationController
   def update
     if merchandise_params[:project_id].present? && @merchandise.update(merchandise_params)
       @project = Project.find(@merchandise.project_id)
-      redirect_to edit_project_path(@project.id), notice: 'Patron Perk was successfully added to project.'
+      redirect_to edit_project_path(@project.permalink), notice: 'Patron Perk was successfully added to project.'
     elsif @merchandise.update(merchandise_params)
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else

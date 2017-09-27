@@ -33,31 +33,31 @@
       <div class="col-md-2 col-sm-2 col-xs-2" > 
         <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
 
-        <% if @user.books.any? %>
-          <%= button_to "Edit Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-        <% else %>
-          <%= button_to "Add your Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-        <% end %>  <br>
-
-        <% if @user.groups.any? %>
-          <%= button_to "Edit Organizations", user_groups_path, method: :get, form_class: 'btn btn-small' %>
-        <% else %>
-          <%= button_to "Get a Page for Your Organization", user_groups_path, method: :get, form_class: 'btn btn-small' %>
-        <% end %> <br>
-      </div>
-
-      <div class="col-md-2 col-sm-2 col-xs-2" > 
         <% if @mynullagreements.count != 0 %>
-          <%= button_to "You have agreement(s) to approve.", user_projects_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
+          <%= button_to "You have partnership request", user_projects_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
         <% else %> 
-          <% if @user.projects.any? %>
+          <% if current_user.projects.any? %>
             <%= button_to "Edit Projects", user_projects_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
           <% else %> 
             <%= button_to "Start a Project", user_projects_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
           <% end %> 
         <% end %> <br>
 
-        <% if @user.merchandises.any? %>
+        <% if current_user.groups.any? %>
+          <%= button_to "Edit Organizations", user_groups_path, method: :get, form_class: 'btn btn-small' %>
+        <% else %>
+          <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, form_class: 'btn btn-small' %>
+        <% end %> <br>
+      </div>
+
+      <div class="col-md-2 col-sm-2 col-xs-2" > 
+        <% if current_user.books.any? %>
+          <%= button_to "Edit Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+        <% else %>
+          <%= button_to "Add your Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+        <% end %>  <br>
+
+        <% if current_user.merchandises.any? %>
           <%= button_to "Edit Perks", user_merchandise_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
         <% else %>
           <%= button_to "Add Perks", user_merchandise_path(current_user.permalink), :method=> :get, form_class: 'btn btn-small' %>              
@@ -92,8 +92,8 @@
     <% @user.books.each do |book| %>
       <div class="row" >
         <%= form_for(book) do |f| %>
-          <div class="col-md-1 col-sm-1 col-xs-1" style="max-width:80px;">
-            <div class="fanbook" style="width:75px;height:100px;background-color:#bbdd99; line-height:0.9em; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid;" >
+          <div class="col-md-1 col-sm-1 col-xs-1" style="width:80px; margin-left:-10px">
+            <div class="fanbook" style="width:75px;height:100px;background-color:#cfddaa; line-height:0.9em; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid;" >
               <% if book.coverpic.present? && book.coverpic != '' %>
                 <%= link_to image_tag(book.coverpic, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
               <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) && book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>

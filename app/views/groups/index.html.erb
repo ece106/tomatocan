@@ -15,9 +15,14 @@
     </table>  
   <% end %>
 
-  <h2>Organizations On CrowdPublish.TV</h2>
-
-  Earn money for your favorite organization by becoming a Patron of a project through the organization's page  <br><br>
+  <br><h4>Readers & Indie Movie Fans: Earn $ for your <b>Favorite Organization</b> by becoming a Patron of a book or movie project through the organization's page  </h4><br>
+  <% if user_signed_in? %>
+    <% if !current_user.groups.any? %>
+      Are you an officer of an organization? <%= link_to "Add Your Organization", new_group_path %><br><br>
+    <% else %>
+      Organization Admins: <%= link_to "Partner Your Organization with a Project", projects_path %> <br><br>
+    <% end %> 
+  <% end %> 
 
   <% if @groups.count != 0 %>
     <% @groups.each do |group| %>

@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<div class="blacktxt">
   <% if @project.projectpic.present? && @project.projectpic != '' %>
     <%= image_tag(@project.projectpic, size: '500x200') %>
   <% end %>
-  <h3><%= @project.name %> </h3>
-  <%= @author.name %>
-
-  <% if user_signed_in? %>
-    <% if @project.user_id == current_user.id %>
-      <%= button_to(name = "Edit Project", edit_project_path(@project.id), :method => :get) %>
+  <h3><%= @project.name %>   
+    <% if user_signed_in? %>
+      <% if @project.user_id == current_user.id %>
+        <%= button_to(name = "Edit Project", edit_project_path(@project.id), method: :get, form_class: 'btn btn-small') %>
+      <% end %>
     <% end %>
-  <% end %>
+  </h3>
 
-  <br><br>  <strong>Mission:</strong>  <%= @project.mission %><br><br>
+  <%= @author.name %><br><br>
+
+<div class="blacktxt">
+  <%= @project.mission %><br><br>
 
   <% if @merchandise.present? %>
     <% if !user_signed_in? %>
