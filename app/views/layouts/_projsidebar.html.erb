@@ -1,0 +1,51 @@
+<div id="wrapper">
+  <div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+
+  <div class="container" >
+
+
+<div class="author-books">
+  <% if @user.books.any? %>
+    <% @user.books.each do |book| %>
+      <div class="row" >
+        <%= form_for(book) do |f| %>
+          <div class="col-md-1 col-sm-1 col-xs-1" style="width:80px; margin-left:-10px">
+            <div class="fanbook" style="width:75px;height:100px;background-color:#cfddaa; line-height:0.9em; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid;" >
+              <% if book.coverpic.present? && book.coverpic != '' %>
+                <%= link_to image_tag(book.coverpic, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
+              <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) && book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
+                <%= link_to image_tag(book.coverpicurl, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+              <% elsif book.title.match /[0-9A-Za-z]/ %> 
+                <%= link_to book.title, book_path(:id => book.id), :class => 'covertitle', :style => 'color:#880000', :title => "Purchase " + book.title %><br><br>
+                <%= link_to @user.name, book_path(:id => book.id), :class => 'covername', :style => 'color:#2c3651',  :title => "Purchase " + book.title %><br>
+              <% end %>
+            </div><br>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-8 book-info" style="max-width:270px; overflow:wrap">
+              <div class="fanbook" style="font-weight:bold;">
+                <%= link_to book.title, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title %>
+              </div>
+              <div class="fanbook">
+                &nbsp<%= book.genre %><br>
+              </div>
+            <div class="fifty" ><br><%= link_to book.fiftychar, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title  %> </div><br>
+          </div>
+        <% end #form_for %>
+      </div>
+    <% end #@user.bks.each do %> 
+    <br><br>
+  <% else %>
+    <div style = "max-width: 330px;  overflow: wrap;">
+    <% if @user == current_user %>
+      <p>Click on Edit Books to list your writings - even those in progress - so this sidebar won't be empty when your fans view it!. </p>
+    <% end %>
+    </div>
+  <% end %>
+<% else # sidebar for reader%>
+<% end %>
+</div>
+</ul>
+</div>
+</div>
+</div>

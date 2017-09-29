@@ -34,7 +34,7 @@
         <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
 
         <% if @mynullagreements.count != 0 %>
-          <%= button_to "You have partnership request", user_projects_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
+          <%= button_to "You have partner request", user_projects_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
         <% else %> 
           <% if current_user.projects.any? %>
             <%= button_to "Edit Projects", user_projects_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>

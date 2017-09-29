@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  layout :resolve_layout
 
   # GET /projects
   def index
@@ -101,11 +102,21 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.friendly.find(params[:id])
+      @user = User.find(@project.user_id)
     end
 
     # Only allow a trusted parameter "white list" through.
     def project_params
       params.require(:project).permit(:name, :user_id, :mission, :projectpic, :permalink, 
         :deadline, :currgroupid, :projectid)
+    end
+
+    def resolve_layout
+      case action_name
+      when "show", "edit"
+        'projecttemplate'
+      else
+        'application'
+      end
     end
 end
