@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:patronperk, :show, :edit, :update, :destroy]
   layout :resolve_layout
 
   # GET /projects
@@ -39,7 +39,6 @@ class ProjectsController < ApplicationController
   def show
     @merchandise = @project.merchandises.order(price: :asc)
     @author = User.find(@project.user_id)
-    @merchandises = @author.merchandises  #I don't think we need this
     @groupid = params[:groupid]
   end
 
@@ -48,7 +47,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  def patronperk
+  def patronperk  
     @project = Project.find_by_permalink(params[:permalink])
     @merchandises = @project.merchandises
     @merchandise = @project.merchandises.build 
@@ -66,11 +65,12 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    @merchandise = @project.merchandises.order(price: :asc)
     @perklist = Merchandise.where( "user_id = ?", current_user.id)
     dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('project_id IS NULL')
     dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("project_id != ?", @project.id)
     @dropdown = dropdown1 + dropdown2
-    @merchandise = @project.merchandises.build 
+    @merchandises = @project.merchandises.build 
   end
 
   # POST /projects
@@ -101,7 +101,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.friendly.find(params[:id])
+      @project = Project.friendly.find_by_permalink(params[:permalink])
       @user = User.find(@project.user_id)
     end
 

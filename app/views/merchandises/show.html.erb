@@ -5,7 +5,6 @@
     <%= image_tag(@merchandise.itempic, size: '500x200') %>
   <% end %>
 
-
   <h4><%= @merchandise.name %> </h4>
   $<%= sprintf('%.2f', @merchandise.price) %> USD  
   <% if user_signed_in? %>
@@ -15,5 +14,7 @@
   <% end %>
 
   <%= @author.name %><br><br>
-  <%= @merchandise.desc %>
+  <% if @merchandise.desc %> 
+    <%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %>
+  <% end %> 
 </div><br><br><br>
