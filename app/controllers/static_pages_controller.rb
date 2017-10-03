@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 2)
+    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'author')
     authorsvidorder = userswithyoutube.order('updated_at DESC')
     @authors = authorsvidorder.paginate(:page => params[:page], :per_page => 12)
     @authorwithpic = User.where("profilepicurl IS NOT NULL AND profilepicurl != '' ")
