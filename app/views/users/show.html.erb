@@ -23,7 +23,7 @@
     </div>
     <div style="float:left; text-align:left; width:700px">
       <%= form_for(Agreement.new) do |f| %> 
-        <% if @numusrgroups = 1 %>
+        <% if @numusrgroups == 1 %>
           Partner <%= @usrgrpnameid[0][0] %> with my project and your organization will receive 5% of the proceeds from any Project Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
            <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
         <% end %>
