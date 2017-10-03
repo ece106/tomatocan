@@ -40,14 +40,7 @@
 
           <grouptext>
           <div style="font-size:22px"><%= link_to group.name, group, :style => "font" %></div>
-            <% if group.grouptype == 1 %> Support a Project with Us!
-              <% elsif group.grouptype == 2 %> Book Club
-              <% elsif group.grouptype == 3 %> Writers Organization
-              <% elsif group.grouptype == 4 %> Informal Neighborhood Writer Gathering
-              <% elsif group.grouptype == 5 %> Library
-              <% elsif group.grouptype == 6 %> Book Store
-              <% elsif group.grouptype == 7 %> Critique Group
-              <% end %><br>
+            <%= group.grouptype %><br>
               <% if user_signed_in? %>
                 <% if group.user_id == current_user.id %>
                   <%= link_to 'Edit', edit_group_path(group.id) %> 

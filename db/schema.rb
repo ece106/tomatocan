@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string   "blogurl"
     t.string   "profilepicurl"
     t.string   "profilepic"
-    t.integer  "author"
+    t.string   "author"
     t.text     "about"
     t.string   "password_digest"
     t.string   "remember_token"

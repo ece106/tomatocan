@@ -47,9 +47,9 @@
         <%= f.text_area :address, :cols => 40, :rows => 1 %>
       </div>
       <br>Change account type:
-      <br><%= f.radio_button(:author, 1) %>
+      <br><%= f.radio_button(:author, 'reader') %>
       <%= label_tag(:author_child, "Reader") %>
-      <br><%= f.radio_button(:author, 2) %>
+      <br><%= f.radio_button(:author, 'author') %>
       <%= label_tag(:author_adult, "Author") %>
  
       <br>Tell us all about yourself. <br />

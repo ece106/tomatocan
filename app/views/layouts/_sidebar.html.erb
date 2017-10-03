@@ -28,7 +28,7 @@
 
   <div class="row" >
     <% if @user == current_user %>
-      <% if @user.author == 2 #user is an author %>
+      <% if @user.author == 'author' %>
         <%if controller.controller_name == 'users' %>
           <div class="col-md-2 col-sm-2 col-xs-2" > 
             <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
@@ -88,7 +88,7 @@
   </div>
 <br>
 <div class="author-books">
-<% if @user.author == 2 %>
+<% if @user.author == 'author' %>
   <% if @user.books.any? %>
     <% @user.books.each do |book| %>
       <div class="row" >

@@ -1,9 +1,9 @@
 <% @title="CrowdPublish.TV - The Future of Empowerment is Your Story "  %>
 
-<% if @user.author = 1 %>
+<% if @user.author = 'reader' %>
   <%= render 'readerform' %>
 <% end %>
-<% if @user.author = 2 %>
+<% if @user.author = 'author' %>
   <%= render 'authorform' %>
 <% end %>
 
