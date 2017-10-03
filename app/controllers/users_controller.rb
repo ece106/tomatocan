@@ -334,9 +334,11 @@ class UsersController < ApplicationController
     end
 
     def check_outstandingagreements
-      allmyagreements = Agreement.where('project_id IN 
-        (SELECT id FROM projects WHERE projects.user_id = ?)', @user.id)
-      @mynullagreements = allmyagreements.where("approved IS NULL" )
+      if user_signed_in?
+        allmyagreements = Agreement.where('project_id IN 
+        (SELECT id FROM projects WHERE projects.user_id = ?)', current_user.id)
+        @mynullagreements = allmyagreements.where("approved IS NULL" )
+      end
     end
 
     def set_user 

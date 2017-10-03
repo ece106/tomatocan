@@ -91,7 +91,7 @@
     </div>
 
     <div class="blacktxt" >
-      <br>If you have a video about you or your brand on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
+      <br>If you have a video about you or your brand on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. Any non-YouTube url will be ignored. <br /> 
       Video 1: <br>
       <div class="profilebox" >
         <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
@@ -122,17 +122,7 @@
       </div>
       <span class="viddesc3usercount"></span><br>
 
-      <br>If you already use a livestreaming site (such as ustream.tv, vokle.com, livestream.com, twitch.tv etc.) enter the URL to your show here:<br> 
-      <div class="profilebox" >
-        <%= f.text_area :ustreamsocial, :cols => 70, :rows => 1, placeholder: 'https://www.vokle.com/series/43300-diva-dr-afshans-show' %><br><br>
-      </div>
-      <div>
-        If you have a BlogTalkRadio podcast, click on the <font color = "0000FF"> <\> </font> symbol below your banner picture on your BlogTalkRadio page. Copy & paste the <font color = "0000FF"> Embed To Sites & Blogs</font> code here.  <br> 
-        If you were featured in 1 episode of someone else's BlogTalkRadio show, click the square Share icon with the curved arrow to the right of the player on the top of that show's webpage. A popout button will appear with code to Embed In Sites & Blogs. Copy that code and paste it here.
-      </div>
-      <div class="profilebox" >
-        <%= f.text_area :blogtalkradio, :cols => 70, :rows => 5, placeholder: '<iframe width="400" height="370" src="http://player.cinchcast.com/?platformId=1&assetType=multi&userurl=drafshanhashmi&itemcount=6" frameborder="0" allowfullscreen></iframe><div style="font-size: 10px;text-align: center;width:400px;">Check Out Entertainment Podcasts at Blog Talk Radio with <a href="http://www.blogtalkradio.com/drafshanhashmi" rel="nofollow">Dr Afshan Hashmi</a> on BlogTalkRadio' %>
-      </div><br><br><br>
+      <br>
     </div>
   </div><br><br>
   <% end %>

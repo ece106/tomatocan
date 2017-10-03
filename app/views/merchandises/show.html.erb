@@ -1,20 +1,33 @@
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container" style="float:left; text-align:left; width:700px;">
 <p id="notice"><%= notice %></p>
 
 <div class="blacktxt">
   <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
-    <%= image_tag(@merchandise.itempic, size: '500x200') %>
+    <%= image_tag(@merchandise.itempic, size: '500x200') %><br>
   <% end %>
 
-  <h4><%= @merchandise.name %> </h4>
-  $<%= sprintf('%.2f', @merchandise.price) %> USD  
+  <h3><%= @merchandise.name %> </h3>
   <% if user_signed_in? %>
-    <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get %> <br>
+    <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get %> 
+    $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
   <% else %>
-    <br><%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %> to support 
+    <br><%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %> to get awesome Perks from <%= @author.name %> 
   <% end %>
 
-  <%= @author.name %><br><br>
   <% if @merchandise.desc %> 
-    <%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %>
+    <br><%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %>
   <% end %> 
-</div><br><br><br>
+</div>
+      <% if @merchandise.youtube? %>
+        <% if @merchandise.youtube.match(/[0-9A-Za-z]/) && @merchandise.youtube.length < 20 %>
+          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @merchandise.youtube %>" frameborder="0" allowfullscreen></iframe>
+        <% end %>
+      <% end %>
+<br><br><br>
+</div>
+</div>
+</div>
+</div>

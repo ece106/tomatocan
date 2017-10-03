@@ -1,5 +1,9 @@
-<h3>Edit Patron Perks</h3>
-
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container" style="float:left; text-align:left; width:700px;">
+<p id="notice"><%= notice %></p>
+<h3>Edit <%=@merchandise.name %> </h3>
 
 <% if @merchandise.user_id == current_user.id %>
 
@@ -18,20 +22,32 @@
 
   <div class="blacktxt">
     <b>Patron Perk name </b><br>
-    <%= f.text_field :name, :size => 80, placeholder: "The Best Project Ever" %><br><br>
+    <%= f.text_field :name, :size => 80 %><br><br>
     <b>About this perk </b><br>
-      What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
+      What is this product? What is the main reason someone might want this item?<br>
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
-    <b>Price </b>(in USD) $<%= f.text_field :price, placeholder: "10.00" %><br>
+    <b>Price </b>(in USD) $<%= f.text_field :price %><br>
   </div>
       <div class="field">
         Upload a picture that represents the item you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
         <br><%= f.file_field :itempic %> 
       </div><br>
 
+  <div class="blacktxt">
+    <b>Video </b><br>
+      If you have a video about your item on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. Any non-YouTube url will be ignored. <br /> 
+      <div class="profilebox" >
+        <%= f.text_area :youtube, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
+      </div><br>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Perk" %>
   </div>
 <% end %>
 <% end %>
-<br><br>
+<br><br><br>
+</div>
+</div>
+</div>
+</div>

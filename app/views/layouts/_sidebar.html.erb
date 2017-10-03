@@ -29,54 +29,55 @@
   <div class="row" >
     <% if @user == current_user %>
       <% if @user.author == 2 #user is an author %>
+        <%if controller.controller_name == 'users' %>
+          <div class="col-md-2 col-sm-2 col-xs-2" > 
+            <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
 
-      <div class="col-md-2 col-sm-2 col-xs-2" > 
-        <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
-
-        <% if @mynullagreements.count != 0 %>
-          <%= button_to "You have partner request", user_projects_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
-        <% else %> 
-          <% if current_user.projects.any? %>
-            <%= button_to "Edit Projects", user_projects_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-          <% else %> 
-            <%= button_to "Start a Project", user_projects_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-          <% end %> 
-        <% end %> <br>
-
-        <% if current_user.groups.any? %>
-          <%= button_to "Edit Organizations", user_groups_path, method: :get, form_class: 'btn btn-small' %>
-        <% else %>
-          <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, form_class: 'btn btn-small' %>
-        <% end %> <br>
-      </div>
-
-      <div class="col-md-2 col-sm-2 col-xs-2" > 
-        <% if current_user.books.any? %>
-          <%= button_to "Edit Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-        <% else %>
-          <%= button_to "Add your Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-        <% end %>  <br>
-
-        <% if current_user.merchandises.any? %>
-          <%= button_to "Edit Perks", user_merchandise_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-        <% else %>
-          <%= button_to "Add Perks", user_merchandise_path(current_user.permalink), :method=> :get, form_class: 'btn btn-small' %>              
-        <% end %>  <br>
-
-        <% if current_user.stripeid.present? %>
-          <% if current_user.stripeid.match(/acct/) %>
-            <% if @fieldsneeded.present? %>
-              <%= button_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), {:style => "background-color:red", :method=> :get} %><br>
+            <% if @mynullagreements.count != 0 %>
+              <%= button_to "You have partner request", user_projects_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
             <% else %> 
-              <%= button_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
+              <% if current_user.projects.any? %>
+                <%= button_to "Edit Projects", user_projects_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+              <% else %> 
+                <%= button_to "Start a Project", user_projects_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+              <% end %> 
+            <% end %> <br>
+
+            <% if current_user.groups.any? %>
+              <%= button_to "Edit Organizations", user_groups_path, method: :get, form_class: 'btn btn-small' %>
+            <% else %>
+              <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, form_class: 'btn btn-small' %>
+            <% end %> <br>
+          </div>
+
+          <div class="col-md-2 col-sm-2 col-xs-2" > 
+            <% if current_user.books.any? %>
+              <%= button_to "Edit Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+            <% else %>
+              <%= button_to "Add your Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+            <% end %>  <br>
+
+            <% if current_user.merchandises.any? %>
+              <%= button_to "Edit Perks", user_merchandise_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+            <% else %>
+              <%= button_to "Add Perks", user_merchandise_path(current_user.permalink), :method=> :get, form_class: 'btn btn-small' %>              
+            <% end %>  <br>
+
+            <% if current_user.stripeid.present? %>
+              <% if current_user.stripeid.match(/acct/) %>
+                <% if @fieldsneeded.present? %>
+                  <%= button_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), {:style => "background-color:red", :method=> :get} %><br>
+                <% else %> 
+                  <%= button_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
+                <% end %> 
+              <% else %> 
+                <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
+              <% end %> 
+            <% else %> 
+              <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
             <% end %> 
-          <% else %> 
-            <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
-          <% end %> 
-        <% else %> 
-          <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
+          </div>
         <% end %> 
-      </div>
 
       <% else #user is NOT an author therefore has not written any books %> 
         <%= button_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
@@ -85,7 +86,7 @@
       <% end %> 
     <% end %> 
   </div>
-
+<br>
 <div class="author-books">
 <% if @user.author == 2 %>
   <% if @user.books.any? %>
@@ -99,8 +100,8 @@
               <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) && book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
                 <%= link_to image_tag(book.coverpicurl, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id) %>
               <% elsif book.title.match /[0-9A-Za-z]/ %> 
-                <%= link_to book.title, book_path(:id => book.id), :class => 'covertitle', :style => 'color:#880000', :title => "Purchase " + book.title %><br><br>
-                <%= link_to @user.name, book_path(:id => book.id), :class => 'covername', :style => 'color:#2c3651',  :title => "Purchase " + book.title %><br>
+                <%= link_to book.title, book_path(:id => book.id), :class => 'covertitle', :style => 'color:#880000', :title => "Purchase " + book.title %>
+                <%= link_to @user.name, book_path(:id => book.id), :class => 'covername', :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
               <% end %>
             </div><br>
           </div>
@@ -113,9 +114,9 @@
               </div>
             <div class="fifty" ><br><%= link_to book.fiftychar, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title  %> </div><br>
           </div>
-        <% end #form_for %>
+        <% end %>
       </div>
-    <% end #@user.bks.each do %> 
+    <% end %> 
     <br><br>
   <% else %>
     <div style = "max-width: 330px;  overflow: wrap;">

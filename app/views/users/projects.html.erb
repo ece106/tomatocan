@@ -11,9 +11,9 @@
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="page-content">
-      <div class="container">
+      <div class="container" >
 
-<div class="blacktxt"  >
+<div class="blacktxt  col-lg-10 col-md-9 col-sm-9 col-xs-11" >
 <h1><%= @user.name %>'s projects</h1>
 <% if @user == current_user %>
   <%= button_to "Create a New Project", new_project_path, :method=> :get %><br>
@@ -67,7 +67,7 @@
   <% end %>
   </table>
 <% else %><br><br>
-  *** <%= @user.name %> does not have any past projects ***
+  <%= @user.name %> does not have any past projects 
 <% end %>  
 </div>
 </div>

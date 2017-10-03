@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string   "grouppic"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "grouptype"
+    t.string   "grouptype"
     t.string   "permalink"
     t.string   "slug"
     t.string   "newsurl"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.integer  "project_id"
     t.datetime "deadline"
     t.float    "goal"
+    t.string   "youtube"
   end
 
   create_table "projects", force: true do |t|

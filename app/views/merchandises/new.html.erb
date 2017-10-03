@@ -29,8 +29,16 @@
         <br><%= f.file_field :itempic %> 
       </div><br>
 
+  <div class="blacktxt">
+    <b>Video </b><br>
+      If you have a video about your item on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. Any non-YouTube url will be ignored. <br /> 
+      <div class="profilebox" >
+        <%= f.text_area :youtube, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
+      </div><br>
+  </div>
+
   <div class="actions">
-    <%= f.submit value: "Add Perk" %>
+    <%= f.submit "Add Perk" %>
   </div>
 <% end %>
 <br><br>

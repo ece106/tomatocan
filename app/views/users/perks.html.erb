@@ -17,7 +17,7 @@
 <h1><%= @user.name %>'s Patron Perks</h1>
 
 <% if @user == current_user %>
-  Create a <%= button_to "New Perk", new_merchandise_path, :method=> :get %> <br><br>
+  Create a <%= button_to "New Perk", new_merchandise_path, method: :get %> <br><br>
 <% end %>  
 
 <% if !user_signed_in? %>
@@ -30,13 +30,13 @@
     <tr><td><%= link_to merchandise.name, merchandise %></td>
     <% if user_signed_in? %>
       <% if merchandise.user_id == current_user.id %>
-        <td><%= button_to 'Edit', edit_merchandise_path(merchandise.id) %> </td>
+        <td><%= button_to 'Edit', edit_merchandise_path(merchandise.id), method: :get %> </td>
       <% end %>
     <% end %>
-    <td> <%= truncate(merchandise.desc , :length => 30, :separator => ' ') %></td> 
+    <td> <%= truncate(merchandise.desc , length: 30, separator: ' ') %></td> 
     <td>$<%= sprintf('%.2f', merchandise.price) %> USD </td> 
     <% if user_signed_in? %>
-      <td><%= link_to image_tag("buynow.png" ), new_purchase_path(:user_id => current_user.id, :merchandise_id => merchandise.id), :method=> :get %> </td>
+      <td><%= link_to image_tag("buynow.png" ), new_purchase_path(user_id: current_user.id, merchandise_id: merchandise.id), method: :get %> </td>
     <% end %>   
     </tr>
   <% end %>

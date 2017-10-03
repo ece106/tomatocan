@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
 #  before_filter :signed_in_user
   before_filter :authenticate_user!
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  layout :resolve_layout
 
   def index # This will be a result of some filters
     @books = Book.all
@@ -68,6 +70,11 @@ class BooksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
 
+    def set_book
+      @book = Book.find(params[:id])
+      @user = User.find(@book.user_id)
+    end
+
     def book_params
       params.require(:book).permit( :bookaudio, :bookpdf, :bookepub, :bookmobi, :coverpicurl, :title, :blurb, :releasedate, :genre, :price, :fiftychar, :user_id, :coverpic, :youtube1, :youtube2, :bkvideodesc1, :bkvideodesc2)
     end
@@ -79,4 +86,12 @@ class BooksController < ApplicationController
       end
     end
   
+    def resolve_layout
+      case action_name
+      when "show", "edit"
+        'userpgtemplate'
+      else
+        'application'
+      end
+    end
 end

@@ -20,6 +20,9 @@
     <%= button_to "Select A Project to Partner With", projects_path, :method=> :get, form_class: 'btn btn-small' %>
     <br><br>
   <% end %> 
+
+  <%= @group.grouptype %><br><br>
+
   <strong>About Us:</strong>
   <% if @group.about %> 
     <%= simple_format @group.about.gsub(/\n/, '<br>') %>

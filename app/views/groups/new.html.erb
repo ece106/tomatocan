@@ -39,17 +39,17 @@ You will be able to edit this info later.<br><br>
   </div><br>
   <div class="field">
       <b>Organization's primary purpose for engaging with CrowdPublish.TV members:</b>
-      <p><%= f.radio_button(:grouptype, 1) %>
-      <%= label_tag(:grouptype_child, "To Support a Project") %>
-      <br><%= f.radio_button(:grouptype, 2) %>
-      <%= label_tag(:grouptype_adult, "Book Club Page") %>
-      <br><%= f.radio_button(:grouptype, 3) %>
-      <%= label_tag(:grouptype_adult, "Recruit Members for a Writers Organization ") %>
-      <br><%= f.radio_button(:grouptype, 4) %>
+      <p><%= f.radio_button(:grouptype, "Project Supporter") %>
+      <%= label_tag(:grouptype_child, "Project Supporter") %>
+      <br><%= f.radio_button(:grouptype, "Book Club") %>
+      <%= label_tag(:grouptype_adult, "Book Club") %>
+      <br><%= f.radio_button(:grouptype, "Writers Organization") %>
+      <%= label_tag(:grouptype_adult, "Writers Organization") %>
+      <br><%= f.radio_button(:grouptype, "Informal Neighborhood Writer & Reader Gathering") %>
       <%= label_tag(:grouptype_adult, "Informal Neighborhood Writer & Reader Gathering") %>
-      <br><%= f.radio_button(:grouptype, 5) %>
-      <%= label_tag(:grouptype_adult, "Critique Group Page") %>
-      <br><%= f.radio_button(:grouptype, 0) %>
+      <br><%= f.radio_button(:grouptype, "Critique Group") %>
+      <%= label_tag(:grouptype_adult, "Critique Group") %>
+      <br><%= f.radio_button(:grouptype, "Other") %>
       <%= label_tag(:grouptype_adult, "Other") %>
   </div>
   <br><b>Twitter</b> handle (don't include the '@' symbol nor the entire url) <br> 

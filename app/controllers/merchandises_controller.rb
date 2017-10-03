@@ -1,5 +1,6 @@
 class MerchandisesController < ApplicationController
   before_action :set_merchandise, only: [:show, :edit, :update, :destroy]
+  layout :resolve_layout
 
   # GET /merchandises
   def index
@@ -25,8 +26,16 @@ class MerchandisesController < ApplicationController
     @merchandise = current_user.merchandises.build(merchandise_params)
     if @merchandise.save 
       if merchandise_params[:project_id] == nil
+        if @merchandise.youtube.match(/youtube.com/) || @merchandise.youtube.match(/youtu.be/)
+          youtubeparsed = parse_youtube @merchandise.youtube
+          @merchandise.update_attribute(:youtube, youtubeparsed)
+        end
         redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
       else
+        if @merchandise.youtube.match(/youtube.com/) || @merchandise.youtube.match(/youtu.be/)
+          youtubeparsed = parse_youtube @merchandise.youtube
+          @merchandise.update_attribute(:youtube, youtubeparsed)
+        end
         project = Project.find_by_id(merchandise_params[:project_id])
         redirect_to project_standardperks_path(project.permalink), notice: 'Patron Perk was successfully created.'
       end  
@@ -37,10 +46,19 @@ class MerchandisesController < ApplicationController
 
   # PATCH/PUT /merchandises/1
   def update
+    @merchandise = Merchandise.find(params[:id])
     if merchandise_params[:project_id].present? && @merchandise.update(merchandise_params)
       @project = Project.find(@merchandise.project_id)
+      if @merchandise.youtube.match(/youtube.com/) || @merchandise.youtube.match(/youtu.be/)
+        youtubeparsed = parse_youtube @merchandise.youtube
+        @merchandise.update_attribute(:youtube, youtubeparsed)
+      end
       redirect_to edit_project_path(@project.permalink), notice: 'Patron Perk was successfully added to project.'
     elsif @merchandise.update(merchandise_params)
+      if @merchandise.youtube.match(/youtube.com/) || @merchandise.youtube.match(/youtu.be/)
+        youtubeparsed = parse_youtube @merchandise.youtube
+        @merchandise.update_attribute(:youtube, youtubeparsed)
+      end
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else
       render action: 'edit'
@@ -57,10 +75,27 @@ class MerchandisesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_merchandise
       @merchandise = Merchandise.find(params[:id])
+      @user = User.find(@merchandise.user_id)
     end
 
-    # Only allow a trusted parameter "white list" through.
+    def parse_youtube url
+      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|youtube.com\/embed\/|\/(?=p\/))([\w\/\-]+)/
+      if url.match(regex)
+        url.match(regex)[1]
+      end
+    end
+
     def merchandise_params
-      params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :project_id, :goal, :deadline)
+      params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic,
+       :project_id, :goal, :deadline, :youtube)
+    end
+
+    def resolve_layout
+      case action_name
+      when "show", "edit"
+        'userpgtemplate'
+      else
+        'application'
+      end
     end
 end

@@ -1,8 +1,5 @@
-<div style = "color:white; text-shadow: 2px 2px #000000;">
 <% if @group.grouppic.present? && @group.grouppic != '' %>
-  <div style="background-image: url(<%= @group.grouppic %>); width:100%;">
-<% else %>  
-  <div style="background-image: url(<%= asset_path "crowddark.png" %>); width:100%; margin-top:-60px; vertical-align: top;">
+  <%= image_tag @group.grouppic %>
 <% end %>
   <p id="notice"><%= notice %></p>
 
@@ -27,8 +24,6 @@
       Support our past authors and filmmakers by selecting a project below.
     <% end %>
   <% end %>  <br><br>
-</div>
-</div>
 
   <div class="support" ><br>
     <% if @currprojects.present? %>  

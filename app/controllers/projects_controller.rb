@@ -101,7 +101,11 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.friendly.find_by_permalink(params[:permalink])
+      if params[:id].present?
+        @project = Project.friendly.find(params[:id])
+      else
+        @project = Project.find_by_permalink(params[:permalink])
+      end
       @user = User.find(@project.user_id)
     end
 
