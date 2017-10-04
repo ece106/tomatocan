@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> <% "Support " + @user.name + " projects" %> </title>
+<title> <% "Support " + @user.name + " phases" %> </title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -17,34 +17,34 @@
   
 <% if @user.author == 'author' %>
 
-  <% if @project %>
+  <% if @phase %>
     <div style="float:left;">
       <h2>Get Sneak Preview access to my current projects!</h2><br>
     </div>
     <div style="float:left; text-align:left; width:700px">
       <%= form_for(Agreement.new) do |f| %> 
         <% if @numusrgroups == 1 %>
-          Partner <%= @usrgrpnameid[0][0] %> with my project and your organization will receive 5% of the proceeds from any Project Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
+          Partner <%= @usrgrpnameid[0][0] %> with my project phase and your organization will receive 5% of the proceeds from any phase Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
            <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
         <% end %>
         <% if @numusrgroups > 1 %>
-          Select one of your organizations to partner with a project: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
+          Select one of your organizations to partner with a project phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
         <% end %>
 
           <table>
             <tr><td>
               <% if @numusrgroups > 0 %>
-                <%= button_tag 'Partner', value: @project.id, type: :submit, name: "agreement[project_id]" %>
+                <%= button_tag 'Partner', value: @phase.id, type: :submit, name: "agreement[phase_id]" %>
               <% end %>
             </td>
-            <td style='font-size:22px'><%= link_to(@project.name, project_path(@project.permalink)) %></td></tr>
+            <td style='font-size:22px'><%= link_to(@phase.name, phase_path(@phase.permalink)) %></td></tr>
       <% end %>
-            <tr><td ><%= button_to(name = "Get Access", project_path(@project.permalink), method: :get) %></td>
-            <td class = 'blacktxt'><%= truncate(@project.mission , :length => 200, :separator => ' ') %> </td></tr>
+            <tr><td ><%= button_to(name = "Get Access", phase_path(@phase.permalink), method: :get) %></td>
+            <td class = 'blacktxt'><%= truncate(@phase.mission , :length => 200, :separator => ' ') %> </td></tr>
           </table><br>
 
       <% if @numusrproj > 1 %>
-        <%= link_to("View my past projects", user_projects_path(@user.permalink)) %><br><br>
+        <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br>
       <% end %>
     </div>
   <% end %>

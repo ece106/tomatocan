@@ -16,8 +16,8 @@ class UsersController < ApplicationController
 
   def show
     @books = @user.books
-    @project = @user.projects.order('created_at').last #only last proj created displayed on user home, regardless of deadline. 
-    @numusrproj = @user.projects.count
+    @phase = @user.phases.order('created_at').last #only last proj created displayed on user home, regardless of deadline. 
+    @numusrproj = @user.phases.count
     @numusrgroups = 0 
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
@@ -33,11 +33,11 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def addprojecttogroup
+  def addphasetogroup
     @agreement = Agreement.new
     @agreement.update_attribute(:group_id, params[:currgroupid]) 
-    @agreement.update_attribute(:project_id, params[:projectid])
-    redirect_to projects_path
+    @agreement.update_attribute(:phase_id, params[:phaseid])
+    redirect_to phases_path
   end
 
   def blog
@@ -80,15 +80,15 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def projects
+  def phases
     currtime = Time.now
-    @activeprojects = Project.where( "user_id = ? AND deadline > ?", @user.id, currtime).order('created_at')
-    @pastprojects = Project.where( "user_id = ? AND deadline < ?", @user.id, currtime).order('created_at')
+    @activephases = phase.where( "user_id = ? AND deadline > ?", @user.id, currtime).order('created_at')
+    @pastphases = phase.where( "user_id = ? AND deadline < ?", @user.id, currtime).order('created_at')
     @outstandingagreements = []
     @mynullagreements.each do |agree|
-      project = Project.find(agree.project_id)
+      phase = phase.find(agree.phase_id)
       group = Group.find(agree.group_id) 
-      @outstandingagreements << {projectname: project.name, groupname: group.name, 
+      @outstandingagreements << {phasename: phase.name, groupname: group.name, 
         agreeid: agree.id, grouppermalink: group.permalink }
     end
     respond_to do |format|
@@ -225,13 +225,13 @@ class UsersController < ApplicationController
         params[:state], params[:email]) 
     redirect_to user_path(current_user.permalink)
   end
-  def approveagreement  #called from button on project page
+  def approveagreement  #called from button on phase page
     current_user.approve_agreement(params[:agreeid]) 
-    redirect_to user_projects_path(current_user.permalink)
+    redirect_to user_phases_path(current_user.permalink)
   end
-  def declineagreement  #called from button on project page
+  def declineagreement  #called from button on phase page
     current_user.decline_agreement(params[:agreeid])  
-    redirect_to user_projects_path(current_user.permalink)
+    redirect_to user_phases_path(current_user.permalink)
   end
 
   def dashboard
@@ -335,8 +335,8 @@ class UsersController < ApplicationController
 
     def check_outstandingagreements
       if user_signed_in?
-        allmyagreements = Agreement.where('project_id IN 
-        (SELECT id FROM projects WHERE projects.user_id = ?)', current_user.id)
+        allmyagreements = Agreement.where('phase_id IN 
+        (SELECT id FROM phases WHERE phases.user_id = ?)', current_user.id)
         @mynullagreements = allmyagreements.where("approved IS NULL" )
       end
     end
