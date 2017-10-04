@@ -14,7 +14,7 @@
     <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get %> 
     $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
   <% else %>
-    <br><%= link_to image_tag("bubbleButton165.png", :size => "155x40"), "/signup" %> to get awesome Perks from <%= @author.name %> 
+    <br><%= link_to image_tag("signup.png", :size => "155x40"), "/signup" %> to get awesome Perks from <%= @author.name %> 
   <% end %>
 
   <% if @merchandise.desc %> 

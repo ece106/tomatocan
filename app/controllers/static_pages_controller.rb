@@ -5,8 +5,8 @@ class StaticPagesController < ApplicationController
     userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'author')
     authorsvidorder = userswithyoutube.order('updated_at DESC')
     @authors = authorsvidorder.paginate(:page => params[:page], :per_page => 12)
-    @authorwithpic = User.where("profilepicurl IS NOT NULL AND profilepicurl != '' ")
-    @projwithpic = Project.where("projectpic IS NOT NULL AND projectpic != '' ")
+    @authorwithpic = User.where("profilepicurl IS NOT NULL AND profilepicurl != '' ") #I dont think we use these
+    @phswithpic = Phase.where("phasepic IS NOT NULL AND phasepic != '' ")
     @groupwithpic = Group.where("grouppic IS NOT NULL AND grouppic != '' ")
 
     if user_signed_in?

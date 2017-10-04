@@ -45,7 +45,7 @@
     <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
 
       <% if user_signed_in? %>
-          <br><%= link_to "Get sneak preview access to books & movies", projects_path %>
+          <br><%= link_to "Get sneak preview access to books & movies", phases_path %>
       <% else %>
           <br><%= link_to "SIGN UP", "/signup", title: "Sign Me Up!", style:"font-size:28px" %> 
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
@@ -64,7 +64,7 @@
         <% if user_signed_in? %>
           <div class="navbar-inner clearfix usermenu">
             <ul class="nav navbar-nav pull-left">
-              <li><%= link_to "Projects", projects_path %>
+              <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Orgs", groups_path %>
               <li><%= link_to "Authors/Filmmakers", users_path %>
               <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
@@ -77,9 +77,9 @@
 </div>
 
     <div class="hsmovieimage username" style="height:300px; text-shadow: 1px 1px #000; margin-top:20px; padding-top:40px; text-align:center; font-size:28px"> 
-      <%= link_to "Featured Project: ", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie " %><br><br><br>
-      <%= link_to "Lisa's 80's Catholic High School Movie", "/projects/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie" %><br>
-      <%= link_to image_tag("transparent.png", size: "370x130", title: "Lisas 80s Catholic High School Movie"), "/projects/lisas80scatholichighschoolmovie" %> 
+      <%= link_to "Featured Project: ", "/phases/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie " %><br><br><br>
+      <%= link_to "Lisa's 80's Catholic High School Movie", "/phases/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie" %><br>
+      <%= link_to image_tag("transparent.png", size: "370x130", title: "Lisas 80s Catholic High School Movie"), "/phases/lisas80scatholichighschoolmovie" %> 
     </div>
 
 <br><br>
