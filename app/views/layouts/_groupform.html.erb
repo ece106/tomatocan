@@ -20,7 +20,7 @@
     <div class="usermenu" >
       <ul class="nav navbar-nav navbar-right">
           <li><%= link_to " CrowdPublishTV Home ", root_path %>
-          <li><%= link_to " Recent Projects ", projects_path %>
+          <li><%= link_to " Recent Projects ", phases_path %>
         <% if user_signed_in? %>
           <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
           <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>

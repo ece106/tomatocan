@@ -27,7 +27,7 @@ Crowdpublishtv::Application.routes.draw do
   post '/static_pages/payeveryone' => 'static_pages#payeveryone', :as => :static_page_payeveryone #I think stripe handles this
 
   resources :merchandises
-  resources :projects
+  resources :phases
   resources :rsvpqs
   resources :groups
   resources :purchases
@@ -89,7 +89,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
-  match '/:permalink/projects' => "users#projects", :as => :user_projects, via: 'get'
+  match '/:permalink/phases' => "users#phases", :as => :user_phases, via: 'get'
   match '/:permalink/perks' => "users#perks", :as => :user_merchandise, via: 'get'
  
   match '/groups/:permalink/calendar' => "groups#calendar", :as => :group_calendar, via: 'get'
@@ -105,9 +105,9 @@ Crowdpublishtv::Application.routes.draw do
   post '/groups/:permalink/createstripeacnt' => 'groups#createstripeacnt', :as => :group_createstripeacnt
   post '/groups/:permalink/correcterr' => 'groups#correcterr', :as => :group_correcterr
 
-  match '/projects/:permalink/merchandise' => "projects#merchandise", :as => :project_merchandise, via: 'get'
-  match '/projects/:permalink/patronperk' => "projects#patronperk", :as => :project_patronperk, via: 'get'
-  match '/projects/:permalink/standardperks' => "projects#standardperks", :as => :project_standardperks, via: 'get'
+  match '/phases/:permalink/merchandise' => "phases#merchandise", :as => :phase_merchandise, via: 'get'
+  match '/phases/:permalink/patronperk' => "phases#patronperk", :as => :phase_patronperk, via: 'get'
+  match '/phases/:permalink/standardperks' => "phases#standardperks", :as => :phase_standardperks, via: 'get'
   
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt

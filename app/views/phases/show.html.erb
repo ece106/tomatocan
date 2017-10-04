@@ -1,0 +1,29 @@
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container" style="float:left; text-align:left; width:700px;">
+<p id="notice"><%= notice %></p>
+
+  <% if @phase.phasepic.present? && @phase.phasepic != '' %>
+    <%= image_tag(@phase.phasepic, size: '500x200') %>
+  <% end %>
+  <h3><%= @phase.name %>   
+    <% if user_signed_in? %>
+      <% if @phase.user_id == current_user.id %>
+        <%= button_to(name = "Edit phase", edit_phase_path(@phase.id), method: :get, form_class: 'btn btn-small') %>
+      <% end %>
+    <% end %>
+  </h3>
+
+  <%= @author.name %><br><br>
+
+<div class="blacktxt">
+  <% if @phase.mission %> 
+    <%= simple_format @phase.mission.gsub(/\n/, '<br>') %>
+  <% end %>
+</div>
+<br><br><br>
+</div>
+</div>
+</div>
+</div>

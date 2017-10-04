@@ -9,23 +9,23 @@
     <b>Price </b><br>
     <%= f.text_field :price, :size => 80, placeholder: "$10.00" %><br>
 
-    <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.hidden_field :phase_id, value: @phase.id %>
     <div class="covername"> <br> </div>
     <%= f.submit "Save New Perk" %>
 <% end %>
 
     <h3> - OR - </h3>
 
-        <br><b>Add existing Patron Perks to Project <i><%= @project.name %></i>: </b><br>
+        <br><b>Add existing Patron Perks to phase <i><%= @phase.name %></i>: </b><br>
         <% if @dropdown.any? %>
           <% @dropdown.each do |perk| %>
             <%= form_for(perk) do |f| %>
-              <%= f.hidden_field :project_id, :value => @project.id %> 
+              <%= f.hidden_field :phase_id, :value => @phase.id %> 
               <%= f.submit("Add " + perk.name ) %><br> 
             <% end %>
           <% end %>
         <% elsif @perklist.any? %>
-          Please add merchandise to your account that you are able to sell and deliver in support of <%= project.name %> 
+          Please add merchandise to your account that you are able to sell and deliver in support of <%= phase.name %> 
           <%= button_to(name = "Create Patron Perk", new_merchandise_path, :method => :get) %>
         <% end %>
 <br><br>

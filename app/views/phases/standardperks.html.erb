@@ -1,6 +1,6 @@
 <div class="blacktxt">
 
-<h4>Start by adding a few of the suggested Patron Perks listed below. On the following page you'll be able to list custom Perks and add your existing Perks to <i><%= @project.name %></i> </h4>
+<h4>Start by adding a few of the suggested Patron Perks listed below. On the following page you'll be able to list custom Perks and add your existing Perks to <i><%= @phase.name %></i> </h4>
 
 <table>
   <thead>
@@ -18,7 +18,7 @@
       <div id="accordion-togglea" class="accordion-body collapse">
         <div class="accordion-inner">
           <%= form_for(@merchandise) do |f| %>
-            <%= f.hidden_field :project_id, value: @project.id %>
+            <%= f.hidden_field :phase_id, value: @phase.id %>
             <b>Reward Name </b><br>
             <%= f.text_field :name, :size => 80, placeholder: @author.name + "'s Post on your facebook wall/mention you in a tweet every week for x weeks" %><br><br>
             <b>About this reward </b><br>
@@ -26,7 +26,7 @@
             <%= f.text_area :desc, :cols => 82, :rows => 7, placeholder: "I will write a brief greeting/line from my latest book on your facebook wall every Tuesday for 4 weeks... " %><br><br>
             <b>Price </b><br>
             <%= f.text_field :price, :size => 80, placeholder: "$20.00" %><br>
-            <%= button_to "Create Post Perk", { :controller => 'projects', :id => @project.id}, :method => :post %><br><br>
+            <%= button_to "Create Post Perk", { :controller => 'phases', :id => @phase.id}, :method => :post %><br><br>
           <% end %>
         </div>
       </div>
@@ -50,7 +50,7 @@
       <div id="accordion-togglec" class="accordion-body collapse">
         <div class="accordion-inner">
           <%= form_for(@merchandise) do |f| %>
-            <%= f.hidden_field :project_id, value: @project.id %>
+            <%= f.hidden_field :phase_id, value: @phase.id %>
             <b>Reward Name </b><br>
             <%= f.text_field :name, :size => 80, placeholder: @author.name + "'s Personal Recipe for Something Delicious" %><br><br>
             <b>About this reward </b><br>
@@ -58,7 +58,7 @@
             <%= f.text_area :desc, :cols => 82, :rows => 7, placeholder: "Recipe for Disaster: My assistant will email you my personal recipe for peanut butter and jelly sandwiches... " %><br><br>
             <b>Price </b><br>
             <%= f.text_field :price, :size => 80, placeholder: "$20.00" %><br>
-            <%= button_to "Create Recipe Perk", { :controller => 'projects', :id => @project.id}, :method => :post %><br><br>
+            <%= button_to "Create Recipe Perk", { :controller => 'phases', :id => @phase.id}, :method => :post %><br><br>
           <% end %>
         </div>
       </div>
@@ -82,15 +82,15 @@
         <div id="accordion-toggle3" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :project_id, value: @project.id %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Reward Name </b><br>
-                <%= f.text_field :name, :size => 80, placeholder: "Live Online Reading " + @project.name + " before it's released" %><br><br>
+                <%= f.text_field :name, :size => 80, placeholder: "Live Online Reading " + @phase.name + " before it's released" %><br><br>
                 <b>About this reward </b><br>
                 What is this product? Main reason someone might want this item? (You may add to this later)<br>
                 <%= f.text_area :desc, :cols => 82, :rows => 7, placeholder: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are... " %><br><br>
                 <b>Price </b><br>
                 <%= f.text_field :price, :size => 80, placeholder: "$30.00" %><br>
-                <%= button_to "Create Live Online Reading Perk", { :controller => 'projects', :id => @project.id, :method => :post} %><br><br>
+                <%= button_to "Create Live Online Reading Perk", { :controller => 'phases', :id => @phase.id, :method => :post} %><br><br>
               <% end %>
           </div>
         </div>
@@ -112,15 +112,15 @@
         <div id="accordion-toggle4" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :project_id, value: @project.id %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Reward Name </b><br>
-                <%= f.text_field :name, :size => 80, placeholder: "Advance access to read a chapter of " + @project.name + " before it's released" %><br><br>
+                <%= f.text_field :name, :size => 80, placeholder: "Advance access to read a chapter of " + @phase.name + " before it's released" %><br><br>
                 <b>About this reward </b><br>
                 What is this product? Main reason someone might want this item? (You may add to this later)<br>
                 <%= f.text_area :desc, :cols => 82, :rows => 7, placeholder: "I will email a near-final draft of the first chapter of the book to everyone who orders this perk" %><br><br>
                 <b>Price </b><br>
                 <%= f.text_field :price, :size => 80, placeholder: "$30.00" %><br>
-                <%= button_to "Create Chapter Advance Perk", { :controller => 'projects', :id => @project.id, :method => :post} %><br><br>
+                <%= button_to "Create Chapter Advance Perk", { :controller => 'phases', :id => @phase.id, :method => :post} %><br><br>
               <% end %>
           </div>
         </div>

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
   enable_extension "plpgsql"
 
   create_table "agreements", force: true do |t|
-    t.integer  "project_id"
+    t.integer  "phase_id"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -110,17 +110,17 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string   "itempic"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "project_id"
+    t.integer  "phase_id"
     t.datetime "deadline"
     t.float    "goal"
     t.string   "youtube"
   end
 
-  create_table "projects", force: true do |t|
+  create_table "phases", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.text     "mission"
-    t.string   "projectpic"
+    t.string   "phasepic"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.datetime "deadline"
   end
 
-  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
+  add_index "phases", ["slug"], name: "index_phases_on_slug", unique: true, using: :btree
 
   create_table "purchases", force: true do |t|
     t.integer  "author_id"

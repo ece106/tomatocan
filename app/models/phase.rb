@@ -1,9 +1,9 @@
-class Project < ActiveRecord::Base
+class Phase < ActiveRecord::Base
   extend FriendlyId
   friendly_id :permalink, use: :slugged
 
-  before_save { |project| project.permalink = permalink.downcase }
-  mount_uploader :projectpic, ProjectpicUploader
+  before_save { |phase| phase.permalink = permalink.downcase }
+  mount_uploader :phasepic, PhasepicUploader
 
   has_many :merchandises 
   belongs_to :user
@@ -15,6 +15,6 @@ class Project < ActiveRecord::Base
   validates :permalink, presence: true, format: { with: /\A[\w+]+\z/ }, length: { maximum: 40 },
                 uniqueness: { case_sensitive: false }
 
-  before_save { |project| project.permalink = permalink.downcase }
+  before_save { |phase| phase.permalink = permalink.downcase }
 
 end
