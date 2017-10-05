@@ -52,15 +52,15 @@ class PhasesController < ApplicationController
     @merchandises = @phase.merchandises
     @merchandise = @phase.merchandises.build 
     @perklist = Merchandise.where(:phase_id => @phase.id)
-    dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('phase_id IS NULL')
-    dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-    @dropdown = dropdown1 + dropdown2
   end
 
   def standardperks
     @phase = Phase.find_by_permalink(params[:permalink])
     @author = User.find_by_id(@phase.user_id)
     @merchandise = @phase.merchandises.build 
+    dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('phase_id IS NULL')
+    dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
+    @dropdown = dropdown1 + dropdown2
   end
 
   def edit

@@ -36,7 +36,7 @@ class MerchandisesController < ApplicationController
       end
       if merchandise_params[:phase_id] == nil 
         redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
-      elsif merchandise_params[:rttoeditphase].present?
+      elsif merchandise_params[:rttoeditphase].present? # I dont think this is used.
         phase = Phase.find_by_id(merchandise_params[:phase_id])
         redirect_to edit_phase_path(phase.permalink), notice: 'Patron Perk was successfully created.'
       else
@@ -59,7 +59,7 @@ class MerchandisesController < ApplicationController
     end
     if merchandise_params[:phase_id].present? && @merchandise.update(merchandise_params)
       @phase = Phase.find(@merchandise.phase_id)
-      redirect_to edit_phase_path(@phase.permalink), notice: 'Patron Perk was successfully added to phase.'
+      redirect_to phase_standardperks_path(@phase.permalink), notice: 'Patron Perk was successfully added to phase.'
     elsif @merchandise.update(merchandise_params)
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else

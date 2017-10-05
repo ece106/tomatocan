@@ -17,15 +17,14 @@
   <div class="blacktxt">
     <b>Patron Perk name </b><br>
     <%= f.text_field :name, size: 80, placeholder: "The Best Stuff Ever" %><br><br>
+    <b>Perk Picture </b><br>
+        Upload a picture that represents the item you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
+        <br><%= f.file_field :itempic %> 
     <b>About this perk </b> - You may add to this later<br>
     <%= f.text_area :desc, cols: 82, :rows => 7, placeholder: "What is this product? What is the main reason someone might want this item?" %><br><br>
     <b>Price </b><br>
-    <%= f.text_field :price, size: 80, placeholder: "$10.00" %>
+      $<%= f.text_field :price, size: 70, value: 50.00 || :price %>USD<br>
   </div>
-      <div class="field">
-        Upload a picture that represents the item you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
-        <br><%= f.file_field :itempic %> 
-      </div><br>
 
   <div class="blacktxt">
     <b>Video </b><br>
@@ -36,8 +35,6 @@
   </div>
 
   <div class="actions">
-    <%= f.hidden_field :phase_id, value: @phase_id %>
-    <%= f.hidden_field :rttoeditphase, value: "editphase" %>
     <%= f.submit "Add Perk" %>
   </div>
 <% end %>

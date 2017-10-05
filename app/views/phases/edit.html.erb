@@ -25,11 +25,11 @@
         <% end %>  
       </div>
 
-      <div class="blacktxt" style= "text-align:left">
+      <div class="blacktxt " style= "text-align:left">
         <br><b>Add a New Patron Perk </b><br>
-        <%= link_to("New Perk", new_merchandise_path(phase_id: @phase.id), method: :get) %>
-      </div><br>
-  
+        <%= button_to("New Perk", phase_standardperks_path(@phase.permalink), method: :get, form_class: 'btn btn-small') %>
+      </div>      <br>  
+
     <%= form_for(@phase) do |f| %>
       <% if @phase.errors.any? %>
         <div id="error_explanation">
