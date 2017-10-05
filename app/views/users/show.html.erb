@@ -43,7 +43,7 @@
             <td class = 'blacktxt'><%= truncate(@phase.mission , :length => 200, :separator => ' ') %> </td></tr>
           </table><br>
 
-      <% if @numusrproj > 1 %>
+      <% if @numusrphs > 1 %>
         <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br>
       <% end %>
     </div>

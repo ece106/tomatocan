@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
 
   belongs_to :user
   has_many :agreements
-  has_many :projects, through: :agreements
+  has_many :phases, through: :agreements
 
   mount_uploader :grouppic, GrouppicUploader
 

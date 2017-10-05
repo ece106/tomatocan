@@ -27,6 +27,10 @@ jQuery(document).ready(function($) {
   $('.accordion-toggle5').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hidden6more').removeClass('hidden6more').hide();
+  $('.accordion-toggle6').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
 
 
   $('.cardinfo').hide();

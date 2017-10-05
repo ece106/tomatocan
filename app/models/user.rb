@@ -294,7 +294,7 @@ class User < ActiveRecord::Base
   end  
 
   private
-    def assign_defaults_on_new_user #the Author column should have been a string since integer is not obvious nor descriptive
+    def assign_defaults_on_new_user 
       self.author = 2 unless self.author
     end
 

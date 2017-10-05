@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def show
     @books = @user.books
     @phase = @user.phases.order('created_at').last #only last proj created displayed on user home, regardless of deadline. 
-    @numusrproj = @user.phases.count
+    @numusrphs = @user.phases.count
     @numusrgroups = 0 
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
@@ -82,11 +82,11 @@ class UsersController < ApplicationController
   end
   def phases
     currtime = Time.now
-    @activephases = phase.where( "user_id = ? AND deadline > ?", @user.id, currtime).order('created_at')
-    @pastphases = phase.where( "user_id = ? AND deadline < ?", @user.id, currtime).order('created_at')
+    @activephases = Phase.where( "user_id = ? AND deadline > ?", @user.id, currtime).order('created_at')
+    @pastphases = Phase.where( "user_id = ? AND deadline < ?", @user.id, currtime).order('created_at')
     @outstandingagreements = []
     @mynullagreements.each do |agree|
-      phase = phase.find(agree.phase_id)
+      phase = Phase.find(agree.phase_id)
       group = Group.find(agree.group_id) 
       @outstandingagreements << {phasename: phase.name, groupname: group.name, 
         agreeid: agree.id, grouppermalink: group.permalink }

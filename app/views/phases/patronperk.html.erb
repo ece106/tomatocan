@@ -1,22 +1,27 @@
 <div class="blacktxt">
+<h3>Offer a New Patron Perk to support this phase of your project</h3>
 
 <%= form_for @merchandise, :html => {:multipart => true} do |f| %>
-    <b>Reward Name </b><br>
+    <b>Perk Name </b><br>
     <%= f.text_field :name, :size => 80, placeholder: "Great Patron Perk" %><br><br>
-    <b>About this reward </b><br>
-      What is this product? What is the main reason someone might want this item? (You may add to this later)<br>
-    <%= f.text_area :desc, :cols => 82, :rows => 7 %><br><br>
+    <b>About this Perk </b> <br>
+    <%= f.text_area :desc, :cols => 82, :rows => 7, placeholder: "What is this product? What is the main reason someone might want this item? (You may edit this later)" %><br><br>
     <b>Price </b><br>
     <%= f.text_field :price, :size => 80, placeholder: "$10.00" %><br>
 
     <%= f.hidden_field :phase_id, value: @phase.id %>
-    <div class="covername"> <br> </div>
+
+      <br>If you happen to have a video about your Perk item on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. Any non-YouTube url will be ignored. <br> 
+      <div class="profilebox" >
+        <%= f.text_area :youtube, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %><br>
+      </div>
+
     <%= f.submit "Save New Perk" %>
 <% end %>
 
     <h3> - OR - </h3>
 
-        <br><b>Add existing Patron Perks to phase <i><%= @phase.name %></i>: </b><br>
+        <br><b>Add existing Patron Perks to this phase of your project <i><%= @phase.name %></i>: </b><br>
         <% if @dropdown.any? %>
           <% @dropdown.each do |perk| %>
             <%= form_for(perk) do |f| %>
@@ -24,9 +29,6 @@
               <%= f.submit("Add " + perk.name ) %><br> 
             <% end %>
           <% end %>
-        <% elsif @perklist.any? %>
-          Please add merchandise to your account that you are able to sell and deliver in support of <%= phase.name %> 
-          <%= button_to(name = "Create Patron Perk", new_merchandise_path, :method => :get) %>
         <% end %>
 <br><br>
 </div>

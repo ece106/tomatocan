@@ -1,6 +1,6 @@
 class Agreement < ActiveRecord::Base
   belongs_to :group
-  belongs_to :phase1
+  belongs_to :phase
 
   validates :phase_id, presence: true
   validates :group_id, presence: true

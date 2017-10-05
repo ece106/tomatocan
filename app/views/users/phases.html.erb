@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CrowdPublish.TV <%  @user.name %> 's projects</title>
+<title>CrowdPublish.TV <%  @user.name %> 's phases</title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -14,9 +14,8 @@
       <div class="container" >
 
 <div class="blacktxt  col-lg-10 col-md-9 col-sm-9 col-xs-11" >
-<h1><%= @user.name %>'s projects</h1>
 <% if @user == current_user %>
-  <%= button_to "Create a New Project", new_project_path, :method=> :get %><br>
+  <%= button_to "Create a New Project Phase", new_phase_path, method: :get %><br>
   <table>
     <% @outstandingagreements.each do |agree| %>
       <tr>
@@ -28,46 +27,46 @@
           <strong>Decline </strong>
           <%= hidden_field_tag :agreeid, agree[:agreeid] %>
         <% end %></td>
-        <td><%= link_to agree[:groupname], group_path(agree[:grouppermalink]) %> wants to partner with <%= agree[:projectname]  %> </td>
+        <td><%= link_to agree[:groupname], group_path(agree[:grouppermalink]) %> wants to partner with <%= agree[:phasename]  %> </td>
       </tr>  
     <% end %>  
   </table> 
 <% end %>
 
-<% if @activeprojects.count != 0 %>
-  <h2>Current projects</h2>
+<% if @activephases.count != 0 %>
+  <h2>Current project phases</h2>
   <table>
-  <% @activeprojects.each do |proj| %>
-    <tr><td><br><%= link_to proj.name, proj %></td>
-      <td><br><%= proj.mission %></td>
+  <% @activephases.each do |phs| %>
+    <tr><td><br><%= link_to phs.name, phs %></td>
+      <td><br><%= phs.mission %></td>
     <% if user_signed_in? %>
-      <% if proj.user_id == current_user.id %>
-        <td><br><%= link_to 'Edit', edit_project_path(proj.id) %> </td>
+      <% if phs.user_id == current_user.id %>
+        <td><br><%= link_to 'Edit', edit_phase_path(phs.id) %> </td>
       <% end %>
     <% end %>
     </tr>
   <% end %>
   </table>
 <% else %><br>
-  *** <%= @user.name %> does not have any active projects ***<br><br>
+  *** <%= @user.name %> does not have any active phases ***<br><br>
 <% end %>  
 
-<% if @pastprojects.count != 0 %>
-  <h2>Past projects</h2>
+<% if @pastphases.count != 0 %>
+  <h2>Past project phases</h2>
   <table>
-  <% @pastprojects.each do |proj| %>
-    <tr><td><br><%= link_to proj.name, proj %></td>
-      <td><br><%= proj.mission %></td>
+  <% @pastphases.each do |phs| %>
+    <tr><td><br><%= link_to phs.name, phs %></td>
+      <td><br><%= phs.mission %></td>
     <% if user_signed_in? %>
-      <% if proj.user_id == current_user.id %>
-        <td><br><%= link_to 'Edit', edit_project_path(proj.id) %> </td>
+      <% if phs.user_id == current_user.id %>
+        <td><br><%= link_to 'Edit', edit_phase_path(phs.id) %> </td>
       <% end %>
     <% end %>
     </tr>
   <% end %>
   </table>
 <% else %><br><br>
-  <%= @user.name %> does not have any past projects 
+  <%= @user.name %> does not have any past project phases 
 <% end %>  
 </div>
 </div>

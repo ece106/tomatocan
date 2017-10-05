@@ -1,30 +1,33 @@
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="page-content">
-      <div class="container">
-<h4>Edit <%= @phase.name %></h4>
+      <div class="container col-md-12 col-sm-12 col-xs-12">
+<h4>Edit phase: <%= @phase.name %></h4>
 
 <% if user_signed_in? %>
   <% if @phase.user_id == current_user.id %>
       <div class="blacktxt" style= "text-align:left">
-        <br><b>Add Patron Perk to be sold in support of phase <%= @phase.name %>: </b><br>
+        <br><b>Add existing Patron Perk to be sold in support of phase <%= @phase.name %>: </b><br>
         <% if @dropdown.any? %>
-          <% @dropdown.each do |perk| %>
-            <%= form_for(perk) do |f| %>
-              <%= f.hidden_field :phase_id, :value => @phase.id %> 
-              <%= f.submit("Add " + perk.name ) %><br> 
-              <div class="covername"> <br> </div>
+          <div class="row">
+            <% @dropdown.each do |perk| %>
+              <div class="col-md-4 col-sm-6 col-xs-6">
+                <%= form_for(perk) do |f| %>
+                  <%= f.hidden_field :phase_id, value: @phase.id %> 
+                  <%= f.submit("Add " + perk.name, :class => 'btn btn-small' ) %><br> 
+                <% end %>
+              </div>
             <% end %>
-          <% end %>
+          </div>
         <% elsif @perklist.any? %>
-          Please add merchandise to your account that you are able to sell and deliver in support of <%= @phase.name %> 
-          <%= button_to(name = "Create Perk", new_merchandise_path, :method => :get) %>
+          Add a Perk to your account that you are able to sell and deliver in support of <%= @phase.name %> 
+          <%= button_to(name = "Create Perk", new_merchandise_path, method: :get, form_class: 'btn btn-small') %>
         <% end %>  
       </div>
 
       <div class="blacktxt" style= "text-align:left">
-        <br><b>Create a new Patron Perk </b><br>
-        <%= button_to(name = "Enter Perk Info", new_merchandise_path, :method => :get) %>
+        <br><b>Add a New Patron Perk </b><br>
+        <%= link_to("New Perk", new_merchandise_path(phase_id: @phase.id), method: :get) %>
       </div><br>
   
     <%= form_for(@phase) do |f| %>
@@ -41,19 +44,19 @@
 
       <div class="blacktxt">
         <b>Name of This Phase of Your Project </b><br>
-        <%= f.text_field :name, :size => 80, placeholder: "The Best Project Ever" %>
+        <%= f.text_field :name, size: 80, placeholder: "The Best Project Ever: First Chapter" %>
         <br><br>
         <b>URL ending</b> - numbers and letters ONLY. <br />
-        www.CrowdPublish.TV/phases/<%= f.text_field :permalink, :size => 50, placeholder:  "YourPhaseURLEnding" %>  <br><br>
+        www.CrowdPublish.TV/phases/<%= f.text_field :permalink, size: 50, placeholder:  "YourPhaseURLEnding" %>  <br><br>
 
         Upload a picture that represents your phase (.jpg, .gif, .jpeg, or .png) - <i>a wide, short picture works best</i>
         <br><%= f.file_field :phasepic %> <br>
 
-        <b>About phase </b> - You may add to this later<br>
-        <%= f.text_area :mission, :cols => 82, :rows => 7, placeholder:  "What is your mission statement? What will you accomplish? If this phase is a book chapter or a movie scene, how does this phase relate to the final product?" %><br><br>
+        <b>About phase </b><br>
+        <%= f.text_area :mission, cols: 82, rows: 7, placeholder:  "What is your mission statement? What will you accomplish? If this phase is a book chapter or a movie scene, how does this phase relate to the final product?" %><br><br>
         <b>Deadline </b><br>
         When does this phase expire?<br>
-        <%= f.date_select :deadline, selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
+        <%= f.date_select :deadline, start_year: Date.today.year, end_year: Date.today.year + 1 %>
       </div>
 
       <div class="field" style= "text-align:left">

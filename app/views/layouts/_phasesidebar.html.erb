@@ -2,9 +2,9 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
-  <div class="container" >
+  <div class="container col-lg-12 " >
 
-<div class="author-books" style = "width: 330px; overflow: wrap;">
+<div class="author-books" style = "width: 320px; overflow: wrap;">
   <% if !user_signed_in? %>
     <%= link_to image_tag("signup.png", title: "Sign Me Up!"), "/signup"%>to access Patron Perks <br>
     <%= link_to 'Sign in...', "/login", {:style=>'float:right'} %><br> 

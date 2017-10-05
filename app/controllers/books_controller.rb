@@ -63,9 +63,6 @@ class BooksController < ApplicationController
 #redirect_to "https://authorprofile.s3.amazonaws.com/book/14/bookpdf/LisaSchaeferCV.docx"
   end
 
-  def destroy # Put in something that assigns the book to CrowdPublishTV admin when a user wants to delete
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

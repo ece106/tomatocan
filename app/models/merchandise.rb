@@ -1,4 +1,7 @@
 class Merchandise < ActiveRecord::Base
+
+  attr_accessor :rttoeditphase 
+
   belongs_to :user # the project has user_id but merch doesn't have to be part of proj
   belongs_to :project
   has_many :purchases

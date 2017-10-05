@@ -58,12 +58,11 @@ class PhasesController < ApplicationController
   end
 
   def standardperks
-    @phase = phase.find_by_permalink(params[:permalink])
+    @phase = Phase.find_by_permalink(params[:permalink])
     @author = User.find_by_id(@phase.user_id)
     @merchandise = @phase.merchandises.build 
   end
 
-  # GET /phases/1/edit
   def edit
     @merchandise = @phase.merchandises.order(price: :asc)
     @perklist = Merchandise.where( "user_id = ?", current_user.id)
@@ -73,17 +72,15 @@ class PhasesController < ApplicationController
     @merchandises = @phase.merchandises.build 
   end
 
-  # POST /phases
   def create
     @phase = current_user.phases.build(phase_params)
     if @phase.save
-      redirect_to phase_patronperk_path(@phase.permalink), notice: 'phase was successfully created.'
+      redirect_to phase_standardperks_path(@phase.permalink), notice: 'phase was successfully created.'
     else
       render action: 'new'
     end
   end
 
-  # PATCH/PUT /phases/1
   def update
     if @phase.update(phase_params)
       redirect_to @phase, notice: 'phase was successfully updated.'
@@ -92,14 +89,12 @@ class PhasesController < ApplicationController
     end
   end
 
-  # DELETE /phases/1
   def destroy
     @phase.destroy
     redirect_to phases_url, notice: 'phase was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_phase
       if params[:id].present?
         @phase = Phase.friendly.find(params[:id])

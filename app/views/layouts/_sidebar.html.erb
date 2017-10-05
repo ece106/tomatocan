@@ -2,19 +2,19 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
-  <div class="container" >
+  <div class="container col-lg-12" >
   <div class="row" >
   <table><tr><td>
     <% if @user.profilepic.present? && @user.profilepic != '' %>
-      <%= image_tag @user.profilepic, :height => "150" %>
+      <%= image_tag @user.profilepic, height: "150" %>
     <% elsif @user.profilepicurl %>
       <% if @user.profilepicurl.match(/http/) && @user.profilepicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
-        <%= image_tag @user.profilepicurl, :height => "150" %><br >
+        <%= image_tag @user.profilepicurl, height: "150" %><br >
       <% else %>
-        <%= image_tag "whiteBk.jpg", :height => "150" %>
+        <%= image_tag "whiteBk.jpg", height: "150" %>
       <% end %>
     <% else %>
-      <%= image_tag "whiteBk.jpg", :height => "150" %>
+      <%= image_tag "whiteBk.jpg", height: "150" %>
     <% end %>
   </td><td>
     <div class="username" style = "max-width: 200px; overflow: wrap;">
@@ -30,7 +30,7 @@
     <% if @user == current_user %>
       <% if @user.author == 'author' %>
         <%if controller.controller_name == 'users' %>
-          <div class="col-md-2 col-sm-2 col-xs-2" > 
+          <div class="col-md-6 " > 
             <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
 
             <% if @mynullagreements.count != 0 %>
@@ -50,7 +50,7 @@
             <% end %> <br>
           </div>
 
-          <div class="col-md-2 col-sm-2 col-xs-2" > 
+          <div class="col-md-6" > 
             <% if current_user.books.any? %>
               <%= button_to "Edit Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
             <% else %>
@@ -66,7 +66,7 @@
             <% if current_user.stripeid.present? %>
               <% if current_user.stripeid.match(/acct/) %>
                 <% if @fieldsneeded.present? %>
-                  <%= button_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), {:style => "background-color:red", :method=> :get} %><br>
+                  <%= button_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), { style: "background-color:red", method: :get} %><br>
                 <% else %> 
                   <%= button_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
                 <% end %> 
@@ -96,23 +96,23 @@
           <div class="col-md-1 col-sm-1 col-xs-1" style="width:80px; margin-left:-10px">
             <div class="fanbook" style="width:75px;height:100px;background-color:#cfddaa; line-height:0.9em; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid;" >
               <% if book.coverpic.present? && book.coverpic != '' %>
-                <%= link_to image_tag(book.coverpic, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id)  %>
+                <%= link_to image_tag(book.coverpic, size: "75x100", title: "Purchase " + book.title), book_path(id: book.id)  %>
               <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) && book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
-                <%= link_to image_tag(book.coverpicurl, :size => "75x100", :title => "Purchase " + book.title), book_path(:id => book.id) %>
+                <%= link_to image_tag(book.coverpicurl, size: "75x100", title: "Purchase " + book.title), book_path(id: book.id) %>
               <% elsif book.title.match /[0-9A-Za-z]/ %> 
-                <%= link_to book.title, book_path(:id => book.id), :class => 'covertitle', :style => 'color:#880000', :title => "Purchase " + book.title %>
-                <%= link_to @user.name, book_path(:id => book.id), :class => 'covername', :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
+                <%= link_to book.title, book_path(id: book.id), :class => 'covertitle', style: 'color:#880000', title: "Purchase " + book.title %>
+                <%= link_to @user.name, book_path(id: book.id), :class => 'covername', style: 'color:#2c3651',  title: "Purchase " + book.title %>
               <% end %>
             </div><br>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-8 book-info" style="max-width:270px; overflow:wrap">
               <div class="fanbook" style="font-weight:bold;">
-                <%= link_to book.title, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title %>
+                <%= link_to book.title, book_path(id: book.id), style: 'color:#2c3651', title: "Learn more about " + book.title %>
               </div>
               <div class="fanbook">
                 &nbsp<%= book.genre %><br>
               </div>
-            <div class="fifty" ><br><%= link_to book.fiftychar, book_path(:id => book.id), :style => 'color:#2c3651', :title => "Learn more about " + book.title  %> </div><br>
+            <div class="fifty" ><br><%= link_to book.fiftychar, book_path(id: book.id), style: 'color:#2c3651', title: "Learn more about " + book.title  %> </div><br>
           </div>
         <% end %>
       </div>

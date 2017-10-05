@@ -25,33 +25,33 @@ class GroupsController < ApplicationController
 
   def show
     currtime = Time.now
-    @currprojects = []
-    @group.projects.where("deadline > ?", currtime).find_each do |proj|
-      approvedagreemt = Agreement.where("group_id = ? AND project_id = ?", @group.id, proj.id )
+    @currphases = []
+    @group.phases.where("deadline > ?", currtime).find_each do |proj|
+      approvedagreemt = Agreement.where("group_id = ? AND phase_id = ?", @group.id, proj.id )
       if approvedagreemt[0].approved.present?
         if approvedagreemt[0].approved > '0002-01-01'
           author = User.find(proj.user_id)
-          if proj.projectpic.present?
-            picture = proj.projectpic
+          if proj.phasepic.present?
+            picture = proj.phasepic
           else
             picture = "whiteBk.jpg"  
           end
-          @currprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
+          @currphases <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
         end
       end
     end
-    @pastprojects = []
-    @group.projects.where("deadline < ?", currtime).find_each do |proj|
-      approvedagreemt = Agreement.where("group_id = ? AND project_id = ?", @group.id, proj.id )
+    @pastphases = []
+    @group.phases.where("deadline < ?", currtime).find_each do |proj|
+      approvedagreemt = Agreement.where("group_id = ? AND phase_id = ?", @group.id, proj.id )
       if approvedagreemt[0].approved.present?
         if approvedagreemt[0].approved > '0002-01-01'
           author = User.find(proj.user_id)
-          if proj.projectpic.present?
-            picture = proj.projectpic
+          if proj.phasepic.present?
+            picture = proj.phasepic
           else
             picture = "whiteBk.jpg"  
           end
-          @pastprojects <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink, authorlink: author.permalink } 
+          @pastphases <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink, authorlink: author.permalink } 
         end
       end
     end  
