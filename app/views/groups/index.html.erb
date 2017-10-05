@@ -20,7 +20,7 @@
     <% if !current_user.groups.any? %>
       Are you an officer of an organization? <%= link_to "Add Your Organization", new_group_path %><br><br>
     <% else %>
-      Organization Admins: <%= link_to "Partner Your Organization with a Project", projects_path %> <br><br>
+      Organization Admins: <%= link_to "Partner Your Organization with a Project Phase", phases_path %> <br><br>
     <% end %> 
   <% end %> 
 

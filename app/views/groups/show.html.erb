@@ -3,34 +3,34 @@
 <% end %>
   <p id="notice"><%= notice %></p>
 
-  <br><h2>Projects we support: </h2>
-  <% if @currprojects.present? %>  
+  <br><h2>phases we support: </h2>
+  <% if @currphases.present? %>  
     <table >
-      <% @currprojects.each do |proj| %>
+      <% @currphases.each do |proj| %>
         <% if proj[:pic].present? && proj[:pic] != '' %>
-          <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), project_path(proj[:permalink], :groupid => @group.id) %></td>
+          <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), phase_path(proj[:permalink], :groupid => @group.id) %></td>
         <% else %>
-          <tr><td><%= link_to (image_tag "crowddark.png", :size => "75x75"), project_path(proj[:permalink], :groupid => @group.id) %></td>
+          <tr><td><%= link_to (image_tag "crowddark.png", :size => "75x75"), phase_path(proj[:permalink], :groupid => @group.id) %></td>
         <% end %>
-        <td style= 'font-weight:bold; font-size:22px'><%= link_to proj[:projtitle], project_path(proj[:permalink], :groupid => @group.id), style: "color:#ddbbff" %></td>
-        <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= button_to(name = "Support ", project_path(proj[:permalink], :groupid => @group.id), method: "get", style: "color:black" ) %></td></tr> 
+        <td style= 'font-weight:bold; font-size:22px'><%= link_to proj[:projtitle], phase_path(proj[:permalink], :groupid => @group.id), style: "color:#ddbbff" %></td>
+        <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= button_to(name = "Support ", phase_path(proj[:permalink], :groupid => @group.id), method: "get", style: "color:black" ) %></td></tr> 
         <% "Instead of projpath, this should route to purchases_new(group_id, curruser, merch_id). Of what merch? A default for each proj? " %>
         <tr><td></td><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %></td></tr>
       <% end %>
     </table>
   <% else %>
-    We are not supporting any projects at this time. 
-    <% if @pastprojects.present? %>
-      Support our past authors and filmmakers by selecting a project below.
+    We are not supporting any phases at this time. 
+    <% if @pastphases.present? %>
+      Support our past authors and filmmakers by selecting a project phase below.
     <% end %>
   <% end %>  <br><br>
 
   <div class="support" ><br>
-    <% if @currprojects.present? %>  
-      <% if @currprojects.count == 1 %> 
+    <% if @currphases.present? %>  
+      <% if @currphases.count == 1 %> 
         Help us earn funds by supporting this project.
       <% else %>
-        Help us earn funds by supporting one of these projects.
+        Help us earn funds by supporting one of these project.
       <% end %><br>
     <% end %>
 
@@ -39,12 +39,12 @@
     <% end %><br>
   </div>
 
-  <% if @pastprojects.present? %>
-    <h4>CrowdPublish.TV Projects we've supported in the past:</h4>
+  <% if @pastphases.present? %>
+    <h4>CrowdPublish.TV phases we've supported in the past:</h4>
     <table>
-      <% @pastprojects.each do |proj| %>
+      <% @pastphases.each do |proj| %>
         <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), user_profile_path(proj[:authorlink]) %></td>
-          <td style='font-weight:bold;'><%= link_to proj[:projtitle], project_path(proj[:permalink]) %></td>
+          <td style='font-weight:bold;'><%= link_to proj[:projtitle], phase_path(proj[:permalink]) %></td>
           <td> <%= proj[:authorname] %></td><td><%= button_to(name = "Support " + proj[:authorname], user_profile_path(proj[:authorlink]), method: "get" ) %></td></tr> 
         <tr><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %><br><br></td></tr>
       <% end %>
