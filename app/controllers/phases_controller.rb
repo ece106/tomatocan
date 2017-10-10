@@ -10,6 +10,7 @@ class PhasesController < ApplicationController
       @usrgrpnameid = []
       currusergroups.find_each do |group|
         @usrgrpnameid << [group.name, group.id] 
+        @grouppermalink = group.permalink
       end 
       @numusrgroups = currusergroups.count 
     end  
@@ -39,7 +40,24 @@ class PhasesController < ApplicationController
   def show
     @merchandise = @phase.merchandises.order(price: :asc)
     @author = User.find(@phase.user_id)
-    @groupid = params[:groupid]
+    @groupid = params[:groupid] #if this phase was linked to from an organizations page
+    if user_signed_in?
+      currentuserid = current_user.id
+
+      currusergroupstripe = Group.where("user_id = ? AND stripeid IS NOT NULL", currentuserid)
+      @usrgrpnameidstripe = []
+      currusergroupstripe.find_each do |group|
+        @usrgrpnameidstripe << [group.name, group.id] 
+      end 
+      @numusrgroupstripe = currusergroupstripe.count 
+      
+      @groupswithoutstripe = []
+      currusergroupsnostripe = Group.where("user_id = ? AND stripeid IS NULL", currentuserid)
+      currusergroupsnostripe.find_each do |group|
+        @groupswithoutstripe <<  {name: group.name, permalink: group.permalink, id: group.id} 
+      end 
+      @numusrgroupsnostripe = currusergroupsnostripe.count 
+    end  
   end
 
   # GET /phases/new

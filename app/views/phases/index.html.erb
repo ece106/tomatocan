@@ -1,4 +1,12 @@
-<body >
+
+this has to be for group 
+get a list of curruser groups from controller
+
+  <h4>Sign up for a <%= link_to "Stripe Account", group_createstripeaccount_path(@grouppermalink) %>  (to receive payments) to partner your group with a Project Phase.</h4><br>
+<p id="notice"><%= notice %></p>
+
+
+
 <h3>Get Sneak Preview Access to Current Projects</h3>
 <%= form_for(Agreement.new) do |f| %> 
 
@@ -8,11 +16,11 @@
       <%= f.hidden_field :group_id, :value => @usrgrpnameid[0][1] %>
     <% end %>
     <% if @numusrgroups > 1 %>
-      Select one of your organizations to partner with a phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
+      Select one of your organizations to partner with a Project Phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br> 
     <% end %>
     <% if @numusrgroups > 0 %>
-      <div class = "blacktxt">If the phase creator accepts your partnership request, your organization will receive 5% of the proceeds for Patron Perks purchased through a referal from your CrowdPublish.TV Organization Page. 
-      <br>Partner one of the phases below & it will appear on your Organization Page:</div><br> 
+      <div class = "blacktxt">If the Project owner accepts your partnership request, your organization will receive 5% of the proceeds from Patron Perks purchased after patrons click through from your Organization Page. 
+      <br>Partner one of the Project Phases below & it will appear on your Organization Page:</div><br> 
     <% end %>
   <% end %>
 
@@ -25,7 +33,11 @@
     <% @partnerphs.each do |phs| %>
 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class= "groupimage" style="vertical-align: top; height:380px; width:300px; overflow:hidden" >
+      <% if @numusrgroups > 0 && current_user.stripeid.present? %>
+        <div class= "groupimage" style="vertical-align: top; height:230px; width:300px; overflow:hidden" >
+      <% else %>
+        <div class= "groupimage" style="vertical-align: top; height:200px; width:300px; overflow:hidden" >
+      <% end %>
           <% if phs[:phasepic].present? && phs[:phasepic] != '' %>
             <% groupthumb = phs[:phasepic] %>
           <% else %>
@@ -34,23 +46,22 @@
 
           <%= link_to (image_tag groupthumb, :style => "filter: brightness(50%); max-height:150px;"), phase_path(phs[:permalink])
           %>
-          <phasetext >
+          <projecttext >
             <div style="padding:0px; font-size:22px"><%= link_to phs[:name], phase_path(phs[:permalink]) %>
             </div>
             <%= phs[:creator] %>
             <% "Write code to send email to author asking permission to post. " %>
             <br><%= link_to truncate(phs[:mission], :length => 160, :separator => ' '), phase_path(phs[:permalink]) %>...
             <% if user_signed_in? %>
-              <% if @numusrgroups > 0 %>
+              <% if @numusrgroups > 0  %> && current_user.stripeid.present?  cant be curruser stripe. has to be groupstripe
                 <% phsid = phs[:id] %>
                 <div style = "color:#000"> <%= button_tag 'Partner', value: phsid, type: :submit, name: "agreement[phase_id]" %></div>
               <% end %>
             <% end %>
-          </phasetext>
+          </projecttext>
         </div>
       </div>
     <% end %>
   <% end %>
 <% end %>
 <br><br>
-</body>

@@ -23,7 +23,7 @@ class AgreementsController < ApplicationController
   def create
     @agreement = Agreement.new(agreement_params)
     if @agreement.save
-      redirect_to @agreement, notice: 'Agreement was successfully created.'
+      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement was successfully created.'
     else
       render action: 'new'
     end
@@ -32,7 +32,7 @@ class AgreementsController < ApplicationController
   # PATCH/PUT /agreements/1
   def update
     if @agreement.update(agreement_params)
-      redirect_to @agreement, notice: 'Agreement was successfully updated.'
+      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement was successfully created.'
     else
       render action: 'edit'
     end

@@ -14,9 +14,11 @@ class MerchandisesController < ApplicationController
 
   # GET /merchandises/new
   def new
-    @merchandise = Merchandise.new
-    if params[:phase_id].present?
-      @phase_id = params[:phase_id]
+    if current_user.stripeid.present?
+      @merchandise = Merchandise.new
+      if params[:phase_id].present?
+        @phase_id = params[:phase_id]
+      end
     end
   end
 

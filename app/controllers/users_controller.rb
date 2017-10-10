@@ -85,11 +85,13 @@ class UsersController < ApplicationController
     @activephases = Phase.where( "user_id = ? AND deadline > ?", @user.id, currtime).order('created_at')
     @pastphases = Phase.where( "user_id = ? AND deadline < ?", @user.id, currtime).order('created_at')
     @outstandingagreements = []
-    @mynullagreements.each do |agree|
-      phase = Phase.find(agree.phase_id)
-      group = Group.find(agree.group_id) 
-      @outstandingagreements << {phasename: phase.name, groupname: group.name, 
+    if user_signed_in?
+      @mynullagreements.each do |agree|
+        phase = Phase.find(agree.phase_id)
+        group = Group.find(agree.group_id) 
+        @outstandingagreements << {phasename: phase.name, groupname: group.name, 
         agreeid: agree.id, grouppermalink: group.permalink }
+      end
     end
     respond_to do |format|
       format.html 

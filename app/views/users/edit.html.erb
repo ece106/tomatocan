@@ -1,7 +1,7 @@
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="page-content">
-      <div class="container">
+      <div class="container col-md-12">
 
   <% if @user == current_user %>
     <p id="notice"><%= notice %></p>
@@ -23,23 +23,32 @@
       <%= f.hidden_field :user_id %>
 
       <div class="editbooktxt" >
-        <div style="float:left;width:50%;">
+        <div style="float:left;width:75%;">
           <b>* Book title </b></div>
-        <div style="float:left;width:25%;">
+        <div style="float:right;width:25%;">
           Genre <br></div>
       </div>
       <div class="profilebox" >
-        <div style="float:left;width:50%;">
+        <div style="float:left;width:75%;">
           <%= f.text_area :title, :cols => 50, :rows => 2, placeholder: "Book title" %>
         </div>
-        <div style="float:left;width:25%;">
+        <div style="float:right;width:25%;">
           <%= f.text_area :genre, :cols => 15, :rows => 1, placeholder: "Genre" %>
         </div><br>
       </div><br><br>
 
       <div class="editbooktxt" >
-        <br><b>Price </b>(in USD) $<%= f.text_field :price, placeholder: "4.99" %><br>
-        <br>Book jacket blurb (2000 characters max)<br>
+        <br><b>Price </b>
+<% if current_user.stripeid.present? %>
+            $<%= f.text_field :price, size: 80, value: 10.00 || :price %>USD<br>
+<% else %>
+  You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %>  (to receive payments) before offering items for sale.
+
+<br>HOWEVER we're still in test mode. You can enter info into Stripe's test database to try this out - test routing number is 110000000, test bank account number is 000123456789. Real bank or credit info will not be accepted. When we are in production mode, test numbers will be deleted from our database & we'll notify you to enter your book or movie crowdfunding projects on CrowdPublishTV.
+
+<% end %>
+
+        <br><br><b>Book jacket blurb</b> (2000 characters max)<br>
       </div>
       <div class="profilebox" >
         <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
@@ -63,6 +72,8 @@
       <div class="editbooktxt" >
         We recommend uploading files for ALL 3 of the following formats (so your customers have more options for the type of ereader they own)<br>
       </div>
+
+<% if current_user.stripeid.present? %>
       <div class="blacktxt">
         <table><tr><td>
         <div style="float:left;width:60%;">
@@ -79,6 +90,10 @@
           <%= f.file_field :bookepub %> </div></td></tr><br>
         </table>
       </div>
+<% else %>
+  You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %> (to receive payments) before uploading ebooks & offering them for sale.
+<% end %>
+
       <div class="editbooktxt" >
         <br><br>If you have video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
       </div>
@@ -130,8 +145,15 @@
           </div><br><br>
 
           <div class="editbooktxt" >
-            <br><b>Price </b>(in USD) $<%= f.text_field :price, placeholder: "4.99" %><br>
-            <br>Book jacket blurb (2000 characters max)<br>
+            <br><b>Price </b>
+
+<% if current_user.stripeid.present? %>
+  $<%= f.text_field :price, size: 80, value: 10.00 || :price %>USD<br>
+<% else %>
+  You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %>  (to receive payments) before offering items for sale.
+<% end %>
+
+            <br><br><b>Book jacket blurb</b> (2000 characters max)<br>
           </div>
           <div class="profilebox" >
             <%= f.text_area :blurb, :cols => 70, :rows => 6, placeholder: "Book jacket blurb" %>
@@ -152,6 +174,8 @@
           <div class="editbooktxt" >
             We recommend uploading files for ALL 3 of the following formats (so your customers have more options for the type of ereader they own)<br>
           </div>
+
+<% if current_user.stripeid.present? %>
       <div class="blacktxt">
         <table><tr><td>
         <div style="float:left;width:60%;">
@@ -168,6 +192,10 @@
           <%= f.file_field :bookepub %> </div></td></tr><br>
         </table>
       </div>
+<% else %>
+  You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %> (to receive payments) before uploading ebooks & offering them for sale.
+<% end %>
+
       <div class="editbooktxt" >
         <br><br>If you have a video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 
       </div>

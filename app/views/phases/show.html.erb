@@ -1,21 +1,51 @@
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="page-content">
-      <div class="container" style="float:left; text-align:left; width:700px;">
+      <div class="container col-md-12">
 <p id="notice"><%= notice %></p>
 
   <% if @phase.phasepic.present? && @phase.phasepic != '' %>
     <%= image_tag(@phase.phasepic, size: '500x200') %>
   <% end %>
-  <h3><%= @phase.name %> 
+  <h3><%= @phase.name %>   </h3>
+  <%= @author.name %>
     <% if user_signed_in? %>
       <% if @phase.user_id == current_user.id %>
-        <%= button_to(name = "Edit this Project Phase", edit_phase_path(@phase.id), method: :get, form_class: 'btn btn-small') %>
+        <%= button_to(name = "Edit this Project Phase", edit_phase_path(@phase.id), method: :get, form_class: 'btn btn-small') %><br><br>
       <% end %>
     <% end %>
-  </h3>
 
-  <%= @author.name %><br><br>
+<%= form_for(Agreement.new) do |f| %> 
+  <% if user_signed_in? %>
+    <div class = "row" style="text-align:left">
+      <% if @numusrgroupstripe > 0 %>
+        <div class="col-md-6">
+          Partner with <%= @phase.name %> through a group linked to a bank account
+          <%= f.select :group_id, options_for_select(@usrgrpnameidstripe, prompt: true) %><br><br> 
+        </div>
+      <% end %>
+
+      <% if @numusrgroupsnostripe > 0 %>
+        <div class="col-md-6">
+          If you want any of these groups to partner with <%= @phase.name %>, you must link bank account information.<br>
+          <% @groupswithoutstripe.each do |group| %>
+            <table><tr><td>
+            <%= group[:name] %></td><td>
+            <%= button_to "Add Bank Info", group_createstripeaccount_path(group[:permalink]), method: :get %></td></tr>
+            </table>
+          <% end %> 
+        </div>
+      <% end %>
+    </div>
+
+    <% if @numusrgroupstripe > 0 %><br>
+      <div class = "row" style="text-align:left">
+        If <%= @phase.name %>'s owner accepts your partnership request, your organization will receive 5% of the proceeds from Patron Perks purchased after patrons click through to <%= @phase.name %> from your Organization's CrowdPublish.TV Page. 
+      </div> 
+      <div style = "color:#000"> <%= button_tag 'Partner', value: @phase.id, type: :submit, name: "agreement[phase_id]" %></div><br>
+      <% end %>
+  <% end %>
+<% end %>
 
 <div class="blacktxt">
   <% if @phase.mission %> 

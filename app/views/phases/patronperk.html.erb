@@ -1,7 +1,9 @@
 <div class="blacktxt">
+
+<% if current_user.stripeid.present? %>
 <h3>Offer a New Patron Perk to support this phase of your project</h3>
 
-<%= form_for @merchandise, :html => {:multipart => true} do |f| %>
+  <%= form_for @merchandise, :html => {:multipart => true} do |f| %>
     <b>Perk Name </b><br>
     <%= f.text_field :name, :size => 80, placeholder: "Great Patron Perk" %><br><br>
     <b>About this Perk </b> <br>
@@ -16,7 +18,10 @@
       </div>
 
     <%= f.submit "Save New Perk" %>
-<% end %>
+  <% end %>
 
+<% else %>
+  You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %>  (to receive payments) before offering items for sale.
+<% end %>
 <br><br>
 </div>

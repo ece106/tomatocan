@@ -1,6 +1,7 @@
 <div class="blacktxt">
 
-<h4>Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> </h4><br>
+<% if current_user.stripeid.present? %>
+  <h4>Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> </h4><br>
 
 <table>
     <tr>
@@ -219,4 +220,7 @@
           </div>
         <% end %>  
 </div>
+<% else %>
+  You must first sign up for a <%= link_to "Stripe Account ", user_createstripeaccount_path(current_user.permalink) %> (to receive payments) before offering items for sale.
+<% end %>
 <br><br><br>
