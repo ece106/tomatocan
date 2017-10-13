@@ -14,35 +14,38 @@ class Purchase < ActiveRecord::Base
     #this will have to change when using cart instead of purchasing each book individually
     #purchase could hasmany books, merchandise
     #might want different table/model for merch vs books
-    #if valid?   
+    #if valid? 
     if self.book_id.present?
       @book = Book.find(self.book_id)
       self.pricesold = @book.price 
       self.authorcut = ((@book.price * 80).to_i).to_f/100 #this calc may be different for different products & different currencies. It's an important part of the CrowdPublishTV business model. Perhaps it should be somewhere more prominent
       self.author_id = @book.user_id 
-      if self.group_id.present?
-        self.groupcut = ((@book.price * 10).to_i).to_f/100
-      end
       author = User.find(@book.user_id) #but what if purchase consisted of items from several authors
       amt = (@book.price * 100).to_i 
-      desc = @book.title, # what info do we really want here 
-      appfee = ((@book.price - self.authorcut - self.groupcut)*100).to_i  #how much crowdpublishtv keeps: crowdpublishtv is charged a fee by stripe, so must keep more than that fee
+      desc = @book.title # what info do we really want here 
+      if self.group_id.present?
+        self.groupcut = ((@book.price * 5).to_i).to_f/100
+        appfee = ((@book.price - self.authorcut - self.groupcut)*100).to_i  #how much crowdpublishtv keeps: crowdpublishtv is charged a fee by stripe, so must keep more than that fee
+      else
+        appfee = ((@book.price - self.authorcut)*100).to_i  #how much crowdpublishtv keeps: crowdpublishtv is charged a fee by stripe, so must keep more than that fee
+      end
     end  
     if self.merchandise_id.present?
       @merchandise = Merchandise.find(self.merchandise_id)
       self.pricesold = @merchandise.price
       self.authorcut = ((@merchandise.price * 80).to_i).to_f/100
       self.author_id = @merchandise.user_id 
-      if self.group_id.present?
-        self.groupcut = ((@merchandise.price * 10).to_i).to_f/100
-      end
       author = User.find(@merchandise.user_id)
       amt = (@merchandise.price * 100).to_i 
       desc = @merchandise.name 
-      appfee = ((@merchandise.price - self.authorcut)*100).to_i 
+      if self.group_id.present?
+        self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
+        appfee = ((@merchandise.price - self.authorcut - self.groupcut)*100).to_i 
+      end
+        appfee = ((@merchandise.price - self.authorcut)*100).to_i 
     end  
     @purchaser = User.find(self.user_id)
-    authoraccount = Stripe::Account.retrieve(author.stripeid) 
+    authorstripeaccount = Stripe::Account.retrieve(author.stripeid) 
       if(@purchaser.stripe_customer_token).present?
         customer_id = @purchaser.stripe_customer_token
         customer = Stripe::Customer.retrieve(customer_id)
@@ -58,7 +61,7 @@ class Purchase < ActiveRecord::Base
       card_id = customer.default_source
       cardtoken = Stripe::Token.create(
         {:customer => customer.id, :card => card_id},
-        {:stripe_account => authoraccount.id } # id of the connected account
+        {:stripe_account => authorstripeaccount.id } # id of the connected account
       )
       charge = Stripe::Charge.create( {
         :amount => amt,  #this is the amt charged to the customer's credit card
@@ -68,7 +71,7 @@ class Purchase < ActiveRecord::Base
         :description => desc,  
         :application_fee => appfee
         },
-        {:stripe_account => authoraccount.id }
+        {:stripe_account => authorstripeaccount.id }
       )
       save!
 

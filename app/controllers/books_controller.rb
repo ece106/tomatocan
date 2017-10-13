@@ -5,8 +5,7 @@ class BooksController < ApplicationController
   layout :resolve_layout
 
   def index # This will be a result of some filters
-    @books = Book.all
-
+    @books = Book.joins(:user).where("stripeid IS NOT NULL")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

@@ -8,7 +8,7 @@
     <%= image_tag(@phase.phasepic, size: '500x200') %>
   <% end %>
   <h3><%= @phase.name %>   </h3>
-  <%= @author.name %>
+  <%= @author.name %><br><br>
     <% if user_signed_in? %>
       <% if @phase.user_id == current_user.id %>
         <%= button_to(name = "Edit this Project Phase", edit_phase_path(@phase.id), method: :get, form_class: 'btn btn-small') %><br><br>
@@ -17,6 +17,7 @@
 
 <%= form_for(Agreement.new) do |f| %> 
   <% if user_signed_in? %>
+    <%= f.hidden_field :phase_id, value: @phase.id %>
     <div class = "row" style="text-align:left">
       <% if @numusrgroupstripe > 0 %>
         <div class="col-md-6">
@@ -43,7 +44,7 @@
         If <%= @phase.name %>'s owner accepts your partnership request, your organization will receive 5% of the proceeds from Patron Perks purchased after patrons click through to <%= @phase.name %> from your Organization's CrowdPublish.TV Page. 
       </div> 
       <div style = "color:#000"> <%= button_tag 'Partner', value: @phase.id, type: :submit, name: "agreement[phase_id]" %></div><br>
-      <% end %>
+    <% end %>
   <% end %>
 <% end %>
 

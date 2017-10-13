@@ -6,13 +6,20 @@ class PhasesController < ApplicationController
   def index
     if user_signed_in?
       currentuserid = current_user.id
-      currusergroups = Group.where("user_id = ?", currentuserid)
-      @usrgrpnameid = []
-      currusergroups.find_each do |group|
-        @usrgrpnameid << [group.name, group.id] 
-        @grouppermalink = group.permalink
+
+      currusergroupstripe = Group.where("user_id = ? AND stripeid IS NOT NULL", currentuserid)
+      @usrgrpnameidstripe = []
+      currusergroupstripe.find_each do |group|
+        @usrgrpnameidstripe << [group.name, group.id] 
       end 
-      @numusrgroups = currusergroups.count 
+      @numusrgroupstripe = currusergroupstripe.count 
+      
+      @groupswithoutstripe = []
+      currusergroupsnostripe = Group.where("user_id = ? AND stripeid IS NULL", currentuserid)
+      currusergroupsnostripe.find_each do |group|
+        @groupswithoutstripe <<  {name: group.name, permalink: group.permalink, id: group.id} 
+      end 
+      @numusrgroupsnostripe = currusergroupsnostripe.count 
     end  
     threemonthago = Time.now - 3.months
     

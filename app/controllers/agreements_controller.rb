@@ -23,7 +23,7 @@ class AgreementsController < ApplicationController
   def create
     @agreement = Agreement.new(agreement_params)
     if @agreement.save
-      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement was successfully created.'
+      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement request was sent.'
     else
       render action: 'new'
     end
@@ -32,7 +32,7 @@ class AgreementsController < ApplicationController
   # PATCH/PUT /agreements/1
   def update
     if @agreement.update(agreement_params)
-      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement was successfully created.'
+      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement request was sent.'
     else
       render action: 'edit'
     end
@@ -52,6 +52,6 @@ class AgreementsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def agreement_params
-      params.require(:agreement).permit(:project_id, :group_id)
+      params.require(:agreement).permit(:phase_id, :group_id)
     end
 end
