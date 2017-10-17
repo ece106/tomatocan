@@ -46,6 +46,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def edit
+    @book = Book.find(params[:id])
+    @user = User.find(@book.user_id)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @book }
+    end
+  end
+
   def show
     @book = Book.find(params[:id])
     @user = User.find(@book.user_id)
@@ -62,6 +71,10 @@ class BooksController < ApplicationController
 #redirect_to "https://authorprofile.s3.amazonaws.com/book/14/bookpdf/LisaSchaeferCV.docx"
   end
 
+  def destroy
+    @book.destroy
+    redirect_to user_path(@user.permalink), notice: 'Book was successfully deleted.'
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

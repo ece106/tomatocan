@@ -79,10 +79,6 @@ class PurchasesController < ApplicationController
       if @purchase.bookfiletype == "epub" && @book.bookepub.present?
 ###TEMP STOP DOWNLOAD        redirect_to @book.bookepub.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
       end
-      if @purchase.bookfiletype == "kobo" && @book.bookkobo.present?
-###TEMP STOP DOWNLOAD        redirect_to @book.bookkobo.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
-      end
-
 
     else
       redirect_to(:back, :notice => "Your order did not go through. Try again.")
@@ -118,7 +114,7 @@ class PurchasesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
 
     def purchase_params
-      params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut,
+      params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut, :shipaddress,
         :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id)
     end
 
