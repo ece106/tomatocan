@@ -47,7 +47,7 @@
         <% else %>
           You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %>  (to receive payments) before offering items for sale.
 
-          <br>HOWEVER we're still in test mode. You can enter info into Stripe's test database to try this out - test routing number is 110000000, test bank account number is 000123456789. Real bank or credit info will not be accepted. When we are in production mode, test numbers will be deleted from our database & we'll notify you to sign up for a real Stripe account and enter your book or movie crowdfunding projects on CrowdPublishTV.
+          <br>HOWEVER we're still in test mode. Real bank or credit info will not be accepted. When we switch to production mode, we'll notify you to sign up for a Stripe account and enter pricing info.
 
         <% end %>
 

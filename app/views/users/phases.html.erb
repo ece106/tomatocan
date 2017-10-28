@@ -15,7 +15,6 @@
 
 <div class="blacktxt  col-lg-10 col-md-9 col-sm-9 col-xs-11" >
 <% if @user == current_user %>
-  <%= button_to "Create a New Project Phase", new_phase_path, method: :get %><br>
   <table>
     <% @outstandingagreements.each do |agree| %>
       <tr>
@@ -30,7 +29,10 @@
         <td><%= link_to agree[:groupname], group_path(agree[:grouppermalink]) %> wants to partner with <%= agree[:phasename]  %> </td>
       </tr>  
     <% end %>  
-  </table> 
+  </table> <br><br>
+  Every book project & every movie project has chapters, scenes, or some other way to break the project down into smaller segments. Why should your fans wait a year or more to be rewarded for supporting your project? Why should you wait until the final product is complete before your fans have the opportunity to support you? They'll be more excited to see your progress as the project progresses. <br><br>
+  Therefore, have them fund progress in smaller segments, or phases. Put one chapter or scene out there at a time. It's not written in stone, so you are always welcome to edit chapters or scenes for the final product. In fact, editing the final product is a phase in itself! 
+  <%= button_to "Create a New Project Phase", new_phase_path, method: :get %><br>
 <% end %>
 
 <% if @activephases.count != 0 %>

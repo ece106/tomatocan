@@ -153,10 +153,10 @@ class Group < ActiveRecord::Base
       account.country = countryoftax
     end  
     unless bizname == "" || bizname == nil
-      account.legal_entity.accounttype = bizname
+      account.legal_entity.business_name = bizname
     end  
     unless accounttype == "" || accounttype == nil
-      account.legal_entity.accounttype = type
+      account.legal_entity.type = accounttype
     end  
     unless firstname == "" || firstname == nil
       account.legal_entity.first_name = firstname

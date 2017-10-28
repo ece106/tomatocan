@@ -1,3 +1,7 @@
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container" >
 <% @title=" need to paginate results "  %>
 <p class="flash"><%= flash.notice %></p>
 
@@ -6,11 +10,19 @@
   <div class="col-md-10 " style="text-align:left">
     <div class="blacktxt" >
 
-      <div style='font-size:130%;'><b>Your sales<br></b></div>
-      <div style='font-size:110%;'><b>Monthly sales of each item<br></b></div>
+      <div style='font-size:130%;'><b>Your Sales<br></b></div>
+      <div style='font-size:110%;'><b>Monthly sales of each Perk<br></b></div>
+      <table>
+        <tr style='font-weight:bold;'><td><b>Month</td><td>Perk</td><td>Quantity Sold</td><td>Total Earned (USD)</b></td></tr>
+        <% @monthperkinfo.sort_by{|sale| sale[:soldwhen]}.each do |book| %>
+          <tr><td><i><%= book[:month] %> </i> </td><td> <%= book[:monthname] %> </td><td> <%= book[:monthquant] %> </td><td style='text-align:right'> <%= number_with_precision(book[:monthearnings], :precision => 2) %></td></tr>
+        <% end %>
+      </table><br>
+
+      <div style='font-size:110%;'><b>Monthly sales of each Book<br></b></div>
       <table>
         <tr style='font-weight:bold;'><td><b>Month</td><td>Title</td><td>Quantity Sold</td><td>Total Earned (USD)</b></td></tr>
-        <% @monthinfo.sort_by{|sale| sale[:soldwhen]}.each do |book| %>
+        <% @monthbookinfo.sort_by{|sale| sale[:soldwhen]}.each do |book| %>
           <tr><td><i><%= book[:month] %> </i> </td><td> <%= book[:monthtitle] %> </td><td> <%= book[:monthquant] %> </td><td style='text-align:right'> <%= number_with_precision(book[:monthearnings], :precision => 2) %></td></tr>
         <% end %>
       </table><br>
@@ -23,23 +35,36 @@
         <% end %>
       </table><br>
       
-      <div style='font-size:110%;'><b>Number of each ebook sold</b></div>
-      <table>
-        <tr style='font-weight:bold;'><td><b>Title</td><td>Format</td><td>Quantity Sold</b></td></tr>
-        <% @filetypeinfo.each do |book| %>
-          <tr><td><i><%= book[:title] %> </i> </td><td><%= book[:filetype] %> </td><td><%= book[:quantity] %> </td></tr>
-        <% end %>
-      </table>    
-      Other merch will have different attributes<br><br>
-     
+      <% if @filetypeinfo.present? %>
+        <div style='font-size:110%;'><b>Number of each ebook sold</b></div>
+        <table>
+          <tr style='font-weight:bold;'><td><b>Title</td><td>Format</td><td>Quantity Sold</b></td></tr>
+          <% @filetypeinfo.each do |book| %>
+            <tr><td><i><%= book[:title] %> </i> </td><td><%= book[:filetype] %> </td><td><%= book[:quantity] %> </td></tr>
+          <% end %>
+        </table>   <br><br>
+      <% end %>
 
-      <div style='font-size:110%;'><b>List of each ebook sale<br></b></div>
-      <table>
-        <tr style='font-weight:bold;'><td>Title</td><td>Author's Loot</td><td>Sales Date</td><td>Customer Name</td></tr>
-        <% @totalinfo.sort_by{|s| s[:soldwhen]}.each do |book| %>
-          <tr><td><i><%= book[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(book[:authorcut], :precision => 2) %> </td><td> <%= book[:soldwhen] %></td><td> <%= book[:whobought] %></td></tr>
-        <% end %>
-      </table>Hide this list in js dropdown<br><br><br>
+      <% if @perkinfo.present? %>
+        <div style='font-size:110%;'><b>Number of each perk sold</b></div>
+        <table>
+          <tr style='font-weight:bold;'><td><b>Title</td><td>Quantity Sold</b></td></tr>
+            <% @perkinfo.each do |perk| %>
+              <tr><td><i><%= perk[:title] %> </i> </td><td><%= perk[:quantity] %> </td></tr>
+            <% end %>
+        </table>   
+        <br><br><br>
+      <% end %>
+     
+      <% if @totalinfo.present? %>
+        <div style='font-size:110%;'><b>List of each ebook sale<br></b></div>
+        <table>
+          <tr style='font-weight:bold;'><td>Title</td><td>Author's Loot</td><td>Sales Date</td><td>Customer Name</td></tr>
+            <% @totalinfo.sort_by{|s| s[:soldwhen]}.each do |book| %>
+              <tr><td><i><%= book[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(book[:authorcut], :precision => 2) %> </td><td> <%= book[:soldwhen] %></td><td> <%= book[:whobought] %></td></tr>
+            <% end %>
+        </table><% "Hide this list in js dropdown" %><br><br><br>
+      <% end %>
 <% end %>
     
       <div style='font-size:130%;'><b>Books you've purchased<br></b></div>
@@ -53,4 +78,9 @@
   </div>
 <% end %>
 
+<br><br><br>
+</div>
+</div>
+</div>
+</div>
 <%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>

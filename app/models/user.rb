@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 # We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
-  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
-  :countryoftax, :bankaccountnumber, :monthinfo, :incomeinfo, :filetypeinfo, :totalinfo, 
+  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
+  :bankaccountnumber, :monthperkinfo, :monthbookinfo, :incomeinfo, :filetypeinfo, :perkinfo, :totalinfo, 
   :purchasesinfo
 
   has_many :books 
@@ -156,7 +156,7 @@ class User < ActiveRecord::Base
 
   def correct_errors(countryofbank, currency, routingnumber, bankaccountnumber, 
     countryoftax, bizname, accounttype, firstname, lastname, birthday, birthmonth, birthyear, 
-    line1, city, zip, state, ein, ssn4)
+    line1, city, zip, state, ein, ssn4, fullssn)
     account = Stripe::Account.retrieve(self.stripeid)
     unless countryofbank == "" || countryofbank == nil
       account.external_account.country = countryofbank
@@ -175,10 +175,10 @@ class User < ActiveRecord::Base
       account.country = countryoftax
     end  
     unless bizname == "" || bizname == nil
-      account.legal_entity.accounttype = bizname
+      account.legal_entity.business_name = bizname
     end  
     unless accounttype == "" || accounttype == nil
-      account.legal_entity.accounttype = type
+      account.legal_entity.type = accounttype
     end  
     unless firstname == "" || firstname == nil
       account.legal_entity.first_name = firstname
@@ -210,10 +210,13 @@ class User < ActiveRecord::Base
     end  
     unless ein == "" || ein == nil
       account.legal_entity.business_tax_id = ein
-    end  
+    end
     unless ssn4 == "" || ssn4 == nil
       account.legal_entity.ssn_last_4 = ssn4
-    end  
+    end
+    unless fullssn == "" || fullssn == nil
+      account.legal_entity.personal_id_number = fullssn
+    end
     account.save
   end  
 
@@ -243,53 +246,102 @@ class User < ActiveRecord::Base
       end
   end  
 
-  def calcdashboard # dashboard currently only shows ebook sales info. Poll users for metrics later
-    self.monthinfo = []
+  def calcdashboard # Poll users for desired metrics
+    self.monthperkinfo = []
+    self.monthbookinfo = []
     self.incomeinfo = []
     if stripesignup.present?
       month = self.stripesignup
     else
       month = Time.now
     end  
+
+    #
     while month < Date.today + 1.month do
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
         AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), self.id)
-      booksales = monthsales.group(:book_id)
+      monthperksales = monthsales.where('merchandise_id IS NOT NULL')
+      perksales = monthperksales.group(:merchandise_id)
+      counthash = perksales.count
+      earningshash = perksales.sum(:authorcut)
+      for perkid, countsold in counthash
+        perk = Merchandise.find(perkid)
+        self.monthperkinfo <<  {month: month.strftime("%B %Y"), monthname: perk.name, monthquant: countsold, 
+          monthearnings: earningshash[perkid]} 
+      end
+      earnings = monthperksales.sum(:authorcut)
+      self.incomeinfo << {month: month.strftime("%B %Y"), monthtotal: earnings} 
+      month = month + 1.month
+
+      monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
+        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), self.id)
+      monthbooksales = monthsales.where('book_id IS NOT NULL')
+      booksales = monthbooksales.group(:book_id)
       counthash = booksales.count
       earningshash = booksales.sum(:authorcut)
       for bookid, countsold in counthash
         book = Book.find(bookid)
-        self.monthinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
+        self.monthbookinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
           monthearnings: earningshash[bookid]} 
       end
-      earnings = monthsales.sum(:authorcut)
+      earnings = monthbooksales.sum(:authorcut)
       self.incomeinfo << {month: month.strftime("%B %Y"), monthtotal: earnings} 
       month = month + 1.month
     end
 
     self.filetypeinfo = []
-    mysales = Purchase.where('purchases.author_id = ?', self.id)
-    titlegroup = mysales.group(:book_id, :bookfiletype)
-    counthash = titlegroup.count
-    for bookidfiletype, counttype in counthash
-      book = Book.find(bookidfiletype[0])
-      self.filetypeinfo << {title: book.title, filetype: bookidfiletype[1], quantity: counttype} 
+    self.perkinfo = []
+    mybksales = Purchase.where('purchases.author_id = ?', self.id)
+    mybooksales = mybksales.where('purchases.book_id IS NOT NULL')
+    mypksales = Purchase.where('purchases.author_id = ?', self.id)
+    myperksales = mypksales.where('purchases.merchandise_id IS NOT NULL')
+
+    if mybooksales.any?
+      titlegroup = mybooksales.group(:book_id, :bookfiletype)
+      counthash = titlegroup.count
+      for bookidfiletype, counttype in counthash
+        book = Book.find(bookidfiletype[0])
+        self.filetypeinfo << {title: book.title, filetype: bookidfiletype[1], quantity: counttype} 
+      end
+    end
+    if myperksales.any?
+      perkgroup = myperksales.group(:merchandise_id)  ####does this even work
+      counthash = perkgroup.count
+      for counttype in counthash 
+          self.perkinfo << {name: merchandise.name, quantity: counttype} 
+      end
     end
 
-    self.totalinfo = []
-    mysales = Purchase.where('purchases.author_id = ?', self.id)
-    mysales.each do |sale| 
-      booksold = Book.find(sale.book_id) 
-      customer = User.find(sale.user_id) 
-      self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
-    end
+    #total sales by item
+      self.totalinfo = []
+      mysales = Purchase.where('purchases.author_id = ?', self.id)
+      mysales.each do |sale| 
+        if sale.book_id.present?
+          booksold = Book.find(sale.book_id) 
+          customer = User.find(sale.user_id) 
+          self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+        elsif sale.merchandise_id.present?
+          perksold = Merchandise.find(sale.merchandise_id) 
+          customer = User.find(sale.user_id) 
+          self.totalinfo << {soldtitle: perksold.name, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+        end
+      end
 
+    # items purchased by curruser
     mypurchases = self.purchases
-    self.purchasesinfo = []
-    mypurchases.each do |bought| 
-      bookbought = Book.find(bought.book_id) 
-      author = User.find(bookbought.user_id) 
-      self.purchasesinfo << {purchasetitle: bookbought.title, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
+    if mypurchases.present?
+      self.purchasesinfo = []
+      mypurchases.each do |bought| 
+        if bought.book_id.present?
+          bookbought = Book.find(bought.book_id) 
+          author = User.find(bookbought.user_id) 
+          self.purchasesinfo << {purchasetitle: bookbought.title, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
+        else
+          perkbought = Merchandise.find(bought.merchandise_id) 
+          author = User.find(perkbought.user_id) 
+          self.purchasesinfo << {purchasetitle: perkbought.name, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
+        end
+      end
     end
   end  
 

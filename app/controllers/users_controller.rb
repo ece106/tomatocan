@@ -218,14 +218,14 @@ class UsersController < ApplicationController
   def correcterr  #called from button on correcterror page
     current_user.correct_errors(params[:countryofbank], params[:currency], params[:routingnumber], params[:bankaccountnumber], 
         params[:countryoftax], params[:bizname], params[:accounttype], params[:firstname], 
-        params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], 
-        params[:line1], params[:city], params[:zip], params[:state], params[:ein], params[:ssn4]) 
-    redirect_to user_path(current_user.permalink)
+        params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], params[:line1], 
+        params[:city], params[:zip], params[:state], params[:ein], params[:ssn4], params[:fullssn]) 
+    redirect_to user_profile_path(current_user.permalink)
   end
   def updatestripeacnt  #called from button on manageaccount page
     current_user.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
         params[:state], params[:email]) 
-    redirect_to user_path(current_user.permalink)
+    redirect_to user_profile_path(current_user.permalink)
   end
   def approveagreement  #called from button on phase page
     current_user.approve_agreement(params[:agreeid]) 
@@ -238,7 +238,8 @@ class UsersController < ApplicationController
 
   def dashboard
     @user.calcdashboard
-    @monthinfo = @user.monthinfo
+    @monthperkinfo = @user.monthperkinfo
+    @monthbookinfo = @user.monthbookinfo
     @incomeinfo = @user.incomeinfo
     @filetypeinfo = @user.filetypeinfo
     @totalinfo = @user.totalinfo
@@ -319,7 +320,7 @@ class UsersController < ApplicationController
       case action_name
       when "index"
         'application'
-      when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount"
+      when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts"
         'editinfotemplate'
       else
         'userpgtemplate'

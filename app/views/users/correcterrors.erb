@@ -1,4 +1,4 @@
-<% @title=" edit group stripe account "  %>
+<% @title=" edit user stripe account "  %>
 <p class="flash"><%= flash.notice %></p>
 
 <% if user_signed_in? %>
@@ -6,10 +6,11 @@
   <% if @user.stripeid.present? %>
     <% if @user.stripeid.match(/acct/) %>
       <div class="blacktxt" style="text-align:left">
-      <%= form_tag group_correcterr_path %>
 
+      <%= form_tag user_correcterr_path %>
         <% if @fieldsneeded.present? %>
-          There are errors in the information submitted for verifying your bank account. Payments cannot be received until you correct the following information: <br><br>
+          There are errors in the information submitted for verifying your bank account. Payments cannot be received until you <b>correct the following information</b>: <br><br>
+          <% year18 = Time.now.year - 18.year %>
           <% @fieldsneeded.each do |x| %>
             <% if x.split('.')[-1] == "country" %>
               Select the code for the country where your bank account is:
@@ -57,29 +58,57 @@
             <% end %> 
             <% if x.split('.')[-1] == "year" %>  
               Year of birth of person with signature authority bank account 
-              <%= select_tag :birthyear, options_for_select(1920..2000) %><br><br>
+              <%= select_tag :birthyear, options_for_select(1920..year18) %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "line1" %>
-              Business or personal address <%= @group.name %> uses for tax correspondence <br>
+              Business or personal address <%= @user.name %> uses for tax correspondence <br>
               Street Address <%= text_field_tag :line1, '', :size => 30 %> 
             <% end %> 
             <% if x.split('.')[-1] == "city" %>  
-              Business or personal address <%= @group.name %> uses for tax correspondence <br>
+              Business or personal address <%= @user.name %> uses for tax correspondence <br>
               City <%= text_field_tag :city, '', :size => 30 %><br><br>
             <% end %> 
             <% if x.split('.')[-1] == "postal_code" %>  
-              Business or personal address <%= @group.name %> uses for tax correspondence <br><br>
+              Business or personal address <%= @user.name %> uses for tax correspondence <br><br>
               Zip Code <%= text_field_tag :zip, '', :size => 15 %> <br><br>
             <% end %> 
             <% if x.split('.')[-1] == "state" %>
-              Business or personal address <%= @group.name %> uses for tax correspondence <br>
+              Business or personal address <%= @user.name %> uses for tax correspondence <br>
               State <%= text_field_tag :state, '', :size => 5 %> <br><br>
             <% end %> 
             <% if x.split('.')[-1] == "business_tax_id" %>
               Employer tax ID Number (EIN) <%= text_field_tag :ein, '', :size => 30, :placeholder => "12-3456789" %> <br><br>
             <% end %> 
             <% if x.split('.')[-1] == "ssn_last_4" %>
-              Last 4 digits of Social Security Number (SSN) of person who has signature authority for this account <%= text_field_tag :ssn, '', :size => 30, :placeholder => "4321" %> <br><br>
+              Last 4 digits of Social Security Number (SSN) of person who has signature authority for this account <%= text_field_tag :ssn4, '', :size => 30, :placeholder => "4321" %> <br><br>
+            <% end %> 
+            <% if x.split('.')[-1] == "personal_id_number" %>
+              Your <b>identity could not be verified</b> with the last 4 digits of Social Security Number provided. Please supply full Social Security Number <%= text_field_tag :fullssn, '', :size => 30, :placeholder => "123456789" %> <br><br>
+              ** Or provide identity information for someone else who has signature authority on your bank account **<br><br>
+              First name of someone who has signature authority for your bank account 
+              <%= text_field_tag :firstname, '', :size => 30 %> <br><br>
+              Last name of person who has signature authority for your bank account
+              <%= text_field_tag :lastname, '', :size => 30 %> <br><br>
+              Month of birth of person with signature authority bank account 
+              <%= select_tag :birthmonth, options_for_select(1..12) %>
+              Day of birth of person with signature authority bank account 
+              <%= select_tag :birthday, options_for_select(1..31) %>
+              Year of birth of person with signature authority bank account 
+              <%= select_tag :birthyear, options_for_select(1920..year18) %><br><br>
+            <% end %> 
+            <% if x.split('.')[-1] == "document" %>
+              Your <b>identity could not be verified</b> with the Social Security Number provided. Please provide identity information for someone else who has signature authority on your bank account **<br><br>
+              First name of someone who has signature authority for your bank account 
+              <%= text_field_tag :firstname, '', :size => 30 %> <br><br>
+              Last name of person who has signature authority for your bank account
+              <%= text_field_tag :lastname, '', :size => 30 %> <br><br>
+              Social Security Number (SSN) <%= text_field_tag :fullssn, '', :size => 30, :placeholder => "123456789" %> <br><br>
+              Month of birth of person with signature authority bank account 
+              <%= select_tag :birthmonth, options_for_select(1..12) %>
+              Day of birth of person with signature authority bank account 
+              <%= select_tag :birthday, options_for_select(1..31) %>
+              Year of birth of person with signature authority bank account 
+              <%= select_tag :birthyear, options_for_select(1920..year18) %><br><br>
             <% end %> 
 
           <% end %>  

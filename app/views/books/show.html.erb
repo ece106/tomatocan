@@ -26,11 +26,15 @@
     <td><div class="blacktxt" style = "text-align:center">
         <%= @book.genre %>  <br><br>
         <div data-no-turbolink> 
-          <%= link_to image_tag("buypdf.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :method=> :get %> <br>
-          <%= link_to image_tag("buymobi.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :method=> :get %> <br>
-          <% # if @book.bookepub.present? && @book.bookepub != '' %>
-          <%= link_to image_tag("buyepub.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :method=> :get %> <br>
-          <% # end %> 
+          <% if @book.bookpdf.present? && @book.bookepub != '' %>
+            <%= link_to image_tag("buypdf.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "pdf"), :method=> :get %> <br>
+          <% end %> 
+          <% if @book.bookmobi.present? && @book.bookepub != '' %>
+            <%= link_to image_tag("buymobi.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "mobi"), :method=> :get %> <br>
+          <% end %> 
+          <% if @book.bookepub.present? && @book.bookepub != '' %>
+            <%= link_to image_tag("buyepub.png" ), new_purchase_path(:book_id => @book.id, :bookfiletype => "epub"), :method=> :get %> <br>
+          <% end %> 
           <br>
         </div>
         $<%= sprintf('%.2f', @book.price) %> USD

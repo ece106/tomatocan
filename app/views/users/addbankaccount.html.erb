@@ -5,7 +5,7 @@
 <% if @user.id == current_user.id %>
   <% if @user.stripeid.present? %>
 <% if @user.stripeid.match(/acct/) %>
-  <div class="col-md-8 " style="text-align:left">
+  <div class="col-md-12 " style="text-align:left">
     <div class="blacktxt" >
         This page is for adding a new bank account to your CrowdPublish.TV financial info. If you wish to edit your existing bank account information, do so on the <%= link_to "Manage Accounts", user_manageaccounts_path(current_user.permalink) %> page.<br><br>
       <%= form_tag user_addbankacnt_path %>
