@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 # We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
-  :bankaccountnumber, :monthperkinfo, :monthbookinfo, :incomeinfo, :filetypeinfo, :perkinfo, :totalinfo, 
+  :bankaccountnumber, :monthperkinfo, :monthbookinfo, :incomeinfo, :salebyfiletype, :salebyperktype, :totalinfo, 
   :purchasesinfo
 
   has_many :books 
@@ -230,6 +230,11 @@ class User < ActiveRecord::Base
     agreement.approved = DateTime.new(1)
     agreement.save
   end  
+  def mark_fulfilled(purchid) 
+    purchase = Purchase.find(purchid)
+    purchase.fulfillstatus = "shipped"
+    purchase.save
+  end  
 
   def get_youtube_id
       if self.youtube1.match(/youtube.com/) || self.youtube1.match(/youtu.be/)
@@ -251,46 +256,47 @@ class User < ActiveRecord::Base
     self.monthbookinfo = []
     self.incomeinfo = []
     if stripesignup.present?
-      month = self.stripesignup
+      monthq = self.stripesignup
     else
-      month = Time.now
+      monthq = Time.now
     end  
 
-    #
-    while month < Date.today + 1.month do
+    # how many items sold & revenue each month
+    while monthq < Date.today + 1.month do
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), self.id)
+        AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
       monthperksales = monthsales.where('merchandise_id IS NOT NULL')
       perksales = monthperksales.group(:merchandise_id)
       counthash = perksales.count
       earningshash = perksales.sum(:authorcut)
       for perkid, countsold in counthash
         perk = Merchandise.find(perkid)
-        self.monthperkinfo <<  {month: month.strftime("%B %Y"), monthname: perk.name, monthquant: countsold, 
+        self.monthperkinfo <<  {month: monthq.strftime("%B %Y"), monthname: perk.name, monthquant: countsold, 
           monthearnings: earningshash[perkid]} 
       end
-      earnings = monthperksales.sum(:authorcut)
-      self.incomeinfo << {month: month.strftime("%B %Y"), monthtotal: earnings} 
-      month = month + 1.month
+      perkearnings = monthperksales.sum(:authorcut)
 
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-        AND author_id = ?', month.strftime("%m"), month.strftime("%Y"), self.id)
+        AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
       monthbooksales = monthsales.where('book_id IS NOT NULL')
       booksales = monthbooksales.group(:book_id)
       counthash = booksales.count
       earningshash = booksales.sum(:authorcut)
       for bookid, countsold in counthash
         book = Book.find(bookid)
-        self.monthbookinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
+        self.monthbookinfo <<  {month: monthq.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
           monthearnings: earningshash[bookid]} 
       end
-      earnings = monthbooksales.sum(:authorcut)
-      self.incomeinfo << {month: month.strftime("%B %Y"), monthtotal: earnings} 
-      month = month + 1.month
+
+      # total monthly revenue
+      earnings = monthbooksales.sum(:authorcut) + perkearnings
+      self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: earnings} 
+      monthq = monthq + 1.month
     end
 
-    self.filetypeinfo = []
-    self.perkinfo = []
+    # total sales for each item offered
+    self.salebyfiletype = []
+    self.salebyperktype = []
     mybksales = Purchase.where('purchases.author_id = ?', self.id)
     mybooksales = mybksales.where('purchases.book_id IS NOT NULL')
     mypksales = Purchase.where('purchases.author_id = ?', self.id)
@@ -301,29 +307,33 @@ class User < ActiveRecord::Base
       counthash = titlegroup.count
       for bookidfiletype, counttype in counthash
         book = Book.find(bookidfiletype[0])
-        self.filetypeinfo << {title: book.title, filetype: bookidfiletype[1], quantity: counttype} 
+        self.salebyfiletype << {title: book.title, filetype: bookidfiletype[1], quantity: counttype} 
       end
     end
     if myperksales.any?
       perkgroup = myperksales.group(:merchandise_id)  ####does this even work
       counthash = perkgroup.count
       for counttype in counthash 
-          self.perkinfo << {name: merchandise.name, quantity: counttype} 
+          self.salebyperktype << {name: merchandise.name, quantity: counttype} 
       end
     end
 
-    #total sales by item
+    #list of all sales since user stripeid 
       self.totalinfo = []
-      mysales = Purchase.where('purchases.author_id = ?', self.id)
+      mysales = Purchase.where('purchases.author_id = ?', self.id).order('created_at DESC')
       mysales.each do |sale| 
         if sale.book_id.present?
           booksold = Book.find(sale.book_id) 
           customer = User.find(sale.user_id) 
-          self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+          self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, 
+            purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: customer.name, address: sale.shipaddress, 
+            fulfillstat: sale.fulfillstatus, ebook: sale.bookfiletype } 
         elsif sale.merchandise_id.present?
           perksold = Merchandise.find(sale.merchandise_id) 
           customer = User.find(sale.user_id) 
-          self.totalinfo << {soldtitle: perksold.name, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+          self.totalinfo << {soldtitle: perksold.name, soldprice: sale.pricesold, authorcut: sale.authorcut, 
+            purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: customer.name, address: sale.shipaddress, 
+            fulfillstat: sale.fulfillstatus } 
         end
       end
 

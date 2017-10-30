@@ -8,7 +8,7 @@ Crowdpublishtv::Application.routes.draw do
 #  end
 
 #  root to: 'static_pages#home'
-  get "attachments/show"
+#  get "attachments/show"
   get "attachments/download" 
 
   match 'home', to: 'static_pages#home', via: 'get'
@@ -116,6 +116,7 @@ Crowdpublishtv::Application.routes.draw do
 
   post '/:permalink/approveagreement' => 'users#approveagreement', :as => :approveagreement_user
   post '/:permalink/declineagreement' => 'users#declineagreement', :as => :declineagreement_user
+  post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user
 
 #  get '/:friendly_id', to: 'groups#show' 
 

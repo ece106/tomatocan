@@ -54,30 +54,34 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     if @purchase.book_id?
-      puts "Whats bookid doing here"
-      @book = Book.find(@purchase.book_id) #where is @book used
-      @user = @book.user_id
+      @book = Book.find(@purchase.book_id) 
+      redir = @book
     end  
     if @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
-      @user = @merchandise.user_id
+      redir = @merchandise
     end 
 
 #    raise params.to_yaml
     @purchase.user_id = current_user.id
     if @purchase.save_with_payment
-      redirect_to @purchase, :notice => "Thank you for purchasing this item!"
+#      redirect_to redir, :notice => "Thank you for purchasing this item!"
       if @purchase.bookfiletype == "pdf" && @book.bookpdf.present?
-###TEMP STOP DOWNLOAD        redirect_to @book.bookpdf.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
-
-#        data = open("https://authorprofile.s3.amazonaws.com/book/14/bookpdf") #@book.bookpdf.to_s) 
-#        send_data data.read, filename: "LisaSchaeferCV.docx", type: "application/pdf", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
+        if Rails.env.development? || Rails.env.test?
+          data = open(Rails.root + "public#{@book.bookpdf.to_s}") 
+          send_data data.read, filename: @book.bookpdf, type: "application/pdf", disposition: 'attachment' 
+        else
+          data = open("https://authorprofile.s3.amazonaws.com#{@book.bookpdf.to_s}") 
+          send_data data.read, filename: @book.bookpdf, type: "application/pdf", disposition: 'attachment' 
+        end
       end
       if @purchase.bookfiletype == "mobi" && @book.bookmobi.present?
-###TEMP STOP DOWNLOAD        redirect_to @book.bookmobi.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
+        data = open("https://authorprofile.s3.amazonaws.com#{@book.bookmobi.to_s}") 
+        send_data data.read, filename: @book.bookmobi, type: "application/mobi", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
       end
       if @purchase.bookfiletype == "epub" && @book.bookepub.present?
-###TEMP STOP DOWNLOAD        redirect_to @book.bookepub.to_s, :notice => "Thank you for purchasing " + @book.title + "!"
+        data = open("https://authorprofile.s3.amazonaws.com#{@book.bookepub.to_s}") 
+        send_data data.read, filename: @book.bookepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
       end
 
     else

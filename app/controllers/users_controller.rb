@@ -235,13 +235,18 @@ class UsersController < ApplicationController
     current_user.decline_agreement(params[:agreeid])  
     redirect_to user_phases_path(current_user.permalink)
   end
+  def markfulfilled  #called from button on author dashboard
+    current_user.mark_fulfilled(params[:purchid])  
+    redirect_to user_dashboard_path(current_user.permalink)
+  end
 
   def dashboard
     @user.calcdashboard
     @monthperkinfo = @user.monthperkinfo
     @monthbookinfo = @user.monthbookinfo
     @incomeinfo = @user.incomeinfo
-    @filetypeinfo = @user.filetypeinfo
+    @salebyfiletype = @user.salebyfiletype
+    @salebyperktype = @user.salebyperktype
     @totalinfo = @user.totalinfo
     @purchasesinfo = @user.purchasesinfo
   end
@@ -313,7 +318,7 @@ class UsersController < ApplicationController
         :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
         :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn,
-        :agreeid )
+        :agreeid, :purchid )
     end
 
     def resolve_layout

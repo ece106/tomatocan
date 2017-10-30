@@ -34,22 +34,22 @@
           <tr><td><%= book[:month] %></td><td style='text-align:right'> <%= number_with_precision(book[:monthtotal], :precision => 2) %></td></tr>
         <% end %>
       </table><br>
-      
-      <% if @filetypeinfo.present? %>
+
+      <% if @salebyfiletype.present? %>
         <div style='font-size:110%;'><b>Number of each ebook sold</b></div>
         <table>
           <tr style='font-weight:bold;'><td><b>Title</td><td>Format</td><td>Quantity Sold</b></td></tr>
-          <% @filetypeinfo.each do |book| %>
+          <% @salebyfiletype.each do |book| %>
             <tr><td><i><%= book[:title] %> </i> </td><td><%= book[:filetype] %> </td><td><%= book[:quantity] %> </td></tr>
           <% end %>
         </table>   <br><br>
       <% end %>
 
-      <% if @perkinfo.present? %>
+      <% if @salebyperktype.present? %>
         <div style='font-size:110%;'><b>Number of each perk sold</b></div>
         <table>
           <tr style='font-weight:bold;'><td><b>Title</td><td>Quantity Sold</b></td></tr>
-            <% @perkinfo.each do |perk| %>
+            <% @salebyperktype.each do |perk| %>
               <tr><td><i><%= perk[:title] %> </i> </td><td><%= perk[:quantity] %> </td></tr>
             <% end %>
         </table>   
@@ -57,11 +57,18 @@
       <% end %>
      
       <% if @totalinfo.present? %>
-        <div style='font-size:110%;'><b>List of each ebook sale<br></b></div>
+        <div style='font-size:110%;'><b>List of all sales<br></b></div>
         <table>
-          <tr style='font-weight:bold;'><td>Title</td><td>Author's Loot</td><td>Sales Date</td><td>Customer Name</td></tr>
-            <% @totalinfo.sort_by{|s| s[:soldwhen]}.each do |book| %>
-              <tr><td><i><%= book[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(book[:authorcut], :precision => 2) %> </td><td> <%= book[:soldwhen] %></td><td> <%= book[:whobought] %></td></tr>
+          <tr style='font-weight:bold;'><td>Title</td><td>Author's Loot</td><td>Sales Date</td><td>Customer Name</td><td>Shipping Address</td><td>Fulfilled?</td></tr>
+            <% @totalinfo.each do |item| %>
+              <tr><td><i><%= item[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td><td> <%= item[:soldwhen] %></td><td> <%= item[:whobought] %></td><td> <%= item[:address] %></td>
+              <td><% if item[:fulfillstat] != "fulfilled" AND !item[:ebook].present? %>
+                <%= button_to [:markfulfilled, @user] do %>
+                  <strong>Mark Fulfilled </strong>
+                  <%= hidden_field_tag :purchid, item[:purchaseid] %>
+                <% end %>
+              <% end %>
+              </td></tr>
             <% end %>
         </table><% "Hide this list in js dropdown" %><br><br><br>
       <% end %>
@@ -70,8 +77,8 @@
       <div style='font-size:130%;'><b>Books you've purchased<br></b></div>
       <table>
         <tr style='font-weight:bold;'><td><b>Title</td><td>Author</td><td>Price Paid</td><td>Purchase Date</b></td></tr>
-        <% @purchasesinfo.sort_by{ |p| p[:purchasedwhen] }.each do |book| %>
-          <tr><td><i><%= book[:purchasetitle] %> </i> </td><td> <%= book[:purchaseauthor] %> </td><td style='text-align:right'> <%= number_with_precision(book[:purchaseprice], :precision => 2) %> </td><td> <%= book[:purchasedwhen] %></td></tr>
+        <% @purchasesinfo.sort_by{ |p| p[:purchasedwhen] }.each do |item| %>
+          <tr><td><i><%= item[:purchasetitle] %> </i> </td><td> <%= item[:purchaseauthor] %> </td><td style='text-align:right'> <%= number_with_precision(item[:purchaseprice], :precision => 2) %> </td><td> <%= item[:purchasedwhen] %></td></tr>
         <% end %>
       </table>
     </div>
