@@ -297,9 +297,9 @@ class User < ActiveRecord::Base
     # total sales for each item offered
     self.salebyfiletype = []
     self.salebyperktype = []
-    mybksales = Purchase.where('purchases.author_id = ?', self.id)
+    mybksales = Purchase.where('purchases.author_id = ?', self.id).order("book_id DESC")
     mybooksales = mybksales.where('purchases.book_id IS NOT NULL')
-    mypksales = Purchase.where('purchases.author_id = ?', self.id)
+    mypksales = Purchase.where('purchases.author_id = ?', self.id).order("merchandise_id DESC")
     myperksales = mypksales.where('purchases.merchandise_id IS NOT NULL')
 
     if mybooksales.any?
@@ -311,10 +311,11 @@ class User < ActiveRecord::Base
       end
     end
     if myperksales.any?
-      perkgroup = myperksales.group(:merchandise_id)  ####does this even work
+      perkgroup = myperksales.group(:merchandise_id)  ##this is kludgy
       counthash = perkgroup.count
       for counttype in counthash 
-          self.salebyperktype << {name: merchandise.name, quantity: counttype} 
+        merch = Merchandise.find(counttype[0])
+        self.salebyperktype << {name: merch.name, quantity: counttype[1]} 
       end
     end
 
@@ -333,7 +334,7 @@ class User < ActiveRecord::Base
           customer = User.find(sale.user_id) 
           self.totalinfo << {soldtitle: perksold.name, soldprice: sale.pricesold, authorcut: sale.authorcut, 
             purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: customer.name, address: sale.shipaddress, 
-            fulfillstat: sale.fulfillstatus } 
+            fulfillstat: sale.fulfillstatus, ebook: "" } 
         end
       end
 
