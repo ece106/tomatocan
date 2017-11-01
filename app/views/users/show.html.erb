@@ -28,7 +28,7 @@
            <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
         <% end %>
         <% if @numusrgroups > 1 %>
-          Select one of your organizations to partner with a project phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
+          Select one of your organizations to partner with my project phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
         <% end %>
 
           <table>
@@ -47,6 +47,8 @@
         <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br>
       <% end %>
     </div>
+  <% else %>
+   <%= @user.name %> does not currently have any project phases in progress<br><br><br>
   <% end %>
   
   <div class="row" >
@@ -57,7 +59,7 @@
         <% end %>
       <% else %>
         <% if @user == current_user %>
-          Replace the default YouTube code on your Edit Profile page with the code from your YouTube account and display YOUR videos here!
+          Replace the default YouTube code on your Edit Profile page with the code from your YouTube account and display YOUR videos here
         <% end %>
       <% end %>
     </div>

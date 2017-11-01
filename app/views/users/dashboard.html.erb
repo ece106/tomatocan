@@ -59,7 +59,7 @@
       <% if @totalinfo.present? %>
         <div style='font-size:110%;'><b>List of all sales<br></b></div>
         <table>
-          <tr style='font-weight:bold;'><td>Title</td><td>Author's Share</td><td>Sales Date</td><td>Customer Name</td><td>Shipping Address</td><td>Fulfilled?</td></tr>
+          <tr style='font-weight:bold;'><td>Title</td><td>Author's Share</td><td>Sales Date</td><td>Customer Name</td><td>Shipping Address</td><td>Shipped?</td></tr>
             <% @totalinfo.each do |item| %>
               <tr><td><i><%= item[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td><td> <%= item[:soldwhen] %></td><td> <%= item[:whobought] %></td><td> <%= item[:address] %></td>
               <td><% if item[:fulfillstat] != "shipped" && item[:ebook].empty? %>

@@ -7,7 +7,7 @@
 <div class="author-books" style = "width: 320px; overflow: wrap;">
   <% if !user_signed_in? %>
     <%= link_to image_tag("signup.png", title: "Sign Me Up!"), "/signup"%>to access Patron Perks <br>
-    <%= link_to 'Sign in...', "/login", {:style=>'float:right'} %><br> 
+    or <%= link_to 'Sign in...', "/login", {:style=>'float:right'} %><br> 
   <% end %>
   <% if @phase.merchandises.any? %>
     <h2>Become a Patron of <%= @phase.name %> </h2>

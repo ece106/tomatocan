@@ -2,9 +2,8 @@ class Group < ActiveRecord::Base
   extend FriendlyId
   friendly_id :permalink, use: :slugged
 
-#  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, 
-#  :countryoftax, :bankaccountnumber, :monthinfo, :incomeinfo, :filetypeinfo, :totalinfo, 
-#  :purchasesinfo, :ssn, :ein   #what would we need attraccessor for
+  attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
+  :bankaccountnumber, :monthperkinfo, :monthbookinfo, :incomeinfo, :salebyphase, :totalinfo
 
   before_save { |group| group.permalink = permalink.downcase }
 
@@ -196,7 +195,6 @@ class Group < ActiveRecord::Base
   end  
 
   def calcdashboard # this calc not relevant to groups
-    self.monthinfo = []
     self.incomeinfo = []
     if stripesignup.present?
       month = self.stripesignup
@@ -205,26 +203,18 @@ class Group < ActiveRecord::Base
     end  
     while month < Date.today + 1.month do
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-        AND group_id = ?', month.strftime("%m"), month.strftime("%Y"), usr.id)
-      booksales = monthsales.group(:book_id)
-      counthash = booksales.count
-      earningshash = booksales.sum(:authorcut)
-      for bookid, countsold in counthash
-        book = Book.find(bookid)
-        self.monthinfo <<  {month: month.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
-          monthearnings: earningshash[bookid]} 
-      end
-      earnings = monthsales.sum(:authorcut)
+        AND group_id = ?', month.strftime("%m"), month.strftime("%Y"), self.id)
+      earnings = monthsales.sum(:groupcut)
       self.incomeinfo << {month: month.strftime("%B %Y"), monthtotal: earnings} 
       month = month + 1.month
     end
 
     self.totalinfo = []
-    mysales = Purchase.where('purchases.group_id = ?', self.id)
+    mysales = Purchase.where('purchases.group_id = ?', self.id).order("created_at DESC")
     mysales.each do |sale| 
-      booksold = Book.find(sale.book_id) #merchid, should say which project, which merch
-      customer = User.find(sale.user_id) 
-      self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, soldwhen: sale.created_at.to_date, whobought: customer.name} 
+      author = User.find(sale.author_id)
+      merch = Merchandise.find(sale.merchandise_id)
+      self.totalinfo << {author: author.name, itemsold: merch.name, groupcut:sale.groupcut, soldwhen: sale.created_at.to_date} 
     end
   end  
 end

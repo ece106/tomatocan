@@ -17,7 +17,8 @@
     <% else %> 
       <%= button_to "Get Paid", group_createstripeaccount_path(@group.permalink), :method=> :get, form_class: 'btn btn-small' %><br>
     <% end %> 
-    <%= button_to "Select A Project to Partner With", phases_path, :method=> :get, form_class: 'btn btn-small' %>
+    <%= button_to "Select A Project to Partner With", phases_path, method: :get, form_class: 'btn btn-small' %><br>
+    <%= button_to "View Dashboard", group_dashboard_path(@group.permalink), method: :get, form_class: 'btn btn-small' %>
     <br><br>
   <% end %> 
 

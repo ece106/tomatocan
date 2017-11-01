@@ -2,15 +2,15 @@
 <p class="flash"><%= flash.notice %></p>
 
 <% if user_signed_in? %>
-<% if @user.id == current_user.id %>
-  <% if current_user.stripeid.present? %>
-    <% if current_user.stripeid.match(/acct/) %>
-      ****** You have already begun the process of connecting a financial account. You may add a bank account on the <%= link_to "Add Bank Account", user_addbankaccount_path(current_user.permalink) %> page or edit your information for an existing account on the <%= link_to "Manage Account", user_manageaccounts_path(current_user.permalink) %> 
+<% if @group.user_id == current_user.id %>
+  <% if @group.stripeid.present? %>
+    <% if @group.stripeid.match(/acct/) %>
+      ****** You have already begun the process of connecting a financial account. You may add a bank account on the <%= link_to "Add Bank Account", group_addbankaccount_path(@group.permalink) %> page or edit your information for an existing account on the <%= link_to "Manage Account", group_manageaccounts_path(@group.permalink) %> 
     <% end %>
   ******
   <% else %>
     <div class="blacktxt" style="text-align:left">
-      <%= form_tag user_createstripeacnt_path %>
+      <%= form_tag group_createstripeacnt_path %>
         To create a new account, the following information is legally required before you can receive payments:<br>
         Does your bank account belong to a business/company or to an individual: <%= select_tag :accounttype, options_for_select(["company", "individual"], prompt: true) %><br><br>
         If a company/business account, Legal business name associated with your bank account 

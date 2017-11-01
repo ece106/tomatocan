@@ -99,6 +99,7 @@ Crowdpublishtv::Application.routes.draw do
   match '/groups/:permalink/addbankaccount' => "groups#addbankaccount", :as => :group_addbankaccount, via: 'get'
   match '/groups/:permalink/manageaccounts' => "groups#manageaccounts", :as => :group_manageaccounts, via: 'get'
   match '/groups/:permalink/correcterrors' => "groups#correcterrors", :as => :group_correcterrors, via: 'get'
+  match '/groups/:permalink/dashboard' => "groups#dashboard", :as => :group_dashboard, via: 'get'
 
   post '/groups/:permalink/managesales' => 'groups#updatestripeacnt', :as => :group_updatestripeacnt
   post '/groups/:permalink/addbankaccount' => 'groups#addbankacnt', :as => :group_addbankacnt

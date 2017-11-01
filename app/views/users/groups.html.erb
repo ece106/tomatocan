@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CrowdPublish.TV <%  @user.name %> 's groups</title>
+<title>CrowdPublish.TV <%  @user.name %> 's Organizations</title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -27,15 +27,15 @@
       </tr></table>  
   <% end %>
 
-<h1><%= @user.name %>'s groups</h1>
+<h1><%= @user.name %>'s Organizations</h1>
 <%= button_to "Add Your Organization", new_group_path, :method=> :get %><br><br>
 <% if @groups.count != 0 %>
   <table CELLPADDING="0" CELLSPACING="8" >
   <thead>
     <tr>
-      <th>Group Name</th>
+      <th>Organization Name</th>
       <th>Where We Meet</th>
-      <th>Group Type</th>
+      <th>Organization Type</th>
       <th></th></tr>
   </thead>
   <tbody>
@@ -55,7 +55,7 @@
   </tbody>
   </table>
 <% else %>
-  *** You do not have any groups to edit ***
+  *** You do not have any organizations to edit ***
 <% end %>  
 
 </div>

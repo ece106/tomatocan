@@ -8,9 +8,9 @@ class GroupsController < ApplicationController
   def index
     if params[:search].present?
       if params[:dist].present? && is_number?(params[:dist])
-        @groups = Group.near(params[:search], params[:dist], order: 'distance')
+        @groups = Group.near(params[:search], params[:dist], order: 'distance').order('updated_at DESC')
       else  
-        @groups = Group.near(params[:search], 50, order: 'distance')
+        @groups = Group.near(params[:search], 50, order: 'distance').order('updated_at DESC')
       end
 #    elsif user_signed_in? && current_user.address
 #      @groups = Group.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
     else
       #neargroups = Group.near([request.location.latitude, request.location.longitude], 50000, order: 'distance') 
       #remaininggroups = Group.all - neargroups
-      @groups = Group.all
+      @groups = Group.all.order('updated_at DESC')
     end
   end
 
@@ -186,11 +186,8 @@ class GroupsController < ApplicationController
 
   def dashboard # this needs work
     @group.calcdashboard
-    @monthinfo = @group.monthinfo
     @incomeinfo = @group.incomeinfo
-    @filetypeinfo = @group.filetypeinfo
     @totalinfo = @group.totalinfo
-    @purchasesinfo = @group.purchasesinfo
   end
 
   # DELETE /groups/1
@@ -232,7 +229,8 @@ class GroupsController < ApplicationController
       case action_name
       when "index", "new"
         'application'
-      when "edit", "show", "calendar", "eventlist", "news", "profileinfo", "readerprofileinfo", "createstripeaccount", "manageaccounts", "addbankaccount", "correcterrors"
+      when "edit", "show", "calendar", "eventlist", "news", "profileinfo", "readerprofileinfo", 
+        "createstripeaccount", "manageaccounts", "addbankaccount", "correcterrors", "dashboard"
         'grouptemplate'
       else
         'application'
