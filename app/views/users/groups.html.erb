@@ -28,17 +28,18 @@
   <% end %>
 
 <h1><%= @user.name %>'s Organizations</h1>
-<%= button_to "Add Your Organization", new_group_path, :method=> :get %><br><br>
+<% if user_signed_in? %>
+  <% if @user.id == current_user.id %>
+    <%= button_to "Add Your Organization", new_group_path, :method=> :get %><br><br>
+  <% end %>
+<% end %></td>  
 <% if @groups.count != 0 %>
-  <table CELLPADDING="0" CELLSPACING="8" >
-  <thead>
+  <table>
     <tr>
       <th>Organization Name</th>
       <th>Where We Meet</th>
       <th>Organization Type</th>
       <th></th></tr>
-  </thead>
-  <tbody>
     <% @groups.each do |group| %>
       <tr>
         <td><%= link_to group.name, group %></td>
@@ -47,12 +48,11 @@
         </td><td>
           <% if user_signed_in? %>
             <% if group.user_id == current_user.id %>
-              <%= link_to 'Edit', edit_group_path(group.id) %> 
+              <%= link_to 'Edit', edit_group_path(group.permalink) %> 
             <% end %>
           <% end %></td>  
       </tr>
     <% end %>
-  </tbody>
   </table>
 <% else %>
   *** You do not have any organizations to edit ***

@@ -25,16 +25,16 @@
           <%= f.select :group_id, options_for_select(@usrgrpnameidstripe, prompt: true) %><br><br> 
         </div>
       <% end %>
-
       <% if @numusrgroupsnostripe > 0 %>
         <div class="col-md-6">
           If you want any of these groups to partner with <%= @phase.name %>, you must link bank account information.<br>
+          <table>
           <% @groupswithoutstripe.each do |group| %>
-            <table><tr><td>
+            <tr><td>
             <%= group[:name] %></td><td>
-            <%= button_to "Add Bank Info", group_createstripeaccount_path(group[:permalink]), method: :get %></td></tr>
-            </table>
+            <%= link_to "Add.Bank.Info", group_createstripeaccount_path(group[:permalink]), method: :get %></td></tr>
           <% end %> 
+          </table>
         </div>
       <% end %>
     </div>

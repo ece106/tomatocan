@@ -15,12 +15,13 @@
       <% if @numusrgroupsnostripe > 0 %>
         <div class="col-md-6">
           If you want any of these groups to <b>Partner</b> with a project phase, you must link bank account information.<br>
-          <% @groupswithoutstripe.each do |group| %>
-            <table><tr><td>
-            <%= group[:name] %></td><td>
-            <%= button_to "Add Bank Info", group_createstripeaccount_path(group[:permalink]), method: :get %></td></tr>
-            </table>
-          <% end %> 
+          <table>
+            <% @groupswithoutstripe.each do |group| %>
+            <tr><td>
+              <%= group[:name] %></td><td>
+              <%= link_to "Add Bank Info", group_createstripeaccount_path(group[:permalink]), method: :get %></td></tr>
+            <% end %> 
+          </table>
         </div>
       <% end %>
     </div>
@@ -30,12 +31,12 @@
     </div> 
 
     <% @agreedeclined.find_each do |d| %>
-      Your request to partner with <%= phase.find(d.phase_id).name %> for 
-      <%= Group.find(d.group_id).name %> has been declined.<br>
+      <b>Your request to partner with <%= Phase.find(d.phase_id).name %> for 
+      <%= Group.find(d.group_id).name %> has been declined.</b><br><br>
     <% end %>
   <% end %>
 
-  <h3>Readers: Get Sneak Preview Access to Current Projects</h3>
+  <h3>Get Sneak Preview Access to Current Projects</h3>
   <% if @partnerphs.count != 0 %>
     <% @partnerphs.each do |phs| %>
 

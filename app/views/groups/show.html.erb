@@ -3,7 +3,7 @@
 <% end %>
   <p id="notice"><%= notice %></p>
 
-  <br><h2>phases we support: </h2>
+  <br><h2>Project phases we're partnering with: </h2>
   <% if @currphases.present? %>  
     <table >
       <% @currphases.each do |proj| %>
@@ -13,24 +13,24 @@
           <tr><td><%= link_to (image_tag "crowddark.png", :size => "75x75"), phase_path(proj[:permalink], :groupid => @group.id) %></td>
         <% end %>
         <td style= 'font-weight:bold; font-size:22px'><%= link_to proj[:projtitle], phase_path(proj[:permalink], :groupid => @group.id), style: "color:#ddbbff" %></td>
-        <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= button_to(name = "Support ", phase_path(proj[:permalink], :groupid => @group.id), method: "get", style: "color:black" ) %></td></tr> 
+        <td style='font-size:22px;'> <%= proj[:authorname] %></td><td><%= link_to(name = "Become a Patron", phase_path(proj[:permalink], :groupid => @group.id)) %><br> <%= link_to(name = "& get Sneak Preview access!", phase_path(proj[:permalink], :groupid => @group.id)) %></td></tr> 
         <% "Instead of projpath, this should route to purchases_new(group_id, curruser, merch_id). Of what merch? A default for each proj? " %>
         <tr><td></td><td><%= truncate(proj[:desc], :length => 200, :separator => ' ') %></td></tr>
       <% end %>
     </table>
   <% else %>
-    We are not supporting any phases at this time. 
+    We are not partnering with any phases at this time. 
     <% if @pastphases.present? %>
-      Support our past authors and filmmakers by selecting a project phase below.
+      Become a patron of our past authors and filmmakers by selecting a project phase below.
     <% end %>
   <% end %>  <br><br>
 
   <div class="support" ><br>
     <% if @currphases.present? %>  
       <% if @currphases.count == 1 %> 
-        Help us earn funds by supporting this project.
+        Help us earn funds by becoming a Patron of this project.
       <% else %>
-        Help us earn funds by supporting one of these project.
+        Help us earn funds by becoming a Patron of one of these projects.
       <% end %><br>
     <% end %>
 
@@ -40,7 +40,7 @@
   </div>
 
   <% if @pastphases.present? %>
-    <h4>CrowdPublish.TV phases we've supported in the past:</h4>
+    <h4>CrowdPublish.TV phases we've partnered with in the past:</h4>
     <table>
       <% @pastphases.each do |proj| %>
         <tr><td><%= link_to (image_tag proj[:pic], :size => "75x75"), user_profile_path(proj[:authorlink]) %></td>

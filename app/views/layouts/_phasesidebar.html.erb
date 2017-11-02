@@ -11,6 +11,11 @@
   <% end %>
   <% if @phase.merchandises.any? %>
     <h2>Become a Patron of <%= @phase.name %> </h2>
+
+    <% if params[:groupid].present? %>
+      <% groupsupported = Group.find(params[:groupid]) %>
+      5% of purchase will go to <%= groupsupported.name %><br>
+    <% end %>
     <% @merchandise.each do |merch| %>
       <% if merch.itempic.present? && merch.itempic != '' %>
         <% itemthumb = merch.itempic %>

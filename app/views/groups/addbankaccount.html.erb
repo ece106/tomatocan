@@ -39,10 +39,10 @@
           <% end %>
           Routing number for your bank: </td><td><%= text_field_tag :routingnumber, '', :size => 30 %><br><br></td></tr>
           <tr><td></td><td>You must also submit the business or personal address <%= @group.name %> uses for tax correspondence </td></tr>
-          <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %>  Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
+          <tr><td>Street Address</td><td> <%= text_field_tag :line1, '', :size => 30 %>  <br>Apt. or Suite <%= text_field_tag :line2, '', :size => 5 %></td></tr>
           <tr><td>City</td><td> <%= text_field_tag :city, '', :size => 30 %>
         <% if @countryoftax.match(/US|CA/) %> 
-          State <%= text_field_tag :state, '', :size => 5 %> 
+          <br>State <%= text_field_tag :state, '', :size => 5 %> 
         <% end %>, <%= @countryoftax %> </td></tr><br>
           <tr><td>Zip Code</td><td> <%= text_field_tag :postal_code, '', :size => 30 %> </td></tr>
           <tr><td><br><br></td></tr>

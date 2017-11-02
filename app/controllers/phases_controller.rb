@@ -16,7 +16,7 @@ class PhasesController < ApplicationController
       
       @groupswithoutstripe = []
       currusergroupsnostripe = Group.where("user_id = ? AND stripeid IS NULL", currentuserid)
-      currusergroupsnostripe.find_each do |group|
+      currusergroupsnostripe.each do |group|
         @groupswithoutstripe <<  {name: group.name, permalink: group.permalink, id: group.id} 
       end 
       @numusrgroupsnostripe = currusergroupsnostripe.count 

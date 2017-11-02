@@ -32,7 +32,6 @@ class PurchasesController < ApplicationController
       @purchase = @book.purchases.new
       @purchase.bookfiletype = params[:bookfiletype]
     end  
-    puts params[:merchandise_id]
     if params[:merchandise_id].present?
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new
@@ -55,7 +54,6 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     if @purchase.book_id?
       @book = Book.find(@purchase.book_id) 
-
 #    raise params.to_yaml
       @purchase.user_id = current_user.id
       if @purchase.save_with_payment
@@ -82,9 +80,10 @@ class PurchasesController < ApplicationController
       end
     elsif @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
+      author = User.find(@merchandise.user_id)
       @purchase.user_id = current_user.id
       if @purchase.save_with_payment
-        redirect_to @merchandise, :notice => "Thank you for purchasing this item!"
+        redirect_to phases_path, :notice => "Thank you for being a patron of " + author.name + "'s project"
       else
         redirect_to(:back, :notice => "Your order did not go through. Try again.")
       end 
