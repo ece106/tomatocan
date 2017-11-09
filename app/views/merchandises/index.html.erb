@@ -1,13 +1,11 @@
-<h1>Listing merchandises</h1>
+<h1>Patron Perks</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
       <th>Price</th>
       <th>Desc</th>
-      <th>Itempic</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,10 +16,8 @@
     <% @merchandises.each do |merchandise| %>
       <tr>
         <td><%= merchandise.name %></td>
-        <td><%= merchandise.user_id %></td>
         <td><%= merchandise.price %></td>
         <td><%= merchandise.desc %></td>
-        <td><%= merchandise.itempic %></td>
         <td><%= link_to 'Show', merchandise %></td>
       </tr>
     <% end %>
@@ -29,5 +25,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Merchandise', new_merchandise_path %>

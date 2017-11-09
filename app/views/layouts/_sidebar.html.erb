@@ -59,9 +59,9 @@
             <% end %>  <br>
 
             <% if current_user.merchandises.any? %>
-              <%= button_to "Edit Perks", user_merchandise_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+              <%= button_to "Edit Patron Perks", user_merchandise_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
             <% else %>
-              <%= button_to "Add Perks", user_merchandise_path(current_user.permalink), :method=> :get, form_class: 'btn btn-small' %>              
+              <%= button_to "Add Patron Perks", user_merchandise_path(current_user.permalink), :method=> :get, form_class: 'btn btn-small' %>              
             <% end %>  <br>
 
             <% if current_user.stripeid.present? %>

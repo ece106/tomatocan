@@ -42,6 +42,11 @@ class Group < ActiveRecord::Base
             :year => birthyear
           }
         } ,
+        :payout_schedule => {
+          :delay_days => 7,
+          :interval => "monthly",
+          :monthly_anchor => 1
+        }
       }
     )  
     self.update_attribute(:stripeid, account.id )

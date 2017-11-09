@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
             :year => birthyear
           }
         } ,
+        :payout_schedule => {
+          :delay_days => 2,
+          :interval => "monthly",
+          :monthly_anchor => 12
+        }
       }
     )  
     self.update_attribute(:stripeid, account.id )
@@ -111,11 +116,6 @@ class User < ActiveRecord::Base
           :currency => currency, 
           :routing_number => routingnumber,
           :account_number => bankaccountnumber
-          :payout_schedule => {
-            :delay_days => 7,
-            :interval => "monthly",
-            :monthly_anchor => 7
-          },
         }
       }
     )
