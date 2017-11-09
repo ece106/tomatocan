@@ -49,8 +49,8 @@
         </table > <br>
 
         <center><%= submit_tag "Update Account" %> </center><br>
-        Payments cannot be received until you submit: <br>
-        <% if @fieldsneeded %>  
+        <% if @fieldsneeded.present? %>  
+          Payments cannot be received until you submit: <br>
           <% @fieldsneeded.each do |x| %>
             <%= x.split('.')[-1] %>   <br>
           <% end %> <br> 

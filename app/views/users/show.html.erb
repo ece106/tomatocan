@@ -39,7 +39,7 @@
             </td>
             <td style='font-size:22px'><%= link_to(@phase.name, phase_path(@phase.permalink)) %></td></tr>
       <% end %>
-            <tr><td ><%= button_to(name = "Get Access", phase_path(@phase.permalink), method: :get) %></td>
+            <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@phase.permalink), method: :get) %></td>
             <td class = 'blacktxt'><%= truncate(@phase.mission , :length => 200, :separator => ' ') %> </td></tr>
           </table><br>
 

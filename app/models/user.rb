@@ -48,11 +48,11 @@ class User < ActiveRecord::Base
 
   def create_stripe_acnt(countryoftax, accounttype, firstname, lastname, bizname, 
     birthday, birthmonth, birthyear, userip, email) 
-    #called from controller, this creates a managed acct for an author
+    #called from controller, this creates a managed/custom acct for an author
     account = Stripe::Account.create(
       {
         :country => countryoftax, 
-        :managed => true,
+        :type => "custom",
         :email => email,
         :legal_entity => {
           :business_name => bizname,
@@ -65,11 +65,6 @@ class User < ActiveRecord::Base
             :year => birthyear
           }
         } ,
-        :transfer_schedule => {
-          :delay_days => 2,
-          :interval => "weekly",
-          :weekly_anchor => "monday"
-        }
       }
     )  
     self.update_attribute(:stripeid, account.id )
@@ -108,7 +103,7 @@ class User < ActiveRecord::Base
                            "NL"||"NO"||"SE"
       currency = "EUR"
     end
-    temp = account.external_accounts.create(
+    bankacct = account.external_accounts.create(
       {
         :external_account => {
           :object => "bank_account",
@@ -116,6 +111,11 @@ class User < ActiveRecord::Base
           :currency => currency, 
           :routing_number => routingnumber,
           :account_number => bankaccountnumber
+          :payout_schedule => {
+            :delay_days => 7,
+            :interval => "monthly",
+            :monthly_anchor => 7
+          },
         }
       }
     )

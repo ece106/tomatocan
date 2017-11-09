@@ -12,7 +12,7 @@ class Purchase < ActiveRecord::Base
 
   def save_with_payment
     if self.book_id.present?
-      @book = Book.find(self.book_id)
+      @book = Book.find(self.book_id)  #do any of these variables need to be nonlocal
       self.pricesold = @book.price 
       self.author_id = @book.user_id 
       author = User.find(@book.user_id) 
@@ -25,7 +25,7 @@ class Purchase < ActiveRecord::Base
         self.groupcut = 0.0
         self.authorcut = ((@book.price * 80).to_i).to_f/100 
       end
- #     appfee = ((@book.price - self.authorcut + self.groupcut)*100).to_i 
+     appfee = ((@book.price - self.authorcut + self.groupcut)*100).to_i  ######## shouldnt need when using transfergroup
     end  
     if self.merchandise_id.present?
       @merchandise = Merchandise.find(self.merchandise_id)
@@ -41,66 +41,61 @@ class Purchase < ActiveRecord::Base
         self.groupcut = 0.0
         self.authorcut = ((@merchandise.price * 80).to_i).to_f/100
       end
-#      appfee = ((@merchandise.price - self.authorcut + self.groupcut)*100).to_i 
+      appfee = ((@merchandise.price - self.authorcut + self.groupcut)*100).to_i #####
     end  
+
     @purchaser = User.find(self.user_id)
     authorstripeaccount = Stripe::Account.retrieve(author.stripeid) 
     if self.group_id.present?
       group = Group.find(self.group_id)
       groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
-    end  
-      if(@purchaser.stripe_customer_token).present?
-        customer_id = @purchaser.stripe_customer_token
-        customer = Stripe::Customer.retrieve(customer_id)
-        #card = customer.sources.create(:source => stripe_card_token) #I think this is only if existing/previous customer wants to enter new card
-      else #if valid?
-        customer = Stripe::Customer.create(
-          :source => stripe_card_token,
-          :description => @purchaser.name, # what info do I really want here
-          :email => @purchaser.email
-        )
-        @purchaser.update_attribute(:stripe_customer_token, customer.id)
-      end
-      card_id = customer.default_source
-  puts "AAAAAAAAAAAAAAAAAAAAAAAAAAaaa"
-  puts customer.default_source
-  puts customer.id
-  puts authorstripeaccount.id
+    end
 
-      cardtoken = Stripe::Token.create(   #do we need this even when customer has existing stored card info
-        {:customer => customer.id, :card => card_id},
-        {:stripe_account => authorstripeaccount.id } # id of the connected account
+    if(@purchaser.stripe_customer_token).present?
+      customer = Stripe::Customer.retrieve(@purchaser.stripe_customer_token)
+      if stripe_card_token.present?
+        customer.source = stripe_card_token
+        customer.save
+      end
+    else 
+      customer = Stripe::Customer.create(
+        :source => stripe_card_token,  #where does this token come from? purchases.js.coffee?
+        :description => @purchaser.name, # what info do I really want here
+        :email => @purchaser.email
       )
-  puts cardtoken
+      @purchaser.update_attribute(:stripe_customer_token, customer.id)
+    end
 
       charge = Stripe::Charge.create( {
         :amount => amt,  #this is the amt charged to the customer's credit card
         :currency => "usd",
-#        :customer => customer_id,
-        :source => cardtoken,
+        :customer => customer.id,  # Don't use :source because we created/use existing customer & card is saved in stripe.
         :description => desc,  
-#        :application_fee => appfee  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
-        :transfer_group => "purchase" + Time.now.to_s,
-        }
-#        , {:stripe_account => authorstripeaccount.id } appfee only needed for old way of 1 connected acct per transaction
+#        :application_fee => appfee,  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
+        :transfer_group => "purchase" + (Purchase.maximum(:id) + 1).to_s
+        } #,
+#         {:stripe_account => authorstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
       )
+
       transfer = Stripe::Transfer.create({
-        :amount => authorcut,
+        :amount => (self.authorcut * 100).to_i,
         :currency => "usd",
-        :destination => authorstripeaccount,
-        :transfer_group => "purchase" + Time.now.to_s,
+        :destination => authorstripeaccount.id,
+        :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
+        :transfer_group => "purchase" + (Purchase.maximum(:id) + 1).to_s #does this mean anything when there is a source transaction?
       })
 # Create a second Transfer to another connected account (later): WHAT DOES STRIPE MEAN BY LATER? WHEN IS LATER?
     if self.group_id.present?
       transfer = Stripe::Transfer.create({
-        :amount => groupcut,
+        :amount => (self.groupcut * 100).to_i,
         :currency => "usd",
-        :destination => groupstripeaccount,
-        :transfer_group => "purchase" + Time.now.to_s,
+        :destination => groupstripeaccount.id,
+        :source_transaction => charge.id,
+        :transfer_group => "purchase" + (Purchase.maximum(:id) + 1).to_s #won't work when lots of simultaneous purchases
       })
     end
 
-      save!
+    save!
 
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"

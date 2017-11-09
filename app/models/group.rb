@@ -25,11 +25,11 @@ class Group < ActiveRecord::Base
 
   def create_stripe_acnt(countryoftax, accounttype, firstname, lastname, bizname, 
     birthday, birthmonth, birthyear, userip, email) 
-    #called from controller, this creates a managed acct for an author
+    #called from controller, this creates a managed/custom acct for a group
     account = Stripe::Account.create(
       {
         :country => countryoftax, 
-        :managed => true,
+        :type => "custom",
         :email => email,
         :legal_entity => {
           :business_name => bizname,
@@ -42,11 +42,6 @@ class Group < ActiveRecord::Base
             :year => birthyear
           }
         } ,
-        :transfer_schedule => {
-          :delay_days => 2,
-          :interval => "weekly",
-          :weekly_anchor => "monday"
-        }
       }
     )  
     self.update_attribute(:stripeid, account.id )
