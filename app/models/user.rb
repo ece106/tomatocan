@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
     )  
     self.update_attribute(:stripeid, account.id )
     self.update_attribute(:stripesignup, Time.now )
-    account = Stripe::Account.retrieve(self.stripeid) #do I need this
+    account = Stripe::Account.retrieve(self.stripeid) 
     account.tos_acceptance.ip = userip
     account.tos_acceptance.date = Time.now.to_i        
     account.save
@@ -232,7 +232,7 @@ class User < ActiveRecord::Base
   end  
   def mark_fulfilled(purchid) 
     purchase = Purchase.find(purchid)
-    purchase.fulfillstatus = "shipped"
+    purchase.fulfillstatus = "sent"
     purchase.save
   end  
 

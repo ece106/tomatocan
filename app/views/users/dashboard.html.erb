@@ -57,14 +57,14 @@
       <% end %>
      
       <% if @totalinfo.present? %>
-        <div style='font-size:110%;'><b>List of all sales<br></b></div>
+        <div style='font-size:110%;'><b>List of all sales - CHECK OFTEN. YOUR PATRONS MAY BE EXPECTING ITEMS FROM YOU<br></b></div>
         <table>
-          <tr style='font-weight:bold;'><td>Title</td><td>Author's Share</td><td>Sales Date</td><td>Customer Name</td><td>Shipping Address</td><td>Shipped?</td></tr>
+          <tr style='font-weight:bold;'><td>Title</td><td>Author's Share</td><td>Sales Date</td><td>Customer Name</td><td>Shipping Address</td><td>Shipped/ Fulfilled?</td></tr>
             <% @totalinfo.each do |item| %>
               <tr><td><i><%= item[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td><td> <%= item[:soldwhen] %></td><td> <%= item[:whobought] %></td><td> <%= item[:address] %></td>
-              <td><% if item[:fulfillstat] != "shipped" && item[:ebook].empty? %>
+              <td><% if item[:fulfillstat] != "sent" && item[:ebook].empty? %>
                 <%= button_to [:markfulfilled, @user] do %>
-                  <strong>Mark as Shipped </strong>
+                  <strong>Mark as Sent </strong>
                   <%= hidden_field_tag :purchid, item[:purchaseid] %>
                 <% end %>
               <% else %>
@@ -76,14 +76,16 @@
       <% end %>
 <% end %>
     
+    <% if @purchasesinfo.present? %>
       <div style='font-size:130%;'><b>Books you've purchased<br></b></div>
-      <table>
+        <table>
         <tr style='font-weight:bold;'><td><b>Title</td><td>Author</td><td>Price Paid</td><td>Purchase Date</b></td></tr>
-        <% @purchasesinfo.sort_by{ |p| p[:purchasedwhen] }.each do |item| %>
-          <tr><td><i><%= item[:purchasetitle] %> </i> </td><td> <%= item[:purchaseauthor] %> </td><td style='text-align:right'> <%= number_with_precision(item[:purchaseprice], :precision => 2) %> </td><td> <%= item[:purchasedwhen] %></td></tr>
-        <% end %>
-      </table>
-    </div>
+          <% @purchasesinfo.sort_by{ |p| p[:purchasedwhen] }.each do |item| %>
+            <tr><td><i><%= item[:purchasetitle] %> </i> </td><td> <%= item[:purchaseauthor] %> </td><td style='text-align:right'> <%= number_with_precision(item[:purchaseprice], :precision => 2) %> </td><td> <%= item[:purchasedwhen] %></td></tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
   </div>
 <% end %>
 

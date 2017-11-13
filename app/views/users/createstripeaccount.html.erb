@@ -38,13 +38,12 @@
         </table > <br>
 
         Select the code for the country where your bank account has a tax ID:
-        <%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %>
+        <%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true) %><br>
 
-        <center><br>I accept the Terms of Service <br>
+        <br><center><%= submit_tag "Create Account" %> <br>By registering your account, you agree to the CrowdPublish.TV <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %> and the
+        <%= link_to("Stripe Connected Account Agreement", "https://stripe.com/us/connect-account/legal", :target => "_blank" ) %> </center><br>
 
-        <%= submit_tag "Create Account" %> </center><br><br>
-      
-        The payment processing company CrowdPublish.TV uses can handle transactions for businesses and individuals who have tax IDs in the following countries: 
+        <br>The payment processing company CrowdPublish.TV uses can handle transactions for businesses and individuals who have tax IDs in the following countries: 
         <table>
           <tr><td>US </td><td>Canada</td><td>Great Britain</td><td>Austria</td></tr>
           <tr><td>Australia</td><td>Belgium</td><td>Germany</td><td>Denmark</td></tr>

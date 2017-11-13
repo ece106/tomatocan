@@ -20,12 +20,11 @@ class Purchase < ActiveRecord::Base
       desc = @book.title # what info do we really want here 
       if self.group_id.present?
         self.groupcut = ((@book.price * 5).to_i).to_f/100
-        self.authorcut = ((@book.price * 80).to_i).to_f/100 - self.groupcut
+        self.authorcut = ((@book.price * 92).to_i - 30).to_f/100 - self.groupcut
       else
         self.groupcut = 0.0
-        self.authorcut = ((@book.price * 80).to_i).to_f/100 
+        self.authorcut = ((@book.price * 92).to_i - 30).to_f/100 
       end
-     appfee = ((@book.price - self.authorcut + self.groupcut)*100).to_i  ######## shouldnt need when using transfergroup
     end  
     if self.merchandise_id.present?
       @merchandise = Merchandise.find(self.merchandise_id)
@@ -36,12 +35,11 @@ class Purchase < ActiveRecord::Base
       desc = @merchandise.name 
       if self.group_id.present?
         self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
-        self.authorcut = ((@merchandise.price * 80).to_i).to_f/100 - self.groupcut
+        self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
       else
         self.groupcut = 0.0
-        self.authorcut = ((@merchandise.price * 80).to_i).to_f/100
+        self.authorcut = ((@merchandise.price * 92).to_i -30).to_f/100
       end
-      appfee = ((@merchandise.price - self.authorcut + self.groupcut)*100).to_i #####
     end  
 
     @purchaser = User.find(self.user_id)
@@ -84,7 +82,6 @@ class Purchase < ActiveRecord::Base
         :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
         :transfer_group => "purchase" + (Purchase.maximum(:id) + 1).to_s #does this mean anything when there is a source transaction?
       })
-# Create a second Transfer to another connected account (later): WHAT DOES STRIPE MEAN BY LATER? WHEN IS LATER?
     if self.group_id.present?
       transfer = Stripe::Transfer.create({
         :amount => (self.groupcut * 100).to_i,

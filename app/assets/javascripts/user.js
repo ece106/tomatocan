@@ -31,6 +31,18 @@ jQuery(document).ready(function($) {
   $('.accordion-toggle6').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hidden7more').removeClass('hidden7more').hide();
+  $('.accordion-toggle7').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden8more').removeClass('hidden8more').hide();
+  $('.accordion-toggle8').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden10more').removeClass('hidden10more').hide();
+  $('.accordion-toggle10').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
 
 
   $('.cardinfo').hide();

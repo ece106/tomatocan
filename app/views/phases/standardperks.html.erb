@@ -1,7 +1,8 @@
 <div class="blacktxt">
+All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. No need for your Patrons to wait until project or phase is complete before they receive their items. So if you're offering to tweet to them, do it as soon as you see their contribution posted on your dashboard. If you're offering an hour of consulting time, text or call to arrange a session right away! Check your dashboard often.<br><br>
 
 <% if current_user.stripeid.present? %>
-  <h4>Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> </h4><br>
+  <div class="socialize" >Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> </div><br>
 
 <table>
     <tr>
@@ -40,6 +41,72 @@
     </div>
   </div>
   </td></tr>
+
+   <tr><td>
+    <div class="accordion" id="accordion7">
+      <div class="accordion-group">
+        Add Include Your Name at the end of my next chapter/scene perk
+        <div id="accordion-toggle7" class="accordion-body collapse">
+          <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, placeholder: "Your Name In Credits for " + @phase.name %><br><br>
+                <b>About this Patron Perk </b><br>
+                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Get on the list of Patrons at the end of this chapter. When the Project is complete, your name will be in the page of thanks... " %><br><br>
+            <b>Price </b><br>
+            $<%= f.text_field :price, size: 80, value: 40.00 || :price %>USD<br>
+                <%= button_to "Offer Name in Credits Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+              <% end %>
+          </div>
+        </div>
+      </td><td>
+          <a class="accordion-toggle7" data-toggle="collapse" href="#accordion-toggle7">
+            <span>
+              ...Details for <b>Name in Credits</b> perk
+            </span>
+            <span class="hidden7more">
+              ...Hide <b>Name in Credits</b> details
+            </span>
+          </a><br>
+        </div>
+      </div>
+    </div>
+    </td></tr>
+
+   <tr><td>
+    <div class="accordion" id="accordion8">
+      <div class="accordion-group">
+        Add Name a Character perk
+        <div id="accordion-toggle8" class="accordion-body collapse">
+          <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, placeholder: "Name the next Character in" + @phase.name %><br><br>
+                <b>About this Patron Perk </b><br>
+                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "The next character we introduce in Chapter X will be a hero/villain... " %><br><br>
+            <b>Price </b><br>
+            $<%= f.text_field :price, size: 80, value: 40.00 || :price %>USD<br>
+                <%= button_to "Offer Character Name Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+              <% end %>
+          </div>
+        </div>
+      </td><td>
+          <a class="accordion-toggle8" data-toggle="collapse" href="#accordion-toggle8">
+            <span>
+              ...Details for <b>Character Name</b> perk
+            </span>
+            <span class="hidden8more">
+              ...Hide <b>Character Name</b> details
+            </span>
+          </a><br>
+        </div>
+      </div>
+    </div>
+    </td></tr>
 
   <tr><td>
   <div class="accordion" id="accordion2">
@@ -195,6 +262,39 @@
             </span>
             <span class="hidden6more">
               ...Hide <b>30 Second Video</b> details
+            </span>
+          </a><br>
+        </div>
+      </div>
+    </div>
+    </td></tr>
+
+   <tr><td>
+    <div class="accordion" id="accordion10">
+      <div class="accordion-group">
+        Combo Package
+        <div id="accordion-toggle10" class="accordion-body collapse">
+          <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, placeholder: "One Hour Consultation, One Tweet Per Week, Plus Your Name at the end of Scene X" %><br><br>
+                <b>About this Patron Perk </b><br>
+                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Get all three of these items for one special price by the end of the month... " %><br><br>
+            <b>Price </b><br>
+            $<%= f.text_field :price, size: 80, value: 400.00 || :price %>USD<br>
+                <%= button_to "Offer Combo Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+              <% end %>
+          </div>
+        </div>
+      </td><td>
+          <a class="accordion-toggle10" data-toggle="collapse" href="#accordion-toggle10">
+            <span>
+              ...Details for <b>Combo Package</b> perk
+            </span>
+            <span class="hidden10more">
+              ...Hide <b>Combo Package</b> details
             </span>
           </a><br>
         </div>
