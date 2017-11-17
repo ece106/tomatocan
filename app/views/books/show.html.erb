@@ -49,7 +49,7 @@
 </div> 
 
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-        <% if @book.youtube1? %> 
+        <% if @book.youtube1.present?  && @book.youtube1 != '' %> 
           <% if @book.youtube1.match(/[0-9A-Za-z]/) && @book.youtube1.length < 20 && @book.youtube1.length > 6 %>
             <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @book.youtube1 %>" frameborder="0" allowfullscreen></iframe>
           <% end %><br>
@@ -60,9 +60,11 @@
           </div>
         <% end %>
 
+      <% if @book.youtube2.present?  && @book.youtube2 != '' %> 
         <% if @book.youtube2.match(/[0-9A-Za-z]/) && @book.youtube2.length < 20 && @book.youtube2.length > 6 %>
           <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @book.youtube2 %>" frameborder="0" allowfullscreen></iframe>
         <% end %><br>
+      <% end %>
         <div class="profilebox" style="margin-left:col-xs-125px">
           <% if @book.bkvideodesc2 %> 
             <br><%= simple_format @book.bkvideodesc2.gsub(/\r\n/, '<br>') %><br><br>
