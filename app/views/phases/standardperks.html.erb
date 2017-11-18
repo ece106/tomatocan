@@ -206,18 +206,18 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
    <tr><td>
     <div class="accordion" id="accordion5">
       <div class="accordion-group">
-        Add Hours of your Expertise as a perk
+        Add Expert Consultation as a perk
         <div id="accordion-toggle5" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, placeholder: "Two Hour Consultation about Meditation" %><br><br>
+                <%= f.text_field :name, size: 80, placeholder: "Two Month Meditation Consultation package" %><br><br>
                 <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Set up a phone appointment. Ask about how I came up with the idea for this book/movie, what I had to research... Two one-hour time slots. Suggested times are... " %><br><br>
+                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Set up a phone appointment. Ask about how I came up with the idea for this book/movie. We will go over 7 step meditation process...  " %><br><br>
             <b>Price </b><br>
-            $<%= f.text_field :price, size: 80, value: 400.00 || :price %>USD<br>
+            $<%= f.text_field :price, size: 80, value: 1000.00 || :price %>USD<br>
                 <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
               <% end %>
           </div>
@@ -250,7 +250,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "I will produce a video (ad) for you that you can post on your web site. Video file will be delivered via dropbox. The video may include... Whatever you promise, the quality & time required should be reflected in the price - giving a 30 second reading of something already written would be much cheaper than producing an ad. " %><br><br>
             <b>Price </b><br>
-            $<%= f.text_field :price, size: 80, value: 200.00 || :price %>USD<br>
+            $<%= f.text_field :price, size: 80, value: 400.00 || :price %>USD<br>
                 <%= button_to "Offer 30 Second Video Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
               <% end %>
           </div>
