@@ -64,13 +64,24 @@ class Purchase < ActiveRecord::Base
       @purchaser.update_attribute(:stripe_customer_token, customer.id)
     end
 
+    if author.id == 143 
+      charge = Stripe::Charge.create( {
+        :amount => amt, 
+        :currency => "usd",
+        :customer => customer.id, 
+        :description => desc 
+        } 
+      )
+    else  
+      transfergrp = "purchase" + (Purchase.maximum(:id) + 1).to_s  #won't work when lots of simultaneous purchases
+
       charge = Stripe::Charge.create( {
         :amount => amt,  #this is the amt charged to the customer's credit card
         :currency => "usd",
         :customer => customer.id,  # Don't use :source because we created/use existing customer & card is saved in stripe.
         :description => desc,  
 #        :application_fee => appfee,  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
-        :transfer_group => "purchase" + (Purchase.maximum(:id) + 1).to_s
+        :transfer_group => transfergrp
         } #,
 #         {:stripe_account => authorstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
       )
@@ -80,16 +91,17 @@ class Purchase < ActiveRecord::Base
         :currency => "usd",
         :destination => authorstripeaccount.id,
         :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
-        :transfer_group => "purchase" + (Purchase.maximum(:id) + 1).to_s #does this mean anything when there is a source transaction?
+        :transfer_group => transfergrp #does this mean anything when there is a source transaction?
       })
-    if self.group_id.present?
-      transfer = Stripe::Transfer.create({
-        :amount => (self.groupcut * 100).to_i,
-        :currency => "usd",
-        :destination => groupstripeaccount.id,
-        :source_transaction => charge.id,
-        :transfer_group => "purchase" + (Purchase.maximum(:id) + 1).to_s #won't work when lots of simultaneous purchases
-      })
+      if self.group_id.present?
+        transfer = Stripe::Transfer.create({
+          :amount => (self.groupcut * 100).to_i,
+          :currency => "usd",
+          :destination => groupstripeaccount.id,
+          :source_transaction => charge.id,
+          :transfer_group => transfergrp
+        })
+      end
     end
 
     save!
