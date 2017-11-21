@@ -1,7 +1,7 @@
 <div class="blacktxt">
 All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. No need for your Patrons to wait until project or phase is complete before they receive their items. So if you're offering to tweet to them, do it as soon as you see their contribution posted on your dashboard. If you're offering consulting time, text or call to arrange a session right away! Check your dashboard often.<br><br>
 
-<% if current_user.stripeid.present? && current_user.id != 143 && @phase.user_id == current_user.id %>
+<% if (current_user.stripeid.present? && @phase.user_id == current_user.id) ||current_user.id == 143  %>
   <div class="socialize" >Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> </div><br>
 
 <table>
