@@ -1,9 +1,9 @@
-class Merchandise < ActiveRecord::Base
+class Merchandise < ApplicationRecord
 
   attr_accessor :rttoeditphase 
 
-  belongs_to :user # the project has user_id but merch doesn't have to be part of proj
-  belongs_to :project
+  belongs_to :user 
+  belongs_to :project, optional: true
   has_many :purchases
   mount_uploader :itempic, MerchpicUploader
 

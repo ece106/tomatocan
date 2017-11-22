@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   has_event_calendar
 #  belongs_to :user
   has_many :rsvpqs

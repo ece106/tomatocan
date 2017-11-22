@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:new, :index, :create, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :check_fieldsneeded, except: [:new, :index, :create]
   before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
-  before_filter :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
+  before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index

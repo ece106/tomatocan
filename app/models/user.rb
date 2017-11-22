@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 # We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
   :bankaccountnumber, :monthperkinfo, :monthbookinfo, :incomeinfo, :salebyfiletype, :salebyperktype, :totalinfo, 

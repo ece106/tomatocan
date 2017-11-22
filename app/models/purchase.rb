@@ -1,11 +1,11 @@
-class Purchase < ActiveRecord::Base
+class Purchase < ApplicationRecord
 
 #  attr_accessible :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id
 #  attr_reader :stripe_card_token
   
-  belongs_to :book
+  belongs_to :book, optional: true
   belongs_to :user
-  belongs_to :merchandise
+  belongs_to :merchandise, optional: true
   validates :user_id, presence: true
   validate :book_id_or_merchandise_id
 #  validates :bookfiletype, presence: true

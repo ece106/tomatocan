@@ -1,4 +1,4 @@
-class Review < ActiveRecord::Base
+class Review < ApplicationRecord
   belongs_to :user
   validates :user_id, presence: true
 

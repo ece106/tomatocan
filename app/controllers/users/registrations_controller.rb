@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   include ApplicationHelper
-    before_filter :update_sanitized_params, if: :devise_controller?
+    before_action :update_sanitized_params, if: :devise_controller?
 
     def update_sanitized_params
        devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:permalink, :name, :updating_password, :email, :password, :author, :password_confirmation, :remember_me, :address, :latitude, :longitude)}

@@ -1,20 +1,23 @@
 source 'http://rubygems.org'
-ruby "2.2.3"
+ruby "2.4.2"
+
+gem 'listen'
 
 gem 'pg'
 #gem 'sqlite3'
 gem 'mandrill'	
-gem 'devise', '~> 3.2.4'
+gem 'devise', '~> 4.3.0'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
 gem 'pry'
-gem 'aws-s3'
+gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '4.0.2'
+gem 'rails', '5.1.4'
+gem 'railties', '~> 5.1.4'
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
@@ -47,8 +50,8 @@ gem 'jquery-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 #group :assets do
-gem 'sass-rails', '~> 4.0.0'
-  gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.7'
+  gem 'coffee-rails', '~> 4.2.2'
   gem 'uglifier', '>= 1.3.0'
 #end
 

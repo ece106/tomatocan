@@ -1,4 +1,4 @@
-class Agreement < ActiveRecord::Base
+class Agreement < ApplicationRecord
   belongs_to :group
   belongs_to :phase
 

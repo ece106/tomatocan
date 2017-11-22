@@ -1,4 +1,4 @@
-class Phase < ActiveRecord::Base
+class Phase < ApplicationRecord
   extend FriendlyId
   friendly_id :permalink, use: :slugged
 
