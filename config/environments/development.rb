@@ -8,7 +8,6 @@ config.action_mailer.smtp_settings = {
    :user_name => "crowdpublishtv.star@gmail.com",
    :password  => 'GMAIL_PWD', # SMTP password is any valid API key
    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
-#   :domain => 'www.crowdpublish.tv', # your domain to identify your server when connecting
  }
 config.action_mailer.default_url_options = {
   :host => 'localhost:3000', :protocol => 'http' 
@@ -34,14 +33,10 @@ config.action_mailer.default_url_options = {
     }
   else
     config.action_controller.perform_caching = false
-
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
-  config.action_mailer.perform_caching = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

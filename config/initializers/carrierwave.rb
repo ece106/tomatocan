@@ -1,10 +1,13 @@
+require 'carrierwave/storage/fog'
 #Excon.defaults[:write_timeout] = 1000
 #  Excon.defaults = Excon.defaults.mere(:write_timeout => 10.minutes.to_i)
 
 if Rails.env.development? || Rails.env.test?
   CarrierWave.configure do |config|
     config.storage = :file
-    config.fog_credentials = {    # this is needed only when using fog during dev
+#    config.root = "#{Rails.root}/tmp"
+#    config.cache_dir = "#{Rails.root}/tmp/images"
+      config.fog_credentials = {    # this is needed only when using fog during dev
       :provider               => 'AWS',
       :aws_access_key_id      => 'AWS_KEY',
       :aws_secret_access_key  => 'AWS_SECRET_KEY', 
@@ -20,7 +23,6 @@ end
   
 if Rails.env.production?
   CarrierWave.configure do |config|
-    config.storage = :fog
     config.fog_credentials = {
       :provider               => 'AWS',
       :aws_access_key_id      => ENV['AWS_KEY'],    
@@ -29,6 +31,7 @@ if Rails.env.production?
 #      :connect_timeout=>60
       :region             => 'us-east-1'
     }
+    config.storage = :fog
     config.permissions = 0777
     config.fog_directory  = 'authorprofile'
     config.fog_public     = true
