@@ -7,7 +7,7 @@
   Sign in
 </div><br>
 
-<%= form_for(resource, :as => resource_name, :url => user_session_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>

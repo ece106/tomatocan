@@ -68,14 +68,14 @@ class GroupsController < ApplicationController
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @shown_month = Date.civil(@year, @month)
     @events = Event.all 
-    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group1id => @group.id } )
-    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group2id => @group.id } ) + @event_strips
-    @event_strips = @events.event_strips_for_month(@shown_month, :conditions => { :group3id => @group.id } ) + @event_strips
+    @event_strips = @events.event_strips_for_month(@shown_month).where('group1id = ?', @group.id )
+    @event_strips = @events.event_strips_for_month(@shown_month).where('group2id = ?', @group.id ) + @event_strips
+    @event_strips = @events.event_strips_for_month(@shown_month).where('group3id = ?', @group.id ) + @event_strips
   end
   def eventlist
-    @events = Event.all( :conditions => { :group1id => @group.id  }) # || :group2id => @group.id || :group3id => @group.id } ) 
-    @events = Event.all( :conditions => { :group2id => @group.id  }) + @events
-    @events = Event.all( :conditions => { :group3id => @group.id  }) + @events
+    @events = Event.where('group1id = ?', @group.id )
+    @events = Event.where('group2id = ?', @group.id ) + @events
+    @events = Event.where('group3id = ?', @group.id ) + @events
     respond_to do |format|
       format.html 
       format.json { render json: @group }
@@ -84,9 +84,9 @@ class GroupsController < ApplicationController
   def deleteevent
     @group = Group.friendly.find(params[:permalink])
 
-    @events = Event.all( :conditions => { :group1id => @group.id  }) # || :group2id => @group.id || :group3id => @group.id } ) 
-    @events = Event.all( :conditions => { :group2id => @group.id  }) + @events
-    @events = Event.all( :conditions => { :group3id => @group.id  }) + @events
+    @events = Event.where('group1id = ?', @group.id ) # || :group2id => @group.id || :group3id => @group.id } ) 
+    @events = Event.where('group2id = ?', @group.id ) + @events
+    @events = Event.where('group3id = ?', @group.id ) + @events
   end
   def new
     @group = Group.new
@@ -94,9 +94,9 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-    @events = Event.all( :conditions => { :group1id => @group.id  }) 
-    @events = Event.all( :conditions => { :group2id => @group.id  }) + @events
-    @events = Event.all( :conditions => { :group3id => @group.id  }) + @events
+    @events = Event.where('group1id = ?', @group.id ) 
+    @events = Event.where('group2id = ?', @group.id ) + @events
+    @events = Event.where('group3id = ?', @group.id ) + @events
   end
 
   # POST /groups

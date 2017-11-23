@@ -38,7 +38,7 @@ class Purchase < ApplicationRecord
         self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
       else
         self.groupcut = 0.0
-        self.authorcut = ((@merchandise.price * 92).to_i -30).to_f/100
+        self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100
       end
     end  
 

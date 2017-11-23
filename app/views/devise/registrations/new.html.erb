@@ -1,7 +1,7 @@
 <div class="row" >
   <div class="col-md-6 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
 
-<%= form_for(resource, :as => resource_name, :url => user_registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
   <%= devise_error_messages! %>
 
   <%#= f.hidden_field :latitude, :value => (request.location ? request.location.latitude : 38.899) %>

@@ -11,7 +11,7 @@ class Book < ApplicationRecord
   validates :user_id, presence: true
  # validates :price, presence: true, :format => { :with => /\A\d+??(?:\.\d{0,2})?\z/ }
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
-  default_scope order: 'books.releasedate DESC'
+  default_scope {order('books.releasedate DESC')}
 
 #  mount_uploader :bookkobo, ProfilepicUploader
   mount_uploader :coverpic, CoverpicUploader
