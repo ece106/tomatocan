@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_event_calendar
+#  has_event_calendar
 #  belongs_to :user
   has_many :rsvpqs
   has_many :users, :through => :rsvpqs
