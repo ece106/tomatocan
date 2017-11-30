@@ -38,15 +38,26 @@
               <% end %>
             </td>
             <td style='font-size:22px'><%= link_to(@phase.name, phase_path(@phase.permalink)) %></td></tr>
-      <% end %>
             <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@phase.permalink), method: :get) %></td>
             <td class = 'blacktxt'><%= truncate(@phase.mission , :length => 200, :separator => ' ') %> </td></tr>
           </table><br>
-
+        <% if @phase2 %>
+          <table>
+            <tr><td>
+              <% if @numusrgroups > 0 %>
+                <%= button_tag 'Partner', value: @phase2.id, type: :submit, name: "agreement[phase_id]" %>
+              <% end %>
+            </td>
+            <td style='font-size:22px'><%= link_to(@phase2.name, phase_path(@phase2.permalink)) %></td></tr>
+            <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@phase2.permalink), method: :get) %></td>
+            <td class = 'blacktxt'><%= truncate(@phase2.mission , :length => 200, :separator => ' ') %> </td></tr>
+          </table><br>
+        <% end %>
+      <% end %>
+    </div>
       <% if @numusrphs > 1 %>
         <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br>
       <% end %>
-    </div>
   <% else %>
    <%= @user.name %> does not currently have any project phases in progress<br><br><br>
   <% end %>
