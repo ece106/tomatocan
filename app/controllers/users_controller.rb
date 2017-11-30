@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @shown_month = Date.civil(@year, @month)
     @events = Event.all 
-    @event_strips = @events.event_strips_for_month(@shown_month).where('usrid = ?', @user.id ) 
+#    @event_strips = @events.event_strips_for_month(@shown_month).where('usrid = ?', @user.id ) 
   end
   def eventlist
     currtime = Time.now

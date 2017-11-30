@@ -14,7 +14,7 @@ gem 'stripe'
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
-gem 'event-calendar', :require => 'event_calendar'
+#gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '5.1.4'
 gem 'railties', '~> 5.1.4'
