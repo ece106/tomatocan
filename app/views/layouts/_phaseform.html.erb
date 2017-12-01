@@ -16,7 +16,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
         <li><%= link_to " Projects ", user_phases_path(@user.permalink) %>
         <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
         <li><%= link_to " Perks ", user_merchandise_path(@user.permalink) %>
-        <li><%= link_to " Calendar ", user_calendar_path(@user.permalink) %>
+        <li><%= link_to " Calendar ", user_eventlist_path(@user.permalink) %>
       <% else %>
         <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
       <% end %>
