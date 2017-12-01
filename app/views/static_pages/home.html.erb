@@ -4,3 +4,114 @@
   <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
 </head>
 
+<div class="hometop">
+  <div class="authorhomeimage col-md-6 col-sm-8 col-xs-12 homeheight">
+    <%= image_tag("cpLogo150.png") %><br><br> 
+    <div class="whitetxt", style="position:relative; z-index: 9999;">
+      Authors & Filmmakers
+    </div>
+    <div class="whitetitle", style="position:relative; z-index: 9999;">
+      CrowdFunding<br> CrowdSelling<br> CrowdEngagement<br>
+    </div>
+
+          <% if user_signed_in? %>
+            <div class="whitetxt" >
+              Signed in as <%= link_to current_user.name, user_profile_path(current_user.permalink) %>
+            </div> 
+            <div class="usermenu" >
+              Not you?
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+            </div> 
+            <div class="whitetxt", style=" height:20px;" >
+            </div> 
+          <% else %>
+            <div class="lavenderlink" style="width:500px">
+              <div style="font-size:28px">
+                <%= link_to "SIGN UP ", "/signup" %>
+              </div>
+              <%= link_to "To earn funding & buzz for your ", "/signup" %><br>
+              <%= link_to "Writing or movie projects", "/signup" %>
+            </div>   
+            <div class="usermenu" >
+              <br><%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br>.
+            </div> 
+          <% end %>
+  </div>
+
+  <div class="readerhomeimage col-md-6 col-sm-6 col-xs-12 homeheight" style=" padding-top:60px;">
+    <div class="whitetxt" >
+      Readers & Fans 
+    </div>
+    <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
+
+      <% if user_signed_in? %>
+          <br><%= link_to "Get sneak preview access to books & movies", phases_path %>
+      <% else %>
+          <br><%= link_to "SIGN UP", "/signup", title: "Sign Me Up!", style:"font-size:28px" %> 
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+          <%= link_to 'Sign in', "/login", {:style=>'color:#ddd; font-size:14px'}  %><br>
+          <%= link_to "For sneak preview access to books & movies!", "/signup", title: "Sign Me Up!" %>
+      <% end %><br><br><br><br><br><br>
+    </div>
+
+    <div class="whitetxt" >
+      <%= link_to "Organizations ", groups_path, title: "Find the page for the Organization that referred you to CrowdPublish.TV" %>
+    </div><br>
+    <div class="username" style="text-shadow: 1px 1px #000; width:350px;">
+      <%= link_to "Get your members to support your favorite project & earn a share of the funds", @orglink, title: @titlecaption %>
+      <br><br><br>
+    </div>
+        <% if user_signed_in? %>
+          <div class="navbar-inner clearfix usermenu">
+            <ul class="nav navbar-nav pull-left">
+              <li><%= link_to "Projects", phases_path %>
+              <li><%= link_to "Orgs", groups_path %>
+              <li><%= link_to "Authors/Filmmakers", users_path %>
+              <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+            </ul>
+          </div> 
+      <% end %>
+
+  </div>
+</div>
+
+    <div class="hsmovieimage username" style="height:300px; text-shadow: 1px 1px #000; margin-top:20px; padding-top:40px; text-align:center; font-size:28px"> 
+      <%= link_to "Featured Project: ", "/phases/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie " %><br><br><br>
+      <%= link_to "Lisa's 80's Catholic High School Movie", "/phases/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie" %><br>
+      <%= link_to image_tag("transparent.png", size: "370x130", title: "Lisas 80s Catholic High School Movie"), "/phases/lisas80scatholichighschoolmovie" %> 
+    </div>
+
+<br><br>
+<div class="row" > 
+  <div class="helps" >
+    Authors to Watch
+  </div><br>
+</div>
+<div class="row" > 
+  <% @authors.each do |u| %> 
+      <div class="col-md-4 col-sm-6 col-xs-12" > 
+        <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
+          <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+          <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
+        </div>
+      </div>
+  <% end %>
+</div>
+  <div class="indexlist" >
+    <b>Browse more videos by CrowdPublish.TV authors</b><br> <%= will_paginate @authors %> <br>
+  </div>
+<%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
+
+  <div class="row" style="margin-top:15px;" >
+    <div class="col-md-5" >
+      <div class = "copyalpha" >
+        <br><br>Questions? Contact info@CrowdPublish.TV 
+        <br><br>(C) Copyright 2018, RoleModel Enterprises, LLC. All Rights Reserved.
+      </div>
+    </div>
+    <div class="col-md-5" >
+    </div>
+  </div>
+  <br><br>
