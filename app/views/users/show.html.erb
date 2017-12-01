@@ -18,10 +18,8 @@
 <% if @user.author == 'author' %>
 
   <% if @phase %>
-    <div style="float:left;">
       <h2>Get Sneak Preview access to my current projects!</h2><br>
-    </div>
-    <div style="float:left; text-align:left; width:700px">
+    <div style="float:left; text-align:left;">
       <%= form_for(Agreement.new) do |f| %> 
         <% if @numusrgroups == 1 %>
           Partner <%= @usrgrpnameid[0][0] %> with my project phase and your organization will receive 5% of the proceeds from any phase Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
@@ -53,13 +51,14 @@
             <td class = 'blacktxt'><%= truncate(@phase2.mission , :length => 200, :separator => ' ') %> </td></tr>
           </table><br>
         <% end %>
+      <% end %><br>
+      <% if @numusrphs > 1 %>
+        <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br><br>
       <% end %>
     </div>
-      <% if @numusrphs > 1 %>
-        <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br>
-      <% end %>
   <% else %>
-   <%= @user.name %> does not currently have any project phases in progress<br><br><br>
+    <%= @user.name %> does not currently have any project phases in progress
+    <br><br><br>
   <% end %>
   
   <div class="row" >

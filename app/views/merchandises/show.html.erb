@@ -6,7 +6,7 @@
 
 <div class="blacktxt">
   <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
-    <%= image_tag(@merchandise.itempic, size: '500x200') %><br>
+    <%= image_tag(@merchandise.itempic, height: '200px') %><br>
   <% end %>
 
   <h3><%= @merchandise.name %> </h3>

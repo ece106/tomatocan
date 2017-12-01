@@ -61,17 +61,18 @@
       <%= link_to "Get your members to support your favorite project & earn a share of the funds", @orglink, title: @titlecaption %>
       <br><br><br>
     </div>
-        <% if user_signed_in? %>
           <div class="navbar-inner clearfix usermenu">
             <ul class="nav navbar-nav pull-left">
               <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Orgs", groups_path %>
               <li><%= link_to "Authors/Filmmakers", users_path %>
+              <li><%= link_to "FAQ", '/howwork' %>
               <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+              <% if user_signed_in? %>
+                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+              <% end %>
             </ul>
           </div> 
-      <% end %>
 
   </div>
 </div>

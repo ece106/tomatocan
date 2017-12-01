@@ -19,6 +19,7 @@
               <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Organizations", groups_path %>
               <li><%= link_to "Authors & Filmmakers", users_path %>
+              <li><%= link_to "FAQ", '/howwork' %>
               <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
               <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
             </ul>

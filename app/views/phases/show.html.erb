@@ -5,7 +5,7 @@
 <p id="notice"><%= notice %></p>
 
   <% if @phase.phasepic.present? && @phase.phasepic != '' %>
-    <%= image_tag(@phase.phasepic, size: '500x200') %>
+    <%= image_tag(@phase.phasepic, size: '1000x250') %>
   <% end %>
   <h3><%= @phase.name %>   </h3>
   <%= @author.name %><br><br>
