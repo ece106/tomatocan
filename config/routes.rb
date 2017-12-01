@@ -12,17 +12,11 @@ Rails.application.routes.draw do
 
   match 'home', to: 'static_pages#home', via: 'get'
   match 'howwork', to: 'static_pages#howwork', via: 'get'
-  match 'localauthorsscene', to: 'static_pages#localauthorsscene', via: 'get'
   match 'tos', to: 'static_pages#tos', via: 'get'
   match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
-  match 'getinvolved', to: 'static_pages#getinvolved', via: 'get'
-  match 'internships', to: 'static_pages#apprenticeships', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
   match '/events/online' => "events#online", :as => :events_online, via: 'get'
-
-  match '/static_pages/monthly' => "static_pages#monthly", :as => :static_page_monthly, via: 'get'
-  post '/static_pages/payeveryone' => 'static_pages#payeveryone', :as => :static_page_payeveryone #I think stripe handles this
 
   resources :merchandises
   resources :phases
