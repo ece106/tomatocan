@@ -47,13 +47,6 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def calendar # event_calendar gem no longer works with rails 5. Some kind of scoped issue
-    @month = (params[:month] || (Time.zone || Time).now.month).to_i
-    @year = (params[:year] || (Time.zone || Time).now.year).to_i
-    @shown_month = Date.civil(@year, @month)
-    @events = Event.all 
-#    @event_strips = @events.event_strips_for_month(@shown_month).where('usrid = ?', @user.id ) 
-  end
   def eventlist
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
