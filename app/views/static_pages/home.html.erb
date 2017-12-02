@@ -67,8 +67,8 @@
               <li><%= link_to "Orgs", groups_path %>
               <li><%= link_to "Authors/Filmmakers", users_path %>
               <li><%= link_to "FAQ", '/howwork' %>
-              <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
               <% if user_signed_in? %>
+                <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
               <% end %>
             </ul>
