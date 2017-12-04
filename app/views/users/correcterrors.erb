@@ -9,6 +9,8 @@
 
       <%= form_tag user_correcterr_path %>
         <% if @fieldsneeded.present? %>
+      <%= x %>
+
           There are errors in the information submitted for verifying your bank account. Payments cannot be received until you <b>correct the following information</b>: <br><br>
           <% year18 = Time.now.year - 18.year %>
           <% @fieldsneeded.each do |x| %>
