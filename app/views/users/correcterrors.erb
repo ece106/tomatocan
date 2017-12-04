@@ -14,8 +14,6 @@
           There are errors in the information submitted for verifying your bank account. Payments cannot be received until you <b>correct the following information</b>: <br><br>
           <% year18 = Time.now.year - 18.year %>
           <% @fieldsneeded.each do |x| %>
-      <%= x %>
-
             <% if x.split('.')[-1] == "country" %>
               Select the code for the country where your bank account is:
               <%= select_tag :countryoftax, options_for_select(["US", "CA", "GB", "AT", "AU", "BE", "CH" "DE", "DK", "ES", "FI", "FR", "IE", "IT", "NO", "LU", "SE", "NL"], prompt: true)  %><br><br>

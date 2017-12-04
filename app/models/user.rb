@@ -206,7 +206,7 @@ class User < ApplicationRecord
       account.legal_entity.address.state = state
     end  
     unless zip == "" || zip == nil
-      account.legal_entity.address.zip = zip
+      account.legal_entity.address.postal_code = zip
     end  
     unless ein == "" || ein == nil
       account.legal_entity.business_tax_id = ein
