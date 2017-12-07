@@ -4,6 +4,31 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
+  <div style = "text-align:center" >
+    <% if @user.bannerpic.present? && @user.bannerpic != '' %>
+      <%= image_tag @user.bannerpic, height: "300" %>
+    <% else %>
+      <%= image_tag "camelbackbanner.png", height: "300" %>
+    <% end %>
+  </div>
+  <div style = "position: absolute; z-index: 1; top:0; ">
+    <div class="row" style = "font-size:100px">
+      <br>
+    </div>
+    <div class="row" >
+      <div class="col-xs-9">
+        <% if @user.profilepic.present? && @user.profilepic != '' %>
+          <%= image_tag @user.profilepic, height: "150" %>
+        <% end %>
+      </div>
+      <div class="col-xs-3 username">
+        <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin: 120px 0 0 0; padding: 0 20px 0 0;">
+          <%= @user.name %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <% content_for :forusers do %>
   <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>
 <% end %>
@@ -16,11 +41,9 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
         <li><%= link_to " Projects ", user_phases_path(@user.permalink) %>
         <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
         <li><%= link_to " Patron Perks ", user_merchandise_path(@user.permalink) %>
-        <li><%= link_to " Speaking & Events ", user_eventlist_path(@user.permalink) %>
       <% else %>
         <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
       <% end %>
-        <li><%= link_to " Blog ", user_blog_path(@user.permalink) %>
     </ul>
 
     <ul class="nav navbar-nav pull-right usermenu">

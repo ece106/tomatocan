@@ -24,28 +24,22 @@
 
   <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
     <div class="blacktxt" >
-      To change your profile picture, upload a picture of yourself (square is best)
-      <br><%= f.file_field :profilepic %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      To change your PROFILE image, upload a picture of yourself (150x150px is best)
+      <br><%= f.file_field :profilepic %>
+      <br>To change your BANNER image, upload a wide picture that represents your brand (1200x300px is best)
+      <br><%= f.file_field :bannerpic %> 
       <br>Three genres that categorize your work <br>
       <div class="profilebox" >
         <%= f.text_area :genre1, :cols => 20, :rows => 1, placeholder: "Main genre of your writing" %><br>
         <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
         <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
       </div> 
-      <br>URL to your blog <br>
-      <div class="profilebox" >
-        <%= f.text_area :blogurl, :cols => 40, :rows => 2, placeholder: "http://BlogURL.com" %>
-      </div>
       <br>Twitter handle (do not include the '@' symbol nor the entire url) <br>
       <div class="profilebox" style="vertical-align: text-top">
         <b style="vertical-align: super">@</b> 
         <%= f.text_area :twitter, :cols => 30, :rows => 1, placeholder: "twitterhandle" %>
       </div>
 
-      <br>Change your zip code, address, or city (this is used to calculate Groups & Events Near You) <br>
-      <div class="profilebox" >
-        <%= f.text_area :address, :cols => 40, :rows => 1 %>
-      </div>
       <br>Change account type:
       <br><%= f.radio_button(:author, 'reader') %>
       <%= label_tag(:author_child, "Reader, Reviewer, or Project Patron") %>

@@ -16,6 +16,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable 
   mount_uploader :profilepic, ProfilepicUploader
+  mount_uploader :bannerpic, BannerpicUploader
 
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude

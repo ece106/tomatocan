@@ -4,26 +4,12 @@
 
   <div class="container col-lg-12" >
   <div class="row" >
-  <table><tr><td>
-    <% if @user.profilepic.present? && @user.profilepic != '' %>
-      <%= image_tag @user.profilepic, height: "150" %>
-    <% elsif @user.profilepicurl %>
-      <% if @user.profilepicurl.match(/http/) && @user.profilepicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
-        <%= image_tag @user.profilepicurl, height: "150" %><br >
-      <% else %>
-        <%= image_tag "whiteBk.jpg", height: "150" %>
-      <% end %>
-    <% else %>
-      <%= image_tag "whiteBk.jpg", height: "150" %>
-    <% end %>
-  </td><td>
-    <div class="username" style = "max-width: 200px; overflow: wrap;">
+    <div class="username" style = "max-width: 350px; overflow: wrap; margin-top: 20px">
       <%= @user.name %>
     </div>
     <div class="usergenre" >
       <%= @user.genre1 %><br><%= @user.genre2 %><br><%= @user.genre3 %>
     </div>
-  </td></tr></table>
   </div>
 
   <div class="row" >

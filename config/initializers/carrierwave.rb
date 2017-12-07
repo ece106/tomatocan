@@ -9,8 +9,8 @@ if Rails.env.development? || Rails.env.test?
 #    config.cache_dir = "#{Rails.root}/tmp/images"
       config.fog_credentials = {    # this is needed only when using fog during dev
       :provider               => 'AWS',
-      :aws_access_key_id      => AWS_KEY,
-      :aws_secret_access_key  => AWS_SECRET_KEY, 
+      :aws_access_key_id      => 'AWS_KEY',
+      :aws_secret_access_key  => 'AWS_SECRET_KEY', 
       :persistent             => false,
       :region             => 'us-east-1'
     }

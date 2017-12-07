@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "stripeid", limit: 255
     t.string "stripe_customer_token", limit: 255
     t.datetime "stripesignup"
+    t.string "bannerpic"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
     t.index ["remember_token"], name: "index_users_on_remember_token"

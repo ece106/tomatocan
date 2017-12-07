@@ -312,7 +312,7 @@ class UsersController < ApplicationController
         :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
         :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn,
-        :agreeid, :purchid )
+        :agreeid, :purchid, :bannerpic )
     end
 
     def resolve_layout

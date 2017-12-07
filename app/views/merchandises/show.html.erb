@@ -4,7 +4,6 @@
       <div class="container col-md-12" >
 <p id="notice"><%= notice %></p>
 
-<div class="blacktxt">
   <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
     <%= image_tag(@merchandise.itempic, height: '200px') %><br>
   <% end %>
@@ -17,6 +16,7 @@
     <br><%= link_to image_tag("signup.png", :size => "155x40"), "/signup" %> to get awesome Perks from <%= @author.name %> 
   <% end %>
 
+<div class="goals">
   <% if @merchandise.desc %> 
     <br><%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %><br>
   <% end %> 
