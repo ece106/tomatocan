@@ -11,8 +11,6 @@
       <ul class="nav navbar-nav">
         <% if @group.permalink %>
           <li><%= link_to "About " + @group.name, group_path(@group.permalink) %> 
-          <li><%= link_to "Events ", group_eventlist_path(@group.permalink) %> 
-          <li><%= link_to " Recent Info ", group_news_path(@group.permalink) %>
         <% end %>
       </ul>    
     </ul>

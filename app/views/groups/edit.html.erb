@@ -35,7 +35,7 @@
     <%= f.text_area :about, :cols => 82, :rows => 5 %>
   </div><br>
   <div class="field">
-    <b>Get More Involvement</b> This is a call to action that will appear on your main page when your organization is supporting an active project. What would you like to ask them to do? Come to your gatherings? Join your cause? Volunteer at an event? Support your sponsored projects? Be specific. <br>
+    <b>Get More Involvement</b> This is a call to action that will appear on your main page when your organization is supporting an active project. What would you like to ask them to do? Come to your gatherings? Support your sponsored projects? Be specific. <br>
     <%= f.text_area :callaction, :cols => 82, :rows => 5, placeholder: "Please support our projects by clicking on the button above." %>
   </div><br>
   <div class="field" style= "text-align:left">
@@ -62,10 +62,6 @@
     Upload a banner picture that represents your group (.jpg, .gif, .jpeg, or .png) - <i>750x150px works best</i>
     <br><%= f.file_field :grouppic %> 
   </div><br>
-  <div class="field">
-      URL to your organization's blog or similar type of webpage you'd like to embed in your CrowdPublish.TV site (e.g. meetup or facebook page) <br>
-      <%= f.text_area :newsurl, :cols => 40, :rows => 1, placeholder: "http://NewsfeedURL.com" %>
-  </div><br> 
   <div class="actions">
     <%= f.submit %>
   </div><br>

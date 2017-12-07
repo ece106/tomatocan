@@ -1,3 +1,8 @@
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container  col-md-12" style="margin-top:-40px">
+    
 <% if @group.grouppic.present? && @group.grouppic != '' %>
   <%= image_tag @group.grouppic %>
 <% end %>
@@ -33,7 +38,9 @@
         Help us earn funds by becoming a Patron of one of these projects.
       <% end %><br>
     <% end %>
+  </div>
 
+  <div class="support" style="text-align:left" >
     <% if @group.callaction.present? %> 
       <%= simple_format @group.callaction.gsub(/\n/, '<br>') %>
     <% end %><br>
@@ -53,3 +60,7 @@
 </div>  
 
 <br><br>
+</div>
+</div>
+</div>
+</div>

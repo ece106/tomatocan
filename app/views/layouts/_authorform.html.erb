@@ -16,13 +16,15 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
       <br>
     </div>
     <div class="row" >
-      <div class="col-xs-9">
-        <% if @user.profilepic.present? && @user.profilepic != '' %>
+      <% if @user.profilepic.present? && @user.profilepic != '' %>
+        <div class="col-xl-8 col-md-4 col-xs-5">
           <%= image_tag @user.profilepic, height: "150" %>
-        <% end %>
-      </div>
-      <div class="col-xs-3 username">
-        <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin: 120px 0 0 0; padding: 0 20px 0 0;">
+        </div>
+        <div class="col-xl-4 col-md-8 col-xs-7 username">
+      <% else %>
+        <div class="col-xl-12 col-md-12 col-xs-12 username">
+      <% end %>
+        <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin: 120px 0 0 0; ">
           <%= @user.name %>
         </div>
       </div>
