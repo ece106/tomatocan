@@ -12,11 +12,11 @@
     </div>
   </div>
 
-  <div class="row" >
+  <div class="row" style="margin-left:-40px">
     <% if @user == current_user %>
       <% if @user.author == 'author' %>
         <%if controller.controller_name == 'users' %>
-          <div class="col-md-6 " > 
+          <div class="col-lg-5 col-md-3 col-sm-3 " > 
             <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
 
             <% if @mynullagreements.count != 0 %>
@@ -37,7 +37,7 @@
             <%= button_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, form_class: 'btn btn-small' %><br>
           </div>
 
-          <div class="col-md-6" > 
+          <div class="col-xs-5" > 
             <% if current_user.books.any? %>
               <%= button_to "Edit Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
             <% else %>
