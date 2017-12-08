@@ -13,7 +13,7 @@
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="page-content">
-      <div class="container  col-md-12" style="margin-top:-40px">
+      <div class="container" style="margin-top:-40px">
     
 <% if @user.author == 'author' %>
 
@@ -62,7 +62,7 @@
   <% end %>
   
   <div class="row" >
-    <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 " >
+    <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 " >
       <% if @user.youtube1? %>
         <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
           <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube1 %>" frameborder="0" allowfullscreen></iframe>
