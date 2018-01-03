@@ -319,7 +319,9 @@ center .info-content {
   left: 350px;
   width: 350px;
   background: #a98c9f;
-  position: fixed;
+  position: absolute;
+//  data-spy: affix;
+//   data-offset-top: 197;
   height: 100%;
   max-width: 350px;
   overflow: wrap;
