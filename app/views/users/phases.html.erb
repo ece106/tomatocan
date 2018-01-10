@@ -50,7 +50,7 @@
   <% end %>
   </table>
 <% else %><br>
-  *** <%= @user.name %> does not have any active phases ***<br><br>
+  *** <%= @user.name %> is still developing the next project. Please check back later for Sneak Preview access to exciting stories. ***<br><br>
 <% end %>  
 
 <% if @pastphases.count != 0 %>
@@ -67,8 +67,6 @@
     </tr>
   <% end %>
   </table>
-<% else %><br><br>
-  <%= @user.name %> does not have any past project phases 
 <% end %>  
 </div>
 </div>
