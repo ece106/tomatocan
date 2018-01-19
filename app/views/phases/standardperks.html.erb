@@ -1,7 +1,7 @@
 <div class="blacktxt">
 All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. No need for your Patrons to wait until project or phase is complete before they receive their items. So if you're offering to tweet to them, do it as soon as you see their contribution posted on your dashboard. If you're offering consulting time, text or call to arrange a session right away! Check your dashboard often.<br><br>
 
-<% if (current_user.stripeid.present? && @phase.user_id == current_user.id) ||current_user.id == 143  %>
+<% "if (current_user.stripeid.present? && @phase.user_id == current_user.id) ||current_user.id == 143 " %>
   <div class="socialize" >Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> </div><br>
 
 <table>
@@ -306,8 +306,8 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
 
 <br><%= link_to "I just want to add my own custom Perk", phase_patronperk_path(@phase.permalink) %><br>
 <br><%= link_to "I want to edit something else on this project Phase", edit_phase_path(@phase.permalink) %><br>
-        <br><b>Add existing Patron Perk to be sold in support of phase <%= @phase.name %>: </b><br>
         <% if @dropdown.any? %>
+          <br><b>Add existing Patron Perk to be sold in support of phase <%= @phase.name %>: </b><br>
           <div class="row">
             <% @dropdown.each do |perk| %>
               <div class="col-md-4 col-sm-6 col-xs-6">
@@ -320,7 +320,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
           </div>
         <% end %>  
 </div>
-<% else %>
-  You must first sign up for a <%= link_to "Stripe Account ", user_createstripeaccount_path(current_user.permalink) %> (to receive payments) before offering items for sale.
-<% end %>
+<% "else %>
+  You must first sign up for a <%= link_to 'Stripe Account ', user_createstripeaccount_path(current_user.permalink) %> (to receive payments) before offering items for sale.
+<% end" %>
 <br><br><br>

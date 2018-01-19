@@ -10,8 +10,12 @@
 
   <h3><%= @merchandise.name %> </h3>
   <% if user_signed_in? %>
-    <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get %> 
-    $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
+    <% if @user.stripeid.present? %>
+      <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get %> 
+      $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
+    <% else %>
+        <%= @user.name %> has not made this items available yet. Please check back later to purchase <%= @merchandise.name %>.
+    <% end %>
   <% else %>
     <br><%= link_to image_tag("signup.png", :size => "155x40"), "/signup" %> to get awesome Perks from <%= @author.name %> 
   <% end %>

@@ -21,17 +21,23 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-    <%= render 'layouts/authorform' %>
-  <div id='sidebar'>
-      <%= render 'layouts/sidebar' %>
-  </div> 
-  
+
 <body>
   <center >
     <div class="container">
-      <%= yield %>
-    </div> 
+      <div class="row">
+        <%= render 'layouts/authorform' %>
+      </div> 
+      <div class="row">
+        <div class="col-xl-2 col-lg-2" >
+          <%= render 'layouts/sidebar' %>
+        </div> 
+        <div class="col-xl-10 col-lg-10" >
+          <%= yield %>
+        </div> 
+      </div> 
     <% #= render 'layouts/footer' %>   
+    </div> 
   </center>
 
 </body>
