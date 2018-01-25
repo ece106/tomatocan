@@ -16,8 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @books = @user.books
-    @phase = @user.phases.order('created_at').last #only last 2 proj created displayed on user home, regardless of deadline. 
-    @phase2 = @user.phases.order('created_at')[-2]  
+    @phase = @user.phases.order('deadline').last #only last 2 proj created displayed on user home, regardless of deadline. 
     @numusrphs = @user.phases.count
     @numusrgroups = 0 
     if user_signed_in?

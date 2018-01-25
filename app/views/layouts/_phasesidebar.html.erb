@@ -27,8 +27,11 @@
       <% end %>
 
       <table ><tr><td style = "width: 250px;"><%= link_to (image_tag itemthumb, :style => "max-height:150px"), merchandise_path(merch.id) %></td>
-      <% if user_signed_in? %>
+        <% if user_signed_in? %>
           <td>
+            <% if current_user.id == @user.id %>
+              <%= button_to("Edit " + merch.name, edit_merchandise_path(merch.id)) %><br>
+            <% end %>
             <% if @user.stripeid.present? %>
               <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get %> 
             <% end %>
@@ -46,7 +49,7 @@
       <%= truncate(merch.desc , :length => 200, :separator => ' ') %><br><br>
     <% end %> 
   <% else %>
-    <br><%= @phase.name %> is not offering any Perks yet 
+    <br><%= @phase.name %> is not offering any Patron Perks yet 
   <% end %>
     <br><br>
 </div>
