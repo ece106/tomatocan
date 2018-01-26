@@ -13,6 +13,13 @@
       <div class="container">
 <% @title="CrowdPublish.TV - @user.name"  %>
 
+    <% if @user == current_user %>
+      <% if @user.author == 'author' %>
+        <%= button_to "Add your Book", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+      <% end %>  <br><br>
+    <% end %>  
+
+
 <div class="row" >
   <div class="col-lg-7 col-md-6 col-sm-11 col-sm-offset-1 col-xs-12 " >
     <div class= "featured"><%= @user.name %>'s Books:

@@ -16,9 +16,7 @@
     <% if @user == current_user %>
       <% if @user.author == 'author' %>
         <%if controller.controller_name == 'users' %>
-          <div class="col-lg-5 col-md-3 col-sm-3 " > 
-            <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
-
+          <div class="col-lg-6 col-md-3 col-sm-3 " > 
             <% if @mynullagreements.count != 0 %>
               <%= button_to "You have partner request", user_phases_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
             <% else %> 
@@ -29,26 +27,13 @@
               <% end %> 
             <% end %> <br>
 
-            <% if current_user.groups.any? %>
-              <%= button_to "Edit Organizations", user_groups_path, method: :get, form_class: 'btn btn-small' %>
-            <% else %>
-              <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, form_class: 'btn btn-small' %>
-            <% end %> <br>
-            <%= button_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, form_class: 'btn btn-small' %><br>
+            <% if @user.stripeid.present? %>
+              <%= button_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, form_class: 'btn btn-small' %><br>
+            <% end %> 
           </div>
 
           <div class="col-xs-5" > 
-            <% if current_user.books.any? %>
-              <%= button_to "Edit Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-            <% else %>
-              <%= button_to "Add your Books", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-            <% end %>  <br>
-
-            <% if current_user.merchandises.any? %>
-              <%= button_to "Edit Patron Perks", user_merchandise_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-            <% else %>
-              <%= button_to "Add Patron Perks", user_merchandise_path(current_user.permalink), :method=> :get, form_class: 'btn btn-small' %>              
-            <% end %>  <br>
+            <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
 
             <% if current_user.stripeid.present? %>
               <% if current_user.stripeid.match(/acct/) %>

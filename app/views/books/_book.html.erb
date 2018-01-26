@@ -23,6 +23,14 @@
         <%= link_to @user.name, book_path(:id => book.id), :style => 'color:#2c3651',  :title => "Purchase " + book.title %>
       </div>
     <% end %>
+
+    <% if user_signed_in? %>
+      <% if book.user_id == current_user.id %>
+        <%= button_to "Edit Book", edit_book_path(book.id), method: :get, form_class: 'btn btn-small' %>
+      <% end %>
+    <% end %>
+
+
   </div>
   <div class="col-lg-9 col-md-9 col-md-offset-0 col-sm-9 col-xs-9 " >
     <div class="blurb" style= "color:2c3651">
