@@ -4,7 +4,7 @@
 
   <div class="container col-lg-12 " >
       <% if !@user.stripeid.present? && @user.id != 143 %>
-        <br><br>  <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.<br><br>
+        <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.<br>
       <% end %>
 
       <% if !user_signed_in? %>
@@ -25,8 +25,8 @@
         <% if merch.itempic.present? && merch.itempic != '' %>
           <table ><tr>
 
-            <td style = "width: 250px;">
-              <%= link_to (image_tag merch.itempic, :style => "max-height:150px"), merchandise_path(merch.id) %>
+            <td style = "width: 250px; overflow:hidden">
+              <%= link_to (image_tag merch.itempic, :style => "max-width:250px"), merchandise_path(merch.id) %>
             </td>
             <td>
               <% if current_user.id == @user.id %>

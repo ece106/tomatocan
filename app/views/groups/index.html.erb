@@ -1,26 +1,10 @@
 <div id="groups" style="position:absolute; " >
-  <%= form_tag groups_path, :method => :get do %>
-    <table >
-      <tr>
-        <th>Address</th>
-        <th>Distance (miles)</th>
-        <th></th>
-        <th> Find in-person groups in your Local area </th>
-      </tr>
-      <tr>
-        <td><%= text_field_tag :search, params[:search] %></td>
-        <td><%= text_field_tag :dist, params[:dist] %></td>
-        <td><%= submit_tag "Search Near", :name => nil %></td>
-        </tr>
-    </table>  
-  <% end %>
 
-  <br><h4>Readers & Indie Movie Fans: Earn $ for your <b>Favorite Organization</b> by becoming a Patron of a book or movie project through the organization's page  </h4><br>
+  <h4>Readers & Indie Movie Fans: Earn $ for your <b>Favorite Organization</b> by becoming a Patron of a book or movie project through the organization's page  </h4>
   <% if user_signed_in? %>
-    <% if !current_user.groups.any? %>
-      Are you an officer of an organization? <%= link_to "Add Your Organization", new_group_path %><br><br>
-    <% else %>
-      Organization Admins: <%= link_to "Partner Your Organization with a Project Phase", phases_path %> <br><br>
+      Are you an officer of an organization? <%= button_to "ADD YOUR ORGANIZATION", new_group_path, style: "font-size:20px", method: :get %><br><br>
+    <% if current_user.groups.any? %>
+      <%= link_to "Partner Your Organization with a Project Phase", phases_path %> <br><br>
     <% end %> 
   <% end %> 
 
