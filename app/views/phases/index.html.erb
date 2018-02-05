@@ -10,6 +10,8 @@
           Select one of your groups to <b>Partner</b> with a project phase below
           <%= f.select :group_id, options_for_select(@usrgrpnameidstripe, prompt: true) %><br><br> 
         </div>
+      <% elsif @numusrgroupsnostripe == 0 %>
+        Are you an officer of an organization? Get your members to support your favorite project so you can earn a share of the funds<br><%= button_to "Add Your Organization", new_group_path, style: "font-size:20px", method: :get %><br><br>
       <% end %>
 
       <% if @numusrgroupsnostripe > 0 %>
@@ -17,9 +19,8 @@
           If you want any of these groups to <b>Partner</b> with a project phase, you must link bank account information.<br>
           <table>
             <% @groupswithoutstripe.each do |group| %>
-            <tr><td>
-              <%= group[:name] %></td><td>
-              <%= link_to "Add Bank Info", group_createstripeaccount_path(group[:permalink]), method: :get %></td></tr>
+              <tr><td> <%= group[:name] %></td>
+              <td><%= link_to "Add Bank Info", group_createstripeaccount_path(group[:permalink]), method: :get %></td></tr>
             <% end %> 
           </table>
         </div>
@@ -29,7 +30,6 @@
     <div class = "row" style="text-align:left">
       <br>If the project's owner accepts your partnership request, your organization will receive 5% of the proceeds from Patron Perks purchased after patrons click through to the project from your Organization's CrowdPublish.TV Page. <br><br>
     </div> 
-
     <% @agreedeclined.find_each do |d| %>
       <b>Your request to partner with <%= Phase.find(d.phase_id).name %> for 
       <%= Group.find(d.group_id).name %> has been declined.</b><br><br>
