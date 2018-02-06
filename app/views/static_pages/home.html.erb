@@ -11,8 +11,13 @@
         <b>Filmmakers - Actors - Authors </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
-        <br><%= link_to "Earn more Revenue &", "/signup" %><br>
-        <%= link_to "increase Engagement", "/signup" %>
+        <% if user_signed_in? %>
+          <br><%= link_to "Earn more Revenue &", new_phase_path %><br>
+          <%= link_to "increase Engagement", new_phase_path %>
+        <% else %>
+          <br><%= link_to "Earn more Revenue &", "/signup" %><br>
+          <%= link_to "increase Engagement", "/signup" %>
+        <% end %>
       </div>
       <div class="whitetxt", style="font-size:28px;">
         <br><b>CrowdFunding</b><br> 
@@ -37,7 +42,11 @@
         <b>Movie Fans - Readers </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
-        <br><%= link_to "Get sneak preview access to Premium Content", phases_path %>
+        <% if user_signed_in? %>
+          <br><%= link_to "Sneak preview access to Premium Content", phases_path %>
+        <% else %>
+          <br><%= link_to "Get sneak preview access to Premium Content", "/signup" %>
+        <% end %>
       </div>
       <div class="whitetxt", style="font-size:28px;">
         <br><b>CrowdEngagement</b?<br>

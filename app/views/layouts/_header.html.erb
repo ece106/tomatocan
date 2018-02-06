@@ -8,13 +8,18 @@
         <b>Filmmakers - Actors - Authors </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
-        <br><%= link_to "Earn more Revenue &", "/signup" %><br>
-        <%= link_to "increase Engagement", "/signup" %>
+        <% if user_signed_in? %>
+          <br><%= link_to "Earn more Revenue &", new_phase_path %><br>
+          <%= link_to "increase Engagement", new_phase_path %>
+        <% else %>
+          <br><%= link_to "Earn more Revenue &", "/signup" %><br>
+          <%= link_to "increase Engagement", "/signup" %>
+        <% end %>
       </div>
     </div>
 
     <div class="col-md-2 col-sm-6 col-xs-12">
-      <%= image_tag("cpLogo150.png") %><br><br> 
+      <%= link_to image_tag("cpLogo150.png"), "/" %><br><br> 
           <% if !user_signed_in? %>
             <div class="lavenderlink">
               <div style="font-size:28px">
@@ -31,7 +36,11 @@
         <b>Movie Fans - Readers </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
-        <br><%= link_to "Get sneak preview access to Premium Content", phases_path %>
+        <% if user_signed_in? %>
+          <br><%= link_to "Sneak preview access to Premium Content", phases_path %>
+        <% else %>
+          <br><%= link_to "Get sneak preview access to Premium Content", "/signup" %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -39,6 +48,7 @@
   <div class="row">
           <div class="navbar-inner clearfix usermenu" style="padding-left:20px">
             <ul class="nav navbar-nav pull-left">
+              <li><%= link_to "Home", "/" %>
               <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
               <li><%= link_to "Filmmakers", users_path %>
