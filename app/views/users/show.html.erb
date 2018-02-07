@@ -10,15 +10,15 @@
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
-<div id="wrapper ">
+<div id="wrapper">
   <div id="page-content-wrapper">
-    <div class="page-content">
-      <div class="container" style="margin-top:-30px;">
+    <div class="page-content" >
+      <div class="container-flex" style="margin-top:-30px; ">
     
 <% if @user.author == 'author' || @user.author == 'filmmaker' || @user.author == 'actor' %>
 
   <div class="row " >
-    <div class="col-md-12 col-sm-10 col-xs-8" >
+    <div class="col-md-12 col-sm-12 col-xs-12" >
       <% if @phase %> 
         <h2>Get Sneak Preview access to my current project!</h2><br>
         <div style="float:left; text-align:left;">
@@ -51,7 +51,7 @@
   </div>
   
       <div class="row" >
-        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
+        <div class="col-lg-6 col-md-10 col-sm-12 col-xs-12 " >
           <% if @user.youtube1? %>
             <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
               <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube1 %>" frameborder="0" allowfullscreen></iframe>
@@ -62,7 +62,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
+        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 " style="margin-left:10px">
           <div class="profilebox" style="text-shadow: 1px 1px #fff; background: rgba(265, 265, 265, .35); " >
             <% if @user.videodesc1 %> 
               <br><%= simple_format @user.videodesc1.gsub(/\r\n/, '<br>') %><br><br>
@@ -72,14 +72,14 @@
       </div>
 
       <div class="row" >
-        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
+        <div class="col-lg-6 col-md-10 col-sm-12 col-xs-12 " >
           <% if @user.youtube2? %>
             <% if @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
               <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube2 %>" frameborder="0" allowfullscreen></iframe>
             <% end %>
           <% end %>
         </div>
-        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
+        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 " style="margin-left:10px">
           <div class="profilebox" >
             <% if @user.videodesc2 %> 
               <br><%= simple_format @user.videodesc2.gsub(/\r\n/, '<br>') %><br><br>
@@ -89,7 +89,7 @@
       </div>
 
       <div class="row" >
-        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
+        <div class="col-lg-6 col-md-10 col-sm-12 col-xs-12 " >
           <% if @user.youtube3? %>
             <% if @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
               <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube3 %>" frameborder="0" allowfullscreen></iframe>
@@ -98,7 +98,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
+        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 " style="margin-left:10px">
           <div class="profilebox" >
             <% if @user.videodesc3 %> 
               <br><%= simple_format @user.videodesc3.gsub(/\r\n/, '<br>') %><br><br>
@@ -109,7 +109,7 @@
 
       <br><br>
 
-    <% else  %>
+<% else  %>
       <div class="profilebox" >
         <% if @user.about %> 
           <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
@@ -125,11 +125,9 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+<% end %>
 
     </div>
   </div>
-</div>
-</div>
 </div>
 </div>

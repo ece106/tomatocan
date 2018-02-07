@@ -2,7 +2,7 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
-  <div class="container col-lg-12 " >
+  <div class="container col-xs-12 " >
     <% if user_signed_in? %>
       <% if !@user.stripeid.present? && @user.id != 143 %>
         <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.<br><br>
