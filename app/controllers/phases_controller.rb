@@ -37,7 +37,8 @@ class PhasesController < ApplicationController
     active = Phase.where("deadline > ?", Time.now)
     active.find_each do |phs|
       author = User.find(phs.user_id).name
-      partner <<  {name: phs.name, creator: author, mission: phs.mission, id: phs.id,
+      authorperm = User.find(phs.user_id).permalink
+      partner <<  {name: phs.name, creator: author, authorpermalink: authorperm, mission: phs.mission, id: phs.id,
           permalink: phs.permalink, deadline: phs.deadline, phasepic: phs.phasepic} 
     end 
     @partnerphs = partner.sort_by{|e| e[:deadline]}

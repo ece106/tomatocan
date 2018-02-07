@@ -23,16 +23,13 @@
   </head>
     <%= render 'layouts/authorform' %>
   <div id='sidebar'>
-      <%= render 'layouts/sidebar' %>
+      <%= render 'layouts/phasesidebar' %>
   </div> 
-  
 <body>
-  <center >
-    <div class="container">
+    <div class="container" >
       <%= yield %>
     </div> 
     <% #= render 'layouts/footer' %>   
-  </center>
 
 </body>
 </html>

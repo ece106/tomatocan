@@ -10,123 +10,125 @@
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
-<div id="wrapper">
+<div id="wrapper ">
   <div id="page-content-wrapper">
     <div class="page-content">
-      <div class="container" style="margin-top:-40px">
+      <div class="container" style="margin-top:-30px;">
     
-<% if @user.author == 'author' %>
+<% if @user.author == 'author' || @user.author == 'filmmaker' || @user.author == 'actor' %>
 
-  <div class="row" >
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 " >
-  <% if @phase %>
-      <h2>Get Sneak Preview access to my current project!</h2><br>
-    <div style="float:left; text-align:left;">
-      <%= form_for(Agreement.new) do |f| %> 
-        <% if @numusrgroups == 1 %>
-          Partner <%= @usrgrpnameid[0][0] %> with my project phase and your organization will receive 5% of the proceeds from any phase Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
-           <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
-        <% end %>
-        <% if @numusrgroups > 1 %>
-          Select one of your organizations to partner with my project phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
-        <% end %>
+  <div class="row " >
+    <div class="col-md-12 col-sm-10 col-xs-8" >
+      <% if @phase %> 
+        <h2>Get Sneak Preview access to my current project!</h2><br>
+        <div style="float:left; text-align:left;">
+          <%= form_for(Agreement.new) do |f| %> 
+            <% if @numusrgroups == 1 %>
+              Partner <%= @usrgrpnameid[0][0] %> with my project phase and your organization will receive 5% of the proceeds from any phase Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
+              <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
+            <% end %>
+            <% if @numusrgroups > 1 %>
+              Select one of your organizations to partner with my project phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
+            <% end %>
 
-          <table>
-            <tr><td>
+            <table>
+              <tr><td>
               <% if @numusrgroups > 0 %>
                 <%= button_tag 'Partner', value: @phase.id, type: :submit, name: "agreement[phase_id]" %>
               <% end %>
-            </td>
-            <td style='font-size:22px'><%= link_to(@phase.name, phase_path(@phase.permalink)) %></td></tr>
-            <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@phase.permalink), method: :get) %></td>
-            <td class = 'blacktxt'><%= truncate(@phase.mission , :length => 200, :separator => ' ') %> </td></tr>
-          </table><br>
-      <% end %><br>
-      <% if @numusrphs > 1 %>
-        <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br><br>
+              </td>
+              <td style='font-size:22px'><%= link_to(@phase.name, phase_path(@phase.permalink)) %></td></tr>
+              <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@phase.permalink), method: :get) %></td>
+              <td class = 'blacktxt'><%= truncate(@phase.mission , :length => 200, :separator => ' ') %> </td></tr>
+            </table><br>
+          <% end %><br>
+          <% if @numusrphs > 1 %>
+            <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br><br>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  <% end %>
-  </div>
   </div>
   
-  <div class="row" >
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
-      <% if @user.youtube1? %>
-        <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
-          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube1 %>" frameborder="0" allowfullscreen></iframe>
-        <% end %>
-      <% else %>
-        <% if @user == current_user %>
-          Replace the default YouTube code on your Edit Profile page with the code from your YouTube account and display YOUR videos here
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
-      <div class="profilebox" style="text-shadow: 1px 1px #fff; background: rgba(265, 265, 265, .35); " >
-        <% if @user.videodesc1 %> 
-          <br><%= simple_format @user.videodesc1.gsub(/\r\n/, '<br>') %><br><br>
-        <% end %>
+      <div class="row" >
+        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
+          <% if @user.youtube1? %>
+            <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
+              <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+            <% end %>
+          <% else %>
+            <% if @user == current_user %>
+              Replace the default YouTube code on your Edit Profile page with the code from your YouTube account and display YOUR videos here
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
+          <div class="profilebox" style="text-shadow: 1px 1px #fff; background: rgba(265, 265, 265, .35); " >
+            <% if @user.videodesc1 %> 
+              <br><%= simple_format @user.videodesc1.gsub(/\r\n/, '<br>') %><br><br>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row" >
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
-      <% if @user.youtube2? %>
-        <% if @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
-          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube2 %>" frameborder="0" allowfullscreen></iframe>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
+      <div class="row" >
+        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
+          <% if @user.youtube2? %>
+            <% if @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
+              <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube2 %>" frameborder="0" allowfullscreen></iframe>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
+          <div class="profilebox" >
+            <% if @user.videodesc2 %> 
+              <br><%= simple_format @user.videodesc2.gsub(/\r\n/, '<br>') %><br><br>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
+          <% if @user.youtube3? %>
+            <% if @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
+              <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube3 %>" frameborder="0" allowfullscreen></iframe>
+            <% elsif @user.youtube3.match(/<iframe/) && @user.youtube3.match(/\/\/www.youtube.com\/embed/) %>
+              <%= @user.youtube3.html_safe %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
+          <div class="profilebox" >
+            <% if @user.videodesc3 %> 
+              <br><%= simple_format @user.videodesc3.gsub(/\r\n/, '<br>') %><br><br>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <br><br>
+
+    <% else  %>
       <div class="profilebox" >
-        <% if @user.videodesc2 %> 
-          <br><%= simple_format @user.videodesc2.gsub(/\r\n/, '<br>') %><br><br>
+        <% if @user.about %> 
+          <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
         <% end %>
       </div>
-    </div>
-  </div>
-
-  <div class="row" >
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12 " >
-      <% if @user.youtube3? %>
-        <% if @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
-          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube3 %>" frameborder="0" allowfullscreen></iframe>
-        <% elsif @user.youtube3.match(/<iframe/) && @user.youtube3.match(/\/\/www.youtube.com\/embed/) %>
-          <%= @user.youtube3.html_safe %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-9 " style="margin-left:10px">
-      <div class="profilebox" >
-        <% if @user.videodesc3 %> 
-          <br><%= simple_format @user.videodesc3.gsub(/\r\n/, '<br>') %><br><br>
-        <% end %>
+      <div class="row" >
+        <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
+          <% if @user.twitter %>
+            <a class="twitter-timeline"    
+              data-widget-id="375760459510464512"
+              data-screen-name="<%= @user.twitter %>" data-show-replies="false"
+              data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </div>
-
-    <br><br>
-
-<% else  %>
-  <div class="profilebox" >
-    <% if @user.about %> 
-      <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
     <% end %>
-  </div>
-  <div class="row" >
-    <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
-      <% if @user.twitter %>
-        <a class="twitter-timeline"    
-        data-widget-id="375760459510464512"
-        data-screen-name="<%= @user.twitter %>" data-show-replies="false"
-        data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
-      <% end %>
+
     </div>
   </div>
-<% end %>
-
 </div>
 </div>
 </div>

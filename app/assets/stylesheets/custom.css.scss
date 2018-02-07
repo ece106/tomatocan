@@ -17,10 +17,6 @@ body {
   padding-top: 0px;
 }
 
-body2 {
-  padding-top: 0px;
-}
-
 .hometop {
   display: flex; /* equal height of the children */
 }
@@ -346,6 +342,7 @@ center .info-content {
 @media (max-width:767px) {
     #wrapper {
       padding-left: 0;
+      align-content:left;
     }
     #sidebar-wrapper {
       left: 0;
@@ -360,5 +357,3 @@ center .info-content {
       transition: all 0.4s ease 0s;
     }
 }
-
-

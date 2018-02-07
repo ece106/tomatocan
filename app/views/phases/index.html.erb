@@ -61,9 +61,11 @@
           <projecttext >
             <div style="padding:0px; font-size:22px"><%= link_to phs[:name], phase_path(phs[:permalink]) %>
             </div>
-            <%= phs[:creator] %>
-            <% "Write code to send email to author asking permission to post. " %>
-            <br><%= link_to truncate(phs[:mission], :length => 160, :separator => ' '), phase_path(phs[:permalink]) %>...
+            <div style="font-color:white">
+              <%= link_to phs[:creator], user_profile_path(phs[:authorpermalink]), style:'color: white;' %>
+              <% "Write code to send email to author asking permission to post. " %>
+            </div>  
+            <%= link_to truncate(phs[:mission], :length => 160, :separator => ' '), phase_path(phs[:permalink]) %>...
             <% if user_signed_in? %>
               <% if @numusrgroupstripe > 0 %><br>
               <div style = "color:#000; float:left"> <%= button_tag 'Partner', value: phs[:id], type: :submit, name: "agreement[phase_id]" %></div>

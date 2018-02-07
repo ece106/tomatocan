@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
   def show
     @books = @user.books
-    @phase = @user.phases.order('deadline').last #only last 2 proj created displayed on user home, regardless of deadline. 
     @numusrphs = @user.phases.count
     @numusrgroups = 0 
     if user_signed_in?
@@ -344,6 +343,10 @@ class UsersController < ApplicationController
 
     def set_user 
       @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+      if @user.phases.any?
+        @phase = @user.phases.order('deadline').last 
+        @merchandise = @phase.merchandises.order(price: :asc)
+      end
     end
 end
 
