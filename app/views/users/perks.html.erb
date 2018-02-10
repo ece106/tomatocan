@@ -14,7 +14,7 @@
       <div class="container col-lg-12">
 
 <div class="blacktxt"  >
-<h1><%= @user.name %>'s Patron Perks</h1>
+<h2>Support <%= @user.name %>'s work by purchasing these Patron Perks</h2>
 
 <% if @user == current_user %>
   Create a <%= button_to "New Perk", new_merchandise_path, method: :get %> <br><br>

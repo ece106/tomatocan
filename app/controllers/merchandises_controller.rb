@@ -74,6 +74,10 @@ class MerchandisesController < ApplicationController
     def set_merchandise
       @merchandise = Merchandise.find(params[:id])
       @user = User.find(@merchandise.user_id)
+      if @user.phases.any?
+        @sidebarphase = @user.phases.order('deadline').last 
+        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+      end
     end
 
     def parse_youtube url

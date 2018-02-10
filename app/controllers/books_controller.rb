@@ -80,6 +80,10 @@ class BooksController < ApplicationController
     def set_book
       @book = Book.find(params[:id])
       @user = User.find(@book.user_id)
+      if @user.phases.any?
+        @phase = @user.phases.order('deadline').last 
+        @merchandise = @phase.merchandises.order(price: :asc)
+      end
     end
 
     def book_params

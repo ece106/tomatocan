@@ -3,9 +3,10 @@
 <header class="navbar navbar-userpage">
   <div class="navbar-inner clearfix">
     <ul class="nav navbar-nav pull-left">
-      <% if @user.author == 'author' %>
+      <% if @user.author == 'author' || @user.author == 'filmmaker' || @user.author == 'actor' %>
         <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
-        <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
+        <li><%= link_to " Edit Books ", user_edit_path(@user.permalink) %>
+        <li><%= link_to " Edit Movies ", user_movieedit_path(@user.permalink) %>
       <% else %>
         <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
       <% end %>

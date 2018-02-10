@@ -113,6 +113,34 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "youtube", limit: 255
   end
 
+  create_table "movieroles", force: :cascade do |t|
+    t.string "role"
+    t.string "roledesc"
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.text "about"
+    t.string "youtube1"
+    t.string "youtube2"
+    t.string "youtube3"
+    t.string "videodesc1"
+    t.string "videodesc2"
+    t.string "videodesc3"
+    t.string "moviepic"
+    t.string "genre"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "director"
+    t.date "releasedate"
+  end
+
   create_table "phases", id: :serial, force: :cascade do |t|
     t.string "name", limit: 255
     t.integer "user_id"

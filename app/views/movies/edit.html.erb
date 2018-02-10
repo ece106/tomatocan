@@ -1,0 +1,98 @@
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content">
+      <div class="container col-md-12">
+
+  <% if @user == current_user %>
+    <p id="notice"><%= notice %></p>
+    <%= form_for @movie, :html => {:multipart => true} do |f| %>
+      <% if @movie.errors.any? %> 
+        <div id="error_explanation">
+          <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+          <ul>
+            <% @movie.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @movie.created_at < Time.now + 5.days %>
+        <%= link_to 'Delete ' + @movie.title, @movie, method: :delete, data: { confirm: 'Are you sure you want to delete this movie?' } %>
+      <% end %>
+
+      <%= render 'shared/error_messages' %>
+      <center><span class="Body-C5">Items with * are required</span></center> 
+      <%= f.hidden_field :user_id %>
+
+      <div class="editbooktxt" >
+        <div style="float:left;width:75%;">
+          <b>* movie title </b></div>
+        <div style="float:right;width:25%;">
+          Genre <br></div>
+      </div>
+      <div class="profilebox" >
+        <div style="float:left;width:75%;">
+          <%= f.text_area :title, :cols => 50, :rows => 2, placeholder: "movie title" %>
+        </div>
+        <div style="float:right;width:25%;">
+          <%= f.text_area :genre, :cols => 15, :rows => 1, placeholder: "Genre" %>
+        </div><br>
+      </div><br><br>
+
+        <br><br><b>About Movie </b> (2000 characters max)<br>
+      </div>
+      <div class="profilebox" >
+        <%= f.text_area :about, :cols => 70, :rows => 6, placeholder: "movie jacket blurb" %>
+      </div>
+      <span class="blurbcount"></span>
+
+      <div class="editbooktxt" >
+        <% f.date_select :releasedate %><br>
+        <br>Upload a banner picture for the movie (.jpg, .gif, .jpeg, or .png)
+        <br><%= f.file_field :moviepic %><br>
+      </div>
+
+      <div class="editbooktxt" >
+        <br>Movie director
+        <br><%= f.text_field :director, placeholder: current_user.name  %><br>
+      </div>
+        
+      <div class="editbooktxt" >
+        <br><br>If you have video about your movie on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. URLs from any other site will be ignored. <br /> 
+      </div>
+      <div class="profilebox" >
+        Video 1: <br>
+        <%= f.text_area :youtube1, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %><br>
+        <br>Video 2:<br /> 
+        <%= f.text_area :youtube2, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %><br><br>
+        Video 3: <br>
+        <%= f.text_area :youtube3, :cols => 70, :rows => 1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %><br><br><br>
+        <b>Enter short descriptions </b> (less than 255 characters) of your videos below<br>
+        Video 1:<br>
+        <%= f.text_area :videodesc1, :cols => 70, :rows => 2 %>
+        <span class="youtube1bookcount"></span><br>
+        Video 2: <br>
+        <%= f.text_area :videodesc2, :cols => 70, :rows => 2 %>
+        <span class="youtube2bookcount"></span><br>
+        Video 3: <br>
+        <%= f.text_area :videodesc3, :cols => 70, :rows => 2 %>
+        <br>
+        <%= f.submit "Save " + @movie.title %><br>
+
+ <br>There are a few situations where movie information will fail to save. If you are having trouble saving your movie info, please check for these errors: <br>
+1. Uploading a file that is not a .pdf for imovie/PC, or not a .mobi for Kindle, etc. <br>
+2. Uploading a file that is not a .jpg, .gif, .jpeg, or .png for movie cover <br>
+3. Entering more than 140 characters into the field for Sentence about movie <br>
+4. Entering more than 2000 characters into the field for movie blurb <br>
+5. Leaving title field blank<br>
+6. Entering text into Video fields that does not contain a YouTube.com URL</i>
+<br><br><br>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+</div>
+</div>
+</div>

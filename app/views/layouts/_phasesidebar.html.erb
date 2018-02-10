@@ -14,13 +14,13 @@
 
 <div class="author-books" style = "width: 320px; overflow: wrap;">
   <% if @user.phases.any? %>
-  <% if @phase.merchandises.any? %>
+  <% if @sidebarphase.merchandises.any? %>
     <% if params[:groupid].present? %>
       <% groupsupported = Group.find(params[:groupid]) %>
       5% of purchase will go to <%= groupsupported.name %><br>
     <% end %>
 
-    <% @merchandise.each do |merch| %>
+    <% @sidebarmerchandise.each do |merch| %>
       <% if user_signed_in? %>
         <% if merch.itempic.present? && merch.itempic != '' %>
           <table ><tr>

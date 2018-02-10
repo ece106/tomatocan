@@ -138,6 +138,13 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def movielist
+    @movies = @user.movies
+    respond_to do |format|
+      format.html # booklist.html.erb
+      format.json { render json: @user }
+    end
+  end
 
   # GET /users/new I don't think this is used
   def new
@@ -153,6 +160,11 @@ class UsersController < ApplicationController
     @books = @user.books
     @book = current_user.books.build # if signed_in?
     @booklist = Book.where(:user_id => @user.id)
+  end
+  def movieedit
+    @movies = @user.movies
+    @movie = current_user.movies.build # if signed_in?
+    @movielist = Movie.where(:user_id => @user.id)
   end
 
   def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
@@ -344,8 +356,8 @@ class UsersController < ApplicationController
     def set_user 
       @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
       if @user.phases.any?
-        @phase = @user.phases.order('deadline').last 
-        @merchandise = @phase.merchandises.order(price: :asc)
+        @sidebarphase = @user.phases.order('deadline').last 
+        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
       end
     end
 end

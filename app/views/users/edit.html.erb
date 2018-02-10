@@ -4,11 +4,11 @@
       <div class="container col-md-12">
 
   <% if @user == current_user %>
-    <div class = "featured">
-      Edit existing book 
-    </div>  
     <div class = "blacktxt">
       <% if @user.books.any? %>
+        <div class = "featured">
+          Edit existing book 
+        </div>  
         <% @booklist.each do |book| %>
           <table><tr><td>
             <%= link_to 'Edit', edit_book_path(book) %> </td><td>

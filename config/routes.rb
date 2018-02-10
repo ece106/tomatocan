@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :movieroles
+  resources :movies
   resources :agreements
 
 #  authenticated :user do
@@ -70,6 +72,8 @@ Rails.application.routes.draw do
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
   match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
+  match '/:permalink/movies' => "users#movielist", :as => :user_movielist, via: 'get'
+  match '/:permalink/movieedit' => "users#movieedit", :as => :user_movieedit, via: 'get'
   match '/:permalink/eventlist' => "users#eventlist", :as => :user_eventlist, via: 'get'
   match '/:permalink/pastevents' => "users#pastevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'

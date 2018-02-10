@@ -22,10 +22,12 @@
       <div class="whitetxt", style="font-size:28px;">
         <br><b>CrowdFunding</b><br> 
       </div>
+      <br><%= button_to "SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'} %>
+
     </div>
 
     <div class="col-md-2 col-sm-6 col-xs-12">
-      <%= image_tag("cpLogo150.png") %><br><br> 
+      <br><%= image_tag("cpLogo150.png") %><br><br> 
           <% if !user_signed_in? %>
             <div class="lavenderlink">
               <div style="font-size:28px">
