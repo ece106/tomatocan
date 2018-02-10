@@ -31,7 +31,7 @@
 
   <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12" style="margin-top:-20px">
       <% if @movie.moviepic.present? && @movie.moviepic != '' %>
-        <%= image_tag(@movie.coverpic, :size => "600x200") %> 
+        <%= image_tag(@movie.moviepic, :size => "600x200") %> 
       <% end %>
       <div class="password" >
         Directed by <%= @movie.director %> 
