@@ -19,7 +19,7 @@
 
   <div class="row " >
     <div class="col-md-12 col-sm-12 col-xs-12" >
-      <% if @phase %> 
+      <% if @sidebarphase %> 
         <h2>Get Sneak Preview access to my current project!</h2><br>
         <div style="float:left; text-align:left;">
           <%= form_for(Agreement.new) do |f| %> 
@@ -34,12 +34,12 @@
             <table>
               <tr><td>
               <% if @numusrgroups > 0 %>
-                <%= button_tag 'Partner', value: @phase.id, type: :submit, name: "agreement[phase_id]" %>
+                <%= button_tag 'Partner', value: @sidebarphase.id, type: :submit, name: "agreement[phase_id]" %>
               <% end %>
               </td>
-              <td style='font-size:22px'><%= link_to(@phase.name, phase_path(@phase.permalink)) %></td></tr>
-              <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@phase.permalink), method: :get) %></td>
-              <td class = 'blacktxt'><%= truncate(@phase.mission , :length => 200, :separator => ' ') %> </td></tr>
+              <td style='font-size:22px'><%= link_to(@sidebarphase.name, phase_path(@sidebarphase.permalink)) %></td></tr>
+              <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@sidebarphase.permalink), method: :get) %></td>
+              <td class = 'blacktxt'><%= truncate(@sidebarphase.mission , :length => 200, :separator => ' ') %> </td></tr>
             </table><br>
           <% end %><br>
           <% if @numusrphs > 1 %>

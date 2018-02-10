@@ -128,6 +128,10 @@ class PhasesController < ApplicationController
         @phase = Phase.find_by_permalink(params[:permalink])
       end
       @user = User.find(@phase.user_id)
+      if @user.phases.any?
+        @sidebarphase = @user.phases.order('deadline').last 
+        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
