@@ -1,49 +1,49 @@
+<div class="container-flex" >
 <div class="row" >
-  <div class="col-md-6 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+  <div class="col-md-4 col-sm-6" style= "text-align:left; margin-top:-30px;" >
+    <% @usertype = params[:usertype] %>
 
 <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
   <%= devise_error_messages! %>
 
-  <%#= f.hidden_field :latitude, :value => (request.location ? request.location.latitude : 38.899) %>
-  <%#= f.hidden_field :longitude, :value => (request.location ? request.location.longitude : -77.037)%>
-  
-  <p><b>Username</b> - numbers and letters ONLY (must be less than 20 characters)<br />
-  www.CrowdPublish.TV/<%= f.text_field :permalink, :autofocus => true, placeholder: "username" %>  <p> 
   <b>Full name</b>  <br />
-  <%= f.text_field :name, :autofocus => true, :size => 40 %>  <p>
+  <%= f.text_field :name, :autofocus => true, :size => 40 %> <br>
   <b>Email</b><br />
-  <%= f.email_field :email, :autofocus => true, :size => 40 %>  <p>
+  <%= f.email_field :email, :autofocus => true, :size => 40 %>
   <br />
 
-  Which kind of account do you wish to use? (This can be changed later.)
-  <br><%= radio_button_tag(:author, "filmmaker") %>
-  <%= label_tag(:author_adult, "Filmmaker ") %>
-  <br><%= radio_button_tag(:author, "actor") %>
-  <%= label_tag(:author_adult, "Actor ") %>
-  <br><%= radio_button_tag(:author, "author") %>
-  <%= label_tag(:author_adult, "Author") %>
-  <br><%= radio_button_tag(:author, "reader") %>
-  <%= label_tag(:author_child, "Reader, Reviewer, or Project Patron") %>
+  Which kind of account do you wish to use? (This can be changed later.)<br>
+  <table><tr><td>
+    <%= radio_button_tag(:author, "actor") %>Actor</td>
+  <td><%= radio_button_tag(:author, "filmmaker") %>Filmmaker</td></tr>
+  <td><%= radio_button_tag(:author, "author") %>Author</td>
+  <td><%= radio_button_tag(:author, "reader") %> Fan </td></tr>
+  </table>
 
-  <p>  Password <br />
+  <br><b>Username</b> - numbers and letters ONLY (must be less than 20 characters)<br />
+  www.CrowdPublish.TV/<%= f.text_field :permalink, :autofocus => true, placeholder: "username" %> <br>
+
+  Password <br />
   <%= f.password_field :password %><br>
   Enter password again <br />
-  <%= f.password_field :password_confirmation %><p>
+  <%= f.password_field :password_confirmation %><br><br>
   I agree to the CrowdPublishTV
-  <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %>
-  <br><br/>  <%= f.submit "Sign up" %>
+  <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %><br>
 
+    <% if @usertype == "creator" %> 
+      <b>Get the Free eBook
+    <% end %>
+  <%= f.submit "Sign up" %></b>
 <% end %>
-
-    <br><br><br><br><br><br>
   </div>
 
-  <div class="col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
-
-    <div id="signup">
-      Already a member? 
-      <%= render "devise/shared/links" %>
-    </div>
+  <div class="col-md-8 col-sm-6 " style= "background-color: #EFBFFF; margin-top:-40px; height:100vh; " >
+    <br>Already a member? <%= link_to 'Sign in', "/login" %><br><br>
+    <% if @usertype == "creator" %> 
+      <%= render "devise/registrations/creatornew" %>
+    <% else %> 
+      <%= render "devise/registrations/newfan" %>
+    <% end %>
   </div>
 
 </div>

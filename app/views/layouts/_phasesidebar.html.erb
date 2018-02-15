@@ -5,7 +5,11 @@
   <div class="container col-xs-12 " >
     <% if user_signed_in? %>
       <% if !@user.stripeid.present? && @user.id != 143 %>
-        <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.<br><br>
+        <% if current_user.id == @user.id %>
+          You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path %> before your Perks are available to Patrons.
+        <% else %>
+          <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.<br><br>
+        <% end %>
       <% end %>
     <% else %>
       <%= link_to image_tag("signup.png", title: "Sign Me Up!"), "/signup"%>to access Patron Perks <br>

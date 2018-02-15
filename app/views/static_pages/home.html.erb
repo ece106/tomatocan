@@ -12,26 +12,26 @@
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
         <% if user_signed_in? %>
-          <br><%= link_to "Earn more Revenue &", new_phase_path %><br>
-          <%= link_to "increase Engagement", new_phase_path %>
+          <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
+          <%= link_to "Raise more funds", new_phase_path %>
         <% else %>
-          <br><%= link_to "Earn more Revenue &", "/signup" %><br>
-          <%= link_to "increase Engagement", "/signup" %>
+          <br><%= link_to "Increase fan engagement &", new_user_signup_path(usertype: "creator") %><br>
+          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator") %>
         <% end %>
       </div>
-      <div class="whitetxt", style="font-size:28px;">
-        <br><b>CrowdFunding</b><br> 
+      <div class = "usermenu">
+        <br>Become an Early Adopter & 
       </div>
-      <br><%= button_to "SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'} %>
+      <%= button_to "TAKE THE SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'} %>
 
     </div>
 
-    <div class="col-md-2 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <br><%= image_tag("cpLogo150.png") %><br><br> 
           <% if !user_signed_in? %>
             <div class="lavenderlink">
               <div style="font-size:28px">
-                <%= link_to "SIGN UP ", "/signup" %>
+                <%= link_to "Get the Free eBook", new_user_signup_path(usertype: "creator") %>
               </div>
             </div>   
             <div class="usermenu" >
@@ -39,19 +39,16 @@
             </div> 
           <% end %>
     </div>
-    <div class="col-md-5 col-sm-7 col-xs-12" style="padding-top:20px">
+    <div class="col-md-4 col-sm-7 col-xs-12" style="padding-top:20px">
       <div class="whitetxt" style="font-size:28px" >
-        <b>Movie Fans - Readers </b>
+        <b>Movie & Book Fans </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
         <% if user_signed_in? %>
-          <br><%= link_to "Sneak preview access to Premium Content", phases_path %>
+          <br><%= link_to "Sneak preview access & Personalized Content", phases_path %>
         <% else %>
-          <br><%= link_to "Get sneak preview access to Premium Content", "/signup" %>
+          <br><%= link_to "Get sneak preview access & Personalized content", "/signup" %>
         <% end %>
-      </div>
-      <div class="whitetxt", style="font-size:28px;">
-        <br><b>CrowdEngagement</b?<br>
       </div>
     </div>
   </div>

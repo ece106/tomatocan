@@ -20,6 +20,10 @@ class StaticPagesController < ApplicationController
   end
 
   private
+    def static_pages_params
+      params.require(:static_page).permit(:usertype )
+    end
+
     def resolve_layout
       case action_name
       when "home"

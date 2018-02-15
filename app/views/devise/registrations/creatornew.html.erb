@@ -1,0 +1,50 @@
+<div class="container-flex" >
+<div class="row" >
+  <div class="col-md-5 col-sm-4 col-xs-12 " style= "background-color: #EFBFFF; text-align:left; height:100vh; margin-top:-40px;" >
+    <br>Already a member? <%= link_to 'Sign in', "/login" %><br><br>
+
+    <div class="featured">
+      <b>ACTORS - FILMMAKERS - AUTHORS</b><br>
+    </div>
+    Set up your CrowdPublish.TV shop to offer unique perks to your most loyal fans. We'll walk you through getting set up and help you develop ideas for perks that only YOU could offer. With CrowdPublish.TV's process, your fans will be telling all their friends about your books or movies long before you're halfway done.<br><br><br>
+
+  </div>
+
+  <div class="col-md-6 col-sm-7 col-xs-12 " style= "text-align:left; margin-top:-30px;" >
+  <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
+  <%= devise_error_messages! %>
+
+  <b>Full name</b>  <br />
+  <%= f.text_field :name, :autofocus => true, :size => 40 %> <br>
+  <b>Email</b><br />
+  <%= f.email_field :email, :autofocus => true, :size => 40 %>
+  <br />
+
+  Which kind of account do you wish to use? (This can be changed later.)<br>
+  <table><tr><td>
+    <%= radio_button_tag(:author, "actor") %>
+  <%= label_tag(:author_adult, "Actor ") %></td>
+  <td><%= radio_button_tag(:author, "filmmaker") %>
+  <%= label_tag(:author_adult, "Filmmaker ") %></td></tr>
+  <td><%= radio_button_tag(:author, "author") %>
+  <%= label_tag(:author_adult, "Author") %></td>
+</td></tr>
+  </table>
+
+  <br><b>Username</b> - numbers and letters ONLY (must be less than 20 characters)<br />
+  www.CrowdPublish.TV/<%= f.text_field :permalink, :autofocus => true, placeholder: "username" %> <br>
+
+  Password <br />
+  <%= f.password_field :password %><br>
+  Enter password again <br />
+  <%= f.password_field :password_confirmation %><br><br>
+  I agree to the CrowdPublishTV
+  <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %>
+  <br> <%= f.submit "Sign up" %>
+
+<% end %>
+
+    <br><br><br><br><br><br>
+  </div>
+</div>
+</div>
