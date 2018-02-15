@@ -2,6 +2,15 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
+  <% if user_signed_in? %>
+    <% if current_user.id == @user.id %>
+      <div class="author-books" style = "font-size:20px">
+        <br>Download your <%= link_to "HOW-TO eBOOK", "https://github.com/crowdpublishtv/crowdpublishtv/raw/master/public/HowtoIncreaseFanEngagementRaiseMoreFundsWithCrowdPublishTVbyLisaSchaeferPhD.pdf" %><br>
+      </div>  
+      If above link doesn't work, download <%= link_to "here", "https://github.com/crowdpublishtv/crowdpublishtv/blob/master/public/HowtoIncreaseFanEngagementRaiseMoreFundsWithCrowdPublishTVbyLisaSchaeferPhD.pdf" %><br>
+      <% end %>
+    <% end %>
+
   <div class="container col-xs-12 " >
     <% if user_signed_in? %>
       <% if !@user.stripeid.present? && @user.id != 143 %>

@@ -30,10 +30,11 @@
   I agree to the CrowdPublishTV
   <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %><br>
 
-    <% if @usertype == "creator" %> 
-      <b>Get the Free eBook
-    <% end %>
-  <%= f.submit "Sign up" %></b>
+  <% if @usertype == "creator" %> 
+    <%= f.submit "Get eBook" %></b>
+  <% else %>
+    <%= f.submit "Sign up" %></b>
+  <% end %>
 <% end %>
   </div>
 
