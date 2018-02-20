@@ -1,8 +1,14 @@
 <div class="blacktxt">
-All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. No need for your Patrons to wait until project or phase is complete before they receive their items. So if you're offering to tweet to them, do it as soon as you see their contribution posted on your dashboard. If you're offering consulting time, text or call to arrange a session right away! Check your dashboard often.<br><br>
+All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. Check your dashboard often.<br><br>
 
-<% "if (current_user.stripeid.present? && @phase.user_id == current_user.id) ||current_user.id == 143 " %>
-  <div class="socialize" >Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> </div><br>
+<% "if (current_user.stripeid.present? && @phase.user_id == current_user.id) || current_user.id == 143 " %>
+<% if user_signed_in? %>
+<% if @phase.user_id == current_user.id || current_user.id == 143 %>
+
+  <div class="socialize" >
+    <%= button_to "Go to " + @phase.name + " page", phase_path(@phase.permalink), method: :get %>
+    Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> 
+  </div><br>
 
 <table>
     <tr>
@@ -292,7 +298,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
           <a class="accordion-toggle10" data-toggle="collapse" href="#accordion-toggle10">
             <span>
               ...Details for <b>Combo Package</b> perk
-            </span>
+            </span> 
             <span class="hidden10more">
               ...Hide <b>Combo Package</b> details
             </span>
@@ -319,8 +325,12 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
             <% end %>
           </div>
         <% end %>  
+
+
 </div>
-<% "else %>
-  You must first sign up for a <%= link_to 'Stripe Account ', user_createstripeaccount_path(current_user.permalink) %> (to receive payments) before offering items for sale.
-<% end" %>
+<% "else 
+  You must first sign up for a  link_to 'Stripe Account ', user_createstripeaccount_path(current_user.permalink) (to receive payments) before offering items for sale." %>
+
+<% end %>
+<% end %>
 <br><br><br>

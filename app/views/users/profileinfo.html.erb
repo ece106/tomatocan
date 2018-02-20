@@ -1,7 +1,7 @@
 <% @title=" edit user profile "  %>
 <p class="flash"><%= flash.notice %></p>
 
-<div style="position:absolute; left:0px; top:7s0px; opacity:0.3; ">
+<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
     <%= image_tag @user.profilepic, :height => "150" %>
   <% elsif @user.profilepicurl %>
@@ -16,11 +16,8 @@
 </div>
 
 <% if @user == current_user %>
-
-  <%#= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= form_for @user, :html => {:multipart => true} do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
-    <%#= devise_error_messages! Undefined method 'resource' in app_helper %>
 
   <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
     <div class="blacktxt" >
@@ -40,13 +37,7 @@
         <%= f.text_area :twitter, :cols => 30, :rows => 1, placeholder: "twitterhandle" %>
       </div>
 
-      <br>Change account type:
-      <br><%= f.radio_button(:author, 'reader') %>
-      <%= label_tag(:author_child, "Reader, Reviewer, or Project Patron") %>
-      <br><%= f.radio_button(:author, 'author') %>
-      <%= label_tag(:author_adult, "Author or Filmmaker") %>
- 
-      <br>Tell us all about yourself. <br />
+      <br>Bio: Tell us all about yourself. <br />
       <div class="profilebox" >
         <%= f.text_area :about, :cols => 40, :rows => 10, placeholder: 'About Me' %>
       </div>
@@ -54,6 +45,17 @@
       <div class="profilebox" style="vertical-align: text-bottom">
         <b style="vertical-align: super">www.CrowdPublish.TV/ </b> <%= f.text_area :permalink, :cols => 23, :rows => 1, placeholder:  "Your custom URL handle" %> 
       </div>
+
+      <br>Change account type:
+      <br><%= f.radio_button(:author, 'actor') %>
+      <%= label_tag(:author_adult, "Actor") %>
+      <br><%= f.radio_button(:author, 'filmmaker') %>
+      <%= label_tag(:author_adult, "Filmmaker") %>
+      <br><%= f.radio_button(:author, 'author') %>
+      <%= label_tag(:author_adult, "Author") %>
+      <br><%= f.radio_button(:author, 'reader') %>
+      <%= label_tag(:author_child, "Fan") %>
+ 
       <br>Change your name <br> 
       <div class="profilebox" >
         <%= f.text_area :name, :cols => 40, :rows => 1 %>

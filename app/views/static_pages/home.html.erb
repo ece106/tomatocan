@@ -1,7 +1,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="CrowdPublish.TV" content="like eBay for authors - with video!">
-  <title>CrowdPublishTV - The Future of Empowerment is Your Story</title>
+  <meta name="CrowdPublish.TV" content="Actors Filmmakers Authors - Increase Fan Engagement & Earn More Funds">
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps actors, filmmakers, authors Increase Fan Engagement & Earn More Funds" />
+  <title>CrowdPublishTV - Actors Filmmakers Authors - Increase Fan Engagement & Earn More Funds</title>
 </head>
 
 <div class="headerimage" style="margin-top:-20px">
@@ -10,15 +13,15 @@
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:28px">
         <b>Filmmakers - Actors - Authors </b>
       </div>
-      <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
-        <% if user_signed_in? %>
-          <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
-          <%= link_to "Raise more funds", new_phase_path %>
-        <% else %>
+      <% if user_signed_in? %>
+        <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
+        <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
+      <% else %>
+        <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
           <br><%= link_to "Increase fan engagement &", new_user_signup_path(usertype: "creator") %><br>
-          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator") %>
-        <% end %>
-      </div>
+          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
+        </div>
+      <% end %>
       <div class = "usermenu">
         <br>Become an Early Adopter & 
       </div>
@@ -29,11 +32,6 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
       <br><%= image_tag("cpLogo150.png") %><br><br> 
           <% if !user_signed_in? %>
-            <div class="lavenderlink">
-              <div style="font-size:28px">
-                <%= link_to "Get the Free eBook", new_user_signup_path(usertype: "creator") %>
-              </div>
-            </div>   
             <div class="usermenu" >
               <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br>
             </div> 
@@ -45,9 +43,11 @@
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
         <% if user_signed_in? %>
-          <br><%= link_to "Sneak preview access & Personalized Content", phases_path %>
+          <br><%= link_to "Sneak preview access &", phases_path %><br>
+          <%= link_to "Personalized Content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
         <% else %>
-          <br><%= link_to "Get sneak preview access & Personalized content", "/signup" %>
+          <br><%= link_to "Get sneak preview access &", "/signup" %>
+          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
         <% end %>
       </div>
     </div>

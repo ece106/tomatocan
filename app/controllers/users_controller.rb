@@ -32,6 +32,12 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def about
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
   def addphasetogroup
     @agreement = Agreement.new
     @agreement.update_attribute(:group_id, params[:currgroupid]) 
@@ -262,7 +268,7 @@ class UsersController < ApplicationController
 #    @user.longitude = request.location.longitude
     if @user.save
       sign_in @user
-      redirect_to user_profile_path(current_user.permalink)
+      redirect_to user_profileinfo_path(current_user.permalink)
     else
       render 'signup'
     end

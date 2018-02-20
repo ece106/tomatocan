@@ -88,6 +88,7 @@ Rails.application.routes.draw do
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
   match '/:permalink/phases' => "users#phases", :as => :user_phases, via: 'get'
   match '/:permalink/perks' => "users#perks", :as => :user_merchandise, via: 'get'
+  match '/:permalink/about' => "users#about", :as => :user_about, via: 'get'
  
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
