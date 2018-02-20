@@ -18,14 +18,9 @@
       </div>
     </div>
 
-    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top:15px">
       <%= link_to image_tag("cpLogo150.png"), "/" %><br><br> 
           <% if !user_signed_in? %>
-            <div class="lavenderlink">
-              <div style="font-size:28px">
-                <%= link_to "Get the How-To eBook", new_user_signup_path(usertype: "creator") %>
-              </div>
-            </div>   
             <div class="usermenu" >
               <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br>
             </div> 

@@ -12,53 +12,59 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <% end %>
 </div>
 
-<div style = "position: absolute; z-index: 1; top:0; ">
+<div style = "position: absolute; z-index: 1; top:0;">
   <% if user_signed_in? %>
     <% if @user == current_user %>
       <% if @user.author == 'author' || @user.author == 'actor' || @user.author == 'filmmaker' %>
         <%if controller.controller_name == 'users' %>
-            <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+          <div style = "display:inline-flex;">
+            <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'button' %>
 
             <% if @user.stripeid.present? %>
-              <%= button_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, form_class: 'btn btn-small' %>
-            <% end %> <br>
+              <%= button_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'button' %>
+            <% end %>
+          </div> <br>
 
+          <div style = "display:inline-flex;">
             <% if @mynullagreements.count != 0 %>
-              <%= button_to "You have partner request", user_phases_path(current_user.permalink), {:style => "background-color:red", method: :get, form_class: 'btn btn-small'} %>
+              <%= button_to "You have partner request", user_phases_path(current_user.permalink), {:style => "background-color:red", method: :get, class: 'button'} %>
             <% else %> 
               <% if current_user.phases.any? %>
-                <%= button_to "Edit Project Phases", user_phases_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+                <%= button_to "Edit Campaigns", user_phases_path(current_user.permalink), method: :get, class: 'button' %>
               <% else %> 
-                <%= button_to "Start a Project Phase", new_phase_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+                <%= button_to "Start a Campaign", new_phase_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>
               <% end %> 
-            <% end %> <br>
+            <% end %> 
+          </div> <br>
 
+          <div style = "display:inline-flex;">
             <% if current_user.stripeid.present? %>
               <% if current_user.stripeid.match(/acct/) %>
                 <% if @fieldsneeded.present? %>
                   <%= button_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), { style: "background-color:red", method: :get} %>
                 <% else %> 
-                  <%= button_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+                  <%= button_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), method: :get, class: 'button' %>
                 <% end %>
               <% else %> 
-                <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+                <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, class: 'button' %>
               <% end %> 
             <% else %> 
-              <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %><br>
-            <% end %> 
+              <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button' %>
+            <% end %> <br>
+          </div> 
         <% else %> 
           <div style="margin-top:130px">
           </div> 
         <% end %> 
 
       <% else #user is NOT an author therefore has not written any books %> 
-        <%= button_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+        <%= button_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), method: :get, class: 'button' %>
         <% if current_user.groups.any? %>
-          <%= button_to "Edit Organizations", user_groups_path, method: :get, form_class: 'btn btn-small' %>
+          <%= button_to "Edit Organizations", user_groups_path, method: :get, class: 'button' %>
         <% else %>
-          <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, form_class: 'btn btn-small' %>
+          <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, class: 'button' %>
         <% end %> <br>
-        <%= button_to "View Dashboard", user_dashboard_path, method: :get, form_class: 'btn btn-small' %><br>
+        <%= button_to "View Dashboard", user_dashboard_path, method: :get, class: 'button' %><br>
       <% end %> 
     <% end %> 
   <% else %>
@@ -67,20 +73,34 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <% end %> 
 
     <div class="row" >
-      <% if @user.profilepic.present? && @user.profilepic != '' %>
-        <div class="col-xl-8 col-md-4 col-xs-5">
-          <%= image_tag @user.profilepic, height: "150" %>
-        </div>
-        <div class="col-xl-4 col-md-8 col-xs-7 username">
-          <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:120px">
+      <% if user_signed_in? %>
+        <% if current_user.id == @user.id %>
+          <% if @user.profilepic.present? && @user.profilepic != '' %>
+            <div class="col-xl-8 col-md-4 col-xs-5">
+              <%= image_tag @user.profilepic, height: "150" %>
+            </div>
+            <div class="col-xl-4 col-md-8 col-xs-7 username">
+              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:120px">
+                <%= @user.name %>
+              </div>
+            </div>
+
+          <% else %>
+            <div class="col-xl-12 col-md-12 col-xs-12 username">
+              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:140px">
+                <%= @user.name %>
+              </div>
+            </div>
+          <% end %>
+
+        <% else %>
+          <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px">
             <%= @user.name %>
           </div>
-        </div>
+        <% end %>
       <% else %>
-        <div class="col-xl-12 col-md-12 col-xs-12 username">
-          <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:250px">
-            <%= @user.name %>
-          </div>
+        <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px">
+          <%= @user.name %>
         </div>
       <% end %>
     </div>
@@ -90,12 +110,11 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% content_for :forusers do %>
   <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>
 <% end %>
-
 <header class="navbar navbar-userpage">
   <div class="navbar-inner clearfix">
-    <ul class="nav navbar-nav pull-left">
+    <ul class="nav navbar-nav pull-left"> 
         <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
-      <% if @user.author == 'filmmaker' || @user.author == 'actor' ||  @user.author == 'author'%>
+        <% if @user.author == 'filmmaker' || @user.author == 'actor' ||  @user.author == 'author'%>
         <% if @user.phases.any? %>
           <li><%= link_to " Projects ", user_phases_path(@user.permalink) %>
         <% end %>

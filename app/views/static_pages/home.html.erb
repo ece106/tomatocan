@@ -13,15 +13,15 @@
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:28px">
         <b>Filmmakers - Actors - Authors </b>
       </div>
+      <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
       <% if user_signed_in? %>
-        <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
-        <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
-      <% else %>
-        <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
+          <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
+          <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff" %>
+        <% else %>
           <br><%= link_to "Increase fan engagement &", new_user_signup_path(usertype: "creator") %><br>
-          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
-        </div>
-      <% end %>
+          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff;" %>
+        <% end %>
+      </div>
       <div class = "usermenu">
         <br>Become an Early Adopter & 
       </div>
@@ -44,10 +44,10 @@
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
         <% if user_signed_in? %>
           <br><%= link_to "Sneak preview access &", phases_path %><br>
-          <%= link_to "Personalized Content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
+          <%= link_to "Personalized content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff;" %>
         <% else %>
           <br><%= link_to "Get sneak preview access &", "/signup" %>
-          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651;" %>
+          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff;" %>
         <% end %>
       </div>
     </div>

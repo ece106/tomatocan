@@ -2,23 +2,24 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
-  <% if user_signed_in? %>
-    <% if current_user.id == @user.id %>
-      <div class="author-books" style = "font-size:20px">
-        <br>Download your <%= link_to "HOW-TO eBOOK", "https://github.com/crowdpublishtv/crowdpublishtv/raw/master/public/HowtoIncreaseFanEngagementRaiseMoreFundsWithCrowdPublishTVbyLisaSchaeferPhD.pdf" %><br>
-      </div>  
-      If above link doesn't work, download <%= link_to "here", "https://github.com/crowdpublishtv/crowdpublishtv/blob/master/public/HowtoIncreaseFanEngagementRaiseMoreFundsWithCrowdPublishTVbyLisaSchaeferPhD.pdf" %><br>
-      <% end %>
-    <% end %>
-
-  <div class="container col-xs-12 " >
+  <div class="container col-xs-12 " style="margin-top:10px">
     <% if user_signed_in? %>
       <% if !@user.stripeid.present? && @user.id != 143 %>
         <% if current_user.id == @user.id %>
-          You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path %> before your Perks are available to Patrons.
+          <% if @user.phases.any? %>
+            <% if !@sidebarphase.merchandises.any? %>
+              You must <%= link_to "Create Perks", new_merchandise_path %> so your Fans can support your work.
+            <% else %>
+              You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path %> before your Perks are available to Patrons.
+            <% end %>
+          <% else %>
+            You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red; font-size:28px;" %> before you can offer Patron Perks.
+          <% end %>
         <% else %>
-          <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.<br><br>
-        <% end %>
+          <% if @sidebarphase.merchandises.any? %>
+            <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.
+          <% end %>
+        <% end %><br><br>
       <% end %>
     <% else %>
       <%= link_to image_tag("signup.png", title: "Sign Me Up!"), "/signup"%>to access Patron Perks <br>
