@@ -29,7 +29,7 @@
     When does this campaign end?<br>
     <%= f.date_select :deadline, selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
 
-    <br><br><%= f.submit %> and offer standard or custom perks to your fans<br><br><br>
+    <br><br><%= f.submit("Create Campaign", :class => 'button' ) %> and offer standard or custom perks to your fans<br><br><br>
 <% end %><br><br><br>
 
 </div>

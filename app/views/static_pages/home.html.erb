@@ -16,16 +16,16 @@
       <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
       <% if user_signed_in? %>
           <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
-          <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff" %>
+          <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff" %>
         <% else %>
           <br><%= link_to "Increase fan engagement &", new_user_signup_path(usertype: "creator") %><br>
-          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff;" %>
+          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff;" %>
         <% end %>
       </div>
       <div class = "usermenu">
         <br>Become an Early Adopter & 
       </div>
-      <%= button_to "TAKE THE SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'} %>
+      <%= button_to "TAKE THE SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'}, class: "button" %>
 
     </div>
 
@@ -44,18 +44,18 @@
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
         <% if user_signed_in? %>
           <br><%= link_to "Sneak preview access &", phases_path %><br>
-          <%= link_to "Personalized content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff;" %>
+          <%= link_to "Personalized content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff;" %>
         <% else %>
           <br><%= link_to "Get sneak preview access &", "/signup" %>
-          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#2c3651; color:#fff;" %>
+          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff;" %>
         <% end %>
       </div>
     </div>
   </div>
 
   <div class="row">
-          <div class="navbar-inner clearfix usermenu" style="padding-left:20px">
-            <ul class="nav navbar-nav pull-left">
+          <div class="navbar-inner clearfix usermenu" >
+            <ul class="nav navbar-nav pull-left" style="padding-left:20px; ">
               <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
               <li><%= link_to "FAQ", '/howwork' %>

@@ -6,7 +6,6 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
 <% if @phase.user_id == current_user.id || current_user.id == 143 %>
 
   <div class="socialize" >
-    <%= button_to "Go to " + @phase.name + " page", phase_path(@phase.permalink), method: :get %>
     Modify a few of the suggested Patron Perks listed below and offer them in support of <i><%= @phase.name %></i> 
   </div><br>
 
@@ -19,7 +18,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
   <tr><td>
   <div class="accordion" id="accordion1">
     <div class="accordion-group">
-      Add an Author social media Post perk
+      Add a Social Media Post perk
       <div id="accordion-togglea" class="accordion-body collapse">
         <div class="accordion-inner">
           <%= form_for(@merchandise) do |f| %>
@@ -38,7 +37,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
       </td><td>
       <a class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea ">
         <span>
-          ...Details for <b>Author Post</b> 
+          ...Details for <b>Social Media Post</b> 
         </span>
         <span class="hiddenamore">
           ...Hide <b>Author Post</b> details
@@ -243,6 +242,39 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
     </td></tr>
 
    <tr><td>
+    <div class="accordion" id="accordion10">
+      <div class="accordion-group">
+        Make an Appearance at your Party perk
+        <div id="accordion-toggle10" class="accordion-body collapse">
+          <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, placeholder: "Speak at your movie party " %><br><br>
+                <b>About this Patron Perk </b><br>
+                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "I will talk to your party guests for a half hour about what went on behind the scenes of my latest movie. Must be within the Phoenix metro area...  " %><br><br>
+            <b>Price </b><br>
+            $<%= f.text_field :price, size: 80, value: 200.00 || :price %>USD<br>
+                <%= button_to "Offer Party Appearance Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
+              <% end %>
+          </div>
+        </div>
+      </td><td>
+          <a class="accordion-toggle5" data-toggle="collapse" href="#accordion-toggle10">
+            <span>
+              ...Details for <b>Party Appearance</b> perk
+            </span>
+            <span class="hidden10more">
+              ...Hide <b>Party Appearance</b> details
+            </span>
+          </a><br>
+        </div>
+      </div>
+    </div>
+    </td></tr>
+
+   <tr><td>
     <div class="accordion" id="accordion6">
       <div class="accordion-group">
         Add Produce 30 Second Video as a perk
@@ -326,10 +358,9 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
           </div>
         <% end %>  
 
+    <br>I'm done adding Perks. <%= link_to "Go to the page for " + @phase.name , phase_path(@phase.permalink) %>
 
 </div>
-<% "else 
-  You must first sign up for a  link_to 'Stripe Account ', user_createstripeaccount_path(current_user.permalink) (to receive payments) before offering items for sale." %>
 
 <% end %>
 <% end %>

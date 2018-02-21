@@ -8,16 +8,18 @@
         <% if current_user.id == @user.id %>
           <% if @user.phases.any? %>
             <% if !@sidebarphase.merchandises.any? %>
-              You must <%= link_to "Create Perks", new_merchandise_path %> so your Fans can support your work.
+              You must <%= link_to "Create Perks", phase_standardperks_path(@sidebarphase.permalink), style:"color:red; font-size:28px;" %> so your Fans can support your work.
             <% else %>
-              You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path %> before your Perks are available to Patrons.
+              You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path(@user.permalink), style:"color:red; font-size:28px;" %> before your Perks are available to Patrons.
             <% end %>
           <% else %>
             You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red; font-size:28px;" %> before you can offer Patron Perks.
           <% end %>
         <% else %>
-          <% if @sidebarphase.merchandises.any? %>
-            <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.
+          <% if @user.phases.any? %>
+            <% if @sidebarphase.merchandises.any? %>
+              <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.
+            <% end %>
           <% end %>
         <% end %><br><br>
       <% end %>

@@ -30,7 +30,11 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
               <%= button_to "You have partner request", user_phases_path(current_user.permalink), {:style => "background-color:red", method: :get, class: 'button'} %>
             <% else %> 
               <% if current_user.phases.any? %>
-                <%= button_to "Edit Campaigns", user_phases_path(current_user.permalink), method: :get, class: 'button' %>
+                <% if @sidebarphase.merchandises.any? %>
+                  <%= button_to "Edit Campaigns", user_phases_path(current_user.permalink), method: :get, class: 'button' %>
+                <% else %> 
+                  <%= button_to "Create Perks", phase_standardperks_path(@sidebarphase.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;"  %>
+                <% end %> 
               <% else %> 
                 <%= button_to "Start a Campaign", new_phase_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>
               <% end %> 
@@ -49,10 +53,18 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
                 <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, class: 'button' %>
               <% end %> 
             <% else %> 
-              <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button' %>
+              <% if current_user.phases.any? %>
+                <% if @sidebarphase.merchandises.any? %>
+                  <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>
+                <% else %> 
+                  <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button' %>
+                <% end %> 
+              <% else %> 
+                <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button' %>
+              <% end %> 
             <% end %> <br>
           </div> 
-        <% else %> 
+        <% else #curruser is not this author/actor/filmkr %> 
           <div style="margin-top:130px">
           </div> 
         <% end %> 
@@ -94,12 +106,12 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
           <% end %>
 
         <% else %>
-          <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px">
+          <div class="username" style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px; margin-left: 30px">
             <%= @user.name %>
           </div>
         <% end %>
       <% else %>
-        <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px">
+        <div class="username" style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px; margin-left: 30px">
           <%= @user.name %>
         </div>
       <% end %>
@@ -116,7 +128,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
         <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
         <% if @user.author == 'filmmaker' || @user.author == 'actor' ||  @user.author == 'author'%>
         <% if @user.phases.any? %>
-          <li><%= link_to " Projects ", user_phases_path(@user.permalink) %>
+          <li><%= link_to " Campaigns ", user_phases_path(@user.permalink) %>
         <% end %>
         <% if @user.movies.any? %>
           <li><%= link_to " Movies & Theater ", user_movielist_path(@user.permalink) %>
@@ -135,7 +147,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 
     <ul class="nav navbar-nav pull-right usermenu">
         <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
-        <li><%= link_to " Recent Projects ", phases_path %>
+        <li><%= link_to " Recent Campaigns ", phases_path %>
       <% if user_signed_in? %>
         <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
         <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
