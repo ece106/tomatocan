@@ -6,12 +6,18 @@
 
   <% if @phase.phasepic.present? && @phase.phasepic != '' %>
     <%= image_tag(@phase.phasepic, height: '250') %>
-  <% end %>
-  <h3><%= @phase.name %>   </h3>
-  <%= @author.name %><br><br>
+  <% else %>
     <% if user_signed_in? %>
       <% if @phase.user_id == current_user.id %>
-        <%= button_to(name = "Edit this Project Phase", edit_phase_path(@phase.id), method: :get, form_class: 'btn btn-small') %><br><br>
+        <br><%= button_to("Add a Campaign Banner", edit_phase_path(@phase.permalink), method: :get, class: 'button') %>  
+      <% end %>
+    <% end %>
+  <% end %>
+  <h3><%= @phase.name %>   </h3>
+  <%= @author.name %>
+    <% if user_signed_in? %>
+      <% if @phase.user_id == current_user.id %>
+        <%= button_to(name = "Edit this Campaign", edit_phase_path(@phase.permalink), method: :get ) %>
       <% end %>
     <% end %>
 
@@ -41,7 +47,7 @@
 
     <% if @numusrgroupstripe > 0 %><br>
       <div class = "row" style="text-align:left">
-        If <%= @phase.name %>'s owner accepts your partnership request, your organization will receive 5% of the proceeds from Patron Perks purchased after patrons click through to <%= @phase.name %> from your Organization's CrowdPublish.TV Page. 
+        If <%= @phase.name %>'s owner accepts your partnership request, your organization will receive 5% of the proceeds from Perks purchased by Fans who click through to <%= @phase.name %> from your Organization's CrowdPublish.TV Page. 
       </div> 
       <div style = "color:#000"> <%= button_tag 'Partner', value: @phase.id, type: :submit, name: "agreement[phase_id]" %></div><br>
     <% end %>

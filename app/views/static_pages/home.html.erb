@@ -9,45 +9,45 @@
 
 <div class="headerimage" style="margin-top:-20px">
   <div class="row">
-    <div class="col-md-5 col-sm-6 col-xs-12" style="padding-top:20px">
+    <div class="col-md-5 col-sm-5 col-xs-12" style="padding-top:20px">
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:28px">
         <b>Filmmakers - Actors - Authors </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
       <% if user_signed_in? %>
           <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
-          <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff" %>
+          <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff" %>
         <% else %>
           <br><%= link_to "Increase fan engagement &", new_user_signup_path(usertype: "creator") %><br>
-          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff;" %>
+          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
         <% end %>
       </div>
+    </div>
+
+    <div class="col-md-3 col-sm-2 col-xs-12">
+      <br><%= image_tag("cpLogo100.png") %>
+          <% if !user_signed_in? %>
+            <div class="usermenu" >
+              <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %>
+            </div> 
+          <% end %>
       <div class = "usermenu">
         <br>Become an Early Adopter & 
       </div>
       <%= button_to "TAKE THE SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'}, class: "button" %>
-
     </div>
 
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <br><%= image_tag("cpLogo150.png") %><br><br> 
-          <% if !user_signed_in? %>
-            <div class="usermenu" >
-              <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br>
-            </div> 
-          <% end %>
-    </div>
-    <div class="col-md-4 col-sm-7 col-xs-12" style="padding-top:20px">
+    <div class="col-md-4 col-sm-5 col-xs-12" style="padding-top:20px">
       <div class="whitetxt" style="font-size:28px" >
         <b>Movie & Book Fans </b>
       </div>
-      <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
+      <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
         <% if user_signed_in? %>
           <br><%= link_to "Sneak preview access &", phases_path %><br>
-          <%= link_to "Personalized content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff;" %>
+          <%= link_to "Personalized content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
         <% else %>
           <br><%= link_to "Get sneak preview access &", "/signup" %>
-          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6c7691; color:#fff;" %>
+          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
         <% end %>
       </div>
     </div>

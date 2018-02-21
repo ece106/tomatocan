@@ -53,7 +53,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
                 <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, class: 'button' %>
               <% end %> 
             <% else %> 
-              <% if current_user.phases.any? %>
+              <% if current_user.phases.any? && current_user.id != 143 %>
                 <% if @sidebarphase.merchandises.any? %>
                   <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>
                 <% else %> 
@@ -92,14 +92,14 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
               <%= image_tag @user.profilepic, height: "150" %>
             </div>
             <div class="col-xl-4 col-md-8 col-xs-7 username">
-              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:120px">
+              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:90px">
                 <%= @user.name %>
               </div>
             </div>
 
           <% else %>
             <div class="col-xl-12 col-md-12 col-xs-12 username">
-              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:140px">
+              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:110px">
                 <%= @user.name %>
               </div>
             </div>

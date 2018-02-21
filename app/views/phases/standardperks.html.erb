@@ -1,7 +1,6 @@
 <div class="blacktxt">
-All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. Check your dashboard often.<br><br>
+All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. Check your dashboard often to see if any Perks were ordered by your Fans.<br><br>
 
-<% "if (current_user.stripeid.present? && @phase.user_id == current_user.id) || current_user.id == 143 " %>
 <% if user_signed_in? %>
 <% if @phase.user_id == current_user.id || current_user.id == 143 %>
 
@@ -30,7 +29,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
             <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "I will write a brief greeting/line from my latest book on your facebook wall every Tuesday for 4 weeks... " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 20.00 || :price %>USD<br>
-            <%= button_to "Offer Post Perk", { controller: 'phases', id: @phase.id}, :method => :post %><br><br>
+            <%= button_to "Offer Post Perk", { controller: 'phases', id: @phase.id}, :method => :post, class: "button" %><br><br>
           <% end %>
         </div>
       </div>
@@ -62,7 +61,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Get on the list of Patrons at the end of this chapter. When the Project is complete, your name will be in the page of thanks... " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Name in Credits Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+                <%= button_to "Offer Name in Credits Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -95,7 +94,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "The next character we introduce in Chapter X will be a hero/villain... " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Character Name Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+                <%= button_to "Offer Character Name Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -128,7 +127,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
             <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Recipe for Disaster: My assistant will email you my personal recipe for how to turn your baking disasters into bread pudding ... " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 20.00 || :price %>USD<br>
-            <%= button_to "Offer Recipe Perk", { controller: 'phases', id: @phase.id}, method: :post %><br><br>
+            <%= button_to "Offer Recipe Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
           <% end %>
         </div>
       </div>
@@ -160,7 +159,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "I will email a near-final draft of the first chapter of the book (or link to movie scene) to everyone who orders this perk" %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 30.00 || :price %>USD<br>
-                <%= button_to "Offer Chapter Advance Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+                <%= button_to "Offer Chapter Advance Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -190,7 +189,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are... " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+                <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -223,7 +222,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Set up a phone appointment. Ask about how I came up with the idea for this book/movie. We will go over 7 step meditation process...  " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 1000.00 || :price %>USD<br>
-                <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+                <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -289,7 +288,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "I will produce a video (ad) for you that you can post on your web site. Video file will be delivered via dropbox. The video may include... Whatever you promise, the quality & time required should be reflected in the price - giving a 30 second reading of something already written would be much cheaper than producing an ad. " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 400.00 || :price %>USD<br>
-                <%= button_to "Offer 30 Second Video Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+                <%= button_to "Offer 30 Second Video Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -322,7 +321,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
                 <%= f.text_area :desc, cols: 82, rows: 7, placeholder: "Get all three of these items for one special price by the end of the month... " %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 80, value: 400.00 || :price %>USD<br>
-                <%= button_to "Offer Combo Perk", { controller: 'phases', id: @phase.id, method: :post} %><br><br>
+                <%= button_to "Offer Combo Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -342,8 +341,9 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
 
   </table>
 
-<br><%= link_to "I just want to add my own custom Perk", phase_patronperk_path(@phase.permalink) %><br>
-<br><%= link_to "I want to edit something else on this project Phase", edit_phase_path(@phase.permalink) %><br>
+  <%= link_to "I want to add my own custom Perk", phase_patronperk_path(@phase.permalink) %><br>
+  <%= link_to "I want to edit something else on this project Phase", edit_phase_path(@phase.permalink) %><br>
+
         <% if @dropdown.any? %>
           <br><b>Add existing Patron Perk to be sold in support of phase <%= @phase.name %>: </b><br>
           <div class="row">
@@ -358,7 +358,7 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
           </div>
         <% end %>  
 
-    <br>I'm done adding Perks. <%= link_to "Go to the page for " + @phase.name , phase_path(@phase.permalink) %>
+  I'm done adding Perks for now. <%= link_to "Go to my page " , user_profile_path(current_user.permalink) %> and see how it looks.
 
 </div>
 

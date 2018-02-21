@@ -10,10 +10,10 @@
             <% if !@sidebarphase.merchandises.any? %>
               You must <%= link_to "Create Perks", phase_standardperks_path(@sidebarphase.permalink), style:"color:red; font-size:28px;" %> so your Fans can support your work.
             <% else %>
-              You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path(@user.permalink), style:"color:red; font-size:28px;" %> before your Perks are available to Patrons.
+              You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path(@user.permalink), style:"color:red; font-size:28px;" %> before your Perks are available to Fans.
             <% end %>
           <% else %>
-            You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red; font-size:28px;" %> before you can offer Patron Perks.
+            You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red; font-size:28px;" %> before you can offer Perks.
           <% end %>
         <% else %>
           <% if @user.phases.any? %>
@@ -24,8 +24,8 @@
         <% end %><br><br>
       <% end %>
     <% else %>
-      <%= link_to image_tag("signup.png", title: "Sign Me Up!"), "/signup"%>to access Patron Perks <br>
-      <%= link_to 'or SIGN IN...', "/login", {:style=>'float:right'} %><br> 
+      <%= button_to "SIGN UP", "/signup", class: "button", style: "font-size:28px" %>to access Perks 
+      <%= link_to 'or SIGN IN...', "/login", {:style=>'float:right'} %><br> <br>
     <% end %>
 
 <div class="author-books" style = "width: 320px; overflow: wrap;">
@@ -94,7 +94,7 @@
     <% end %> 
   <% end %>
   <% else %>
-    <br><%= @user.name %> is not offering any Patron Perks yet 
+    <br><%= @user.name %> is not offering any Perks yet 
   <% end %>
     <br><br>
 </div>

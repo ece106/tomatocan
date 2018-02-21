@@ -22,11 +22,11 @@
         <div style="float:left; text-align:left;">
           <%= form_for(Agreement.new) do |f| %> 
             <% if @numusrgroups == 1 %>
-              Partner <%= @usrgrpnameid[0][0] %> with my project phase and your organization will receive 5% of the proceeds from any phase Patron you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
+              Partner <%= @usrgrpnameid[0][0] %> with my Campaign and your organization will receive 5% of the proceeds from Fans you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
               <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
             <% end %>
             <% if @numusrgroups > 1 %>
-              Select one of your organizations to partner with my project phase: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
+              Select one of your organizations to partner with my Campaign: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
             <% end %>
 
             <table>
@@ -35,13 +35,14 @@
                 <%= button_tag 'Partner', value: @sidebarphase.id, type: :submit, name: "agreement[phase_id]" %>
               <% end %>
               </td>
+          <% end #cant have buttonto in formfor.  %>
               <td style='font-size:22px'><%= link_to(@sidebarphase.name, phase_path(@sidebarphase.permalink)) %></td></tr>
-              <tr><td ><%= button_to(name = "Get Sneak Preview", phase_path(@sidebarphase.permalink), method: :get) %></td>
+              <tr><td ><%= button_to "Get Sneak Preview", phase_path(@sidebarphase.permalink), method: :get, class: 'button' %></td>
+
               <td class = 'blacktxt'><%= truncate(@sidebarphase.mission , :length => 200, :separator => ' ') %> </td></tr>
             </table><br>
-          <% end %><br>
           <% if @numusrphs > 1 %>
-            <%= link_to("View my past project phases", user_phases_path(@user.permalink)) %><br><br><br>
+            <%= link_to("View my past Campaigns", user_phases_path(@user.permalink)) %><br><br><br>
           <% end %>
         </div>
       <% end %>
