@@ -77,7 +77,10 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
           <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, class: 'button' %>
         <% end %> <br>
         <%= button_to "View Dashboard", user_dashboard_path, method: :get, class: 'button' %><br>
-      <% end %> 
+      <% end %>
+    <% else %> 
+      <div style="margin-top:130px"><br>
+      </div> 
     <% end %> 
   <% else %>
     <div style="margin-top:130px"><br>
