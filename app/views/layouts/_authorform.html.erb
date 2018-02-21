@@ -12,7 +12,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <% end %>
 </div>
 
-<div style = "position: absolute; z-index: 1; top:0;">
+<div style = "position: absolute; z-index: 1; top:0; height:200px">
   <% if user_signed_in? %>
     <% if @user == current_user %>
       <% if @user.author == 'author' || @user.author == 'actor' || @user.author == 'filmmaker' %>
@@ -65,7 +65,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
             <% end %> <br>
           </div> 
         <% else #curruser is not this author/actor/filmkr %> 
-          <div style="margin-top:130px">
+          <div style="margin-top:130px"><br>
           </div> 
         <% end %> 
 
@@ -85,36 +85,23 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <% end %> 
 
     <div class="row" >
-      <% if user_signed_in? %>
-        <% if current_user.id == @user.id %>
           <% if @user.profilepic.present? && @user.profilepic != '' %>
             <div class="col-xl-8 col-md-4 col-xs-5">
               <%= image_tag @user.profilepic, height: "150" %>
             </div>
             <div class="col-xl-4 col-md-8 col-xs-7 username">
-              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:90px">
+              <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:110px">
                 <%= @user.name %>
               </div>
             </div>
 
-          <% else %>
+          <% else # no buttons no pic %>
             <div class="col-xl-12 col-md-12 col-xs-12 username">
               <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:110px">
                 <%= @user.name %>
               </div>
             </div>
           <% end %>
-
-        <% else %>
-          <div class="username" style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px; margin-left: 30px">
-            <%= @user.name %>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="username" style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:240px; margin-left: 30px">
-          <%= @user.name %>
-        </div>
-      <% end %>
     </div>
 
 </div>
