@@ -4,11 +4,11 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-<div style = "text-align:center; margin-top:-20px;  margin-bottom:20px; margin-left: auto; margin-right: auto;" >
+<div style = "text-align:center; margin-top:-20px;  margin-bottom:20px; " >
   <% if @user.bannerpic.present? && @user.bannerpic != '' %>
     <%= image_tag @user.bannerpic, height: "300" %>
   <% else %>
-    <%= image_tag "crowddark.png", height: "300" %>
+    <%= image_tag "crowddark.png", height: "300", width: "700" %>
   <% end %>
 </div>
 
