@@ -113,7 +113,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>
 <% end %>
 <header class="navbar navbar-userpage">
-  <div class="navbar-inner clearfix navbar-fixed-width ">
+  <div class="navbar-inner ">
     <ul class="nav navbar-nav pull-left usermenu"> 
         <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
         <% if @user.author == 'filmmaker' || @user.author == 'actor' ||  @user.author == 'author'%>
