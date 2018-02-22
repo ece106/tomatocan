@@ -5,6 +5,7 @@
   <div class="container col-xs-12 " style="margin-top:10px">
     <% if user_signed_in? %>
       <% if !@user.stripeid.present? && @user.id != 143 %>
+
         <% if current_user.id == @user.id %>
           <% if @user.phases.any? %>
             <% if !@sidebarphase.merchandises.any? %>
@@ -16,17 +17,21 @@
             You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red; font-size:28px;" %> before you can offer Perks.
           <% end %>
         <% end %>
-      <% else %>
-        <% if @user.phases.any? %>
-          <% if @sidebarphase.merchandises.any? %>
-            <%= @user.name %> has not made these Perks available yet. Please check back later to get access to these fantastic Perks.
-          <% else %>     
-            <%= @user.name %> has not made any Perks available yet. Please check back later to support <%= @sidebarphase.name %> 
-          <% end %>
-        <% else %>
-          <%= @user.name %> has not created any Campaigns yet. Please check back later to support <%= @user.name %>'s work.
-        <% end %><br><br>
+
       <% end %>
+
+      <% if @user.phases.any? %>
+        <% if @sidebarphase.merchandises.any? %>
+          <% if !@user.stripeid.present? && @user.id != 143 %>
+            <%= @user.name %> has not made these Perks available yet. Please check back later to get access to these fantastic Perks.
+          <% end %>
+        <% else %>     
+          <%= @user.name %> has not made any Perks available yet. Please check back later to support <%= @sidebarphase.name %> 
+        <% end %>
+      <% else %>
+        <%= @user.name %> has not created any Campaigns yet. Please check back later to support <%= @user.name %>'s work.
+      <% end %>
+
     <% else %>
       <%= button_to "SIGN UP", "/signup", class: "button", style: "font-size:28px" %>to access Perks 
       <%= link_to 'or SIGN IN...', "/login", {:style=>'float:right'} %><br> <br>
