@@ -367,9 +367,12 @@ center .info-content {
  }
 
 @media all and (max-width: 600px) {
+    .container-fluid {
+        padding:0; /* Extend your menu really full width without padding of container-fluid */
+    }
     .navbar-nav {
-        margin: 7.5px 0px;
-    }   
+        margin:0; /* Center your menu with current 100% width available */
+    }
     .navbar .nav > li {
         display: block;
     }
@@ -377,4 +380,3 @@ center .info-content {
         margin: auto;
     }
 }
-
