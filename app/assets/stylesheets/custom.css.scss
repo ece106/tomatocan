@@ -365,3 +365,16 @@ center .info-content {
   border-radius: 3px;
   color:#2c36a1;
  }
+
+@media all and (max-width: 600px) {
+    .navbar-nav {
+        margin: 7.5px 0px;
+    }   
+    .navbar .nav > li {
+        display: block;
+    }
+    .navbar .nav > li  img {
+        margin: auto;
+    }
+}
+

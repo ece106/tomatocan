@@ -15,12 +15,16 @@
           <% else %>
             You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red; font-size:28px;" %> before you can offer Perks.
           <% end %>
-        <% else %>
-          <% if @user.phases.any? %>
-            <% if @sidebarphase.merchandises.any? %>
-              <%= @user.name %> has not made these items available yet. Please check back later to purchase these items.
-            <% end %>
+        <% end %>
+      <% else %>
+        <% if @user.phases.any? %>
+          <% if @sidebarphase.merchandises.any? %>
+            <%= @user.name %> has not made these Perks available yet. Please check back later to get access to these fantastic Perks.
+          <% else %>     
+            <%= @user.name %> has not made any Perks available yet. Please check back later to support <%= @sidebarphase.name %> 
           <% end %>
+        <% else %>
+          <%= @user.name %> has not created any Campaigns yet. Please check back later to support <%= @user.name %>'s work.
         <% end %><br><br>
       <% end %>
     <% else %>
