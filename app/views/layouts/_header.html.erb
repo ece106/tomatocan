@@ -1,47 +1,8 @@
 <header class="navbar navbar-custom headerimage ">
   <div class="container-flex">
 
-<div class="headerimage" >
-  <div class="row">
-    <div class="col-md-5 col-sm-6 col-xs-12" style="padding-top:20px">
-      <div class="whitetxt", style="position:relative; z-index: 9999; font-size:28px">
-        <b>Filmmakers - Actors - Authors </b>
-      </div>
-      <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
-        <% if user_signed_in? %>
-          <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
-          <%= link_to "Raise more funds", new_phase_path %>
-        <% else %>
-          <br><%= link_to "Increase fan engagement &", new_user_signup_path(usertype: "creator") %><br>
-          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator") %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12" style="margin-top:15px">
-      <%= link_to image_tag("cpLogo150.png"), "/" %><br><br> 
-          <% if !user_signed_in? %>
-            <div class="usermenu" >
-              <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %><br>
-            </div> 
-          <% end %>
-    </div>
-    <div class="col-md-4 col-sm-7 col-xs-12" style="padding-top:20px">
-      <div class="whitetxt" style="font-size:28px" >
-        <b>Movie & Book Fans </b>
-      </div>
-      <div class="lavenderlink" style="text-shadow: 1px 1px #000; width:350px;">
-        <% if user_signed_in? %>
-          <br><%= link_to "Sneak preview access & Personalized Content", phases_path %>
-        <% else %>
-          <br><%= link_to "Get sneak preview access & Personalized Content", "/signup" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-          <div class="navbar-inner clearfix usermenu" style="padding-left:20px">
+    <div class="row">
+          <div class="navbar-inner clearfix usermenu" style="padding-left:20px; background-color:#1e1e46">
             <ul class="nav navbar-nav pull-left">
               <li><%= link_to "Home", "/" %>
               <li><%= link_to "Projects", phases_path %>
@@ -53,11 +14,13 @@
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+              <% else %>
+                <li><%= link_to 'SIGN UP', "/signup" %>
+                <li><%= link_to 'Sign in', "/login" %>
               <% end %>
             </ul>
           </div> 
+    </div>
   </div>
-</div>
 
-  </div>
 </header>
