@@ -7,10 +7,47 @@
   <title>CrowdPublishTV - Actors Filmmakers Authors - Increase Fan Engagement & Earn More Funds</title>
 </head>
 
-<div class="headerimage" style="margin-top:-20px">
-  <div class="row">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="margin-top:-20px">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="https://scontent.fphx1-2.fna.fbcdn.net/v/t31.0-8/18237980_10209287354885726_2128376433509158023_o.jpg?oh=7f16e29f9c7602e23d212709742fe608&oe=5B4D6DBF" alt="Lisa's 80s Catholic High School Movie">
+    </div>
+
+    <div class="item">
+      <img src="https://scontent.fphx1-2.fna.fbcdn.net/v/t1.0-9/19554472_10154465237426721_1906416915236875926_n.jpg?oh=6f1c593440b2c37cd2c3f86b92eff85a&oe=5B172A17" alt="Actors">
+    </div>
+
+    <div class="item">
+      <img src="http://www.CrowdPublish.TV/danMoldea.jpg" alt="Dan Moldea book talk">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+<div class="headerimage">
+  <div class="row" style = "position: absolute; z-index: 1; top:50px;" >
     <div class="col-md-5 col-sm-5 col-xs-12" style="padding-top:20px">
-      <div class="whitetxt", style="position:relative; z-index: 9999; font-size:28px">
+      <div class="whitetxt", style="position:relative; z-index: 9999; font-size:40px; text-shadow: 1px 1px #000;">
         <b>Filmmakers - Actors - Authors </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
@@ -24,21 +61,21 @@
       </div>
     </div>
 
-    <div class="col-md-3 col-sm-2 col-xs-12">
+    <div class="col-md-2 col-sm-2 col-xs-12">
       <br><%= image_tag("cpLogo100.png") %>
           <% if !user_signed_in? %>
-            <div class="usermenu" >
+            <div class="usermenu" style= "text-shadow: 1px 1px #000;">
               <%= link_to 'Sign in', "/login", {:style=>'color:#FFFFFF;'}  %>
             </div> 
           <% end %>
-      <div class = "usermenu">
+      <div class = "usermenu" style= "text-shadow: 1px 1px #000;">
         <br>Become an Early Adopter & 
       </div>
       <%= button_to "TAKE THE SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'}, class: "button" %>
     </div>
 
-    <div class="col-md-4 col-sm-5 col-xs-12" style="padding-top:20px">
-      <div class="whitetxt" style="font-size:28px" >
+    <div class="col-md-5 col-sm-5 col-xs-12" style="padding-top:20px">
+      <div class="whitetxt" style="font-size:40px; text-shadow: 1px 1px #000;" >
         <b>Movie & Book Fans </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
