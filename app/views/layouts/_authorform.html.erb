@@ -56,11 +56,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
               <% if current_user.phases.any? && current_user.id != 143 %>
                 <% if @sidebarphase.merchandises.any? %>
                   <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>
-                <% else %> 
-                  <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button' %>
                 <% end %> 
-              <% else %> 
-                <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button' %>
               <% end %> 
             <% end %> <br>
           </div> 
@@ -69,7 +65,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
           </div> 
         <% end %> 
 
-      <% else #user is NOT an author therefore has not written any books %> 
+      <% else #user is NOT a creator %> 
         <%= button_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), method: :get, class: 'button' %>
         <% if current_user.groups.any? %>
           <%= button_to "Edit Organizations", user_groups_path, method: :get, class: 'button' %>
