@@ -65,19 +65,22 @@ class MoviesController < ApplicationController
 
     castmembers = User.where('id IN 
         (SELECT user_id FROM movieroles WHERE movieroles.movie_id = ?)', @movie.id)
-    roles = Movierole.where("movie_id = ?", @movie.id)
+    thismovieroles = Movierole.where("movie_id = ?", @movie.id)
     @castlist = []
-    roles.each do |role|
+    thismovieroles.each do |role|
       actor = User.find(role.user_id) 
       @castlist << {name: actor.name, char: role.role, chardesc: role.roledesc, permalink: actor.permalink}
     end
 
+    @incast = false
     if user_signed_in?
-      if Movierole.where("user_id = ? AND movie_id = ?", @user.id, @movie.id).empty?
-        @incast = false
-      else 
-        @incast = true
-      end  
+      if current_user.author == "actor"
+        if thismovieroles.where("user_id = ?", current_user.id).empty?
+          @incast = false
+        else 
+          @incast = true
+        end 
+      end 
     end  
 
     respond_to do |format|

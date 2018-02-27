@@ -15,8 +15,8 @@
       <% end %>
     <% end %>
     <br><br> 
+
     <%= form_for(Movierole.new) do |f| %> 
-      <% if user_signed_in? %>
         <% if !@incast %>
           Were you in this movie?
           <%= f.hidden_field :movie_id, value: @movie.id %>
@@ -25,7 +25,6 @@
           Role description<br> <%= f.text_area :roledesc, cols: 52, rows: 3, placeholder: "Main character, a brilliant doctor..." %><br>
           <%= f.submit "Add Me to Movie" %>
         <% end %>
-      <% end %>
     <% end %>
   </div> 
 
