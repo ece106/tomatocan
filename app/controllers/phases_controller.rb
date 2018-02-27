@@ -85,18 +85,14 @@ class PhasesController < ApplicationController
     @author = User.find_by_id(@phase.user_id)
     @merchandise = @phase.merchandises.build 
     if user_signed_in?
-      dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('phase_id IS NULL')
-      dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-      @dropdown = dropdown1 + dropdown2
+      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
     end
   end
 
   def edit
     @merchandise = @phase.merchandises.order(price: :asc)
-    @perklist = Merchandise.where( "user_id = ?", current_user.id)
-    dropdown1 = Merchandise.where( "user_id = ?", current_user.id).where('phase_id IS NULL')
-    dropdown2 = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-    @dropdown = dropdown1 + dropdown2
+    @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
+    #change to merch has belongs to many phase
     @merchandises = @phase.merchandises.build 
   end
 

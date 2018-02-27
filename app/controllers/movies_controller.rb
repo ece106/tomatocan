@@ -3,12 +3,9 @@ class MoviesController < ApplicationController
   layout :resolve_layout
 
   def index # This will be a result of some filters
-#    @movies = movie.joins(:user).where("stripeid IS NOT NULL")
-    @movies = Movie.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+    movieswithyoutube = Movie.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
+    moviesvidorder = movieswithyoutube.order('updated_at DESC')
+    @movies = moviesvidorder.paginate(:page => params[:page], :per_page => 12)
   end
 
   def create

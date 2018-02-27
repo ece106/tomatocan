@@ -344,10 +344,10 @@ All items offered for sale through CrowdPublish.TV are meant to be immediately a
   <%= link_to "I want to add my own custom Perk", phase_patronperk_path(@phase.permalink) %><br>
   <%= link_to "I want to edit something else on this project Phase", edit_phase_path(@phase.permalink) %><br>
 
-        <% if @dropdown.any? %>
+        <% if @perklist.any? %>
           <br><b>Add existing Patron Perk to be sold in support of phase <%= @phase.name %>: </b><br>
           <div class="row">
-            <% @dropdown.each do |perk| %>
+            <% @perklist.each do |perk| %>
               <div class="col-md-4 col-sm-6 col-xs-6">
                 <%= form_for(perk) do |f| %>
                   <%= f.hidden_field :phase_id, value: @phase.id %> 

@@ -69,6 +69,10 @@ Rails.application.routes.draw do
   end
 
   match '/books' => "books#index", :as => :allbooks, via: 'get'
+  match '/actors' => "users#actors", :as => :actors, via: 'get'
+  match '/filmmakers' => "users#filmmakers", :as => :filmmakers, via: 'get'
+  match '/authors' => "users#authors", :as => :authors, via: 'get'
+
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
   match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'

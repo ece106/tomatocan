@@ -1,6 +1,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CrowdPublish.TV <%  @user.name %> 's phases</title>
+<title>CrowdPublish.TV <%  @user.name %> 's Campaigns</title>
 <meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
 <meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
 <meta property="og:url" content="http://CrowdPublish.TV" />
@@ -30,7 +30,7 @@
       </tr>  
     <% end %>  
   </table> <br><br>
-  <%= button_to "Create a New Project Phase", new_phase_path, method: :get %><br>
+  <%= button_to "Create a New Campaign", new_phase_path, method: :get %><br>
 <% end %>
 
 <% if @activephases.count != 0 %>
@@ -52,7 +52,7 @@
 <% end %>  
 
 <% if @pastphases.count != 0 %>
-  <h2>Past project phases</h2>
+  <h2>Past Campaigns</h2>
   <table>
   <% @pastphases.each do |phs| %>
     <tr><td><br><%= link_to phs.name, phs %></td>

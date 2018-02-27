@@ -1,10 +1,10 @@
 <div id="groups" style="position:absolute; " >
 
-  <h4>Earn $ for your Favorite Organization by becoming a Patron of a book or movie project through the organization's page  </h4>
+  <h4>Earn $ for your Favorite Organization by supporting a Campaign through the organization's page  </h4>
   <% if user_signed_in? %>
       Are you an officer of an organization? <%= button_to "Add Your Organization", new_group_path, style: "font-size:20px", method: :get %><br><br>
     <% if current_user.groups.any? %>
-      <%= link_to "Partner Your Organization with a Project Phase", phases_path %> <br><br>
+      <%= link_to "Partner Your Organization with a Campaign", phases_path %> <br><br>
     <% end %> 
   <% end %> 
 

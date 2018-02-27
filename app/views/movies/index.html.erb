@@ -1,25 +1,25 @@
 <title>CrowdPublishTV members</title>
 <div class="featured">  Featured movies </div><br>
 
-<% @movies.each do |movie| %>
-  <div class="col-md-2 col-sm-3 col-xs-4" >
-    <div style="vertical-align:top; horizontal-align:center; height:220px; overflow:hidden; " >
-      <% usr = User.find(movie.user_id) %>
-      <% if movie.moviepic.present? && movie.moviepic != '' %> 
-        <%= link_to(image_tag(movie.moviepic, :size => "100x133",  :title => movie.title ), movie_path(movie.id)) %> 
-        <br><%= link_to movie.title, movie_path(:id => movie.id) %>
-        <br><%= link_to movie.director, user_profile_path(usr.permalink) %>
+<div class="row" >
+  <% @movies.each do |movie| %>
+    <div class="col-md-4 col-sm-6 col-xs-12" > 
+      <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
+        <iframe width="370" height="220" src="//www.youtube.com/embed/<%= movie.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+
+          <% usr = User.find(movie.user_id) %>
+          <br><%= link_to movie.title, movie_path(:id => movie.id) %>
+          <br><%= link_to movie.director, user_profile_path(usr.permalink), :class => 'covername', style: 'color:#2c3651' %>
         <br><%= movie.genre %>
-      <% elsif movie.title.match /[0-9A-Za-z]/ %> 
-        <div class="fanbook" style="width:100px;height:133px;background-color:#cfddaa; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid;" >
-          <%= link_to movie.title, movie_path(id: movie.id), :class => 'covertitle', style: 'color:#880000' %><br>
-          <div style="color:#2c3651">
-            <%= usr.name %>
-          </div>
-        </div> 
-          <%= link_to movie.director, user_profile_path(usr.permalink), :class => 'covername', style: 'color:#2c3651' %>
-        <br><%= movie.genre %>
-      <% end %>
+      </div> 
     </div> 
-  </div> 
-<% end %>
+  <% end %>
+</div>
+  <br>  
+
+  <div class="row" >
+    <div class="indexlist" >
+      <b>Browse more videos by CrowdPublish.TV filmmakers</b><br> <%= will_paginate @movies %> <br>
+    </div>
+  </div>
+

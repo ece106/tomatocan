@@ -7,9 +7,11 @@
               <li><%= link_to "Home", "/" %>
               <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
-              <li><%= link_to "Filmmakers", users_path %>
-              <li><%= link_to "Actors", users_path %>
-              <li><%= link_to "Authors", users_path %>
+              <li><%= link_to "Filmmakers", filmmakers_path %>
+              <li><%= link_to "Actors", actors_path %>
+              <li><%= link_to "Authors", authors_path %>
+              <li><%= link_to "Movies", movies_path %>
+              <li><%= link_to "Books", books_path %>
               <li><%= link_to "FAQ", '/howwork' %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
