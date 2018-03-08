@@ -2,12 +2,6 @@
 
 The intention of this repository is to be used as a project for developers of all skill levels to improve their skills by contributing code and by assisting junior developers with their code contributions. The founder, Lisa Schaefer, Ph.D., has taught a beginners Ruby on Rails course at George Mason University and encourages women entrepreneurs to be the primary mentors, mentees, and leaders in this project. Dr. Schaefer also advocates for women's voices to be heard and heeded in the software development community.
 
-CrowdPublish.TV is an experiment in using a live project to teach Ruby on Rails. During her 12 years of university education, Dr. Schaefer felt that academic exercises were a poor use of time compared to projects that would be used for real world business applications. She was disappointed that coursework did not result in knowledge of how the skills would be used in a real project. Internships did not bridge that gap, rather interns were required to learn a completely different set of skills at each new workplace. Dr. Schaefer wanted to propose courses in which the students' work would be used in a real life practical business application. The students who demonstrate improvement in skills while working on CrowdPublish.TV would have the opportunity to be promoted to mentors (much like students become Teaching Assistants in graduate school). Mentors who demonstrate mastery of skills would graduate to more supervisory roles.
-
-The compensation to developers who participate in CrowdPublish.TV coding is free mentorship - no need to pay for code schools. Those who participate fully and consistently will receive recommendations to future employers. 
-
-As CrowdPublish.TV grows to the point where a stable crew of developers can be supported, there will be a discussion among senior contributors on how senior developers would have opportunities for compensation for their work. The intention is to develop a new business model outside of the way current startup businesses are funded. Venture capital firms give high preference to male-owned and male-developed startups. They justify this discrimination by calling it "pattern matching," meaning that they fund people who look like other people they have previously funded. Instead of trying to break into the boys' game, women must create their own game, outside the male-created system, where women retain ownership of their inventions and do not rely on entities that do not value their worth. This model will benefit many men who are also not interested in the current system of startup funding and business practices.
-
 RoleModel Enterprises, LLC, owns the copyright to all code, design, and graphics contributed to this repository. Contributors grant copyright of any code, design, and graphics they contribute to this repository to RoleModel Enterprises, LLC. Contributors may reuse their code contributions and the knowledge gained from working on this project, provided it meets the following criteria:
 
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -17,8 +11,6 @@ RoleModel Enterprises, LLC, owns the copyright to all code, design, and graphics
 3. Redistribution of the entire code repository is not permitted. Use of the entire code repository is encouraged, but only for developers and their mentees who are using it for the specific educational purposes endorsed by RoleModel Enterprises, LLC.
 
 4. Neither the name of CrowdPublish.TV, RoleModel Enterprises, LLC, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
-RoleModel Enterprises, LLC, will use the code to empower the community of authors and artists who own their rights. Other individuals and organizations may use the code for educational purposes only. 
 
 This software is provided by the copyright holders and contributors "as is" and any express or implied warranties, including, but not limited to the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright owner of contributors be liable for any direct, indirect, incidental, special, exemplary or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
  
@@ -57,27 +49,8 @@ When you have completed the quiz, download and start working on the tutorial at 
 
 Files To Check/Change/Create: 
 
-* config/initializers/carrierwave.rb: 
-Make sure
-```      
-      :aws_access_key_id      => 'AWS_KEY', 
-      :aws_secret_access_key  => 'AWS_SECRET_KEY',
-```
-       is NOT commented out.
-
 * gemfile: 
     Delete 'pg' and replace with 'sqlite3'
-
-* app/views/layouts/application.html.erb: 
-    Make sure
-```
-  <%#= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
-```
-    is commented out and that
-```
-  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
-```
-    is NOT commented out.
 
 The ENV variables may already be commented out, depending upon what the last developer pushed. ENV variables are for Heroku. Therefore the last commit before pushing to Heroku must have those variables set. The non-ENV variables use the initializer files, which are for use on local machines. 
 

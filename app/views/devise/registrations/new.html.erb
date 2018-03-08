@@ -1,6 +1,6 @@
 <div class="container-flex" >
-<div class="row" >
-  <div class="col-md-4 col-sm-6" style= "text-align:left; margin-top:-30px;" >
+<div class="row" style="margin-top:-38px;">
+  <div class="col-md-4 col-sm-6" style= "text-align:left;" >
     <% @usertype = params[:usertype] %>
 
 <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
@@ -36,9 +36,10 @@
     <%= f.submit "Sign up" %></b>
   <% end %>
 <% end %>
+<br><br><br>
   </div>
 
-  <div class="col-md-8 col-sm-6 " style= "background-color: #EdcFFF; margin-top:-40px; height:100vh; " >
+  <div class="col-md-8 col-sm-6 " style= "background-color: #EdcFFF; height:100vh; " >
     <br>Already a member? <%= link_to 'Sign in', "/login" %><br><br>
     <% if @usertype == "creator" %> 
       <%= render "devise/registrations/creatornew" %>
