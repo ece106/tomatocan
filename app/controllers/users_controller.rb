@@ -286,7 +286,7 @@ class UsersController < ApplicationController
 #    @user.longitude = request.location.longitude
     if @user.save
       sign_in @user
-      redirect_to user_profile_path(current_user.permalink)
+      redirect_to user_profileinfo_path(current_user.permalink)
     else
       render 'signup'
     end

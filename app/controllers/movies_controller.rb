@@ -91,7 +91,7 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie.destroy
-    redirect_to user_path(@user.permalink), notice: 'movie was successfully deleted.'
+    redirect_to user_profile_path(@user.permalink), notice: 'movie was successfully deleted.'
   end
 
   private

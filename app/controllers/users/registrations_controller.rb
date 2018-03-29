@@ -27,9 +27,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with self.resource
     end
   
-    def localauthorsscene
-      build_resource({})
-      respond_with self.resource
-    end
-
 end

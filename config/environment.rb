@@ -1,3 +1,5 @@
+ActionMailer::Base.delivery_method = :smtp
+
 # Load the Rails application.
 require_relative 'application'
 

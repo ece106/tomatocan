@@ -1,14 +1,19 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
 config.action_mailer.smtp_settings = {
-   :address   => "smtp.gmail.com",
-   :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
-   :enable_starttls_auto => true, # detects and uses STARTTLS
-   :user_name => "crowdpublishtv.star@gmail.com",
-   :password  => 'GMAIL_PWD', # SMTP password is any valid API key
-   :authentication => 'plain', # Mandrill supports 'plain' or 'login'
- }
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => "mail.google.com",
+  :user_name => "crowdpublishtv.star@gmail.com",
+  :password => "axcg5511",
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
+
 config.action_mailer.default_url_options = {
   :host => 'localhost:3000', :protocol => 'http' 
 }
@@ -35,8 +40,6 @@ config.action_mailer.default_url_options = {
     config.action_controller.perform_caching = false
     config.cache_store = :null_store
   end
-
-  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

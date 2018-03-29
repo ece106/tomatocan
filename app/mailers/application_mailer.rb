@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'lisa@crowdpublish.tv'
+  default from: 'crowdpublishtv.star@gmail.com'
   layout 'mailer'
 end

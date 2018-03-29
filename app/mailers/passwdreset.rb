@@ -1,3 +1,3 @@
 class Passwdreset < ApplicationMailer
-  default from: "lisa@crowdpublish.tv"
+  default from: "crowdpublishtv@gmail.com"
 end

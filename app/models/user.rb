@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :merchandises #,through => :projects #but merchandise doesnt have to belong to a project 
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable 
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable 
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 

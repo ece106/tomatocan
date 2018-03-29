@@ -71,7 +71,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to user_path(@user.permalink), notice: 'Book was successfully deleted.'
+    redirect_to user_profile_path(@user.permalink), notice: 'Book was successfully deleted.'
   end
 
   private
