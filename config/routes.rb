@@ -29,7 +29,20 @@ Rails.application.routes.draw do
   resources :events
   resources :reviews
 
-  devise_for :users
+devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations: "users/registrations", passwords: "users/passwords"}
+  as :user do
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
+    post "signup", :to => 'devise/registrations#create', :as => :user_signup
+    get "password", :to => 'devise/passwords#new', :as => :new_user_password
+    get "password", :to => 'devise/passwords#edit', :as => :edit_user_password
+#    patch "password", :to => 'devise/passwords#update', :as => :user_password
+#    put "password", :to => 'devise/passwords#update' #, :as => :user_password
+    match '/password' => 'devise/passwords#create', as: :user_password, via: [:post]
+    match '/password' => 'devise/passwords#update', via: [:put, :patch]
+  end
 
   devise_scope :user do
     authenticated :user do

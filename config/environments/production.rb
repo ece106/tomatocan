@@ -6,7 +6,7 @@ config.action_mailer.smtp_settings = {
    :enable_starttls_auto => true, # detects and uses STARTTLS
    :user_name => "crowdpublishtv.star@gmail.com",
    :password  => ENV['GMAIL_PWD'], # SMTP password is any valid API key
-   :authentication => 'plain', # Mandrill supports 'plain' or 'login'
+   :authentication => 'plain' # Mandrill supports 'plain' or 'login'
 #   :domain => 'www.crowdpublish.tv', # your domain to identify your server when connecting
  }
 # Force all access to the app over SSL, use Strict-Transport-Security,

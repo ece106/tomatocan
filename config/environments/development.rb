@@ -10,7 +10,7 @@ config.action_mailer.smtp_settings = {
   :domain => "mail.google.com",
   :user_name => "crowdpublishtv.star@gmail.com",
   :password => "GMAIL_PWD",
-  :authentication => :plain,
+  :authentication => 'plain',
   :enable_starttls_auto => true,
   :openssl_verify_mode => 'none'
 }
