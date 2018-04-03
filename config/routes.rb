@@ -37,7 +37,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
     get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
     post "signup", :to => 'devise/registrations#create', :as => :user_signup
     get "password", :to => 'devise/passwords#new', :as => :new_user_password
-    get "password", :to => 'devise/passwords#edit', :as => :edit_user_password
+    get "newpassword", :to => 'devise/passwords#edit', :as => :edit_user_password
 #    patch "password", :to => 'devise/passwords#update', :as => :user_password
 #    put "password", :to => 'devise/passwords#update' #, :as => :user_password
     match '/password' => 'devise/passwords#create', as: :user_password, via: [:post]
