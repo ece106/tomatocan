@@ -9,9 +9,10 @@ config.action_mailer.smtp_settings = {
   :port => 587,
   :domain => "mail.google.com",
   :user_name => "crowdpublishtv.star@gmail.com",
-  :password => "axcg5511",
+  :password => "GMAIL_PWD",
   :authentication => :plain,
-  :enable_starttls_auto => true
+  :enable_starttls_auto => true,
+  :openssl_verify_mode => 'none'
 }
 
 config.action_mailer.default_url_options = {
