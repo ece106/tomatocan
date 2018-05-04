@@ -110,16 +110,10 @@
   </div>
 </div>
 
-    <div class="hsmovieimage username" style="height:300px; text-shadow: 1px 1px #000; margin-top:20px; padding-top:40px; text-align:center; font-size:28px"> 
-      <%= link_to "Featured Project: ", "/phases/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie " %><br><br><br>
-      <%= link_to "Lisa's 80's Catholic High School Movie", "/phases/lisas80scatholichighschoolmovie", title: "Lisas 80s Catholic High School Movie" %><br>
-      <%= link_to image_tag("transparent.png", size: "370x130", title: "Lisas 80s Catholic High School Movie"), "/phases/lisas80scatholichighschoolmovie" %> 
-    </div>
-
 <br><br>
 <div class="row" > 
   <div class="helps" >
-    Authors, Actors to Watch
+    Authors to Watch
   </div><br>
 </div>
 <div class="row" > 
@@ -136,6 +130,24 @@
   <div class="indexlist" >
     <b>Browse more videos by CrowdPublish.TV authors</b><br> <%= will_paginate @authors %> <br>
   </div>
+
+<div class="row" > 
+  <div class="helps" >
+    Actors to Watch
+  </div><br>
+</div>
+<div class="row" > 
+  <% @actors.each do |u| %> 
+      <div class="col-md-4 col-sm-6 col-xs-12" > 
+        <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
+          <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+          <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
 <%= image_tag("futureEmpStory.png", :size => "712x25") %><p>
 
   <div class="row" style="margin-top:15px;" >

@@ -2,9 +2,13 @@ class StaticPagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'author')
-    authorsvidorder = userswithyoutube.order('updated_at DESC')
-    @authors = authorsvidorder.paginate(:page => params[:page], :per_page => 12)
+    authorswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'author')
+    authorsvidorder = authorswithyoutube.order('updated_at DESC')
+    @authors = authorsvidorder.paginate(:page => params[:page], :per_page => 6)
+
+    actorswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'actor')
+    actorsvidorder = actorswithyoutube.order('updated_at DESC')
+    @actors = actorsvidorder.paginate(:page => params[:page], :per_page => 6)
 
     if user_signed_in?
       @orglink = groups_path

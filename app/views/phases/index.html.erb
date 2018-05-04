@@ -56,16 +56,16 @@
             <% groupthumb = "crowddark.png" %>
           <% end %>
 
-          <%= link_to (image_tag groupthumb, :style => "filter: brightness(50%); max-height:150px;"), phase_path(phs[:permalink])
+          <%= link_to (image_tag groupthumb, :style => "filter: brightness(50%); max-height:170px;"), phase_path(phs[:permalink])
           %>
           <projecttext >
-            <div style="padding:0px; font-size:22px"><%= link_to phs[:name], phase_path(phs[:permalink]) %>
+            <div style="padding:0px; font-size:22px"><%= link_to  truncate(phs[:name], :length => 52, :separator => ' '), phase_path(phs[:permalink]) %>
             </div>
             <div style="font-color:white">
               <%= link_to phs[:creator], user_profile_path(phs[:authorpermalink]), style:'color: white;' %>
               <% "Write code to send email to author asking permission to post. " %>
             </div>  
-            <%= link_to truncate(phs[:mission], :length => 160, :separator => ' '), phase_path(phs[:permalink]) %>...
+            <%= link_to truncate(phs[:mission], :length => 160, :separator => ' '), phase_path(phs[:permalink]) %>
             <% if user_signed_in? %>
               <% if @numusrgroupstripe > 0 %><br>
               <div style = "color:#000; float:left"> <%= button_tag 'Partner', value: phs[:id], type: :submit, name: "agreement[phase_id]" %></div>
