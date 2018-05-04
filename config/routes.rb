@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   match 'home', to: 'static_pages#home', via: 'get'
   match 'howwork', to: 'static_pages#howwork', via: 'get'
+  match 'tellfriends', to: 'static_pages#tellfriends', via: 'get'
   match 'tos', to: 'static_pages#tos', via: 'get'
   match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
 

@@ -11,8 +11,12 @@ class StaticPagesController < ApplicationController
     @actors = actorsvidorder.paginate(:page => params[:page], :per_page => 6)
 
     if user_signed_in?
+      @user = User.find(current_user.id)
       @orglink = groups_path
       @titlecaption = "Find the page for the Organization that referred you to CrowdPublish.TV"
+      if @user.phases.any?
+        @recentphase = @user.phases.order('deadline').last 
+      end
     else
       @orglink = "/signup"
       @titlecaption = "Sign Me Up!"

@@ -103,14 +103,63 @@
               <li><%= link_to "FAQ", '/howwork' %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+               <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
               <% end %>
             </ul>
           </div> 
   </div>
 </div>
 
-<br><br>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-5 col-sm-5 col-xs-9" style="padding-top:20px">
+      <% if user_signed_in? %>
+        <div class = "helps" style = "text-align:left" >
+          <% if @user.bannerpic.present? %>
+            <%= link_to "1. Improve Your Profile", user_profileinfo_path(current_user.permalink) %>
+          <% else %>
+            <%= link_to "1. Create Profile", user_profileinfo_path(current_user.permalink), style:"color:red;" %> 
+          <% end %><br><br>
+
+          <% if @user.phases.any? %>
+            <%= link_to "2. Create Another Campaign", new_phase_path(current_user.permalink) %> 
+          <% else %>
+            <%= link_to "2. Create Campaign", new_phase_path(current_user.permalink), style:"color:red;" %> 
+          <% end %><br><br>
+
+          <% if @user.phases.any? %>
+            <% if @recentphase.merchandises.any? %>
+              <%= link_to "3. Select more Perks to offer Fans", phase_standardperks_path(@recentphase.permalink) %> 
+            <% else %>
+              <%= link_to "3. Select or Create Perks to offer Fans", phase_standardperks_path(@recentphase.permalink), style:"color:red;" %> 
+            <% end %>
+          <% else %>
+              3. Select & Create Perks to offer Fans
+          <% end %><br><br>
+
+          <%= link_to "4. Tell all your Friends & Fans", '/tellfriends', style:"color:red;" %> <br><br>
+
+          <% if @user.stripeid.present? %>
+            <%= link_to "5. Manage your $", user_dashboard_path(@user.permalink) %>
+          <% else %>
+            <%= link_to "5. Get $", user_createstripeaccount_path(@user.permalink), style:"color:red;" %>
+          <% end %>
+
+      <% else %>
+          After Signup, follow these steps to earn funding for your hard work<br><br>
+        <div class = "helps" style = "text-align:left" >
+          1. Edit Profile"<br><br>
+          2. Create Campaign <br><br>
+          3. Select & Create Perks to offer Fans <br><br>
+          4. Tell all your Friends & Fans <br><br>
+          5. Get $
+        </div>
+      <% end %>
+        <br><br>
+
+      </div>
+    </div>
+  </div>
+
 <div class="row" > 
   <div class="helps" >
     Authors to Watch
