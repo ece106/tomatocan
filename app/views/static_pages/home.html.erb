@@ -111,8 +111,11 @@
 </div>
 
   <div class="row">
-    <div class="col-md-offset-1 col-md-5 col-sm-5 col-xs-9" style="padding-top:20px">
+    <div class="col-md-offset-1 " style="padding-top:20px">
       <% if user_signed_in? %>
+        <div class = "helps" style = "font-size:32px">
+          Create a fantastic CrowdPublish Campaign!
+        </div><br>
         <div class = "helps" style = "text-align:left" >
           <% if @user.bannerpic.present? %>
             <%= link_to "1. Improve Your Profile", user_profileinfo_path(current_user.permalink) %>
@@ -139,19 +142,21 @@
           <%= link_to "4. Tell all your Friends & Fans", '/tellfriends', style:"color:red;" %> <br><br>
 
           <% if @user.stripeid.present? %>
-            <%= link_to "5. Manage your $", user_dashboard_path(@user.permalink) %>
+            <%= link_to "5. Manage Your $", user_dashboard_path(@user.permalink) %>
           <% else %>
             <%= link_to "5. Get $", user_createstripeaccount_path(@user.permalink), style:"color:red;" %>
           <% end %>
 
       <% else %>
-          After Signup, follow these steps to earn funding for your hard work<br><br>
+        <div class = "helps" style = "font-size:32px; color:#1F0D5F" >
+          Signup & follow these steps to offer perks to your fabulous fans!
+        </div><br>
         <div class = "helps" style = "text-align:left" >
-          1. Edit Profile"<br><br>
-          2. Create Campaign <br><br>
-          3. Select & Create Perks to offer Fans <br><br>
-          4. Tell all your Friends & Fans <br><br>
-          5. Get $
+          1. <%= link_to "Edit Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
+          2. <%= link_to "Create Campaign", phase_path('lisas80scatholichighschoolmovie'), title: "No need to have a particular reason to raise funds other than to support the time you spend on your work. Click to see one of our campaigns" %> <br><br>
+          3. <%= link_to "Select & Create Perks to offer Fans", merchandises_path, title: "Offer your fans more than just your videos or books. Click for examples of what our members offer their fans" %> <br><br>
+          4. <%= link_to "Tell all your Friends & Fans", '/tellfriends', title: "The process of getting the word out about your campaign" %> <br><br>
+          5. <%= link_to "Get $", 'http://stripe.com', title: "We use the same trusted payment processor many of your favorite sites use", :target => "_blank" %>
         </div>
       <% end %>
         <br><br>
