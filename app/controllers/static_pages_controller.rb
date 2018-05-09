@@ -27,6 +27,12 @@ class StaticPagesController < ApplicationController
   def howwork
   end
 
+  def tellfriends
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
+  end
+
   private
     def static_pages_params
       params.require(:static_page).permit(:usertype )

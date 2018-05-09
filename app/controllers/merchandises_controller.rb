@@ -4,7 +4,9 @@ class MerchandisesController < ApplicationController
 
   # GET /merchandises
   def index
-    @merchandises = Merchandise.joins(:user).where("stripeid IS NOT NULL")
+    @merchandiselisa = Merchandise.joins(:user).where("user_id = 143 AND itempic IS NOT NULL")
+    @merchandisepic = Merchandise.joins(:user).where("stripeid IS NOT NULL AND itempic IS NOT NULL")
+    @merchandisenopic = Merchandise.joins(:user).where("stripeid IS NOT NULL AND itempic IS NULL")
   end
 
   # GET /merchandises/1
