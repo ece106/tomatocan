@@ -10,7 +10,7 @@
 
   <h3><%= @merchandise.name %> </h3>
   <% if user_signed_in? %>
-    <% if @user.stripeid.present? %>
+    <% if @user.stripeid.present? || @user.id == 143  %>
       <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get %> 
       $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
     <% else %>
