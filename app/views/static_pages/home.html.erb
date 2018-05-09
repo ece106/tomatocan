@@ -114,48 +114,48 @@
     <div class="col-md-offset-1 " style="padding-top:20px">
       <% if user_signed_in? %>
         <div class = "helps" style = "font-size:32px">
-          Create a fantastic CrowdPublish Campaign!
+          Create a fantastic CrowdPublish CrowdPublish Campaign!
         </div><br>
         <div class = "helps" style = "text-align:left" >
           <% if @user.bannerpic.present? %>
-            <%= link_to "1. Improve Your Profile", user_profileinfo_path(current_user.permalink) %>
+            <%= link_to "1. Improve Your Profile", user_profileinfo_path(current_user.permalink), title: "Embed your YouTube videos, update your banner, give your fans more details about your work" %>
           <% else %>
-            <%= link_to "1. Create Profile", user_profileinfo_path(current_user.permalink), style:"color:red;" %> 
+            <%= link_to "1. Create Profile", user_profileinfo_path(current_user.permalink), style:"color:red;", title: "Tell your fans about yourself... Add a picture of yourself, a banner about your books or videos" %> 
           <% end %><br><br>
 
           <% if @user.phases.any? %>
-            <%= link_to "2. Create Another Campaign", new_phase_path(current_user.permalink) %> 
+            <%= link_to "2. Create Another CrowdPublish Campaign", new_phase_path(current_user.permalink), title: "A great excuse to reach out to your most loyal fans" %> 
           <% else %>
-            <%= link_to "2. Create Campaign", new_phase_path(current_user.permalink), style:"color:red;" %> 
+            <%= link_to "2. Create CrowdPublish Campaign", new_phase_path(current_user.permalink), style:"color:red;", title: "Your most loyal fans are anticipating you'll reach out to them" %> 
           <% end %><br><br>
 
           <% if @user.phases.any? %>
             <% if @recentphase.merchandises.any? %>
-              <%= link_to "3. Select more Perks to offer Fans", phase_standardperks_path(@recentphase.permalink) %> 
+              <%= link_to "3. Select more Perks to offer Fans", phase_standardperks_path(@recentphase.permalink), title: "Create new perks that only you can offer your most loyal fans!" %> 
             <% else %>
-              <%= link_to "3. Select or Create Perks to offer Fans", phase_standardperks_path(@recentphase.permalink), style:"color:red;" %> 
+              <%= link_to "3. Select or Create Perks to offer Fans", phase_standardperks_path(@recentphase.permalink), style:"color:red;", title: "Offer perks that only you could give to your most loyal fans!" %> 
             <% end %>
           <% else %>
               3. Select & Create Perks to offer Fans
           <% end %><br><br>
 
-          <%= link_to "4. Tell all your Friends & Fans", '/tellfriends', style:"color:red;" %> <br><br>
+          <%= link_to "4. Tell all your Friends & Fans", '/tellfriends', style:"color:red;", title: "Announce your CrowdPublish Campaign on twitter, facebook, email, from rooftops..." %> <br><br>
 
           <% if @user.stripeid.present? %>
-            <%= link_to "5. Manage Your $", user_dashboard_path(@user.permalink) %>
+            <%= link_to "5. Manage Your $", user_dashboard_path(@user.permalink), title: "View your dashboard" %>
           <% else %>
-            <%= link_to "5. Get $", user_createstripeaccount_path(@user.permalink), style:"color:red;" %>
+            <%= link_to "5. Get $", user_createstripeaccount_path(@user.permalink), style:"color:red;", title: "Sign up to get your money deposited directly into your bank account. CrowdPublish.TV uses the same trusted payment processor many of your favorite sites use." %>
           <% end %>
 
       <% else %>
         <div class = "helps" style = "font-size:32px; color:#1F0D5F" >
-          Signup & follow these steps to offer perks to your fabulous fans!
+          <%= link_to "Signup", new_user_signup_path(usertype: "creator"), style: "color:red" title: "Sign up for CrowdPublishTV & we'll walk you through the CrowdPublishing process" %> & follow these steps to offer perks to your fabulous fans!
         </div><br>
         <div class = "helps" style = "text-align:left" >
-          1. <%= link_to "Edit Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
-          2. <%= link_to "Create Campaign", phase_path('lisas80scatholichighschoolmovie'), title: "No need to have a particular reason to raise funds other than to support the time you spend on your work. Click to see one of our campaigns" %> <br><br>
+          1. <%= link_to "Create Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
+          2. <%= link_to "Create CrowdPublish Campaign", phase_path('lisas80scatholichighschoolmovie'), title: "No need to have a particular reason to raise funds other than to support the time you spend on your work. Click to see one of our CrowdPublish Campaigns" %> <br><br>
           3. <%= link_to "Select & Create Perks to offer Fans", merchandises_path, title: "Offer your fans more than just your videos or books. Click for examples of what our members offer their fans" %> <br><br>
-          4. <%= link_to "Tell all your Friends & Fans", '/tellfriends', title: "The process of getting the word out about your campaign" %> <br><br>
+          4. <%= link_to "Tell all your Friends & Fans", '/tellfriends', title: "The process of getting the word out about your CrowdPublish Campaign" %> <br><br>
           5. <%= link_to "Get $", 'http://stripe.com', title: "We use the same trusted payment processor many of your favorite sites use", :target => "_blank" %>
         </div>
       <% end %>

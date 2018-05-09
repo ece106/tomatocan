@@ -2,7 +2,7 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
-  <div class="container col-xs-12 " style="margin-top:10px">
+  <div class="container col-xs-12 " style="margin-top:10px; padding-left:0px">
     <% if user_signed_in? %>
       <% if !@user.stripeid.present? && @user.id != 143 %>
 
@@ -51,7 +51,7 @@
           <table ><tr>
 
             <td style = "width: 250px; overflow:hidden">
-              <%= link_to (image_tag merch.itempic, :style => "max-width:250px"), merchandise_path(merch.id) %>
+              <%= link_to (image_tag merch.itempic, :style => "max-width:240px"), merchandise_path(merch.id) %>
             </td>
             <td>
               <% if current_user.id == @user.id %>

@@ -19,8 +19,11 @@
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 82, rows: 7, value: "Get on the list of Patrons at the end of the next chapter of the book I'm currently writing. This chapter will be send out to qualifying Patrons in two months. After the book is completed, your name will be included in the page of thanks at the end of the book." || :desc %><br><br>
-            <b>Price </b><br>
-            $<%= f.text_field :price, size: 80, value: 40.00 || :price %>USD<br>
+                <b>Price </b><br>
+                $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br><br>
+                <b>Perk Picture </b><br>
+                Upload a picture (optional) that represents the item you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
+                <br><%= f.file_field :itempic %> 
                 <%= button_to "Offer Name in Credits Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
               <% end %>
           </div>
