@@ -16,12 +16,16 @@ class StaticPagesController < ApplicationController
       @titlecaption = "Find the page for the Organization that referred you to CrowdPublish.TV"
       if @user.phases.any?
         @recentphase = @user.phases.order('deadline').last 
+        if current_user.author == "author"
+          @perkpath = phase_authorperks_path(@recentphase.permalink)
+        else
+          @perkpath = phase_actorperks_path(@recentphase.permalink)
+        end
       end
     else
       @orglink = "/signup"
       @titlecaption = "Sign Me Up!"
     end
-
   end
 
   def howwork

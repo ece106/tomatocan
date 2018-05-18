@@ -1,5 +1,5 @@
 class PhasesController < ApplicationController
-  before_action :set_phase, only: [:patronperk, :show, :edit, :update, :destroy]
+  before_action :set_phase, only: [:patronperk, :authorperks, :actorperks, :show, :edit, :update, :destroy]
   layout :resolve_layout
 
   # GET /phases
@@ -74,15 +74,20 @@ class PhasesController < ApplicationController
   end
 
   def patronperk  
-    @phase = Phase.find_by_permalink(params[:permalink])
     @merchandises = @phase.merchandises
     @merchandise = @phase.merchandises.build 
     @perklist = Merchandise.where(:phase_id => @phase.id)
   end
 
-  def standardperks
-    @phase = Phase.find_by_permalink(params[:permalink])
+  def authorperks
     @author = User.find_by_id(@phase.user_id)
+    @merchandise = @phase.merchandises.build 
+    if user_signed_in?
+      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
+    end
+  end
+  def actorperks
+    @actor = User.find_by_id(@phase.user_id)
     @merchandise = @phase.merchandises.build 
     if user_signed_in?
       @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
@@ -99,7 +104,11 @@ class PhasesController < ApplicationController
   def create
     @phase = current_user.phases.build(phase_params)
     if @phase.save
-      redirect_to phase_standardperks_path(@phase.permalink), notice: 'phase was successfully created.'
+      if current_user.author == "author"
+        redirect_to phase_authorperks_path(@phase.permalink), notice: 'phase was successfully created.'
+      else
+        redirect_to phase_actorperks_path(@phase.permalink), notice: 'phase was successfully created.'
+      end
     else
       render action: 'new'
     end

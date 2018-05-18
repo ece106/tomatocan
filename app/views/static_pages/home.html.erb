@@ -114,7 +114,7 @@
     <div class="col-md-offset-1 " style="padding-top:20px">
       <% if user_signed_in? %>
         <div class = "helps" style = "font-size:32px">
-          Create a fantastic CrowdPublish CrowdPublish Campaign!
+          Create a fantastic CrowdPublishing Campaign!
         </div><br>
         <div class = "helps" style = "text-align:left" >
           <% if @user.bannerpic.present? %>
@@ -131,9 +131,9 @@
 
           <% if @user.phases.any? %>
             <% if @recentphase.merchandises.any? %>
-              <%= link_to "3. Select more Perks to offer Fans", phase_standardperks_path(@recentphase.permalink), title: "Create new perks that only you can offer your most loyal fans!" %> 
+              <%= link_to "3. Select more Perks to offer Fans", @perkpath, title: "Create new perks that only you can offer your most loyal fans!" %> 
             <% else %>
-              <%= link_to "3. Select or Create Perks to offer Fans", phase_standardperks_path(@recentphase.permalink), style:"color:red;", title: "Offer perks that only you could give to your most loyal fans!" %> 
+              <%= link_to "3. Select or Create Perks to offer Fans", @perkpath, style:"color:red;", title: "Offer perks that only you could give to your most loyal fans!" %> 
             <% end %>
           <% else %>
               3. Select & Create Perks to offer Fans

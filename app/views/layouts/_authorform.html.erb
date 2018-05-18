@@ -33,7 +33,12 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
                 <% if @sidebarphase.merchandises.any? %>
                   <%= button_to "Edit Campaigns", user_phases_path(current_user.permalink), method: :get, class: 'button' %>
                 <% else %> 
-                  <%= button_to "Create Perks", phase_standardperks_path(@sidebarphase.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;"  %>
+                  <% if current_user.author == "author" %>
+                    <% @perkpath = phase_authorperks_path(@sidebarphase.permalink) %>
+                  <% else %>
+                    <% @perkpath = phase_actorperks_path(@sidebarphase.permalink) %>
+                  <% end %>
+                  <%= button_to "Create Perks", @perkpath, method: :get, class: 'button', style:"color:red; font-size:28px;"  %>
                 <% end %> 
               <% else %> 
                 <%= button_to "Start a Campaign", new_phase_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>

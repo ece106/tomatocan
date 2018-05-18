@@ -24,7 +24,11 @@
 
       <div class="blacktxt " style= "text-align:left">
         <br><b>Create a New Perk </b><br>
-        <%= button_to("New Perk", phase_standardperks_path(@phase.permalink), method: :get, form_class: 'btn btn-small') %>
+        <% if current_user.author == "author" %>
+          <%= button_to("New Perk", phase_authorperks_path(@phase.permalink), method: :get, form_class: 'btn btn-small') %>
+        <% else %>
+          <%= button_to("New Perk", phase_actorperks_path(@phase.permalink), method: :get, form_class: 'btn btn-small') %>
+        <% end %> 
       </div>      <br>  
 
     <%= form_for(@phase) do |f| %>
