@@ -31,6 +31,9 @@ class StaticPagesController < ApplicationController
   def howwork
   end
 
+  def aboutus
+  end
+
   def tellfriends
     if user_signed_in?
       @user = User.find(current_user.id)

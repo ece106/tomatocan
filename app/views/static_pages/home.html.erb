@@ -9,7 +9,7 @@
 
 <div class="container-flex">
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="margin-top:-20px; height:440px;">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="margin-top:-20px; height:490px;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -31,7 +31,8 @@
       <img src="http://www.CrowdPublish.TV/danMoldea.jpg" alt="Dan Moldea book talk">
       <div class="carousel-caption">
         .
-      </div>    </div>
+      </div>    
+    </div>
   </div>
 
   <!-- Left and right controls -->
@@ -45,25 +46,9 @@
   </a>
 </div>
 
+
 <div class="container-flex">
-  <div class="row" style = "position: absolute; z-index: 1; top:0px; background-color:black; opacity:0.5">
-
-  </div>
-  <div class="row" style = "position: absolute; z-index: 2; top:0px;">
-          <div class="navbar-inner clearfix usermenu" >
-            <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000;">
-              <li><%= link_to "Projects", phases_path %>
-              <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
-              <li><%= link_to "FAQ", '/howwork' %>
-              <% if user_signed_in? %>
-                <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-               <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
-              <% end %>
-            </ul>
-          </div> 
-  </div>
-
-  <div class="row" style = "position: absolute; z-index: 3; top:50px;" >
+  <div class="row" style = "position: absolute; z-index: 1; top:50px;" >
     <div class="col-md-5 col-sm-5 col-xs-9" style="padding-top:20px">
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:40px; text-shadow: 1px 1px #000; height: 80px">
         <b>Actors & Authors </b>
@@ -109,6 +94,22 @@
         <% end %>
       </div>
     </div>
+  </div>
+
+</div>
+  <div class="row" style="background-color:#1e1e46">
+          <div class="navbar-inner clearfix usermenu" >
+            <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000">
+              <li><%= link_to "Projects", phases_path %>
+              <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
+              <li><%= link_to "About", '/aboutus' %>
+              <li><%= link_to "FAQ", '/howwork' %>
+              <% if user_signed_in? %>
+                <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
+               <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+              <% end %>
+            </ul>
+          </div> 
   </div>
 
   <div class="row">

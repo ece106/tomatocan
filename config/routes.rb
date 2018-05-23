@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   match 'howwork', to: 'static_pages#howwork', via: 'get'
   match 'tellfriends', to: 'static_pages#tellfriends', via: 'get'
   match 'tos', to: 'static_pages#tos', via: 'get'
+  match 'aboutus', to: 'static_pages#aboutus', via: 'get'
   match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
