@@ -15,6 +15,14 @@ jQuery(document).ready(function($) {
   $('.accordion-toggleo').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hidden1more').removeClass('hidden1more').hide();
+  $('.accordion-toggle1').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden2more').removeClass('hidden2more').hide();
+  $('.accordion-toggle2').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
   $('.hidden3more').removeClass('hidden3more').hide();
   $('.accordion-toggle3').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
@@ -39,8 +47,24 @@ jQuery(document).ready(function($) {
   $('.accordion-toggle8').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hidden9more').removeClass('hidden9more').hide();
+  $('.accordion-toggle9').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
   $('.hidden10more').removeClass('hidden10more').hide();
   $('.accordion-toggle10').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden11more').removeClass('hidden11more').hide();
+  $('.accordion-toggle11').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden12more').removeClass('hidden12more').hide();
+  $('.accordion-toggle12').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden13more').removeClass('hidden13more').hide();
+  $('.accordion-toggle13').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
 
