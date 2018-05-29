@@ -10,6 +10,7 @@
               <li><%= link_to "Actors", actors_path %>
               <li><%= link_to "Authors", authors_path %>
               <li><%= link_to "FAQ", '/howwork' %>
+              <li><%= link_to "About", '/aboutus' %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
