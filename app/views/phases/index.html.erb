@@ -56,8 +56,8 @@
             <% groupthumb = "crowddark.png" %>
           <% end %>
 
-          <%= link_to (image_tag groupthumb, :style => "filter: brightness(50%); max-height:170px;"), phase_path(phs[:permalink])
-          %>
+            <%= link_to (image_tag groupthumb, :style => "filter: brightness(50%); max-height:170px;"), phase_path(phs[:permalink]) %>
+
           <projecttext >
             <div style="padding:0px; font-size:22px"><%= link_to  truncate(phs[:name], :length => 52, :separator => ' '), phase_path(phs[:permalink]) %>
             </div>

@@ -34,7 +34,8 @@ class PhasesController < ApplicationController
 #    numprojgroupsupports = Agreement.where("group_id = ?", @currgroup.id).count
 
     partner = []  #All phases available to be supported
-    active = Phase.where("deadline > ?", Time.now)
+#    active = Phase.where("deadline > ?", Time.now)
+    active = Phase.all
     active.find_each do |phs|
       author = User.find(phs.user_id).name
       authorperm = User.find(phs.user_id).permalink

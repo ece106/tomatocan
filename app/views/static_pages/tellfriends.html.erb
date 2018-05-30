@@ -10,7 +10,7 @@
 
 <div style= "text-align:left" >
   <% if user_signed_in? %>
-    <%= form_for(@user) do |f| %>
+    <%= form_for(@user) do |f| %> <% # "Right now these checkboxes don't do anything to the database (notice no Submit button)" %>
       <%= f.check_box(:twitter ) %> Add your campaign link to your email signature.<br><br>
 
       <%= f.check_box(:twitter ) %> Send an email to all your friends and fans.  <%= link_to "Tips for building your email list", 'https://blog.kissmetrics.com/quick-email-marketing-lists', :target => "_blank" %><br><br>
