@@ -2,20 +2,21 @@
 <% if user_signed_in? %>
 <% if @phase.user_id == current_user.id || current_user.id == 143 %>
 
-  <div class="socialize" >
-    Need ideas for Perks to offer your fans? Offer these Perks as-is or modify them (recommended) to be specific to your project or expertise. </i> 
+  <div class="helps" >
+    Offer these Perks as-is or customize for your project or expertise. </i> 
   </div><br>
 
 
   <div class="row" > 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class="socialize" >
+        <div class="socialize" style="padding-bottom:10px">
           Share media with fans
-        </div><br>
+        </div>
 
+     <div class="font19left" >
 <% "SOCIAL MEDIA POST" %>
     <div class="accordion" id="accordion1">
-      <div class="accordion-group">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
         <div id="accordion-togglea" class="accordion-body collapse">
           <div class="accordion-inner">
             <%= form_for(@merchandise) do |f| %>
@@ -33,7 +34,7 @@
         </div>
         <a class="accordion-togglea" data-toggle="collapse" href="#accordion-togglea ">
           <span>
-            Social Media Post
+            Informative or comedic <b>Social Media Post</b>
           </span>
           <span class="hiddenamore">
             ...Hide <b>Social Media Post</b> details<br><br>
@@ -43,7 +44,7 @@
     </div>
 <% "ACCESS TO BEHIND THE SCENES BLOG" %>
         <div class="accordion" id="accordion4">
-          <div class="accordion-group">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-toggle4" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -61,7 +62,7 @@
             </div>
             <a class="accordion-toggle4" data-toggle="collapse" href="#accordion-toggle4">
               <span>
-                Behind the Scenes Blog Access 
+                Behind the Scenes <b>Premium Blog Access </b>
               </span>
               <span class="hidden4more">
                 ...Hide <b>Behind the Scenes Blog</b> details<br><br>
@@ -71,7 +72,7 @@
         </div>
 <% "SOCIAL MEDIA VIDEO" %>
     <div class="accordion" id="accordion6">
-      <div class="accordion-group">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
         <div id="accordion-toggle6" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -89,7 +90,7 @@
         </div>
           <a class="accordion-toggle6" data-toggle="collapse" href="#accordion-toggle6">
             <span>
-              Video for Patrons' Social Media
+              <b>Premium Video</b> for Patrons' Social Media
             </span>
             <span class="hidden6more">
               ...Hide <b>Video for Patrons' Social Media</b> details<br><br>
@@ -99,7 +100,7 @@
     </div>
 <% "NAME IN CREDITS" %>
         <div class="accordion" id="accordion7">
-          <div class="accordion-group">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-toggle7" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -120,7 +121,7 @@
             </div>
             <a class="accordion-toggle7" data-toggle="collapse" href="#accordion-toggle7">
               <span>
-                Name in Credits of the next video you produce
+                <b>Name in Credits</b> of the next video you produce
               </span>
               <span class="hidden7more">
                 ...Hide <b>Name in Credits</b> details<br><br>
@@ -130,7 +131,7 @@
         </div>
 <% "RUNNING STORY ON SOCIAL MEDIA" %>
     <div class="accordion" id="accordion11">
-      <div class="accordion-group">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
         <div id="accordion-toggle11" class="accordion-body collapse">
           <div class="accordion-inner">
             <%= form_for(@merchandise) do |f| %>
@@ -148,7 +149,7 @@
         </div>
         <a class="accordion-toggle11" data-toggle="collapse" href="#accordion-toggle11 ">
           <span>
-            30 Line Story
+            Interactive <b>30 Line Story</b>
           </span>
           <span class="hidden11more">
             ...Hide <b>30 Line Story</b> details
@@ -158,14 +159,16 @@
     </div>
 
   </div>
+</div>
 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class="socialize" >
+        <div class="socialize" style="padding-bottom:10px" >
           Live Content 
-        </div><br>
+        </div>
+     <div class="font19left" >
 <% "LIVE READING" %>
     <div class="accordion" id="accordion3">
-      <div class="accordion-group">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
         <div id="accordion-toggle3" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -184,7 +187,7 @@
       </td><td>
         <a class="accordion-toggle3" data-toggle="collapse" href="#accordion-toggle3">
           <span>
-            Live Online Reading
+            <b>Live Online Reading</b> on video call
           </span>
           <span class="hidden3more">
             ...Hide <b>Live Online Reading</b> details<br><br>
@@ -194,7 +197,7 @@
     </div>
 <% "EVENT TICKETS" %>
         <div class="accordion" id="accordion9">
-          <div class="accordion-group">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-toggle9" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -212,7 +215,7 @@
             </div>
             <a class="accordion-toggle9" data-toggle="collapse" href="#accordion-toggle9">
               <span>
-                Event Tickets
+                <b>Tickets</b> to your local <b>Event</b>
               </span>
               <span class="hidden9more">
                 ...Hide <b>Event Tickets</b> details<br><br>
@@ -222,7 +225,7 @@
         </div>
 <% "ACT FAN WORK ON FACEBOOK LIVE" %>
     <div class="accordion" id="accordion13">
-      <div class="accordion-group">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
         <div id="accordion-toggle3" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -241,7 +244,7 @@
       </td><td>
         <a class="accordion-togglea3" data-toggle="collapse" href="#accordion-toggle13">
           <span>
-            Facebook Livestream Acting
+            Facebook <b>Livestream Acting</b>
           </span>
           <span class="hidden13more">
             ...Hide <b>Facebook Livestream Acting</b> details
@@ -251,7 +254,7 @@
     </div>
 <% "PLAY VIDEO GAME" %>
         <div class="accordion" id="accordion8">
-          <div class="accordion-group">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-toggle8" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -269,7 +272,7 @@
             </div>
             <a class="accordion-toggle8" data-toggle="collapse" href="#accordion-toggle8">
               <span>
-                Video Game perk
+                Play <b>Video Game</b> with fans
               </span>
               <span class="hidden8more">
                 ...Hide <b>Video Game</b> details<br><br>
@@ -279,7 +282,7 @@
         </div>
 <% "INTERACTIVE TV" %>
         <div class="accordion" id="accordion12">
-          <div class="accordion-group">
+          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-toggle12" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -297,7 +300,7 @@
             </div>
             <a class="accordion-toggle12" data-toggle="collapse" href="#accordion-toggle12">
               <span>
-                Interactive TV perk
+                <b>Interactive TV </b>
               </span>
               <span class="hidden12more">
                 ...Hide <b>Interactive TV</b> details<br><br>
@@ -307,7 +310,7 @@
         </div>
 <% "APPEARANCE AT PARTY" %>
     <div class="accordion" id="accordion2">
-      <div class="accordion-group">
+      <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
         <div id="accordion-toggle2" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -316,7 +319,7 @@
                 <%= f.text_field :name, size: 80, value: "Speak at your movie party " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will talk to your party guests for a half hour about what goes on behind the scenes of my latest movie. Must be within the Phoenix metro area. " || :desc %><br><br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will talk to your party guests for a half hour about what goes on behind the scenes of my latest movie in character. Must be within the Phoenix metro area. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 200.00 || :price %>USD<br>
                 <%= button_to "Offer Party Appearance Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -325,7 +328,7 @@
         </div>
           <a class="accordion-toggle2" data-toggle="collapse" href="#accordion-toggle2">
             <span>
-              Make an Appearance at fans' Party
+              Make an <b>Appearance at fans' Party</b>
             </span>
             <span class="hidden2more">
               ...Hide <b>Party Appearance</b> details<br><br>
@@ -335,7 +338,7 @@
     </div>
 <% "Q & A" %>
         <div class="accordion" id="accordion5">
-          <div class="accordion-group">
+          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-toggle5" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
@@ -344,7 +347,7 @@
                 <%= f.text_field :name, size: 80, value: "Consultation package" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly phone appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking about acting." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly video appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking about acting." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
                     <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -353,7 +356,7 @@
             </div>
             <a class="accordion-toggle5" data-toggle="collapse" href="#accordion-toggle5">
               <span>
-                Q & A
+                Actor <b>Coaching</b>
               </span>
               <span class="hidden5more">
                 ...Hide <b>Q & A</b> details<br><br>
@@ -362,16 +365,17 @@
           </div>
         </div>
       </div>
-
+     </div>
 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class="socialize" >
+        <div class="socialize" style="padding-bottom:10px" >
           Miscellaneous Perks 
-        </div><br>
+        </div>
 
+     <div class="font19left" >
 <% "RECIPE" %>
         <div class="accordion" id="accordionc">
-          <div class="accordion-group">
+          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-togglec" class="accordion-body collapse">
               <div class="accordion-inner">
                 <%= form_for(@merchandise) do |f| %>
@@ -389,7 +393,7 @@
             </div>
             <a class="accordion-togglec" data-toggle="collapse" href="#accordion-togglec ">
               <span>
-                Recipe perk
+                <b>Recipe</b> for disaster
               </span>
               <span class="hiddencmore">
                 ...Hide <b>Recipe</b> details<br><br>
@@ -399,7 +403,7 @@
         </div>
 
         <div class="accordion" id="accordion10">
-          <div class="accordion-group">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
             <div id="accordion-toggle10" class="accordion-body collapse">
               <div class="accordion-inner">
                 <%= form_for(@merchandise) do |f| %>
@@ -417,7 +421,7 @@
             </div>
             <a class="accordion-toggle10" data-toggle="collapse" href="#accordion-toggle10">
               <span>
-                Combo Package
+                <b>Combo</b> Package
               </span> 
               <span class="hidden10more">
                 ...Hide <b>Combo Package</b> details<br><br>
@@ -427,9 +431,10 @@
         </div>
 
       </div>
+      </div>
     </div>
 
-  <br><br><%= button_to "Add my own custom Perk", phase_patronperk_path(@phase.permalink) , method: :get, class: "button" %>
+  <br><%= button_to "Add my own custom Perk", phase_patronperk_path(@phase.permalink) , method: :get, class: "button" %>
   <%= button_to "Edit something else on this Campaign", edit_phase_path(@phase.permalink) , method: :get, class: "button" %>
 
 <br>All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. 
