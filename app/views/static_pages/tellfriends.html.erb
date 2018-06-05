@@ -8,40 +8,59 @@
   Use this checklist for outreach during your CrowdPublishTV campaign:<br><br>
 </div>
 
-<div style= "text-align:left" >
+<div class= "font19left" >
   <% if user_signed_in? %>
-    <%= form_for(@user) do |f| %> <% # "Right now these checkboxes don't do anything to the database (notice no Submit button)" %>
+    <%= form_for(@user) do |f| %> <% "Right now these checkboxes don't do anything to the database (notice no Submit button)" %>
+      
+      <div class ="font26left">
+        Blasts & Posts
+      </div>
       <%= f.check_box(:twitter ) %> Add your campaign link to your email signature.<br><br>
 
       <%= f.check_box(:twitter ) %> Send an email to all your friends and fans.  <%= link_to "Tips for building your email list", 'https://blog.kissmetrics.com/quick-email-marketing-lists', :target => "_blank" %><br><br>
 
-      <%= f.check_box(:twitter ) %> Post on social media<br><br>
+      <%= f.check_box(:twitter ) %> Post fun photos or short videos of you or your work (e.g. your dog reading your book) with a link to your CrowdPublishTV campaign on all your social media profiles (e.g., Twitter, Facebook, Instagram). Do this every day.<br><br><br>
 
-      <%= f.check_box(:twitter ) %> Reach out to high-profile Twitter users or leaders in your field. Ask them to mention your product or campaign to their followers and fans.<br><br>
+      <%= f.check_box(:twitter ) %> Hold contests in your social media accounts and post the link to your campaign. Try a photo contest for your followers to post pictures that incorporate your latest movie title or book title that include the link to your campaign. <br><br>
+
+      <div class ="font26left">
+        Targeted Outreach
+      </div>
+      <%= f.check_box(:twitter ) %> Ask high-profile Twitter users, bloggers, or leaders in your field to mention your campaign to their followers and fans. Make sure to tell them how it would benefit them to notify their fans and colleagues about your campaign.<br><br>
  
-      <%= f.check_box(:twitter ) %> Post a blurb with a link to your CrowdPublishTV campaign on all your social media profiles (e.g., Twitter, Facebook, Instagram).<br><br>
+      <%= f.check_box(:twitter ) %> Get several of your facebook friends who have a lot of followers in your target audience (such as other authors and actors) to do livestream interviews with you on their Facebook wall.<br><br>
 
-      <%= f.check_box(:twitter ) %> Host an event. Rally close friends and fans with a party, performance, or get-together. Bring along a tablet so people can make pledges on the spot — or send out a link to all your RSVPs. <br><br>
+      <%= f.check_box(:twitter ) %> Get your collaborators, fans, peers, cast and crew to help. Give them specific action items such as the Blast and Outreach items in this checklist.<br><br>
 
-      <%= f.check_box(:twitter ) %> Line up help. You need more than just yourself to get the word out. Get your collaborators, peers, and cast and crew involved.<br><br>
+      <%= f.check_box(:twitter ) %> Summarize your story and give it newsworthy context to turn it into an awesome press release. Research journalists and send your press release to the appropriate ones. <%= link_to "Tips for press releases", 'https://chuffed.org/academy/articles/detail/5-steps-to-get-pr', :target => "_blank" %> <br><br>
 
-      <%= f.check_box(:twitter ) %> Summarize your story and turn it into an awesome press release. Research journalists and send your press release to the appropriate ones. <%= link_to "Tips for press releases", 'https://chuffed.org/academy/articles/detail/5-steps-to-get-pr', :target => "_blank" %> <br><br>
+      <%= f.check_box(:twitter ) %> Host an event. Rally friends and fans with a reading or performance. Make and wear "Campaign Buttons" with a picture of you or your book cover. Have someone sit at the door with a tablet so people can purchase perks when they arrive and sign in. Send out a link to all your RSVPs. <br><br>
 
     <% end %>  
   <% else %>  
-    Add your campaign link to your email signature.<br><br>
+      <div class ="font26left">
+        Blasts & Posts
+      </div>
+      Add your campaign link to your email signature.<br><br>
 
-    Send email to all your friends and fans. <%= link_to "Tips for building your email list", 'https://blog.kissmetrics.com/quick-email-marketing-lists', :target => "_blank" %><br><br>
+      Send an email to all your friends and fans.  <%= link_to "Tips for building your email list", 'https://blog.kissmetrics.com/quick-email-marketing-lists', :target => "_blank" %><br><br>
 
-    Reach out to high-profile Twitter users or leaders in your field. Ask them to mention your product or campaign to their followers and fans.<br><br>
+      Post fun photos or short videos of you or your work (e.g. your dog reading your book) with a link to your CrowdPublishTV campaign on all your social media profiles (e.g., Twitter, Facebook, Instagram). Do this every day.<br><br><br>
 
-    Post a blurb with a link to your CrowdPublishTV campaign on all your social media profiles (e.g., Twitter, Facebook, Instagram).<br><br>
+      Hold contests in your social media accounts and post the link to your campaign. Try a photo contest for your followers to post pictures that incorporate your latest movie title or book title that include the link to your campaign. <br><br>
 
-    Host an event. Rally close friends and fans with a party, performance, or get-together. Bring along a tablet so people can make pledges on the spot — or send out a link to all your RSVPs. <br><br>
+      <div class ="font26left">
+        Targeted Outreach
+      </div>
+      Ask high-profile Twitter users, bloggers, or leaders in your field to mention your campaign to their followers and fans. Make sure to tell them how it would benefit them to notify their fans and colleagues about your campaign.<br><br>
+ 
+      Get several of your facebook friends who have a lot of followers in your target audience (such as other authors and actors) to do livestream interviews with you on their Facebook wall.<br><br>
 
-    Line up help. You need more than just yourself to get the word out. Get your collaborators, peers, and cast and crew involved.<br><br>
+      Get your collaborators, fans, peers, cast and crew to help. Give them specific action items such as the Blast and Outreach items in this checklist.<br><br>
 
-    Summarize your story and turn it into an awesome press release. Research journalists and send your press release to the appropriate ones. <%= link_to "Tips for press releases", 'https://chuffed.org/academy/articles/detail/5-steps-to-get-pr', :target => "_blank" %><br><br>
+      Summarize your story and give it newsworthy context to turn it into an awesome press release. Research journalists and send your press release to the appropriate ones. <%= link_to "Tips for press releases", 'https://chuffed.org/academy/articles/detail/5-steps-to-get-pr', :target => "_blank" %> <br><br>
+
+      Host an event. Rally friends and fans with a reading or performance. Make and wear "Campaign Buttons" with a picture of you or your book cover. Have someone sit at the door with a tablet so people can purchase perks when they arrive and sign in. Send out a link to all your RSVPs. <br><br>
 
   <% end %>  
 

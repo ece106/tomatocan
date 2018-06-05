@@ -65,7 +65,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   resources :users do
     resources :books
     member do
-#      get 'profileinfo', 'readerprofileinfo', 'orgprofileinfo'
+#      get 'profileinfo', 'readerprofileinfo', 'orgprofileinfo' What is this route for???
       get 'blog' => "users#blog", :as => :blog
     end
   end

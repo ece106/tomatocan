@@ -293,38 +293,6 @@ class UsersController < ApplicationController
   end
   # PUT /users/1.json
   def update
-    if @user.latitude.present?
-      unless @user.latitude.is_a?(Numeric)  #put this in the model and make a method call? Should method be called after attribs updated?
-        loc = request.location
-        if loc.present?
-          @user.update_attribute(:latitude, loc.latitude)
-          @user.update_attribute(:longitude, loc.longitude)
-        end
-      end
-    else
-      begin
-        loc = request.location
-        lat = loc.latitude
-        lon = loc.longitude
-      rescue Errno::EHOSTUNREACH, Errno::ETIMEDOUT, Errno::ENETUNREACH, Geocoder::NetworkError
-        # primary service unreachable, try secondary...
-        _page = Net::HTTP.get(URI('https://geoip-db.com/json/geoip.php'))
-        lat = JSON.parse(_page)['latitude'].to_f
-        puts "RESCUE"
-        puts lat
-        lon = JSON.parse(_page)['longitude'].to_f
-        # I'm pretty sure none of this is happening since most new signups still do not have a lat lon
-        # Also, this supposedly will give the address of heroku's servers in Ashburn
-      end
-      
-      if lat.present?
-        @user.update_attribute(:latitude, lat)
-      end
-      if lon.present?
-        @user.update_attribute(:longitude, lon)
-      end
-    end
-
     if @user.update_attributes(user_params)
       @user.get_youtube_id
       sign_in @user
