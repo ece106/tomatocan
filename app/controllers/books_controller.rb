@@ -82,7 +82,7 @@ class BooksController < ApplicationController
       @user = User.find(@book.user_id)
       if @user.phases.any?
         @sidebarphase = @user.phases.order('deadline').last 
-        @merchandise = @sidebarphase.merchandises.order(price: :asc)
+        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
       end
     end
 
