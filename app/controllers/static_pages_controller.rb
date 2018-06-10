@@ -28,7 +28,7 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def howwork
+  def faq
   end
 
   def aboutus
