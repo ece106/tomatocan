@@ -3,8 +3,9 @@ ruby "2.4.2"
 
 gem 'listen'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3'
+
 gem 'mandrill'	
 gem 'devise', '~> 4.3.0'
 gem 'fog'   #, '1.6.0'
@@ -39,9 +40,9 @@ group :test, :development do
 end
 
 group :production do
-# rake db:create:all
-# rails s -e production
-#  gem 'sqlite3-ruby', :require => 'sqlite3'
+     #rake db:create:all
+     #rails s -e production
+     #gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rails_12factor'
 end
 

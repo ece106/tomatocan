@@ -1,3 +1,4 @@
+
 class User < ApplicationRecord
 # We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
@@ -14,6 +15,31 @@ class User < ApplicationRecord
   has_many :events, :through => :rsvpqs
   has_many :phases 
   has_many :merchandises #,through => :projects #but merchandise doesnt have to belong to a project 
+
+  # Active Relationships (A user following a user)
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id" #, dependent: :destroy (if a user is deleted, delete the relationship)
+  # Passive Relationships (A user followed by a user)
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id" #, dependent: :destroy (if a user is deleted, delete the relationship)
+
+  has_many :following, through: :active_relationships, source: :followed 
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  # Helper methods for Relationships
+
+  # Follow a user
+  def follow(other_user)
+    following << other_user
+  end #End of "follow" method
+
+  # Unfollow a user
+  def unfollow(other_user)
+    following.delete(other_user)
+  end #End of the "unfollow" method
+
+  # Is following a specific user
+  def following?(other_user)
+    following.include?(other_user)
+  end #End of the "following?" method
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable #, :validatable, :confirmable 
