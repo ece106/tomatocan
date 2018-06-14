@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   resources :movieroles
   resources :movies
   resources :agreements
+  resources :relationships
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
 #  authenticated :user do
 #    root to: "users#show"

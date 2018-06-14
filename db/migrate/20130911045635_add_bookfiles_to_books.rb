@@ -1,4 +1,4 @@
-class AddBookfilesToBooks < ActiveRecord::Migration
+class AddBookfilesToBooks < ActiveRecord::Migration[4.2]
   def change
     add_column :books, :bookmobi, :string
     add_column :books, :bookepub, :string
