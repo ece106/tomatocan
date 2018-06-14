@@ -1,4 +1,4 @@
-ActionMailer::Base.delivery_method = :smtp
+#ActionMailer::Base.delivery_method = :smtp #if needed later: failing our tests
 
 # Load the Rails application.
 require_relative 'application'

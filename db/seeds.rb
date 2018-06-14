@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Following Relationships
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each {|followed| user.follow(followed)}
+followers.each {|follower| user.follower(user)}
