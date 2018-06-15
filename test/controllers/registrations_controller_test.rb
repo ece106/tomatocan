@@ -5,11 +5,11 @@ class RegistrationsControllerTest < ActionController::TestCase
     @user = users(:one)
   end
 
-  test "should update sanitized params"
+  test "should update sanitized params" do
     assert_difference('User.count', 1) do
-      post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink'  }
+      post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' }
     end
-    assert_equal(samiam, and what?)  #these tests dont seem to update the test db
+#    assert_equal(samiam, and what?)  #these tests dont seem to update the test db
   end
 
 end

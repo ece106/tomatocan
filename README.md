@@ -44,6 +44,62 @@ Refer to http://github.com/crowdpublishtv/crowdpublishtv and use tutorials, Goog
 
 When you have completed the quiz, download and start working on the tutorial at https://github.com/crowdpublishtv/crowdpublishtv/blob/master/public/LearnRailsIn2Minutes.odt 
 
+### TO USE THE CROWDPUBLISHTV GITHUB
+
+For a list of helpull git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
+
+1. Forking from crowdpublishtv and bringing the code to your local machine
+
+Begin by forking the crowdpublishtv code by pressing the fork button located at http://github.com/crowdpublishtv/crowdpublishtv. Forking will allow you to have a copy of the crowdpublishtv code in your personal github and will give you a way to request crowdpublishtv to pull your changes. 
+
+In order to bring the crowdpublishtv code to your local machine you must make a clone of the fork you have created. Open a commandline in the location you would like your code to be saved and use the command:
+
+```
+ git clone https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY
+```
+
+2. Pulling changes from crowdpublishtv into your local machine
+
+When changes have been made to the code http://github.com/crowdpublishtv/crowdpublishtv, your github will be behind. So you will have to pull the changes to your local machine and then push them to your repository. To pull changes from crowpublishtv, be sure to be in the correct directory, and use the command: 
+
+```
+git pull https://github.com/crowdpublishtv/crowdpublishtv.git master
+```
+
+3. Saving your changes to your repository
+
+In order to push your code to your repository you will have to stage your files to commit. You can stage your files by using the following commands:
+
+"Adds all modified file changes to the stage"
+```
+git add -u :/
+```
+
+"Adds modified and new files that are not .ignored to the stage"
+```
+git add * :/
+```
+
+To finish your commit (which will save your current files) use the command:
+```
+git commit -a -m "Usefull_Comment_of_Your_Changes/Additions"
+```
+
+Now you can push your comitted changes to your repository with the following commands:
+
+```
+git push origin master
+```
+or
+
+```
+git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY master
+```
+
+4. Getting your code onto crowdpublishtv
+
+Once you have made changes to your personal repository you can request for crowdpublishtv to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull 
+request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
 ### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
