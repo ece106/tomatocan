@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
-ruby "2.4.2"
+ruby "2.4.1"
 
 gem 'listen'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3'
 gem 'mandrill'	
 gem 'devise', '~> 4.3.0'
 gem 'fog'   #, '1.6.0'
