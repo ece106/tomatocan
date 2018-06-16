@@ -1,4 +1,4 @@
-class RenameProjectsToPhases < ActiveRecord::Migration[5.0]
+class RenameProjectsToPhases < ActiveRecord::Migration[4.2]
    def change
      rename_table :projects, :phases
    end 

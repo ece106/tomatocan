@@ -1,4 +1,4 @@
-require 'carrierwave/storage/fog'
+ require 'carrierwave/storage/fog'
 #Excon.defaults[:write_timeout] = 1000
 #  Excon.defaults = Excon.defaults.mere(:write_timeout => 10.minutes.to_i)
 

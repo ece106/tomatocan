@@ -1,4 +1,4 @@
-class ChangeUserTypeToString < ActiveRecord::Migration[5.0]
+class ChangeUserTypeToString < ActiveRecord::Migration[4.2]
   def change
     change_column :users, :author, :string
   end
