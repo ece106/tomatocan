@@ -46,7 +46,7 @@ When you have completed the quiz, download and start working on the tutorial at 
 
 ### TO USE THE CROWDPUBLISHTV GITHUB
 
-For a list of helpull git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
+For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
 
 1. Forking from crowdpublishtv and bringing the code to your local machine
 
@@ -82,7 +82,7 @@ git add * :/
 
 To finish your commit (which will save your current files) use the command:
 ```
-git commit -a -m "Usefull_Comment_of_Your_Changes/Additions"
+git commit -a -m "Useful_Comment_of_Your_Changes/Additions"
 ```
 
 Now you can push your comitted changes to your repository with the following commands:
@@ -98,8 +98,7 @@ git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY 
 
 4. Getting your code onto crowdpublishtv
 
-Once you have made changes to your personal repository you can request for crowdpublishtv to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull 
-request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
+Once you have made changes to your personal repository you can request for crowdpublishtv to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
 ### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
