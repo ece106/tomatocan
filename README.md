@@ -50,11 +50,16 @@ When you have completed the quiz, download and start working on the tutorial at 
 Files To Check/Change/Create: 
 
 * gemfile: 
-    Delete 'pg' and replace with 'sqlite3'
+    Comment out 
+```
+    #gem 'pg' 
+```
+and uncomment 
+```
+gem 'sqlite3'
+```
 
-The ENV variables may already be commented out, depending upon what the last developer pushed. ENV variables are for Heroku. Therefore the last commit before pushing to Heroku must have those variables set. The non-ENV variables use the initializer files, which are for use on local machines. 
-
-* config/initializers/fakekeys.rb: 
+* config/initializers/aakeys.rb: 
     Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
 ```
@@ -67,7 +72,7 @@ GMAIL_PWD = "superfake"
 Stripe.api_key = STRIPE_SECRET_KEY
 ```
 
-Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your accounts' keys. 
+Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/aakeys.rb with your accounts' keys. 
 
 *config/database.yml
 
