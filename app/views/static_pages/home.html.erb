@@ -115,8 +115,8 @@
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px">
       <% if user_signed_in? %>
-        <div class = "helps" style = "font-size:32px">
-          Create a CrowdPublishing Campaign
+        <div class = "helps" >
+          EARN FUNDS FOR YOUR STORIES
         </div><br>
         <div class = "helps" style = "text-align:left" >
           <% if @user.bannerpic.present? %>
@@ -151,8 +151,8 @@
         </div><br>
 
       <% else %>
-        <div class = "helps" style = "font-size:32px; color:#1F0D5F" >
-          <%= link_to "Signup", new_user_signup_path(usertype: "creator"), style: "color:red", title: "Sign up for CrowdPublishTV & we'll walk you through the CrowdPublishing process" %> to create a campaign for your epic
+        <div class = "helps" style = "color:#1F0D5F" >
+          <%= link_to "SIGNUP", new_user_signup_path(usertype: "creator"), style: "color:red", title: "Sign up for CrowdPublishTV & we'll walk you through the CrowdPublishing process" %> TO EARN FUNDS FOR YOUR STORIES
         </div><br>
         <div class = "helps" style = "text-align:left" >
           <%= link_to "Create Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
@@ -167,8 +167,8 @@
 
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px">
       <% if user_signed_in? %>
-        <div class = "helps" style = "font-size:32px">
-          Support a CrowdPublishing Campaign
+        <div class = "helps" >
+          SUPPORT STORIES ABOUT RESPECTABLE CHARACTERS
         </div><br>
         <div class = "helps" style = "text-align:left" >
           <% if @user.bannerpic.present? %>
@@ -178,8 +178,8 @@
           <% end %><br>
         </div><br>
       <% else %>
-        <div class = "helps" style = "font-size:32px; color:#1F0D5F" >
-          <%= link_to "Signup", new_user_signup_path(usertype: "creator"), style: "color:red", title: "Sign up for CrowdPublishTV & we'll walk you through the CrowdPublishing process" %> to support the creation of Role Model epics
+        <div class = "helps" style = "color:#1F0D5F" >
+          <%= link_to "SIGNUP", new_user_signup_path(usertype: "creator"), style: "color:red", title: "Sign up for CrowdPublishTV & we'll walk you through the CrowdPublishing process" %> TO SUPPORT ROLEMODEL STORIES stories
         </div><br>
       <% end %>
 
@@ -196,7 +196,7 @@
 
 <div class="row" > 
   <div class="helps" >
-    Authors who tell us about Respectable Characters
+    Storytellers who promote Respectable Characters
   </div><br>
 </div>
 <div class="row" > 
