@@ -59,11 +59,9 @@
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
         <% if user_signed_in? %>
-          <br><%= link_to "Increase fan engagement &", new_phase_path %><br>
-          <%= link_to "Raise more funds", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff" %>
+          <%= link_to "Create a RoleModel Campaign", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff" %>
         <% else %>
-          <br><%= link_to "Increase fan engagement &", new_user_signup_path(usertype: "creator") %><br>
-          <%= link_to "Raise more funds", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
+          <%= link_to "Create a RoleModel Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
         <% end %>
       </div>
     </div>
@@ -90,11 +88,9 @@
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000;">
         <% if user_signed_in? %>
-          <br><%= link_to "Sneak preview access &", phases_path %><br>
-          <%= link_to "Personalized content", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
+          <%= link_to "Support a RoleModel", phases_path, :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
         <% else %>
-          <br><%= link_to "Get sneak preview access &", "/signup" %>
-          <br><%= link_to "Personalized content", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
+          <br><%= link_to "Support a RoleModel", "/signup", :class => "btn btn-primary", style: "font-size:24px; margin-top:10px; background:#6e73d1; color:#fff;" %>
         <% end %>
       </div>
     </div>
@@ -206,7 +202,7 @@
 <div class="row" > 
   <% @authors.each do |u| %> 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-  `      <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
+        <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
           <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
           <br><%= link_to u.name, user_profile_path(u.permalink) %>
           <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
