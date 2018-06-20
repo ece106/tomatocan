@@ -64,36 +64,41 @@ end
   test "email of new user should be unique" do
     user1 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
                         email: "mo@CrowdPublish.TV", permalink: "lisa")
+  # puts "email1 " + user1.email
     user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
                         email: "mo@CrowdPublish.TV", permalink: "CrowdPublishTV")
+  # puts "email2 " + user2.email
     refute_empty user2.errors[:email]
     assert user2.errors[:email].any?, "email unique" 
   end
 
 #validates :permalink, uniqueness: { case_sensitive: false }
   test "permalink must be unique" do
-    @user.permalink = "MyPermalink"
+    @user.permalink = "CrowdPublishTV"
     @user.save
     user2 = users(:two)
-    user2.permalink = "mypermaLink"
+    user2.permalink = "crowDpublisHtv"
     refute user2.valid?, "permalink unique" 
     refute_empty user2.errors[:permalink] 
   end 
 
 #validates :permalink, format:     { with: /\A[\w+]+\z/ }
   test "permalink must be alphanumeric" do
-    @user.permalink = "whatthe@#$%&!"
+    @user.permalink = "whatthe*(*("
+    #puts "in permalink must be alphanumeric, @user.errors = " + @user.errors[:permalink].to_s
     refute @user.valid?, "permalink alphanumeric" 
     refute_empty @user.errors[:permalink] 
   end 
 
 #  validates_format_of   :email, :with  => Devise.email_regexp, 
   test "should have format of email address" do
-    @user.email = "email@lisa.org"
+    @user.email = "email@CrowdPublish.TV"
     assert @user.valid?, "wrong email format" 
-    assert_empty @user.errors[:email] 
+    puts "in test should have format of email address, @user.email = " + @user.email.to_s
+    assert_empty @user.errors[:email]
+    #assert_match(/"email@CrowdPublish.TV"/, @user.email)
     user2 = users(:two)
-    user2.email = "email"
+    user2.email = "CrowdPublishTV"
     refute user2.valid?, "proper email format" 
     refute_empty user2.errors[:email] 
   end
