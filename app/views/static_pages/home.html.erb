@@ -51,26 +51,35 @@
 <div class="container-flex">
   <div class="row" style = "position: absolute; z-index: 1; top:40px; text-align:center;" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
-        <b>Stories of Characters to Respect </b>
+        Crowdsourcing Stories of Characters we can Respect  
       </div>
-      <div class="whitetxt", style="z-index: 9999; font-size:20px; text-shadow: 1px 1px #000; margin-top:20px;">
-        The antithesis to media glorifying people who are famous for being famous
-      </div>
-    <div class="col-md-5 col-sm-5 col-xs-12">
+
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="whitetxt", style="margin-top:30px; z-index: 9999; font-size:30px; text-shadow: 1px 1px #000;">
         <b>Storytellers </b>
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px">
         <% if user_signed_in? %>
-          <%= link_to "Create a RoleModel Campaign", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff" %>
+          <%= link_to "Create a Campaign", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff" %>
         <% else %>
-          <%= link_to "Create a RoleModel Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
+          <%= link_to "Create a Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
         <% end %>
       </div>
     </div>
 
-    <div class="col-md-2 col-sm-2 col-xs-12" style= "margin-top:10px;">
-      <%= image_tag("cpLogo100.png") %>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="whitetxt" style="font-size:30px; text-shadow: 1px 1px #000;  margin-top:30px;">
+        <b>Storylovers </b>
+      </div>
+      <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px;">
+        <% if user_signed_in? %>
+          <%= link_to "Support a Story", phases_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
+        <% else %>
+          <%= link_to "Support a Story", "/signup", :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12" style= "margin-top:50px;">
           <% if !user_signed_in? %>
             <%= link_to "SIGN UP", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:20px; margin-top:10px; background:#6e73d1; color:#fff;" %>
             <div class="usermenu" style= "text-shadow: 1px 1px #000;">
@@ -80,23 +89,11 @@
       <div class = "usermenu" style= "text-shadow: 1px 1px #000; margin-top:10px;">
         Become an Early Adopter & 
       </div>
-      <div style="margin-left:-30px;">
+      <div style="margin-left:-10px;">
         <%= button_to "TAKE THE SURVEY", "https://docs.google.com/forms/d/e/1FAIpQLSf8ncM7rLxeKUOOlLrgCexuk2B0_sYw8JRZJM2JY2hOqkebhg/viewform?c=0&w=1", method: :get, form: {target: '_blank'}, class: "button" %>
       </div>
     </div>
 
-    <div class="col-md-5 col-sm-5 col-xs-12">
-      <div class="whitetxt" style="font-size:30px; text-shadow: 1px 1px #000;  margin-top:30px;">
-        <b>Storylovers </b>
-      </div>
-      <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px;">
-        <% if user_signed_in? %>
-          <%= link_to "Support a RoleModel Story", phases_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
-        <% else %>
-          <%= link_to "Support a RoleModel Story", "/signup", :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
-        <% end %>
-      </div>
-    </div>
   </div>
 
 </div>
@@ -188,8 +185,10 @@
         </div><br>
       <% else %>
         <div class = "helps" style = "color:#1F0D5F" >
-          SUPPORT ROLEMODEL STORIES
-          <span class="dot"></span> <%= link_to "Create Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
+          SUPPORT STORIES ABOUT CHARACTERS WHO CONTRIBUTE TO SOCIETY
+        </div><br>
+        <div class = "helps" style = "text-align:left" >
+          <span class="dot"></span> <%= link_to "Create Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br>
         </div><br>
       <% end %>
 
