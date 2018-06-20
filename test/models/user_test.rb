@@ -24,34 +24,34 @@ class TestUser < ActiveSupport::TestCase
     refute_match(@user.address, oldaddress)
   end
 
-  [:email, :name, :permalink, :password ].each do |field|
-    test "#{field.to_s}_must_not_be_empty" do
-      user = User.new
-      user.send "#{field.to_s}=", nil #what does this line do
-      assert user.valid?
-      assert_empty user.errors[field] #must be in same test as above line in order to have usererrors not be nil
-    end
+[:email, :name, :permalink, :password ].each do |field|
+  test "#{field.to_s}_must_not_be_empty" do
+    user = User.new
+    user.send "#{field.to_s}=", nil
+    refute user.valid?
+    refute_empty user.errors[field] 
   end
+end
 
   test "password_confirmation_must_not_be_empty_when_password_present" do
     @user.update(password: "garblygook") #is this testing the model or is it integration testing
     @user.send "password_confirmation=", nil
+#    puts "in password_confirmation_must_not_be_empty_when_password_present, password = " + @user.password
+#    puts "in password_confirmation_must_not_be_empty_when_password_present, password_confirmation = " + @user.password_confirmation.to_s
     refute_empty @user.errors[:password_confirmation] 
   end
 
-  test "password and password_confirmation must match" do
+  test "password_and_password_confirmation_must_match" do
     user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hooooooo", email: "m@example.com", permalink: "qwerty")
     assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
   end
 
-#validates_length_of :password, :within => Devise.password_length, :allow_blank => true
-  test "password should be at least 8 char" do
-    @user.password = "hihihi"
-    @user.password_confirmation = "hihihi"
-    assert @user.invalid?, "password is at least 8 char" #needed here - perhaps when using @user created in setup?
-    refute_empty @user.errors[:password] 
-#    assert_empty @user.errors[:password_confirmation] why is there no error when password and password_conf don't match
-    puts "password errors " + @user.errors[:password].to_s
+  test "password must be at least 8 char" do
+      @user.password = "1234567"
+      @user.password_confirmation = "1234567"
+      assert @user.invalid?, "password is at least 8 char"
+      refute_empty @user.errors[:password] 
+      puts "password errors " + @user.errors[:password].to_s
   end
 
   test "password can be empty and password_confirmation doesnt matter" do
@@ -63,11 +63,11 @@ class TestUser < ActiveSupport::TestCase
 #validates :email, presence: true, uniqueness: { case_sensitive: false }
   test "email of new user should be unique" do
     user1 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
-                        email: "mo@example.com", permalink: "qwerty")
+                        email: "mo@CrowdPublish.TV", permalink: "lisa")
     user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
-                        email: "mo@example.com", permalink: "qwat")
-    refute_empty user2.errors[:email] #refute user2.valid not needed for this
-    assert user2.errors[:email].any?, "email unique" # refute user.valid not needed for .any
+                        email: "mo@CrowdPublish.TV", permalink: "CrowdPublishTV")
+    refute_empty user2.errors[:email]
+    assert user2.errors[:email].any?, "email unique" 
   end
 
 #validates :permalink, uniqueness: { case_sensitive: false }
@@ -154,63 +154,19 @@ class TestUser < ActiveSupport::TestCase
     refute_equal(ustreamtemp, @user.ustreamvid)
   end
 
-    test "parse youtube" do
-      @user.youtube1 = "http://youtube.com/watch?v=/frlviTJc"
-      @user.genre1 = "yaaah"
+  test "parse youtube" do
+    @user.youtube1 = "http://youtube.com/watch?v=/diff"
+    @user.genre1 = "yaaah"
     @user.permalink = "LisaLisa"
-puts @user.permalink
-      @user.save
     puts @user.permalink
-      puts "lllllllllllllllllllllllllllllllllllllf"
-      puts @user.genre1
-      puts @user.youtube1
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
-    end
-
-# redundant tests
-
-  test "redundant_test_name_and_permalink_must_not_be_empty" do 
-    user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
-    refute_empty user.errors[:name] 
-    refute_empty user.errors[:permalink] 
-  end
-
-  test "redundant_test_new_user_must_have_reqd_variables" do
-    user = User.new
-    user.permalink = "Dummydummy"
-    user.name = "Dummydummy"
-    user.email = "ee@ujk.com" 
-    user.password = "Dummydummy"
-    user.password_confirmation = "Dummydummy"
-#    refute user.valid? # email errors are empty if email is bad and this line not here
-    assert_empty user.errors[:email] 
-  end
-
-  test "redundant_test_create_user_must_have_reqd_variables" do
-    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "unique@example.com", permalink: "qwerty")
-    assert_empty user.errors[:email] 
-#    refute user.errors[:email].any?, "email unique" 
-#    assert user.errors.any?
-  end
-
-  test "redundant_test_what_if_lat_lon_and_address_are_changed" do
-    oldaddress = @user.address
-    oldlatitude = @user.latitude
-    @user.latitude = 20.2
-    @user.longitude = 20.2
-    @user.address = "20022"
-    puts "latitude1 " + @user.latitude.to_s
-    puts "new address " + @user.address
     @user.save
-    puts "latitude2 " + @user.latitude.to_s
-    puts "new address " + @user.address
-    refute_match(@user.address, oldaddress)
+    puts @user.permalink
+    puts "lllllllllllllllllllllllllllllllllllllf"
+    puts @user.genre1
+    puts @user.youtube1
+    refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
   end
 
-  test "redundant_test_email_still_must_not_be_empty" do
-    @user.send "email=", nil 
-    refute @user.valid?
-    refute_empty @user.errors[:email]
-  end
 
 end
+
