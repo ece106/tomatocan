@@ -5,20 +5,41 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:one)
     sign_in @user
   end
+  
+  def create
+    @user = User.new(user_params)
+#    @user.latitude = request.location.latitude
+#    @user.longitude = request.location.longitude
+
+    if @user.save
+      sign_in @user
+      redirect_to user_profile_path(current_user.permalink)
+    else
+      render 'signup'
+    end
+  end
 
   test "should get index" do
+    #throwing SQL exception
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
   end
 
-  test "should create user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
+  test "should create user" do 
     assert_difference('User.count', 1) do
-      post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink'  }
+      post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', 
+                    password_confirmation: 'secret12', permalink: 'samlink'  }
     end
-
     assert_redirected_to user_profile_path(assigns(:user).permalink)
   end
+
+#  test "should create user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
+#    assert_difference('User.count', 2) do
+#      post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink'  }
+#    end
+#    assert_redirected_to user_profile_path(assigns(:user).permalink)
+#  end
 
   test "should show user" do
     get :show, permalink: "user1"

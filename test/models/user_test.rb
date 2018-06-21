@@ -7,10 +7,6 @@ class TestUser < ActiveSupport::TestCase
 #    sign_in @user  #why dont I need this for model
   end
 
-  def assign_defaults_on_new_user
-    self.author = 2 unless self.author
-  end
-
   test "after_validation_geocode" do
     oldlatitude = @user.latitude
     @user.address = "20022"
@@ -175,13 +171,6 @@ end
     puts @user.genre1
     puts @user.youtube1
     refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
-  end
-  
-  def parse_youtube url
-    regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-    if url.match(regex)
-      url.match(regex)[1]
-    end
   end
 
 end
