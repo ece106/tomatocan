@@ -7,6 +7,10 @@ class TestUser < ActiveSupport::TestCase
 #    sign_in @user  #why dont I need this for model
   end
 
+  def assign_defaults_on_new_user
+    self.author = 2 unless self.author
+  end
+
   test "after_validation_geocode" do
     oldlatitude = @user.latitude
     @user.address = "20022"
@@ -91,33 +95,30 @@ end
   end 
 
 #  validates_format_of   :email, :with  => Devise.email_regexp, 
-  test "should have format of email address" do
-    @user.email = "email@CrowdPublish.TV"
-    assert @user.valid?, "wrong email format" 
-    puts "in test should have format of email address, @user.email = " + @user.email.to_s
-    assert_empty @user.errors[:email]
-    #assert_match(/"email@CrowdPublish.TV"/, @user.email)
-    user2 = users(:two)
-    user2.email = "CrowdPublishTV"
-    refute user2.valid?, "proper email format" 
-    refute_empty user2.errors[:email] 
-  end
+test "should have format of email address" do
+  @user.email = "email@CrowdPublish.TV"
+  assert @user.valid?, "wrong email format" 
+  assert_empty @user.errors[:email]
+  user2 = users(:two)
+  user2.email = "CrowdPublishTV"
+  refute user2.valid?, "proper email format" 
+  refute_empty user2.errors[:email] 
+end
 
 #validates :videodesc1, length: { maximum: 255 }
   [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
     test "#{field.to_s}_must_be_less_than255char" do
-      @user.send "#{field.to_s}=", "supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
+      @user.send "#{field.to_s}=", "Jdlsajfkldajfkldjlajfl;jalfjdkl;ajflkdajfldjklajfkldakjfl;dkjal;fjdklajfkl;dajfkl;djalk;fjdlk;ajflk;jafkl;dja;sslklfjdlkafjl;afj;lajfkl;dajf;ljdakl;jfl;djasflk;jlajfjafjdal;jfdl;asjfkldjklsafjlkjfljlajflkdjalkfjdkljafljdfklsjfdkljafkldjklajfkldjfdljaflkdajkfldkjaklfjkldjaklfjljlkdfsajfkljlafds"
       refute @user.valid?, "video description is short enough" 
       refute_empty @user.errors[field] 
     end
   end
 
 #validates :permalink, format: { with: /\A[\w+]+\z/ }
-
   test "make all permalinks lowercase" do
     @user.permalink = "LisaLisa"
     @user.save
-    puts @user.permalink
+    #puts "in test make all permalinks lowercase, @user.permalink = " + @user.permalink
     assert_match(/[a-z0-9]/, @user.permalink)
   end
 
@@ -125,12 +126,14 @@ end
 
   test "make all emails lowercase" do
     @user.email = "you@CrowdPublish.TV"
+    #puts "in test make all emails lowercase, @user.email BEFORE SAVE = " + @user.email.to_s
     @user.save
+    #puts "in test make all emails lowercase, @user.email AFTER SAVE = " + @user.email.to_s
     assert_match(/[a-z0-9]+@+[a-z0-9]+\.+[a-z]/, @user.email)
   end
 
 #def add_bank_account
-
+#throws TestUser#test_add_bank_account:ArgumentError: wrong number of arguments (given 9, expected 11)
   test "add bank account" do #this test only works for new account or account with countryoftax=GB
     # should test the view to make sure users can't enter currency/countryofbank incompatible with countryoftax
     # having specific acct_number in fixture is bad way to test. Figure out a way to test using a relevant acct
@@ -155,7 +158,9 @@ end
   test "parse ustream" do
     @user.ustreamvid = "http://www.ustream.tv/embed/21534532?html5ui style=border: 0 none transparent;  webkitallowfullscreen allowfullscreen frameborder=></iframe><br /><a href=http://www.ustream.tv/ style=adding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-we"
     ustreamtemp = @user.ustreamvid
+    #puts "BEFOER SAVE @user.ustreamvid = " + @user.ustreamvid
     @user.save
+    #puts "AFTER SAVE @user.ustreamvid = " + @user.ustreamvid
     refute_equal(ustreamtemp, @user.ustreamvid)
   end
 
@@ -171,7 +176,13 @@ end
     puts @user.youtube1
     refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
   end
-
+  
+  def parse_youtube url
+    regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+    if url.match(regex)
+      url.match(regex)[1]
+    end
+  end
 
 end
 
