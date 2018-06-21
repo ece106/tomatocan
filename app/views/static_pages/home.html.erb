@@ -24,11 +24,11 @@
     </div>
 
     <div class="item" style="height:490px;">
-      <img src="http://www.CrowdPublish.TV/byoadwar.JPG" alt="Actors">
+      <img src="http://www.CrowdPublish.TV/womanTED.jpg" alt="TED talk">
     </div>
 
     <div class="item" style="height:490px;">
-      <img src="http://www.CrowdPublish.TV/danMoldea.jpg" alt="Dan Moldea book talk">
+      <img src="http://www.CrowdPublish.TV/womenTech.png" alt="Tech Woman">
       <div class="carousel-caption">
         .
       </div>    
@@ -51,7 +51,10 @@
 <div class="container-flex">
   <div class="row" style = "position: absolute; z-index: 1; top:40px; text-align:center;" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
-        Crowdsourcing Stories of Characters we can Respect  
+        CrowdFund Stories about Characters we can Respect  
+      </div>
+      <div class = "whitetxt" style = "text-shadow: 1px 1px #000;" >
+        <br>Be the change you want to see in media & culture
       </div>
 
     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -79,7 +82,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-12 col-sm-12 col-xs-12" style= "margin-top:50px;">
+    <div class="col-md-12 col-sm-12 col-xs-12" style= "margin-top:20px;">
           <% if !user_signed_in? %>
             <%= link_to "SIGN UP", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:20px; margin-top:10px; background:#6e73d1; color:#fff;" %>
             <div class="usermenu" style= "text-shadow: 1px 1px #000;">
@@ -103,7 +106,7 @@
               <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
               <li><%= link_to "FAQ", '/faq' %>
-              <li><%= link_to "About", '/aboutus' %>
+              <li><%= link_to "Why CrowdPublishTV", '/aboutus' %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
@@ -116,14 +119,11 @@
   </div>
 
   <div class="row">
-    <div class = "helps" style = "margin-top:15px" >
-      Easy steps to
-    </div>
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px; padding-right:30px;">
+      <div class = "helps" >
+        EARN FUNDS FOR YOUR STORIES
+      </div><br>
       <% if user_signed_in? %>
-        <div class = "helps" >
-          EARN FUNDS FOR YOUR STORIES
-        </div><br>
         <div class = "helps" style = "text-align:left" >
           <% if @user.bannerpic.present? %>
             <span class="dot"></span> <%= link_to "Improve Your Profile", user_profileinfo_path(current_user.permalink), title: "Embed your YouTube videos, update your banner, give your fans more details about your work" %>
@@ -157,10 +157,8 @@
         </div><br>
 
       <% else %>
-        <div class = "helps" style = "color:#1F0D5F" >
-          EARN FUNDS FOR YOUR STORIES
-        </div><br>
         <div class = "helps" style = "text-align:left" >
+          <span class="dot"></span> <%= link_to "Sign Up", '/signup' %> <br><br>
           <span class="dot"></span> <%= link_to "Create Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
           <span class="dot"></span> <%= link_to "Create Campaign about characters we can Respect", phase_path('lisas80scatholichighschoolmovie'), title: "One of our current CrowdPublish Campaigns" %> <br><br>
           <span class="dot"></span> <%= link_to "Create Perks to offer Fans", merchandises_path, title: "Offer your fans more than just your videos or books. Examples of what our members offer their fans" %> <br><br>
@@ -172,10 +170,10 @@
     </div>
 
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px">
+      <div class = "helps" style = "color:#1F0D5F" >
+        SUPPORT STORIES ABOUT CHARACTERS WHO CONTRIBUTE TO SOCIETY
+      </div><br>
       <% if user_signed_in? %>
-        <div class = "helps" >
-          SUPPORT STORIES ABOUT RESPECTABLE CHARACTERS
-        </div><br>
         <div class = "helps" style = "text-align:left" >
           <% if @user.bannerpic.present? %>
             <span class="dot"></span> <%= link_to "Improve Your Profile", user_profileinfo_path(current_user.permalink), title: "Embed your YouTube videos, update your banner, give your fans more details about your work" %>
@@ -184,10 +182,8 @@
           <% end %><br>
         </div><br>
       <% else %>
-        <div class = "helps" style = "color:#1F0D5F" >
-          SUPPORT STORIES ABOUT CHARACTERS WHO CONTRIBUTE TO SOCIETY
-        </div><br>
         <div class = "helps" style = "text-align:left" >
+          <span class="dot"></span> <%= link_to "Sign Up", '/signup' %> <br><br>
           <span class="dot"></span> <%= link_to "Create Profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br>
         </div><br>
       <% end %>
@@ -205,7 +201,7 @@
 
 <div class="row" > 
   <div class="helps" >
-    Storytellers who promote Respectable Characters
+    Storytellers who write about Respectable Characters
   </div><br>
 </div>
 <div class="row" > 
