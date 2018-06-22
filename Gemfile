@@ -3,8 +3,8 @@ ruby "2.4.2"
 
 gem 'listen'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3'
 
 gem 'mandrill'	
 gem 'devise', '~> 4.3.0'
