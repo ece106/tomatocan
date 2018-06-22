@@ -32,6 +32,12 @@ class UsersControllerTest < ActionController::TestCase
 #    assert_response :success
 #  end
 
+  test "should redirect following when not logged in" do
+    get following_user_path(@user)
+    assert_redirected_to login_url
+  end
+
+
   test "should update user" do
     sign_in @user
     puts @user.name
