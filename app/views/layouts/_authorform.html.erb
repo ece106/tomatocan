@@ -123,7 +123,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
         <% end %>
           <li><%= link_to @user.following.count.to_s + " following", user_profile_path(@user.permalink) %>
           <li><%= link_to @user.followers.count.to_s + " followers", user_profile_path(@user.permalink) %>
-          <li><%= render '/users/follow_form', :user => User.find_by(params[:id]) %>
+          <li><%= render '/users/follow_form', :user => User.find_by_permalink(params[:permalink]) %>
         <% if @user.movies.any? %>
           <li><%= link_to " Movies & Theater ", user_movielist_path(@user.permalink) %>
         <% end %>

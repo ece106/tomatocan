@@ -46,7 +46,7 @@ When you have completed the quiz, download and start working on the tutorial at 
 
 ### TO USE THE CROWDPUBLISHTV GITHUB
 
-For a list of helpull git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
+For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
 
 1. Forking from crowdpublishtv and bringing the code to your local machine
 
@@ -82,7 +82,7 @@ git add * :/
 
 To finish your commit (which will save your current files) use the command:
 ```
-git commit -a -m "Usefull_Comment_of_Your_Changes/Additions"
+git commit -a -m "Useful_Comment_of_Your_Changes/Additions"
 ```
 
 Now you can push your comitted changes to your repository with the following commands:
@@ -98,19 +98,23 @@ git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY 
 
 4. Getting your code onto crowdpublishtv
 
-Once you have made changes to your personal repository you can request for crowdpublishtv to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull 
-request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
+Once you have made changes to your personal repository you can request for crowdpublishtv to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
 ### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
 Files To Check/Change/Create: 
 
 * gemfile: 
-    Delete 'pg' and replace with 'sqlite3'
+    Comment out 
+```
+    #gem 'pg' 
+```
+and uncomment 
+```
+gem 'sqlite3'
+```
 
-The ENV variables may already be commented out, depending upon what the last developer pushed. ENV variables are for Heroku. Therefore the last commit before pushing to Heroku must have those variables set. The non-ENV variables use the initializer files, which are for use on local machines. 
-
-* config/initializers/fakekeys.rb: 
+* config/initializers/aakeys.rb: 
     Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
 ```
@@ -123,7 +127,7 @@ GMAIL_PWD = "superfake"
 Stripe.api_key = STRIPE_SECRET_KEY
 ```
 
-Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/fakekeys.rb with your accounts' keys. 
+Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from authors). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/aakeys.rb with your accounts' keys. 
 
 *config/database.yml
 
@@ -134,16 +138,59 @@ default: &default
   adapter: sqlite3
   pool: 5
   timeout: 5000
-```
-```
+
 development:
   <<: *default
   database: db/development.sqlite3
-```
-```
+
 test:
   <<: *default
   database: db/test.sqlite3
+```
+
+* config/environments/development.rb: 
+
+Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
+
+```
+Rails.application.configure do
+
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.smtp_settings = {
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :user_name => "randomemail@gmail.com",
+  :password => 'fake',
+  :authentication => 'plain',
+  :enable_starttls_auto => true
+}
+config.action_mailer.default_url_options = {
+  host: "localhost:3000", protocol: "http" 
+}
+  config.cache_classes = false
+  config.eager_load = false
+  config.consider_all_requests_local = true
+
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+    }
+  else
+    config.action_controller.perform_caching = false
+    config.cache_store = :null_store
+  end
+
+  config.active_support.deprecation = :log
+  config.active_record.migration_error = :page_load
+  config.assets.debug = true
+  config.assets.quiet = true
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+end
 ```
 
 Then type
@@ -163,5 +210,8 @@ Then type
 >bin/rails server
 ```
 at the command line to start the server.
+
+
+And it's good to refer to Michael Hartl's tutorial for a lot of Rails help http://railstutorial.org/book
 
 Copyright &copy; 2018, RoleModel Enterprises, LLC. All rights reserved.

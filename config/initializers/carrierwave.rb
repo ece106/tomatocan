@@ -4,8 +4,8 @@
 
 if Rails.env.development? || Rails.env.test?
   CarrierWave.configure do |config|
-#    config.storage = :file
-    config.storage = :fog
+    config.storage = :file
+#    config.storage = :fog
 #    config.root = "#{Rails.root}/tmp"
 #    config.cache_dir = "#{Rails.root}/tmp/images"
       config.fog_credentials = { 

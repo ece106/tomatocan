@@ -1,4 +1,5 @@
-<% if current_user.id != @user.id %>
+<% if user_signed_in? %>
+  <% if current_user.id != @user.id %>
 	<% if !current_user.following?(@user) %>
 		<%= form_for(current_user.active_relationships.build) do |f| %>
 			<%= hidden_field_tag :followed_id, @user.id %>
@@ -9,4 +10,5 @@
 			<%= f.submit "Unfollow", class: 'button' %>
 		<% end %>
 	<% end %>
+  <% end %>
 <% end %>
