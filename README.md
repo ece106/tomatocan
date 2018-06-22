@@ -58,22 +58,9 @@ In order to bring the crowdpublishtv code to your local machine you must make a 
  git clone https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY
 ```
 
-2. Pulling changes from crowdpublishtv into your local machine
-
-When changes have been made to the code http://github.com/crowdpublishtv/crowdpublishtv, your github will be behind. So you will have to pull the changes to your local machine and then push them to your repository. To pull changes from crowpublishtv, be sure to be in the correct directory, and use the command: 
-
-```
-git pull https://github.com/crowdpublishtv/crowdpublishtv.git master
-```
-
-3. Saving your changes to your repository
+2. Saving your changes to your repository
 
 In order to push your code to your repository you will have to stage your files to commit. You can stage your files by using the following commands:
-
-"Adds all modified file changes to the stage"
-```
-git add -u :/
-```
 
 "Adds modified and new files that are not .ignored to the stage"
 ```
@@ -94,6 +81,14 @@ or
 
 ```
 git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY master
+```
+
+3. Pulling changes from crowdpublishtv into your local machine
+
+When changes have been made to the code http://github.com/crowdpublishtv/crowdpublishtv, your github will be behind. So you will have to pull the changes to your local machine and then push them to your repository. To pull changes from crowpublishtv, be sure to be in the correct directory, and use the command: 
+
+```
+git pull https://github.com/crowdpublishtv/crowdpublishtv.git master
 ```
 
 4. Getting your code onto crowdpublishtv
