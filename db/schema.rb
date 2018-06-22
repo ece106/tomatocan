@@ -86,31 +86,31 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "grouppic", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "grouptype", limit: 255
+    t.string "grouptype"
     t.string "permalink", limit: 255
     t.string "slug", limit: 255
     t.string "newsurl", limit: 255
     t.string "twitter", limit: 255
     t.string "facebook", limit: 255
     t.text "callaction"
-    t.string "stripeid", limit: 255
-    t.string "stripe_customer_token", limit: 255
+    t.string "stripeid"
+    t.string "stripe_customer_token"
     t.datetime "stripesignup"
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
 
   create_table "merchandises", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "name"
     t.integer "user_id"
     t.float "price"
     t.text "desc"
-    t.string "itempic", limit: 255
+    t.string "itempic"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "phase_id"
     t.datetime "deadline"
     t.float "goal"
-    t.string "youtube", limit: 255
+    t.string "youtube"
   end
 
   create_table "movieroles", force: :cascade do |t|
@@ -142,14 +142,14 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
   end
 
   create_table "phases", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "name"
     t.integer "user_id"
     t.text "mission"
-    t.string "phasepic", limit: 255
+    t.string "phasepic"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "permalink", limit: 255
-    t.string "slug", limit: 255
+    t.string "permalink"
+    t.string "slug"
     t.datetime "deadline"
     t.index ["slug"], name: "index_phases_on_slug", unique: true
   end
@@ -170,8 +170,8 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.integer "merchandise_id"
     t.integer "group_id"
     t.decimal "groupcut", precision: 8, scale: 2
-    t.string "shipaddress", limit: 255
-    t.string "fulfillstatus", limit: 255
+    t.string "shipaddress"
+    t.string "fulfillstatus"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "blogurl", limit: 255
     t.string "profilepicurl", limit: 255
     t.string "profilepic", limit: 255
-    t.string "author", limit: 255
+    t.string "author"
     t.text "about"
     t.string "password_digest", limit: 255
     t.string "remember_token", limit: 255

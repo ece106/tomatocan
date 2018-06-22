@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
-    sign_in @user
+#    sign_in @user
   end
 
   test "should get index" do
@@ -14,14 +14,14 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
     assert_difference('User.count', 1) do
-      post :create, user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink'  }
+      post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     end
 
-    assert_redirected_to user_profile_path(assigns(:user).permalink)
+    assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   end
 
   test "should show user" do
-    get :show, permalink: "user1"
+    get :show, params: { permalink: "user1" }
     assert_response :success
   end
 
@@ -32,13 +32,10 @@ class UsersControllerTest < ActionController::TestCase
 #    assert_response :success
 #  end
 
-  test "should createstripeacnt" do
-
-  end  
-
   test "should update user" do
+    sign_in @user
     puts @user.name
-    patch :update, :id => @user.id, user: { name: "New Name", youtube1: "randomchar" }
+    patch :update, params: { user: { name: 'New Name', youtube1: 'randomchar' } }
     user = User.find(@user)
     puts user.name
     assert_equal(user.name, "New Name") 
@@ -46,5 +43,3 @@ class UsersControllerTest < ActionController::TestCase
   end
 
 end
-
-
