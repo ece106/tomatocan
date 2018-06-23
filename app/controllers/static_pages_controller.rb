@@ -30,7 +30,8 @@ class StaticPagesController < ApplicationController
 
   def faq
   end
-
+  def suggestedperks
+  end
   def aboutus
   end
 

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   match 'tellfriends', to: 'static_pages#tellfriends', via: 'get'
   match 'tos', to: 'static_pages#tos', via: 'get'
   match 'aboutus', to: 'static_pages#aboutus', via: 'get'
-  match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
+  match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
   match '/events/online' => "events#online", :as => :events_online, via: 'get'

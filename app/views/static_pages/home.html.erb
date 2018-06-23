@@ -49,11 +49,11 @@
 
 
 <div class="container-flex">
-  <div class="row" style = "position: absolute; z-index: 1; top:40px; text-align:center;" >
+  <div class="row" style = "position: absolute; z-index: 1; top:30px; text-align:center;" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
         CrowdFund Stories about Characters we can Respect  
       </div>
-      <div class = "whitetxt" style = "text-shadow: 1px 1px #000;" >
+      <div class = "whitetxt" style = "text-shadow: 1px 1px #000; font-size:30px;" >
         <br>Be the change you want to see in media & culture
       </div>
 
@@ -76,13 +76,13 @@
       </div>
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px;">
         <% if user_signed_in? %>
-          <%= link_to "Support a Story", phases_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
+          <%= link_to "Support Stories", phases_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
         <% else %>
-          <%= link_to "Support a Story", "/signup", :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
+          <%= link_to "Support Stories", "/signup", :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
         <% end %>
       </div>
     </div>
-    <div class="col-md-12 col-sm-12 col-xs-12" style= "margin-top:20px;">
+    <div class="col-md-12 col-sm-12 col-xs-12" style= "margin-top:0px;">
           <% if !user_signed_in? %>
             <%= link_to "SIGN UP", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:20px; margin-top:10px; background:#6e73d1; color:#fff;" %>
             <div class="usermenu" style= "text-shadow: 1px 1px #000;">
@@ -103,10 +103,10 @@
   <div class="row" style="background-color:#1e1e46">
           <div class="navbar-inner clearfix usermenu" >
             <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000">
+              <li><%= link_to "WHAT IS CrowdPublishTV", '/aboutus' %>
               <li><%= link_to "Projects", phases_path %>
               <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
               <li><%= link_to "FAQ", '/faq' %>
-              <li><%= link_to "Why CrowdPublishTV", '/aboutus' %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
@@ -121,7 +121,8 @@
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px; padding-right:30px;">
       <div class = "helps" >
-        EARN FUNDS FOR YOUR STORIES
+        AUTHORS, FILMMAKERS, YOUTUBERS, GAME DEVELOPERS
+        <br>Add your media to the Characters To Respect collection by creating a crowdfunding campaign
       </div><br>
       <% if user_signed_in? %>
         <div class = "helps" style = "text-align:left" >
@@ -171,7 +172,8 @@
 
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px">
       <div class = "helps" style = "color:#1F0D5F" >
-        SUPPORT STORIES ABOUT CHARACTERS WHO CONTRIBUTE TO SOCIETY
+        STORYLOVERS
+        <br>Ensure that stories about Characters To Respect get written or produced by supporting stories & media
       </div><br>
       <% if user_signed_in? %>
         <div class = "helps" style = "text-align:left" >
