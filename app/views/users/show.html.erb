@@ -17,7 +17,7 @@
 
   <div class="row " >
     <div class="col-md-12 col-sm-12 col-xs-12" >
-      <% if @sidebarphase %> 
+      <% if @sidebarphase? %> 
         <h2>Get Sneak Preview access to my current project!</h2><br>
         <div style="float:left; text-align:left;">
           <%= form_for(Agreement.new) do |f| %> 
@@ -35,7 +35,7 @@
                 <%= button_tag 'Partner', value: @sidebarphase.id, type: :submit, name: "agreement[phase_id]" %>
               <% end %>
               </td>
-          <% end #cant have buttonto in formfor.  %>
+          <% end %>
               <td style='font-size:22px'><%= link_to(@sidebarphase.name, phase_path(@sidebarphase.permalink)) %></td></tr>
               <tr><td ><%= button_to "Get Sneak Preview", phase_path(@sidebarphase.permalink), method: :get, class: 'button' %></td>
 

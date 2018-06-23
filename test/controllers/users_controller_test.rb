@@ -21,7 +21,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should show user" do
-    get :show, params: { permalink: "user1" }
+    get user_profile_path(@user.permalink)
     assert_response :success
   end
 
@@ -34,8 +34,10 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should update user" do
     sign_in @user
+    get user_profileinfo_path(@user.permalink)
     puts @user.name
-    patch :update, params: { user: { name: 'New Name', youtube1: 'randomchar' } }
+    patch user_profileinfo_path(@user.permalink), params: { user: { name: 'New Name', 
+                                              youtube1: 'randomchar' } }
     user = User.find(@user)
     puts user.name
     assert_equal(user.name, "New Name") 
