@@ -120,6 +120,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/phases/:permalink/patronperk' => "phases#patronperk", :as => :phase_patronperk, via: 'get'
   match '/phases/:permalink/authorperks' => "phases#authorperks", :as => :phase_authorperks, via: 'get'
   match '/phases/:permalink/actorperks' => "phases#actorperks", :as => :phase_actorperks, via: 'get'
+  match '/phases/:permalink/storytellerperks' => "phases#storytellerperks", :as => :phase_storytellerperks, via: 'get'
   
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt

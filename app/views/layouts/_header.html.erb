@@ -5,10 +5,10 @@
           <div class="navbar-inner clearfix usermenu" style="padding-left:20px; background-color:#1e1e46">
             <ul class="nav navbar-nav pull-left">
               <li><%= link_to "Home", "/" %>
-              <li><%= link_to "Projects", phases_path %>
+              <li><%= link_to "Campaigns", phases_path %>
               <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
               <li><%= link_to "Storytellers", authors_path %>
-              <li><%= link_to "WHAT IS CrowdPublishTV", '/aboutus' %>
+              <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
               <li><%= link_to "FAQ", '/faq' %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>

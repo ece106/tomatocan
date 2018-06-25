@@ -1,5 +1,5 @@
 class PhasesController < ApplicationController
-  before_action :set_phase, only: [:patronperk, :authorperks, :actorperks, :show, :edit, :update, :destroy]
+  before_action :set_phase, only: [:patronperk, :authorperks, :actorperks, :storytellerperks, :show, :edit, :update, :destroy]
   layout :resolve_layout
 
   # GET /phases
@@ -89,6 +89,13 @@ class PhasesController < ApplicationController
   end
   def actorperks
     @actor = User.find_by_id(@phase.user_id)
+    @merchandise = @phase.merchandises.build 
+    if user_signed_in?
+      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
+    end
+  end
+  def storytellerperks
+    @author = User.find_by_id(@phase.user_id)
     @merchandise = @phase.merchandises.build 
     if user_signed_in?
       @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
