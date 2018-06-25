@@ -3,7 +3,7 @@
 <title> <% "Support " + @user.name + "'s Projects" %> </title>
 <meta property="og:url" content="http://CrowdPublish.TV" />
 <meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
-<meta property="og:description" content="CrowdPublishTV helps actors, filmmakers, authors increase fan engagement & raise more funds" />
+<meta property="og:description" content="CrowdPublishTV helps storytellers increase fan engagement & raise more funds" />
 </head>
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
@@ -13,7 +13,7 @@
     <div class="page-content" >
       <div class="container-flex" style="margin-top:-30px; ">
     
-<% if @user.author == 'author' || @user.author == 'filmmaker' || @user.author == 'actor' %>
+<% if @user.author == 'author' || @user.author == 'storyteller' %>
 
   <div class="row " >
     <div class="col-md-6 col-sm-7 col-xs-12" >

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :actors, :filmmakers, :authors, :create, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr ]
+  before_action :set_user, except: [:new, :index, :filmmakers, :authors, :create, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :check_fieldsneeded, except: [:new, :index, :create]
   before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
@@ -14,20 +14,8 @@ class UsersController < ApplicationController
     @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
   end
 
-  def actors
-    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'actor')
-    actorsvidorder = userswithyoutube.order('updated_at DESC')
-    @actors = actorsvidorder.paginate(:page => params[:page], :per_page => 12)
-  end
-
-  def filmmakers
-    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'filmmaker')
-    filmmakersvidorder = userswithyoutube.order('updated_at DESC')
-    @filmmakers = filmmakersvidorder.paginate(:page => params[:page], :per_page => 12)
-  end
-
   def authors
-    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'author')
+    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
     authorsvidorder = userswithyoutube.order('updated_at DESC')
     @authors = authorsvidorder.paginate(:page => params[:page], :per_page => 12)
   end
@@ -350,7 +338,7 @@ class UsersController < ApplicationController
 
     def resolve_layout
       case action_name
-      when "index", "actors", "filmmakers", "authors"
+      when "index", "authors"
         'application'
       when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts"
         'editinfotemplate'
