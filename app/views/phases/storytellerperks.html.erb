@@ -204,8 +204,7 @@
               <% end %>
           </div>
         </div>
-      </td><td>
-        <a class="accordion-togglea3" data-toggle="collapse" href="#accordion-toggle13">
+        <a class="accordion-togglea13" data-toggle="collapse" href="#accordion-toggle13">
           <span>
             <b>Facebook Livestream Reading</b> of fan's story
           </span>
@@ -233,7 +232,6 @@
               <% end %>
           </div>
         </div>
-      </td><td>
         <a class="accordion-toggle3" data-toggle="collapse" href="#accordion-toggle3">
           <span>
             <b>Live Online Reading</b> on 10 min. Hangouts, Facetime, or Skype call
@@ -329,157 +327,6 @@
           </a><br>
       </div>
     </div>
-<% "EXPERT CONSULTATION" %>
-        <div class="accordion" id="accordion5">
-          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle5" class="accordion-body collapse">
-              <div class="accordion-inner">
-              <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
-                <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Consultation package" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly phone appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
-                <b>Price </b><br>
-                $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
-                    <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
-                  <% end %>
-              </div>
-            </div>
-            <a class="accordion-toggle5" data-toggle="collapse" href="#accordion-toggle5">
-              <span>
-                <b>Expert Consultation</b>
-              </span>
-              <span class="hidden5more">
-                ...Hide <b>Consultation</b> details
-              </span>
-            </a><br>
-          </div>
-        </div>
-      </div>
-    </div>
-
-      <div class="col-sm-6 col-xs-12" > 
-        <div class="socialize" style="padding-bottom:10px" >
-          Special content relevant to your book 
-        </div>
-
-     <div class="font19left" >
-<% "LIVE READING" %>
-    <div class="accordion" id="accordion3">
-      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-        <div id="accordion-toggle3" class="accordion-body collapse">
-          <div class="accordion-inner">
-              <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
-                <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are." || :desc %><br><br>
-            <b>Price </b><br>
-            $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
-              <% end %>
-          </div>
-        </div>
-      </td><td>
-        <a class="accordion-toggle3" data-toggle="collapse" href="#accordion-toggle3">
-          <span>
-            <b>Live Online Reading</b> on video call
-          </span>
-          <span class="hidden3more">
-            ...Hide <b>Live Online Reading</b> details<br><br>
-          </span>
-        </a><br>
-      </div>
-    </div>
-<% "EVENT TICKETS" %>
-        <div class="accordion" id="accordion9">
-          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle9" class="accordion-body collapse">
-              <div class="accordion-inner">
-              <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
-                <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Attend My Show"|| :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "We're putting on a panel discussion about producing indie movies on May 9 7:30pm at the Central Library in Phoenix. Three of my other cast members will also be on the panel." || :desc %><br><br>
-                <b>Price </b><br>
-                $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
-                <%= button_to "Offer Event Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
-              <% end %>
-              </div>
-            </div>
-            <a class="accordion-toggle9" data-toggle="collapse" href="#accordion-toggle9">
-              <span>
-                <b>Tickets</b> to your local <b>Event</b>
-              </span>
-              <span class="hidden9more">
-                ...Hide <b>Event Tickets</b> details<br><br>
-              </span>
-            </a><br>
-          </div>
-        </div>
-<% "ACT FAN WORK ON FACEBOOK LIVE" %>
-    <div class="accordion" id="accordion13">
-      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-        <div id="accordion-toggle3" class="accordion-body collapse">
-          <div class="accordion-inner">
-              <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
-                <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Facebook Livestream Reading " || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll act out a 3 minute excerpt of your short script as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
-            <b>Price </b><br>
-            $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
-              <% end %>
-          </div>
-        </div>
-      </td><td>
-        <a class="accordion-togglea3" data-toggle="collapse" href="#accordion-toggle13">
-          <span>
-            Facebook <b>Livestream Acting</b>
-          </span>
-          <span class="hidden13more">
-            ...Hide <b>Facebook Livestream Acting</b> details
-          </span>
-        </a><br>
-      </div>
-    </div>
-<% "PLAY VIDEO GAME" %>
-        <div class="accordion" id="accordion8">
-          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle8" class="accordion-body collapse">
-              <div class="accordion-inner">
-              <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
-                <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "I'll Play Minecraft with you and your friends for a half hour"|| :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll play Minecraft with you for 30 minutes on a weekday evening before midnight PST. Will email you next week to schedule date and time and get your screenname." || :desc %><br><br>
-                <b>Price </b><br>
-                $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
-                <%= button_to "Offer Video Game Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
-              <% end %>
-              </div>
-            </div>
-            <a class="accordion-toggle8" data-toggle="collapse" href="#accordion-toggle8">
-              <span>
-                Play <b>Video Game</b> with fans
-              </span>
-              <span class="hidden8more">
-                ...Hide <b>Video Game</b> details<br><br>
-              </span>
-            </a><br>
-          </div>
-        </div>
 <% "INTERACTIVE TV" %>
         <div class="accordion" id="accordion12">
           <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
@@ -547,7 +394,7 @@
                 <%= f.text_field :name, size: 80, value: "Consultation package" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly video appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking about acting." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly video appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
                     <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -556,7 +403,7 @@
             </div>
             <a class="accordion-toggle5" data-toggle="collapse" href="#accordion-toggle5">
               <span>
-                Actor <b>Coaching</b>
+                <b>Chat With Storyteller</b>
               </span>
               <span class="hidden5more">
                 ...Hide <b>Q & A</b> details<br><br>
@@ -564,74 +411,128 @@
             </a><br>
           </div>
         </div>
-      </div>
-     </div>
-
-      <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class="socialize" style="padding-bottom:10px" >
-          Miscellaneous Perks 
-        </div>
-
-     <div class="font19left" >
-<% "RECIPE" %>
-        <div class="accordion" id="accordionc">
+<% "EXPERT CONSULTATION" %>
+        <div class="accordion" id="accordion5">
           <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-togglec" class="accordion-body collapse">
+            <div id="accordion-toggle5" class="accordion-body collapse">
               <div class="accordion-inner">
-                <%= form_for(@merchandise) do |f| %>
-                  <%= f.hidden_field :phase_id, value: @phase.id %>
-                  <b>Perk Name </b><br>
-                  <%= f.text_field :name, size: 80, value: @author.name + "'s Personal Recipe for Something Delicious" || :name %><br><br>
-                  <b>About this Patron Perk </b><br>
-                  What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
-                  <%= f.text_area :desc, cols: 82, rows: 7, value: "Recipe for Disaster: My assistant will email you my personal recipe for how to turn your baking disasters into a creamy fruity dessert." || :desc %><br><br>
-                  <b>Price </b><br>
-                  $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
-                  <%= button_to "Offer Recipe Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
-                <% end %>
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, value: "Consultation package" || :name %><br><br>
+                <b>About this Patron Perk </b><br>
+                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly phone appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
+                <b>Price </b><br>
+                $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
+                    <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
+                  <% end %>
               </div>
             </div>
-            <a class="accordion-togglec" data-toggle="collapse" href="#accordion-togglec ">
+            <a class="accordion-toggle5" data-toggle="collapse" href="#accordion-toggle5">
               <span>
-                <b>Recipe</b> for disaster
+                <b>Expert Consultation</b>
               </span>
-              <span class="hiddencmore">
-                ...Hide <b>Recipe</b> details<br><br>
-              </span>
-            </a>
-          </div>
-        </div>
-
-        <div class="accordion" id="accordion10">
-          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle10" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= form_for(@merchandise) do |f| %>
-                  <%= f.hidden_field :phase_id, value: @phase.id %>
-                  <b>Perk Name </b><br>
-                  <%= f.text_field :name, size: 80, value: "One Hour Q&A, One Tweet Per Week, Plus Your Name a Video posted on your facebook wall" || :name %><br><br>
-                  <b>About this Patron Perk </b><br>
-                  What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                  <%= f.text_area :desc, cols: 82, rows: 7, value: "Get all three of these items for one special price by the end of the month." || :desc %><br><br>
-                  <b>Price </b><br>
-                  $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
-                  <%= button_to "Offer Combo Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
-                <% end %>
-              </div>
-            </div>
-            <a class="accordion-toggle10" data-toggle="collapse" href="#accordion-toggle10">
-              <span>
-                <b>Combo</b> Package
-              </span> 
-              <span class="hidden10more">
-                ...Hide <b>Combo Package</b> details<br><br>
+              <span class="hidden5more">
+                ...Hide <b>Consultation</b> details
               </span>
             </a><br>
           </div>
         </div>
+      </div> <% "end font19left" %>
+      </div> <% "end col" %>
 
 
-      <div class="font19left" >
+      <div class="col-sm-6 col-xs-12" > 
+        <div class="socialize" style="padding-bottom:10px" >
+          Special content relevant to your story 
+        </div>
+
+     <div class="font19left" >
+<% "LIVE READING" %>
+    <div class="accordion" id="accordion3">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
+        <div id="accordion-toggle3" class="accordion-body collapse">
+          <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
+                <b>About this Patron Perk </b><br>
+                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are." || :desc %><br><br>
+            <b>Price </b><br>
+            $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
+                <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
+              <% end %>
+          </div>
+        </div>
+        <a class="accordion-toggle3" data-toggle="collapse" href="#accordion-toggle3">
+          <span>
+            <b>Live Online Reading</b> on video call
+          </span>
+          <span class="hidden3more">
+            ...Hide <b>Live Online Reading</b> details<br><br>
+          </span>
+        </a><br>
+      </div>
+    </div>
+<% "ACT FAN WORK ON FACEBOOK LIVE" %>
+    <div class="accordion" id="accordion13">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
+        <div id="accordion-toggle3" class="accordion-body collapse">
+          <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, value: "Facebook Livestream Reading " || :name %><br><br>
+                <b>About this Patron Perk </b><br>
+                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll act out a 3 minute excerpt of your short script as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
+            <b>Price </b><br>
+            $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
+                <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
+              <% end %>
+          </div>
+        </div>
+        <a class="accordion-togglea3" data-toggle="collapse" href="#accordion-toggle13">
+          <span>
+            Facebook <b>Livestream Acting</b>
+          </span>
+          <span class="hidden13more">
+            ...Hide <b>Facebook Livestream Acting</b> details
+          </span>
+        </a><br>
+      </div>
+    </div>
+<% "PLAY VIDEO GAME" %>
+        <div class="accordion" id="accordion8">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
+            <div id="accordion-toggle8" class="accordion-body collapse">
+              <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, value: "I'll Play Minecraft with you and your friends for a half hour"|| :name %><br><br>
+                <b>About this Patron Perk </b><br>
+                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll play Minecraft with you for 30 minutes on a weekday evening before midnight PST. Will email you next week to schedule date and time and get your screenname." || :desc %><br><br>
+                <b>Price </b><br>
+                $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
+                <%= button_to "Offer Video Game Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
+              <% end %>
+              </div>
+            </div>
+            <a class="accordion-toggle8" data-toggle="collapse" href="#accordion-toggle8">
+              <span>
+                Play <b>Video Game</b> with fans
+              </span>
+              <span class="hidden8more">
+                ...Hide <b>Video Game</b> details<br><br>
+              </span>
+            </a><br>
+          </div>
+        </div>
 <% "NAME IN CREDITS" %>
         <div class="accordion" id="accordion7">
           <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
@@ -663,7 +564,6 @@
             </a><br>
           </div>
         </div>
-
 <% "NAME A CHARACTER" %>
         <div class="accordion" id="accordion8">
           <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
@@ -720,6 +620,69 @@
             </a><br>
           </div>
         </div>
+
+        <div class="socialize" style="padding-bottom:10px" >
+          Miscellaneous Perks 
+        </div>
+
+     <div class="font19left" >
+<% "RECIPE" %>
+        <div class="accordion" id="accordionc">
+          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
+            <div id="accordion-togglec" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%= form_for(@merchandise) do |f| %>
+                  <%= f.hidden_field :phase_id, value: @phase.id %>
+                  <b>Perk Name </b><br>
+                  <%= f.text_field :name, size: 80, value: @author.name + "'s Personal Recipe for Something Delicious" || :name %><br><br>
+                  <b>About this Patron Perk </b><br>
+                  What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
+                  <%= f.text_area :desc, cols: 82, rows: 7, value: "Recipe for Disaster: My assistant will email you my personal recipe for how to turn your baking disasters into a creamy fruity dessert." || :desc %><br><br>
+                  <b>Price </b><br>
+                  $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
+                  <%= button_to "Offer Recipe Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
+                <% end %>
+              </div>
+            </div>
+            <a class="accordion-togglec" data-toggle="collapse" href="#accordion-togglec ">
+              <span>
+                <b>Recipe</b> for disaster
+              </span>
+              <span class="hiddencmore">
+                ...Hide <b>Recipe</b> details<br><br>
+              </span>
+            </a>
+          </div>
+        </div>
+<% "COMBO" %>
+        <div class="accordion" id="accordion10">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
+            <div id="accordion-toggle10" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%= form_for(@merchandise) do |f| %>
+                  <%= f.hidden_field :phase_id, value: @phase.id %>
+                  <b>Perk Name </b><br>
+                  <%= f.text_field :name, size: 80, value: "One Hour Q&A, One Tweet Per Week, Plus Your Name a Video posted on your facebook wall" || :name %><br><br>
+                  <b>About this Patron Perk </b><br>
+                  What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                  <%= f.text_area :desc, cols: 82, rows: 7, value: "Get all three of these items for one special price by the end of the month." || :desc %><br><br>
+                  <b>Price </b><br>
+                  $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
+                  <%= button_to "Offer Combo Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
+                <% end %>
+              </div>
+            </div>
+            <a class="accordion-toggle10" data-toggle="collapse" href="#accordion-toggle10">
+              <span>
+                <b>Combo</b> Package
+              </span> 
+              <span class="hidden10more">
+                ...Hide <b>Combo Package</b> details<br><br>
+              </span>
+            </a><br>
+          </div>
+        </div>
+
       </div>
       </div>
 
