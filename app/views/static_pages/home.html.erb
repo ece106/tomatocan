@@ -49,9 +49,9 @@
 
 
 <div class="container-flex">
-  <div class="row" style = "position: absolute; z-index: 1; top:30px; text-align:center;" >
+  <div class="row" style = "position: absolute; z-index: 1; top:30px; left:40px; text-align:center;" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
-        Crowdfund stories about Characters we can Respect  
+        Crowdfund stories about characters we can Respect  
       </div>
       <div class = "whitetxt" style = "text-shadow: 1px 1px #000; font-size:30px;" >
         <br>Be the change you want to see in media & culture
@@ -105,7 +105,6 @@
             <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000">
               <li><%= link_to "WHAT IS CrowdPublishTV", '/aboutus' %>
               <li><%= link_to "Campaigns", phases_path %>
-              <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
               <li><%= link_to "FAQ", '/faq' %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
@@ -185,8 +184,7 @@
       <% else %>
         <div class = "helps" style = "text-align:left" >
           <span class="dot"></span> <%= link_to "Sign Up", '/signup' %> <br><br>
-          <span class="dot"></span> <%= link_to "Create profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br>
-        </div><br>
+        </div>
       <% end %>
 
         <div class = "helps" style = "text-align:left" >
@@ -208,8 +206,8 @@
 <div class="row" > 
   <% @campaigns.each do |c| %> 
 
-    <div class="col-md-3 col-sm-4 col-xs-6" >
-      <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:170px; overflow:hidden;" >
+    <div class="col-md-4 col-sm-4 col-xs-6" >
+      <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:350px; overflow:hidden;" >
           <%= link_to(image_tag(c.phasepic, :height => "170",  :title => c.name ), phase_path(c.permalink)) %> 
         <br><%= link_to c.name, phase_path(c.permalink) %>
       </div>
