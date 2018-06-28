@@ -15,7 +15,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <div style = "position: absolute; z-index: 1; top:0; height:200px">
   <% if user_signed_in? %>
     <% if @user == current_user %>
-      <% if @user.author == 'author' || @user.author == 'actor' || @user.author == 'filmmaker' %>
+      <% if @user.author == 'author' || @user.author == 'storyteller' %>
         <%if controller.controller_name == 'users' %>
           <div style = "display:inline-flex;">
             <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'button' %>

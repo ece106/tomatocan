@@ -13,7 +13,7 @@
     <div class="page-content" >
       <div class="container-flex" style="margin-top:-30px; ">
     
-<% if @user.author == 'author' || @user.author == 'filmmaker' || @user.author == 'actor' %>
+<% if @user.author == 'author' || @user.author == 'storyteller' %>
 
   <div class="row " >
     <div class="col-md-12 col-sm-12 col-xs-12" >
@@ -35,7 +35,7 @@
                 <%= button_tag 'Partner', value: @sidebarphase.id, type: :submit, name: "agreement[phase_id]" %>
               <% end %>
               </td>
-          <% end #cant have buttonto in formfor.  %>
+          <% end %>
               <td style='font-size:22px'><%= link_to(@sidebarphase.name, phase_path(@sidebarphase.permalink)) %></td></tr>
               <tr><td ><%= button_to "Get Sneak Preview", phase_path(@sidebarphase.permalink), method: :get, class: 'button' %></td>
 

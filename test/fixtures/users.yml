@@ -19,9 +19,9 @@ one:
   profilepic: MyString
   youtube1: http://youtube.com/watch?v=/frlveggg  
   address: 20012
-  author: 1
+  author: author
   about: MyText
-  stripeid: acct_173whFBNd1jPrlMf
+#  stripeid: acct_173whFBNd1jPrlMf
   encrypted_password: <%= User.new.send(:password_digest, "user123") %>
 #  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString
@@ -43,7 +43,7 @@ two:
   blogurl: MyString2
   profilepicurl: MyString2
   profilepic: MyString2
-  author: 2
+  author: reader
   about: MyText2
   encrypted_password: <%= User.new.send(:password_digest, "user123") %>
 #  password_digest: <%= BCrypt::Password.create("password") %>
