@@ -7,6 +7,28 @@ class TestUser < ActiveSupport::TestCase
 #    sign_in @user  #why dont I need this for model
   end
 
+  test "user_can_follow_another_user" do
+    john = users(:one)
+    mark = users(:two)
+    assert_not john.following?(mark)
+    john.follow(mark)
+    assert john.following?(mark)
+  end
+
+  test "user can unfollow another user" do
+    john = users(:one)
+    mark = users(:two)
+    john.follow(mark)
+    assert john.following?(mark)
+    john.unfollow(mark)
+    assert_not john.following?(mark)
+  end
+
+  test "test_test" do
+    isTrue = true
+    assert (isTrue)
+  end
+
   test "after_validation_geocode" do
     oldlatitude = @user.latitude
     @user.address = "20022"
