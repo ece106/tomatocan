@@ -46,7 +46,11 @@ When you have completed the quiz, download and start working on the tutorial at 
 
 ### TO USE THE CROWDPUBLISHTV GITHUB
 
+<<<<<<< HEAD
+For a list of helpfull git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
+=======
 For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
+>>>>>>> 9175aabb7468ebfd329d195443af5f999f42d5c2
 
 1. Forking from crowdpublishtv and bringing the code to your local machine
 
@@ -69,7 +73,11 @@ git add * :/
 
 To finish your commit (which will save your current files) use the command:
 ```
+<<<<<<< HEAD
+git commit -a -m "Useful Comment of Your Changes/Additions"
+=======
 git commit -a -m "Useful_Comment_of_Your_Changes/Additions"
+>>>>>>> 9175aabb7468ebfd329d195443af5f999f42d5c2
 ```
 
 Now you can push your comitted changes to your repository with the following commands:

@@ -6,4 +6,10 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "correct_head" do
+  	get :home
+  	assert_select 'title', "CrowdPublishTV - Actors Authors - Increase Fan Engagement & Earn More Funds"
+  end
+
+
 end
