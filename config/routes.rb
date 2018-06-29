@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   match 'tellfriends', to: 'static_pages#tellfriends', via: 'get'
   match 'tos', to: 'static_pages#tos', via: 'get'
   match 'aboutus', to: 'static_pages#aboutus', via: 'get'
-  match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
+  match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
   match '/events/online' => "events#online", :as => :events_online, via: 'get'
@@ -120,6 +120,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/phases/:permalink/patronperk' => "phases#patronperk", :as => :phase_patronperk, via: 'get'
   match '/phases/:permalink/authorperks' => "phases#authorperks", :as => :phase_authorperks, via: 'get'
   match '/phases/:permalink/actorperks' => "phases#actorperks", :as => :phase_actorperks, via: 'get'
+  match '/phases/:permalink/storytellerperks' => "phases#storytellerperks", :as => :phase_storytellerperks, via: 'get'
   
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt

@@ -2,13 +2,13 @@ class StaticPagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    authorswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'author')
-    authorsvidorder = authorswithyoutube.order('updated_at DESC')
-    @authors = authorsvidorder.paginate(:page => params[:page], :per_page => 6)
+    storytellerswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'author')
+    storytellersvidorder = storytellerswithyoutube.order('updated_at DESC')
+    @authors = storytellersvidorder.paginate(:page => params[:page], :per_page => 6)
 
-    actorswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ? AND author = ?", 20, 4, 'actor')
-    actorsvidorder = actorswithyoutube.order('updated_at DESC')
-    @actors = actorsvidorder.paginate(:page => params[:page], :per_page => 6)
+    campaignswithpic = Phase.where( "phasepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'")
+    campaignvidorder = campaignswithpic.order('updated_at DESC')
+    @campaigns = campaignvidorder.paginate(:page => params[:page], :per_page => 6)
 
     if user_signed_in?
       @user = User.find(current_user.id)
@@ -30,7 +30,8 @@ class StaticPagesController < ApplicationController
 
   def faq
   end
-
+  def suggestedperks
+  end
   def aboutus
   end
 
