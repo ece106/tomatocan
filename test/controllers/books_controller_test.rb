@@ -11,18 +11,18 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should create book" do
     assert_difference('Book.count') do
-      post :create, book: @book.attributes
+      post :create, params: {book: @book.attributes}
     end
     assert_redirected_to user_profile_path(@user.permalink)
   end
 
   test "should show book" do
-    get :show, id: @book, session: { email: "fake@fake.com", password: 'password' }
+    get :show, params: {id: @book}
     assert_response :success
   end
 
   test "should update book" do
-    put :update, id: @book.to_param, book: @book.attributes
+    put :update, params: {id: @book.to_param, book: @book.attributes}
     assert_redirected_to user_profile_path(@user.permalink)
   end
 
