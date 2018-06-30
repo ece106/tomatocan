@@ -288,7 +288,6 @@ class User < ApplicationRecord
 
   def calcdashboard # Poll users for desired metrics
     self.monthperkinfo = []
-    self.monthbookinfo = []
     self.incomeinfo = []
     if stripesignup.present?
       monthq = self.stripesignup
@@ -301,57 +300,11 @@ class User < ApplicationRecord
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
         AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
       monthperksales = monthsales.where('merchandise_id IS NOT NULL')
-      perksales = monthperksales.group(:merchandise_id)
-      counthash = perksales.count
-      earningshash = perksales.sum(:authorcut)
-      for perkid, countsold in counthash
-        perk = Merchandise.find(perkid)
-        self.monthperkinfo <<  {month: monthq.strftime("%B %Y"), monthname: perk.name, monthquant: countsold, 
-          monthearnings: earningshash[perkid]} 
-      end
       perkearnings = monthperksales.sum(:authorcut)
 
-      monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-        AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
-      monthbooksales = monthsales.where('book_id IS NOT NULL')
-      booksales = monthbooksales.group(:book_id)
-      counthash = booksales.count
-      earningshash = booksales.sum(:authorcut)
-      for bookid, countsold in counthash
-        book = Book.find(bookid)
-        self.monthbookinfo <<  {month: monthq.strftime("%B %Y"), monthtitle: book.title, monthquant: countsold, 
-          monthearnings: earningshash[bookid]} 
-      end
-
       # total monthly revenue
-      earnings = monthbooksales.sum(:authorcut) + perkearnings
-      self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: earnings} 
+      self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: perkearnings} 
       monthq = monthq + 1.month
-    end
-
-    # total sales for each item offered
-    self.salebyfiletype = []
-    self.salebyperktype = []
-    mybksales = Purchase.where('purchases.author_id = ?', self.id).order("book_id DESC")
-    mybooksales = mybksales.where('purchases.book_id IS NOT NULL')
-    mypksales = Purchase.where('purchases.author_id = ?', self.id).order("merchandise_id DESC")
-    myperksales = mypksales.where('purchases.merchandise_id IS NOT NULL')
-
-    if mybooksales.any?
-      titlegroup = mybooksales.group(:book_id, :bookfiletype)
-      counthash = titlegroup.count
-      for bookidfiletype, counttype in counthash
-        book = Book.find(bookidfiletype[0])
-        self.salebyfiletype << {title: book.title, filetype: bookidfiletype[1], quantity: counttype} 
-      end
-    end
-    if myperksales.any?
-      perkgroup = myperksales.group(:merchandise_id)  ##this is kludgy
-      counthash = perkgroup.count
-      for counttype in counthash 
-        merch = Merchandise.find(counttype[0])
-        self.salebyperktype << {name: merch.name, quantity: counttype[1]} 
-      end
     end
 
     #list of all sales since user stripeid 
@@ -372,23 +325,7 @@ class User < ApplicationRecord
             fulfillstat: sale.fulfillstatus, ebook: "" } 
         end
       end
-
-    # items purchased by curruser
-    mypurchases = self.purchases
-    if mypurchases.present?
-      self.purchasesinfo = []
-      mypurchases.each do |bought| 
-        if bought.book_id.present?
-          bookbought = Book.find(bought.book_id) 
-          author = User.find(bookbought.user_id) 
-          self.purchasesinfo << {purchasetitle: bookbought.title, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
-        else
-          perkbought = Merchandise.find(bought.merchandise_id) 
-          author = User.find(perkbought.user_id) 
-          self.purchasesinfo << {purchasetitle: perkbought.name, purchaseauthor: author.name, purchaseprice: bought.pricesold, purchasedwhen: bought.created_at.to_date} 
-        end
-      end
-    end
+      # Place Campaigns supported on dashboard later
   end  
 
   private

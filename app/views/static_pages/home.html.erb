@@ -152,18 +152,17 @@
           <% if @user.stripeid.present? %>
             <span class="dot"></span> <%= link_to "Manage Your $", user_dashboard_path(@user.permalink), title: "View your dashboard" %>
           <% else %>
-            <span class="dot"></span> <%= link_to "Get $", user_createstripeaccount_path(@user.permalink), style:"color:red;", title: "Get your money deposited directly into your bank account. CrowdPublish.TV uses the same trusted payment processor many of your favorite sites use." %>
+            <span class="dot"></span> <%= link_to "Receive $", user_createstripeaccount_path(@user.permalink), style:"color:red;", title: "Get your money deposited directly into your bank account. CrowdPublish.TV uses the same trusted payment processor many of your favorite sites use." %>
           <% end %>
         </div><br>
 
       <% else %>
         <div class = "helps" style = "text-align:left" >
-          <span class="dot"></span> <%= link_to "Sign Up", '/signup' %> <br><br>
-          <span class="dot"></span> <%= link_to "Create profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
-          <span class="dot"></span> <%= link_to "Create campaign about characters we can respect", phase_path('lisas80scatholichighschoolmovie'), title: "One of our current CrowdPublish Campaigns" %> <br><br>
-          <span class="dot"></span> <%= link_to "Create Perks to offer fans", merchandises_path, title: "Offer your fans more than just your videos or books. Examples of what our members offer their fans" %> <br><br>
+          <span class="dot"></span> <%= link_to "Create profile", '/signup', title: "Signup to get a free CrowdPublishTV web site." %> <br><br>
+          <span class="dot"></span> <%= link_to "Create campaign for story", '/signup', title: "Signup to create a Campaign" %> <br><br>
+          <span class="dot"></span> <%= link_to "Create Perks to offer fans", '/suggestedperks', title: "Offer your fans more than just your videos or books. We have a list of standard perks you can add to your Campaign" %> <br><br>
           <span class="dot"></span> <%= link_to "Tell all your friends & fans", '/tellfriends', title: "The process of getting the word out about your CrowdPublish Campaign" %> <br><br>
-          <span class="dot"></span> <%= link_to "Get $", 'http://stripe.com', title: "We use the same trusted payment processor many of your favorite sites use", :target => "_blank" %>
+          <span class="dot"></span> <%= link_to "Receive $", '/signup', title: "We use the same trusted payment processor many of your favorite sites use", :target => "_blank" %>
         </div>
       <% end %>
     </div>
