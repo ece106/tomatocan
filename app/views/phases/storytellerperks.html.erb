@@ -69,6 +69,34 @@
         </a>
       </div>
     </div>
+  <% "SOCIAL MEDIA VIDEO" %>
+    <div class="accordion" id="accordion7">
+      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
+        <div id="accordion-toggle7" class="accordion-body collapse">
+          <div class="accordion-inner">
+              <%= form_for(@merchandise) do |f| %>
+                <%= f.hidden_field :phase_id, value: @phase.id %>
+                <b>Perk Name </b><br>
+                <%= f.text_field :name, size: 80, value: "Video Reading posted on your facebook wall" || :name %><br><br>
+                <b>About this Patron Perk </b><br>
+                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will record a video of myself reading from my next chapter and post it on your facebook wall. " || :desc %><br><br>
+            <b>Price </b><br>
+            $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
+                <%= button_to "Offer Facebook Video Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
+              <% end %>
+          </div>
+        </div>
+          <a class="accordion-toggle7" data-toggle="collapse" href="#accordion-toggle7">
+            <span>
+              <b>Facebook Video Post</b> where fans' friends can see your work
+            </span>
+            <span class="hidden7more">
+              ...Hide <b>Facebook Video Post</b> details
+            </span>
+          </a><br>
+      </div>
+    </div>
 <% "ACCESS TO BEHIND THE SCENES BLOG" %>
         <div class="accordion" id="accordion3">
           <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
@@ -185,34 +213,6 @@
       </div>
     </div>
 
-  <% "SOCIAL MEDIA VIDEO" %>
-    <div class="accordion" id="accordion7">
-      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-        <div id="accordion-toggle7" class="accordion-body collapse">
-          <div class="accordion-inner">
-              <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
-                <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Video Reading posted on your facebook wall" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will record a video of myself reading from my next chapter and post it on your facebook wall. " || :desc %><br><br>
-            <b>Price </b><br>
-            $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
-                <%= button_to "Offer Facebook Video Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
-              <% end %>
-          </div>
-        </div>
-          <a class="accordion-toggle7" data-toggle="collapse" href="#accordion-toggle7">
-            <span>
-              <b>Facebook Video Post</b> where fans' friends can see your work
-            </span>
-            <span class="hidden7more">
-              ...Hide <b>Facebook Video Post</b> details
-            </span>
-          </a><br>
-      </div>
-    </div>
 <% "READ FAN WORK ON FACEBOOK LIVE" %>
     <div class="accordion" id="accordion">
       <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
@@ -411,9 +411,9 @@
       </div>
     </div>
 <% "Q & A" %>
-        <div class="accordion" id="accordion5">
+        <div class="accordion" id="accordion16">
           <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle5" class="accordion-body collapse">
+            <div id="accordion-toggle16" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -428,20 +428,20 @@
                   <% end %>
               </div>
             </div>
-            <a class="accordion-toggle5" data-toggle="collapse" href="#accordion-toggle5">
+            <a class="accordion-toggle16" data-toggle="collapse" href="#accordion-toggle16">
               <span>
                 <b>Chat With Storyteller</b>
               </span>
-              <span class="hidden5more">
+              <span class="hidden16more">
                 ...Hide <b>Q & A</b> details<br><br>
               </span>
             </a><br>
           </div>
         </div>
 <% "EXPERT CONSULTATION" %>
-        <div class="accordion" id="accordion5">
-          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle5" class="accordion-body collapse">
+        <div class="accordion" id="accordion17">
+          <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
+            <div id="accordion-toggle17" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -456,11 +456,11 @@
                   <% end %>
               </div>
             </div>
-            <a class="accordion-toggle5" data-toggle="collapse" href="#accordion-toggle5">
+            <a class="accordion-toggle17" data-toggle="collapse" href="#accordion-toggle17">
               <span>
                 <b>Expert Consultation</b>
               </span>
-              <span class="hidden5more">
+              <span class="hidden17more">
                 ...Hide <b>Consultation</b> details
               </span>
             </a><br>
@@ -477,9 +477,9 @@
 
      <div class="font19left" >
 <% "LIVE READING" %>
-    <div class="accordion" id="accordion3">
-      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-        <div id="accordion-toggle3" class="accordion-body collapse">
+    <div class="accordion" id="accordion18">
+      <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
+        <div id="accordion-toggle18" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -494,20 +494,20 @@
               <% end %>
           </div>
         </div>
-        <a class="accordion-toggle3" data-toggle="collapse" href="#accordion-toggle3">
+        <a class="accordion-toggle18" data-toggle="collapse" href="#accordion-toggle18">
           <span>
             <b>Live Online Reading</b> on video call
           </span>
-          <span class="hidden3more">
+          <span class="hidden18more">
             ...Hide <b>Live Online Reading</b> details<br><br>
           </span>
         </a><br>
       </div>
     </div>
 <% "ACT FAN WORK ON FACEBOOK LIVE" %>
-    <div class="accordion" id="accordion13">
+    <div class="accordion" id="accordion19">
       <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-        <div id="accordion-toggle3" class="accordion-body collapse">
+        <div id="accordion-toggle19" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -522,20 +522,20 @@
               <% end %>
           </div>
         </div>
-        <a class="accordion-togglea3" data-toggle="collapse" href="#accordion-toggle13">
+        <a class="accordion-togglea19" data-toggle="collapse" href="#accordion-toggle19">
           <span>
             Facebook <b>Livestream Acting</b>
           </span>
-          <span class="hidden13more">
+          <span class="hidden19more">
             ...Hide <b>Facebook Livestream Acting</b> details
           </span>
         </a><br>
       </div>
     </div>
 <% "PLAY VIDEO GAME" %>
-        <div class="accordion" id="accordion8">
+        <div class="accordion" id="accordion20">
           <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle8" class="accordion-body collapse">
+            <div id="accordion-toggle20" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -550,20 +550,20 @@
               <% end %>
               </div>
             </div>
-            <a class="accordion-toggle8" data-toggle="collapse" href="#accordion-toggle8">
+            <a class="accordion-toggle20" data-toggle="collapse" href="#accordion-toggle20">
               <span>
                 Play <b>Video Game</b> with fans
               </span>
-              <span class="hidden8more">
+              <span class="hidden20more">
                 ...Hide <b>Video Game</b> details<br><br>
               </span>
             </a><br>
           </div>
         </div>
 <% "NAME IN CREDITS" %>
-        <div class="accordion" id="accordion7">
+        <div class="accordion" id="accordion21">
           <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle7" class="accordion-body collapse">
+            <div id="accordion-toggle21" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -581,20 +581,20 @@
               <% end %>
               </div>
             </div>
-            <a class="accordion-toggle7" data-toggle="collapse" href="#accordion-toggle7">
+            <a class="accordion-toggle21" data-toggle="collapse" href="#accordion-toggle21">
               <span>
                 Include <b>Fans' Name</b> in the credits at the end of your next chapter
               </span>
-              <span class="hidden7more">
+              <span class="hidden21more">
                 ...Hide <b>Name in Credits</b> details
               </span>
             </a><br>
           </div>
         </div>
 <% "NAME A CHARACTER" %>
-        <div class="accordion" id="accordion8">
+        <div class="accordion" id="accordion22">
           <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle8" class="accordion-body collapse">
+            <div id="accordion-toggle22" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -609,20 +609,20 @@
               <% end %>
               </div>
             </div>
-            <a class="accordion-toggle8" data-toggle="collapse" href="#accordion-toggle8">
+            <a class="accordion-toggle22" data-toggle="collapse" href="#accordion-toggle22">
               <span>
                 Fans <b>Name</b> the next <b>Character</b> in your book
               </span>
-              <span class="hidden8more">
+              <span class="hidden22more">
                 ...Hide <b>Character Name</b> details
               </span>
             </a><br>
           </div>
         </div>
 <% "ADVANCE CHAPTER ACCESS" %>
-        <div class="accordion" id="accordion4">
+        <div class="accordion" id="accordion23">
           <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle4" class="accordion-body collapse">
+            <div id="accordion-toggle23" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -637,11 +637,11 @@
               <% end %>
               </div>
             </div>
-            <a class="accordion-toggle4" data-toggle="collapse" href="#accordion-toggle4">
+            <a class="accordion-toggle23" data-toggle="collapse" href="#accordion-toggle23">
               <span>
                 <b>Advance Chapter Access </b>
               </span>
-              <span class="hidden4more">
+              <span class="hidden23more">
                 ...Hide <b>Advance Chapter Access</b> details
               </span>
             </a><br>
@@ -654,9 +654,9 @@
 
      <div class="font19left" >
 <% "RECIPE" %>
-        <div class="accordion" id="accordionc">
+        <div class="accordion" id="accordion24">
           <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-togglec" class="accordion-body collapse">
+            <div id="accordion-toggle24" class="accordion-body collapse">
               <div class="accordion-inner">
                 <%= form_for(@merchandise) do |f| %>
                   <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -671,20 +671,20 @@
                 <% end %>
               </div>
             </div>
-            <a class="accordion-togglec" data-toggle="collapse" href="#accordion-togglec ">
+            <a class="accordion-toggle24" data-toggle="collapse" href="#accordion-toggle24">
               <span>
                 <b>Recipe</b> for disaster
               </span>
-              <span class="hiddencmore">
+              <span class="hidden24more">
                 ...Hide <b>Recipe</b> details<br><br>
               </span>
             </a>
           </div>
         </div>
 <% "COMBO" %>
-        <div class="accordion" id="accordion10">
+        <div class="accordion" id="accordion25">
           <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle10" class="accordion-body collapse">
+            <div id="accordion-toggle25" class="accordion-body collapse">
               <div class="accordion-inner">
                 <%= form_for(@merchandise) do |f| %>
                   <%= f.hidden_field :phase_id, value: @phase.id %>
@@ -699,11 +699,11 @@
                 <% end %>
               </div>
             </div>
-            <a class="accordion-toggle10" data-toggle="collapse" href="#accordion-toggle10">
+            <a class="accordion-toggle25" data-toggle="collapse" href="#accordion-toggle25">
               <span>
                 <b>Combo</b> Package
               </span> 
-              <span class="hidden10more">
+              <span class="hidden25more">
                 ...Hide <b>Combo Package</b> details<br><br>
               </span>
             </a><br>
