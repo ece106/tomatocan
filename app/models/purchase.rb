@@ -7,6 +7,9 @@ class Purchase < ApplicationRecord
   belongs_to :user
   belongs_to :merchandise, optional: true
   validates :user_id, presence: true
+  validates :author_id, presence: true
+  validates :pricesold, presence: true
+  validates :authorcut, presence: true
   validate :book_id_or_merchandise_id
 #  validates :bookfiletype, presence: true
 

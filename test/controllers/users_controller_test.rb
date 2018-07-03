@@ -85,6 +85,14 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should_get_users_dashboard" do
     sign_in @user
+
+puts "AAAAAAAAAAAAAAAAAAAAAAa"
+@book = books(:one)
+puts @book.id
+puts "Notice that the book id is some ridiculously huge integer."
+puts "How do we get that integer into a fixture for purchases? "
+puts "Or should it go into the calcdashboard method?"
+
     get :dashboard, params: {permalink: 'user1'}
     assert_response :success
   end
@@ -178,7 +186,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_show" do
+  test "should_get_users_show" do #user1 has phases
     get :show, params: {permalink: 'user1'}
     assert_response :success
   end
@@ -192,7 +200,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   end
 
-  test "should show user profile" do #user without any phases
+  test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }
     assert_response :success
   end
