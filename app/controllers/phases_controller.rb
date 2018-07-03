@@ -1,5 +1,5 @@
 class PhasesController < ApplicationController
-  before_action :set_phase, only: [:patronperk, :authorperks, :actorperks, :storytellerperks, :show, :edit, :update, :destroy]
+  before_action :set_phase, only: [:patronperk, :storytellerperks, :show, :edit, :update, :destroy]
   layout :resolve_layout
 
   # GET /phases
@@ -72,6 +72,10 @@ class PhasesController < ApplicationController
   # GET /phases/new
   def new
     @phase = Phase.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @phase }
+    end
   end
 
   def patronperk  
@@ -80,20 +84,6 @@ class PhasesController < ApplicationController
     @perklist = Merchandise.where(:phase_id => @phase.id)
   end
 
-  def authorperks
-    @author = User.find_by_id(@phase.user_id)
-    @merchandise = @phase.merchandises.build 
-    if user_signed_in?
-      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-    end
-  end
-  def actorperks
-    @actor = User.find_by_id(@phase.user_id)
-    @merchandise = @phase.merchandises.build 
-    if user_signed_in?
-      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-    end
-  end
   def storytellerperks
     @author = User.find_by_id(@phase.user_id)
     @merchandise = @phase.merchandises.build 
@@ -111,15 +101,7 @@ class PhasesController < ApplicationController
 
   def create
     @phase = current_user.phases.build(phase_params)
-    if @phase.save
-      if current_user.author == "author"
-        redirect_to phase_authorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      else
-        redirect_to phase_actorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      end
-    else
       render action: 'new'
-    end
   end
 
   def update
@@ -145,7 +127,11 @@ class PhasesController < ApplicationController
       @user = User.find(@phase.user_id)
       if @user.phases.any?
         @sidebarphase = @user.phases.order('deadline').last 
-        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+        if @sidebarphase.merchandises.any?
+          @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+        else
+          @sidebarmerchandise = []
+        end
       end
     end
 
