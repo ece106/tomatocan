@@ -85,14 +85,9 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should_get_users_dashboard" do
     sign_in @user
-
-puts "AAAAAAAAAAAAAAAAAAAAAAa"
-@book = books(:one)
-puts @book.id
-puts "Notice that the book id is some ridiculously huge integer."
-puts "How do we get that integer into a fixture for purchases? "
-puts "Or should it go into the calcdashboard method?"
-
+    @book = books(:one)
+    puts @book.id
+    puts "Notice that the book id is some ridiculously huge integer."
     get :dashboard, params: {permalink: 'user1'}
     assert_response :success
   end
