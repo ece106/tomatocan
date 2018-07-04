@@ -2,16 +2,16 @@
 
 one:
   name: MyString
-  user_id: 1
+  user_id: users(:one)
   price: 1.5
   desc: MyText
   itempic: MyString
-  phase_id: 1
+  phase_id: phases(:one)
 
 two:
   name: MyString
-  user_id: 1
+  user_id: users(:one)
   price: 1.5
   desc: MyText
   itempic: MyString
-  phase_id: 1
+  phase_id: phases(:one)
