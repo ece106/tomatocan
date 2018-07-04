@@ -80,20 +80,6 @@ class PhasesController < ApplicationController
     @perklist = Merchandise.where(:phase_id => @phase.id)
   end
 
-  def authorperks
-    @author = User.find_by_id(@phase.user_id)
-    @merchandise = @phase.merchandises.build 
-    if user_signed_in?
-      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-    end
-  end
-  def actorperks
-    @actor = User.find_by_id(@phase.user_id)
-    @merchandise = @phase.merchandises.build 
-    if user_signed_in?
-      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-    end
-  end
   def storytellerperks
     @author = User.find_by_id(@phase.user_id)
     @merchandise = @phase.merchandises.build 
