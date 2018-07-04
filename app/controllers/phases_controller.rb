@@ -73,10 +73,19 @@ class PhasesController < ApplicationController
   # GET /phases/new
   def new
     @phase = Phase.new
+<<<<<<< HEAD
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @phase }
     end
+=======
+  end
+
+  def patronperk  
+    @merchandises = @phase.merchandises
+    @merchandise = @phase.merchandises.build 
+    @perklist = Merchandise.where(:phase_id => @phase.id)
+>>>>>>> ef497807f2b4fbc0d5e4fd7ed96b91e6a50301c3
   end
 
   def storytellerperks
