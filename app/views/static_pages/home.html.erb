@@ -18,19 +18,25 @@
   </ol>
 
   <!-- Wrapper for slides -->
-  <div class="carousel-inner">
+  <div class="carousel-inner"> 
     <div class="item active" style="height:490px;">
-      <img src="https://scontent.fphx1-2.fna.fbcdn.net/v/t31.0-8/18237980_10209287354885726_2128376433509158023_o.jpg?oh=7f16e29f9c7602e23d212709742fe608&oe=5B4D6DBF" alt="Lisa's 80s Catholic High School Movie">
+      <img src="http://www.CrowdPublish.TV/teacher.png">
+      <div class="carousel-caption">
+        <%=  image_tag("classy.png", width: "180") %>
+      </div>    
     </div>
 
     <div class="item" style="height:490px;">
       <img src="http://www.CrowdPublish.TV/womanTED.jpg" alt="TED talk">
+      <div class="carousel-caption">
+        <%=  image_tag("classy.png", width: "180") %>
+      </div>    
     </div>
 
     <div class="item" style="height:490px;">
-      <img src="http://www.CrowdPublish.TV/womenTech.png" alt="Tech Woman">
+      <img src="http://www.CrowdPublish.TV/romance3.png" alt="3 Trash Romance">
       <div class="carousel-caption">
-        .
+        <%=  image_tag("trashy.png", width: "180") %>
       </div>    
     </div>
   </div>
@@ -49,12 +55,12 @@
 
 
 <div class="container-flex">
-  <div class="row" style = "position: absolute; z-index: 1; top:30px; left:40px; text-align:center;" >
+  <div class="row" style = "position: absolute; z-index: 1; top:70px; left:60px; text-align:center;" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
-        Crowdfund stories about characters we can Respect  
+        Crowdfund stories about &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Characters
       </div>
       <div class = "whitetxt" style = "text-shadow: 1px 1px #000; font-size:30px;" >
-        <br>Be the change you want to see in media & culture
+        <br><br>Be the change you want to see in media & culture
       </div>
 
     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -129,41 +135,40 @@
             <span class="dot"></span> <%= link_to "Improve your profile", user_profileinfo_path(current_user.permalink), title: "Embed your YouTube videos, update your banner, give your fans more details about your work" %>
           <% else %>
             <span class="dot"></span> <%= link_to "Create profile", user_profileinfo_path(current_user.permalink), style:"color:red;", title: "Tell your fans about yourself... Add a picture of yourself, a banner about your books or videos" %> 
-          <% end %><br><br>
+          <% end %><br>
 
           <% if @user.phases.any? %>
-            <span class="dot"></span> <%= link_to "Start another CrowdPublish campaign", new_phase_path(current_user.permalink), title: "A great excuse to reach out to your most loyal fans" %> 
+            <span class="dot" style = "margin-top:10px"></span> <%= link_to "Start another CrowdPublish campaign", new_phase_path(current_user.permalink), title: "A great excuse to reach out to your most loyal fans" %> 
           <% else %>
-            <span class="dot"></span> <%= link_to "Start campaign about characters we can Respect", new_phase_path(current_user.permalink), style:"color:red;", title: "Your most loyal fans are eager to support your next story" %> 
-          <% end %><br><br>
+            <span class="dot" style = "margin-top:10px"></span> <%= link_to "Start campaign about characters we can Respect", new_phase_path(current_user.permalink), style:"color:red;", title: "Your most loyal fans are eager to support your next story" %> 
+          <% end %><br>
 
           <% if @user.phases.any? %>
             <% if @recentphase.merchandises.any? %>
-              <span class="dot"></span> <%= link_to "Enter more Perks to offer fans", @perkpath, title: "Create new perks that only you can offer your most loyal fans!" %> 
+              <span class="dot" style = "margin-top:10px"></span> <%= link_to "Enter more Perks to offer fans", @perkpath, title: "Create new perks that only you can offer your most loyal fans!" %> 
             <% else %>
-              <span class="dot"></span> <%= link_to "Enter unique Perks to offer fans", @perkpath, style:"color:red;", title: "Offer perks that only you could give to your most loyal fans!" %> 
+              <span class="dot" style = "margin-top:10px"></span> <%= link_to "Enter unique Perks to offer fans", @perkpath, style:"color:red;", title: "Offer perks that only you could give to your most loyal fans!" %> 
             <% end %>
           <% else %>
               <span class="dot"></span> Select & Create Perks to offer Fans
-          <% end %><br><br>
+          <% end %><br>
 
-          <span class="dot"></span> <%= link_to "Tell all your friends & fans", '/tellfriends', style:"color:red;", title: "Announce your CrowdPublish Campaign on twitter, facebook, email, from rooftops..." %> <br><br>
+          <span class="dot" style = "margin-top:10px"></span> <%= link_to "Tell all your friends & fans", '/tellfriends', style:"color:red;", title: "Announce your CrowdPublish Campaign on twitter, facebook, email, from rooftops..." %> <br>
 
           <% if @user.stripeid.present? %>
-            <span class="dot"></span> <%= link_to "Manage Your $", user_dashboard_path(@user.permalink), title: "View your dashboard" %>
+            <span class="dot" style = "margin-top:10px"></span> <%= link_to "Manage Your $", user_dashboard_path(@user.permalink), title: "View your dashboard" %>
           <% else %>
-            <span class="dot"></span> <%= link_to "Get $", user_createstripeaccount_path(@user.permalink), style:"color:red;", title: "Get your money deposited directly into your bank account. CrowdPublish.TV uses the same trusted payment processor many of your favorite sites use." %>
+            <span class="dot" style = "margin-top:10px"></span> <%= link_to "Receive $", user_createstripeaccount_path(@user.permalink), style:"color:red;", title: "Get your money deposited directly into your bank account. CrowdPublish.TV uses the same trusted payment processor many of your favorite sites use." %>
           <% end %>
         </div><br>
 
       <% else %>
         <div class = "helps" style = "text-align:left" >
-          <span class="dot"></span> <%= link_to "Sign Up", '/signup' %> <br><br>
-          <span class="dot"></span> <%= link_to "Create profile", '/lisa', title: "Everyone gets a free CrowdPublishTV web site. Click to see one of our members' web sites" %> <br><br>
-          <span class="dot"></span> <%= link_to "Create campaign about characters we can respect", phase_path('lisas80scatholichighschoolmovie'), title: "One of our current CrowdPublish Campaigns" %> <br><br>
-          <span class="dot"></span> <%= link_to "Create Perks to offer fans", merchandises_path, title: "Offer your fans more than just your videos or books. Examples of what our members offer their fans" %> <br><br>
-          <span class="dot"></span> <%= link_to "Tell all your friends & fans", '/tellfriends', title: "The process of getting the word out about your CrowdPublish Campaign" %> <br><br>
-          <span class="dot"></span> <%= link_to "Get $", 'http://stripe.com', title: "We use the same trusted payment processor many of your favorite sites use", :target => "_blank" %>
+          <span class="dot"></span> <%= link_to "Create profile", '/signup', title: "Signup to get a free CrowdPublishTV web site." %> <br>
+          <span class="dot" style = "margin-top:10px"></span> <%= link_to "Create campaign for story", '/signup', title: "Signup to create a Campaign" %> <br><br>
+          <span class="dot" style = "margin-top:10px"></span> <%= link_to "Create Perks to offer fans", '/suggestedperks', title: "Offer your fans more than just your videos or books. We have a list of standard perks you can add to your Campaign" %> <br><br>
+          <span class="dot" style = "margin-top:10px"></span> <%= link_to "Tell all your friends & fans", '/tellfriends', title: "The process of getting the word out about your CrowdPublish Campaign" %> <br><br>
+          <span class="dot" style = "margin-top:10px"></span> <%= link_to "Receive $", '/signup', title: "We use the same trusted payment processor many of your favorite sites use", :target => "_blank" %>
         </div>
       <% end %>
     </div>

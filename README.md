@@ -46,20 +46,22 @@ When you have completed the quiz, download and start working on the tutorial at 
 
 ### TO USE THE CROWDPUBLISHTV GITHUB
 
-<<<<<<< HEAD
-For a list of helpfull git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
-=======
 For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
->>>>>>> 9175aabb7468ebfd329d195443af5f999f42d5c2
 
 1. Forking from crowdpublishtv and bringing the code to your local machine
 
 Begin by forking the crowdpublishtv code by pressing the fork button located at http://github.com/crowdpublishtv/crowdpublishtv. Forking will allow you to have a copy of the crowdpublishtv code in your personal github and will give you a way to request crowdpublishtv to pull your changes. 
 
-In order to bring the crowdpublishtv code to your local machine you must make a clone of the fork you have created. Open a commandline in the location you would like your code to be saved and use the command:
+In order to bring the crowdpublishtv code to your local machine you must make a clone of the fork you have created. 
+
+a. On GitHub, navigate to your fork of the crowdpublishtv repository.
+
+b. Under the repository name, click ``` Clone or download ```.
+
+c. Open a commandline in the location you would like your code to be saved and use the command:
 
 ```
- git clone https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY
+ git clone https://github.com/YOUR-GITHUB_USERNAME/crowdpublishtv
 ```
 
 2. Saving your changes to your repository
@@ -73,11 +75,7 @@ git add * :/
 
 To finish your commit (which will save your current files) use the command:
 ```
-<<<<<<< HEAD
 git commit -a -m "Useful Comment of Your Changes/Additions"
-=======
-git commit -a -m "Useful_Comment_of_Your_Changes/Additions"
->>>>>>> 9175aabb7468ebfd329d195443af5f999f42d5c2
 ```
 
 Now you can push your comitted changes to your repository with the following commands:

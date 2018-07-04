@@ -1,5 +1,6 @@
 class PhasesController < ApplicationController
-  before_action :set_phase, only: [:patronperk, :storytellerperks, :show, :edit, :update, :destroy]
+
+  before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show]
   layout :resolve_layout
 
   # GET /phases
@@ -76,12 +77,6 @@ class PhasesController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @phase }
     end
-  end
-
-  def patronperk  
-    @merchandises = @phase.merchandises
-    @merchandise = @phase.merchandises.build 
-    @perklist = Merchandise.where(:phase_id => @phase.id)
   end
 
   def storytellerperks

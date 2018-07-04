@@ -67,6 +67,54 @@ jQuery(document).ready(function($) {
   $('.accordion-toggle13').click(function() {
     $(this).find('span').each(function() { $(this).toggle(); });
   });
+  $('.hidden14more').removeClass('hidden14more').hide();
+  $('.accordion-toggle14').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden15more').removeClass('hidden15more').hide();
+  $('.accordion-toggle15').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden16more').removeClass('hidden16more').hide();
+  $('.accordion-toggle16').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden17more').removeClass('hidden17more').hide();
+  $('.accordion-toggle17').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden18more').removeClass('hidden18more').hide();
+  $('.accordion-toggle18').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden19more').removeClass('hidden19more').hide();
+  $('.accordion-toggle19').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden20more').removeClass('hidden20more').hide();
+  $('.accordion-toggle20').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden21more').removeClass('hidden21more').hide();
+  $('.accordion-toggle21').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden22more').removeClass('hidden22more').hide();
+  $('.accordion-toggle22').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden23more').removeClass('hidden23more').hide();
+  $('.accordion-toggle23').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden24more').removeClass('hidden24more').hide();
+  $('.accordion-toggle24').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
+  $('.hidden25more').removeClass('hidden25more').hide();
+  $('.accordion-toggle25').click(function() {
+    $(this).find('span').each(function() { $(this).toggle(); });
+  });
 
 
   $('.cardinfo').hide();
