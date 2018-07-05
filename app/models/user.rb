@@ -1,4 +1,3 @@
-
 class User < ApplicationRecord
 # We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
@@ -297,11 +296,8 @@ class User < ApplicationRecord
 
     # how many items sold & revenue each month
     while monthq < Date.today + 1.month do
-        
-      monthsales = Purchase.where(["strftime("%m") = ? and strftime("%Y") = ?", DateTime.strftime("%m"), DateTime.strftime("%Y")])
-
-      #monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-       # AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
+      monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
+        AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
 
 # monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
 # Don't know why this line doesn't work
