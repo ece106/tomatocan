@@ -297,8 +297,11 @@ class User < ApplicationRecord
 
     # how many items sold & revenue each month
     while monthq < Date.today + 1.month do
-      monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
-        AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
+        
+      monthsales = Purchase.where(["strftime("%m") = ? and strftime("%Y") = ?", DateTime.strftime("%m"), DateTime.strftime("%Y")])
+
+      #monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
+       # AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
 
 #      monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
 # Don't know why this line doesn't work
