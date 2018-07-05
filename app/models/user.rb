@@ -300,20 +300,11 @@ class User < ApplicationRecord
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
         AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
 
-#      monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
+# monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
 # Don't know why this line doesn't work
 
-      if monthsales.empty?
-        monthperksales = 0
-        perkearnings = 0
-      else
-        monthperksales = monthsales.where('merchandise_id IS NOT NULL')
-        if monthperksales.empty?
-          perkearnings = 0
-        else
-          perkearnings = monthperksales.sum(:authorcut)
-        end
-      end
+      monthperksales = monthsales.where('merchandise_id IS NOT NULL')
+      perkearnings = monthperksales.sum(:authorcut)
       # total monthly revenue
       self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: perkearnings} 
       monthq = monthq + 1.month

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+  class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :filmmakers, :authors, :create, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr ]
