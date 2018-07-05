@@ -211,7 +211,6 @@
 </div>
 <div class="row" > 
   <% @campaigns.each do |c| %>
-
     <div class="col-md-4 col-sm-4 col-xs-6" >
       <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:350px; overflow:hidden;" >
           <%= link_to(image_tag(c.phasepic, :height => "170",  :title => c.name ), phase_path(c.permalink)) %> 
@@ -219,12 +218,11 @@
       </div>
     </div>
   <% end %>
-
 </div>
+
   <div class="indexlist" >
     <b>Browse more CrowdPublish.TV campaigns</b><br> <%= will_paginate @campaigns %> <br>
-  </div>
-
+  </div><br>
 
   <div class="row" style="margin-top:15px;" >
     <div class="col-md-5" >
