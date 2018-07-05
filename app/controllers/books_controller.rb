@@ -2,8 +2,9 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   layout :resolve_layout
 
-  def index # This will be a result of some filters
-    @books = Book.joins(:user).where("stripeid IS NOT NULL")
+  def index 
+#    @books = Book.joins(:user).where("stripeid IS NOT NULL")
+    @books = Book.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

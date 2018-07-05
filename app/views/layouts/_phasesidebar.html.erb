@@ -8,11 +8,7 @@
 
         <% if current_user.id == @user.id %>
           <% if @user.phases.any? %>
-            <% if current_user.author == "author" %>
-              <% @perkpath = phase_authorperks_path(@sidebarphase.permalink) %>
-            <% else %>
-              <% @perkpath = phase_actorperks_path(@sidebarphase.permalink) %>
-            <% end %>
+              <% @perkpath = phase_storytellerperks_path(@sidebarphase.permalink) %>
           
             <% if !@sidebarphase.merchandises.any? %>
               You must <%= link_to "Create Perks", @perkpath, style:"color:red; font-size:28px;" %> so your Fans can support your work.
