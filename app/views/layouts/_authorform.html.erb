@@ -113,7 +113,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <div class="navbar-inner ">
     <ul class="nav navbar-nav pull-left usermenu"> 
         <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
-        <% if @user.author == 'filmmaker' || @user.author == 'actor' ||  @user.author == 'author'%>
+        <% if @user.author == 'filmmaker' || @user.author == 'storyteller'%>
         <% if @user.phases.any? %>
           <li><%= link_to " Campaigns ", user_phases_path(@user.permalink) %>
         <% end %>
