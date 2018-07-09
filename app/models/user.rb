@@ -35,7 +35,7 @@ class User < ApplicationRecord
   # Other default devise modules available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
   scope :updated_at, -> { where(order: 'DESC') }
-  after_initialize :assign_defaults_on_new_user, if: 'new_record?'
+  after_initialize :assign_defaults_on_new_user, if: -> {new_record?}
 
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false }
