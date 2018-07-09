@@ -14,7 +14,7 @@
             <%= link_to 'Edit', edit_book_path(book) %> </td><td>
             <div class="fanbook" style="width:75px;height:100px;background-color:#cfddaa; line-height:0.9em; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid;" >
               <% if book.coverpic.present? && book.coverpic != '' %>
-                <%= link_to image_tag(book.coverpic, size: "75x100", title: "Purchase " + book.title), book_path(id: book.id)  %>
+                <%= link_to image_tag(book.coverpic.url.to_s, size: "75x100", title: "Purchase " + book.title), book_path(id: book.id)  %>
               <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) && book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %>
                 <%= link_to image_tag(book.coverpicurl, size: "75x100", title: "Purchase " + book.title), book_path(id: book.id) %>
               <% elsif book.title.match /[0-9A-Za-z]/ %> 

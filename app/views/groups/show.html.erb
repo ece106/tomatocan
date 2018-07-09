@@ -4,7 +4,7 @@
       <div class="container  col-md-12" style="margin-top:-40px">
     
 <% if @group.grouppic.present? && @group.grouppic != '' %>
-  <%= image_tag @group.grouppic %>
+  <%= image_tag @group.grouppic.url.to_s %>
 <% end %>
   <p id="notice"><%= notice %></p>
 
