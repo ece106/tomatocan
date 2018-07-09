@@ -12,106 +12,23 @@
 
 ActiveRecord::Schema.define(version: 20130201000000000) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+# Could not dump table "agreements" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "agreements", id: :serial, force: :cascade do |t|
-    t.integer "phase_id"
-    t.integer "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "approved"
-  end
+# Could not dump table "books" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "books", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 255
-    t.text "blurb"
-    t.date "releasedate"
-    t.integer "author_id"
-    t.string "genre", limit: 255
-    t.string "fiftychar", limit: 255
-    t.float "price"
-    t.string "bookpdf", limit: 255
-    t.string "coverpic", limit: 255
-    t.string "coverpicurl", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "user_id"
-    t.string "bookmobi", limit: 255
-    t.string "bookepub", limit: 255
-    t.string "bookkobo", limit: 255
-    t.string "bookaudio", limit: 255
-    t.text "youtube1"
-    t.text "youtube2"
-    t.string "bkvideodesc1", limit: 255
-    t.string "bkvideodesc2", limit: 255
-  end
+# Could not dump table "events" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "events", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text "desc"
-    t.string "address", limit: 255
-    t.integer "user_id"
-    t.float "latitude"
-    t.float "longitude"
-    t.integer "group1id"
-    t.integer "group2id"
-    t.integer "group3id"
-    t.integer "usrid"
-  end
+# Could not dump table "friendly_id_slugs" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
-    t.string "slug", limit: 255, null: false
-    t.integer "sluggable_id", null: false
-    t.string "sluggable_type", limit: 50
-    t.string "scope", limit: 255
-    t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-  end
+# Could not dump table "groups" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "groups", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
-    t.string "address", limit: 255
-    t.float "latitude"
-    t.float "longitude"
-    t.integer "user_id"
-    t.text "about"
-    t.string "grouppic", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "grouptype"
-    t.string "permalink", limit: 255
-    t.string "slug", limit: 255
-    t.string "newsurl", limit: 255
-    t.string "twitter", limit: 255
-    t.string "facebook", limit: 255
-    t.text "callaction"
-    t.string "stripeid"
-    t.string "stripe_customer_token"
-    t.datetime "stripesignup"
-    t.index ["slug"], name: "index_groups_on_slug", unique: true
-  end
-
-  create_table "merchandises", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.float "price"
-    t.text "desc"
-    t.string "itempic"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "phase_id"
-    t.datetime "deadline"
-    t.float "goal"
-    t.string "youtube"
-  end
+# Could not dump table "merchandises" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
   create_table "movieroles", force: :cascade do |t|
     t.string "role"
@@ -141,38 +58,11 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.date "releasedate"
   end
 
-  create_table "phases", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.text "mission"
-    t.string "phasepic"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "permalink"
-    t.string "slug"
-    t.datetime "deadline"
-    t.index ["slug"], name: "index_phases_on_slug", unique: true
-  end
+# Could not dump table "phases" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "purchases", id: :serial, force: :cascade do |t|
-    t.integer "author_id"
-    t.integer "book_id"
-    t.string "stripe_customer_token", limit: 255
-    t.integer "plan_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "stripe_card_token", limit: 255
-    t.integer "user_id"
-    t.string "bookfiletype", limit: 255
-    t.float "pricesold"
-    t.decimal "authorcut", precision: 8, scale: 2
-    t.date "paid"
-    t.integer "merchandise_id"
-    t.integer "group_id"
-    t.decimal "groupcut", precision: 8, scale: 2
-    t.string "shipaddress"
-    t.string "fulfillstatus"
-  end
+# Could not dump table "purchases" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
@@ -184,75 +74,13 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "reviews", id: :serial, force: :cascade do |t|
-    t.text "blurb"
-    t.integer "user_id"
-    t.integer "book_id"
-    t.integer "star"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "reviews" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "rsvpqs", id: :serial, force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
-    t.integer "guests"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "rsvpqs" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255
-    t.string "email", limit: 255
-    t.text "ustreamvid"
-    t.text "ustreamsocial"
-    t.string "twitter", limit: 255
-    t.string "facebook", limit: 255
-    t.string "pinterest", limit: 255
-    t.string "youtube", limit: 255
-    t.string "genre1", limit: 255
-    t.string "genre2", limit: 255
-    t.string "genre3", limit: 255
-    t.string "blogurl", limit: 255
-    t.string "profilepicurl", limit: 255
-    t.string "profilepic", limit: 255
-    t.string "author"
-    t.text "about"
-    t.string "password_digest", limit: 255
-    t.string "remember_token", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "encrypted_password", limit: 255, default: "", null: false
-    t.string "reset_password_token", limit: 255
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip", limit: 255
-    t.string "last_sign_in_ip", limit: 255
-    t.string "permalink", limit: 255
-    t.string "address", limit: 255
-    t.float "latitude"
-    t.float "longitude"
-    t.string "slug", limit: 255
-    t.text "youtube1"
-    t.text "youtube2"
-    t.text "youtube3"
-    t.string "videodesc1", limit: 255
-    t.string "videodesc2", limit: 255
-    t.string "videodesc3", limit: 255
-    t.string "blogradio", limit: 255
-    t.text "blogtalkradio"
-    t.string "stripeid", limit: 255
-    t.string "stripe_customer_token", limit: 255
-    t.datetime "stripesignup"
-    t.string "bannerpic"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["permalink"], name: "index_users_on_permalink", unique: true
-    t.index ["remember_token"], name: "index_users_on_remember_token"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["slug"], name: "index_users_on_slug", unique: true
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'serial' for column 'id'
 
 end

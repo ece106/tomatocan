@@ -1,4 +1,3 @@
-
 class User < ApplicationRecord
 # We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
@@ -24,23 +23,6 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed 
   has_many :followers, through: :passive_relationships, source: :follower
 
-  # Helper methods for Relationships
-
-  # Follow a user
-  def follow(other_user)
-    following << other_user
-  end #End of "follow" method
-
-  # Unfollow a user
-  def unfollow(other_user)
-    following.delete(other_user)
-  end #End of the "unfollow" method
-
-  # Is following a specific user
-  def following?(other_user)
-    following.include?(other_user)
-  end #End of the "following?" method
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable #, :validatable, :confirmable 
   mount_uploader :profilepic, ProfilepicUploader
@@ -53,7 +35,7 @@ class User < ApplicationRecord
   # Other default devise modules available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
   scope :updated_at, -> { where(order: 'DESC') }
-  after_initialize :assign_defaults_on_new_user, if: 'new_record?'
+  after_initialize :assign_defaults_on_new_user, if: -> {new_record?}
 
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false }
@@ -74,6 +56,23 @@ class User < ApplicationRecord
 
   before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
+
+  # Helper methods for Relationships
+
+  # Follow a user
+  def follow(other_user)
+    following << other_user
+  end #End of "follow" method
+
+  # Unfollow a user
+  def unfollow(other_user)
+    following.delete(other_user)
+  end #End of the "unfollow" method
+
+  # Is following a specific user
+  def following?(other_user)
+    following.include?(other_user)
+  end #End of the "following?" method
 
   def create_stripe_acnt(countryoftax, accounttype, firstname, lastname, bizname, 
     birthday, birthmonth, birthyear, userip, email) 
@@ -113,14 +112,35 @@ class User < ApplicationRecord
                         line2, city, postalcode, state, ein, ssn) 
     # actual stripe acct object was created in group's stripe customer acct on the createstripeaccount page. Here they're just adding their bank account number
     account = Stripe::Account.retrieve(self.stripeid) 
-    if account.country == "CA"   #called from controller after create acct button clicked
-      if currency == "CAD"
+    ca = "CA"
+    cad = "CAD"
+    us = "US"
+    usd = "USD"
+    at = "AT"
+    be = "BE"
+    ch = "CH"
+    de = "DE"
+    dk = "DK"
+    es = "ES"
+    fi = "FI"
+    fr = "FR"
+    gb = "GB"
+    ie = "IE"
+    it = "IT"
+    lu = "LU"
+    nl = "NL"
+    no = "NO"
+    se = "SE"
+    eur = "EUR"
+
+    if account.country == ca   #called from controller after create acct button clicked
+      if currency == cad
         countryofbank = "CA"
       end  
-    elsif account.country == "US"  #account.country is country of tax id
+    elsif account.country == us  #account.country is country of tax id
       currency = "USD"
       countryofbank = "US"      #we're creating a stripe obj (external acct) so we can add
-    elsif currency == "USD"
+    elsif currency == usd
       countryofbank = "US"      #financial institution bank acct to a stripe managed account
     elsif currency == "GBP"
       countryofbank = "GB"
@@ -133,9 +153,9 @@ class User < ApplicationRecord
     elsif account.country == "AU"
       currency = "AUD"
       countryofbank = "AU"
-    elsif countryofbank == "AT"||"BE"||"CH"||"DE"||"DK"||"ES"||"FI"||"FR"||"GB"||"IE"||"IT"||"LU"||
-                           "NL"||"NO"||"SE"
-      currency = "EUR"
+    elsif countryofbank == at||be||ch||de||dk||es||fi||fr||gb||ie||it||lu||
+                           nl||no||se
+      currency = eur
     end
     bankacct = account.external_accounts.create(
       {
@@ -299,9 +319,12 @@ class User < ApplicationRecord
     while monthq < Date.today + 1.month do
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
         AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
+
+# monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
+# Don't know why this line doesn't work
+
       monthperksales = monthsales.where('merchandise_id IS NOT NULL')
       perkearnings = monthperksales.sum(:authorcut)
-
       # total monthly revenue
       self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: perkearnings} 
       monthq = monthq + 1.month

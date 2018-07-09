@@ -85,12 +85,9 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should_get_users_dashboard" do
     sign_in @user
-<<<<<<< HEAD
-=======
     @book = books(:one)
     puts @book.id
     puts "Notice that the book id is some ridiculously huge integer."
->>>>>>> e05be33c692dbf9bdf8e935c50882c005f3137dd
     get :dashboard, params: {permalink: 'user1'}
     assert_response :success
   end
@@ -184,11 +181,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-<<<<<<< HEAD
-  test "should_get_users_show" do
-=======
   test "should_get_users_show" do #user1 has phases
->>>>>>> e05be33c692dbf9bdf8e935c50882c005f3137dd
     get :show, params: {permalink: 'user1'}
     assert_response :success
   end
