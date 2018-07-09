@@ -1,4 +1,3 @@
-
 class User < ApplicationRecord
 # We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
   attr_accessor :managestripeacnt, :stripeaccountid, :account, :countryofbank, :currency, :countryoftax, 
@@ -36,7 +35,7 @@ class User < ApplicationRecord
   # Other default devise modules available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
   scope :updated_at, -> { where(order: 'DESC') }
-  after_initialize :assign_defaults_on_new_user, if: 'new_record?'
+  after_initialize :assign_defaults_on_new_user, if: -> {new_record?}
 
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false }
@@ -121,6 +120,18 @@ class User < ApplicationRecord
     be = "BE"
     ch = "CH"
     de = "DE"
+    dk = "DK"
+    es = "ES"
+    fi = "FI"
+    fr = "FR"
+    gb = "GB"
+    ie = "IE"
+    it = "IT"
+    lu = "LU"
+    nl = "NL"
+    no = "NO"
+    se = "SE"
+    eur = "EUR"
 
     if account.country == ca   #called from controller after create acct button clicked
       if currency == cad
@@ -142,9 +153,9 @@ class User < ApplicationRecord
     elsif account.country == "AU"
       currency = "AUD"
       countryofbank = "AU"
-    elsif countryofbank == at||be||ch||de||"DK"||"ES"||"FI"||"FR"||"GB"||"IE"||"IT"||"LU"||
-                           "NL"||"NO"||"SE"
-      currency = "EUR"
+    elsif countryofbank == at||be||ch||de||dk||es||fi||fr||gb||ie||it||lu||
+                           nl||no||se
+      currency = eur
     end
     bankacct = account.external_accounts.create(
       {
