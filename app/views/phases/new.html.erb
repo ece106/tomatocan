@@ -27,6 +27,11 @@
 
     <b>About campaign </b> - You may add to this later<br>
     <%= f.text_area :mission, :cols => 82, :rows => 7, placeholder: "What is your mission statement for this campaign? What will you accomplish? If this sales campaign is a book chapter or a movie scene, how does this campaign relate to the final product?" %><br><br>
+
+
+    <b>What makes your character(s) classy </b> - You may add to this later<br>
+    <%= f.text_area :why_classy, cols: 82, rows: 7, placeholder:  "Explain how one or more of the characters in your story are classy." %><br><br>
+
     <b>Deadline </b><br>
     When does this campaign end?<br>
     <%= f.date_select :deadline, selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>

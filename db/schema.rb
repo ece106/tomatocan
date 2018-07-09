@@ -151,7 +151,6 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "permalink"
     t.string "slug"
     t.datetime "deadline"
-    t.string "CharacterImportance"
     t.string "why_classy"
     t.index ["slug"], name: "index_phases_on_slug", unique: true
   end

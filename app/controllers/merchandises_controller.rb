@@ -45,11 +45,7 @@ class MerchandisesController < ApplicationController
         redirect_to edit_phase_path(phase.permalink), notice: 'Patron Perk was successfully created.'
       else
         phase = Phase.find_by_id(merchandise_params[:phase_id])
-        if current_user.author == "author"
-          redirect_to phase_authorperks_path(phase.permalink), notice: 'Patron Perk was successfully created.'
-        else
-          redirect_to phase_actorperks_path(phase.permalink), notice: 'Patron Perk was successfully created.'
-        end 
+          redirect_to phase_storytellerperks_path(phase.permalink), notice: 'Patron Perk was successfully created.'
       end 
     else
       render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
