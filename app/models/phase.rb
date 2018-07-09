@@ -10,7 +10,6 @@ class Phase < ApplicationRecord
   has_many :agreements
   has_many :groups, through: :agreements
   
-  validates :CharacterImportance, presence: true
   validates :user_id, presence: true
   validates :name, presence: true
   validates :permalink, presence: true, format: { with: /\A[\w+]+\z/ }, length: { maximum: 40 },
