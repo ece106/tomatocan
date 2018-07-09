@@ -6,7 +6,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 
 <div style = "text-align:center; margin-top:-20px;  margin-bottom:20px; " >
   <% if @user.bannerpic.present? && @user.bannerpic != '' %>
-    <%= image_tag @user.bannerpic, height: "300" %>
+    <%= image_tag @user.bannerpic.url.to_s, height: "300" %>
   <% else %>
     <%= image_tag "crowddark.png", height: "300" %>
   <% end %>
@@ -87,7 +87,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
     <div class="row" >
           <% if @user.profilepic.present? && @user.profilepic != '' %>
             <div class="col-xl-8 col-md-4 col-xs-5">
-              <%= image_tag @user.profilepic, height: "150" %>
+              <%= image_tag @user.profilepic.url.to_s, height: "150" %>
             </div>
             <div class="col-xl-4 col-md-8 col-xs-7 username">
               <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:110px">

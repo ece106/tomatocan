@@ -9,7 +9,7 @@
     <tr><td>
       <div class="graygreenbkcover" style="width:200px;height:260px;background-color:#cfddaa; vertical-align:middle; text-align:center">
         <% if @book.coverpic.present? && @book.coverpic != '' %>
-          <%= image_tag(@book.coverpic, :size => "200x260") %> 
+          <%= image_tag(@book.coverpic.url.to_s, :size => "200x260") %> 
         <% elsif @book.coverpicurl.present? && @book.coverpicurl.match(/http/) && @book.coverpicurl.match(/jpeg|jpg|gif|png|tif|GIF|TIF|PNG|JPEG|JPG/) %> 
             <%= image_tag(@book.coverpicurl, :size => "200x260") %> 
             <br><br> 

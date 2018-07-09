@@ -14,7 +14,7 @@
             <%= link_to 'Edit', edit_movie_path(movie) %> </td><td>
             <div class="fanmovie" style="width:75px;height:100px;background-color:#cfddaa; line-height:0.9em; text-align: center; border-width:thin medium medium thin; border-color: 000; border-style: solid;" >
               <% if movie.moviepic.present? && movie.coverpic != '' %>
-                <%= link_to image_tag(movie.coverpic, size: "75x100"), movie_path(id: movie.id)  %>
+                <%= link_to image_tag(movie.coverpic.url.to_s, size: "75x100"), movie_path(id: movie.id)  %>
               <% elsif movie.title.match /[0-9A-Za-z]/ %> 
                 <%= link_to movie.title, movie_path(id: movie.id), :class => 'covertitle', style: 'color:#880000' %>
                 <%= link_to @user.name, movie_path(id: movie.id), :class => 'covername', style: 'color:#2c3651' %>

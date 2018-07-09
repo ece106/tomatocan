@@ -5,7 +5,7 @@
 <p id="notice"><%= notice %></p>
 
   <% if @phase.phasepic.present? && @phase.phasepic != '' %>
-    <%= image_tag(@phase.phasepic, height: '250') %>
+    <%= image_tag(@phase.phasepic.url.to_s, height: '250') %>
   <% else %>
     <% if user_signed_in? %>
       <% if @phase.user_id == current_user.id %>

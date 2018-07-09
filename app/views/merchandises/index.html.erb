@@ -5,7 +5,7 @@
       <div class="col-md-4 col-sm-6 col-xs-12" > 
         <div class= "groupimage" style="vertical-align:center; horizontal-align:center; height:190px; width:300px; right-margin:50px; overflow:hidden" >
           <% if merchandise.itempic.present? && merchandise.itempic != '' %>
-            <% merchthumb = merchandise.itempic %>
+            <% merchthumb = merchandise.itempic.url.to_s %>
           <% else %>
             <% merchthumb = "crowddark.png" %>
           <% end %>
