@@ -55,8 +55,16 @@
 <% end %>
 
 <div class="blacktxt">
+  <h4> About </h4>
   <% if @phase.mission %> 
     <%= simple_format @phase.mission.gsub(/\n/, '<br>') %>
+  <% end %>
+</div>
+<div class="blacktxt">
+  <br>
+  <h4> The Characters inside the story </h4>
+  <% if @phase.why_classy %> 
+    <%= simple_format @phase.why_classy.gsub(/\n/, '<br>') %>
   <% end %>
 </div>
 <br><br><br>
