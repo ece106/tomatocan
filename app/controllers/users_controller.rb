@@ -142,6 +142,21 @@
     end
   end
 
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.follower.paginate(page: params[:page])
+    render 'followerspage'
+  end
+
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'followingpage'
+  end
+
+
   # GET /users/1.json
   def booklist
     @books = @user.books
@@ -276,7 +291,7 @@
       sign_in @user
       redirect_to user_profileinfo_path(current_user.permalink)
     else
-      render 'signup'
+      redirect_to new_user_signup_path
     end
   end
   # PUT /users/1.json
