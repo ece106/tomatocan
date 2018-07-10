@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  author_id: users(:one)
-  user_id: users(:two)
-  book_id: books:(one)
+  author_id: > 
+    <%= User.first.id.to_json.inspect %>
+  user: two
+  book: two
   stripe_customer_token: MyString
   pricesold: 20.5
   authorcut: 18.1
 
 two:
-  author_id: users(:two)
-  user_id: users(:one)
-  book_id: books(:one)
+  author_id: > 
+    <%= User.second.id.to_json.inspect %>
+  user: one
+  book: one
   stripe_customer_token: MyString
   pricesold: 50.5
   authorcut: 38.1
