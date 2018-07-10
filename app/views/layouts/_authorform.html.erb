@@ -112,27 +112,30 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <header class="navbar navbar-userpage">
   <div class="navbar-inner ">
     <ul class="nav navbar-nav pull-left usermenu"> 
-        <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
-        <% if @user.author == 'filmmaker' || @user.author == 'storyteller'%>
-        <% if @user.phases.any? %>
-          <li><%= link_to " Campaigns ", user_phases_path(@user.permalink) %>
-        <% end %>
-          <li><%= link_to @user.following.count.to_s + " following", user_profile_path(@user.permalink) %>
-          <li><%= link_to @user.followers.count.to_s + " followers", user_profile_path(@user.permalink) %>
+      <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
+        <% if @user.author == 'storyteller' || @user.author == 'author'%>
+          <% if @user.phases.any? %>
+            <li><%= link_to " Campaigns ", user_phases_path(@user.permalink) %>
+          <% end %>
+          <li><%= link_to @user.following.count.to_s + " following", user_followingpage_path(@user.permalink) %>
+          <li><%= link_to @user.followers.count.to_s + " followers", user_followerspage_path(@user.permalink) %>
           <li><%= render '/users/follow_form', :user => User.find_by_permalink(params[:permalink]) %>
-        <% if @user.movies.any? %>
-          <li><%= link_to " Movies & Theater ", user_movielist_path(@user.permalink) %>
-        <% end %>
-        <% if @user.books.any? %>
-          <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
-        <% end %>
-        <% if @user.about.present? || @user.twitter.present? %>
-          <li><%= link_to " About Me ", user_about_path(@user.permalink) %>
-        <% end %>
+        
+          <% if @user.movies.any? %>
+            <li><%= link_to " Movies & Theater ", user_movielist_path(@user.permalink) %>
+          <% end %>
+        
+          <% if @user.books.any? %>
+            <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
+          <% end %>
+        
+          <% if @user.about.present? || @user.twitter.present? %>
+            <li><%= link_to " About Me ", user_about_path(@user.permalink) %>
+          <% end %>
 
-      <% elsif @user.author == 'reader' %>
-        <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
-      <% end %>
+        <% elsif @user.author == 'storylover' %>
+          <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
+        <% end %>
     </ul>
 
     <ul class="nav navbar-nav pull-right usermenu">
