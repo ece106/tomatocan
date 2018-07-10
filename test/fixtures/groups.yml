@@ -1,23 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   name: MyString
   address: MyString
   latitude: 1.5
   longitude: 1.5
-  user_id: 1
+  user_id: users(:one)
   about: MyText
   grouppic: MyString
   grouptype: 1
 
 two:
-  id: 2
   name: MyString2
   address: 22181
   latitude: 1.5
   longitude: 1.5
-  user_id: 1
+  user_id: users(:one)
   about: MyText
   grouppic: MyString
   grouptype: 1

@@ -6,22 +6,16 @@ class StaticPagesController < ApplicationController
     storytellersvidorder = storytellerswithyoutube.order('updated_at DESC')
     @authors = storytellersvidorder.paginate(:page => params[:page], :per_page => 6)
 
-    campaignswithpic = Phase.where( "phasepic LIKE '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'")
+    campaignswithpic = Phase.where( "phasepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'")
     campaignvidorder = campaignswithpic.order('updated_at DESC')
     @campaigns = campaignvidorder.paginate(:page => params[:page], :per_page => 6)
-    puts @campaigns 
-
     if user_signed_in?
       @user = User.find(current_user.id)
       @orglink = groups_path
       @titlecaption = "Find the page for the Organization that referred you to CrowdPublish.TV"
       if @user.phases.any?
         @recentphase = @user.phases.order('deadline').last 
-        if current_user.author == "author"
-          @perkpath = phase_authorperks_path(@recentphase.permalink)
-        else
-          @perkpath = phase_actorperks_path(@recentphase.permalink)
-        end
+        @perkpath = phase_storytellerperks_path(@recentphase.permalink)
       end
     else
       @orglink = "/signup"

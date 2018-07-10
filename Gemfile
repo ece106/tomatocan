@@ -9,7 +9,10 @@ gem 'rails-controller-testing'
 gem 'sqlite3'
 
 gem 'mandrill'	
-gem 'devise', '4.4.3'
+
+#gem 'devise', '4.4.3'
+gem 'devise'
+
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'

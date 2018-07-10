@@ -10,8 +10,16 @@ one:
 
 two:
   name: MyString
+<<<<<<< HEAD
   user_id: users(:two)
   price: 1.5
   desc: MyText
   itempic: MyString
   phase_id: phases(:two)
+=======
+  user_id: users(:one)
+  price: 1.5
+  desc: MyText
+  itempic: MyString
+  phase_id: phases(:one)
+>>>>>>> 9631724f9c0d0e7031ac6ae860dc2a5d22d3aa73
