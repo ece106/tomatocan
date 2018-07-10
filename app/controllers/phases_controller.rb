@@ -124,6 +124,7 @@ class PhasesController < ApplicationController
   private
     def set_phase
       if params[:id].present?
+        puts params[:id]
         @phase = Phase.friendly.find(params[:id])
       else
         @phase = Phase.find_by_permalink(params[:permalink])
