@@ -4,6 +4,8 @@
 <br> 
 
     <%= form_for @purchase do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :bookfiletype %>
       <%= f.hidden_field :stripe_card_token %>
       <%= f.hidden_field :bookfiletype %>
       <%= f.hidden_field :book_id %>

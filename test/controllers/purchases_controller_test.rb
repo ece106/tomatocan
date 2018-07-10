@@ -6,23 +6,19 @@ class PurchasesControllerTest < ActionController::TestCase
   end
   
     test "should_get_purchases_index" do
+      sign_in users(:one)
       get :index
       assert_response :success
     end
     
     test "should_get_purchases_new" do
+      sign_in users(:one)
       get :new
       assert_response :success
     end    
 
     test "should_get_purchases_show" do
-      get :show, params: {permalink: '1dh'}
+      get :show, params: {id: @purchases.id }
       assert_response :success
     end
-    
-    test "should_get_phases_edit" do
-      sign_in users(:one)
-      get :edit, params: {permalink: '1dh'}
-      assert_response :success
-    end    
 end
