@@ -5,7 +5,7 @@
 <p id="notice"><%= notice %></p>
 
   <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
-    <%= image_tag(@merchandise.itempic, height: '200px') %><br>
+    <%= image_tag(@merchandise.itempic.url.to_s, height: '200px') %><br>
   <% end %>
 
   <h3><%= @merchandise.name %> </h3>

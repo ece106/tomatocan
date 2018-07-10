@@ -5,7 +5,7 @@
 <p id="notice"><%= notice %></p>
 
   <% if @phase.phasepic.present? && @phase.phasepic != '' %>
-    <%= image_tag(@phase.phasepic, height: '250') %>
+    <%= image_tag(@phase.phasepic.url.to_s, height: '250') %>
   <% else %>
     <% if user_signed_in? %>
       <% if @phase.user_id == current_user.id %>
@@ -55,8 +55,16 @@
 <% end %>
 
 <div class="blacktxt">
+  <h4> About </h4>
   <% if @phase.mission %> 
     <%= simple_format @phase.mission.gsub(/\n/, '<br>') %>
+  <% end %>
+</div>
+<div class="blacktxt">
+  <br>
+  <h4> Why one or more of the characters in this story are classy </h4>
+  <% if @phase.why_classy %> 
+    <%= simple_format @phase.why_classy.gsub(/\n/, '<br>') %>
   <% end %>
 </div>
 <br><br><br>

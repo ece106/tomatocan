@@ -2,7 +2,7 @@
 
 <div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>
-    <%= image_tag @user.profilepic, :size => "150x150" %>
+    <%= image_tag @user.profilepic.url.to_s, :size => "150x150" %>
   <% elsif @user.profilepicurl %>
     <% if @user.profilepicurl.match(/http/) %>
       <%= image_tag @user.profilepicurl, :size => "150x150" %><br >
