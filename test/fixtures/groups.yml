@@ -5,7 +5,7 @@ one:
   address: MyString
   latitude: 1.5
   longitude: 1.5
-  user_id: users(:one)
+  user: one
   about: MyText
   grouppic: MyString
   grouptype: 1
@@ -15,7 +15,7 @@ two:
   address: 22181
   latitude: 1.5
   longitude: 1.5
-  user_id: users(:one)
+  user: one
   about: MyText
   grouppic: MyString
   grouptype: 1

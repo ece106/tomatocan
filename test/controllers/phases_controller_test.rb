@@ -20,7 +20,8 @@ class PhasesControllerTest < ActionController::TestCase
     end    
 
     test "should_get_phases_show" do
-      get :show, params: {permalink: '1dh'}
+      perm = Phase.first.permalink
+      get :show, params: {permalink: perm}
       assert_response :success
     end
     

@@ -2,14 +2,18 @@
 
 one:
   name: One Day in Hell
-  user_id: users(:one)
+  user: one
   mission: Impossible
   phasepic: phasepic_1
   permalink: 1dh
 
 two:
   name: Chapter 2
+<<<<<<< HEAD
   user_id: users(:two)
+=======
+  user: one
+>>>>>>> b52764f43349844ff8caed7f4e0554bc4257eaa6
   mission: Leave the world a little better than I entered it
   phasepic: phasepic_2
   permalink: chapter2

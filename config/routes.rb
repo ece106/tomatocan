@@ -83,6 +83,8 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/authors' => "users#authors", :as => :authors, via: 'get'
 
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
+  match '/:permalink/followers' => "users#followerspage", :as => :user_followerspage, via: 'get'
+  match '/:permalink/following' => "users#followingpage", :as => :user_followingpage, via: 'get'
   match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
   match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
   match '/:permalink/movies' => "users#movielist", :as => :user_movielist, via: 'get'

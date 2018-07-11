@@ -354,7 +354,7 @@ class User < ApplicationRecord
 
   private
     def assign_defaults_on_new_user 
-      self.author = "author" unless self.author
+      self.author = "storyteller" unless self.author
     end
 
     def parse_youtube url
