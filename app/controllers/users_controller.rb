@@ -291,9 +291,10 @@
       sign_in @user
       redirect_to user_profileinfo_path(current_user.permalink)
     else
-      redirect_to new_user_signup_path
+        redirect_to new_user_signup_path, danger: create_signup_error_message
     end
   end
+
   # PUT /users/1.json
   def update
     if @user.update_attributes(user_params)
@@ -355,5 +356,23 @@
         @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
       end
     end
+
+    # returns a string of error messages for the user signup page
+    def create_signup_error_message
+       msg = ""
+        if @user.errors.messages[:name].present?
+          msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+        end
+        if @user.errors.messages[:email].present?
+          msg += ("Email " + @user.errors.messages[:email][0] + "\n")
+        end
+        if @user.errors.messages[:permalink].present?
+          msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
+        end
+        if @user.errors.messages[:password].present?
+          msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+        end
+    end
+
 end
 
