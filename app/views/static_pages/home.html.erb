@@ -96,7 +96,7 @@
       <div class = "helps" style = "font-size:30px; margin-top:10px">
         Earn financial support from fans:
       </div><br>
-      <div class = "helps" style = "text-align:left;" >
+      <div class = "helps" style = "text-align:left; font-size:20px;" >
         <% if user_signed_in? %>
           <% if @user.profilepic.present? %>
             <span class="dot"></span> <%= link_to "Improve your profile", user_profileinfo_path(current_user.permalink), title: "Embed your YouTube videos, update your banner, give your fans more details about your work" %>
