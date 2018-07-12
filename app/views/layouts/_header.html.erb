@@ -5,18 +5,17 @@
           <div class="navbar-inner clearfix usermenu" style="padding-left:20px; background-color:#1e1e46">
             <ul class="nav navbar-nav pull-left">
               <li><%= link_to "Home", "/" %>
-              <li><%= link_to "Campaigns", phases_path %>
-              <li><%= link_to "Organizations", groups_path, title: "Find the Organization that referred you to CrowdPublish.TV" %>
-              <li><%= link_to "Storytellers", authors_path %>
-              <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
-              <li><%= link_to "FAQ", '/faq' %>
+              <li><%= link_to "SUPPORT A CAMPAIGN", phases_path %>
               <% if user_signed_in? %>
+                <li><%= link_to 'START NEW CAMPAIGN', new_phase_path %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
               <% else %>
-                <li><%= link_to 'SIGN UP', "/signup" %>
+                <li><%= link_to 'START MY CAMPAIGN', "/signup" %>
                 <li><%= link_to 'Sign in', "/login" %>
               <% end %>
+              <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
+                <li><%= link_to "FAQ", '/faq' %>
             </ul>
           </div> 
     </div>
