@@ -22,8 +22,8 @@ class Event < ApplicationRecord
   validates_numericality_of :end_at, :greater_than => Proc.new { |r| r.start_at.to_f }, :allow_blank => true, message: " time must be after Event start time"
   geocoded_by :address
 
-#  after_initialize :assign_defaults_on_new_event, if: 'new_record?' #this syntax changed
-  after_validation :geocode, :if => :address_changed?
+  after_initialize :assign_defaults_on_new_event, if: -> {new_record?}
+#  after_validation :geocode, :if => :address_changed? # don't do this until geocoder gem improves
 
   private
   def assign_defaults_on_new_event

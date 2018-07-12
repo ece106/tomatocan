@@ -1,5 +1,3 @@
-# CrowdPublish.TV
-
 The intention of this repository is to be used as a project for developers of all skill levels to improve their skills by contributing code and by assisting junior developers with their code contributions. The founder, Lisa Schaefer, Ph.D., has taught a beginners Ruby on Rails course at George Mason University and encourages women entrepreneurs to be the primary mentors, mentees, and leaders in this project. Dr. Schaefer also advocates for women's voices to be heard and heeded in the software development community.
 
 RoleModel Enterprises, LLC, owns the copyright to all code, design, and graphics contributed to this repository. Contributors grant copyright of any code, design, and graphics they contribute to this repository to RoleModel Enterprises, LLC. Contributors may reuse their code contributions and the knowledge gained from working on this project, provided it meets the following criteria:
@@ -20,48 +18,48 @@ This README file may change at any time.
 
 ### QUIZ FOR POTENTIAL DEVELOPERS
 To determine current skill level -
-Send your responses to info@CrowdPublish.TV. 
+Send your responses to rolemodelenterprises@gmail.com 
 
-Refer to http://github.com/crowdpublishtv/crowdpublishtv and use tutorials, Google, etc. to help you figure out the answers. 
+Refer to http://github.com/ece106/tomatocan and use tutorials, Google, etc. to help you figure out the answers. 
 
-1. What is the design of the CrowdPublish.TV database? Submit as a jpg or png (You may draw on paper & submit as a photo).
+1. What is the design of the Tomatocan database? Submit as a jpg or png (You may draw on paper & submit as a photo).
 
-2. Which file/view is the users' home page? What information do authors get to display on their home page? Where is this information stored in the CrowdPublish.TV database?
+2. Which file/view is the users' home page? What information do authors get to display on their home page? Where is this information stored in the Tomatocan database?
 
-3. What pages/views do authors get in their web site when they sign up for CrowdPublish.TV?
+3. What pages/views do authors get in their web site when they sign up for Tomatocan?
 
 4. What are the default views for all Rails apps?
 
-5. What are the routes that were added to the CrowdPublish.TV app so the non-default/extra views for user pages could be displayed?
+5. What are the routes that were added to the Tomatocan app so the non-default/extra views for user pages could be displayed?
 
-6. What are the methods that were added to the CrowdPublish.TV app so the non-default/extra user views/pages could be displayed? What file are they in?
+6. What are the methods that were added to the Tomatocan app so the non-default/extra user views/pages could be displayed? What file are they in?
 
 7. Where is the method to add_bank_account to users? What gem does it use?
 
-8. Fork a copy of the crowdpublishtv github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the CrowdPublishTV admin pull your changes.
+8. Fork a copy of the tomatocan github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the Tomatocan admin pull your changes.
 
 9. Summarize your Ruby & Rails skill level/what you know in your own words.
 
-When you have completed the quiz, download and start working on the tutorial at https://github.com/crowdpublishtv/crowdpublishtv/blob/master/public/LearnRailsIn2Minutes.odt 
+When you have completed the quiz, download and start working on the tutorial at https://github.com/ece106/tomatocan/blob/master/public/LearnRailsIn2Minutes.odt 
 
-### TO USE THE CROWDPUBLISHTV GITHUB
+### TO USE THE TOMATOCAN GITHUB
 
 For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
 
-1. Forking from crowdpublishtv and bringing the code to your local machine
+1. Forking from tomatocan and bringing the code to your local machine
 
-Begin by forking the crowdpublishtv code by pressing the fork button located at http://github.com/crowdpublishtv/crowdpublishtv. Forking will allow you to have a copy of the crowdpublishtv code in your personal github and will give you a way to request crowdpublishtv to pull your changes. 
+Begin by forking the tomatocan code by pressing the fork button located at http://github.com/ece106/tomatocan. Forking will allow you to have a copy of the tomatocan code in your personal github and will give you a way to request tomatocan to pull your changes. 
 
-In order to bring the crowdpublishtv code to your local machine you must make a clone of the fork you have created. 
+In order to bring the tomatocan code to your local machine you must make a clone of the fork you have created. 
 
-a. On GitHub, navigate to your fork of the crowdpublishtv repository.
+a. On GitHub, navigate to your fork of the tomatocan repository.
 
 b. Under the repository name, click ``` Clone or download ```.
 
 c. Open a commandline in the location you would like your code to be saved and use the command:
 
 ```
- git clone https://github.com/YOUR-GITHUB_USERNAME/crowdpublishtv
+ git clone https://github.com/YOUR-GITHUB_USERNAME/tomatocan
 ```
 
 2. Saving your changes to your repository
@@ -86,20 +84,20 @@ git push origin master
 or
 
 ```
-git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY master
+git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-TOMATOCAN-REPOSITORY master
 ```
 
-3. Pulling changes from crowdpublishtv into your local machine
+3. Pulling changes from tomatocan into your local machine
 
-When changes have been made to the code http://github.com/crowdpublishtv/crowdpublishtv, your github will be behind. So you will have to pull the changes to your local machine and then push them to your repository. To pull changes from crowpublishtv, be sure to be in the correct directory, and use the command: 
+When changes have been made to the code http://github.com/ece106/tomatocan, your github will be behind. So you will have to pull the changes to your local machine and then push them to your repository. To pull changes from tomatocan, be sure to be in the correct directory, and use the command: 
 
 ```
-git pull https://github.com/crowdpublishtv/crowdpublishtv.git master
+git pull https://github.com/ece106/tomatocan.git master
 ```
 
-4. Getting your code onto crowdpublishtv
+4. Getting your code onto tomatocan
 
-Once you have made changes to your personal repository you can request for crowdpublishtv to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-CROWDPUBLISHTV-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
+Once you have made changes to your personal repository you can request for tomatocan to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
 ### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
