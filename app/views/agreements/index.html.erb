@@ -14,7 +14,7 @@
   <tbody>
     <% @agreements.each do |agreement| %>
       <tr>
-        <td><%= agreement.project_id %></td>
+        <td><%= agreement.phase_id %></td>
         <td><%= agreement.group_id %></td>
         <td><%= link_to 'Show', agreement %></td>
         <td><%= link_to 'Edit', edit_agreement_path(agreement) %></td>

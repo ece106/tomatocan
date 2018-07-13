@@ -18,12 +18,12 @@ class AgreementsControllerTest < ActionController::TestCase
 
   test "should create agreement" do
     assert_difference('Agreement.count') do
-      post :create, agreement: { group_id: @agreement.group_id, phase_id: @agreement.phase_id }
+      post :create, params: { agreement: {phase: one, group: two} }
     end
-
-    assert_redirected_to agreement_path(assigns(:agreement))
+    assert_redirected_to agreement_path(assigns(:agreement).id)
   end
-
+  
+=begin
   test "should show agreement" do
     get :show, params: { id: @agreement }
     assert_response :success
@@ -46,4 +46,5 @@ class AgreementsControllerTest < ActionController::TestCase
 
     assert_redirected_to agreements_path
   end
+=end
 end
