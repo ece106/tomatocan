@@ -72,7 +72,7 @@
 </div>
   <div class="row" style="background-color:#1e1e46">
     <div class="navbar-inner clearfix usermenu" >
-      <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000">
+      <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000; font-size:16px;">
         <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
         <li><%= link_to "SUPPORT A CAMPAIGN", phases_path %>
         <% if user_signed_in? %>
@@ -84,6 +84,7 @@
           <li><%= link_to 'Sign in', "/login" %>
         <% end %>
         <li><%= link_to "FAQ", '/faq' %>
+        <li><%= link_to "Take the survey", 'https://docs.google.com/forms/d/1brvWNjjac4k1AZXHCOIs5KOJJnE6fxM4jJpZcoM0wrI' %>
       </ul>
     </div> 
   </div>
@@ -94,7 +95,7 @@
         AUTHORS, FILMMAKERS, YOUTUBERS, GAME DEVELOPERS
       </div>
       <div class = "helps" style = "font-size:30px; margin-top:10px">
-        Earn financial support from fans:
+        Earn financial support from fans
       </div><br>
       <div class = "helps" style = "text-align:left; font-size:20px;" >
         <% if user_signed_in? %>

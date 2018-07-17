@@ -35,6 +35,10 @@ class StaticPagesController < ApplicationController
   end
   def aboutus
   end
+  def bootcamp
+  end
+  def apprenticeships
+  end
 
   def tellfriends
     if user_signed_in?
