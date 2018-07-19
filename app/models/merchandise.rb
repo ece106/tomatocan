@@ -8,4 +8,11 @@ class Merchandise < ApplicationRecord
   validates :price, presence: true
   mount_uploader :itempic, MerchpicUploader
 
+  private
+    def parse_youtube url
+      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+      if url.match(regex)
+        url.match(regex)[1]
+      end
+    end
 end
