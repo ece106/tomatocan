@@ -77,14 +77,17 @@
         <li><%= link_to "SUPPORT A CAMPAIGN", phases_path %>
         <% if user_signed_in? %>
           <li><%= link_to 'START NEW CAMPAIGN', new_phase_path %>
-          <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
         <% else %>
           <li><%= link_to 'START MY CAMPAIGN', "/signup" %>
-          <li><%= link_to 'Sign in', "/login" %>
         <% end %>
         <li><%= link_to "FAQ", '/faq' %>
         <li><%= link_to "Take the survey", 'https://docs.google.com/forms/d/1brvWNjjac4k1AZXHCOIs5KOJJnE6fxM4jJpZcoM0wrI' %>
+        <% if user_signed_in? %>
+          <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
+          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+        <% else %>
+          <li><%= link_to 'Sign in', "/login" %>
+        <% end %>
       </ul>
     </div> 
   </div>
