@@ -2,7 +2,7 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
-  <div class="container col-xs-12 " style="margin-top:10px; padding-left:0px">
+  <div class="container col-xs-12 " style="margin-top:10px; padding-left:0px;">
     <% if user_signed_in? %>
       <% if !@user.stripeid.present? && @user.id != 143 %>
 
@@ -87,7 +87,9 @@
             </td></tr>
             <tr><td><%= truncate(merch.desc , :length => 200, :separator => ' ') %></td>
               <% if @user.stripeid.present? || @user.id == 143 %>
-                <td style='float:right'>$<%= sprintf('%.2f', merch.price) %> USD</td>
+                <% if merch.price.present? %>
+                  <td style='float:right'>$<%= sprintf('%.2f', merch.price) %> USD</td>
+                <% end %>
               <% end %>
           </tr></table>
         <% end %>

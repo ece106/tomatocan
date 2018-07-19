@@ -5,6 +5,7 @@ class Merchandise < ApplicationRecord
   belongs_to :user 
   belongs_to :phase, optional: true
   has_many :purchases
+  validates :price, presence: true
   mount_uploader :itempic, MerchpicUploader
 
 end
