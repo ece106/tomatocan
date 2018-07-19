@@ -4,14 +4,16 @@ ruby "2.4.1"
 gem 'listen'
 gem 'rails-controller-testing'
 
-#gem 'pg'
+gem 'pg'
 #gem 'pg', '~> 0.21'
-gem 'sqlite3'
+#gem 'sqlite3'
 
 gem 'mandrill'	
 
 #gem 'devise', '4.4.3'
 gem 'devise'
+
+gem 'bootsnap', require: false
 
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
