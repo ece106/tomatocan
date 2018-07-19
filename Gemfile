@@ -1,14 +1,20 @@
 source 'http://rubygems.org'
-ruby "2.4.2"
+ruby "2.4.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
 
 gem 'pg'
+#gem 'pg', '~> 0.21'
 #gem 'sqlite3'
 
 gem 'mandrill'	
+
+#gem 'devise', '4.4.3'
 gem 'devise'
+
+gem 'bootsnap', require: false
+
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
@@ -18,8 +24,8 @@ gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '5.2.0'
-gem 'railties', '5.2.0'
+gem 'rails', '~> 5.2.0'
+gem 'railties', '~> 5.2.0'
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
@@ -30,7 +36,7 @@ gem 'jquery-turbolinks'
 gem 'bcrypt'
 gem 'turbolinks'
 gem 'geocoder'
-gem 'friendly_id', '~> 5.0.0'
+gem 'friendly_id', '~> 5.0.5'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
 

@@ -10,7 +10,7 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:merchandises)
   end
-
+=begin
   test "should get new" do
     get :new
     assert_response :success
@@ -46,4 +46,6 @@ class MerchandisesControllerTest < ActionController::TestCase
 
     assert_redirected_to merchandises_path
   end
+=end  
+  
 end

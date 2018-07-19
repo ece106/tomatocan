@@ -46,34 +46,34 @@ class TestUser < ActiveSupport::TestCase
     refute_match(@user.address, oldaddress)
   end
 
-  [:email, :name, :permalink, :password ].each do |field|
-    test "#{field.to_s}_must_not_be_empty" do
-      user = User.new
-      user.send "#{field.to_s}=", nil #what does this line do
-      assert user.valid?
-      assert_empty user.errors[field] #must be in same test as above line in order to have usererrors not be nil
-    end
+[:email, :name, :permalink, :password ].each do |field|
+  test "#{field.to_s}_must_not_be_empty" do
+    user = User.new
+    user.send "#{field.to_s}=", nil
+    refute user.valid?
+    refute_empty user.errors[field] 
   end
+end
 
   test "password_confirmation_must_not_be_empty_when_password_present" do
     @user.update(password: "garblygook") #is this testing the model or is it integration testing
     @user.send "password_confirmation=", nil
+#    puts "in password_confirmation_must_not_be_empty_when_password_present, password = " + @user.password
+#    puts "in password_confirmation_must_not_be_empty_when_password_present, password_confirmation = " + @user.password_confirmation.to_s
     refute_empty @user.errors[:password_confirmation] 
   end
 
-  test "password and password_confirmation must match" do
+  test "password_and_password_confirmation_must_match" do
     user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hooooooo", email: "m@example.com", permalink: "qwerty")
     assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
   end
 
-#validates_length_of :password, :within => Devise.password_length, :allow_blank => true
-  test "password should be at least 8 char" do
-    @user.password = "hihihi"
-    @user.password_confirmation = "hihihi"
-    assert @user.invalid?, "password is at least 8 char" #needed here - perhaps when using @user created in setup?
-    refute_empty @user.errors[:password] 
-#    assert_empty @user.errors[:password_confirmation] why is there no error when password and password_conf don't match
-    puts "password errors " + @user.errors[:password].to_s
+  test "password must be at least 8 char" do
+      @user.password = "1234567"
+      @user.password_confirmation = "1234567"
+      assert @user.invalid?, "password is at least 8 char"
+      refute_empty @user.errors[:password] 
+      puts "password errors " + @user.errors[:password].to_s
   end
 
   test "password can be empty and password_confirmation doesnt matter" do
@@ -85,56 +85,58 @@ class TestUser < ActiveSupport::TestCase
 #validates :email, presence: true, uniqueness: { case_sensitive: false }
   test "email of new user should be unique" do
     user1 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
-                        email: "mo@example.com", permalink: "qwerty")
+                        email: "mo@CrowdPublish.TV", permalink: "lisa")
+  # puts "email1 " + user1.email
     user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", 
-                        email: "mo@example.com", permalink: "qwat")
-    refute_empty user2.errors[:email] #refute user2.valid not needed for this
-    assert user2.errors[:email].any?, "email unique" # refute user.valid not needed for .any
+                        email: "mo@CrowdPublish.TV", permalink: "CrowdPublishTV")
+  # puts "email2 " + user2.email
+    refute_empty user2.errors[:email]
+    assert user2.errors[:email].any?, "email unique" 
   end
 
 #validates :permalink, uniqueness: { case_sensitive: false }
   test "permalink must be unique" do
-    @user.permalink = "MyPermalink"
+    @user.permalink = "CrowdPublishTV"
     @user.save
     user2 = users(:two)
-    user2.permalink = "mypermaLink"
+    user2.permalink = "crowDpublisHtv"
     refute user2.valid?, "permalink unique" 
     refute_empty user2.errors[:permalink] 
   end 
 
 #validates :permalink, format:     { with: /\A[\w+]+\z/ }
   test "permalink must be alphanumeric" do
-    @user.permalink = "whatthe@#$%&!"
+    @user.permalink = "whatthe*(*("
+    #puts "in permalink must be alphanumeric, @user.errors = " + @user.errors[:permalink].to_s
     refute @user.valid?, "permalink alphanumeric" 
     refute_empty @user.errors[:permalink] 
   end 
 
 #  validates_format_of   :email, :with  => Devise.email_regexp, 
-  test "should have format of email address" do
-    @user.email = "email@lisa.org"
-    assert @user.valid?, "wrong email format" 
-    assert_empty @user.errors[:email] 
-    user2 = users(:two)
-    user2.email = "email"
-    refute user2.valid?, "proper email format" 
-    refute_empty user2.errors[:email] 
-  end
+test "should have format of email address" do
+  @user.email = "email@CrowdPublish.TV"
+  assert @user.valid?, "wrong email format" 
+  assert_empty @user.errors[:email]
+  user2 = users(:two)
+  user2.email = "CrowdPublishTV"
+  refute user2.valid?, "proper email format" 
+  refute_empty user2.errors[:email] 
+end
 
 #validates :videodesc1, length: { maximum: 255 }
   [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
     test "#{field.to_s}_must_be_less_than255char" do
-      @user.send "#{field.to_s}=", "supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
+      @user.send "#{field.to_s}=", "Jdlsajfkldajfkldjlajfl;jalfjdkl;ajflkdajfldjklajfkldakjfl;dkjal;fjdklajfkl;dajfkl;djalk;fjdlk;ajflk;jafkl;dja;sslklfjdlkafjl;afj;lajfkl;dajf;ljdakl;jfl;djasflk;jlajfjafjdal;jfdl;asjfkldjklsafjlkjfljlajflkdjalkfjdkljafljdfklsjfdkljafkldjklajfkldjfdljaflkdajkfldkjaklfjkldjaklfjljlkdfsajfkljlafds"
       refute @user.valid?, "video description is short enough" 
       refute_empty @user.errors[field] 
     end
   end
 
 #validates :permalink, format: { with: /\A[\w+]+\z/ }
-
   test "make all permalinks lowercase" do
     @user.permalink = "LisaLisa"
     @user.save
-    puts @user.permalink
+    #puts "in test make all permalinks lowercase, @user.permalink = " + @user.permalink
     assert_match(/[a-z0-9]/, @user.permalink)
   end
 
@@ -142,12 +144,14 @@ class TestUser < ActiveSupport::TestCase
 
   test "make all emails lowercase" do
     @user.email = "you@CrowdPublish.TV"
+    #puts "in test make all emails lowercase, @user.email BEFORE SAVE = " + @user.email.to_s
     @user.save
+    #puts "in test make all emails lowercase, @user.email AFTER SAVE = " + @user.email.to_s
     assert_match(/[a-z0-9]+@+[a-z0-9]+\.+[a-z]/, @user.email)
   end
 
 #def add_bank_account
-
+#throws TestUser#test_add_bank_account:ArgumentError: wrong number of arguments (given 9, expected 11)
   test "add bank account" do #this test only works for new account or account with countryoftax=GB
     # should test the view to make sure users can't enter currency/countryofbank incompatible with countryoftax
     # having specific acct_number in fixture is bad way to test. Figure out a way to test using a relevant acct
@@ -172,67 +176,24 @@ class TestUser < ActiveSupport::TestCase
   test "parse ustream" do
     @user.ustreamvid = "http://www.ustream.tv/embed/21534532?html5ui style=border: 0 none transparent;  webkitallowfullscreen allowfullscreen frameborder=></iframe><br /><a href=http://www.ustream.tv/ style=adding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-we"
     ustreamtemp = @user.ustreamvid
+    #puts "BEFOER SAVE @user.ustreamvid = " + @user.ustreamvid
     @user.save
+    #puts "AFTER SAVE @user.ustreamvid = " + @user.ustreamvid
     refute_equal(ustreamtemp, @user.ustreamvid)
   end
 
-    test "parse youtube" do
-      @user.youtube1 = "http://youtube.com/watch?v=/frlviTJc"
-      @user.genre1 = "yaaah"
+  test "parse youtube" do
+    @user.youtube1 = "http://youtube.com/watch?v=/diff"
+    @user.genre1 = "yaaah"
     @user.permalink = "LisaLisa"
-puts @user.permalink
-      @user.save
     puts @user.permalink
-      puts "lllllllllllllllllllllllllllllllllllllf"
-      puts @user.genre1
-      puts @user.youtube1
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
-    end
-
-# redundant tests
-
-  test "redundant_test_name_and_permalink_must_not_be_empty" do 
-    user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
-    refute_empty user.errors[:name] 
-    refute_empty user.errors[:permalink] 
-  end
-
-  test "redundant_test_new_user_must_have_reqd_variables" do
-    user = User.new
-    user.permalink = "Dummydummy"
-    user.name = "Dummydummy"
-    user.email = "ee@ujk.com" 
-    user.password = "Dummydummy"
-    user.password_confirmation = "Dummydummy"
-#    refute user.valid? # email errors are empty if email is bad and this line not here
-    assert_empty user.errors[:email] 
-  end
-
-  test "redundant_test_create_user_must_have_reqd_variables" do
-    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "unique@example.com", permalink: "qwerty")
-    assert_empty user.errors[:email] 
-#    refute user.errors[:email].any?, "email unique" 
-#    assert user.errors.any?
-  end
-
-  test "redundant_test_what_if_lat_lon_and_address_are_changed" do
-    oldaddress = @user.address
-    oldlatitude = @user.latitude
-    @user.latitude = 20.2
-    @user.longitude = 20.2
-    @user.address = "20022"
-    puts "latitude1 " + @user.latitude.to_s
-    puts "new address " + @user.address
     @user.save
-    puts "latitude2 " + @user.latitude.to_s
-    puts "new address " + @user.address
-    refute_match(@user.address, oldaddress)
-  end
-
-  test "redundant_test_email_still_must_not_be_empty" do
-    @user.send "email=", nil 
-    refute @user.valid?
-    refute_empty @user.errors[:email]
+    puts @user.permalink
+    puts "lllllllllllllllllllllllllllllllllllllf"
+    puts @user.genre1
+    puts @user.youtube1
+    refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
   end
 
 end
+

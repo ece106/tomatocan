@@ -17,3 +17,11 @@ two:
   stripe_customer_token: MyString
   pricesold: 50.5
   authorcut: 38.1
+
+three:
+  author_id: users(:two)
+  user_id: users(:one)
+  merchandise_id: merchandises(:one)
+  stripe_customer_token: MyString
+  pricesold: 3000.01
+  authorcut: 30.10

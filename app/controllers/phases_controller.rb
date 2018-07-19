@@ -1,4 +1,5 @@
 class PhasesController < ApplicationController
+
   before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show]
   layout :resolve_layout
 
@@ -97,15 +98,7 @@ class PhasesController < ApplicationController
 
   def create
     @phase = current_user.phases.build(phase_params)
-    if @phase.save
-      if current_user.author == "author"
-        redirect_to phase_authorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      else
-        redirect_to phase_actorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      end
-    else
       render action: 'new'
-    end
   end
 
   def update
@@ -131,7 +124,11 @@ class PhasesController < ApplicationController
       @user = User.find(@phase.user_id)
       if @user.phases.any?
         @sidebarphase = @user.phases.order('deadline').last 
-        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+        if @sidebarphase.merchandises.any?
+          @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+        else
+          @sidebarmerchandise = []
+        end
       end
     end
 
