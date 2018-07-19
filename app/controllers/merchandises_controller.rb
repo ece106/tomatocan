@@ -32,12 +32,7 @@ class MerchandisesController < ApplicationController
   def create
     @merchandise = current_user.merchandises.build(merchandise_params)
     if @merchandise.save 
-      if @merchandise.youtube.present?
-        if @merchandise.youtube.match(/youtube.com/) || @merchandise.youtube.match(/youtu.be/)
-          youtubeparsed = parse_youtube @merchandise.youtube
-          @merchandise.update_attribute(:youtube, youtubeparsed)
-        end
-      end
+      @merchandise.get_youtube_id
       if merchandise_params[:phase_id] == nil 
         redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
       elsif merchandise_params[:rttoeditphase].present? # I dont think this is used.
@@ -55,19 +50,10 @@ class MerchandisesController < ApplicationController
   # PATCH/PUT /merchandises/1
   def update
     @merchandise = Merchandise.find(params[:id])
-    if @merchandise.youtube.present?
-      if @merchandise.youtube.match(/youtube.com/) || @merchandise.youtube.match(/youtu.be/)
-        youtubeparsed = parse_youtube @merchandise.youtube
-        @merchandise.update_attribute(:youtube, youtubeparsed)
-      end
-    end
     if merchandise_params[:phase_id].present? && @merchandise.update(merchandise_params)
       @phase = Phase.find(@merchandise.phase_id)
-      if current_user.author == "author"
-        redirect_to phase_standardperks_path(@phase.permalink), notice: 'Patron Perk was successfully added to phase.'
-      else
-        redirect_to phase_actorperks_path(phase.permalink), notice: 'Patron Perk was successfully created.'
-      end 
+      @merchandise.get_youtube_id
+      redirect_to phase_standardperks_path(@phase.permalink), notice: 'Patron Perk was successfully added to phase.'
     elsif @merchandise.update(merchandise_params)
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else
@@ -83,13 +69,6 @@ class MerchandisesController < ApplicationController
       if @user.phases.any?
         @sidebarphase = @user.phases.order('deadline').last 
         @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
-      end
-    end
-
-    def parse_youtube url
-      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|youtube.com\/embed\/|\/(?=p\/))([\w\/\-]+)/
-      if url.match(regex)
-        url.match(regex)[1]
       end
     end
 

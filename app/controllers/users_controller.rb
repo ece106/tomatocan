@@ -288,6 +288,7 @@
 #    @user.latitude = request.location.latitude #geocoder has become piece of junk
 #    @user.longitude = request.location.longitude
     if @user.save
+      @user.get_youtube_id
       sign_in @user
       redirect_to user_profileinfo_path(current_user.permalink)
     else
