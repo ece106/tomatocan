@@ -55,6 +55,7 @@ class MerchandisesController < ApplicationController
       @merchandise.get_youtube_id
       redirect_to phase_standardperks_path(@phase.permalink), notice: 'Patron Perk was successfully added to phase.'
     elsif @merchandise.update(merchandise_params)
+      @merchandise.get_youtube_id
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else
       render action: 'edit'
