@@ -1,11 +1,12 @@
 source 'http://rubygems.org'
 ruby "2.4.2"
 
+require 'aws-sdk'
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3'
 
 gem 'mandrill'	
 gem 'devise'

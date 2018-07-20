@@ -12,6 +12,16 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
+
+  test "return_profile_pic_from_query" do
+   get :index
+   assert_response :success
+   assert_not_nil assigns(:users)
+   hello= @user[:email]
+   puts hello
+  end
+
+
   test "should_get_users_about" do
     get :about, params: {permalink: 'user1'}
     assert_response :success
@@ -212,13 +222,11 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should update user" do
     sign_in @user
-#    get user_profileinfo_path(@user.permalink)
-    puts @user.name
+#    get user_profileinfo_path(@user.permalink)s
 
     patch :update, params: { id: @user.id, user: { name: 'New Name', 
       youtube1: 'randomchar' } }
     user = User.find_by_permalink(@user.permalink)
-    puts user.name
     assert_equal(user.name, "New Name") 
     assert_redirected_to user_profile_path(user.permalink)
   end

@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20130201000000000) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "agreements", force: :cascade do |t|
     t.integer "phase_id"
     t.integer "group_id"
@@ -194,7 +191,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.datetime "updated_at"
   end
 
-  create_table "rsvpqs", id: :serial, force: :cascade do |t|
+  create_table "rsvpqs", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
     t.integer "guests"

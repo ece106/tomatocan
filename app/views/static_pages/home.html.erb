@@ -10,7 +10,7 @@
 <div class="container-flex">
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="margin-top:-20px; height:400px;">
-  <!-- Indicators --0
+  <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -58,7 +58,6 @@
   <div class="row" style = "position: absolute; top:20px; text-align:center; width: 100vw" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
         Crowdfund stories about <br><br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp Characters
       </div><br>
 
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 999999;">
@@ -171,20 +170,9 @@
     Current Campaigns 
   </div><br>
 </div>
-<div class="row" > 
-  <% @campaigns.each do |c| %>
-    <div class="col-md-4 col-sm-4 col-xs-6" >
-      <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:350px; overflow:hidden;" >
-          <%= link_to(image_tag(c.phasepic.url.to_s, :height => "170",  :title => c.name ), phase_path(c.permalink)) %> 
-        <br><%= link_to c.name, phase_path(c.permalink) %>
-      </div>
-    </div>
-  <% end %>
-</div>
 
-  <div class="indexlist" >
-    <b>Browse more CrowdPublish.TV campaigns</b><br> <%= will_paginate @campaigns %> <br>
-  </div><br><br>
+
+  
 
   <div class="row" style="margin-top:15px;" >
     <div class="col-md-5" >
