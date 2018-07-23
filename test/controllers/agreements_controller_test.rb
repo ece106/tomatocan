@@ -18,7 +18,9 @@ class AgreementsControllerTest < ActionController::TestCase
 
   test "should create agreement" do
     assert_difference('Agreement.count') do
-      post :create, agreement: { group_id: @agreement.group_id, phase_id: @agreement.phase_id }
+    post :create, params: { agreement: { phase_id: 1, group_id: 1 } } 
+    #um, there are no records that exist in the test database with id = 1
+#old syntax    post :create, agreement: { group_id: @agreement.group_id, phase_id: @agreement.phase_id }
     end
 
     assert_redirected_to agreement_path(assigns(:agreement))

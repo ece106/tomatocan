@@ -1,5 +1,5 @@
 class PhasesController < ApplicationController
-  before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show]
+  before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show, :patronperk]
   layout :resolve_layout
 
   # GET /phases
@@ -27,7 +27,7 @@ class PhasesController < ApplicationController
       AND approved < ? ", currentuserid, threemonthago, '0002-01-01' )
 #x = phase.where(id: Agreement.select("phase_id").where( group_id: Group.where("user_id = ?", current_user.id)) )
 # x = all phases the user has already requested to affiliate with, over all of the user's groups.
-# Don't want to display phases that user/group has already requested to affiliate with. However
+# Don't display phases that user/group has already requested to affiliate with. However
 #   if curr_user manages more than one group, all user's groups should be able to support the same phase
 
     #don't want 1 group to support 80 phases. 3 might be enough

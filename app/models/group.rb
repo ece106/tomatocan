@@ -61,14 +61,34 @@ class Group < ApplicationRecord
                         line2, city, postalcode, state, ein, ssn) 
     # actual stripe acct object was created in group's stripe customer acct on the createstripeaccount page. Here they're just adding their bank account number
     account = Stripe::Account.retrieve(self.stripeid) 
-    if account.country == "CA"   #called from controller after create acct button clicked
-      if currency == "CAD"
+    ca = "CA"
+    cad = "CAD"
+    us = "US"
+    usd = "USD"
+    at = "AT"
+    be = "BE"
+    ch = "CH"
+    de = "DE"
+    dk = "DK"
+    es = "ES"
+    fi = "FI"
+    fr = "FR"
+    gb = "GB"
+    ie = "IE"
+    it = "IT"
+    lu = "LU"
+    nl = "NL"
+    no = "NO"
+    se = "SE"
+    eur = "EUR"
+    if account.country == ca   #called from controller after create acct button clicked
+      if currency == cad
         countryofbank = "CA"
       end  
-    elsif account.country == "US"  #account.country is country of tax id
+    elsif account.country == us  #account.country is country of tax id
       currency = "USD"
       countryofbank = "US"      #we're creating a stripe obj (external acct) so we can add
-    elsif currency == "USD"
+    elsif currency == usd
       countryofbank = "US"      #financial institution bank acct to a stripe managed account
     elsif currency == "GBP"
       countryofbank = "GB"
@@ -81,8 +101,8 @@ class Group < ApplicationRecord
     elsif account.country == "AU"
       currency = "AUD"
       countryofbank = "AU"
-    elsif countryofbank == "AT"||"BE"||"CH"||"DE"||"DK"||"ES"||"FI"||"FR"||"GB"||"IE"||"IT"||"LU"||
-                           "NL"||"NO"||"SE"
+    elsif countryofbank == at||be||ch||de||dk||es||fi||fr||gb||ie||it||lu||
+                           nl||no||se
       currency = "EUR"
     end
     temp = account.external_accounts.create(
