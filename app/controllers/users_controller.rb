@@ -350,11 +350,25 @@
     end
 
     def set_user 
-      @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
-      if @user.phases.any?
-        @sidebarphase = @user.phases.order('deadline').last 
-        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+      #@user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+
+      user = User.find_by(email: params[:session][:email].downcase)
+
+      if user && user.authenticate_user(params[:session][:password])
+        sign_in user
+
+        if @user.phases.any?
+          @sidebarphase = @user.phases.order('deadline').last 
+          @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+        end
+
+        redirect_to user_profile_path(current_user.permalink)
+      else
+        redirect_to new_user_session_path, danger: "Invalid password or email"
       end
+
+      
+      
     end
 
     # returns a string of error messages for the user signup page
