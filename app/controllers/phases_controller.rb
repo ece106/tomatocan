@@ -98,11 +98,8 @@ class PhasesController < ApplicationController
   def create
     @phase = current_user.phases.build(phase_params)
     if @phase.save
-      if current_user.author == "author"
-        redirect_to phase_authorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      else
-        redirect_to phase_actorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      end
+      @phase.get_youtube_id
+      redirect_to phase_storytellerperks_path(@phase.permalink), notice: 'phase was successfully created.'
     else
       render action: 'new'
     end
@@ -110,6 +107,7 @@ class PhasesController < ApplicationController
 
   def update
     if @phase.update(phase_params)
+      @phase.get_youtube_id
       redirect_to @phase, notice: 'phase was successfully updated.'
     else
       render action: 'edit'
