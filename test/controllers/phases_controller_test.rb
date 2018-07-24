@@ -13,7 +13,8 @@ class PhasesControllerTest < ActionController::TestCase
     test "should_get_phases_new" do
       get :new
       assert_response :success
-    end    
+    end  
+ 
 
     test "should_get_phases_show" do
       perm = Phase.first.permalink
@@ -25,7 +26,14 @@ class PhasesControllerTest < ActionController::TestCase
       get :show, params: {id: @phases.id }
       assert_response :success
     end
-    
+
+   test "should_get_patron_perk" do
+    perm = Phase.first.permalink
+    get :patronperk, params: { permalink: perm}
+    assert_response :success
+   end
+
+
     test "should_get_phases_storytellerperks" do
       sign_in users(:one)
       get :storytellerperks, params: {permalink: '1dh'}

@@ -96,7 +96,6 @@ class UsersControllerTest < ActionController::TestCase
   test "should_get_users_dashboard" do
     sign_in @user
     @book = books(:one)
-
     @purchase = purchases(:one)
     puts @book.id
     puts "Notice that the book id is some ridiculously huge integer."
