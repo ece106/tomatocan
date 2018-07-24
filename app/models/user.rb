@@ -50,8 +50,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password, :on=>:create
   validates_confirmation_of :password, on: :update, if: :password_changed?
   validates_length_of   :password, within:  Devise.password_length, allow_blank: true, :if => :password
-  validates_format_of   :email, with: Devise.email_regexp, 
-                                allow_blank: true, :if => :email_changed?
+  validates_format_of   :email, with: Devise.email_regexp, allow_blank: true, :if => :email_changed?
   validates :twitter, format: /\A[\w+]+\z/, allow_blank: true
   validates :videodesc1, length: { maximum: 255 }
   validates :videodesc2, length: { maximum: 255 }
