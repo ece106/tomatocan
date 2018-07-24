@@ -6,6 +6,8 @@
 <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
   <%= devise_error_messages! %>
 
+  <%= render 'layouts/flash_messages' %>
+
   <b>Full name</b>  <br />
   <%= f.text_field :name, :autofocus => true, :size => 40 %> <br>
   <b>Email</b><br />
