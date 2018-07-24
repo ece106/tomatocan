@@ -12,7 +12,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <% end %>
 </div>
 
-<div style = "position: absolute; z-index: 1; top:0; height:200px">
+<div style = "position: absolute; z-index: 1; top:0; height:200px;">
   <% if user_signed_in? %>
     <% if @user == current_user %>
       <% if @user.author == 'author' || @user.author == 'storyteller' %>
@@ -121,20 +121,9 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
           <li><%= link_to @user.followers.count.to_s + " followers", user_followerspage_path(@user.permalink) %>
           <li><%= render '/users/follow_form', :user => User.find_by_permalink(params[:permalink]) %>
         
-          <% if @user.movies.any? %>
-            <li><%= link_to " Movies & Theater ", user_movielist_path(@user.permalink) %>
-          <% end %>
-        
-          <% if @user.books.any? %>
-            <li><%= link_to " Books ", user_booklist_path(@user.permalink) %>
-          <% end %>
-        
           <% if @user.about.present? || @user.twitter.present? %>
             <li><%= link_to " About Me ", user_about_path(@user.permalink) %>
           <% end %>
-
-        <% elsif @user.author == 'storylover' %>
-          <li><%= link_to " About " + @user.name, user_profile_path(@user.permalink) %>
         <% end %>
     </ul>
 

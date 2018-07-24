@@ -1,5 +1,6 @@
 <% @title=" edit user profile "  %>
-<p class="flash"><%= flash.notice %></p>
+
+<%= render 'layouts/flash_messages' %>
 
 <div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
   <% if @user.profilepic.present? && @user.profilepic != '' %>

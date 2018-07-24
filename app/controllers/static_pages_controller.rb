@@ -33,6 +33,8 @@ class StaticPagesController < ApplicationController
   end
   def apprenticeships
   end
+  def areyousureyoupulledchanges
+  end
 
   def tellfriends
     if user_signed_in?

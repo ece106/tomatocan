@@ -1,5 +1,9 @@
 class PhasesController < ApplicationController
+<<<<<<< HEAD
   before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show, :patronperk, :create, :update]
+=======
+  before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show, :patronperk]
+>>>>>>> 0389929b4c10ec4ac5dc769e393289ea3a9abbb8
   layout :resolve_layout
 
   # GET /phases
@@ -27,7 +31,7 @@ class PhasesController < ApplicationController
       AND approved < ? ", currentuserid, threemonthago, '0002-01-01' )
 #x = phase.where(id: Agreement.select("phase_id").where( group_id: Group.where("user_id = ?", current_user.id)) )
 # x = all phases the user has already requested to affiliate with, over all of the user's groups.
-# Don't want to display phases that user/group has already requested to affiliate with. However
+# Don't display phases that user/group has already requested to affiliate with. However
 #   if curr_user manages more than one group, all user's groups should be able to support the same phase
 
     #don't want 1 group to support 80 phases. 3 might be enough
@@ -98,11 +102,8 @@ class PhasesController < ApplicationController
   def create
     @phase = current_user.phases.build(phase_params)
     if @phase.save
-      if current_user.author == "author"
-        redirect_to phase_authorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      else
-        redirect_to phase_actorperks_path(@phase.permalink), notice: 'phase was successfully created.'
-      end
+      @phase.get_youtube_id
+      redirect_to phase_storytellerperks_path(@phase.permalink), notice: 'phase was successfully created.'
     else
       render action: 'new'
     end
@@ -110,6 +111,7 @@ class PhasesController < ApplicationController
 
   def update
     if @phase.update(phase_params)
+      @phase.get_youtube_id
       redirect_to @phase, notice: 'phase was successfully updated.'
     else
       render action: 'edit'
@@ -138,7 +140,7 @@ class PhasesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def phase_params
       params.require(:phase).permit(:name, :user_id, :mission, :phasepic, :permalink, 
-        :deadline, :currgroupid, :phaseid, :why_classy)
+        :deadline, :currgroupid, :phaseid, :why_classy, :youtube)
     end
 
     def resolve_layout

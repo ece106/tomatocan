@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable #, :validatable, :confirmable 
+         :recoverable, :rememberable, :trackable #, :validatable #:confirmable 
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 
@@ -45,12 +45,12 @@ class User < ApplicationRecord
                         format:     { with: /\A[\w+]+\z/ },
                         uniqueness: { case_sensitive: false }
   validates_presence_of :password, :on=>:create
-  validates_presence_of :password_confirmation, :on => :update, :unless => lambda{ |user| user.password.blank? }
   validates_confirmation_of :password, :on=>:create
-  validates_length_of   :password, :within => Devise.password_length, :allow_blank => true
-  validates_format_of   :email, :with  => Devise.email_regexp, 
-                                :allow_blank => true, :if => :email_changed?
-#  validates :twitter, length: { maximum: 20 }
+  validates_confirmation_of :password, on: :update, if: :password_changed?
+  validates_length_of   :password, within:  Devise.password_length, allow_blank: true, :if => :password
+  validates_format_of   :email, with: Devise.email_regexp, 
+                                allow_blank: true, :if => :email_changed?
+  validates :twitter, format: /\A[\w+]+\z/, allow_blank: true
   validates :videodesc1, length: { maximum: 255 }
   validates :videodesc2, length: { maximum: 255 }
   validates :videodesc3, length: { maximum: 255 }
@@ -74,6 +74,10 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end #End of the "following?" method
+
+  def password_changed?
+    !password.blank?
+  end
 
   def create_stripe_acnt(countryoftax, accounttype, firstname, lastname, bizname, 
     birthday, birthmonth, birthyear, userip, email) 

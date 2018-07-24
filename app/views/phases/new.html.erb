@@ -19,7 +19,7 @@
     <%= f.text_field :name, :size => 80, placeholder: "The Best Project Ever" %>
   <br><br>
     <b>URL ending</b> - numbers and letters ONLY. <br />
-    www.CrowdPublish.TV/phases/<%= f.text_field :permalink, :size => 50, placeholder:  "YourCampaignURLEnding" %>  <br><br>
+    www.CrowdPublish.TV/phases/<%= f.text_field :permalink, :size => 25, placeholder:  "YourCampaignURLEnding" %>  <br><br>
       <div class="field">
         Upload a picture that represents your campaign (.jpg, .gif, .jpeg, or .png) - <i>1000x250 works best</i>
         <br><%= f.file_field :phasepic %> 
@@ -31,6 +31,12 @@
 
     <b>What makes your character(s) classy </b> - You may add to this later<br>
     <%= f.text_area :why_classy, cols: 82, rows: 7, placeholder:  "Explain how one or more of the characters in your story are classy." %><br><br>
+
+    <b>Video </b><br>
+      If you have a video about your campaign on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. Any non-YouTube url will be ignored. <br /> 
+      <div class="profilebox" >
+        <%= f.text_area :youtube, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
+      </div><br>
 
     <b>Deadline </b><br>
     When does this campaign end?<br>
