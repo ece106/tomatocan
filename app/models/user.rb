@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable#,validatable #, :confirmable 
+         :recoverable, :rememberable, :trackable #, :validatable #:confirmable 
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 
@@ -45,8 +45,6 @@ class User < ApplicationRecord
                         format:     { with: /\A[\w+]+\z/ },
                         uniqueness: { case_sensitive: false }
   validates_presence_of :password, :on=>:create
-  #validates_presence_of :password, :on=>:update, allow_blank: true
-  #validates_presence_of :password_confirmation, :on => :update, allow_blank: true
   validates_confirmation_of :password, :on=>:create
   validates_confirmation_of :password, on: :update, if: :password_changed?
   validates_length_of   :password, within:  Devise.password_length, allow_blank: true, :if => :password

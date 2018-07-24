@@ -54,6 +54,12 @@
   <% end %><div><br><br></div>
 <% end %>
 
+      <% if @phase.youtube? %>
+        <% if @phase.youtube.match(/[0-9A-Za-z]/) && @phase.youtube.length < 20 %>
+          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @phase.youtube %>" frameborder="0" allowfullscreen></iframe>
+        <% end %>
+      <% end %>
+
 <div class="blacktxt">
   <h4> About </h4>
   <% if @phase.mission %> 

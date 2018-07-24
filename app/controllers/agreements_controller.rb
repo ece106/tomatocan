@@ -10,15 +10,6 @@ class AgreementsController < ApplicationController
   def show
   end
 
-  # GET /agreements/new
-  def new
-    @agreement = Agreement.new
-  end
-
-  # GET /agreements/1/edit
-  def edit
-  end
-
   # POST /agreements
   def create
     @agreement = Agreement.new(agreement_params)
@@ -36,12 +27,6 @@ class AgreementsController < ApplicationController
     else
       render action: 'edit'
     end
-  end
-
-  # DELETE /agreements/1
-  def destroy
-    @agreement.destroy
-    redirect_to agreements_url, notice: 'Agreement was successfully destroyed.'
   end
 
   private
