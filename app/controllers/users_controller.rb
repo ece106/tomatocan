@@ -292,9 +292,11 @@
       sign_in @user
       redirect_to user_profileinfo_path(current_user.permalink)
     else
-      redirect_to new_user_signup_path
+        redirect_to new_user_signup_path, danger: create_signup_error_message
+        @user.errors.clear
     end
   end
+
   # PUT /users/1.json
   def update
     if @user.update_attributes(user_params)
@@ -303,7 +305,9 @@
       redirect_to user_profile_path(current_user.permalink)
     else
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
-      redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
+      #redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
+      redirect_to user_profileinfo_path(current_user.permalink), danger: create_update_error_message
+      @user.errors.clear
     end  
   end
 
@@ -354,7 +358,47 @@
       if @user.phases.any?
         @sidebarphase = @user.phases.order('deadline').last 
         @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
-      end
+      end 
     end
+
+    # returns a string of error messages for the user signup page
+    def create_signup_error_message
+       msg = ""
+        if @user.errors.messages[:name].present?
+          msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+        end
+        if @user.errors.messages[:email].present?
+          msg += ("Email " + @user.errors.messages[:email][0] + "\n")
+        end
+        if @user.errors.messages[:permalink].present?
+          msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
+        end
+        if @user.errors.messages[:password].present?
+          msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+        end
+    end
+
+    def create_update_error_message
+      msg = ""
+      if @user.errors.messages[:name].present?
+          msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+        end
+        if @user.errors.messages[:email].present?
+          msg += ("Email " + @user.errors.messages[:email][0] + "\n")
+        end
+        if @user.errors.messages[:permalink].present?
+          msg += (@user.errors.messages[:permalink][0] + "\n")
+        end
+        if @user.errors.messages[:password_confirmation].present?
+          msg += ("Passwords do not match" + "\n")
+        end
+        if @user.errors.messages[:password].present?
+          msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+        end
+        if @user.errors.messages{:twitter}.present?
+          msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
+        end
+    end
+
 end
 
