@@ -1,9 +1,6 @@
 class PhasesController < ApplicationController
-<<<<<<< HEAD
   before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show, :patronperk, :create, :update]
-=======
   before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show, :patronperk]
->>>>>>> 0389929b4c10ec4ac5dc769e393289ea3a9abbb8
   layout :resolve_layout
 
   # GET /phases

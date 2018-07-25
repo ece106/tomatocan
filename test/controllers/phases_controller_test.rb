@@ -27,12 +27,22 @@ class PhasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-   test "should_get_patron_perk" do
-    perm = Phase.first.permalink
-    get :patronperk, params: { permalink: perm}
-    assert_response :success
-   end
+  test "should_redirect_to_phases_once_destroyed" do
+    get :destroy, params: {id: @phases.id }
+    assert_redirected_to "/phases"
+  end
+ 
 
+   # test "should_get_patron_perk" do
+   #  perm = Phase.first.permalink
+   #  get :patronperk, params: { permalink: perm}
+   #  assert_response :success
+   # end
+
+  test "show_get_phases_show_page" do
+    get :show,params: {permalink: '1dh'}
+    assert_response :success
+  end
 
     test "should_get_phases_storytellerperks" do
       sign_in users(:one)
