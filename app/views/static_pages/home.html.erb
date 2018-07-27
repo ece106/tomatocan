@@ -10,13 +10,12 @@
 <div class="container-flex">
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="margin-top:-20px; height:400px;">
-  <!-- Indicators -->
+  <!-- Indicators --0
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
-
   <!-- Wrapper for slides -->
   <div class="carousel-inner"> 
     <div class="item active" style="height:400px;">
@@ -55,24 +54,24 @@
 
 
 <div class="container-flex">
-  <div class="row1" >
+  <div class="row" style = "position: absolute; top:20px; text-align:center; width: 100vw" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
         Crowdfund stories about <br><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp Characters
       </div><br>
 
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 999999;">
         <% if user_signed_in? %>
-          <%= link_to "Start my Campaign", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
+          <%= link_to "Start my Campaign", new_phase_path, :class => "btn btn-primary font24" %>
         <% else %>
-          <%= link_to "Start my Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
+          <%= link_to "Start my Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary font24" %>
         <% end %>
       </div>
   </div>
 </div>
-
   <div class="row" style="background-color:#1e1e46">
     <div class="navbar-inner clearfix usermenu" >
-      <ul class="nav navbar-nav pull-left navbar">
+      <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000; font-size:16px;">
         <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
         <li><%= link_to "SUPPORT A CAMPAIGN", phases_path %>
         <% if user_signed_in? %>
@@ -162,7 +161,7 @@
         <% end %><br>
 
           <span class="dot" style = "margin-top:10px"></span> <%= link_to "Find a story worth supporting", phases_path, style:"color:red;", title: "Become a loyal fans of Characters we can Respect" %> <br>
-          <span class="dot" style = "margin-top:10px"></span> <%= link_to "Purchase Perks from fantastic storytellers", merchandises_path, title: "Purchase unique perks offered to loyal fans" %> <br>
+          <span class="dot" style = "margin-top:10px"></span> <%= link_to "Purchase Perks from fantastic storytellers", phases_path, title: "Purchase unique perks offered to loyal fans through storyteller campaigns" %> <br>
           <span class="dot" style = "margin-top:10px"></span> <%= link_to "Tell all your friends", '/tellfriends', style:"color:red;", title: "Spread the word about campaigns for Characters we can Respect on twitter, facebook, email, from rooftops..." %> 
       </div>
     </div>
@@ -174,9 +173,20 @@
     Current Campaigns 
   </div><br>
 </div>
+<div class="row" > 
+  <% @campaigns.each do |c| %>
+    <div class="col-md-4 col-sm-4 col-xs-6" >
+      <div class="row hiddenover" >
+          <%= link_to(image_tag(c.phasepic.url.to_s, :height => "170",  :title => c.name ), phase_path(c.permalink)) %> 
+        <br><%= link_to c.name, phase_path(c.permalink) %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-
-  
+  <div class="indexlist" >
+    <b>Browse more CrowdPublish.TV campaigns</b><br> <%= will_paginate @campaigns %> <br>
+  </div><br><br>
 
   <div class="row" style="margin-top:15px;" >
     <div class="col-md-5" >
