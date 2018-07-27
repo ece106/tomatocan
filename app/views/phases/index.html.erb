@@ -42,20 +42,21 @@
 
 
       <div class="col-md-4 col-sm-6 col-xs-12" > 
-        <div class="row" style="vertical-align:top; horizontal-align:center;  width:350px; overflow:hidden;" >
+        <div class="row" style="vertical-align:top; horizontal-align:center; height:350px; width:350px; overflow:hidden;" >
           <% if phs[:phasepic].present? && phs[:phasepic] != '' %>
             <% groupthumb = phs[:phasepic] %>
           <% else %>
             <% groupthumb = "crowddark.png" %>
           <% end %>
 
-            <% "Once users start posting video to campaigns, show video instead of banner" %>
             <%= link_to (image_tag groupthumb.to_s, :height => "170" ), phase_path(phs[:permalink]) %>
 
-            <div style="font-size:22px"><%= link_to  truncate(phs[:name], :length => 52, :separator => ' '), phase_path(phs[:permalink]) %>
-              <%= link_to phs[:creator], user_profile_path(phs[:authorpermalink]) %>
-              <% "Write code to send email to author asking permission to partner. " %>
+            <div style="font-size:22px"><%= link_to phs[:name], phase_path(phs[:permalink]) %> 
             </div>  
+              <%= link_to phs[:creator], user_profile_path(phs[:authorpermalink]) %><br>
+              <% "Write code to send email to author asking permission to partner. " %>
+              <%= link_to truncate(phs[:mission], :length => 52, :separator => ' '), phase_path(phs[:permalink]) %>
+
             <% if user_signed_in? %>
               <% if @numusrgroupstripe > 0 %><br>
               <div style = "color:#000; float:left"> <%= button_tag 'Partner', value: phs[:id], type: :submit, name: "agreement[phase_id]" %></div>
