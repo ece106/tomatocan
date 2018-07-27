@@ -33,11 +33,12 @@ class PhasesControllerTest < ActionController::TestCase
   end
  
 
-   # test "should_get_patron_perk" do
-   #  perm = Phase.first.permalink
-   #  get :patronperk, params: { permalink: perm}
-   #  assert_response :success
-   # end
+   test "should_get_patron_perk" do
+    sign_in users(:one)
+    perm = Phase.first.permalink
+    get :patronperk, params: { permalink: perm}
+    assert_response :success
+   end
 
   test "show_get_phases_show_page" do
     get :show,params: {permalink: '1dh'}
