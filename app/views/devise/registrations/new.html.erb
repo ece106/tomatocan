@@ -4,7 +4,6 @@
     <% @usertype = params[:usertype] %>
 
 <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
-  <%= devise_error_messages! %>
 
   <%= render 'layouts/flash_messages' %>
 
