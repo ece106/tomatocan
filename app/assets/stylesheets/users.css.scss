@@ -5,19 +5,41 @@
 //<style type="text/css">
 //<!--
 
-.bookcls
-{
-width:100px; height:133px; background-color:#dddddd;
-}
-.hiddenover
-{
-    vertical-align:top; horizontal-align:center; height:250px; width:350px; overflow:hidden;
-}
-.font24
-{
-    font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;
-}
+body {
+    margin: 0px; padding: 0px;}
+     a:link { text-decoration: none; }
+     a:visited { text-decoration: none; }
+     a:hover {  text-decoration: none; color:blue; background-color:transparent;}
+     a:active {color: #885599;
+    }
 
+.bookcls
+    {
+    width:100px; height:133px; background-color:#dddddd;
+    }
+.hiddenover
+    {
+        vertical-align:top; horizontal-align:center; height:250px; width:350px; overflow:hidden;
+    }
+.font24
+    {
+        font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;
+    }
+
+.blurb
+        {
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Arial", sans-serif; text-align:left; font-size:14.0px; line-height:1.0em; color:#2c3651; 
+        }
+.fifty
+        {
+        margin:0.0px 0.0px 0.0px 0.0px; font-family:"Tahoma", sans-serif; text-align:left; font-size:12.0px; line-height:0.9em; color:#2c3651;
+        }
+
+.signupbutton
+        {
+        font-family:"Arial Black", sans-serif; font-weight:700; 
+        font-size:21.0px; line-height:1.43em; 
+        }s
 
 .password
         {
@@ -76,13 +98,13 @@ width:100px; height:133px; background-color:#dddddd;
         font-family:"Verdana", sans-serif; font-weight:700; font-size:24.0px; text-align:center; 
         line-height:1.13em; color:#1e1e46; 
         }
-.helps
+  .helps
         {
-        font-family:"Tahoma", sans-serif; font-size:24.0px; text-align:center; line-height:1.19em; color:#1e1e46; font-weight:400;
-        a:visited { color : #6F5FcF; text-decoration: none; }
+        font-family:"Tahoma", sans-serif; font-size:2.0px; text-align:center; line-height:1.19em; color:#1e1e46; font-weight:400;
+        a:visited { color : #6F5FcF;    text-decoration: line-through; }
         a:hover { color: #2c3651; text-decoration: none; }
         a:link { color : #6F5FcF;}
-        }
+        } 
 .username
         {
         font-family:"Tahoma", sans-serif; font-weight:700; font-size:21.0px; text-align:center; line-height:1.19em; color:#1e1e46; 
