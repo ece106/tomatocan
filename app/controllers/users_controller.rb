@@ -395,7 +395,7 @@
         if @user.errors.messages[:password].present?
           msg += ("Password " + @user.errors.messages[:password][0] + "\n")
         end
-        if @user.errors.messages{:twitter}.present?
+        if @user.errors.messages[:twitter].present?
           msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
         end
     end
