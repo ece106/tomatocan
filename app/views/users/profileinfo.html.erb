@@ -18,7 +18,6 @@
 
 <% if @user == current_user %>
   <%= form_for @user, :html => {:multipart => true} do |f| %>
-    <%= render 'shared/error_messages', :object => f.object %>
 
   <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
     <div class="blacktxt" >
