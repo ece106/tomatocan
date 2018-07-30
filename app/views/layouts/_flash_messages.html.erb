@@ -1,5 +1,5 @@
 <% flash.each do |name, msg| %>
 	<div class='alert alert-<%= name %>'>
-	<%= simple_format msg.gsub(/\n/, '<br>') %>
+		<%= simple_format msg.gsub(/\n/, '<br>') %>
 	</div>
 <% end %>

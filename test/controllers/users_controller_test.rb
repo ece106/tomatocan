@@ -97,8 +97,8 @@ class UsersControllerTest < ActionController::TestCase
     sign_in @user
     @book = books(:one)
     @purchase = purchases(:one)
-    puts @book.id
-    puts "Notice that the book id is some ridiculously huge integer."
+ #   puts @book.id
+ #   puts "Notice that the book id is some ridiculously huge integer."
     get :dashboard, params: {permalink: 'user1'}
     assert_response :success
   end
@@ -221,13 +221,37 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should update user" do
     sign_in @user
-#    get user_profileinfo_path(@user.permalink)s
-
     patch :update, params: { id: @user.id, user: { name: 'New Name', 
       youtube1: 'randomchar' } }
     user = User.find_by_permalink(@user.permalink)
     assert_equal(user.name, "New Name") 
     assert_redirected_to user_profile_path(user.permalink)
+  end
+
+  test "should_verify_update_user_with_invalid_params" do
+    sign_in @user
+
+    @user.errors.clear
+    assert_empty @user.errors.messages
+
+    patch :update, params:{ id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
+      twitter: '@', email: 'fake@fake.com', permalink: 'user1'}}
+
+    assert_not_equal "@", @user.twitter
+    # assert_not_empty @user.errors.messages
+  end
+
+  test "should_verify_update_user_with_valid_params" do
+    sign_in @user
+
+    @user.errors.clear
+    assert_empty @user.errors.messages
+
+    patch :update, params:{ id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
+    twitter: 'MyTwitter', email: 'fake@fake.com', permalink: 'user1'}}
+
+    assert_equal "MyTwitter", @user.twitter
+    assert_empty @user.errors.messages
   end
 
 end

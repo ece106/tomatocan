@@ -234,5 +234,108 @@ class TestUser < ActiveSupport::TestCase
         refute @user.valid?
         refute_empty @user.errors[:email]
       end
+    assert_match(/[a-z0-9]/, @user.permalink)
+  end
+
+#before_save { |user| user.email = email.downcase }
+
+  test "make all emails lowercase" do
+    @user.email = "you@CrowdPublish.TV"
+    @user.save
+    assert_match(/[a-z0-9]+@+[a-z0-9]+\.+[a-z]/, @user.email)
+  end
+
+#def add_bank_account
+
+  test "add bank account" do #this test only works for new account or account with countryoftax=GB
+    # should test the view to make sure users can't enter currency/countryofbank incompatible with countryoftax
+    # having specific acct_number in fixture is bad way to test. Figure out a way to test using a relevant acct
+    @user.add_bank_account('GBP', '000123456789', '110000000', 'WX', 'address line1',
+                        'address line2', 'city ilivein', '11111', 'AZ', '', '000000000')
+    assert @user.valid?, "cant have that currency in that country" #useless. This cant make a user invalid. proves nothing
+    assert_match(@user.countryofbank, 'GB') 
+    # what i want is to test that the private attributes are getting changed
+    # Although I'm still questioning whether I want the method to do that. Perhaps it should alert the user that 
+    # the countryofbank/currency/countryoftax combo is invalid (on next page? JS?) and prompt user to correct the mistake
+  end
+
+  test "stripe accounts" do
+#    Retrieve accounts object and make sure correct info there
+  end
+
+  test "external accounts" do
+#    Retrieve external_accounts object and make sure correct info there
+  end
+
+# this is testing the feature, not the private method - It works on localhost, why isn't it happening in test
+  test "parse ustream" do
+    @user.ustreamvid = "http://www.ustream.tv/embed/21534532?html5ui style=border: 0 none transparent;  webkitallowfullscreen allowfullscreen frameborder=></iframe><br /><a href=http://www.ustream.tv/ style=adding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-we"
+    ustreamtemp = @user.ustreamvid
+    @user.save
+    refute_equal(ustreamtemp, @user.ustreamvid)
+  end
+
+    test "parse youtube" do
+      @user.youtube1 = "http://youtube.com/watch?v=/frlviTJc"
+      @user.genre1 = "yaaah"
+      @user.permalink = "LisaLisa"
+      puts @user.permalink
+      @user.get_youtube_id
+      puts @user.permalink
+      puts "lllllllllllllllllllllllllllllllllllllf"
+      puts @user.genre1
+      puts @user.youtube1
+      refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
+    end
+
+# redundant tests
+
+  test "redundant_test_name_and_permalink_must_not_be_empty" do 
+    user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
+    refute_empty user.errors[:name] 
+    refute_empty user.errors[:permalink] 
+  end
+
+  test "redundant_test_new_user_must_have_reqd_variables" do
+    user = User.new
+    user.permalink = "Dummydummy"
+    user.name = "Dummydummy"
+    user.email = "ee@ujk.com" 
+    user.password = "Dummydummy"
+    user.password_confirmation = "Dummydummy"
+#    refute user.valid? # email errors are empty if email is bad and this line not here
+    assert_empty user.errors[:email] 
+  end
+
+  test "redundant_test_create_user_must_have_reqd_variables" do
+    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "unique@example.com", permalink: "qwerty")
+    assert_empty user.errors[:email] 
+#    refute user.errors[:email].any?, "email unique" 
+#    assert user.errors.any?
+  end
+
+  test "redundant_test_what_if_lat_lon_and_address_are_changed" do
+    oldaddress = @user.address
+    oldlatitude = @user.latitude
+    @user.latitude = 20.2
+    @user.longitude = 20.2
+    @user.address = "20022"
+    puts "latitude1 " + @user.latitude.to_s
+    puts "new address " + @user.address
+    @user.save
+    puts "latitude2 " + @user.latitude.to_s
+    puts "new address " + @user.address
+    refute_match(@user.address, oldaddress)
+  end
+
+  test "redundant_test_email_still_must_not_be_empty" do
+    @user.send "email=", nil 
+    refute @user.valid?
+    refute_empty @user.errors[:email]
+  end
+
+  test "edit_user_password" do
+    user = users(:one)
+  end
 
 end
