@@ -81,12 +81,6 @@ class PhasesControllerTest < ActionController::TestCase
     end
 
 
-test "should_update_phases_when_user_logged_in" do
-    sign_in users(:one)
-    patch :update, params: { id: @phases.id, phase: { name: 'New Name' } }
-    phase = Phase.find_by_permalink(@phase.permalink)
-    assert_equal(phase.name, "New Name") 
-    assert_redirected_to @phase
-  end
+
 
 end
