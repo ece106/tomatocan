@@ -1,7 +1,7 @@
   class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :authors, :create, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr ]
+  before_action :set_user, except: [:new, :index, :authors, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :check_fieldsneeded, except: [:update, :new, :index, :create]
   before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
@@ -298,7 +298,8 @@
   end
 
   # PUT /users/1.json
-  def update
+  def 
+    
     if @user.update_attributes(user_params)
       @user.get_youtube_id
       sign_in @user

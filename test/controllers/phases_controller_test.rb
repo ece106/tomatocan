@@ -34,7 +34,6 @@ class PhasesControllerTest < ActionController::TestCase
       assert_response :success
     end  
  
-
     test "should_get_phases_show" do
       perm = Phase.first.permalink
       get :show, params: {permalink: perm}
@@ -47,13 +46,11 @@ class PhasesControllerTest < ActionController::TestCase
     end
 
 
- 
-
-   test "should_get_patron_perk" do
+   test "should_show_perk_only_when_user_logged_in" do
     sign_in users(:one)
     perm = Phase.first.permalink
     get :patronperk, params: { permalink: perm}
-    assert_response :success
+    assert_response :success ," The user is logged in"
    end
 
   test "show_get_phases_show_page" do
@@ -66,10 +63,30 @@ class PhasesControllerTest < ActionController::TestCase
       get :storytellerperks, params: {permalink: '1dh'}
       assert_response :success
     end
+
     
     test "should_get_phases_edit" do
       sign_in users(:one)
       get :edit, params: {permalink: '1dh'}
       assert_response :success
-    end    
+    end   
+
+    test "shoule_create_phase_if_user_logged_in" do
+      sign_in users(:one)
+      assert_difference('Phase.count', 1) do
+        post :create, params: { phase: { name: 'samiam', user_id: '2',
+            mission: 'secret12', phasepic: 'ps_2.jpg', permalink: 'samlink' } }
+        end
+       assert_redirected_to phase_storytellerperks_path(assigns(:phase).permalink)
+    end
+
+
+test "should_update_phases_when_user_logged_in" do
+    sign_in users(:one)
+    patch :update, params: { id: @phases.id, phase: { name: 'New Name' } }
+    phase = Phase.find_by_permalink(@phase.permalink)
+    assert_equal(phase.name, "New Name") 
+    assert_redirected_to @phase
+  end
+
 end

@@ -1,5 +1,5 @@
 class PhasesController < ApplicationController
-  before_action :set_phase, only: [:storytellerperks, :edit, :update, :destroy, :show, :patronperk, :create, :update]
+  before_action :set_phase, only: [:storytellerperks, :edit, :destroy, :show, :patronperk, :update]
   layout :resolve_layout
 
   # GET /phases
@@ -136,7 +136,7 @@ class PhasesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def phase_params
       params.require(:phase).permit(:name, :user_id, :mission, :phasepic, :permalink, 
-        :deadline, :currgroupid, :phaseid, :why_classy, :youtube)
+        :deadline, :why_classy, :youtube)
     end
 
     def resolve_layout
