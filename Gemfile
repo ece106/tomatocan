@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 ruby "2.4.2"
 
+require 'aws-sdk'
 gem 'listen'
 gem 'rails-controller-testing'
 

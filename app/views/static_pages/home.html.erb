@@ -16,7 +16,6 @@
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
-
   <!-- Wrapper for slides -->
   <div class="carousel-inner"> 
     <div class="item active" style="height:400px;">
@@ -63,9 +62,9 @@
 
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 999999;">
         <% if user_signed_in? %>
-          <%= link_to "Start my Campaign", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
+          <%= link_to "Start my Campaign", new_phase_path, :class => "btn btn-primary font24" %>
         <% else %>
-          <%= link_to "Start my Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
+          <%= link_to "Start my Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary font24" %>
         <% end %>
       </div>
   </div>
@@ -177,7 +176,7 @@
 <div class="row" > 
   <% @campaigns.each do |c| %>
     <div class="col-md-4 col-sm-4 col-xs-6" >
-      <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:350px; overflow:hidden;" >
+      <div class="row hiddenover" >
           <%= link_to(image_tag(c.phasepic.url.to_s, :height => "170",  :title => c.name ), phase_path(c.permalink)) %> 
         <br><%= link_to c.name, phase_path(c.permalink) %>
       </div>
