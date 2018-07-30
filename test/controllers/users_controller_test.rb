@@ -223,8 +223,16 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_profile_path(user.permalink)
   end
 
-  test "should_submit_profile_edit_form" do
-    patch :update, params: { }
+  test "should_set_user_error_messages" do
+    sign_in @user
+
+    assert_not @user.errors.messages[:password].present?
+
+    patch :update, params: { id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
+      twitter: 'MyTwitter', email: 'fake@fake.com', permalink: 'user1'}}
+
+    assert_not_nil @user.errors.messages
+
   end
 
 end
