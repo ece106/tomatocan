@@ -114,11 +114,6 @@ class PhasesController < ApplicationController
     end
   end
 
-  def destroy
-    @phase.destroy
-    redirect_to phases_url, notice: 'phase was successfully destroyed.'
-  end
-
   private
     def set_phase
       if params[:id].present?
