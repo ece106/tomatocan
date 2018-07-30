@@ -223,4 +223,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_profile_path(user.permalink)
   end
 
+  test "should_submit_profile_edit_form" do
+    patch :update, params: { }
+  end
+
 end

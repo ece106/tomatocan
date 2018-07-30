@@ -381,24 +381,28 @@
     def create_update_error_message
       msg = ""
       if @user.errors.messages[:name].present?
-          msg += ("Name " + @user.errors.messages[:name][0] + "\n")
-        end
-        if @user.errors.messages[:email].present?
-          msg += ("Email " + @user.errors.messages[:email][0] + "\n")
-        end
-        if @user.errors.messages[:permalink].present?
-          msg += (@user.errors.messages[:permalink][0] + "\n")
-        end
-        if @user.errors.messages[:password_confirmation].present?
-          msg += ("Passwords do not match" + "\n")
-        end
-        if @user.errors.messages[:password].present?
-          msg += ("Password " + @user.errors.messages[:password][0] + "\n")
-        end
-        if @user.errors.messages{:twitter}.present?
-          msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
-        end
+        msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+      end
+      if @user.errors.messages[:email].present?
+        msg += ("Email " + @user.errors.messages[:email][0] + "\n")
+      end
+      if @user.errors.messages[:permalink].present?
+        msg += (@user.errors.messages[:permalink][0] + "\n")
+      end
+      if @user.errors.messages[:password_confirmation].present?
+        msg += ("Passwords do not match" + "\n")
+      end
+      puts "asasasasasasassasasasas"
+      if @user.errors.messages[:password].present?
+        msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+        puts "asasasasasasassasasasas"
+        puts @user.errors.messages[:password].to_s
+        puts msg
+      end
+      if @user.errors.messages[:twitter].present?
+        msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
+      end
+      puts msg
     end
-
 end
 

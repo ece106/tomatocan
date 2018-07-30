@@ -22,7 +22,7 @@ one:
   author: author
   about: MyText
 #  stripeid: acct_173whFBNd1jPrlMf
-  encrypted_password: <%= User.new.send(:password_digest, "user123") %>
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
 #  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString
 
@@ -45,6 +45,6 @@ two:
   profilepic: MyString2
   author: reader
   about: MyText2
-  encrypted_password: <%= User.new.send(:password_digest, "user123") %>
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %>
 #  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString2

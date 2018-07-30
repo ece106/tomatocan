@@ -152,7 +152,7 @@ class TestUser < ActiveSupport::TestCase
     # should test the view to make sure users can't enter currency/countryofbank incompatible with countryoftax
     # having specific acct_number in fixture is bad way to test. Figure out a way to test using a relevant acct
     @user.add_bank_account('GBP', '000123456789', '110000000', 'WX', 'address line1',
-                        'address line2', 'city ilivein', '11111', 'AZ')
+                        'address line2', 'city ilivein', '11111', 'AZ', '', '000000000')
     assert @user.valid?, "cant have that currency in that country" #useless. This cant make a user invalid. proves nothing
     assert_match(@user.countryofbank, 'GB') 
     # what i want is to test that the private attributes are getting changed
@@ -179,10 +179,10 @@ class TestUser < ActiveSupport::TestCase
     test "parse youtube" do
       @user.youtube1 = "http://youtube.com/watch?v=/frlviTJc"
       @user.genre1 = "yaaah"
-    @user.permalink = "LisaLisa"
-puts @user.permalink
-      @user.save
-    puts @user.permalink
+      @user.permalink = "LisaLisa"
+      puts @user.permalink
+      @user.get_youtube_id
+      puts @user.permalink
       puts "lllllllllllllllllllllllllllllllllllllf"
       puts @user.genre1
       puts @user.youtube1
@@ -233,6 +233,10 @@ puts @user.permalink
     @user.send "email=", nil 
     refute @user.valid?
     refute_empty @user.errors[:email]
+  end
+
+  test "edit_user_password" do
+    user = users(:one)
   end
 
 end
