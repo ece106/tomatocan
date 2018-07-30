@@ -9,7 +9,26 @@ class PhasesControllerTest < ActionController::TestCase
       get :index
       assert_response :success
     end
+
+    test "should_get_phases_index_user_signed_in" do
+      sign_in users(:one)
+      get:index, params: {id: @phases.id }
+      assert_response :success
+    end
+
+    test "if_stripeid_is_null" do
+      perm = Phase.first.permalink
+      get :index, params: {permalink: perm}
+      assert_response :success
+    end
     
+     test "if_stripeid_is_not_null_user_signed_in" do
+      sign_in users(:one)
+      perm = Phase.first.permalink
+      get :index, params: {permalink: perm}
+      assert_response :success
+    end
+
     test "should_get_phases_new" do
       get :new
       assert_response :success
@@ -27,10 +46,7 @@ class PhasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-  test "should_redirect_to_phases_once_destroyed" do
-    get :destroy, params: {id: @phases.id }
-    assert_redirected_to "/phases"
-  end
+
  
 
    test "should_get_patron_perk" do
