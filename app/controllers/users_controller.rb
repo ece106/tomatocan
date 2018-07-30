@@ -319,7 +319,9 @@
           msg += ("Name " + @user.errors.messages[:name][0] + "\n")
         end
         if @user.errors.messages[:email].present?
-          msg += ("Email " + @user.errors.messages[:email][0] + "\n")
+          @user.errors.messages[:email].each do |email| 
+            msg += ("Email " + email + "\n")
+          end
         end
         if @user.errors.messages[:permalink].present?
           msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
@@ -327,6 +329,8 @@
         if @user.errors.messages[:password].present?
           msg += ("Password " + @user.errors.messages[:password][0] + "\n")
         end
+        
+        return msg
     end
 
     def create_update_error_message
@@ -338,7 +342,7 @@
         msg += ("Email " + @user.errors.messages[:email][0] + "\n")
       end
       if @user.errors.messages[:permalink].present?
-        msg += (@user.errors.messages[:permalink][0] + "\n")
+        msg += ("URL handle" + @user.errors.messages[:permalink][0] + "\n")
       end
       if @user.errors.messages[:password_confirmation].present?
         msg += ( "Passwords do not match \n")
@@ -349,6 +353,8 @@
       if @user.errors.messages[:twitter].present?
         msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
       end
+
+      return msg
     end
 
   private
@@ -368,7 +374,7 @@
       case action_name
       when "index", "authors"
         'application'
-      when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts"
+      when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts", "changepassword"
         'editinfotemplate'
       else
         'userpgtemplate'
