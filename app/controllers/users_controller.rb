@@ -298,8 +298,7 @@
   end
 
   # PUT /users/1.json
-  def 
-    
+  def update
     if @user.update_attributes(user_params)
       @user.get_youtube_id
       sign_in @user
