@@ -23,7 +23,7 @@ body {
     }
 .font24
     {
-        font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;
+        font-size:24px; background-color:#6e73d1; font-color:#fff;
     }
 
 .blurb
@@ -39,7 +39,7 @@ body {
         {
         font-family:"Arial Black", sans-serif; font-weight:700; 
         font-size:21.0px; line-height:1.43em; 
-        }s
+        }
 
 .password
         {
@@ -98,11 +98,11 @@ body {
         font-family:"Verdana", sans-serif; font-weight:700; font-size:24.0px; text-align:center; 
         line-height:1.13em; color:#1e1e46; 
         }
-  .helps
+.helps
         {
         font-family:"Tahoma", sans-serif; font-size:2.0px; text-align:center; line-height:1.19em; color:#1e1e46; font-weight:400;
         a:visited { color : #6F5FcF;    text-decoration: line-through; }
-        a:hover { color: #2c3651; text-decoration: none; }
+        a:hover { color: #2c3651; text-decoration: none; background-color: transparent }
         a:link { color : #6F5FcF;}
         } 
 .username

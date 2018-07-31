@@ -58,13 +58,13 @@
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
         Crowdfund <br><br>
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp Stories
-      </div><br>
+      </div><br><br> <br> 
 
-      <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 999999;">
+      <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 1;">
         <% if user_signed_in? %>
-          <%= link_to "Start my Campaign", new_phase_path, :class => "btn btn-primary font24" %>
+          <%= link_to "Start my Campaign", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
         <% else %>
-          <%= link_to "Start my Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary font24" %>
+          <%= link_to "Start my Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary ", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
         <% end %>
       </div>
   </div>
