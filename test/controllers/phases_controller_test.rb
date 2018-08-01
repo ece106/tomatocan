@@ -12,7 +12,7 @@ class PhasesControllerTest < ActionController::TestCase
 
     test "should_get_phases_index_user_signed_in" do
       sign_in users(:one)
-      get:index, params: {id: @phases.id }
+      get :index, params: {id: @phases.id }
       assert_response :success
     end
 
@@ -33,6 +33,13 @@ class PhasesControllerTest < ActionController::TestCase
       get :new
       assert_response :success
     end  
+
+    test "should_get_new_phases_when_logged_in" do
+      sign_in users(:one)
+      perm = Phase.first.permalink
+      get :new, params: {permalink: perm}
+      assert_response :success
+    end
  
     test "should_get_phases_show" do
       perm = Phase.first.permalink
@@ -46,23 +53,23 @@ class PhasesControllerTest < ActionController::TestCase
     end
 
     test "should_get_show_page_if_user_logged_in" do
-    sign_in users(:one)
-    perm = Phase.first.permalink
-    get :show, params: { permalink: perm}
-    assert_response :success ," The user is logged in"
+      sign_in users(:one)
+      perm = Phase.first.permalink
+      get :show, params: { permalink: perm}
+      assert_response :success ," The user is logged in"
     end
 
-   test "should_show_perk_only_when_user_logged_in" do
-    sign_in users(:one)
-    perm = Phase.first.permalink
-    get :patronperk, params: { permalink: perm}
-    assert_response :success ," The user is logged in"
-   end
+    test "should_show_perk_only_when_user_logged_in" do
+      sign_in users(:one)
+      perm = Phase.first.permalink
+      get :patronperk, params: { permalink: perm}
+      assert_response :success ," The user is logged in"
+    end
 
-  test "show_get_phases_show_page" do
-    get :show,params: {permalink: '1dh'}
-    assert_response :success
-  end
+    test "show_get_phases_show_page" do
+      get :show,params: {permalink: '1dh'}
+      assert_response :success
+    end
 
     test "should_get_phases_storytellerperks" do
       sign_in users(:one)
@@ -70,12 +77,25 @@ class PhasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-   test "should_edit_phase_only_if_user_logged_in" do
+    test "should_load_story_teller_page" do
+      sign_in users(:one)
+      perm = Phase.first.permalink
+      get :storytellerperks, params: { permalink: perm}
+      assert_response :success
+    end
+
+    test "should_edit_phase_only_if_user_logged_in" do
        sign_in users(:one)
        perm = Phase.first.permalink
        get :edit, params: { permalink: perm}
        assert_response :success
-   end 
+    end 
+
+    test "should_edit_if_user_id_given" do
+      sign_in users(:one)
+      get :edit, params: {id: @phases.id }
+      assert_response :success
+    end
 
     test "should_get_phases_edit" do
       sign_in users(:one)
@@ -91,8 +111,6 @@ class PhasesControllerTest < ActionController::TestCase
         end
        assert_redirected_to phase_storytellerperks_path(assigns(:phase).permalink)
     end
-
-
 
 
 end
