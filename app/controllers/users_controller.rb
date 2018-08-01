@@ -366,8 +366,6 @@
     end
 
     def set_user 
-      puts "aaasasdfasdfasdf"
-      puts params
       @user = User.find_by_permalink(params[:permalink]) || current_user
       if @user.phases.any?
         @sidebarphase = @user.phases.order('deadline').last 
