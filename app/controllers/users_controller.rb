@@ -399,7 +399,7 @@
     end
 
     def set_user 
-      @user = User.find_by_permalink(params[:permalink]) || User.find(params[:id])
+      @user = User.find_by_permalink(params[:permalink]) || current_user
       if @user.phases.any?
         @sidebarphase = @user.phases.order('deadline').last 
         @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
