@@ -402,7 +402,7 @@
         msg += ("Email " + @user.errors.messages[:email][0] + "\n")
       end
       if @user.errors.messages[:permalink].present?
-        msg += ("URL handle" + @user.errors.messages[:permalink][0] + "\n")
+        msg += ("URL handle " + @user.errors.messages[:permalink][0] + "\n")
       end
       if @user.errors.messages[:password_confirmation].present?
         msg += ( "Passwords do not match \n")
