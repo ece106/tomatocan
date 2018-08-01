@@ -45,6 +45,12 @@ class PhasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "should_get_show_page_if_user_logged_in" do
+    sign_in users(:one)
+    perm = Phase.first.permalink
+    get :show, params: { permalink: perm}
+    assert_response :success ," The user is logged in"
+    end
 
    test "should_show_perk_only_when_user_logged_in" do
     sign_in users(:one)
@@ -64,7 +70,13 @@ class PhasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-    
+   test "should_edit_phase_only_if_user_logged_in" do
+       sign_in users(:one)
+       perm = Phase.first.permalink
+       get :edit, params: { permalink: perm}
+       assert_response :success
+   end 
+
     test "should_get_phases_edit" do
       sign_in users(:one)
       get :edit, params: {permalink: '1dh'}
