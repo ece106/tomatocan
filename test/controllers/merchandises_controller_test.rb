@@ -11,17 +11,6 @@ class MerchandisesControllerTest < ActionController::TestCase
     #assert_not_nil assigns(:merchandises)
   end
 
-  test "should load index page when users signed in " do
-    sign_in users(:one)
-    get :index
-    assert_response :success
-  end
-
-  test "should load index page with merchandise id" do
-    sign_in users(:one)
-    get :index , params: { id: @merchandise.id }
-    assert_response :success
-  end
 
   test "should get new" do
     sign_in users(:one)
@@ -44,12 +33,6 @@ class MerchandisesControllerTest < ActionController::TestCase
   end
 
   test "should show merchandise" do
-    get :show, params: { id: @merchandise.id }
-    assert_response :success
-  end
-
-  test "should how merchandise of user logged in" do
-    sign_in users(:one)
     get :show, params: { id: @merchandise.id }
     assert_response :success
   end
