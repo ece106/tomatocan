@@ -1,5 +1,5 @@
 class MerchandisesController < ApplicationController
-  before_action :set_merchandise, only: [:show, :edit, :update, :destroy]
+  before_action :set_merchandise, only: [:show, :edit, :update, :destroy, :create, :new]
   layout :resolve_layout
 
   # GET /merchandises
