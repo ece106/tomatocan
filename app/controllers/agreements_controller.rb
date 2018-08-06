@@ -14,18 +14,20 @@ class AgreementsController < ApplicationController
   def create
     @agreement = Agreement.new(agreement_params)
     if @agreement.save
-      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement request was sent.'
+      puts "hhhhhhhhhhhhhhhhh"
+      puts @agreement.phase_id
+      redirect_to phase_path(@agreement.phase_id), notice: 'Partnership request was sent.'
     else
-      render action: 'new'
+      redirect_to phase_path(@agreement.phase_id), notice: 'Partnership request was not valid.'
     end
   end
 
   # PATCH/PUT /agreements/1
   def update
     if @agreement.update(agreement_params)
-      redirect_to phase_path(@agreement.phase_id), notice: 'Agreement request was sent.'
+      redirect_to phase_path(@agreement.phase_id), notice: 'Partnership was updated.'
     else
-      render action: 'edit'
+         redirect_to phase_path(@agreement.phase_id), notice: 'Partnership was updated.'
     end
   end
 
