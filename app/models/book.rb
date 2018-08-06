@@ -18,7 +18,6 @@ class Book < ApplicationRecord
   mount_uploader :bookpdf, BookpdfUploader
   mount_uploader :bookmobi, BookmobiUploader
   mount_uploader :bookepub, BookepubUploader
-  mount_uploader :bookkobo, BookkoboUploader
 #  mount_uploader :bookaudio, BookaudioUploader
 
   private

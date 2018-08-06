@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
   match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
   match 'bootcamp', to: 'static_pages#bootcamp', via: 'get'
+  match 'livestream', to: 'static_pages#livestream', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
   match '/events/online' => "events#online", :as => :events_online, via: 'get'
@@ -94,6 +95,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/:permalink/eventlist' => "users#eventlist", :as => :user_eventlist, via: 'get'
   match '/:permalink/pastevents' => "users#pastevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
+  match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
   match '/:permalink/createstripeaccount' => "users#createstripeaccount", :as => :user_createstripeaccount, via: 'get'
   match '/:permalink/addbankaccount' => "users#addbankaccount", :as => :user_addbankaccount, via: 'get'
   match '/:permalink/manageaccounts' => "users#manageaccounts", :as => :user_manageaccounts, via: 'get'

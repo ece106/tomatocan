@@ -33,7 +33,7 @@ class StaticPagesController < ApplicationController
   end
   def apprenticeships
   end
-  def areyousureyoupulledchanges
+  def livestream
   end
 
   def tellfriends
