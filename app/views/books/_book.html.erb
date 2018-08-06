@@ -10,7 +10,7 @@
 </div>
 
 <div class="row" >
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " style="width:100px; height:133px; background-color:#dddddd; " >
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bookcls" >
     <% if book.coverpic.present? && book.coverpic != '' %>
       <%= link_to image_tag(book.coverpic.url.to_s, :size => "100x133", :title => "Purchase " + book.title), book_path(:id => book.id) %>
     <% elsif book.coverpicurl.present? && book.coverpicurl.match(/http/) %>

@@ -339,7 +339,7 @@ class User < ApplicationRecord
       mysales.each do |sale| 
         if sale.book_id.present?
           booksold = Book.find(sale.book_id) 
-          customer = User.find(sale.user_id) 
+          customer = User.find(sale.user_id)
           self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, 
             purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: customer.name, address: sale.shipaddress, 
             fulfillstat: sale.fulfillstatus, ebook: sale.bookfiletype } 

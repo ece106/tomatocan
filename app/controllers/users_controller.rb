@@ -1,16 +1,16 @@
   class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :authors, :create, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr ]
+  before_action :set_user, except: [:new, :index, :authors, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr, :create ]
   before_action :check_fieldsneeded, except: [:update, :new, :index, :create]
   before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
-    userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
-      OR (profilepicurl SIMILAR TO 'http%' AND 
-      profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
+     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
+       OR (profilepicurl SIMILAR TO 'http%' AND 
+       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
     @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
   end
 

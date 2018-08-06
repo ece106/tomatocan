@@ -16,7 +16,7 @@ one:
   genre3: MyString
   blogurl: MyString
   profilepicurl: MyString
-  profilepic: MyString
+  profilepic: hello.jpg
   youtube1: http://youtube.com/watch?v=/frlveggg  
   address: 20012
   author: author
@@ -24,7 +24,6 @@ one:
   twitter: MyTwitter
 #  stripeid: acct_173whFBNd1jPrlMf
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
-#  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString
 
 two:
