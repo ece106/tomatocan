@@ -37,7 +37,6 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
   test "should get edit" do
      sign_in users(:one)
      get :edit, params: { id: @merchandise.id }
