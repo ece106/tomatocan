@@ -26,7 +26,7 @@
       Genre 1 <%= f.select :genre1, [["Fiction", "Fiction"], ["Nonfiction", "Nonfiction"], ["Self Help", "Selfhelp"], ["Childrens", "Childrens"], ["Business", "Business"]] %>
 
       <div class="profilebox" >
-        Genre 2 <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre" %><br>
+        Genre 2 <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre"%><br>
         Genre 3 <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
       </div> <br>
 
@@ -58,7 +58,7 @@
  
       <br>Change your name <br> 
       <div class="profilebox" >
-        <%= f.text_area :name, :cols => 40, :rows => 1 %>
+        <%= f.text_area :name, :cols => 40, :rows => 1, maxlength: 50 %>
       </div>
       <br>Change your email address <br> 
       <div class="profilebox" >
@@ -73,12 +73,12 @@
     <div class="row" >
       <div class="password" >
         <div class="col-md-4 col-sm-4 col-xs-4 " style="text-align:left">
-          Change password <br><br>
-          Confirm new password   
+          <br>
+          <%= link_to "Change Password", user_changepassword_path(@user.permalink), :method => :get%>
         </div>
         <div class="col-md-5 col-sm-5 col-xs-5 " style="text-align:left">
-          <%= f.password_field :password %><br><br>
-          <%= f.password_field :password_confirmation %>
+          <%= f.hidden_field :password %><br><br>
+          <%= f.hidden_field :password_confirmation %>
         </div>
       </div>
       <div class="col-md-3 col-sm-3 col-xs-3 " >
