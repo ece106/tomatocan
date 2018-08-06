@@ -14,8 +14,6 @@ class AgreementsController < ApplicationController
   def create
     @agreement = Agreement.new(agreement_params)
     if @agreement.save
-      puts "hhhhhhhhhhhhhhhhh"
-      puts @agreement.phase_id
       redirect_to phase_path(@agreement.phase_id), notice: 'Partnership request was sent.'
     else
       redirect_to phase_path(@agreement.phase_id), notice: 'Partnership request was not valid.'
