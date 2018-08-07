@@ -131,7 +131,7 @@ class PhasesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def phase_params
       params.require(:phase).permit(:name, :user_id, :mission, :phasepic, :permalink, 
-        :deadline, :why_classy, :youtube, :slug )
+        :deadline, :why_classy, :youtube, :slug)
     end
 
     def resolve_layout
