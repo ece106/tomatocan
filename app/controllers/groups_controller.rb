@@ -190,12 +190,6 @@ class GroupsController < ApplicationController
     @totalinfo = @group.totalinfo
   end
 
-  # DELETE /groups/1
-  def destroy
-    #create new column to flag for disabling display
-    redirect_to groups_url, notice: 'Group was successfully disabled.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group

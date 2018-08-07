@@ -108,7 +108,8 @@ class PhasesController < ApplicationController
   def update
     if @phase.update(phase_params)
       @phase.get_youtube_id
-      redirect_to @phase, notice: 'phase was successfully updated.'
+      @phase.update_attribute(:slug, @phase.permalink)
+      redirect_to @phase, notice: 'Phase was successfully updated.'
     else
       render action: 'edit'
     end
