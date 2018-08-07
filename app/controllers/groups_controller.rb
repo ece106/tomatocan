@@ -102,7 +102,6 @@ class GroupsController < ApplicationController
   # POST /groups
   def create
     @group = current_user.groups.build(group_params)
-
     if @group.save
       redirect_to @group
     else
