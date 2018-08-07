@@ -716,6 +716,19 @@
       </div>
     </div><br>
 
+    <div>
+        <%= form_for(@merchandise) do |f| %>
+          <%= f.hidden_field :phase_id, value: @phase.id %>
+          <b>Perk Name </b><br>
+                  <%= f.text_field :name, size: 80, value: "Podcast Title" || :name %><br><br>
+          <br><%= f.file_field :podcast %>
+          $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
+          <%= button_to "Add Podcast", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
+
+        <% end %>
+    </div>
+    <br><br>
+
   <%= button_to "Add my own custom Perk", phase_patronperk_path(@phase.permalink) , method: :get, class: "button" %>
   <%= button_to "Edit something else on this Campaign", edit_phase_path(@phase.permalink) , method: :get, class: "button" %>
 

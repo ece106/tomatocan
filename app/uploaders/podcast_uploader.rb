@@ -4,13 +4,17 @@ class PodcastUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  if Rails.env.development? || Rails.env.test?
+    storage :file  # but what if I want to test fog/aws
+  else
+    storage :fog
+  end
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
   end
 
   def cache_dir
@@ -40,7 +44,7 @@ class PodcastUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(mp3 wav)
+    %w(mp3 wav m4a)
   end
 
   # Override the filename of the uploaded files:

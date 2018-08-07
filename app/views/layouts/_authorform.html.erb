@@ -4,7 +4,11 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-<div style = "text-align:center; margin-top:-20px;  margin-bottom:20px; " >
+
+<%= render 'layouts/userpersonalheader' %>
+
+
+<div style = "text-align:center; margin-top:35px;  margin-bottom:20px; " >
   <% if @user.bannerpic.present? && @user.bannerpic != '' %>
     <%= image_tag @user.bannerpic.url.to_s, height: "300" %>
   <% else %>
@@ -12,7 +16,8 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <% end %>
 </div>
 
-<div style = "position: absolute; z-index: 1; top:0; height:200px;">
+
+<div style = "position: absolute; z-index: 1; top:55px; height:200px;">
   <% if user_signed_in? %>
     <% if @user == current_user %>
       <% if @user.author == 'author' || @user.author == 'storyteller' %>
@@ -111,7 +116,8 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% end %>
 <header class="navbar navbar-userpage">
   <div class="navbar-inner ">
-    <ul class="nav navbar-nav pull-left usermenu"> 
+    <div class="navtable">
+    <ul class="nav navbar-nav usermenu"> 
       <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
         <% if @user.author == 'storyteller' || @user.author == 'author'%>
           <% if @user.phases.any? %>
@@ -126,18 +132,8 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
           <% end %>
         <% end %>
     </ul>
+  </div>
 
-    <ul class="nav navbar-nav pull-right usermenu">
-        <li><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
-        <li><%= link_to " Recent Campaigns ", phases_path %>
-      <% if user_signed_in? %>
-        <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
-        <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <li><%= link_to 'SIGN UP!', "/signup" %> 
-        <li><%= link_to "Sign in", new_user_session_path %> 
-      <% end %>
-    </ul>
   </div>
 </header>
 

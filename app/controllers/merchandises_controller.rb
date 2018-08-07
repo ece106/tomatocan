@@ -75,7 +75,7 @@ class MerchandisesController < ApplicationController
 
     def merchandise_params
       params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :rttoeditphase,
-       :phase_id, :goal, :deadline, :youtube)
+       :phase_id, :goal, :deadline, :youtube, :podcast, :video, :graphic, :bookmobi, :bookepub, :bookpdf)
     end
 
     def resolve_layout

@@ -1,0 +1,19 @@
+
+
+<div >
+  <ul class="user-profile-header">
+    <li style="float:left"><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
+    <li style="float:left"><%= link_to " Recent Campaigns ", phases_path %>
+
+    <% if user_signed_in? %>
+      <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
+      <li><%= link_to "Options", user_profile_path(current_user.permalink) %> 
+      <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
+
+      
+    <% else %>
+      <li><%= link_to 'SIGN UP!', "/signup" %> 
+      <li><%= link_to "Sign in", new_user_session_path %> 
+    <% end %>
+  </ul>
+</div>

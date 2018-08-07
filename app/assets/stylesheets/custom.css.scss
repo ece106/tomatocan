@@ -209,6 +209,7 @@ p {
   ul {
     float: right;
     list-style: none;
+    
     li {
       float: left;
       text-align: left;
@@ -224,6 +225,11 @@ header.navbar {
   ul > li:last-child {
     margin-right: 0;
    }
+}
+
+.navtable {
+  display: table;
+  margin: auto;
 }
 
 /* footer */
@@ -329,7 +335,7 @@ center .info-content {
   max-width: 350px;
   overflow: wrap;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 8;
   transition: all 0.4s ease 0s;
   td {
     padding: 0px;

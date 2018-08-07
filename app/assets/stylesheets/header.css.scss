@@ -1,0 +1,37 @@
+.user-profile-header{
+    list-style-type: none;
+    margin: 0;
+    padding: 3;
+    overflow: hidden;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: rgb(33,40,64);
+        color: white;
+    }
+
+    .active {
+        background-color: #4CAF50;
+    }
+}
+
+
+
+
+
