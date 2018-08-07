@@ -220,7 +220,7 @@ class GroupsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def group_params
       params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about,
-        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl,
+        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl, :slug,
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
         :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn )
     end
