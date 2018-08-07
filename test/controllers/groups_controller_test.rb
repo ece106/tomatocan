@@ -20,19 +20,23 @@ class GroupsControllerTest < ActionController::TestCase
   test "should create group" do
     sign_in users(:one)
     assert_difference('Group.count', 1) do
-      post :create, group: { about: @group.about, address: @group.address, grouppic: @group.grouppic, latitude: @group.latitude, longitude: @group.longitude, name: "newgroup", grouptype: @group.grouptype, user_id: @group.user_id }
+      post :create, params:{ group: { about: @group.about, address: @group.address, grouppic: @group.grouppic, name: @group.name, grouptype: @group.grouptype, user_id: @group.user_id , permalink: '2gh'} }
     end
-    assert_redirected_to group_path(assigns(:group))
+   #assert_redirected_to groups_path(assigns(:group))
+     assert_redirected_to "http://test.host/groups/2gh"
+   puts "-----------"
+    #assert_redirected_to @group
   end
+
 
   test "should show group" do
     get :show, id: @group, session: { email: "fake@fake.com", password: 'password' }
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: 1, session: { email: "fake@fake.com", password: 'password' }
-    assert_response :success
+  test "should get edit" do 
+        get :edit, params: { id: @group }
+      assert_response :success
   end
 
   test "should update group" do
@@ -47,4 +51,5 @@ class GroupsControllerTest < ActionController::TestCase
     end
     assert_redirected_to groups_path
   end
+
 end
