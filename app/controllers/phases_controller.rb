@@ -108,7 +108,8 @@ class PhasesController < ApplicationController
   def update
     if @phase.update(phase_params)
       @phase.get_youtube_id
-      redirect_to @phase, notice: 'phase was successfully updated.'
+      @phase.update_attribute(:slug, @phase.permalink)
+      redirect_to @phase, notice: 'Phase was successfully updated.'
     else
       render action: 'edit'
     end
@@ -131,7 +132,7 @@ class PhasesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def phase_params
       params.require(:phase).permit(:name, :user_id, :mission, :phasepic, :permalink, 
-        :deadline, :why_classy, :youtube)
+        :deadline, :why_classy, :youtube, :slug)
     end
 
     def resolve_layout

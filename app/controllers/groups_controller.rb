@@ -63,6 +63,7 @@ class GroupsController < ApplicationController
       format.json { render json: @group }
     end
   end
+
   def calendar
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
@@ -72,6 +73,8 @@ class GroupsController < ApplicationController
     @event_strips = @events.event_strips_for_month(@shown_month).where('group2id = ?', @group.id ) + @event_strips
     @event_strips = @events.event_strips_for_month(@shown_month).where('group3id = ?', @group.id ) + @event_strips
   end
+
+  
   def eventlist
     @events = Event.where('group1id = ?', @group.id )
     @events = Event.where('group2id = ?', @group.id ) + @events
@@ -189,12 +192,6 @@ class GroupsController < ApplicationController
     @totalinfo = @group.totalinfo
   end
 
-  # DELETE /groups/1
-  def destroy
-    #create new column to flag for disabling display
-    redirect_to groups_url, notice: 'Group was successfully disabled.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -219,7 +216,7 @@ class GroupsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def group_params
       params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about,
-        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl,
+        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl, :slug,
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
         :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn )
     end
