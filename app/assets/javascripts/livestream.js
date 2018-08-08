@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onLivestreamLoad = function() {
 
   // Normalize the various vendor prefixed versions of getUserMedia.
   navigator.getUserMedia = (navigator.getUserMedia ||
