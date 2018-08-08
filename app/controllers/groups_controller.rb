@@ -74,7 +74,7 @@ class GroupsController < ApplicationController
     @event_strips = @events.event_strips_for_month(@shown_month).where('group3id = ?', @group.id ) + @event_strips
   end
 
-  
+
   def eventlist
     @events = Event.where('group1id = ?', @group.id )
     @events = Event.where('group2id = ?', @group.id ) + @events
@@ -139,12 +139,16 @@ class GroupsController < ApplicationController
       format.json { render json: @group1 }
     end
   end
+
+
   def correcterrors
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @group }
     end
   end
+
+
   def manageaccounts
     if @group.stripeid.present? 
       account = Stripe::Account.retrieve(@group.stripeid)
@@ -162,11 +166,14 @@ class GroupsController < ApplicationController
       format.json { render json: @group }
     end
   end
+
+
   def createstripeacnt  #called from button on createstripeaccount page
     @group.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
         params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
     redirect_to group_addbankaccount_path(@group.permalink)
   end
+  
   def addbankacnt   #called from button on addbankaccount page
     @group.add_bank_account(params[:currency], params[:bankaccountnumber], 
         params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
