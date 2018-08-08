@@ -1,5 +1,3 @@
-
-
 <div >
   <ul class="user-profile-header">
     <li style="float:left"><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %>
@@ -7,10 +5,64 @@
 
     <% if user_signed_in? %>
       <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
-      <li><%= link_to "Options", user_profile_path(current_user.permalink) %> 
-      <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
+      <li class="dropdown"> 
+         <button class="btn btn-secondary dropdown-toggle btn-lettering" data-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> Options <i class="fa fa-caret-down"></i> </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <% if user_signed_in? %>
+              <% if @user == current_user %>
+                <% if @user.author == 'author' || @user.author == 'storyteller' %>
+                  <%if controller.controller_name == 'users' %>
+                    <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%> 
+                    <% if @user.stripeid.present? %>
+                      <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%>
+                    <% end %>
 
-      
+                    <% if @mynullagreements.count != 0 %>
+                      <%= link_to "You have partner request", user_phases_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
+                    <% else %> 
+                      <% if current_user.phases.any? %>
+                        <% if @sidebarphase.merchandises.any? %>
+                          <%= link_to "Edit Campaigns", user_phases_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
+                        <% else %> 
+                          <% @perkpath = phase_storytellerperks_path(@sidebarphase.permalink) %>
+                          <%= link_to "Create Perks", @perkpath, method: :get, class: 'dropdown-item' %>
+                        <% end %> 
+                      <% else %> 
+                        <%= link_to "Start a Campaign", new_phase_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
+                      <% end %> 
+                    <% end %> 
+
+                    <% if current_user.stripeid.present? %>
+                      <% if current_user.stripeid.match(/acct/) %>
+                        <% if @fieldsneeded.present? %>
+                          <%= link_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
+                        <% else %> 
+                          <%= link_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
+                         <% end %>
+                      <% else %> 
+                        <%= link_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
+                      <% end %> 
+                    <% else %> 
+                      <% if current_user.phases.any? && current_user.id != 143 %>
+                        <% if @sidebarphase.merchandises.any? %>
+                          <%= link_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
+                        <% end %> 
+                      <% end %> 
+                    <% end %> 
+                  <% end %>
+                <% else #user is NOT a creator %> 
+                  <%= link_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
+                  <% if current_user.groups.any? %>
+                    <%= link_to "Edit Organizations", user_groups_path, method: :get, class: 'dropdown-item'%>
+                  <% else %>
+                    <%= link_to "Get a Page for Your Org", user_groups_path, method: :get, class: 'dropdown-item'%>
+                  <% end %>
+                    <%= link_to "View Dashboard", user_dashboard_path, method: :get, class: 'dropdown-item'%>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+      <li> <%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
     <% else %>
       <li><%= link_to 'SIGN UP!', "/signup" %> 
       <li><%= link_to "Sign in", new_user_session_path %> 

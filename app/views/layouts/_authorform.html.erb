@@ -23,48 +23,15 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
       <% if @user.author == 'author' || @user.author == 'storyteller' %>
         <%if controller.controller_name == 'users' %>
           <div style = "display:inline-flex;">
-            <%= button_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'button' %>
-
-            <% if @user.stripeid.present? %>
-              <%= button_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'button' %>
-            <% end %>
+            
           </div> <br>
 
           <div style = "display:inline-flex;">
-            <% if @mynullagreements.count != 0 %>
-              <%= button_to "You have partner request", user_phases_path(current_user.permalink), {:style => "background-color:red", method: :get, class: 'button'} %>
-            <% else %> 
-              <% if current_user.phases.any? %>
-                <% if @sidebarphase.merchandises.any? %>
-                  <%= button_to "Edit Campaigns", user_phases_path(current_user.permalink), method: :get, class: 'button' %>
-                <% else %> 
-                    <% @perkpath = phase_storytellerperks_path(@sidebarphase.permalink) %>
-                  <%= button_to "Create Perks", @perkpath, method: :get, class: 'button', style:"color:red; font-size:28px;"  %>
-                <% end %> 
-              <% else %> 
-                <%= button_to "Start a Campaign", new_phase_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>
-              <% end %> 
-            <% end %> 
+            
           </div> <br>
 
           <div style = "display:inline-flex;">
-            <% if current_user.stripeid.present? %>
-              <% if current_user.stripeid.match(/acct/) %>
-                <% if @fieldsneeded.present? %>
-                  <%= button_to "Correct Bank Account Errors", user_correcterrors_path(current_user.permalink), { style: "background-color:red", method: :get} %>
-                <% else %> 
-                  <%= button_to "Edit $ Account", user_manageaccounts_path(current_user.permalink), method: :get, class: 'button' %>
-                <% end %>
-              <% else %> 
-                <%= button_to "Add Bank Account", user_addbankaccount_path(current_user.permalink), method: :get, class: 'button' %>
-              <% end %> 
-            <% else %> 
-              <% if current_user.phases.any? && current_user.id != 143 %>
-                <% if @sidebarphase.merchandises.any? %>
-                  <%= button_to "Get Paid", user_createstripeaccount_path(current_user.permalink), method: :get, class: 'button', style:"color:red; font-size:28px;" %>
-                <% end %> 
-              <% end %> 
-            <% end %> <br>
+            <br>
           </div> 
         <% else #curruser is not this author/actor/filmkr %> 
           <div style="margin-top:130px"><br>
@@ -72,13 +39,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
         <% end %> 
 
       <% else #user is NOT a creator %> 
-        <%= button_to "Edit Profile", user_readerprofileinfo_path(current_user.permalink), method: :get, class: 'button' %>
-        <% if current_user.groups.any? %>
-          <%= button_to "Edit Organizations", user_groups_path, method: :get, class: 'button' %>
-        <% else %>
-          <%= button_to "Get a Page for Your Org", user_groups_path, method: :get, class: 'button' %>
-        <% end %> <br>
-        <%= button_to "View Dashboard", user_dashboard_path, method: :get, class: 'button' %><br>
+        
       <% end %>
     <% else %> 
       <div style="margin-top:130px"><br>
