@@ -314,6 +314,13 @@ sidebar {
   }
 }
 
+.post-border {
+  border-style: solid;
+  border-color: black;
+  margin: 5px;
+  background-color: #E1D8E9;
+}
+
 center .info-content {
   padding-left: 0;
   margin-top: -20px;
@@ -329,12 +336,12 @@ center .info-content {
   margin-left: -350px;
   left: 350px;
   width: 350px;
-  background: #a69aaf;
+  background: white;
   position: absolute;
   height: 100%;
   max-width: 350px;
   overflow: wrap;
-  overflow-y: auto;
+ 
   z-index: 8;
   transition: all 0.4s ease 0s;
   td {
