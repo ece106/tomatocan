@@ -321,8 +321,12 @@ sidebar {
 
   border-bottom: solid;
   border-width: 3px;
-  border-color: #e5e5e5;
+  border-color: #863276;
   background-color: white;
+
+  -webkit-box-shadow: 5px 5px 3px #e5e5e5;
+  -moz-shadow: 5px 5px 3px #e5e5e5;
+  box-shadow: 5px 5px 3px #e5e5e5;
 
   margin-bottom: 10px;
   padding-left: 10px;
@@ -391,7 +395,7 @@ center .info-content {
 }
 
 .button{
-  background-color: #ecdfff;
+  background-color: #A14690;
   font-size:16px;
   margin-top:5px;
   margin-left:5px;
@@ -400,10 +404,13 @@ center .info-content {
   padding-bottom:8px;
   padding-left:18px;
   padding-right:18px;
-  border-width:1px;
-  border-color:#2c36a1;
-  border-radius: 3px;
-  color:#2c36a1;
+  border: none;
+  border-radius: 2px;
+  color:white;
   text-align:center;
  }
+
+.button:hover {
+  background-color: #863276;
+} 
 
