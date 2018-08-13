@@ -112,7 +112,8 @@ class User < ApplicationRecord
   end
 
   def add_bank_account(currency, bankaccountnumber, routingnumber, countryofbank, line1,
-                        line2, city, postalcode, state, ein, ssn) 
+                        line2, city, postalcode, state, ein, last4ssn) 
+    # state makes no sense if countryofbank isnt usa. what do other countries have instead of ssn???
     # actual stripe acct object was created in group's stripe customer acct on the createstripeaccount page. Here they're just adding their bank account number
     account = Stripe::Account.retrieve(self.stripeid) 
     ca = "CA"
@@ -181,7 +182,7 @@ class User < ApplicationRecord
 #if CA, US
     account.legal_entity.address.state = state
     account.legal_entity.business_tax_id = ein
-    account.legal_entity.ssn_last_4 = ssn
+    account.legal_entity.ssn_last_4 = last4ssn
     account.save
   end    
 
@@ -361,13 +362,6 @@ class User < ApplicationRecord
 
     def parse_youtube url
       regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-      if url.match(regex)
-        url.match(regex)[1]
-      end
-    end
-
-    def parse_ustream url #i believe this is no longer used
-      regex = /(?:ustream.tv\/embed\/|\/(?=p\/))([\w\/\-]+)/
       if url.match(regex)
         url.match(regex)[1]
       end
