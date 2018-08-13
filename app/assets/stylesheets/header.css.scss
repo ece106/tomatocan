@@ -23,19 +23,19 @@
 
     li a {
         display: block;
-        color: black;
+        color: #863276;
         text-align: center;
         padding: 14px 14px;
         text-decoration: none;
     }
 
     li a:hover:not(.active) {
-        background-color: rgb(33,40,64);
-        color: white;
+        background-color: transparent;
+        color: black;
     }
 
     .active {
-        background-color: #4CAF50;
+        background-color: transparent;
     }
 
     #crowdPublishIcon-logo {

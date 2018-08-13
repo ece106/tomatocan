@@ -127,8 +127,8 @@ carousel-inner>.item {
 }
 
 .navbar-userpage {
-    color:#2c3651;
-    background-color: #2c3651;
+    color:#black;
+    background-color: white;
     border-color: #fff;
     border:0px;
     border-radius:0;
@@ -136,8 +136,8 @@ carousel-inner>.item {
 }
 
 .navbar-grouppage {
-    color:#681ace;
-    background-color: #681ace;
+    color: #863276;
+    background-color: white;
     border-color: #fff;
     border-radius:0;
     padding-right: 0px;
@@ -158,17 +158,17 @@ carousel-inner>.item {
 }
 
 .navbar .navbar-nav > li > a {
-    color: #fff;
+    color: #863276;
 }
 .navbar .navbar-nav > li > a:hover,
 .navbar .navbar-nav > li > a:focus {
-  color: #fff;
+  color: black;
   background-color: transparent;
 }
 .navbar .navbar-nav > .active > a, 
 .navbar .navbar-nav > .active > a:hover, 
 .navbar .navbar-nav > .active > a:focus {
-    color: #fff;
+    color: #863276;
 }
 
 .nav-stacked li a {
@@ -327,6 +327,11 @@ sidebar {
   margin-bottom: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.important-info {
+  background-color: white;
 }
 
 center .info-content {

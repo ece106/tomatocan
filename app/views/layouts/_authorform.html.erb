@@ -8,7 +8,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <%= render 'layouts/userpersonalheader' %>
 
 
-<div style = "text-align:center; margin-top:35px;  margin-bottom:20px; " >
+<div style = "text-align:center; margin-top:35px;  margin-bottom:20px; overflow-x: hidden; " >
   <% if @user.bannerpic.present? && @user.bannerpic != '' %>
     <%= image_tag @user.bannerpic.url.to_s, height: "300" %>
   <% else %>
@@ -79,17 +79,17 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
   <div class="navbar-inner ">
     <div class="navtable">
     <ul class="nav navbar-nav usermenu"> 
-      <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) %>
+      <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) , class: 'link-to-text' %> </li>
         <% if @user.author == 'storyteller' || @user.author == 'author'%>
           <% if @user.phases.any? %>
-            <li><%= link_to " Campaigns ", user_phases_path(@user.permalink) %>
+            <li><%= link_to " Campaigns ", user_phases_path(@user.permalink), class: 'link-to-text' %></li>
           <% end %>
-          <li><%= link_to @user.following.count.to_s + " following", user_followingpage_path(@user.permalink) %>
-          <li><%= link_to @user.followers.count.to_s + " followers", user_followerspage_path(@user.permalink) %>
-          <li><%= render '/users/follow_form', :user => User.find_by_permalink(params[:permalink]) %>
+          <li><%= link_to @user.following.count.to_s + " following", user_followingpage_path(@user.permalink), class: 'link-to-text' %> </li>
+          <li><%= link_to @user.followers.count.to_s + " followers", user_followerspage_path(@user.permalink), class: 'link-to-text' %> </li>
+          <li><%= render '/users/follow_form', :user => User.find_by_permalink(params[:permalink]) %> </li>
         
           <% if @user.about.present? || @user.twitter.present? %>
-            <li><%= link_to " About Me ", user_about_path(@user.permalink) %>
+            <li><%= link_to " About Me ", user_about_path(@user.permalink), class: 'link-to-text'  %> </li>
           <% end %>
         <% end %>
     </ul>
