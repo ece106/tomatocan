@@ -15,6 +15,9 @@ html {
 body {
   padding-top: 0px;
 }
+.body-color {
+  background-color: #f2f2f2;
+}
 
 .carousel-caption {
   width: 100vw;
@@ -315,10 +318,15 @@ sidebar {
 }
 
 .post-border {
-  border-style: solid;
-  border-color: black;
-  margin: 5px;
-  background-color: #E1D8E9;
+
+  border-bottom: solid;
+  border-width: 3px;
+  border-color: #e5e5e5;
+  background-color: white;
+
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 center .info-content {
@@ -336,7 +344,6 @@ center .info-content {
   margin-left: -350px;
   left: 350px;
   width: 350px;
-  background: white;
   position: absolute;
   height: 100%;
   max-width: 350px;
@@ -350,6 +357,7 @@ center .info-content {
 }
 #page-content-wrapper {
   width: 100%;
+
 }
 .sidebar-nav {
   position: absolute;
