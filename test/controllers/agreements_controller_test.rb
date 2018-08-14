@@ -11,28 +11,23 @@ class AgreementsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:agreements)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should create agreement" do
-    assert_difference('Agreement.count') do
-    post :create, params: { agreement: { phase_id: 1, group_id: 1 } } 
+    sign_in users(:one)
+    @phase = phases(:one)
+    @group = groups(:one)
+    assert_difference('Agreement.count',1) do
+      post :create, params: { agreement: { phase_id: @phase.id, group_id: @group.id} } 
     #um, there are no records that exist in the test database with id = 1
 #old syntax    post :create, agreement: { group_id: @agreement.group_id, phase_id: @agreement.phase_id }
     end
-
-    assert_redirected_to agreement_path(assigns(:agreement))
+    assert_redirected_to phase_path(@phase.id)
   end
+
+
+
 
   test "should show agreement" do
     get :show, params: { id: @agreement }
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @agreement
     assert_response :success
   end
 
@@ -41,11 +36,4 @@ class AgreementsControllerTest < ActionController::TestCase
     assert_redirected_to agreement_path(assigns(:agreement))
   end
 
-  test "should destroy agreement" do
-    assert_difference('Agreement.count', -1) do
-      delete :destroy, id: @agreement
-    end
-
-    assert_redirected_to agreements_path
-  end
 end

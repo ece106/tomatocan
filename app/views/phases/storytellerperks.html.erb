@@ -22,10 +22,10 @@
             <%= form_for(@merchandise) do |f| %>
               <%= f.hidden_field :phase_id, value: @phase.id %>
               <b>Perk Name </b><br>
-              <%= f.text_field :name, size: 80, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
+              <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
               <b>About this Patron Perk </b><br>
               What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
-              <%= f.text_area :desc, cols: 82, rows: 7, value: "I will write a tip of the wee on your facebook wall or in a tweet to you every Tuesday for the next 4 weeks. Please state whether you'd prefer a facebook post or tweet." || :desc %><br><br>
+              <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a tip of the week on your facebook wall or in a tweet to you every Tuesday for the next 4 weeks. Please state whether you'd prefer a facebook post or tweet." || :desc %><br><br>
               <b>Price </b><br>
               $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
               <%= button_to "Offer Social Media Post", { controller: 'phases', id: @phase.id}, :method => :post, class: "button" %>
@@ -50,9 +50,9 @@
             <%= form_for(@merchandise) do |f| %>
               <%= f.hidden_field :phase_id, value: @phase.id %>
               <b>Perk Name </b><br>
-              <%= f.text_field :name, size: 80, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
+              <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
               <b>About this Patron Perk </b><br>
-              <%= f.text_area :desc, cols: 82, rows: 7, value: "I will write a brief greeting or line from my latest gag reel on your facebook wall and in a tweet to you every day one week." || :desc %><br><br>
+              <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a brief greeting or line from my latest gag reel on your facebook wall and in a tweet to you every day one week." || :desc %><br><br>
               <b>Price </b><br>
               $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
               <%= button_to "Offer Social Media Post", { controller: 'phases', id: @phase.id}, :method => :post, class: "button" %>
@@ -77,10 +77,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Video Reading posted on your facebook wall" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Video Reading posted on your facebook wall" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will record a video of myself reading from my next chapter and post it on your facebook wall. " || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I will record a video of myself reading from my next chapter and post it on your facebook wall. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
                 <%= button_to "Offer Facebook Video Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -105,10 +105,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Patrons Only behind the scenes Secrets " || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Patrons Only behind the scenes Secrets " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br> 
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll email you my Patrons Only news blog that contains Secrets about what happened this week behind the scenes of my latest movie - My take on what goes on when the camera is off." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll email you my Patrons Only news blog that contains Secrets about what happened this week behind the scenes of my latest movie - My take on what goes on when the camera is off." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 30.00 || :price %>USD<br>
                 <%= button_to "Offer Behind The Scenes Blog Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -133,10 +133,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Video Reading posted on your facebook wall" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Video Reading posted on your facebook wall" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will record a video of myself practicing jokes I wrote and post it on your facebook wall. " || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I will record a video of myself practicing jokes I wrote and post it on your facebook wall. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
                 <%= button_to "Offer Facebook Video Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -161,10 +161,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Your Name In Credits of the next chapter of my book" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Your Name In Credits of the next chapter of my book" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Get on the List of Patrons at the end of the next independent video of my monologues that I am producing. This video will be sent out to Patrons next month." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Get on the List of Patrons at the end of the next independent video of my monologues that I am producing. This video will be sent out to Patrons next month." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br><br>
                 <b>Perk Picture </b><br>
@@ -192,10 +192,10 @@
             <%= form_for(@merchandise) do |f| %>
               <%= f.hidden_field :phase_id, value: @phase.id %>
               <b>Perk Name </b><br>
-              <%= f.text_field :name, size: 80, value: "We'll write a 30-line story together on your Facebook wall or your latest Instagram picture" || :name %><br><br>
+              <%= f.text_field :name, size: 60, value: "We'll write a 30-line story together on your Facebook wall or your latest Instagram picture" || :name %><br><br>
               <b>About this Patron Perk </b><br>
               Be specific about what you're willing to offer (You may edit this before fans purchase)<br>
-              <%= f.text_area :desc, cols: 82, rows: 7, value: "I will write a the first sentence of a story on your facebook wall or latest instagram photo. You write the second line. I'll write the third and we'll keep taking turns until I've written 15 lines, resulting in a 30 or more line story (more lines if your friends join in). Please state whether you'd prefer a facebook post or instagram comment." || :desc %><br><br>
+              <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a the first sentence of a story on your facebook wall or latest instagram photo. You write the second line. I'll write the third and we'll keep taking turns until I've written 15 lines, resulting in a 30 or more line story (more lines if your friends join in). Please state whether you'd prefer a facebook post or instagram comment." || :desc %><br><br>
               <b>Price </b><br>
               $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
               <%= button_to "Offer Social Media Post", { controller: 'phases', id: @phase.id}, :method => :post, class: "button" %>
@@ -221,10 +221,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Facebook Livestream Reading " || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Facebook Livestream Reading " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll read a 3 minute excerpt of your writing as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll read a 3 minute excerpt of your writing as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
                 <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -249,10 +249,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
                 <b>About this Patron Perk </b><br> 
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are: Weeknights at 7:00pm PST and 7:15 PST. " || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are: Weeknights at 7:00pm PST and 7:15 PST. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
                 <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -277,10 +277,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Attend My Panel Discussion"|| :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Attend My Panel Discussion"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Four local authors are putting on a panel discussion about our books on May 9 7:30pm at the Central Library in Phoenix. Come and join the Q & A. " || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Four local authors are putting on a panel discussion about our books on May 9 7:30pm at the Central Library in Phoenix. Come and join the Q & A. " || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
                 <%= button_to "Offer Event Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -305,10 +305,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Be part of a Live presentation"|| :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Be part of a Live presentation"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Join me and up to 7 other fans in a google Hangouts session at 6:30pm PST (9:30pm EST) on November 15. My colleagues and I will each play characters in a Murder Mystery we have written. My colleagues and I will all be in the same location. The first 7 lucky fans will join us onscreen and participate in the dialogue from the comfort of their own home. Additional fans will be able to watch but won't be onscreen. I'll send instructions on how to join the Hangouts session three days before the Hangouts event. Will one of YOU be the culprit?" || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Join me and up to 7 other fans in a google Hangouts session at 6:30pm PST (9:30pm EST) on November 15. My colleagues and I will each play characters in a Murder Mystery we have written. My colleagues and I will all be in the same location. The first 7 lucky fans will join us onscreen and participate in the dialogue from the comfort of their own home. Additional fans will be able to watch but won't be onscreen. I'll send instructions on how to join the Hangouts session three days before the Hangouts event. Will one of YOU be the culprit?" || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
                 <%= button_to "Offer Interactive TV Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -333,11 +333,11 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Speak at your book club meeting " || :name %><br><br>
-                <%= f.text_field :name, size: 80, value: "Speak at your movie party " || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Speak at your book club meeting " || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Speak at your movie party " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will talk to your book club members for a half hour about what went on behind the scenes of my latest book. Must be within the Phoenix metro area or on Skype." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I will talk to your book club members for a half hour about what went on behind the scenes of my latest book. Must be within the Phoenix metro area or on Skype." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 200.00 || :price %>USD<br>
                 <%= button_to "Offer Party Appearance Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -362,10 +362,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Be part of a Live Drama presentation"|| :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Be part of a Live Drama presentation"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Join me and up to 7 other fans in a google Hangouts session at 6:30pm PST (9:30pm EST) on November 15. My colleagues and I will each play characters in a Murder Mystery we have set up. My colleagues will all be in the same location, however the first 7 fans to snap up tickets will join us onscreen and participate in the dialogue from the comfort of their own home. I'll send instructions on how to join the Hangouts session three days before the Hangouts event. Will one of YOU be the culprit?" || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Join me and up to 7 other fans in a google Hangouts session at 6:30pm PST (9:30pm EST) on November 15. My colleagues and I will each play characters in a Murder Mystery we have set up. My colleagues will all be in the same location, however the first 7 fans to snap up tickets will join us onscreen and participate in the dialogue from the comfort of their own home. I'll send instructions on how to join the Hangouts session three days before the Hangouts event. Will one of YOU be the culprit?" || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
                 <%= button_to "Offer Interactive TV Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -390,10 +390,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Speak at your movie party " || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Speak at your movie party " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I will talk to your party guests for a half hour about what goes on behind the scenes of my latest movie in character. Must be within the Phoenix metro area. " || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I will talk to your party guests for a half hour about what goes on behind the scenes of my latest movie in character. Must be within the Phoenix metro area. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 200.00 || :price %>USD<br>
                 <%= button_to "Offer Party Appearance Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -418,10 +418,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Consultation package" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Consultation package" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly video appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "We will set up weekly video appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
                     <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -446,10 +446,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Consultation package" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Consultation package" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "We will set up weekly phone appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "We will set up weekly phone appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
                     <%= button_to "Offer Consultation Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -484,10 +484,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
                 <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -512,10 +512,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Facebook Livestream Reading " || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Facebook Livestream Reading " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll act out a 3 minute excerpt of your short script as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll act out a 3 minute excerpt of your short script as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
                 <%= button_to "Offer Live Online Reading Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -540,10 +540,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "I'll Play Minecraft with you and your friends for a half hour"|| :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "I'll Play Minecraft with you and your friends for a half hour"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "I'll play Minecraft with you for 30 minutes on a weekday evening before midnight PST. Will email you next week to schedule date and time and get your screenname." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll play Minecraft with you for 30 minutes on a weekday evening before midnight PST. Will email you next week to schedule date and time and get your screenname." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
                 <%= button_to "Offer Video Game Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -568,10 +568,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Your Name In Credits of the next chapter of my book" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Your Name In Credits of the next chapter of my book" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Get on the list of Patrons at the end of the next chapter of the book I'm currently writing. This chapter will be send out to qualifying Patrons in two months. After the book is completed, your name will be included in the page of thanks at the end of the book." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Get on the list of Patrons at the end of the next chapter of the book I'm currently writing. This chapter will be send out to qualifying Patrons in two months. After the book is completed, your name will be included in the page of thanks at the end of the book." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br><br>
                 <b>Perk Picture </b><br>
@@ -599,10 +599,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Name the next Character in my book"|| :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Name the next Character in my book"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "The next character we introduce will be hilarious. Name her or him after yourself or select your own custom name." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "The next character we introduce will be hilarious. Name her or him after yourself or select your own custom name." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
                 <%= button_to "Offer Character Name Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -627,10 +627,10 @@
               <%= form_for(@merchandise) do |f| %>
                 <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 80, value: "Advance access to read a chapter of my current book before it's released" || :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Advance access to read a chapter of my current book before it's released" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
                 What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 82, rows: 7, value: "Within the next two months I will email a near-final draft of the next chapter of my book to everyone who orders this perk." || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Within the next two months I will email a near-final draft of the next chapter of my book to everyone who orders this perk." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 30.00 || :price %>USD<br>
                 <%= button_to "Offer Chapter Advance Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %><br><br>
@@ -661,10 +661,10 @@
                 <%= form_for(@merchandise) do |f| %>
                   <%= f.hidden_field :phase_id, value: @phase.id %>
                   <b>Perk Name </b><br>
-                  <%= f.text_field :name, size: 80, value: @author.name + "'s Personal Recipe for Something Delicious" || :name %><br><br>
+                  <%= f.text_field :name, size: 60, value: @author.name + "'s Personal Recipe for Something Delicious" || :name %><br><br>
                   <b>About this Patron Perk </b><br>
                   What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
-                  <%= f.text_area :desc, cols: 82, rows: 7, value: "Recipe for Disaster: My assistant will email you my personal recipe for how to turn your baking disasters into a creamy fruity dessert." || :desc %><br><br>
+                  <%= f.text_area :desc, cols: 62, rows: 7, value: "Recipe for Disaster: My assistant will email you my personal recipe for how to turn your baking disasters into a creamy fruity dessert." || :desc %><br><br>
                   <b>Price </b><br>
                   $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
                   <%= button_to "Offer Recipe Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>
@@ -689,10 +689,10 @@
                 <%= form_for(@merchandise) do |f| %>
                   <%= f.hidden_field :phase_id, value: @phase.id %>
                   <b>Perk Name </b><br>
-                  <%= f.text_field :name, size: 80, value: "One Hour Q&A, One Tweet Per Week, Plus Your Name a Video posted on your facebook wall" || :name %><br><br>
+                  <%= f.text_field :name, size: 60, value: "One Hour Q&A, One Tweet Per Week, Plus Your Name a Video posted on your facebook wall" || :name %><br><br>
                   <b>About this Patron Perk </b><br>
                   What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
-                  <%= f.text_area :desc, cols: 82, rows: 7, value: "Get all three of these items for one special price by the end of the month." || :desc %><br><br>
+                  <%= f.text_area :desc, cols: 62, rows: 7, value: "Get all three of these items for one special price by the end of the month." || :desc %><br><br>
                   <b>Price </b><br>
                   $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
                   <%= button_to "Offer Combo Perk", { controller: 'phases', id: @phase.id, method: :post}, class: "button" %>

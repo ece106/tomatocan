@@ -102,7 +102,6 @@ class GroupsController < ApplicationController
   # POST /groups
   def create
     @group = current_user.groups.build(group_params)
-
     if @group.save
       redirect_to @group
     else
@@ -190,12 +189,6 @@ class GroupsController < ApplicationController
     @totalinfo = @group.totalinfo
   end
 
-  # DELETE /groups/1
-  def destroy
-    #create new column to flag for disabling display
-    redirect_to groups_url, notice: 'Group was successfully disabled.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -220,7 +213,7 @@ class GroupsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def group_params
       params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about,
-        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl,
+        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl, :slug,
         :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
         :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn )
     end

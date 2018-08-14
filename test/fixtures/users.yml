@@ -17,12 +17,12 @@ one:
   blogurl: MyString
   profilepicurl: MyString
   profilepic: hello.jpg
-  youtube1: http://youtube.com/watch?v=/frlveggg  
+  youtube1: /frlveggg  
   address: 20012
   author: author
   about: MyText
   twitter: MyTwitter
-#  stripeid: acct_173whFBNd1jPrlMf
+  stripeid: acct_1BLIfGFpv54ZlS5f
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
   remember_token: MyString
 
@@ -46,5 +46,4 @@ two:
   author: reader
   about: MyText2
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %>
-#  password_digest: <%= BCrypt::Password.create("password") %>
   remember_token: MyString2
