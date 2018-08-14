@@ -13,35 +13,35 @@
         Engage directly with fans
       </div>
 
-     <div class="font19left" >
+      <div class="font19left" >
 <% "SOCIAL MEDIA POST" %>
-    <div class="accordion" id="accordion1">
-      <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
-        <div id="accordion-toggle1" class="accordion-body collapse">
-          <div class="accordion-inner">
-            <%= form_for(@merchandise) do |f| %>
-              <%= f.hidden_field :phase_id, value: @phase.id %>
-              <b>Perk Name </b><br>
-              <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
-              <b>About this Patron Perk </b><br>
-              What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
-              <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a tip of the week on your facebook wall or in a tweet to you every Tuesday for the next 4 weeks. Please state whether you'd prefer a facebook post or tweet." || :desc %><br><br>
-              <b>Price </b><br>
-              $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
-              <%= button_to "Offer Social Media Post", { controller: 'phases', id: @phase.id}, :method => :post, class: "button" %>
-            <% end %>
+        <div class="accordion" id="accordion1">
+          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
+            <div id="accordion-toggle1" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%= form_for(@merchandise) do |f| %>
+                  <%= f.hidden_field :phase_id, value: @phase.id %>
+                  <b>Perk Name </b><br>
+                  <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
+                  <b>About this Patron Perk </b><br>
+                  What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
+                  <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a tip of the week on your facebook wall or in a tweet to you every Tuesday for the next 4 weeks. Please state whether you'd prefer a facebook post or tweet." || :desc %><br><br>
+                  <b>Price </b><br>
+                  $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
+                  <%= button_to "Offer Social Media Post", { controller: 'phases', id: @phase.id}, :method => :post, class: "button" %>
+                <% end %>
+              </div>
+            </div>
+            <a class="accordion-toggle1" data-toggle="collapse" href="#accordion-toggle1">
+              <span>
+                Informative or inspirational <b>Social Media Post</b>
+              </span>
+              <span class="hidden1more">
+                ...Hide <b>Social Media Post</b> details<br><br>
+              </span>
+            </a>
           </div>
         </div>
-        <a class="accordion-toggle1" data-toggle="collapse" href="#accordion-toggle1">
-          <span>
-            Informative or inspirational <b>Social Media Post</b>
-          </span>
-          <span class="hidden1more">
-            ...Hide <b>Social Media Post</b> details<br><br>
-          </span>
-        </a>
-      </div>
-    </div>
 <% "SOCIAL MEDIA POST 2" %>
     <div class="accordion" id="accordion2">
       <div class="accordion-group" style="padding-left:10px; padding-top:5px; padding-bottom:5px">

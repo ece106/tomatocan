@@ -4,9 +4,37 @@
 <title>CrowdPublishTV - Crowdfund Classy Stories</title>
 </head>
 
-  <div id="video-container">
-    <video id="camera-stream" width="500" autoplay></video>
+<div class="row">
+  <div class="col-md-5 col-sm-6 col-xs-12" style="padding-top:15px; padding-right:5px;">
+    <div id="video-container">
+      <video id="camera-stream" width="500" autoplay></video>
+    </div>
+    <script>$(document).ready(onLivestreamLoad)</script>
+    <%= link_to "Join the Livestream", "https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE", :class => "btn btn-primary", target: "_blank", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
   </div>
-  <script>$(document).ready(onLivestreamLoad)</script>
+  <div class="col-md-7 col-sm-6 col-xs-12" style="padding-top:15px; padding-right:5px;">
 
-This is a livestreaming page.
+        <div class="accordion" id="accordion1">
+          <div class="accordion-group" style="background:#eee; padding-left:10px; padding-top:5px; padding-bottom:5px">
+            <div id="accordion-toggle1" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%= render 'lisas80scatholichighschool' %>
+              </div>
+            </div>
+            <a class="accordion-toggle1" data-toggle="collapse" href="#accordion-toggle1">
+              <span>
+                Lisa's 80s Catholic High School Movie
+              </span>
+              <span class="hidden1more">
+                ...Hide Lisa's 80s Catholic High School Movie<br><br>
+              </span>
+            </a>
+          </div>
+        </div>
+
+
+
+
+  </div>
+</div> 
+ 
