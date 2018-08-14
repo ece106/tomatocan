@@ -7,7 +7,7 @@
     <% if user_signed_in? %>
       <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %> </li>
       <li class="dropdown"> 
-         <button class="btn btn-secondary dropdown-toggle btn-lettering" data-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> Options <i class="fa fa-caret-down"></i> </button>
+         <button class="btn dropdown-toggle btn-lettering button" data-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> Options <i class="fa fa-caret-down"></i> </button>
           <div class="dropdown-menu dropdown-menu-right">
             <% if user_signed_in? %>
               <% if @user == current_user %>
