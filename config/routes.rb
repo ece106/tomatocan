@@ -122,7 +122,6 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   post '/groups/:permalink/createstripeacnt' => 'groups#createstripeacnt', :as => :group_createstripeacnt
   post '/groups/:permalink/correcterr' => 'groups#correcterr', :as => :group_correcterr
 
-  match '/phases/:permalink/merchandise' => "phases#merchandise", :as => :phase_merchandise, via: 'get'
   match '/phases/:permalink/patronperk' => "phases#patronperk", :as => :phase_patronperk, via: 'get'
   match '/phases/:permalink/storytellerperks' => "phases#storytellerperks", :as => :phase_storytellerperks, via: 'get'
   match '/phases/:permalink/edit' => "phases#edit", :as => :phase_edit, via: 'get'

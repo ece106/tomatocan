@@ -7,6 +7,9 @@ class Merchandise < ApplicationRecord
   has_many :purchases
   validates :price, presence: true
   mount_uploader :itempic, MerchpicUploader
+  mount_uploader :podcast, PodcastUploader
+  mount_uploader :video, VideoUploader
+  mount_uploader :graphic, GraphicUploader
 
   def get_youtube_id
     if self.youtube.present?
