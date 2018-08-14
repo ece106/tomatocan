@@ -75,26 +75,25 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% content_for :forusers do %>
   <meta name="description" content= <%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>
 <% end %>
-<header class="navbar navbar-userpage">
+<header class="navbar unfixed-header">
   <div class="navbar-inner ">
     <div class="navtable">
-    <ul class="nav navbar-nav usermenu"> 
-      <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) , class: 'link-to-text' %> </li>
-        <% if @user.author == 'storyteller' || @user.author == 'author'%>
-          <% if @user.phases.any? %>
-            <li><%= link_to " Campaigns ", user_phases_path(@user.permalink), class: 'link-to-text' %></li>
+      <ul class="nav navbar-nav usermenu"> 
+        <li><%= link_to @user.name + " Home ", user_profile_path(@user.permalink) , class: 'link-to-text' %> </li>
+          <% if @user.author == 'storyteller' || @user.author == 'author'%>
+            <% if @user.phases.any? %>
+              <li><%= link_to " Campaigns ", user_phases_path(@user.permalink), class: 'link-to-text' %></li>
+            <% end %>
+            <li><%= link_to @user.following.count.to_s + " following", user_followingpage_path(@user.permalink), class: 'link-to-text' %> </li>
+            <li><%= link_to @user.followers.count.to_s + " followers", user_followerspage_path(@user.permalink), class: 'link-to-text' %> </li>
+            <li><%= render '/users/follow_form', :user => User.find_by_permalink(params[:permalink]) %> </li>
+          
+            <% if @user.about.present? || @user.twitter.present? %>
+              <li><%= link_to " About Me ", user_about_path(@user.permalink), class: 'link-to-text'  %> </li>
+            <% end %>
           <% end %>
-          <li><%= link_to @user.following.count.to_s + " following", user_followingpage_path(@user.permalink), class: 'link-to-text' %> </li>
-          <li><%= link_to @user.followers.count.to_s + " followers", user_followerspage_path(@user.permalink), class: 'link-to-text' %> </li>
-          <li><%= render '/users/follow_form', :user => User.find_by_permalink(params[:permalink]) %> </li>
-        
-          <% if @user.about.present? || @user.twitter.present? %>
-            <li><%= link_to " About Me ", user_about_path(@user.permalink), class: 'link-to-text'  %> </li>
-          <% end %>
-        <% end %>
-    </ul>
-  </div>
-
+      </ul>
+    </div>
   </div>
 </header>
 
