@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GroupsControllerTest < ActionController::TestCase
   setup do
-    sign_in users(:one)
+#    sign_in users(:one)
     @group = groups(:one)
   end
 
@@ -13,6 +13,7 @@ class GroupsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
+    sign_in users(:one)
     get :new
     assert_response :success
   end
@@ -24,32 +25,47 @@ class GroupsControllerTest < ActionController::TestCase
     end
    #assert_redirected_to groups_path(assigns(:group))
      assert_redirected_to "http://test.host/groups/2gh"
-   puts "-----------"
     #assert_redirected_to @group
   end
 
-
   test "should show group" do
-    get :show, id: @group, session: { email: "fake@fake.com", password: 'password' }
+    get :show, params: {id: @group}
+    assert_response :success
+  end
+  test "should get news" do
+    get :news, params: { id: @group, permalink: '5gh'}
+    assert_response :success
+  end
+  test "should get eventlist" do
+    get :eventlist, params: { id: @group, permalink: '5gh'}
+    assert_response :success
+  end
+  test "should get addbankaccount page" do
+    sign_in users(:one)
+    get :addbankaccount, params: { id: @group, permalink: '5gh'}
+    assert_response :success
+  end
+  test "should get manageaccounts page" do
+    sign_in users(:one)
+    get :manageaccounts, params: { id: @group, permalink: '5gh'}
+    assert_response :success
+  end
+  test "should get createstripeaccount page" do
+    sign_in users(:one)
+    get :createstripeaccount, params: { id: @group, permalink: '5gh'}
+    assert_response :success
+  end
+  test "should get edit" do 
+    sign_in users(:one)
+    get :edit, params: { id: @group }
     assert_response :success
   end
 
-  test "should get edit" do 
-        get :edit, params: { id: @group }
-      assert_response :success
-  end
-
   test "should update group" do
-    patch :update, id: @group, group: { about: "I was updated", address: @group.address, grouppic: @group.grouppic, latitude: @group.latitude, longitude: @group.longitude, name: @group.name, grouptype: @group.grouptype, user_id: @group.user_id }
+    sign_in users(:one)
+    patch :update, params:{ id: @group.id, group: { about: "I was updated", address: @group.address, grouppic: @group.grouppic, name: @group.name, grouptype: @group.grouptype, user_id: @group.user_id }}
 #    assert_equal "I was updated", @group.about   #But this isn't saving the new user attributes to the database
     assert_redirected_to group_path(assigns(:group))
-  end
-
-  test "should destroy group" do
-    assert_difference('Group.count', -1) do
-      delete :destroy, id: 1
-    end
-    assert_redirected_to groups_path
   end
 
 end
