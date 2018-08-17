@@ -19,24 +19,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner"> 
     <div class="item active" style="height:400px;">
-      <img src="http://www.CrowdPublish.TV/teacher.png">
-      <div class="carousel-caption" >
-        <%=  image_tag("classy.png", width: "180") %>
-      </div>    
-    </div>
-
-    <div class="item" style="height:400px;">
-      <img src="http://www.CrowdPublish.TV/womanTED.jpg" alt="TED talk">
-      <div class="carousel-caption">
-        <%=  image_tag("classy.png", width: "180") %>
-      </div>    
-    </div>
-
-    <div class="item" style="height:400px;">
-      <img src="http://www.CrowdPublish.TV/romance3.png" alt="3 Trash Romance">
-      <div class="carousel-caption">
-        <%=  image_tag("trashy.png", width: "180") %>
-      </div>    
+      <img src="http://www.CrowdPublish.TV/bookDude.png" alt="Hangouts">
     </div>
   </div>
 
@@ -56,8 +39,7 @@
 <div class="container-flex">
   <div class="row" style = "position: absolute; top:20px; text-align:center; width: 100vw" >
       <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
-        Crowdfund <br><br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  &nbsp Stories
+        <br>Be on Interactive TV and get Crowdfunding
       </div><br><br> <br> 
 
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 1;">
@@ -69,9 +51,9 @@
       </div>
   </div>
 </div>
-  <div class="row" style="background-color:#1e1e46">
-    <div class="navbar-inner clearfix usermenu" >
-      <ul class="nav navbar-nav pull-left" style="padding-left:20px; text-shadow: 1px 1px #000; font-size:16px;">
+  <div class="row unfixed-header" >
+    <div class="navbar-inner " >
+      <ul class="nav navbar-nav pull-left" style="padding-left:20px; font-size:16px;">
         <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
         <li><%= link_to "SUPPORT A CAMPAIGN", phases_path %>
         <% if user_signed_in? %>
@@ -94,7 +76,7 @@
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px; padding-right:30px;">
       <div class = "helps" style = "color:#1F0D5F; font-size:35px;" >
-        AUTHORS, FILMMAKERS, YOUTUBERS  
+        WRITERS, ACTORS  
       </div>
       <div class = "helps" style = "font-size:30px; margin-top:10px">
         Earn financial support from fans
@@ -144,7 +126,7 @@
 
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px">
       <div class = "helps" style = "color:#1F0D5F; font-size:35px;" >
-        STORYLOVERS
+        FANS
       </div>  
       <div class = "helps" style = "font-size:30px; margin-top:10px">
         Receive more than just books & movies
@@ -168,11 +150,6 @@
   </div>
 <br>
 
-<div class="row" > 
-  <div class="helps" >
-    Current Campaigns 
-  </div><br>
-</div>
 <div class="row" > 
   <% @campaigns.each do |c| %>
     <div class="col-md-4 col-sm-4 col-xs-6" >

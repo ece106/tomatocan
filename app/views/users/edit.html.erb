@@ -96,7 +96,7 @@
         We recommend uploading files for ALL 3 of the following formats (so your customers have more options for the type of ereader they own)<br>
       </div>
 
-      <% if current_user.stripeid.present? %>
+      
       <div class="blacktxt">
         <table><tr><td>
         <div style="float:left;width:60%;">
@@ -113,9 +113,7 @@
           <%= f.file_field :bookepub %> </div></td></tr><br>
         </table>
       </div>
-      <% else %>
-        You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %> (to receive payments) before uploading ebooks & offering them for sale.
-      <% end %>
+      
 
       <div class="editbooktxt" >
         <br><br>If you have video about your book on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. <br /> 

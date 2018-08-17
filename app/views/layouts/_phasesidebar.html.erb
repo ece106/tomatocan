@@ -2,44 +2,47 @@
   <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
 
-  <div class="container col-xs-12 " style="margin-top:10px; padding-left:0px;">
-    <% if user_signed_in? %>
-      <% if !@user.stripeid.present? && @user.id != 143 %>
+  <div class="container col-xs-12" style="margin-top:10px; margin-left: 10px; padding-left:10px;">
+    <div class="post-border" style="width: 335px;">
+      <% if user_signed_in? %>
+        <% if !@user.stripeid.present? && @user.id != 143 %>
 
-        <% if current_user.id == @user.id %>
-          <% if @user.phases.any? %>
-              <% @perkpath = phase_storytellerperks_path(@sidebarphase.permalink) %>
-          
-            <% if !@sidebarphase.merchandises.any? %>
-              You must <%= link_to "Create Perks", @perkpath, style:"color:red; font-size:28px;" %> so your Fans can support your work.
+          <% if current_user.id == @user.id %>
+            <% if @user.phases.any? %>
+                <% @perkpath = phase_storytellerperks_path(@sidebarphase.permalink) %>
+            
+              <% if !@sidebarphase.merchandises.any? %>
+                <%= link_to "Create Perks", @perkpath, style:"color:red;" %> so your Fans can support your work.
+              <% else %>
+                <%= link_to "Sign Up for Stripe", user_createstripeaccount_path(@user.permalink),style:"color:red;" %> to sell your perks
+              <% end %>
             <% else %>
-              You must <%= link_to "Sign Up for Stripe", user_createstripeaccount_path(@user.permalink), style:"color:red; font-size:28px;" %> before your Perks are available to Fans.
+              You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red;" %> before you can offer Perks.
+            <% end %>
+          <% end %>
+
+        <% else %>
+
+          <% if @user.phases.any? %>
+            <% if @sidebarphase.merchandises.any? %>
+              <% if !@user.stripeid.present? && @user.id != 143 %>
+                <%= @user.name %> has not made these Perks available yet. Please check back later to get access to these fantastic Perks.
+              <% end %>
+            <% else %>     
+              <%= @user.name %> has not made any Perks available yet. Please check back later to support <%= @sidebarphase.name %> 
             <% end %>
           <% else %>
-            You must <%= link_to "Start a Campaign", new_phase_path, style:"color:red; font-size:28px;" %> before you can offer Perks.
+            <%= @user.name %> has not created any Campaigns yet. Please check back later to support <%= @user.name %>'s work.
           <% end %>
         <% end %>
 
-      <% end %>
-
-      <% if @user.phases.any? %>
-        <% if @sidebarphase.merchandises.any? %>
-          <% if !@user.stripeid.present? && @user.id != 143 %>
-            <%= @user.name %> has not made these Perks available yet. Please check back later to get access to these fantastic Perks.
-          <% end %>
-        <% else %>     
-          <%= @user.name %> has not made any Perks available yet. Please check back later to support <%= @sidebarphase.name %> 
-        <% end %>
       <% else %>
-        <%= @user.name %> has not created any Campaigns yet. Please check back later to support <%= @user.name %>'s work.
+        <%= button_to "SIGN UP", "/signup", class: "button", class: 'button', style: "font-size:28px" %>to access Perks 
+        <%= link_to 'or SIGN IN...', "/login", {:style=>'float:right'} %><br> <br>
       <% end %>
+    </div>
 
-    <% else %>
-      <%= button_to "SIGN UP", "/signup", class: "button", style: "font-size:28px" %>to access Perks 
-      <%= link_to 'or SIGN IN...', "/login", {:style=>'float:right'} %><br> <br>
-    <% end %>
-
-<div class="author-books" style = "width: 320px; overflow: wrap;">
+<div class="author-books" style = "width: 335px; overflow: wrap;">
   <% if @user.phases.any? %>
   <% if @sidebarphase.merchandises.any? %>
     <% if params[:groupid].present? %>
@@ -50,14 +53,13 @@
     <% @sidebarmerchandise.each do |merch| %>
       <% if user_signed_in? %>
         <% if merch.itempic.present? && merch.itempic != '' %>
-          <table ><tr>
-
+          <table><tr>
             <td style = "width: 250px; overflow:hidden">
               <%= link_to (image_tag merch.itempic.url.to_s, :style => "max-width:240px"), merchandise_path(merch.id) %>
             </td>
             <td>
               <% if current_user.id == @user.id %>
-                <%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, form_class: 'btn btn-small' %><br>
+                <%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, form_class: 'btn btn-small', class: 'button' %><br>
               <% end %>
               <% if @user.stripeid.present? || @user.id == 143 %>
                 <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get %> 
@@ -71,27 +73,31 @@
             <% end %>
           </tr>
           </table>
-          <%= truncate(merch.desc , :length => 200, :separator => ' ') %><br><br>
+          <%= truncate(merch.desc, :length => 200, :separator => ' ') %><br><br>
 
         <% else %>
-          <table><tr>
-            <td style = "width: 250px;">
-              <%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %></td>
-            <td>
-              <% if current_user.id == @user.id %>
-                <br><br>  <%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, form_class: 'btn btn-small' %>
-              <% end %>
-              <% if @user.stripeid.present? || @user.id == 143 %>
-                <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get %> 
-              <% end %>
-            </td></tr>
-            <tr><td><%= truncate(merch.desc , :length => 200, :separator => ' ') %></td>
-              <% if @user.stripeid.present? || @user.id == 143 %>
-                <% if merch.price.present? %>
-                  <td style='float:right'>$<%= sprintf('%.2f', merch.price) %> USD</td>
+          <div class="post-border">
+            <table>
+              <tr>
+              <td style = "width: 250px;">
+                <%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]), class: 'link-to-text') %></td>
+              <td>
+                <% if current_user.id == @user.id %>
+                  <br><br>  <%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, form_class: 'btn btn-small', class: 'button' %>
                 <% end %>
-              <% end %>
-          </tr></table>
+                <% if @user.stripeid.present? || @user.id == 143 %>
+                  <%= link_to image_tag("buynow.png" ), new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get %> 
+                <% end %>
+              </td></tr>
+              <tr><td><%= truncate(merch.desc , :length => 200, :separator => ' ') %></td>
+                <% if @user.stripeid.present? || @user.id == 143 %>
+                  <% if merch.price.present? %>
+                    <td style='float:right'>$<%= sprintf('%.2f', merch.price) %> USD</td>
+                  <% end %>
+                <% end %>
+              </tr>
+            </table>
+          </div>
         <% end %>
 
       <% else %>
