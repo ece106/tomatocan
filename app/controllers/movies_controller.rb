@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:show, :edit, :update]
   layout :resolve_layout
 
   def index # This will be a result of some filters
@@ -87,11 +87,6 @@ class MoviesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @movie }
     end
-  end
-
-  def destroy
-    @movie.destroy
-    redirect_to user_profile_path(@user.permalink), notice: 'movie was successfully deleted.'
   end
 
   private

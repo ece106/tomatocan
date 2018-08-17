@@ -1,48 +1,46 @@
 require 'test_helper'
 
-class MoviesControllerTest < ActionDispatch::IntegrationTest
+class MoviesControllerTest < ActionController::TestCase
   setup do
     @movie = movies(:one)
+    @user = users(:one)
   end
 
-  test "should get index" do
-    get movies_url
+
+    test "should get index" do
+    get :index
     assert_response :success
+    assert_not_nil assigns(:movies)
   end
 
-  test "should get new" do
-    get new_movie_url
-    assert_response :success
-  end
 
-  test "should create movie" do
-    assert_difference('Movie.count') do
-      post movies_url, params: { movie: { about: @movie.about, genre: @movie.genre, moviepic: @movie.moviepic, price: @movie.price, title: @movie.title, videodesc1: @movie.videodesc1, videodesc2: @movie.videodesc2, videodesc3: @movie.videodesc3, youtube1: @movie.youtube1, youtube2: @movie.youtube2, youtube3: @movie.youtube3 } }
+   test "should create group" do
+    sign_in @user
+    assert_difference('Movie.count', 1) do
+      post :create, params:{ movie: { about: @movie.about,genre: @movie.genre, moviepic: @movie.moviepic, price: @movie.price, title: @movie.title, videodesc1: @movie.videodesc1, videodesc2: @movie.videodesc2, videodesc3: @movie.videodesc3, youtube1: @movie.youtube1, youtube2: @movie.youtube2, youtube3: @movie.youtube3 } }
     end
-
-    assert_redirected_to movie_url(Movie.last)
+        assert_redirected_to "http://test.host/user1"
   end
 
-  test "should show movie" do
-    get movie_url(@movie)
+
+  test "should show group" do
+      get :show, params: { videodesc1: 'MyString'}
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_movie_url(@movie)
+
+  test "should get edit" do 
+    sign_in users(:one)
+    get :edit, params: { id: @movie }
     assert_response :success
   end
 
-  test "should update movie" do
-    patch movie_url(@movie), params: { movie: { about: @movie.about, genre: @movie.genre, moviepic: @movie.moviepic, price: @movie.price, title: @movie.title, videodesc1: @movie.videodesc1, videodesc2: @movie.videodesc2, videodesc3: @movie.videodesc3, youtube1: @movie.youtube1, youtube2: @movie.youtube2, youtube3: @movie.youtube3 } }
-    assert_redirected_to movie_url(@movie)
+  
+   test "should update group" do
+    sign_in users(:one)
+    patch :update, params:{ movie: { about: @movie.about,genre: @movie.genre, moviepic: @movie.moviepic, price: @movie.price, title: @movie.title, videodesc1: @movie.videodesc1, videodesc2: @movie.videodesc2, videodesc3: @movie.videodesc3, youtube1: @movie.youtube1, youtube2: @movie.youtube2, youtube3: @movie.youtube3 } }
+    assert_redirected_to "http://test.host/user1"
   end
 
-  test "should destroy movie" do
-    assert_difference('Movie.count', -1) do
-      delete movie_url(@movie)
-    end
 
-    assert_redirected_to movies_url
-  end
 end
