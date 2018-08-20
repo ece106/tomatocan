@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
     storytellersvidorder = storytellerswithyoutube.order('updated_at DESC')
     @authors = storytellersvidorder.paginate(:page => params[:page], :per_page => 6)
 
-    campaignswithpic = Phase.where( "phasepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'")
+    campaignswithpic = Phase.where( "phasepic LIKE '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'")
     campaignvidorder = campaignswithpic.order('updated_at DESC')
     @campaigns = campaignvidorder.paginate(:page => params[:page], :per_page => 6)
     if user_signed_in?

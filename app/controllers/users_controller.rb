@@ -8,9 +8,9 @@ class UsersController < ApplicationController
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
-     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
-       OR (profilepicurl SIMILAR TO 'http%' AND 
-       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
+     userswithpic = User.where( "profilepic LIKE '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
+       OR (profilepicurl LIKE 'http%' AND 
+       profilepicurl LIKE '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
     @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
   end
 
