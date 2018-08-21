@@ -25,7 +25,6 @@ class RsvpqsController < ApplicationController
   # POST /rsvps
   def create
     @rsvp = current_user.rsvpqs.build(rsvpq_params)
-
     if @rsvp.save
       redirect_to events_path notice: 'Rsvp was successfully created.'
     else

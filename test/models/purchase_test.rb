@@ -12,7 +12,7 @@ class PurchaseTest < ActiveSupport::TestCase
   [:user_id, :author_id, :pricesold, :authorcut ].each do |field|
         test "#{field.to_s}_must_not_be_empty" do
           purchase = Purchase.new
-          purchase.send "#{fi eld.to_s}=", nil #what does this line do
+          purchase.send "#{field.to_s}=", nil #what does this line do
           refute purchase.valid?
           refute_empty purchase.errors[field] #must be in same test as above line in order to have usererrors not be nil
         end

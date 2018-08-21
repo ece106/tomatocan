@@ -5,19 +5,19 @@ class MerchandiseTest < ActiveSupport::TestCase
   #   assert true
   # end
    def setup
-    @merchanise = merchandises(:one)
+    @merchandise = merchandises(:one)
   end
 
   test "price should not be empty" do
-    merchanise = Merchandise.new
-    merchanise.send "price=",nil
-    refute merchanise.valid?
-    refute_empty merchanise.errors[:price]
+    merchandise = Merchandise.new
+    merchandise.send "price=",nil
+    refute merchandise.valid?
+    refute_empty merchandise.errors[:price]
   end
 
    test "parse youtube for merchanise" do
-      @merchanise.youtube = "http://youtube.com/watch?v=/frlviTJc"
-      @merchanise.get_youtube_id
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchanise.youtube)
+      @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
+      @merchandise.get_youtube_id
+      refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
       end
 end
