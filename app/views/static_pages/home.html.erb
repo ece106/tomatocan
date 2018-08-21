@@ -44,9 +44,9 @@
 
       <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 1;">
         <% if user_signed_in? %>
-          <%= link_to "Start my Campaign", new_phase_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
+          <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
         <% else %>
-          <%= link_to "Start my Campaign", new_user_signup_path(usertype: "creator"), :class => "btn btn-primary ", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
+          <%= link_to "Start my Account", new_user_signup_path, :class => "btn btn-primary ", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
         <% end %>
       </div>
   </div>
@@ -55,14 +55,14 @@
     <div class="navbar-inner " >
       <ul class="nav navbar-nav pull-left" style="padding-left:20px; font-size:16px;">
         <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
-        <li><%= link_to "SUPPORT A CAMPAIGN", phases_path %>
+        <li><%= link_to "SUPPORT EACH OTHER", userswithmerch_path %>
         <% if user_signed_in? %>
-          <li><%= link_to 'START NEW CAMPAIGN', new_phase_path %>
+          <li><%= link_to 'EARN FUNDS', new_merchandise_path %>
         <% else %>
-          <li><%= link_to 'START MY CAMPAIGN', "/signup" %>
+          <li><%= link_to 'EARN FUNDS', "/signup" %>
         <% end %>
+        <li><%= link_to 'Livestream', "/livestream" %>
         <li><%= link_to "FAQ", '/faq' %>
-        <li><%= link_to "Take the survey", 'https://docs.google.com/forms/d/1brvWNjjac4k1AZXHCOIs5KOJJnE6fxM4jJpZcoM0wrI' %>
         <% if user_signed_in? %>
           <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
           <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
@@ -79,7 +79,7 @@
         WRITERS, ACTORS  
       </div>
       <div class = "helps" style = "font-size:30px; margin-top:10px">
-        Earn financial support from fans
+        Earn support from fans
       </div><br>
       <div class = "helps" style = "text-align:left; font-size:20px;" >
         <% if user_signed_in? %>

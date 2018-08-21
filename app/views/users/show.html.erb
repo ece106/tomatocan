@@ -18,34 +18,8 @@
   <div class="post-border">
     <div class="row " >
       <div class="col-md-12 col-sm-12 col-xs-12" >
-        <% if @user.phases.any? %> 
+        <% if @user.merchandises.any? %> 
           <h2>Get Sneak Preview access to my current project!</h2><br>
-          <div style="float:left; text-align:left;">
-            <%= form_for(Agreement.new) do |f| %> 
-              <% if @numusrgroups == 1 %>
-                Partner <%= @usrgrpnameid[0][0] %> with my Campaign and your organization will receive 5% of the proceeds from Fans you refer from <%= @usrgrpnameid[0][0] %>'s home page.<br><br>
-                <%= f.hidden_field :group_id, value: @usrgrpnameid[0][1] %>
-              <% end %>
-              <% if @numusrgroups > 1 %>
-                Select one of your organizations to partner with my Campaign: <%= f.select :group_id, options_for_select(@usrgrpnameid, prompt: true) %><br><br>
-              <% end %>
-
-              <table>
-                <tr><td>
-                <% if @numusrgroups > 0 %>
-                  <%= button_tag 'Partner', value: @sidebarphase.id, type: :submit, name: "agreement[phase_id]" %>
-                <% end %>
-                </td>
-            <% end %>
-                <td style='font-size:22px'><%= link_to(@sidebarphase.name, phase_path(@sidebarphase.permalink)) %></td></tr>
-                <tr><td ><%= button_to "Get Sneak Preview", phase_path(@sidebarphase.permalink), method: :get, class: 'button' %></td>
-
-                <td class = 'blacktxt'><%= truncate(@sidebarphase.mission , :length => 200, :separator => ' ') %> </td></tr>
-              </table><br>
-            <% if @numusrphs > 1 %>
-              <%= link_to("View my past Campaigns", user_phases_path(@user.permalink)) %><br><br><br>
-            <% end %>
-          </div>
         <% end %>
       </div>
     </div>
@@ -55,11 +29,9 @@
     <div class="post-border">
       <div class="row" >
         <div class="col-xs-12" >
-          <% if @sidebarphase.youtube? %>
-            <% if @sidebarphase.youtube.match(/[0-9A-Za-z]/) && @sidebarphase.youtube.length < 20 %>
+            <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
               <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @sidebarphase.youtube %>" frameborder="0" allowfullscreen></iframe>
             <% end %>
-          <% end %>
         </div>
         <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 " style="margin-left:10px">
           <div class="profilebox" style="text-shadow: 1px 1px #fff; background: rgba(265, 265, 265, .35); " >
