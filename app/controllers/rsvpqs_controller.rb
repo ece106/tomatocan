@@ -42,11 +42,6 @@ class RsvpqsController < ApplicationController
     end
   end
 
-  # DELETE /rsvps/1
-  def destroy
-    @rsvp.destroy
-    redirect_to rsvpqs_url, notice: 'Rsvp was successfully destroyed.'
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

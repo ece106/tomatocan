@@ -24,8 +24,8 @@ class MoviesControllerTest < ActionController::TestCase
 
 
   test "should show group" do
-    sign_in users(:one)
-     get :show, params: { id: @movie}
+     sign_in users(:one)
+     get :show, params: { id: @movie.user_id}
     assert_response :success
   end
 

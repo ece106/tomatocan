@@ -5,45 +5,37 @@ class RsvpqsControllerTest < ActionController::TestCase
     @rsvpq = rsvpqs(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:rsvpqs)
-  end
+  # test "should get index" do
+  #   get :index
+  #   assert_response :success
+  #   assert_not_nil assigns(:rsvpqs)
+  # end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+  # test "should get new" do
+  #   get :new
+  #   assert_response :success
+  # end
 
   test "should create rsvpq" do
-    assert_difference('Rsvpq.count') do
-      post :create, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id }
+    assert_difference('Rsvpq.count',1) do
+      post :create, params: { rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id } }
     end
-
-    assert_redirected_to rsvpq_path(assigns(:rsvpq))
+    assert_redirected_to events_path
   end
 
-  test "should show rsvpq" do
-    get :show, id: @rsvpq
-    assert_response :success
-  end
+  # test "should show rsvpq" do
+  #   get :show, id: @rsvpq
+  #   assert_response :success
+  # end
 
-  test "should get edit" do
-    get :edit, id: @rsvpq
-    assert_response :success
-  end
+  # test "should get edit" do
+  #   get :edit, id: @rsvpq
+  #   assert_response :success
+  # end
 
-  test "should update rsvpq" do
-    patch :update, id: @rsvpq, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id }
-    assert_redirected_to rsvpq_path(assigns(:rsvpq))
-  end
+  # test "should update rsvpq" do
+  #   patch :update, id: @rsvpq, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id }
+  #   assert_redirected_to rsvpq_path(assigns(:rsvpq))
+  # end
 
-  test "should destroy rsvpq" do
-    assert_difference('Rsvpq.count', -1) do
-      delete :destroy, id: @rsvpq
-    end
-
-    assert_redirected_to rsvpqs_path
-  end
 end
