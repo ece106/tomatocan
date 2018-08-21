@@ -14,10 +14,15 @@ class UsersController < ApplicationController
     @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
   end
 
-  def authors
+  def youtubers
     userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
-    authorsvidorder = userswithyoutube.order('updated_at DESC')
-    @authors = authorsvidorder.paginate(:page => params[:page], :per_page => 12)
+    usersvidorder = userswithyoutube.order('updated_at DESC')
+    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 32)
+  end
+  def userswithmerch
+    userswmerch = User.joins(:merchandises).distinct
+    merchorder = userswmerch.order('updated_at DESC')
+    @merchusers = merchorder.paginate(:page => params[:page], :per_page => 32)
   end
 
   def show
@@ -79,24 +84,6 @@ class UsersController < ApplicationController
   end
   def groups
     @groups = Group.where( "user_id = ?", @user.id )
-    respond_to do |format|
-      format.html 
-      format.json { render json: @user }
-    end
-  end
-  def phases
-    currtime = Time.now
-    @activephases = Phase.where( "user_id = ? AND deadline > ?", @user.id, currtime).order('created_at')
-    @pastphases = Phase.where( "user_id = ? AND deadline < ?", @user.id, currtime).order('created_at')
-    @outstandingagreements = []
-    if user_signed_in?
-      @mynullagreements.each do |agree|
-        phase = Phase.find(agree.phase_id)
-        group = Group.find(agree.group_id) 
-        @outstandingagreements << {phasename: phase.name, groupname: group.name, 
-        agreeid: agree.id, grouppermalink: group.permalink }
-      end
-    end
     respond_to do |format|
       format.html 
       format.json { render json: @user }
@@ -339,7 +326,7 @@ class UsersController < ApplicationController
 
     def resolve_layout
       case action_name
-      when "index", "authors"
+      when "index", "authors", "userswithmerch"
         'application'
       when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts", "changepassword"
         'editinfotemplate'
@@ -367,9 +354,9 @@ class UsersController < ApplicationController
 
     def set_user 
       @user = User.find_by_permalink(params[:permalink]) || current_user
-      if @user.phases.any?
-        @sidebarphase = @user.phases.order('deadline').last 
-        @sidebarmerchandise = @sidebarphase.merchandises.order(price: :asc)
+      if @user.merchandises.any?
+#        @sidebarmerch = @user.merchandises.order('deadline').last 
+        @sidebarmerchandise = @user.merchandises.order(price: :asc)
       end 
     end
      # returns a string of error messages for the user signup page
