@@ -25,7 +25,6 @@ class RsvpqsController < ApplicationController
   # POST /rsvps
   def create
     @rsvp = current_user.rsvpqs.build(rsvpq_params)
-
     if @rsvp.save
       redirect_to events_path notice: 'Rsvp was successfully created.'
     else
@@ -42,11 +41,6 @@ class RsvpqsController < ApplicationController
     end
   end
 
-  # DELETE /rsvps/1
-  def destroy
-    @rsvp.destroy
-    redirect_to rsvpqs_url, notice: 'Rsvp was successfully destroyed.'
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

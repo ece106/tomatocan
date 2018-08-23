@@ -81,9 +81,8 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   end
 
   match '/books' => "books#index", :as => :allbooks, via: 'get'
-  match '/actors' => "users#actors", :as => :actors, via: 'get'
-  match '/filmmakers' => "users#filmmakers", :as => :filmmakers, via: 'get'
-  match '/authors' => "users#authors", :as => :authors, via: 'get'
+  match '/youtubers' => "users#youtubers", :as => :youtubers, via: 'get'
+  match '/userswithmerch' => "users#userswithmerch", :as => :userswithmerch, via: 'get'
 
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/followers' => "users#followerspage", :as => :user_followerspage, via: 'get'

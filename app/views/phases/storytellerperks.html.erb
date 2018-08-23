@@ -1,6 +1,5 @@
 <div class="blacktxt">
 <% if user_signed_in? %>
-<% if @phase.user_id == current_user.id || current_user.id == 143 %>
 
   <div class="helps" >
     Offer standard Perks as-is or customize for your project or expertise. </i> 
@@ -20,7 +19,6 @@
             <div id="accordion-toggle1" class="accordion-body collapse">
               <div class="accordion-inner">
                 <%= form_for(@merchandise) do |f| %>
-                  <%= f.hidden_field :phase_id, value: @phase.id %>
                   <b>Perk Name </b><br>
                   <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
                   <b>About this Patron Perk </b><br>
@@ -48,7 +46,6 @@
         <div id="accordion-toggle2" class="accordion-body collapse">
           <div class="accordion-inner">
             <%= form_for(@merchandise) do |f| %>
-              <%= f.hidden_field :phase_id, value: @phase.id %>
               <b>Perk Name </b><br>
               <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
               <b>About this Patron Perk </b><br>
@@ -75,7 +72,6 @@
         <div id="accordion-toggle7" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Video Reading posted on your facebook wall" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -103,7 +99,6 @@
             <div id="accordion-toggle3" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Patrons Only behind the scenes Secrets " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -131,7 +126,6 @@
         <div id="accordion-toggle4" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Video Reading posted on your facebook wall" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -159,7 +153,6 @@
             <div id="accordion-toggle5" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Your Name In Credits of the next chapter of my book" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -190,7 +183,6 @@
         <div id="accordion-toggle6" class="accordion-body collapse">
           <div class="accordion-inner">
             <%= form_for(@merchandise) do |f| %>
-              <%= f.hidden_field :phase_id, value: @phase.id %>
               <b>Perk Name </b><br>
               <%= f.text_field :name, size: 60, value: "We'll write a 30-line story together on your Facebook wall or your latest Instagram picture" || :name %><br><br>
               <b>About this Patron Perk </b><br>
@@ -219,7 +211,6 @@
         <div id="accordion-toggle8" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Facebook Livestream Reading " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -247,7 +238,6 @@
         <div id="accordion-toggle9" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
                 <b>About this Patron Perk </b><br> 
@@ -275,7 +265,6 @@
             <div id="accordion-toggle10" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Attend My Panel Discussion"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -303,7 +292,6 @@
             <div id="accordion-toggle12" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Be part of a Live presentation"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -331,7 +319,6 @@
         <div id="accordion-toggle13" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Speak at your book club meeting " || :name %><br><br>
                 <%= f.text_field :name, size: 60, value: "Speak at your movie party " || :name %><br><br>
@@ -360,7 +347,6 @@
             <div id="accordion-toggle14" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Be part of a Live Drama presentation"|| :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -388,7 +374,6 @@
         <div id="accordion-toggle15" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Speak at your movie party " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -416,7 +401,6 @@
             <div id="accordion-toggle16" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Consultation package" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -444,7 +428,6 @@
             <div id="accordion-toggle17" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Consultation package" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -482,7 +465,6 @@
         <div id="accordion-toggle18" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Live Online Reading " + @phase.name + " before it's released" || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -510,7 +492,6 @@
         <div id="accordion-toggle19" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <%= f.hidden_field :phase_id, value: @phase.id %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Facebook Livestream Reading " || :name %><br><br>
                 <b>About this Patron Perk </b><br>
@@ -753,7 +734,6 @@
 
 </div>
 
-<% end %>
 <% end %>
 
 <br><br><br>
