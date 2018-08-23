@@ -13,14 +13,14 @@ class AgreementsControllerTest < ActionController::TestCase
 
   test "should create agreement" do
     sign_in users(:one)
-    @phase = phases(:one)
+    @user = users(:one)
     @group = groups(:one)
     assert_difference('Agreement.count',1) do
-      post :create, params: { agreement: { phase_id: @phase.id, group_id: @group.id} } 
+      post :create, params: { agreement: { user_id: @user.id, group_id: @group.id} } 
     #um, there are no records that exist in the test database with id = 1
 #old syntax    post :create, agreement: { group_id: @agreement.group_id, phase_id: @agreement.phase_id }
     end
-    assert_redirected_to phase_path(@phase.id)
+    assert_redirected_to user_path(@user.id)
   end
 
 
@@ -32,7 +32,7 @@ class AgreementsControllerTest < ActionController::TestCase
   end
 
   test "should update agreement" do
-    patch :update, id: @agreement, agreement: { group_id: @agreement.group_id, phase_id: @agreement.phase_id }
+    patch :update, id: @agreement, agreement: { group_id: @agreement.user_id, phase_id: @agreement.user_id }
     assert_redirected_to agreement_path(assigns(:agreement))
   end
 

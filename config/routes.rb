@@ -125,6 +125,8 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/phases/:permalink/storytellerperks' => "phases#storytellerperks", :as => :phase_storytellerperks, via: 'get'
   match '/phases/:permalink/edit' => "phases#edit", :as => :phase_edit, via: 'get'
   match '/phases/:permalink' => "phases#show", :as => :phase_show, via: 'get'
+
+  match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
   
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt

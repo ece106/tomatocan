@@ -9,7 +9,7 @@ class Group < ApplicationRecord
 
   belongs_to :user
   has_many :agreements
-  has_many :phases, through: :agreements
+#  has_many :users, through: :agreements  # We might need this
 
   mount_uploader :grouppic, GrouppicUploader
 
