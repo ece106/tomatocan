@@ -15,7 +15,7 @@
                       <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%>
 
                     <% if @mynullagreements.count != 0 %>
-                      <%= link_to "You have partner request", user_phases_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
+                      <%= link_to "Later we need a page to manage agreement requests", user_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
                     <% end %> 
                     <%= link_to "Create Perks", standardperks_path, method: :get, class: 'dropdown-item' %>
 
