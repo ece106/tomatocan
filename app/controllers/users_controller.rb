@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :authors, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr, :create ]
+  before_action :set_user, except: [:new, :index, :userswithmerch, :youtubers, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr, :create ]
   before_action :check_fieldsneeded, except: [:update, :new, :index, :create]
   before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
@@ -325,7 +325,7 @@ class UsersController < ApplicationController
 
     def resolve_layout
       case action_name
-      when "index", "authors", "userswithmerch"
+      when "index", "youtubers", "userswithmerch"
         'application'
       when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts", "changepassword"
         'editinfotemplate'

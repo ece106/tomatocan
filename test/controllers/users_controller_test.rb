@@ -12,16 +12,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
-
-  test "return_profile_pic_from_query" do
-   get :index
-   assert_response :success
-   assert_not_nil assigns(:users)
-   hello= @user[:email]
-   puts hello
-  end
-
-
   test "should_get_users_about" do
     get :about, params: {permalink: 'user1'}
     assert_response :success
@@ -30,24 +20,19 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_addbankaccount_not_loggedin" do
-    # Redirects to login page if user is currently not logged in
-    get :addbankaccount, params: {permalink: 'user1'}
-    assert_redirected_to "/login"
-  end
+  test "should_get_users_youtubers" do
+    get :youtubers
+    assert_response :success
 
-  test "should_get_users_addbankaccount_loggedin" do
-    # If user is logged in go to correcterrors page
-    sign_in @user
-    get :addbankaccount, params: {permalink: 'user1'}
+    get :youtubers
     assert_response :success
   end
 
-  test "should_get_users_authors" do
-    get :authors, params: {permalink: 'user1'}
+  test "should_get_userswithmerch" do
+    get :userswithmerch
     assert_response :success
 
-    get :authors, params: {permalink: 'user2'}
+    get :userswithmerch
     assert_response :success
   end
 
@@ -64,19 +49,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
 
     get :booklist, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
-  test "should get_users_correcterrors_not_loggedin" do
-    # Redirects to login page if user is currently not logged in
-    get :correcterrors, params: {permalink: 'user1'}
-    assert_redirected_to "/login"
-  end
-
-  test "should_get_users_correcterrors_loggedin" do
-    # If user is logged in go to correcterrors page
-    sign_in @user
-    get :correcterrors, params: {permalink: 'user1'}
     assert_response :success
   end
 
