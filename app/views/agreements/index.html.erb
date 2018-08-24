@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Campaign</th>
+      <th>Storyteller</th>
       <th>Organization</th>
       <th></th>
       <th></th>
@@ -14,10 +14,9 @@
   <tbody>
     <% @agreements.each do |agreement| %>
       <tr>
-        <td><%= agreement.phase_id %></td>
+        <td><%= agreement.user_id %></td>
         <td><%= agreement.group_id %></td>
         <td><%= link_to 'Show', agreement %></td>
-        <td><%= link_to 'Edit', edit_agreement_path(agreement) %></td>
       </tr>
     <% end %>
   </tbody>

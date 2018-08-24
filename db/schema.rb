@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "bookepub"
     t.string "bookmobi"
     t.string "bookpdf"
+    t.datetime "expiration"
   end
 
   create_table "movieroles", force: :cascade do |t|

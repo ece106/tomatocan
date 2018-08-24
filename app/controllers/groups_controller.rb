@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  def show
+  def show # This will need to change to reflect that agreements are between groups & users
     currtime = Time.now
     @currphases = []
     @group.phases.where("deadline > ?", currtime).find_each do |proj|

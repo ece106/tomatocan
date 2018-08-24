@@ -8,7 +8,11 @@
 <% end %>
   <p id="notice"><%= notice %></p>
 
-  <br><h2>Project phases we're partnering with: </h2>
+  <br><h2>Authors and actors we're partnering with: </h2>
+
+
+When we start implementing groups, This all needs to change to reflect groups partnering with actors/authors instead of campaigns
+
   <% if @currphases.present? %>  
     <table >
       <% @currphases.each do |proj| %>
@@ -24,9 +28,9 @@
       <% end %>
     </table>
   <% else %>
-    We are not partnering with any phases at this time. 
+    We are not partnering with any storytellers at this time. 
     <% if @pastphases.present? %>
-      Become a patron of our past storytellers by selecting a project phase below.
+      Become a patron of our past storytellers by selecting a project below.
     <% end %>
   <% end %>  <br><br>
 
