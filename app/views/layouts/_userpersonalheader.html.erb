@@ -2,7 +2,6 @@
   <ul class="fixed-header">
     <li id="crowdPublishIcon-logo" style="float:left"> <%=  image_tag("crowdPublishIcon.png", width: "35") %> </li>
     <li style="float:left"><%= link_to " CrowdPublishTV Home ", root_path(@user.permalink) %> </li>
-    <li style="float:left"><%= link_to " Recent Campaigns ", phases_path %> </li>
 
     <% if user_signed_in? %>
       <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %> </li>

@@ -168,14 +168,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_phases" do
-    get :phases, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :phases, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
   test "should_get_users_profileinfo" do
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success

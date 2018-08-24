@@ -4,7 +4,7 @@
   <% if user_signed_in? %>
       Are you an officer of an organization? <%= button_to "Add Your Organization", new_group_path, style: "font-size:20px", method: :get %><br><br>
     <% if current_user.groups.any? %>
-      <%= link_to "Partner Your Organization with a Campaign", phases_path %> <br><br>
+      <%= link_to "Partner Your Organization with an Actor", userswithmerch_path %> <br><br>
     <% end %> 
   <% end %> 
 
