@@ -11,10 +11,11 @@ html {
   width: 100%;
   overflow-y: scroll;
 }
-
+/*
 body {
   padding-top: 0px;
 }
+*/
 .body-color {
   background-color: #f2f2f2;
 }
@@ -423,3 +424,37 @@ center .info-content {
   background-color: #863276;
 } 
 
+
+/*
+Notes
+Greys
+    - 00: #F8F9FA
+    - 01: #F1F3F5
+    - 02: #E9ECEF
+    - 03: #DEE2E6
+    - 04: #CED4DA
+    - 05: #ADB5BD
+    - 06: #868E96
+    - 07: #495057
+    - 08: #343A40
+    - 09: #212529
+*/
+
+body {
+    padding-top: 70px;
+}
+p {
+    text-align: left;
+}
+#homeHero {
+    background-color: #495057;
+    color: #F8F9FA;
+}
+.greyBlock {
+    background-color: #E9ECEF;
+}
+footer {
+    text-align: left;
+    color: #F8F9FA;
+    background-color: #212529;
+}

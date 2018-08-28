@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20130201000000000) do
 
   create_table "agreements", force: :cascade do |t|
-    t.integer "phase_id"
+    t.integer "user_id"
     t.integer "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "itempic"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "phase_id"
     t.datetime "deadline"
     t.float "goal"
     t.string "youtube"
@@ -114,6 +113,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "bookepub"
     t.string "bookmobi"
     t.string "bookpdf"
+    t.datetime "expiration"
   end
 
   create_table "movieroles", force: :cascade do |t|
