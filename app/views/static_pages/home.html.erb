@@ -48,6 +48,8 @@
         <% else %>
           <%= link_to "Start my Account", new_user_signup_path, :class => "btn btn-primary ", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
         <% end %>
+
+        <%= link_to "Livestream", "/livestream", :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999; margin-left: 220px;" %>
       </div>
   </div>
 </div>
@@ -61,7 +63,6 @@
         <% else %>
           <li><%= link_to 'EARN FUNDS', "/signup" %>
         <% end %>
-        <li><%= link_to 'Livestream', "/livestream" %>
         <li><%= link_to "FAQ", '/faq' %>
         <% if user_signed_in? %>
           <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>

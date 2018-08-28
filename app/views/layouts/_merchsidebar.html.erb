@@ -12,10 +12,17 @@
 
 
           <% if @user.merchandises.any? %>
+            <% if current_user.id == @user.id %>
+                <%= link_to "Add More Perks", standardperks_path %> to offer your Fans.
+            <% else %>
               <% if !@user.stripeid.present? && @user.id != 143 %>
                 <%= @user.name %> has not made these Perks available yet. Please check back later to get access to these fantastic Perks.
               <% end %>
+            <% end %>
           <% else %>     
+            <% if current_user.id == @user.id %>
+                <%= link_to "Create Perks", standardperks_path, style:"color:red;" %> so your Fans can support your work.
+            <% end %>
               <%= @user.name %> has not made any Perks available yet. Please check back later to support <%= @user.name %> 
           <% end %>
 
