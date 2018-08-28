@@ -12,8 +12,9 @@ class User < ApplicationRecord
   has_many :purchases
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
-  has_many :phases 
-  has_many :merchandises #,through => :projects #but merchandise doesnt have to belong to a project 
+  has_many :merchandises
+
+#  has_many :groups, through: :agreements  # Do we need this
 
   # Active Relationships (A user following a user)
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id" #, dependent: :destroy (if a user is deleted, delete the relationship)

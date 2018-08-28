@@ -83,7 +83,7 @@ class PurchasesController < ApplicationController
       author = User.find(@merchandise.user_id)
       @purchase.user_id = current_user.id
       if @purchase.save_with_payment
-        redirect_to phases_path, :notice => "Thank you for being a patron of " + author.name + "'s project"
+        redirect_to userswithmerch_path, :notice => "Thank you for being a patron of " + author.name
       else
         redirect_to(:back, :notice => "Your order did not go through. Try again.")
       end 

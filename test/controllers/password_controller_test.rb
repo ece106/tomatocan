@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Users::PasswordsController < PasswordsController::TestCase
+class Users::PasswordsController < ActionController::TestCase
   setup do
       @user = users(:one)
       @password = passwords(:one)

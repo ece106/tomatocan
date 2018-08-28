@@ -1,7 +1,10 @@
 <div class="container-flex" >
   <div class="row">
   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" style= "text-align:left;" >
-    <% @usertype = params[:usertype] %>
+
+    <div class="featured">
+      <b>Sign Up</b><br><br>
+    </div>
 
 <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
 
@@ -13,11 +16,6 @@
   <%= f.email_field :email, :autofocus => true, :size => 40 %>
   <br />
 
-  Which kind of account do you wish to use? (This can be changed later.)<br>
-  <table><tr><td>
-    <%= radio_button_tag(:author, "storyteller") %>Storyteller</td>
-  <td><%= radio_button_tag(:author, "storylover") %> Storylover </td></tr>
-  </table>
 
   <br><b>Username</b> - numbers and letters ONLY (must be less than 20 characters)<br />
   www.CrowdPublish.TV/<%= f.text_field :permalink, :autofocus => true, placeholder: "username" %> <br>
@@ -29,22 +27,14 @@
   I agree to the CrowdPublishTV
   <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %><br>
 
-  <% if @usertype == "creator" %> 
-    <%= f.submit "Sign Me Up" %></b>
-  <% else %>
-    <%= f.submit "Sign up" %></b>
-  <% end %>
+    <b><%= f.submit "Sign up" %></b>
 <% end %>
     <br><br><br>
   </div>
 
   <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 " style= "background-color: #EdcFFF; height:100vh; margin-top:-38px;" >
     <br>Already a member? <%= link_to 'Sign in', "/login" %><br><br>
-    <% if @usertype == "creator" %> 
-      <%= render "devise/registrations/creatornew" %>
-    <% else %> 
-      <%= render "devise/registrations/newfan" %>
-    <% end %>
+      <%= render "devise/registrations/newuser" %>
   </div>
 
 </div>

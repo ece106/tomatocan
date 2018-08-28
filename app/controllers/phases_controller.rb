@@ -74,20 +74,6 @@ class PhasesController < ApplicationController
     @phase = Phase.new
   end
 
-  def patronperk  
-    @merchandises = @phase.merchandises
-    @merchandise = @phase.merchandises.build 
-    @perklist = Merchandise.where(:phase_id => @phase.id)
-  end
-
-  def storytellerperks
-    @author = User.find_by_id(@phase.user_id)
-    @merchandise = @phase.merchandises.build 
-    if user_signed_in?
-      @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)
-    end
-  end
-
   def edit
     @merchandise = @phase.merchandises.order(price: :asc)
     @perklist = Merchandise.where( "user_id = ?", current_user.id).where("phase_id != ?", @phase.id)

@@ -5,15 +5,13 @@
           <div class="navbar-inner fixed-header" style="padding-left:20px;">
             <ul class="nav navbar-nav pull-left"style="font-size:18px; font-family:Arial" >
               <li><%= link_to "Home", "/" %>
-              <li><%= link_to "SUPPORT A CAMPAIGN", phases_path %>
-              <% if user_signed_in? %>
-                <li><%= link_to 'START NEW CAMPAIGN', new_phase_path %>
-              <% else %>
-                <li><%= link_to 'START MY CAMPAIGN', "/signup" %>
-              <% end %>
-              <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
-              <li><%= link_to "FAQ", '/faq' %>
-              <li><%= link_to "Take the survey", 'https://docs.google.com/forms/d/1brvWNjjac4k1AZXHCOIs5KOJJnE6fxM4jJpZcoM0wrI' %>
+        <li><%= link_to "SUPPORT EACH OTHER", userswithmerch_path %>
+        <% if user_signed_in? %>
+          <li><%= link_to 'EARN FUNDS', new_merchandise_path %>
+        <% else %>
+          <li><%= link_to 'EARN FUNDS', "/signup" %>
+        <% end %>
+        <li><%= link_to 'Livestream', "/livestream" %>
               <% if user_signed_in? %>
                 <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>

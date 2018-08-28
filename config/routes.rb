@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
   match '/events/online' => "events#online", :as => :events_online, via: 'get'
 
+  match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
+
   resources :merchandises
   resources :phases
   resources :rsvpqs
@@ -121,11 +123,9 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   post '/groups/:permalink/createstripeacnt' => 'groups#createstripeacnt', :as => :group_createstripeacnt
   post '/groups/:permalink/correcterr' => 'groups#correcterr', :as => :group_correcterr
 
-  match '/phases/:permalink/patronperk' => "phases#patronperk", :as => :phase_patronperk, via: 'get'
-  match '/phases/:permalink/storytellerperks' => "phases#storytellerperks", :as => :phase_storytellerperks, via: 'get'
   match '/phases/:permalink/edit' => "phases#edit", :as => :phase_edit, via: 'get'
   match '/phases/:permalink' => "phases#show", :as => :phase_show, via: 'get'
-  
+
   post '/:permalink/managesales' => 'users#updatestripeacnt', :as => :user_updatestripeacnt
   post '/:permalink/addbankaccount' => 'users#addbankacnt', :as => :user_addbankacnt
   post '/:permalink/createstripeacnt' => 'users#createstripeacnt', :as => :user_createstripeacnt

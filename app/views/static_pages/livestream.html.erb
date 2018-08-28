@@ -10,7 +10,18 @@
       <video id="camera-stream" width="500" autoplay></video>
     </div>
     <script>$(document).ready(onLivestreamLoad)</script>
-    <%= link_to "Join the Livestream", "https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE", :class => "btn btn-primary", target: "_blank", style: "font-size:24px; background:#6e73d1; color:#fff;" %>
+
+    <div class="btn btn-primary" style="font-size:24px; background:#fff;">
+      <a href="https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE"
+      onclick="window.open('https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE',
+                         'newwindow',
+                         'width=750,height=750');
+              return false;"
+      >Join the Livestream</a>
+    </div>
+
+    <br><br>If the Livestream doesn't open a new window from the button above,
+    <br> <%= link_to "Join the Livestream here", "https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE", target: "_blank" %>
   </div>
   <div class="col-md-7 col-sm-6 col-xs-12" style="padding-top:15px; padding-right:5px;">
     Scripts to choose from

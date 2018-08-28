@@ -24,37 +24,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    currtime = Time.now
-    @currphases = []
-    @group.phases.where("deadline > ?", currtime).find_each do |proj|
-      approvedagreemt = Agreement.where("group_id = ? AND phase_id = ?", @group.id, proj.id )
-      if approvedagreemt[0].approved.present?
-        if approvedagreemt[0].approved > '0002-01-01'
-          author = User.find(proj.user_id)
-          if proj.phasepic.present?
-            picture = proj.phasepic
-          else
-            picture = "whiteBk.jpg"  
-          end
-          @currphases <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink } 
-        end
-      end
-    end
-    @pastphases = []
-    @group.phases.where("deadline < ?", currtime).find_each do |proj|
-      approvedagreemt = Agreement.where("group_id = ? AND phase_id = ?", @group.id, proj.id )
-      if approvedagreemt[0].approved.present?
-        if approvedagreemt[0].approved > '0002-01-01'
-          author = User.find(proj.user_id)
-          if proj.phasepic.present?
-            picture = proj.phasepic
-          else
-            picture = "whiteBk.jpg"  
-          end
-          @pastphases <<  {pic: picture, projtitle: proj.name, authorname: author.name, desc: proj.mission, permalink: proj.permalink, authorlink: author.permalink } 
-        end
-      end
-    end  
   end
 
   def news
