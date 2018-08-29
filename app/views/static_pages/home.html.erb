@@ -7,6 +7,8 @@
     <title>CrowdPublishTV - Actors Authors - Increase Fan Engagement & Earn More Funds</title>
 </head>
 
+<body>
+
 <header>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -27,10 +29,9 @@
     </nav>
 </header>
 
-<body class="container-fluid">
-    <div class="row">
+<main class="container-fluid">
+    <div class="row whiteBlock">
         <div class="col-sm-12">
-<!--ADD BACKGROUND IMAGE-->
             <div class="joinButton">
                 <% if user_signed_in? %>
                     <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-primary btn-lg" %>
@@ -39,20 +40,21 @@
                 <% end %>
             </div>
         </div>
+    </div>
     <div class="row" id="homeHero">
         <div class="col-sm-12">
             <h1>
                 What is CrowdPublish.tv?<br>
                 <small>Connect With Fans</small><br>
                 <small>Offer Perks</small><br>
-                <small>Filler</small>
+                <small>Livestream</small>
             </h1>
         </div>
     </div>
-<!--Right-side Image Block-->
+<!--White Block-->
     <div class="row">
         <div class="col-sm-12">
-            <div class="row">
+            <div class="row whiteBlock">
                 <div class="col-sm-6">
                     <h2>Connect with Fans</h2>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
@@ -63,7 +65,7 @@
             </div>
         </div>
     </div>
-<!--Left-side Image Block-->
+<!--Grey Block-->
     <div class="row">
         <div class="col-sm-12">
             <div class="row greyBlock">
@@ -77,10 +79,10 @@
             </div>
         </div>
     </div>
-<!--Right-side Image Block-->
+<!--White Block-->
     <div class="row">
         <div class="col-sm-12">
-            <div class="row">
+            <div class="row whiteBlock">
                 <div class="col-sm-6">
                     <h2>Connect with Fans</h2>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
@@ -91,7 +93,7 @@
             </div>
         </div>
     </div>
-<!--Left-side Image Block-->
+<!--Grey Block-->
     <div class="row">
         <div class="col-sm-12">
             <div class="row greyBlock">
@@ -107,7 +109,7 @@
     </div>
 <!--FAQ Block-->
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" id="faqBlock">
             <h3>Want to know more? Visit our <%= link_to "FAQ", "/faq" %>.</h3>
             <div class="joinButton">
                 <% if user_signed_in? %>
@@ -118,10 +120,10 @@
             </div>
         </div>
     </div>
-    </div>
-</body>
+</main>
 
-<footer class="container-fluid">
+<footer>
+    <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-sm-offset-1">
             Site<br>
@@ -145,8 +147,11 @@
                 <li>Twitter</li>
             </ul>-->
         </div>
-        <div class="pull-right">
+        <div class="col-sm-3 pull-right">
             <small>&copy;2018 RoleModel Enterprises, LLC</small>
         </div>
     </div>
+    </div>
 </footer>
+
+</body>
