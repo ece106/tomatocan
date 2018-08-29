@@ -3,7 +3,7 @@
 <title> <% "Support " + @user.name + "'s Projects" %> </title>
 <meta property="og:url" content="http://CrowdPublish.TV" />
 <meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
-<meta property="og:description" content="CrowdPublishTV helps actors, filmmakers, authors increase fan engagement & raise more funds" />
+<meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
 </head>
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
@@ -11,14 +11,23 @@
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="page-content" >
-      <div class="container-flex" style="margin-top:-30px; ">
+      <div class="container-flex">
     
-<% if @user.author == 'author' || @user.author == 'storyteller' %>
+      <div class="row" style="text-align:center">
+        <div class="btn btn-primary" style="font-size:24px; background:#fff;">
+          <a href="https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE"  
+          onclick="window.open('https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE', 
+                         'newwindow', 
+                         'left=500, width=750,height=750'); 
+              return false;"
+          >Join the Livestream!</a>
+        </div>
+      </div><br><br>
 
   <% if @user.youtube1? %>
     <div class="post-border">
       <div class="row" >
-        <div class="col-xs-12" >
+        <div class="col-lg-6 col-md-10 col-sm-12 col-xs-12 " >
             <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
               <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @user.youtube1 %>" frameborder="0" allowfullscreen></iframe>
             <% end %>
@@ -73,25 +82,6 @@
       </div>
     </div>
   <% end %>
-
-<% else  %>
-      <div class="profilebox" >
-        <% if @user.about %> 
-          <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
-        <% end %>
-      </div>
-      <div class="row" >
-        <div class="col-md-7 col-md-offset-1 col-sm-7 col-xs-7 " >
-          <% if @user.twitter %>
-            <a class="twitter-timeline"    
-              data-widget-id="375760459510464512"
-              data-screen-name="<%= @user.twitter %>" data-show-replies="false"
-              data-tweet-limit="5">Tweets by @<%= @user.twitter %> </a>
-          <% end %>
-        </div>
-      </div>
-<% end %>
-
 
     </div>
   </div>
