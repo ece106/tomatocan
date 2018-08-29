@@ -447,6 +447,14 @@ main {
 p {
     text-align: left;
 }
+#heroImage {
+    background-image: image-url("heroImage.jpg");
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
 #homeHero {
     background-color: #495057;
     color: #F8F9FA;
@@ -458,13 +466,9 @@ p {
     padding: 100px 40px;
 }
 footer {
+    margin-left: -15px;
+    margin-right: -15px;
     text-align: left;
     color: #F8F9FA;
     background-color: #212529;
-}
-.row-no-padding {
-    [class*="col-"] {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
 }
