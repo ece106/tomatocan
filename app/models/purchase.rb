@@ -76,27 +76,28 @@ class Purchase < ApplicationRecord
         } 
       )
     else  
-      transfergrp = "purchase" + (Purchase.maximum(:id) + 1).to_s  #won't work when lots of simultaneous purchases
+#      transfergrp = "purchase" + (Purchase.maximum(:id) + 1).to_s  #won't work when lots of simultaneous purchases
+      appfee = ((amount * 5)/100)
 
       charge = Stripe::Charge.create( {
         :amount => amt,  #this is the amt charged to the customer's credit card
         :currency => "usd",
         :customer => customer.id,  # Don't use :source because we created/use existing customer & card is saved in stripe.
         :description => desc,  
-#        :application_fee => appfee,  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
-        :transfer_group => transfergrp
+        :application_fee => appfee,  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
+#        :transfer_group => transfergrp
         } #,
-#         {:stripe_account => authorstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
+         {:stripe_account => authorstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
       )
 
-      transfer = Stripe::Transfer.create({
-        :amount => (self.authorcut * 100).to_i,
-        :currency => "usd",
-        :destination => authorstripeaccount.id,
-        :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
-        :transfer_group => transfergrp #does this mean anything when there is a source transaction?
-      })
-      if self.group_id.present?
+#      transfer = Stripe::Transfer.create({
+#        :amount => (self.authorcut * 100).to_i,
+#        :currency => "usd",
+#        :destination => authorstripeaccount.id,
+#        :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
+#        :transfer_group => transfergrp #does this mean anything when there is a source transaction?
+#      })
+      if self.group_id.present?  #this is for when groups affiliate to help sell
         transfer = Stripe::Transfer.create({
           :amount => (self.groupcut * 100).to_i,
           :currency => "usd",

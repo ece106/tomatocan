@@ -13,6 +13,8 @@ gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
+gem 'oauth2'
+
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
