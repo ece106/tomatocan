@@ -50,12 +50,6 @@
         <b style="vertical-align: super">www.CrowdPublish.TV/ </b> <%= f.text_area :permalink, :cols => 23, :rows => 1, placeholder:  "Your custom URL handle", maxlength: 20 %> 
       </div>
 
-      <br>Change account type:
-      <br><%= f.radio_button(:author, 'storyteller') %>
-      <%= label_tag(:author_adult, "Storyteller") %>
-      <br><%= f.radio_button(:author, 'storylover') %>
-      <%= label_tag(:author_child, "Storylover") %>
- 
       <br>Change your name <br> 
       <div class="profilebox" >
         <%= f.text_area :name, :cols => 40, :rows => 1, maxlength: 50 %>

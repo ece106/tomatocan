@@ -52,19 +52,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_createstripeaccount_not_loggedin" do
-    # Redirects to login page if user is currently not logged in
-    get :createstripeaccount, params: {permalink: 'user1'}
-    assert_redirected_to "/login"
-  end
-
-  test "should_get_users_createstripeaccount_loggedin" do
-    # If user is logged in go to createstripeaccount page
-    sign_in @user
-    get :createstripeaccount, params: {permalink: 'user1'}
-    assert_response :success
-  end
-
   test "should_get_users_dashboard" do
     sign_in @user
     @book = books(:one)
@@ -101,12 +88,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
 
     get :groups, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
-  test "should_get_users_manageaccounts" do
-    sign_in @user
-    get :manageaccounts, params: {permalink: 'user1'}
     assert_response :success
   end
 

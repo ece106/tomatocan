@@ -92,76 +92,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @group }
-    end
-  end
-  def addbankaccount #add financial institution # to stripe acct just created
-    if @group.stripeid.present? 
-      account = Stripe::Account.retrieve(@group.stripeid)
-      @countryoftax = account.country
-    end  
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @group1 }
-    end
-  end
-
-
-  def correcterrors
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @group }
-    end
-  end
-
-
-  def manageaccounts
-    if @group.stripeid.present? 
-      account = Stripe::Account.retrieve(@group.stripeid)
-      @streetaddress = account.legal_entity.address.line1
-      @suite = account.legal_entity.address.line2
-      @city = account.legal_entity.address.city
-      @state = account.legal_entity.address.state
-      @zip = account.legal_entity.address.postal_code
-      @fieldsneeded = account.verification.fields_needed
-      @countryoftax = account.country
-      @email = account.email
-    end  
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @group }
-    end
-  end
-
-
-  def createstripeacnt  #called from button on createstripeaccount page
-    @group.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
-        params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
-    redirect_to group_addbankaccount_path(@group.permalink)
-  end
-  
-  def addbankacnt   #called from button on addbankaccount page
-    @group.add_bank_account(params[:currency], params[:bankaccountnumber], 
-        params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
-        params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
-    redirect_to group_path(@group.permalink)
-  end
-  def correcterr  #called from button on correcterror page
-    @group.correct_errors(params[:countryofbank], params[:currency], params[:routingnumber], params[:bankaccountnumber], 
-        params[:countryoftax], params[:bizname], params[:accounttype], params[:firstname], 
-        params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], 
-        params[:line1], params[:city], params[:zip], params[:state], params[:ein], params[:ssn4]) 
-    redirect_to group_path(@group.permalink)
-  end
-  def updatestripeacnt  #called from button on manageaccount page
-    @group.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
-        params[:state], params[:email]) 
-    redirect_to group_path(@group.permalink)
-  end
-
   def dashboard # this needs work
     @group.calcdashboard
     @incomeinfo = @group.incomeinfo
@@ -182,19 +112,10 @@ class GroupsController < ApplicationController
       @user = User.find(@group.user_id)
     end
 
-    def check_fieldsneeded
-      if @group.stripeid.present? 
-        account = Stripe::Account.retrieve(@group.stripeid)
-        @fieldsneeded = account.verification.fields_needed
-      end
-    end
-
     # Only allow a trusted parameter "white list" through.
     def group_params
       params.require(:group).permit( :grouptype, :name, :address, :latitude, :longitude, :user_id, :about,
-        :callaction, :managestripeacnt, :grouppic, :permalink, :twitter, :newsurl, :slug,
-        :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
-        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn )
+        :callaction, :grouppic, :permalink, :twitter, :newsurl, :slug )
     end
 
     def resolve_layout
@@ -202,8 +123,7 @@ class GroupsController < ApplicationController
       when "index", "new"
         'application'
       when "edit", "show", "calendar", "eventlist", "news", "profileinfo", "readerprofileinfo", 
-        "createstripeaccount", "manageaccounts", "addbankaccount", "correcterrors", "dashboard"
-        'grouptemplate'
+        "dashboard", 'grouptemplate'
       else
         'application'
       end
