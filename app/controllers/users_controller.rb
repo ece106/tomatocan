@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :userswithmerch, :youtubers, :create, :stripe_callback ]
-  before_action :check_fieldsneeded, except: [:update, :new, :index, :create]
   before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
   before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
@@ -258,11 +257,11 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:permalink, :name, :updating_password, :email, 
-        :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, 
-        :twitter, :title, :blogurl, :profilepic, :profilepicurl, 
-        :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
-        :youtube3, :videodesc1, :videodesc2, :videodesc3, 
+      params.require(:user).permit(:permalink, :name, :email, :password, 
+        :about, :author, :password_confirmation, :genre1, :genre2, :genre3, 
+        :twitter, :title, :profilepic, :profilepicurl, :remember_me, 
+        :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
+        :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password, 
         :agreeid, :purchid, :bannerpic, :on_password_reset )
     end
 
@@ -274,15 +273,6 @@ class UsersController < ApplicationController
         'editinfotemplate'
       else
         'userpgtemplate'
-      end
-    end
-
-    def check_fieldsneeded  #won't need this with stripe standard
-      if user_signed_in?
-        if current_user.stripeid.present? 
-          account = Stripe::Account.retrieve(current_user.stripeid)
-          @fieldsneeded = account.verification.fields_needed
-        end
       end
     end
 

@@ -101,7 +101,12 @@
           <% if @user.stripeid.present? %>
             <span class="dot" style = "margin-top:10px"></span> <%= link_to "Manage Your $", user_dashboard_path(@user.permalink), title: "View your dashboard" %>
           <% else %>
-            <span class="dot" style = "margin-top:10px"></span> <%= link_to "Receive $", user_createstripeaccount_path(@user.permalink), style:"color:red;", title: "Get your money deposited directly into your bank account. CrowdPublish.TV uses the same trusted payment processor many of your favorite sites use." %>
+            <span class="dot" style = "margin-top:10px"></span> 
+            <% if Rails.env.development? || Rails.env.test? %>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">Signup to Receive $</a>
+            <% else %>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">Signup to Receive $</a>
+            <% end %>
           <% end %>
         <br>
 

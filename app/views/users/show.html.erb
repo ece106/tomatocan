@@ -13,9 +13,7 @@
     <div class="page-content" >
       <div class="container-flex">
 
-      <% if @user.stripeid.present? %>
-         //show something
-      <% else %> 
+      <% if !@user.stripeid.present? %>
         <% if Rails.env.development? || Rails.env.test? %>
           <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">set up my free stripe account</a>
         <% else %>

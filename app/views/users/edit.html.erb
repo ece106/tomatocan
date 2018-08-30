@@ -67,7 +67,7 @@
         <% if current_user.stripeid.present? %>
           $<%= f.text_field :price, size: 80, value: 10.00 || :price %>USD<br>
         <% else %>
-          You must first sign up for a <%= link_to "Stripe Account", user_createstripeaccount_path(current_user.permalink) %>  (to receive payments) before offering items for sale.
+          You must first sign up for Stripe before offering items for sale.
 
         <% end %>
 
