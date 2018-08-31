@@ -60,7 +60,7 @@ class Purchase < ApplicationRecord
       )
     else  
 #      transfergrp = "purchase" + (Purchase.maximum(:id) + 1).to_s  #won't work when lots of simultaneous purchases
-      appfee = ((amount * 5)/100)
+      appfee = ((amt * 5)/100)
 
       charge = Stripe::Charge.create( {
         :amount => amt,  #this is the amt charged to the customer's credit card
