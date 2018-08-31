@@ -5,10 +5,18 @@
   <div class="container col-xs-12" style="margin-top:10px; margin-left: 10px; padding-left:10px;">
     <div class="post-border" style="width: 335px;">
       <% if user_signed_in? %>
+        <% if current_user.id == @user.id %>
+          <% if !current_user.stripeid.present? %>
+            You must Sign Up for Stripe to receive payments 
+            <% if Rails.env.development? || Rails.env.test? %>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= link_to image_tag("stripebutton.png") %></a>
+            <% else %>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= link_to image_tag("stripebutton.png") %></a>
+            <% end %>
+          <% end %><br><br>
 
-          <% if current_user.id == @user.id %>
-                <%= link_to "Create Perks", standardperks_path, style:"color:red;" %> so your Fans can support your work.
-          <% end %>
+            <%= link_to "Create Perks", standardperks_path, style:"color:red;" %> so your Fans can support your work.
+        <% end %><br><br>
 
 
           <% if @user.merchandises.any? %>

@@ -30,7 +30,7 @@ class Purchase < ApplicationRecord
 
     @purchaser = User.find(self.user_id)
     authorstripeaccount = Stripe::Account.retrieve(author.stripeid) 
-    if self.group_id.present?
+    if self.group_id.present? #not used right now
       group = Group.find(self.group_id)
       groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
     end

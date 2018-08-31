@@ -98,7 +98,7 @@
 
           <span class="dot" style = "margin-top:10px"></span> <%= link_to "Tell all your friends & fans", '/tellfriends', style:"color:red;", title: "Announce your CrowdPublish Campaign on twitter, facebook, email, from rooftops..." %> <br>
 
-          <% if @user.stripeid.present? %>
+          <% if current_user.stripeid.present? %>
             <span class="dot" style = "margin-top:10px"></span> <%= link_to "Manage Your $", user_dashboard_path(@user.permalink), title: "View your dashboard" %>
           <% else %>
             <span class="dot" style = "margin-top:10px"></span> 

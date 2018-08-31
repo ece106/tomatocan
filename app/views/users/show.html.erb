@@ -13,16 +13,6 @@
     <div class="page-content" >
       <div class="container-flex">
 
-      <% if !@user.stripeid.present? %>
-        <% if Rails.env.development? || Rails.env.test? %>
-          <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">set up my free stripe account</a>
-        <% else %>
-          <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">set up my free stripe account</a>
-        <% end %>
-
-      <% end %>
-
-    
       <div class="row" style="text-align:center">
         <div class="btn btn-primary" style="font-size:24px; background:#fff;">
           <a href="https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE"  
