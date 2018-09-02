@@ -90,8 +90,7 @@ class PurchasesController < ApplicationController
     end 
   end
 
-  # PUT /purchases/1.json
-  def update
+  def update #is this ever used
     @purchase = Purchase.find(params[:id])
 
     respond_to do |format|

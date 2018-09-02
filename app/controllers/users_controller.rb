@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       end 
       @numusrgroups = currusergroups.count 
       if current_user.stripeid.present?
-        @account = Stripe::Account.retrieve("#{@user.stripeid.to_s}") 
+#        @account = Stripe::Account.retrieve("#{@user.stripeid.to_s}") 
 #        @balance = Stripe::Balance.retrieve("#{@user.stripeid.to_s}") # We dont 
       end
     end 

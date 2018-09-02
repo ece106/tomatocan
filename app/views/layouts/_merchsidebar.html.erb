@@ -9,13 +9,12 @@
           <% if !current_user.stripeid.present? %>
             You must Sign Up for Stripe to receive payments 
             <% if Rails.env.development? || Rails.env.test? %>
-              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= link_to image_tag("stripebutton.png") %></a>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png") %></a>
             <% else %>
-              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= link_to image_tag("stripebutton.png") %></a>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png") %></a>
             <% end %>
           <% end %><br><br>
 
-            <%= link_to "Create Perks", standardperks_path, style:"color:red;" %> so your Fans can support your work.
         <% end %><br><br>
 
 
