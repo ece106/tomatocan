@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   match '/events/online' => "events#online", :as => :events_online, via: 'get'
 
   match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
-  
+
   resources :merchandises
   resources :phases
   resources :rsvpqs

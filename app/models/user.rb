@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :purchases
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
-  has_many :merchandises 
+  has_many :merchandises
 
 #  has_many :groups, through: :agreements  # Do we need this
 

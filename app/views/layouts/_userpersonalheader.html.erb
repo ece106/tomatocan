@@ -10,7 +10,7 @@
           <div class="dropdown-menu dropdown-menu-right">
             <% if user_signed_in? %>
                   <%if controller.controller_name == 'users' %>
-                    <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%> 
+                    <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
                       <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%>
 
                     <% if @mynullagreements.count != 0 %>

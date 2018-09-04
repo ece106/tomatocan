@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def agreetopartner 
+  def agreetopartner
     @agreement = Agreement.new
     @agreement.update_attribute(:group_id, params[:currgroupid]) 
     @agreement.update_attribute(:user_id, params[:userid])

@@ -11,10 +11,11 @@ html {
   width: 100%;
   overflow-y: scroll;
 }
-
+/*
 body {
   padding-top: 0px;
 }
+*/
 .body-color {
   background-color: #f2f2f2;
 }
@@ -67,14 +68,14 @@ body {
   padding-top: 0px;
   padding-bottom: 0px;
 }
-.groupimage { 
-   position: relative; 
+.groupimage {
+   position: relative;
    width: 100%; /* for IE 6 */
 }
 
-grouptext { 
-   position: absolute; 
-   bottom: 45px; 
+grouptext {
+   position: absolute;
+   bottom: 45px;
    left: 60px;
    color: #fff;
    text-shadow: 1px 1px #000;
@@ -82,7 +83,7 @@ grouptext {
    a:visited { color : #75b;}
    a:hover { text-decoration: none; color : #e6f; text-shadow: 1px 1px #000;}
 }
-projecttext { 
+projecttext {
    vertical-align: top;
    position: absolute;
    text-align: left;
@@ -151,8 +152,8 @@ carousel-inner>.item {
 .navbar .navbar-custom > li > a:focus {
     color: #eFdFFF;
 }
-.navbar .navbar-custom > .active > a, 
-.navbar .navbar-custom > .active > a:hover, 
+.navbar .navbar-custom > .active > a,
+.navbar .navbar-custom > .active > a:hover,
 .navbar .navbar-custom > .active > a:focus {
     color: #eFdFFF;
 }
@@ -165,14 +166,14 @@ carousel-inner>.item {
   color: black;
   background-color: transparent;
 }
-.navbar .navbar-nav > .active > a, 
-.navbar .navbar-nav > .active > a:hover, 
+.navbar .navbar-nav > .active > a,
+.navbar .navbar-nav > .active > a:hover,
 .navbar .navbar-nav > .active > a:focus {
     color: #863276;
 }
 
 .nav-stacked li a {
-  font-family:"Arial", sans-serif; font-weight: bold; font-size:22.0px; text-align:left; line-height:1.19em; color:#1e1e46; 
+  font-family:"Arial", sans-serif; font-weight: bold; font-size:22.0px; text-align:left; line-height:1.19em; color:#1e1e46;
 }
 
 /* typography */
@@ -212,7 +213,7 @@ p {
   ul {
     float: right;
     list-style: none;
-    
+
     li {
       float: left;
       text-align: left;
@@ -235,7 +236,7 @@ header.navbar {
   margin: auto;
 }
 
-/* footer */
+/* footer
 
 footer {
   margin-top: 25px;
@@ -261,6 +262,7 @@ footer {
     }
   }
 }
+*/
 #error_explanation {
   color: #f00;
   ul {
@@ -276,15 +278,15 @@ footer {
 
 // Sidebar
 
-sidebar { 
-  float:left; 
-  width:350px; 
+sidebar {
+  float:left;
+  width:350px;
   min-height: 100vh;
   background-color: #D3C9AE;
   padding-left: 5px;
-#  padding-top: 20px; 
+  padding-top: 20px;
   padding-bottom: 20px;
-#  margin-top: -40px; //don't know why there's a huge white margin without this
+  margin-top: -40px; //don't know why there's a huge white margin without this
   .wrapper {
     .profile-pic {        //is this used anymore
       margin-right: 5px;
@@ -319,9 +321,9 @@ sidebar {
 
 .post-border {
 
-#  border-bottom: solid;
-#  border-width: 3px;
-#  border-color: #863276;
+  border-bottom: solid;
+  border-width: 3px;
+  border-color: #863276;
   background-color: white;
 
   -webkit-box-shadow: 5px 5px 3px #e5e5e5;
@@ -349,7 +351,7 @@ center .info-content {
   transition: all 0.4s ease 0s;
 }
 #sidebar-wrapper {
-  margin-top: -40px; 
+  margin-top: -40px;
   margin-left: -350px;
   left: 350px;
   width: 350px;
@@ -357,7 +359,7 @@ center .info-content {
   height: 100%;
   max-width: 350px;
   overflow: wrap;
- 
+
   z-index: 8;
   transition: all 0.4s ease 0s;
   td {
@@ -421,5 +423,55 @@ center .info-content {
 
 .button:hover {
   background-color: #863276;
-} 
+}
 
+
+/*
+Notes
+Greys
+    - 00: #F8F9FA
+    - 01: #F1F3F5
+    - 02: #E9ECEF
+    - 03: #DEE2E6
+    - 04: #CED4DA
+    - 05: #ADB5BD
+    - 06: #868E96
+    - 07: #495057
+    - 08: #343A40
+    - 09: #212529
+ASU
+    - Gold: #FFC627
+    - Maroon: #8C1D40
+*/
+
+main {
+    padding-top: 64px;
+}
+p {
+    text-align: left;
+}
+#heroImage {
+    background-image: image-url("heroImage.jpg");
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+#homeHero {
+    background-color: #495057;
+    color: #F8F9FA;
+}
+.greyBlock {
+    background-color: #E9ECEF;
+}
+#homeHero, #faqBlock, .whiteBlock, .greyBlock {
+    padding: 100px 40px;
+}
+footer {
+    margin-left: -15px;
+    margin-right: -15px;
+    text-align: left;
+    color: #F8F9FA;
+    background-color: #212529;
+}

@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  def show 
+  def show
   end
 
   def news

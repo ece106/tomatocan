@@ -16,7 +16,7 @@ class AgreementsControllerTest < ActionController::TestCase
     @user = users(:one)
     @group = groups(:one)
     assert_difference('Agreement.count',1) do
-      post :create, params: { agreement: { user_id: @user.id, group_id: @group.id} } 
+      post :create, params: { agreement: { user_id: @user.id, group_id: @group.id} }
     #um, there are no records that exist in the test database with id = 1
 #old syntax    post :create, agreement: { group_id: @agreement.group_id, phase_id: @agreement.phase_id }
     end
