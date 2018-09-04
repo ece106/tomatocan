@@ -76,7 +76,7 @@ class PurchasesController < ApplicationController
         end
 
       else
-        redirect_to(:back, :notice => "Your order did not go through. Try again.")
+        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
     elsif @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
@@ -85,13 +85,12 @@ class PurchasesController < ApplicationController
       if @purchase.save_with_payment
         redirect_to userswithmerch_path, :notice => "Thank you for being a patron of " + author.name
       else
-        redirect_to(:back, :notice => "Your order did not go through. Try again.")
+        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end 
     end 
   end
 
-  # PUT /purchases/1.json
-  def update
+  def update #is this ever used
     @purchase = Purchase.find(params[:id])
 
     respond_to do |format|

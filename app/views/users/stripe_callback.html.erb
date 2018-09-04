@@ -6,14 +6,6 @@
 </head>
 
 
-      <% if @user.stripeid.present? %>
-         //show something
-      <% else %> 
-        <% if Rails.env.development? || Rails.env.test? %>
-          <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">set up my free stripe account</a>
-        <% else %>
-          <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">set up my free stripe account</a>
-        <% end %>
+Your Stripe Account has been linked.
 
-      <% end %>
-
+<%= link_to current_user.name, user_profile_path(current_user.permalink) %>

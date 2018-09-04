@@ -30,7 +30,7 @@ class Purchase < ApplicationRecord
 
     @purchaser = User.find(self.user_id)
     authorstripeaccount = Stripe::Account.retrieve(author.stripeid) 
-    if self.group_id.present?
+    if self.group_id.present? #not used right now
       group = Group.find(self.group_id)
       groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
     end
@@ -44,7 +44,7 @@ class Purchase < ApplicationRecord
     else 
       customer = Stripe::Customer.create(
         :source => stripe_card_token,  #token from? purchases.js.coffee?
-        :description => @purchaser.name, # what info do I really want here
+       :description => @purchaser.name, # what info do I really want here
         :email => @purchaser.email
       )
       @purchaser.update_attribute(:stripe_customer_token, customer.id)
@@ -60,19 +60,23 @@ class Purchase < ApplicationRecord
       )
     else  
 #      transfergrp = "purchase" + (Purchase.maximum(:id) + 1).to_s  #won't work when lots of simultaneous purchases
-      appfee = ((amount * 5)/100)
+      appfee = ((amt * 5)/100)
+
+      token = Stripe::Token.create({
+        :customer => customer.id,
+      }, {:stripe_account => authorstripeaccount.id} )
 
       charge = Stripe::Charge.create( {
-        :amount => amt,  #this is the amt charged to the customer's credit card
+        :amount => amt,  # amt charged to customer's credit card
         :currency => "usd",
-        :customer => customer.id,  # Don't use :source because we created/use existing customer & card is saved in stripe.
+        :source => token.id,  #token from? purchases.js.coffee?
+#        :customer => customer.id,  # This will be necessary for subscriptions. See Stripe Docs & Stackoverflow
         :description => desc,  
         :application_fee => appfee,  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
 #        :transfer_group => transfergrp
         } ,
          {:stripe_account => authorstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
       )
-
 #      transfer = Stripe::Transfer.create({
 #        :amount => (self.authorcut * 100).to_i,
 #        :currency => "usd",

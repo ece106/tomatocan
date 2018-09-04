@@ -9,7 +9,6 @@
          <button class="btn dropdown-toggle btn-lettering button" data-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> Options <i class="fa fa-caret-down"></i> </button>
           <div class="dropdown-menu dropdown-menu-right">
             <% if user_signed_in? %>
-              <% if @user == current_user %>
                   <%if controller.controller_name == 'users' %>
                     <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%>
                       <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%>
@@ -20,7 +19,6 @@
                     <%= link_to "Create Perks", standardperks_path, method: :get, class: 'dropdown-item' %>
 
                   <% end %>
-              <% end %>
             <% end %>
           </div>
       </li>

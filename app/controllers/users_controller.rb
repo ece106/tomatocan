@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :userswithmerch, :youtubers, :create, :stripe_callback ]
-  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
-  before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
+  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement ]
+  before_action :authenticate_user!, only: [:edit, :update ]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
@@ -35,8 +35,8 @@ class UsersController < ApplicationController
       end 
       @numusrgroups = currusergroups.count 
       if current_user.stripeid.present?
-        @account = Stripe::Account.retrieve("#{@user.stripeid.to_s}") 
-        @balance = Stripe::Balance.retrieve("#{@user.stripeid.to_s}")
+#        @account = Stripe::Account.retrieve("#{@user.stripeid.to_s}") 
+#        @balance = Stripe::Balance.retrieve("#{@user.stripeid.to_s}") # We dont 
       end
     end 
 
@@ -269,7 +269,7 @@ class UsersController < ApplicationController
       case action_name
       when "index", "youtubers", "userswithmerch", "stripe_callback"
         'application'
-      when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts", "changepassword"
+      when "profileinfo", "readerprofileinfo", "changepassword"
         'editinfotemplate'
       else
         'userpgtemplate'
