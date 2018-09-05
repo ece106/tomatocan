@@ -69,17 +69,7 @@ small, sup, sub {
 #bootstrap-override a:visited {
     color: black;
 }*/
-footer p.f-header {
-    font-family: $font-stack;
-    font-size: .85em;
-    margin: 0;
-    padding: 0;
-}
-footer a.f-link {
-    color: $brand-primary;
-    font-family: $font-stack;
-    font-size: 1em;
-}
+
 
 /* Layout --------------------------------------------------- */
 /* Navbar */
@@ -139,6 +129,19 @@ h3#faqBlock {
     100%{top:0em;}
 }
 
+//footer
+
+footer p.f-header {
+    font-family: $font-stack;
+    font-size: .85em;
+    margin: 0;
+    padding: 0;
+}
+footer a.f-link {
+    color: $brand-primary;
+    font-family: $font-stack;
+    font-size: 1em;
+}
 /* Working --------------------------------------------------- */
 /* mixins, variables, etc. */
 
@@ -376,30 +379,6 @@ p {
 
 /* footer */
 
-footer {
-  margin-top: 25px;
-  padding-top: 5px;
-  margin-right: 10px;
-  border-top: 1px solid #000;
-  color: black;
-  a {
-    color: #000;
-    &:hover {
-      //color: $grayDarker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
-    }
-  }
-}
 #error_explanation {
   color: #f00;
   ul {

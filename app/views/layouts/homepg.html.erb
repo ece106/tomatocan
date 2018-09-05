@@ -23,13 +23,13 @@
   </head>
 <body>
 
-    <center>
+<center>
     <%= render 'layouts/header' %>
-    <div class="container-fluid">
-      <%= yield %>
-    </div> 
+    <main class="container-fluid">
+        <%= yield %>
+    </main> 
     <%= render 'layouts/footer' %>   
-  </center>
+</center>
 
 <% #= devise_error_messages! %>
 <% flash.each do |name, msg| %>

@@ -1,8 +1,15 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
 footer {
     padding-top: 25px;
     padding-bottom: 25px;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin: 0;
     text-align: left;
     color: #F8F9FA;
     background-color: #212529;

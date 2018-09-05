@@ -1,60 +1,58 @@
-<main>
-    <div class="row" id="heroImage">
-        <!--Sign Up button-->
-        <% if user_signed_in? %>
-            <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
-        <% else %>
-            <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
-        <% end %> 
-        <!--Livestream button-->
-        <% if user_signed_in? %>
-            <%= link_to 'Livestream', "/livestream", :class => "btn-huge" %>
-        <% end %>
-        <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+<div class="row" id="heroImage">
+    <!--Sign Up button-->
+    <% if user_signed_in? %>
+        <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
+    <% else %>
+        <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
+    <% end %> 
+    <!--Livestream button-->
+    <% if user_signed_in? %>
+        <%= link_to 'Livestream', "/livestream", :class => "btn-huge" %>
+    <% end %>
+    <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+</div>
+<div class="row">
+    <div class="jumbotron">
+        <h1>CrowdPublish.TV</h1>
+        <p><a href="#connectFans">Connect With Fans</a><br>
+            <a href="#offerPerks">Offer Perks</a><br>
+            <a href="#livestream">Livestream</a>
+        </p>
     </div>
-    <div class="row">
-        <div class="jumbotron">
-            <h1>CrowdPublish.TV</h1>
-            <p><a href="#connectFans">Connect With Fans</a><br>
-                <a href="#offerPerks">Offer Perks</a><br>
-                <a href="#livestream">Livestream</a>
-            </p>
-        </div>
+</div>
+<div class="row lightBlock" id="connectFans">
+    <div class="col-sm-6">
+        <h2>Connect with Fans</h2>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
     </div>
-    <div class="row lightBlock" id="connectFans">
-        <div class="col-sm-6">
-            <h2>Connect with Fans</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
-        </div>
-        <div class="col-sm-6">
-            <img class="hidden-xs" src="https://via.placeholder.com/350x150">
-        </div>
+    <div class="col-sm-6">
+        <img class="hidden-xs" src="https://via.placeholder.com/350x150">
     </div>
-    <div class="row darkBlock" id="offerPerks">
-        <div class="col-sm-6">
-            <img class="hidden-xs" src="https://via.placeholder.com/350x150">
-        </div>
-        <div class="col-sm-6">
-            <h2>Offer Perks</h2>
-            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiconsectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
-        </div>
+</div>
+<div class="row darkBlock" id="offerPerks">
+    <div class="col-sm-6">
+        <img class="hidden-xs" src="https://via.placeholder.com/350x150">
     </div>
-    <div class="row lightBlock" id="livestream">
-        <div class="col-sm-6">
-            <h2>Livestream</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
-        </div>
-        <div class="col-sm-6">
-            <img class="hidden-xs" src="https://via.placeholder.com/350x150">
-        </div>
+    <div class="col-sm-6">
+        <h2>Offer Perks</h2>
+        <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiconsectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
     </div>
-    <div class="row" id="faqBlock">
-        <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
-        <% if user_signed_in? %>
-            <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
-        <% else %>
-            <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
-        <% end %>
-        <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+</div>
+<div class="row lightBlock" id="livestream">
+    <div class="col-sm-6">
+        <h2>Livestream</h2>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
     </div>
-</main>
+    <div class="col-sm-6">
+        <img class="hidden-xs" src="https://via.placeholder.com/350x150">
+    </div>
+</div>
+<div class="row" id="faqBlock">
+    <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
+    <% if user_signed_in? %>
+        <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
+    <% else %>
+        <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
+    <% end %>
+    <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+</div>
