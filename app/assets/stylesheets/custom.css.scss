@@ -1,9 +1,9 @@
+#bootstrap-override {
+    //apply to all body elements; add id to element css to add weight to selectors 
+}
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-#bootstrap-override {
-    //applied to all body elements; add id to element css to add weight to selectors 
-}
 
 /* Contents --------------------------------------------------- /
 1. Branding
@@ -23,6 +23,9 @@
 /* Branding --------------------------------------------------- */
 
 $brand-primary: #FFC627;
+$brand-primary-light: #FFEC99;
+$brand-primary-dark: #E67700;
+
 $brand-secondary: #8C1D40;
 
 //$logo-full-large:;
@@ -37,6 +40,10 @@ $font-stack: "neuzerit-grotesk", "Avenir", "Helvetica", "Arial", sans-serif !imp
 h1#bootstrap-override, h2#bootstrap-override, h3#bootstrap-override, h4#bootstrap-override, h5#bootstrap-override, h6#bootstrap-override {
     font-family: $font-stack;
     font-weight: 700;
+}
+a#bootstrap-override {
+    color: black;
+    font-family: $font-stack;
 }
 h1 {
     font-size: 2.827em;
@@ -76,18 +83,6 @@ footer a.f-link {
 
 /* Layout --------------------------------------------------- */
 /* Navbar */
-.brand-centered {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 6px;
-}
-.navbar-brand {
-    display: flex;
-    align-items: center;
-}
 main {
     padding-top: 64px; //prevents header from overlapping body
 }
@@ -122,7 +117,7 @@ h3#faqBlock {
 .btn-huge {
     font-size: 2em;
     margin-top: 4em;
-    padding: .8em 4em;
+    padding: .8em 2em;
     border-radius: 0.2em;
     text-decoration: none;
     background-color: $brand-primary;
@@ -143,27 +138,6 @@ h3#faqBlock {
     50%{top:0em}
     100%{top:0em;}
 }
-
-/* Footer ---------------------------------------------- */
-//Needs to be migrated to controller at some point.
-
-footer {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    margin-left: -15px;
-    margin-right: -15px;
-    text-align: left;
-    color: #F8F9FA;
-    background-color: #212529;
-}
-#footer {
-    position: relative;
-}
-#copyright {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
 
 /* Working --------------------------------------------------- */
 /* mixins, variables, etc. */
@@ -287,7 +261,7 @@ carousel-inner>.item {
     width: 340px;
 }
 
-.navbar-default {
+/* .navbar-default {
     border-color: #black;
 }
 
@@ -338,7 +312,7 @@ carousel-inner>.item {
 
 .nav-stacked li a {
   font-family:"Arial", sans-serif; font-weight: bold; font-size:22.0px; text-align:left; line-height:1.19em; color:#1e1e46; 
-}
+}*/
 
 /* typography */
 
@@ -387,7 +361,7 @@ p {
     a:hover {  background-color: transparent; }
   }
 
-header.navbar {
+/* header.navbar {
   border-radius: 0;
   top: -20px;
   ul > li:last-child {
@@ -398,7 +372,7 @@ header.navbar {
 .navtable {
   display: table;
   margin: auto;
-}
+}*/
 
 /* footer */
 
@@ -503,7 +477,7 @@ sidebar {
   background-color: white;
 }
 
-center .info-content {
+.info-content {
   padding-left: 0;
   margin-top: -20px;
 }
@@ -587,4 +561,3 @@ center .info-content {
 .button:hover {
   background-color: #863276;
 } 
-}

@@ -1,20 +1,21 @@
-<footer class="navbar navbar-fixed navbar-inverse">
-  <div class="navbar-inner">
-    <nav>
-      <ul class="nav pull-right">
-        <li><%= link_to 'Home', root_path, :style => 'color:#FFFFFF' %></li>
-        <li><%= link_to 'Members', users_path, :style => 'color:#FFFFFF' %></li>
-        <li><%= link_to 'SIGN UP!', "/signup", :style => 'color:#FFFFFF' %></li>
-      </ul>
-
-      <ul class="nav pull-left">
-        <li>Questions? Contact Lisa@CrowdPublish.TV </li>
-      </ul>
-    </nav>
-  </div>
-
-  <div class="copyalpha">
-    <br> This site is still in alpha stage development 
-    <br><br>(C) Copyright 2018, RoleModel Enterprises, LLC. All Rights Reserved.
-  </div>
+<footer>
+    <div class="container-fluid">
+        <div class="row" id="footer">
+            <div class="col-sm-3 col-sm-offset-1">
+                <p class="f-header">Site</p>
+                <%= link_to "About", '/aboutus', :class => "f-link" %><br>
+                <%= link_to "FAQ", '/faq', :class => "f-link"  %><br>
+                <%= link_to "Terms of Service", '/tos', :class => "f-link" %>
+            </div>
+            <div class="col-sm-3">
+                <p class="f-header">Contact</p>
+                <a href="mailto:info@crowdpublish.tv" alt="Email" target="_blank" class="f-link">info@crowdpublish.tv</a><br>
+                <a href="#" class="f-link">Facebook</a><br>
+                <a href="#" class="f-link">Twitter</a>
+            </div>
+            <div class="col-sm-3 pull-right" id="copyright">
+                <small>©2018 RoleModel Enterprises, LLC</small>
+            </div>
+        </div>
+    </div>
 </footer>

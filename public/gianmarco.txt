@@ -1,16 +1,18 @@
 Scrum Performance Summary - Gianmarco Minin
 
+========================================
 Monday, August 20, 2018
-- Met everyone, got app running on local machine
-- Browsed through site, Looked through file structure, css, html
+    - Met everyone, got app running on local machine
+    - Browsed through site, Looked through file structure, css, html
 
 Tuesday, August 21, 2018
-- Designed some pages
+    - Layout mockup in Illustrator
 
 Thursday, August 23, 2018
-- Analyzed page flow
+    - Analyzed page flow
+    - https://app.flowmapp.com/share/9fb173e35de368f7e522fa6c112f9393
 
-
+========================================
 Tasks for Week of August 27, 2018
     - Create new version of home page
     - Header: Link to currently in-use pages using pageflow diagram
@@ -45,12 +47,12 @@ Thursday, August 30, 2018
     - CSS
         - Cleaned stylesheet and created mixins for font families
 
-
+========================================
 Tasks for Week of September 3, 2018
     - Header
         - Finish layout and select links
     - Footer
-        - Deploy as model for all pages
+        - Deploy as view for all pages
     - Homepage
         - Finish buttons
         - Write copy
@@ -60,4 +62,23 @@ Tuesday, September 4, 2018
     - Homepage
         - Rebuilt homepage layout I deleted :(
         - Adjusted button spacing and added Sign In option
+        
+Wednesday, September 5, 2018
+    - Homepage
+        - Added 'Livestream' button
+        - Fixed btn-huge CSS to prevent breakage on xs devices
+    - Footer
+        - Created _footer.html view for use on all pages
+        - Moved CSS from custom.scss to footer.scss
+    - Header
+        - Suppressed old CSS styling on header/nav elements
+        - Made login and account name actually clickable
+        - Abandoned centered logo for left-aligned layout
+        - Moved HTML from home.html to _header.html
+        - Moved CSS from custom.scss to footer.scss
+    - Branding
+        - Replaced logos (cpLogo and crowdPublishIcon) with transparent versions
+        - Selected lighter/darker shades for brand colors (opencolor Yellow 2 & 9)
+    - Images
+        - Replaced heroImage with more diverse cast
         

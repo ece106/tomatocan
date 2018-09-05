@@ -1,48 +1,16 @@
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="CrowdPublish.TV" content="Actors Filmmakers Authors - Increase Fan Engagement &amp; Earn More Funds">
-    <meta property="og:url" content="http://CrowdPublish.TV">
-    <meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png">
-    <meta property="og:description" content="CrowdPublishTV helps actors, filmmakers, authors Increase Fan Engagement &amp; Earn More Funds">
-    <title>CrowdPublishTV - Actors Authors - Increase Fan Engagement &amp; Earn More Funds</title>
-</head>
-
-<body id="bootstrap-override">
-    
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <ul class="nav navbar-nav">
-                    <li><a><%= link_to "Explore", '/userswithmerch' %></a></li>
-                    <li><a><%= link_to "Create a page", '/signup' %></a></li>
-                </ul>
-                <div class="brand-centered">
-                    <a class="navbar-brand" href="#">
-                        <img src="/assets/crowdPublishIcon100.png" height="40px">
-                    </a>
-                </div>
-            </div>
-            <p class="navbar-text navbar-right">
-                <% if user_signed_in? %>
-                    <%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-                <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn navbar-btn" %>
-                <% else %>
-                    <%= link_to 'Sign in', "/login", :class =>"btn navbar-btn btn-primary" %>
-                <% end %>
-            </p>
-        </div>
-    </nav>
-</header>
-
 <main>
     <div class="row" id="heroImage">
+        <!--Sign Up button-->
         <% if user_signed_in? %>
-            <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge bouncy" %>
+            <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
         <% else %>
-            <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
+            <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
+        <% end %> 
+        <!--Livestream button-->
+        <% if user_signed_in? %>
+            <%= link_to 'Livestream', "/livestream", :class => "btn-huge" %>
         <% end %>
-        <br><br><small>Have an account? <%= link_to 'Sign in.', "/signin" %></small>
+        <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
     </div>
     <div class="row">
         <div class="jumbotron">
@@ -83,34 +51,10 @@
     <div class="row" id="faqBlock">
         <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
         <% if user_signed_in? %>
-            <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge bouncy" %>
+            <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
         <% else %>
-        <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
+            <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
         <% end %>
-        <br><br><small>Have an account? <%= link_to 'Sign in.', "/signin" %></small>
+        <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
     </div>
 </main>
-
-<footer>
-    <div class="container-fluid">
-        <div class="row" id="footer">
-            <div class="col-sm-3 col-sm-offset-1">
-                <p class="f-header">Site</p>
-                <%= link_to "About", '/aboutus', :class => "f-link" %><br>
-                <%= link_to "FAQ", '/faq', :class => "f-link"  %><br>
-                <%= link_to "Terms of Service", '/tos', :class => "f-link" %>
-            </div>
-            <div class="col-sm-3">
-                <p class="f-header">Contact</p>
-                <a href="mailto:info@crowdpublish.tv" alt="Email" target="_blank" class="f-link">info@crowdpublish.tv</a><br>
-                <a href="#" class="f-link">Facebook</a><br>
-                <a href="#" class="f-link">Twitter</a>
-            </div>
-            <div class="col-sm-3 pull-right" id="copyright">
-                <small>©2018 RoleModel Enterprises, LLC</small>
-            </div>
-        </div>
-    </div>
-</footer>
-    
-</body>

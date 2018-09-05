@@ -23,11 +23,12 @@
   </head>
 <body>
 
-  <center>
+    <center>
+    <%= render 'layouts/header' %>
     <div class="container-fluid">
       <%= yield %>
     </div> 
-    <% #= render 'layouts/footer' %>   
+    <%= render 'layouts/footer' %>   
   </center>
 
 <% #= devise_error_messages! %>
