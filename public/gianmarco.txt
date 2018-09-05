@@ -68,17 +68,19 @@ Wednesday, September 5, 2018
         - Added 'Livestream' button
         - Fixed btn-huge CSS to prevent breakage on xs devices
     - Footer
-        - Created _footer.html view for use on all pages
-        - Moved CSS from custom.scss to footer.scss
+        - Created _footer.html.erb view for use on all pages
+        - Moved CSS from custom.css.scss to footer.css.scss
     - Header
         - Suppressed old CSS styling on header/nav elements
         - Made login and account name actually clickable
         - Abandoned centered logo for left-aligned layout
-        - Moved HTML from home.html to _header.html
-        - Moved CSS from custom.scss to footer.scss
+        - Moved HTML from home.html.erb to _header.html.erb
+        - Moved CSS from custom.css.scss to footer.css.scss
     - Branding
-        - Replaced logos (cpLogo and crowdPublishIcon) with transparent versions
         - Selected lighter/darker shades for brand colors (opencolor Yellow 2 & 9)
+        
+(to-do for thursday)
     - Images
         - Replaced heroImage with more diverse cast
-        
+    - Branding
+        - Replaced logos (cpLogo and crowdPublishIcon) with transparent versions
