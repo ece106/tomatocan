@@ -50,9 +50,6 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
     get 'login' => 'devise/sessions#new', :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
 
-    get 'securelogin' => 'devise/sessions#stripe_securelogin', :as => :new_secure_user_session
-    post 'securelogin' => 'devise/sessions#create', :as => :secure_user_session
-
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
     get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
     post "signup", :to => 'devise/registrations#create', :as => :user_signup
