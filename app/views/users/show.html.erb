@@ -9,7 +9,7 @@
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 <% stripeconnect = ENV['STRIPE_CONNECT_CLIENT_ID'] %>
 
-<% if user_logged_in? %>
+<% if user_signed_in? %>
   <% if current_user.id == @user.id %>
     <% if request.host == "crowdpublishtv.herokuapp.com" %>  
       <script type="text/javascript">
