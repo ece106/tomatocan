@@ -7,7 +7,7 @@
 </head>
 
     <% if request.host == "crowdpublishtv.herokuapp.com" %>
-      <% redirect_to "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write"
+      <% redirect_to "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" %>
     <% end %>
 
 
