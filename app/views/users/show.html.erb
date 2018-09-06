@@ -6,12 +6,14 @@
 <meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
 </head>
 
-    <% if request.host == "crowdpublishtv.herokuapp.com" %>
-      <% redirect_to "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" %>
-    <% end %>
-
-
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
+<% stripeconnect = ENV['STRIPE_CONNECT_CLIENT_ID'] %>
+
+<% if request.host == crowdpublishtv.herokuapp.com %>  
+  <script type="text/javascript">
+    window.location.href= "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + stripeconnect + "&scope=read_write"
+  </script>
+<% end %>
 
 <div id="wrapper">
   <div id="page-content-wrapper">
