@@ -15,15 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-
-    if request.host == "crowdpublishtv.herokuapp.com" || "crowdpublishtvcom.herokuapp.com" 
-      stripeconnect = STRIPECONNECTCLIENTID
-      redirect_to "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + stripeconnect + "&scope=read_write"
-    else
       @user = user_profile_path(current_user.permalink)
-
-    end 
-
   end
 
 
