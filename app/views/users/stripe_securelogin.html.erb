@@ -1,0 +1,26 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
+<meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
+</head>
+
+Confirm your secure login to proceed to Stripe payments<br><br>
+
+    <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
+
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true, :size => 40 %></div><br>
+
+      <div><%= f.label :password %><br />
+      <%= f.password_field :password, :size => 40 %></div>
+      <br><br><div><%= f.submit "Sign in" %></div>
+    <% end %>
+
+
+
+            <% if Rails.env.development? || Rails.env.test? %>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png") %></a>
+            <% else %>
+              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png") %></a>
+            <% end %>
