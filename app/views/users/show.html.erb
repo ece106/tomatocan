@@ -6,6 +6,11 @@
 <meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
 </head>
 
+    <% if request.host == "crowdpublishtv.herokuapp.com" %>
+      <% redirect_to "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write"
+    <% end %>
+
+
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
 <div id="wrapper">

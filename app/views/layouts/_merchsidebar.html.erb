@@ -12,8 +12,7 @@
               <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png") %></a>
             <% else %>
               <br><br>Confirm your secure login to proceed to Stripe payments<br><br>
-              <%= link_to image_tag("stripebutton.png"), "https://crowdpublishtv.herokuapp.com/securelogin" %>
-
+              <%= link_to image_tag("stripebutton.png"), "https://crowdpublishtv.herokuapp.com/login" %>
             <% end %>
           <% end %><br><br>
 
