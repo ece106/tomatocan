@@ -22,7 +22,7 @@
           <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
           <td>
               <% user = User.find(event.usrid) %>
-              <%= link_to user.name, user_stream_path(user.permalink) %> </b>
+              <%= link_to user.name, user_profile_path(user.permalink) %> </b>
           </td>
           <td>
             <% if user_signed_in? %>
