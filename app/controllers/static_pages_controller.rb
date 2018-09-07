@@ -2,7 +2,8 @@ class StaticPagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    @events = Event.where( "start_at > ?", Time.now )
+    timenotutc = Time.now - 10.hours
+    @events = Event.where( "start_at > ?", timenotutc )
     userswmerch = User.joins(:merchandises).distinct
     merchorder = userswmerch.order('updated_at DESC')
     @merchusers = merchorder.paginate(:page => params[:page], :per_page => 6)
