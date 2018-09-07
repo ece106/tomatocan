@@ -18,16 +18,23 @@ class Event < ApplicationRecord
     ...URLs are not allowed in addresses. Events are searchable only by street address & zip code. If you will be 
     livestreaming this event from www.CrowdPublish.TV/yourpage/stream, leave the address as the default: livestream " }
 
-  validates_numericality_of :end_at, :less_than => Proc.new { |r| r.start_at.to_f + 3.days.to_f }, :allow_blank => true, message: " date can't be more than 3 days after Event start date"
-  validates_numericality_of :end_at, :greater_than => Proc.new { |r| r.start_at.to_f }, :allow_blank => true, message: " time must be after Event start time"
-  geocoded_by :address
+  time = Proc.new { |r| r.start_at.to_f + 3.hours.to_f }
+puts time
+puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs"
 
-  after_initialize :assign_defaults_on_new_event, if: -> {new_record?}
+puts ->(event) { event.end_at }
+
+
+  validate :endat_greaterthan_startat 
+  def endat_greaterthan_startat
+    if end_at.present? && end_at < start_at
+      errors.add(:end_at, "End time must be after start time")
+    end
+  end  
+
+#  validates_numericality_of :end_at, less_than: ->(t) { t.start_at + 3.hours }, :allow_blank => true, message: " date can't be more than 3 hours after Event start time"
+
+#  geocoded_by :address
 #  after_validation :geocode, :if => :address_changed? # don't do this until geocoder gem improves
-
-  private
-  def assign_defaults_on_new_event
-    self.address = "livestream" unless self.address
-  end
 
 end

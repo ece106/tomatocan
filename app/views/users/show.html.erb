@@ -8,12 +8,14 @@
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
-<% if user_signed_in? %>
-  <% if @user.id == current_user.id %>
-    <% if request.host == "crowdpublishtv.herokuapp.com" %>
-      <script type="text/javascript">
-        window.location.href= "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_6Ws78QidiUJpM70FWAELSMoUDYE37QA9&scope=read_write"
-      </script>
+<% if request.host == "crowdpublishtv.herokuapp.com" %>
+  <% if user_signed_in? %>
+    <% if @user.id == current_user.id %>
+      <% if !current_user.stripeid.present? %>
+        <script type="text/javascript">
+          window.location.href= "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_6Ws78QidiUJpM70FWAELSMoUDYE37QA9&scope=read_write"
+        </script>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
