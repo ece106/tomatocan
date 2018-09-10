@@ -17,7 +17,7 @@
   <%= f.hidden_field :usrid, value: current_user.id %>
 
   <div class="field">
-    <b>Event title</b><br>
+    <b>Topic for discussion / Title of livestream event </b><br>
     <%= f.text_field :name, :size => 80 %><p>
   </div>
 
@@ -31,15 +31,9 @@
     <%= f.datetime_select :end_at, :ampm => true, :default => 10.days.from_now, :minute_step => 15 %>
   </div>
   <div class="field">
-    <br><b>Description of event</b><br />
+    <br><b>Details about the livestream discussion</b><br /> 
     <i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i><br>
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
-  </div>
-  <div class="field">
-    <b>Address</b><br>
-    If an in-person event, street address where this event will take place. 
-    If you will be livestreaming this event, leave the default 'livestream' below <br>
-    <%= f.text_field :address, :size => 80, placeholder: "livestream" %><p>
   </div>
   <div class="field">
 <% 

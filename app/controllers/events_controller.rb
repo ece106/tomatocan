@@ -56,12 +56,6 @@ class EventsController < ApplicationController
 
   # GET /events/new.json
   def new
-    @tempval = 0
-    if current_user.address
-      @groups = Group.near([current_user.latitude, current_user.longitude], 50, order: 'distance') 
-    else
-      @groups = Group.where("id=1")
-    end
     @event = Event.new
   end
 
@@ -74,22 +68,21 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
 
+puts @event.start_at
+puts @event.start_at.to_f
+puts @event.end_at
+puts @event.end_at.to_f
+puts @event.start_at.to_f + 3.hours.to_f
+puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
     respond_to do |format|
       if @event.save
-        if @event.address == "livestream"
-          if @event.end_at > @event.start_at + 3.hours
-            @event.update_attribute(:end_at, @event.start_at + 3.hours)
-        end
-      end
 #        redirect_to @event
-        format.html { redirect_to @event }
+        format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
       else
 #        format.html { redirect_to new_event_path }
  #       redirect_to new_event_path, :notice => "Your event was not saved. Check for improper input."
-        if current_user.address
-          @groups = Group.near([current_user.latitude, current_user.longitude], 50, order: 'distance') 
-        end
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -102,12 +95,6 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(event_params)
-        if @event.address.blank?
-          @event.update_attribute(:address, "livestream")
-        end
-        if @event.address == "livestream"
-          @event.update_attribute(:end_at, @event.start_at + 3.hours)
-        end
         format.html { redirect_to @event }
         format.json { head :ok }
       else

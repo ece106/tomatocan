@@ -11,7 +11,8 @@
             <% if Rails.env.development? || Rails.env.test? %>
               <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png") %></a>
             <% else %>
-              <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png") %></a>
+              <br><br>Confirm your secure login to proceed to Stripe payments<br><br>
+              <%= link_to image_tag("stripebutton.png"), "https://crowdpublishtv.herokuapp.com/login" %>
             <% end %>
           <% end %><br><br>
 
@@ -34,7 +35,7 @@
           <% end %>
 
       <% else %>
-        <%= button_to "SIGN UP", "/signup", class: "button", class: 'button', style: "font-size:28px" %>to access Perks 
+        <%= button_to "SIGN UP", "/signup", class: "button", style: "font-size:28px" %>to access Perks 
         <%= link_to 'or SIGN IN...', "/login", {:style=>'float:right'} %><br> <br>
       <% end %>
     </div>
