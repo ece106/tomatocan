@@ -1,28 +1,28 @@
-<header class="container-fluid">
+<header>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<% root_path %>">
-                <img alt="CrowdPublish.TV" src="/assets/crowdPublishIcon.png" height="30px" class="d-inline-block align-top">
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><%= link_to "Explore", '/userswithmerch' %></li>
-                <li>
-                    <% if user_signed_in? %>
-                    <%= link_to "Dashboard", user_profile_path(current_user.permalink) %>
-                    <% else %>
-                    <%= link_to "Create a page", '/signup' %>
-                    <% end %>
-                </li>
-            </ul>
-            <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#globalNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<%= root_path %>">
+                    <img alt="CrowdPublish.TV" src="/assets/crowdPublishIcon.png" height="50px">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="globalNavbar">
+                <ul class="nav navbar-nav">
+                    <li><%= link_to "Explore", '/userswithmerch' %></li>
+                    <li>
+                        <% if user_signed_in? %>
+                            <%= link_to "Dashboard", user_profile_path(current_user.permalink) %>
+                        <% else %>
+                            <%= link_to "Create a page", '/signup' %>
+                        <% end %>
+                    </li>
+                </ul>
+                 
                 <ul class="nav navbar-nav navbar-right">
                     <% if user_signed_in? %>
                         <li><p class="navbar-text">Signed in as <%= link_to current_user.name, user_profile_path(current_user.permalink), :class => "navbar-link" %></p></li>

@@ -28,53 +28,14 @@ $brand-primary-dark: #E67700;
 
 $brand-secondary: #8C1D40;
 
-//$logo-full-large:;
-//$logo-small:;
-
-/* Typography --------------------------------------------------- */
-
 @import url("https://use.typekit.net/fxy5ytx.css");
 
 $font-stack: "neuzerit-grotesk", "Avenir", "Helvetica", "Arial", sans-serif !important;
 
-h1#bootstrap-override, h2#bootstrap-override, h3#bootstrap-override, h4#bootstrap-override, h5#bootstrap-override, h6#bootstrap-override {
-    font-family: $font-stack;
-    font-weight: 700;
-}
-a#bootstrap-override {
-    color: black;
-    font-family: $font-stack;
-}
-h1 {
-    font-size: 2.827em;
-}
-h2 {
-    font-size: 1.999em;
-}
-h3 {
-    font-size: 1.414em;
-}
-p {
-    font-family: $font-stack;
-    font-weight: 300;
-}
-small, sup, sub {
-    font-family: $font-stack;
-    font-size: 0.707em;
-}
-/*#bootstrap-override a {
-    color: black;
-    font-family: $font-stack;
-}
-#bootstrap-override a:visited {
-    color: black;
-}*/
-
-
 /* Layout --------------------------------------------------- */
 /* Navbar */
 main {
-    padding-top: 64px; //prevents header from overlapping body
+    padding-top: 50px; //prevents header from overlapping body
 }
 p {
     text-align: left;
@@ -82,12 +43,15 @@ p {
 
 /* Homepage Blocks */
 #heroImage {
-    background-image: url(/assets/heroImage-4672d242421785c77f3d20da051a0d9d7714f60ac55e871c35121d66cb4c400c.jpg);
+    background-image: url(/assets/heroImage.jpg);
     background-color: transparent;
     background-size: cover;
     background-position: center;
     padding-top: 200px;
     padding-bottom: 200px;
+}
+#heroImage small {
+    color: white;
 }
 
 .jumbotron a, .jumbotron p {
@@ -100,14 +64,17 @@ p {
 #homeHero, #faqBlock, .lightBlock, .darkBlock {
     padding: 100px 40px;
 }
-h3#faqBlock {
-    margin-bottom: 6em;
+#homeHero small {
+    color: white;
 }
+
 /* Buttons */
 .btn-huge {
+    color: $brand-secondary !important;
+    font-family: $font-stack;
     font-size: 2em;
     margin-top: 4em;
-    padding: .8em 2em;
+    padding: .8em;
     border-radius: 0.2em;
     text-decoration: none;
     background-color: $brand-primary;

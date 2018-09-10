@@ -1,36 +1,75 @@
+/* Contents --------------------------------------------------- /
+1. Branding
+    - Colors are ASU Maroon and Gold
+    - Generally use light for hover and dark for backgrounds
+2. Typography
+    - Served by Typekit
+    - Neuzeit Grotesk in 300, 400, 700, 900
+    - Type scale ratio of 1.414
+
+/* Branding --------------------------------------------------- */
+
+$brand-primary: #FFC627;
+$brand-primary-light: #FFEC99;
+$brand-primary-dark: #E67700;
+
+$brand-secondary: #8C1D40;
+
+
+/* Typography --------------------------------------------------- */
+
+@import url("https://use.typekit.net/fxy5ytx.css");
+
+$font-stack: "neuzerit-grotesk", "Avenir", "Helvetica", "Arial", sans-serif !important;
+
+
 body {
-  background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 16px;
+    background-color: #fff;
+    color: black !important;
+    font-family: $font-stack;
+    font-size: 1em;
+    line-height: 1.2em;
+    font-weight: 300;
 }
-
-p, ol, ul, td {
-  font-family: arial, sans-serif;
-  line-height:1.6em;
-  font-size: 15px;
+h1 {
+    font-family: $font-stack;
+    font-weight: 700 !important;
+    font-size: 2.827em !important;
 }
-
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+h2 {
+    font-family: $font-stack;
+    font-weight: 700 !important;
+    font-size: 1.999em !important;
+}
+h3 {
+    font-family: $font-stack;
+    font-weight: 700 !important;
+    font-size: 1.414em !important;
+}
+p {
+    font-family: $font-stack;
+    font-size: 1em;
+}
+small, sup, sub {
+    font-family: $font-stack;
+    font-size: 0.707em;
 }
 
 a {
-  color: #5500bb;
-  &:visited { 
-  color: #5500bb;
-  }
-  &:hover {
-    color: #000088;
-  }
+  color: $brand-primary;
+    &:visited { 
+        color: $brand-primary;
+    }
+    &:hover {
+        color: $brand-primary-light !important;
+    }
   text-decoration: none;
 }
 
 table td, th {
   padding:0px 30px 0px 10px;
 }
+
 
 div {
   &.field, &.actions {
@@ -69,4 +108,20 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+label {
+    display: block;
+}
+
+#video-container {
+    margin: 2em auto 0;
+    width: 500px;
+    padding: 2em;
+    background: white;
+    -webkit-box-shadow: 0 1px 10px #D9D9D9;
+    -moz-box-shadow: 0 1px 10px #D9D9D9;
+    -ms-box-shadow: 0 1px 10px #D9D9D9;
+    -o-box-shadow: 0 1px 10px #D9D9D9;
+    box-shadow: 0 1px 10px #D9D9D9;
 }

@@ -12,7 +12,7 @@
     <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
 </div>
 <div class="row">
-    <div class="jumbotron">
+    <div class="jumbotron" id="bootstrap-override">
         <h1>CrowdPublish.TV</h1>
         <p><a href="#connectFans">Connect With Fans</a><br>
             <a href="#offerPerks">Offer Perks</a><br>
@@ -20,34 +20,35 @@
         </p>
     </div>
 </div>
-<div class="row lightBlock" id="connectFans">
+<div class="row lightBlock" id="connectFans bootstrap-override">
     <div class="col-sm-6">
-        <h2>Connect with Fans</h2>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
+        <h2>Livestream</h2>
+        <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your fans, or collaborate with other actors, authors, and creators to engage in a script reading!</p>
     </div>
-    <div class="col-sm-6">
-        <img class="hidden-xs" src="https://via.placeholder.com/350x150">
-    </div>
-</div>
-<div class="row darkBlock" id="offerPerks">
     <div class="col-sm-6">
         <%= render 'layouts/maincalendar' %>
     </div>
-    <div class="col-sm-6">
-        <h2>Offer Perks</h2>
-        <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiconsectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
-    </div>
 </div>
-<div class="row lightBlock" id="livestream">
-    <div class="col-sm-6">
-        <h2>Livestream</h2>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisiLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi</p>
-    </div>
+<div class="row darkBlock" id="offerPerks bootstrap-override">
     <div class="col-sm-6">
         <img class="hidden-xs" src="https://via.placeholder.com/350x150">
     </div>
+    <div class="col-sm-6">
+        <h2>Offer Perks</h2>
+        <p>Alongside viewing your livestream, fans can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a copy of your book &mdash; the choices are only limited by your creativity!</p>
+    </div>
 </div>
-<div class="row" id="faqBlock">
+<div class="row lightBlock" id="livestream bootstrap-override">
+    <div class="col-sm-6">
+        <h2>Connect with Fans</h2>
+        <p>Your fans can join in your livestream through text chat, as well as directly support you through purchasing perks and merchandise on your page and during your livestream.</p>
+    </div>
+    <div class="col-sm-6">
+        <img src="<%= link_to image_tag("homeFans.jpg") %>" height="400" class="hidden-xs">
+        <!--img src="/app/assets/images/homeFans.jpg" height="400"class="hidden-xs"-->
+    </div>
+</div>
+<div class="row" id="faqBlock bootstrap-override">
     <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
     <% if user_signed_in? %>
         <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
