@@ -63,11 +63,25 @@ p {
 
 #homeHero, #faqBlock, .lightBlock, .darkBlock {
     padding: 100px 40px;
+    h2 {
+        color: $brand-secondary;
+    } 
 }
-#homeHero small {
-    color: white;
+#homeHero {
+    small {
+        color: white;
+    }
+}
+#homehero {
+    h1 {
+        font-size: 12em;
+    }
 }
 
+#faqBlock {
+    padding-top: 20px;
+    padding-bottom: 120px;
+}
 /* Buttons */
 .btn-huge {
     color: $brand-secondary !important;
@@ -96,6 +110,34 @@ p {
     100%{top:0em;}
 }
 
+//Events Table
+div.helps h2 {
+    font-size: 1em !important;
+}
+#tableHost {
+    font-size: .6em !important;
+    color: $brand-primary;
+    font-weight: 400;
+}
+div.helps th {
+    font-family: $font-stack;
+    font-weight: 700;
+    font-size: .8em;
+}
+div.helps td {
+    font-family: $font-stack;
+    font-weight: 400;
+    font-size: .6em;
+}
+div.helps #editEvent {
+    font-size: .8em;
+}
+div.helps a:link {
+    color: $brand-secondary;
+}
+div.helps a:visited {
+    color: $brand-secondary;
+}
 //footer
 
 footer p.f-header {

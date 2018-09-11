@@ -9,7 +9,10 @@
     <% if user_signed_in? %>
         <%= link_to 'Livestream', "/livestream", :class => "btn-huge" %>
     <% end %>
-    <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+    <% if user_signed_in? %>
+    <% else %>
+        <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+    <% end %>
 </div>
 <div class="row">
     <div class="jumbotron" id="bootstrap-override">
@@ -21,39 +24,38 @@
     </div>
 </div>
 <div class="row lightBlock" id="connectFans bootstrap-override">
-    <div class="col-sm-6">
+    <div class="col-sm-4 col-sm-offset-1">
         <h2>Livestream</h2>
         <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your fans, or collaborate with other actors, authors, and creators to engage in a script reading!</p>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5 col-sm-offset-1">
         <%= render 'layouts/maincalendar' %>
     </div>
 </div>
 <div class="row darkBlock" id="offerPerks bootstrap-override">
     <div class="col-sm-6">
-        <img class="hidden-xs" src="https://via.placeholder.com/350x150">
+        <img src="/assets/homePerks.jpg" height="250" class="hidden-xs">
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4 col-sm-offset-1">
         <h2>Offer Perks</h2>
         <p>Alongside viewing your livestream, fans can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a copy of your book &mdash; the choices are only limited by your creativity!</p>
     </div>
 </div>
 <div class="row lightBlock" id="livestream bootstrap-override">
-    <div class="col-sm-6">
+    <div class="col-sm-4 col-sm-offset-1">
         <h2>Connect with Fans</h2>
         <p>Your fans can join in your livestream through text chat, as well as directly support you through purchasing perks and merchandise on your page and during your livestream.</p>
     </div>
-    <div class="col-sm-6">
-        <img src="<%= link_to image_tag("homeFans.jpg") %>" height="400" class="hidden-xs">
+    <div class="col-sm-6 col-sm-offset-1">
+        <img src="/assets/homeFans.jpg" height="250" class="hidden-xs">
         <!--img src="/app/assets/images/homeFans.jpg" height="400"class="hidden-xs"-->
     </div>
 </div>
-<div class="row" id="faqBlock bootstrap-override">
+<div class="row" id="faqBlock">
     <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
     <% if user_signed_in? %>
-        <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
+    <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
     <% else %>
-        <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
+    <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
     <% end %>
-    <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
 </div>
