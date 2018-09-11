@@ -25,7 +25,7 @@ class ReviewsControllerTest < ActionController::TestCase
   end
 
   test "should show review" do
-    get :show, id: @review.to_param
+    get :show, params: { id: @review.to_param }
     assert_response :success
   end
 
@@ -41,7 +41,7 @@ class ReviewsControllerTest < ActionController::TestCase
 
   test "should destroy review" do
     assert_difference('Review.count', -1) do
-      delete :destroy, id: @review.to_param
+      delete :destroy, params: { id: @review.to_param }
     end
 
     assert_redirected_to reviews_path
