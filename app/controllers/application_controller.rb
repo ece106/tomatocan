@@ -15,8 +15,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    @user = user_profile_path(current_user.permalink)
+      @user = user_profile_path(current_user.permalink)
   end
+
 
   protected
 

@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :userswithmerch, :youtubers, :approveagreement, :declineagreement, :markfulfilled, :createstripeacnt, :addbankacnt, :correcterr, :create ]
-  before_action :check_fieldsneeded, except: [:update, :new, :index, :create]
-  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement, :createstripeacnt, :addbankacnt, :correcterr ]
-  before_action :authenticate_user!, only: [:edit, :update, :managesales, :createstripeaccount, :addbankaccount, :correcterrors]
+  before_action :set_user, except: [:new, :index, :userswithmerch, :youtubers, :create, :stripe_callback ]
+  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement ]
+  before_action :authenticate_user!, only: [:edit, :update ]
 #  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
   
   def index
@@ -26,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def show
+#    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     @books = @user.books
     @numusrgroups = 0 
     if user_signed_in?
@@ -35,6 +35,10 @@ class UsersController < ApplicationController
         @usrgrpnameid <<  [group.name, group.id] 
       end 
       @numusrgroups = currusergroups.count 
+      if current_user.stripeid.present?
+#        @account = Stripe::Account.retrieve("#{@user.stripeid.to_s}") 
+#        @balance = Stripe::Balance.retrieve("#{@user.stripeid.to_s}") # We dont 
+      end
     end 
 
     respond_to do |format|
@@ -55,12 +59,6 @@ class UsersController < ApplicationController
     redirect_to user_profile_path
   end
 
-  def blog
-    respond_to do |format|
-      format.html # blog.html.erb
-      format.json { render json: @user }
-    end
-  end
   def eventlist
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
@@ -92,13 +90,6 @@ class UsersController < ApplicationController
     @perks = Merchandise.where( "user_id = ?", @user.id )
     respond_to do |format|
       format.html 
-      format.json { render json: @user }
-    end
-  end
-  def stream
-    @books = @user.books
-    respond_to do |format|
-      format.html # show.html.erb
       format.json { render json: @user }
     end
   end
@@ -148,7 +139,6 @@ class UsersController < ApplicationController
     render 'followingpage'
   end
 
-
   # GET /users/1.json
   def booklist
     @books = @user.books
@@ -186,70 +176,6 @@ class UsersController < ApplicationController
     @movielist = Movie.where(:user_id => @user.id)
   end
 
-  def createstripeaccount #obtain legal name, countryoftax & instantiate stripe acct, stripeid
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def addbankaccount #add financial institution # to stripe acct just created
-    if current_user.stripeid.present?
-      account = Stripe::Account.retrieve(current_user.stripeid)
-      @fieldsneeded = account.verification.fields_needed
-      @countryoftax = account.country
-    end
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def correcterrors
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def manageaccounts
-    if current_user.stripeid.present?
-      account = Stripe::Account.retrieve(current_user.stripeid)
-      @streetaddress = account.legal_entity.address.line1
-      @suite = account.legal_entity.address.line2
-      @city = account.legal_entity.address.city
-      @state = account.legal_entity.address.state
-      @zip = account.legal_entity.address.postal_code
-      @fieldsneeded = account.verification.fields_needed
-      @countryoftax = account.country
-      @email = account.email
-    end
-    respond_to do |format|
-      format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-
-  def createstripeacnt  #called from button on createstripeaccount page
-    current_user.create_stripe_acnt(params[:countryoftax], params[:accounttype], params[:firstname], params[:lastname], 
-        params[:bizname], params[:birthday], params[:birthmonth], params[:birthyear], request.remote_ip, current_user.email) 
-    redirect_to user_addbankaccount_path(current_user.permalink)
-  end
-  def addbankacnt   #called from button on addbankaccount page
-    current_user.add_bank_account(params[:currency], params[:bankaccountnumber], 
-        params[:routingnumber], params[:countryofbank], params[:line1], params[:line2], 
-        params[:city], params[:postal_code], params[:state], params[:ein], params[:ssn] )
-    redirect_to user_profile_path(current_user.permalink)
-  end
-  def correcterr  #called from button on correcterror page
-    current_user.correct_errors(params[:countryofbank], params[:currency], params[:routingnumber], params[:bankaccountnumber], 
-        params[:countryoftax], params[:bizname], params[:accounttype], params[:firstname], 
-        params[:lastname], params[:birthday], params[:birthmonth], params[:birthyear], params[:line1], 
-        params[:city], params[:zip], params[:state], params[:ein], params[:ssn4], params[:fullssn]) 
-    redirect_to user_profile_path(current_user.permalink)
-  end
-  def updatestripeacnt  #called from button on manageaccount page
-    current_user.manage_account(params[:line1], params[:line2], params[:city], params[:zip], 
-        params[:state], params[:email]) 
-    redirect_to user_profile_path(current_user.permalink)
-  end
   def approveagreement  #called from button on
     current_user.approve_agreement(params[:agreeid]) #this isnt where we want to redirect
     redirect_to user_profile_path(current_user.permalink)
@@ -274,6 +200,25 @@ class UsersController < ApplicationController
     @purchasesinfo = @user.purchasesinfo
   end
 
+  def stripe_callback
+    options = {
+      site: 'https://connect.stripe.com',
+      authorize_url: '/oauth/authorize',
+      token_url: '/oauth/token'
+    }
+    code = params[:code]
+    if Rails.env.development? || Rails.env.test?
+      client = OAuth2::Client.new(STRIPE_CONNECT_CLIENT_ID, STRIPE_SECRET_KEY, options)
+    else
+      client = OAuth2::Client.new(ENV['STRIPE_CONNECT_CLIENT_ID'], ENV['STRIPE_SECRET_KEY'], options)
+    end
+
+    @resp = client.auth_code.get_token(code, :params => {:scope => 'read_write'})
+    @access_token = @resp.token
+    current_user.update!(stripeid: @resp.params["stripe_user_id"]) if @resp
+    flash[:notice] = "Your account has been successfully created and is ready to process payments!"
+  end
+  
   # POST /users.json 
   def create
     @user = User.new(user_params)
@@ -313,33 +258,22 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:permalink, :blogtalkradio, :name, :updating_password, :email, 
-        :password, :about, :author, :password_confirmation, :remember_me, :genre1, :genre2, :genre3, 
-        :twitter, :ustreamsocial, :title, :blogurl, :profilepic, :profilepicurl, 
-        :youtube, :pinterest, :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
-        :youtube3, :videodesc1, :videodesc2, :videodesc3, :managestripeacnt, 
-        :stripeid, :stripeaccountid, :firstname, :lastname, :accounttype, :birthmonth,
-        :birthday, :birthyear, :mailaddress, :countryofbank, :currency, :countryoftax, :ein, :ssn,
+      params.require(:user).permit(:permalink, :name, :email, :password, 
+        :about, :author, :password_confirmation, :genre1, :genre2, :genre3, 
+        :twitter, :title, :profilepic, :profilepicurl, :remember_me, 
+        :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
+        :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password, 
         :agreeid, :purchid, :bannerpic, :on_password_reset )
     end
 
     def resolve_layout
       case action_name
-      when "index", "youtubers", "userswithmerch"
+      when "index", "youtubers", "userswithmerch", "stripe_callback"
         'application'
-      when "profileinfo", "readerprofileinfo", "managesales", "addbankaccount", "correcterrors", "createstripeaccount", "manageaccounts", "changepassword"
+      when "profileinfo", "readerprofileinfo", "changepassword"
         'editinfotemplate'
       else
         'userpgtemplate'
-      end
-    end
-
-    def check_fieldsneeded  #won't need this with stripe standard
-      if user_signed_in?
-        if current_user.stripeid.present? 
-          account = Stripe::Account.retrieve(current_user.stripeid)
-          @fieldsneeded = account.verification.fields_needed
-        end
       end
     end
 

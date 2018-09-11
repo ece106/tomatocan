@@ -28,11 +28,11 @@
     <% end %><br>
 
 <p>
-  <b>Event title:</b>
+  <b>Discussion topic:</b>
   <%= @event.name %>
 </p>
 <p>
-  <b>Event host:
+  <b>Discussion host:
   <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
 </p>
 <p>
@@ -44,15 +44,12 @@
   <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %>
 </p>
 <p>
-  <b>Event description:</b>
+  <b>More details:</b>
   <% if @event.desc %> 
     <%= simple_format @event.desc.gsub(/\n/, '<br>') %>
   <% end %>
 </p>
 <p>
-  <b>Where:</b>
-  <%= @event.address %><p>
-</p>
 
   <% if @event.address != "livestream" %> 
     <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=11&markers=#{@event.latitude}%2C#{@event.longitude}" %><br><br><br>

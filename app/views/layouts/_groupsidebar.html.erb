@@ -4,19 +4,7 @@
   </div><br>
   <% if current_user && @group.user_id == current_user.id %>
     <%= button_to "Edit Group", edit_group_path(@group.permalink), :method=> :get, form_class: 'btn btn-small' %><br>
-    <% if @group.stripeid.present? %>
-      <% if @group.stripeid.match(/acct/) #is this correct?%>
-        <% if @fieldsneeded.present? %>
-          <%= button_to "Correct Bank Account Errors", group_correcterrors_path(@group.permalink), {:style => "background-color:red", :method=> :get} %>
-        <% else %> 
-          <%= button_to "Edit Group Bank Account", group_manageaccounts_path(@group.permalink), :method=> :get, form_class: 'btn btn-small' %><br>
-        <% end %> 
-      <% else %> 
-        <%= button_to "Add Group Bank Account", group_addbankaccount_path(@group.permalink), :method=> :get, form_class: 'btn btn-small' %><br>
-      <% end %> 
-    <% else %> 
-      <%= button_to "Get Paid", group_createstripeaccount_path(@group.permalink), :method=> :get, form_class: 'btn btn-small' %><br>
-    <% end %> 
+
     <%= button_to "Select An Actor to Partner With", userswithmerch_path, method: :get, form_class: 'btn btn-small' %><br>
     <%= button_to "View Dashboard", group_dashboard_path(@group.permalink), method: :get, form_class: 'btn btn-small' %>
     <br><br>

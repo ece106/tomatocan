@@ -40,21 +40,6 @@ class GroupsControllerTest < ActionController::TestCase
     get :eventlist, params: { id: @group, permalink: '5gh'}
     assert_response :success
   end
-  test "should get addbankaccount page" do
-    sign_in users(:one)
-    get :addbankaccount, params: { id: @group, permalink: '5gh'}
-    assert_response :success
-  end
-  test "should get manageaccounts page" do
-    sign_in users(:one)
-    get :manageaccounts, params: { id: @group, permalink: '5gh'}
-    assert_response :success
-  end
-  test "should get createstripeaccount page" do
-    sign_in users(:one)
-    get :createstripeaccount, params: { id: @group, permalink: '5gh'}
-    assert_response :success
-  end
   test "should get edit" do 
     sign_in users(:one)
     get :edit, params: { id: @group }

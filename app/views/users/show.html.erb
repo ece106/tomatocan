@@ -8,11 +8,23 @@
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
+<% if request.host == "crowdpublishtv.herokuapp.com" %>
+  <% if user_signed_in? %>
+    <% if @user.id == current_user.id %>
+      <% if !current_user.stripeid.present? %>
+        <script type="text/javascript">
+          window.location.href= "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_6Ws78QidiUJpM70FWAELSMoUDYE37QA9&scope=read_write"
+        </script>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <div id="wrapper">
   <div id="page-content-wrapper">
     <div class="page-content" >
       <div class="container-flex">
-    
+
       <div class="row" style="text-align:center">
         <div class="btn btn-primary" style="font-size:24px; background:#fff;">
           <a href="https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE"  

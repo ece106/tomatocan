@@ -119,22 +119,6 @@ class TestUser < ActiveSupport::TestCase
     assert_match(/[a-z0-9]+@+[a-z0-9]+\.+[a-z]/, @user.email)
   end
 
-  test "add bank account" do #this test doesnt work because you cant add bank account to a stripe account that already has a bank account
-    # should test   to make sure users can't enter currency/countryofbank incompatible with countryoftax
-
-#    @user.add_bank_account('GBP', '000123456789', '110000000', 'WX', 'address line1',
-#                        'address line2', 'city ilivein', '11111', 'AZ', nil, '0000' )
-#    assert_match(@user.countryofbank, 'GB') 
-  end
-
-  test "stripe accounts" do
-#    Retrieve accounts object and make sure correct info there
-  end
-
-  test "external accounts" do
-#    Retrieve external_accounts object and make sure correct info there
-  end
-
     test "parse youtube" do
       @user.youtube1 = "http://youtube.com/watch?v=/frlviTJc"
       @user.genre1 = "yaaah"
