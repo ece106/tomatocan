@@ -36,14 +36,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get_users_blog" do
-    get :blog, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :blog, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
   test "should get_users_booklist" do
     get :booklist, params: {permalink: 'user1'}
     assert_response :success
