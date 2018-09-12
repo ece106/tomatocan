@@ -13,7 +13,7 @@
             </div>
             <div class="collapse navbar-collapse" id="globalNavbar">
                 <ul class="nav navbar-nav">
-                    <li><%= link_to "Explore", '/userswithmerch' %></li>
+                    <li><%= link_to "Discussion Hosts", '/userswithmerch' %></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -21,21 +21,21 @@
                         <li><p class="navbar-text">Signed in as <%= link_to current_user.name, user_profile_path(current_user.permalink), :class => "navbar-link" %></p></li>
                         <li><button class="btn btn-default navbar-btn"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></button></li>
                         <li class="dropdown"> 
-                            <button class="btn dropdown-toggle btn-lettering button" data-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> Options <i class="fa fa-caret-down"></i>
+                            <button class="btn dropdown-toggle btn-lettering button" data-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> Manage Account <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <% if user_signed_in? %>
+                              <% if user_signed_in? %>
                                 <%if controller.controller_name == 'users' %>
-                                <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%> 
-                                <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%>
+                                  <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%> <br>
+                                  <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%><br>
 
                                 <% if @mynullagreements.count != 0 %>
-                                <%= link_to "Later we need a page to manage agreement requests", user_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
+                                  <%= link_to "Later we need a page to manage agreement requests", user_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
                                 <% end %> 
                                 <%= link_to "Create Perks", standardperks_path, method: :get, class: 'dropdown-item' %>
 
                                 <% end %>
-                                <% end %>
+                              <% end %>
                             </div>
                         </li>
                     

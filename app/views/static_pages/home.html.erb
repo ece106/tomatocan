@@ -1,4 +1,7 @@
 <div class="row" id="heroImage">
+    <div style= "color:#fff">
+        <h1>Be on Interactive TV and get Crowdfunding</h1>
+    </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
         <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
@@ -6,79 +9,34 @@
         <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
     <% end %> 
     <!--Livestream button-->
-    <% if user_signed_in? %>
-        <%= link_to 'Livestream', "/livestream", :class => "btn-huge" %>
-    <% end %>
+        <%= link_to 'Livestream', "/livestream", :class => "btn-huge", :style => "margin-left: 50px;" %>
     <% if user_signed_in? %>
     <% else %>
         <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
     <% end %>
 </div>
-<div class="row">
-    <div class="jumbotron" id="bootstrap-override">
-        <h1>CrowdPublish.TV</h1>
-        <p><a href="#connectFans">Connect With Fans</a><br>
-            <a href="#offerPerks">Offer Perks</a><br>
-            <a href="#livestream">Livestream</a>
-        </p>
-    </div>
-</div>
 <div class="row lightBlock" id="connectFans bootstrap-override">
     <div class="col-sm-4 col-sm-offset-1">
-        <h2>Livestream</h2>
-        <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your fans, or collaborate with other actors, authors, and creators to engage in a script reading!</p>
+        <h2><%= link_to "Livestream", "/livestream" %></h2>
+        <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a script reading!</p>
     </div>
     <div class="col-sm-5 col-sm-offset-1">
         <%= render 'layouts/maincalendar' %>
     </div>
 </div>
-====
 <div class="row darkBlock" id="offerPerks bootstrap-override">
     <div class="col-sm-6">
         <img src="/assets/homePerks.jpg" height="250" class="hidden-xs">
-=======
-  <div class="row unfixed-header" >
-    <div class="navbar-inner " >
-      <ul class="nav navbar-nav pull-left" style="padding-left:20px; font-size:16px;">
-        <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
-        <li><%= link_to "SUPPORT EACH OTHER", userswithmerch_path %>
-        <% if user_signed_in? %>
-          <li><%= link_to 'EARN FUNDS', new_merchandise_path %>
-        <% else %>
-          <li><%= link_to 'EARN FUNDS', "/signup" %>
-        <% end %>
-        <li><%= link_to "FAQ", '/faq' %>
-        <% if user_signed_in? %>
-          <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
-        <% else %>
-          <li><%= link_to 'Sign in', "/login" %>
-        <% end %>
-      </ul>
-    </div> 
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px; padding-right:30px;">
-      <div class = "helps" style = "font-size:24px; margin-top:10px; text-align:left">
-        <span class="dot" style = "margin-top:10px"></span>
-        Earn support from viewers<br><br>
-        <span class="dot" style = "margin-top:10px"></span>
-        <%= link_to "Tell all your friends & fans", '/tellfriends', style:"color:red;", title: "Announce your CrowdPublish Campaign on twitter, facebook, email, from rooftops..." %> <br><br>
-        <span class="dot" style = "margin-top:10px"></span>
-        Receive exclusive perks from your favorite livestream discussion hosts<br><br>
-     </div>
-      ====
     </div>
     <div class="col-sm-4 col-sm-offset-1">
         <h2>Offer Perks</h2>
-        <p>Alongside viewing your livestream, fans can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a copy of your book &mdash; the choices are only limited by your creativity!</p>
+        <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a sneak preview of your writings in progress &mdash; the choices are only limited by your creativity!</p>
     </div>
 </div>
 <div class="row lightBlock" id="livestream bootstrap-override">
     <div class="col-sm-4 col-sm-offset-1">
         <h2>Connect with Fans</h2>
-        <p>Your fans can join in your livestream through text chat, as well as directly support you through purchasing perks and merchandise on your page and during your livestream.</p>
+        <p>Your fans can join in your livestream through text chat, as well as directly support you through purchasing perks on your page during your livestream and when you're offline.</p>
     </div>
     <div class="col-sm-6 col-sm-offset-1">
         <img src="/assets/homeFans.jpg" height="250" class="hidden-xs">

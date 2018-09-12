@@ -13,10 +13,9 @@
             </div>
             <div class="collapse navbar-collapse" id="globalNavbar">
                 <ul class="nav navbar-nav">
-                    <li><%= link_to "Explore", '/userswithmerch' %></li>
+                    <li><%= link_to "Support Discussion Hosts", '/userswithmerch' %></li>
                     <li>
                         <% if user_signed_in? %>
-                            <%= link_to "Dashboard", user_profile_path(current_user.permalink) %>
                         <% else %>
                             <%= link_to "Create a page", '/signup' %>
                         <% end %>

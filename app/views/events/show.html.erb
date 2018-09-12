@@ -51,15 +51,10 @@
 </p>
 <p>
 
-  <% if @event.address != "livestream" %> 
-    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=11&markers=#{@event.latitude}%2C#{@event.longitude}" %><br><br><br>
-  <% else %>
-    at <%= link_to @user.name + "'s livestream site", user_stream_path(@user.permalink) %> </b>
-  <% end %>
-  </div>
-
   <div class="col-md-3 col-sm-3 col-xs-3 " style= "text-align:left" >
+    <% if @rsvpusers.sum(:guests) + @rsvpusers.count > 5 %> 
       <b><%= @rsvpusers.sum(:guests) + @rsvpusers.count %> guests said they'll be there</b><br> 
+    <% end %>
       <br> -- RSVPs are a new feature -- 
       <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: http://www.CrowdPublish.TV/events/<%= @event.id %> <br><br>
 

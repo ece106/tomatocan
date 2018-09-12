@@ -1,7 +1,8 @@
 <div class="helps">
 
   <h2>Upcoming Livestream Discussions</h2>
-
+    
+  <h3><%= link_to 'Host a livestream discussion', new_event_path, :id => 'tableHost' %></h3>
 
   <% if @events.count != 0 %>
     <div class="table-responsive">
@@ -9,14 +10,17 @@
         <thead>
           <tr>
           <th>Topic </th>
-          <th style="text-align:center">When <div style="font-size:14px; text-align:center"> All times in PDT </div></th>
+          <th style="text-align:center">When <div style="font-size:14px; text-align:center"> Pacific Daylight Time </div></th>
+          <th style="text-align:center"> <div style="font-size:14px; text-align:center"> EDT </div></th>
           <th style="text-align:center">Host</th> 
           <th></th>
           </tr>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
+          <% edt = event.start_at + 3.hours %> 
           <tr>
           <td ><%= link_to event.name, event %></td>
           <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
+          <td ><%= edt.strftime("%I:%M %p")  %></td>
           <td>
               <% user = User.find(event.usrid) %>
               <%= link_to user.name, user_profile_path(user.permalink) %> </b>
@@ -33,8 +37,6 @@
       </table>
     </div>  
   <% end %>  
-    
-<%= link_to 'Host a livestream discussion', new_event_path, :id => 'tableHost' %><br><br>
 
 </div>
 
