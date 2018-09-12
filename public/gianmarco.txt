@@ -1,19 +1,116 @@
 Scrum Performance Summary - Gianmarco Minin
 
+========================================
 Monday, August 20, 2018
-- Met everyone, got app running on local machine
-- Browsed through site, Looked through file structure, css, html
+    - Met everyone, got app running on local machine
+    - Browsed through site, Looked through file structure, css, html
 
 Tuesday, August 21, 2018
-- Designed some pages
--
+    - Layout mockup in Illustrator
 
 Thursday, August 23, 2018
-- Analyzed page flow
--
+    - Analyzed page flow
+    - https://app.flowmapp.com/share/9fb173e35de368f7e522fa6c112f9393
 
-
+========================================
 Tasks for Week of August 27, 2018
-- Create new version of home page
-- Get new version of home page working
+    - Create new version of home page
+    - Header: Link to currently in-use pages using pageflow diagram
+    - CSS for homepage: Make sure color is easily adjustable in case of change
+    - Add footer for lesser used pages
+    - Get new version of home page working
+    - HTML & CSS complete, may work on copy as well
+    - Stretch: Work on new layout for Perks accordion
 
+Tuesday, August 28, 2018
+    - HTML
+        - Skeleton for homepage layout
+        - Need to add padding, colors, and placeholder images
+    - Header prototype
+        - Need to select links for inclusion on all pages
+        - Add transparency to logos
+    - Footer prototype
+        - Needs to be converted to a views file when finished
+
+Wednesday, August 29, 2018
+    - Images
+        - Added background-less cpLogo and crowdPublishIcon sizes.
+        - Added heroImage for use on homepage https://unsplash.com/photos/XkKCui44iM0
+
+Thursday, August 30, 2018
+    - Home Page
+        - Fixed margins bug
+    - Footer
+        - Finished layout, ready to move into model
+    - Header
+        - Adjusted positioning
+    - CSS
+        - Cleaned stylesheet and created mixins for font families
+
+========================================
+Tasks for Week of September 3, 2018
+    - Header
+        - Finish layout and select links
+    - Footer
+        - Deploy as view for all pages
+    - Homepage
+        - Finish buttons
+        - Write copy
+        - Select photos
+
+Tuesday, September 4, 2018
+    - Homepage
+        - Rebuilt homepage layout I deleted :(
+        - Adjusted button spacing and added Sign In option
+        
+Wednesday, September 5, 2018
+    - Homepage
+        - Added 'Livestream' button
+        - Fixed btn-huge CSS to prevent breakage on xs devices
+        - homepg.html.erb is now obsolete, need to know how to replace with application.html.erb.
+    - Footer
+        - Created _footer.html.erb view for use on all pages
+        - Moved CSS from custom.css.scss to footer.css.scss
+    - Header
+        - Suppressed old CSS styling on header/nav elements
+        - Made login and account name actually clickable
+        - Abandoned centered logo for left-aligned layout
+        - Moved HTML from home.html.erb to _header.html.erb
+        - Moved CSS from custom.css.scss to footer.css.scss
+    - Branding
+        - Selected lighter/darker shades for brand colors (opencolor Yellow 2 & 9)
+
+Friday, September 7, 2018
+    - Replaced crowdPublishIcon with transparent version
+    
+========================================
+Tasks for Week of September 10, 2018
+    - Homepage
+        - Select images for hero & description boxes
+        - Write copy
+        - Switch to transparent logos
+        - Edit views to move "Signed out successfully" message to top
+    - Events
+        - Add table to home page
+        - Style table
+    - Dashboard
+        - Mockup layout for dashboard
+        
+Monday, September 20, 2018
+    - Organization
+        - Moved a bunch of CSS from custom.css.scss to scaffolds.css.scss to avoid having to constantly override Bootstrap
+    - Home page
+        - Adjusted type to make up for new type rules
+        - Wrote starter copy for each block
+        - Link colors are all now on brand
+        - Images are selected and need to be sized
+        - Added table to homepage, visible on mobile
+Thursday, September 11, 2018
+    - Header
+        - Made usable on User Dashboard with Option button
+        - //Need to fix linebreak bug for mobile toggle!
+    - Home page
+        - Added photos
+        - Adjusted column size
+        - Formatted table
+        - Submitted pull request

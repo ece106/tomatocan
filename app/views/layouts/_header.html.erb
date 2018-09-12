@@ -1,26 +1,36 @@
-<header class="navbar ">
-  <div class="container-flex">
-
-    <div class="row">
-          <div class="navbar-inner fixed-header" style="padding-left:20px;">
-            <ul class="nav navbar-nav pull-left"style="font-size:18px; font-family:Arial" >
-              <li><%= link_to "Home", "/" %>
-        <li><%= link_to "SUPPORT EACH OTHER", userswithmerch_path %>
-        <% if user_signed_in? %>
-          <li><%= link_to 'EARN FUNDS', new_merchandise_path %>
-        <% else %>
-          <li><%= link_to 'EARN FUNDS', "/signup" %>
-        <% end %>
-        <li><%= link_to 'Livestream', "/livestream" %>
-              <% if user_signed_in? %>
-                <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
-              <% else %>
-                <li><%= link_to 'Sign in', "/login" %>
-              <% end %>
-            </ul>
-          </div> 
-    </div>
-  </div>
-
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#globalNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<%= root_path %>">
+                    <img alt="CrowdPublish.TV" src="/assets/crowdPublishIcon.png" height="50px">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="globalNavbar">
+                <ul class="nav navbar-nav">
+                    <li><%= link_to "Support Discussion Hosts", '/userswithmerch' %></li>
+                    <li>
+                        <% if user_signed_in? %>
+                        <% else %>
+                            <%= link_to "Create a page", '/signup' %>
+                        <% end %>
+                    </li>
+                </ul>
+                 
+                <ul class="nav navbar-nav navbar-right">
+                    <% if user_signed_in? %>
+                        <li><p class="navbar-text">Signed in as <%= link_to current_user.name, user_profile_path(current_user.permalink), :class => "navbar-link" %></p></li>
+                        <li><button class="btn btn-default navbar-btn"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></button></li>
+                    <% else %>
+                        <li><button class="btn btn-primary navbar-btn"><%= link_to 'Sign in', "/login" %></button></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>

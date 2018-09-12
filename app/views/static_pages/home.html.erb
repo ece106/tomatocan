@@ -1,94 +1,36 @@
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="CrowdPublish.TV" content="Actors Filmmakers Authors - Increase Fan Engagement & Earn More Funds">
-<meta property="og:url" content="http://CrowdPublish.TV" />
-<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
-<meta property="og:description" content="CrowdPublishTV helps actors, filmmakers, authors Increase Fan Engagement & Earn More Funds" />
-  <title>CrowdPublishTV - Actors Authors - Increase Fan Engagement & Earn More Funds</title>
-</head>
-
-<div class="container-flex">
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" style="margin-top:-20px; height:400px;">
-  <!-- Indicators --0
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner"> 
-    <div class="item active" style="height:400px;">
-      <img src="http://www.CrowdPublish.TV/bookDude.png" alt="Hangouts">
+<div class="row" id="heroImage">
+    <div style= "color:#fff">
+        <h1>Be on Interactive TV and get Crowdfunding</h1>
+    </div><br><br>
+    <!--Sign Up button-->
+    <% if user_signed_in? %>
+        <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
+    <% else %>
+        <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
+    <% end %> 
+    <!--Livestream button-->
+        <%= link_to 'Livestream', "/livestream", :class => "btn-huge", :style => "margin-left: 50px;" %>
+    <% if user_signed_in? %>
+    <% else %>
+        <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+    <% end %>
+</div>
+<div class="row lightBlock" id="connectFans bootstrap-override">
+    <div class="col-sm-4 col-sm-offset-1">
+        <h2><%= link_to "Livestream", "/livestream" %></h2>
+        <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a script reading!</p>
     </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-</div>
-
-
-<div class="container-flex">
-  <div class="row" style = "position: absolute; top:20px; text-align:center; width: 100vw" >
-      <div class="whitetxt", style="position:relative; z-index: 9999; font-size:50px; text-shadow: 1px 1px #000;">
-        <br>Be on Interactive TV and get Crowdfunding
-      </div><br><br> <br> 
-
-      <div class="lavenderlink" style="text-shadow: 1px 1px #000; margin-top:20px; z-index: 1;">
-        <% if user_signed_in? %>
-          <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
-        <% else %>
-          <%= link_to "Start my Account", new_user_signup_path, :class => "btn btn-primary ", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999;" %>
-        <% end %>
-
-        <%= link_to "Livestream", "/livestream", :class => "btn btn-primary", style: "font-size:24px; background:#6e73d1; color:#fff; z-index: 999999; margin-left: 220px;" %>
-      </div>
-  </div>
-</div>
-  <div class="row unfixed-header" >
-    <div class="navbar-inner " >
-      <ul class="nav navbar-nav pull-left" style="padding-left:20px; font-size:16px;">
-        <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
-        <li><%= link_to "SUPPORT EACH OTHER", userswithmerch_path %>
-        <% if user_signed_in? %>
-          <li><%= link_to 'EARN FUNDS', new_merchandise_path %>
-        <% else %>
-          <li><%= link_to 'EARN FUNDS', "/signup" %>
-        <% end %>
-        <li><%= link_to "FAQ", '/faq' %>
-        <% if user_signed_in? %>
-          <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
-          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
-        <% else %>
-          <li><%= link_to 'Sign in', "/login" %>
-        <% end %>
-      </ul>
-    </div> 
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px; padding-right:30px;">
-      <div class = "helps" style = "font-size:24px; margin-top:10px; text-align:left">
-        <span class="dot" style = "margin-top:10px"></span>
-        Earn support from viewers<br><br>
-        <span class="dot" style = "margin-top:10px"></span>
-        <%= link_to "Tell all your friends & fans", '/tellfriends', style:"color:red;", title: "Announce your CrowdPublish Campaign on twitter, facebook, email, from rooftops..." %> <br><br>
-        <span class="dot" style = "margin-top:10px"></span>
-        Receive exclusive perks from your favorite livestream discussion hosts<br><br>
-     </div>
+    <div class="col-sm-5 col-sm-offset-1">
+        <%= render 'layouts/maincalendar' %>
     </div>
-
-    <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px">
-      <%= render 'layouts/maincalendar' %>
-
+</div>
+<div class="row darkBlock" id="offerPerks bootstrap-override">
+    <div class="col-sm-6">
+        <img src="/assets/homePerks.jpg" height="250" class="hidden-xs">
+    </div>
+    <div class="col-sm-4 col-sm-offset-1">
+        <h2>Offer Perks</h2>
+        <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a sneak preview of your writings in progress &mdash; the choices are only limited by your creativity!</p>
     </div>
   </div>
 <br>
@@ -123,5 +65,12 @@
         <br><br>(C) Copyright 2018, RoleModel Enterprises, LLC. All Rights Reserved.
       </div>
     </div>
-  </div>
-  <br><br>
+</div>
+<div class="row" id="faqBlock">
+    <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
+    <% if user_signed_in? %>
+    <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
+    <% else %>
+    <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
+    <% end %>
+</div>
