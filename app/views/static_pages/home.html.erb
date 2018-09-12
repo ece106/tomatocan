@@ -32,15 +32,38 @@
         <h2>Offer Perks</h2>
         <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a sneak preview of your writings in progress &mdash; the choices are only limited by your creativity!</p>
     </div>
-</div>
-<div class="row lightBlock" id="livestream bootstrap-override">
-    <div class="col-sm-4 col-sm-offset-1">
-        <h2>Connect with Fans</h2>
-        <p>Your fans can join in your livestream through text chat, as well as directly support you through purchasing perks on your page during your livestream and when you're offline.</p>
-    </div>
-    <div class="col-sm-6 col-sm-offset-1">
-        <img src="/assets/homeFans.jpg" height="250" class="hidden-xs">
-        <!--img src="/app/assets/images/homeFans.jpg" height="400"class="hidden-xs"-->
+  </div>
+<br>
+
+<div class="row" > 
+  <% @merchusers.each do |u| %>
+    <% next if !u.youtube1.present? && !u.profilepic.present? %>
+    <div class="col-md-4 col-sm-4 col-xs-6" >
+      <div class="row hiddenover" >
+        <% if u.youtube1.present? %>
+          <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
+            <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
+            <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          </div>
+        <% elsif u.profilepic.present? %>
+          <%= link_to(image_tag(u.profilepic.url.to_s, :height => "220",  :title => u.name), user_profile_path(u.permalink)) %>
+        <% end %>
+        <br><%= link_to u.name, user_profile_path(u.permalink) %>
+      </div>
+    </div><br>
+  <% end %>
+</div><br>
+
+  <div class="indexlist" >
+    <b>Browse more CrowdPublish.TV campaigns</b><br> <%= will_paginate @merchusers %> <br>
+  </div><br><br>
+
+  <div class="row" style="margin-top:15px;" >
+    <div class="col-md-5" >
+      <div class = "copyalpha" >
+        Questions? Contact info@CrowdPublish.TV 
+        <br><br>(C) Copyright 2018, RoleModel Enterprises, LLC. All Rights Reserved.
+      </div>
     </div>
 </div>
 <div class="row" id="faqBlock">

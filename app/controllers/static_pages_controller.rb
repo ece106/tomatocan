@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
     userswmerch = User.joins(:merchandises).distinct
     merchorder = userswmerch.order('updated_at DESC')
     @merchusers = merchorder.paginate(:page => params[:page], :per_page => 6)
-
+    
     if user_signed_in?
       @user = User.find(current_user.id)
     end
