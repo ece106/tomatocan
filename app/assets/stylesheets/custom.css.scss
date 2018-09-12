@@ -1,6 +1,157 @@
+#bootstrap-override {
+    //apply to all body elements; add id to element css to add weight to selectors 
+}
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* Contents --------------------------------------------------- /
+1. Branding
+    - Colors are ASU Maroon and Gold
+2. Typography
+    - Served by Typekit
+    - Neuzeit Grotesk in 300, 400, 700, 900
+    - Type scale ratio of 1.414
+3. Layout
+    a. Home
+        - darkBlock are light grey rows
+        - lightBlock are white rows
+4. Working
+    - Previous styling that needs to be moved or pruned
+*/
+
+/* Branding --------------------------------------------------- */
+
+$brand-primary: #FFC627;
+$brand-primary-light: #FFEC99;
+$brand-primary-dark: #E67700;
+
+$brand-secondary: #8C1D40;
+
+@import url("https://use.typekit.net/fxy5ytx.css");
+
+$font-stack: "neuzerit-grotesk", "Avenir", "Helvetica", "Arial", sans-serif !important;
+
+/* Layout --------------------------------------------------- */
+/* Navbar */
+main {
+    padding-top: 50px; //prevents header from overlapping body
+}
+p {
+    text-align: left;
+}
+
+/* Homepage Blocks */
+#heroImage {
+    background-image: url(/assets/heroImage.jpg);
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+#heroImage small {
+    color: white;
+}
+
+.jumbotron a, .jumbotron p {
+    text-align: center;
+}
+.darkBlock {
+    background-color: #E9ECEF;
+}
+
+#homeHero, #faqBlock, .lightBlock, .darkBlock {
+    padding: 100px 40px;
+    h2 {
+        color: $brand-secondary;
+    } 
+}
+#homeHero {
+    small {
+        color: white;
+    }
+}
+#homehero {
+    h1 {
+        font-size: 12em;
+    }
+}
+
+#faqBlock {
+    padding-top: 20px;
+    padding-bottom: 120px;
+}
+/* Buttons */
+.btn-huge {
+    color: $brand-secondary !important;
+    font-family: $font-stack;
+    font-size: 2em;
+    margin-top: 4em;
+    padding: .8em;
+    border-radius: 0.2em;
+    text-decoration: none;
+    background-color: $brand-primary;
+    text-align: center;
+    transition: all 0.2s;
+}
+.bouncy{
+    animation:bouncy 5s infinite linear;
+    position:relative;
+    -webkit-animation: bouncy 5s infinite ease-in;
+}
+@keyframes bouncy {
+    0%{top:0em}
+    40%{top:0em}
+    43%{top:-0.9em}
+    46%{top:0em}
+    48%{top:-0.4em}
+    50%{top:0em}
+    100%{top:0em;}
+}
+
+//Events Table
+div.helps h2 {
+    font-size: 1em !important;
+}
+#tableHost {
+    font-size: .6em !important;
+    color: $brand-primary;
+    font-weight: 400;
+}
+div.helps th {
+    font-family: $font-stack;
+    font-weight: 700;
+    font-size: .8em;
+}
+div.helps td {
+    font-family: $font-stack;
+    font-weight: 400;
+    font-size: .6em;
+}
+div.helps #editEvent {
+    font-size: .8em;
+}
+div.helps a:link {
+    color: $brand-secondary;
+}
+div.helps a:visited {
+    color: $brand-secondary;
+}
+//footer
+
+footer p.f-header {
+    font-family: $font-stack;
+    font-size: .85em;
+    margin: 0;
+    padding: 0;
+}
+footer a.f-link {
+    color: $brand-primary;
+    font-family: $font-stack;
+    font-size: 1em;
+}
+/* Working --------------------------------------------------- */
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
@@ -122,7 +273,7 @@ carousel-inner>.item {
     width: 340px;
 }
 
-.navbar-default {
+/* .navbar-default {
     border-color: #black;
 }
 
@@ -173,7 +324,7 @@ carousel-inner>.item {
 
 .nav-stacked li a {
   font-family:"Arial", sans-serif; font-weight: bold; font-size:22.0px; text-align:left; line-height:1.19em; color:#1e1e46; 
-}
+}*/
 
 /* typography */
 
@@ -222,7 +373,7 @@ p {
     a:hover {  background-color: transparent; }
   }
 
-header.navbar {
+/* header.navbar {
   border-radius: 0;
   top: -20px;
   ul > li:last-child {
@@ -233,34 +384,10 @@ header.navbar {
 .navtable {
   display: table;
   margin: auto;
-}
+}*/
 
 /* footer */
 
-footer {
-  margin-top: 25px;
-  padding-top: 5px;
-  margin-right: 10px;
-  border-top: 1px solid #000;
-  color: black;
-  a {
-    color: #000;
-    &:hover {
-      //color: $grayDarker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
-    }
-  }
-}
 #error_explanation {
   color: #f00;
   ul {
@@ -338,7 +465,7 @@ sidebar {
   background-color: white;
 }
 
-center .info-content {
+.info-content {
   padding-left: 0;
   margin-top: -20px;
 }
@@ -422,4 +549,3 @@ center .info-content {
 .button:hover {
   background-color: #863276;
 } 
-

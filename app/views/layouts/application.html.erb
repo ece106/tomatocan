@@ -21,15 +21,18 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-<body>
+    
+<body id="bootstrap-override">
 
-  <center>
+<center>
     <%= render 'layouts/header' %>
-    <div class="container-fluid" >
-      <%= yield %>
-    </div> 
-    <% #= render 'layouts/footer' %>   
-  </center>
+    
+    <main class="container-fluid">
+        <%= yield %>
+    </main>
+    
+    <%= render 'layouts/footer' %>
+</center>
 
 <% #= devise_error_messages! %>
 <% flash.each do |name, msg| %>
