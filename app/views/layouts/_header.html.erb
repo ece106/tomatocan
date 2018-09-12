@@ -24,10 +24,10 @@
                  
                 <ul class="nav navbar-nav navbar-right">
                     <% if user_signed_in? %>
-                        <li><p class="navbar-text">Signed in as <%= link_to current_user.name, user_profile_path(current_user.permalink), :class => "navbar-link" %></p></li>
-                        <li><button class="btn btn-default navbar-btn"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></button></li>
+                      <li><p class="navbar-text"> <%= link_to current_user.name, user_profile_path(current_user.permalink), :class => "navbar-link" %></p></li>
+                      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-btn" %></li>
                     <% else %>
-                        <li><button class="btn btn-primary navbar-btn"><%= link_to 'Sign in', "/login" %></button></li>
+                      <li><%= link_to 'Sign in', "/login", :class => "btn btn-primary navbar-btn" %></li>
                     <% end %>
                 </ul>
             </div>
