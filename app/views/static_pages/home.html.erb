@@ -32,9 +32,43 @@
         <%= render 'layouts/maincalendar' %>
     </div>
 </div>
+====
 <div class="row darkBlock" id="offerPerks bootstrap-override">
     <div class="col-sm-6">
         <img src="/assets/homePerks.jpg" height="250" class="hidden-xs">
+=======
+  <div class="row unfixed-header" >
+    <div class="navbar-inner " >
+      <ul class="nav navbar-nav pull-left" style="padding-left:20px; font-size:16px;">
+        <li><%= link_to "What is CrowdPublishTV", '/aboutus' %>
+        <li><%= link_to "SUPPORT EACH OTHER", userswithmerch_path %>
+        <% if user_signed_in? %>
+          <li><%= link_to 'EARN FUNDS', new_merchandise_path %>
+        <% else %>
+          <li><%= link_to 'EARN FUNDS', "/signup" %>
+        <% end %>
+        <li><%= link_to "FAQ", '/faq' %>
+        <% if user_signed_in? %>
+          <li><%= link_to current_user.name, user_profile_path(current_user.permalink) %>
+          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+        <% else %>
+          <li><%= link_to 'Sign in', "/login" %>
+        <% end %>
+      </ul>
+    </div> 
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top:20px; padding-right:30px;">
+      <div class = "helps" style = "font-size:24px; margin-top:10px; text-align:left">
+        <span class="dot" style = "margin-top:10px"></span>
+        Earn support from viewers<br><br>
+        <span class="dot" style = "margin-top:10px"></span>
+        <%= link_to "Tell all your friends & fans", '/tellfriends', style:"color:red;", title: "Announce your CrowdPublish Campaign on twitter, facebook, email, from rooftops..." %> <br><br>
+        <span class="dot" style = "margin-top:10px"></span>
+        Receive exclusive perks from your favorite livestream discussion hosts<br><br>
+     </div>
+      ====
     </div>
     <div class="col-sm-4 col-sm-offset-1">
         <h2>Offer Perks</h2>

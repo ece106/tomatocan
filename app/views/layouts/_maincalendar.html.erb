@@ -9,8 +9,8 @@
         <thead>
           <tr>
           <th>Topic </th>
-          <th>When</th>
-          <th>Host</th>
+          <th style="text-align:center">When <div style="font-size:14px; text-align:center"> All times in PDT </div></th>
+          <th style="text-align:center">Host</th> 
           <th></th>
           </tr>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
@@ -35,8 +35,6 @@
   <% end %>  
     
 <%= link_to 'Host a livestream discussion', new_event_path, :id => 'tableHost' %><br><br>
-<% if user_signed_in? %>
-<% end %>
 
 </div>
 

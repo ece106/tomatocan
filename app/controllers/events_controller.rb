@@ -68,13 +68,6 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
 
-puts @event.start_at
-puts @event.start_at.to_f
-puts @event.end_at
-puts @event.end_at.to_f
-puts @event.start_at.to_f + 3.hours.to_f
-puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-
     respond_to do |format|
       if @event.save
 #        redirect_to @event
