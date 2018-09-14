@@ -11,7 +11,7 @@
 
 $brand-primary: #FFC627;
 $brand-primary-light: #FFEC99;
-$brand-primary-dark: #E67700;
+$brand-primary-dark: #B28609;
 
 $brand-secondary: #8C1D40;
 
@@ -28,7 +28,6 @@ body {
     color: black !important;
     font-family: $font-stack;
     font-size: 1em;
-    line-height: 1.2em;
     font-weight: 300;
 }
 h1 {
@@ -61,7 +60,7 @@ a {
         color: $brand-primary;
     }
     &:hover {
-        color: $brand-primary-light !important;
+        color: $brand-primary-dark !important;
     }
   text-decoration: none;
 }
@@ -108,10 +107,6 @@ div {
     margin-bottom: 0px;
     background-color: #c00;
     color: #fff;
-  }
-  ul li{
-    font-size: 12px;
-    list-style: square;
   }
 }
 

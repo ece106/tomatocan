@@ -35,13 +35,13 @@ $font-stack: "neuzerit-grotesk", "Avenir", "Helvetica", "Arial", sans-serif !imp
 /* Layout --------------------------------------------------- */
 /* Navbar */
 main {
-    padding-top: 50px; //prevents header from overlapping body
-}
-p {
-    text-align: left;
+    margin-top: 50px; //prevents header from overlapping body
 }
 
 /* Homepage Blocks */
+p {
+    text-align: left;
+}
 #heroImage {
     background-image: image-url('heroImage.jpg');
     background-color: transparent;
@@ -52,11 +52,6 @@ p {
 }
 #heroImage small {
     color: white;
-}
-
-.jumbotron a, .jumbotron p {
-  color:#fff;
-  text-align: center;
 }
 .darkBlock {
     background-color: #E9ECEF;
@@ -255,12 +250,6 @@ textarea {
   resize: vertical;
 }
 
-.center {
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
 carousel-inner>.item {
     position: relative;
     max-height: 200px;
@@ -273,119 +262,6 @@ carousel-inner>.item {
     transform: translateX(-23%);
     width: 340px;
 }
-
-/* .navbar-default {
-    border-color: #black;
-}
-
-.navbar-userpage {
-    color:#black;
-    background-color: white;
-    border-bottom: solid;
-    border-width: 3px;
-    border-color: #e5e5e5;
-    padding-right: 10px;
-}
-
-.navbar-grouppage {
-    color: #863276;
-    background-color: white;
-    border-color: #black;
-    border-radius:0;
-    padding-right: 0px;
-}
-
-.navbar-custom {
-    color: #eFdFFF;
-    border-radius:0;
-}
-.navbar .navbar-custom > li > a:hover,
-.navbar .navbar-custom > li > a:focus {
-    color: #eFdFFF;
-}
-.navbar .navbar-custom > .active > a, 
-.navbar .navbar-custom > .active > a:hover, 
-.navbar .navbar-custom > .active > a:focus {
-    color: #eFdFFF;
-}
-
-.navbar .navbar-nav > li > a {
-    color: #863276;
-}
-.navbar .navbar-nav > li > a:hover,
-.navbar .navbar-nav > li > a:focus {
-  color: black;
-  background-color: transparent;
-}
-.navbar .navbar-nav > .active > a, 
-.navbar .navbar-nav > .active > a:hover, 
-.navbar .navbar-nav > .active > a:focus {
-    color: #863276;
-}
-
-.nav-stacked li a {
-  font-family:"Arial", sans-serif; font-weight: bold; font-size:22.0px; text-align:left; line-height:1.19em; color:#1e1e46; 
-}*/
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 10px;
-}
-
-h2 {
-  letter-spacing: -1px;
-  font-weight: normal;
-}
-h3 {
-  margin-top: -10px; //this is being ignored for some reason
-}
-
-p {
-  line-height: 1.2em;
-}
-
-    li {
-      list-style-position: outside;
-      text-align: left;
-      text-indent: -10px;
-      margin-left: -5px;
-      padding-left: -1em; //why dont any of these work
-     }
-
-/* header */
-
-  ul {
-    float: right;
-    list-style: none;
-    
-    li {
-      float: left;
-      text-align: left;
-      margin-right: 10px;
-      padding-left: 3px
-     }
-    a:hover {  background-color: transparent; }
-  }
-
-/* header.navbar {
-  border-radius: 0;
-  top: -20px;
-  ul > li:last-child {
-    margin-right: 0;
-   }
-}
-
-.navtable {
-  display: table;
-  margin: auto;
-}*/
 
 /* footer */
 
@@ -530,23 +406,3 @@ sidebar {
   flex: 1;
   -webkit-flex: 0 1 100%;
 }
-
-.button{
-  background-color: #A14690;
-  font-size:16px;
-  margin-top:5px;
-  margin-left:5px;
-  margin-right:5px;
-  padding-top:10px;
-  padding-bottom:8px;
-  padding-left:18px;
-  padding-right:18px;
-  border: none;
-  border-radius: 2px;
-  color:white;
-  text-align:center;
- }
-
-.button:hover {
-  background-color: #863276;
-} 
