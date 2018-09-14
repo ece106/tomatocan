@@ -25,7 +25,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                               <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%> <br>
-                              <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%><br>
+                              <%= link_to "Check Dashboard OFTEN", user_dashboard_path(current_user.permalink), method: :get, class: 'dropdown-item'%><br>
 
                               <% if @mynullagreements.count != 0 %>
                                 <%= link_to "Later we need a page to manage agreement requests", user_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
