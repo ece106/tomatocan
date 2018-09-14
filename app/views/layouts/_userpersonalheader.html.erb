@@ -7,8 +7,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%= root_path %>">
-                    <img alt="CrowdPublish.TV" src="/assets/crowdPublishIcon.png" height="50px">
+                <a class="navbar-brand" >
+                  <%= link_to image_tag("crowdPublishIcon.png", :style => "height:50px;  margin-right:30px",:title => "CrowdPublish.TV Home"), "/" %>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="globalNavbar">
@@ -17,28 +17,25 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    
-                        <li><p class="navbar-text">Signed in as <%= link_to current_user.name, user_profile_path(current_user.permalink), :class => "navbar-link" %></p></li>
-                        <li><button class="btn btn-default navbar-btn"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></button></li>
+                  <% if user_signed_in? %>
+                    <li><p class="navbar-text"><%= link_to current_user.name, user_profile_path(current_user.permalink), :class => "navbar-link" %></p></li>
+                    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-btn" %></li>
                         <li class="dropdown"> 
                             <button class="btn dropdown-toggle btn-lettering button" data-toggle="dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> Manage Account <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                              <% if user_signed_in? %>
-                                <%if controller.controller_name == 'users' %>
-                                  <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%> <br>
-                                  <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%><br>
+                              <%= link_to "Edit Profile", user_profileinfo_path(current_user.permalink), method: :get, class: 'dropdown-item'%> <br>
+                              <%= link_to "Check Dashboard OFTEN", user_dashboard_path, method: :get, class: 'dropdown-item'%><br>
 
-                                <% if @mynullagreements.count != 0 %>
-                                  <%= link_to "Later we need a page to manage agreement requests", user_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
-                                <% end %> 
-                                <%= link_to "Create Perks", standardperks_path, method: :get, class: 'dropdown-item' %>
-
-                                <% end %>
-                              <% end %>
+                              <% if @mynullagreements.count != 0 %>
+                                <%= link_to "Later we need a page to manage agreement requests", user_path(current_user.permalink), method: :get, class: 'dropdown-item' %>
+                              <% end %> 
+                              <%= link_to "Create Perks", standardperks_path, method: :get, class: 'dropdown-item' %>
                             </div>
                         </li>
-                    
+                  <% else %>
+                    <li><%= link_to 'Sign in', "/login", :class => "btn btn-primary navbar-btn" %></li>
+                  <% end %>
                 </ul>
             </div>
         </div>

@@ -4,7 +4,7 @@
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
-        <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
+        <%= link_to "Offer Perks", '/merchandises/new', :class => "btn-huge" %>
     <% else %>
         <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
     <% end %> 
@@ -15,32 +15,31 @@
         <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
     <% end %>
 </div>
-<div class="row lightBlock" id="connectFans bootstrap-override">
+<div class="row darkBlock" id="connectFans bootstrap-override">
     <div class="col-sm-4 col-sm-offset-1">
         <h2><%= link_to "Livestream", "/livestream" %></h2>
-        <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a script reading!</p>
+        <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a panel!</p>
     </div>
     <div class="col-sm-5 col-sm-offset-1">
         <%= render 'layouts/maincalendar' %>
     </div>
 </div>
-<div class="row darkBlock" id="offerPerks bootstrap-override">
+<div class="row lightBlock" id="offerPerks bootstrap-override">
     <div class="col-sm-6">
-        <img src="/assets/homePerks.jpg" height="250" class="hidden-xs">
+      <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
     </div>
     <div class="col-sm-4 col-sm-offset-1">
         <h2>Offer Perks</h2>
         <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a sneak preview of your writings in progress &mdash; the choices are only limited by your creativity!</p>
     </div>
 </div>
-<div class="row lightBlock" id="livestream bootstrap-override">
+<div class="row darkBlock" id="livestream bootstrap-override">
     <div class="col-sm-4 col-sm-offset-1">
         <h2>Connect with Fans</h2>
         <p>Your fans can join in your livestream through text chat, as well as directly support you through purchasing perks on your page during your livestream and when you're offline.</p>
     </div>
     <div class="col-sm-6 col-sm-offset-1">
-        <img src="/assets/homeFans.jpg" height="250" class="hidden-xs">
-        <!--img src="/app/assets/images/homeFans.jpg" height="400"class="hidden-xs"-->
+      <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
     </div>
 </div>
 <div class="row" id="faqBlock">

@@ -105,7 +105,7 @@ Monday, September 20, 2018
         - Link colors are all now on brand
         - Images are selected and need to be sized
         - Added table to homepage, visible on mobile
-Thursday, September 11, 2018
+Tuesday, September 11, 2018
     - Header
         - Made usable on User Dashboard with Option button
         - //Need to fix linebreak bug for mobile toggle!
@@ -114,3 +114,21 @@ Thursday, September 11, 2018
         - Adjusted column size
         - Formatted table
         - Submitted pull request
+Thursday, September 13, 2018
+    - Downgraded to Ruby 2.4.2 so I didn't keep editing the gemfile in my pull requests
+    - Home Page
+        - Switched order of grey bands on homepage
+        - Moved link hover color to dark instead of light
+        - Changed sign in button fron btn-primary to btn-default
+    - Header
+        - Username is now a dropdown button that links to Edit Profile and Create Perks, and Dashboard.
+        - Can now delete _userpersonalheader.html.erb
+
+========================================
+Tasks for Week of September 17, 2018
+    - Header
+        - Change size of <small> on homepage
+    - Perks
+        - Research layouts for perks page
+        - Consider "featured" perks
+        - Perks accordion mockup

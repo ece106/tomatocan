@@ -23,11 +23,11 @@
     <%= f.text_field :name, :size => 80 %><p>
   </div>
   <div class="field">
-    Start time...
+    Start time (in Pacific Daylight Time zone)...
     <%= f.datetime_select :start_at, :ampm => true, :default => 3.days.from_now, :minute_step => 15 %>
   </div>
   <div class="field">
-    End time.....
+    End time (in Pacific Daylight Time zone)....
     <%= f.datetime_select :end_at, :ampm => true, :default => 3.days.from_now, :minute_step => 15 %>
   </div>
   <div class="field">

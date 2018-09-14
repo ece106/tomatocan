@@ -19,7 +19,7 @@
           <% edt = event.start_at + 3.hours %> 
           <tr>
           <td ><%= link_to event.name, event %></td>
-          <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
+          <td ><%= event.start_at.strftime("%A %B %d, %I:%M %p")  %></td>
           <td ><%= edt.strftime("%I:%M %p")  %></td>
           <td>
               <% user = User.find(event.usrid) %>

@@ -22,13 +22,13 @@
   </div>
 
   <div class="field">
-    Start time...
-    <%= f.datetime_select :start_at, :ampm => true, :default => 10.days.from_now, :minute_step => 15 %>
+    Start time (in Pacific Daylight Time zone)...
+    <%= f.datetime_select :start_at, :ampm => true, :default => 7.days.from_now, :minute_step => 15 %>
     <% #= date_field(:event, :start_at) %>
   </div>
   <div class="field">
-    End time.....
-    <%= f.datetime_select :end_at, :ampm => true, :default => 10.days.from_now, :minute_step => 15 %>
+    End time (in Pacific Daylight Time zone)....
+    <%= f.datetime_select :end_at, :ampm => true, :default => 7.days.from_now + 30.minutes, :minute_step => 15 %><br>
   </div>
   <div class="field">
     <br><b>Details about the livestream discussion</b><br /> 
