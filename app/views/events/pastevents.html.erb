@@ -1,27 +1,9 @@
-<div id="groups" style="position:absolute; width:1000px; height:757px;" >
-
-    <%= form_tag events_pastevents_path, :method => :get do %>
-      <table >
-      <tr>
-        <th>Address</th>
-        <th>Distance (miles)</th>
-        <th></th>
-        <th> Find in-person events in your Local area (5 - 20 miles) </th>
-      </tr>
-      <tr>
-        <td><%= text_field_tag :search, params[:search] %></td>
-        <td><%= text_field_tag :dist, params[:dist] %></td>
-        <td><%= submit_tag "Search Near", :name => nil %></td>
-        <td> Or in your MicroLocal area (1 - 5 miles) </td>
-      </tr>
-      </table>  
-    <% end %>
 
 <br><%= link_to 'Browse Upcoming Events', events_path %><br>
 
 <h1>Past Events</h1>
 
-<%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
+<%= link_to 'Create a New Event', new_event_path %> <br><br>
 <% if user_signed_in? %>
   Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
 <% end %>
@@ -54,5 +36,4 @@
   *** No events near you yet ***
 <% end %>  
 
-</div>	
-</div>
+<
