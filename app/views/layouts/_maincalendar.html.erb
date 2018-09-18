@@ -23,7 +23,7 @@
           <td ><%= edt.strftime("%I:%M %p")  %></td>
           <td>
               <% user = User.find(event.usrid) %>
-              <%= link_to user.name, user_profile_path(user.permalink) %> </b>
+              <%= link_to user.name, "https://crowdpublishtv.herokuapp.com" + user_profile_path(user.permalink), :target => "_blank" %> </b>
           </td>
           <td>
             <% if user_signed_in? %>
