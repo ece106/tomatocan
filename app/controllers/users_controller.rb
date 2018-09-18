@@ -286,9 +286,10 @@ class UsersController < ApplicationController
 
     def set_user 
       @user = User.find_by_permalink(params[:permalink]) || current_user
-      if @user.merchandises.any?
-#        @sidebarmerch = @user.merchandises.order('deadline').last 
-        @sidebarmerchandise = @user.merchandises.order(price: :asc)
+      if @user.merchandises.any? 
+        noexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
+        deadlineorder = noexpiredmerch.order('deadline IS NULL, deadline ASC')
+        @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
       end 
     end
      # returns a string of error messages for the user signup page
