@@ -5,6 +5,22 @@
 </head>
 
 <div class="row">
+
+  <script src="https://meet.jit.si/external_api.js">
+var domain = "meet.jit.si";
+var options = {
+    roomName: "CrowdPublishTV",
+    width: 700,
+    height: 700,
+    parentNode: document.querySelector('#meet')
+}
+var api = new JitsiMeetExternalAPI(domain, options);
+
+api.executeCommand('toggleVideo')
+
+  </script>
+
+
   <div class="col-md-5 col-sm-6 col-xs-12" style="padding-top:15px; padding-right:-55px;">
 
     <div class="btn btn-primary" style="font-size:24px; background:#fff;">
