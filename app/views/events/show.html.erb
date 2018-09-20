@@ -32,16 +32,18 @@
   <%= @event.name %>
 </p>
 <p>
-  <b>Discussion host:
+  <b>PARTICIPATE ON HOST'S PAGE:
   <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
 </p>
 <p>
+  <% edt = @event.start_at + 3.hours %> 
   <b>Start time:</b>
-  <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %>
+  <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %> Pacific Time<br> (<%= edt.strftime("%I:%M %p") %> Eastern Time, NY USA)
 </p>
 <p>
+  <% edtend = @event.end_at + 3.hours %> 
   <b>End time:</b>
-  <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %>
+  <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> Pacific Time<br> (<%= edtend.strftime("%I:%M %p") %> Eastern Time, NY USA)
 </p>
 <p>
   <b>More details:</b>
@@ -51,11 +53,11 @@
 </p>
 <p>
 
-  <div class="col-md-3 col-sm-3 col-xs-3 " style= "text-align:left" >
+  <div style= "text-align:left" >
     <% if @rsvpusers.sum(:guests) + @rsvpusers.count > 5 %> 
       <b><%= @rsvpusers.sum(:guests) + @rsvpusers.count %> guests said they'll be there</b><br> 
     <% end %>
-      <br> -- RSVPs are a new feature -- 
+      <br><br> -- RSVPs are a new feature -- 
       <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: http://www.CrowdPublish.TV/events/<%= @event.id %> <br><br>
 
       <% @rsvpusers.each do |rsvpuser| %>
@@ -68,5 +70,5 @@
         <% end %><br>
       <% end %>
   </div>
-</div>  
 <br><br>
+</div>  

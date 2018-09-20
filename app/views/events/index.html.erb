@@ -1,56 +1,35 @@
-<div id="groups" style="position:absolute; width:1000px; height:757px;" >
-  <%= form_tag events_path, :method => :get do %>
-    <table >
-      <tr>
-        <th>Address</th>
-        <th>Distance (miles)</th>
-        <th></th>
-        <th> Find in-person events in your Local area (5 - 20 miles) </th>
-      </tr>
-      <tr>
-        <td><%= text_field_tag :search, params[:search] %></td>
-        <td><%= text_field_tag :dist, params[:dist] %></td>
-        <td><%= submit_tag "Search Near", :name => nil %></td>
-        <td> Or in your MicroLocal area (1 - 5 miles) </td>
-      </tr>
-    </table>  
-  <% end %>
 
   <br><%= link_to 'Browse Past Events', events_pastevents_path %><br>
 
   <h2>Upcoming Events</h2>
 
-  <%= link_to 'Create a New Book Event', new_event_path %>  in Your Community!<br><br>
-  <% if user_signed_in? %>
-    Need to change your Home location? <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> <br><br>
-  <% end %>
+  <%= link_to 'Create a New Event', new_event_path %> <br><br>
 
   <% if @events.count != 0 %>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
-          <th>Event </th>
-          <th>When</th>
-          <th>Where</th>
+          <th>Topic </th>
+          <th style="text-align:center">When <div style="font-size:14px; text-align:center"> Pacific Daylight Time </div></th>
+          <th style="text-align:center"> <div style="font-size:14px; text-align:center"> EDT </div></th>
+          <th style="text-align:center">Host</th> 
           <th></th>
           </tr>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
+          <% edt = event.start_at + 3.hours %> 
           <tr>
           <td ><%= link_to event.name, event %></td>
-          <td ><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
+          <td ><%= event.start_at.strftime("%A %B %d, %I:%M %p")  %></td>
+          <td ><%= edt.strftime("%I:%M %p")  %></td>
           <td>
-            <% if event.address == "livestream" %> 
               <% user = User.find(event.usrid) %>
-              <%= link_to user.name + "'s livestream site", user_stream_path(user.permalink) %> </b>
-              <% else %>
-              <%= event.address %>
-            <% end %>
+              <%= link_to user.name, user_profile_path(user.permalink) %> </b>
           </td>
           <td>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
-                <%= link_to 'Edit Event', edit_event_path(event.id) %> 
+                <%= link_to '(Edit)', edit_event_path(event.id), :id => 'editEvent'%> 
               <% end %>
             <% end %>
           </td>  
@@ -61,4 +40,3 @@
   <% else %>
     *** No events near you yet ***
   <% end %>  
-</div>

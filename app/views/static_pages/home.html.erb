@@ -1,6 +1,6 @@
 <div class="row" id="heroImage">
     <div style= "color:#fff">
-        <h1>Be on Interactive TV and get Crowdfunding</h1>
+        <h1>Be on Interactive TV and discover an Income Stream</h1>
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
@@ -9,7 +9,7 @@
         <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
     <% end %> 
     <!--Livestream button-->
-        <%= link_to 'Livestream', "/livestream", :class => "btn-huge", :style => "margin-left: 50px;" %>
+        <%= link_to 'Livestream', "https://crowdpublishtv.herokuapp.com/livestream", :class => "btn-huge", :style => "margin-left: 50px;", :target => "_blank" %>
     <% if user_signed_in? %>
     <% else %>
         <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>

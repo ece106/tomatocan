@@ -5,7 +5,7 @@ if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo 
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
 
-<%= render 'layouts/userpersonalheader' %>
+<%= render 'layouts/header' %>
 
 <div style = "text-align:center; margin-top:35px;  margin-bottom:20px; overflow-x: hidden; " >
   <% if @user.bannerpic.present? && @user.bannerpic != '' %>
