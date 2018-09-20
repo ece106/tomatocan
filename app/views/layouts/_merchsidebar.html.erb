@@ -85,7 +85,6 @@
               <td>
                 <% if current_user.id == @user.id %>
                   <br><br>  <%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, form_class: 'btn btn-small', class: 'button' %>
-                  <br>$<%= sprintf('%.2f', merch.price) %> USD</br>
                   <% if (merch.deadline) != nil %>
                     <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
                     <%= "Expires in " + daysaway.to_s + " days"%>
@@ -100,12 +99,12 @@
               </td></tr>
               <tr><td><%= truncate(merch.desc , :length => 200, :separator => ' ') %></td>
                 <% if @user.stripeid.present? || @user.id == 143 %>
-                  <% if merch.price.present? %>
-                    <td style='float:right'>$<%= sprintf('%.2f', merch.price) %> USD</td>
-                  <% end %>
                   <% if (merch.deadline) != nil %>
                     <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
-                    <%= "Expires in " + daysaway.to_s + " days"%>
+                    <td><%= "Expires in " + daysaway.to_s + " days"%></td>
+                  <% end %>
+                  <% if merch.price.present? %>
+                    <td style='float:right'>$<%= sprintf('%.2f', merch.price) %> USD</td>
                   <% end %>
                 <% end %>
               </tr>
