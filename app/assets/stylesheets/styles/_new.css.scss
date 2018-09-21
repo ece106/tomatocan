@@ -1,0 +1,24 @@
+#suggestedPerks {
+    margin-top: 20px;
+}
+
+#perkSubmit {
+    margin-top: 40px;
+}
+#stripeAlertText {
+    line-height: 33px;
+}
+
+#priceField {
+    width: 30%;
+}
+@media only screen and (max-width: 992px) {
+    #suggestedPerks {
+        position: inherit;
+        clear: both;
+        float: left;
+    }
+    #priceField {
+        width: 60%;
+    }
+}
