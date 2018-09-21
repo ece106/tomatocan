@@ -11,7 +11,7 @@ html {
 
 //Prevents header from overlapping body
 main {
-    margin-top: 70px;
+    margin-top: 50px;
 }
 //Wrapper for footer alignment
 body {
@@ -51,39 +51,6 @@ main {
     48%{top:-0.4em}
     50%{top:0em}
     100%{top:0em;}
-}
-
-//MOVE TO _EVENTS
-//Events Table
-table td, th {
-    padding:0px 30px 0px 10px;
-}
-div.helps h2 {
-    font-size: 1em !important;
-}
-#tableHost {
-    font-size: .6em !important;
-    color: $brand-primary;
-    font-weight: 400;
-}
-div.helps th {
-    font-family: $font-family-sans-serif;
-    font-weight: 700;
-    font-size: .8em;
-}
-div.helps td {
-    font-family: $font-family-sans-serif;
-    font-weight: 400;
-    font-size: .6em;
-}
-div.helps #editEvent {
-    font-size: .8em;
-}
-div.helps a:link {
-    color: $brand-secondary;
-}
-div.helps a:visited {
-    color: $brand-secondary;
 }
 
 //= Leftover stylesheet pieces, left in case they break anything. They likely need to be moved to individual stylesheets.
