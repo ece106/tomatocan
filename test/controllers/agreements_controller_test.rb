@@ -32,7 +32,7 @@ class AgreementsControllerTest < ActionController::TestCase
   end
 
   test "should update agreement" do
-    patch :update, id: @agreement, agreement: { group_id: @agreement.user_id, phase_id: @agreement.user_id }
+    patch :update, params: { id: @agreement, agreement: { group_id: @agreement.user_id, phase_id: @agreement.user_id } }
     assert_redirected_to agreement_path(assigns(:agreement))
   end
 

@@ -53,10 +53,10 @@ class MerchandisesController < ApplicationController
     def set_merchandise
       @merchandise = Merchandise.find(params[:id])
       @user = User.find(@merchandise.user_id)
-#      if @user.phases.any? 
-#        @sidebarphase = @user.phases.order('deadline').last 
-        @sidebarmerchandise = @user.merchandises.order(price: :asc)  #is this used
-#      end
+      @expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
+      noexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
+      deadlineorder = noexpiredmerch.order('deadline IS NULL, deadline ASC')
+      @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
     end
 
     def merchandise_params

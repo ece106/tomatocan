@@ -42,6 +42,10 @@
       </div><br>
   </div>
 
+  <b>Get It While It's Hot! </b><br>
+    What day do fans have to purchase this Perk before?<br>
+    <%= f.date_select :deadline, selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
+
   <div class="actions">
     <%= f.submit "Update Perk" %>
   </div>

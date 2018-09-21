@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user! , only: [:edit, :update, :new]
   before_action :set_group, except: [:new, :index, :create]
   before_action :set_owner, except: [:new, :index, :create]
-  before_action :check_fieldsneeded, except: [:new, :index, :create]
+  # before_action :check_fieldsneeded, except: [:new, :index, :create]
   layout :resolve_layout
 
   def index
