@@ -6,131 +6,35 @@
 
 <div class="row">
 
-  <script src="https://meet.jit.si/external_api.js">
-var domain = "meet.jit.si";
-var options = {
-    roomName: "CrowdPublishTV",
-    width: 700,
-    height: 700,
-    parentNode: document.querySelector('#meet')
-}
-var api = new JitsiMeetExternalAPI(domain, options);
+  <script src="https://meet.jit.si/external_api.js">  </script>
+  <script>
+    jQuery(document).ready(function($) {
 
-api.executeCommand('toggleVideo')
-
+      var domain = "meet.jit.si";
+      var options = {
+        roomName: "CrowdPublishTV",
+        width: 800,
+        height: 700,
+        parentNode: document.querySelector('#meet')
+      }
+      var api = new JitsiMeetExternalAPI(domain, options);
+    });
   </script>
 
-  <iframe width="600" height="600" src="//meet.jit.si/CrowdPublishTV" frameborder="0" allowfullscreen></iframe>
+  <div id = "meet">
+  </div>  
 
   <div class="col-md-5 col-sm-6 col-xs-12" style="padding-top:15px; padding-right:-55px;">
-
     <div class="btn btn-primary" style="font-size:24px; background:#fff;">
       <a href="https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE"  
       onclick="window.open('https://hangouts.google.com/call/Ng40GpGL1kmM2EGcu70CAAEE', 
                          'newwindow', 
                          'width=750,height=750' ); 
               return false;"
-      >Start My Livestream</a>
+      >Use Hangouts</a>
     </div>
-
     <br><br>
   </div>
-
-  <div class="col-md-7 col-sm-6 col-xs-12" style="padding-top:15px; padding-right:5px;">
-    <div class="helps">
-      Scripts to choose from
-    </div><br>  
-        <div class="accordion" id="accordion1">
-          <div class="accordion-group" style="background:#eee; padding-left:20px; padding-top:5px; padding-bottom:5px">
-            <div id="accordion-toggle1" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'static_pages/skits/lisas80scatholichighschool' %>
-              </div>
-            </div>
-            <a class="accordion-toggle1" data-toggle="collapse" href="#accordion-toggle1">
-              <span>
-                <b>Lisa's 80s Catholic High School Movie - Poster painting</b><br>
-                Six characters<br>
-                Lisa: Like Mary in Something About Mary, high school sophomore<br>
-                Kelly: Witty, sarcastic, high school kid<br>
-                Luke: Brainy, high school kid<br>
-                Rick: Quiet, high school kid<br>
-                Dan: Loud mouth class clown, high school kid<br>
-                Jeff: Dan's more shy class clown twin
-              </span>
-              <span class="hidden1more">
-                ...Hide Poster painting<br><br>
-              </span>
-            </a>
-          </div>
-        </div>
-
-        <div class="accordion" id="accordion2">
-          <div class="accordion-group" style="padding-left:20px; padding-top:15px; padding-bottom:5px">
-            <div id="accordion-toggle2" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'static_pages/skits/lisas80scatholichsbbq' %>
-              </div>
-            </div>
-            <a class="accordion-toggle2" data-toggle="collapse" href="#accordion-toggle2">
-              <span>
-                <b>Lisa's 80s Catholic High School Movie - BBQ</b><br>
-                Four characters<br>
-                Lisa: Like Mary in Something About Mary, high school sophomore<br>
-                Mr. Bufone: Nice, casual/professional dad<br>
-                Dan: Loud mouth class clown, high school kid<br>
-                Jeff: Dan's more shy class clown twin
-              </span>
-              <span class="hidden2more">
-                ...Hide BBQ<br><br>
-              </span>
-            </a>
-          </div>
-        </div>
-
-        <div class="accordion" id="accordion3">
-          <div class="accordion-group" style="background:#eee; padding-left:20px; padding-top:15px; padding-bottom:5px">
-            <div id="accordion-toggle3" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'static_pages/skits/budgetjustified1bossaffair' %>
-              </div>
-            </div>
-            <a class="accordion-toggle3" data-toggle="collapse" href="#accordion-toggle3">
-              <span>
-                <b>Budget Justified Episode 1 - Boss's Affair</b><br>
-                Three characters<br>
-                Lisa: Like Mary in Something About Mary, 37<br>
-                Charlie: Good guy around the office, Lech behind closed doors, 46
-                Brian: Good, solid husband, 37
-              </span>
-              <span class="hidden3more">
-                ...Hide Boss's Affair<br><br>
-              </span>
-            </a>
-          </div>
-        </div>
-
-        <div class="accordion" id="accordion4">
-          <div class="accordion-group" style="padding-left:20px; padding-top:15px; padding-bottom:5px">
-            <div id="accordion-toggle4" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render 'static_pages/skits/budgetjustified2emailharassment' %>
-              </div>
-            </div>
-            <a class="accordion-toggle4" data-toggle="collapse" href="#accordion-toggle4">
-              <span>
-                <b>Budget Justified Episode 2 - Email Harassment</b><br>
-                Two characters<br>
-                Lisa: Like Mary in Something About Mary, 37<br>
-                Tim: Goofy engineer, jaded curmudgeon
-              </span>
-              <span class="hidden3more">
-                ...Hide Email Harassment<br><br>
-              </span>
-            </a>
-          </div>
-        </div>
-
 
   </div>
 </div> 
