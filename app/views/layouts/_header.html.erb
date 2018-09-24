@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <%= link_to image_tag("crowdPublishIcon.png", :class => "navbar-brand", :title => "CrowdPublish.TV Home", :height => "50px"), "/" %>
+                <%= link_to image_tag("crowdPublishIcon.png", :class => "navbar-brand", :title => "CrowdPublish.TV Home"), "/" %>
             </div>
             <div class="collapse navbar-collapse" id="globalNavbar">
                 <ul class="nav navbar-nav">
@@ -35,11 +35,15 @@
                             </ul>
                         </li>
                         <li>
-                            <button class="btn btn-default navbar-btn"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></button>
+                            <p class="navbar-btn">
+                                <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %>
+                            </p>
                         </li>
                     <% else %>
                         <li>
-                            <button class="btn btn-default navbar-btn"><%= link_to 'Sign in', "/login" %></button>
+                            <p class="navbar-btn">
+                                <%= link_to 'Sign in', "/login", :class => "btn btn-primary" %>
+                            </p>
                         </li>
                     <% end %>
                 </ul>
