@@ -21,14 +21,19 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
+    
+<main>
     <%= render 'layouts/authorform' %>
-  <div id='sidebar'>
-      <%= render 'layouts/merchsidebar' %>
-  </div> 
-<body class="body-color">
-    <div class="container-fluid" >
-      <%= yield %>
+    <div id='sidebar'>
+        <%= render 'layouts/merchsidebar' %>
     </div> 
+    <body>
+        <div class="container-fluid" >
+            <%= yield %>
+        </div> 
     </body>
-    <%#= render 'layouts/footer' %>   
+</main>
+
+<%= render 'layouts/footer' %>   
+    
 </html>
