@@ -1,29 +1,62 @@
-@import "bootstrap";
-// automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//This stylesheet for userpgtemplate.html.erb includes _merchsidebar.html.erb partial and _authorform.html.erb partial
 
-//<style type="text/css">
-//<!--
-
+#profileBanner {
+    height: 300px;
+    //below are changable
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    overflow-x: hidden;
+}
+#profileImage {
+    display: inline-block;
+    vertical-align: center;
+    //below are changable
+    position: absolute;
+    z-index: 1;
+    top: 125px;
+}
+//Can profile image upload be forced to a certain aspect ratio?
+#profileImage img {
+    border-color: white;
+    border-width: 6px;
+    height: 150px;
+}
+#profileName {
+    color: $brand-secondary;
+}
+/*
 body {
-    margin: 0px; padding: 0px;}
-     a:link { text-decoration: none; }
-     a:visited { text-decoration: none; }
-     a:hover {  text-decoration: none; background-color:transparent;}
-    a:active {color: #885599;
-    }
-
-.bookcls
-    {
-    width:100px; height:133px; background-color:#dddddd;
-    }
-.hiddenover
-    {
-        vertical-align:top; horizontal-align:center; height:250px; width:350px; overflow:hidden;
-    }
-.font24
-    {
-        font-size:24px; background-color:#6e73d1; font-color:#fff;
+    margin: 0px; padding: 0px;
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none; background-color:transparent;
+}
+a:active {
+    color: #885599;
+}
+.bookcls {
+    width:100px;
+    height:133px;
+    background-color:#dddddd;
+     }
+.hiddenover {
+    vertical-align:top;
+    horizontal-align:center;
+    height:250px;
+    width:350px;
+    overflow:hidden;
+}
+.font24 {
+    font-size:24px;
+    background-color:#6e73d1;
+    font-color:#fff;
     }
 
 .blurb
@@ -196,5 +229,4 @@ body {
     {
     color: white;
     }
-
-//-->
+*/
