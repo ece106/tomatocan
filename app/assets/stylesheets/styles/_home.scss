@@ -1,0 +1,31 @@
+p {
+    text-align: left;
+}
+#heroImage {
+    background-image: image-url('heroImage.jpg');
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+#heroTitle, #heroImage small {
+    color: white;
+}
+.darkBlock {
+    background-color: $gray-lighter;
+}
+
+#faqBlock, .lightBlock, .darkBlock {
+    padding: 30px 20px;
+}
+#faqBlock {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+#connectFans {
+    min-height: 310px;
+}
+#lightBlock, #darkBlock {
+    padding-top: 80px;
+}

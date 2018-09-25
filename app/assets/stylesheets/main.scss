@@ -1,0 +1,18 @@
+//This file gives hierarchy to SASS files used on the site; this file and its @imports are added to the top of all other SCSS files.
+
+//Overrides Bootstrap-defined variables
+@import "base/variables.scss";
+
+//Bootstrap files
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+//Global styles
+@import "base/globals.scss";
+@import "base/header.scss";
+@import "base/footer.scss";
+
+//Individual stylesheets loaded here
+@import "styles/home.scss";
+@import "styles/new.scss";
+@import "styles/users.scss";

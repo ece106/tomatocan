@@ -1,87 +1,34 @@
-#bootstrap-override {
-    //apply to all body elements; add id to element css to add weight to selectors 
-}
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-/* Contents --------------------------------------------------- /
-1. Branding
-    - Colors are ASU Maroon and Gold
-2. Typography
-    - Served by Typekit
-    - Neuzeit Grotesk in 300, 400, 700, 900
-    - Type scale ratio of 1.414
-3. Layout
-    a. Home
-        - darkBlock are light grey rows
-        - lightBlock are white rows
-4. Working
-    - Previous styling that needs to be moved or pruned
+/* 
+This file defines sitewide styles. Place page-specific styles in their own stylesheet.
 */
 
-/* Branding --------------------------------------------------- */
 
-$brand-primary: #FFC627;
-$brand-primary-light: #FFEC99;
-$brand-primary-dark: #E67700;
+// Not really sure what this is for.
+html {
+    width: 100%;
+    overflow-y: scroll;
+}
 
-$brand-secondary: #8C1D40;
-
-@import url("https://use.typekit.net/fxy5ytx.css");
-
-$font-stack: "neuzerit-grotesk", "Avenir", "Helvetica", "Arial", sans-serif !important;
-
-/* Layout --------------------------------------------------- */
-/* Navbar */
+//Prevents header from overlapping body
 main {
-    margin-top: 50px; //prevents header from overlapping body
+    margin-top: 51px;
+}
+//Wrapper for footer alignment
+body {
+    display: flex !important;
+    min-height: 100vh !important;
+    flex-direction: column !important;
+}
+//Wrapper for footer alignment
+main {
+    flex: 1 !important;
 }
 
-/* Homepage Blocks */
-p {
-    text-align: left;
-}
-#heroImage {
-    background-image: image-url('heroImage.jpg');
-    background-color: transparent;
-    background-size: cover;
-    background-position: center;
-    padding-top: 200px;
-    padding-bottom: 200px;
-}
-#heroImage small {
-    color: white;
-}
-.darkBlock {
-    background-color: #E9ECEF;
-}
-
-#homeHero, #faqBlock, .lightBlock, .darkBlock {
-    padding: 20px 20px;
-    h2 {
-        color: $brand-secondary;
-    } 
-}
-#homeHero {
-    small {
-        color: white;
-    }
-}
-#homehero {
-    h1 {
-        font-size: 16em;
-    }
-}
-
-#faqBlock {
-    padding-top: 20px;
-    padding-bottom: 120px;
-}
+//MOVE TO MIXIN FILE
 /* Buttons */
 .btn-huge {
     color: $brand-secondary !important;
-    font-family: $font-stack;
+    font-family: $font-family-sans-serif;
     font-size: 2em;
     margin-top: 4em;
     padding: .8em;
@@ -106,80 +53,9 @@ p {
     100%{top:0em;}
 }
 
-//Events Table
-div.helps h2 {
-    font-size: 1em !important;
-}
-#tableHost {
-    font-size: .6em !important;
-    color: $brand-primary;
-    font-weight: 400;
-}
-div.helps th {
-    font-family: $font-stack;
-    font-weight: 700;
-    font-size: .8em;
-}
-div.helps td {
-    font-family: $font-stack;
-    font-weight: 400;
-    font-size: .6em;
-}
-div.helps #editEvent {
-    font-size: .8em;
-}
-div.helps a:link {
-    color: $brand-secondary;
-}
-div.helps a:visited {
-    color: $brand-secondary;
-}
-//footer
+//= Leftover stylesheet pieces, left in case they break anything. They likely need to be moved to individual stylesheets.
 
-footer p.f-header {
-    font-family: $font-stack;
-    font-size: .85em;
-    margin: 0;
-    padding: 0;
-}
-footer a.f-link {
-    color: $brand-primary;
-    font-family: $font-stack;
-    font-size: 1em;
-}
-/* Working --------------------------------------------------- */
-/* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
-
-/* universal */
-
-html {
-  width: 100%;
-  overflow-y: scroll;
-}
-
-body {
-  padding-top: 0px;
-}
-.body-color {
-  background-color: #f2f2f2;
-}
-
-.carousel-caption {
-  width: 100vw;
-  margin-top: 0px;
-  margin-left: 150px;
-  font-size:70px;
-  text-align:center;
-}
-.dot {
-  height: 10px;
-  width: 15px;
-  background-color: #aaa;
-  border-radius: 50%;
-  display: inline-block;
-}
 .hometop {
   display: flex; /* equal height of the children */
 }
@@ -253,14 +129,6 @@ textarea {
 carousel-inner>.item {
     position: relative;
     max-height: 200px;
-}
-.carousel-caption {
-    position: absolute;
-    top: 7%;
-    transform: translateY(-7%);
-    left: 23%;
-    transform: translateX(-23%);
-    width: 340px;
 }
 
 /* footer */

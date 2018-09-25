@@ -132,3 +132,57 @@ Tasks for Week of September 17, 2018
         - Research layouts for perks page
         - Consider "featured" perks
         - Perks accordion mockup
+        
+Tuesday, September 18, 2018
+    - Removed _userpersonalheader and references to it in layouts
+    - Stylesheets
+        - Fixed stylesheet hierarchy according to Bootstrap documentation at https://github.com/twbs/bootstrap-sass
+        - custom.css.scss is now globals.css.scss, a global stylesheet
+        - variables.scss is a new bootstrap override stylesheet
+        - SASS for individual pages will require new stylesheets
+        
+Thursday, September 20, 2018
+    - Pushed new Stylesheet layout up
+    - Create Perks
+        - Researched perks suggestions on other sites
+        - Redesigned Create Perks form
+        - Will probably move Suggested Perk to a JavaScript autofill for the Create Perk form
+    - Removed <center> tag from application.html.erb
+    - FINALLY FIXED THIS STUPID NAVBAR
+    
+Friday, September 21, 2018
+    - Per-page stylesheets are now partials to reduce loadtimes
+    - Create Perk
+        - Styled Create Perk page to have a left-aligned custom form and a side list of suggestions, can be hooked up with JavaScript
+        - Stripe error alert has right-aligned button and vertically centered text
+        - Price field is a usable size
+        - Overall form width adjustments
+
+========================================
+Tasks for Week of September 24, 2018
+    - Home
+        - Change buttons to default styles
+        - Adjust vertical spacing of paragraphs
+    - Create Perks
+        - Have Suggested Perks pop up above Create Perk in mobile view
+        - Change links to /suggestedperks to /merchandises/new
+        - Javascript work for autofilling suggested perks
+        - Javascript price formatting
+        - !important Add merchandise uploader to form
+        - !important Item type selector to reveal uploader
+    - Dashboard
+        - Mockup
+        - Size restrictions in image uploader?
+    - Login page
+        - columns overlapping? 
+        
+Monday, September 24, 2018
+    - Stylesheets
+        - Switched stylesheets from .css.scss to just .scss to avoid "DEPRECATION WARNING: Extra .css in SCSS file is unnecessary" warnings.
+    - Header
+        - Fixed sign in/sign out button so you don't have to click the text for the button to work
+        - Made logo larger than microscopic
+        - Change standardperks_path????
+    - Profile Page
+        - Removed old unfixed header and added standard header and footer to layout
+        - Converting layout to Bootstrap columns rather than relying on 10,000 CSS margins
