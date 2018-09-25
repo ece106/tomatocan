@@ -30,8 +30,9 @@
     jQuery(document).ready(function($) {
 
       var domain = "meet.jit.si";
+      var userRoomName = '<%= @user.permalink %>'
       var options = {
-        roomName: "CrowdPublishTV",
+        roomName: "CrowdPublish_" + `${userRoomName}`,
         width: 800,
         height: 700,
         parentNode: document.querySelector('#meet')
