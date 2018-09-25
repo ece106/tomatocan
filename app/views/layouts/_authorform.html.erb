@@ -4,74 +4,41 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-<%= render 'layouts/header' %>
-
-<div class="row">
-    <!--The profile banner needs to be full-width and set height-->
-    <div class="COLUMN SIZING HERE" id="profileBanner">
-        <% if @user.bannerpic.present? && @user.bannerpic != '' %>
-            <%= image_tag @user.bannerpic.url.to_s, height: "300" %>
-        <% else %>
-            <%= image_tag "crowddark.png", height: "300" %>
-        <% end %>
+<div class="container-fluid">
+    <div class="row">
+        <div id="profileBanner">
+            <% if @user.bannerpic.present? && @user.bannerpic != '' %>
+                <%= image_tag @user.bannerpic.url.to_s, height: "300" %>
+            <% else %>
+                <%= image_tag "crowddark.png", height: "300" %>
+            <% end %>
+        </div>
     </div>
-
-    <!--This div changes spacing depending on whether user has an image-->
-    <div>
-        <% if user_signed_in? %>
-            <% if @user == current_user %>
-                <% if @user.author == 'author' || @user.author == 'storyteller' %>
-                    <%if controller.controller_name == 'users' %>
-                        <!--div style = "display:inline-flex;">
-                        </div>
-                        <br>
-                        <div style = "display:inline-flex;">
-                        </div>
-                        <br>
-                        <div style = "display:inline-flex;">
-                        <br>
-                        </div--> 
-                    <% else #curruser is not this author/actor/filmkr %> 
-                    <div style="margin-top:130px"><br>
-                    </div> 
-                    <% end %> 
-                <% else #user is NOT a creator %> 
-                <% end %>
-            <% else %> 
-                <div style="margin-top:130px"><br>
-                </div> 
-            <% end %> 
-        <% else %>
-            <div style="margin-top:130px"><br>
-            </div> 
-        <% end %> 
-    </div>
-    
-    <!--The user image needs a set size and an index above the banner. Also a border.-->
-    <div class="COLUMN SIZING HERE" id="profileImage">
-        <% if @user.profilepic.present? && @user.profilepic != '' %>
-            <div class="col-xl-8 col-md-4 col-xs-5">
-                <%= image_tag @user.profilepic.url.to_s, height: "150" %>
-            </div>
-            <div class="col-xl-4 col-md-8 col-xs-7" id="profileName">
-                <h1><%= @user.name %></h1>
-            </div>
-
-        <% else # no buttons no pic %>
-            <div class="col-xl-12 col-md-12 col-xs-12 username">
-                <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:110px">
-                    <%= @user.name %>
+    <div class="row">
+        <div class="col-xs-11 col-xs-offset-1" id="profileHeader">
+            <% if @user.profilepic.present? && @user.profilepic != '' %>
+                <%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
+                <div id="profileTitle">
+                    <h1 id="profileName"><%= @user.name %></h1>
+                    <span id="profileDescription"> <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %></span>
                 </div>
-            </div>
-        <% end %>
+
+            <% else # no buttons no pic %>
+                <div class="col-xl-12 col-md-12 col-xs-12 username">
+                    <div style="text-shadow: 2px 2px #fff; background: rgba(265, 265, 265, .35); margin-top:110px">
+                        <%= @user.name %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
-</div>
 
-<!--Not sure what this is-->
-<% content_for :forusers do %>
-    <meta name="description" content="<%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>">
-<% end %>
+    <!--Not sure what this is-->
+    <% content_for :forusers do %>
+        <meta name="description" content="<%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>">
+    <% end %>
 
+</div>    
 <!--Old subnav. Saved in case I need the user link and I don't want to retype it.-->
 <!--header class="navbar unfixed-header">
   <div class="navbar-inner ">

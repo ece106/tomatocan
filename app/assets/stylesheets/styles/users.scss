@@ -1,30 +1,63 @@
 //This stylesheet for userpgtemplate.html.erb includes _merchsidebar.html.erb partial and _authorform.html.erb partial
 
+//Page header
 #profileBanner {
     height: 300px;
-    //below are changable
-    text-align: center;
-    margin-top: 0px;
     margin-bottom: 20px;
     overflow-x: hidden;
+    display: flex;
+    justify-content: center;
 }
-#profileImage {
-    display: inline-block;
-    vertical-align: center;
-    //below are changable
+#profileHeader {
+    text-align: center;
     position: absolute;
     z-index: 1;
     top: 125px;
 }
-//Can profile image upload be forced to a certain aspect ratio?
-#profileImage img {
-    border-color: white;
-    border-width: 6px;
+#profileImage {
+    border: 6px solid white;
     height: 150px;
+    width: 150px;
+    //centers and crops images
+    object-fit: cover;
+    margin-left: -10px;
+}
+#profileTitle {
+    vertical-align: middle;
+    display: inline-block;
 }
 #profileName {
+    text-transform: capitalize;
     color: $brand-secondary;
+    padding: 0;
+    margin: 0;
 }
+#profileDescription {
+    color: white;
+}
+
+@media (min-width: $screen-xs-min) {
+    #profileHeader {
+        text-align: left;
+    }
+    #profileImage {
+        margin-left: 0;
+    }
+    #profileTitle {
+        margin-left: 20px;
+    }
+    #profileDescription {
+        padding-left: 3px;
+    }
+}
+
+
+//Sidebar styling
+
+
+
+
+//Old, unused styles =======================
 /*
 body {
     margin: 0px; padding: 0px;

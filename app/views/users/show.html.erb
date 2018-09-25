@@ -28,19 +28,18 @@
   <script src="https://meet.jit.si/external_api.js">  </script>
   <script>
     jQuery(document).ready(function($) {
-
       var domain = "meet.jit.si";
       var options = {
         roomName: "CrowdPublishTV",
-        width: 800,
-        height: 700,
         parentNode: document.querySelector('#meet')
       }
       var api = new JitsiMeetExternalAPI(domain, options);
+        //$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
     });
   </script>
 
-  <div id = "meet">
+          <!--class="embed-responsive" -->
+<div id = "meet">
   </div>  
 
   <% if @user.youtube1? %>
