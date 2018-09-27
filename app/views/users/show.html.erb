@@ -20,31 +20,34 @@
   <% end %>
 <% end %>
 
-<div id="wrapper">
-  <div id="page-content-wrapper">
-    <div class="page-content" >
-      <div class="container-flex">
+<div class="row">
 
-  <script src="https://meet.jit.si/external_api.js">  </script>
-          
-  <script>
-      jQuery(document).ready(function($) {
-          var domain = "meet.jit.si";
-          var userRoomName = '<%= @user.permalink %>'
-          var options = {
-              roomName: "CrowdPublish_" + `${userRoomName}`,
-              width: 800,
-              height: 700,
-              parentNode: document.querySelector('#meet')
-          }
-          var api = new JitsiMeetExternalAPI(domain, options);
-      });
-    //$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
-  </script>
+    <%= render 'layouts/merchsidebar' %>
+    
+    <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+        <script src="https://meet.jit.si/external_api.js"></script>
+        <script>
+            jQuery(document).ready(function($) {
+                var domain = "meet.jit.si";
+                var userRoomName = '<%= @user.permalink %>'
+                var options = {
+                    roomName: "CrowdPublish_" + `${userRoomName}`,
+                    width: 800,
+                    height: 700,
+                    parentNode: document.querySelector('#meet')
+                }
+                var api = new JitsiMeetExternalAPI(domain, options);
+                //$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
+            });
+            
+        </script>
+        
+        <!--class="embed-responsive"-->
+        <div id="meet"></div>
+    </div>
+</div>
 
-          <!--class="embed-responsive" -->
-<div id = "meet">
-  </div>  
+<div class="row" id="someYoutubeThing">
 
   <% if @user.youtube1? %>
     <div class="post-border">
@@ -104,8 +107,5 @@
       </div>
     </div>
   <% end %>
-
-    </div>
-  </div>
-</div>
+    
 </div>

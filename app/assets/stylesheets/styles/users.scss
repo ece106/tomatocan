@@ -3,10 +3,10 @@
 //Page header
 #profileBanner {
     height: 300px;
-    margin-bottom: 20px;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
+}
+#profileBanner img {
+    object-fit: cover;
+    min-width: 100%;
 }
 #profileHeader {
     text-align: center;
