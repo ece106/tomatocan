@@ -14,6 +14,8 @@ gem 'unf'
 gem 'carrierwave'
 gem 'stripe'
 gem 'oauth2'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
