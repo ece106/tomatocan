@@ -26,16 +26,20 @@
       <div class="container-flex">
 
   <script src="https://meet.jit.si/external_api.js">  </script>
+          
   <script>
-    jQuery(document).ready(function($) {
-      var domain = "meet.jit.si";
-      var options = {
-        roomName: "CrowdPublishTV",
-        parentNode: document.querySelector('#meet')
-      }
-      var api = new JitsiMeetExternalAPI(domain, options);
-        //$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
-    });
+      jQuery(document).ready(function($) {
+          var domain = "meet.jit.si";
+          var userRoomName = '<%= @user.permalink %>'
+          var options = {
+              roomName: "CrowdPublish_" + `${userRoomName}`,
+              width: 800,
+              height: 700,
+              parentNode: document.querySelector('#meet')
+          }
+          var api = new JitsiMeetExternalAPI(domain, options);
+      });
+    //$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
   </script>
 
           <!--class="embed-responsive" -->
