@@ -1,0 +1,30 @@
+<h1>Facebook Test Suite</h1>
+
+<body>
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+	FB.getLoginStatus(function(response) {
+  	if (response.status === 'connected') {
+    	var access_token = response.authResponse.accessToken;
+  	} 
+	} );
+	</script>
+
+  <div class="fb-like" data-href="http://www.crowdpublish.tv/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+
+ <div>
+	<%= text_area "message", "size" => 40 %>
+
+	<%= button_to 'Post' %>
+</div>
+
+</body>
