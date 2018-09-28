@@ -1,4 +1,12 @@
 <footer>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=540047143115663&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div  class="container-fluid">
         <div class="row" id="footer">
             <div class="col-sm-3 col-sm-offset-1">
@@ -11,6 +19,10 @@
             <div class="col-sm-3">
                 <p class="f-header">Contact</p>
                 <a href="mailto:info@crowdpublish.tv" alt="Email" target="_blank" class="f-link">info@CrowdPublish.TV</a><br>
+            </div>
+            <div class="col-sm-3 pull-right" id="fb">
+                <div class="fb-like" data-href="http://www.crowdpublish.tv/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+                </div>
             </div>
             <div class="col-sm-3 pull-right" id="copyright">
                 <small>&copy; 2018 RoleModel Enterprises, LLC</small>
