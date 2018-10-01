@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= full_title(yield(:title)) + " " + @user.name %></title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "https://js.stripe.com/v2/", "application", 'data-turbolinks-track' => true %>
-  <link rel="shortcut icon" type="favicon.ico" href="http://www.crowdpublish.tv/assets/crowdPublishIcon.png"/>
-  <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=devicewidth, initial-scale=1">
+    <title><%= full_title(yield(:title)) + " " + @user.name %></title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "https://js.stripe.com/v2/", "application", 'data-turbolinks-track' => true %>
+    <link rel="shortcut icon" type="favicon.ico" href="http://www.crowdpublish.tv/assets/crowdPublishIcon.png"/>
+    <%= csrf_meta_tags %>
 
-  <% if Rails.env.development? || Rails.env.test? %>
+    <% if Rails.env.development? || Rails.env.test? %>
     <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
-  <% else %>
+    <% else %>
     <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %> 
-  <% end %>
-  
-  <% if content_for? :forusers %>
+    <% end %>
+
+    <% if content_for? :forusers %>
     <%= yield :forusers %>
-  <% end %>
+    <% end %>
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
+</head>
+
+<%= render 'layouts/header' %>
     
 <main>
-    <%= render 'layouts/authorform' %>
-    <div id='sidebar'>
-        <%= render 'layouts/merchsidebar' %>
-    </div> 
-    <body>
-        <div class="container-fluid" >
-            <%= yield %>
-        </div> 
-    </body>
+    <div class="container-fluid" >
+        <%= render 'layouts/authorform' %>
+        <body>
+                <%= yield %>
+        </body>
+    </div>
 </main>
 
 <%= render 'layouts/footer' %>   
