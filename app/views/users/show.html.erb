@@ -4,6 +4,31 @@
 <meta property="og:url" content="http://CrowdPublish.TV" />
 <meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
 <meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
+<script>
+    var img = document.getElementById('userBannerImage');
+    var c = document.createElement('canvas');
+    var ctx = c.getContext('2d');
+    var w = img.width, h = img.height;
+    c.width = w; c.height = h;
+    ctx.drawImage(img, 0, 0);
+    var data = ctx.getImageData(0, 0, w, h).data;
+    var brightness = 0;
+    var sX = 200, sY = 10, eX = 80, eY = 40;
+    var start = (w * sY + sX) * 4, end = (w * eY + eX) * 4;
+    for (var i = start, n = end; i < n; i += 4) {
+        var r = data[i],
+            g = data[i + 1],
+            b = data[i + 2];
+        brightness += 0.34 * r + 0.5 * g + 0.16 * b;
+        if (brightness !== 0) brightness /= 2;
+    }
+    if (brightness > 0.5) var nameColor = "#8C1D40";
+    else var nameColor = "#FFC627";
+    if (brightness > 0.5) var descColor = "black";
+    else var descColor = "white";
+    document.getElementById('profileName').style.color = nameColor;
+    document.getElementById('profileDescription').style.color = descColor;
+</script>
 </head>
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
@@ -41,15 +66,16 @@
             });
             
         </script>
-      <% else %>
+    <% else %>
         <div style = "margin-top: 30px">
           <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn-huge' %>
         </div>  
-      <% end %>
+    <% end %>
 
         <!--class="embed-responsive"-->
         <div id="meet"></div>
-    </div></div>
+    </div>
+</div>
 
 <div class="row" id="someYoutubeThing">
 
