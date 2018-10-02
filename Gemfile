@@ -16,6 +16,7 @@ gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'koala'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'

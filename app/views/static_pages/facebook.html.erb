@@ -1,4 +1,8 @@
-<h1>Facebook Test Suite</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Facebook Test Page</title>
+</head>
 
 <body>
 
@@ -18,13 +22,25 @@
   	} 
 	} );
 	</script>
+  <div>
+    
+    <% if current_user.facebook.present? %>
+    Welcome <strong><%= facebook_user.name %></strong>!
+    <%= link_to "Sign out", facebookLogout, id: "sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+  <% end %>
 
-  <div class="fb-like" data-href="http://www.crowdpublish.tv/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+  </div>
 
- <div>
-	<%= text_area "message", "size" => 40 %>
+  <div>
+	 <%= text_area "message", "size" => 40 %>
 
-	<%= button_to 'Post' %>
-</div>
+	 <%= button_to 'Post' %>
+  </div>
 
+  <div id="user_nav">
+    <br></br>
+  </div>
 </body>
+</html>

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
   match 'bootcamp', to: 'static_pages#bootcamp', via: 'get'
   match 'livestream', to: 'static_pages#livestream', via: 'get'
+  match 'facebook', to: 'static_pages#facebook', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
   match '/events/online' => "events#online", :as => :events_online, via: 'get'

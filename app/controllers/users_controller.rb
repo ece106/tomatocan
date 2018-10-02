@@ -254,14 +254,14 @@ class UsersController < ApplicationController
   end
 
   def facebook
-    def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!
+    @facebook = from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |facebook|
+      facebook.provider = auth.provider
+      facebook.uid = auth.uid
+      facebook.name = auth.info.name
+      facebook.oauth_token = auth.credentials.token
+      facebook.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      facebook.save!
     end
   end
 
