@@ -15,7 +15,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-11 col-xs-offset-1" id="profileHeader">
+    <div class="col-xs-11" id="profileHeader">
     <% if @user.profilepic.present? && @user.profilepic != '' %>
         <%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
     <% end %>

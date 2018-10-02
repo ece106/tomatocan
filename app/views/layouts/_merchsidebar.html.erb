@@ -17,11 +17,13 @@
                     <th><%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %></th>
                 </tr>
                 <% if user_signed_in? %>
-                  <% if current_user.id == @user.id %>
-                    <tr>
-                      <td><%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, form_class: 'btn btn-small', class: 'button' %></td>
-                    </tr>
-                  <% end %>
+
+                <% if current_user.id == @user.id %>
+                <tr>
+                    <td><%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, form_class: 'btn btn-small', class: 'button' %></td>
+                </tr>
+
+                <% end %>
                 <% end %>
                 <tr>
                     <td id="merchDescription">
@@ -51,17 +53,24 @@
                     <% end %>
                 </tr>
                 <% end %>
-                <%# if @user.stripeid.present? || @user.id == 143 %>
+                <% if @user.stripeid.present? || @user.id == 143 %>
                     <tr>
                         <td>
                             <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
-                            <%= button_to buyPrice, new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get, :class => "btn btn-success btn-lg"%>
+                            <%= button_to buyPrice, new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get, :class => "btn btn-warning btn-lg"%>
                         </td>
                     </tr>
-                <%# end %>
-                <hr>
+                <% else %>
+                    <% if Rails.env.development? || Rails.env.test? %>
+                        <tr><td>You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to purchase perks!</td></tr>
+                    <% else %>
+                        <tr><td>You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to purchase perks!</td></tr>
+                    <% end %>
+                <% end %>
                 
             </table>
+
+            <hr>
             <% end %>
         </div>
     </div>

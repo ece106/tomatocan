@@ -32,12 +32,11 @@
                 var userRoomName = '<%= @user.permalink %>';
                 var options = {
                     roomName: "CrowdPublish_" + `${userRoomName}`,
-                    width: 800,
                     height: 700,
                     parentNode: document.querySelector('#meet')
                 }
                 var api = new JitsiMeetExternalAPI(domain, options);
-                //$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
+                $('#jitsiConferenceFrame0').addClass("embed-responsive-item");
             });
             
         </script>
