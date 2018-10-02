@@ -25,13 +25,14 @@
     <%= render 'layouts/merchsidebar' %>
     
     <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+      <% if request.host == "crowdpublishtv.herokuapp.com" %>
         <script src="https://meet.jit.si/external_api.js"></script>
         <script>
             jQuery(document).ready(function($) {
                 var domain = "meet.jit.si";
                 var userRoomName = '<%= @user.permalink %>';
                 var options = {
-                    roomName: "CrowdPublish_" + `${userRoomName}`,
+                    roomName: "CrowdPublishTV_" + `${userRoomName}`,
                     height: 700,
                     parentNode: document.querySelector('#meet')
                 }
@@ -40,11 +41,15 @@
             });
             
         </script>
-        
+      <% else %>
+        <div style = "margin-top: 30px">
+          <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn-huge' %>
+        </div>  
+      <% end %>
+
         <!--class="embed-responsive"-->
         <div id="meet"></div>
-    </div>
-</div>
+    </div></div>
 
 <div class="row" id="someYoutubeThing">
 
