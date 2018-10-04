@@ -1,10 +1,11 @@
 <div class="container">
 
-<% if !current_user.stripeid.present? %>
-<div class="row">
-    <div class="col-md-12">
+  <% if !current_user.stripeid.present? %> <% "Dont need If current_user here since nonloggedin should not be able to access this page" %>
+    <div class="row">
+      <div class="col-md-12">
         <br><br>
         <% if Rails.env.development? || Rails.env.test? %>
+          <% "this doesnt work because must access stripe through herokuapp ssl " %>  
             <div class="alert alert-danger clearfix">
                 <span class="clearfix">
                     <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to receive payments!</span>
@@ -23,18 +24,18 @@
                 </span>
             </div>
         <% end %>
-    </div>
-    <% end %>
-</div>
+      </div>
+        </div>
+  <% end %>
 
-<div class="row">
+  <div class="row">
     <div class="col-md-12">
         <h1>Create a Perk</h1>
         <p>Offer your fans an item, experience, or benefit they can purchase on your page or during your livestreams. Don't worry, you can edit these details later! All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. So if you're offering to tweet to them, do it as soon as you see their contribution posted on your dashboard. If you're offering an hour of consulting time, text or call to arrange a session right away! Check your dashboard often.</p>
     </div>
-</div>
+  </div>
 
-<div class="row">
+  <div class="row">
     <div class="col-md-6 col-md-offet-2">
 
         <%= form_for(@merchandise) do |f| %>
@@ -104,6 +105,6 @@
             <%= link_to "@mention your fan on Twitter", "#", :class => "list-group-item" %>
         </div>
     </div>
-</div>
+  </div>
     
 </div>
