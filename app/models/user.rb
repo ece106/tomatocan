@@ -132,9 +132,9 @@ class User < ApplicationRecord
 # Don't know why this line doesn't work
 
       monthperksales = monthsales.where('merchandise_id IS NOT NULL')
-      perkearnings = monthperksales.sum(:authorcut)
+      #perkearnings = monthperksales.sum(:authorcut)
       # total monthly revenue
-      self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: perkearnings} 
+      #self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: perkearnings} 
       monthq = monthq + 1.month
     end
 

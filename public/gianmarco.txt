@@ -232,3 +232,10 @@ Monday, October 1, 2018
         - 
     - Jitsi player
         - Now in a div, should be made a embed-responsive class if possible
+        
+Tuesday, October 2, 2018
+    - Profile Page
+        - Images uploaded from mobile are sideways. Bug reported in Issues.
+        - Put in a lil' JavaScript to take the brightness of the profile banner and change the color of the user's name depending on it. Seems to only work once when a new image is loaded, then defaults to maroon after refresh. weeeeeird
+    - Merch sidebar
+        - Purchase button won't show up if user selling Perk doesn't have Stripe account
