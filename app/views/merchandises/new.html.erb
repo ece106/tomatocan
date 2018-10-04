@@ -1,6 +1,5 @@
 <div class="container">
 
-<% if current_user.id == @user.id %>
 <% if !current_user.stripeid.present? %>
 <div class="row">
     <div class="col-md-12">
@@ -9,7 +8,8 @@
         <div class="alert alert-danger clearfix" id="stripeAlert">
             <span class="clearfix">
                 <span id="stripeAlertText">You must <strong>
-                    <%= link_to "connect to Stripe", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + ENV['STRIPE_CONNECT_CLIENT_ID'] + "&scope=read_write", :target => "_blank" %></strong> to sell Perks!</span>
+                    <%= link_to "connect to Stripe", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + ENV['STRIPE_CONNECT_CLIENT_ID'] + "&scope=read_write", :target => "_blank" %></strong> to sell Perks!
+                </span>
                 <span class="pull-right">
                     <%= link_to image_tag("stripebutton.png"), "connect to Stripe", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + ENV['STRIPE_CONNECT_CLIENT_ID'] + "&scope=read_write", :target => "_blank" %>
                 </span>
@@ -19,7 +19,8 @@
         <% if Rails.env.development? || Rails.env.test? %>
         <div class="alert alert-danger clearfix" id="stripeAlert">
             <span class="clearfix">
-                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Perks!</span>
+                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Perks!
+                </span>
                 <span class="pull-right">
                     <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
                 </span>
@@ -28,9 +29,9 @@
         <% else %>
         <div class="alert alert-danger clearfix" id="stripeAlert">
             <span class="clearfix">
-                <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/' + <%= current_user.permalink %> + '/dashboard' %></strong> to sell Perks!</span>
+                <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/' + current_user.permalink + '/dashboard' %></strong> to sell Perks!</span>
                 <span class="pull-right">
-                    <%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/' + <%= current_user.permalink %> + '/dashboard' %>
+                    <%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/' + current_user.permalink + '/dashboard' %>
                 </span>
             </span>
         </div>
@@ -38,7 +39,6 @@
         <% end %>
     </div>
 </div>
-<% end %>
 <% end %>
 
 <div class="row">
@@ -65,7 +65,7 @@
         <div class="form-group">
             <h2><%= f.label :name, "Title" %></h2>
             <p class="help-block">Choose a descriptive name for this perk.</p>
-            <%= f.text_field :name, :class => "form-control" %>
+            <%= f.text_field :name, :class => "form-control", autofocus: true %>
         </div>
 
         <div class="form-group">
