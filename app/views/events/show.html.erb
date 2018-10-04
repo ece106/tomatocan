@@ -1,4 +1,12 @@
 <% @title="CrowdPublish.TV - Upcoming Book Event in DC" %>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=540047143115663&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 <div class="row" >
   <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 " style= "text-align:left" >
     <p id="notice"><%= notice %></p>
@@ -59,6 +67,8 @@
     <% end %>
       <br><br> -- RSVPs are a new feature -- 
       <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: http://www.CrowdPublish.TV/events/<%= @event.id %> <br><br>
+      Or on Facebook: 
+      <div class="fb-share-button" data-href= ("http://www.CrowdPublish.TV/events/" + @event.id) data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=(""http://www.CrowdPublish.TV/events/" + @event.id") class="fb-xfbml-parse-ignore">Share</a></div>
 
       <% @rsvpusers.each do |rsvpuser| %>
         <%= link_to rsvpuser.name, rsvpuser %>
