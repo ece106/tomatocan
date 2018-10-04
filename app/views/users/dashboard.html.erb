@@ -9,7 +9,7 @@
 <% if @user == current_user %>
 
 
-<% if request.host == "crowdpublishtv.herokuapp.com" %> <% "need to route users to dashboard when they login. if signing up for stripe this statement autodirects users to stripe signup. if not, they stay here & look at dashboard" %>
+<% if request.host == "crowdpublishtv.herokuapp.com" %> 
   <% if user_signed_in? %>
     <% if @user.id == current_user.id %>
       <% if !current_user.stripeid.present? %>
