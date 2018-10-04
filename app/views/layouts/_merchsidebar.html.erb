@@ -2,17 +2,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">Perks</div>
         <div class="panel-body">
-            <% if user_signed_in? %>
-              <% if @user.id == current_user.id %>
-                <% if !@user.stripeid.present? || @user.id == 143 %>
-                    <% if Rails.env.development? || Rails.env.test? %>
-                        <tr><td>You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to purchase perks!</td></tr>
-                    <% else %>
-                        <tr><td>You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to purchase perks!</td></tr>
-                    <% end %>
-                <% end %>
-              <% end %>
-            <% else %>
+            <% if !user_signed_in? %>
               You must <%= link_to "Sign In", "/login" %> to purchase perks<br><br>
             <% end %>
 

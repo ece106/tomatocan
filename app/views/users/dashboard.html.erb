@@ -7,6 +7,22 @@
   Profits from each entire month's CrowdPublish.TV sales will be deposited in Users' bank accounts on the 7th of the following month. <br><br>
 
 <% if @user == current_user %>
+
+
+<% if request.host == "crowdpublishtv.herokuapp.com" %> <% "need to route users to dashboard when they login. if signing up for stripe this statement autodirects users to stripe signup. if not, they stay here & look at dashboard" %>
+  <% if user_signed_in? %>
+    <% if @user.id == current_user.id %>
+      <% if !current_user.stripeid.present? %>
+        <script type="text/javascript">
+          window.location.href= "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_6Ws78QidiUJpM70FWAELSMoUDYE37QA9&scope=read_write"
+        </script>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
 <% if @user.stripesignup.present? %>
   <div class="col-md-10 " style="text-align:left">
     <div class="blacktxt" >
