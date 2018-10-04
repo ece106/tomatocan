@@ -1,37 +1,44 @@
 <% @title=" Community " %>
 
-<div class="row" >
-  <div class="col-md-4 col-sm-offset-2 col-sm-5 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+<div class="container">
+    
+    <div class="row">
+        <div class="col-xs-5 col-xs-offset-2">
+            <h1>Login</h1>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-xs-5 col-xs-offset-2">
+            <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
+                <div class="form-group">
+                    <h2><%= f.label :email %></h2>
+                    <%= f.email_field :email, :autofocus => true, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <h2><%= f.label :password %></h2>
+                    <%= f.password_field :password, :class => "form-control" %>
+                </div>
 
-    <% if request.host == "crowdpublishtv.herokuapp.com" %>
-      Confirm your secure login to sign up for Stripe Payments so you can receive crowdfunding from your fans!
-    <% end %>
+                <% if devise_mapping.rememberable? -%>
+                    <div class="checkbox">
+                        <label>
+                            <p><%= f.check_box :remember_me, :type => "checkbox" %> Remember me?</p>
+                        </label>
+                    </div>
+                <% end -%>
 
-    <div class="featured" >
-      Sign in
-    </div><br>
+                <%= f.submit "Sign in", :class => "btn btn-primary" %>
 
-    <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
+                <br><br>
+                <small>By clicking 'Sign In,' you agree to the CrowdPublishTV <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small>
 
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email, :autofocus => true, :size => 40 %></div><br>
+            <% end %>
+        </div>
 
-      <div><%= f.label :password %><br />
-      <%= f.password_field :password, :size => 40 %></div>
-
-      <% if devise_mapping.rememberable? -%>
-        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-      <% end -%>
-
-      <br>  I still agree to the CrowdPublishTV
-       <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %>
-      <br><br><div><%= f.submit "Sign in" %></div>
-    <% end %>
-  </div>
-
-  <div class="col-md-4 col-sm-4 col-xs-12 " style= "text-align:left" >
-    <br>Not a member? <p>
-    <%= render "devise/shared/links" %>
-
-  </div>
+        <div class="col-xs-2">
+            <p>Not a member?</p>
+            <p><%= render "devise/shared/links" %></p>
+        </div>
+    </div>
 </div>

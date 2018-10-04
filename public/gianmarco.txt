@@ -186,3 +186,49 @@ Monday, September 24, 2018
     - Profile Page
         - Removed old unfixed header and added standard header and footer to layout
         - Converting layout to Bootstrap columns rather than relying on 10,000 CSS margins
+        
+Tuesday, September 25, 2018
+    - Profile Page Header
+        - Used CSS to crop and center user profile images. We should eventually switch to an uploader that can auto-crop or allow users to crop their own images.
+        - Header is now responsive to browser size
+        - Need Ruby logic to show genres and their commas only when present in the profileDescription span.
+    - Profile Page Livestream
+        - Tried to make Jitsi a responsive embed with Bootstrap but when I add the embed-responsive class to its iFrame with jQuery it disappears. I probably have to fix all the wrappers around it.
+    - Profile Page Merchsidebar
+        - Will retool as a Bootstrap panel
+        
+Thursday, September 27, 2018
+    - Note: if Mac users are having problems getting Jitsi to see their camera, they can run sudo killall VDCAssistant in Terminal to restart their camera
+    - Create Perks page
+        - Stripe alert now has a if else for dev environment
+        - Header now links to this page instead of standardperks
+        - Placeholder perks aren't gibberish anymore
+    - Profile page
+        - Created new route helper called 'createperk' in routes.erb that links to /merchandises/new for use on the merch sidebar. 'standardperks' links should be switched to this.
+        - Banner images are currently sized by flexbox, which means they look different at every browser size. Bad solution, but works until we get the uploader to allow cropping or enforce image dimension limit.
+    - Merch Sidebar
+        - It's a panel now, but it's taking awhile for me to work through the Ruby logic to style each if case.
+        - The perks probably shouldn't be a table, but hey, what do I know! This is hard to read lol
+
+Friday, September 28, 2018
+    - Login page columns fix
+    - Device viewport fix so text scales on mobile
+    
+========================================
+Tasks for Week of 🎃ctober 1, 2018
+    - Profile page
+        - Finish perk display
+        - Logic for commas between genres
+        - Wrap Jitsi player in a column
+        - Find out what this YouTube div is?
+
+Monday, October 1, 2018
+    - Merch Sidebar
+        - Conditional logic to change phrasing of days left
+        - Image sizes contained
+        - Yellow purchase buttons
+    - Profile header
+        - Image and name moved down and left
+        - 
+    - Jitsi player
+        - Now in a div, should be made a embed-responsive class if possible

@@ -8,41 +8,39 @@
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
-<% if request.host == "crowdpublishtv.herokuapp.com" %>
-  <% if user_signed_in? %>
-    <% if @user.id == current_user.id %>
-      <% if !current_user.stripeid.present? %>
-        <script type="text/javascript">
-          window.location.href= "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_6Ws78QidiUJpM70FWAELSMoUDYE37QA9&scope=read_write"
+<div class="row">
+
+    <%= render 'layouts/merchsidebar' %>
+    
+    <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+      <% if request.host == "crowdpublishtv.herokuapp.com" %>
+        <script src="https://meet.jit.si/external_api.js"></script>
+        <script>
+            jQuery(document).ready(function($) {
+                var domain = "meet.jit.si";
+                var userRoomName = '<%= @user.permalink %>';
+                var options = {
+                    roomName: "CrowdPublishTV_" + `${userRoomName}`,
+                    height: 700,
+                    parentNode: document.querySelector('#meet')
+                }
+                var api = new JitsiMeetExternalAPI(domain, options);
+                $('#jitsiConferenceFrame0').addClass("embed-responsive-item");
+            });
+            
         </script>
+      <% else %>
+        <div style = "margin-top: 30px">
+          <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn-huge' %>
+        </div>  
       <% end %>
-    <% end %>
-  <% end %>
-<% end %>
 
-<div id="wrapper">
-  <div id="page-content-wrapper">
-    <div class="page-content" >
-      <div class="container-flex">
+        <!--class="embed-responsive"-->
+        <div id="meet"></div>
+    </div></div>
 
-  <script src="https://meet.jit.si/external_api.js">  </script>
-  <script>
-    jQuery(document).ready(function($) {
+<div class="row" id="someYoutubeThing">
 
-      var domain = "meet.jit.si";
-      var userRoomName = '<%= @user.permalink %>'
-      var options = {
-        roomName: "CrowdPublish_" + `${userRoomName}`,
-        width: 800,
-        height: 700,
-        parentNode: document.querySelector('#meet')
-      }
-      var api = new JitsiMeetExternalAPI(domain, options);
-    });
-  </script>
-
-  <div id = "meet">
-  </div>  
 
   <% if @user.youtube1? %>
     <div class="post-border">
@@ -102,8 +100,5 @@
       </div>
     </div>
   <% end %>
-
-    </div>
-  </div>
-</div>
+    
 </div>
