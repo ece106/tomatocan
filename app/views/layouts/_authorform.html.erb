@@ -57,9 +57,9 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
         <% else %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
                 <span class="clearfix">
-                    <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/' + current_user.permalink + '/dashboard' %></strong> to sell Perks!</span>
+                    <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/login' %></strong> to sell Perks!</span>
                     <span class="pull-right">
-                        <%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/' + current_user.permalink + '/dashboard' %>
+                        <%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/login' %>
                     </span>
                 </span>
             </div>
