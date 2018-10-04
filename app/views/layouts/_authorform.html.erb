@@ -30,7 +30,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% if !current_user.stripeid.present? %>
 <div class="row">
     <div class="col-md-12">
-      <% "this doesnt work because must access stripe through herokuapp ssl " %>  
+
         <br><br>
         <% if Rails.env.development? || Rails.env.test? %>
           <div class="alert alert-danger clearfix">
@@ -42,6 +42,10 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
             </span>
           </div>
         <% else %>
+
+<% "THIS BUTTON MUST ROUTE TO http://crowdpublishtv.herokuapp.com/<%= current_user.permalink %>/dashboard. And seriously, write it in embedded Ruby, not html. " %>  
+
+
           <div class="alert alert-danger clearfix">
             <span class="clearfix">
                 <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to receive payments!</span>
