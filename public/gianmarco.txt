@@ -239,3 +239,18 @@ Tuesday, October 2, 2018
         - Put in a lil' JavaScript to take the brightness of the profile banner and change the color of the user's name depending on it. Seems to only work once when a new image is loaded, then defaults to maroon after refresh. weeeeeird
     - Merch sidebar
         - Purchase button won't show up if user selling Perk doesn't have Stripe account
+        
+Thursday, October 4, 2018
+    - Stripe alerts
+        - Fixed so that users are routed to Heroku instead of Stripe if they are not visiting from Heroku
+    - Header
+        - Added separate links for Dashboard and Profile
+        
+========================================
+Tasks for Week of October 7, 2018
+    - Make Stripe alerts a partial so I don't have to edit them 36 times
+    - Cleanup layouts so they're more human readable
+    - Check mobile layouts and adjust column sizes for various layouts
+    - Match signup page layout to login page
+    - Edit Profile design
+    
