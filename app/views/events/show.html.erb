@@ -69,7 +69,7 @@
       <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: http://www.CrowdPublish.TV/events/<%= @event.id %> <br><br>
       Or on social media: 
       <div>
-        <div class="fb-share-button" data-href="http://www.crowdpublish.tv" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+        <div class="fb-share-button" data-href= ("http://www.crowdpublish.tv" + @event.id) data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href= "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
         <div>
         </div>
       </div>
