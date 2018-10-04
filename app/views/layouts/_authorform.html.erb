@@ -32,6 +32,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% if !current_user.stripeid.present? %>
 <div class="row">
     <div class="col-md-12">
+
         <br><br>
         <% if request.host == "crowdpublishtv.herokuapp.com" %>
         <div class="alert alert-danger clearfix" id="stripeAlert">
@@ -42,9 +43,9 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
                     <%= link_to image_tag("stripebutton.png"), "connect to Stripe", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + ENV['STRIPE_CONNECT_CLIENT_ID'] + "&scope=read_write", :target => "_blank" %>
                 </span>
             </span>
-        </div>
+          </div>
         <% else %>
-            <% if Rails.env.development? || Rails.env.test? %>
+        <% if Rails.env.development? || Rails.env.test? %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
                 <span class="clearfix">
                     <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Perks!</span>
@@ -53,7 +54,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
                     </span>
                 </span>
             </div>
-            <% else %>
+        <% else %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
                 <span class="clearfix">
                     <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/' + current_user.permalink + '/dashboard' %></strong> to sell Perks!</span>
@@ -62,7 +63,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
                     </span>
                 </span>
             </div>
-            <% end %>
+        <% end %>
         <% end %>
     </div>
 </div>
