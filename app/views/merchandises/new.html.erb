@@ -1,44 +1,54 @@
 <div class="container">
 
-  <% if !current_user.stripeid.present? %> <% "Dont need If current_user here since nonloggedin should not be able to access this page" %>
-    <div class="row">
-      <div class="col-md-12">
-        <br><br>
-        <% if Rails.env.development? || Rails.env.test? %>
-            <div class="alert alert-danger clearfix">
-                <span class="clearfix">
-                    <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to receive payments!</span>
-                    <span class="pull-right">
-                        <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
-                    </span>
-                </span>
-            </div>
-        <% else %>
-
-<% "THIS BUTTON MUST ROUTE TO http://crowdpublishtv.herokuapp.com/<%= current_user.permalink %>/dashboard. And seriously, write it in embedded Ruby, not html. " %>  
-
-
-            <div class="alert alert-danger clearfix">
-                <span class="clearfix">
-                    <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to receive payments!</span>
-                    <span class="pull-right">
-                        <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
-                    </span>
-                </span>
-            </div>
-        <% end %>
-      </div>
-        </div>
-  <% end %>
-
+<% if !current_user.stripeid.present? %>
   <div class="row">
+    <div class="col-md-12">
+        <br><br>
+        <% if request.host == "crowdpublishtv.herokuapp.com" %>
+          <div class="alert alert-danger clearfix" id="stripeAlert">
+            <span class="clearfix">
+                <span id="stripeAlertText">You must <strong>
+                    <%= link_to "connect to Stripe", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + ENV['STRIPE_CONNECT_CLIENT_ID'] + "&scope=read_write", :target => "_blank" %></strong> to sell Perks!
+                </span>
+                <span class="pull-right">
+                    <%= link_to image_tag("stripebutton.png"), "connect to Stripe", "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + ENV['STRIPE_CONNECT_CLIENT_ID'] + "&scope=read_write", :target => "_blank" %>
+                </span>
+            </span>
+          </div>
+        <% else %>
+          <% if Rails.env.development? || Rails.env.test? %>
+            <div class="alert alert-danger clearfix" id="stripeAlert">
+              <span class="clearfix">
+                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Perks!
+                </span>
+                <span class="pull-right">
+                    <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
+                </span>
+              </span>
+            </div>
+          <% else %>
+            <div class="alert alert-danger clearfix" id="stripeAlert">
+              <span class="clearfix">
+                <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/' + current_user.permalink + '/dashboard' %></strong> to sell Perks!</span>
+                <span class="pull-right">
+                    <%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/' + current_user.permalink + '/dashboard' %>
+                </span>
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
     <div class="col-md-12">
         <h1>Create a Perk</h1>
         <p>Offer your fans an item, experience, or benefit they can purchase on your page or during your livestreams. Don't worry, you can edit these details later! All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. So if you're offering to tweet to them, do it as soon as you see their contribution posted on your dashboard. If you're offering an hour of consulting time, text or call to arrange a session right away! Check your dashboard often.</p>
     </div>
-  </div>
+</div>
 
-  <div class="row">
+<div class="row">
     <div class="col-md-6 col-md-offet-2">
 
         <%= form_for(@merchandise) do |f| %>
@@ -55,7 +65,7 @@
         <div class="form-group">
             <h2><%= f.label :name, "Title" %></h2>
             <p class="help-block">Choose a descriptive name for this perk.</p>
-            <%= f.text_field :name, :class => "form-control" %>
+            <%= f.text_field :name, :class => "form-control", autofocus: true %>
         </div>
 
         <div class="form-group">
@@ -92,7 +102,7 @@
             <%= f.date_select :expiration, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
         </div>
 
-        <!--I don't think this div is necessary?-->
+        <!--I don't think this div class is necessary?-->
         <div class="actions">
             <%= f.submit "Create Perk", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
         </div>
@@ -108,6 +118,6 @@
             <%= link_to "@mention your fan on Twitter", "#", :class => "list-group-item" %>
         </div>
     </div>
-  </div>
+</div>
     
 </div>

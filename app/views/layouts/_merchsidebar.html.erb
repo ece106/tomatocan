@@ -32,7 +32,7 @@
                     <td id="merchDescription">
                         <% if merch.desc.length > 200 %>
                             <%= truncate(merch.desc, length: 200) %>
-                            <%= link_to '...more', '', class: "read-more-#{merch.id}" %>
+                            <%= link_to 'more', '', class: "read-more-#{merch.id}" %>
                             <script>
                                 $('.read-more-<%= merch.id %>').on('click', function(e) {
                                     e.preventDefault()
