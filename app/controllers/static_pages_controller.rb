@@ -32,6 +32,9 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def facebook
+  end
+
   private
     def static_pages_params
       params.require(:static_page).permit(:usertype )

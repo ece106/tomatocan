@@ -25,4 +25,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:permalink, :name, :updating_password, :email, :password, :author, :password_confirmation, :remember_me, :address, :latitude, :longitude])
   end  
 
+  def facebook_user
+    @facebook_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :facebook_user
+
 end
