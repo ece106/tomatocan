@@ -43,6 +43,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     ansi (1.5.0)
     arel (9.0.0)
     autoprefixer-rails (8.6.5)
@@ -847,6 +849,10 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (2.1.0)
+    koala (3.0.0)
+      addressable
+      faraday
+      json (>= 1.8)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -894,6 +900,7 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    public_suffix (3.0.3)
     rack (2.0.5)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -1013,6 +1020,7 @@ DEPENDENCIES
   geocoder
   jquery-rails
   jquery-turbolinks
+  koala
   listen
   mandrill
   oauth2
