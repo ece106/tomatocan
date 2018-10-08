@@ -253,4 +253,18 @@ Tasks for Week of October 7, 2018
     - Check mobile layouts and adjust column sizes for various layouts
     - Match signup page layout to login page
     - Edit Profile design
+    - BUG: Javascript only applies first time Header Image is changed
+    
+Monday, October 8, 2018
+    - Footer
+        - Shortened hashtag for Twitter button
+        - New Social section for social media icons, needs some spacing work but I'd like to see the API button options first
+    - Assets Pipeline
+        - Removed unused JavaScript files from app/assets/javascripts
+        - Removed unused images from app/assets/images
+        - Moved Profile Title color javascript to a partial
+    - Authorform
+        - Default header image now has colored text over it so it's readable.
+        - Instead of two line breaks between header and body, I added a margin-bottom. Sorry for cheating the first time!
+        - May need to enable CORS so if someone updates their profile header in Heroku the javascript still works on CP.TV
     
