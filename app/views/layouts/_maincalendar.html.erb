@@ -31,7 +31,7 @@
           <td ><%= edt.strftime("%I:%M %p")  %></td>
           <td>
               <% user = User.find(event.usrid) %>
-              <%= link_to user.name, "https://crowdpublishtv.herokuapp.com" + user_profile_path(user.permalink), :target => "_blank" %> </b>
+              <%= link_to user.name, "https://crowdpublishtv.herokuapp.com/" + user.permalink, :target => "_blank" %> </b>
           </td>
           <td>
             <% if user_signed_in? %>
@@ -41,7 +41,9 @@
             <% end %>
           </td>
 
-          <td class="fb-share-button" data-href= ("https://crowdpublishtv.herokuapp.com" + user.permalink) data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=("https://crowdpublishtv.herokuapp.com" + user.permalink) class="fb-xfbml-parse-ignore">Share</a></td>  
+          <% facebookurl = "https://crowdpublishtv.herokuapp.com/" + user.permalink %>
+
+          <td class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= facebookurl %> class="fb-xfbml-parse-ignore">Share</a></td>  
           </tr>
         <% end %>
       </table>

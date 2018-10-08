@@ -7,7 +7,10 @@
             <h1>Login</h1>
         </div>
     </div>
-    
+    <% if request.host == "crowdpublishtv.herokuapp.com" %> 
+      You must confirm your sign in to access Stripe
+    <% end %>
+
     <div class="row">
         <div class="col-xs-5 col-xs-offset-2">
             <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>

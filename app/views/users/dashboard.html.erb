@@ -4,12 +4,10 @@
       <div class="container" >
 <% @title=" need to paginate results "  %>
 <p class="flash"><%= flash.notice %></p>
-  Profits from each entire month's CrowdPublish.TV sales will be deposited in Users' bank accounts on the 7th of the following month. <br><br>
-
-<% if @user == current_user %>
+  Sales figures will be displayed on this page <br><br>
 
 
-<% if request.host == "crowdpublishtv.herokuapp.com" %> <% "need to route users to dashboard when they login. if signing up for stripe this statement autodirects users to stripe signup. if not, they stay here & look at dashboard" %>
+<% if request.host == "crowdpublishtv.herokuapp.com" %> 
   <% if user_signed_in? %>
     <% if @user.id == current_user.id %>
       <% if !current_user.stripeid.present? %>
@@ -19,44 +17,67 @@
       <% end %>
     <% end %>
   <% end %>
-<% end %>
 
+<% else %>
 
+  <% if user_signed_in? %>
+    <% if @user.id == current_user.id %>
+      <% if @user.stripesignup.present? %>
 
-<% if @user.stripesignup.present? %>
-  <div class="col-md-10 " style="text-align:left">
-    <div class="blacktxt" >
+        <div class="col-md-10 " style="text-align:left">
+          <div class="blacktxt" >
 
-      <div style='font-size:130%;'><b>Your Sales<br></b></div>
-      <% if @totalinfo.present? %>
-        <div style='font-size:110%;'><b>List of all sales - CHECK OFTEN. YOUR PATRONS MAY BE EXPECTING ITEMS FROM YOU<br></b></div>
-        <table>
-          <tr style='font-weight:bold;'><td>Title</td><td>Author's Share</td><td>Sales Date</td><td>Customer Name</td><td>Shipping Address</td><td>Shipped/ Fulfilled?</td></tr>
-            <% @totalinfo.each do |item| %>
-              <tr><td><i><%= item[:soldtitle] %> </i> </td><td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td><td> <%= item[:soldwhen] %></td><td> <%= item[:whobought] %></td><td> <%= item[:address] %></td>
-              <td><% if item[:fulfillstat] != "sent" && item[:ebook].empty? %>
-                <%= button_to [:markfulfilled, @user] do %>
-                  <strong>Mark as Sent </strong>
-                  <%= hidden_field_tag :purchid, item[:purchaseid] %>
+            <div style='font-size:130%;'><b>Your Sales<br></b></div>
+            <% if @totalinfo.present? %>
+              <div style='font-size:110%;'><b>List of all sales - CHECK OFTEN. YOUR FANS MAY BE EXPECTING ITEMS FROM YOU<br></b>
+              </div>
+              <table>
+                <tr style='font-weight:bold;'>
+                  <td>Title</td>
+                  <td>Author's Share</td>
+                  <td>Sales Date</td>
+                  <td>Customer Name</td>
+                  <td>Shipping Address</td>
+                  <td>Shipped/ Fulfilled?</td>
+                </tr>
+                <% @totalinfo.each do |item| %>
+                  <tr><td><i><%= item[:soldtitle] %> </i> </td>
+                    <td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>
+                    <td> <%= item[:soldwhen] %></td>
+                    <td> <%= item[:whobought] %></td>
+                    <td> <%= item[:address] %></td>
+                    <td>
+                      <% if item[:fulfillstat] != "sent" && item[:ebook].empty? %>
+                        <%= button_to [:markfulfilled, @user] do %>
+                          <strong>Mark as Sent </strong>
+                          <%= hidden_field_tag :purchid, item[:purchaseid] %>
+                        <% end %>
+                      <% else %>
+                        <%= item[:fulfillstat] %>
+                      <% end %>
+                    </td></tr>
                 <% end %>
-              <% else %>
-                <%= item[:fulfillstat] %>
-              <% end %>
-              </td></tr>
+              </table><br><br><br>
             <% end %>
-        </table><br><br><br>
-      <% end %>
-<% end %>
-    
-    <div style='font-size:110%;'><b>Income each month<br></b></div>
-    <table>
-      <tr style='font-weight:bold;'><td><b>Month</td><td>Total Earned (USD)</b></td></tr>
-        <% @incomeinfo.each do |book| %>
-      <tr><td><%= book[:month] %></td><td style='text-align:right'> <%= number_with_precision(book[:monthtotal], :precision => 2) %></td></tr>
-        <% end %>
-    </table><br>
 
-  </div>
+          <div style='font-size:110%;'><b>Income each month<br></b></div>
+          <table>
+            <tr style='font-weight:bold;'>
+              <td><b>Month</td>
+              <td>Total Earned (USD)</b></td> 
+            </tr>
+            <% @incomeinfo.each do |book| %>
+              <tr><td><%= book[:month] %></td>
+                <td style='text-align:right'> <%= number_with_precision(book[:monthtotal], :precision => 2) %></td>
+              </tr>
+            <% end %>
+          </table><br>
+        </div>
+ 
+      <% end %>
+    <% end %>
+  <% end %>
+
 <% end %>
 
 <br><br><br>
