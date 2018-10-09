@@ -3,6 +3,7 @@
 //Page header
 #profileBanner {
     height: 300px;
+    margin-bottom: 45px;
 }
 #profileBanner img {
     object-fit: cover;
@@ -65,7 +66,21 @@
     
 }
 
-
+//Edit Profile style
+#cancelProfileButton {
+    display: block;
+    width: 20%;
+    font-size: .8em;
+    padding: 14.5px 16px
+}
+#saveProfileButton {
+    display: block;
+    width: 80%;
+}
+#editProfileButton {
+    display: block;
+    width: 100%;
+}
 
 //Old, unused styles =======================
 /*

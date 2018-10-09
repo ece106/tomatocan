@@ -10,7 +10,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
     <% if @user.bannerpic.present? && @user.bannerpic != '' %>
         <%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
     <% else %>
-        <%= image_tag "crowddark.png", height: "300" %>
+        <%= image_tag "crowddark.png", height: "300", :id => "userBannerImage" %>
     <% end %>
     </div>
 </div>
@@ -33,7 +33,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <div class="row">
     <div class="col-md-12">
 
-        <br><br>
+        
         <% if Rails.env.development? || Rails.env.test? %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
                 <span class="clearfix">
@@ -63,3 +63,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% content_for :forusers do %>
     <meta name="description" content="<%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>">
 <% end %>
+
+
+
+<%= javascript_include_tag "titleColor", "data-turbolinks-track" => "reload" %>

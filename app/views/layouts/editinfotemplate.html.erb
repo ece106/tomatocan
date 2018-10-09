@@ -20,16 +20,16 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
+</head>
+    
 <body>
+    
+<%= render 'layouts/header' %> 
 
-  <center>
-    <%= render 'layouts/editinfoform' %>
-    <div class="container">
-      <%= yield %>
-    </div> 
-    <% #= render 'layouts/footer' %>   
-  </center>
+<main class="container-fluid">
+    <%= yield %>
+</main>
+<%= render 'layouts/footer' %>  
 
 </body>
 </html>
