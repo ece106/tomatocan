@@ -42,8 +42,11 @@
           </td>
 
           <% facebookurl = "https://crowdpublishtv.herokuapp.com/" + user.permalink %>
-
-          <td class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= facebookurl %> class="fb-xfbml-parse-ignore">Share</a></td>  
+          <td>
+          <span class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= facebookurl %> class="fb-xfbml-parse-ignore">Share</a></span>
+          <span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Watch my livestream at: <%= facebookurl %>" data-hashtags="CrowdPublishTV" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </span>
+          </td>  
           </tr>
         <% end %>
       </table>
