@@ -1,3 +1,12 @@
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
 <div class="row" >
   <div class="col-md-9 col-sm-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
 
@@ -63,7 +72,15 @@ There aren't enough events nor groups yet to justify this feature
 
   </div>
     <%= f.submit %>
-<% end %>
+
+<div class="actions">
+    <%= f.button :submit,:class => 'btn btn-md btn-success', :formtarget => "_blank" do %>
+      Create Event
+      <a target="_blank" href= "wwww.crowdpublish.tv" class="fb-xfbml-parse-ignore"></a>
+    <% end %>
+</div>
+
+<% end %>  
 <br><br>
 </div>
 </div>
