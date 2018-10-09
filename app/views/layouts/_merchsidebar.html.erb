@@ -30,17 +30,19 @@
                 <% end %>
                 <tr>
                     <td id="merchDescription">
-                        <% if merch.desc.length > 200 %>
-                            <%= truncate(merch.desc, length: 200) %>
-                            <%= link_to 'more', '', class: "read-more-#{merch.id}" %>
-                            <script>
-                                $('.read-more-<%= merch.id %>').on('click', function(e) {
-                                    e.preventDefault()
-                                $(this).parent().html('<%= escape_javascript merch.desc %>')
-                                })
-                            </script>
-                        <% else %>
-                            <%= merch.desc %>
+                        <% if merch.desc.present? %>
+                            <% if merch.desc.length > 200 %>
+                                <%= truncate(merch.desc, length: 200) %>
+                                <%= link_to 'more', '', class: "read-more-#{merch.id}" %>
+                                <script>
+                                    $('.read-more-<%= merch.id %>').on('click', function(e) {
+                                        e.preventDefault()
+                                    $(this).parent().html('<%= escape_javascript merch.desc %>')
+                                    })
+                                </script>
+                            <% else %>
+                                <%= merch.desc %>
+                            <% end %>
                         <% end %>
                     </td>
                 </tr>
