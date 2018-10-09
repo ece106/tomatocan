@@ -2,127 +2,151 @@
 
 <%= render 'layouts/flash_messages' %>
 
-<div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
-  <% if @user.profilepic.present? && @user.profilepic != '' %>
-    <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
-  <% elsif @user.profilepicurl %>
-    <% if @user.profilepicurl.match(/http/) %>
-      <%= image_tag @user.profilepicurl, :height => "150" %><br >
-    <% else %>
-      <%= image_tag "whiteBk.jpg", :height => "150" %>
-    <% end %>
-  <% else %>
-    <%= image_tag "whiteBk.jpg", :height => "150" %>
-  <% end %>
+<!--div class="row">
+    <div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
+      <% if @user.profilepic.present? && @user.profilepic != '' %>
+        <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
+      <% elsif @user.profilepicurl %>
+        <% if @user.profilepicurl.match(/http/) %>
+          <%= image_tag @user.profilepicurl, :height => "150" %><br >
+        <% else %>
+          <%= image_tag "whiteBk.jpg", :height => "150" %>
+        <% end %>
+      <% else %>
+        <%= image_tag "whiteBk.jpg", :height => "150" %>
+      <% end %>
+    </div>
+</div-->
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>Edit Profile</h1>
+        <p></p>
+    </div>
 </div>
 
-<% if @user == current_user %>
-  <%= form_for @user, :html => {:multipart => true} do |f| %>
+<div class="row">
+    <div class="col-xs-12">
+        <% if @user == current_user %>
+        <%= form_for @user, :html => {:multipart => true} do |f| %>
+        
+        <div class="col-md-4">
+            <h2>Account</h2>
+            
+            <div class="well">
+                <div class="form-group">
+                    <h3><%=f.label :name, "Email" %></h3>
+                    <p class="help-block">Change your email address.</p>
+                    <%= f.text_field :email, :type => "email", :class => "form-control" %>
+                </div>
 
-  <div class="col-md-5 col-sm-6 col-xs-12 " style="text-align:left">
-    <div class="blacktxt" >
-      Three genres that categorize your work <br>
+                <div class="form-group">
+                    <h3><%=f.label :name, "Password" %></h3>
+                    <%= link_to "Change Password", user_changepassword_path(@user.permalink), :method => :get, :class => "btn btn-default"%>
+                    <%= f.hidden_field :password %>
+                    <%= f.hidden_field :password_confirmation %>
+                </div>
 
-      Genre 1 <%= f.select :genre1, [["Fiction", "Fiction"], ["Nonfiction", "Nonfiction"], ["Self Help", "Selfhelp"], ["Childrens", "Childrens"], ["Business", "Business"]] %>
-
-      <div class="profilebox" >
-        Genre 2 <%= f.text_area :genre2, :cols => 20, :rows => 1, placeholder: "Sub genre"%><br>
-        Genre 3 <%= f.text_area :genre3, :cols => 20, :rows => 1, placeholder: "Another genre" %>
-      </div> <br>
-
-      To change your PROFILE image, upload a picture of yourself (150x150px is best)
-      <br><%= f.file_field :profilepic %>
-      <br>To change your BANNER image, upload a wide picture that represents your brand (1500x300px is best)
-      <br><%= f.file_field :bannerpic %> 
-
-      <br>Twitter handle (do not include the '@' symbol nor the entire url) <br>
-      <div class="profilebox" style="vertical-align: text-top">
-        <b style="vertical-align: super">@</b> 
-        <%= f.text_area :twitter, :cols => 30, :rows => 1, placeholder: "twitterhandle" %>
-      </div>
-
-      <br>Bio: Tell us all about yourself. <br />
-      <div class="profilebox" >
-        <%= f.text_area :about, :cols => 40, :rows => 10, placeholder: 'About Me' %>
-      </div>
-      <br>For a limited time, you will be allowed to change your custom URL handle. Alphanumeric characters only. URL handle must be less than 20 characters.
-      <div class="profilebox" style="vertical-align: text-bottom">
-        <b style="vertical-align: super">www.CrowdPublish.TV/ </b> <%= f.text_area :permalink, :cols => 23, :rows => 1, placeholder:  "Your custom URL handle", maxlength: 20 %> 
-      </div>
-
-      <br>Change your name <br> 
-      <div class="profilebox" >
-        <%= f.text_area :name, :cols => 40, :rows => 1, maxlength: 50 %>
-      </div>
-      <br>Change your email address <br> 
-      <div class="profilebox" >
-        <%= f.text_area :email, :cols => 40, :rows => 1 %>
-      </div>
-      <br><br><center><%= f.submit "Save Profile" %> </center><br><br>
-    </div>
-  </div>
-  
-
-  <div class="col-md-7 col-sm-6 col-xs-12 " style="text-align:left">
-    <div class="row" >
-      <div class="password" >
-        <div class="col-md-4 col-sm-4 col-xs-4 " style="text-align:left">
-          <br>
-          <%= link_to "Change Password", user_changepassword_path(@user.permalink), :method => :get%>
+                <div class="form-group">
+                    <h3><%=f.label :name, "Custom URL" %></h3>
+                    <p class="help-block">For a limited time, you will be allowed to change your custom URL handle. Alphanumeric characters only. URL handle must be less than 20 characters.</p>
+                    <div class="input-group">
+                        <div class="input-group-addon">crowdpublish.tv/</div>
+                        <%= f.text_field :permalink, placeholder: "yourcustomurl", maxlength: 20, :class => "form-control" %>
+                    </div>
+                </div>
+                
+                <!--Future build for connect to Stripe button-->
+                <!--div class="form group">
+                    <h3>Connect to Stripe</h3>
+                    <p class-->
+            </div>
+            <div class="btn-group btn-group-lg" id="editProfileButton">
+                <%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+                <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+            </div>
         </div>
-        <div class="col-md-5 col-sm-5 col-xs-5 " style="text-align:left">
-          <%= f.hidden_field :password %><br><br>
-          <%= f.hidden_field :password_confirmation %>
+        
+        <div class="col-md-4">
+            <h2>About</h2>
+            
+            <div class="well">
+                <div class="form-group">
+                    <h3><%=f.label :name, "Name" %></h3>
+                    <p class="help-block">Aw, you didn't spell your name wrong, did you?</p>
+                    <%= f.text_field :name, maxlength: 50, :type => "name", :class => "form-control" %>
+                </div>
+
+                <div class="form-group">
+                    <h3><%=f.label :name, "Profile Image" %></h3>
+                    <p class="help-block">Upload a picture of yourself (150px &times; 150px is best)</p>
+                    <%= f.file_field :profilepic, :class => "form-control" %>
+                </div>
+
+                <div class="form-group">
+                    <h3><%=f.label :name, "Bio" %></h3>
+                    <p class="help-block">Tell us a little about yourself.</p>
+                    <%= f.text_area :about, placeholder: 'About Me', :class => "form-control" %>
+                </div>
+
+                <div class="form-group">
+                    <h3><%=f.label :name, "Genre" %></h3>
+                    <p class="help-block">Three genres that categorize your work</p>
+                    <!--This needs an empty options hash to pass in a class-->
+                    <%= f.select :genre1, ([["Fiction", "Fiction"], ["Nonfiction", "Nonfiction"], ["Self Help", "Selfhelp"], ["Childrens", "Childrens"], ["Business", "Business"]]), {}, :class => "form-control" %>
+                    <%= f.text_field :genre2, :class => "form-control", placeholder: "Subgenre" %>
+                    <%= f.text_field :genre3, :class => "form-control", placeholder: "Another subgenre" %>
+                </div>
+
+                <div class="form-group">
+                    <h3><%=f.label :name, "Banner Image" %></h3>
+                    <p class="help-block">Upload a picture to display on top of your profile (1500px &times; 300px is best)</p>
+                    <%= f.file_field :bannerpic, :class => "form-control" %>
+                </div>
+            </div>
+            <div class="btn-group btn-group-lg" id="editProfileButton">
+                <%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+                <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+            </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-3 " >
-        <center><%= f.submit "Save Profile" %> </center><br><br>
-      </div>
+        <div class="col-md-4">
+            <h2>Social</h2>
+            <div class="well">
+                <div class="form-group">
+                    <h3><%=f.label :name, "Twitter Handle" %></h3>
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <%= f.text_field :twitter, placeholder: "twitterhandle", :class => "form-control" %>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h3><%=f.label :name, "YouTube Videos" %></h3>
+                    <p class="help-block">If you have a video about you or your brand on YouTube, paste the URL below.
+                    <%= f.text_field :youtube1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "url", :class => "form-control" %>
+                    <%= f.text_area :videodesc1, placeholder: 'Video description', :class => "form-control"%>
+                    <%= f.text_field :youtube2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "url", :class => "form-control" %>
+                    <%= f.text_area :videodesc2, placeholder: 'Video description', :class => "form-control" %>
+                    <%= f.text_field :youtube3, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "url", :class => "form-control" %>
+                    <%= f.text_area :videodesc3, placeholder: 'Video description', :class => "form-control" %>
+                </div>
+            </div>
+            <div class="btn-group btn-group-lg" id="editProfileButton">
+                <%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+                <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="blacktxt" >
-      <br>If you have a video about you or your brand on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. Any non-YouTube url will be ignored. <br /> 
-      Video 1: <br>
-      <div class="profilebox" >
-        <%= f.text_area :youtube1, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
-      </div>
-      Video 2: <br /> 
-      <div class="profilebox" >
-        <%= f.text_area :youtube2, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
-      </div>
-      Video 3: <br /> 
-      <div class="profilebox" >
-        <%= f.text_area :youtube3, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
-      </div>
-
-      <br>Enter short (less than 255 characters) descriptions of your videos below<br>
-      Video 1: <br>
-      <div class="profilebox" >
-        <%= f.text_area :videodesc1, :cols => 70, :rows => 2 %>
-      </div>
-      <span class="viddesc1usercount"></span><br>
-      Video 2: <br>
-      <div class="profilebox" >
-        <%= f.text_area :videodesc2, :cols => 70, :rows => 2 %>
-      </div>
-      <span class="viddesc2usercount"></span><br>
-      Video 3: <br>
-      <div class="profilebox" >
-        <%= f.text_area :videodesc3, :cols => 70, :rows => 2 %>
-      </div>
-      <span class="viddesc3usercount"></span><br>
-
-      <br>
-    </div>
-  </div><br><br>
-  <% end %>
+<% end %>
 <% end %>
 
 <div id="userlist" >
 <%= form_for(@user, :html => { :multipart => true }) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
     <ul>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
