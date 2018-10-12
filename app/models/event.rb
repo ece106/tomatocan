@@ -19,11 +19,6 @@ class Event < ApplicationRecord
     livestreaming this event from www.CrowdPublish.TV/yourpage/stream, leave the address as the default: livestream " }
 
   time = Proc.new { |r| r.start_at.to_f + 3.hours.to_f }
-puts time
-puts "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs"
-
-puts ->(event) { event.end_at }
-
 
   validate :endat_greaterthan_startat 
   def endat_greaterthan_startat
