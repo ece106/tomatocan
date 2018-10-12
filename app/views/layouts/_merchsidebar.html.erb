@@ -60,9 +60,10 @@
                 <% end %>
                 <% if @user.stripeid.present? || @user.id == 143 %>
                     <tr>
+
                         <td>
                             <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
-                            <%= button_to buyPrice, new_purchase_path( :merchandise_id => merch.id, :group_id => params[:groupid]), method: :get, :class => "btn btn-warning btn-lg"%>
+                            <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning btn-lg"%>
                         </td>
                     </tr>
                 <% end %>
