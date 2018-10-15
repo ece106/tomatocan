@@ -27,14 +27,18 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/new
   def new
+    puts params[:merchandise_id]
     if params[:book_id].present?
       @book = Book.find(params[:book_id])
       @purchase = @book.purchases.new
       @purchase.bookfiletype = params[:bookfiletype]
     end  
+    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     if params[:merchandise_id].present?
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new
+      puts "bbbbbbbbbbbbbbbbbbb"
+      puts @purchase
     end 
     if current_user.stripe_customer_token.present?
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
