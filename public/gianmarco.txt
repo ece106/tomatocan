@@ -279,9 +279,20 @@ Tuesday, October 9, 2018
         - Name, price, and description are now all required in the HTML.
         - Still needs backend validation though!
         - Suggested Perks list now autofills the form fields in dumb JavaScript. I wanted to make it randomly choose suggestions from a list but it was taking too long.
-    - views/layouts
-        - Organized layout pages for resuability 
+    - /views/layouts
+        - Deleted unused partial editinfoform; it was an old header on the edit profile page.
+        - Almost deleted editinfoform template, but looks like it's important. I'll poke around on this one.
+        - Deleted unused template homepg; I put the centering in home.scss instead of having a whole new template just to use the deprecated <center> tag.
     - Dashboard
         - Add merch sidebar? Edit rather than Buy buttons.
     - Home page
         - I made the buttons a smaller size since the old buttons get crushed in mobile view. I'll find a workaround eventually.
+
+========================================
+Tasks for Week of October 15th, 2018
+    - Scrum Organization
+        - Considering a merge into either Trello or Github Projects.
+    - Files cleanup
+        - Partial stylesheets are getting loaded into every file because of my file setup, so I'll have to do a lil' cleanup to fix.
+        - Issues in Github can be ported over to our Trello/Projects so we can leave it for bugs.
+        - Want to compress our templates into fewer files and delete unused files to reduce clutter in our file structure.
