@@ -30,10 +30,19 @@
           </ul>
         </div>
       <% end %>
+        <% if user_signed_in? %>
+          <%= f.hidden_field :event_id, :value => @event.id %>
+          RSVP for the event: 
+          <%= f.submit "RSVP" %>
+        <% else %>
 
-        <%= f.hidden_field :event_id, :value => @event.id %>
-        Number of guests you'll bring: <%= f.number_field :guests, placeholder: "leave blank if none" %>
-        <%= f.submit "RSVP" %>
+          <%= f.hidden_field :event_id, :value => @event.id %>
+          Please sign in or enter email to RSVP for this event: 
+          <%= f.text_field :email, placeholder: "email here" %>
+          <%= f.submit "RSVP" %>
+
+        <% end %>
+
     <% end %><br>
 
 <p>
@@ -76,7 +85,8 @@
           <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="RSVP for <%= @user.name %>'s livestream on <%=  @event.name + "," %> on <%= @event.start_at.strftime("%B %d at %I:%M %p")%> PDT (<%= edtend.strftime("%I:%M %p") %> EDT)" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
-
+        
+      <br></br>
       <% @rsvpusers.each do |rsvpuser| %>
         <%= link_to rsvpuser.name, rsvpuser %>
         <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>

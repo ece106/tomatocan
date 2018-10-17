@@ -1,6 +1,6 @@
 class RsvpqsController < ApplicationController
   before_action :set_rsvp, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! 
+  #before_action :authenticate_user!
   layout :resolve_layout
 
   # GET /rsvps
@@ -24,11 +24,20 @@ class RsvpqsController < ApplicationController
 
   # POST /rsvps
   def create
-    @rsvp = current_user.rsvpqs.build(rsvpq_params)
+    if current_user
+      @rsvp = current_user.rsvpqs.build(rsvpq_params)
+    else
+      @rsvp = Rsvpq.new(rsvpq_params)
+      @rsvp.user_id = "guest"
+
+    end
+
     if @rsvp.save
       redirect_to home_path notice: 'Rsvp was successfully created.'
     else
-      render action: 'new'
+#      @rsvp.errors.add(:email, "Email not valid")
+      redirect_back(fallback_location: root_path)
+      
     end
   end
 
@@ -50,7 +59,7 @@ class RsvpqsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def rsvpq_params
-      params.require(:rsvpq).permit(:event_id, :user_id, :guests)
+      params.require(:rsvpq).permit(:event_id, :user_id, :guests, :email)
     end
 
     def resolve_layout

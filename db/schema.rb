@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.integer "guests"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text "email"
   end
 
   create_table "users", force: :cascade do |t|
