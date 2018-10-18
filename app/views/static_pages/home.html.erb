@@ -4,12 +4,12 @@
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
-        <%= link_to "Offer Perks", '/merchandises/new', :class => "btn-huge" %>
+        <%= link_to "Offer Perks", new_merchandise_path, :class => "btn-huge" %>
     <% else %>
         <%= link_to 'Sign Up', "/signup", :class => "btn-huge bouncy" %>
     <% end %> 
     <!--Livestream button-->
-        <%= link_to 'Host Discussion', "http://www.crowdpublish.tv/events/new", :class => "btn-huge", :style => "margin-left: 50px;", :target => "_blank" %>
+        <%= link_to 'Host Discussion', new_event_path, :class => "btn-huge", :style => "margin-left: 50px;" %>
     <% if user_signed_in? %>
     <% else %>
         <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
@@ -45,7 +45,7 @@
 <div class="row" id="faqBlock">
     <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
     <% if user_signed_in? %>
-    <%= link_to "Create Perk", '/merchandises/new', :class => "btn-huge" %>
+    <%= link_to "Create Perk", 'new_merchandise_path', :class => "btn-huge" %>
     <% else %>
     <%= link_to 'Join', "/signup", :class => "btn-huge bouncy" %>
     <% end %>
