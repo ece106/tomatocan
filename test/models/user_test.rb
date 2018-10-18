@@ -6,7 +6,10 @@ class TestUser < ActiveSupport::TestCase
     @user = users(:one)
 #    sign_in @user  #why dont I need this for model
   end
-
+  
+      test "sign in error message displays" do
+        
+      end
       test "user_can_follow_another_user" do
         john = users(:one)
         mark = users(:two)
