@@ -46,8 +46,8 @@ class RsvpqsControllerTest < ActionController::TestCase
   end
 
   test "should require valid email" do
-     post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, email: "notavalidemail" } }
-    assert_redirect_back(fallback_location: root_path)
+    post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, email: "notavalidemail" } }
+    assert flash[:notice], 'Please enter a valid email address'
   end
 
 end
