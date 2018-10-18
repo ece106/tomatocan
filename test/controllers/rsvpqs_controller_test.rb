@@ -45,4 +45,9 @@ class RsvpqsControllerTest < ActionController::TestCase
      assert_redirected_to "http://test.host/login"
   end
 
+  test "should require valid email" do
+     post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, email: "notavalidemail" } }
+    assert_redirect_back(fallback_location: root_path)
+  end
+
 end

@@ -28,16 +28,15 @@ class RsvpqsController < ApplicationController
       @rsvp = current_user.rsvpqs.build(rsvpq_params)
     else
       @rsvp = Rsvpq.new(rsvpq_params)
-      @rsvp.user_id = "guest"
+      @rsvp.user_id = "Guest"
 
     end
 
     if @rsvp.save
       redirect_to home_path notice: 'Rsvp was successfully created.'
     else
-#      @rsvp.errors.add(:email, "Email not valid")
+      flash[:notice] = 'Please enter a valid email address'
       redirect_back(fallback_location: root_path)
-      
     end
   end
 

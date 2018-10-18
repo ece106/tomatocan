@@ -37,6 +37,7 @@
         <% else %>
 
           <%= f.hidden_field :event_id, :value => @event.id %>
+          <%= f.hidden_field :guests, :value => 1 %>
           Please sign in or enter email to RSVP for this event: 
           <%= f.text_field :email, placeholder: "email here" %>
           <%= f.submit "RSVP" %>
@@ -87,15 +88,25 @@
       </div>
         
       <br></br>
-      <% @rsvpusers.each do |rsvpuser| %>
-        <%= link_to rsvpuser.name, rsvpuser %>
-        <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
-        <% nguests.each do |nguest| %>
-          <% if nguest.guests %>
-            + <%= nguest.guests %> 
+      <% if @event.rsvpqs.count >= 1 %>
+          <%= @event.rsvpqs.count %> RSVPs
+      <% end %>
+
+      <br></br>
+      <% if user_signed_in? %>
+        <% guestCount = 0 %>
+        <% if @event.usrid == current_user.id %>
+          <% @rsvpusers.each do |rsvpuser| %>
+            <% guestCount = guestCount + 1 %>
+            <%= link_to rsvpuser.name, rsvpuser %><br>
           <% end %>
+          <% if @event.rsvpqs.count-guestCount >= 1 %>
+            <%= @event.rsvpqs.count-guestCount %> guest
+          <% end %>
+
         <% end %><br>
       <% end %>
+
   </div>
 <br><br>
 </div>  
