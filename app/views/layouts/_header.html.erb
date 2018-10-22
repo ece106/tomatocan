@@ -8,9 +8,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <%= link_to image_tag("crowdPublishIcon.png", :class => "navbar-brand", :title => "CrowdPublish.TV Home"), "/" %>
+                
             </div>
             <div class="collapse navbar-collapse" id="globalNavbar">
                 <ul class="nav navbar-nav">
+                    <li><%= link_to "Home", "/" %></li>
                     <li><%= link_to "Discover Discussion Hosts", '/userswithmerch' %></li>
                     <% if user_signed_in? %>
                     <% else %>

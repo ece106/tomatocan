@@ -63,7 +63,3 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% content_for :forusers do %>
     <meta name="description" content="<%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>">
 <% end %>
-
-
-
-<%= javascript_include_tag "titleColor", "data-turbolinks-track" => "reload" %>
