@@ -1,4 +1,5 @@
-//Thanks, StackOverflow guy! https://stackoverflow.com/questions/17195738/dynamically-adjust-text-color-based-on-background-image/20596033#20596033
+/*This doesn't work locally unless the banner image was uploaded in the previous screen, and doesnt work remotely because of a CORS problem, most likely.
+https://stackoverflow.com/questions/17195738/dynamically-adjust-text-color-based-on-background-image/20596033#20596033
 
 window.onload = function() {
     var img = document.getElementById('userBannerImage');
@@ -27,3 +28,4 @@ window.onload = function() {
     document.getElementById('profileDescription').style.color = descColor;
     img.crossOrigin = "Anonymous";
 };
+*/
