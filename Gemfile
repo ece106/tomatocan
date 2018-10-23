@@ -74,4 +74,5 @@ gem 'sass-rails', '~> 5.0.7'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'minitest-rails-capybara'
 end
