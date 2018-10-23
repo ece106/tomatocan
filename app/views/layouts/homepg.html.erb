@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=devicewidth, initial-scale=1">
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "https://js.stripe.com/v2/", 'application', 'data-turbolinks-track' => true %>
-  <link rel="shortcut icon" type="favicon.ico" href="http://www.crowdpublish.tv/assets/crowdPublishIcon.png">
-  <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <% if Rails.env.development? || Rails.env.test? %>
-    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
-  <% else %>
-    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %> 
-  <% end %>
-  
-  <% if content_for? :forusers %>
-    <%= yield :forusers %>
-  <% end %>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "https://js.stripe.com/v2/", 'application', 'data-turbolinks-track' => true %>
+    <link rel="shortcut icon" type="favicon.ico" href="http://www.crowdpublish.tv/assets/crowdPublishIcon.png">
+    <%= csrf_meta_tags %>
+
+    <% if Rails.env.development? || Rails.env.test? %>
+        <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
+    <% else %>
+        <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %> 
+    <% end %>
+
+    <% if content_for? :forusers %>
+        <%= yield :forusers %>
+    <% end %>
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
+
 <body>
+        <%= render 'layouts/header' %>
+        
+        <main class="container-fluid">
+            <%= yield %>
+        </main> 
+        
+        <%= render 'layouts/footer' %>
 
-<center>
-    <%= render 'layouts/header' %>
-    <main class="container-fluid">
-        <%= yield %>
-    </main> 
-    <%= render 'layouts/footer' %>   
-</center>
-
-<% #= devise_error_messages! %>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-<% end %>
-
+    <% #= devise_error_messages! %>
+    <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    <% end %>
 </body>
 </html>

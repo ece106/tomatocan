@@ -29,10 +29,10 @@
             
         </script>
     <% else %>
-        <div style = "margin-top: 30px">
-          <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn-huge' %>
+        <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+            <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-huge' %>
         </div>  
-        <br></br>
+        <br>
         <div class="row" id="someYoutubeThing">
 
           <% if @user.youtube1? %>
