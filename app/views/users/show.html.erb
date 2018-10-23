@@ -30,7 +30,7 @@
         </script>
         <div id="meet"></div>
     <% else %>
-        <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+        <div>
             <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-huge' %>
         </div>  
         <br>
