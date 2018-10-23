@@ -18,10 +18,9 @@ class RsvpqsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
   test "should create rsvpq" do
     assert_difference('Rsvpq.count',1) do
-      post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id } }
+      post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id, email: @rsvpq.email } }
     end
     #assert_redirected_to events_path
      assert_redirected_to "http://test.host/login"
@@ -40,14 +39,15 @@ class RsvpqsControllerTest < ActionController::TestCase
   end
 
   test "should update rsvpq" do
-    patch :update, params:{id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id } }
+    patch :update, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id, email: @rsvpq.email } }
     #assert_redirected_to rsvpq_path(assigns(:rsvpq))
-     assert_redirected_to "http://test.host/login"
+    assert_redirected_to "http://test.host/login"
   end
 
   test "should require valid email" do
     post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, email: "notavalidemail" } }
-    assert flash[:notice], 'Please enter a valid email address'
+    #assert flash[:notice], 'Please enter a valid email address'
+    assert_equal 'Please enter a valid email address', flash[:notice]
   end
 
 end
