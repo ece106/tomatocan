@@ -32,6 +32,8 @@
       <% end %>
         <% if user_signed_in? %>
           <%= f.hidden_field :event_id, :value => @event.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :email, :value => current_user.email %>
           RSVP for the event: 
           <%= f.submit "RSVP" %>
         <% else %>
@@ -40,7 +42,7 @@
           <%= f.hidden_field :guests, :value => 1 %>
           Please sign in or enter email to RSVP for this event: 
           <%= f.text_field :email, placeholder: "email here" %>
-          <%= f.submit "RSVP" %>
+          <%= f.submit "RSVP-Guest" %>
 
         <% end %>
 
@@ -101,7 +103,7 @@
             <%= link_to rsvpuser.name, rsvpuser %><br>
           <% end %>
           <% if @event.rsvpqs.count-guestCount >= 1 %>
-            <%= @event.rsvpqs.count-guestCount %> guest
+            <%= @event.rsvpqs.count-guestCount %> Guests
           <% end %>
 
         <% end %><br>

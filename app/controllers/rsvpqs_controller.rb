@@ -28,7 +28,6 @@ class RsvpqsController < ApplicationController
       @rsvp = current_user.rsvpqs.build(rsvpq_params)
     else
       @rsvp = Rsvpq.new(rsvpq_params)
-      @rsvp.user_id = "Guest"
 
     end
 
