@@ -12,7 +12,6 @@
   <%= render 'layouts/merchsidebar' %>
     
   <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
-    <% if request.host == "crowdpublishtv.herokuapp.com" %>
         <script src="https://meet.jit.si/external_api.js"></script>
         <script>
             jQuery(document).ready(function($) {
@@ -28,7 +27,6 @@
             });
             
         </script>
-    <% else %>
         <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
             <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-huge' %>
         </div>  
@@ -52,7 +50,6 @@
           </div>
         </div>
       </div>
-    <% end %>
 
     <% if @user.youtube2? %>
       <div class="post-border">
