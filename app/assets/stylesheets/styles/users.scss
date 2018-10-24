@@ -40,10 +40,10 @@
 #profileDescription {
     color: $brand-secondary;
     font-size: 1.25em;
-    text-shadow: 2px 2px 0 $brand-primary,
-        -2px -2px 0 $brand-primary,
-        -2px 2px 0 $brand-primary,
-        2px -2px 0 $brand-primary;
+    text-shadow: 1px 1px 0 $brand-primary,
+        -1px -1px 0 $brand-primary,
+        -1px 1px 0 $brand-primary,
+        1px -1px 0 $brand-primary;
 }
 
 @media (min-width: $screen-xs-min) {
@@ -83,17 +83,6 @@
 #merchSidebar {
     max-height: 60vh;
     overflow-y: scroll;
-}
-@media(device-width: 768px) and (device-height: 1024px){
-    ::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 7px;
-    }
-    ::-webkit-scrollbar-thumb {
-        border-radius: 4px;
-        background-color: rgba(0,0,0,.5);
-        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-    }
 }
 
 //Edit Profile style
