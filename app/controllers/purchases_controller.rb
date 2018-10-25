@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: [:new ]
   # GET /purchases.json
   def index
     @purchases = Purchase.all
