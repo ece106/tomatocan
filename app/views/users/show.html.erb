@@ -22,6 +22,9 @@
                     roomName: "CrowdPublishTV_" + `${userRoomName}`,
                     height: 700,
                     parentNode: document.querySelector('#meet')
+                    configOverwrite: {dropbox: 
+                        { appKey: 'n2q7nmq1bix8l49' }
+                      }
                 }
                 var api = new JitsiMeetExternalAPI(domain, options);
                 $('#jitsiConferenceFrame0').addClass("embed-responsive-item");
