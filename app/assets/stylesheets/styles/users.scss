@@ -8,6 +8,7 @@
 #profileBanner img {
     object-fit: cover;
     min-width: 100%;
+    max-width: 100%;
 }
 #profileHeader {
     text-align: center;
@@ -70,18 +71,17 @@
     100% {opacity: 1;}
 } 
 
-//Sidebar styling
+//Merch Sidebar styling
 #merchImage {
     max-width: 100%;
 }
 #merchDescription {
     max-width: 100%;
-    
 }
 
 //Merch Sidebar style
 #merchSidebar {
-    max-height: 80vh;
+    max-height: 700px;
     overflow-y: scroll;
 }
 
@@ -99,4 +99,7 @@
 #editProfileButton {
     display: block;
     width: 100%;
+}
+#joinStream {
+    text-align: center;
 }

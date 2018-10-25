@@ -312,10 +312,27 @@ Monday, October 22, 2018
     
 Tuesday, October 23, 2018
     - Took notes for livestream user flow
-    - Bugfix: I gave the Jitsi div column sizing in the wrong place and now it doesn't show up. Fixed it though! I think.
+    - Bugfix: Popup.js is dead now, g o o d  r i d d a n c e
     - Bugfix: meet div was in a weird spot
-    - Todo:
-        REMOVE REQUIRED:TRUE FROM MERCH FORM
-        RESIZE SIGNIN TEXT AT HOME
-        FAVICON
+    
+Thursday, October 26, 2018
+    - Home page
+        - Changed "Have an account? Sign in" text on Home page to be larger, bolder, and yellower.
+        - Compressed our home page hero image because whooaaaaaaaaaaaaaaaa that's a big boy.
+        - Margin above heroImage on Firefox is gone now.
+    - Show page
+        - Increased height of merchsidebar so it should match height of Jitsi player.
+        - Chopped up the YouTube div. It's a well at the bottom for now, but later I'll hopefully make it replace the Jitsi player when not in use.
+        - Clamped down overflowing banner images with a max-width.
+        - Restyled Join Livestream button.
+        - User banner, profile image, and name are all hidden if on Heroku. Kind of a lame workaround but it should prevent the page from scrolling up when text is entered in the Jitsi chat.
+    - Sign In/Up
+        - Sign Up now matches style of Sign In page. Bye bye, YouTube video.
+        - Sign In has the form placed in a well so it doesn't look stranded.
+    - Assets/Images
+        - I moved some stuff out of the way. Then I added a bunch! Then I moved them again
+    - Notes
+        - Bio doesn't actually show up anywhere, I'll have to put it on the profile page.
+        - The Sign Up page still has a ton of room for a sidebar with information we can add later.
+        - Still need regex for commas after Genres on profile page
     
