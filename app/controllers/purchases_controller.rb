@@ -119,7 +119,7 @@ class PurchasesController < ApplicationController
 
     def purchase_params
       params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut, :shipaddress,
-        :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id)
+        :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id, :email)
     end
 
 end
