@@ -9,10 +9,10 @@
 
 <div class="row">
 
-    <%= render 'layouts/merchsidebar' %>
+  <%= render 'layouts/merchsidebar' %>
     
-    <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
-      <% if request.host == "crowdpublishtv.herokuapp.com" %>
+  <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+    <% if request.host == "crowdpublishtv.herokuapp.com" %>
         <script src="https://meet.jit.si/external_api.js"></script>
         <script>
             jQuery(document).ready(function($) {
@@ -28,11 +28,13 @@
             });
             
         </script>
+        <!--class="embed-responsive"-->
+        <div id="meet"></div>
     <% else %>
-        <div style = "margin-top: 30px">
-          <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn-huge' %>
+        <div>
+            <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-huge' %>
         </div>  
-        <br></br>
+        <br>
         <div class="row" id="someYoutubeThing">
 
           <% if @user.youtube1? %>
@@ -97,7 +99,5 @@
 </div>
     <% end %>
 
-        <!--class="embed-responsive"-->
-        <div id="meet"></div>
     </div>
 </div>

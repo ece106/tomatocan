@@ -52,7 +52,7 @@
         <div class="form-group">
             <h2><%= f.label :name, "Title" %></h2>
             <p class="help-block">Choose a descriptive name for this perk.</p>
-            <%= f.text_field :name, :class => "form-control", autofocus: true %>
+            <%= f.text_field :name, :class => "form-control", autofocus: true, required: true %>
         </div>
 
         <div class="form-group">
@@ -60,7 +60,7 @@
             <p class="help-block">Enter the cost of this Perk.</p>
             <div class="input-group" id="priceField">
                 <div class="input-group-addon">$</div>
-                <%= f.text_field :price, :class => "form-control" %>
+                <%= f.text_field :price, :class => "form-control", required: true %>
                 <div class="input-group-addon">.00</div>
             </div>
         </div>
@@ -68,7 +68,7 @@
         <div class="form-group">
             <h2><%= f.label :desc, "Description" %></h2>
             <p class="help-block">What comes with this Perk?</p>
-            <%= f.text_area :desc, :rows => "5", :class => "form-control" %>
+            <%= f.text_area :desc, :rows => "5", :class => "form-control", required: true %>
         </div>
 
         <div class="form-group">
@@ -86,7 +86,7 @@
         <div class="form-group">
             <h2><%= f.label :expiration, "Expiration Date" %></h2>
             <p class="help-block">Get it while it's hot! Choose the last day fans can purchase this Perk.</p>
-            <%= f.date_select :expiration, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
+            <%= f.date_select :expiration, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1, required: true %>
         </div>
 
         <!--I don't think this div class is necessary?-->
@@ -100,9 +100,9 @@
     <div class="col-md-4 col-md-offset-6 affix" id="suggestedPerks">
         <h4>Need help? Try one of our suggested perks!</h4>
         <div class="list-group">
-            <%= link_to "Tickets to your local event", "", :class => "list-group-item" %>
-            <%= link_to "Post to your fan's Facebook page", "#", :class => "list-group-item" %>
-            <%= link_to "@mention your fan on Twitter", "#", :class => "list-group-item" %>
+            <%= link_to "Tickets to your local event", "#", :class => "list-group-item", :id => 'suggestionA', :onclick => "suggest1()" %>
+            <%= link_to "Post to your fan's Facebook page", "#", :class => "list-group-item", :id => 'suggestionB', :onclick => "suggest2()" %>
+            <%= link_to "@mention your fan on Twitter", "#", :class => "list-group-item", :id => 'suggestionC', :onclick => "suggest3()" %>
         </div>
     </div>
 </div>

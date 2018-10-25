@@ -13681,10 +13681,6 @@ return jQuery;
 
 
 
-(function() {
-
-
-}).call(this);
 !function(d,s,id){
   var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
   if(!d.getElementById(id)){
@@ -13827,96 +13823,45 @@ else if ( urlArray[4] == "edit?")  {
 }
   
 ;
-(function() {
+window.onLivestreamLoad = function() {
 
+  // Normalize the various vendor prefixed versions of getUserMedia.
+  navigator.getUserMedia = (navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia || 
+                            navigator.msGetUserMedia);
+// Check that the browser supports getUserMedia.
+// If it doesn't show an alert, otherwise continue.
+  if (navigator.getUserMedia) {
+    // Request the camera.
+    navigator.getUserMedia(
+      // Constraints
+      {
+        video: true, audio: true 
+      },
 
-}).call(this);
-(function() {
+      // Success Callback
+      function(localMediaStream) {
+        // Get a reference to the video element on the page.
+        var vid = document.getElementById('camera-stream');
+        // Create an object URL for the video stream and use this 
+        // to set the video source.
+        vid.src = window.URL.createObjectURL(localMediaStream);
+      },
 
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-  var purchase;
-
-  jQuery(function() {
-    Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
-    return purchase.setupForm();
-  });
-
-  purchase = {
-    setupForm: function() {
-      return $('#new_purchase').submit(function() {
-        $('input[type=submit]').prop('disabled', true);
-        if (carduse === "existingcustomer") {
-          return true;
-        } else {
-          if ($('#card_number').length) {
-            purchase.processCard();
-            return false;
-          } else {
-            return true;
-          }
-        }
-      });
-    },
-    processCard: function() {
-      var card;
-      card = {
-        number: $('#card_number').val(),
-        cvc: $('#card_code').val(),
-        expMonth: $('#card_month').val(),
-        expYear: $('#card_year').val()
-      };
-      return Stripe.createToken(card, purchase.handleStripeResponse);
-    },
-    handleStripeResponse: function(status, response) {
-      if (status === 200) {
-        $('#purchase_stripe_card_token').val(response.id);
-        return $('#new_purchase')[0].submit();
-      } else {
-        $('#stripe_error').text(response.error.message);
-        return $('input[type=submit]').attr('disabled', false);
+      // Error Callback
+      function(err) {
+        // Log the error to the console.
+        console.log('The following error occurred when trying to use getUserMedia: ' + err);
       }
-    }
-  };
+    );
 
-}).call(this);
-(function() {
+  } else {
+    alert('Sorry, your browser does not support getUserMedia');
+  }
 
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
+}
+;
 jQuery(document).ready(function($) {
   $('.hiddenamore').removeClass('hiddenamore').hide();
   $('.accordion-togglea').click(function() {
@@ -14058,10 +14003,6 @@ jQuery(document).ready(function($) {
 
 });
 
-(function() {
-
-
-}).call(this);
 // This is a manifest file that'll be compiled into including all the files listed below.
 // Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
 // be included in the compiled file accessible from http://example.com/assets/application.js
