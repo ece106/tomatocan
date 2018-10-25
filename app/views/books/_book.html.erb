@@ -34,7 +34,7 @@
   </div>
   <div class="col-lg-9 col-md-9 col-md-offset-0 col-sm-9 col-xs-9 " >
     <div class="blurb" style= "color:2c3651">
-      <% if book.blurb %> 
+      <% if book.blurb.present? %> 
         <%= simple_format book.blurb.gsub(/\r\n/, '<br>') %>
       <% end %>
     </div>

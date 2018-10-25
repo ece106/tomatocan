@@ -52,7 +52,7 @@
         <div class="form-group">
             <h2><%= f.label :name, "Title" %></h2>
             <p class="help-block">Choose a descriptive name for this perk.</p>
-            <%= f.text_field :name, :class => "form-control", autofocus: true, required: true %>
+            <%= f.text_field :name, :class => "form-control", autofocus: true %>
         </div>
 
         <div class="form-group">
@@ -60,7 +60,7 @@
             <p class="help-block">Enter the cost of this Perk.</p>
             <div class="input-group" id="priceField">
                 <div class="input-group-addon">$</div>
-                <%= f.text_field :price, :class => "form-control", required: true %>
+                <%= f.text_field :price, :class => "form-control" %>
                 <div class="input-group-addon">.00</div>
             </div>
         </div>
@@ -68,7 +68,7 @@
         <div class="form-group">
             <h2><%= f.label :desc, "Description" %></h2>
             <p class="help-block">What comes with this Perk?</p>
-            <%= f.text_area :desc, :rows => "5", :class => "form-control", required: true %>
+            <%= f.text_area :desc, :rows => "5", :class => "form-control" %>
         </div>
 
         <div class="form-group">

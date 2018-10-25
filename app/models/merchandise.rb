@@ -3,6 +3,7 @@ class Merchandise < ApplicationRecord
   belongs_to :user 
   has_many :purchases
   validates :price, presence: true
+  validates :name, presence: true
   mount_uploader :itempic, MerchpicUploader
   mount_uploader :podcast, PodcastUploader
   mount_uploader :video, VideoUploader

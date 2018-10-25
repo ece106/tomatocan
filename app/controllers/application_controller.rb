@@ -1,6 +1,7 @@
 require 'will_paginate/array'
 
 class ApplicationController < ActionController::Base
+  before_action :store_user_location!, if: :storable_location?
   before_action :update_sanitized_params, if: :devise_controller?
 
   protect_from_forgery
@@ -14,10 +15,21 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  def after_sign_in_path_for(resource)
-      @user = user_dashboard_path(current_user.permalink)
+  #Stores pervious user url and reroutes user back after sign_in
+  private
+  
+  def storable_location?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
   end
 
+  def store_user_location!
+    store_location_for(:user, request.fullpath)
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+    #@user = user_dashboard_path(current_user.permalink)
+    stored_location_for(resource_or_scope) || super
+  end
 
   protected
 
@@ -29,5 +41,7 @@ class ApplicationController < ActionController::Base
     @facebook_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   helper_method :facebook_user
+
+
 
 end
