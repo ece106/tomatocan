@@ -13681,10 +13681,22 @@ return jQuery;
 
 
 
-(function() {
-
-
-}).call(this);
+function suggest1() {
+    document.getElementById('merchandise_name').value = "Tickets to My Show";
+    document.getElementById('merchandise_price').value = "60";
+    document.getElementById('merchandise_desc').value = "You get two tickets to see my show on January 15th @ 8:30pm at the Improv in Tempe. Just tell me where to send the tickets!";
+}
+function suggest2() {
+    document.getElementById('merchandise_name').value = "Facebook Timeline Post from Me";
+    document.getElementById('merchandise_price').value = "15";
+    document.getElementById('merchandise_desc').value = "I'll post to your Facebook wall in the next week with an inspirational quote from my new book!";
+}
+function suggest3() {
+    document.getElementById('merchandise_name').value = "@mention on Twitter";
+    document.getElementById('merchandise_price').value = "20";
+    document.getElementById('merchandise_desc').value = "I'll mention your Twitter username on my feed and respond to the thread.";
+}
+;
 !function(d,s,id){
   var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
   if(!d.getElementById(id)){
@@ -13827,14 +13839,6 @@ else if ( urlArray[4] == "edit?")  {
 }
   
 ;
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
 window.onLivestreamLoad = function() {
 
   // Normalize the various vendor prefixed versions of getUserMedia.
@@ -13874,88 +13878,13 @@ window.onLivestreamLoad = function() {
 
 }
 ;
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-  var purchase;
-
-  jQuery(function() {
-    Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
-    return purchase.setupForm();
-  });
-
-  purchase = {
-    setupForm: function() {
-      return $('#new_purchase').submit(function() {
-        $('input[type=submit]').prop('disabled', true);
-        if (carduse === "existingcustomer") {
-          return true;
-        } else {
-          if ($('#card_number').length) {
-            purchase.processCard();
-            return false;
-          } else {
-            return true;
-          }
-        }
-      });
-    },
-    processCard: function() {
-      var card;
-      card = {
-        number: $('#card_number').val(),
-        cvc: $('#card_code').val(),
-        expMonth: $('#card_month').val(),
-        expYear: $('#card_year').val()
-      };
-      return Stripe.createToken(card, purchase.handleStripeResponse);
-    },
-    handleStripeResponse: function(status, response) {
-      if (status === 200) {
-        $('#purchase_stripe_card_token').val(response.id);
-        return $('#new_purchase')[0].submit();
-      } else {
-        $('#stripe_error').text(response.error.message);
-        return $('input[type=submit]').attr('disabled', false);
-      }
-    }
-  };
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-(function() {
-
-
-}).call(this);
+jQuery(document).ready(function($) {
+	$('a[data-popup]').live('click', function(e) { 
+    window.open($(this).attr('href')); 
+    e.preventDefault(); 
+}); 
+}
+;
 jQuery(document).ready(function($) {
   $('.hiddenamore').removeClass('hiddenamore').hide();
   $('.accordion-togglea').click(function() {
@@ -14097,10 +14026,6 @@ jQuery(document).ready(function($) {
 
 });
 
-(function() {
-
-
-}).call(this);
 // This is a manifest file that'll be compiled into including all the files listed below.
 // Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
 // be included in the compiled file accessible from http://example.com/assets/application.js
