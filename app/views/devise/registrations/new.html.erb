@@ -1,41 +1,38 @@
-<div class="container-flex" >
-  <div class="row">
-  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6" style= "text-align:left;" >
-
-    <div class="featured">
-      <b>Sign Up</b><br><br>
+<div class="container">
+<%= render 'layouts/flash_messages' %>
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-1">
+            <h1>Sign Up</h1>
+            <p>Already a member? <%= link_to 'Sign in', "/login" %>!</p>
+            <div class="well">
+            <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
+                <div class="form-group">
+                    <h2><%= f.label :name %></h2>
+                    <%= f.text_field :name, :autofocus => true, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <h2><%= f.label :email %></h2>
+                    <%= f.email_field :email, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <h2><%=f.label :name, "Username" %></h2>
+                    <p class="help-block">Alphanumeric characters only. Less than 20 characters.</p>
+                    <div class="input-group">
+                        <div class="input-group-addon">crowdpublish.tv/</div>
+                        <%= f.text_field :permalink, placeholder: "username", maxlength: 20, :class => "form-control" %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h2><%= f.label :password %></h2>
+                    <p class="help-block">Enter password</p>
+                    <%= f.password_field :password, :class => "form-control" %>
+                    <p class="help-block">Confirm password</p>
+                    <%= f.password_field :password_confirmation, :class => "form-control" %>
+                </div>
+                <small>By clicking 'Sign In,' you agree to the CrowdPublishTV <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+                <%= f.submit "Sign up", :class => "form-control btn-primary" %>
+            <% end %>
+            </div>
+        </div>
     </div>
-
-<%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
-
-  <%= render 'layouts/flash_messages' %>
-
-  <b>Full name</b>  <br />
-  <%= f.text_field :name, :autofocus => true, :size => 40 %> <br>
-  <b>Email</b><br />
-  <%= f.email_field :email, :autofocus => true, :size => 40 %>
-  <br />
-
-
-  <br><b>Username</b> - numbers and letters ONLY (must be less than 20 characters)<br />
-  www.CrowdPublish.TV/<%= f.text_field :permalink, :autofocus => true, placeholder: "username" %> <br>
-
-  Password <br />
-  <%= f.password_field :password %><br>
-  Enter password again <br />
-  <%= f.password_field :password_confirmation %><br><br>
-  I agree to the CrowdPublishTV
-  <%= link_to("Terms of Service", tos_path, :target => "_blank" ) %><br>
-
-    <b><%= f.submit "Sign up" %></b>
-<% end %>
-    <br><br><br>
-  </div>
-
-  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 " style= "background-color: #EdcFFF; height:100vh; margin-top:-38px;" >
-    <br>Already a member? <%= link_to 'Sign in', "/login" %><br><br>
-      <%= render "devise/registrations/newuser" %>
-  </div>
-
-</div>
 </div>
