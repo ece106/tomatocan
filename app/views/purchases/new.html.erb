@@ -6,7 +6,7 @@
       <% if user_signed_in? %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
       <% else %>
-        Please sign in or enter email to purchase: 
+        Please <%= link_to "Sign In", '/login' %> or enter email to purchase: 
         <%= f.text_field :email, placeholder: "Enter email" %>
       <% end %>
 

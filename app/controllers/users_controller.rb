@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :userswithmerch, :youtubers, :create, :stripe_callback ]
-  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement ]
-  before_action :authenticate_user!, only: [:edit, :update ]
-#  before_filter :correct_user,   only: [:edit, :update, :managesales] Why did I comment this out, was I displaying cryptic error messages
-  
+#  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement ]
+  before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
+#  before_filter :correct_user, only: [:edit, :update, :dashboard] Where did this method go?
+
   def index
     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
        OR (profilepicurl SIMILAR TO 'http%' AND 
