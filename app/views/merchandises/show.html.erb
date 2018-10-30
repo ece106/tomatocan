@@ -19,7 +19,7 @@ f<div id="wrapper">
     <% end %>
 
 <div class="goals">
-  <% if @merchandise.desc %> 
+  <% if @merchandise.desc.present? %> 
     <br><%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %><br>
   <% end %> 
       <% if @merchandise.youtube? %>

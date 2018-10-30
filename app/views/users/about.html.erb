@@ -16,7 +16,7 @@
   <div class="row " >
     <div class="col-md-6 col-sm-7 col-xs-12" >
       <div class="profilebox" >
-        <% if @user.about %> 
+        <% if @user.about.present? %> 
           <%= simple_format @user.about.gsub(/\r\n/, '<br>') %> <br><br>
         <% end %>
       </div>

@@ -13,7 +13,7 @@
   <%= @group.grouptype %><br><br>
 
   <strong>About Us:</strong>
-  <% if @group.about %> 
+  <% if @group.about.present? %> 
     <%= simple_format @group.about.gsub(/\n/, '<br>') %>
   <% end %><br>
 

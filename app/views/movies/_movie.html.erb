@@ -15,7 +15,7 @@
     </div>
   <% end %>
 
-  <% if movie.about %> 
+  <% if movie.about.present? %> 
     <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12" >
       <div class="blurb" style= "color:2c3651">
         <%= simple_format movie.about.gsub(/\r\n/, '<br>') %>

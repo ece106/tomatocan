@@ -61,7 +61,7 @@
 </p>
 <p>
   <b>More details:</b>
-  <% if @event.desc %> 
+  <% if @event.desc.present? %> 
     <%= simple_format @event.desc.gsub(/\n/, '<br>') %>
   <% end %>
 </p>

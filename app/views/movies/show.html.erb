@@ -41,7 +41,7 @@
         <%= @movie.genre %>  
       </div>
       <div class="profilebox">  
-        <% if @movie.about %> 
+        <% if @movie.about.present? %> 
           <br><%= simple_format @movie.about.gsub(/\r\n/, '<br>') %>
         <% end %><br><br>
       </div>
@@ -63,7 +63,7 @@
         <% end %><br>
       <% end %>
         <div class="profilebox" style="margin-left:col-xs-125px">
-          <% if @movie.videodesc2 %> 
+          <% if @movie.videodesc2.present? %> 
             <br><%= simple_format @movie.videodesc2.gsub(/\r\n/, '<br>') %><br><br>
           <% end %><br><br>
         </div>
@@ -74,7 +74,7 @@
         <% end %><br>
       <% end %>
         <div class="profilebox" style="margin-left:col-xs-125px">
-          <% if @movie.videodesc3 %> 
+          <% if @movie.videodesc3.present? %> 
             <br><%= simple_format @movie.videodesc3.gsub(/\r\n/, '<br>') %><br><br>
           <% end %><br><br>
         </div>

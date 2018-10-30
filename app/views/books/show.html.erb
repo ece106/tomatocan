@@ -42,7 +42,7 @@
     </td></tr>
   </table>
   <div class="profilebox">  
-    <% if @book.blurb %> 
+    <% if @book.blurb.present? %> 
       <br><%= simple_format @book.blurb.gsub(/\r\n/, '<br>') %>
     <% end %><br><br>
   </div>
@@ -54,7 +54,7 @@
             <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @book.youtube1 %>" frameborder="0" allowfullscreen></iframe>
           <% end %><br>
           <div class="profilebox" style="margin-left:15px">
-            <% if @book.bkvideodesc1 %> 
+            <% if @book.bkvideodesc1.present? %> 
               <br><%= simple_format @book.bkvideodesc1.gsub(/\r\n/, '<br>') %><br><br>
             <% end %><br><br>
           </div>
@@ -66,7 +66,7 @@
         <% end %><br>
       <% end %>
         <div class="profilebox" style="margin-left:col-xs-125px">
-          <% if @book.bkvideodesc2 %> 
+          <% if @book.bkvideodesc2.present? %> 
             <br><%= simple_format @book.bkvideodesc2.gsub(/\r\n/, '<br>') %><br><br>
           <% end %><br><br>
         </div>
