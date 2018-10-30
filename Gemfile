@@ -17,6 +17,7 @@ gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'will_paginate-bootstrap'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
