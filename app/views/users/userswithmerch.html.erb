@@ -24,7 +24,7 @@
   <% end %>
 </div>
   <div class="indexlist" >
-    <b>Browse more authors & actors</b><br> <%= will_paginate @merchusers %> <br>
+      <b>Browse more authors & actors</b><br> <%= will_paginate @merchusers, renderer: BootstrapPagination::Rails %> <br>
   </div>
 
 </div>

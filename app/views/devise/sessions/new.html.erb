@@ -7,17 +7,15 @@
 
 <div class="container">
     
-    <div class="row">
-        <div class="col-xs-5 col-xs-offset-2">
-            <h1>Login</h1>
-        </div>
-    </div>
     <% if request.host == "crowdpublishtv.herokuapp.com" %> 
-      You must confirm your sign in to access Stripe
+        You must confirm your sign in to access Stripe
     <% end %>
 
     <div class="row">
-        <div class="col-xs-5 col-xs-offset-2">
+        <div class="col-lg-6 col-lg-offset-1">
+            <h1>Login</h1>
+
+            <div class="well">
             <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
                 <div class="form-group">
                     <h2><%= f.label :email %></h2>
@@ -35,18 +33,16 @@
                         </label>
                     </div>
                 <% end -%>
-
-                <%= f.submit "Sign in", :class => "btn btn-primary" %>
-
-                <br><br>
-                <small>By clicking 'Sign In,' you agree to the CrowdPublishTV <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small>
-
+                
+                <small>By clicking 'Sign In,' you agree to the CrowdPublishTV <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+                
+                <%= f.submit "Sign In", :class => "form-control btn-primary" %>
             <% end %>
+            </div>
         </div>
-
-        <div class="col-xs-2">
-            <p>Not a member?</p>
-            <p><%= render "devise/shared/links" %></p>
+        <br><br>
+        <div class="col-lg-3">
+            <p>Not a member? <%= render "devise/shared/links" %></p>
         </div>
     </div>
 </div>

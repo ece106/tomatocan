@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate_user!, only: [:new ]
+#  before_action :authenticate_user!, only: [:new ]
   # GET /purchases.json
   def index
     @purchases = Purchase.all
@@ -37,13 +37,15 @@ class PurchasesController < ApplicationController
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new
     end 
-    if current_user.stripe_customer_token.present?
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
-      sourceid = customer.default_source
-      card = customer.sources.retrieve(sourceid)
-      @last4 = card.last4
-      @expmonth = card.exp_month
-      @expyear = card.exp_year
+    if user_signed_in?
+      if current_user.stripe_customer_token.present?
+        customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
+        sourceid = customer.default_source
+        card = customer.sources.retrieve(sourceid)
+        @last4 = card.last4
+        @expmonth = card.exp_month
+        @expyear = card.exp_year
+      end
     end
   end
   # GET /purchases/1/edit 
@@ -120,7 +122,7 @@ class PurchasesController < ApplicationController
 
     def purchase_params
       params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut, :shipaddress,
-        :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id)
+        :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id, :email)
     end
 
 end

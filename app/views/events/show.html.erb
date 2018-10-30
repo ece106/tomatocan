@@ -31,9 +31,14 @@
         </div>
       <% end %>
 
-        <%= f.hidden_field :event_id, :value => @event.id %>
-        Number of guests you'll bring: <%= f.number_field :guests, placeholder: "leave blank if none" %>
-        <%= f.submit "RSVP" %>
+      <%= f.hidden_field :event_id, :value => @event.id %>
+      <% if user_signed_in? %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      <% else %>
+        Please sign in or enter email to RSVP for this event: 
+        <%= f.text_field :email, placeholder: "Enter email" %>
+      <% end %>
+      <%= f.submit "RSVP" %>
     <% end %><br>
 
 <p>
@@ -63,8 +68,8 @@
 <p>
 
   <div style= "text-align:left" >
-    <% if @rsvpusers.sum(:guests) + @rsvpusers.count > 5 %> 
-      <b><%= @rsvpusers.sum(:guests) + @rsvpusers.count %> guests said they'll be there</b><br> 
+    <% if @rsvps.count > 5 %> 
+      <b><%= @rsvps.count %> guests said they'll be there</b><br> 
     <% end %>
       <br><br> -- RSVPs are a new feature -- 
       <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: http://www.CrowdPublish.TV/events/<%= @event.id %> <br><br>
@@ -80,11 +85,6 @@
       <% @rsvpusers.each do |rsvpuser| %>
         <%= link_to rsvpuser.name, rsvpuser %>
         <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
-        <% nguests.each do |nguest| %>
-          <% if nguest.guests %>
-            + <%= nguest.guests %> 
-          <% end %>
-        <% end %><br>
       <% end %>
   </div>
 <br><br>

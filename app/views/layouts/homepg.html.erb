@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= render 'application/favicon' %>
+
 
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application" %>
@@ -30,7 +32,7 @@
 <body>
         <%= render 'layouts/header' %>
         
-        <main class="container-fluid">
+        <main class="container-fluid" id="homeWrapper">
             <%= yield %>
         </main> 
         

@@ -45,4 +45,10 @@ class RsvpqsControllerTest < ActionController::TestCase
      assert_redirected_to "http://test.host/login"
   end
 
+  test "should display FLASH message for invalid email" do
+    post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, email: "notavalidemail" } }
+    #assert flash[:notice], 'Please enter a valid email address'
+    assert_equal 'Please enter a valid email address', flash[:notice]
+  end
+
 end

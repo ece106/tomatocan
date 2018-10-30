@@ -1,5 +1,7 @@
 #homeWrapper {
     text-align: center;
+    //Prevents space between header and heroImage on Firefox.
+    margin-top: -20px;
 }
 p {
     text-align: left;
@@ -14,6 +16,15 @@ p {
 }
 #heroTitle, #heroImage small {
     color: white;
+}
+#haveAccount {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+#haveAccount a {
+    color: $brand-secondary;
+    
 }
 .darkBlock {
     background-color: $gray-lighter;
@@ -31,4 +42,17 @@ p {
 }
 #lightBlock, #darkBlock {
     padding-top: 80px;
+}
+
+//Style for event table 
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+th {
+    text-align: center;
+}
+td {
+    white-space: normal !important;
+    word-wrap: break-word;
 }

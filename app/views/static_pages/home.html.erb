@@ -1,5 +1,4 @@
 <!--This wrapper is a bad cheat for centering until I figure out our views-->
-<div id="homeWrapper">
 <div class="row" id="heroImage">
     <div>
         <h1 id="heroTitle">Be on Interactive TV and discover an Income Stream</h1>
@@ -14,7 +13,7 @@
     <%= link_to 'Host Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
     <% if user_signed_in? %>
     <% else %>
-        <br><br><small>Have an account? <%= link_to 'Sign in.', "/login" %></small>
+    <br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
     <% end %>
 </div>
 <div class="row darkBlock" id="connectFans">
@@ -49,7 +48,6 @@
     <% if user_signed_in? %>
         <%= link_to "Create Perk", 'new_merchandise_path', :class => "btn btn-lg btn-primary" %>
     <% else %>
-        <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primaryy" %>
+        <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
     <% end %>
-</div>
 </div>

@@ -4,8 +4,11 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-
-<div class="row">
+<% if request.host == "crowdpublishtv.herokuapp.com" %>
+    <div class="row" style="display:none">
+<% else %>
+    <div class="row">
+<% end %>
     <div id="profileBanner">
     <% if @user.bannerpic.present? && @user.bannerpic != '' %>
         <%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
@@ -15,7 +18,11 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
     </div>
 </div>
 
-<div class="row">
+<% if request.host == "crowdpublishtv.herokuapp.com" %>
+    <div class="row" style="display:none">
+<% else %>
+    <div class="row">
+<% end %>
     <div class="col-xs-11" id="profileHeader">
     <% if @user.profilepic.present? && @user.profilepic != '' %>
         <%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
@@ -33,7 +40,6 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <div class="row">
     <div class="col-md-12">
 
-        
         <% if Rails.env.development? || Rails.env.test? %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
                 <span class="clearfix">
