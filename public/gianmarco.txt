@@ -335,4 +335,25 @@ Thursday, October 26, 2018
         - Bio doesn't actually show up anywhere, I'll have to put it on the profile page.
         - The Sign Up page still has a ton of room for a sidebar with information we can add later.
         - Still need regex for commas after Genres on profile page
+        
+========================================
+Tasks for week of October 29, 2018
+    - Outlined profile name is too busy
+    - Events table restyle
+    - Users are unclear on how to start a livestream. Homepage is being incorrectly used as a hub for current users. Possible fixes: 
+        - Livestream button in menubar
+        - Make homepage a signup page
+        - Fix dashboard so it's the most-used page rather than the home page.
+    - Paginate books index like the userswithmerch page.
+    - Look through livestream sites ToS for terms on recording; non-members need a way to opt-in
+    - Look into imagemagic gem for carrierwave to restrict image size
+    - Add .fade .in and close button to Stripe alert
+    
+Monday, October 29, 2018
+    - Favicon added to site https://realfavicongenerator.net/favicon_result?file_id=p1cr0odfhp11uq1d0a7c67sd1usg6
+    - Profile Name text given a drop shadow instead of an outline
+    - Events table; added tooltip popover to show event description on hover
+    - Books index now has pagination, books index and userswithmerch have Bootstrap-styled pagination https://github.com/bootstrap-ruby/will_paginate-bootstrap
+    - Fixed several broken links to PNG buttons I removed. Replaced with Bootstrap buttons.
+
     

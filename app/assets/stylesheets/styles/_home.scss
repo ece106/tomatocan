@@ -43,3 +43,16 @@ p {
 #lightBlock, #darkBlock {
     padding-top: 80px;
 }
+
+//Style for event table 
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+th {
+    text-align: center;
+}
+td {
+    white-space: normal !important;
+    word-wrap: break-word;
+}

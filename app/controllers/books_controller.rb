@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   def index 
 #    @books = Book.joins(:user).where("stripeid IS NOT NULL")
-    @books = Book.all
+      @books = Book.paginate(:page => params[:page], :per_page => 32)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

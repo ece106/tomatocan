@@ -17,6 +17,7 @@ gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'will_paginate-bootstrap'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
@@ -74,4 +75,8 @@ gem 'sass-rails', '~> 5.0.7'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+end
+
+group :development do
+    gem 'rails_real_favicon'
 end

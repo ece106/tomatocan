@@ -33,18 +33,13 @@
     padding: 0;
     margin: 0;
     color: $brand-secondary;
-    text-shadow: 2px 2px 0 $brand-primary,
-        -2px -2px 0 $brand-primary,
-        -2px 2px 0 $brand-primary,
-        2px -2px 0 $brand-primary;
+    font-weight: 600;
+    text-shadow: 0 0 4px rgba(0,0,0,.8)
 }
 #profileDescription {
     color: $brand-secondary;
-    font-size: 1.25em;
-    text-shadow: 1px 1px 0 $brand-primary,
-        -1px -1px 0 $brand-primary,
-        -1px 1px 0 $brand-primary,
-        1px -1px 0 $brand-primary;
+    font-size: 1.5em;
+    text-shadow: 0 0 2px rgba(0,0,0,.8)
 }
 
 @media (min-width: $screen-xs-min) {
