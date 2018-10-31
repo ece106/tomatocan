@@ -7,11 +7,10 @@
 }
 #profileBanner img {
     object-fit: cover;
-    min-width: 100%;
-    max-width: 100%;
+    width: 100%;
 }
 #profileHeader {
-    text-align: center;
+    padding-left: 50px;
     position: absolute;
     z-index: 1;
     top: 230px;
@@ -22,9 +21,9 @@
     width: 150px;
     //centers and crops images
     object-fit: cover;
-    margin-left: -10px;
 }
 #profileTitle {
+    padding-left: 15px;
     vertical-align: middle;
     display: inline-block;
 }
@@ -41,30 +40,6 @@
     font-size: 1.5em;
     text-shadow: 0 0 2px rgba(0,0,0,.8)
 }
-
-@media (min-width: $screen-xs-min) {
-    #profileHeader {
-        text-align: left;
-    }
-    #profileImage {
-        margin-left: 0;
-    }
-    #profileTitle {
-        margin-left: 20px;
-    }
-    #profileDescription {
-        padding-left: 3px;
-    }
-}
-
-//Connect to Stripe alert
-#stripeAlert {
-    animation: fadeIn 2s;
-}
-@keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-} 
 
 //Merch Sidebar styling
 #merchImage {

@@ -356,4 +356,50 @@ Monday, October 29, 2018
     - Books index now has pagination, books index and userswithmerch have Bootstrap-styled pagination https://github.com/bootstrap-ruby/will_paginate-bootstrap
     - Fixed several broken links to PNG buttons I removed. Replaced with Bootstrap buttons.
 
-    
+Tuesday, October 30, 2018
+    - Show Changes
+        -!! Sign In should route to /permalink instead of /permalink/dashboard
+        - If logged in, the user's page is a in "Dashboard" mode:
+            - Profile: allows the user to edit their profile options, such as their display name and profile image.
+                -!!BUG: saving a field with an error redirects to /profileinfo instead of back to previous page
+                - Changed the YouTube URL field from type:url to type:text so the validation doesnt stop from saving
+            - Account: allows the user to edit their account information, such as their account name and password.
+            - Streaming: this is where the user goes to start a livestream.
+                - Jitsi player and its Heroku rerouting button are in layouts/jitsi.
+                - See naming conventions issue: Should button say "Start stream," "Begin discussion," or something else?
+            - Perks: view and edit current perks, and add new perks
+                - This will probably get super cluttered. I might make this link to an external form.
+                - Merchsidebar is now a public-facing panel, and won't be seen unless user logs out (maybe add a "view profile" button)
+            - Sales: displays sales figures
+                - I don't know what this looks like because I'm not connected to Stripe, sorry if it's ugly.
+        - If not logged in, a user's page is in "Profile" mode
+            - Merchsidebar is shown, with buy buttons instead of edit buttons
+            - Stripe Alert doesn't show up here
+            
+    - Naming conventions:
+        - Items for sale
+            - Perks
+            - Merchandise
+            - Books
+        - Site Users
+            - Authors
+            - Soloprenuers
+            - Hosts
+            - Discussion Hosts
+            - Userswithmerch
+        - User's permalink page
+            - Profile
+            - Dashboard
+            - Home page
+        - Livestream events
+            - Streams
+            - Livestreams
+            - Discussions
+            - Events
+        - How are users exploring the site?
+            - By user (discover discussion hosts)
+            - By event (upcoming discussions)
+            - By perk (userswithmerch)
+    - How do error alerts work?
+        - "Signed in successfully"
+        - Can I make Stripe alert modular/partial
