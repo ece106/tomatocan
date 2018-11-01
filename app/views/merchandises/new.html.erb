@@ -64,6 +64,7 @@
                 <div class="input-group-addon">.00</div>
             </div>
         </div>
+        
 
         <div class="form-group">
             <h2><%= f.label :desc, "Description" %></h2>
@@ -81,6 +82,27 @@
             <h2><%= f.label :youtube, "Video" %></h2>
             <p class="help-block">If you have a YouTube video about your Perk, paste the URL below.</p>
             <%= f.text_area :youtube, :class => "form-control"  %>
+        </div>
+
+        <div class="form-group">
+            <h2><%= f.label :itemupload, "File" %></h2>
+            <p class="help-block">Upload the file that will go with the perk.</p>
+
+            <p class="help-block">Audio
+            <%= f.file_field :audio, :class => "form-control" %>
+            <p class="help-block">epub
+            <%= f.file_field :bookepub, :class => "form-control" %>
+            <p class="help-block">mobi
+            <%= f.file_field :bookmobi, :class => "form-control" %>
+            <p class="help-block">pdf
+            <%= f.file_field :bookpdf, :class => "form-control" %>
+            <p class="help-block">graphic
+            <%= f.file_field :graphic, :class => "form-control" %>
+            <p class="help-block">video
+            <%= f.file_field :video, :class => "form-control" %>
+
+            
+            </p>
         </div>
 
         <div class="form-group">

@@ -2,22 +2,6 @@
 
 <%= render 'layouts/flash_messages' %>
 
-<!--div class="row">
-    <div style="position:absolute; left:0px; top:70px; opacity:0.3; ">
-      <% if @user.profilepic.present? && @user.profilepic != '' %>
-        <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
-      <% elsif @user.profilepicurl %>
-        <% if @user.profilepicurl.match(/http/) %>
-          <%= image_tag @user.profilepicurl, :height => "150" %><br >
-        <% else %>
-          <%= image_tag "whiteBk.jpg", :height => "150" %>
-        <% end %>
-      <% else %>
-        <%= image_tag "whiteBk.jpg", :height => "150" %>
-      <% end %>
-    </div>
-</div-->
-
 <div class="row">
     <div class="col-xs-12">
         <h1>Edit Profile</h1>
