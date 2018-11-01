@@ -9,18 +9,14 @@ f<div id="wrapper">
   <% end %>
 
   <h3><%= @merchandise.name %> </h3>
-  <% if user_signed_in? %>
     <% if @user.stripeid.present? || @user.id == 143  %>
-      <%= link_to new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get, "Buy Now", :class => "btn btn-primary" %> 
+      <%= link_to "Buy Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "btn btn-primary" %> 
       <% if @merchandise.price.present? %>
         $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
       <% end %>
     <% else %>
-        <%= @user.name %> has not made this items available yet. Please check back later to purchase <%= @merchandise.name %>.
+        <%= @user.name %> has not made this item available yet. Please check back later to purchase <%= @merchandise.name %>.
     <% end %>
-  <% else %>
-    <br><%= link_to "/signup", "Sign Up", :class => "btn btn-primary" %> to get awesome Perks from <%= @author.name %> 
-  <% end %>
 
 <div class="goals">
   <% if @merchandise.desc.present? %> 

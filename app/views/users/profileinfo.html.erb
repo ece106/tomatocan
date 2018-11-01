@@ -74,12 +74,12 @@
                 </div>
 
                 <div class="form-group">
-                    <h3><%=f.label :name, "Genre" %></h3>
-                    <p class="help-block">Three genres that categorize your work</p>
+                    <h3><%=f.label :name, "Your business categories" %></h3>
+                    <p class="help-block"></p>
                     <!--This needs an empty options hash to pass in a class-->
-                    <%= f.select :genre1, ([["Fiction", "Fiction"], ["Nonfiction", "Nonfiction"], ["Self Help", "Selfhelp"], ["Childrens", "Childrens"], ["Business", "Business"]]), {}, :class => "form-control" %>
-                    <%= f.text_field :genre2, :class => "form-control", placeholder: "Subgenre" %>
-                    <%= f.text_field :genre3, :class => "form-control", placeholder: "Another subgenre" %>
+                    <%= f.text_field :genre1, :class => "form-control", placeholder: "Category" %>
+                    <%= f.text_field :genre2, :class => "form-control", placeholder: "Subcategory" %>
+                    <%= f.text_field :genre3, :class => "form-control", placeholder: "Another subcategory" %>
                 </div>
 
                 <div class="form-group">

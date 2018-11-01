@@ -4,8 +4,6 @@
       <div class="container" >
 <% @title=" need to paginate results "  %>
 <p class="flash"><%= flash.notice %></p>
-  Sales figures will be displayed on this page <br><br>
-
 
 <% if request.host == "crowdpublishtv.herokuapp.com" %> 
   <% if user_signed_in? %>
@@ -22,6 +20,8 @@
 
   <% if user_signed_in? %>
     <% if @user.id == current_user.id %>
+      Sales figures will be displayed on this page <br><br>
+
       <% if @user.stripesignup.present? %>
 
         <div class="col-md-10 " style="text-align:left">
