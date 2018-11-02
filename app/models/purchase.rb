@@ -5,52 +5,60 @@ class Purchase < ApplicationRecord
   
   belongs_to :book, optional: true
   belongs_to :user
-  belongs_to :merchandise, optional: true
-  validates :user_id, presence: true
-  validates :author_id, presence: true
+  belongs_to :merchandise
+#  validates :user_id, presence: true
+  validates :author_id, presence: true # author means seller
   validates :pricesold, presence: true
   validates :authorcut, presence: true
-  validate :book_id_or_merchandise_id
+  validates :merchandise_id, presence: true
 #  validates :bookfiletype, presence: true
 
   def save_with_payment
-      @merchandise = Merchandise.find(self.merchandise_id)
-      self.pricesold = @merchandise.price
-      self.author_id = @merchandise.user_id 
-      author = User.find(@merchandise.user_id)
-      amt = (@merchandise.price * 100).to_i 
-      desc = @merchandise.name 
-      if self.group_id.present?
-        self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
-        self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
-      else
-        self.groupcut = 0.0
-        self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100
-      end
+    @merchandise = Merchandise.find(self.merchandise_id)
+    self.pricesold = @merchandise.price
+    self.author_id = @merchandise.user_id 
+    seller = User.find(@merchandise.user_id)
+    amt = (@merchandise.price * 100).to_i 
+    desc = @merchandise.name 
+    if self.group_id.present?
+      self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
+      self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
+    else
+      self.groupcut = 0.0
+      self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100
+    end
 
-    @purchaser = User.find(self.user_id)
-    authorstripeaccount = Stripe::Account.retrieve(author.stripeid) 
+    sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 
     if self.group_id.present? #not used right now
       group = Group.find(self.group_id)
       groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
     end
 
-    if(@purchaser.stripe_customer_token).present?
-      customer = Stripe::Customer.retrieve(@purchaser.stripe_customer_token)
-      if stripe_card_token.present?
-        customer.source = stripe_card_token
-        customer.save
-      end
-    else 
+    if self.email.present?
       customer = Stripe::Customer.create(
         :source => stripe_card_token,  #token from? purchases.js.coffee?
-       :description => @purchaser.name, # what info do I really want here
-        :email => @purchaser.email
+        :description => "anonymous customer", # what info do I really want here
+        :email => self.email
       )
-      @purchaser.update_attribute(:stripe_customer_token, customer.id)
+    else
+      @purchaser = User.find(self.user_id)
+      if(@purchaser.stripe_customer_token).present?
+        customer = Stripe::Customer.retrieve(@purchaser.stripe_customer_token)
+        if stripe_card_token.present?
+          customer.source = stripe_card_token
+          customer.save
+        end
+      else 
+        customer = Stripe::Customer.create(
+          :source => stripe_card_token,  #token from? purchases.js.coffee?
+          :description => @purchaser.name, # what info do I really want here
+          :email => @purchaser.email
+        )
+        @purchaser.update_attribute(:stripe_customer_token, customer.id)
+      end
     end
 
-    if author.id == 143 
+    if seller.id == 143 
       charge = Stripe::Charge.create( {
         :amount => amt, 
         :currency => "usd",
@@ -64,7 +72,7 @@ class Purchase < ApplicationRecord
 
       token = Stripe::Token.create({
         :customer => customer.id,
-      }, {:stripe_account => authorstripeaccount.id} )
+      }, {:stripe_account => sellerstripeaccount.id} )
 
       charge = Stripe::Charge.create( {
         :amount => amt,  # amt charged to customer's credit card
@@ -75,12 +83,12 @@ class Purchase < ApplicationRecord
         :application_fee => appfee,  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
 #        :transfer_group => transfergrp
         } ,
-         {:stripe_account => authorstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
+         {:stripe_account => sellerstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
       )
 #      transfer = Stripe::Transfer.create({
 #        :amount => (self.authorcut * 100).to_i,
 #        :currency => "usd",
-#        :destination => authorstripeaccount.id,
+#        :destination => sellerstripeaccount.id,
 #        :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
 #        :transfer_group => transfergrp #does this mean anything when there is a source transaction?
 #      })

@@ -11,15 +11,9 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   def show
     @purchase = Purchase.find(params[:id])
-    if @purchase.book_id.present?
-      book = Book.find(@purchase.book_id) 
-      @itemname = book.title
-      id = book.user_id
-    elsif @purchase.merchandise_id.present?
-      loot = Merchandise.find(@purchase.merchandise_id) 
-      @itemname = loot.name
-      id = loot.user_id
-    end  
+    loot = Merchandise.find(@purchase.merchandise_id) 
+    @itemname = loot.name
+    id = loot.user_id
     @user = User.find(id)
     respond_to do |format|
       format.html # show.html.erb
@@ -28,15 +22,8 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/new
   def new
-    if params[:book_id].present?
-      @book = Book.find(params[:book_id])
-      @purchase = @book.purchases.new
-      @purchase.bookfiletype = params[:bookfiletype]
-    end  
-    if params[:merchandise_id].present?
-      @merchandise = Merchandise.find(params[:merchandise_id])
-      @purchase = @merchandise.purchases.new
-    end 
+    @merchandise = Merchandise.find(params[:merchandise_id])
+    @purchase = @merchandise.purchases.new
     if user_signed_in?
       if current_user.stripe_customer_token.present?
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
@@ -55,7 +42,7 @@ class PurchasesController < ApplicationController
   # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
-    if @purchase.book_id?
+    if @purchase.book_id? # This logic is necessary for purchasing downloads. Will need to be changed for each merchandise filetypes
       @book = Book.find(@purchase.book_id) 
 #    raise params.to_yaml
       @purchase.user_id = current_user.id
@@ -83,14 +70,16 @@ class PurchasesController < ApplicationController
       end
     elsif @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
-      author = User.find(@merchandise.user_id)
-      @purchase.user_id = current_user.id
+      seller = User.find(@merchandise.user_id)
+      if user_signed_in?
+        @purchase.user_id = current_user.id
+      end 
       if @purchase.save_with_payment
-        redirect_to userswithmerch_path, :notice => "Thank you for being a patron of " + author.name 
+        redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
-      end 
-    end 
+      end
+    end
   end
 
   def update #is this ever used

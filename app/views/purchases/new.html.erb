@@ -35,18 +35,17 @@
 
       <% if user_signed_in? %>
         <% if current_user.stripe_customer_token.present? %>
-          <div class="cardinfo" >
-            <%= label_tag :card_number, "Credit Card Number" %>
-            <%= text_field_tag :card_number, nil, name: nil %><br><br>
+            <div class="cardinfo" >
+              <%= label_tag :card_number, "Credit Card Number" %>
+              <%= text_field_tag :card_number, nil, name: nil %><br><br>
   
-            <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-            <%= text_field_tag :card_code, nil, name: nil %><br><br>
+              <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+              <%= text_field_tag :card_code, nil, name: nil %><br><br>
 
-            <%= label_tag :card_month, "Card Expiration" %>
-            <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
-          </div>
-
+              <%= label_tag :card_month, "Card Expiration" %>
+              <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+              <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
+            </div>
           <div class="buynewcard">
               <% merch = Merchandise.find(params[:merchandise_id]) %>
               $<%= merch.price %>0
@@ -66,7 +65,22 @@
           </div><br>
           <a class="diffcard" data-toggle="collapse" href="#toggd">
             Enter a different card
+
           </a><br><br><br><br>
+
+        <% else %>
+          <p>
+            <%= label_tag :card_number, "Credit Card Number" %>
+            <%= text_field_tag :card_number, nil, name: nil %><br><br>
+  
+            <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+            <%= text_field_tag :card_code, nil, name: nil %><br><br>
+
+            <%= label_tag :card_month, "Card Expiration" %>
+            <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
+          </p>
+          <%= f.submit "Purchase" %>
 
         <% end %>
       <% else %>
