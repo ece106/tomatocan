@@ -1,31 +1,21 @@
 //This stylesheet for userpgtemplate.html.erb includes _merchsidebar.html.erb partial and _authorform.html.erb partial
 
-//Page header
+//Page header "authorform"
+.row.no-gutter {
+	margin-right:0;
+	margin-left:0;
+}
+.row.no-gutter > [class*='col-'] {
+	padding-right:0;
+	padding-left:0;
+}
+#profileImage img {
+	//centers and crops images
+	object-fit: cover;
+	max-height: 300px;
+}
 #profileBanner {
-    height: 300px;
-    margin-bottom: 45px;
-}
-#profileBanner img {
-    object-fit: cover;
-    width: 100%;
-}
-#profileHeader {
-    padding-left: 50px;
-    position: absolute;
-    z-index: 1;
-    top: 230px;
-}
-#profileImage {
-    border: 6px solid white;
-    height: 150px;
-    width: 150px;
-    //centers and crops images
-    object-fit: cover;
-}
-#profileTitle {
-    padding-left: 15px;
-    vertical-align: middle;
-    display: inline-block;
+    max-height: 300px;
 }
 #profileName {
     text-transform: capitalize;
@@ -69,7 +59,4 @@
 #editProfileButton {
     display: block;
     width: 100%;
-}
-#joinStream {
-    text-align: center;
 }

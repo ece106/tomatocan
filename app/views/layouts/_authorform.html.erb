@@ -7,23 +7,25 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% if request.host == "crowdpublishtv.herokuapp.com" %>
     <div class="row" style="display:none">
 <% else %>
-    <div class="row">
+    <div class="row no-gutter">
 <% end %>
-        <div id="profileBanner">
+		<div class="col-xs-3" id="profileImage">
+			<% if @user.profilepic.present? && @user.profilepic != '' %>
+				<%= image_tag @user.profilepic.url.to_s, height: "300" %>
+			<% else %>
+				<!--Random color block??-->
+			<% end %>
+		</div>
+        <div class=" col-xs-9" id="profileBanner">
         <% if @user.bannerpic.present? && @user.bannerpic != '' %>
             <%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
         <% else %>
             <%= image_tag "crowddark.png", height: "300", :id => "userBannerImage" %>
         <% end %>
-        </div>
-        <div id="profileHeader">
-            <% if @user.profilepic.present? && @user.profilepic != '' %>
-                <%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
-            <% end %>
-            <div id="profileTitle">
-                <h1 id="profileName"><%= @user.name %></h1>
-                <span id="profileDescription"> <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %></span>
-            </div>
+			<!--div>
+				<h1 id="profileName"><%= @user.name %></h1>
+				<span id="profileDescription"> <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %></span>
+			</div-->
         </div>
     </div>
     
