@@ -27,8 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    #@user = user_dashboard_path(current_user.permalink)
-    stored_location_for(resource_or_scope) || super
+    if request.host == "crowdpublishtv.herokuapp.com"
+      @user = user_dashboard_path(current_user.permalink)
+    else  
+      stored_location_for(resource_or_scope) || super
+    end
   end
 
   protected
