@@ -7,12 +7,11 @@
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
 
-<div class="row">
-
     <%= render 'layouts/merchsidebar' %>
 
+  <div class "row" >
     <% if request.host == "crowdpublishtv.herokuapp.com" %>
-    <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+      <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
             <script src="https://meet.jit.si/external_api.js"></script>
             <script>
                 jQuery(document).ready(function($) {
@@ -20,25 +19,27 @@
                     var userRoomName = '<%= @user.permalink %>';
                     var options = {
                         roomName: "CrowdPublishTV_" + `${userRoomName}`,
+                        width: 800,
                         height: 700,
                         parentNode: document.querySelector('#meet')
-                        configOverwrite: {dropbox: 
-                          { appKey: 'n2q7nmq1bix8l49' }
-                        } 
+                        //configOverwrite: {dropbox:       perhaps dropbox is full?
+                        //  { appKey: 'n2q7nmq1bix8l49' }
+                        //} 
                     }
                     var api = new JitsiMeetExternalAPI(domain, options);
                     $('#jitsiConferenceFrame0').addClass("embed-responsive-item");
                 });
             </script>
+
+
             <!--class="embed-responsive"-->
             <div id="meet"></div>
-    </div>
-</div>
+      </div>
     <% else %>
-    <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6" id="joinStream">
+      <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6" id="joinStream">
         <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-    </div>
-</div> <!--closes row div-->
+      </div> <br><br><br>
+<!-- Took out the row. Why was it there? Kept wrapping videos under sidebar-->
 <div class="well">
     <div class="row">
         <% if @user.youtube1? %>
@@ -79,4 +80,5 @@
         <% end %>
     </div>
     <% end %>
+  </div>
 </div>
