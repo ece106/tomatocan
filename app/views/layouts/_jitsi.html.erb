@@ -1,0 +1,30 @@
+<% if request.host == "crowdpublishtv.herokuapp.com" %>
+<div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            var domain = "meet.jit.si";
+            var userRoomName = '<%= @user.permalink %>';
+            var options = {
+                roomName: "CrowdPublishTV_" + `${userRoomName}`,
+                height: 700,
+                parentNode: document.querySelector('#meet')
+                configOverwrite: {dropbox: 
+                    { appKey: 'n2q7nmq1bix8l49' }
+                } 
+            }
+            var api = new JitsiMeetExternalAPI(domain, options);
+            $('#jitsiConferenceFrame0').addClass("embed-responsive-item");
+        });
+    </script>
+    <!--class="embed-responsive"-->
+    <div id="meet"></div>
+</div>
+
+<% else %>
+
+<div class="col-xl-12">
+    <%= link_to "Start a Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+</div>
+
+<% end %>

@@ -1,0 +1,37 @@
+<div class="tabbable">
+<!-- Nav tabs -->
+<ul class="nav nav-pills nav-stacked col-md-2" id="dashboardTabs">
+    <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
+    <li role="presentation"><%= link_to "Perks", "#perksTab", "data-toggle" => "tab" %></li>
+    <li role="presentation"><%= link_to "Streaming", "#streamingTab", "data-toggle" => "tab" %></li>
+    <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
+    <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content col-md-10">
+    <div class="tab-pane active" id="profileTab">
+        <!--Make a button to see "view" mode of profile -->
+        <!--Make the edit account into a partial instead of render :file -->
+        <%= render :file => 'users/profileinfo' %>
+    </div>
+    <div class="tab-pane" id="perksTab">
+        <div class="row">
+			<div class="col-xs-12"></div>
+		</div>
+		<!--%= render 'layouts/stripealert' %>
+		<!-- find a way to make merchandises/new a partial? -->
+		<!-- render :file => 'merchandises/new' %-->
+    </div>
+    <div class="tab-pane" id="streamingTab">
+        <%= render 'layouts/jitsi' %>
+    </div>
+    <div class="tab-pane" id="accountTab">
+        <!-- seperate the Account div from the rest of the form -->
+        <%= render :file => 'users/accountinfo' %>
+    </div>
+    <div class="tab-pane" id="salesTab">
+        <%= render :file => 'users/dashboard' %>
+    </div>
+</div>
+</div>

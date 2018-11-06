@@ -1,26 +1,29 @@
 //This stylesheet for userpgtemplate.html.erb includes _merchsidebar.html.erb partial and _authorform.html.erb partial
 
 //Page header "authorform"
-.row.no-gutter {
-	margin-right:0;
-	margin-left:0;
+
+#profileHeader {
+	padding: 0;
+	margin: 0;
+	line-height: 0;
+	overflow: hidden;
+	width: auto;
 }
-.row.no-gutter > [class*='col-'] {
-	padding-right:0;
-	padding-left:0;
+#profileHeader img {
+	vertical-align: bottom;
 }
-#profileImage img {
-	//centers and crops images
+#profileUserImage {
+	width: 25vw;
+	height: 40vh;
 	object-fit: cover;
-	max-height: 300px;
 }
-#profileBanner {
-    max-height: 300px;
+#profileBannerImage {
+	width: 75vw;
+	height: 40vh;
+	object-fit: cover;
 }
 #profileName {
     text-transform: capitalize;
-    padding: 0;
-    margin: 0;
     color: $brand-secondary;
     font-weight: 600;
     text-shadow: 0 0 4px rgba(0,0,0,.8)
@@ -50,7 +53,7 @@
     display: block;
     width: 20%;
     font-size: .8em;
-    padding: 14.5px 16px
+    padding: 14.5px 16px;
 }
 #saveProfileButton {
     display: block;
@@ -59,4 +62,10 @@
 #editProfileButton {
     display: block;
     width: 100%;
+}
+
+//dashboardBox
+#dashboardTabs {
+	text-align: right;
+	font-weight: 800;
 }

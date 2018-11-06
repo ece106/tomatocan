@@ -9,10 +9,10 @@
 
 
 <% if user_signed_in? %>
-<div class="row">
-    <div class="container">
-    <%= render 'users/dashboardbox' %>
-    </div>
+<div class="container-fluid">
+	<div class="row">
+		<%= render 'users/dashboardbox' %>
+	</div>
 </div>
 
 <% else %>
