@@ -19,7 +19,7 @@ class AudioUploader < CarrierWave::Uploader::Base
     "#{Rails.root}/tmp/uploads"
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w(mp3 wav m4a)
   end
 

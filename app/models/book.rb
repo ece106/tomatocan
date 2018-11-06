@@ -14,10 +14,10 @@ class Book < ApplicationRecord
   default_scope {order('books.releasedate DESC')}
 
 #  mount_uploader :bookkobo, ProfilepicUploader
-  mount_uploader :coverpic, CoverpicUploader
-  mount_uploader :bookpdf, BookpdfUploader
-  mount_uploader :bookmobi, BookmobiUploader
-  mount_uploader :bookepub, BookepubUploader
+#  mount_uploader :coverpic, CoverpicUploader
+#  mount_uploader :bookpdf, BookpdfUploader
+#  mount_uploader :bookmobi, BookmobiUploader
+#  mount_uploader :bookepub, BookepubUploader
 #  mount_uploader :bookaudio, BookaudioUploader
 
   private

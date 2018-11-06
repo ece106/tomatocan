@@ -8,9 +8,9 @@ class Merchandise < ApplicationRecord
   mount_uploader :audio, AudioUploader
   mount_uploader :video, VideoUploader
   mount_uploader :graphic, GraphicUploader
-  mount_uploader :bookepub, BookepubUploader
-  mount_uploader :bookmobi, BookmobiUploader
-  mount_uploader :bookpdf, BookpdfUploader 
+  mount_uploader :merchepub, MerchepubUploader
+  mount_uploader :merchmobi, MerchmobiUploader
+  mount_uploader :merchpdf, MerchpdfUploader 
 
 #  mount_uploader :pdf, PdfUploader  # need to change column names for these
 #  mount_uploader :epub, EpubUploader

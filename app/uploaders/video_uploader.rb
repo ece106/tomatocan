@@ -19,7 +19,7 @@ class VideoUploader < CarrierWave::Uploader::Base
     "#{Rails.root}/tmp/uploads"
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w(avi mp4)
   end
   

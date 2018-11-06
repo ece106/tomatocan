@@ -1,4 +1,4 @@
-class BookepubUploader < CarrierWave::Uploader::Base
+class MerchepubUploader < CarrierWave::Uploader::Base
 
   if Rails.env.development? || Rails.env.test?
     storage :file  # but what if I want to test fog/aws
@@ -10,7 +10,7 @@ class BookepubUploader < CarrierWave::Uploader::Base
     "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w(epub)
   end
 

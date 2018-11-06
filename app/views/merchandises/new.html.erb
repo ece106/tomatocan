@@ -83,28 +83,23 @@
             <p class="help-block">If you have a YouTube video about your Perk, paste the URL below.</p>
             <%= f.text_area :youtube, :class => "form-control"  %>
         </div>
-
         <div class="form-group">
-            <h2><%= f.label :itemupload, "File" %></h2>
+            <h2><%= f.label :uploadfile, "File" %></h2>
             <p class="help-block">Upload the file that will go with the perk.</p>
-
-            <p class="help-block">Audio
-            <%= f.file_field :audio, :class => "form-control" %>
-            <p class="help-block">epub
-            <%= f.file_field :bookepub, :class => "form-control" %>
-            <p class="help-block">mobi
-            <%= f.file_field :bookmobi, :class => "form-control" %>
-            <p class="help-block">pdf
-            <%= f.file_field :bookpdf, :class => "form-control" %>
-            <p class="help-block">graphic
+            <p class="help-block">Audio (mp3, wav, m4a)</p>
+            <%= f.file_field :audio, :class => "form-control"%>
+            <p class="help-block">epub (epub)</p>
+            <%= f.file_field :merchepub, :class => "form-control" %>
+            <p class="help-block">mobi (mobi)</p>
+            <%= f.file_field :merchmobi, :class => "form-control" %>
+            <p class="help-block">pdf (pdf)</p>
+            <%= f.file_field :merchpdf, :class => "form-control" %>
+            <p class="help-block">graphic (jpg, jpeg, gif, png, tif)</p>
             <%= f.file_field :graphic, :class => "form-control" %>
-            <p class="help-block">video
+            <p class="help-block">video (avi, mp4)</p>
             <%= f.file_field :video, :class => "form-control" %>
-
-            
             </p>
         </div>
-
         <div class="form-group">
             <h2><%= f.label :expiration, "Expiration Date" %></h2>
             <p class="help-block">Get it while it's hot! Choose the last day fans can purchase this Perk.</p>
