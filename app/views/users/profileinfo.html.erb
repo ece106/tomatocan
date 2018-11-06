@@ -14,9 +14,8 @@
         <%= form_for @user, :html => {:multipart => true} do |f| %>
         
         <div class="col-md-6">
-            <h2>About</h2>
-            
-            <div class="well">
+			<div class="well">
+				<h2>About</h2>
                 <div class="form-group">
                     <h3><%=f.label :name, "Name" %></h3>
                     <p class="help-block">What should we call you?</p>
@@ -63,8 +62,8 @@
             </div>
         </div>
         <div class="col-md-6">
-            <h2>Social</h2>
-            <div class="well">
+			<div class="well">
+				<h2>Social</h2>
                 <div class="form-group">
                     <h3><%=f.label :name, "Twitter Handle" %></h3>
                     <div class="input-group">
