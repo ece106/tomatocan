@@ -1,6 +1,6 @@
-<div class="tabbable">
+
 <!-- Nav tabs -->
-<ul class="nav nav-pills nav-stacked col-md-1" id="dashboardTabs">
+	<ul class="nav nav-pills nav-justified" id="dashboardTabs">
     <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
     <li role="presentation"><%= link_to "Perks", "#perksTab", "data-toggle" => "tab" %></li>
     <li role="presentation"><%= link_to "Streaming", "#streamingTab", "data-toggle" => "tab" %></li>
@@ -9,29 +9,35 @@
 </ul>
 
 <!-- Tab panes -->
-<div class="tab-content col-md-11">
+<div class="tab-content">
     <div class="tab-pane active" id="profileTab">
-        <!--Make a button to see "view" mode of profile -->
-        <!--Make the edit account into a partial instead of render :file -->
-        <%= render :file => 'users/profileinfo' %>
+		<div class="container-fluid">
+			<!--Make a button to see "view" mode of profile -->
+			<!--Make the edit account into a partial instead of render :file -->
+			<%= render :file => 'users/profileinfo' %>
+		</div>
     </div>
     <div class="tab-pane" id="perksTab">
-        <div class="row">
-			<div class="col-xs-12"></div>
+		<div class="container-fluid">
+			<!--%= render 'layouts/stripealert' %-->
+			<%= render 'layouts/userPerks' %>
+			<!-- find a way to make merchandises/new a partial? -->
+			<!-- render :file => 'merchandises/new' %-->
 		</div>
-		<!--%= render 'layouts/stripealert' %>
-		<!-- find a way to make merchandises/new a partial? -->
-		<!-- render :file => 'merchandises/new' %-->
     </div>
     <div class="tab-pane" id="streamingTab">
-        <%= render 'layouts/jitsi' %>
+		<div class="container-fluid">
+        	<%= render 'layouts/jitsi' %>
+		</div>
     </div>
     <div class="tab-pane" id="accountTab">
-        <!-- seperate the Account div from the rest of the form -->
-        <%= render :file => 'users/accountinfo' %>
+		<div class="container-fluid">
+			<!-- seperate the Account div from the rest of the form -->
+			<%= render :file => 'users/accountinfo' %>
+		</div>
     </div>
     <div class="tab-pane" id="salesTab">
+		<div class="container-fluid">
         <%= render :file => 'users/dashboard' %>
     </div>
-</div>
 </div>
