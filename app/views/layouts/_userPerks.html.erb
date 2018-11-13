@@ -1,3 +1,21 @@
+<div class="modal fade" tabindex="-1" id="myModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+				<h4 class="modal-title">Edit Perk</h4>
+			</div>
+			<div class="modal-body">
+				<!--= PUT EDIT FORM IN SOME SORT OF RELATIONSHIP WITH ITS PASSABLE ID %-->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="row">
 	<div class="col-xs-12">
 		<h1>Edit Perks</h1>
@@ -5,10 +23,10 @@
 </div>
 
 <div class="row">
-	<div class="col-xs-6">
+	<div class="col-md-6">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				Current Perks
+				Current Perks <span class="badge pull-right"><%= @user.merchandises.count %> Perks</span>
 			</div>
 			<div class="panel-body">
 				<% if @sidebarmerchandise.present? %>
@@ -23,8 +41,9 @@
 							</h4>
 							
 							<!--pops a modal which contains edit page-->
-							<%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, class: 'btn btn-primary pull-right' %>
-
+							<%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %>
+							<%= button_tag "Edit Perk", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %>
+							
 							<% if merch.desc.present? %>
 								<%= merch.desc %>
 							<% end %>
@@ -32,13 +51,13 @@
 					</div>
 					<% end %>
 				<% else %>
-					<span>No perks:(</span>
+					<span>No perks :(</span>
 				<% end %>
 			</div>
 		</div>
 	</div>
 
-	<div class="col-xs-6">
+	<div class="col-md-6">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				Create Perk
@@ -47,5 +66,4 @@
 			</div>
 		</div>
 	</div>
-
 </div>

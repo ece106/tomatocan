@@ -11,7 +11,7 @@ f<div id="wrapper">
   <h3><%= @merchandise.name %> </h3>
   <% if user_signed_in? %>
     <% if @user.stripeid.present? || @user.id == 143  %>
-      <%= link_to new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method=> :get, "Buy Now", :class => "btn btn-primary" %> 
+      <%= link_to new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method => :get, :class => "btn btn-primary" %> 
       <% if @merchandise.price.present? %>
         $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
       <% end %>
