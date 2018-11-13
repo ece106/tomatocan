@@ -1,30 +1,88 @@
 <% if request.host == "crowdpublishtv.herokuapp.com" %>
-<div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
-    <script src="https://meet.jit.si/external_api.js"></script>
-    <script>
-        jQuery(document).ready(function($) {
-            var domain = "meet.jit.si";
-            var userRoomName = '<%= @user.permalink %>';
-            var options = {
-                roomName: "CrowdPublishTV_" + `${userRoomName}`,
-                height: 700,
-                parentNode: document.querySelector('#meet')
-                configOverwrite: {dropbox: 
-                    { appKey: 'n2q7nmq1bix8l49' }
-                } 
-            }
-            var api = new JitsiMeetExternalAPI(domain, options);
-            $('#jitsiConferenceFrame0').addClass("embed-responsive-item");
-        });
-    </script>
-    <!--class="embed-responsive"-->
-    <div id="meet"></div>
+<script src="https://meet.jit.si/external_api.js"></script>
+<script>
+	jQuery(document).ready(function($) {
+		var domain = "meet.jit.si";
+		var userRoomName = '<%= @user.permalink %>';
+		var options = {
+			roomName: "CrowdPublishTV_" + `${userRoomName}`,
+			height: 700,
+			parentNode: document.querySelector('#meet')
+			configOverwrite: {dropbox: 
+			{ appKey: 'n2q7nmq1bix8l49' }
+		} 
+						   }
+						   var api = new JitsiMeetExternalAPI(domain, options);
+	$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
+	});
+</script>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Stream
+			</div>
+			<div class="panel-body">
+				<!--class="embed-responsive"-->
+				<div id="meet"></div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <% else %>
 
-<div class="col-xl-12">
-    <%= link_to "Start a Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+<div class="row">
+	<div class="col-xs-12">
+		<h1>Livestream</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Stream
+			</div>
+			<div class="panel-body" style="text-align:center">
+				<%= link_to "Start a Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Your Upcoming Streams
+				<!-- Badge with number of upcoming events-->
+			</div>
+			<div class="panel-body">
+				<!-- Calendar of upcoming events FILTERED by current user-->
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Streaming Directions
+			</div>
+			<div class="panel-body">
+				<h4>Recording</h4>
+				<ol>
+					<li>Setup a YouTube Live account. <i>(note: 24 hour hold on new accounts)</i></li>
+					<li>In video player, click the <b>&#8942;</b> button.</li>
+					<li>Click 'Start live stream [BETA].'</li>
+					<li>Sign in with Google.</li>
+				</ol>
+				<h4>Calling In</h4>
+				<ol>
+					<li>Start livestream.</li>
+					<li>Dial +1(512)-402-2718.</li>
+					<li>Enter <!--JSON to get PIN for room-->##### as the PIN.</li>
+				</ol>
+			</div>
+		</div>
+	</div>
 </div>
 
 <% end %>

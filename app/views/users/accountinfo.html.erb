@@ -1,12 +1,19 @@
 <div class="row">
-	<div class="col-xs-12">
-		<% if @user == current_user %>
-		<%= form_for @user, :html => {:multipart => true} do |f| %>
+	<div class="col-xs-10 col-md-offset-2">
+		<h1>Account Settings</h1>
+	</div>
+</div>
 
-		<div class="col-md-4">
-			<h1>Account</h1>
+<div class="row">
+	<% if @user == current_user %>
+	<%= form_for @user, :html => {:multipart => true} do |f| %>
 
-			<div class="well">
+	<div class="col-md-6 col-md-offset-2">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Account
+			</div>
+			<div class="panel-body">
 				<div class="form-group">
 					<h3><%=f.label :name, "Email" %></h3>
 					<p class="help-block">Change your email address.</p>
@@ -28,18 +35,17 @@
 						<%= f.text_field :permalink, placeholder: "yourcustomurl", maxlength: 20, :class => "form-control" %>
 					</div>
 				</div>
-
 				<!--Future build for connect to Stripe button-->
 				<!--div class="form group">
-		<h3>Connect to Stripe</h3>
-		<p class-->
-			</div>
-			<div class="btn-group btn-group-lg" id="editProfileButton">
-				<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
-				<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+					<h3>Connect to Stripe</h3>
+					<p class-->
+				<div class="btn-group btn-group-lg" id="editProfileButton">
+					<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+					<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+				</div>
 			</div>
 		</div>
-		<% end %>
-		<% end %>
 	</div>
+	<% end %>
+	<% end %>
 </div>
