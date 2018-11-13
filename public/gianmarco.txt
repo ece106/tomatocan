@@ -356,9 +356,35 @@ Monday, October 29, 2018
     - Books index now has pagination, books index and userswithmerch have Bootstrap-styled pagination https://github.com/bootstrap-ruby/will_paginate-bootstrap
     - Fixed several broken links to PNG buttons I removed. Replaced with Bootstrap buttons.
 
-   
 Tuesday, November 6th, 2018
 	- Dashboardbox Perks tab now has cards, which is how I think we should style the rest of the tab columns.
 	- Dashboardbox has a horizontal menu -- may need to be more distinct from navbar?
 	- Edit Perks needs to be made into a popup modal
 	- Took lots of notes from nonprofit calls
+	
+Friday, November 9th, 2018
+	- UX Notes with Amber's screenshare livestream
+	- Colored navbar to be way more obvious
+	- Working on having Edit buttons for perks pull up a popup Bootstrap modal instead of loading another page.
+
+========================================
+Tasks for week of November 12, 2018
+	- Dashboard
+		- Set sort order of tabs
+		- Set ruby logic for showing Dashboard
+			- Currently IF logged in, show dashboard, ELSE show profile page
+			- Consider how this will work with routing to Heroku
+		- Set navbar to static instead of fixed?
+	- Profile tab/Account tab
+		- Convert from Bootstrap wells to panels (cards)
+		- Adjust heights of cards to make them more even, try having save/cancel buttons inside of cards
+	- Perks tab
+		- Try using a modal popup for editing perks
+		- Transfer Create Perk form into a card
+	- Streaming tab
+		- Get responsive sizing for Jitsi working
+		- Find a spot for the Start Livestream button
+	- Sales tab
+		- This will probably have to be bumped to later when I can get sales to work in my dev
+		
+		
