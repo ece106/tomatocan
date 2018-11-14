@@ -36,6 +36,10 @@
     <%= f.text_field :uploadfile %>
   </div>
   <div class="field">
+    <%= f.label :uploadfile %><br>
+    <%= f.cropbox :uploadfile %>
+  </div>
+  <div class="field">
     <%= f.label :deadline %><br>
     <%= f.date_select :deadline %>
   </div>

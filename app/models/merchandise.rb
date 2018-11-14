@@ -5,6 +5,7 @@ class Merchandise < ApplicationRecord
   validates :price, presence: true
   validates :name, presence: true
   mount_uploader :itempic, MerchpicUploader
+  crop_uploaded :itempic
   mount_uploader :audio, AudioUploader
   mount_uploader :video, VideoUploader
   mount_uploader :graphic, GraphicUploader
