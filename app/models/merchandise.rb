@@ -4,10 +4,16 @@ class Merchandise < ApplicationRecord
   has_many :purchases
   validates :price, presence: true
   validates :name, presence: true
+  validates :buttontype, presence: true
   mount_uploader :itempic, MerchpicUploader
-  mount_uploader :podcast, PodcastUploader
+  crop_uploaded :itempic
+  mount_uploader :audio, AudioUploader
   mount_uploader :video, VideoUploader
   mount_uploader :graphic, GraphicUploader
+  mount_uploader :merchepub, MerchepubUploader
+  mount_uploader :merchmobi, MerchmobiUploader
+  mount_uploader :merchpdf, MerchpdfUploader 
+
 #  mount_uploader :pdf, PdfUploader  # need to change column names for these
 #  mount_uploader :epub, EpubUploader
 #  mount_uploader :mobi, MobiUploader

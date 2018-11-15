@@ -10,7 +10,16 @@ f<div id="wrapper">
 
   <h3><%= @merchandise.name %> </h3>
     <% if @user.stripeid.present? || @user.id == 143  %>
-      <%= link_to "Buy Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "btn btn-primary" %> 
+      <!--Download perk file-->
+
+      <% if @merchandise.audio.present? %>
+
+      <%end%>
+      <%if @merchandise.buttontype == 'Donate'%>
+        <%= link_to "Donate Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "btn btn-primary" %> 
+      <%else%>
+        <%= link_to "Buy Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "btn btn-primary" %> 
+      <%end%>
       <% if @merchandise.price.present? %>
         $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
       <% end %>

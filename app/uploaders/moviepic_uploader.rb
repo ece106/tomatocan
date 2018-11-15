@@ -10,7 +10,7 @@ class MoviepicUploader < CarrierWave::Uploader::Base
      "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w(jpg jpeg gif png tif)
   end
 
