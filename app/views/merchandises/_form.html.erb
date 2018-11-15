@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :buttontype %><br>
+    <%= f.select :buttontype %>
+  </div>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -30,6 +33,14 @@
   <div class="field">
     <%= f.label :itempic %><br>
     <%= f.text_field :itempic %>
+  </div>
+  <div class="field">
+    <%= f.label :uploadfile %><br>
+    <%= f.text_field :uploadfile %>
+  </div>
+  <div class="field">
+    <%= f.label :uploadfile %><br>
+    <%= f.cropbox :uploadfile %>
   </div>
   <div class="field">
     <%= f.label :deadline %><br>

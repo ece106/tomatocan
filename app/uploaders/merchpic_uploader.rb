@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class MerchpicUploader < CarrierWave::Uploader::Base
+  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
+  process crop: :itempic
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -18,8 +21,8 @@ class MerchpicUploader < CarrierWave::Uploader::Base
   def cache_dir
     "#{Rails.root}/tmp/uploads"
   end
-
-  def extension_white_list
+  
+  def extension_whitelist
     %w(jpg jpeg gif png tif)
   end
 
