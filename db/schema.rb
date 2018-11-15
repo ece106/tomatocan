@@ -114,6 +114,11 @@ ActiveRecord::Schema.define(version: 20130201000000000) do
     t.string "merchmobi"
     t.string "merchpdf"
     t.datetime "expiration"
+    t.integer "itempic_crop_x"
+    t.integer "itempic_crop_y"
+    t.integer "itempic_crop_w"
+    t.integer "itempic_crop_h"
+    t.string "buttontype"
   end
 
   create_table "movieroles", force: :cascade do |t|

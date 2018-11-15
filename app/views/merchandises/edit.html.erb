@@ -21,6 +21,8 @@
   <% end %>
 
   <div class="blacktxt">
+    <b>Perk Genre </b><br>
+    <%= f.select :buttontype, [['Donate','Donate'],['Buy','Buy']] %><br><br>
     <b>Patron Perk name </b><br>
     <%= f.text_field :name, :size => 80 %><br><br>
     <b>Perk Picture </b><br>
@@ -39,6 +41,24 @@
       If you have a video about your item on <b>YouTube</b>, paste the YouTube URL below. Your video's 11-digit ID will be saved. Any non-YouTube url will be ignored. <br /> 
       <div class="profilebox" >
         <%= f.text_area :youtube, :cols => 70, :rows => 2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo' %>
+      </div><br>
+  </div>
+  <div class="blacktxt">
+    <b>File </b><br>
+      Upload a file that will go with the perk. <br /> 
+      <div class="profilebox" >
+        Audio (mp3, wav, m4a)
+        <br><%= f.file_field :audio %> 
+        epub (epub)
+        <br><%= f.file_field :merchepub %> 
+        mobi (mobi)
+        <br><%= f.file_field :merchmobi %> 
+        pdf (pdf)
+        <br><%= f.file_field :merchpdf %> 
+        graphic (jpg, jpeg, gif, png, tif)
+        <br><%= f.file_field :graphic %> 
+        video (avi, mp4)
+        <br><%= f.file_field :video %> 
       </div><br>
   </div>
   <br>

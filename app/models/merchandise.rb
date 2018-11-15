@@ -4,6 +4,7 @@ class Merchandise < ApplicationRecord
   has_many :purchases
   validates :price, presence: true
   validates :name, presence: true
+  validates :buttontype, presence: true
   mount_uploader :itempic, MerchpicUploader
   crop_uploaded :itempic
   mount_uploader :audio, AudioUploader

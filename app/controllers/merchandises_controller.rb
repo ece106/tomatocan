@@ -24,20 +24,17 @@ class MerchandisesController < ApplicationController
 
   # GET /merchandises/1/edit
   def edit
-    if params[:merchandise][:itempic].present?
+    %%if params[:merchandise][:itempic].present?
       render :new  ## Render the view for cropping
-    end
+    end%
   end
 
   # POST /merchandises
   def create
     @merchandise = current_user.merchandises.build(merchandise_params)
     if @merchandise.save 
-        if params[:merchandise][:itempic].present?
-          render :new  ## Render the view for cropping
-        end
-          @merchandise.get_youtube_id
-        %%redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'%
+      @merchandise.get_youtube_id
+        redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
     else
       render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
     end
@@ -67,7 +64,7 @@ class MerchandisesController < ApplicationController
 
     def merchandise_params
       params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :rttoeditphase,
-       :goal, :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h)
+       :goal, :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype ,:itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h)
     end
 
     def resolve_layout
