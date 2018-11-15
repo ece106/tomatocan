@@ -11,57 +11,59 @@
 <% if user_signed_in? %>
 <div class="container-fluid">
 	<div class="row">
-		<%= render 'users/dashboardbox' %>
+		<%= render :file => 'users/dashboardbox' %>
 	</div>
 </div>
 
 <% else %>
 
-<%= render 'layouts/authorform' %>
+<div clas="container-fluid">
+	<%= render 'layouts/authorform' %>
 
-<div class="row">
-    <%= render 'layouts/merchsidebar' %>
-    <%= render 'layouts/jitsi' %>
-</div>
+	<div class="row">
+		<%= render 'layouts/merchsidebar' %>
+		<%= render 'layouts/jitsi' %>
+	</div>
 
-<div class="well">
-    <div class="row">
-        <% if @user.youtube1? %>
-            <div class="col-sm-4">
-                <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube1 %>" allowfullscreen></iframe>
-                    </div>
-                <% end %>
-                <% if @user.videodesc1 %>
-                    <div><%= simple_format @user.videodesc1.gsub(/\r\n/, '<br>') %></div>
-                <% end %>
-            </div>
-        <% end %>
-        <% if @user.youtube2? %>
-            <div class="col-sm-4">
-                <% if @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube2 %>" allowfullscreen></iframe>
-                </div>
-                <% end %>
-                <% if @user.videodesc2 %>
-                <div><%= simple_format @user.videodesc2.gsub(/\r\n/, '<br>') %></div>
-                <% end %>
-            </div>
-        <% end %>
-        <% if @user.youtube3? %>
-            <div class="col-sm-4">
-                <% if @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube3 %>" allowfullscreen></iframe>
-                </div>
-                <% end %>
-                <% if @user.videodesc3 %>
-                <div><%= simple_format @user.videodesc3.gsub(/\r\n/, '<br>') %></div>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
+	<div class="well">
+		<div class="row">
+			<% if @user.youtube1? %>
+				<div class="col-sm-4">
+					<% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube1 %>" allowfullscreen></iframe>
+						</div>
+					<% end %>
+					<% if @user.videodesc1 %>
+						<div><%= simple_format @user.videodesc1.gsub(/\r\n/, '<br>') %></div>
+					<% end %>
+				</div>
+			<% end %>
+			<% if @user.youtube2? %>
+				<div class="col-sm-4">
+					<% if @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube2 %>" allowfullscreen></iframe>
+					</div>
+					<% end %>
+					<% if @user.videodesc2 %>
+					<div><%= simple_format @user.videodesc2.gsub(/\r\n/, '<br>') %></div>
+					<% end %>
+				</div>
+			<% end %>
+			<% if @user.youtube3? %>
+				<div class="col-sm-4">
+					<% if @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube3 %>" allowfullscreen></iframe>
+					</div>
+					<% end %>
+					<% if @user.videodesc3 %>
+					<div><%= simple_format @user.videodesc3.gsub(/\r\n/, '<br>') %></div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>
 <% end %>
