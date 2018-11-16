@@ -1,17 +1,20 @@
 source 'http://rubygems.org'
-ruby "2.4.2"
+ruby "2.5.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3'
 
 gem 'mandrill'	
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
+gem 'carrierwave-crop'
+gem 'rmagick'
+gem 'mini_magick'
 gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'

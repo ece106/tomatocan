@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class BannerpicUploader < CarrierWave::Uploader::Base
-
+  include CarrierWave::RMagick
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -21,7 +21,7 @@ class BannerpicUploader < CarrierWave::Uploader::Base
     "#{Rails.root}/tmp/uploads"
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w(jpg jpeg gif png tif)
   end
 

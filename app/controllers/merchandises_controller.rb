@@ -24,6 +24,9 @@ class MerchandisesController < ApplicationController
 
   # GET /merchandises/1/edit
   def edit
+    %%if params[:merchandise][:itempic].present?
+      render :new  ## Render the view for cropping
+    end%
   end
 
   # POST /merchandises
@@ -61,7 +64,7 @@ class MerchandisesController < ApplicationController
 
     def merchandise_params
       params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :rttoeditphase,
-       :goal, :deadline, :youtube, :podcast, :video, :graphic, :bookmobi, :bookepub, :bookpdf)
+       :goal, :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype ,:itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h)
     end
 
     def resolve_layout
