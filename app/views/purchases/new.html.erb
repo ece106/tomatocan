@@ -6,8 +6,8 @@
       <% if user_signed_in? %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
       <% else %>
-        Please <%= link_to "Sign In", '/login' %> or enter email to purchase: 
-        <%= f.text_field :email, placeholder: "Enter email" %>
+        <b>* EMAIL is required:</b>
+        <%= f.text_field :email, placeholder: "Enter email", size: 50 %><br><br>
       <% end %>
 
       <%= f.hidden_field :stripe_card_token %>

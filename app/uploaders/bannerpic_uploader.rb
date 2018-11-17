@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class BannerpicUploader < CarrierWave::Uploader::Base
-  include CarrierWave::RMagick
+#  include CarrierWave::RMagick
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

@@ -3,14 +3,15 @@ class Purchase < ApplicationRecord
 #  attr_accessible :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id, :merchandise_id
 #  attr_reader :stripe_card_token
   
-  belongs_to :book, optional: true
-  belongs_to :user
+#  belongs_to :book, optional: true
+  belongs_to :user, optional: true
   belongs_to :merchandise
 #  validates :user_id, presence: true
   validates :author_id, presence: true # author means seller
   validates :pricesold, presence: true
   validates :authorcut, presence: true
   validates :merchandise_id, presence: true
+#  validates :email, :presence => true, :if => loggedin  #cant validate this
 #  validates :bookfiletype, presence: true
 
   def save_with_payment
@@ -20,19 +21,19 @@ class Purchase < ApplicationRecord
     seller = User.find(@merchandise.user_id)
     amt = (@merchandise.price * 100).to_i 
     desc = @merchandise.name 
-    if self.group_id.present?
+    %%if self.group_id.present?
       self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
       self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
-    else
+    else%
       self.groupcut = 0.0
       self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100
-    end
+    %%end%
 
     sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 
-    if self.group_id.present? #not used right now
+    %%if self.group_id.present? #not used right now
       group = Group.find(self.group_id)
       groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
-    end
+    end%
 
     if self.email.present?
       customer = Stripe::Customer.create(
@@ -119,4 +120,5 @@ class Purchase < ApplicationRecord
         errors.add(:base, "You have to buy a Perk to make a purchase")
       end
     end
+
 end
