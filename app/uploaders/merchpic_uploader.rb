@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 class MerchpicUploader < CarrierWave::Uploader::Base
-  include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
-  process crop: :itempic
+#  include CarrierWave::RMagick
+#  include CarrierWave::MiniMagick
+#  process crop: :itempic
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

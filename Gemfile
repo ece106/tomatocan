@@ -12,6 +12,9 @@ gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
+#gem 'carrierwave-crop' # NO LONGER SUPPORTED
+#gem 'rmagick' #won't install
+#gem 'mini_magick' #not even going to bother with this
 gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'

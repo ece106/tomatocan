@@ -42,6 +42,10 @@ class PurchasesController < ApplicationController
   # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
+    if user_signed_in?
+        @user.loggedin(true)
+    end
+
     if @purchase.book_id? # This logic is necessary for purchasing downloads. Will need to be changed for each merchandise filetypes
       @book = Book.find(@purchase.book_id) 
 #    raise params.to_yaml

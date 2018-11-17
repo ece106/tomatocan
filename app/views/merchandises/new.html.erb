@@ -1,8 +1,9 @@
 <div class="container">
 
-<% if !current_user.stripeid.present? %>
-  <div class="row">
-    <div class="col-md-12">
+<% if user_signed_in? %>
+  <% if !current_user.stripeid.present? %>
+    <div class="row">
+      <div class="col-md-12">
         <br><br>
           <% if Rails.env.development? || Rails.env.test? %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
@@ -24,8 +25,9 @@
               </span>
             </div>
           <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <div class="row">
@@ -52,7 +54,7 @@
         <div class="form-group">
             <h2><%= f.label :buttontype, "Genre" %></h2>
             <p class="help-block">Select the applicable genre for this perk.</p>
-            <%= f.select :buttontype, [['Donate','Donate'],['Buy','Buy']], :include_blank => true, autofocus: true %>
+            <%= f.select :buttontype, [['Donate','Donate'],['Buy','Buy']], autofocus: true %>
         </div>
 
         <div class="form-group">
@@ -74,7 +76,7 @@
 
         <div class="form-group">
             <h2><%= f.label :desc, "Description" %></h2>
-            <p class="help-block">What comes with this Perk?</p>
+            <p class="help-block">What do viewers get for purchasing this perk?</p>
             <%= f.text_area :desc, :rows => "5", :class => "form-control" %>
         </div>
 
@@ -84,28 +86,6 @@
             <%= f.file_field :itempic, :class => "form-control" %>
         </div>
 
-        <div class="form-group">
-            <h2><%= f.label :youtube, "Video" %></h2>
-            <p class="help-block">If you have a YouTube video about your Perk, paste the URL below.</p>
-            <%= f.text_area :youtube, :class => "form-control"  %>
-        </div>
-        <div class="form-group">
-            <h2><%= f.label :uploadfile, "File" %></h2>
-            <p class="help-block">Upload a file that will go with the perk.</p>
-            <p class="help-block">Audio (mp3, wav, m4a)</p>
-            <%= f.file_field :audio, :class => "form-control"%>
-            <p class="help-block">epub (epub)</p>
-            <%= f.file_field :merchepub, :class => "form-control" %>
-            <p class="help-block">mobi (mobi)</p>
-            <%= f.file_field :merchmobi, :class => "form-control" %>
-            <p class="help-block">pdf (pdf)</p>
-            <%= f.file_field :merchpdf, :class => "form-control" %>
-            <p class="help-block">graphic (jpg, jpeg, gif, png, tif)</p>
-            <%= f.file_field :graphic, :class => "form-control" %>
-            <p class="help-block">video (avi, mp4)</p>
-            <%= f.file_field :video, :class => "form-control" %>
-            </p>
-        </div>
         <div class="form-group">
             <h2><%= f.label :expiration, "Expiration Date" %></h2>
             <p class="help-block">Get it while it's hot! Choose the last day fans can purchase this Perk.</p>

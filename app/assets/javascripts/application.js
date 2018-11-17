@@ -5,7 +5,6 @@
 // the compiled file.
 //
 //= require jquery
-//= require jquery.jcrop
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
