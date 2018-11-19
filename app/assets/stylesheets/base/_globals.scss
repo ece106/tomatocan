@@ -1,6 +1,4 @@
-/* 
-This file defines sitewide styles. Place page-specific styles in their own stylesheet.
-*/
+/* This file defines sitewide styles. Place page-specific styles in their own stylesheet. */
 
 
 // Not really sure what this is for.
@@ -24,118 +22,18 @@ main {
     flex: 1 !important;
 }
 
-//MOVE TO MIXIN FILE
-/* Buttons */
-.btn-huge {
-    color: $brand-secondary !important;
-    font-family: $font-family-sans-serif;
-    font-size: 2em;
-    margin-top: 4em;
-    padding: .8em;
-    border-radius: 0.2em;
-    text-decoration: none;
-    background-color: $brand-primary;
-    text-align: center;
-    transition: all 0.2s;
-}
-.bouncy{
-    animation:bouncy 5s infinite linear;
-    position:relative;
-    -webkit-animation: bouncy 5s infinite ease-in;
-}
-@keyframes bouncy {
-    0%{top:0em}
-    40%{top:0em}
-    43%{top:-0.9em}
-    46%{top:0em}
-    48%{top:-0.4em}
-    50%{top:0em}
-    100%{top:0em;}
-}
-
-li {
+//Styles text-heavy pages like FAQ and ToS. Needs to be moved to their specific CSS because it interferes with navigation styling. 
+/*li {
   margin-bottom: 10px;  
 }
+*/
 
-//= Leftover stylesheet pieces, left in case they break anything. They likely need to be moved to individual stylesheets.
-
-
-.hometop {
-  display: flex; /* equal height of the children */
-}
-.homeheight {
-  flex: 1; /* additionally, equal width */
-  padding: 1em;
-}
-.readerhomeimage {
-  background-image: image-url('crowdblur.png');
-  margin-top: -20px;
-  padding-top: 20px;
-  padding-bottom: 0px;
-}
-.authorhomeimage {
-  background-color: #6f6580;
-  margin-top: -20px;
-  padding-top: 20px;
-  padding-bottom: 0px;
-}
-.headerimage {
-  text-align:center;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-.supportgroupimage {
-  background-image: image-url('camelbackhouse.png');
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-.hsmovieimage {
-  background-image: image-url('paintingPoster.png');
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-.groupimage { 
-   position: relative; 
-   width: 100%; /* for IE 6 */
-}
-
-grouptext { 
-   position: absolute; 
-   bottom: 45px; 
-   left: 60px;
-   color: #fff;
-   text-shadow: 1px 1px #000;
-   a:link { color : #75b;}
-   a:visited { color : #75b;}
-   a:hover { text-decoration: none; color : #e6f; text-shadow: 1px 1px #000;}
-}
-projecttext { 
-   vertical-align: top;
-   position: absolute;
-   text-align: left;
-   top: 0px;
-   left: 10px;
-   color: #fff;
-   text-shadow: 1px 1px #000000;
-   a:link { color : #dbf;}
-   a:visited { color : #dbf;}
-   a:hover { text-decoration: none; color : #61e; text-shadow: 1px 1px #fff;}
-}
-
-section {
-  overflow: auto;
-}
-
+//Prevents textareas from being resized out of their columns
 textarea {
-  resize: vertical;
+	resize: vertical;
 }
 
-carousel-inner>.item {
-    position: relative;
-    max-height: 200px;
-}
-
-/* footer */
+//Old styles. Not sure what they're used for.
 
 #error_explanation {
   color: #f00;
@@ -148,133 +46,4 @@ carousel-inner>.item {
 .field_with_errors {
   @extend .control-group !optional;
   @extend .error !optional;
-}
-
-// Sidebar
-
-sidebar { 
-  float:left; 
-  width:350px; 
-  min-height: 100vh;
-  background-color: #D3C9AE;
-  padding-left: 5px;
-#  padding-top: 20px; 
-  padding-bottom: 20px;
-#  margin-top: -40px; //don't know why there's a huge white margin without this
-  .wrapper {
-    .profile-pic {        //is this used anymore
-      margin-right: 5px;
-      margin-left: -15px; //where is this extra 15 px from
-      padding: 0;
-      vertical-align: top;
-      width: 150px;
-      overflow: hidden;
-    }
-    .author-info {
-      padding: 0;
-      width: 40%;
-    }
-  }
-  .author-books {
-    .edit_book {
-      margin-top: 10px;
-      margin-left: -15px; //where is this extra 15 px from
-      .book-cover {
-        padding-left: 0;
-        width: 27%
-      }
-      .book-info {
-        .fifty {
-          line-height: 1.1em;
-          letter-spacing: 0.5px;
-        }
-      }
-    }
-  }
-}
-
-.post-border {
-
-#  border-bottom: solid;
-#  border-width: 3px;
-#  border-color: #863276;
-  background-color: white;
-
-  -webkit-box-shadow: 5px 5px 3px #e5e5e5;
-  -moz-shadow: 5px 5px 3px #e5e5e5;
-  box-shadow: 5px 5px 3px #e5e5e5;
-
-  margin-bottom: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.important-info {
-  background-color: white;
-}
-
-.info-content {
-  padding-left: 0;
-  margin-top: -20px;
-}
-
-// for user site sidebar
-#wrapper {
-  padding-left: 350px;
-  transition: all 0.4s ease 0s;
-}
-#sidebar-wrapper {
-  margin-top: -40px; 
-  margin-left: -350px;
-  left: 350px;
-  width: 350px;
-  position: absolute;
-  height: 100%;
-  max-width: 350px;
-  overflow: wrap;
- 
-  z-index: 8;
-  transition: all 0.4s ease 0s;
-  td {
-    padding: 0px;
-  }
-}
-#page-content-wrapper {
-  width: 100%;
-
-}
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  width: 350px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-@media (max-width:767px) {
-    #wrapper {
-      padding-left: 0;
-    }
-    #sidebar-wrapper {
-      left: 0;
-    }
-    #wrapper.active {
-      position: relative;
-      left: 350px;
-    }
-    #wrapper.active #sidebar-wrapper {
-      left: 350px;
-      width: 350px;
-      transition: all 0.4s ease 0s;
-    }
-}
-
-.x-centering-wrapper {
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  flex: 1;
-  -webkit-flex: 0 1 100%;
 }
