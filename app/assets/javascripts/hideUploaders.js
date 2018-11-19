@@ -34,12 +34,6 @@ $(function() {
 		} else if( $(this).val()==="ebook") {
 			$('.audioField').hide();
 			$('.ebookField').show("slow");
-			$('.documentField').hide();
-			$('.graphicField').hide();
-			$('.videoField').hide();
-		} else if( $(this).val()==="document") {
-			$('.audioField').hide();
-			$('.ebookField').hide();
 			$('.documentField').show("slow");
 			$('.graphicField').hide();
 			$('.videoField').hide();
