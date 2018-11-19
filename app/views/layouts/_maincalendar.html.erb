@@ -21,7 +21,7 @@
                     <th style="width:19%">When (MST)</th>
                     <th style="width:17%">When (EST)</th>
                     <!--Deprecate the edit or start options from the homepage-->
-                    <th style="width:20%">Host</th>
+                    <th style="width:20%">PARTICIPATE in the discussion on the Host's page</th>
                     <th style="width:9%"></th>
                     <th style="width:10%">Share</th>
                 </tr>
@@ -35,7 +35,8 @@
                     <td><%= edt.strftime("%I:%M %p")  %></td>
                     <td>
                         <% user = User.find(event.usrid) %>
-                        <%= link_to user.name, "https://crowdpublishtv.herokuapp.com/" + user.permalink, :target => "_blank" %>
+                        <% hovermsg = "Find " + user.name + " at this link at " + event.start_at.strftime("%A %B %d, %I:%M %p") %>
+                        <%= link_to user.name, "https://crowdpublishtv.herokuapp.com/" + user.permalink, :title => hovermsg, :target => "_blank" %>
                     </td>
                     <td>
                         <% if user_signed_in? %>
