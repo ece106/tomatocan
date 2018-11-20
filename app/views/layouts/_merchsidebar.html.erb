@@ -3,7 +3,7 @@
         <div class="panel-heading">Support Our Work!</div>
         <div class="panel-body" id="merchSidebar">
           <% if @sidebarmerchandise.present? %>
-            <% @sidebarmerchandise.each do |merch| %>
+            <% @sidebarmerchandise.each do |merch|%>
             <table>
                 <% if params[:groupid].present? %>
                     <tr>
@@ -70,6 +70,22 @@
 
             <hr>
             <% end %>
+          <% else %>
+          <!--@user.stripeid.present? || -->
+            <% if @user.id != 143 %>
+                    <tr>
+                        <td>
+                            <% buyPrice = ("Donate $" + sprintf('%.2f',25) + "!") %>
+                            <%= link_to buyPrice, new_purchase_path(25), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+                            <br />
+                            <% buyPrice = ("Donate $" + sprintf('%.2f',50) + "!") %>
+                            <%= link_to buyPrice, new_purchase_path(50), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+                            <br />
+                            <% buyPrice = ("Donate $" + sprintf('%.2f',100) + "!") %>
+                            <%= link_to buyPrice, new_purchase_path(100), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+                        </td>
+                    </tr>
+                <% end %>
           <% end %>
         </div>
     </div>

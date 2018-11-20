@@ -10,7 +10,7 @@ class Purchase < ApplicationRecord
   validates :author_id, presence: true # author means seller
   validates :pricesold, presence: true
   validates :authorcut, presence: true
-  validates :merchandise_id, presence: true
+#  validates :merchandise_id, presence: true
 #  validates :email, :presence => true, :if => loggedin  #cant validate this
 #  validates :bookfiletype, presence: true
 

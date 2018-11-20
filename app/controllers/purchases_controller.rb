@@ -24,6 +24,7 @@ class PurchasesController < ApplicationController
   def new
     @merchandise = Merchandise.find(params[:merchandise_id])
     @purchase = @merchandise.purchases.new
+    
     if user_signed_in?
       if current_user.stripe_customer_token.present?
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)

@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://unpkg.com/jcrop/dist/jcrop.css">
+<script src="https://unpkg.com/jcrop"></script>
+
 <div class="container">
 
 <% if user_signed_in? %>
@@ -84,7 +87,7 @@
 		<div class="form-group perkField">
             <h3><%= f.label :itempic, "Image" %></h3>
             <p class="help-block">Upload an image of the Perk you are offering (JPEG, GIF, or PNG).</p>
-			<%= f.file_field :itempic, :class => "form-control" %>
+			<%= f.file_field :itempic, :class => "form-control" id="target" %>
         </div>
 
 		<div class="form-group perkField">
@@ -120,7 +123,7 @@
 			</div>
 			<div class="documentField eBookField">
             	<p class="help-block">.pdf</p>
-				<%= f.file_field :merchpdf, :class => "form-control" %>
+				<%= f.file_field :merchpdf, :class => "form-control"%>
 			</div>
 			<div class="graphicField documentField">
             	<p class="help-block">.jpg, .jpeg, .gif, .png, .tif</p>
@@ -154,3 +157,12 @@
 </div>
     
 </div>
+
+<script>
+  const stage = Jcrop.attach('target');
+
+stage.listen('crop.move',function(widget,e){
+  const pos = widget.pos;
+  console.log(pos.x,pos.y,pos.w,pos.h);
+});
+</script>
