@@ -1,3 +1,4 @@
+<!--Modal for editing perk-->
 <div class="modal fade" tabindex="-1" id="myModal">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -12,9 +13,9 @@
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				<button type="button" class="btn btn-primary">Save Perk</button>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+		</div>
+	</div>
+</div>
 
 <div class="row">
 	<div class="col-xs-12">
@@ -31,7 +32,7 @@
 			<div class="panel-body">
 				<% if @sidebarmerchandise.present? %>
 					<% @sidebarmerchandise.each do |merch| %>
-					<div class="media"><!--NUMBER OF PERKS AS A BADGE-->
+					<div class="media">
 						<div class="pull-left">
 							<%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
 						</div>
@@ -39,16 +40,38 @@
 							<h4 class="media-heading">
 								<%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %>
 							</h4>
-							
-							<!--pops a modal which contains edit page-->
-							<%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %>
-							<%= button_tag "Edit Perk", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %>
-							
 							<% if merch.desc.present? %>
-								<%= merch.desc %>
+							<% if merch.desc.length > 200 %>
+							<div>
+							<%= truncate(merch.desc, length: 200) %>
+							<%= link_to 'more', '', class: "read-more-#{merch.id}" %>
+							<script>
+								$('.read-more-<%= merch.id %>').on('click', function(e) {
+								  e.preventDefault()
+								$(this).parent().html('<%= escape_javascript merch.desc %>')
+													  })
+							</script>
+							</div>
+							<% else %>
+							<%= merch.desc %>
 							<% end %>
+							<% end %>
+							<% if user_signed_in? %>
+							<% if current_user.id == @user.id %>
+								<!--Links to seperate edit perk page-->
+								<%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning pull-right" %>
+
+								<!-- Switch to below button when edit perk form can be shown as a modal-->
+								<!--%= button_tag "Edit Perk", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
+							<% else %>
+								<% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
+								<%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
+							<% end %>
+							<% end %>
+							
 						</div>
 					</div>
+					<hr>
 					<% end %>
 				<% else %>
 					<span>No perks :(</span>

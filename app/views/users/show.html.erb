@@ -9,23 +9,22 @@
 
 
 <% if user_signed_in? %>
-<div class="container-fluid">
-	<div class="row">
-		<%= render :file => 'users/dashboardbox' %>
+	<div class="container-fluid">
+		<div class="row">
+			<%= render :file => 'users/dashboardbox' %>
+		</div>
 	</div>
-</div>
-
 <% else %>
 
 <div clas="container-fluid">
 	<%= render 'layouts/authorform' %>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<%= render 'layouts/merchsidebar' %>
+			<%= render 'layouts/jitsi' %>
+		</div>
 
-	<div class="row">
-		<%= render 'layouts/merchsidebar' %>
-		<%= render 'layouts/jitsi' %>
-	</div>
-
-	<div class="well">
 		<div class="row">
 			<% if @user.youtube1? %>
 				<div class="col-sm-4">

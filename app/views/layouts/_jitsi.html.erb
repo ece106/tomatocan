@@ -50,6 +50,8 @@
 			</div>
 		</div>
 	</div>
+	<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
 	<div class="col-md-5">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -83,6 +85,8 @@
 			</div>
 		</div>
 	</div>
+	<% end %>
+	<% end %>
 </div>
 
 <% end %>
