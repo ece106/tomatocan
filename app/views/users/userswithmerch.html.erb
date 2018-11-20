@@ -6,19 +6,25 @@
 <div class="row" > 
   <% @merchusers.each do |u| %> 
       <% next if !u.youtube1.present? && !u.profilepic.present?%>
-      <% genrelist = u.genre1, u.genre2, u.genre3 %>
-      <% genrelist.reject!(&:empty?) %>
       <div class="col-md-4 col-sm-6 col-xs-12" > 
         <% if u.youtube1.present? %>
           <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
             <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
             <br><%= link_to u.name, user_profile_path(u.permalink) %>
-            <br><%= genrelist.join(', ') %>
+            <% if u.genre1.present? %>
+              <% genrelist = u.genre1, u.genre2, u.genre3 %>
+              <% genrelist.reject!(&:empty?) %>
+              <br><%= genrelist.join(', ') %>
+            <% end %>
           </div>
         <% elsif u.profilepic.present? %>
           <%= link_to(image_tag(u.profilepic.url.to_s, :height => "220",  :title => u.name), user_profile_path(u.permalink)) %>
-            <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          <br><%= link_to u.name, user_profile_path(u.permalink) %>
+          <% if u.genre1.present? %>
+            <% genrelist = u.genre1, u.genre2, u.genre3 %>
+            <% genrelist.reject!(&:empty?) %>
             <br><%= genrelist.join(', ') %>
+          <% end %>
         <% end %>
       </div>
   <% end %>
