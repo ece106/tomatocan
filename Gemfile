@@ -4,7 +4,7 @@ ruby "2.4.2"
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'sqlite3', group: :development
+gem 'sqlite3'
 gem 'pg', group: :production
 
 gem 'mandrill'	
