@@ -4,8 +4,8 @@ ruby "2.4.2"
 gem 'listen'
 gem 'rails-controller-testing'
 
-#gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
+#gem 'pg'
 
 gem 'mandrill'	
 gem 'devise'
