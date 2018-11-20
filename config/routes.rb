@@ -89,7 +89,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
 
   match '/books' => "books#index", :as => :allbooks, via: 'get'
   match '/youtubers' => "users#youtubers", :as => :youtubers, via: 'get'
-  match '/userswithmerch' => "users#userswithmerch", :as => :userswithmerch, via: 'get'
+  match '/supportourwork' => "users#supportourwork", :as => :supportourwork, via: 'get'
 
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/followers' => "users#followerspage", :as => :user_followerspage, via: 'get'

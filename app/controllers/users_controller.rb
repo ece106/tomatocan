@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :userswithmerch, :youtubers, :create, :stripe_callback ]
+  before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
 #  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
 #  before_filter :correct_user, only: [:edit, :update, :dashboard] Where did this method go?
@@ -18,10 +18,10 @@ class UsersController < ApplicationController
     usersvidorder = userswithyoutube.order('updated_at DESC')
     @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 32)
   end
-  def userswithmerch
-    userswmerch = User.joins(:merchandises).distinct
-    merchorder = userswmerch.order('updated_at DESC')
-    @merchusers = merchorder.paginate(:page => params[:page], :per_page => 32)
+  def supportourwork
+    userswstripe = User.where("stripeid IS NOT NULL AND youtube1 IS NOT NULL")
+    stripeorder = userswstripe.order('updated_at DESC')
+    @stripeusers = stripeorder.paginate(:page => params[:page], :per_page => 32)
   end
 
   def show
@@ -279,7 +279,7 @@ class UsersController < ApplicationController
 
     def resolve_layout
       case action_name
-      when "index", "youtubers", "userswithmerch", "stripe_callback"
+      when "index", "youtubers", "supportourwork", "stripe_callback"
         'application'
       when "profileinfo", "readerprofileinfo", "changepassword"
         'editinfotemplate'
