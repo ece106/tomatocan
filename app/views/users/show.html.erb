@@ -9,8 +9,7 @@
 
     <%= render 'layouts/merchsidebar' %>
 
-  <div class="row">
-    <% if request.host == "crowdpublishtv.herokuapp.com" %>
+    <% if request.host == "crowdpublishtv.herokuapp.com" # || request.host == "localhost" #needed to make sure livestream isnt wrapping under sidebar %> 
       <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
             <script src="https://meet.jit.si/external_api.js"></script>
             <script>
@@ -81,4 +80,3 @@
     </div>
     <% end %>
   </div>
-</div>
