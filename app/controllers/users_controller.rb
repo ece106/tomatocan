@@ -16,12 +16,12 @@ class UsersController < ApplicationController
   def youtubers
     userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
     usersvidorder = userswithyoutube.order('updated_at DESC')
-    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 32)
+    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 24)
   end
   def supportourwork
-    userswstripe = User.where("stripeid IS NOT NULL AND youtube1 IS NOT NULL")
+    userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
     stripeorder = userswstripe.order('updated_at DESC')
-    @stripeusers = stripeorder.paginate(:page => params[:page], :per_page => 32)
+    @stripeusers = stripeorder.paginate(:page => params[:page], :per_page => 24)
   end
 
   def show
