@@ -1,12 +1,6 @@
 <% @title=" need to paginate results "  %>
 <p class="flash"><%= flash.notice %></p>
 
-<div class="row">
-	<div class="col-xs-10 col-md-offset-2">
-		<h1>Perk Sales</h1>
-	</div>
-</div>
-
 <% if request.host == "crowdpublishtv.herokuapp.com" %> 
   <% if user_signed_in? %>
     <% if @user.id == current_user.id %>
@@ -81,16 +75,13 @@
 			</div>
 
     	<% else %>
-			<div class="row">
-				<div class="col-md-6 col-md-offset-2">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<span class="glyphicon glyphicon-exclamation-sign"></span> No Sales
-						</div>
-						<div class="panel-body">
-							Sales figures will be displayed on this page
-						</div>
-					</div>
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-exclamation-sign"></span> No Sales
+				</div>
+				<div class="panel-body">
+					Sales figures will be displayed on this page after you connect to Stripe.
 				</div>
 			</div>
 

@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+	<% if @user == current_user %>
+		<div class="panel-heading">
+			Your Upcoming Streams
+			<span class="badge pull-right"><!--Event count ruby--> Streams</span>
+		</div>
+	<% else %>
+		<div class="panel-heading">
+			<!--%= @user %-->'s Upcoming Streams
+			<span class="badge pull-right"><!--Event count ruby--> Streams</span>
+		</div>
+	<% end %>
+	<div class="panel-body">
+		<!-- Calendar of upcoming events FILTERED by current user-->
+	</div>
+</div>
+
+
+
+<!--Notes: 
+
+The erb for the panel-heading needs to be changed. Can't remember how to insert current page's username.
+
+Need to import the calendar of upcoming events but only show streams hosted by this user. The header badge should count and display how many of these events there are.
+
+Do I call them Streams or Discussions?
+-->

@@ -1,92 +1,24 @@
-<% if request.host == "crowdpublishtv.herokuapp.com" %>
 <script src="https://meet.jit.si/external_api.js"></script>
 <script>
 	jQuery(document).ready(function($) {
 		var domain = "meet.jit.si";
-		var userRoomName = '<%= @user.permalink %>';
 		var options = {
-			roomName: "CrowdPublishTV_" + `${userRoomName}`,
-			height: 700,
+			roomName: "<%= @user.permalink %>",
 			parentNode: document.querySelector('#meet')
-			configOverwrite: {dropbox: 
-			{ appKey: 'n2q7nmq1bix8l49' }
-		} 
-						   }
-						   var api = new JitsiMeetExternalAPI(domain, options);
-	$('#jitsiConferenceFrame0').addClass("embed-responsive-item");
+		}
+		var api = new JitsiMeetExternalAPI(domain, options);
 	});
 </script>
 
-<div class="row">
-	<div class="col-md-12">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Stream
-			</div>
-			<div class="panel-body">
-				<!--class="embed-responsive"-->
-				<div id="meet"></div>
-			</div>
-		</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		Stream
+	</div>
+	<div class="panel-body embed-responsive embed-responsive-16by9">
+		<div class="embed-responsive-item" id="meet"></div>
 	</div>
 </div>
 
-<% else %>
-
-<div class="row">
-	<div class="col-xs-12">
-		<h1>Livestream</h1>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-3">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Stream
-			</div>
-			<div class="panel-body" style="text-align:center">
-				<%= link_to "Start a Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-			</div>
-		</div>
-	</div>
-	<% if user_signed_in? %>
-	<% if current_user.id == @user.id %>
-	<div class="col-md-5">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Your Upcoming Streams
-				<!-- Badge with number of upcoming events-->
-			</div>
-			<div class="panel-body">
-				<!-- Calendar of upcoming events FILTERED by current user-->
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Streaming Directions
-			</div>
-			<div class="panel-body">
-				<h4>Recording</h4>
-				<ol>
-					<li>Setup a <a href="https://www.youtube.com/live_dashboard_splash">YouTube Live</a> account. <i>(note: 24 hour hold on new accounts)</i></li>
-					<li>In video player, click the <b>&#8942;</b> button.</li>
-					<li>Click 'Start live stream [BETA].'</li>
-					<li>Sign in with Google.</li>
-				</ol>
-				<h4>Calling In</h4>
-				<ol>
-					<li>Start livestream.</li>
-					<li>Dial +1(512)-402-2718.</li>
-					<li>Enter <!--JSON to get PIN for room-->##### as the PIN.</li>
-				</ol>
-			</div>
-		</div>
-	</div>
-	<% end %>
-	<% end %>
-</div>
-
-<% end %>
+<!-- NOTES
+If we are going to set differing Host and Viewer Jitsi setups, we'll do it here.
+-->

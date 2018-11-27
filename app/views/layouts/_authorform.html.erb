@@ -5,65 +5,37 @@ if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo 
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
 <% if request.host == "crowdpublishtv.herokuapp.com" %>
+	<div id="profileBannerContainer" style="display:none">
+<% else %>
+	<div id="profileBannerContainer">
+<% end %>
+		
+<div class="col-xs-12" id="profileBanner">
+	<% if @user.bannerpic.present? && @user.bannerpic != '' %>
+		<%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
+	<% else %>
+		<%= image_tag "crowddark.png", height: "300", :id => "userBannerImage" %>
+	<% end %>
+</div>
+</div>
+
+<% if request.host == "crowdpublishtv.herokuapp.com" %>
 	<div class="row" style="display:none">
 <% else %>
 	<div class="row">
-		<% end %>
-		<div id="profileBanner">
-			<% if @user.bannerpic.present? && @user.bannerpic != '' %>
-				<%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
-			<% else %>
-				<%= image_tag "crowddark.png", height: "300", :id => "userBannerImage" %>
-			<% end %>
-		</div>
-	</div>
-
-	<% if request.host == "crowdpublishtv.herokuapp.com" %>
-		<div class="row" style="display:none">
-	<% else %>
-		<div class="row">
+<% end %>
+				
+<div class="col-xs-12" id="profileHeader">
+	<% if @user.profilepic.present? && @user.profilepic != '' %>
+		<%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
 	<% end %>
-			<div class="col-xs-11" id="profileHeader">
-				<% if @user.profilepic.present? && @user.profilepic != '' %>
-				<%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
-				<% end %>
-				<div id="profileTitle">
-					<h1 id="profileName"><%= @user.name %></h1>
-					<span id="profileDescription"> <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %></span>
-				</div>
-			</div>
-		</div>
+	<div id="profileTitle">
+		<h1 id="profileName"><%= @user.name %></h1>
+		<p id="profileDescription"> <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %></p>
+	</div>
+</div>
+</div>
 
-		<% if user_signed_in? %>
-		<% if current_user.id == @user.id %>
-		<% if !current_user.stripeid.present? %>
-		<div class="row">
-			<div class="col-md-12">
-
-				<% if Rails.env.development? || Rails.env.test? %>
-					<div class="alert alert-danger clearfix" id="stripeAlert">
-						<span class="clearfix">
-							<span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Perks!</span>
-							<span class="pull-right">
-								<a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
-							</span>
-						</span>
-					</div>
-				<% else %>
-					<div class="alert alert-danger clearfix" id="stripeAlert">
-						<span class="clearfix">
-							<span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/login' %></strong> to sell Perks!</span>
-							<span class="pull-right">
-								<%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/login' %>
-							</span>
-						</span>
-					</div>
-				<% end %>
-			</div>
-		</div>
-		<% end %>
-		<% end %>
-		<% end %>
 
 <!--Not sure what this is-->
 <% content_for :forusers do %>
