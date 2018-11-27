@@ -22,8 +22,14 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/new
   def new
-    @merchandise = Merchandise.find(params[:merchandise_id])
-    @purchase = @merchandise.purchases.new
+    if(params[:price].present?)
+      price = params[:price]
+      seller = params[:seller]
+      # Still need to create a purchase with the price and seller parameters 
+    else
+      @merchandise = Merchandise.find(params[:merchandise_id])
+      @purchase = @merchandise.purchases.new
+    end
     
     if user_signed_in?
       if current_user.stripe_customer_token.present?
@@ -66,7 +72,6 @@ class PurchasesController < ApplicationController
           data = open("https://authorprofile.s3.amazonaws.com#{@book.bookepub.to_s}") 
           send_data data.read, filename: @book.bookepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
         end
-
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
@@ -76,6 +81,15 @@ class PurchasesController < ApplicationController
       if user_signed_in?
         @purchase.user_id = current_user.id
       end 
+      if @purchase.save_with_payment
+        redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
+      else
+        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+      end
+    else
+      if user_signed_in?
+        @purchase.user_id = current_user.id
+      end
       if @purchase.save_with_payment
         redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
       else

@@ -57,11 +57,11 @@
                     <tr>
                         <td>
                             <%if (merch.buttontype) == 'Donate'%>
-                                <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
+                                <% btnTxt = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
                             <%else%>
-                                <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
+                                <% btnTxt = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
                             <%end%>
-                            <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+                            <%= link_to btnTxt, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
                         </td>
                     </tr>
                 <% end %>
@@ -75,14 +75,14 @@
             <% if @user.id != 143 %>
                     <tr>
                         <td>
-                            <% buyPrice = ("Donate $" + sprintf('%.2f',25) + "!") %>
-                            <%= link_to buyPrice, new_purchase_path(25), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+                            <% btnTxt = ("Donate $" + sprintf('%.2f',25) + "!") %>
+                            <%= link_to btnTxt, new_purchase_path(:price => 25, :seller => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
                             <br />
-                            <% buyPrice = ("Donate $" + sprintf('%.2f',50) + "!") %>
-                            <%= link_to buyPrice, new_purchase_path(50), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+                            <% btnTxt = ("Donate $" + sprintf('%.2f',50) + "!") %>
+                            <%= link_to btnTxt, new_purchase_path(:price => 50, :seller => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
                             <br />
-                            <% buyPrice = ("Donate $" + sprintf('%.2f',100) + "!") %>
-                            <%= link_to buyPrice, new_purchase_path(100), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+                            <% btnTxt = ("Donate $" + sprintf('%.2f',100) + "!") %>
+                            <%= link_to btnTxt, new_purchase_path(:price => 100, :seller => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
                         </td>
                     </tr>
                 <% end %>
