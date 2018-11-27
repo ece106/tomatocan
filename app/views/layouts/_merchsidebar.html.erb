@@ -20,8 +20,13 @@
 <!--Actual panel-->
 <div class="panel panel-primary">
 <div class="panel-heading">
-	<% if @user == current_user %>Current <% end %>
-	Perks
+	<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		Current Perks
+	<% else %>
+		Support our work!
+	<% end %>
+	<% end %>
 	<span class="badge pull-right"><%= @user.merchandises.count %> Perks</span>
 </div>
 <div class="panel-body">
@@ -64,6 +69,9 @@
 						<% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
 						<%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
 					<% end %>
+				<% else %>
+					<% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
+					<%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
 				<% end %>
 			</div>
 		</div>

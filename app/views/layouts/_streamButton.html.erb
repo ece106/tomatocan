@@ -3,13 +3,15 @@
 		Stream
 	</div>
 	<div class="panel-body" style="text-align:center">
-		<% if @user == current_user %>
-			<%= link_to "Start a Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-		<% else %>
-			<!-- At some point I imagine we'll be able to determine whether the stream is live and adjust the button text accordingly.-->
-			<div class="panel-body" style="text-align:center">
-				<%= link_to "Join Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-			</div>
+		<% if user_signed_in? %>
+			<% if current_user.id == @user.id %>
+				<%= link_to "Start a Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+			<% else %>
+				<!-- At some point I imagine we'll be able to determine whether the stream is live and adjust the button text accordingly.-->
+				<div class="panel-body" style="text-align:center">
+					<%= link_to "Join Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>
