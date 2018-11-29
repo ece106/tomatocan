@@ -22,10 +22,12 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/new
   def new
-    if(params[:price].present?)
-      price = params[:price]
-      seller = params[:seller]
+    if(params[:pricesold].present?)
       # Still need to create a purchase with the price and seller parameters 
+      @purchase = Purchase.new
+      @purchase.pricesold = params[:pricesold]
+      @purchase.author_id = params[:author_id]
+      @purchase.save!
     else
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new

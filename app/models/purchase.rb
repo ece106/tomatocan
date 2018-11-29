@@ -9,11 +9,11 @@ class Purchase < ApplicationRecord
 #  validates :user_id, presence: true
   validates :author_id, presence: true # author means seller
   validates :pricesold, presence: true
-  validates :authorcut, presence: true
+# validates :authorcut, presence: true
 #  validates :merchandise_id, presence: true
 #  validates :email, :presence => true, :if => loggedin  #cant validate this
 #  validates :bookfiletype, presence: true
-
+  
   def save_with_payment
     if(self.merchandise_id.present?)
       @merchandise = Merchandise.find(self.merchandise_id)
@@ -25,19 +25,26 @@ class Purchase < ApplicationRecord
       %%if self.group_id.present?
         self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
         self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
-      else%
+      else% 
         self.groupcut = 0.0
-        self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100
+        self.authorcut = ((@merchandise.price * 92.1).to_i - 30).to_f/100
       %%end%
 
-      sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 
+      
+    else
+      # self.pricesold = @purchase.pricesold
+      # self.author_id = @purchase.author_i
+      
+      amt = (self.pricesold * 100).to_i 
+      self.authorcut = ((self.pricesold * 92.1).to_i - 30).to_f/100
+      desc = "Donation" # Change this later
+    end
+
+    sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 
       %%if self.group_id.present? #not used right now
         group = Group.find(self.group_id)
         groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
       end%
-    else
-      self.pricesold = price
-    end
 
     if self.email.present?
       customer = Stripe::Customer.create(
