@@ -1,39 +1,43 @@
-f<div id="wrapper">
-  <div id="page-content-wrapper">
-    <div class="page-content">
-      <div class="container col-md-12" >
-<p id="notice"><%= notice %></p>
-
-  <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
-    <%= image_tag(@merchandise.itempic.url.to_s, height: '200px') %><br>
-  <% end %>
-
-  <h3><%= @merchandise.name %> </h3>
-  <% if user_signed_in? %>
-    <% if @user.stripeid.present? || @user.id == 143  %>
-      <%= link_to new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method => :get, :class => "btn btn-primary" %> 
-      <% if @merchandise.price.present? %>
-        $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
-      <% end %>
-    <% else %>
-        <%= @user.name %> has not made this items available yet. Please check back later to purchase <%= @merchandise.name %>.
-    <% end %>
-  <% else %>
-    <br><%= link_to "/signup", "Sign Up", :class => "btn btn-primary" %> to get awesome Perks from <%= @author.name %> 
-  <% end %>
-
-<div class="goals">
-  <% if @merchandise.desc %> 
-    <br><%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %><br>
-  <% end %> 
-      <% if @merchandise.youtube? %>
-        <% if @merchandise.youtube.match(/[0-9A-Za-z]/) && @merchandise.youtube.length < 20 %>
-          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @merchandise.youtube %>" frameborder="0" allowfullscreen></iframe>
-        <% end %>
-      <% end %>
-</div>
-<br><br><br>
-</div>
-</div>
-</div>
+<div class="container-fluid">
+	<p id="notice"><%= notice %></p>
+	<% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
+		<div class="row">
+			<div class="col-md-3 col-md-offset-2">
+						<%= image_tag(@merchandise.itempic.url.to_s, height: '200px') %>
+				</div>
+		</div>
+	<% end %>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h3><%= @merchandise.name %></h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<% if user_signed_in? %>
+				<% if @user.stripeid.present? || @user.id == 143  %>
+					<%= link_to new_purchase_path( :merchandise_id => @merchandise.id, :group_id => params[:groupid]), :method => :get, class: "btn btn-large btn-warning"%> 
+					<% if @merchandise.price.present? %>
+						$<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
+					<% end %>
+				<% else %>
+						<%= @user.name %> has not made this item available yet.<br>Please check back later to purchase <%= @merchandise.name %>.
+				<% end %>
+			<% else %>
+				<br><%= link_to "Sign Up", "/signup" %> to get awesome Perks from <%= @author.name %> 
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<% if @merchandise.desc %> 
+				<br><%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %><br>
+			<% end %> 
+			<% if @merchandise.youtube? %>
+				<% if @merchandise.youtube.match(/[0-9A-Za-z]/) && @merchandise.youtube.length < 20 %>
+					<iframe width="420" height="315" src="//www.youtube.com/embed/<%= @merchandise.youtube %>" frameborder="0" allowfullscreen></iframe>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 </div>

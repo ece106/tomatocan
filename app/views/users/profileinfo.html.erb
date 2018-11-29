@@ -1,4 +1,5 @@
 <!--This partial contains two panels unlike the other panel partials because I don't think they'll ever be seperated, but I want them split to save vertical space.-->
+<div class="col-md-6">
 <%= form_for @user, :html => {:multipart => true} do |f| %>
 <div class="panel panel-primary">
 <div class="panel-heading">
@@ -81,6 +82,7 @@
 		<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
 		<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
 	</div>
+</div>
 </div>
 </div>
 

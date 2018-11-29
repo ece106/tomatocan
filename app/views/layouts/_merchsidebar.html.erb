@@ -27,9 +27,9 @@
 	<% else %>
 		Support our work!
 	<% end %>
-	<span class="badge pull-right"><%= @user.merchandises.count %> Perks</span>
+	<!--span class="badge pull-right"><#%= @user.merchandises.count %> Perks</span> currently doesn't work-->
 </div>
-<div class="panel-body">
+<div class="panel-body" id="merchSidebar">
 	<% if @sidebarmerchandise.present? %>
 		<% @sidebarmerchandise.each do |merch| %>
 		<div class="media">

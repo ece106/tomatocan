@@ -9,7 +9,7 @@
 	<% if current_user.id == @user.id %>
 		<div class="container-fluid">
 			<div class="row">
-				<%= render :file => 'users/dashboardbox' %>
+				<%= render :file => 'users/controlpanel' %>
 			</div>
 		</div>
 	<% else %>
@@ -60,13 +60,15 @@
 		<% else %>
 			<%= render 'layouts/authorform' %>
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-xs-12">
 					<%= render 'layouts/streamButton' %>
 				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-4">
 					<%= render 'layouts/merchsidebar' %>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-8">
 					<%= render 'layouts/youtube' %>
 				</div>
 			</div>
