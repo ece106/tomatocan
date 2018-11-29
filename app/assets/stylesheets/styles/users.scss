@@ -34,12 +34,12 @@
     margin: 0;
     color: $brand-secondary;
     font-weight: 600;
-    text-shadow: 0 0 4px rgba(0,0,0,.8)
+    text-shadow: $overlaid-text;
 }
 #profileDescription {
     color: $brand-secondary;
     font-size: 1.5em;
-    text-shadow: 0 0 2px rgba(0,0,0,.8)
+		text-shadow: $overlaid-text;
 }
 
 @media (min-width: $screen-xs-min) {

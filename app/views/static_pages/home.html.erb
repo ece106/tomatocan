@@ -1,7 +1,6 @@
-<!--This wrapper is a bad cheat for centering until I figure out our views-->
 <div class="row" id="heroImage">
     <div>
-        <h1 id="heroTitle">Conversations to make you Think & take Action</h1>
+        <h1 id="heroTitle">Conversations to Make You Think &amp; Take Action</h1>
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
@@ -11,9 +10,8 @@
     <% end %> 
     <!--Livestream button-->
     <%= link_to 'Host Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
-    <% if user_signed_in? %>
-    <% else %>
-    <br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
+    <% if !user_signed_in? %>
+    	<br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
     <% end %>
 </div>
 <div class="row darkBlock" id="connectFans">
