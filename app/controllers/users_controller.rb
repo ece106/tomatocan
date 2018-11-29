@@ -26,8 +26,6 @@ class UsersController < ApplicationController
 
   def show
 #    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
-		currtime = Time.now
-		@events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
     @books = @user.books
     @numusrgroups = 0 
     if user_signed_in?

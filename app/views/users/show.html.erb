@@ -6,50 +6,69 @@
 </head>
 
 <% if user_signed_in? %>
-<% if current_user.id == @user.id %>
-
-<div class="container-fluid">
-	<div class="row">
-		<%= render :file => 'users/dashboardbox' %>
-	</div>
-</div>
-
-<% else %>
-
-<div class="container-fluid">
-	
-	<%= render 'layouts/authorform' %>
-		
-	<div class="row">
-		<div class="col-md-12">
-			<%= render 'layouts/stripeAlert' %>
-		</div>
-	</div>
-
-	<div class="row">
-		<% if request.host == "crowdpublishtv.herokuapp.com" %>
-			<div class="col-md-4">
-				<%= render 'layouts/merchsidebar' %>
+	<% if current_user.id == @user.id %>
+		<div class="container-fluid">
+			<div class="row">
+				<%= render :file => 'users/dashboardbox' %>
 			</div>
-			<div class="col-md-8">
-				<%= render 'layouts/jitsi' %>
+		</div>
+	<% else %>
+		<div class="container-fluid">
+			<%= render 'layouts/authorform' %>
+			<div class="row">
+				<div class="col-md-12">
+					<!--%= render 'layouts/stripeAlert' %-->
+				</div>
+			</div>
+
+			<div class="row">
+				<% if request.host == "crowdpublishtv.herokuapp.com" %>
+					<div class="col-md-4">
+						<%= render 'layouts/merchsidebar' %>
+					</div>
+					<div class="col-md-8">
+						<%= render 'layouts/jitsi' %>
+					</div>
+				<% else %>
+					<div class="col-md-3">
+						<%= render 'layouts/streamButton' %>
+					</div>
+					<div class="col-md-9">
+						<%= render 'layouts/merchsidebar' %>
+					</div>
+				<% end %>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<%= render 'layouts/youtube' %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+	<div class="container-fluid">
+		<% if request.host == "crowdpublishtv.herokuapp.com" %>
+			<div class="row">
+				<div class="col-md-4">
+					<%= render 'layouts/merchsidebar' %>
+				</div>
+				<div class="col-md-8">
+					<%= render 'layouts/jitsi' %>
+				</div>
 			</div>
 		<% else %>
-			<div class="col-md-3">
-				<%= render 'layouts/streamButton' %>
-			</div>
-			<div class="col-md-9">
-				<%= render 'layouts/merchsidebar' %>
+			<%= render 'layouts/authorform' %>
+			<div class="row">
+				<div class="col-md-3">
+					<%= render 'layouts/streamButton' %>
+				</div>
+				<div class="col-md-4">
+					<%= render 'layouts/merchsidebar' %>
+				</div>
+				<div class="col-md-5">
+					<%= render 'layouts/youtube' %>
+				</div>
 			</div>
 		<% end %>
-	</div>
-
-	<div class="row">
-		<div class="col-xs-12">
-			<%= render 'layouts/youtube' %>
-		</div>
-	</div>
-</div>
-
-<% end %>
 <% end %>

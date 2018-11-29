@@ -21,11 +21,11 @@
 <div class="panel panel-primary">
 <div class="panel-heading">
 	<% if user_signed_in? %>
-	<% if current_user.id == @user.id %>
+		<% if current_user.id == @user.id %>
 		Current Perks
+		<% end %>
 	<% else %>
 		Support our work!
-	<% end %>
 	<% end %>
 	<span class="badge pull-right"><%= @user.merchandises.count %> Perks</span>
 </div>
