@@ -7,15 +7,12 @@ html {
     overflow-y: scroll;
 }
 
-//Prevents header from overlapping body
-main {
-    margin-top: 51px;
-}
 //Wrapper for footer alignment
 body {
     display: flex !important;
     min-height: 100vh !important;
     flex-direction: column !important;
+	overscroll-behavior: none !important;
 }
 //Wrapper for footer alignment
 main {

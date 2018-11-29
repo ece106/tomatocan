@@ -348,7 +348,7 @@ Tasks for week of October 29, 2018
     - Look through livestream sites ToS for terms on recording; non-members need a way to opt-in
     - Look into imagemagic gem for carrierwave to restrict image size
     - Add .fade .in and close button to Stripe alert
-    
+   
 Monday, October 29, 2018
     - Favicon added to site https://realfavicongenerator.net/favicon_result?file_id=p1cr0odfhp11uq1d0a7c67sd1usg6
     - Profile Name text given a drop shadow instead of an outline
@@ -356,6 +356,7 @@ Monday, October 29, 2018
     - Books index now has pagination, books index and userswithmerch have Bootstrap-styled pagination https://github.com/bootstrap-ruby/will_paginate-bootstrap
     - Fixed several broken links to PNG buttons I removed. Replaced with Bootstrap buttons.
 
+<<<<<<< HEAD
 Tuesday, November 6th, 2018
 	- Dashboardbox Perks tab now has cards, which is how I think we should style the rest of the tab columns.
 	- Dashboardbox has a horizontal menu -- may need to be more distinct from navbar?
@@ -427,3 +428,26 @@ Monday, November 19, 2018
 Thursday, November 29, 2018
 	- Larger "Already have an account?" text
 	- Drop shadow for home header
+=======
+========================================
+Monday, November 26, 2018
+	- Rescope
+		- Panels are now individual partials with content ONLY. Column sizing and row spacing are done a step above in their layouts
+	- Setup layout for both user dashboard and logged out user's view of profile
+	- authorform changes to fix banner margin and rescope to match rest of panels
+	- YouTube div stripped of descriptions
+	
+Tuesday, November 27, 2018
+	- Connected Stripe test account
+	- Changed navbar to an unfixed heading so we get an extra inch of vertical screen space
+	- Authorform should look better with giant names
+	- Restyled YouTube div as a panel
+	- Fixed check for "if current user == @user" to include "if user == signed in"
+	
+Thursday, November 29, 2018
+	- Inserted placeholders for UI elements that require more Ruby work in preperation for merge
+	- Added placeholder profile image
+	- Restyled Discover Discussion Hosts
+	- Restyled merchandises/show
+	- Fixed mobile view of header
+>>>>>>> dashboardTabs

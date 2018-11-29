@@ -1,0 +1,16 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		Stream
+	</div>
+	<div class="panel-body" style="text-align:center">
+		<% if user_signed_in? %>
+			<% if current_user.id == @user.id %>
+				<%= link_to "Start a Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+			<% else %>
+				<%= link_to "Join Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+			<% end %>
+		<% else %>
+			<%= link_to "Join Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+		<% end %>
+	</div>
+</div>
