@@ -5,78 +5,68 @@
 <meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
 </head>
 
-<% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
-
-    <%= render 'layouts/merchsidebar' %>
-
-    <% if request.host == "crowdpublishtv.herokuapp.com" # || request.host == "localhost" #needed to make sure livestream isnt wrapping under sidebar %> 
-      <div class="col-xl-10 col-lg-9 col-md-8 col-sm-7">
-            <script src="https://meet.jit.si/external_api.js"></script>
-            <script>
-                jQuery(document).ready(function($) {
-                    var domain = "meet.jit.si";
-                    var userRoomName = '<%= @user.permalink %>';
-                    var options = {
-                        roomName: "CrowdPublishTV_" + `${userRoomName}`,
-                        width: 800,
-                        height: 700,
-                        parentNode: document.querySelector('#meet')
-                        //configOverwrite: {dropbox:       perhaps dropbox is full?
-                        //  { appKey: 'n2q7nmq1bix8l49' }
-                        //} 
-                    }
-                    var api = new JitsiMeetExternalAPI(domain, options);
-                    $('#jitsiConferenceFrame0').addClass("embed-responsive-item");
-                });
-            </script>
-
-
-            <!--class="embed-responsive"-->
-            <div id="meet"></div>
-      </div>
-    <% else %>
-      <div class="col-xl-9 col-lg-8 col-md-7 col-sm-6" id="joinStream">
-        <%= link_to "Join " + @user.name + "'s Livestream", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-      </div> <br><br><br>
-<!-- Took out the row. Why was it there? Kept wrapping videos under sidebar-->
-<div class="well">
-    <div class="row">
-        <% if @user.youtube1? %>
-            <div class="col-sm-4">
-                <% if @user.youtube1.match(/[0-9A-Za-z]/) && @user.youtube1.length < 20 %>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube1 %>" allowfullscreen></iframe>
-                    </div>
-                <% end %>
-                <% if @user.videodesc1 %>
-                    <div><%= simple_format @user.videodesc1.gsub(/\r\n/, '<br>') %></div>
-                <% end %>
-            </div>
-        <% end %>
-        <% if @user.youtube2? %>
-            <div class="col-sm-4">
-                <% if @user.youtube2.match(/[0-9A-Za-z]/) && @user.youtube2.length < 20 %>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube2 %>" allowfullscreen></iframe>
-                </div>
-                <% end %>
-                <% if @user.videodesc2 %>
-                <div><%= simple_format @user.videodesc2.gsub(/\r\n/, '<br>') %></div>
-                <% end %>
-            </div>
-        <% end %>
-        <% if @user.youtube3? %>
-            <div class="col-sm-4">
-                <% if @user.youtube3.match(/[0-9A-Za-z]/) && @user.youtube3.length < 20 %>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= @user.youtube3 %>" allowfullscreen></iframe>
-                </div>
-                <% end %>
-                <% if @user.videodesc3 %>
-                <div><%= simple_format @user.videodesc3.gsub(/\r\n/, '<br>') %></div>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
-    <% end %>
-  </div>
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<div class="container-fluid">
+			<div class="row">
+				<%= render :file => 'users/controlpanel' %>
+			</div>
+		</div>
+	<% else %>
+		<div class="container-fluid">
+			<% if request.host == "crowdpublishtv.herokuapp.com" %>
+			<div class="row">
+				<div class="col-md-4">
+					<%= render 'layouts/merchsidebar' %>
+				</div>
+				<div class="col-md-8">
+					<%= render 'layouts/jitsi' %>
+				</div>
+			</div>
+			<% else %>
+			<%= render 'layouts/authorform' %>
+			<div class="row">
+				<div class="col-xs-12">
+					<%= render 'layouts/streamButton' %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<%= render 'layouts/merchsidebar' %>
+				</div>
+				<div class="col-md-8">
+					<%= render 'layouts/youtube' %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	<% end %>
+<% else %>
+	<div class="container-fluid">
+		<% if request.host == "crowdpublishtv.herokuapp.com" %>
+			<div class="row">
+				<div class="col-md-4">
+					<%= render 'layouts/merchsidebar' %>
+				</div>
+				<div class="col-md-8">
+					<%= render 'layouts/jitsi' %>
+				</div>
+			</div>
+		<% else %>
+			<%= render 'layouts/authorform' %>
+			<div class="row">
+				<div class="col-xs-12">
+					<%= render 'layouts/streamButton' %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<%= render 'layouts/merchsidebar' %>
+				</div>
+				<div class="col-md-8">
+					<%= render 'layouts/youtube' %>
+				</div>
+		</div>
+		<% end %>
+	</div>
+<% end %>

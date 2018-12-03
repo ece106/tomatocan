@@ -7,15 +7,12 @@ html {
     overflow-y: scroll;
 }
 
-//Prevents header from overlapping body
-main {
-    margin-top: 51px;
-}
 //Wrapper for footer alignment
 body {
     display: flex !important;
     min-height: 100vh !important;
     flex-direction: column !important;
+	overscroll-behavior: none !important;
 }
 //Wrapper for footer alignment
 main {
@@ -32,6 +29,9 @@ main {
 textarea {
 	resize: vertical;
 }
+
+//Gives a drop shadow to make text readable when we put it over an image
+$overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
 
 //Old styles. Not sure what they're used for.
 

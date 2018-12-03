@@ -1,0 +1,46 @@
+<%= form_for @user, :html => {:multipart => true} do |f| %>
+	
+<div class="panel panel-primary">
+<div class="panel-heading">
+	Account
+</div>
+<div class="panel-body">
+	<div class="form-group">
+		<h3><%=f.label :name, "Email" %></h3>
+		<p class="help-block">Change your email address.</p>
+		<%= f.text_field :email, :type => "email", :class => "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<h3><%=f.label :name, "Password" %></h3>
+		<%= link_to "Change Password", user_changepassword_path(@user.permalink), :method => :get, :class => "btn btn-default"%>
+		<%= f.hidden_field :password %>
+		<%= f.hidden_field :password_confirmation %>
+	</div>
+
+	<div class="form-group">
+		<h3><%=f.label :name, "Custom URL" %></h3>
+		<p class="help-block">For a limited time, you will be allowed to change your custom URL handle. Alphanumeric characters only. URL handle must be less than 20 characters.</p>
+		<div class="input-group">
+			<div class="input-group-addon">crowdpublish.tv/</div>
+			<%= f.text_field :permalink, placeholder: "yourcustomurl", maxlength: 20, :class => "form-control" %>
+		</div>
+	</div>
+	<!--Future build for connect to Stripe button-->
+	<!--div class="form group">
+		<h3>Connect to Stripe</h3>
+		<p class-->
+	<div class="btn-group btn-group-lg" id="editProfileButton">
+		<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+		<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+	</div>
+</div>
+</div>
+
+<% end %>
+
+<!-- Notes:
+
+Test to ensure form posts correctly
+
+-->

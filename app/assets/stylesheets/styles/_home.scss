@@ -10,17 +10,20 @@ p {
     background-image: image-url('heroImage.jpg');
     background-color: transparent;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     padding-top: 200px;
     padding-bottom: 200px;
 }
 #heroTitle, #heroImage small {
     color: white;
+		text-shadow: $overlaid-text;
 }
 #haveAccount {
     color: white;
+		font-size: 1.75rem;
     text-align: center;
     font-weight: 600;
+		text-shadow: $overlaid-text;
 }
 #haveAccount a {
     color: $brand-secondary;

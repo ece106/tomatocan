@@ -5,3 +5,19 @@
     padding: 4px;
     padding-left: 15px;
 }
+
+@media (max-width: 768px) {
+	.navbar .navbar-nav .navbar-btn{
+		float: none;
+		vertical-align: top;
+	}
+	
+	.navbar-btn {
+		float: center;
+		text-align: center;
+	}
+
+	.navbar .navbar-collapse {
+		text-align: center;
+	}
+}
