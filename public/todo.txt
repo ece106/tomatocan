@@ -1,29 +1,46 @@
-CrowdPublish.TV is developing a platform for Discussion Hosts to have livestream conversations & panel discussions with their colleagues & viewers while selling items related to their brand in the sidebar. 
+12:00-5:00pm Mon Dec 3 
+3:00-6:00pm Wed Dec 5
+11:00-5:30pm Thu Dec 6
+2:00-4:00pm Fri Dec 7
+If you'd like to meet in person, we could meet any of the above times at Scottsdale Rd & McDowell. If you'd like to meet somewhere other than Scottsdale Rd, it would have to be Tuesday Dec 4 after 2:00pm.
 
-We need interesting people such as yourself to become Founding Hosts to try out the platform with their colleagues & give us feedback. We're putting together a Phoenix-based group of Founding Hosts to be a support group for each other with shared panel discussions and shared viewership. 
+
+Gianmarco:
+MONDAY DEC 3 Pull request for current version
+
+- Check current_user variable usage in entire repo
+- Button to Add Discussion on Edit dashboard
+- Shadow around homepage Signin, larger text
+- TOS: Add twitch, youtube TOS about recording, put TOS next to viewer about nonusers being recorded
+- Instructions for recording a livestream & displaying resulting youtube on users#show (only host sees)
+- Page of good previous livestreams
+- Display Mission (users#about)
+- Button to hosts Show page on CrowdPublish.TV from livestream
+
+Roni:
+- 3 or 5 donate buttons
+- Download items when SaveWPurchase
+- TESTS
+- Users hasmany Youtubes
+- Permalink Username has already been taken
+- Get rid of Phases table
+
+
+
+FAQ summary
+On http://CrowdPublish.TV, your sales &/or donate buttons are right next to the livestream viewer. You can post some of your YouTube videos so that when you're not live, people can donate/buy while watching them on your CrowdPublish.TV page.
+
+Select a time & topic for your show & post it on the http://CrowdPublish.TV home page. No more than 30 minutes. We recommend shorter shows. Keep it interesting.
+
+As a Founding Host, you're a partner in growing the site. You will have opportunity for influence & publicity commensurate with your impact on site growth. You announce the show to your colleagues, fans, customer list. By posting your show on the home page, you also gain exposure to other Hosts' fans. 
+
+The livestream shows can be recorded to YouTube if you have a YouTube Live key.
+
 
 
 , CrowdPublish.TV is developing a platform for Discussion Hosts to have livestream conversations while selling products &/or services. Would you be interested in being part of a Phoenix-based group of Founding Hosts who engage in shared panel discussions and shared viewership?
 
-
-CrowdPublish.TV is developing a platform for authors, coaches, small businesses to have livestream discussions with colleagues & fans/viewers/customers while selling items & services related to their brand in the sidebar.
-
-We need interesting people to become Founding Hosts to try out the platform with their colleagues & give us feedback. We're putting together a Phoenix-based group of Founding Hosts to be a support group for each other, to collaborate on informal livestream discussion panels, and to share viewership. Founding Hosts will have a huge influence over how CrowdPublish.TV evolves and will be featured prominently on the platform as CrowdPublish.TV grows.
-
 Founding Hosts don't need to spend much time upfront creating content. All you need to do is decide on a time and topic with one or two colleagues, think of a few talking points, and encourage friends to join in. Please experiment on the site http://CrowdPublish.TV and let us know if you have any questions or if you'd like to be invited to the upcoming in-person meeting for potential Founding Hosts.
-
-
-
-CrowdPublish.TV is developing a platform for authors, musicians, speakers to host purpose-based livestreamed interactive discussions while selling their work or receiving donations for their cause in the sidebar.
-
-
-CrowdPublish.TV is developing a platform for organizations who are doing purposeful work to host livestreaming interactive discussions while receiving donations & selling their writings in the sidebar.
-
-We need people with a message to become Founding Hosts to try out the platform with their colleagues & give us feedback. Founding Hosts will have a huge influence over how CrowdPublish.TV evolves and will be featured prominently on the platform as CrowdPublish.TV grows.
-
-We'd like to set up a time for you to ask questions and walk through site features with us. If you know of anyone else who might like to try out our platform, please let us know. 
-
-
 
 
 
@@ -31,7 +48,7 @@ CrowdPublish.TV is developing a platform for organizations who are doing purpose
 
 There are a few more details here http://CrowdPublish.TV/faq If you come up with other questions that belong in our FAQ, please let me know.
 
-We need people with a message to become Founding Hosts to try out the platform with their colleagues & give us feedback. Founding Hosts will have a huge influence over how CrowdPublish.TV evolves, will become the platform experts, and will be featured prominently on the platform as CrowdPublish.TV grows.
+We need people with a message to become Founding Hosts - the first hosts on the platform - to try out the platform with their colleagues and donors & give us feedback. Founding Hosts will have a huge influence over how CrowdPublish.TV evolves, will become the platform experts, and will be featured prominently on the platform as CrowdPublish.TV grows.
 
 We'd like to set up a time for you to ask questions and walk through site features with us. You can browse the site at http://CrowdPublish.TV. It's best to try it with at least one other person on the livestream to see how the features work.
 
@@ -40,60 +57,67 @@ Lisa Schaefer
 
 
 
+CrowdPublish.TV is developing a platform for people and organizations who are doing purposeful work to host livestreaming interactive discussions while receiving donations in the sidebar. 
+
+We need people with interesting topics to become Founding Hosts to try out the platform with their colleagues & give us feedback. Founding Hosts will have a huge influence over how CrowdPublish.TV evolves, will become the platform experts, and will be featured prominently on the platform as CrowdPublish.TV grows.
+
+Would you like to set up a time to try out the platform and ask us questions?
+
+
+
+CrowdPublish.TV is developing a platform for organizations who are doing purposeful work to host livestreaming interactive discussions while receiving donations in the sidebar. 
+
+We would like the Newman Center to become a Founding Host where students and staff would host brief weekly or bi-weekly live talk shows. Founding Hosts will have a huge influence over how CrowdPublish.TV evolves, will become the platform experts, and will be featured prominently on the platform as CrowdPublish.TV grows.
+
+Would you like to set up a time to try out the platform and ask us questions?
+
+
+
+
 
 CrowdPublishTV
 
-- Comments on: authors books, user walls, events...
-- Disable book editing after reader reviews or book is sold
-- A way to send message to author, email list to fans: Mailboxer
+- Comments on: user walls, events...
+- Disable merch editing after reader reviews or book is sold
+- A way to send message to host, email list to fans: Mailboxer
 - Likes scaffolding
-* Alert users to what the mistake is in editing profile (prob w/devise resource)
 - Signup with facebook and twitter
 - Send an email to validate signup
 - Auto tweet from @crowdpublishtv about CrowdPublish.TV when a user signs up, posts new book, & give user option to send tweet too
 - Hit counts for authors site, events
 - Gaming/rewards
 - Auto-recruit - a recruit is automatic friend
-- When someone purchases book, becomes that author's fan
-- Add (early adopter) badges to profiles
-- Author & club email lists, fans can opt out
+- When someone purchases merch, becomes that Host's fan
+- Add Founding Host badges to profiles
+- Host email lists, fans can opt out
 - dns route from domain server to crowdpublishtv page for authors & clubs
-- Sites for people offering author services - not free
+- Sites for people offering publishing services - not free
 - Search feature
 - TESTS! 
 - Pay for Online courses - pay per view videos on demand? download videos?
-- Shadowbox so users don't navigate away from page when buying books
-- Look for authors on spreecast, kickstarter, goodreads, fb groups
+
+- Tag cohosts in youtube videos, videos appear on cohost's gallery
+- Automate: Go to Next Show (on host's page) right after previous show ends. When there are multiple shows following, base on genre.
 
 
-
-@@Author points for: 
-Logging on x days in a row
+@@Host points for: 
 Adding Content: profile info, Blog posts, events, comments
 Receiving hits, comments
 Recruiting friends to sign up
 Purchasing
 Sales
-Posting things to sell
 Hosting livestream event
 Friending users, clubs - only when purchase, recruit, club moderator approves
 
-@@booklover points for: 
+@@viewer points for: 
 Logging on x days in a row
 Adding Content: profile info, reviews, comments
 Recruiting friends to sign up
 Purchasing
 Friending users, clubs - only when purchase, recruit, club moderator approves
 
-@@Club Points for:
-Adding Content: profile info, Blog posts, events, comments
-Receiving hits, comments
-# members affiliated
 
 
-
-
-Few universities offer Ruby courses & most are filled with unusable academic exercises anyway. New rubyists could instead be grown via internships. CrowdPublish.TV will be used to teach through building useful software vs. toy apps.
 
 Teaching & Learning Ruby in a Post-University World
 
@@ -107,10 +131,5 @@ Dr. Schaefer will use CrowdPublish.TV code to show an example of the thought pro
 
 
 
-Very few people who know Ruby have the bureaucratic reqs for teaching at universities. People who teach at universities aren't engaged in the Ruby or entrepreneurial community. Stanford?
-Aspiring rubyists come in many levels of 'beginner,' from What is Algebra to I've Made Stuff in html Before. 
-Aspiring rubyists need self discipline, but people learn better with context and community. It also helps if they believe in what they're doing, whether they're learners or experienced.
-
 
 Lisa Schaefer is the Founder & Software Engineer of CrowdPublish.TV, a platform for authors to crowdfund, publicize, and sell through their networks. Dr. Schaefer earned her Ph.D. in systems engineering from Arizona State University. She has taught engineering and statistics courses at Scottsdale Community College, ASU, Marymount, and American Universities. She taught herself Ruby on Rails via online resources, then developed and taught a course for George Mason University, and now teacher her own course. Dr. Schaefer has been a guest and a host on several Fairfax County cable shows and is the writer/producer of Budget Justified: The Waste, Fraud, & Abuse of Government Workers, about her experiences as a contractor working in FAA offices and Lisa's 80s Catholic High School Movie - math girl versus class clown twin brothers. 
-

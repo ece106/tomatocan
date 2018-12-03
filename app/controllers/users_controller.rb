@@ -189,7 +189,7 @@ class UsersController < ApplicationController
     redirect_to user_dashboard_path(current_user.permalink)
   end
 
-  def dashboard
+  def controlpanel
     @user.calcdashboard
     @monthperkinfo = @user.monthperkinfo
     @monthbookinfo = @user.monthbookinfo

@@ -71,7 +71,7 @@ class PurchasesController < ApplicationController
       end
     elsif @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
-      seller = User.find(@merchandise.user_id)
+      @purchase.author_id = User.find(@merchandise.user_id) 
       if user_signed_in?
         @purchase.user_id = current_user.id
       end 

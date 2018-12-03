@@ -5,43 +5,6 @@
 <meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
 </head>
 
-<% if user_signed_in? %>
-	<% if current_user.id == @user.id %>
-		<div class="container-fluid">
-			<div class="row">
-				<%= render :file => 'users/controlpanel' %>
-			</div>
-		</div>
-	<% else %>
-		<div class="container-fluid">
-			<% if request.host == "crowdpublishtv.herokuapp.com" %>
-			<div class="row">
-				<div class="col-md-4">
-					<%= render 'layouts/merchsidebar' %>
-				</div>
-				<div class="col-md-8">
-					<%= render 'layouts/jitsi' %>
-				</div>
-			</div>
-			<% else %>
-			<%= render 'layouts/authorform' %>
-			<div class="row">
-				<div class="col-xs-12">
-					<%= render 'layouts/streamButton' %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<%= render 'layouts/merchsidebar' %>
-				</div>
-				<div class="col-md-8">
-					<%= render 'layouts/youtube' %>
-				</div>
-			</div>
-			<% end %>
-		</div>
-	<% end %>
-<% else %>
 	<div class="container-fluid">
 		<% if request.host == "crowdpublishtv.herokuapp.com" %>
 			<div class="row">
@@ -69,4 +32,3 @@
 		</div>
 		<% end %>
 	</div>
-<% end %>
