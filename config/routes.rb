@@ -101,6 +101,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/:permalink/pastevents' => "users#pastevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
+  match '/:permalink/controlpanel' => "users#controlpanel", :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard' => "users#dashboard", :as => :user_dashboard, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
