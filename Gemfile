@@ -23,8 +23,8 @@ gem 'koala'
 gem 'will_paginate-bootstrap'
 
 gem 'pry'
-gem 'aws-sdk-s3' #aws-s3'
-gem 'aws-sdk'
+#gem 'aws-sdk-s3' #aws-s3'
+gem 'aws-sdk'm '~> 3'
 #gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '5.2.0'
