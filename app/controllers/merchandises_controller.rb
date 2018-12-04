@@ -57,14 +57,15 @@ class MerchandisesController < ApplicationController
       @merchandise = Merchandise.find(params[:id])
       @user = User.find(@merchandise.user_id)
       @expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
-      noexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
-      deadlineorder = noexpiredmerch.order('deadline IS NULL, deadline ASC')
+      notexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
+      deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
       @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
     end
 
     def merchandise_params
       params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :rttoeditphase,
-       :goal, :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype ,:itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h)
+       :goal, :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype ,
+       :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h)
     end
 
     def resolve_layout
