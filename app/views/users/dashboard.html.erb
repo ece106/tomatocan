@@ -14,8 +14,8 @@
 
 <% elsif user_signed_in? %>
 	<% if @user.id == current_user.id %>
-<!-- THIS DOESN'T WORK UNLESS SWITCHED TO @current_user.stripeid.present-->
-		<% if @user.stripesignup.present? %>
+<!-- if @user.stripesignup.present?-->
+		<% if @user.stripeid.present? %>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="panel panel-primary">
@@ -40,7 +40,7 @@
 									<td> <%= item[:whobought] %></td>
 									<td> <%= item[:address] %></td>
 									<td>
-										<% if item[:fulfillstat] != "sent" && item[:ebook].empty? %>
+										<% if item[:fulfillstat] != "sent" && item[:egoods].empty? %>
 											<%= button_to [:markfulfilled, @user] do %>
 											<strong>Mark as Sent </strong>
 											<%= hidden_field_tag :purchid, item[:purchaseid] %>
@@ -82,7 +82,7 @@
 				<div class="col-md-6 col-md-offset-2">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<span class="glyphicon glyphicon-exclamation-sign"></span> No Sales
+							<span class="glyphicon glyphicon-exclamation-sign"></span> Sales Coming Soon
 						</div>
 						<div class="panel-body">
 							Sales figures will be displayed on this page after you connect to Stripe.
