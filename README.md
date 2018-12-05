@@ -207,9 +207,9 @@ at the command line to build the database with the correct schema.
 
 Then type
 ```
->bin/rails server
+>rails s
 ```
-at the command line to start the server.
+at the command line from the tomatocan directory to start the server.
 
 
 And it's good to refer to Michael Hartl's tutorial for a lot of Rails help http://railstutorial.org/book

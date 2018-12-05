@@ -117,11 +117,7 @@ class User < ApplicationRecord
   def calcdashboard # Poll users for desired metrics
     self.monthperkinfo = []
     self.incomeinfo = []
-    if stripesignup.present?
-      monthq = self.stripesignup
-    else
-      monthq = Time.now
-    end  
+      monthq = self.created_at  # self.stripesignup
 
     # how many items sold & revenue each month
     while monthq < Date.today + 1.month do
@@ -142,19 +138,16 @@ class User < ApplicationRecord
       self.totalinfo = []
       mysales = Purchase.where('purchases.author_id = ?', self.id).order('created_at DESC')
       mysales.each do |sale| 
-        if sale.book_id.present?
-          booksold = Book.find(sale.book_id) 
-          customer = User.find(sale.user_id)
-          self.totalinfo << {soldtitle: booksold.title, soldprice: sale.pricesold, authorcut:sale.authorcut, 
-            purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: customer.name, address: sale.shipaddress, 
-            fulfillstat: sale.fulfillstatus, ebook: sale.bookfiletype } 
-        elsif sale.merchandise_id.present?
-          perksold = Merchandise.find(sale.merchandise_id) 
+        perksold = Merchandise.find(sale.merchandise_id) 
+        if sale.user_id.present?
           customer = User.find(sale.user_id) 
-          self.totalinfo << {soldtitle: perksold.name, soldprice: sale.pricesold, authorcut: sale.authorcut, 
-            purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: customer.name, address: sale.shipaddress, 
-            fulfillstat: sale.fulfillstatus, ebook: "" } 
+          whobought = customer.name 
+        else
+          whobought = "anonymous" 
         end
+        self.totalinfo << {soldtitle: perksold.name, soldprice: sale.pricesold, authorcut: sale.authorcut, 
+            purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: whobought, address: sale.shipaddress, 
+            fulfillstat: sale.fulfillstatus, egoods: "" } 
       end
       # Place Campaigns supported on dashboard later
   end  

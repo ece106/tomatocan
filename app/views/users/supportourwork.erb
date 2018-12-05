@@ -1,26 +1,27 @@
-<div class="container-flex">
-
-  <br><br>
-  <div class="row" > 
-  </div>
-<div class="row" > 
-  <% @stripeusers.each do |u| %> 
-      <div class="col-md-4 col-sm-6 col-xs-12" > 
-          <div class="r" style="vertical-align:top; horizontal-align:center; height:290px; width:395px; overflow:hidden;" >
-            <iframe width="370" height="220" src="//www.youtube.com/embed/<%= u.youtube1 %>" frameborder="0" allowfullscreen></iframe>
-            <br><%= link_to u.name, user_profile_path(u.permalink) %>
-            <% if u.genre1.present? %>
-              <% genrelist = u.genre1, u.genre2, u.genre3 %>
-              <% genrelist.reject!(&:empty?) %>
-              <br><%= genrelist.join(', ') %>
-            <% end %>
-          </div>
-      </div>
-  <% end %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Discussion Hosts</h1>
+		</div>
+	</div>
+	<div class="row">
+		<% @stripeusers.each do |u| %>
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= u.youtube1 %>" allowfullscreen></iframe>
+					</div>
+					<h4><%= link_to u.name, user_profile_path(u.permalink) %></h4>
+					<% if u.genre1.present? %>
+						<% genrelist = u.genre1, u.genre2, u.genre3 %>
+						<% genrelist.reject!(&:empty?) %>
+						<p><%= genrelist.join(', ') %></p>
+					<% end %>
+				</div>
+		<% end %>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<%= will_paginate @stripeusers %> <!--add renderer: BootstrapPagination::Rails for gem-->
+		</div>
+	</div>
 </div>
-  <div class="indexlist" >
-      <b>Browse more authors & actors</b><br> <%= will_paginate @stripeusers %> <br>
-  </div>
-
-</div>
-  <br><br>

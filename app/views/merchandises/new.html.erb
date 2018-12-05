@@ -136,9 +136,9 @@
         </div>
 		
         <div class="form-group">
-            <h3><%= f.label :expiration, "*Expiration Date" %></h3>
+            <h3><%= f.label :deadline, "*Purchase deadline" %></h3>
             <p class="help-block">Choose the last day fans can purchase this Perk.</p>
-            <%= f.date_select :expiration, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1, required: true %>
+            <%= f.date_select :deadline, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1, required: true %>
         </div>
 
         <%= f.submit "Create Perk", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>

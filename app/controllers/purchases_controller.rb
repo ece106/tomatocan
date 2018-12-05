@@ -79,12 +79,14 @@ class PurchasesController < ApplicationController
       end
     elsif @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
-      seller = User.find(@merchandise.user_id)
+      @purchase.author_id = User.find(@merchandise.user_id) 
       if user_signed_in?
         @purchase.user_id = current_user.id
       end 
       if @purchase.save_with_payment
-        redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
+        seller = User.find(@merchandise.user_id)
+        redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. 
+        Thank you for being a patron of " + seller.name 
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end

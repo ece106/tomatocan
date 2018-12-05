@@ -26,7 +26,6 @@ class UsersController < ApplicationController
 
   def show
 #    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
-    @books = @user.books
     @numusrgroups = 0 
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
@@ -189,6 +188,22 @@ class UsersController < ApplicationController
     redirect_to user_dashboard_path(current_user.permalink)
   end
 
+  def controlpanel
+    @user.calcdashboard
+    @monthperkinfo = @user.monthperkinfo
+    @monthbookinfo = @user.monthbookinfo
+    @incomeinfo = @user.incomeinfo
+    @salebyfiletype = @user.salebyfiletype
+    @salebyperktype = @user.salebyperktype
+    @totalinfo = @user.totalinfo
+    @purchasesinfo = @user.purchasesinfo
+
+      if @user.merchandises.any? 
+        expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
+        @expiredmerchandise = expiredmerch.order('deadline ASC')
+      end
+  end
+
   def dashboard
     @user.calcdashboard
     @monthperkinfo = @user.monthperkinfo
@@ -198,6 +213,11 @@ class UsersController < ApplicationController
     @salebyperktype = @user.salebyperktype
     @totalinfo = @user.totalinfo
     @purchasesinfo = @user.purchasesinfo
+
+      if @user.merchandises.any? 
+        expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
+        @expiredmerchandise = expiredmerch.order('deadline ASC')
+      end
   end
 
   def stripe_callback
@@ -274,7 +294,7 @@ class UsersController < ApplicationController
         :twitter, :title, :profilepic, :profilepicurl, :remember_me, 
         :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
         :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password, 
-        :agreeid, :purchid, :bannerpic, :on_password_reset )
+        :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
     end
 
     def resolve_layout
@@ -298,8 +318,8 @@ class UsersController < ApplicationController
     def set_user 
       @user = User.find_by_permalink(params[:permalink]) || current_user
       if @user.merchandises.any? 
-        noexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
-        deadlineorder = noexpiredmerch.order('deadline IS NULL, deadline ASC')
+        notexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
+        deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
         @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
       end 
     end

@@ -8,13 +8,8 @@
 <meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
-<div id="wrapper">
-  <div id="page-content-wrapper">
-    <div class="page-content">
-      <div class="container">
-
-<div id="groups"  >
-  <%= form_tag events_path, :method => :get do %>
+<!--div id="groups"  >
+  <#%= form_tag events_path, :method => :get do %>
     <table >      <tr>
         <th>Address or Zip code</th>
         <th>Distance (miles)</th>
@@ -22,67 +17,69 @@
         <th> Find in-person events in your Local area (5 - 20 miles) </th>
       </tr>
       <tr>
-        <td><%= text_field_tag :search, params[:search] %></td>
-        <td><%= text_field_tag :dist, params[:dist] %></td>
-        <td><%= submit_tag "Search Near", :name => nil %></td>
+        <td><#%= text_field_tag :search, params[:search] %></td>
+        <td><#%= text_field_tag :dist, params[:dist] %></td>
+        <td><#%= submit_tag "Search Near", :name => nil %></td>
         <td> Or in your MicroLocal area (1 - 5 miles) </td>      </tr>
     </table>  
-  <% end %> <br><br>
+  <#% end %>  <br-->
 
-<div class="row" >
-  <div class="col-md-7 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
-    <% if user_signed_in? %>
-      <% if @user.id == current_user.id %>
-        <%= button_to "Add Event", new_event_path, :method=> :get %> <br>
-      <% end %> 
-    <% end %> 
-    <% if @events.count != 0 %>
-      <table >      <tr>
-        <th>Event </th>
-        <th>When</th>
-        <th>Where</th>
-        <th></th>      </tr>
-      <% @events.sort_by{|t| t.start_at}.each do |event| %>
-        <tr>
-        <td><%= link_to event.name, event %><br><br></td>
-        <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
-        <td><%= event.address %><br><br></td>        <td>
-        <% if user_signed_in? %>
-          <% if @user.id == current_user.id %>
-            <%= link_to "Edit", edit_event_path(event) %>
-          <% end %>
-        <% end %><br><br></td>        </tr>
-      <% end %>
-      </table>
-    <% else %>  
-      <%= @user.name %> hasn't posted any upcoming events
-    <% end %>  
-    <%= link_to "View past events", user_pastevents_path %><br><br><br>
+<div class="panel panel-primary">
+	<div class="panel-heading">Your Upcoming Events</div>
+	<div class="panel-body" style="text-align:center">
+		<% if user_signed_in? %>
+		  <% if @user.id == current_user.id %>
+			<%= button_to "Schedule Event", new_event_path, :method=> :get, class: "btn btn-warning" %><br>
+		  <% end %> 
+		<% end %> 
+		<% if @events.count != 0 %>
+			<table class="table">
+				<tr>
+					<th>Event </th>
+					<th>When</th>
+					<th></th>
+				</tr>
+		  	<% @events.sort_by{|t| t.start_at}.each do |event| %>
+				<tr style="text-align:center">
+					<td><%= link_to event.name, event %></td>
+					<td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %></td>
+				<% if user_signed_in? %>
+			  		<% if @user.id == current_user.id %>
+							<td>
+								<%= link_to "Edit", edit_event_path(event) %>
+							</td>
+			  		<% end %>
+				<% end %>
+				</tr>
+		  	<% end %>
+		  	</table>
+		<% else %>  
+			<%= @user.name %> hasn't posted any upcoming events
+		<% end %>  
+	</div>
+</div>
+		
+		<!--%= link_to "View past events", user_pastevents_path %-->   
 
-    <% if @rsvpevents.count != 0 %>
-      <b><%= @user.name %>'s RSVPs</b><br><br>
-      <b>My RSVPs</b><br><br>
-      <table >      <tr>
-        <th>Event </th>
-        <th>When</th>
-        <th>Where</th>
-        <th></th>      </tr>
-      <% @rsvpevents.each do |rsvpevent| %>
-        <tr>
-        <td><%= link_to rsvpevent.name, rsvpevent %><br><br></td>
-        <td><%= rsvpevent.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
-        <td><%= rsvpevent.address %><br><br></td>
-        </tr>
-      <% end %>
-      </table>
-    <% else %>  
-      <%= @user.name %> hasn't RSVPd to any upcoming events
-    <% end %> 
-  </div>
-</div>  
-  </div>
-</div>  
-  </div>
-</div>  
-
-
+		<!--% if @rsvpevents.count != 0 %>
+			<#%= @user.name %>'s RSVPs  
+			My RSVPs
+			<table class="table">
+				<tr>
+					<th>Event </th>
+					<th>When</th>
+					<th>Where</th>
+				</tr>
+		  	<#% @rsvpevents.each do |rsvpevent| %>
+				<tr>
+					<td><#%= link_to rsvpevent.name, rsvpevent %>  </td>
+					<td><#%= rsvpevent.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
+					<td><#%= rsvpevent.address %></td>
+				</tr>
+		  	<#% end %>
+		  </table>
+		<#% else %>  
+			<#%= @user.name %> hasn't RSVPd to any upcoming events
+		<#% end %> 
+	</div>
+</div-->

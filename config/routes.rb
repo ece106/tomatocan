@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'
     
   resources :merchandises
-  resources :phases
   resources :rsvpqs
   resources :groups
   resources :purchases
@@ -102,21 +101,18 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/:permalink/pastevents' => "users#pastevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
+  match '/:permalink/controlpanel' => "users#controlpanel", :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard' => "users#dashboard", :as => :user_dashboard, via: 'get'
   match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
   match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
   match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
   match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
-  match '/:permalink/phases' => "users#phases", :as => :user_phases, via: 'get'
   match '/:permalink/perks' => "users#perks", :as => :user_merchandise, via: 'get'
   match '/:permalink/about' => "users#about", :as => :user_about, via: 'get'
  
   match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
   match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
   match '/groups/:permalink/dashboard' => "groups#dashboard", :as => :group_dashboard, via: 'get'
-
-  match '/phases/:permalink/edit' => "phases#edit", :as => :phase_edit, via: 'get'
-  match '/phases/:permalink' => "phases#show", :as => :phase_show, via: 'get'
 
   post '/:permalink/approveagreement' => 'users#approveagreement', :as => :approveagreement_user
   post '/:permalink/declineagreement' => 'users#declineagreement', :as => :declineagreement_user
