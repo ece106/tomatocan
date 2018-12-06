@@ -110,7 +110,7 @@
 		<div class="form-group">
 			<h3><%= f.label :deadline, "*Deadline Date" %></h3>
 			<p class="help-block">Change the last date that fans can purchase this Perk on.</p>
-			<%= f.date_select :deadline, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1, required: true %>
+			<%= f.date_select :deadline, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
 		</div>
 
 		<%= f.submit "Save Perk", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
