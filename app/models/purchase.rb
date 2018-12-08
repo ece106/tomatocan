@@ -9,7 +9,7 @@ class Purchase < ApplicationRecord
 #  validates :user_id, presence: true
   validates :author_id, presence: true # author means seller
   validates :pricesold, presence: true
-# validates :authorcut, presence: true
+  validates :authorcut, presence: true
 #  validates :merchandise_id, presence: true
 #  validates :email, :presence => true, :if => loggedin  #cant validate this
 #  validates :bookfiletype, presence: true
@@ -32,12 +32,13 @@ class Purchase < ApplicationRecord
 
       
     else
-      # self.pricesold = @purchase.pricesold
-      # self.author_id = @purchase.author_i
-      
-      amt = (self.pricesold * 100).to_i 
-      self.authorcut = ((self.pricesold * 92.1).to_i - 30).to_f/100
-      desc = "Donation" # Change this later
+      #If a donation is being made
+      self.pricesold = pricesold
+      self.author_id = author_id
+      seller = User.find(author_id) 
+      amt = (pricesold * 100).to_i 
+      self.authorcut = ((pricesold * 92.1).to_i - 30).to_f/100
+      desc = "Donation of $" + String(pricesold) + " to " + seller.name 
     end
 
     sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 

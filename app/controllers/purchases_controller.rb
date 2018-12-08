@@ -23,16 +23,11 @@ class PurchasesController < ApplicationController
   # GET /purchases/new
   def new
     if(params[:pricesold].present?)
-      # Still need to create a purchase with the price and seller parameters 
       @purchase = Purchase.new
-      @purchase.pricesold = params[:pricesold]
-      @purchase.author_id = params[:author_id]
-      @purchase.save!
     else
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new
     end
-    
     if user_signed_in?
       if current_user.stripe_customer_token.present?
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
@@ -50,11 +45,11 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 
   def create
-    @purchase = Purchase.new(purchase_params)
 
+    @purchase = Purchase.new(purchase_params)
     if @purchase.book_id? # This logic is necessary for purchasing downloads. Will need to be changed for each merchandise filetypes
       @book = Book.find(@purchase.book_id) 
-#    raise params.to_yaml
+      # raise params.to_yaml
       @purchase.user_id = current_user.id
       if @purchase.save_with_payment
         if @purchase.bookfiletype == "pdf" && @book.bookpdf.present?
@@ -95,7 +90,9 @@ class PurchasesController < ApplicationController
         @purchase.user_id = current_user.id
       end
       if @purchase.save_with_payment
-        redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
+        seller = User.find(purchase_params[:author_id])
+        # Route back to author profile
+        redirect_to user_profile_path(seller.permalink), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
@@ -131,7 +128,7 @@ class PurchasesController < ApplicationController
 
     def purchase_params
       params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut, :shipaddress,
-        :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id, :email)
+        :book_id, :stripe_card_token,:pricesold, :user_id, :author_id, :merchandise_id, :group_id, :email)
     end
 
 end
