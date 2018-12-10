@@ -3,7 +3,8 @@
     <div class="page-content">
       <div class="container col-md-12">
 
-  <% if @user == current_user %>
+  <% if user_signed_in? %>
+    <% if current_user.id == @user.id %>
     <p id="notice"><%= notice %></p>
     <%= form_for @movie, :html => {:multipart => true} do |f| %>
       <% if @movie.errors.any? %> 
@@ -91,8 +92,7 @@
       </div>
     <% end %>
   <% end %>
+<% end %>
 
-</div>
-</div>
 </div>
 </div>

@@ -9,17 +9,19 @@ heroku run rake db:migrate
 
 <%= render 'userform' %>
 
-<% if @user == current_user %>
-  <%= button_to "Edit Book Info", edit_user_path(current_user), :method=> :get %><br>
-  <%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %>
+<% if user_signed_in? %>
+	<% if current_user.id != @user.id %>
+		<%= button_to "Edit Book Info", edit_user_path(current_user), :method=> :get %><br>
+		<%= button_to "Edit Profile", profileinfo_user_path(current_user), :method=> :get %>
+	<% end %>
 <% end %>
 <p>
 
 
 <div id="name" style="position:absolute; left:170px; top:70px; width:220px">
-  &nbsp&nbsp&nbsp&nbsp<%= @user.genre1 %><p>
-  &nbsp&nbsp&nbsp&nbsp<%= @user.genre2 %><p>
-  &nbsp&nbsp&nbsp&nbsp<%= @user.genre3 %>
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= @user.genre1 %><p>
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= @user.genre2 %><p>
+  &nbsp;&nbsp;&nbsp;&nbsp;<%= @user.genre3 %>
 </div>
 
 <p id="notice"><%= notice %></p>
@@ -38,4 +40,3 @@ heroku run rake db:migrate
   <% end %>
 
 </div>
-</body>
