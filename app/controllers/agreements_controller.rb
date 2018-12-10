@@ -12,6 +12,7 @@ class AgreementsController < ApplicationController
 
   # POST /agreements
   def create
+    debugger
     @agreement = Agreement.new(agreement_params)
     if @agreement.save
       redirect_to phase_path(@agreement.phase_id), notice: 'Partnership request was sent.'
