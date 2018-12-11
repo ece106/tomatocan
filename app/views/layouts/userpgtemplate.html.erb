@@ -27,14 +27,11 @@
 
 <%= render 'layouts/header' %>
     
-<main>
-    <div class="container-fluid" >
-        <%= render 'layouts/authorform' %>
-        <body>
-                <%= yield %>
-        </body>
-    </div>
-</main>
+<body>
+    <main>
+        <%= yield %>
+    </main>
+</body>
 
 <%= render 'layouts/footer' %>   
     

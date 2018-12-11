@@ -348,7 +348,7 @@ Tasks for week of October 29, 2018
     - Look through livestream sites ToS for terms on recording; non-members need a way to opt-in
     - Look into imagemagic gem for carrierwave to restrict image size
     - Add .fade .in and close button to Stripe alert
-    
+   
 Monday, October 29, 2018
     - Favicon added to site https://realfavicongenerator.net/favicon_result?file_id=p1cr0odfhp11uq1d0a7c67sd1usg6
     - Profile Name text given a drop shadow instead of an outline
@@ -367,7 +367,6 @@ Friday, November 9th, 2018
 	- Colored navbar to be way more obvious
 	- Working on having Edit buttons for perks pull up a popup Bootstrap modal instead of loading another page.
 
-========================================
 Tasks for week of November 12, 2018
 	- Dashboard
 		- Set sort order of tabs
@@ -409,9 +408,6 @@ Friday, November 16, 2018
 		- A new dropdown shows only necessary uploaders depending on which filetype is selected
 
 ========================================
-Tasks for week of November 19, 2018
-	- 
-	
 Monday, November 19, 2018
 	- Create Perk
 		- Labelled required fields
@@ -422,3 +418,33 @@ Monday, November 19, 2018
 		- Changed language of some fields
 	- hideUploaders
 		- eBooks and Documents now show same uploaders.
+
+
+========================================
+Monday, November 26, 2018
+	- Rescope
+		- Panels are now individual partials with content ONLY. Column sizing and row spacing are done a step above in their layouts
+	- Setup layout for both user dashboard and logged out user's view of profile
+	- authorform changes to fix banner margin and rescope to match rest of panels
+	- YouTube div stripped of descriptions
+	
+Tuesday, November 27, 2018
+	- Connected Stripe test account
+	- Changed navbar to an unfixed heading so we get an extra inch of vertical screen space
+	- Authorform should look better with giant names
+	- Restyled YouTube div as a panel
+	- Fixed check for "if current user == @user" to include "if user == signed in"
+	
+Thursday, November 29, 2018
+	- Inserted placeholders for UI elements that require more Ruby work in preperation for merge
+	- Added placeholder profile image
+	- Restyled Discover Discussion Hosts
+	- Restyled merchandises/show
+	- Fixed mobile view of header
+	- Larger "Already have an account?" text
+	- Drop shadow for home header
+
+========================================
+Monday, December 10, 2018
+	- Spacing above navbar caused by an image injected by a funtion in book.js for "OneStat page counter" -- I didn't see it because of my adblocker. I commented this out because I'm sure we don't need it.
+	- registrations/new says "Sign Up" instead of "Sign In"

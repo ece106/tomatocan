@@ -1,20 +1,34 @@
 Gianmarco:
+- Discussion Hosts page not wrapping correctly
+- Stripe Signup should open in a new tab
+- Looks like a broken dashboard is displayed before Stripe Signup opens
+
 - Check current_user variable usage in entire repo
-- Button to Add Discussion on Edit dashboard
+- Button to Add Discussion on control panel
 - Shadow around homepage Signin, larger text
-- TOS: Add twitch, youtube TOS about recording, put TOS next to viewer about nonusers being recorded
 - Instructions for recording a livestream & displaying resulting youtube on users#show (only host sees)
-- Page of good previous livestreams
 - Display Mission (users#about)
 - Button to hosts Show page on CrowdPublish.TV from livestream
+- Get rid of extra control panel strip when user clicks on Sales button
+- There's a broken square in merchsidebar when no pic exists for that merchandise
+- Post a draft email that people can paste & send to their fans: Link, time of livestream https://www.youtube.com/watch?v=DYsnldPtNbs
+- Page of good previous livestreams
+
 
 Roni:
 - 3 or 5 donate buttons
-- Download items when SaveWPurchase
+- Download items when SaveWPurchase, then delete all that books code in purch#create
 - TESTS
+
+
+Someone:
+- Write developers' process of testing that must occur before every pull request
+- More details in users' process to do a livestream, sign up for youtube recording, etc.
+- TOS: Add twitch, youtube TOS about recording, put TOS next to viewer about nonusers being recorded
 - Users hasmany Youtubes
 - Permalink Username has already been taken
 - Get rid of Phases table
+- Merch#edit page displays the CURRENT deadline if one exists in the database
 
 
 
@@ -56,6 +70,15 @@ Would you like to set up a time to try out the platform and ask us questions?
 
 
 
+CrowdPublish.TV is developing a platform for organizations who are doing purposeful work to host livestreaming interactive discussions while receiving donations in the sidebar. 
+
+We would like the Newman Center to become a Founding Host where students and staff would host brief weekly or bi-weekly live talk shows. Founding Hosts will have a huge influence over how CrowdPublish.TV evolves, will become the platform experts, and will be featured prominently on the platform as CrowdPublish.TV grows.
+
+Would you like to set up a time to try out the platform and ask us questions?
+
+
+
+
 
 CrowdPublishTV
 
@@ -78,6 +101,8 @@ CrowdPublishTV
 - TESTS! 
 - Pay for Online courses - pay per view videos on demand? download videos?
 
+- Tag cohosts in youtube videos, videos appear on cohost's gallery
+- Automate: Go to Next Show (on host's page) right after previous show ends. When there are multiple shows following, base on genre.
 
 
 @@Host points for: 

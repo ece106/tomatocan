@@ -1,131 +1,96 @@
+
+<!--This partial contains two panels unlike the other panel partials because I don't think they'll ever be seperated, but I want them split to save vertical space.-->
+
 <% @title=" edit user profile "  %>
 
 <%= render 'layouts/flash_messages' %>
 
-<div class="row">
-    <div class="col-xs-12">
-        <h1>Edit Profile</h1>
-        <p></p>
-    </div>
+<div class="col-md-6">
+	<%= form_for @user, :html => {:multipart => true} do |f| %>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			About
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<h3><%=f.label :name, "Name" %></h3>
+				<p class="help-block">What should we call you?</p>
+				<%= f.text_field :name, maxlength: 50, :type => "name", :class => "form-control" %>
+			</div>
+
+			<div class="form-group">
+				<h3><%=f.label :name, "Profile Image" %></h3>
+				<% if @user.profilepic.present? && @user.profilepic != '' %>
+					<%= image_tag @user.profilepic.url.to_s, :height => "150" %>
+				<% elsif @user.profilepicurl %>
+					<% if @user.profilepicurl.match(/http/) %>
+						<%= image_tag @user.profilepicurl, :height => "150" %><br >
+					<% end %>
+				<% end %>
+				<p class="help-block">Upload a picture of yourself (150px &times; 150px is best)</p>
+				<%= f.file_field :profilepic, :class => "form-control" %>
+			</div>
+
+			<div class="form-group">
+				<h3><%=f.label :name, "Bio" %></h3>
+				<p class="help-block">Tell us a little about yourself.</p>
+				<%= f.text_area :about, placeholder: 'About Me', :class => "form-control" %>
+			</div>
+
+			<div class="form-group">
+				<h3><%=f.label :name, "Discussion Topics" %></h3>
+				<p class="help-block">Three categories that categorize what you discuss in livestreams.</p>
+				<%= f.text_field :genre1, :class => "form-control", placeholder: "Category" %>
+				<%= f.text_field :genre2, :class => "form-control", placeholder: "Subcategory" %>
+				<%= f.text_field :genre3, :class => "form-control", placeholder: "Another subgategory" %>
+			</div>
+
+			<div class="form-group">
+				<h3><%=f.label :name, "Banner Image" %></h3>
+				<p class="help-block">Upload a picture to display on top of your profile (1500px &times; 300px is best)</p>
+				<%= f.file_field :bannerpic, :class => "form-control" %>
+			</div>
+			<div class="btn-group btn-group-lg" id="editProfileButton">
+				<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+				<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div class="row">
-    <div class="col-xs-12">
-        <% if @user == current_user %>
-        <%= form_for @user, :html => {:multipart => true} do |f| %>
-        
-        <div class="col-md-4">
-            <h2>Account</h2>
-            
-            <div class="well">
-                <div class="form-group">
-                    <h3><%=f.label :name, "Email" %></h3>
-                    <p class="help-block">Change your email address.</p>
-                    <%= f.text_field :email, :type => "email", :class => "form-control" %>
-                </div>
+<div class="col-md-6">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			Social
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<h3><%=f.label :name, "Twitter Handle" %></h3>
+				<div class="input-group">
+					<div class="input-group-addon">@</div>
+					<%= f.text_field :twitter, placeholder: "twitterhandle", :class => "form-control" %>
+				</div>
+			</div>
 
-                <div class="form-group">
-                    <h3><%=f.label :name, "Password" %></h3>
-                    <%= link_to "Change Password", user_changepassword_path(@user.permalink), :method => :get, :class => "btn btn-default"%>
-                    <%= f.hidden_field :password %>
-                    <%= f.hidden_field :password_confirmation %>
-                </div>
 
-                <div class="form-group">
-                    <h3><%=f.label :name, "Custom URL" %></h3>
-                    <p class="help-block">For a limited time, you will be allowed to change your custom URL handle. Alphanumeric characters only. URL handle must be less than 20 characters.</p>
-                    <div class="input-group">
-                        <div class="input-group-addon">crowdpublish.tv/</div>
-                        <%= f.text_field :permalink, placeholder: "yourcustomurl", maxlength: 20, :class => "form-control" %>
-                    </div>
-                </div>
-                
-                <!--Future build for connect to Stripe button-->
-                <!--div class="form group">
-                    <h3>Connect to Stripe</h3>
-                    <p class-->
-            </div>
-            <div class="btn-group btn-group-lg" id="editProfileButton">
-                <%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
-                <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
-            </div>
-        </div>
-        
-        <div class="col-md-4">
-            <h2>About</h2>
-            
-            <div class="well">
-                <div class="form-group">
-                    <h3><%=f.label :name, "Name" %></h3>
-                    <p class="help-block">Aw, you didn't spell your name wrong, did you?</p>
-                    <%= f.text_field :name, maxlength: 50, :type => "name", :class => "form-control" %>
-                </div>
-
-                <div class="form-group">
-                    <h3><%=f.label :name, "Profile Image" %></h3>
-                    <p class="help-block">Upload a picture of yourself (150px &times; 150px is best)</p>
-                    <%= f.file_field :profilepic, :class => "form-control" %>
-                </div>
-
-                <div class="form-group">
-                    <h3><%=f.label :name, "Bio" %></h3>
-                    <p class="help-block">Tell us a little about yourself.</p>
-                    <%= f.text_area :about, placeholder: 'About Me', :class => "form-control" %>
-                </div>
-
-                <div class="form-group">
-                    <h3><%=f.label :name, "Your discussion topic categories" %></h3>
-                    <p class="help-block"></p>
-                    <!--This needs an empty options hash to pass in a class-->
-                    <%= f.text_field :genre1, :class => "form-control", placeholder: "Category" %>
-                    <%= f.text_field :genre2, :class => "form-control", placeholder: "Subcategory" %>
-                    <%= f.text_field :genre3, :class => "form-control", placeholder: "Another subcategory" %>
-                </div>
-
-                <div class="form-group">
-                    <h3><%=f.label :name, "Banner Image" %></h3>
-                    <p class="help-block">Upload a picture to display on top of your profile (1500px &times; 300px is best)</p>
-                    <%= f.file_field :bannerpic, :class => "form-control" %>
-                </div>
-            </div>
-            <div class="btn-group btn-group-lg" id="editProfileButton">
-                <%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
-                <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <h2>Social</h2>
-            <div class="well">
-                <div class="form-group">
-                    <h3><%=f.label :name, "Twitter Handle" %></h3>
-                    <div class="input-group">
-                        <div class="input-group-addon">@</div>
-                        <%= f.text_field :twitter, placeholder: "twitterhandle", :class => "form-control" %>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <h3><%=f.label :name, "YouTube Videos" %></h3>
-                    <p class="help-block">If you have a video about you or your brand on YouTube, paste the URL below.
-                    <%= f.text_field :youtube1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :class => "form-control" %>
-                    <%= f.text_area :videodesc1, placeholder: 'Video description', :class => "form-control"%>
-                    <%= f.text_field :youtube2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :class => "form-control" %>
-                    <%= f.text_area :videodesc2, placeholder: 'Video description', :class => "form-control" %>
-                    <%= f.text_field :youtube3, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :class => "form-control" %>
-                    <%= f.text_area :videodesc3, placeholder: 'Video description', :class => "form-control" %>
-                </div>
-            </div>
-            <div class="btn-group btn-group-lg" id="editProfileButton">
-                <%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
-                <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
-            </div>
-        </div>
-    </div>
+			<div class="form-group">
+				<h3><%=f.label :name, "YouTube Videos" %></h3>
+				<p class="help-block">If you have a video about you or your brand on YouTube, paste the URL below.
+				<%= f.text_field :youtube1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "text", :class => "form-control" %>
+				<%= f.text_field :youtube2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "text", :class => "form-control" %>
+				<%= f.text_field :youtube3, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "text", :class => "form-control" %>
+			</div>
+			<div class="btn-group btn-group-lg" id="editProfileButton">
+				<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+				<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+			</div>
+		</div>
+	</div>
 </div>
 
 <% end %>
-<% end %>
 
+<!-- This error detection may need to be moved into dashboardbox.-->
 <div id="userlist" >
 <%= form_for(@user, :html => { :multipart => true }) do |f| %>
   <% if @user.errors.any? %>
@@ -140,3 +105,9 @@
   <% end %>
   </div>
 <% end %>
+
+<!-- Notes:
+
+Test to ensure form posts correctly
+
+-->
