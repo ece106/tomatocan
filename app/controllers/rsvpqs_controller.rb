@@ -5,7 +5,7 @@ class RsvpqsController < ApplicationController
 
   # GET /rsvps
   def index
-    @rsvps = Rsvpq.all
+    @rsvp = Rsvpq.all
   end
 
   # GET /rsvps/1

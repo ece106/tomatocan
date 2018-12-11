@@ -20,15 +20,18 @@ class RsvpqsControllerTest < ActionController::TestCase
 
 
   test "should create rsvpq" do
-    assert_difference('Rsvpq.count' ,1) do
+    assert_difference('Rsvpq.count') do
+      #post rsvpq_url, params: {rsvpq: { user_id: @rsvpq.id, event_id: @rsvpq.event_id, email: @rsvpq.email, guests: @rsvpq.guests}}
       post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id} }
     end
+
      assert_redirected_to home_path
      #assert_redirected_to "http://test.host/login"
   end
 
   test "should show rsvpq" do
     sign_in users(:one)
+    #get rsvpq_url(@rsvpq)
     get :show, params:{ id: @rsvpq}
     assert_response :success
   end
