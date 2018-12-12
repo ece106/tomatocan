@@ -138,14 +138,19 @@ class User < ApplicationRecord
       self.totalinfo = []
       mysales = Purchase.where('purchases.author_id = ?', self.id).order('created_at DESC')
       mysales.each do |sale| 
-        perksold = Merchandise.find(sale.merchandise_id) 
+        if (!sale.merchandise_id.nil?)
+          perksold = Merchandise.find(sale.merchandise_id) 
+          purchaseName = perksold.name
+        else
+          purchaseName = 'Donation'
+        end
         if sale.user_id.present?
           customer = User.find(sale.user_id) 
           whobought = customer.name 
         else
           whobought = "anonymous" 
         end
-        self.totalinfo << {soldtitle: perksold.name, soldprice: sale.pricesold, authorcut: sale.authorcut, 
+        self.totalinfo << {soldtitle: purchaseName, soldprice: sale.pricesold, authorcut: sale.authorcut, 
             purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: whobought, address: sale.shipaddress, 
             fulfillstat: sale.fulfillstatus, egoods: "" } 
       end

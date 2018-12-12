@@ -6,7 +6,6 @@ class Merchandise < ApplicationRecord
   validates :name, presence: true
   validates :buttontype, presence: true
   mount_uploader :itempic, MerchpicUploader
-#  crop_uploaded :itempic
   mount_uploader :audio, AudioUploader
   mount_uploader :video, VideoUploader
   mount_uploader :graphic, GraphicUploader
@@ -14,9 +13,17 @@ class Merchandise < ApplicationRecord
   mount_uploader :merchmobi, MerchmobiUploader
   mount_uploader :merchpdf, MerchpdfUploader 
 
+
+  attr_accessor :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h
+  after_update :crop_itempic
+  
 #  mount_uploader :pdf, PdfUploader  # need to change column names for these
 #  mount_uploader :epub, EpubUploader
 #  mount_uploader :mobi, MobiUploader
+
+  def crop_itempic
+    itempic.recreate_versions! if itempic_crop_x.present?
+  end
 
   def get_youtube_id
     if self.youtube.present?

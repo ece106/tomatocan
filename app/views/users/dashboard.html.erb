@@ -35,11 +35,16 @@
 							<% @totalinfo.each do |item| %>
 								<tr>
 									<td><%= item[:soldtitle] %></td>
-									<td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>
+									<!--<td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>-->
+									<td> <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>
 									<td> <%= item[:soldwhen] %></td>
 									<td> <%= item[:whobought] %></td>
 									<td> <%= item[:address] %></td>
 									<td>
+									<!--When a purchase is a donation-->
+									<% if item[:soldtitle] == "Donation"%>
+										<%= "Recieved" %>
+									<% else %>
 										<% if item[:fulfillstat] != "sent" && item[:egoods].empty? %>
 											<%= button_to [:markfulfilled, @user] do %>
 											<strong>Mark as Sent </strong>
@@ -48,6 +53,7 @@
 										<% else %>
 											<%= item[:fulfillstat] %>
 										<% end %>
+									<% end %>
 									</td>
 								</tr>
 							<% end %>
