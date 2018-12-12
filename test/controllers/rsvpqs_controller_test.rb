@@ -5,23 +5,14 @@ class RsvpqsControllerTest < ActionController::TestCase
     @rsvpq = rsvpqs(:one)
   end
 
-  test "should get index" do
-    sign_in users(:one)
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:rsvpqs)
-  end
-
   test "should get new" do
     sign_in users(:one)
     get :new
     assert_response :success
   end
 
-
   test "should create rsvpq" do
-    assert_difference('Rsvpq.count') do
-      #post rsvpq_url, params: {rsvpq: { user_id: @rsvpq.id, event_id: @rsvpq.event_id, email: @rsvpq.email, guests: @rsvpq.guests}}
+    assert_difference('Rsvpq.count', 1) do
       post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id} }
     end
 

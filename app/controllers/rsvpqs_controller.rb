@@ -4,9 +4,9 @@ class RsvpqsController < ApplicationController
   layout :resolve_layout
 
   # GET /rsvps
-  def index
-    @rsvp = Rsvpq.all
-  end
+  #def index
+   # @rsvps = Rsvpq.all
+  #end
 
   # GET /rsvps/1
   def show

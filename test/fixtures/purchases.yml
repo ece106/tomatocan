@@ -3,7 +3,8 @@
 one:
   author_id: 1 
   user_id: 1
-  book_id: two
+  #book_id: two
+  merchandise: two
   stripe_customer_token: MyString
   pricesold: 20.5
   authorcut: 18.1
@@ -11,7 +12,8 @@ one:
 two:
   author_id: 2 
   user_id: 2
-  book_id: one
+  #book_id: one
+  merchandise: one
   stripe_customer_token: MyString
   pricesold: 50.5
   authorcut: 38.1

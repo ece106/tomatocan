@@ -11,6 +11,7 @@ class RsvpqTest < ActiveSupport::TestCase
       @rsvpq.send "#{field}=", nil
       refute @rsvpq.valid?
       refute_empty @rsvpq.errors[field]
+      #assert_empty @rsvpq.errors[field]
     end
   end
 end
