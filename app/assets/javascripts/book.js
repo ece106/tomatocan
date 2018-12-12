@@ -27,7 +27,7 @@
            p+="&sr="+screen.width+"x"+screen.height;p+="&cd="+screen.colorDepth;
            p+="&jo="+(navigator.javaEnabled()?"Yes":"No");
         }
-        d.write('<a href="http://www.onestatfree.com/aspx/login.aspx?sid='+sid+'" target=_blank ><img id="ONESTAT_TAG" width = "0" height="0" border="0" src="'+p+'" ></'+'a>');
+        //d.write('<a href="http://www.onestatfree.com/aspx/login.aspx?sid='+sid+'" target=_blank ><img id="ONESTAT_TAG" width = "0" height="0" border="0" src="'+p+'" ></'+'a>');
     }
     OneStat_Pageview();
 
