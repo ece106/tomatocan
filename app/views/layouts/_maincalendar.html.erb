@@ -13,7 +13,7 @@
   </div>
   <% if user_signed_in? %>
     <div class=panel-body>
-        <%= link_to 'Host a livestream discussion', new_event_path, class: "btn btn-warning", id: "tableHost calendar-create" %>
+        <%= link_to 'Host a Livestream Discussion', new_event_path, class: "btn btn-warning", id: "tableHost calendar-create" %>
     </div>
   <% end %>
   <% if @events.count != 0 %>
@@ -22,28 +22,26 @@
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
         <% user = User.find(event.usrid) %>
         <tr>
-          <td>
+          <td class=col-xs-5>
             <%= link_to event.name, event, id: "calendar-event", title: event.desc, 'data-toggle': "tooltip", 'data-placement': "left" %>
-            <small>
-              <% if user_signed_in? %>
-                <% if event.usrid == current_user.id %>
-                  <%= link_to '(Edit Event)', edit_event_path(event.id), id: "calendar-host" %> 
-                <% else %>
-                  Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
-                <% end %>
+            <% if user_signed_in? %>
+              <% if event.usrid == current_user.id %>
+                <%= link_to '(Edit Event)', edit_event_path(event.id), id: "calendar-host" %> 
               <% else %>
                 Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
               <% end %>
-            </small>
+            <% else %>
+              Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
+            <% end %>
           </td>
-          <td>
-            <span id=calendar-time><%= event.start_at.strftime("%A, %B %d") %></span>
-            <span id=calendar-time><%= event.start_at.strftime("%I:%M %p") %></span>
+          <td class=col-xs-3>
+            <span id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
+            <span id=calendar-time><%= event.start_at.strftime("%l:%M%P") %></span>
           </td>
-          <td>
-            <%= link_to "Join Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary" %>
+          <td class=col-xs-3>
+            <%= link_to "Join Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
           </td>
-          <td>
+          <td class=col-xs-1>
             <% facebookurl = "https://crowdpublishtv.herokuapp.com/" + user.permalink %>
             <span class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= facebookurl %> class="fb-xfbml-parse-ignore">Share</a></span>
             <br>
