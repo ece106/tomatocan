@@ -463,3 +463,17 @@ Monday, December 10, 2018
 	- Tracked down and changed last pages using "if @user == current_user" logic, mostly unused pages.
   - Twitch & YouTube ToS:
     - Language in their legal sections are written to apply to anyone on the site: "By using our services you agree to..." etc.
+    
+Tuesday, December 11, 2018
+  - Work on event calendar
+    - Restyled as a panel
+    - Buttons to Create, Edit, and Join a discussion
+    - Added a new stylesheet to hold styles for panels to avoid making users.scss unreadable
+  - TODO: can we setup email reminders for event creators?
+    - As soon as event is created
+      - Prompt to setup YouTube Live
+      - Prompt to setup Perks
+      - Instructions for how to test their camera, etc.
+      - Promote stream (facebook, twitter, etc.)
+    - Reminders a day, an hour, 30 minutes before scheduled start etc.
+  - TODO: Change button colors with a style instead of using Bootstrap's warning/primary for everything
