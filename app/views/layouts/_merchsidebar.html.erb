@@ -122,6 +122,7 @@
 		<% end %>
 	<% else %>
 		<!--This is where the default Donate button are displayed-->
+		<!--To add or modify donation buttons and prices, it should be done through the code below only-->
         <% if @user.stripeid.present? %>
             <% btnTxt = ("Donate $" + sprintf('%.2f',25) + "!") %>
             <%= link_to btnTxt, new_purchase_path(:pricesold => 25.0, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>

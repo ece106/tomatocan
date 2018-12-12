@@ -11,20 +11,22 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   def show
     @purchase = Purchase.find(params[:id])
-    loot = Merchandise.find(@purchase.merchandise_id) 
-    @itemname = loot.name
-    id = loot.user_id
-    @user = User.find(id)
-    respond_to do |format|
+    if (!@purchase.merchandise_id.nil?) #If this is a donation do not look for merchandise
+      loot = Merchandise.find(@purchase.merchandise_id)
+      @itemname = loot.name
+      id = loot.user_id
+      @user = User.find(id)
+    end
+      respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @purchase }
     end
   end
   # GET /purchases/new
   def new
-    if(params[:pricesold].present?)
+    if(params[:pricesold].present?) # Donation being made
       @purchase = Purchase.new
-    else
+    else #Purchase being made
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new
     end
@@ -79,19 +81,19 @@ class PurchasesController < ApplicationController
         @purchase.user_id = current_user.id
       end 
       if @purchase.save_with_payment
-        seller = User.find(@merchandise.user_id)
+        seller = User.find(@merchandise.user_id) 
         redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. 
         Thank you for being a patron of " + seller.name 
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
-    else
+    else # Making a donation 
       if user_signed_in?
         @purchase.user_id = current_user.id
       end
       if @purchase.save_with_payment
+        # Route back to author profile after donation
         seller = User.find(purchase_params[:author_id])
-        # Route back to author profile
         redirect_to user_profile_path(seller.permalink), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."

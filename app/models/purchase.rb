@@ -31,8 +31,7 @@ class Purchase < ApplicationRecord
       %%end%
 
       
-    else
-      #If a donation is being made
+    else #If a donation is being made
       self.pricesold = pricesold
       self.author_id = author_id
       seller = User.find(author_id) 
