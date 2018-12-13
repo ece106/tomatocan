@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer "itempic_crop_w"
     t.integer "itempic_crop_h"
     t.string "buttontype"
+    t.string "filetype"
   end
 
   create_table "movieroles", force: :cascade do |t|

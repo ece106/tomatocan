@@ -37,7 +37,12 @@ class Purchase < ApplicationRecord
       purchaser = User.find(self.user_id)
       amt = (pricesold * 100).to_i 
       self.authorcut = ((pricesold * 92.1).to_i - 30).to_f/100
-      desc = "Donation of $" + String(pricesold) + " from " + purchaser.name 
+      if self.email.present?
+        purchaser = User.find(self.user_id)
+        desc = "Donation of $" + String(pricesold) + " from " + purchaser.name 
+      else
+        desc = "Donation of $" + String(pricesold) + " from anonymous users"
+      end
     end
 
     sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 
