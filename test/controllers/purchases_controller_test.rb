@@ -23,19 +23,16 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-    # test "should_edit_purchases" do
-    #   sign_in users(:one)
-    #   get :edit, params: {id: @purchases.id}
-    #   assert_response :success
-    # end
-
-    test "should_create_purchase" do
+    test "should_create_purchases" do
       sign_in users(:one)
-      assert_difference 'Purchases.count' do
-        post :create, params: { purchase: { stripe_customer_token: @purchases.stripe_customer_token, bookfiletype: @purchases.bookfiletype, 
-          groupcut: @purchases.groupcut, shipaddress: @purchases.shipaddress, book_id: @purchases.book_id, 
-          stripe_card_token: @purchases.stripe_card_token, user_id: @purchases.user_id, author_id: @purchases.author_id, 
-          merchandise_id: @purchases.merchandise_id, group_id: @purchases.group_id, email: @purchases.email} }
+      assert_difference 'Purchases.count', 1 do
+        post :create, params: {}
       end
     end
+
+    # test "should_update_purchases" do
+    #   sign_in users(:one)
+    #   get :update, params: {id: @purchases.id}
+    #   assert_response :success
+    # end
 end

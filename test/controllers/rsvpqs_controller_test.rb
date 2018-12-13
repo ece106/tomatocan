@@ -16,8 +16,8 @@ class RsvpqsControllerTest < ActionController::TestCase
       post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id} }
     end
 
-     assert_redirected_to home_path
-     #assert_redirected_to "http://test.host/login"
+    assert_redirected_to home_path
+    #assert_redirected_to "http://test.host/login"
   end
 
   test "should show rsvpq" do

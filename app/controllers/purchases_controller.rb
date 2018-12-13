@@ -41,6 +41,7 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 
   def create
+    
     @purchase = Purchase.new(purchase_params)
 
     if @purchase.book_id? # This logic is necessary for purchasing downloads. Will need to be changed for each merchandise filetypes
