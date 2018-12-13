@@ -1,4 +1,7 @@
 Gianmarco:
+- "You successfully purchased this item. Thank you for being a patron" should not appear in Profile and Sales portions of the control panel. Control panel should be its own page.
+- "You successfully purchased this item. Thank you for being a patron" should appear on the Seller's page after being routed to the seller's page upon purchase completion
+
 - Need line breaks between Past perks in control panel
 - Discussion Hosts page not wrapping correctly
 - Stripe Signup should open in a new tab
@@ -18,7 +21,6 @@ Gianmarco:
 
 
 Roni:
-- 3 or 5 donate buttons
 - Download items when SaveWPurchase, then delete all that books code in purch#create
 - TESTS
 
@@ -28,9 +30,9 @@ Someone:
 - More details in users' process to do a livestream, sign up for youtube recording, etc.
 - TOS: Add twitch, youtube TOS about recording, put TOS next to viewer about nonusers being recorded
 - Users hasmany Youtubes
-- Permalink Username has already been taken
-- Get rid of Phases table
+- Better error message for Permalink (should be Username) has already been taken
 - Merch#edit page displays the CURRENT deadline if one exists in the database
+- Figure out what to do about that migration name that's different for new developers
 
 
 

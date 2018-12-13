@@ -1,19 +1,17 @@
 source 'http://rubygems.org'
-ruby "2.5.1"
+ruby "2.4.2"
 
 gem 'listen'
 gem 'rails-controller-testing'
 
-#gem 'pg'
-gem 'sqlite3'
+gem 'pg'
+#gem 'sqlite3'
+
 gem 'mandrill'	
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
-gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
-gem 'mini_magick' #not even going to bother with this
-gem 'simple_form'
 gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'
