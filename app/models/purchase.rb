@@ -34,10 +34,9 @@ class Purchase < ApplicationRecord
     else #If a donation is being made
       self.pricesold = pricesold
       self.author_id = author_id
-      purchaser = User.find(self.user_id)
       amt = (pricesold * 100).to_i 
       self.authorcut = ((pricesold * 92.1).to_i - 30).to_f/100
-      if self.email.present?
+      if self.user_id.present?
         purchaser = User.find(self.user_id)
         desc = "Donation of $" + String(pricesold) + " from " + purchaser.name 
       else

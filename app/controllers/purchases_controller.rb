@@ -47,45 +47,60 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 
   def create
-
     @purchase = Purchase.new(purchase_params)
-    if @purchase.book_id? # This logic is necessary for purchasing downloads. Will need to be changed for each merchandise filetypes
-      @book = Book.find(@purchase.book_id) 
-      # raise params.to_yaml
-      @purchase.user_id = current_user.id
-      if @purchase.save_with_payment
-        if @purchase.bookfiletype == "pdf" && @book.bookpdf.present?
-          if Rails.env.development? || Rails.env.test?
-            data = open(Rails.root + "public#{@book.bookpdf.to_s}") 
-            send_data data.read, filename: @book.bookpdf, type: "application/pdf", disposition: 'attachment' 
-          else
-            data = open("https://authorprofile.s3.amazonaws.com#{@book.bookpdf.to_s}") 
-            send_data data.read, filename: @book.bookpdf, type: "application/pdf", disposition: 'attachment' 
-          end
-        end
-        if @purchase.bookfiletype == "mobi" && @book.bookmobi.present?
-          data = open("https://authorprofile.s3.amazonaws.com#{@book.bookmobi.to_s}") 
-          send_data data.read, filename: @book.bookmobi, type: "application/mobi", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
-        end
-        if @purchase.bookfiletype == "epub" && @book.bookepub.present?
-          data = open("https://authorprofile.s3.amazonaws.com#{@book.bookepub.to_s}") 
-          send_data data.read, filename: @book.bookepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
-        end
-      else
-        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
-      end
-    elsif @purchase.merchandise_id?
+    if @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
-      @purchase.author_id = User.find(@merchandise.user_id) 
-      if user_signed_in?
+      if @merchandise.filetype.present? || @merchandise.filetype != 'blank'
         @purchase.user_id = current_user.id
-      end 
-      if @purchase.save_with_payment
-        seller = User.find(@merchandise.user_id) 
-        redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. 
-        Thank you for being a patron of " + seller.name 
-      else
-        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+        if @purchase.save_with_payment
+          #audio
+          if @merchandise.filetype == "audio" && @merchandise.audio.present?
+            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.audio.to_s}") 
+            send_data data.read, filename: @merchandise.audio, type: "application/audio", disposition: 'attachment' 
+          end
+          #graphic
+          if @merchandise.filetype == "graphic" && @merchandise.graphic.present?
+            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.graphic.to_s}") 
+            send_data data.read, filename: @merchandise.graphic, type: "application/graphic", disposition: 'attachment' 
+          end
+          #video
+          if @merchandise.filetype == "video" && @merchandise.video.present?
+            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.video.to_s}") 
+            send_data data.read, filename: @merchandise.video, type: "application/video", disposition: 'attachment' 
+          end
+          #ebook
+          if @merchandise.filetype == "ebook"
+            #pdf
+            if @merchandise.merchpdf.present?
+              data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchpdf.to_s}") 
+              send_data data.read, filename: @merchandise.merchpdf, type: "application/pdf", disposition: 'attachment' 
+            end
+            #mobi
+            if @merchandise.merchmobi.present?
+              data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchmobi.to_s}") 
+              send_data data.read, filename: @merchandise.merchmobi, type: "application/mobi", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
+            end
+            #epub
+            if @merchandise.merchepub.present?
+              data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchepub.to_s}") 
+              send_data data.read, filename: @merchandise.merchepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
+            end
+          end
+        else
+          redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+        end
+      else 
+        @purchase.author_id = User.find(@merchandise.user_id) 
+        if user_signed_in?
+          @purchase.user_id = current_user.id
+        end 
+        if @purchase.save_with_payment
+          seller = User.find(@merchandise.user_id) 
+          redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. 
+          Thank you for being a patron of " + seller.name 
+        else
+          redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+        end
       end
     else # Making a donation 
       if user_signed_in?
@@ -94,7 +109,7 @@ class PurchasesController < ApplicationController
       if @purchase.save_with_payment
         # Route back to author profile after donation
         seller = User.find(purchase_params[:author_id])
-        redirect_to user_profile_path(seller.permalink), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
+        redirect_to user_profile_path(seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + seller.name 
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
