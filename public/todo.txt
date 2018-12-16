@@ -1,37 +1,55 @@
 Gianmarco:
-- "You successfully purchased this item. Thank you for being a patron" should not appear in Profile and Sales portions of the control panel. Control panel should be its own page.
-- "You successfully purchased this item. Thank you for being a patron" should appear on the Seller's page after being routed to the seller's page upon purchase completion
+***: Priority
+
+- ***WHERE IS THE LINK FOR USERS TO SIGN UP FOR STRIPE!!??
+- ***We really need tests to make sure the very most important features of the site do not disappear
+
+- "You successfully purchased this item. Thank you for being a patron" should not appear in Profile and Sales portions of the control panel. Every page in the Control panel should be its own page.
+- *** "You successfully purchased this item. Thank you for being a patron" should appear on a receipt with a button to seller's page after purchase completion
+- Design Receipts with text written by sellers
 
 - Need line breaks between Past perks in control panel
-- Discussion Hosts page not wrapping correctly
+- *** Discussion Hosts page not wrapping correctly
 - Stripe Signup should open in a new tab
 - Looks like a broken dashboard is displayed before Stripe Signup opens
 - Favicon shows up for home page but not for user pages
 
 - Check current_user variable usage in entire repo
 - Button to Add Discussion on control panel
-- Shadow around homepage Signin, larger text
 - Instructions for recording a livestream & displaying resulting youtube on users#show (only host sees)
 - Display Mission (users#about)
-- Button to hosts Show page on CrowdPublish.TV from livestream
-- Get rid of extra control panel strip when user clicks on Sales button
-- There's a broken square in merchsidebar when no pic exists for that merchandise
+- Button to hosts Show page on CrowdPublish.TV (not on herokuapp.com) from livestream
+- *** Remove the broken square in merchsidebar when no pic exists for that merchandise
 - Post a draft email that people can paste & send to their fans: Link, time of livestream https://www.youtube.com/watch?v=DYsnldPtNbs
 - Page of good previous livestreams
+- Record good livestream discussion
 
 
 Roni:
+- filetype field in merchandise seems like useless data. Why is that in the database. 
+- Field for sellers to enter text to appear on receipts
+- Give me your list of what all the tables & fields in the database are for
+- Understand what the site does
+- *** Write tests for Donate buttons
 - Download items when SaveWPurchase, then delete all that books code in purch#create
-- TESTS
+- Write tests for downloaders
+- *** WRITE TESTS for EVERYTHING you've added to the codebase
+
+
+Chris:
+- Send me your list of what all the tables & fields in the database are for
+- *** Understand what the site does
+- Delete redundant lines of code in controller tests
+- Move multiple assert statements into their own tests, name according to whether user loggedin
 
 
 Someone:
 - Write developers' process of testing that must occur before every pull request
 - More details in users' process to do a livestream, sign up for youtube recording, etc.
 - TOS: Add twitch, youtube TOS about recording, put TOS next to viewer about nonusers being recorded
-- Users hasmany Youtubes
-- Better error message for Permalink (should be Username) has already been taken
-- Merch#edit page displays the CURRENT deadline if one exists in the database
+- Users hasmany Youtubes (like a gallery instead of just 3 on the user#show page)
+- Better error message for Permalink (should be Username) Has Already Been Taken
+- Merch#edit page should display CURRENT deadline if one exists in the database
 - Figure out what to do about that migration name that's different for new developers
 
 
