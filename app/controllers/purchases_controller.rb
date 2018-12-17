@@ -11,19 +11,25 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   def show
     @purchase = Purchase.find(params[:id])
-    loot = Merchandise.find(@purchase.merchandise_id) 
-    @itemname = loot.name
-    id = loot.user_id
-    @user = User.find(id)
-    respond_to do |format|
+    if (!@purchase.merchandise_id.nil?) #If this is a donation do not look for merchandise
+      loot = Merchandise.find(@purchase.merchandise_id)
+      @itemname = loot.name
+      id = loot.user_id
+      @user = User.find(id)
+    end
+      respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @purchase }
     end
   end
   # GET /purchases/new
   def new
-    @merchandise = Merchandise.find(params[:merchandise_id])
-    @purchase = @merchandise.purchases.new
+    if(params[:pricesold].present?) # Donation being made
+      @purchase = Purchase.new
+    else #Purchase being made
+      @merchandise = Merchandise.find(params[:merchandise_id])
+      @purchase = @merchandise.purchases.new
+    end
     if user_signed_in?
       if current_user.stripe_customer_token.present?
         customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
@@ -41,11 +47,11 @@ class PurchasesController < ApplicationController
   end
   # POST /purchases 
   def create
-    @purchase = Purchase.new(purchase_params)
 
+    @purchase = Purchase.new(purchase_params)
     if @purchase.book_id? # This logic is necessary for purchasing downloads. Will need to be changed for each merchandise filetypes
       @book = Book.find(@purchase.book_id) 
-#    raise params.to_yaml
+      # raise params.to_yaml
       @purchase.user_id = current_user.id
       if @purchase.save_with_payment
         if @purchase.bookfiletype == "pdf" && @book.bookpdf.present?
@@ -65,7 +71,6 @@ class PurchasesController < ApplicationController
           data = open("https://authorprofile.s3.amazonaws.com#{@book.bookepub.to_s}") 
           send_data data.read, filename: @book.bookepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
         end
-
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
@@ -76,9 +81,20 @@ class PurchasesController < ApplicationController
         @purchase.user_id = current_user.id
       end 
       if @purchase.save_with_payment
-        seller = User.find(@merchandise.user_id)
+        seller = User.find(@merchandise.user_id) 
         redirect_to merchandise_path(@merchandise.id), :notice => "You successfully purchased this item. 
         Thank you for being a patron of " + seller.name 
+      else
+        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+      end
+    else # Making a donation 
+      if user_signed_in?
+        @purchase.user_id = current_user.id
+      end
+      if @purchase.save_with_payment
+        # Route back to author profile after donation
+        seller = User.find(purchase_params[:author_id])
+        redirect_to user_profile_path(seller.permalink), :notice => "You successfully purchased this item. Thank you for being a patron of " + seller.name 
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
@@ -114,7 +130,7 @@ class PurchasesController < ApplicationController
 
     def purchase_params
       params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut, :shipaddress,
-        :book_id, :stripe_card_token, :user_id, :author_id, :merchandise_id, :group_id, :email)
+        :book_id, :stripe_card_token,:pricesold, :user_id, :author_id, :merchandise_id, :group_id, :email)
     end
 
 end

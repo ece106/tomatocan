@@ -5,35 +5,46 @@ class Purchase < ApplicationRecord
   
 #  belongs_to :book, optional: true
   belongs_to :user, optional: true
-  belongs_to :merchandise
+  belongs_to :merchandise, optional: true
 #  validates :user_id, presence: true
   validates :author_id, presence: true # author means seller
   validates :pricesold, presence: true
   validates :authorcut, presence: true
-  validates :merchandise_id, presence: true
+#  validates :merchandise_id, presence: true
 #  validates :email, :presence => true, :if => loggedin  #cant validate this
 #  validates :bookfiletype, presence: true
-
+  
   def save_with_payment
-    @merchandise = Merchandise.find(self.merchandise_id)
-    self.pricesold = @merchandise.price
-    self.author_id = @merchandise.user_id 
-    seller = User.find(@merchandise.user_id)
-    amt = (@merchandise.price * 100).to_i 
-    desc = @merchandise.name 
-    %%if self.group_id.present?
-      self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
-      self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
-    else%
-      self.groupcut = 0.0
-      self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100
-    %%end%
+    if(self.merchandise_id.present?)
+      @merchandise = Merchandise.find(self.merchandise_id)
+      self.pricesold = @merchandise.price
+      self.author_id = @merchandise.user_id 
+      seller = User.find(@merchandise.user_id)
+      amt = (@merchandise.price * 100).to_i 
+      desc = @merchandise.name 
+      %%if self.group_id.present?
+        self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
+        self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
+      else% 
+        self.groupcut = 0.0
+        self.authorcut = ((@merchandise.price * 92.1).to_i - 30).to_f/100
+      %%end%
+
+      
+    else #If a donation is being made
+      self.pricesold = pricesold
+      self.author_id = author_id
+      seller = User.find(author_id) 
+      amt = (pricesold * 100).to_i 
+      self.authorcut = ((pricesold * 92.1).to_i - 30).to_f/100
+      desc = "Donation of $" + String(pricesold) + " to " + seller.name 
+    end
 
     sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 
-    %%if self.group_id.present? #not used right now
-      group = Group.find(self.group_id)
-      groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
-    end%
+      %%if self.group_id.present? #not used right now
+        group = Group.find(self.group_id)
+        groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
+      end%
 
     if self.email.present?
       customer = Stripe::Customer.create(
