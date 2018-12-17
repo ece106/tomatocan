@@ -3,7 +3,8 @@
     <div class="page-content">
       <div class="container col-md-12">
 
-  <% if @user == current_user %>
+<% if user_signed_in? %>
+  <% if current_user.id == @user.id %>
     <div class = "blacktxt">
       <% if @user.movies.any? %>
         <div class = "featured">
@@ -115,8 +116,8 @@
       </div>
     <% end %>
   <% end %>
+<% end %>
 
-</div>
 </div>
 </div>
 </div>

@@ -32,26 +32,30 @@
 	<!--span class="badge pull-right"><#%= @user.merchandises.count %> Perks</span> currently doesn't work-->
 </div>
 <div class="panel-body" id="merchSidebar">
-	<% if params[:groupid].present? %>
-	<tr>
-		<% groupsupported = Group.find(params[:groupid]) %>
-		<td>5% of purchase will go to <%= groupsupported.name %></td>
-	</tr>
-	<% end %>
-	<% if @sidebarmerchandise.present? %>
-		<% @sidebarmerchandise.each do |merch| %>
-		<div class="media">
-			<div class="pull-left">
-				<%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
+  <% if params[:groupid].present? %>
+  <tr>
+    <% groupsupported = Group.find(params[:groupid]) %>
+    <td>5% of purchase will go to <%= groupsupported.name %></td>
+  </tr>
+  <% end %>
+  <% if @sidebarmerchandise.present? %>
+    <% @sidebarmerchandise.each do |merch| %>
+    <div class="media">
+      <div class="pull-left">
+				<% if merch.itempic.present? %>
+					<%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
+				<% else %>
+					<%= image_tag "starIcon.png", class: "media-object", id: "perkImage" %>
+				<% end %>
 			</div>
-			<div class="media-body">
-				<h4 class="media-heading">
+      <div class="media-body">
+        <h4 class="media-heading">
 					<%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %>
 				</h4>
 
-				<% if merch.desc.present? %>
-					<% if merch.desc.length > 150 %>
-						<div>
+        <% if merch.desc.present? %>
+          <% if merch.desc.length > 150 %>
+            <div>
 						<%= truncate(merch.desc, length: 150) %>
 						<%= link_to 'more', '', class: "read-more-#{merch.id}" %>
 						<script>
@@ -61,59 +65,59 @@
 											  })
 						</script>
 						</div>
-					<% else %>
-						<%= merch.desc %>
-					<% end %>
-				<% end %>
+          <% else %>
+            <%= merch.desc %>
+          <% end %>
+        <% end %>
 				
-				<% if user_signed_in? %>
-					<% if current_user.id == @user.id %>
-						<!--Links to seperate edit perk page-->
-						<%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning pull-right" %>
+        <% if user_signed_in? %>
+          <% if current_user.id == @user.id %>
+            <!--Links to seperate edit perk page-->
+            <%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning pull-right" %>
 
-						<!-- Switch to below button when edit perk form can be shown as a modal-->
-						<!--%= button_tag "Edit Perk", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
+            <!-- TODO: Switch to below button when edit perk form can be shown as a modal-->
+            <!--%= button_tag "Edit Perk", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
 				
-					<% else %>
-						<% if (merch.deadline) != nil %>
-							<% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
-							<% if daysaway.nil? || daysaway.zero? %>
-								<td>Last day!</td>
-							<% elsif (daysaway <= 7) %>
-								<td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
-							<% else %>
-								<td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
-							<% end %>
-						<% end %>
+          <% else %>
+            <% if (merch.deadline) != nil %>
+              <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
+              <% if daysaway.nil? || daysaway.zero? %>
+                <td>Last day!</td>
+              <% elsif (daysaway <= 7) %>
+                <td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+              <% else %>
+                <td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+              <% end %>
+            <% end %>
 				
-						<%if (merch.buttontype) == 'Donate'%>
-							<% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
-						<%else%>
-							<% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
-						<%end%>
+            <% if (merch.buttontype) == 'Donate' %>
+              <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
+            <% else %>
+              <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
+            <% end %>
 				
-						<%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
-					<% end %>
+            <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
+          <% end %>
 				
-				<% else %>
-					<% if (merch.deadline) != nil %>
-						<% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
-						<% if daysaway.nil? || daysaway.zero? %>
-							<td>Last day!</td>
-						<% elsif (daysaway <= 7) %>
-							<td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
-						<% else %>
-							<td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
-						<% end %>
-					<% end %>
+        <% else %>
+          <% if (merch.deadline) != nil %>
+            <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
+              <% if daysaway.nil? || daysaway.zero? %>
+                <td>Last day!</td>
+              <% elsif (daysaway <= 7) %>
+                <td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+              <% else %>
+                <td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+              <% end %>
+            <% end %>
 				
-					<%if (merch.buttontype) == 'Donate'%>
-						<% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
-					<%else%>
-						<% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
-					<%end%>
+          <%if (merch.buttontype) == 'Donate'%>
+            <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
+          <%else%>
+            <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
+          <%end%>
 				
-					<%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
+          <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
 				
 				<% end %>
 			</div>

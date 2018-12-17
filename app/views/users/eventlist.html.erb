@@ -1,37 +1,15 @@
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CrowdPublish.TV <%  @user.name %> 's calendar</title>
-<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
-<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
-<meta property="og:url" content="http://CrowdPublish.TV" />
-<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
-<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
 </head>
 
-<!--div id="groups"  >
-  <#%= form_tag events_path, :method => :get do %>
-    <table >      <tr>
-        <th>Address or Zip code</th>
-        <th>Distance (miles)</th>
-        <th></th>
-        <th> Find in-person events in your Local area (5 - 20 miles) </th>
-      </tr>
-      <tr>
-        <td><#%= text_field_tag :search, params[:search] %></td>
-        <td><#%= text_field_tag :dist, params[:dist] %></td>
-        <td><#%= submit_tag "Search Near", :name => nil %></td>
-        <td> Or in your MicroLocal area (1 - 5 miles) </td>      </tr>
-    </table>  
-  <#% end %>  <br-->
-
 <div class="panel panel-primary">
-	<div class="panel-heading">Your Upcoming Events</div>
-	<div class="panel-body" style="text-align:center">
-		<% if user_signed_in? %>
+  <div class="panel-heading">Your Upcoming Events</div>
+  <div class="panel-body" style="text-align:center">
+    <% if user_signed_in? %>
 		  <% if @user.id == current_user.id %>
-			<%= button_to "Schedule Event", new_event_path, :method=> :get, class: "btn btn-warning" %><br>
+		  <%= button_to "Schedule Event", new_event_path, :method=> :get, class: "btn btn-warning" %><br>
 		  <% end %> 
-		<% end %> 
+    <% end %> 
 		<% if @events.count != 0 %>
 			<table class="table">
 				<tr>
@@ -56,7 +34,7 @@
 		<% else %>  
 			<%= @user.name %> hasn't posted any upcoming events
 		<% end %>  
-	</div>
+</div>
 </div>
 		
 		<!--%= link_to "View past events", user_pastevents_path %-->   
@@ -65,7 +43,7 @@
 			<#%= @user.name %>'s RSVPs  
 			My RSVPs
 			<table class="table">
-				<tr>
+				<tr> 
 					<th>Event </th>
 					<th>When</th>
 					<th>Where</th>

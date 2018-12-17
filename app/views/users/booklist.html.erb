@@ -13,11 +13,13 @@
       <div class="container">
 <% @title="CrowdPublish.TV - @user.name"  %>
 
-    <% if @user == current_user %>
-      <% if @user.author == 'author' %>
-        <%= button_to "Add your Book", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-      <% end %>  <br><br>
-    <% end %>  
+		<% if user_signed_in? %>
+			<% if current_user.id != @user.id %>
+				<% if @user.author == 'author' %>
+					<%= button_to "Add your Book", user_edit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+				<% end %>  <br><br>
+			<% end %>  
+		<% end %>
 
 
 <div class="row" >

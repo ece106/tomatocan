@@ -27,12 +27,10 @@ p {
 }
 #haveAccount a {
     color: $brand-secondary;
-    
 }
 .darkBlock {
     background-color: $gray-lighter;
 }
-
 #faqBlock, .lightBlock, .darkBlock {
     padding: 30px 20px;
 }
@@ -45,17 +43,4 @@ p {
 }
 #lightBlock, #darkBlock {
     padding-top: 80px;
-}
-
-//Style for event table 
-table {
-    width: 100%;
-    table-layout: fixed;
-}
-th {
-    text-align: center;
-}
-td {
-    white-space: normal !important;
-    word-wrap: break-word;
 }
