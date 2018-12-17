@@ -35,8 +35,10 @@
             <% end %>
           </td>
           <td class=col-xs-3>
+            <% edt = event.start_at + 2.hours %> 
             <span id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
-            <span id=calendar-time><%= event.start_at.strftime("%l:%M%P") %></span>
+            <span id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> MST</span>
+            <span id=calendar-time><%= edt.strftime("%l:%M%P") %> EST</span>
           </td>
           <td class=col-xs-3>
             <%= link_to "Join Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
