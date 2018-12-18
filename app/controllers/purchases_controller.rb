@@ -50,41 +50,42 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     if @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
-      if @merchandise.filetype.present? || @merchandise.filetype != 'blank'
+      if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? 
         @purchase.user_id = current_user.id
         if @purchase.save_with_payment
           #audio
-          if @merchandise.filetype == "audio" && @merchandise.audio.present?
-            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.audio.to_s}") 
-            send_data data.read, filename: @merchandise.audio, type: "application/audio", disposition: 'attachment' 
+          if @merchandise.audio.present?
+            filename = @merchandise.audio.to_s.split('/')
+            filename = filename[filename.length-1]
+            data = open("#{@merchandise.audio.to_s}") 
+            send_data data.read, filename: filename, disposition: 'attachment' 
           end
           #graphic
-          if @merchandise.filetype == "graphic" && @merchandise.graphic.present?
+          if @merchandise.graphic.present?
             data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.graphic.to_s}") 
             send_data data.read, filename: @merchandise.graphic, type: "application/graphic", disposition: 'attachment' 
           end
           #video
-          if @merchandise.filetype == "video" && @merchandise.video.present?
+          if @merchandise.video.present?
             data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.video.to_s}") 
             send_data data.read, filename: @merchandise.video, type: "application/video", disposition: 'attachment' 
           end
-          #ebook
-          if @merchandise.filetype == "ebook"
-            #pdf
-            if @merchandise.merchpdf.present?
-              data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchpdf.to_s}") 
-              send_data data.read, filename: @merchandise.merchpdf, type: "application/pdf", disposition: 'attachment' 
-            end
-            #mobi
-            if @merchandise.merchmobi.present?
-              data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchmobi.to_s}") 
-              send_data data.read, filename: @merchandise.merchmobi, type: "application/mobi", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
-            end
-            #epub
-            if @merchandise.merchepub.present?
-              data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchepub.to_s}") 
-              send_data data.read, filename: @merchandise.merchepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
-            end
+          #pdf
+          if @merchandise.merchpdf.present?
+            filename = @merchandise.merchpdf.to_s.split('/')
+            filename = filename[filename.length-1]
+            data = open("#{@merchandise.merchpdf.to_s}") 
+            send_data data.read, filename: filename, disposition: 'attachment' 
+          end
+          #mobi
+          if @merchandise.merchmobi.present?
+            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchmobi.to_s}") 
+            send_data data.read, filename: @merchandise.merchmobi, type: "application/mobi", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
+          end
+          #epub
+          if @merchandise.merchepub.present?
+            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchepub.to_s}") 
+            send_data data.read, filename: @merchandise.merchepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
           end
         else
           redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
