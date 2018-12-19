@@ -57,18 +57,22 @@ class PurchasesController < ApplicationController
           if @merchandise.audio.present?
             filename = @merchandise.audio.to_s.split('/')
             filename = filename[filename.length-1]
-            data = open("#{@merchandise.audio.to_s}") 
+            data = open("#{@merchandise.audio.to_s}")
             send_data data.read, filename: filename, disposition: 'attachment' 
           end
           #graphic
           if @merchandise.graphic.present?
-            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.graphic.to_s}") 
-            send_data data.read, filename: @merchandise.graphic, type: "application/graphic", disposition: 'attachment' 
+            filename = @merchandise.graphic.to_s.split('/')
+            filename = filename[filename.length-1]
+            data = open("#{@merchandise.graphic.to_s}")
+            send_data data.read, filename: filename, disposition: 'attachment' 
           end
           #video
           if @merchandise.video.present?
-            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.video.to_s}") 
-            send_data data.read, filename: @merchandise.video, type: "application/video", disposition: 'attachment' 
+            filename = @merchandise.video.to_s.split('/')
+            filename = filename[filename.length-1]
+            data = open("#{@merchandise.video.to_s}")
+            send_data data.read, filename: filename, disposition: 'attachment' 
           end
           #pdf
           if @merchandise.merchpdf.present?
@@ -79,13 +83,17 @@ class PurchasesController < ApplicationController
           end
           #mobi
           if @merchandise.merchmobi.present?
-            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchmobi.to_s}") 
-            send_data data.read, filename: @merchandise.merchmobi, type: "application/mobi", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
+            filename = @merchandise.merchmobi.to_s.split('/')
+            filename = filename[filename.length-1]
+            data = open("#{@merchandise.merchmobi.to_s}")
+            send_data data.read, filename: filename, disposition: 'attachment' 
           end
           #epub
           if @merchandise.merchepub.present?
-            data = open("https://authorprofile.s3.amazonaws.com#{@merchandise.merchepub.to_s}") 
-            send_data data.read, filename: @merchandise.merchepub, type: "application/epub", disposition: 'attachment', stream: 'true', buffer_size: '4096' 
+            filename = @merchandise.merchepub.to_s.split('/')
+            filename = filename[filename.length-1]
+            data = open("#{@merchandise.merchepub.to_s}") 
+            send_data data.read, filename: filename, disposition: 'attachment' 
           end
         else
           redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."

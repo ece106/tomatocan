@@ -34,6 +34,7 @@ class Purchase < ApplicationRecord
     else #If a donation is being made
       self.pricesold = pricesold
       self.author_id = author_id
+      seller = User.find(self.author_id)
       amt = (pricesold * 100).to_i 
       self.authorcut = ((pricesold * 92.1).to_i - 30).to_f/100
       if self.user_id.present?
