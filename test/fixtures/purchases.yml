@@ -2,16 +2,14 @@
 
 one:
   author_id: 1 
-  user_id: 1
-  book: two
+  user_id: 2
   stripe_customer_token: MyString
   pricesold: 20.5
   authorcut: 18.1
 
 two:
   author_id: 2 
-  user_id: 2
-  book: one
+  user_id: 1
   stripe_customer_token: MyString
   pricesold: 50.5
   authorcut: 38.1

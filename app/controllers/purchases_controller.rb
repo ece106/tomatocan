@@ -26,7 +26,7 @@ class PurchasesController < ApplicationController
   def new
     if(params[:pricesold].present?) # Donation being made
       @purchase = Purchase.new
-    else #Purchase being made
+    elsif(params[:merchandise_id].present?) #Purchase being made
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new
     end

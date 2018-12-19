@@ -41,7 +41,7 @@ class Purchase < ApplicationRecord
         purchaser = User.find(self.user_id)
         desc = "Donation of $" + String(pricesold) + " from " + purchaser.name 
       else
-        desc = "Donation of $" + String(pricesold) + " from anonymous users"
+        desc = "Donation of $" + String(pricesold) + " from anonymous customer"
       end
     end
 
