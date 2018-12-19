@@ -13,11 +13,13 @@
       <div class="container-flex">
 <% @title="CrowdPublish.TV - @user.name"  %>
 
-    <% if @user == current_user %>
-      <% if @user.author == 'author' || @user.author == 'filmmaker' || @user.author == 'actor'%>
-        <%= button_to "Add A Movie", user_movieedit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
-      <% end %>  <br><br>
-    <% end %>  
+		<% if user_signed_in? %>
+			<% if current_user.id != @user.id %>
+				<% if @user.author == 'author' || @user.author == 'filmmaker' || @user.author == 'actor'%>
+					<%= button_to "Add A Movie", user_movieedit_path(current_user.permalink), method: :get, form_class: 'btn btn-small' %>
+				<% end %>
+			<% end %>
+		<% end %>
 
 
 <div class="row" >
