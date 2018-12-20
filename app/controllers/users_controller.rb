@@ -60,13 +60,6 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def perks
-    @perks = Merchandise.where( "user_id = ?", @user.id )
-    respond_to do |format|
-      format.html 
-      format.json { render json: @user }
-    end
-  end
   def profileinfo
 #    @user.updating_password = false
     respond_to do |format|
