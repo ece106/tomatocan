@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
-#  before_action :check_outstandingagreements, except: [:new, :index, :create, :approveagreement, :declineagreement ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
 #  before_filter :correct_user, only: [:edit, :update, :dashboard] Where did this method go?
 
@@ -34,28 +33,11 @@ class UsersController < ApplicationController
         @usrgrpnameid <<  [group.name, group.id] 
       end 
       @numusrgroups = currusergroups.count 
-      if current_user.stripeid.present?
-#        @account = Stripe::Account.retrieve("#{@user.stripeid.to_s}") 
-#        @balance = Stripe::Balance.retrieve("#{@user.stripeid.to_s}") # We dont 
-      end
     end 
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
     end
-  end
-  def about
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def agreetopartner 
-    @agreement = Agreement.new
-    @agreement.update_attribute(:group_id, params[:currgroupid]) 
-    @agreement.update_attribute(:user_id, params[:userid])
-    redirect_to user_profile_path
   end
 
   def eventlist
@@ -78,20 +60,6 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def groups
-    @groups = Group.where( "user_id = ?", @user.id )
-    respond_to do |format|
-      format.html 
-      format.json { render json: @user }
-    end
-  end
-  def perks
-    @perks = Merchandise.where( "user_id = ?", @user.id )
-    respond_to do |format|
-      format.html 
-      format.json { render json: @user }
-    end
-  end
   def profileinfo
 #    @user.updating_password = false
     respond_to do |format|
@@ -102,24 +70,6 @@ class UsersController < ApplicationController
   def changepassword
     respond_to do |format|
       format.html # profileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def readerprofileinfo
-    respond_to do |format|
-      format.html # readerprofileinfo.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def editbookreview
-    respond_to do |format|
-      format.html # editbookreview.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def editauthorreview
-    respond_to do |format|
-      format.html # editauthorreview.html.erb
       format.json { render json: @user }
     end
   end
@@ -138,22 +88,6 @@ class UsersController < ApplicationController
     render 'followingpage'
   end
 
-  # GET /users/1.json
-  def booklist
-    @books = @user.books
-    respond_to do |format|
-      format.html # booklist.html.erb
-      format.json { render json: @user }
-    end
-  end
-  def movielist
-    @movies = @user.movies
-    respond_to do |format|
-      format.html # booklist.html.erb
-      format.json { render json: @user }
-    end
-  end
-
   # GET /users/new I don't think this is used
   def new
     @user = User.new
@@ -168,20 +102,6 @@ class UsersController < ApplicationController
     @books = @user.books
     @book = current_user.books.build # if signed_in?
     @booklist = Book.where(:user_id => @user.id)
-  end
-  def movieedit
-    @movies = @user.movies
-    @movie = current_user.movies.build # if signed_in?
-    @movielist = Movie.where(:user_id => @user.id)
-  end
-
-  def approveagreement  #called from button on
-    current_user.approve_agreement(params[:agreeid]) #this isnt where we want to redirect
-    redirect_to user_profile_path(current_user.permalink)
-  end
-  def declineagreement  #called from button on
-    current_user.decline_agreement(params[:agreeid])  
-    redirect_to user_profile_path(current_user.permalink)
   end
   def markfulfilled  #called from button on author dashboard
     current_user.mark_fulfilled(params[:purchid])  
@@ -301,17 +221,10 @@ class UsersController < ApplicationController
       case action_name
       when "index", "youtubers", "supportourwork", "stripe_callback"
         'application'
-      when "profileinfo", "readerprofileinfo", "changepassword"
+      when "profileinfo", "changepassword"
         'editinfotemplate'
       else
         'userpgtemplate'
-      end
-    end
-
-    def check_outstandingagreements
-      if user_signed_in?
-        allmyagreements = Agreement.where('(user_id = ?)', current_user.id)
-        @mynullagreements = allmyagreements.where("approved IS NULL" )
       end
     end
 
