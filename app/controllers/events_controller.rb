@@ -4,21 +4,6 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.where( "start_at > ?", Time.now )
-
-    if params[:search].present?
-      if params[:dist].present? && is_number?(params[:dist])
-        @events = @events.near(params[:search], params[:dist], order: 'distance') 
-      else
-        @events = @events.near(params[:search], 50, order: 'distance') 
-#    elsif user_signed_in? && current_user.address
-#      @events = Event.near([current_user.latitude, current_user.longitude], 25, order: 'distance') 
-#    elsif request.location 
-#      @events = Event.near([request.location.latitude, request.location.longitude], 25, order: 'distance') 
-#    else
-#      @events = Event.near("Washington, DC", 100, order: 'distance')
-      end
-    end
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
@@ -34,12 +19,6 @@ class EventsController < ApplicationController
         @events = @events.near(params[:search], 50, order: 'distance') 
       end
     end
-  end
-  def online
-    events = Event.where( "start_at > ?", Time.now )
-    @events = events.where( 'address = ?', "online") 
-    pastevents = Event.where( "start_at < ?", Time.now )
-    @pastevents = pastevents.where( 'address = ?', "online") 
   end
 
   # GET /events/1.json
@@ -95,17 +74,6 @@ class EventsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /events/1.json
-  def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
-
-    respond_to do |format|
-      format.html { redirect_to events_url }
-      format.json { head :ok }
     end
   end
 

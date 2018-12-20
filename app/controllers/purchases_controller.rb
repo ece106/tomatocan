@@ -41,13 +41,8 @@ class PurchasesController < ApplicationController
       end
     end
   end
-  # GET /purchases/1/edit 
-  def edit
-    @purchase = Purchase.find(params[:id])
-  end
   # POST /purchases 
   def create
-
     @purchase = Purchase.new(purchase_params)
     if @purchase.book_id? # This logic is necessary for purchasing downloads. Will need to be changed for each merchandise filetypes
       @book = Book.find(@purchase.book_id) 
@@ -98,30 +93,6 @@ class PurchasesController < ApplicationController
       else
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
-    end
-  end
-
-  def update #is this ever used
-    @purchase = Purchase.find(params[:id])
-
-    respond_to do |format|
-      if @purchase.update_attributes(purchase_params)
-        format.html { redirect_to @purchase }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  # DELETE /purchases/1.json
-  def destroy
-    @purchase = Purchase.find(params[:id])
-    @purchase.destroy
-
-    respond_to do |format|
-      format.html { redirect_to purchases_url }
-      format.json { head :ok }
     end
   end
 

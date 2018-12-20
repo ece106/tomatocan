@@ -60,6 +60,13 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  def perks
+    @perks = Merchandise.where( "user_id = ?", @user.id )
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
+  end
   def profileinfo
 #    @user.updating_password = false
     respond_to do |format|
@@ -98,11 +105,6 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit 76
-  def edit
-    @books = @user.books
-    @book = current_user.books.build # if signed_in?
-    @booklist = Book.where(:user_id => @user.id)
-  end
   def markfulfilled  #called from button on author dashboard
     current_user.mark_fulfilled(params[:purchid])  
     redirect_to user_dashboard_path(current_user.permalink)
