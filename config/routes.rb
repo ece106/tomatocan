@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :movieroles
-  resources :movies
-  resources :agreements
   resources :relationships
 
   resources :users do
@@ -15,7 +12,6 @@ Rails.application.routes.draw do
      root to: "static_pages#home"
 #  end
 
-#  root to: 'static_pages#home'
 #  get "attachments/show"
   get "attachments/download" 
 
@@ -27,24 +23,17 @@ Rails.application.routes.draw do
   match 'tos', to: 'static_pages#tos', via: 'get'
   match 'aboutus', to: 'static_pages#aboutus', via: 'get'
   match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
-  match 'apprenticeships', to: 'static_pages#apprenticeships', via: 'get'
-  match 'bootcamp', to: 'static_pages#bootcamp', via: 'get'
   match 'livestream', to: 'static_pages#livestream', via: 'get'
-  match 'facebook', to: 'static_pages#facebook', via: 'get'
 
   match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
-  match '/events/online' => "events#online", :as => :events_online, via: 'get'
 
   match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
   match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'
     
   resources :merchandises
   resources :rsvpqs
-  resources :groups
   resources :purchases
-  resources :plans
   resources :events
-  resources :reviews
 
 devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations: "users/registrations", passwords: "users/passwords"}
   as :user do
@@ -71,61 +60,23 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
     end
   end
 
-
-  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}, via: 'get'
-
-  match '/editbookreview',  to: 'reviews#editbookreview', via: 'get'
-  match '/editauthorreview',  to: 'reviews#editauthorreview', via: 'get'
-  #  match 'user_root_path', to: 'users/current_user'
-
-  resources :users do
-    resources :books
-    member do
-#      get 'profileinfo', 'readerprofileinfo', 'orgprofileinfo' What is this route for???
-      get 'blog' => "users#blog", :as => :blog
-    end
-  end
-
-  match '/books' => "books#index", :as => :allbooks, via: 'get'
   match '/youtubers' => "users#youtubers", :as => :youtubers, via: 'get'
   match '/supportourwork' => "users#supportourwork", :as => :supportourwork, via: 'get'
 
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/followers' => "users#followerspage", :as => :user_followerspage, via: 'get'
   match '/:permalink/following' => "users#followingpage", :as => :user_followingpage, via: 'get'
-  match '/:permalink/blog' => "users#blog", :as => :user_blog, via: 'get'
-  match '/:permalink/books' => "users#booklist", :as => :user_booklist, via: 'get'
-  match '/:permalink/movies' => "users#movielist", :as => :user_movielist, via: 'get'
-  match '/:permalink/movieedit' => "users#movieedit", :as => :user_movieedit, via: 'get'
   match '/:permalink/eventlist' => "users#eventlist", :as => :user_eventlist, via: 'get'
   match '/:permalink/pastevents' => "users#pastevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
   match '/:permalink/controlpanel' => "users#controlpanel", :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard' => "users#dashboard", :as => :user_dashboard, via: 'get'
-  match '/:permalink/readerprofileinfo' => "users#readerprofileinfo", :as => :user_readerprofileinfo, via: 'get'
-  match '/:permalink/edit' => "users#edit", :as => :user_edit, via: 'get'
-  match '/:permalink/stream' => "users#stream", :as => :user_stream, via: 'get'
-  match '/:permalink/groups' => "users#groups", :as => :user_groups, via: 'get'
-  match '/:permalink/perks' => "users#perks", :as => :user_merchandise, via: 'get'
-  match '/:permalink/about' => "users#about", :as => :user_about, via: 'get'
  
-  match '/groups/:permalink/eventlist' => "groups#eventlist", :as => :group_eventlist, via: 'get'
-  match '/groups/:permalink/news' => "groups#news", :as => :group_news, via: 'get'
-  match '/groups/:permalink/dashboard' => "groups#dashboard", :as => :group_dashboard, via: 'get'
-
-  post '/:permalink/approveagreement' => 'users#approveagreement', :as => :approveagreement_user
-  post '/:permalink/declineagreement' => 'users#declineagreement', :as => :declineagreement_user
   post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user
 
 #  get '/:friendly_id', to: 'groups#show' 
 
-  resources :books do
-    resources :purchases
-    member do
-      get 'buy'
-    end
-  end
   resources :merchandises do
     resources :purchases
     member do
