@@ -39,6 +39,7 @@ gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
+gem 'fileutils'
 
 group :test, :development do
 #  gem 'factory_girl_rails'

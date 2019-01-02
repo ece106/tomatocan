@@ -5,7 +5,7 @@ class AudioUploader < CarrierWave::Uploader::Base
 
   if Rails.env.development? || Rails.env.test?
     #storage :file  # but what if I want to test fog/aws
-    storage :fog
+    storage :file
   else
     storage :fog
   end

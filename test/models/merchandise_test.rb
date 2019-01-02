@@ -19,5 +19,16 @@ class MerchandiseTest < ActiveSupport::TestCase
       @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
       @merchandise.get_youtube_id
       refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
-      end
+    end
+
+    # test "show me the full filepath of my pdf" do
+    #   merchandise = merchandises(:one)
+    #   puts "\n\n#{merchandise.merchpdf.file.path}\n\n"
+    # end
+    test "show me the full filepath of my mobi" do
+      merchandise = merchandises(:two)
+      puts "\n\n#{merchandise.merchmobi.file.path}\n\n"
+    end
+
+
 end
