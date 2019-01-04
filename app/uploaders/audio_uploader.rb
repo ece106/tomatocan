@@ -24,4 +24,3 @@ class AudioUploader < CarrierWave::Uploader::Base
   end
 
 end
-
