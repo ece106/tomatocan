@@ -84,7 +84,7 @@ Now you can push your comitted changes to your repository with the following com
 git push origin master
 ```
 or
-
+  
 ```
 git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-TOMATOCAN-REPOSITORY master
 ```
@@ -194,6 +194,12 @@ config.action_mailer.default_url_options = {
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
 ```
+
+Then type
+```
+>gem install bundler
+```
+at the command line so you can install all the gems.
 
 Then type
 ```
