@@ -9,7 +9,7 @@ gem 'sqlite3'
 
 gem 'mandrill'	
 gem 'devise'
-gem 'fog'   #, '1.6.0'
+gem 'fog-aws'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
