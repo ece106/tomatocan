@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
-ruby "2.4.2"
+ruby "2.5.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3'
 
 gem 'mandrill'	
 gem 'devise'
@@ -39,6 +39,7 @@ gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
+gem 'fileutils'
 
 group :test, :development do
 #  gem 'factory_girl_rails'

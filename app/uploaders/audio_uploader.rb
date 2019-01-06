@@ -4,8 +4,8 @@ class AudioUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   if Rails.env.development? || Rails.env.test?
-    storage :file  # but what if I want to test fog/aws
-    #storage :fog
+    #storage :file  # but what if I want to test fog/aws
+    storage :file
   else
     storage :fog
   end

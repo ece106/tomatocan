@@ -16,10 +16,6 @@ class Merchandise < ApplicationRecord
 
   attr_accessor :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h
   after_update :crop_itempic
-  
-#  mount_uploader :pdf, PdfUploader  # need to change column names for these
-#  mount_uploader :epub, EpubUploader
-#  mount_uploader :mobi, MobiUploader
 
   def crop_itempic
     itempic.recreate_versions! if itempic_crop_x.present?
