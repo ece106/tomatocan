@@ -22,7 +22,10 @@ Send your responses to rolemodelenterprises@gmail.com
 
 Refer to http://github.com/ece106/tomatocan and use tutorials, Google, etc. to help you figure out the answers. 
 
-1. What is the design of the Tomatocan database? Submit as a jpg or png (You may draw on paper & submit as a photo).
+1. Copy schema.rb and save it as schema.txt. Describe each field of the events, merchandises, purchases, rsvpqs, and users tables.
+e.g. "created_at" - Time and date at which each record was created
+"twitter" - user's twitter handle
+
 
 2. Which file/view is the users' home page? What information can users display on their home page? Where is this information stored in the Tomatocan database?
 
