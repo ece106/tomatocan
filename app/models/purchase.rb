@@ -29,7 +29,6 @@ class Purchase < ApplicationRecord
         self.groupcut = 0.0
         self.authorcut = ((@merchandise.price * 92.1).to_i - 30).to_f/100
       %%end%
-
       
     else #If a donation is being made
       self.pricesold = pricesold

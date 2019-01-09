@@ -1,13 +1,5 @@
 class PurchasesController < ApplicationController
 #  before_action :authenticate_user!, only: [:new ]
-  # GET /purchases.json
-  def index
-    @purchases = Purchase.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @purchases }
-    end
-  end
   # GET /purchases/1
   def show
     @purchase = Purchase.find(params[:id])
@@ -44,10 +36,12 @@ class PurchasesController < ApplicationController
   # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
+    if user_signed_in?
+      @purchase.user_id = current_user.id
+    end
     if @purchase.merchandise_id?
       @merchandise = Merchandise.find(@purchase.merchandise_id)
-      if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? 
-        @purchase.user_id = current_user.id
+      if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
         if @purchase.save_with_payment
           #audio
           if @merchandise.audio.present?

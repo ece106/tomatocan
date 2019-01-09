@@ -32,12 +32,6 @@
 	<!--span class="badge pull-right"><#%= @user.merchandises.count %> Perks</span> currently doesn't work-->
 </div>
 <div class="panel-body" id="merchSidebar">
-  <% if params[:groupid].present? %>
-  <tr>
-    <% groupsupported = Group.find(params[:groupid]) %>
-    <td>5% of purchase will go to <%= groupsupported.name %></td>
-  </tr>
-  <% end %>
   <% if @sidebarmerchandise.present? %>
     <% @sidebarmerchandise.each do |merch| %>
     <div class="media">
@@ -96,9 +90,13 @@
               <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
             <% end %>
 				
-            <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
+            <% if @user.stripeid.present? || @user.id == 143 %>   
+              <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
+            <% else %>
+              <br> * <%= @user.name %> cannot accept funds yet
+            <% end %>
           <% end %>
-				
+  				
         <% else %>
           <% if (merch.deadline) != nil %>
             <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
@@ -117,7 +115,11 @@
             <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
           <%end%>
 				
-          <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
+          <% if @user.stripeid.present? || @user.id == 143 %>   
+            <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
+          <% else %>
+            <br> * <%= @user.name %> cannot accept funds yet
+          <% end %>
 				
 				<% end %>
 			</div>
@@ -136,6 +138,8 @@
             <br /><br />
             <% btnTxt = ("Donate $" + sprintf('%.2f',100) + "!") %>
             <%= link_to btnTxt, new_purchase_path(:pricesold => 100, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+        <% else %>
+          <%= @user.name %> has not made sales or donations available yet. 
         <% end %>
 	<% end %>
 </div>
