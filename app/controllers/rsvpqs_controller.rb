@@ -3,11 +3,14 @@ class RsvpqsController < ApplicationController
 #  before_action :authenticate_user! 
   layout :resolve_layout
 
+<<<<<<< HEAD
   # GET /rsvps
   #def index
    # @rsvps = Rsvpq.all
   #end
 
+=======
+>>>>>>> b0de30e80e6bcc26abb0ba750b8a05ca3634f66f
   # GET /rsvps/1
   def show
 #    :update
@@ -67,6 +70,5 @@ class RsvpqsController < ApplicationController
         'application'
       end
     end
-
 
 end

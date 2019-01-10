@@ -22,23 +22,28 @@ Send your responses to rolemodelenterprises@gmail.com
 
 Refer to http://github.com/ece106/tomatocan and use tutorials, Google, etc. to help you figure out the answers. 
 
-1. What is the design of the Tomatocan database? Submit as a jpg or png (You may draw on paper & submit as a photo).
+1. Copy schema.rb and save it as schema.txt. Describe each field of the events, merchandises, purchases, rsvpqs, and users tables.
+e.g. "created_at" - Time and date at which each record was created
+"twitter" - user's twitter handle
 
-2. Which file/view is the users' home page? What information do authors get to display on their home page? Where is this information stored in the Tomatocan database?
 
-3. What pages/views do authors get in their web site when they sign up for Tomatocan?
+2. Which file/view is the users' home page? What information can users display on their home page? Where is this information stored in the Tomatocan database?
 
-4. What are the default views for all Rails apps?
+3. What pages/views do users get in their web site when they sign up for Tomatocan?
+
+4. What are the default views for all Rails apps? What do they display?
 
 5. What are the routes that were added to the Tomatocan app so the non-default/extra views for user pages could be displayed?
 
 6. What are the methods that were added to the Tomatocan app so the non-default/extra user views/pages could be displayed? What file are they in?
 
-7. Where is the method to add_bank_account to users? What gem does it use?
+7. Where is the method to calcdashboard for users? 
 
-8. Fork a copy of the tomatocan github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the Tomatocan admin pull your changes.
+8. What gem is used for signin/signout? How many times is it mentioned in the Tomatocan repository?
 
-9. Summarize your Ruby & Rails skill level/what you know in your own words.
+9. Fork a copy of the tomatocan github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the Tomatocan admin pull your changes.
+
+10. Summarize your Ruby & Rails skill level/what you know in your own words.
 
 When you have completed the quiz, download and start working on the tutorial at https://github.com/ece106/tomatocan/blob/master/public/LearnRailsIn2Minutes.odt 
 
@@ -82,7 +87,7 @@ Now you can push your comitted changes to your repository with the following com
 git push origin master
 ```
 or
-
+  
 ```
 git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-TOMATOCAN-REPOSITORY master
 ```
@@ -192,6 +197,12 @@ config.action_mailer.default_url_options = {
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
 ```
+
+Then type
+```
+>gem install bundler
+```
+at the command line so you can install all the gems.
 
 Then type
 ```

@@ -367,6 +367,7 @@ Friday, November 9th, 2018
 	- Colored navbar to be way more obvious
 	- Working on having Edit buttons for perks pull up a popup Bootstrap modal instead of loading another page.
 
+========================================
 Tasks for week of November 12, 2018
 	- Dashboard
 		- Set sort order of tabs
@@ -445,6 +446,34 @@ Thursday, November 29, 2018
 	- Drop shadow for home header
 
 ========================================
+Tasks for week of December 10, 2018
+	- Check current_user variable usage in entire repo
+	- Button to Add Discussion on Edit dashboard
+	- TOS: Add twitch, youtube TOS about recording, put TOS next to viewer about nonusers being recorded
+	- Instructions for recording a livestream & displaying resulting youtube on users#show (only host sees)
+	- Page of good previous livestreams
+	- Display Mission (users#about)
+	- Button to hosts Show page on CrowdPublish.TV from livestream
+
 Monday, December 10, 2018
-	- Spacing above navbar caused by an image injected by a funtion in book.js for "OneStat page counter" -- I didn't see it because of my adblocker. I commented this out because I'm sure we don't need it.
+	- Spacing above navbar caused by an image injected by a function in book.js for "OneStat page counter" -- I didn't see it because of my adblocker. I commented this out because I'm sure we don't need it.
 	- registrations/new says "Sign Up" instead of "Sign In"
+	- Placeholder for perks without images
+	- Directions for adding previous YouTube streams to profile
+	- Tracked down and changed last pages using "if @user == current_user" logic, mostly unused pages.
+  - Twitch & YouTube ToS:
+    - Language in their legal sections are written to apply to anyone on the site: "By using our services you agree to..." etc.
+    
+Tuesday, December 11, 2018
+  - Work on event calendar
+    - Restyled as a panel
+    - Buttons to Create, Edit, and Join a discussion
+    - Added a new stylesheet to hold styles for panels to avoid making users.scss unreadable
+  - TODO: can we setup email reminders for event creators?
+    - As soon as event is created
+      - Prompt to setup YouTube Live
+      - Prompt to setup Perks
+      - Instructions for how to test their camera, etc.
+      - Promote stream (facebook, twitter, etc.)
+    - Reminders a day, an hour, 30 minutes before scheduled start etc.
+  - TODO: Change button colors with a style instead of using Bootstrap's warning/primary for everything

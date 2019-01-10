@@ -4,10 +4,6 @@ class StaticPagesController < ApplicationController
   def home
     timenotutc = Time.now - 10.hours
     @events = Event.where( "start_at > ?", timenotutc )
-    userswmerch = User.joins(:merchandises).distinct
-    merchorder = userswmerch.order('updated_at DESC')
-    @merchusers = merchorder.paginate(:page => params[:page], :per_page => 6)
-    
     if user_signed_in?
       @user = User.find(current_user.id)
     end
@@ -19,20 +15,14 @@ class StaticPagesController < ApplicationController
   end
   def aboutus
   end
-  def bootcamp
-  end
-  def apprenticeships
-  end
   def livestream
   end
 
   def tellfriends
+    #The current content on this page should be integrated into some page that helps hosts set up shows
     if user_signed_in?
       @user = User.find(current_user.id)
     end
-  end
-
-  def facebook
   end
 
   private

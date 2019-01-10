@@ -1,12 +1,18 @@
 <!-- Set layout of panels for a logged-in user. You do not need to check if user logged in or if user == current user in this view. You should check if host is Heroku though. -->
+
 <!-- Nav tabs -->
-	<ul class="nav nav-pills nav-justified" id="dashboardTabs">
-    <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
-    <li role="presentation"><%= link_to "Perks", "#perksTab", "data-toggle" => "tab" %></li>
-    <li role="presentation"><%= link_to "Streaming", "#streamingTab", "data-toggle" => "tab" %></li>
-    <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
-    <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+<ul class="nav nav-pills nav-justified" id="dashboardTabs">
+  <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Perks", "#perksTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Streaming", "#streamingTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
 </ul>
+
+<div class="row">
+  <br><br>
+  <%= render 'layouts/stripealert' %>
+</div>
 
 <!-- Tab panes -->
 <div class="tab-content">
@@ -101,7 +107,7 @@
     <div class="tab-pane" id="salesTab">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-6 col-md-offset-2">
+					<div class="col-md-12">
 						<h1>Perk Sales</h1>
 					</div>
 				</div>

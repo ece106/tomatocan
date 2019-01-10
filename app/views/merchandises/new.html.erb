@@ -1,7 +1,8 @@
 <div class="container">
 
 <% if user_signed_in? %>
-  <% if !current_user.stripeid.present? %>
+<% if current_user.id == @user.id %>
+  <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
     <div class="row">
       <div class="col-md-12">
         <br><br>
@@ -28,6 +29,7 @@
       </div>
     </div>
   <% end %>
+<% end %>
 <% end %>
 
 <div class="row">
@@ -84,7 +86,7 @@
 		<div class="form-group perkField">
             <h3><%= f.label :itempic, "Image" %></h3>
             <p class="help-block">Upload an image of the Perk you are offering (JPEG, GIF, or PNG).</p>
-			<%= f.file_field :itempic, :class => "form-control" %>
+			<%= f.file_field :itempic, :class => "form-control"%>
         </div>
 
 		<div class="form-group perkField">
@@ -94,7 +96,7 @@
         </div>
 		
 		<div class="form-group perkField">
-			<h3><%= f.label :uploadfile, "File" %></h3>
+			<h3><%= f.label :filetype, "File" %></h3>
             <p class="help-block">If you're offering a downloadable perk, select the file's format.</p>
 			<!--Not ruby generated because it doesn't interact with the database.-->
 			<select id="perkFiletype", class="form-control">
@@ -120,7 +122,7 @@
 			</div>
 			<div class="documentField eBookField">
             	<p class="help-block">.pdf</p>
-				<%= f.file_field :merchpdf, :class => "form-control" %>
+				<%= f.file_field :merchpdf, :class => "form-control"%>
 			</div>
 			<div class="graphicField documentField">
             	<p class="help-block">.jpg, .jpeg, .gif, .png, .tif</p>
@@ -154,3 +156,12 @@
 </div>
     
 </div>
+
+<%# <script>
+  const stage = Jcrop.attach('target');
+
+stage.listen('crop.move',function(widget,e){
+  const pos = widget.pos;
+  console.log(pos.x,pos.y,pos.w,pos.h);
+});
+</script> %>

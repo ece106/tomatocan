@@ -22,7 +22,7 @@ class PurchaseTest < ActiveSupport::TestCase
   test "check if book_id or merchandise_id is blank" do
   	purchase = Purchase.new
   	purchase.send "book_id=",nil
-  	purchase.send "merchandise_id=",nil
+  	purchase.send "merchandise_id=", nil
   	refute purchase.valid? #book_id and merchandise_id must not be nil
   end
 end
