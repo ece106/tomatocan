@@ -1,7 +1,6 @@
 <div class="container">
 
 <% if user_signed_in? %>
-<% if current_user.id == @user.id %>
   <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
     <div class="row">
       <div class="col-md-12">
@@ -29,7 +28,6 @@
       </div>
     </div>
   <% end %>
-<% end %>
 <% end %>
 
 <div class="row">

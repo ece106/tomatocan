@@ -16,11 +16,7 @@ class PurchasesControllerTest < ActionController::TestCase
     test "should_get_purchases_new_purchase" do
       @merchandises = merchandises(:one)
       sign_in users(:one)
-<<<<<<< HEAD
       get :new, params: {merchandise_id: @purchases.merchandise_id }
-=======
-      get :new, params: { merchandise_id: @merchandises.id }
->>>>>>> b0de30e80e6bcc26abb0ba750b8a05ca3634f66
       assert_response :success
     end
 
@@ -39,7 +35,6 @@ class PurchasesControllerTest < ActionController::TestCase
       get :show, params: {id: @purchases.id }
       assert_response :success
     end
-<<<<<<< HEAD
 
     #test run to assert user can create new purchase
     test "should_create_purchases" do
@@ -55,7 +50,4 @@ class PurchasesControllerTest < ActionController::TestCase
     #   get :update, params: {id: @purchases.id}
     #   assert_response :success
     # end
-=======
-    
->>>>>>> b0de30e80e6bcc26abb0ba750b8a05ca3634f66f
 end

@@ -46,7 +46,7 @@ class MerchandisesController < ApplicationController
     if @merchandise.update(merchandise_params)
       @merchandise.get_youtube_id
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
-    else
+    else 
       render action: 'edit'
     end
   end
