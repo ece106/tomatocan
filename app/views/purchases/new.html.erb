@@ -12,6 +12,8 @@
 
       <%= f.hidden_field :stripe_card_token %>
       <%= f.hidden_field :group_id, :value => params[:group_id] %>
+      <%= f.hidden_field :pricesold, :value => params[:pricesold] %>
+      <%= f.hidden_field :author_id, :value => params[:author_id] %>
       <%= f.hidden_field :merchandise_id %>
       <% if @purchase.errors.any? %>
         <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
@@ -47,9 +49,13 @@
               <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
             </div>
           <div class="buynewcard">
+            <%if(params[:merchandise_id].present?)%>
               <% merch = Merchandise.find(params[:merchandise_id]) %>
               $<%= merch.price %>0
-            <%= f.submit "Buy now" %><br><br>
+              <%= f.submit "Buy now" %><br><br>
+            <%else%>
+              <%= f.submit "Donate now" %>
+            <%end%>
           </div>
           <a class="usedefault" href="#togard">
             Use default card ending *<%= @last4 %> instead
@@ -59,9 +65,13 @@
             You are using default card ending *<%= @last4 %>, Expiration <%= @expmonth %>-<%= @expyear %><br>
           </div>
           <div class="buyexistingcard" onclick="return existingcard();">
+          <%if(params[:merchandise_id].present?)%>
             <% merch = Merchandise.find(params[:merchandise_id]) %>
             $<%= merch.price %>0
             <%= f.submit "Buy now" %>
+          <%else%>
+            <%= f.submit "Donate now" %>
+          <%end%>
           </div><br>
           <a class="diffcard" data-toggle="collapse" href="#toggd">
             Enter a different card
@@ -80,7 +90,11 @@
             <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
             <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
           </p>
-          <%= f.submit "Purchase" %>
+          <%if(params[:merchandise_id].present?)%>
+              <%= f.submit "Purchase" %><br><br>
+          <%else%>
+            <%= f.submit "Donate" %>
+          <%end%>
 
         <% end %>
       <% else %>
@@ -93,7 +107,11 @@
         <%= label_tag :card_month, "Card Expiration" %>
         <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
         <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
-        <%= f.submit "Purchase" %>
+        <%if(params[:merchandise_id].present?)%>
+            <%= f.submit "Purchase" %><br><br>
+        <%else%>
+          <%= f.submit "Donate" %>
+        <%end%>
       <% end %>
 
       <div id="stripe_error">

@@ -4,21 +4,21 @@ require 'carrierwave/storage/fog'
 
 if Rails.env.development? || Rails.env.test?
   CarrierWave.configure do |config|
-    config.storage = :file
-#    config.storage = :fog
+#    config.storage = :file
 #    config.root = "#{Rails.root}/tmp"
 #    config.cache_dir = "#{Rails.root}/tmp/images"
-      config.fog_credentials = { 
+    config.fog_credentials = { 
       :provider               => 'AWS',
       :aws_access_key_id      => AWS_KEY,
       :aws_secret_access_key  => AWS_SECRET_KEY, 
       :persistent             => false,
       :region             => 'us-east-1'
     }
+    config.storage = :fog
     config.permissions = 0777
-    config.fog_directory  = 'authorprofile'
+    config.fog_directory  = 'authorprofile1'
     config.fog_public     = true
-#    config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
+    config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
   end
 end
   

@@ -1,6 +1,7 @@
 <div class="row" id="heroImage">
     <div>
-        <h1 id="heroTitle">Conversations to Make You Think &amp; Take Action</h1>
+        <h1 id="heroTitle">Doing Purposeful Work?<br><br>
+Host Livestream talk shows, Increase Donor participation</h1>
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
@@ -15,11 +16,11 @@
     <% end %>
 </div>
 <div class="row darkBlock" id="connectFans">
-    <div class="col-sm-4 col-sm-offset-1">
-        <h2><%= link_to "Livestream", "https://crowdpublishtv.herokuapp.com/livestream", :target => "_blank" %></h2>
+    <div class="col-md-5">
+        <h2>Livestream</h2>
         <p>Go live to your audience in a video chat where you take center stage. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a panel!</p>
     </div>
-    <div class="col-sm-5 col-sm-offset-1">
+    <div class="col-md-7">
         <%= render 'layouts/maincalendar' %>
     </div>
 </div>
@@ -28,14 +29,14 @@
       <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
     </div>
     <div class="col-sm-4 col-sm-offset-1">
-        <h2>Offer Perks</h2>
-        <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even just sell a sneak preview of new products &mdash; the choices are only limited by your creativity!</p>
+        <h2>Offer Perks & Receive Donations</h2>
+        <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you! Offer to post to their Facebook wall, sign a poster, or even sell a sneak preview of new products &mdash; the choices are only limited by your creativity!</p>
     </div>
 </div>
 <div class="row darkBlock" id="livestream">
     <div class="col-sm-4 col-sm-offset-1">
-        <h2>Connect with Fans</h2>
-        <p>Your fans can join in your livestream through text chat, as well as directly support you through purchasing perks on your page during your livestream and when you're offline.</p>
+        <h2>Connect with Fans & Donors</h2>
+        <p>Viewers can join in your livestream through text chat - or by voice. They can directly support you through purchasing perks or making donations on your page during your livestream and when you're offline. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
     </div>
     <div class="col-sm-6 col-sm-offset-1">
       <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>

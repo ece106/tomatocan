@@ -14,7 +14,7 @@
 		<div class="panel-body">
 			<div class="form-group">
 				<h3><%=f.label :name, "Name" %></h3>
-				<p class="help-block">What should we call you?</p>
+				<p class="help-block">This could be your name or your organization's name</p>
 				<%= f.text_field :name, maxlength: 50, :type => "name", :class => "form-control" %>
 			</div>
 
@@ -27,19 +27,19 @@
 						<%= image_tag @user.profilepicurl, :height => "150" %><br >
 					<% end %>
 				<% end %>
-				<p class="help-block">Upload a picture of yourself (150px &times; 150px is best)</p>
+				<p class="help-block">Upload a picture that represents your organization or work (150px &times; 150px is best)</p>
 				<%= f.file_field :profilepic, :class => "form-control" %>
 			</div>
 
 			<div class="form-group">
-				<h3><%=f.label :name, "Bio" %></h3>
-				<p class="help-block">Tell us a little about yourself.</p>
+				<h3><%=f.label :name, "About you" %></h3>
+				<p class="help-block">Tell us a little about your organization.</p>
 				<%= f.text_area :about, placeholder: 'About Me', :class => "form-control" %>
 			</div>
 
 			<div class="form-group">
 				<h3><%=f.label :name, "Discussion Topics" %></h3>
-				<p class="help-block">Three categories that categorize what you discuss in livestreams.</p>
+				<p class="help-block">Three categories that categorize what you discuss your live talk shows.</p>
 				<%= f.text_field :genre1, :class => "form-control", placeholder: "Category" %>
 				<%= f.text_field :genre2, :class => "form-control", placeholder: "Subcategory" %>
 				<%= f.text_field :genre3, :class => "form-control", placeholder: "Another subgategory" %>
@@ -75,7 +75,7 @@
 
 			<div class="form-group">
 				<h3><%=f.label :name, "YouTube Videos" %></h3>
-				<p class="help-block">If you have a video about you or your brand on YouTube, paste the URL below.
+				<p class="help-block">If you have a video about your organizations or projects on YouTube, paste the URL below.
 				<%= f.text_field :youtube1, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "text", :class => "form-control" %>
 				<%= f.text_field :youtube2, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "text", :class => "form-control" %>
 				<%= f.text_field :youtube3, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "text", :class => "form-control" %>
