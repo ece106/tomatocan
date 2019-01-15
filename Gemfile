@@ -25,6 +25,9 @@ gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '5.2.0'
+#####
+gem 'carrierwave'
+#####
 gem 'railties', '5.2.0'
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
