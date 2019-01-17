@@ -33,9 +33,8 @@ class ActiveSupport::TestCase
 
   # And copy carrierwave template in
   #puts "Copying\n  #{carrierwave_template.join('uploads').to_s} to\n  #{carrierwave_root.to_s}"
-puts "This fileutils statement does not work"
-puts carrierwave_root
-#  FileUtils.cp_r carrierwave_template.join('uploads'), carrierwave_root
+  FileUtils.cp_r carrierwave_template.join('uploads'), carrierwave_root  
+
 
   at_exit do
   #puts "Removing carrierwave test directories:"
