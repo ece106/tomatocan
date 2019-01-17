@@ -35,6 +35,7 @@ class ActiveSupport::TestCase
   #puts "Copying\n  #{carrierwave_template.join('uploads').to_s} to\n  #{carrierwave_root.to_s}"
   FileUtils.cp_r carrierwave_template.join('uploads'), carrierwave_root  
 
+
   at_exit do
   #puts "Removing carrierwave test directories:"
   Dir.glob(carrierwave_root.join('*')).each do |dir|
@@ -71,6 +72,4 @@ end
 class ActionController::TestCase
   include Devise::Test::ControllerHelpers
 end
-
-
 
