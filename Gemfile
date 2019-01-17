@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
-ruby "2.5.1"
+ruby "2.4.2"
 
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'sqlite3'
-#gem 'pg'
+gem 'pg'
+#gem 'sqlite3'
 
 gem 'mandrill'	
 gem 'devise'
@@ -25,9 +25,6 @@ gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '5.2.0'
-#####
-gem 'carrierwave'
-#####
 gem 'railties', '5.2.0'
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
