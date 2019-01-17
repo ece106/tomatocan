@@ -28,10 +28,11 @@
           5% of purchase will go to <b><%= groupsupported.name %></b><br><br>
         <% end %>
 
-        If you are purchasing a physical item to be mailed, enter entire Shipping Address where Patron Perk is to be sent <br>
-        If purchasing an item such as a posting on Facebook or a Tweet, enter your Facebook URL or Twitter handle.<br>
-        If purchasing a consultation, a mention in a book or movie, or any other item that the author/filmmaker will arrange by text or voice, enter phone number, email address, or other contact info.<br>
-        Address:
+        If you are purchasing a physical item to be mailed, enter entire Shipping Address where Perk is to be sent <br><br>
+        If purchasing an item such as a posting on Facebook or a Tweet, enter your Facebook URL or Twitter handle.<br><br>
+        If purchasing a consultation, a mention in a book or movie, or any other item that the seller will arrange by text or voice, enter phone number, email address, or other contact info.<br><br>
+        You may leave this box blank if you are making a donation or purchasing a download.<br><br>
+        Instructions to seller for sending item:
         <%= f.text_area :shipaddress, :cols => 50, :rows => 3 %><p>
       </div>
 
