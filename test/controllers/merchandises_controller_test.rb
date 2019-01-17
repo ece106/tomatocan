@@ -38,12 +38,17 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  #test run to assert that a user can create a new merchandise and then the page is redirected to that users perks page
+  #tests run to assert that a user can create a new merchandise and then the page is redirected to that users perks page
   test "should create merchandise" do
       sign_in users(:one)
       assert_difference('Merchandise.count',1) do
         post :create, params: { merchandise: { desc: 'Test1', itempic: 'mys', name: 'hi', price: '20', user_id: '3' }}
       end
+  end
+
+  test "should redirect successful merchandise creation" do
+    sign_in users(:one)
+    post 
   end
 
   #test run to assert that if a merchandise is not saved, it redirects to new merch page and displays flag
