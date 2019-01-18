@@ -1,3 +1,4 @@
+# carrierwave set up
 require 'carrierwave/storage/fog'
 #Excon.defaults[:write_timeout] = 1000
 #  Excon.defaults = Excon.defaults.mere(:write_timeout => 10.minutes.to_i)
@@ -7,6 +8,7 @@ if Rails.env.development? || Rails.env.test?
 #    config.storage = :file
 #    config.root = "#{Rails.root}/tmp"
 #    config.cache_dir = "#{Rails.root}/tmp/images"
+    config.storage = :fog
     config.fog_credentials = { 
       :provider               => 'AWS',
       :aws_access_key_id      => AWS_KEY,
@@ -14,7 +16,6 @@ if Rails.env.development? || Rails.env.test?
       :persistent             => false,
       :region             => 'us-east-1'
     }
-    config.storage = :fog
     config.permissions = 0777
     config.fog_directory  = 'authorprofile1'
     config.fog_public     = true

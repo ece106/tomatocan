@@ -4,13 +4,7 @@ class PurchasesControllerTest < ActionController::TestCase
   setup do
     @purchases = purchases(:one)
   end
-  
-    test "should_get_purchases_index" do
-      sign_in users(:one)
-      get :index
-      assert_response :success
-    end
-    
+
     test "should_get_purchases_new_purchase" do
       @merchandises = merchandises(:one)
       sign_in users(:one)

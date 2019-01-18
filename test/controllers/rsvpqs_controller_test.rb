@@ -1,5 +1,3 @@
-puts "Whats going on here"
-
 require 'test_helper'
 
 class RsvpqsControllerTest < ActionController::TestCase
