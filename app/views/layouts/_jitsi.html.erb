@@ -4,7 +4,8 @@
 		var domain = "meet.jit.si";
 		var options = {
 			roomName: "<%= @user.permalink %>",
-			parentNode: document.querySelector('#meet')
+			parentNode: document.querySelector('#meet'),
+			muc_max_occupants = 2
 		}
 		var api = new JitsiMeetExternalAPI(domain, options);
 	});

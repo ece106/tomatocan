@@ -134,6 +134,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "therightwaytotestcreate"
+    assert_difference('User.count', 1) do
+    post users_path, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', 
+           password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
+    end
+
+
   test "should create user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
     assert_difference('User.count', 1) do
       post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', 
