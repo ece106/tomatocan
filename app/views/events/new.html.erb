@@ -8,9 +8,9 @@
   </script>
 
 <div class="row" >
-  <div class="col-md-9 col-sm-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
+  <div class="col-md-12 col-sm-10 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
        <h1>Create an Event</h1>
-        <p>Insert description here Lily</p>
+        <p>By creating an event below, the details of your livestream will be posted on the Home page of CrowdPublish.TV. This will allow your viewers to easily find the time and date of your livestream discussion.</p>
 
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
@@ -29,31 +29,25 @@
 
   <div class="field">
     <h3><%= f.label :buttontype, "*Title of Livestream Event" %></h3>
-			<p class="help-block">Choose a descriptive name that catches your audience's attention.</p>
-    <%= f.text_field :name, :size => 80 %><p>
-  </div>
-      
-  <div class="field">
-    <h3><%= f.label :buttontype, "*Topic of Discussion" %></h3>
 			<p class="help-block">What will you be discussing in your livestream?</p>
     <%= f.text_field :name, :size => 80 %><p>
   </div>
       
   <div class="field">
-      <h3><%= f.label :buttontype, "*Start Time" %></h3>
+      <h3><%= f.label :buttontype, "Start Time" %></h3>
 			<p class="help-block">(in Pacific Daylight Time zone)</p>
     <%= f.datetime_select :start_at, :ampm => true, :default => 7.days.from_now, :minute_step => 15 %>
     <% #= date_field(:event, :start_at) %>
   </div>
       
   <div class="field">
-    <h3><%= f.label :buttontype, "*End Time" %></h3>
+    <h3><%= f.label :buttontype, "End Time" %></h3>
 			<p class="help-block">(in Pacific Daylight Time zone)</p>
     <%= f.datetime_select :end_at, :ampm => true, :default => 7.days.from_now + 30.minutes, :minute_step => 15 %><br>
   </div>
       
   <div class="field">
-    <h3><%= f.label :buttontype, "*Details about Livestream Discussion" %></h3>
+    <h3><%= f.label :buttontype, "Details about Livestream Discussion" %></h3>
 			<p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
     <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
   </div>
