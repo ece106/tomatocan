@@ -47,6 +47,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should_get_users_profileinfo" do 
+    sign_in @user
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success
 
