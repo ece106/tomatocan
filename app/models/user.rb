@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :movies 
   has_many :movieroles 
   has_many :reviews
-  has_many :groups
+#  has_many :groups
   has_many :purchases
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
