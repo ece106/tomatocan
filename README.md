@@ -107,6 +107,7 @@ Once you have made changes to your personal repository you can request for tomat
 Files To Check/Change/Create: 
 
 * gemfile: 
+
 If you're using sqlite3:
     Comment out 
 ```
@@ -116,8 +117,8 @@ and uncomment
 ```
 gem 'sqlite3'
 
-If you're using postgresql, leave the gemfile as is.
 ```
+If you're using postgresql, leave the gemfile as is.
 
 * config/initializers/aakeys.rb: 
     Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
