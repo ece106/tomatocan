@@ -62,7 +62,7 @@ class MerchandisesController < ApplicationController
       if deadlineorder.all[1].present?
         @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
       else
-        @sidebarmerchandise = deadlineorder.all[0..0]
+        @sidebarmerchandise = deadlineorder.all[0..0]  # is this used?
       end
     end
 
