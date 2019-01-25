@@ -1,17 +1,8 @@
-<head>
-<title>CrowdPublish.TV <%  @user.name %> 's calendar</title>
-</head>
-
 <div class="panel panel-primary">
   <div class="panel-heading">Your Upcoming Events</div>
   <div class="panel-body" style="text-align:center">
-    <% if user_signed_in? %>
-		  <% if @user.id == current_user.id %>
-		  <%= button_to "Schedule Event", new_event_path, :method=> :get, class: "btn btn-warning" %><br>
-		  <% end %> 
-    <% end %> 
-		<% if @events.count != 0 %>
-			<table class="table">
+fdssdf		<% if @events.present? %>
+	sdfS		<table class="table">
 				<tr>
 					<th>Event </th>
 					<th>When</th>
@@ -21,43 +12,11 @@
 				<tr style="text-align:center">
 					<td><%= link_to event.name, event %></td>
 					<td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %></td>
-				<% if user_signed_in? %>
-			  		<% if @user.id == current_user.id %>
-							<td>
 								<%= link_to "Edit", edit_event_path(event) %>
-							</td>
-			  		<% end %>
-				<% end %>
 				</tr>
 		  	<% end %>
 		  	</table>
-		<% else %>  
-			<%= @user.name %> hasn't posted any upcoming events
 		<% end %>  
 </div>
 </div>
 		
-		<!--%= link_to "View past events", user_pastevents_path %-->   
-
-		<!--% if @rsvpevents.count != 0 %>
-			<#%= @user.name %>'s RSVPs  
-			My RSVPs
-			<table class="table">
-				<tr> 
-					<th>Event </th>
-					<th>When</th>
-					<th>Where</th>
-				</tr>
-		  	<#% @rsvpevents.each do |rsvpevent| %>
-				<tr>
-					<td><#%= link_to rsvpevent.name, rsvpevent %>  </td>
-					<td><#%= rsvpevent.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %></td>
-					<td><#%= rsvpevent.address %></td>
-				</tr>
-		  	<#% end %>
-		  </table>
-		<#% else %>  
-			<#%= @user.name %> hasn't RSVPd to any upcoming events
-		<#% end %> 
-	</div>
-</div-->

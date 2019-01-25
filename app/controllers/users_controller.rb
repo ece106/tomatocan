@@ -225,16 +225,13 @@ class UsersController < ApplicationController
 
     def set_user 
       @user = User.find_by_permalink(params[:permalink]) || current_user
-      puts "AAAAAAAAAAAAAAAAABBBBBBBBBBNNNNNNNNNNN"
       if @user.merchandises.any? 
         notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
         deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
         if deadlineorder.all[1].present?
           puts deadlineorder.all[1]
-          puts "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
           @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
         else
-          puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
           @sidebarmerchandise = deadlineorder.all[0..0]
         end
       end 
