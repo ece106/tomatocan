@@ -45,8 +45,6 @@ e.g. "created_at" - Time and date at which each record was created
 
 10. Summarize your Ruby & Rails skill level/what you know in your own words.
 
-When you have completed the quiz, download and start working on the tutorial at https://github.com/ece106/tomatocan/blob/master/public/LearnRailsIn2Minutes.odt 
-
 ### TO USE THE TOMATOCAN GITHUB
 
 For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
@@ -59,9 +57,9 @@ In order to bring the tomatocan code to your local machine you must make a clone
 
 a. On GitHub, navigate to your fork of the tomatocan repository.
 
-b. Under the repository name, click ``` Clone or download ```.
+b. Under the repository name, click ``` Clone or download ```. Do NOT download.
 
-c. Open a commandline in the location you would like your code to be saved and use the command:
+c. To CLONE the repository: Open a command line in the directory you would like your code to be saved and use the command:
 
 ```
  git clone https://github.com/YOUR-GITHUB_USERNAME/tomatocan
@@ -109,6 +107,8 @@ Once you have made changes to your personal repository you can request for tomat
 Files To Check/Change/Create: 
 
 * gemfile: 
+
+If you're using sqlite3:
     Comment out 
 ```
     #gem 'pg' 
@@ -116,7 +116,9 @@ Files To Check/Change/Create:
 and uncomment 
 ```
 gem 'sqlite3'
+
 ```
+If you're using postgresql, leave the gemfile as is.
 
 * config/initializers/aakeys.rb: 
     Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
@@ -125,6 +127,7 @@ gem 'sqlite3'
 DEVISE_SECRET_KEY = 'fake'
 AWS_KEY = 'morefake'
 AWS_SECRET_KEY = 'pretend' 
+AWS_BUCKET = 'yourawsbucketname'
 STRIPE_SECRET_KEY = "madeup"
 STRIPE_PUBLIC_KEY = "allfake"
 GMAIL_PWD = "superfake"
@@ -137,6 +140,32 @@ Of course, with the fake keys, you will not be able to use AWS (upload files to 
 *config/database.yml
 
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
+
+For postgresql:
+
+```
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  encoding: unicode
+  database: YOUR_DEVELOPMENT_DATABASE_NAME
+  username: YOUR_USERNAME
+
+test:
+  <<: *default
+  encoding: unicode
+  database: YOUR_TEST_DATABASE_NAME
+  username: YOUR_USERNAME
+
+production:
+  <<: *default
+```
+
+For sqlite3:
 
 ```
 default: &default
@@ -225,4 +254,4 @@ at the command line from the tomatocan directory to start the server.
 
 And it's good to refer to Michael Hartl's tutorial for a lot of Rails help http://railstutorial.org/book
 
-Copyright &copy; 2018, RoleModel Enterprises, LLC. All rights reserved.
+Copyright &copy; 2019, RoleModel Enterprises, LLC. All rights reserved.

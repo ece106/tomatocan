@@ -78,9 +78,18 @@
 					<div class="row">
 						<div class="col-md-3">
 							<%= render 'layouts/streamButton' %>
+
+
+		 <%= link_to 'Set Up Future Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 50px; margin-left: 50px;" %>
+
+
 						</div>
 						<div class="col-md-6">
-							<!--%= render file: 'users/eventlist' %-->
+<!--							<%= render file: 'users/eventlist' %><br><br>
+							<%= render file: 'users/pastevents' %>
+
+Need an @events variable in controlpanel method of users controller	
+-->
 						</div>
 						<div class="col-md-3">
 							<%= render 'layouts/streamDirections' %>

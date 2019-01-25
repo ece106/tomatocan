@@ -12,35 +12,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
-  test "should_get_users_about" do
-    get :about, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :about, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
   test "should_get_users_youtubers" do
     get :youtubers
     assert_response :success
 
     get :youtubers
-    assert_response :success
-  end
-
-  test "should_get_userswithmerch" do
-    get :userswithmerch
-    assert_response :success
-
-    get :userswithmerch
-    assert_response :success
-  end
-
-  test "should get_users_booklist" do
-    get :booklist, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :booklist, params: {permalink: 'user2'}
     assert_response :success
   end
 
@@ -54,46 +30,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_edit_non_loggedin" do
-    # Redirects to login page if user is currently not logged in
-    get :edit, params: {permalink: 'user1'}
-    assert_redirected_to "/login" 
-  end
-
-  test "should_get_users_edit_loggedin" do
-    # If user is logged in go to edit page
-    sign_in @user
-    get :edit, params: {permalink: 'user1'}
-    assert_response :success
-  end
-
   test "should_get_users_eventlist" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
 
     get :eventlist, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
-  test "should_get_users_groups" do
-    get :groups, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :groups, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
-  test "should_get_users_movieedit" do
-    sign_in @user
-    get :movieedit, params: {permalink: 'user1'}
-    assert_response :success
-  end
-
-  test "should_get_users_movielist" do
-    get :movielist, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :movielist, params: {permalink: 'user2'}
     assert_response :success
   end
 
@@ -105,27 +46,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_perks" do
-    get :perks, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :perks, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
-  test "should_get_users_profileinfo" do
+  test "should_get_users_profileinfo" do 
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success
 
     get :profileinfo, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
-  test "should_get_users_readerprofileinfo" do
-    get :readerprofileinfo, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :readerprofileinfo, params: {permalink: 'user2'}
     assert_response :success
   end
 

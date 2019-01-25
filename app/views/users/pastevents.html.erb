@@ -1,43 +1,5 @@
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CrowdPublish.TV <%  @user.name %> 's calendar</title>
-<meta name="description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!"/>
-<meta property="og:title" content="CrowdPublishTV - The Future of Empowerment is Your Story" />
-<meta property="og:url" content="http://CrowdPublish.TV" />
-<meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
-<meta property="og:description" content="CrowdPublishTV helps authors & fans interact directly & build community. Socialize around your books, experiences, or expertise!" />
-</head>
 
-<div id="wrapper">
-  <div id="page-content-wrapper">
-    <div class="page-content">
-      <div class="container">
-
-<div id="groups"  >
-  <%= form_tag events_path, :method => :get do %>
-    <table ><tr>
-        <th>Address or Zip code</th>
-        <th>Distance (miles)</th>
-        <th></th>
-        <th> Find in-person events in your Local area (5 - 20 miles) </th>
-      </tr>      <tr>
-        <td><%= text_field_tag :search, params[:search] %></td>
-        <td><%= text_field_tag :dist, params[:dist] %></td>
-        <td><%= submit_tag "Search Near", :name => nil %></td>
-        <td> Or in your MicroLocal area (1 - 5 miles) </td>
-      </tr>
-    </table>  
-  <% end %> <br><br>
-
-<div class="row" >
-  <div class="col-md-7 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
-    <% if user_signed_in? %>
-      <% if @user.id == current_user.id %>
-        <%= button_to "Add New Event", new_event_path, :method=> :get %> <br>
-      <% end %> 
-    <% end %> 
-
-<% if @events.count != 0 %>
+<% if @events.present? %>
   <table >  <tr>
     <th>Event </th>
     <th>When</th>
@@ -58,29 +20,4 @@
 <% end %>  
   <%= link_to "View upcoming events", user_eventlist_path %><br><br>
 
-  <% if @rsvpevents.count != 0 %>
-    <b><%= @user.name %>'s past RSVPs</b><br><br>
-    <table >  <tr>
-        <th>Event </th>
-        <th>When</th>
-        <th>Where</th>
-        <th></th>
-      </tr>
-      <% @rsvpevents.each do |rsvpevent| %>
-        <tr>
-        <td><%= link_to rsvpevent.name, rsvpevent %><br><br></td>
-        <td><%= rsvpevent.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
-        <td><%= rsvpevent.address %><br><br></td>
-        </tr>
-      <% end %>
-    </table>
-  <% else %>  
-    <%= @user.name %> hasn't RSVPd to any past events
-  <% end %> 
 
-  </div>
-</div>  
-</div>
-</div>  
-</div>
-</div>  

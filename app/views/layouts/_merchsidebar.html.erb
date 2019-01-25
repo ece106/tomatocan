@@ -73,7 +73,7 @@
             <!--%= button_tag "Edit Perk", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
 				
           <% else %>
-            <% if (merch.deadline) != nil %>
+            <% if merch.deadline != nil && merch.deadline < 14.days %>
               <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
               <% if daysaway.nil? || daysaway.zero? %>
                 <td>Last day!</td>
