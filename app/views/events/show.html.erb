@@ -1,6 +1,3 @@
-<head>
-    <%= stylesheet_link_tag "style/show" %>
-</head>
 <meta property="og:description" content="Host Livestream Discussions" />
 <% @title="CrowdPublish.TV" %>
 <div id="fb-root"></div>
@@ -44,10 +41,9 @@
       <%= f.submit "RSVP for this Livestream" %>
     <% end %><br>
 
-<p>
-  <b>Title of Livestream Event:</b>
-  <%= @event.name %>
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <h1><%= @event.name %></h1>
 <p>
   <b>PARTICIPATE ON HOST'S PAGE:
   <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
