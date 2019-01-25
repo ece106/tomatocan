@@ -2,13 +2,15 @@
 
 
 Gianmarco:
+- *** More details in users' process to do a livestream, sign up for youtube recording, etc.
+- Instructions for recording a livestream & displaying resulting youtube on users#show (only host sees)
 - *** Set up stripe & amazon aws in your development environment so you can see if the downloaders Roni created are working
+- Add database.yml file for postgresql to Readme
 
 - ***We really need tests to make sure the very most important features of the site do not disappear
 - Control panel should have a list of user's talks (events) to manage: past & present. Perhaps on Streaming tab?
 
 - "You successfully purchased this item. Thank you for being a patron" should not appear in Profile and Sales portions of the control panel. Every page in the Control panel should be its own page.
-
 - The host's name should be more prominent than the title of the talk in the schedule on the homepage
 - Need line breaks between Past perks in control panel
 - *** Discussion Hosts page not wrapping correctly
@@ -16,12 +18,8 @@ Gianmarco:
 - Looks like a broken dashboard is displayed before Stripe Signup opens
 - Favicon shows up for home page but not for user pages
 
-- Check current_user variable usage in entire repo
-- Button to Add Discussion on control panel
-- Instructions for recording a livestream & displaying resulting youtube on users#show (only host sees)
+- *** Button to Host Discussion on control panel
 - Display Mission (users#about). Perhaps a tab on their profile
-- Button to route to hosts Show page on CrowdPublish.TV domain (not on herokuapp.com) from livestream
-- *** Remove the broken square in merchsidebar when no pic exists for that merchandise
 - Post a draft email that people can paste & send to their fans: Link, time of livestream https://www.youtube.com/watch?v=DYsnldPtNbs
 - Page of good previous livestreams (when we get there)
 - Record good livestream discussion
@@ -34,13 +32,14 @@ Someone:
 - *** Write tests for Donate buttons
 - *** Write tests for ALL controller & model functions of each method that are not currently tested
 
+- Need an @events variable in controlpanel method of users controller
 - Write tests for downloaders
 - Field for sellers to enter text to appear on receipts
 - Delete redundant lines of code in controller tests
 - Remove goal, filetype, and project_id fields from merchandises table, remove other obsolete fields
 - Move multiple assert statements into their own tests, name according to whether user loggedin
 - Write developers' process of testing that must occur before every pull request
-- More details in users' process to do a livestream, sign up for youtube recording, etc.
+
 - TOS: Study TOS of twitch, youtube, etc about recording, put TOS next to viewer about nonusers being recorded
 - Users hasmany Youtubes (like a gallery instead of just 3 on the user#show page)
 - Better error message for Permalink (should be Username) Has Already Been Taken
