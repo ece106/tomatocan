@@ -4,19 +4,7 @@ class PurchasesControllerTest < ActionController::TestCase
   setup do
     @purchases = purchases(:one)
   end
-<<<<<<< HEAD
-    #not in purchases_controller???
-    #test run to assert index of purchase found
-    test "should_get_purchases_index" do
-      sign_in users(:one)
-      get :index
-      assert_response :success
-    end
-    
-    #test run to assert user's information can be obtained for new purchase i.e. must have stripe token
-=======
 
->>>>>>> a2e92cb9038780e287a6c0264e53b703622847ad
     test "should_get_purchases_new_purchase" do
       @merchandises = merchandises(:one)
       sign_in users(:one)
