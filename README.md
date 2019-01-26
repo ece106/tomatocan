@@ -254,10 +254,6 @@ at the command line from the tomatocan directory to start the server.
 
 And it's good to refer to Michael Hartl's tutorial for a lot of Rails help http://railstutorial.org/book
 
-<<<<<<< HEAD
 For information on testing in rails, vist https://guides.rubyonrails.org/testing.html
 
-Copyright &copy; 2018, RoleModel Enterprises, LLC. All rights reserved.
-=======
 Copyright &copy; 2019, RoleModel Enterprises, LLC. All rights reserved.
->>>>>>> 0aaa2ebb9e0ab8b2e995c74718b4f78cf7e80691

@@ -15,12 +15,6 @@ class UsersControllerTest < ActionController::TestCase
   test "should_get_users_youtubers" do
     get :youtubers
     assert_response :success
-<<<<<<< HEAD
-=======
-
-    get :youtubers
-    assert_response :success
->>>>>>> 0aaa2ebb9e0ab8b2e995c74718b4f78cf7e80691
   end
 
   test "should_get_users_dashboard" do
@@ -36,25 +30,11 @@ class UsersControllerTest < ActionController::TestCase
   test "should_get_users_eventlist" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
-<<<<<<< HEAD
-=======
-
-    get :eventlist, params: {permalink: 'user2'}
-    assert_response :success
->>>>>>> 0aaa2ebb9e0ab8b2e995c74718b4f78cf7e80691
   end
 
   test "should_get_users_pastevents" do
     get :pastevents, params: {permalink: 'user1'}
     assert_response :success
-<<<<<<< HEAD
-  end
-
-  test "should_get_users_profileinfo" do
-    sign_in @user
-    get :profileinfo, params: {permalink: 'user1'}
-    assert_response :success
-=======
 
     get :pastevents, params: {permalink: 'user2'}
     assert_response :success
@@ -66,7 +46,6 @@ class UsersControllerTest < ActionController::TestCase
 
     get :profileinfo, params: {permalink: 'user2'}
     assert_response :success
->>>>>>> 0aaa2ebb9e0ab8b2e995c74718b4f78cf7e80691
   end
 
   test "should_get_users_show" do #user1 has phases

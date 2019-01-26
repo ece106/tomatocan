@@ -192,15 +192,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "updated_at"
   end
 
-  create_table "rsvpqs", id: :serial, force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
-    t.integer "guests"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "email"
-  end
-
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"

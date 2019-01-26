@@ -1,0 +1,9 @@
+DEVISE_SECRET_KEY = 'fake'
+AWS_KEY = 'morefake'
+AWS_SECRET_KEY = 'pretend' 
+AWS_BUCKET = 'yourawsbucketname'
+STRIPE_SECRET_KEY = "sk_test_KT7PWjz4Q5Nf7oR65IqB1rHx"
+STRIPE_PUBLIC_KEY = "pk_test_A1IaZwbHe1XYjtcLBoIpdLL4"
+GMAIL_PWD = "superfake"
+Stripe.api_key = STRIPE_SECRET_KEY
+STRIPE_CONNECT_CLIENT_ID = "ca_6Ws7cje29FmtiJa6Lwh9DcxsehbXBC4Q"
