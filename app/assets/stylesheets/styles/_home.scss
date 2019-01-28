@@ -28,6 +28,45 @@ p {
 #haveAccount a {
     color: $brand-secondary;
 }
+
+#scroll h1{
+    color: white;
+    padding-top: 75px;
+    position: absolute;
+    top: 75vh;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    -webkit-animation: scroll-graphic 1.5s infinite;
+    animation: scroll-graphic 1.5s infinite;
+    box-sizing: border-box;
+}
+@-webkit-keyframes scroll-graphic {
+  0% {
+    -webkit-transform: translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(0px, 20px);
+    opacity: 0;
+  }
+}
+@keyframes scroll-graphic {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 20px);
+    opacity: 0;
+  }
+}
 .darkBlock {
     background-color: $gray-lighter;
 }
