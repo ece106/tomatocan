@@ -21,12 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-    def profileinfo #I'm pretty sure I dont this
-      @user = User.find(current_user.permalink)
-      build_resource(@user)
-      respond_with self.resource
-    end
-
     def facebookLogin
       user = User.from_omniauth(env["omniauth.auth"])
       session[:user_id] = user.id

@@ -30,10 +30,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_eventlist" do
+  test "should_get_users_eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
+  end
 
+  test "should_get_users_eventlist user not logged in" do 
+    #what's the difference in expected result compared to logged in? Do we care?
     get :eventlist, params: {permalink: 'user2'}
     assert_response :success
   end
@@ -48,9 +51,6 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should_get_users_profileinfo" do 
     get :profileinfo, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :profileinfo, params: {permalink: 'user2'}
     assert_response :success
   end
 
