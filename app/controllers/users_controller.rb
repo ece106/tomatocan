@@ -228,7 +228,12 @@ class UsersController < ApplicationController
       if @user.merchandises.any? 
         notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
         deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
-        @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
+        if deadlineorder.all[1].present?
+          puts deadlineorder.all[1]
+          @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
+        else
+          @sidebarmerchandise = deadlineorder.all[0..0]
+        end
       end 
     end
      # returns a string of error messages for the user signup page
