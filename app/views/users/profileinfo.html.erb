@@ -50,8 +50,8 @@
 				<p class="help-block">Upload a picture to display on top of your profile (1500px &times; 300px is best)</p>
 				<%= f.file_field :bannerpic, :class => "form-control" %>
 			</div>
-			<div class="btn-group btn-group-lg" id="editProfileButton">
-				<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+			<div class="btn-group btn-group-lg" id="editProfileButton"> 
+				<%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
 				<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 				<%= f.text_field :youtube3, placeholder: 'http://www.youtube.com/watch?v=/frlviTJcVUo', :type => "text", :class => "form-control" %>
 			</div>
 			<div class="btn-group btn-group-lg" id="editProfileButton">
-				<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-default", :id => "cancelProfileButton" %>
+				<%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
 				<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
 			</div>
 		</div>
