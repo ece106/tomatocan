@@ -19,6 +19,13 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "redirectIfsuccess" do
+          @purchases = purchases(:one)
+          @merchandises = merchandises(:one)
+          sign_in users(:one)
+          assert_redirected_to merchandises_path(@merchandises.id)
+    end
+
     test "should_get_purchases_show" do
       sign_in users(:one)
       get :show, params: {id: @purchases.id }
