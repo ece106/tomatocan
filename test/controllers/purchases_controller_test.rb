@@ -20,7 +20,7 @@ class PurchasesControllerTest < ActionController::TestCase
     end
 
     test "redirectIfsuccess" do
-          @purchases = purchases(:one)
+          @purchases = @merchandise.perchases
           @merchandises = merchandises(:one)
           sign_in users(:one)
           assert_redirected_to merchandises_path(@merchandises.id)
