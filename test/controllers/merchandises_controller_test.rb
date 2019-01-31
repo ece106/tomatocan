@@ -23,13 +23,13 @@ class MerchandisesControllerTest < ActionController::TestCase
 
   #need to test to make sure not blank page?
   # test "should load page" do
+  #   sign_in users(:one)
   #   get :new
   #   assert_generates :new, message = 'page successfully loaded'
   # end
 
   #test run to assert a non signed in user cannot load page to create a new merchandise
   # test "shouldn't get new if no user signed in" do
-
   #   get :new
   #   assert_response :error
   # end
@@ -61,18 +61,18 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_redirected_to user_profile_path(users(:one).permalink)
   end
 
-  #test run to assert that if a merchandise is not saved, it redirects to new merch page and displays flag
-  # test "should redirect failed merchandise creation attempt" do
-  #   sign_in users(:one)
-  #   post :create, params: { merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one"  }}
-  #   assert_redirected_to controller: "merchandises", action: "new"
-  #   #assert_redirected_to phase_storytellerperks_path(assigns(:merchandise))
-  # end
+  #
+  test "should redirect failed merchandise creation attempt" do
+    sign_in users(:one)
+    post :create, params: { merchandise: { name: "chris", user_id: 1, price: 'abc', desc: "test", buttontype: "one" }}
+    assert_redirected_to user_profile_path(users(:one).permalink)
+  end
 
+  #Fails, but written correctly (controller code issue)
   test "should throw flag after failed merchandise creation" do
     sign_in users(:one)
-    post :create, params: { merchandise: { name: 'chris', user_id: 1, desc: 'test1', buttontype: 'one' }}
-    assert_equal flash[:notice], 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.'
+    post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 'abc', desc: 'test1', buttontype: 'one' }}
+    assert_equal 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.', flash[:notice]
   end
   #######################################
 

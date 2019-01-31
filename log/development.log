@@ -5956,3 +5956,145 @@ Processing by Rails::InfoController#routes as HTML
 Completed 200 OK in 72ms (Views: 65.0ms | ActiveRecord: 0.0ms)
 
 
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at bin/rails:4)
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from env_config at /Users/cjadams/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.0/lib/rails/application.rb:252)
+Started GET "/" for ::1 at 2019-01-31 12:36:10 -0700
+  [1m[35m (122.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (36.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-01-31 09:36:11.518022')[0m
+  Rendered layouts/_maincalendar.html.erb (88.6ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (1397.5ms)
+  Rendered application/_favicon.html.erb (24.1ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 2173ms (Views: 2019.3ms | ActiveRecord: 84.8ms)
+
+
+Started GET "/" for ::1 at 2019-01-31 13:03:51 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-01-31 10:03:51.439589')[0m
+  Rendered layouts/_maincalendar.html.erb (4.1ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (11.0ms)
+  Rendered application/_favicon.html.erb (6.0ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 278ms (Views: 247.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2019-01-31 13:03:56 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-01-31 10:03:56.355215')[0m
+  Rendered layouts/_maincalendar.html.erb (2.5ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (8.2ms)
+  Rendered application/_favicon.html.erb (5.3ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 79ms (Views: 75.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2019-01-31 13:04:05 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-01-31 10:04:05.876172')[0m
+  Rendered layouts/_maincalendar.html.erb (2.2ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (6.9ms)
+  Rendered application/_favicon.html.erb (4.9ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 87ms (Views: 83.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users" for ::1 at 2019-01-31 13:04:26 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (269.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE (profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
+       OR (profilepicurl SIMILAR TO 'http%' AND 
+       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ) LIMIT $1 OFFSET $2[0m  [["LIMIT", 32], ["OFFSET", 0]]
+  Rendered users/index.html.erb within layouts/application (285.2ms)
+  Rendered application/_favicon.html.erb (5.9ms)
+  Rendered layouts/_header.html.erb (3.4ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 439ms (Views: 112.5ms | ActiveRecord: 279.3ms)
+
+
+Started GET "/users/info" for ::1 at 2019-01-31 13:04:35 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"info"}
+  [1m[36mUser Load (31.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+Completed 500 Internal Server Error in 75ms (ActiveRecord: 31.3ms)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:229:in `set_user'
+Started GET "/favicon.ico" for ::1 at 2019-01-31 13:04:37 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 1.4ms)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:229:in `set_user'
+Started GET "/users/info" for ::1 at 2019-01-31 13:04:41 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"info"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 1.1ms)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:229:in `set_user'
+Started GET "/users" for ::1 at 2019-01-31 13:04:43 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE (profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
+       OR (profilepicurl SIMILAR TO 'http%' AND 
+       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ) LIMIT $1 OFFSET $2[0m  [["LIMIT", 32], ["OFFSET", 0]]
+  Rendered users/index.html.erb within layouts/application (2.9ms)
+  Rendered application/_favicon.html.erb (6.3ms)
+  Rendered layouts/_header.html.erb (3.7ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 90ms (Views: 86.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2019-01-31 13:04:43 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-01-31 10:04:43.343257')[0m
+  Rendered layouts/_maincalendar.html.erb (2.4ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (7.6ms)
+  Rendered application/_favicon.html.erb (5.8ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 103ms (Views: 99.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/rails/info/routes" for ::1 at 2019-01-31 13:05:55 -0700
+Processing by Rails::InfoController#routes as HTML
+  Rendering /Users/cjadams/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.0/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /Users/cjadams/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/actionpack-5.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb [115 times] (48.0ms)
+  Rendered /Users/cjadams/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/actionpack-5.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (36.6ms)
+  Rendered /Users/cjadams/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.0/lib/rails/templates/rails/info/routes.html.erb within layouts/application (122.3ms)
+Completed 200 OK in 148ms (Views: 137.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2019-01-31 13:05:55 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.9ms)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:229:in `set_user'
