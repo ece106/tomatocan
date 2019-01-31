@@ -95,8 +95,8 @@ class PurchasesController < ApplicationController
         end 
         if @purchase.save_with_payment
           seller = User.find(@merchandise.user_id)
-          redirect_to user_profile_path(seller.permalink), :notice => "You successfully purchased this item. 
-          Thank you for being a patron of " + seller.name
+          redirect_to user_profile_path(seller.permalink)
+          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
         else
           redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
         end
