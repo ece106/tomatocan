@@ -70,7 +70,7 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   end
-
+ 
 
   test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }

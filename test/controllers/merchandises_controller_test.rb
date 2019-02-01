@@ -11,7 +11,6 @@ class MerchandisesControllerTest < ActionController::TestCase
     #assert_not_nil assigns(:merchandises)
   end
 
-
   test "should get new" do
     sign_in users(:one)
     get :new
@@ -27,9 +26,8 @@ class MerchandisesControllerTest < ActionController::TestCase
   test "should_create_merchandise" do
       sign_in users(:one)
       assert_difference('Merchandise.count',1) do
-      post :create, params: { merchandise: { desc: 'Test1', itempic: 'mys', name: 'hi', price: '20', user_id: '3' }}
+      post :create, params: { merchandise: { name: 'hi',user_id: '7',price: '20', desc: 'Test1',itempic: 'mys', video:'Test.mp4' }}
     end
-    #assert_redirected_to phase_storytellerperks_path(assigns(:merchandise))
   end
 
   test "should show merchandise" do
