@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> <% "Support " + @user.name + "'s Projects" %> </title>
-<meta property="og:url" content="http://CrowdPublish.TV" />
-<meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
-</head>
-
-	<div class="container-fluid">
-		<% if request.host == "crowdpublishtv.herokuapp.com" %>
-			<div class="row">
-				<div class="col-md-4">
-					<%= render 'layouts/merchsidebar' %>
-				</div>
-				<div class="col-md-8">
-					<%= render 'layouts/jitsi' %>
-				</div>
-			</div>
-		<% else %>
-			<%= render 'layouts/authorform' %>
-			<div class="row" style="padding-top:15px;padding-bottom:30px;">
-					<%= render 'layouts/streamButton' %>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<%= render 'layouts/merchsidebar' %>
-				</div>
-				<div class="col-md-8">
-					<%= render 'layouts/youtube' %>
-				</div>
-		</div>
-		<% end %>
-	</div>
-=======
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> <% "Support " + @user.name + "'s Projects" %> </title>
@@ -70,4 +36,3 @@
 		</div>
 		<% end %>
 	</div>
->>>>>>> 64c0b179c232a4a66ef577ab52deb02d9b7fd472
