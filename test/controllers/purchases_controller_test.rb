@@ -19,17 +19,15 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-    test "redirectIfsuccess" do
-          @purchases = @merchandise.perchases
-          @merchandises = merchandises(:one)
-          sign_in users(:one)
-          assert_redirected_to merchandises_path(@merchandises.id)
-    end
-
     test "should_get_purchases_show" do
       sign_in users(:one)
       get :show, params: {id: @purchases.id }
       assert_response :success
     end
+
+    test "should_create_new_purchase" do
+      sign_in user(:one)
+      get :create, 
+    end  
     
 end
