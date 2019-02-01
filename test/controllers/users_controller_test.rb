@@ -20,6 +20,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+<<<<<<< HEAD
+  test "should_get_users_ supportourwork" do ########################
+    get :supportourwork
+    assert_response :success
+  end
+
+=======
+>>>>>>> b4a3f50a51c770d37a4e2436bad4e0b52c800daf
   test "should_get_users_dashboard" do
     sign_in @user
     @book = books(:one)
@@ -30,17 +38,24 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+<<<<<<< HEAD
+  test "should_get_users_eventlist" do
+=======
   test "should_get_users_eventlist user logged in" do
+>>>>>>> b4a3f50a51c770d37a4e2436bad4e0b52c800daf
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
   end
 
+<<<<<<< HEAD
+=======
   test "should_get_users_eventlist user not logged in" do 
     #what's the difference in expected result compared to logged in? Do we care?
     get :eventlist, params: {permalink: 'user2'}
     assert_response :success
   end
 
+>>>>>>> b4a3f50a51c770d37a4e2436bad4e0b52c800daf
   test "should_get_users_pastevents" do
     get :pastevents, params: {permalink: 'user1'}
     assert_response :success
@@ -50,8 +65,17 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should_get_users_profileinfo" do 
+<<<<<<< HEAD
+    sign_in @user
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success
+
+    get :profileinfo, params: {permalink: 'user2'}
+    assert_response :success
+=======
+    get :profileinfo, params: {permalink: 'user1'}
+    assert_response :success
+>>>>>>> b4a3f50a51c770d37a4e2436bad4e0b52c800daf
   end
 
   test "should_get_users_show" do #user1 has phases
@@ -67,6 +91,7 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   end
+
 
   test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }
