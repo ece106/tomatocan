@@ -41,10 +41,9 @@
       <%= f.submit "RSVP for this Livestream" %>
     <% end %><br>
 
-<p>
-  <b>Discussion topic:</b>
-  <%= @event.name %>
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <h1><%= @event.name %></h1>
 <p>
   <b>PARTICIPATE ON HOST'S PAGE:
   <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
@@ -71,8 +70,8 @@
     <% if @rsvps.count > 5 %> 
       <b><%= @rsvps.count %> guests said they'll be there</b><br> 
     <% end %>
-      <br><br> -- RSVPs are a new feature -- 
-      <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: http://www.CrowdPublish.TV/events/<%= @event.id %> <br><br>
+      <br><br> 
+      <br>Invite friends & colleagues to sign up & RSVP for this event! Send them an email with this link: <i>http://www.CrowdPublish.TV/events/</i><%= @event.id %> <br><br>
       Or on social media: 
       <div>
         <% facebookurl = "https://crowdpublish.tv/events/" + @event.id.to_s %>
