@@ -40,7 +40,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 </div>
 
 
-<!--Not sure what this is-->
+<!--This is what shows up in Facebook when you past a link to this page into a comment-->
 <% content_for :forusers do %>
-<meta name="description" content="<%= "Read_about_author_" + @descname + "'s_books:" + @genreone + @genretwo + @genrethree %>">
+<meta name="description" content="<%= "Ask_" + @descname + "_questions_about:" + @genreone + @genretwo + @genrethree %>">
 <% end %>
