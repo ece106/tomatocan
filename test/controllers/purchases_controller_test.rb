@@ -26,8 +26,8 @@ class PurchasesControllerTest < ActionController::TestCase
     end
 
     test "should_create_new_purchase" do
-      sign_in user(:one)
-      get :create, 
+      sign_in users(:one)
+      post :create, params: {}
     end  
     
 end
