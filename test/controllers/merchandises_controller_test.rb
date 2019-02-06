@@ -27,7 +27,7 @@ class MerchandisesControllerTest < ActionController::TestCase
   test "should_create_merchandise" do
       sign_in users(:one)
       assert_difference('Merchandise.count',1) do
-      post :create, params: { merchandise: { desc: 'Test1', itempic: 'mys', name: 'hi', price: '20', user_id: '3' }}
+      post :create, params: { merchandise: { name: 'hi', buttontype:'Buy', user_id: '7',price: '20', desc: 'Test1', itempic: 'mys', video:'Test.mp4' } }
     end
     #assert_redirected_to phase_storytellerperks_path(assigns(:merchandise))
   end

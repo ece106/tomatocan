@@ -21,7 +21,7 @@ class RsvpqsControllerTest < ActionController::TestCase
 
   test "should create rsvpq" do
     assert_difference('Rsvpq.count',1) do
-      post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, user_id: @rsvpq.user_id } }
+      post :create, params: {rsvpq: { event_id: '3', guests: '3', user_id: '3' } }
     end
     #assert_redirected_to events_path
      assert_redirected_to "http://test.host/login"
@@ -35,7 +35,7 @@ class RsvpqsControllerTest < ActionController::TestCase
 
   test "should get edit" do
     sign_in users(:one)
-    get :edit, params: { id: @rsvpq}
+    get :edit
     assert_response :success
   end
 

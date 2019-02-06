@@ -12,7 +12,7 @@
     <!--Livestream button-->
     <%= link_to 'Host Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
     <% if !user_signed_in? %>
-    	<br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
+        <br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
     <% end %>
 </div>
 <div class=row id=scroll>

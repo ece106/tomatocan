@@ -1,15 +1,16 @@
 require 'test_helper'
 
-class Users::PasswordsController < ActionController::TestCase
+class Users::PasswordsControllerTest < ActionController::TestCase
   setup do
       @user = users(:one)
-      @password = passwords(:one)
+    #@password = passwords(:one)
     #@group = groups(:one)
 
   end
 
 	test "should get new " do
-	  get :new
+	  sign_in users(:one)
+    get :new
 	  assert_response :success
 	end
 
