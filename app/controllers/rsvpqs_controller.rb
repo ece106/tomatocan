@@ -3,7 +3,6 @@ class RsvpqsController < ApplicationController
 #  before_action :authenticate_user! 
   layout :resolve_layout
 
-
   # GET /rsvps/1
   def show
 #    :update

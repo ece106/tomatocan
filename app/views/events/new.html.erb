@@ -1,83 +1,76 @@
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
-<div class="row" >
-  <div class="col-md-9 col-sm-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 " style= "text-align:left" >
-
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="container">
+    <div class="row" >
+        <h1>Create an Event</h1>
+        <p>By creating an event below, the details of your livestream will be posted on the Home page of CrowdPublish.TV. This will allow your viewers to easily find the time and date of your livestream discussion.</p>
     </div>
-  <% end %>
 
-  <%= f.hidden_field :usrid, value: current_user.id %>
+    <div class="row">
+        <%= form_for(@event) do |f| %>
+          <% if @event.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  <div class="field">
-    <b>Topic for discussion / Title of livestream event </b><br>
-    <%= f.text_field :name, :size => 80 %><p>
-  </div>
+              <ul>
+              <% @event.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+    </div>
 
-  <div class="field">
-    Start time (in Pacific Daylight Time zone)...
-    <%= f.datetime_select :start_at, :ampm => true, :default => 7.days.from_now, :minute_step => 15 %>
-    <% #= date_field(:event, :start_at) %>
-  </div>
-  <div class="field">
-    End time (in Pacific Daylight Time zone)....
-    <%= f.datetime_select :end_at, :ampm => true, :default => 7.days.from_now + 30.minutes, :minute_step => 15 %><br>
-  </div>
-  <div class="field">
-    <br><b>Details about the livestream discussion</b><br /> 
-    <i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i><br>
-    <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
-  </div>
-  <div class="field">
-<% 
-=begin %>
+    <div class="row">
+        <%= f.hidden_field :usrid, value: current_user.id %>
 
-There aren't enough events nor groups yet to justify this feature
+          <div class="form-group">
+            <h3><%= f.label :buttontype, "*Title of Livestream Event" %></h3>
+                    <p class="help-block">What will you be discussing in your livestream?</p>
+            <%= f.text_field :name, :size => 80 %><p>
+          </div>
 
-    You can select up to 3 groups/organizations near you for placing your event on their calendar (the group moderator will delete your event from the calendar if it does not meet that group's criteria for posting events) <br>
+          <div class="form-group">
+              <h3><%= f.label :buttontype, "Start Time" %></h3>
+                    <p class="help-block">(in Pacific Daylight Time zone)</p>
+            <%= f.datetime_select :start_at, :ampm => true, :default => 7.days.from_now, :minute_step => 15 %>
+            <% #= date_field(:event, :start_at) %>
+          </div>
 
-    <%= f.collection_select(:group1id, @groups.all, :id, :name, prompt: true) %>
-    <%= f.collection_select(:group2id, @groups.all, :id, :name, prompt: true) %>
-    <%= f.collection_select(:group3id, @groups.all, :id, :name, prompt: true) %>
-    <br><br>
-    If no groups are showing up, you may need to change your Home location <%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> 
-    <br><br>
-    <% i = 0 %>
-    <% @groups.each do |group| %>
-      <%= f.check_box(:group1id ) %>
-      <%= label_tag(:grouptype_child, group.name ) %>
-      <% #= f.check_box(:group1id, { :multiple => true }, "group.id") %>
-      <%= group.name %> <br>
-        <% @tempval = group.id %>
-        <% i = i+1 %>
-    <% end %>  
-<% 
-=end %>
+          <div class="form-group">
+            <h3><%= f.label :buttontype, "End Time" %></h3>
+                    <p class="help-block">(in Pacific Daylight Time zone)</p>
+            <%= f.datetime_select :end_at, :ampm => true, :default => 7.days.from_now + 30.minutes, :minute_step => 15 %><br>
+          </div>
 
-  </div>
-    <%= f.submit %>
+          <div class="form-group">
+            <h3><%= f.label :buttontype, "Details about Livestream Discussion" %></h3>
+                    <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
+            <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
+          </div>
 
+            <%= f.submit "Create Event", :class => "btn btn-lg btn-primary", :id => "eventSubmit" %>
+
+        <% end %>  
+    </div>
 </div>
 
+<!--
+    There aren't enough events nor groups yet to justify this feature
 
+        You can select up to 3 groups/organizations near you for placing your event on their calendar (the group moderator will delete your event from the calendar if it does not meet that group's criteria for posting events) <br>
 
-<% end %>  
-<br><br>
-</div>
-</div>
+        <#%= f.collection_select(:group1id, @groups.all, :id, :name, prompt: true) %>
+        <#%= f.collection_select(:group2id, @groups.all, :id, :name, prompt: true) %>
+        <#%= f.collection_select(:group3id, @groups.all, :id, :name, prompt: true) %>
+        <br><br>
+        If no groups are showing up, you may need to change your Home location <#%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> 
+        <br><br>
+        <#% i = 0 %>
+        <#% @groups.each do |group| %>
+          <#%= f.check_box(:group1id ) %>
+          <#%= label_tag(:grouptype_child, group.name ) %>
+          <#% #= f.check_box(:group1id, { :multiple => true }, "group.id") %>
+          <#%= group.name %> <br>
+            <#% @tempval = group.id %>
+            <#% i = i+1 %>
+        <#% end %>  
+-->

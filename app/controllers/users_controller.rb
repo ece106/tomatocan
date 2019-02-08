@@ -61,13 +61,12 @@ class UsersController < ApplicationController
     end
   end
   def profileinfo
-    #@user.update_with_password = false
+#    @user.updating_password = false
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
     end
   end
-
   def changepassword
     respond_to do |format|
       format.html # profileinfo.html.erb
@@ -281,5 +280,4 @@ class UsersController < ApplicationController
 
       return msg
     end
-
 end

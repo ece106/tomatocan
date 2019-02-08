@@ -6098,3 +6098,90 @@ Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.9ms)
 NoMethodError (undefined method `merchandises' for nil:NilClass):
   
 app/controllers/users_controller.rb:229:in `set_user'
+  [1m[35m (29.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8543186182308297450)[0m
+  [1m[35m (35.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRsvpqs (20130901123456)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (497.2ms)[0m  [1m[35mCREATE TABLE "rsvpqs" ("id" serial NOT NULL PRIMARY KEY, "event_id" integer, "user_id" integer, "guests" integer, "created_at" timestamp, "updated_at" timestamp)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (32.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20130901123456"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddEmailToRsvpqs (20181029234726)
+  [1m[35m (40.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.5ms)[0m  [1m[35mALTER TABLE "rsvpqs" ADD "email" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181029234726"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (46.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8543186182308297450)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8543186182308297450)[0m
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8543186182308297450)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (1338.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cjadams"[0m
+  [1m[35m (2317.4ms)[0m  [1m[35mCREATE DATABASE "cjadams" ENCODING = 'unicode'[0m
+  [1m[35mSQL (204.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (210.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "agreements" CASCADE[0m
+  [1m[35m (252.7ms)[0m  [1m[35mCREATE TABLE "agreements" ("id" serial NOT NULL PRIMARY KEY, "user_id" integer, "group_id" integer, "created_at" timestamp, "updated_at" timestamp, "approved" timestamp)[0m
+  [1m[35m (85.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "books" CASCADE[0m
+  [1m[35m (171.2ms)[0m  [1m[35mCREATE TABLE "books" ("id" serial NOT NULL PRIMARY KEY, "title" character varying, "blurb" text, "releasedate" date, "author_id" integer, "genre" character varying, "fiftychar" character varying, "price" float, "bookpdf" character varying, "coverpic" character varying, "coverpicurl" character varying, "created_at" timestamp, "updated_at" timestamp, "user_id" integer, "bookmobi" character varying, "bookepub" character varying, "bookkobo" character varying, "bookaudio" character varying, "youtube1" text, "youtube2" text, "bkvideodesc1" character varying, "bkvideodesc2" character varying)[0m
+  [1m[35m (36.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial NOT NULL PRIMARY KEY, "name" character varying, "start_at" timestamp, "end_at" timestamp, "created_at" timestamp, "updated_at" timestamp, "desc" text, "address" character varying, "user_id" integer, "latitude" float, "longitude" float, "group1id" integer, "group2id" integer, "group3id" integer, "usrid" integer)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "friendly_id_slugs" CASCADE[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "friendly_id_slugs" ("id" serial NOT NULL PRIMARY KEY, "slug" character varying NOT NULL, "sluggable_id" integer NOT NULL, "sluggable_type" character varying(50), "scope" character varying, "created_at" timestamp)[0m
+  [1m[35m (24.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope" ON "friendly_id_slugs"  ("slug", "sluggable_type", "scope")[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_friendly_id_slugs_on_slug_and_sluggable_type" ON "friendly_id_slugs"  ("slug", "sluggable_type")[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_friendly_id_slugs_on_sluggable_id" ON "friendly_id_slugs"  ("sluggable_id")[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_friendly_id_slugs_on_sluggable_type" ON "friendly_id_slugs"  ("sluggable_type")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "groups" CASCADE[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "groups" ("id" serial NOT NULL PRIMARY KEY, "name" character varying, "address" character varying, "latitude" float, "longitude" float, "user_id" integer, "about" text, "grouppic" character varying, "created_at" timestamp, "updated_at" timestamp, "grouptype" character varying, "permalink" character varying, "slug" character varying, "newsurl" character varying, "twitter" character varying, "facebook" character varying, "callaction" text, "stripeid" character varying, "stripe_customer_token" character varying, "stripesignup" timestamp)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_groups_on_slug" ON "groups"  ("slug")[0m
+  [1m[35m (17.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "merchandises" CASCADE[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "merchandises" ("id" serial NOT NULL PRIMARY KEY, "name" character varying, "user_id" integer, "price" float, "desc" text, "itempic" character varying, "created_at" timestamp, "updated_at" timestamp, "deadline" timestamp, "goal" float, "youtube" character varying, "audio" character varying, "video" character varying, "graphic" character varying, "merchepub" character varying, "merchmobi" character varying, "merchpdf" character varying, "expiration" timestamp, "itempic_crop_x" integer, "itempic_crop_y" integer, "itempic_crop_w" integer, "itempic_crop_h" integer, "buttontype" character varying)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "movieroles" CASCADE[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "movieroles" ("id" bigserial primary key, "role" character varying, "roledesc" character varying, "user_id" integer, "movie_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "movies" CASCADE[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "movies" ("id" bigserial primary key, "title" character varying, "about" text, "youtube1" character varying, "youtube2" character varying, "youtube3" character varying, "videodesc1" character varying, "videodesc2" character varying, "videodesc3" character varying, "moviepic" character varying, "genre" character varying, "price" float, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer, "director" character varying, "releasedate" date)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "purchases" CASCADE[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "purchases" ("id" serial NOT NULL PRIMARY KEY, "author_id" integer, "book_id" integer, "stripe_customer_token" character varying, "plan_id" integer, "created_at" timestamp, "updated_at" timestamp, "stripe_card_token" character varying, "user_id" integer, "bookfiletype" character varying, "pricesold" float, "authorcut" decimal(8,2), "paid" date, "merchandise_id" integer, "group_id" integer, "groupcut" decimal(8,2), "shipaddress" character varying, "fulfillstatus" character varying, "email" character varying)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "relationships" CASCADE[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "relationships" ("id" bigserial primary key, "follower_id" integer, "followed_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_relationships_on_followed_id" ON "relationships"  ("followed_id")[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_relationships_on_follower_id_and_followed_id" ON "relationships"  ("follower_id", "followed_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_relationships_on_follower_id" ON "relationships"  ("follower_id")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "reviews" CASCADE[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "reviews" ("id" serial NOT NULL PRIMARY KEY, "blurb" text, "user_id" integer, "book_id" integer, "star" integer, "created_at" timestamp, "updated_at" timestamp)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "rsvpqs" CASCADE[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "rsvpqs" ("id" serial NOT NULL PRIMARY KEY, "event_id" integer, "user_id" integer, "guests" integer, "created_at" timestamp, "updated_at" timestamp, "email" character varying)[0m
+  [1m[35m (5.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial NOT NULL PRIMARY KEY, "name" character varying, "email" character varying, "ustreamvid" text, "ustreamsocial" text, "twitter" character varying, "facebook" character varying, "pinterest" character varying, "youtube" character varying, "genre1" character varying, "genre2" character varying, "genre3" character varying, "blogurl" character varying, "profilepicurl" character varying, "profilepic" character varying, "author" character varying, "about" text, "password_digest" character varying, "remember_token" character varying, "created_at" timestamp, "updated_at" timestamp, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "permalink" character varying, "address" character varying, "latitude" float, "longitude" float, "slug" character varying, "youtube1" text, "youtube2" text, "youtube3" text, "videodesc1" character varying, "videodesc2" character varying, "videodesc3" character varying, "blogradio" character varying, "blogtalkradio" text, "stripeid" character varying, "stripe_customer_token" character varying, "stripesignup" timestamp, "bannerpic" character varying)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_permalink" ON "users"  ("permalink")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_remember_token" ON "users"  ("remember_token")[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_slug" ON "users"  ("slug")[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2019-02-07 18:47:55.761160"], ["key", "environment"]]
+  [1m[35m (40.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8543186182308297450)[0m
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8543186182308297450)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

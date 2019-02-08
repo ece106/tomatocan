@@ -6,18 +6,19 @@ class UsersControllerTest < ActionController::TestCase
 #    sign_in @user
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
-  end
+  # test "should get index" do
+  #   get :index
+  #   assert_response :success
+  #   assert_not_nil assigns(:users)
+  # end
 
-  test "should_get_users_youtubers" do
+  test "should get users youtubers" do
     get :youtubers
     assert_response :success
   end
 
-  test "should_get_users_dashboard" do
+
+  test "should get users dashboard" do
     sign_in @user
     @book = books(:one)
     @purchase = purchases(:one)
@@ -27,12 +28,20 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_eventlist" do
+  test "should get users eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
   end
 
-  test "should_get_users_pastevents" do
+
+  test "should get users eventlist user not logged in" do 
+    #what's the difference in expected result compared to logged in? Do we care?
+    get :eventlist, params: {permalink: 'user2'}
+    assert_response :success
+  end
+
+
+  test "should get users pastevents" do
     get :pastevents, params: {permalink: 'user1'}
     assert_response :success
 
@@ -40,15 +49,12 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_profileinfo" do 
+  test "should get users profileinfo" do 
     get :profileinfo, params: {permalink: 'user1'}
-    assert_response :success
-
-    get :profileinfo, params: {permalink: 'user2'}
     assert_response :success
   end
 
-  test "should_get_users_show" do #user1 has phases
+  test "should get users show" do #user1 has phases
     get :show, params: {permalink: 'user1'}
     assert_response :success
   end
@@ -60,6 +66,7 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   end
+ 
 
   test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }
@@ -82,7 +89,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_profile_path(user.permalink)
   end
 
-  test "should_verify_update_user_with_invalid_params" do
+  test "should verify update user with invalid params" do
     sign_in @user
 
     @user.errors.clear
@@ -95,7 +102,7 @@ class UsersControllerTest < ActionController::TestCase
     # assert_not_empty @user.errors.messages
   end
 
-  test "should_verify_update_user_with_valid_params" do
+  test "should verify update user with valid params" do
     sign_in @user
 
     @user.errors.clear
