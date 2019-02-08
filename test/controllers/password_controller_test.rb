@@ -8,12 +8,12 @@ class Users::PasswordsControllerTest < ActionController::TestCase
 
   end
 
-	test "should get new " do
+=begin	test "should get new " do
 	  sign_in users(:one)
     get :new
 	  assert_response :success
 	end
-
+=end 
 	# # test "should edit password" do
  # #    get :edit, params: {id: @user.id}
  # #    assert_response :success

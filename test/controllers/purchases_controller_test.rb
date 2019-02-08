@@ -27,7 +27,9 @@ class PurchasesControllerTest < ActionController::TestCase
 
     test "should_create_new_purchase" do
       sign_in users(:one)
-      post :create, params: {}
+      seller = users(:two)
+
+    #  post :create, params: {purchases:{pricesold:25 ,author_id:seller.id,merchandise_id: merchandises(:one).id}}
     end  
     
 end

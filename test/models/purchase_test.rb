@@ -7,9 +7,10 @@ class PurchaseTest < ActiveSupport::TestCase
     @purchase = purchases(:one)
   end
   # end
+  #test user id if logged in
+  #else test for email 
 
-
-  [:user_id, :author_id, :pricesold, :authorcut ].each do |field|
+  [:author_id, :pricesold, :authorcut ].each do |field|
         test "#{field.to_s}_must_not_be_empty" do
           purchase = Purchase.new
           purchase.send "#{field.to_s}=", nil #what does this line do

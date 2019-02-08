@@ -49,5 +49,11 @@ class MerchandisesControllerTest < ActionController::TestCase
     #assert_redirected_to merchandise_path(assigns(:merchandise))
     assert_response :success
   end
+  #Fails, but written correctly (controller code issue)
+  test "should throw flag after failed merchandise creation" do
+    sign_in users(:one)
+    post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 'abc', desc: 'test1', buttontype: 'one' }}
+    assert_equal 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.', flash[:notice]
+  end
 
 end
