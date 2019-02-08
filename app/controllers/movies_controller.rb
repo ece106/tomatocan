@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   def index # This will be a result of some filters
     movieswithyoutube = Movie.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
     moviesvidorder = movieswithyoutube.order('updated_at DESC')
-    @movies = moviesvidorder.paginate(:page => params[:page], :per_page => 12)
+    @movies = moviesvidorder.paginate(:page => params[:page], :per_page => 5)
   end
 
   def create

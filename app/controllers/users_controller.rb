@@ -9,18 +9,18 @@ class UsersController < ApplicationController
     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
        OR (profilepicurl SIMILAR TO 'http%' AND 
        profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
-    @users = userswithpic.paginate(:page => params[:page], :per_page => 32)
+    @users = userswithpic.paginate(:page => params[:page], :per_page => 5)
   end
 
   def youtubers
     userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
     usersvidorder = userswithyoutube.order('updated_at DESC')
-    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 24)
+    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 10)
   end
   def supportourwork
     userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
     stripeorder = userswstripe.order('updated_at DESC')
-    @stripeusers = stripeorder.paginate(:page => params[:page], :per_page => 24)
+    @stripeusers = stripeorder.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show

@@ -71,8 +71,9 @@
       <b><%= @rsvps.count %> guests said they'll be there</b><br> 
     <% end %>
       <br><br> 
-      <br>Invite friends and colleagues to sign up & RSVP for this event!<%= @event.id %>
-      <br><br>
+      <br>Invite friends and colleagues to sign up & RSVP for this event!
+      <br>
+      <b><%= @event.name %></b>
       <div>
         <% facebookurl = "https://crowdpublish.tv/events/" + @event.id.to_s %>
         <div class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href= "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>

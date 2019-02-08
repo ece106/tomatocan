@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby "2.6.0"
 
 gem 'listen'
 gem 'rails-controller-testing'
@@ -24,8 +24,8 @@ gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '5.2.1'
-gem 'railties', '5.2.1'
+gem 'rails', '5.2.0'
+gem 'railties', '5.2.0'
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
@@ -78,5 +78,5 @@ group :test do
 end
 
 group :development do
-    gem 'rails_real_favicon'
+    #gem 'rails_real_favicon'
 end
