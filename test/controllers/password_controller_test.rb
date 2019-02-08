@@ -8,7 +8,7 @@ class Users::PasswordsController < ActionController::TestCase
 
   end
 
-#test run to assert a new password index can be found
+  #test run to assert a new password index can be found
 	# test "should get new " do
 	#   get :new
 	#   assert_response :success
