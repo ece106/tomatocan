@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class MerchandisesControllerTest < ActionController::TestCase
+class EventControllerTest < ActionController::TestCase
   setup do
-    @merchandise = merchandises(:one)
+    @event = events(:one)
   end
 
   test "should get index" do
@@ -24,10 +24,10 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_create_merchandise" do
+  test "should_create_event" do
       sign_in users(:one)
-      assert_difference('Merchandise.count',1) do
-      post :create, params: { merchandise: { desc: 'Test1', itempic: 'mys', name: 'hi', price: '20', user_id: '3' }}
+      assert_difference('Event.count',1) do
+          post :create, params: { Event: {  usrid: '1', name: 'Harold' }}
     end
     #assert_redirected_to phase_storytellerperks_path(assigns(:merchandise))
   end

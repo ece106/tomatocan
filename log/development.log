@@ -6727,3 +6727,30 @@ DEPRECATION WARNING: Dangerous query method (method whose arguments are used as 
 Completed 200 OK in 101ms (Views: 90.8ms | ActiveRecord: 2.1ms)
 
 
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(737815420147457505)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DropPhaseTable (20181211195718)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (23.7ms)[0m  [1m[35mDROP TABLE "phases"[0m
+  [1m[36mActiveRecord::SchemaMigration Create (8.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181211195718"]]
+  [1m[35m (68.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(737815420147457505)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at bin/rails:4)
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from env_config at /Users/daggulbranson/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.0/lib/rails/application.rb:252)
+Started GET "/" for ::1 at 2019-02-11 15:22:25 -0700
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-02-11 12:22:25.258363')[0m
+  Rendered layouts/_maincalendar.html.erb (8.5ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (3988.4ms)
+  Rendered application/_favicon.html.erb (6.3ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 4168ms (Views: 4142.6ms | ActiveRecord: 3.6ms)
+
+
