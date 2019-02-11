@@ -1,19 +1,25 @@
 require 'test_helper'
 
-class Users::PasswordsControllerTest < ActionController::TestCase
+class Users::PasswordsController < ActionController::TestCase
   setup do
       @user = users(:one)
-    #@password = passwords(:one)
+      @password = passwords(:one)
     #@group = groups(:one)
 
   end
 
-=begin	test "should get new " do
-	  sign_in users(:one)
-    get :new
-	  assert_response :success
-	end
-=end 
+  #test run to assert a new password index can be found
+	# test "should get new " do
+	#   get :new
+	#   assert_response :success
+	# end
+
+#test run to assert user can create a new password 
+#should check if successful reset password email was sent
+
+
+#test run to assert user can edit their password 
+
 	# # test "should edit password" do
  # #    get :edit, params: {id: @user.id}
  # #    assert_response :success
@@ -28,4 +34,6 @@ class Users::PasswordsControllerTest < ActionController::TestCase
   #   assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   # end
 
+  #test run to assert update password successfully
+  #should check whether throws the right flags base on if the password meets neccesary requirements i.e. length
 end

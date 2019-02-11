@@ -6,22 +6,19 @@ class UsersControllerTest < ActionController::TestCase
 #    sign_in @user
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:users)
-  end
+  # test "should get index" do
+  #   get :index
+  #   assert_response :success
+  #   assert_not_nil assigns(:users)
+  # end
 
-  test "should_get_users_youtubers" do
-    get :youtubers
-    assert_response :success
-
+  test "should get users youtubers" do
     get :youtubers
     assert_response :success
   end
 
 
-  test "should_get_users_dashboard" do
+  test "should get users dashboard" do
     sign_in @user
     @book = books(:one)
     @purchase = purchases(:one)
@@ -31,20 +28,20 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_eventlist user logged in" do
+  test "should get users eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
   end
 
 
-  test "should_get_users_eventlist user not logged in" do 
+  test "should get users eventlist user not logged in" do 
     #what's the difference in expected result compared to logged in? Do we care?
     get :eventlist, params: {permalink: 'user2'}
     assert_response :success
   end
 
 
-  test "should_get_users_pastevents" do
+  test "should get users pastevents" do
     get :pastevents, params: {permalink: 'user1'}
     assert_response :success
 
@@ -52,20 +49,19 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should_get_users_profileinfo" do 
+  test "should get users profileinfo" do 
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success
   end
 
-  test "should_get_users_show" do #user1 has phases
+  test "should get users show" do #user1 has phases
     get :show, params: {permalink: 'user1'}
     assert_response :success
   end
 
   test "should create user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
     assert_difference('User.count', 1) do
-      post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', 
-           password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
+      post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     end
 
     assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
@@ -87,14 +83,13 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should update user" do
     sign_in @user
-    patch :update, params: { id: @user.id, user: { name: 'New Name', 
-      youtube1: 'randomchar' } }
+    patch :update, params: { id: @user.id, user: { name: 'New Name', youtube1: 'randomchar' } }
     user = User.find_by_permalink(@user.permalink)
     assert_equal(user.name, "New Name") 
     assert_redirected_to user_profile_path(user.permalink)
   end
 
-  test "should_verify_update_user_with_invalid_params" do
+  test "should verify update user with invalid params" do
     sign_in @user
 
     @user.errors.clear
@@ -107,7 +102,7 @@ class UsersControllerTest < ActionController::TestCase
     # assert_not_empty @user.errors.messages
   end
 
-  test "should_verify_update_user_with_valid_params" do
+  test "should verify update user with valid params" do
     sign_in @user
 
     @user.errors.clear
