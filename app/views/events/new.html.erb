@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
     <div class="row" >
         <h1>Create an Event</h1>
@@ -73,4 +74,81 @@
             <#% @tempval = group.id %>
             <#% i = i+1 %>
         <#% end %>  
+=======
+<div class="container">
+    <div class="row" >
+        <h1>Create an Event</h1>
+        <p>By creating an event below, the details of your livestream will be posted on the Home page of CrowdPublish.TV. This will allow your viewers to easily find the time and date of your livestream discussion.</p>
+    </div>
+
+    <div class="row">
+        <%= form_for(@event) do |f| %>
+          <% if @event.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+              <ul>
+              <% @event.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+    </div>
+
+    <div class="row">
+        <%= f.hidden_field :usrid, value: current_user.id %>
+
+          <div class="form-group">
+            <h3><%= f.label :buttontype, "*Title of Livestream Event" %></h3>
+                    <p class="help-block">What will you be discussing in your livestream?</p>
+            <%= f.text_field :name, :size => 80 %><p>
+          </div>
+
+          <div class="form-group">
+              <h3><%= f.label :buttontype, "Start Time" %></h3>
+                    <p class="help-block">Mountain Standard Time (MST)</p>
+            <%= f.datetime_select :start_at, :ampm => true, :default => 7.days.from_now, :minute_step => 15 %>
+            <% #= date_field(:event, :start_at) %>
+          </div>
+
+          <div class="form-group">
+            <h3><%= f.label :buttontype, "End Time" %></h3>
+                    <p class="help-block">Mountain Standard Time (MST)</p>
+            <%= f.datetime_select :end_at, :ampm => true, :default => 7.days.from_now + 30.minutes, :minute_step => 15 %><br>
+          </div>
+
+          <div class="form-group">
+            <h3><%= f.label :buttontype, "Details about Livestream Discussion" %></h3>
+                    <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
+            <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
+          </div>
+
+            <%= f.submit "Create Event", :class => "btn btn-lg btn-primary", :id => "eventSubmit" %>
+
+        <% end %>  
+    </div>
+</div>
+
+<!--
+    There aren't enough events nor groups yet to justify this feature
+
+        You can select up to 3 groups/organizations near you for placing your event on their calendar (the group moderator will delete your event from the calendar if it does not meet that group's criteria for posting events) <br>
+
+        <#%= f.collection_select(:group1id, @groups.all, :id, :name, prompt: true) %>
+        <#%= f.collection_select(:group2id, @groups.all, :id, :name, prompt: true) %>
+        <#%= f.collection_select(:group3id, @groups.all, :id, :name, prompt: true) %>
+        <br><br>
+        If no groups are showing up, you may need to change your Home location <#%= link_to 'Edit your zip code or address', user_profileinfo_path(current_user.permalink) %> 
+        <br><br>
+        <#% i = 0 %>
+        <#% @groups.each do |group| %>
+          <#%= f.check_box(:group1id ) %>
+          <#%= label_tag(:grouptype_child, group.name ) %>
+          <#% #= f.check_box(:group1id, { :multiple => true }, "group.id") %>
+          <#%= group.name %> <br>
+            <#% @tempval = group.id %>
+            <#% i = i+1 %>
+        <#% end %>  
+>>>>>>> 20ff2011bd7568e6dc479d71363a67ec22f0135e
 -->
