@@ -7,7 +7,8 @@
             <div class="well">
             <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
                 <div class="form-group">
-                    <h2><%= f.label :name, "Organization Name" %></h2>
+                    <h2><%= f.label :name, "Name" %></h2>
+                    <p class="help-block">Enter your name or the name of your organization.</p>
                     <%= f.text_field :name, :autofocus => true, :class => "form-control" %>
                 </div>
                 <div class="form-group">

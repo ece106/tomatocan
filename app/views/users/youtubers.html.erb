@@ -18,7 +18,7 @@
   <% end %>
 </div>
   <div class="indexlist" >
-    <b>Browse more videos by CrowdPublish.TV authors</b><br> <%= will_paginate @youtubers %> <br>
+    <b>Browse more videos by CrowdPublish.TV authors</b><br> <%= will_paginate @youtubers, renderer: BootstrapPagination::Rails %> <br>
   </div>
 
 </div>
