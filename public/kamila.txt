@@ -42,3 +42,6 @@ Friday (8 hrs)
     -Test still fails, waiting for events count to work correctly
     - "DEPRECATION WARNING: Dangerous query method (method whose arguments are used as raw SQL) called with non-attribute argument(s): "deadline IS NULL, deadline ASC". Non-attribute arguments will be disallowed in Rails 6.0. This method should not be called with user-provided values, such as request parameters or model attributes. Known-safe values can be passed by wrapping them in Arel.sql(). (called from set_user at /home/kamila/tomatocan/tomatocan/app/controllers/users_controller.rb:230)
     -Should anything be done about this
+    -for rsvpqs, the controller file has updating. 
+    -Should there be testing for updating rsvpqs
+    -Is the website actually sending error messages for invalid emails
