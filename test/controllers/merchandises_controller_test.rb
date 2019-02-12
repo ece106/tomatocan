@@ -7,11 +7,11 @@ class MerchandisesControllerTest < ActionController::TestCase
 
   #test run to assert index of merchandise page found
   #passes
-  test "should get index" do
-    get :index
-    assert_response :success
-    #assert_not_nil assigns(:merchandises)
-  end
+#test "should get index" do
+    #  get :index
+#assert_response :success
+#assert_not_nil assigns(:merchandises)
+ end
 
   #test run to assert a signed in user can load page to create a new merchandise
   #passes
@@ -50,7 +50,7 @@ class MerchandisesControllerTest < ActionController::TestCase
   test "should create merchandise" do
     sign_in users(:one)
     assert_difference('Merchandise.count', 1) do
-      post :create, params: { merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
     end
   end
 
@@ -64,7 +64,7 @@ class MerchandisesControllerTest < ActionController::TestCase
   #
   test "should redirect failed merchandise creation attempt" do
     sign_in users(:one)
-    post :create, params: { merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+    post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
     assert_redirected_to user_profile_path(users(:one).permalink)
   end
 
@@ -112,14 +112,14 @@ class MerchandisesControllerTest < ActionController::TestCase
   #passes
   test "should redirect back to merchandise after merchandise updated" do
     sign_in users(:one)
-    patch :update, params: {id: @merchandise, merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
     assert_redirected_to merchandise_path(assigns(:merchandise))
   end
 
   #passes
   test "should throw flag after merchandise updated" do
     sign_in users(:one)
-    patch :update, params: {id: @merchandise, merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'one' }}
     assert_equal flash[:notice], 'Patron Perk was successfully updated.'
   end
   ######################################
