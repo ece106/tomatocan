@@ -50,7 +50,8 @@ class MerchandisesControllerTest < ActionController::TestCase
   test "should create merchandise" do
     sign_in users(:one)
     assert_difference('Merchandise.count', 1) do
-      post :create, params: { merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+       assert_redirected_to user_profile_path(users(:one).permalink)
     end
   end
 
@@ -64,7 +65,7 @@ class MerchandisesControllerTest < ActionController::TestCase
   #
   test "should redirect failed merchandise creation attempt" do
     sign_in users(:one)
-    post :create, params: { merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+    post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
     assert_redirected_to user_profile_path(users(:one).permalink)
   end
 
@@ -107,14 +108,14 @@ class MerchandisesControllerTest < ActionController::TestCase
   #passes
   test "should redirect back to merchandise after merchandise updated" do
     sign_in users(:one)
-    patch :update, params: {id: @merchandise, merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
     assert_redirected_to merchandise_path(assigns(:merchandise))
   end
 
   #passes
   test "should throw flag after merchandise updated" do
     sign_in users(:one)
-    patch :update, params: {id: @merchandise, merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
+    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'one' }}
     assert_equal flash[:notice], 'Patron Perk was successfully updated.'
   end
   ######################################
@@ -136,4 +137,16 @@ class MerchandisesControllerTest < ActionController::TestCase
   # test "should set expiredmerch" do
   #   assert @expiredmerch.valid?
   # end
+
+  test "should render correct layout for show"
+    get :show
+    assert_template 'layouts/userpgtemplate'
+  end
+
+  # test "should render correct layout for edit"
+  # end
+
+  # test "should render correct layout for all other methods"
+  # end
+
 end

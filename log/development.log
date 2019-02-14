@@ -6891,3 +6891,57 @@ DEPRECATION WARNING: Dangerous query method (method whose arguments are used as 
 Completed 200 OK in 1857ms (Views: 1759.9ms | ActiveRecord: 14.0ms)
 
 
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at bin/rails:4)
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from env_config at /Users/cjadams/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.0/lib/rails/application.rb:252)
+Started GET "/" for ::1 at 2019-02-14 12:14:53 -0700
+  [1m[35m (83.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (79.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-02-14 09:14:54.917495')[0m
+  Rendered layouts/_maincalendar.html.erb (87.8ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (8354.5ms)
+  Rendered application/_favicon.html.erb (60.9ms)
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 9327ms (Views: 9031.7ms | ActiveRecord: 83.9ms)
+
+
+Started GET "/supportourwork" for ::1 at 2019-02-14 12:50:01 -0700
+Processing by UsersController#supportourwork as HTML
+  Rendering users/supportourwork.erb within layouts/application
+  [1m[36mUser Load (82.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE (LENGTH(stripeid) > 10 AND LENGTH(youtube1) > 7) ORDER BY updated_at DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 24], ["OFFSET", 0]]
+  Rendered users/supportourwork.erb within layouts/application (1818.2ms)
+  Rendered application/_favicon.html.erb (271.6ms)
+  Rendered layouts/_header.html.erb (3.9ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 2664ms (Views: 2478.0ms | ActiveRecord: 127.3ms)
+
+
+Started GET "/cjadam" for ::1 at 2019-02-14 12:50:09 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"cjadam"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "cjadam"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists (21.4ms)[0m  [1m[34mSELECT  1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (79.8ms)
+  Rendered layouts/_streamButton.html.erb (1.1ms)
+  Rendered layouts/_merchsidebar.html.erb (4.6ms)
+  Rendered layouts/_youtube.html.erb (1.2ms)
+  Rendered users/show.html.erb within layouts/userpgtemplate (99.7ms)
+  Rendered application/_favicon.html.erb (6.4ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 760ms (Views: 187.7ms | ActiveRecord: 27.2ms)
+
+
+Started GET "/login" for ::1 at 2019-02-14 13:14:14 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.erb (2.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (496.9ms)
+  Rendered application/_favicon.html.erb (165.1ms)
+  Rendered layouts/_header.html.erb (4.2ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 1296ms (Views: 1233.4ms | ActiveRecord: 0.0ms)
+
+

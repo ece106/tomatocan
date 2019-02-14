@@ -1,0 +1,39 @@
+Merchandises Controller               * (Test needed for each bullet)                                     
+
+•	Index: fetches users list of merchandise                                                 
+
+•	Show: 
+
+	o	Set_merchandise taken care of by before_action
+	o	Makes an instance var of author using the merchandise id
+
+•	New: 
+
+	o	Creates an instance var of merchandise to be used by the view
+
+•	Standard Perks:
+	o	
+
+•	Edit: 
+	o	Merchandise is set in before_action at top of controller. Method should be empty but present. 
+
+•	Create: 
+	o	Successfully creates merch
+		• Fetches user’s YouTube id
+		• Redirects back to user_profile_path
+		• Flash notice: “Patron Perk was successfully created.”
+	o	Missing Field, Merch creation unsuccessful 
+		• Renders new
+		• Flash notice: “Your merchandise was not saved. Check the required info (*), filetypes, or character counts.”
+
+•	Update: 
+	o	Successfully updates merch
+		• Fetches user’s YouTube
+		• Redirects to user’s merchandise page
+		• Flash notice: “Patron Perk was successfully updated.”
+	o	Unsuccessful update
+		• Renders edit page
+
+•	Set_merchandise
+•	Merchandise_params
+•	Resolve_layout

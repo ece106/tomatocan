@@ -18,15 +18,14 @@ class MerchandisesController < ApplicationController
   def new
     @merchandise = Merchandise.new
   end
+
   def standardperks
     @merchandise = Merchandise.new
   end
 
   # GET /merchandises/1/edit
   def edit
-    %%if params[:merchandise][:itempic].present?
-      render :new  ## Render the view for cropping
-    end%
+    #inside body taken care of by before_action
   end
 
   # POST /merchandises

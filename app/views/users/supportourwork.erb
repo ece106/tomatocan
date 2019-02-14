@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12">
@@ -21,7 +22,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<%= will_paginate @stripeusers %> <!--add renderer: BootstrapPagination::Rails for gem-->
+			<%= will_paginate @stripeusers, renderer: BootstrapPagination::Rails %>
 		</div>
 	</div>
 </div>
