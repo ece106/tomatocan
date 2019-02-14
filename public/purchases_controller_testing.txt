@@ -1,0 +1,31 @@
+how purchases works:
+
+purchases_controller.rb
+    show:
+        find purchase by given id and create instance @purchase
+        if (the purchase has merchandise_id >= 0 )
+        {
+            find the user of the purchase merchandise
+        }
+
+
+    new:
+        if (the parameter has :pricesold)
+        {
+            create a new @purchase instance
+            assert success
+        }
+        else if (the parameter has :merchandise_id to purchase)
+        {
+            find the merchandise by its id in the merchandises table
+            create new merchandise purchase
+            assert success
+        }
+
+        if(user was signed in)
+        {
+            if(stripe_customer_token is a parameter for purchase)
+            {
+                retrieve the user's customer source_id and card info from Stripe
+            }
+        }

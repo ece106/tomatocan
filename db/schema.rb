@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.date "releasedate"
   end
 
-  create_table "purchases", id: :serial, force: :cascade do |t|
+  create_table "purchases", force: :cascade do |t|
     t.integer "author_id"
     t.integer "book_id"
     t.string "stripe_customer_token"

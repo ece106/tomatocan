@@ -7,7 +7,7 @@ class PurchasesControllerTest < ActionController::TestCase
 
     test "should_get_purchases_new_purchase" do
       @merchandises = merchandises(:one)
-      sign_in users(:one)
+      sign_in users(:two)
       get :new, params: { merchandise_id: @merchandises.id }
       assert_response :success
     end
@@ -25,9 +25,13 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-    # test "should_create_new_purchase" do
-    #   sign_in users(:one)
-    #   post :create, params: {}
-    # end  
-    
+
+    test "should get new purchase with stripe" do
+      sign_in users(:one)
+      seller = users(:two)
+      get :new, params: { pricesold: 25, author_id: seller.id, stripe_customer_token: 'prachi' }
+      
+      assert_response :success
+    end
+
 end
