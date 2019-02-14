@@ -1,3 +1,4 @@
+
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update]
   layout :resolve_layout
@@ -122,4 +123,3 @@ class MoviesController < ApplicationController
         'application'
       end
     end
-end

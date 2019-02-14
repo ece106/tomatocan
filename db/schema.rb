@@ -149,22 +149,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.date "releasedate"
   end
 
-  create_table "phases", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.text "mission"
-    t.string "phasepic"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "permalink"
-    t.string "slug"
-    t.datetime "deadline"
-    t.string "why_classy"
-    t.string "youtube"
-    t.index ["slug"], name: "index_phases_on_slug", unique: true
-  end
-
-  create_table "purchases", force: :cascade do |t|
+  create_table "purchases", id: :serial, force: :cascade do |t|
     t.integer "author_id"
     t.integer "book_id"
     t.string "stripe_customer_token"
