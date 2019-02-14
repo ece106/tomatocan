@@ -6727,3 +6727,167 @@ DEPRECATION WARNING: Dangerous query method (method whose arguments are used as 
 Completed 200 OK in 101ms (Views: 90.8ms | ActiveRecord: 2.1ms)
 
 
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at bin/rails:4)
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from env_config at /Users/cjadams/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.0/lib/rails/application.rb:252)
+Started GET "/" for ::1 at 2019-02-08 15:45:29 -0700
+  [1m[35m (55.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-02-08 12:45:30.322330')[0m
+  Rendered layouts/_maincalendar.html.erb (9.8ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (1125.4ms)
+  Rendered application/_favicon.html.erb (7.2ms)
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 1502ms (Views: 1409.6ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/login" for ::1 at 2019-02-08 16:02:37 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.erb (1.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (171.0ms)
+  Rendered application/_favicon.html.erb (61.9ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 625ms (Views: 462.3ms | ActiveRecord: 58.6ms)
+
+
+Started POST "/login" for ::1 at 2019-02-08 16:02:56 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"77VL1/Ocx4EdiAZAXp/MdFbM9Tv8f8vm08D4s5TovcAbhtf5YOEn84IqQAPRyxDJHRJWsMCP3lqzmU/00EDwYQ==", "user"=>{"email"=>"patriots@email", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "patriots@email"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "sign_in_count" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["current_sign_in_at", "2019-02-08 23:02:56.816751"], ["sign_in_count", 2], ["updated_at", "2019-02-08 23:02:56.821905"], ["id", 2]]
+  [1m[35m (16.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 263ms (ActiveRecord: 20.8ms)
+
+
+Started GET "/" for ::1 at 2019-02-08 16:02:56 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-02-08 13:02:56.990715')[0m
+  Rendered layouts/_maincalendar.html.erb (4.6ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (149.9ms)
+  Rendered application/_favicon.html.erb (223.8ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 585ms (Views: 535.5ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/superbowl" for ::1 at 2019-02-08 16:03:19 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"authenticity_token"=>"L/IjiKWExCPfK5FDssU6oCJXvijj/ZDDKKsCvPl0S42sOPg3vSVhor5CksazcoiqDpmbHNJR2+UGrWHWKEy3lw==", "permalink"=>"superbowl"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "superbowl"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 2], ["LIMIT", 1]]
+DEPRECATION WARNING: Dangerous query method (method whose arguments are used as raw SQL) called with non-attribute argument(s): "deadline IS NULL, deadline ASC". Non-attribute arguments will be disallowed in Rails 6.0. This method should not be called with user-provided values, such as request parameters or model attributes. Known-safe values can be passed by wrapping them in Arel.sql(). (called from set_user at /Users/cjadams/tomatocan2/app/controllers/users_controller.rb:230)
+  [1m[36mMerchandise Load (1.5ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE (user_id = 2) ORDER BY "groups"."id" ASC LIMIT $1[0m  [["LIMIT", 1000]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "groups" WHERE (user_id = 2)[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (68.7ms)
+  Rendered layouts/_streamButton.html.erb (0.8ms)
+  Rendered layouts/_merchsidebar.html.erb (11.8ms)
+  Rendered layouts/_youtube.html.erb (0.8ms)
+  Rendered users/show.html.erb within layouts/userpgtemplate (94.2ms)
+  Rendered application/_favicon.html.erb (33.1ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 787ms (Views: 317.2ms | ActiveRecord: 22.0ms)
+
+
+Started GET "/merchandises/1/edit" for ::1 at 2019-02-08 16:03:27 -0700
+Processing by MerchandisesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMerchandise Load (0.7ms)[0m  [1m[34mSELECT  "merchandises".* FROM "merchandises" WHERE "merchandises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+DEPRECATION WARNING: Dangerous query method (method whose arguments are used as raw SQL) called with non-attribute argument(s): "deadline IS NULL, deadline ASC". Non-attribute arguments will be disallowed in Rails 6.0. This method should not be called with user-provided values, such as request parameters or model attributes. Known-safe values can be passed by wrapping them in Arel.sql(). (called from set_merchandise at /Users/cjadams/tomatocan2/app/controllers/merchandises_controller.rb:61)
+  [1m[36mMerchandise Load (0.9ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline > '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline > '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  Rendering merchandises/edit.html.erb within layouts/userpgtemplate
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered merchandises/edit.html.erb within layouts/userpgtemplate (58.2ms)
+  Rendered application/_favicon.html.erb (233.4ms)
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 591ms (Views: 564.5ms | ActiveRecord: 3.8ms)
+
+
+Started PATCH "/merchandises/1" for ::1 at 2019-02-08 16:03:49 -0700
+Processing by MerchandisesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6oFLremprd3LVA8jj7xEJXU8R/ZN3PbhOnHbvhKL00FpS5AS8QgIXKo9DKaOC/YvWfJiwnxwvccUd7jUw7MvWw==", "merchandise"=>{"buttontype"=>"Buy", "name"=>"awesome perk", "price"=>"10.0", "desc"=>"", "youtube"=>"", "deadline(1i)"=>"2019", "deadline(2i)"=>"4", "deadline(3i)"=>"15"}, "commit"=>"Save Perk", "id"=>"1"}
+  [1m[36mMerchandise Load (0.7ms)[0m  [1m[34mSELECT  "merchandises".* FROM "merchandises" WHERE "merchandises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+DEPRECATION WARNING: Dangerous query method (method whose arguments are used as raw SQL) called with non-attribute argument(s): "deadline IS NULL, deadline ASC". Non-attribute arguments will be disallowed in Rails 6.0. This method should not be called with user-provided values, such as request parameters or model attributes. Known-safe values can be passed by wrapping them in Arel.sql(). (called from set_merchandise at /Users/cjadams/tomatocan2/app/controllers/merchandises_controller.rb:61)
+  [1m[36mMerchandise Load (0.8ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline > '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline > '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT  "merchandises".* FROM "merchandises" WHERE "merchandises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMerchandise Update (0.7ms)[0m  [1m[33mUPDATE "merchandises" SET "deadline" = $1, "updated_at" = $2 WHERE "merchandises"."id" = $3[0m  [["deadline", "2019-04-15 00:00:00"], ["updated_at", "2019-02-08 23:03:49.136359"], ["id", 1]]
+  [1m[35m (39.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/merchandises/1
+Completed 302 Found in 58ms (ActiveRecord: 43.0ms)
+
+
+Started GET "/merchandises/1" for ::1 at 2019-02-08 16:03:49 -0700
+Processing by MerchandisesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMerchandise Load (0.6ms)[0m  [1m[34mSELECT  "merchandises".* FROM "merchandises" WHERE "merchandises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+DEPRECATION WARNING: Dangerous query method (method whose arguments are used as raw SQL) called with non-attribute argument(s): "deadline IS NULL, deadline ASC". Non-attribute arguments will be disallowed in Rails 6.0. This method should not be called with user-provided values, such as request parameters or model attributes. Known-safe values can be passed by wrapping them in Arel.sql(). (called from set_merchandise at /Users/cjadams/tomatocan2/app/controllers/merchandises_controller.rb:61)
+  [1m[36mMerchandise Load (0.8ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline > '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline > '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering merchandises/show.html.erb within layouts/userpgtemplate
+  Rendered merchandises/show.html.erb within layouts/userpgtemplate (2.3ms)
+  Rendered application/_favicon.html.erb (6.5ms)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (4.7ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 120ms (Views: 91.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/superbowl/controlpanel" for ::1 at 2019-02-08 16:03:55 -0700
+Processing by UsersController#controlpanel as HTML
+  Parameters: {"authenticity_token"=>"rk6kpCisxEk1rieCaW65IJIYHzcY8vB3EJyv0in4V34thH8bMA1hyFTHJAdo2QsqvtY6Ayleu1E+msy4+MCrZA==", "permalink"=>"superbowl"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "superbowl"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 2], ["LIMIT", 1]]
+DEPRECATION WARNING: Dangerous query method (method whose arguments are used as raw SQL) called with non-attribute argument(s): "deadline IS NULL, deadline ASC". Non-attribute arguments will be disallowed in Rails 6.0. This method should not be called with user-provided values, such as request parameters or model attributes. Known-safe values can be passed by wrapping them in Arel.sql(). (called from set_user at /Users/cjadams/tomatocan2/app/controllers/users_controller.rb:230)
+  [1m[36mMerchandise Load (0.7ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2019-02-08' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 2]]
+  [1m[36mPurchase Load (1.4ms)[0m  [1m[34mSELECT "purchases".* FROM "purchases" WHERE (purchases.author_id = 2) ORDER BY created_at DESC[0m
+  [1m[36mMerchandise Load (0.7ms)[0m  [1m[34mSELECT  "merchandises".* FROM "merchandises" WHERE "merchandises"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Merchandise Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendering users/controlpanel.html.erb within layouts/userpgtemplate
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered layouts/_stripealert.html.erb (3.1ms)
+  Rendering users/profileinfo.html.erb
+  Rendered layouts/_flash_messages.html.erb (0.5ms)
+  Rendered users/profileinfo.html.erb (9.1ms)
+  Rendered layouts/_merchsidebar.html.erb (4.3ms)
+  Rendered layouts/_createPerk.html.erb (0.5ms)
+  [1m[36mMerchandise Load (0.8ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline < '2019-02-08') ORDER BY deadline ASC[0m  [["user_id", 2]]
+  Rendered layouts/_expiredPerks.html.erb (2.4ms)
+  Rendered layouts/_streamButton.html.erb (0.8ms)
+  Rendering users/eventlist.html.erb
+  Rendered users/eventlist.html.erb (0.6ms)
+  Rendering users/pastevents.html.erb
+  Rendered users/pastevents.html.erb (0.7ms)
+  Rendered layouts/_streamDirections.html.erb (0.5ms)
+  Rendering users/accountinfo.html.erb
+  Rendered users/accountinfo.html.erb (14.5ms)
+  Rendering users/dashboard.html.erb
+  Rendered users/dashboard.html.erb (1610.5ms)
+  Rendered users/controlpanel.html.erb within layouts/userpgtemplate (1690.8ms)
+  Rendered application/_favicon.html.erb (5.2ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 1857ms (Views: 1759.9ms | ActiveRecord: 14.0ms)
+
+

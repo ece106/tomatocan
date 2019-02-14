@@ -91,23 +91,18 @@ class MerchandisesControllerTest < ActionController::TestCase
 
   #######################################
   #test for editing merchandises#########
-  # test "should get edit" do
-  #   sign_in users(:one)
-  #   get :edit, params: { id: @merchandise.id }
-  #   assert_response :success
-  # end
+  #passes
+  test "should get edit" do
+    sign_in users(:one)
+    get :edit, params: { id: @merchandise.id }
+    assert_response :success
+  end
   #######################################
 
 
 
   ######################################
   ####tests for updating merchandise####
-  #fails
-  # test "should update merchandise" do
-  #   sign_in users(:one)
-  #   patch :update, params: {id: @merchandise, merchandise: { name: "chris", user_id: 1, price: 20, desc: "test", buttontype: "one" }}
-  #   assert_response :success
-  # end
 
   #passes
   test "should redirect back to merchandise after merchandise updated" do
@@ -127,17 +122,17 @@ class MerchandisesControllerTest < ActionController::TestCase
 
 
   #following tests run to assert set_merchandise runs correctly
-  # test "should set merchandise" do
-  #   assert @merchandise.valid?
-  # end
+  test "should set merchandise" do
+    assert @merchandise.valid?
+  end
   # test "should set user" do
   #   assert @user.valid?
   # end
-  # test "should confirm user not signed in as different user" do
-  #   duplicate_user = @user.duplicate_dup
-  #   @user.save
-  #   assert_not duplicate_user.valid?
-  # end
+  test "should confirm user not signed in as different user" do
+    duplicate_user = @user.duplicate_dup
+    @user.save
+    assert_not duplicate_user.valid?
+  end
   # test "should set expiredmerch" do
   #   assert @expiredmerch.valid?
   # end
