@@ -13,9 +13,9 @@ class RsvpqsController < ApplicationController
     @rsvp = Rsvpq.new
   end
 
-  # GET /rsvps/1/edit
-  def edit
-  end
+ # GET /rsvps/1/edit
+ def edit
+ end
 
   # POST /rsvps
   def create
@@ -25,20 +25,15 @@ class RsvpqsController < ApplicationController
       @rsvp = Rsvpq.new(rsvpq_params)
     end
 
-    if @rsvp.save
-      redirect_to home_path notice: 'Rsvp was successfully created.'
-    else
-      flash[:notice] = 'Please enter a valid email address'
-      redirect_back(fallback_location: root_path)
-    end
-  end
 
-  # PATCH/PUT /rsvps/1
-  def update
-    if @rsvp.update(rsvpq_params)
-      redirect_to @rsvp, notice: 'Rsvp was successfully updated.'
+
+    if @rsvp.save
+      flash[:success] = 'Rsvp was successfully created.'
+      redirect_to home_path
     else
-      render action: 'edit'
+      flash[:error] = 'Please enter a valid email address'
+      redirect_to home_path
+     # redirect_back(fallback_location: root_path)
     end
   end
 
@@ -62,5 +57,23 @@ class RsvpqsController < ApplicationController
         'application'
       end
     end
+
+
+
+################################################
+####    EDIT/UPDATE NOT CURRENTLY NEEDED #######
+#################################################
+
+  # PATCH/PUT /rsvps/1
+  def update
+    if @rsvp.update(rsvpq_params)
+      redirect_to @rsvp, notice: 'Rsvp was successfully updated.'
+    else
+      render action: 'edit'
+    end
+  end
+
+ 
+  
 
 end
