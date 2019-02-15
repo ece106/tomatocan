@@ -6,16 +6,18 @@ class UsersControllerTest < ActionController::TestCase
 #    sign_in @user
   end
 
+  # test "should get index" do
+  #   get :index
+  #   assert_response :success
+  #   assert_not_nil assigns(:users)
+  # end
 
   test "should get users youtubers" do
     get :youtubers
     assert_response :success
   end
 
-  test "should get users supportourwork" do
-    get :supportourwork
-    assert_response :success
-  end
+
   test "should get users dashboard" do
     sign_in @user
     @book = books(:one)
@@ -25,11 +27,7 @@ class UsersControllerTest < ActionController::TestCase
     get :dashboard, params: {permalink: 'user1'}
     assert_response :success
   end
-  test "should get users controlpanel" do
-    sign_in @user
-    get :controlpanel, params: {permalink: 'user1'}
-    assert_response :success
-  end
+
   test "should get users eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
@@ -41,6 +39,7 @@ class UsersControllerTest < ActionController::TestCase
     get :eventlist, params: {permalink: 'user2'}
     assert_response :success
   end
+
 
   test "should get users pastevents" do
     get :pastevents, params: {permalink: 'user1'}
@@ -67,19 +66,20 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   end
- test "should get changepassword" do
-    get :changepassword, params: {permalink: 'user1'}
-    assert_response :success
-  end
-  test "should get stripe_callback" do
-      get :stripe_callback, params: {permalink:'user1'}
-      assert_response :success
-  end
+ 
+
   test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }
     assert_response :success
   end
-  
+
+#  test "should get edit" do  # my edit page is more complicated
+#    get :edit, id: @user.to_param
+#    @book = current_user.books.build
+#    @booklist = Book.where(:user_id => @user.id)
+#    assert_response :success
+#  end
+
 
   test "should update user" do
     sign_in @user
@@ -114,6 +114,5 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal "MyTwitter", @user.twitter
     assert_empty @user.errors.messages
   end
-  
-  
+
 end

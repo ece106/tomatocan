@@ -3,6 +3,7 @@ require 'test_helper'
 class RsvpqsControllerTest < ActionController::TestCase
   setup do
     @rsvpq = rsvpqs(:one)
+    @event = events(:one)
   end
 
   # test "should get index" do
@@ -19,12 +20,12 @@ class RsvpqsControllerTest < ActionController::TestCase
   # end
 
 
-  # test "should create rsvpq" do
-  #   #sign_in users(:one)
-  #   assert_difference('Rsvpq.count', 1) do
-  #     post :create, params: { rsvpq: { event_id: 'superevent' } }
-  #   end
-  # end
+   test "should create rsvpq" do
+    sign_in users(:one)
+        assert_difference('Rsvpq.count', 1) do
+        post :create, params: { rsvpq: { event_id: @event.id } }
+        end
+   end
 
   #new test needed to assert correct path
   #assert_redirected_to events_path
@@ -50,7 +51,7 @@ class RsvpqsControllerTest < ActionController::TestCase
 
   #passes
   test "should display FLASH message for invalid email" do
-    post :create, params: {id: @rsvpq.id, rsvpq: { event_id: @rsvpq.event_id, guests: @rsvpq.guests, email: "notavalidemail" } }
+    post :create, params: {id: @rsvpq.id, rsvpq: { email: 'notavalidemail' } }
     assert_equal 'Please enter a valid email address', flash[:notice]
   end
 
