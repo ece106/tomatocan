@@ -1,11 +1,12 @@
 <div class="row" id="heroImage">
-    <div>
+<!--Flash message after successful rsvp-->
+<div>
         <h1 id="heroTitle">Doing Purposeful Work?</h1><br>
 <h2 id="heroTitle">Host Interactive Livestream Discussions To Engage With Your Audience</h2>
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
-        <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
+        <%= link_to "Offer Merchandise", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
     <% else %>
         <%= link_to 'Sign Up', "/signup", :class => "btn btn-lg btn-primary" %>
     <% end %> 
@@ -45,11 +46,10 @@
       <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
     </div>
 </div>
+<br><br>
 <div class="row" id="faqBlock">
     <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
-    <% if user_signed_in? %>
-        <%= link_to "Create Perk", 'new_merchandise_path', :class => "btn btn-lg btn-primary" %>
-    <% else %>
+    <% if not user_signed_in? %>
         <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
     <% end %>
 </div>
