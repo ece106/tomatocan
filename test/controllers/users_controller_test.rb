@@ -5,7 +5,7 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:one)
 #    sign_in @user
   end
-
+#index view does not exist
   # test "should get index" do
   #   get :index
   #   assert_response :success
@@ -18,7 +18,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
 
-  test "should get users dashboard" do
+  test "should get users dashboard logged in" do
     sign_in @user
     @book = books(:one)
     @purchase = purchases(:one)
@@ -28,6 +28,36 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not get users dashboard logged out" do
+    sign_in @user
+    @book = books(:one)
+    @purchase = purchases(:one)
+ #   puts @book.id
+ #   puts "Notice that the book id is some ridiculously huge integer."
+    get :dashboard, params: {permalink: 'user2'}
+    assert_response :success
+  end
+
+  test "should get control panel logged in" do
+    sign_in @user
+    @book = books(:one)
+    @purchase = purchases(:one)
+ #   puts @book.id
+ #   puts "Notice that the book id is some ridiculously huge integer."
+    get :controlpanel, params: {permalink: 'user1'}
+    assert_response :success
+    user = User.find_by_permalink(@user.permalink)
+    assert_redirected_to user_profile_path(user.permalink)
+  end
+   test "should not get control panel logged out" do
+    sign_in @user
+    @book = books(:one)
+    @purchase = purchases(:one)
+ #   puts @book.id
+ #   puts "Notice that the book id is some ridiculously huge integer."
+    get :controlpanel, params: {permalink: 'user2'}
+    assert_response :success
+  end
   test "should get users eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
@@ -41,11 +71,13 @@ class UsersControllerTest < ActionController::TestCase
   end
 
 
-  test "should get users pastevents" do
+  test "should get pastevents logged in" do
     get :pastevents, params: {permalink: 'user1'}
     assert_response :success
+  end
 
-    get :pastevents, params: {permalink: 'user2'}
+  test "should get pastevents not logged in" do
+     get :pastevents, params: {permalink: 'user2'}
     assert_response :success
   end
 
