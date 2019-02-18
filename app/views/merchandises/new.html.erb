@@ -8,7 +8,7 @@
           <% if Rails.env.development? || Rails.env.test? %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
               <span class="clearfix">
-                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Perks!
+                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell benefits!
                 </span>
                 <span class="pull-right">
                     <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
@@ -18,7 +18,7 @@
           <% else %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
               <span class="clearfix">
-                <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/login' %></strong> to sell Perks!</span>
+                <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/login' %></strong> to sell benefits!</span>
                 <span class="pull-right">
                     <%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/login' %>
                 </span>
@@ -32,7 +32,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Create a Merchandise</h1>
+        <h1>Create a Benefit</h1>
         <p>Offer your fans an item, experience, or benefit they can purchase on your page or during your livestreams. Don't worry, you can edit these details later! All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. So if you're offering to tweet to them, do it as soon as you see their contribution posted on your dashboard. If you're offering an hour of consulting time, text or call to arrange a session right away! Check your dashboard often.</p>
     </div>
 </div>
@@ -89,13 +89,13 @@
 
 		<div class="form-group perkField">
             <h3><%= f.label :youtube, "YouTube Video" %></h3>
-            <p class="help-block">If you have a YouTube video about your Perk, paste the URL below.</p>
+            <p class="help-block">If you have a YouTube video about your benefit, paste the URL below.</p>
 			<%= f.text_field :youtube, :class => "form-control"  %>
         </div>
 		
 		<div class="form-group perkField">
 			<h3><%= f.label :filetype, "File" %></h3>
-            <p class="help-block">If you're offering a downloadable perk, select the file's format.</p>
+            <p class="help-block">If you're offering a downloadable benefit, select the file's format.</p>
 			<!--Not ruby generated because it doesn't interact with the database.-->
 			<select id="perkFiletype", class="form-control">
 				<option value="blank">Select a filetype...</option>
@@ -134,17 +134,17 @@
 		
         <div class="form-group">
             <h3><%= f.label :deadline, "*Purchase deadline" %></h3>
-            <p class="help-block">Choose the last day fans can purchase this Perk.</p>
+            <p class="help-block">Choose the last day fans can purchase this benefit.</p>
             <%= f.date_select :deadline, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1, required: true %>
         </div>
 
-        <%= f.submit "Create Perk", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
+        <%= f.submit "Create Benefit", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
         <% end %>
 
     </div>
     
     <div class="col-md-4 col-md-offset-6 affix perkField" id="suggestedPerks">
-        <h4>Need help? Try one of our suggested perks!</h4>
+        <h4>Need help? Try one of our suggested benefits!</h4>
         <div class="list-group">
             <%= link_to "Tickets to your local event", "#", :class => "list-group-item", :id => 'suggestionA', :onclick => "suggest1()" %>
             <%= link_to "Post to your fan's Facebook page", "#", :class => "list-group-item", :id => 'suggestionB', :onclick => "suggest2()" %>
