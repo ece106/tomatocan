@@ -1,31 +1,28 @@
-how purchases works:
+How purchases_controller.rb works:
 
-purchases_controller.rb
     show:
-        find purchase by given id and create instance @purchase
-        if (the purchase has merchandise_id >= 0 )
-        {
-            find the user of the purchase merchandise
-        }
-
+        Create a new purchase object
+        If(the purchase has a merchandise_id)
+            find the seller who is selling the merchandise
+        Render json for the purchase
 
     new:
-        if (the parameter has :pricesold)
-        {
-            create a new @purchase instance
-            assert success
-        }
-        else if (the parameter has :merchandise_id to purchase)
-        {
-            find the merchandise by its id in the merchandises table
-            create new merchandise purchase
-            assert success
-        }
+        If the params have a pricesold
+            create a new purchase for doation
+        else if the params have a merchandise_id
+            find the merchandise and create a new purchase for it. 
 
-        if(user was signed in)
-        {
-            if(stripe_customer_token is a parameter for purchase)
-            {
-                retrieve the user's customer source_id and card info from Stripe
-            }
-        }
+        If the user is signed in and has set up a Stripe account
+            retrieve users' details for payment from Stripe.
+
+    create:
+        Create a new purchase object with all purchase information including stripe information
+        If the user is  signed in, assign user's id to the purchase's user_id
+        If the purchase has a merchandise id
+            find the merchandise using the purchase's merchandise id
+            If the merchandise is downloadable (i.e. audio, graphis, etc.)
+                send data as a file attachment
+            else find the seller's ID 
+                if the user is signed in :assign user to purchase.user_id
+                if purchased is saved with payment: notify user of the completed purchase
+                else: notify user of incomplete payment

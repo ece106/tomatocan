@@ -16,11 +16,16 @@ class PurchasesController < ApplicationController
   end
   # GET /purchases/new
   def new
-    if(params[:pricesold].present?) # Donation being made
-      @purchase = Purchase.new
-    elsif(params[:merchandise_id].present?) #Purchase being made
+    # if(params[:pricesold].present?) # Donation being made
+    # elsif(params[:merchandise_id].present?) #Purchase being made
+    
+############### test!!! ######
+    if(params[:merchandise_id].present?) #Purchase being made
       @merchandise = Merchandise.find(params[:merchandise_id])
       @purchase = @merchandise.purchases.new
+    #elsif(@purchase.merchandise_id.nil?)
+    else
+      @purchase = Purchase.new
     end
     if user_signed_in?
       if current_user.stripe_customer_token.present?
