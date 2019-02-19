@@ -27,7 +27,24 @@ class RsvpqsControllerTest < ActionController::TestCase
         end
    end
 
-  #new test needed to assert correct path
+  #redirect to home path after successful sign in
+  test "should redirect to home_path" do
+  sign_in users(:one)
+      post :create, params: { rsvpq: { event_id: @event.id } }
+      assert_redirected_to home_path
+end
+
+
+#passing
+test "should display FLASH message for invalid email" do
+  post :create, params: {id: @rsvpq.id, rsvpq: { email: 'notavalidemail' } }
+  assert_equal 'Please enter a valid email address', flash[:error]
+end
+
+
+
+
+
   #assert_redirected_to events_path
   #assert_redirected_to "http://test.host/login"
 
@@ -49,10 +66,8 @@ class RsvpqsControllerTest < ActionController::TestCase
   #   assert_redirected_to "http://test.host/login"
   # end
 
-  #passes
-  test "should display FLASH message for invalid email" do
-    post :create, params: {id: @rsvpq.id, rsvpq: { email: 'notavalidemail' } }
-    assert_equal 'Please enter a valid email address', flash[:notice]
-  end
+
+
+
 
 end

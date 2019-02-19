@@ -1,6 +1,6 @@
 class RsvpqsController < ApplicationController
-  before_action :set_rsvp, only: [:show, :edit, :update, :destroy]
-#  before_action :authenticate_user! 
+  before_action :set_rsvp, only: [:show, :edit, :update]
+#  before_action :authenticate_user!
   layout :resolve_layout
 
   # GET /rsvps/1
@@ -8,14 +8,7 @@ class RsvpqsController < ApplicationController
 #    :update
   end
 
-  # GET /rsvps/new
-  def new
-    @rsvp = Rsvpq.new
-  end
 
-  # GET /rsvps/1/edit
-  def edit
-  end
 
   # POST /rsvps
   def create
@@ -26,9 +19,10 @@ class RsvpqsController < ApplicationController
     end
 
     if @rsvp.save
-      redirect_to home_path notice: 'Rsvp was successfully created.'
+      flash[:success] = 'Rsvp was successfully created.'
+      redirect_to home_path
     else
-      flash[:notice] = 'Please enter a valid email address'
+      flash[:error] = 'Please enter a valid email address'
       redirect_back(fallback_location: root_path)
     end
   end
