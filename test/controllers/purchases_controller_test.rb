@@ -34,4 +34,19 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    #test to check the address for non-downloadable/physical purchases
+    test "should test for absent address for non-downloadable physical purchases" do
+      sign_in users(:one)
+      seller = users(:two)
+      get :new, params: { pricesold: 25, author_id: seller.id, merchandise: { name: seller.name, price: '20', desc: 'carrots', buttontype: 'buy' }, shipaddress: nil}
+      assert_response :error
+    end
+
+    test "should test for present address for non-downloadable physical purchases" do
+      sign_in users(:one)
+      seller = users(:two)
+      get :new, params: { pricesold: 25, author_id: seller.id, merchandise: { name: seller.name, price: '20', desc: 'carrots', buttontype: 'buy' }, shipaddress: "earth"}
+      assert_response :success
+    end
+
 end
