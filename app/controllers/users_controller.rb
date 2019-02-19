@@ -3,7 +3,13 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
-#  before_filter :correct_user, only: [:edit, :update, :dashboard] Where did this method go?
+  #before_action :correct_user, only: [:edit, :update, :dashboard] 
+  #before_action :correct_user, only: [:edit, :update, :controlpanel] 
+  #Where did this method go?
+  def correct_user
+      @user = User.find(params[:id])
+      redirect_to(signin_path) unless current_user(@user)
+  end
 
   def index
     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'

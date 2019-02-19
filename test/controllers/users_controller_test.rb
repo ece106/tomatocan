@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
-#    sign_in @user
+   # sign_in @user
   end
 #index view does not exist
   # test "should get index" do
@@ -37,7 +37,7 @@ class UsersControllerTest < ActionController::TestCase
     get :dashboard, params: {permalink: 'user2'}
     assert_response :success
   end
-
+ 
   test "should get control panel logged in" do
     sign_in @user
     @book = books(:one)
@@ -48,16 +48,20 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     user = User.find_by_permalink(@user.permalink)
     assert_redirected_to user_profile_path(user.permalink)
-  end
-   test "should not get control panel logged out" do
+  end 
+  
+  test "should not get control panel logged out" do
     sign_in @user
     @book = books(:one)
     @purchase = purchases(:one)
  #   puts @book.id
  #   puts "Notice that the book id is some ridiculously huge integer."
+    
     get :controlpanel, params: {permalink: 'user2'}
-    assert_response :success
+    user = User.find_by_permalink(@user.permalink)
+   # assert_redirected_to user_signin_path(user.permalink)
   end
+
   test "should get users eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
