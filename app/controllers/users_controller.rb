@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
-#  before_filter :correct_user, only: [:edit, :update, :dashboard] Where did this method go?
+
+  # before_filter :correct_user, only: [:edit, :update, :dashboard] Where did this method go?
 
   def index
     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   def youtubers
     userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
     usersvidorder = userswithyoutube.order('updated_at DESC')
-    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 24)
+    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 12)
   end
   def supportourwork
     userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
@@ -134,7 +135,7 @@ class UsersController < ApplicationController
         @expiredmerchandise = expiredmerch.order('deadline ASC')
       end
   end
-
+                              
   def stripe_callback
     options = {
       site: 'https://connect.stripe.com',
@@ -280,5 +281,4 @@ class UsersController < ApplicationController
 
       return msg
     end
-
 end

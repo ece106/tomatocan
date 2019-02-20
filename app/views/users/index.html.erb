@@ -1,17 +1,19 @@
-<title>CrowdPublishTV members</title> 
+
+
+<title>CrowdPublishTV members</title>
   <h3> </h3>
 <br>
-  <% @users.each do |u| %> 
+  <% @users.each do |u| %>
     <div class="col-md-3 col-sm-4 col-xs-6" >
       <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:170px; overflow:hidden;" >
-        <% if u.profilepic.present? %> 
-          <%= link_to(image_tag(u.profilepic.url.to_s, :height => "170",  :title => u.name ), user_profile_path(u.permalink)) %> 
+        <% if u.profilepic.present? %>
+          <%= link_to(image_tag(u.profilepic.url.to_s, :height => "170",  :title => u.name ), user_profile_path(u.permalink)) %>
         <% end %>
         <br><%= link_to u.name, user_profile_path(u.permalink) %>
         <br><%= u.genre1 %>, <%= u.genre2 %>, <%= u.genre3 %>
       </div>
     </div>
   <% end %>
-<%= will_paginate @users %> <br>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %> <br>
 
 <br><br><br>

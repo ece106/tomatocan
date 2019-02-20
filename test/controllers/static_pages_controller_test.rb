@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionController::TestCase
-  test "should get home" do
-    get :home
-    assert_response :success
-  end
+    # test "should get home" do
+    #  get :home
+    #  assert_response :success
+    #end
 
   test "should_get_aboutus" do
     get :aboutus
@@ -31,10 +31,10 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "correct_head" do
-  	get :home
-  	assert_select 'title', "CrowdPublish.TV"
-  end
+#test "correct_head" do
+#	get :home
+#	assert_select 'title', "CrowdPublish.TV"
+# end
 
 
 end

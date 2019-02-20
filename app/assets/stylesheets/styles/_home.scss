@@ -16,14 +16,14 @@ p {
 }
 #heroTitle, #heroImage small {
     color: white;
-		text-shadow: $overlaid-text;
+        text-shadow: $overlaid-text;
 }
 #haveAccount {
     color: white;
-		font-size: 1.75rem;
+        font-size: 1.75rem;
     text-align: center;
     font-weight: 600;
-		text-shadow: $overlaid-text;
+        text-shadow: $overlaid-text;
 }
 #haveAccount a {
     color: $brand-secondary;
@@ -66,6 +66,10 @@ p {
     transform: translate(0px, 20px);
     opacity: 0;
   }
+}
+.col-md-5 p {
+    font-size: 15px;
+    padding: 15px;
 }
 .darkBlock {
     background-color: $gray-lighter;

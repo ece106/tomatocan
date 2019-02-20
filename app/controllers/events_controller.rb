@@ -87,4 +87,5 @@ class EventsController < ApplicationController
       obj.to_s == obj.to_i.to_s
     end
 
-end
+
+end 
