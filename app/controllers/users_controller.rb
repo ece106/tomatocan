@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
-  before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
-  #before_action :correct_user, only: [:edit, :update, :dashboard] 
-  #before_action :correct_user, only: [:edit, :update, :controlpanel] 
+  before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback, :controlpanel ]
+  before_action :authenticate_user!, only: [:edit, :update, :dashboard, :controlpanel ]
+ #before_action :correct_user, only: [:dashboard, :user_id] 
+  #before_action :correct_user, only: [:controlpanel] 
   #Where did this method go?
-  def correct_user
-      @user = User.find(params[:id])
-      redirect_to(signin_path) unless current_user(@user)
-  end
 
   def index
     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
@@ -79,7 +75,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-
+  #don't do anything right now. Need views added
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
@@ -110,19 +106,7 @@ class UsersController < ApplicationController
   end
 
   def controlpanel
-    @user.calcdashboard
-    @monthperkinfo = @user.monthperkinfo
-    @monthbookinfo = @user.monthbookinfo
-    @incomeinfo = @user.incomeinfo
-    @salebyfiletype = @user.salebyfiletype
-    @salebyperktype = @user.salebyperktype
-    @totalinfo = @user.totalinfo
-    @purchasesinfo = @user.purchasesinfo
-
-      if @user.merchandises.any? 
-        expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
-        @expiredmerchandise = expiredmerch.order('deadline ASC')
-      end
+    @user = User.find_by_permalink(params[:permalink])
   end
 
   def dashboard

@@ -1,3 +1,14 @@
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+
+
+
+
+
+
 <div class="row" id="heroImage">
     <div>
         <h1 id="heroTitle">Doing Purposeful Work?</h1><br>
@@ -8,7 +19,7 @@
         <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
     <% else %>
         <%= link_to 'Sign Up', "/signup", :class => "btn btn-lg btn-primary" %>
-    <% end %> 
+    <% end %>
     <!--Livestream button-->
     <%= link_to 'Host Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
     <% if !user_signed_in? %>

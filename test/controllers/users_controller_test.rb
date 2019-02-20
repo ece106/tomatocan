@@ -17,6 +17,10 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get users supportourwork" do
+    get :supportourwork
+    assert_response :success
+  end
 
   test "should get users dashboard logged in" do
     sign_in @user
@@ -44,29 +48,16 @@ class UsersControllerTest < ActionController::TestCase
     @purchase = purchases(:one)
  #   puts @book.id
  #   puts "Notice that the book id is some ridiculously huge integer."
-    get :controlpanel, params: {permalink: 'user1'}
+    get :controlpanel, params: {permalink: 'user1',id: @user.id} 
     assert_response :success
-    user = User.find_by_permalink(@user.permalink)
-    assert_redirected_to user_profile_path(user.permalink)
-  end 
-  
-  test "should not get control panel logged out" do
-    sign_in @user
-    @book = books(:one)
-    @purchase = purchases(:one)
- #   puts @book.id
- #   puts "Notice that the book id is some ridiculously huge integer."
-    
-    get :controlpanel, params: {permalink: 'user2'}
-    user = User.find_by_permalink(@user.permalink)
-   # assert_redirected_to user_signin_path(user.permalink)
-  end
 
+    end 
+  
+  
   test "should get users eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
   end
-
 
   test "should get users eventlist user not logged in" do 
     #what's the difference in expected result compared to logged in? Do we care?
@@ -74,7 +65,15 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
+  test "should get changepassword" do
+    get :changepassword, params: {permalink: 'user1'}
+    assert_response :success
+  end
+  test "should get stripe_callback" do
+      get :stripe_callback, params: {permalink:'user1'}
+      assert_response :success
+  end
+ 
   test "should get pastevents logged in" do
     get :pastevents, params: {permalink: 'user1'}
     assert_response :success
