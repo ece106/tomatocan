@@ -33,7 +33,7 @@ class MerchandisesController < ApplicationController
     @merchandise = current_user.merchandises.build(merchandise_params)
     if @merchandise.save 
       @merchandise.get_youtube_id
-        redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
+      redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
     else
       render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
     end
@@ -61,7 +61,7 @@ class MerchandisesController < ApplicationController
       if deadlineorder.all[1].present?
         @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
       else
-        @sidebarmerchandise = deadlineorder.all[0..0]  # is this used?
+        @sidebarmerchandise = deadlineorder.all[0..0] 
       end
     end
 
