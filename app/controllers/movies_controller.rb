@@ -123,5 +123,4 @@ class MoviesController < ApplicationController
         'application'
       end
     end
-    
 end
