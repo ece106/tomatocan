@@ -1,11 +1,20 @@
 source 'http://rubygems.org'
+<<<<<<< HEAD
 ruby "2.5.1"
+=======
+ruby "2.5.3"
+>>>>>>> 1249fce8bc58065df6832dc0e6f97982eccf32ba
 
 gem 'listen'
 gem 'rails-controller-testing'
 
+<<<<<<< HEAD
 #gem 'pg'
 gem 'sqlite3', '~> 1.3.6'
+=======
+gem 'pg'
+#gem 'sqlite3'
+>>>>>>> 1249fce8bc58065df6832dc0e6f97982eccf32ba
 
 gem 'mandrill'	
 gem 'devise'
