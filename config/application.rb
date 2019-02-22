@@ -26,5 +26,7 @@ module Crowdpublishtv
       # Enable the asset pipeline
     config.assets.enabled = true
 #    Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+
+    config.assets.initialize_on_precompile = false
   end
 end
