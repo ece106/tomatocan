@@ -10,7 +10,7 @@ class EventsControllerTest < ActionController::TestCase
         assert_response :success
     end
     test "should get past events" do
-        get :pastevents
+        get :pastevents, params: {permalink: 'user1'}
         assert_response :success
     end
     test "should get edit if user is signed in" do

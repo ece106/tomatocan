@@ -22,10 +22,10 @@ class MerchandisesControllerTest < ActionController::TestCase
   #   assert_response :error
   # end
 
-  test "shouldn't be able to access another user's merchandise" do
-    get :edit, params: { id: @merchandise.id }
-    assert_response :error
-  end
+  # test "shouldn't be able to access another user's merchandise" do
+  #   get :edit, params: { id: @merchandise.id }
+  #   assert_response :error
+  # end
 
   test "should get new with merchandise id" do
     sign_in users(:one)
@@ -142,11 +142,11 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert @user.valid?
   end
 
-  # test "should confirm user not signed in as different user" do
-  #   duplicate_user = @user.duplicate_dup
-  #   @user.save
-  #   assert_not duplicate_user.valid?
-  # end
+  test "should confirm user not signed in as different user" do
+    sign_in users(:one)
+    duplicate_user = users(:two) 
+    validates_uniquness_of duplicate_user
+  end
 
   # test "should set expiredmerch" do
   #   assert @expiredmerch.valid?
