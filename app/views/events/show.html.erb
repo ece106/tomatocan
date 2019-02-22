@@ -1,3 +1,27 @@
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:description" content="Host Livestream Discussions" />
 <% @title="CrowdPublish.TV" %>
 <div id="fb-root"></div>
@@ -8,7 +32,6 @@
   js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div id = "eventsTab">
 <div class="row" >
   <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 " style= "text-align:left" >
     <p id="notice"><%= notice %></p>
@@ -19,7 +42,7 @@
         <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
       <% end %>
     <% end %>
-  
+
     <%= form_for(@rsvp) do |f| %>
       <% if @rsvp.errors.any? %>
         <div id="error_explanation">
@@ -36,7 +59,7 @@
       <% if user_signed_in? %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
       <% else %>
-        Please sign in or enter email to RSVP for this event: 
+        Please sign in or enter email to RSVP for this event:
         <%= f.text_field :email, placeholder: "Enter email" %>
       <% end %>
       <%= f.submit "RSVP for this Livestream" %>
@@ -45,15 +68,14 @@
 <div class="row">
     <div class=".col-12 .col-md-8">
         <h1><%= @event.name %></h1>
-    <% if @rsvps.count >= 1 %>
-        <div class="col-md-4 col-md-offset-6 affix" id= "discussionRSVPs">
+    <% if @rsvps.count > 1 %>
+        <div class= ".col-6 .col-md-4 rsvp-users">
             <b>Discussion RSVPs:</b>
-            <br>
           <% @rsvpusers.each do |rsvpuser| %>
             <%= link_to rsvpuser.name, rsvpuser %>
             <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
-            <% end %>
           <% end %>
+    <% end %>
         </div>
 <p>
   <b>Hosted by
@@ -61,30 +83,30 @@
 </p>
 <br>
 <p>
-  <% edt = @event.start_at + 2.hours %> 
+  <% edt = @event.start_at + 2.hours %>
   <b>Start time:</b>
   <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Mountain Standard Time (MST)</i>
-    <br> 
+    <br>
   <i>(<%= edt.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
 </p>
 <p>
-  <% edtend = @event.end_at + 3.hours %> 
+  <% edtend = @event.end_at + 3.hours %>
   <b>End time:</b>
-    <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Mountain Standard Time (MST)</i> 
-    <br> 
+    <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Mountain Standard Time (MST)</i>
+    <br>
     <i>(<%= edtend.strftime("%I:%M %p")%> Eastern Time, NY USA)</i>
 </p>
 <p>
   <b>More details:</b>
-  <% if @event.desc.present? %> 
+  <% if @event.desc.present? %>
     <%= simple_format @event.desc.gsub(/\n/, '<br>') %>
   <% end %>
 </p>
 <hr>
 <p>
   <div style= "text-align:left" >
-    <% if @rsvps.count > 5 %> 
-      <b><%= @rsvps.count %> guests said they'll be there</b><br> 
+    <% if @rsvps.count > 5 %>
+      <b><%= @rsvps.count %> guests said they'll be there</b><br>
     <% end %>
       <br>
       Invite friends and colleagues to sign up & RSVP for this event!
@@ -104,5 +126,4 @@
     </div>
   </div>
 <br><br>
-</div>  
 </div>

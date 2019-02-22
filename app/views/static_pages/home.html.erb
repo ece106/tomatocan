@@ -1,15 +1,25 @@
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+
+
+
+
+
+
 <div class="row" id="heroImage">
-<!--Flash message after successful rsvp-->
-<div>
+    <div>
         <h1 id="heroTitle">Doing Purposeful Work?</h1><br>
 <h2 id="heroTitle">Host Interactive Livestream Discussions To Engage With Your Audience</h2>
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
-        <%= link_to "Offer Benefits", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
+        <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
     <% else %>
         <%= link_to 'Sign Up', "/signup", :class => "btn btn-lg btn-primary" %>
-    <% end %> 
+    <% end %>
     <!--Livestream button-->
     <%= link_to 'Host Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
     <% if !user_signed_in? %>
@@ -33,8 +43,8 @@
       <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
     </div>
     <div class="col-sm-4 col-sm-offset-1">
-        <h2>Offer Benefits & Receive Donations</h2>
-        <p>Alongside viewing your livestream, viewers can take advantage of fun benefits by supporting you. Offer to post to their Facebook wall, sign a poster, or even sell exclusive products to your livestream viewers &mdash; the choices are only limited by your creativity!</p>
+        <h2>Offer Perks & Receive Donations</h2>
+        <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you. Offer to post to their Facebook wall, sign a poster, or even sell exclusive products to your livestream viewers &mdash; the choices are only limited by your creativity!</p>
     </div>
 </div>
 <div class="row darkBlock" id="livestream">
@@ -46,10 +56,11 @@
       <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
     </div>
 </div>
-<br><br>
 <div class="row" id="faqBlock">
     <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
-    <% if not user_signed_in? %>
+    <% if user_signed_in? %>
+        <%= link_to "Create Perk", 'new_merchandise_path', :class => "btn btn-lg btn-primary" %>
+    <% else %>
         <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
     <% end %>
 </div>
