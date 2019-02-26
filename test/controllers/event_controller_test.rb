@@ -8,11 +8,11 @@ class EventsControllerTest < ActionController::TestCase
         get :index
         assert_response :success
     end
-#test "should show event" do
-# sign_in users(:one)
-#  get :show, params: {id: @event}
-#   assert_response :success
-#  end
+    test "should show event" do
+        sign_in users(:one)
+        get :show
+        assert_response :success
+    end
     test "should get new event" do
         sign_in users(:one)
         get :new
