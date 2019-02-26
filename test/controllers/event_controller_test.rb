@@ -33,26 +33,33 @@ class EventsControllerTest < ActionController::TestCase
              post :create, params: { event: { usrid: '1', name: 'Phineas' } }
              #     assert_redirected_to event_path(@event.id)
          end
-         
     end
-test "should redirect if events are created" do
-    sign_in users(:one)
+    test "should redirect if events are created" do
+        sign_in users(:one)
         post :create, params: { event: { usrid: '1', name: 'Phineas' } }
         # assert_redirected_to events_path(users(:one).event)
 
-end
-test "should redirect if events are not saved" do
-    sign_in users(:one)
-    post :create, params: { event: { usrid: '1', name: 'Phineas' } }
-    assert_redirected_to new_event_path(@event)
+    end
+    test "should not create if usrid is invalid" do
+        sign_in users(:one)
+        post :create, params: { event: { usrid: '1', name: 'Phineas' } }
+        assert_not_equal "1", @event.usrid
+    end
+    test "should redirect if events are not saved" do
+        sign_in users(:one)
+        post :create, params: { event: { usrid: '1', name: 'Phineas' } }
+        assert_redirected_to new_event_path(@event)
     
-end
+    end
     test "should update user's events" do
         sign_in users(:one)
         patch :update, params: {id: @event.id, event: {usrid: '1', name: 'Phineas' }}
         assert_redirected_to event_path(@event.id)
     end
-    test "" do
-        
+    test "should throw error if userid is invalid" do
+        sign_in users(:one)
+         patch :update, params: {id: @event.id, event: {usrid: '1', name: 'Phineas' }}
+          assert_not_equal "1", @event.usrid
     end
+
 end
