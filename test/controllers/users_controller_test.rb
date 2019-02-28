@@ -69,10 +69,10 @@ class UsersControllerTest < ActionController::TestCase
     get :changepassword, params: {permalink: 'user1'}
     assert_response :success
   end
-  test "should get stripe_callback" do
-      get :stripe_callback, params: {permalink:'user1'}
-      assert_response :success
-  end
+  # test "should get stripe_callback" do
+  #     get :stripe_callback, params: {permalink:'user1'}
+  #     assert_response :success
+  # end
  
   test "should get pastevents logged in" do
     get :pastevents, params: {permalink: 'user1'}
@@ -98,10 +98,12 @@ class UsersControllerTest < ActionController::TestCase
     assert_difference('User.count', 1) do
       post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     end
-
+   end
+ 
+ test "should redirect new user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
+    post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     assert_redirected_to user_profileinfo_path(assigns(:user).permalink)
   end
- 
 
   test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }
