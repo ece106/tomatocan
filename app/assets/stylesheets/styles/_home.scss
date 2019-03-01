@@ -14,6 +14,9 @@ p {
     padding-top: 200px;
     padding-bottom: 200px;
 }
+#heroImage .alert{
+    top: 100px;
+}
 #heroTitle, #heroImage small {
     color: white;
         text-shadow: $overlaid-text;
@@ -30,8 +33,9 @@ p {
 }
 
 .alert {
-  padding-top: 40px;
-  box-sizing: border-box;
+  padding-top: 20px;
+  width: 80%;
+  display:inline-block;
 }
 
 #scroll h1{

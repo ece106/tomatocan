@@ -4,6 +4,24 @@
       </div>
 <% end %>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:description" content="Host Livestream Discussions" />
 <% @title="CrowdPublish.TV" %>
 <div id="fb-root"></div>
@@ -65,16 +83,16 @@
 </p>
 <br>
 <p>
-  <% edt = @event.start_at + 3.hours %>
+  <% edt = @event.start_at + 2.hours %>
   <b>Start time:</b>
-  <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
+  <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Mountain Standard Time (MST)</i>
     <br>
   <i>(<%= edt.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
 </p>
 <p>
   <% edtend = @event.end_at + 3.hours %>
   <b>End time:</b>
-    <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
+    <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Mountain Standard Time (MST)</i>
     <br>
     <i>(<%= edtend.strftime("%I:%M %p")%> Eastern Time, NY USA)</i>
 </p>
@@ -96,18 +114,15 @@
           <%= @event.name %>
     </div>
       <div>
-        <% facebookurl = "http://www.crowdpublish.tv/" + @user.permalink %>
+        <% facebookurl = "https://crowdpublish.tv/events/" + @event.id.to_s %>
         <div class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href= "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
             <div>
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="RSVP for <%= @user.name %>'s livestream on <%=  @event.name + "," %> on <%= @event.start_at.strftime("%B %d at %I:%M %p")%> PDT (<%= edt.strftime("%I:%M %p") %> EDT)" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="RSVP for <%= @user.name %>'s livestream on <%=  @event.name + "," %> on <%= @event.start_at.strftime("%B %d at %I:%M %p")%> PDT (<%= edtend.strftime("%I:%M %p") %> EDT)" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
       </div>
     <div class= "email-events">
-      Or copy & paste this message in an email to your colleagues: <br><br>
-      <i>Please join us live at <%= @event.start_at.strftime("%A %B %d, at %I:%M %p") %> PDT, <%= edt.strftime("%I:%M %p") %> EDT as we discuss <%= @event.name %> on CrowdPublish.TV's livestream.<br>
-      To join the discussion, go to<br>
-      http://www.CrowdPublish.TV/<%= @user.permalink %><br>
-      and click on the Join Livestream button. </i>
+      Or try email! <br><br>
+      Send them a link to the event: <i>http://www.CrowdPublish.TV/events/2</i>
     </div>
   </div>
 <br><br>
