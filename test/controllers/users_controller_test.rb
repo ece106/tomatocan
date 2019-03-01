@@ -67,8 +67,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
 
     end 
-  
-  
+   
   test "should get users eventlist user logged in" do
     get :eventlist, params: {permalink: 'user1'}
     assert_response :success
@@ -88,10 +87,10 @@ class UsersControllerTest < ActionController::TestCase
 
   #test for email being sent
   
-  # test "should get stripe_callback" do
-  #     get :stripe_callback, params: {permalink:'user1'}
-  #     assert_response :success
-  # end
+   # test "should get stripe_callback" do
+   #    get :stripe_callback, params: {permalink:'user1'}
+   #    assert_response :success
+   # end
  
   test "should get pastevents logged in" do
     sign_in @user

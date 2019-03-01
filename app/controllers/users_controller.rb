@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback, :controlpanel ]
-  before_action :authenticate_user!, only: [:edit, :update, :dashboard, :controlpanel ]
+  before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create ]
+  before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
  #before_action :correct_user, only: [:dashboard, :user_id] 
   #before_action :correct_user, only: [:controlpanel] 
   #Where did this method go?
@@ -107,7 +107,19 @@ class UsersController < ApplicationController
   end
 
   def controlpanel
-    @user = User.find_by_permalink(params[:permalink])
+    @user.calcdashboard
+    @monthperkinfo = @user.monthperkinfo
+    @monthbookinfo = @user.monthbookinfo
+    @incomeinfo = @user.incomeinfo
+    @salebyfiletype = @user.salebyfiletype
+    @salebyperktype = @user.salebyperktype
+    @totalinfo = @user.totalinfo
+    @purchasesinfo = @user.purchasesinfo
+
+      if @user.merchandises.any? 
+        expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
+        @expiredmerchandise = expiredmerch.order('deadline ASC')
+      end
   end
 
   def dashboard
