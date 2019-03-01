@@ -1,5 +1,4 @@
 require 'test_helper'
-
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
@@ -12,9 +11,18 @@ class UsersControllerTest < ActionController::TestCase
   #   assert_not_nil assigns(:users)
   # end
 
+  test "should equate youtube field" do
+    youtube="youtube"
+    assert_equal(youtube,@user.youtube)
+  end
+
   test "should get users youtubers" do
     get :youtubers
     assert_response :success
+  end
+
+  test "should recognize youtubers"do
+    assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
   end
 
   test "should get users supportourwork" do
@@ -22,6 +30,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should recognize supportourwork"do
+    assert_recognizes({controller: 'users',action:'supportourwork'},'supportourwork')
+  end
+  test "should recognize users dashboard logged in"do
+    assert_recognizes({controller: 'users',action:'dashboard',permalink:'user1'},'user1/dashboard')
+  end
+  
   test "should get users dashboard logged in" do
     sign_in @user
     @book = books(:one)
@@ -69,16 +84,25 @@ class UsersControllerTest < ActionController::TestCase
     get :changepassword, params: {permalink: 'user1'}
     assert_response :success
   end
+ 
+
+  #test for email being sent
+  
   # test "should get stripe_callback" do
   #     get :stripe_callback, params: {permalink:'user1'}
   #     assert_response :success
   # end
  
   test "should get pastevents logged in" do
+    sign_in @user
+    user=User.find_by_permalink(@user.permalink)
     get :pastevents, params: {permalink: 'user1'}
     assert_response :success
   end
-
+  test "should recognize pastevents" do
+    get :pastevents, params: {permalink: 'user1'}
+    assert_recognizes({controller: 'users',action:'pastevents', permalink:'user1'},'user1/pastevents')
+  end
   test "should get pastevents not logged in" do
      get :pastevents, params: {permalink: 'user2'}
     assert_response :success
@@ -88,7 +112,9 @@ class UsersControllerTest < ActionController::TestCase
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success
   end
+  test "should recognize profileinfo" do
 
+  end
   test "should get users show" do #user1 has phases
     get :show, params: {permalink: 'user1'}
     assert_response :success
