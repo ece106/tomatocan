@@ -51,7 +51,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
 #        redirect_to @event
-        format.html { redirect_to "/" }
+        format.html { redirect_to @event }
         format.json { render json: @event, status: :created, location: @event }
       else
 #        format.html { redirect_to new_event_path }
