@@ -85,13 +85,8 @@ class UsersControllerTest < ActionController::TestCase
   end
  
 
-  #test for email being sent
   
-   test "should get stripe_callback" do
-      get :stripe_callback, params: {permalink:'user1', code:'code'}
-      assert_response :success
-   end
- 
+   
   test "should get pastevents logged in" do
     sign_in @user
     user=User.find_by_permalink(@user.permalink)
@@ -111,9 +106,7 @@ class UsersControllerTest < ActionController::TestCase
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success
   end
-  test "should recognize profileinfo" do
 
-  end
   test "should get users show" do #user1 has phases
     get :show, params: {permalink: 'user1'}
     assert_response :success
