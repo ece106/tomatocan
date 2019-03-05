@@ -2,6 +2,7 @@ require 'test_helper'
 class EventsControllerTest < ActionController::TestCase
     setup do
     @event = events(:one)
+    @user = users(:one)
     end
 
     test "should retrieve list of all events"do
@@ -29,33 +30,31 @@ class EventsControllerTest < ActionController::TestCase
     test "should create events" do
         sign_in users(:one)
          assert_difference('Event.count', 1) do
-             post :create, params: { event: {start_at: Time.now + 3.hours, usrid: '1', name: 'Phineas' } }
-            assert_redirected_to events_path(@event.id)
+             post :create, params: { event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas' } }
+             assert_redirected_to '/'
          end
     end
     test "should redirect if events are created" do
         sign_in users(:one)
-        post :create, params: { event: {start_at: Time.now + 3.hours, usrid: '1', name: 'Phineas'  } }
-        assert_redirected_to events_path(assigns(:events))
-
+        post :create, params: { event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas'  } }
+           assert_redirected_to '/'
     end
     test "should verify if event was created" do
         sign_in users(:one)
-        post :create, params: { event: { start_at: Time.now + 3.hours, usrid: '1', name: 'Phineas'  } }
+        post :create, params: { event: { start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas'  } }
         assert_empty @event.errors.messages
-    
     end
     test "should update user's events" do
         sign_in users(:one)
         assert_empty @event.errors.messages
-        patch :update, params: {id: @event.id, event: {start_at: Time.now + 3.hours ,  usrid: '1', name: 'Phineas'  }}
+        patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57",  usrid: '1', name: 'Phineas'  }}
         assert_redirected_to event_path(@event.id)
     end
     test "should verify event update" do
         sign_in users(:one)
         @event.errors.clear
         assert_empty @event.errors.messages
-        patch :update, params: {id: @event.id, event: {start_at: Time.now + 3.hours, usrid: '1', name: 'Phineas' }}
+        patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas' }}
         assert_empty @event.errors.messages
     end
 end
