@@ -87,10 +87,10 @@ class UsersControllerTest < ActionController::TestCase
 
   #test for email being sent
   
-   # test "should get stripe_callback" do
-   #    get :stripe_callback, params: {permalink:'user1'}
-   #    assert_response :success
-   # end
+   test "should get stripe_callback" do
+      get :stripe_callback, params: {permalink:'user1', code:'code'}
+      assert_response :success
+   end
  
   test "should get pastevents logged in" do
     sign_in @user
