@@ -4,11 +4,16 @@ class MerchandisesControllerTest < ActionController::TestCase
   setup do
     @merchandise = merchandises(:one)
   end
-  
+
   test "should get index" do
     get :index
     assert_response :success
     #assert_not_nil assigns(:merchandises)
+  end
+
+  test "should show merchandise" do
+    get :show, params: { id: @merchandise.id }
+    assert_response :success
   end
 
   test "should get new if user signed in" do
@@ -17,15 +22,10 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # test "shouldn't get new if no user signed in" do
-  #   get :new
-  #   assert_response :error
-  # end
-
-  # test "shouldn't be able to access another user's merchandise" do
-  #   get :edit, params: { id: @merchandise.id }
-  #   assert_response :error
-  # end
+  test "shouldn't get new if no user signed in" do
+    get :new
+    assert_redirected_to session_path
+  end
 
   test "should get new with merchandise id" do
     sign_in users(:one)
@@ -33,21 +33,11 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  #######################################
-  ####test for showing merchandise page##
-  
-  test "should show merchandise" do
-    get :show, params: { id: @merchandise.id }
+  test "should get edit" do
+    sign_in users(:one)
+    get :edit, params: { id: @merchandise.id }
     assert_response :success
   end
-  #######################################
-
-  
-
-
-
-  #######################################
-  #### tests for create merchandise #####
 
   test "should create merchandise" do
     sign_in users(:one)
@@ -62,18 +52,6 @@ class MerchandisesControllerTest < ActionController::TestCase
     post :create, params: { merchandise: { name: 'chris', user_id: '1', price: '20', desc: 'test1', buttontype: 'one' }}
     assert_redirected_to user_profile_path(users(:one).permalink)
   end
-
-
-  # test "shouldn't save mercahndise if required fields incomplete" do
-  #   merchandise = Merchandise.new
-  #   merchandise.name = 'chris'
-  #   merchandise.user_id = '1'
-  #   merchandise.desc = 'test1'
-  #   merchandise.buttontype = 'one'
-  #   assert !merchandise.valid?
-  #   assert !merchandise.save
-  #   assert_redirected_to :edit
-  # end
 
   test "should throw flag after successful merchandise creation" do
     sign_in users(:one)
@@ -92,24 +70,6 @@ class MerchandisesControllerTest < ActionController::TestCase
   #   post :create, params: { merchandise: { name: 'chris', user_id: 1, desc: 'test1', buttontype: 'one' }}
   #   assert_equal 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.', flash[:notice]
   # end
-  #######################################
-
-
-
-
-
-  #######################################
-  ### test for editing merchandises #####
-
-  test "should get edit" do
-    sign_in users(:one)
-    get :edit, params: { id: @merchandise.id }
-    assert_response :success
-  end
-
-
-  ######################################
-  ### tests for updating merchandise ###
 
   test "should redirect back to merchandise after merchandise updated" do
     sign_in users(:one)
@@ -123,16 +83,12 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_equal flash[:notice], 'Patron Perk was successfully updated.'
   end
 
-  # test "should redirect failed update attempt" do
-  #   sign_in users(:one)
-  #   patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'one' }}
-  #   assert_template :edit
-  # end
-  ######################################
+  test "should redirect failed update attempt" do
+    sign_in users(:one)
+    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, buttontype: 'one' }}
+    assert_redirected_to edit_merchandise_path
+  end
 
-
-
-  #following tests run to assert set_merchandise runs correctly
   test "should set merchandise" do
     assert @merchandise.valid?
   end
@@ -148,23 +104,14 @@ class MerchandisesControllerTest < ActionController::TestCase
     validates_uniquness_of duplicate_user
   end
 
-  # test "should set expiredmerch" do
-  #   assert @expiredmerch.valid?
-  # end
-
-  
-
-  #######################################
-  ##### tests for page layouts ##########
-
-  test "should render correct layout for show" do
-    get :show, params: { id: @merchandise.id }
-    assert_template 'userpgtemplate'
-  end
-
   test "should render correct layout for edit" do
     sign_in users(:one)
     get :edit, params: { id: @merchandise.id }
+    assert_template 'userpgtemplate'
+  end
+
+  test "should render correct layout for show" do
+    get :show, params: { id: @merchandise.id }
     assert_template 'userpgtemplate'
   end
 
@@ -177,6 +124,5 @@ class MerchandisesControllerTest < ActionController::TestCase
     get :new
     assert_template 'application'
   end
-  #######################################
 
 end

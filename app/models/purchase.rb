@@ -1,3 +1,4 @@
+
 class Purchase < ApplicationRecord
 
 #  attr_accessible :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id, :merchandise_id
@@ -74,7 +75,7 @@ class Purchase < ApplicationRecord
       end
     end
 
-    if seller.id == 143 
+    if seller.id == 143 || seller.id == 1336 || seller.id == 1337 || seller.id == 1345 || seller.id == 1368 
       charge = Stripe::Charge.create( {
         :amount => amt, 
         :currency => "usd",
