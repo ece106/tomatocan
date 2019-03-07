@@ -1,61 +1,61 @@
 <% flash.each do |key, value| %>
-      <div class="<%= flash_class(key) %>">
-            <%= value %>
-      </div>
+    <div class="<%= flash_class(key) %>">
+          <%= value %>
+    </div>
 <% end %>
 
 <div class="row" id="heroImage">
-    <div>
-        <h1 id="heroTitle">Doing Purposeful Work?</h1><br>
+  <div>
+      <h1 id="heroTitle">Doing Purposeful Work?</h1><br>
 <h2 id="heroTitle">Host Interactive Livestream Discussions To Engage With Your Audience</h2>
-    </div><br><br>
-    <!--Sign Up button-->
-    <% if user_signed_in? %>
-        <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
-    <% else %>
-        <%= link_to 'Sign Up', "/signup", :class => "btn btn-lg btn-primary" %>
-    <% end %>
-    <!--Livestream button-->
-    <%= link_to 'Host Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
-    <% if !user_signed_in? %>
-        <br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
-    <% end %>
+  </div><br><br>
+  <!--Sign Up button-->
+  <% if user_signed_in? %>
+      <%= link_to "Offer Perks", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
+  <% else %>
+      <%= link_to 'Sign Up', "/signup", :class => "btn btn-lg btn-primary" %>
+  <% end %>
+  <!--Livestream button-->
+  <%= link_to 'Host Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
+  <% if !user_signed_in? %>
+      <br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
+  <% end %>
 </div>
 <div class=row id=scroll>
-    <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
+  <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
 </div>
 <div class="row darkBlock" id="connectFans">
-    <div class="col-md-5">
-        <h2>Our Purpose</h2>
-        <p>CrowdPublish.TV is for nonprofits, research centers, small businesses, etc. to broadcast in a live talk show format how they are doing their part to change the world. Patrons can support their mission by making donations during the livestream and when watching the replay. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a panel!</p>
-    </div>
-    <div class="col-md-7">
-        <%= render 'layouts/maincalendar' %>
-    </div>
+  <div class="col-md-5">
+      <h2>Our Purpose</h2>
+      <p>CrowdPublish.TV is for nonprofits, research centers, small businesses, etc. to broadcast in a live talk show format how they are doing their part to change the world. Patrons can support their mission by making donations during the livestream and when watching the replay. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a panel!</p>
+  </div>
+  <div class="col-md-7">
+      <%= render 'layouts/maincalendar' %>
+  </div>
 </div>
 <div class="row lightBlock" id="offerPerks">
-    <div class="col-sm-6">
-      <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
-    </div>
-    <div class="col-sm-4 col-sm-offset-1">
-        <h2>Offer Perks & Receive Donations</h2>
-        <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your livestream viewers &mdash; the options are limited only by your creativity!</p>
-    </div>
+  <div class="col-sm-6">
+    <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
+  </div>
+  <div class="col-sm-4 col-sm-offset-1">
+      <h2>Offer Perks & Receive Donations</h2>
+      <p>Alongside viewing your livestream, viewers can take advantage of fun perks by supporting you. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your livestream viewers &mdash; the options are limited only by your creativity!</p>
+  </div>
 </div>
 <div class="row darkBlock" id="livestream">
-    <div class="col-sm-4 col-sm-offset-1">
-        <h2>Connect with Intellectually Curious Donors</h2>
-        <p>Viewers can join in your livestream through text chat or by voice. They can directly support you through purchasing perks or making donations on your page during your livestream and when you're offline. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
-    </div>
-    <div class="col-sm-6 col-sm-offset-1">
-      <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
-    </div>
+  <div class="col-sm-4 col-sm-offset-1">
+      <h2>Connect with Intellectually Curious Donors</h2>
+      <p>Viewers can join in your livestream through text chat or by voice. They can directly support you through purchasing perks or making donations on your page during your livestream and when you're offline. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
+  </div>
+  <div class="col-sm-6 col-sm-offset-1">
+    <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
+  </div>
 </div>
 <div class="row" id="faqBlock">
-    <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
-    <% if user_signed_in? %>
-        <%= link_to "Create Perk", 'new_merchandise_path', :class => "btn btn-lg btn-primary" %>
-    <% else %>
-        <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
-    <% end %>
+  <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3><br>
+  <% if user_signed_in? %>
+      <%= link_to "Create Perk", 'new_merchandise_path', :class => "btn btn-lg btn-primary" %>
+  <% else %>
+      <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
+  <% end %>
 </div>

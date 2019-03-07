@@ -86,21 +86,47 @@ class PurchasesControllerTest < ActionController::TestCase
 
 
   #10
-    test "user tries to purchase something without signing in" do
-      @merchandises = merchandises(:one)
-      get :new, params: { merchandise_id: @merchandises.id }
-      assert_redirected_to 
+  require 'stripe_mock'
+
+  describe "MyApp" do
+    let(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
+  
+    # it "test creates a stripe customer" do
+  
+    #   # This doesn't touch stripe's servers nor the internet!
+    #   customer = Stripe::Customer.create({
+    #     email: 'johnny@appleseed.com',
+    #     source: stripe_helper.generate_card_token
+    #   })
+    #   assert_equal(customer.email,'johnny@appleseed.com')
+    # end
+
+    it "test to create a strip account for seller" do
+      seller1 = Stripe::Customer.create({
+        email: 'fake@fake.com',
+        source: stripe_helper.generate_card_token
+    })
+    assert_equal(seller1.email,'fake@fake.com')
     end
+  end
 
   #11
-    test "user tries to make a purchase without setting up stripe account" do
+    test "user tries to purchase something from himself/herself" do
+      sign_in users(:one)
 
     end
 
   #12
-    test "user tries to purchase something from himself/herself" do
+    test "to test the flash message displayed after the purchase goes through" do
 
     end
+
+  #13
+  test "to test the flash message displayed after the purchase does not go through" do
+
+  end
 
 
 end
