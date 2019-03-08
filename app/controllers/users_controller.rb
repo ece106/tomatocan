@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def eventlist
+  def eventlist #this may be obsolete
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @rsvpevents = rsvps.where( "start_at > ?", currtime ) 
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def pastevents
+  def pastevents #may be obsolete
     currtime = Time.now
     @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
@@ -115,6 +115,22 @@ class UsersController < ApplicationController
     @salebyperktype = @user.salebyperktype
     @totalinfo = @user.totalinfo
     @purchasesinfo = @user.purchasesinfo
+
+    currtime = Time.now
+    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
+    @rsvpevents = rsvps.where( "start_at > ?", currtime ) 
+    @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
+    @pastevents = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
+    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
+    @pastrsvps = rsvps.where( "start_at < ?", currtime ) 
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
 
       if @user.merchandises.any? 
         expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
