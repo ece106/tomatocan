@@ -15,5 +15,10 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Sign Up', match: :first)
 		fill_in('Name', with: 'name')
 		fill_in('Email', with: 'e@mail.com')
+		fill_in('Username', with:'username')
+		fill_in("Password", with: 'password', :match => :prefer_exact)
+		fill_in(id:"user_password_confirmation", with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text ('Sign out')
 	end
 end
