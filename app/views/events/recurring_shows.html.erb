@@ -1,0 +1,58 @@
+# <% require 'date' %>
+
+<% def date_of_next(day) %>
+  <% date = Date.parse(day) %>
+  <% delta = date > Date.today ? 0 : 7 %>
+  <% date + delta %>
+<% end %>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Open Discussion Shows</div>
+  <div class="panel-body" style="text-align:center">
+    <table class="table">
+    <tr>
+      <th>Date</th>
+      <th>Host</th>
+      <th>Interviewer</th>
+      <th>Guest 1</th>
+      <th>Guest2</th>
+      <th>Submit</th>
+    </tr>
+    <tr style="text-align:center">
+
+      <% Date.today %>
+      <% d = date_of_next "Tuesday" %>
+
+      <% for x in 0..12 do %>
+        <%  %>
+
+
+
+
+        <% @event = event.current_usrid %>
+        <% @start_date = event.first_start_at %>
+
+          <% if i == 0 %>
+            <% puts d %> 
+          <% else %>
+            <% d = d+7 %>
+            <% puts d %>
+          <% end %>
+      <% end %>
+    </tr>
+    </table>
+</div>
+
+
+require 'date'
+
+def date_of_next(day)
+  date = Date.parse(day)
+  delta = date > Date.today ? 0 : 7
+  date + delta
+end
+
+Date.today
+
+date_of_next "Monday"
