@@ -92,16 +92,6 @@ class PurchasesControllerTest < ActionController::TestCase
     let(:stripe_helper) { StripeMock.create_test_helper }
     before { StripeMock.start }
     after { StripeMock.stop }
-  
-    # it "test creates a stripe customer" do
-  
-    #   # This doesn't touch stripe's servers nor the internet!
-    #   customer = Stripe::Customer.create({
-    #     email: 'johnny@appleseed.com',
-    #     source: stripe_helper.generate_card_token
-    #   })
-    #   assert_equal(customer.email,'johnny@appleseed.com')
-    # end
 
     it "test to create a strip account for seller" do
       seller1 = Stripe::Customer.create({
@@ -109,6 +99,28 @@ class PurchasesControllerTest < ActionController::TestCase
         source: stripe_helper.generate_card_token
     })
     assert_equal(seller1.email,'fake@fake.com')
+    end
+  end
+
+  describe "create customer" do
+    def stripe_helper
+      StripeMock.create_test_helper
+    end
+
+    before do
+      StripeMock.start
+    end
+
+    after do
+      StripeMock.stop
+    end
+
+    test "creates a stripe customer" do
+      customer = Stripe::Customer.create({
+                                         email: "koko@koko.com",
+                                         card: stripe_helper.generate_card_token
+                                     })
+      assert_equal customer.email, "koko@koko.com"
     end
   end
 
