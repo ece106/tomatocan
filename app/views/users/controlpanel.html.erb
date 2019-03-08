@@ -5,7 +5,7 @@
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
   <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Perks", "#perksTab", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Streaming", "#streamingTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
 </ul>
@@ -81,7 +81,7 @@
 							<%= render 'layouts/streamButton' %>
 
 
-		 <%= link_to 'Set Up Future Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 50px; margin-left: 50px;" %>
+		 <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 50px; margin-left: 50px;" %>
 
 
 						</div>

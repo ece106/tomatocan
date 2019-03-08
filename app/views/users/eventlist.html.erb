@@ -1,10 +1,10 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">Your Upcoming Events</div>
+  <div class="panel-heading">Your Upcoming Shows</div>
 		<% if @events.present? %>
 			<table class="table">
 				<tr>
-					<th>Event </th>
-					<th>When</th>
+					<th>Show </th>
+					<th>Time</th>
 					<th></th>
 				</tr>
 		  	<% @events.sort_by{|t| t.start_at}.each do |event| %>
