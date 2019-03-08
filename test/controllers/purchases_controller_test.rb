@@ -29,5 +29,33 @@ class PurchasesControllerTest < ActionController::TestCase
     #   sign_in users(:one)
     #   post :create, params: {}
     # end  
+require 'stripe_mock'
+
+describe "MyApp" do
+    let(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
     
+    it "creates a stripe customer" do
+        
+        # This doesn't touch stripe's servers nor the internet!
+        # Specify :source in place of :card (with same value) to return customer with source data
+        customer = Stripe::Customer.create({
+        email: 'johnny@appleseed.com',
+        source: stripe_helper.generate_card_token})
+    
+      assert_equal(customer.email, 'johnny@appleseed.com')
+    end
+end
+test "mocks a declined card error" do
+    # Prepares an error for the next create charge request
+    StripeMock.start
+    StripeMock.prepare_card_error(:card_declined)
+    assert_raise(Stripe::Charge.create(amount: 1, currency: 'usd')) {|e|
+        assert_throws :Stripe::CardError
+        assert_equal(e.http_status, 402)
+        assert_equal(e.code, 'card_declined')}
+    
+
+end
 end

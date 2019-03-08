@@ -3,16 +3,16 @@ require 'test_helper'
 class Users::PasswordsController < ActionController::TestCase
   setup do
       @user = users(:one)
-      @password = passwords(:one)
-    #@group = groups(:one)
+      
+      #@group = groups(:one)
 
   end
 
   #test run to assert a new password index can be found
-	# test "should get new " do
-	#   get :new
-	#   assert_response :success
-	# end
+  	# test "should get new " do
+  	#    get :new
+  	#   assert_response :success
+  	#  end
 
 #test run to assert user can create a new password 
 #should check if successful reset password email was sent
