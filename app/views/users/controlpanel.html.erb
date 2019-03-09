@@ -4,7 +4,7 @@
 <!-- Nav tabs -->
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
   <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Perks", "#perksTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Merch & Perks", "#perksTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
@@ -54,49 +54,28 @@
 			</div>
     </div>
     <div class="tab-pane" id="streamingTab">
-			<div class="container-fluid">
-				<% if request.host == "crowdpublishtv.herokuapp.com" %>
-					<br><!--A lazy way to add space, boooo-->
-					<div class="row">
-						<div class="col-md-4">
-							<%= render 'layouts/streamDirections' %>
-						</div>
-						<div class="col-md-8">
-							<%= render 'layouts/jitsi' %>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-7">
-							<%= render 'layouts/userUpcomingStreams' %>
-						</div>
-					</div>
-				<% else %>
-					<div class="row">
-						<div class="col-xs-12">
-							<h1>Livestream</h1>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<%= render 'layouts/streamButton' %>
-
-
-		 <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 50px; margin-left: 50px;" %>
-
-
-						</div>
-						<div class="col-md-6">
-							<%= render file: 'users/eventlist' %><br><br>
-							<%= render file: 'users/pastevents' %>
-
-						</div>
-						<div class="col-md-3">
-							<%= render 'layouts/streamDirections' %>
-						</div>
-					</div>
-				<% end %>
-			</div>
+ 	  <div class="container-fluid">
+		<div class="row">
+		  <div class="col-xs-12">
+			<h1>Livestream</h1>
+		  </div>
 		</div>
+		<div class="row">
+		  <div class="col-md-3">
+			<%= render 'layouts/streamButton' %>
+
+ 		    <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 50px; margin-left: 50px;" %>
+		  </div>
+		  <div class="col-md-6">
+		    <%= render file: 'users/eventlist' %><br><br>
+		    <%= render file: 'users/pastevents' %>
+		  </div>
+		  <div class="col-md-3">
+		    <%= render 'layouts/streamDirections' %>
+		  </div>
+	    </div>
+	  </div>
+	</div>
     <div class="tab-pane" id="accountTab">
 			<div class="container-fluid">
 				<div class="row">
