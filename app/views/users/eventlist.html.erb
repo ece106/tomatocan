@@ -1,18 +1,22 @@
 <div class="panel panel-primary">
+<<<<<<< HEAD
   <div class="panel-heading">Your Upcoming Events</div>
   <div class="panel-body" style="text-align:center">
+=======
+  <div class="panel-heading">Your Upcoming Shows</div>
+>>>>>>> 4e8a60ccdaedc46077147194640684837ca3f191
 		<% if @events.present? %>
 			<table class="table">
 				<tr>
-					<th>Event </th>
-					<th>When</th>
+					<th>Show </th>
+					<th>Time</th>
 					<th></th>
 				</tr>
 		  	<% @events.sort_by{|t| t.start_at}.each do |event| %>
 				<tr style="text-align:center">
 					<td><%= link_to event.name, event %></td>
 					<td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %></td>
-								<%= link_to "Edit", edit_event_path(event) %>
+					<td><%= link_to "Edit", edit_event_path(event) %></td>
 				</tr>
 		  	<% end %>
 		  	</table>

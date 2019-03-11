@@ -1,23 +1,20 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Your Past Shows</div>
 
-<% if @events.present? %>
+<% if @pastevents.present? %>
   <table >  <tr>
-    <th>Event </th>
-    <th>When</th>
-    <th>Where</th>
-    <th></th>
-  </tr>
-  <% @events.sort_by{|t| t.start_at}.each do |event| %>
+    <th>Show </th>
+    <th>Time</th>
+    <tr>
+  <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
   <tr>
     <td><%= link_to event.name, event %><br><br></td>
     <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
-    <td><%= event.address %><br><br></td>
-    <td> </td>
-  </tr>
+  <tr>
   <% end %>
   </table>
 <% else %>  
-  <%= @user.name %> hasn't posted any past events
+  <%= @user.name %> hasn't posted any past shows
 <% end %>  
-  <%= link_to "View upcoming events", user_eventlist_path %><br><br>
-
-
+ 
+</div>
