@@ -47,15 +47,15 @@ describe "MyApp" do
       assert_equal(customer.email, 'johnny@appleseed.com')
     end
 end
-test "mocks a declined card error" do
+#test "mocks a declined card error" do
     # Prepares an error for the next create charge request
-     StripeMock.start
-    StripeMock.prepare_card_error(:card_declined)
-    assert_raise(Stripe::Charge.create(amount: 1, currency: 'usd')) {|e|
-     assert_throws :Stripe::CardError
-     assert_equal(e.http_status, 402)
-    assert_equal(e.code, 'card_declined')}
-    StripeMock.stop
+#     StripeMock.start
+#    StripeMock.prepare_card_error(:card_declined)
+#    assert_raise(Stripe::Charge.create(amount: 1, currency: 'usd')) {|e|
+#    assert_throws :Stripe::CardError
+#   assert_equal(e.http_status, 402)
+#  assert_equal(e.code, 'card_declined')}
+#  StripeMock.stop
 
-end
+#end
 end
