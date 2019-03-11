@@ -4,14 +4,14 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-				<h4 class="modal-title">Edit Perk</h4>
+				<h4 class="modal-title">Edit Rewards</h4>
 			</div>
 			<div class="modal-body">
-				<!--= TAKE PERK'S PASSABLE ID AND DISPLAY ITS FORM %-->
+				<!--= TAKE REWARD'S PASSABLE ID AND DISPLAY ITS FORM %-->
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary">Save Perk</button>
+				<button type="button" class="btn btn-primary">Save Reward</button>
 			</div>
 		</div>
 	</div>
@@ -22,14 +22,14 @@
 <div class="panel-heading">
 	<% if user_signed_in? %>
 		<% if current_user.id == @user.id %>
-			Current Perks
+			Current Rewards
 		<% else %>
 			Support our work!
 		<% end %>
 	<% else %>
 		Support our work!
 	<% end %>
-	<!--span class="badge pull-right"><#%= @user.merchandises.count %> Perks</span> currently doesn't work-->
+	<!--span class="badge pull-right"><#%= @user.merchandises.count %> Rewards</span> currently doesn't work-->
 </div>
 <div class="panel-body" id="merchSidebar">
   <% if @sidebarmerchandise.present? %>
@@ -66,11 +66,11 @@
 				
         <% if user_signed_in? %>
           <% if current_user.id == @user.id %>
-            <!--Links to seperate edit perk page-->
-            <%= button_to "Edit Perk", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning pull-right" %>
+            <!--Links to seperate edit Reward page-->
+            <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning pull-right" %>
 
-            <!-- TODO: Switch to below button when edit perk form can be shown as a modal-->
-            <!--%= button_tag "Edit Perk", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
+            <!-- TODO: Switch to below button when edit Reward form can be shown as a modal-->
+            <!--%= button_tag "Edit Reward", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
 				
           <% else %>
             <% if merch.deadline != nil && merch.deadline < 14.days %>
@@ -146,6 +146,6 @@
 </div>
 
 <!-- Notes:
-The Edit button should give the Edit Perk modal each Perk's individual ID.
+The Edit button should give the Edit Reward modal each Reward's individual ID.
 Lisa's Notes: What does this mean?
 -->
