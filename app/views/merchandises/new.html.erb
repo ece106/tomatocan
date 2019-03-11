@@ -8,7 +8,7 @@
           <% if Rails.env.development? || Rails.env.test? %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
               <span class="clearfix">
-                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell benefits!
+                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Rewards!
                 </span>
                 <span class="pull-right">
                     <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
@@ -18,7 +18,7 @@
           <% else %>
             <div class="alert alert-danger clearfix" id="stripeAlert">
               <span class="clearfix">
-                <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/login' %></strong> to sell benefits!</span>
+                <span id="stripeAlertText">You must <strong><%= link_to 'connect to Stripe', 'https://crowdpublishtv.herokuapp.com/login' %></strong> to sell Rewards!</span>
                 <span class="pull-right">
                     <%= link_to image_tag("stripebutton.png"), 'https://crowdpublishtv.herokuapp.com/login' %>
                 </span>
@@ -32,8 +32,8 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Create a Benefit</h1>
-        <p>Offer your fans a benefit they can purchase on your page or during your livestreams. Don't worry, you can edit these details later!<br><br><i>All items offered for sale through CrowdPublish.TV are meant to be immediately available or fulfilled within a week.</i></p>
+        <h1>Create a Reward</h1>
+        <p>Offer your fans a Reward they can purchase on your page or during your livestreams. Don't worry, you can edit these details later!<br><br><i>All items offered for sale through CrowdPublish.TV are meant to be immediately available or fulfilled within a week.</i></p>
     </div>
 </div>
 
@@ -43,7 +43,7 @@
         <%= form_for(@merchandise) do |f| %>
         <% if @merchandise.errors.any? %>
         <div id="error_explanation">
-            <h3><%= pluralize(@merchandise.errors.count, "error") %> prohibited this merchandise from being saved:</h3>
+            <h3><%= pluralize(@merchandise.errors.count, "error") %> prohibited this Reward from being saved:</h3>
             <ul> <% @merchandise.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
                 <% end %>
@@ -53,19 +53,19 @@
 
         <div class="form-group">
             <h3><%= f.label :buttontype, "*Type" %></h3>
-            <p class="help-block">The <i>Buy</i> option allows a viewer to purchase a merchandise.<br>The <i>Donate</i> option allows a viewer to make a donation to your work.</p>
+            <p class="help-block">The <i>Buy</i> option allows a viewer to purchase a Reward.<br>The <i>Donate</i> option allows a viewer to make a donation to your work.</p>
             <%= f.select :buttontype, [['Buy','Buy'],['Donate','Donate']], autofocus: true %>
         </div>
 
         <div class="form-group">
             <h3><%= f.label :name, "*Title" %></h3>
-            <p class="help-block">Choose a descriptive name for this merchandise or donation.</p>
+            <p class="help-block">Choose a descriptive name for this Reward or donation.</p>
             <%= f.text_field :name, :class => "form-control", autofocus: true %>
         </div>
 
         <div class="form-group">
             <h3><%= f.label :price, "*Price" %></h3>
-            <p class="help-block">Enter the cost of this merchandise.</p>
+            <p class="help-block">Enter the cost of this Reward.</p>
             <div class="input-group" id="priceField">
                 <div class="input-group-addon">$</div>
                 <%= f.text_field :price, :class => "form-control" %>
@@ -76,26 +76,26 @@
 
         <div class="form-group">
             <h3><%= f.label :desc, "Description" %></h3>
-            <p class="help-block">Describe this merchandise or donation.</p>
+            <p class="help-block">Describe this Reward or donation.</p>
 
             <%= f.text_area :desc, :rows => "5", :class => "form-control" %>
         </div>
 
         <div class="form-group perkField">
             <h3><%= f.label :itempic, "Image" %></h3>
-            <p class="help-block">Upload an image of the merchandise you are offering (JPEG, GIF, or PNG).</p>
+            <p class="help-block">Upload an image of the Reward you are offering (JPEG, GIF, or PNG).</p>
             <%= f.file_field :itempic, :class => "form-control"%>
         </div>
 
         <div class="form-group perkField">
             <h3><%= f.label :youtube, "YouTube Video" %></h3>
-            <p class="help-block">If you have a YouTube video about your benefit, paste the URL below.</p>
+            <p class="help-block">If you have a YouTube video about your Reward, paste the URL below.</p>
             <%= f.text_field :youtube, :class => "form-control"  %>
         </div>
         
         <div class="form-group perkField">
             <h3><%= f.label :filetype, "File" %></h3>
-            <p class="help-block">If you're offering a downloadable benefit, select the file's format.</p>
+            <p class="help-block">If you're offering a downloadable Reward, select the file's format.</p>
             <!--Not ruby generated because it doesn't interact with the database.-->
             <select id="perkFiletype", class="form-control">
                 <option value="blank">Select a filetype...</option>
@@ -134,17 +134,17 @@
         
         <div class="form-group">
             <h3><%= f.label :deadline, "*Purchase deadline" %></h3>
-            <p class="help-block">Choose the last day fans can purchase this benefit.</p>
+            <p class="help-block">Choose the last day fans can purchase this Reward.</p>
             <%= f.date_select :deadline, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1, required: true %>
         </div>
 
-        <%= f.submit "Create Benefit", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
+        <%= f.submit "Create Reward", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
         <% end %>
 
     </div>
     
     <div class="col-md-4 col-md-offset-6 affix perkField" id="suggestedPerks">
-        <h4>Need help? Try one of our suggested benefits!</h4>
+        <h4>Need help? Try one of our suggested Rewards!</h4>
         <div class="list-group">
             <%= link_to "Tickets to your local event", "#", :class => "list-group-item", :id => 'suggestionA', :onclick => "suggest1()" %>
             <%= link_to "Post to your fan's Facebook page", "#", :class => "list-group-item", :id => 'suggestionB', :onclick => "suggest2()" %>

@@ -5,7 +5,7 @@
     <% if current_user.id == @user.id %> 
         <ul class="nav nav-pills nav-justified" id="dashboardTabs">
           <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
-          <li role="presentation"><%= link_to "Perks", "#perksTab", "data-toggle" => "tab" %></li>
+          <li role="presentation"><%= link_to "Rewards", "#perksTab", "data-toggle" => "tab" %></li>
           <li role="presentation"><%= link_to "Streaming", "#streamingTab", "data-toggle" => "tab" %></li>
           <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
           <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
@@ -35,7 +35,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xs-12">
-                            <h1>Manage Perks</h1>
+                            <h1>Manage Rewards</h1>
                         </div>
                     </div>
                         <div class="row">
@@ -121,7 +121,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1>Perk Sales</h1>
+                                <h1>Rewards Sales</h1>
                             </div>
                         </div>
                         <%= render :file => 'users/dashboard' %>

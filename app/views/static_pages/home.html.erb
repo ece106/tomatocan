@@ -12,7 +12,7 @@
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
-        <%= link_to "Offer Benefits", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
+        <%= link_to "Offer Rewards", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
     <% else %>
         <%= link_to 'Sign Up', "/signup", :class => "btn btn-lg btn-primary" %>
     <% end %>
@@ -28,7 +28,7 @@
 <div class="row darkBlock" id="connectFans">
     <div class="col-md-5">
         <h2>Our Purpose</h2>
-        <p>CrowdPublish.TV is a platform for businesses, organizations and individuals to share purposeful work. Go live to your audience in a video chat where you hold meaningful and interactive discussions. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a panel!</p>
+        <p>CrowdPublish.TV is for nonprofits, research centers, small businesses, etc. to broadcast in a live talk show format how they are doing their part to change the world. Patrons can support their mission by making donations during the livestream and when watching the replay. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a panel!</p>
     </div>
     <div class="col-md-7">
         <%= render 'layouts/maincalendar' %>
@@ -39,7 +39,7 @@
       <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
     </div>
     <div class="col-sm-4 col-sm-offset-1">
-        <h2>Offer Perks & Receive Donations</h2>
+        <h2>Offer Rewards & Receive Donations</h2>
         <p>Alongside viewing your livestream, viewers can support you through donations or by purchasing your downloads or physical items. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your livestream viewers.</p>
     </div>
 </div>
