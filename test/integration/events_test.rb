@@ -19,5 +19,7 @@ class EventsTest < ActionDispatch::IntegrationTest
         click_on('Host Discussion')
         assert_text ('Create an Event')
     end
+     test "Should join a discussion" do
+     end
 
 end
