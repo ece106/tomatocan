@@ -1,4 +1,4 @@
-/* This stylesheet is for panels found in views/layouts */
+/* This stylesheet is for panels found in views/layouts and for users/controlpanel */
 
 /* _maincalendar */
 #calendar td {
@@ -10,6 +10,9 @@
   font-size: 2rem;
   font-weight: 600;
 }
+.tooltip-inner {
+    font-size: 14px;
+  }
 #calendar-host {
   display: block;
   font-size: 1.25rem;
@@ -24,7 +27,7 @@
 }
 #share {      
 } 
-//Padding between Social media buttons  
+/* Padding between Social media buttons */ 
 #social-button {  
     padding-bottom: 10px; 
 } 
@@ -32,3 +35,11 @@
     padding-top: 3px; 
     padding-bottom: 6px;  
     }
+/* CSS for users/controlpanel */
+#streamDirections{
+    left: 50%;
+}
+#controlpanel-events {
+    position: relative;
+    bottom: 20px;
+}

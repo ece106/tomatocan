@@ -24,7 +24,7 @@
         $<%= sprintf('%.2f', @merchandise.price) %> USD  <br>
       <% end %>
     <% else %>
-        <%= @user.name %> has not made this item available yet. Please check back later to purchase <%= @merchandise.name %>.
+        <%= @user.name %> has not made this item available yet. Please check back later to purchase. <%= @merchandise.name %>.
     <% end %>
 
 <div class="goals">

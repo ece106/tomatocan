@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
 
   <div class="helps" >
-    Offer standard Perks as-is or customize for your project or expertise. </i> 
+    Offer standard Rewards as-is or customize for your project or expertise. </i> 
   </div><br>
 
 
@@ -21,8 +21,8 @@
                 <%= form_for(@merchandise) do |f| %>
                   <b>Perk Name </b><br>
                   <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
-                  <b>About this Patron Perk </b><br>
-                  What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
+                  <b>About this Reward </b><br>
+                  What is this Reward? What is the main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                   <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a tip of the week on your facebook wall or in a tweet to you every Tuesday for the next 4 weeks. Please state whether you'd prefer a facebook post or tweet." || :desc %><br><br>
                   <b>Price </b><br>
                   $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
@@ -46,9 +46,9 @@
         <div id="accordion-toggle2" class="accordion-body collapse">
           <div class="accordion-inner">
             <%= form_for(@merchandise) do |f| %>
-              <b>Perk Name </b><br>
+              <b>Reward Title </b><br>
               <%= f.text_field :name, size: 60, value: "I'll Post on your facebook wall or mention you in a tweet every week for 4 weeks" || :name %><br><br>
-              <b>About this Patron Perk </b><br>
+              <b>About this Reward </b><br>
               <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a brief greeting or line from my latest gag reel on your facebook wall and in a tweet to you every day one week." || :desc %><br><br>
               <b>Price </b><br>
               $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
@@ -74,12 +74,12 @@
               <%= form_for(@merchandise) do |f| %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Video Reading posted on your facebook wall" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I will record a video of myself reading from my next chapter and post it on your facebook wall. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
-                <%= button_to "Offer Facebook Video Perk", class: "button" %><br><br>
+                <%= button_to "Offer Facebook Video Reward", class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -101,12 +101,12 @@
               <%= form_for(@merchandise) do |f| %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Patrons Only behind the scenes Secrets " || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br> 
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br> 
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll email you my Patrons Only news blog that contains Secrets about what happened this week behind the scenes of my latest movie - My take on what goes on when the camera is off." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 30.00 || :price %>USD<br>
-                <%= button_to "Offer Behind The Scenes Blog Perk", class: "button" %>
+                <%= button_to "Offer Behind The Scenes Blog Reward", class: "button" %>
               <% end %>
               </div>
             </div>
@@ -126,14 +126,14 @@
         <div id="accordion-toggle4" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Video Reading posted on your facebook wall" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I will record a video of myself practicing jokes I wrote and post it on your facebook wall. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
-                <%= button_to "Offer Facebook Video Perk", class: "button" %>
+                <%= button_to "Offer Facebook Video Reward", class: "button" %>
               <% end %>
           </div>
         </div>
@@ -153,17 +153,17 @@
             <div id="accordion-toggle5" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Your Name In Credits of the next chapter of my book" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
+                <b>About this Reward </b><br>
                 Main reason someone might want this item? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Get on the List of Patrons at the end of the next independent video of my monologues that I am producing. This video will be sent out to Patrons next month." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br><br>
-                <b>Perk Picture </b><br>
-                Upload a picture (optional) that represents the item you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
+                <b>Reward Picture </b><br>
+                Upload a picture (optional) that represents the Reward you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
                 <br><%= f.file_field :itempic %> 
-                <%= button_to "Offer Name in Credits Perk", class: "button" %>
+                <%= button_to "Offer Name in Credits Reward", class: "button" %>
               <% end %>
               </div>
             </div>
@@ -183,9 +183,9 @@
         <div id="accordion-toggle6" class="accordion-body collapse">
           <div class="accordion-inner">
             <%= form_for(@merchandise) do |f| %>
-              <b>Perk Name </b><br>
+              <b>Reward Title </b><br>
               <%= f.text_field :name, size: 60, value: "We'll write a 30-line story together on your Facebook wall or your latest Instagram picture" || :name %><br><br>
-              <b>About this Patron Perk </b><br>
+              <b>About this Reward </b><br>
               Be specific about what you're willing to offer (You may edit this before fans purchase)<br>
               <%= f.text_area :desc, cols: 62, rows: 7, value: "I will write a the first sentence of a story on your facebook wall or latest instagram photo. You write the second line. I'll write the third and we'll keep taking turns until I've written 15 lines, resulting in a 30 or more line story (more lines if your friends join in). Please state whether you'd prefer a facebook post or instagram comment." || :desc %><br><br>
               <b>Price </b><br>
@@ -211,14 +211,14 @@
         <div id="accordion-toggle8" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Facebook Livestream Reading " || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward</b><br>
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll read a 3 minute excerpt of your writing as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Live Online Reading Perk", class: "button" %><br><br>
+                <%= button_to "Offer Live Online Reading Reward", class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -238,10 +238,10 @@
         <div id="accordion-toggle9" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Live Online Reading before it's released" || :name %><br><br>
-                <b>About this Patron Perk </b><br> 
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br> 
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are: Weeknights at 7:00pm PST and 7:15 PST. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
@@ -267,12 +267,12 @@
               <%= form_for(@merchandise) do |f| %>
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Attend My Panel Discussion"|| :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Four local authors are putting on a panel discussion about our books on May 9 7:30pm at the Central Library in Phoenix. Come and join the Q & A. " || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
-                <%= button_to "Offer Event Perk", class: "button" %>
+                <%= button_to "Offer Event Reward", class: "button" %>
               <% end %>
               </div>
             </div>
@@ -292,14 +292,14 @@
             <div id="accordion-toggle12" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title</b><br>
                 <%= f.text_field :name, size: 60, value: "Be part of a Live presentation"|| :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Join me and up to 7 other fans in a google Hangouts session at 6:30pm PST (9:30pm EST) on November 15. My colleagues and I will each play characters in a Murder Mystery we have written. My colleagues and I will all be in the same location. The first 7 lucky fans will join us onscreen and participate in the dialogue from the comfort of their own home. Additional fans will be able to watch but won't be onscreen. I'll send instructions on how to join the Hangouts session three days before the Hangouts event. Will one of YOU be the culprit?" || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
-                <%= button_to "Offer Interactive TV Perk", class: "button" %>
+                <%= button_to "Offer Interactive TV Reward", class: "button" %>
               <% end %>
               </div>
             </div>
@@ -319,15 +319,15 @@
         <div id="accordion-toggle13" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Speak at your book club meeting " || :name %><br><br>
                 <%= f.text_field :name, size: 60, value: "Speak at your movie party " || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I will talk to your book club members for a half hour about what went on behind the scenes of my latest book. Must be within the Phoenix metro area or on Skype." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 200.00 || :price %>USD<br>
-                <%= button_to "Offer Party Appearance Perk", class: "button" %><br><br>
+                <%= button_to "Offer Party Appearance Reward", class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -347,14 +347,14 @@
             <div id="accordion-toggle14" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Be part of a Live Drama presentation"|| :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward</b><br>
+                Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Join me and up to 7 other fans in a google Hangouts session at 6:30pm PST (9:30pm EST) on November 15. My colleagues and I will each play characters in a Murder Mystery we have set up. My colleagues will all be in the same location, however the first 7 fans to snap up tickets will join us onscreen and participate in the dialogue from the comfort of their own home. I'll send instructions on how to join the Hangouts session three days before the Hangouts event. Will one of YOU be the culprit?" || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
-                <%= button_to "Offer Interactive TV Perk", class: "button" %>
+                <%= button_to "Offer Interactive TV Reward", class: "button" %>
               <% end %>
               </div>
             </div>
@@ -374,14 +374,14 @@
         <div id="accordion-toggle15" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title</b><br>
                 <%= f.text_field :name, size: 60, value: "Speak at your movie party " || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
+                <b>About this Reward</b><br>
+                What is this Reward? Main reason someone might want this Reward? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I will talk to your party guests for a half hour about what goes on behind the scenes of my latest movie in character. Must be within the Phoenix metro area. " || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 200.00 || :price %>USD<br>
-                <%= button_to "Offer Party Appearance Perk", class: "button" %>
+                <%= button_to "Offer Party Appearance Reward", class: "button" %>
               <% end %>
           </div>
         </div>
@@ -401,14 +401,14 @@
             <div id="accordion-toggle16" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Consultation package" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "We will set up weekly video appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
-                    <%= button_to "Offer Consultation Perk", class: "button" %>
+                    <%= button_to "Offer Consultation Reward", class: "button" %>
                   <% end %>
               </div>
             </div>
@@ -428,14 +428,14 @@
             <div id="accordion-toggle17" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Consultation package" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? Be specific so it isn't a mystery what you are offering. (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "We will set up weekly phone appointments for a half hour each over the next eight weeks to discuss any questions you may have or any advice you are seeking." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 1000.00 || :price %>USD<br>
-                    <%= button_to "Offer Consultation Perk", class: "button" %><br><br>
+                    <%= button_to "Offer Consultation Reward", class: "button" %><br><br>
                   <% end %>
               </div>
             </div>
@@ -465,10 +465,10 @@
         <div id="accordion-toggle18" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title</b><br>
                 <%= f.text_field :name, size: 60, value: "Live Online Reading before it's released" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward</b><br>
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
@@ -492,14 +492,14 @@
         <div id="accordion-toggle19" class="accordion-body collapse">
           <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Facebook Livestream Reading " || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll act out a 3 minute excerpt of your short script as a Facebook Livestream and discuss it with my fans for another five minutes. Feel free to share the video on your own facebook wall after the stream is completed." || :desc %><br><br>
             <b>Price </b><br>
             $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Live Online Reading Perk", class: "button" %><br><br>
+                <%= button_to "Offer Live Online Reading Reward", class: "button" %><br><br>
               <% end %>
           </div>
         </div>
@@ -518,14 +518,14 @@
             <div id="accordion-toggle20" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title</b><br>
                 <%= f.text_field :name, size: 60, value: "I'll Play Minecraft with you and your friends for a half hour"|| :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll play Minecraft with you for 30 minutes on a weekday evening before midnight PST. Will email you next week to schedule date and time and get your screenname." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 60.00 || :price %>USD<br>
-                <%= button_to "Offer Video Game Perk", class: "button" %>
+                <%= button_to "Offer Video Game Reward", class: "button" %>
               <% end %>
               </div>
             </div>
@@ -545,17 +545,17 @@
             <div id="accordion-toggle21" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Your Name In Credits of the next chapter of my book" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward</b><br>
+                Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Get on the list of Patrons at the end of the next chapter of the book I'm currently writing. This chapter will be send out to qualifying Patrons in two months. After the book is completed, your name will be included in the page of thanks at the end of the book." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br><br>
-                <b>Perk Picture </b><br>
-                Upload a picture (optional) that represents the item you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
+                <b>Reward Picture </b><br>
+                Upload a picture (optional) that represents the Reward you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
                 <br><%= f.file_field :itempic %> 
-                <%= button_to "Offer Name in Credits Perk", class: "button" %><br><br>
+                <%= button_to "Offer Name in Credits Reward", class: "button" %><br><br>
               <% end %>
               </div>
             </div>
@@ -575,14 +575,14 @@
             <div id="accordion-toggle22" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title</b><br>
                 <%= f.text_field :name, size: 60, value: "Name the next Character in my book"|| :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward</b><br>
+                Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "The next character we introduce will be hilarious. Name her or him after yourself or select your own custom name." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br>
-                <%= button_to "Offer Character Name Perk", class: "button" %><br><br>
+                <%= button_to "Offer Character Name Reward", class: "button" %><br><br>
               <% end %>
               </div>
             </div>
@@ -602,14 +602,14 @@
             <div id="accordion-toggle23" class="accordion-body collapse">
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
-                <b>Perk Name </b><br>
+                <b>Reward Title</b><br>
                 <%= f.text_field :name, size: 60, value: "Advance access to read a chapter of my current book before it's released" || :name %><br><br>
-                <b>About this Patron Perk </b><br>
-                What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                <b>About this Reward </b><br>
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Within the next two months I will email a near-final draft of the next chapter of my book to everyone who orders this perk." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 30.00 || :price %>USD<br>
-                <%= button_to "Offer Chapter Advance Perk", class: "button" %><br><br>
+                <%= button_to "Offer Chapter Advance Reward", class: "button" %><br><br>
               <% end %>
               </div>
             </div>
@@ -625,7 +625,7 @@
         </div>
 
         <div class="socialize" style="padding-bottom:10px" >
-          Miscellaneous Perks 
+          Miscellaneous Rewards
         </div>
 
      <div class="font19left" >
@@ -635,14 +635,14 @@
             <div id="accordion-toggle24" class="accordion-body collapse">
               <div class="accordion-inner">
                 <%= form_for(@merchandise) do |f| %>
-                    <b>Perk Name </b><br>
+                    <b>Reward Title</b><br>
                   <%= f.text_field :name, size: 60, value: "My Personal Recipe for Something Delicious" || :name %><br><br>
-                  <b>About this Patron Perk </b><br>
-                  What is this product? What is the main reason someone might want this item? (You may edit this before fans purchase)<br>
+                  <b>About this Reward</b><br>
+                  What is this Reward? What is the main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                   <%= f.text_area :desc, cols: 62, rows: 7, value: "Recipe for Disaster: My assistant will email you my personal recipe for how to turn your baking disasters into a creamy fruity dessert." || :desc %><br><br>
                   <b>Price </b><br>
                   $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
-                  <%= button_to "Offer Recipe Perk", class: "button" %>
+                  <%= button_to "Offer Recipe Reward", class: "button" %>
                 <% end %>
               </div>
             </div>
@@ -662,14 +662,14 @@
             <div id="accordion-toggle25" class="accordion-body collapse">
               <div class="accordion-inner">
                 <%= form_for(@merchandise) do |f| %>
-                    <b>Perk Name </b><br>
+                    <b>Reward Title</b><br>
                   <%= f.text_field :name, size: 60, value: "One Hour Q&A, One Tweet Per Week, Plus Your Name a Video posted on your facebook wall" || :name %><br><br>
-                  <b>About this Patron Perk </b><br>
-                  What is this product? Main reason someone might want this item? (You may edit this before fans purchase)<br>
+                  <b>About this Reward</b><br>
+                  What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                   <%= f.text_area :desc, cols: 62, rows: 7, value: "Get all three of these items for one special price by the end of the month." || :desc %><br><br>
                   <b>Price </b><br>
                   $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
-                  <%= button_to "Offer Combo Perk", class: "button" %>
+                  <%= button_to "Offer Combo Reward", class: "button" %>
                 <% end %>
               </div>
             </div>
@@ -692,7 +692,7 @@
 
     <div>
         <%= form_for(@merchandise) do |f| %>
-          <b>Perk Name </b><br>
+          <b>Reward Title </b><br>
                   <%= f.text_field :name, size: 80, value: "Podcast Title" || :name %><br><br>
           <br><%= f.file_field :podcast %>
           $<%= f.text_field :price, size: 10, value: 400.00 || :price %>USD<br>
@@ -702,12 +702,12 @@
     </div>
     <br><br>
 
-  <%= button_to "Add my own custom Perk", new_merchandise_path , method: :get, class: "button" %>
+  <%= button_to "Add my own custom Reward", new_merchandise_path , method: :get, class: "button" %>
 
-<br>All items offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. 
+<br>All Rewards offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. 
 <br><b>Check your dashboard often</b> to see if any Perks were ordered by your Fans.<br>
 
-  <br>I'm done adding Perks for now. <%= link_to "Go to my page " , user_profile_path(current_user.permalink) %> and see how it looks.
+  <br>I'm done adding Rewards for now. <%= link_to "Go to my page " , user_profile_path(current_user.permalink) %> and see how it looks.
 
 </div>
 
