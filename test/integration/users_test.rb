@@ -17,12 +17,42 @@ class UsersTest < ActionDispatch::IntegrationTest
 		fill_in(id:'user_email', with: 'e@gmail.com')
 		fill_in(id:'user_permalink', with:'username')
 		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		page.driver.browser.save_screenshot 'screenshot.png'
 		fill_in(id:'user_password_confirmation', with:'password')
 		click_on(class: 'form-control btn-primary')
-		assert_text ('Sign out')
+		assert_text ('Sign out') 
+	end
+	test "Should sign up and then out" do
+		visit ('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		click_on('Sign out')
+		assert_text('Sign Up')
+	end
+	test "Should sign up and then out and then back in" do
+		visit ('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		click_on('Sign out')
+		click_on('Sign In')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		click_on(class: 'form-control btn-primary')
+		assert_text ('Sign out') 
+		
 	end
 	#todo: write a test that fails to sign up
-	test "Should see control panel" do
+	test "Should see rewards in control panel" do
 		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name')
@@ -35,5 +65,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Control Panel')
 		assert_text('Rewards')
 	end 
+	#test number of panels
+
 		
 end
