@@ -6,20 +6,25 @@ class EventsTest < ActionDispatch::IntegrationTest
         click_on('Host Discussion')
         assert_text ('Login')
     end
-# test "Should sign up and then host a discussion and get redirected to new event page" do
-#     visit ('http://localhost:3000/')
-#      click_on('Sign Up', match: :first)
-#      fill_in('Name', with: 'name')
-#      fill_in('Email', with: 'e@mail.com')
-#      fill_in('Username', with:'username')
-#      fill_in("Password", with: 'password', :match => :prefer_exact)
-#      fill_in(id:"user_password_confirmation", with:'password')
-#      click_on(class: 'form-control btn-primary')
-#      click_on('Home')
-#     click_on('Host Discussion')
-#      assert_text ('Create an Event')
-#  end
-     test "Should join a discussion" do
-     end
+    test "Should sign up and then host a discussion and get redirected to new event page" do
+      visit ('http://localhost:3000/')
+      click_on('Sign Up', match: :first)
+      fill_in(id:'user_name', with: 'name')
+      fill_in(id:'user_email', with: 'e@gmail.com')
+      fill_in(id:'user_permalink', with:'username')
+      fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+      fill_in(id:'user_password_confirmation', with:'password')
+      click_on(class: 'form-control btn-primary')
+      assert_text ('Profile Image')
+      visit ('http://localhost:3000/')
+      click_on('Host Discussion')
+      fill_in(id:'event_name', with: 'event')
+      fill_in(id:'event_desc', with: 'This is a description of the event')
+      click_on(class: 'btn btn-lg btn-primary')
+    end
+    test "Should redirect after host a discussion is clicked" do
+         visit ('http://localhost:3000/')
+         
+    end
 
 end
