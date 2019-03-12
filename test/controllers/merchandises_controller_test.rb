@@ -16,7 +16,7 @@ class MerchandisesControllerTest < ActionController::TestCase
   #test run to assert a signed in user can load page to create a new merchandise
   #passes
 test "should get new if user signed in" do
-sign_ in users(:one)
+sign_in users(:one)
  get :new
   assert_response :success
 end

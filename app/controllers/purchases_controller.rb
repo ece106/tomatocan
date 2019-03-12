@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
         @itemname = loot.name
         id = loot.user_id
         @user = User.find(id)
-      end 
+      end
         respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @purchase }
@@ -92,7 +92,7 @@ class PurchasesController < ApplicationController
           @purchase.author_id = User.find(@merchandise.user_id) 
           if user_signed_in?
             @purchase.user_id = current_user.id
-          end 
+          end
           if @purchase.save_with_payment
             seller = User.find(@merchandise.user_id)
             redirect_to user_profile_path(seller.permalink)

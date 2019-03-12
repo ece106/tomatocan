@@ -22,13 +22,6 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-    # test "should get new donate" do
-    #   sign_in users(:one)
-    #   merch = merchandises(:two)
-    #   get :new, params: {pricesold: 25, merchandise: merch}
-    #   assert_equal(merch.id, nil, msg = nil)
-    # end
-
   #3
     test "should_get_purchases_show" do
       sign_in users(:one)
@@ -87,7 +80,10 @@ class PurchasesControllerTest < ActionController::TestCase
 
   #10
   require 'stripe_mock'
-
+setup do
+  @user = users(:one)
+  @email= @user.email
+end
   describe "MyApp" do
     let(:stripe_helper) { StripeMock.create_test_helper }
     before { StripeMock.start }
@@ -95,50 +91,39 @@ class PurchasesControllerTest < ActionController::TestCase
 
     it "test to create a strip account for seller" do
       seller1 = Stripe::Customer.create({
-        email: 'fake@fake.com',
+        email: @email,
         source: stripe_helper.generate_card_token
     })
-    assert_equal(seller1.email,'fake@fake.com')
-    end
-  end
-
-  describe "create customer" do
-    def stripe_helper
-      StripeMock.create_test_helper
-    end
-
-    before do
-      StripeMock.start
-    end
-
-    after do
-      StripeMock.stop
-    end
-
-    test "creates a stripe customer" do
-      customer = Stripe::Customer.create({
-                                         email: "koko@koko.com",
-                                         card: stripe_helper.generate_card_token
-                                     })
-      assert_equal customer.email, "koko@koko.com"
+    assert_equal(seller1.email, @email)
     end
   end
 
   #11
-    test "user tries to purchase something from himself/herself" do
+    test "user tries to purchase something from himself/herself" do #is response 200 OK but should give an error
       sign_in users(:one)
-
-    end
+      seller = users(:one)
+      merch = merchandises(:one)
+      get :new, params: {pricesold: 25, author_id: seller.id, merchandise: merch}
+      assert_response :success
+    end 
 
   #12
+    test "create a new audio purchase" do
+      sign_in users(:one)
+      post :create, params: { purchase: {merchandise_id: merchandises(:one)}}
+      assert_equal(pricesold, merchandises(:one).price)
+    end
+  
+
+  #13
     test "to test the flash message displayed after the purchase goes through" do
 
     end
 
-  #13
-  test "to test the flash message displayed after the purchase does not go through" do
+  #14
+    test "to test the flash message displayed after the purchase does not go through" do
 
-  end
+    end
 
 
 end
