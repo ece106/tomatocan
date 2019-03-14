@@ -87,11 +87,11 @@ class User < ApplicationRecord
     agreement.approved = DateTime.new(1)
     agreement.save
   end  
-  def mark_fulfilled(purchid) 
+  def mark_fulfilled(purchid)
     purchase = Purchase.find(purchid)
     purchase.fulfillstatus = "sent"
     purchase.save
-  end  
+  end
 
   def get_youtube_id
     if self.youtube1.present?
