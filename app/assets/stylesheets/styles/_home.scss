@@ -14,6 +14,9 @@ p {
     padding-top: 200px;
     padding-bottom: 200px;
 }
+#heroImage .alert{
+    top: 100px;
+}
 #heroTitle, #heroImage small {
     color: white;
         text-shadow: $overlaid-text;
@@ -29,11 +32,17 @@ p {
     color: $brand-secondary;
 }
 
+.alert {
+  padding-top: 20px;
+  width: 80%;
+  display:inline-block;
+}
+
 #scroll h1{
     color: white;
     padding-top: 75px;
     position: absolute;
-    top: 75vh;
+    top: 100vh;
     left: 50%;
     width: 24px;
     height: 24px;
@@ -78,8 +87,7 @@ p {
     padding: 30px 20px;
 }
 #faqBlock {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 80px;
 }
 #connectFans {
     min-height: 310px;
