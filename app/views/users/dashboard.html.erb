@@ -43,7 +43,7 @@
 									<td>
 									<!--When a purchase is a donation-->
 									<% if item[:soldtitle] == "Donation"%>
-										<%= "Recieved" %>
+										<%= "Received" %>
 									<% else %>
 										<% if item[:fulfillstat] != "sent" && item[:egoods].empty? %>
 											<%= button_to [:markfulfilled, @user] do %>
