@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
-#  before_filter :correct_user, only: [:edit, :update, :dashboard] Where did this method go?
+ #before_action :correct_user, only: [:dashboard, :user_id] 
+  #before_action :correct_user, only: [:controlpanel] 
+  #Where did this method go?
 
   def index
     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
@@ -41,7 +43,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def eventlist
+  def eventlist #this may be obsolete
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @rsvpevents = rsvps.where( "start_at > ?", currtime ) 
@@ -51,7 +53,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  def pastevents
+  def pastevents #may be obsolete
     currtime = Time.now
     @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
@@ -74,7 +76,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-
+  #don't do anything right now. Need views added
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
@@ -113,6 +115,22 @@ class UsersController < ApplicationController
     @salebyperktype = @user.salebyperktype
     @totalinfo = @user.totalinfo
     @purchasesinfo = @user.purchasesinfo
+
+    currtime = Time.now
+    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
+    @rsvpevents = rsvps.where( "start_at > ?", currtime ) 
+    @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
+    @pastevents = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
+    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
+    @pastrsvps = rsvps.where( "start_at < ?", currtime ) 
+    respond_to do |format|
+      format.html 
+      format.json { render json: @user }
+    end
 
       if @user.merchandises.any? 
         expiredmerch = @user.merchandises.where("deadline < ?", Date.today)

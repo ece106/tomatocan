@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row" >
-        <h1>Create an Event</h1>
+<h1>Post a New Show Time</h1>
         <p>By creating an event below, the details of your livestream will be posted on the Home page of CrowdPublish.TV. This will allow your viewers to easily find the time and date of your livestream discussion.</p>
     </div>
 
@@ -23,26 +23,26 @@
         <%= f.hidden_field :usrid, value: current_user.id %>
 
           <div class="form-group">
-            <h3><%= f.label :buttontype, "*Title of Livestream Event" %></h3>
+            <h3><%= f.label :buttontype, "*Title of Livestream Show" %></h3>
                     <p class="help-block">What will you be discussing in your livestream?</p>
             <%= f.text_field :name, :size => 80 %><p>
           </div>
 
           <div class="form-group">
               <h3><%= f.label :buttontype, "Start Time" %></h3>
-                    <p class="help-block">Mountain Standard Time (MST)</p>
+          <p class="help-block">Pacific Daylight Time (PDT)</p>
             <%= f.datetime_select :start_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 2 %>
             <% #= date_field(:event, :start_at) %>
           </div>
 
           <div class="form-group">
             <h3><%= f.label :buttontype, "End Time" %></h3>
-                    <p class="help-block">Mountain Standard Time (MST)</p>
+                    <p class="help-block">Pacific Daylight Time (PDT)</p>
             <%= f.datetime_select :end_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 2 %><br>
           </div>
 
           <div class="form-group">
-            <h3><%= f.label :buttontype, "Details about Livestream Discussion" %></h3>
+            <h3><%= f.label :buttontype, "Details about Livestream Discussion Topic" %></h3>
                     <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
             <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
           </div>
