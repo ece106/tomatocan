@@ -7,7 +7,7 @@ class UsersTest < ActionDispatch::IntegrationTest
   
 	test "Should view profileinfo" do
 		visit ('http://localhost:3000/')
-		click_on('Discover Discussion Hosts')
+		click_on('Discover Talk Show Hosts')
 		assert_text ('Discussion Hosts')
 	end
 	test "Should sign up" do
@@ -17,7 +17,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 		fill_in(id:'user_email', with: 'e@gmail.com')
 		fill_in(id:'user_permalink', with:'username')
 		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
-		page.driver.browser.save_screenshot 'screenshot.png'
 		fill_in(id:'user_password_confirmation', with:'password')
 		click_on(class: 'form-control btn-primary')
 		assert_text ('Sign out') 
