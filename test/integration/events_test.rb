@@ -1,5 +1,5 @@
 require 'test_helper'
-
+require 'capybara-screenshot/minitest'
 class EventsTest < ActionDispatch::IntegrationTest
     test "Should login before hosting a discussion" do
         visit ('http://localhost:3000/')
