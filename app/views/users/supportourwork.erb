@@ -7,16 +7,17 @@
 	</div>
 	<div class="row">
 		<% @stripeusers.each do |u| %>
-				<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="col-md-4 col-sm-6 col-xs-12" id="discussionWrapping">
 					<div class="embed-responsive embed-responsive-16by9">
 						<iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= u.youtube1 %>" allowfullscreen></iframe>
 					</div>
-					<h4><%= link_to u.name, user_profile_path(u.permalink) %></h4>
-					<% if u.genre1.present? %>
-						<% genrelist = u.genre1, u.genre2, u.genre3 %>
-						<% genrelist.reject!(&:empty?) %>
-						<p><%= genrelist.join(', ') %></p>
-					<% end %>
+						<span><%= link_to u.name, user_profile_path(u.permalink)%></span>
+						<br>
+						<% if u.genre1.present? %>
+							<% genrelist = u.genre1, u.genre2, u.genre3 %>
+							<% genrelist.reject!(&:empty?) %>
+							<p><%= genrelist.join(', ') %></p>
+						<% end %>
 				</div>
 		<% end %>
 	</div>
