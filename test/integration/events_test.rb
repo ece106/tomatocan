@@ -30,5 +30,6 @@ class EventsTest < ActionDispatch::IntegrationTest
          visit ('http://localhost:3000/')
          
     end
+    test ""
 
 end
