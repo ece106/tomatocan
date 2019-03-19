@@ -1,0 +1,2 @@
+class Timeslot < ApplicationRecord
+end
