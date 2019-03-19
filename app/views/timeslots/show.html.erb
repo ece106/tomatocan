@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @timeslot.user_id %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @timeslot.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @timeslot.end_at %>
+</p>
+
+<%= link_to 'Edit', edit_timeslot_path(@timeslot) %> |
+<%= link_to 'Back', timeslots_path %>

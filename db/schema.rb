@@ -201,6 +201,14 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "email"
   end
 
+  create_table "timeslots", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
