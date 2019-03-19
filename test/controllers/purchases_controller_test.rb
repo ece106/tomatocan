@@ -135,19 +135,16 @@ class PurchasesControllerTest < ActionController::TestCase
     end
 
   #13
-    test "to test POST /purchases" do
+    test "to test POST /purchases creates purchase for the correct purchaser" do
       sign_in users(:two)
       post :create, params: {purchase: {merchandise_id: merchandises(:one).id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
       assert_equal(@purchases.user_id, users(:one).id)
-      #assert_equal flash[:notice], 'You have successfully completed the purchase! Thank you for being a patron of name2'
     end
 
   #14
-    test "to test the flash message displayed after the purchase does not go through" do
+    test "to test the POST/purchases creates purchase for the correct seller" do
       sign_in users(:two)
       post :create, params: {purchase: {merchandise_id: merchandises(:one).id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
-      assert_redirected_to user_profile_path(users(:two).permalink)
-    end
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-
+      assert_equal(@purchases.author_id, users(:one).id)
+    end     
 end
