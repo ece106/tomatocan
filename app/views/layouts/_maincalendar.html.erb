@@ -11,25 +11,43 @@
   <div class=panel-heading>
     Upcoming Livestream Discussions
   </div>
-  <% if user_signed_in? %>
+
+
+ <!--  <% if user_signed_in? %>
     <div class=panel-body>
         <%= link_to 'Host a Livestream Discussion', new_event_path, class: "btn btn-warning", id: "tableHost calendar-create" %>
     </div>
-  <% end %>
+  <% end %> -->
+
+
+
+
   <% if @events.count != 0 %>
     <table class="table table-hover" id=calendar>
+
+
+
+<!-- KAMILA EDITS  -->
+<th>Event</th>
+<th>Date</th>
+<th>Interviewer</th>
+<th>Guest 1</th>
+<th>Guest 2</th>
+<!-- END KAMILA EDITS -->
+
+
+
+
+
       <tbody>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
         <% user = User.find(event.usrid) %>
         <tr>
-          <td class=col-xs-5>
+
+
+          <td class=col-xs-3>
             <%= link_to event.name, event, id: "calendar-event", title: event.desc, 'data-toggle': "tooltip", 'data-placement': "left" %>
             Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
-            <% if user_signed_in? %>
-              <% if event.usrid == current_user.id %>
-                <%= link_to '(Edit Event)', edit_event_path(event.id), id: "calendar-host" %> 
-              <% end %>
-            <% end %>
           </td>
           <td class=col-xs-3>
             <% edt = event.start_at + 3.hours %> 
@@ -37,7 +55,60 @@
             <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> PDT</span>
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
+
+
+
+<!-- KAMILA EDITS  -->
+
           <td class=col-xs-3>
+            <% if event.start_at.beginning_of_day === Date.new(2019,3,26).beginning_of_day %>
+              <%= link_to user.name, user.permalink, id: "calendar-host" %>
+            <% else %>
+              <%= link_to "Sign Up", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+            <% end %>
+          </td>
+
+          <td class=col-xs-3>
+            <%= link_to "Sign Up", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+          </td>
+
+          <td class=col-xs-3>
+            <%= link_to "Sign Up", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+          </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- END KAMILA EDITS -->
+         <!--  <td class=col-xs-3>
             <%= link_to "Join Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
           </td>
           <td class=col-xs-1>
@@ -48,7 +119,7 @@
               <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
               <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top"></script>
             </div>  
-          </td>  
+          </td>   -->
         </tr>
         <% end %>
       </tbody>
