@@ -64,6 +64,8 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Control Panel')
 		assert_text('Rewards')
 	end 
+
+	
 	#test number of panels
 
 		
