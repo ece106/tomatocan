@@ -26,3 +26,19 @@ How purchases_controller.rb works:
                 if the user is signed in :assign user to purchase.user_id
                 if purchased is saved with payment: notify user of the completed purchase
                 else: notify user of incomplete payment
+
+
+tests:
+1. if purchasing a merchandise
+        find the merchandise and put all the info in self
+        retrieve the stripe account details of the seller of merchandise.seller
+        find ther customer's email
+            email present: create stripe customer
+            email absent: 
+                find by user_id
+                    stripe_token present: find stripe source
+                    stripe_token absent: create stripe source
+        check seller id (143 ||1336 || 1337 || 1345 || 1368)
+            create stripe charge 
+            else create stripe token
+

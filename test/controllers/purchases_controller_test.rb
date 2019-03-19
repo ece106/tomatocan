@@ -80,16 +80,18 @@ class PurchasesControllerTest < ActionController::TestCase
 
   #10
   require 'stripe_mock'
-setup do
-  @user = users(:one)
-  @email= @user.email
-end
+
+  setup do
+    @user = users(:one)
+    @email= @user.email
+  end
+
   describe "MyApp" do
     let(:stripe_helper) { StripeMock.create_test_helper }
     before { StripeMock.start }
     after { StripeMock.stop }
 
-    it "test to create a strip account for seller" do
+    it "test to create a stripe account for seller" do
       seller1 = Stripe::Customer.create({
         email: @email,
         source: stripe_helper.generate_card_token
@@ -108,22 +110,44 @@ end
     end 
 
   #12
-    test "create a new audio purchase" do
-      sign_in users(:one)
-      post :create, params: { purchase: {merchandise_id: merchandises(:one)}}
-      assert_equal(pricesold, merchandises(:one).price)
+    #test to create a new merch pdfsetup do
+    require 'stripe_mock'
+
+    setup do
+      @merch = merchandises(:one)
+      @user = users(:one)
+      @email= @user.email
     end
-  
+
+    describe "POST #create" do
+      let(:stripe_helper) { StripeMock.create_test_helper }
+      before { StripeMock.start }
+      after { StripeMock.stop }
+
+      it "tests creation of merchpdf" do
+        customer = Stripe::Customer.create({
+          email: @email,
+          source: stripe_helper.generate_card_token
+        })
+        plan = stripe_helper.create_plan(:id => 'my_plan', :amount => 150)
+        assert_equal(plan.amount, 150)
+      end 
+    end
 
   #13
-    test "to test the flash message displayed after the purchase goes through" do
-
+    test "to test POST /purchases" do
+      sign_in users(:two)
+      post :create, params: {purchase: {merchandise_id: merchandises(:one).id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
+      assert_equal(@purchases.user_id, users(:one).id)
+      #assert_equal flash[:notice], 'You have successfully completed the purchase! Thank you for being a patron of name2'
     end
 
   #14
     test "to test the flash message displayed after the purchase does not go through" do
-
+      sign_in users(:two)
+      post :create, params: {purchase: {merchandise_id: merchandises(:one).id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
+      assert_redirected_to user_profile_path(users(:two).permalink)
     end
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 
 end
