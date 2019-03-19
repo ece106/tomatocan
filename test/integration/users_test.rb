@@ -25,12 +25,12 @@ class UsersTest < ActionDispatch::IntegrationTest
 
 
   	end
-	test "Should view profileinfo" do
+	test "Should_view_profileinfo" do
 		visit ('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		assert_text ('Discussion Hosts')
 	end
-	test "Should sign up" do
+	test "Should_sign_up" do
 		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name2')
@@ -41,7 +41,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on(class: 'form-control btn-primary')
 		assert_text ('Sign out') 
 	end
-	test "Should sign up and then out" do
+	test "Should_sign_up_and_then_out" do
 		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name2')
@@ -53,7 +53,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Sign out')
 		assert_text('Sign Up')
 	end
-	test "Should sign up and then out and then back in" do
+	test "Should_sign_up_and_then_out_and_then_back_in" do
 		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name2')
@@ -71,7 +71,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		
 	end
 	#todo: write a test that fails to sign up
-	test "Should see rewards in control panel" do
+	test "Should_see_rewards_in_control_panel" do
 		visit ('http://localhost:3000/')
 		click_on('Sign In', match: :first)
 		fill_in(id:'user_email', with: 'e@gmail.com')
@@ -118,7 +118,8 @@ class UsersTest < ActionDispatch::IntegrationTest
 	end
 
 	test "Should_not_show_other_controlpanel" do
-		
+		visit('http://localhost:3000/username/controlpanel')
+		refute_text('Edit Profile')
 	end
 	
 	#test number of panels
