@@ -77,8 +77,12 @@ class EventsTest < ActionDispatch::IntegrationTest
         click_on('Shows', match: :first)
         assert_text('Livestream Directions')
     end
-    test "should paginate if discover discussion hosts is clicked" do
-        click_on('Discover Talk Show Hosts')
+    test "should be able to start your live show now" do
+        signup()
+        click_on('name')
+        click_on('View Profile')
+        click_on('Start Your Live Show Now')
+        assert_text('s Live Show')
     end
     test "setup future show to send the user to the create an event page" do
         
