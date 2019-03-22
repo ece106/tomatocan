@@ -1,134 +1,107 @@
-<!-- Set layout of panels for a logged-in user. You do not need to check if user logged in or if user == current user in this view. You should check if host is Heroku though. -->
-
-<!-- Nav tabs -->
 <% if user_signed_in? %>
-    <% if current_user.id == @user.id %> 
-        <ul class="nav nav-pills nav-justified" id="dashboardTabs">
-          <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
-          <li role="presentation"><%= link_to "Rewards", "#perksTab", "data-toggle" => "tab" %></li>
-          <li role="presentation"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab" %></li>
-          <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
-          <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
-        </ul>
+<% if current_user.id == @user.id %> 
+<ul class="nav nav-pills nav-justified" id="dashboardTabs">
+  <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+</ul>
 
+<div class="row">
+  <br><br>
+  <%= render 'layouts/stripealert' %>
+</div>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="profileTab">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Edit Profile</h1>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Make a button to see "view" mode of profile -->
+        <%= render :file => 'users/profileinfo' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="rewardsTab">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Manage Rewards</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <!--%= render 'layouts/stripealert' %-->
+          <%= render 'layouts/merchsidebar' %>
+        </div>
+        <div class="col-md-6">
+          <%= render 'layouts/createPerk' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <%= render 'layouts/expiredPerks' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="streamingTab">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Shows</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= render 'layouts/streamButton' %>
+          <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 50px; margin-left: 50px;" %>
+        </div>
+          <div class="col-md-6">
+            <%= render file: 'users/eventlist' %><br><br>
+            <%= render file: 'users/pastevents' %>
+          </div>
+          <div class="col-md-3">
+            <%= render 'layouts/streamDirections' %>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tab-pane" id="accountTab">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Account Settings</h1>
+        </div>
+      </div>
+      <div class="row">
+        <%= render :file => 'users/accountinfo' %>
+      </div>
+      <!-- Might want some sort of Stripe Connect panel here-->
+    </div>
+  </div>
+
+    <div class="tab-pane" id="salesTab">
+      <div class="container-fluid">
         <div class="row">
-          <br><br>
-          <%= render 'layouts/stripealert' %>
+          <div class="col-md-12">
+            <h1>Rewards Sales</h1>
+          </div>
         </div>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane active" id="profileTab">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h1>Edit Profile</h1>
-                        </div>
-                    </div>
-                        <div class="row">
-                            <!-- Make a button to see "view" mode of profile -->
-                            <%= render :file => 'users/profileinfo' %>
-                        </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="perksTab">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h1>Manage Rewards</h1>
-                        </div>
-                    </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!--%= render 'layouts/stripealert' %-->
-                                <%= render 'layouts/merchsidebar' %>
-                            </div>
-                            <div class="col-md-6">
-                                <%= render 'layouts/createPerk' %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <%= render 'layouts/expiredPerks' %>
-                            </div>
-                        </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="streamingTab">
-                    <div class="container-fluid">
-                        <% if request.host == "crowdpublishtv.herokuapp.com" %>
-                            <br><!--A lazy way to add space, boooo-->
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <%= render 'layouts/streamDirections' %>
-                                </div>
-                                <div class="col-md-8">
-                                    <%= render 'layouts/jitsi' %>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <%= render 'layouts/userUpcomingStreams' %>
-                                </div>
-                            </div>
-                        <% else %>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h1>Livestream</h1>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <%= render 'layouts/streamButton' %>
+        <%= render :file => 'users/dashboard' %>
+      </div>
+    </div>
 
 
-                                    <%= link_to 'Set Up Future Discussion', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 30px; margin-left: 15px;" %>
-
-                                </div>
-                                <div class="col-md-3" id="streamDirections">
-                                    <%= render 'layouts/streamDirections' %>
-                                </div>
-                            </div>
-                        <% end %>
-                            <div class="row">
-                               <div class="col-md-6" id="controlpanel-events">
-                                    <%= render file: 'users/eventlist' %><br><br>
-                                    <%= render file: 'users/pastevents' %>
-
-            <!-- Need an @events variable in controlpanel method of users controller
-            -->
-                                </div>
-                            </div>
-                      </div>
-            </div>
-        </div> 
-
-        <div class="tab-pane" id="accountTab">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <h1>Account Settings</h1>
-                            </div>
-                        </div>
-                        <div class="row">
-                                <%= render :file => 'users/accountinfo' %>
-                            </div>
-                            <!-- Might want some sort of Stripe Connect panel here-->
-                        </div>
-                    </div>
-       <div class = "tab-content">             
-            <div class="tab-pane" id="salesTab">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h1>Rewards Sales</h1>
-                            </div>
-                        </div>
-                        <%= render :file => 'users/dashboard' %>
-                    </div>
-            </div>
-        </div>
-    </div>    
-    <% end %>
+<% end %>
 <% end %>
