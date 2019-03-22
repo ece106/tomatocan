@@ -172,7 +172,7 @@ class UsersController < ApplicationController
     current_user.update!(stripeid: @resp.params["stripe_user_id"]) if @resp
     flash[:notice] = "Your account has been successfully created and is ready to process payments!"
   end
-  
+
   # POST /users.json 
   def create
     @user = User.new(user_params)

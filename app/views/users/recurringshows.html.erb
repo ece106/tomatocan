@@ -11,39 +11,35 @@
       <th>Guest2</th>
       <th>Submit</th>
     </tr>
+
+    <% require 'date' %>
+    <% def date_of_next(day) %>
+      <% date = Date.parse(day) %>
+      <% delta = date > Date.today ? 0 : 7 %>      
+      <% date + delta %>
+    <% end %>
+
+    <% Date.today %>
+    <% start_at = date_of_next "Tuesday" %>
+
+    <% for i in 0..12 do %>
     <tr style="text-align:center">
-      # <% require 'date' %>
-      <% def date_of_next(day) %>
-        <% date = Date.parse(day) %>
-        <% delta = date > Date.today ? 0 : 7 %>
-        <% date + delta %>
-      <% end %>
-
-      <% Date.today %>
-      <% start_at = date_of_next "current_usrid.start_day" %>
-
-      <% for i in 0..12 do %>
-        <%= form_for(@event) do |f| %>
           <td class=col-xs-3>
             <% edt = start_at + 1.hours %> 
-            <span style="font-size:125%;" id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
-            <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> MST</span>
+            <span style="font-size:125%;" id=calendar-time><%= start_at.strftime("%a, %b. %d") %></span>
+            <span style="font-size:90%;"id=calendar-time><%= start_at.strftime("%l:%M%P") %> MST</span>
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EST</span>
           </td> 
-          <td><%= current_usrid.name %></td>
-          <td><%= f.text_field :topic, :size => 20 %></td>
-          <td><%= f.radio_button_tag(:role, "interviewer") %></td>
-          <td><%= f.label_tag(:role_type, "Interviewer") %></td>
-          <td><%= f.radio_button_tag(:role, "guest1") %></td>
-          <td><%= f.label_tag(:role_type, "Guest 1") %></td>
-          <td><%= f.radio_button_tag(:role, "guest2") %></td>
-          <td><%= f.label_tag(:role_type, "Guest 2") %></td>
-          <td><%= f.submit "Create Event", :class => "btn btn-lg btn-primary" %></td>
-        <%= end %>
-
-        <% start_date = start_date+7 %>
-      <% end %>
+          <td><% current_user.name %></td>
+          <td><%= text_field :topic, :size => 20 %></td>
+          <td>d</td>
+          <td>f</td>
+          <td>g</td>
+          <td>h</td>
+        
+        
     </tr>
+    <% end -%>
     </table>
   </div>
 </div>
