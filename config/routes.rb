@@ -72,6 +72,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
   match '/:permalink/controlpanel' => "users#controlpanel", :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard' => "users#dashboard", :as => :user_dashboard, via: 'get'
+  match '/:permalink/recurringshows' => 'users#recurringshows', :as => :user_recurringshows, via: 'get'
  
   post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user
 

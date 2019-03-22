@@ -39,7 +39,7 @@
           <td><%= f.radio_button_tag(:role, "guest2") %></td>
           <td><%= f.label_tag(:role_type, "Guest 2") %></td>
           <td><%= f.submit "Create Event", :class => "btn btn-lg btn-primary" %></td>
-        <%  end %>
+        <%= end %>
 
         <% start_date = start_date+7 %>
       <% end %>
