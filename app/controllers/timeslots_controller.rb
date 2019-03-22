@@ -1,13 +1,15 @@
 class TimeslotsController < ApplicationController
-  before_action :set_timeslot, only: [:show, :edit, :update, :destroy]
+  before_action :set_timeslot, :logged_in_user, only: [:show, :edit, :update, :destroy]
 
   # GET /timeslots
   def index
     @timeslots = Timeslot.all
+    @events = Event.where( "start_at > ?", Time.now )
   end
 
   # GET /timeslots/1
   def show
+    @timeslot = Timeslot.find(params[id])
   end
 
   # GET /timeslots/new
@@ -15,13 +17,15 @@ class TimeslotsController < ApplicationController
     @timeslot = Timeslot.new
   end
 
-  # GET /timeslots/1/edit
+  # GET /timeslots/1/editx
   def edit
+    @timeslot = Timeslot.find(params[:id])
   end
 
   # POST /timeslots
   def create
-    @timeslot = Timeslot.new(timeslot_params)
+  #  @timeslot = Timeslot.new(timeslot_params)
+    @timeslot = current_user.timeslots.build(timeslot_params)
 
     if @timeslot.save
       redirect_to @timeslot, notice: 'Timeslot was successfully created.'
