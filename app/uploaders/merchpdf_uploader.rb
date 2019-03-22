@@ -8,9 +8,9 @@ class MerchpdfUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    # puts "================="
-    # puts "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
-    "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
+     #puts "================="
+     #puts "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
+     "#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
 #    "#{model.class.to_s.underscore}/#{model.id}"
   end
 

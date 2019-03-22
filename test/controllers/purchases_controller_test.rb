@@ -5,7 +5,6 @@ class PurchasesControllerTest < ActionController::TestCase
     @purchases = purchases(:one)
   end
 
-  #1
     test "should_get_purchases_new_purchase" do
       @merchandises = merchandises(:one)
       sign_in users(:two)
@@ -13,7 +12,6 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-  #2
     test "should_get_purchases_new_donate" do
       sign_in users(:two)
       seller = users(:one)
@@ -22,14 +20,12 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-  #3
     test "should_get_purchases_show" do
       sign_in users(:one)
       get :show, params: {id: @purchases.id }
       assert_response :success
     end
 
-  #4
     test "test user should get correct seller for purchased merchandise" do
        sign_in users(:one)
        purchase_demo = purchases(:one)
@@ -37,7 +33,6 @@ class PurchasesControllerTest < ActionController::TestCase
        assert_equal(purchase_demo.merchandise.user_id, 2, msg = nil)
     end 
 
-  #5
     test "test user should get correct button type for the purchase" do
        sign_in users(:one)
        purchase_demo = purchases(:one)
@@ -45,7 +40,6 @@ class PurchasesControllerTest < ActionController::TestCase
        assert_equal(purchase_demo.merchandise.buttontype, "Donate", msg = nil)
     end 
 
-  #6
     test "test user should get correct merchandise price for the purchase" do
       sign_in users(:one)
       purchase_demo = purchases(:two)
@@ -53,7 +47,6 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_equal(purchase_demo.merchandise.price, 1.5, msg = nil)
     end 
 
-  #7
     test "test user should get correct pricesold for the purchase" do
       sign_in users(:one)
       purchase_demo = purchases(:two)
@@ -61,7 +54,6 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_equal(purchase_demo.pricesold, 50.5, msg = nil)
     end 
 
-  #8
     test "test user should get correct authorcut for the purchase" do
       sign_in users(:one)
       purchase_demo = purchases(:two)
@@ -69,7 +61,6 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_equal(purchase_demo.authorcut, 38.1, msg = nil)
     end
 
-  #9
     test "test to check if the show function checks merchandise type correctly" do
       sign_in users(:one)
       purchase_demo = purchases(:one)
@@ -77,8 +68,6 @@ class PurchasesControllerTest < ActionController::TestCase
       refute_equal(purchase_demo.merchandise_id, nil, msg = nil)
     end
 
-
-  #10
   require 'stripe_mock'
 
   setup do
@@ -100,7 +89,6 @@ class PurchasesControllerTest < ActionController::TestCase
     end
   end
 
-  #11
     test "user tries to purchase something from himself/herself" do #is response 200 OK but should give an error
       sign_in users(:one)
       seller = users(:one)
@@ -109,7 +97,6 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end 
 
-  #12
     #test to create a new merch pdfsetup do
     require 'stripe_mock'
 
@@ -134,17 +121,5 @@ class PurchasesControllerTest < ActionController::TestCase
       end 
     end
 
-  #13
-    test "to test POST /purchases creates purchase for the correct purchaser" do
-      sign_in users(:two)
-      post :create, params: {purchase: {merchandise_id: merchandises(:one).id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
-      assert_equal(@purchases.user_id, users(:one).id)
-    end
 
-  #14
-    test "to test the POST/purchases creates purchase for the correct seller" do
-      sign_in users(:two)
-      post :create, params: {purchase: {merchandise_id: merchandises(:one).id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
-      assert_equal(@purchases.author_id, users(:one).id)
-    end     
 end

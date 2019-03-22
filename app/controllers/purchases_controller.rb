@@ -97,8 +97,8 @@ class PurchasesController < ApplicationController
             seller = User.find(@merchandise.user_id)
             redirect_to user_profile_path(seller.permalink)
             flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
-          #else
-           # redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+          else
+            redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
           end
         end
       else # Making a donation 
