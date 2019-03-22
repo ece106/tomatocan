@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class MerchandisesControllerTest < ActionController::TestCase
-  setup do
+    setup do
     @merchandise = merchandises(:one)
   end
 
@@ -42,8 +42,8 @@ class MerchandisesControllerTest < ActionController::TestCase
   test "should create merchandise" do
     sign_in users(:one)
     assert_difference('Merchandise.count', 1) do
-      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
-       assert_redirected_to user_profile_path(users(:one).permalink)
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+        assert_redirected_to user_profile_path(users(:one).permalink)
     end
   end
 
@@ -124,5 +124,4 @@ class MerchandisesControllerTest < ActionController::TestCase
     get :new
     assert_template 'application'
   end
-
 end
