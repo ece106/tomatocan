@@ -22,8 +22,7 @@
   font-size: 1.25rem;
   text-align: center;
 }
-#calendar-create  {
-  
+#calendar-create  { 
 }
 #share {      
 } 
@@ -37,9 +36,10 @@
     }
 /* CSS for users/controlpanel */
 #streamDirections{
-    left: 50%;
+  float: right;
+  bottom: 60%;
 }
 #controlpanel-events {
-    position: relative;
-    bottom: 20px;
+    margin-top: 60px;
+    right: 15.5%;
 }
