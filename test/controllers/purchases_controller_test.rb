@@ -121,5 +121,4 @@ class PurchasesControllerTest < ActionController::TestCase
       end 
     end
 
-
 end
