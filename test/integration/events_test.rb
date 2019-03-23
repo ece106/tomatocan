@@ -84,8 +84,18 @@ class EventsTest < ActionDispatch::IntegrationTest
         click_on('Start Your Live Show Now')
         assert_text('s Live Show')
     end
-    test "setup future show to send the user to the create an event page" do
+    test "Join button should be visible if the user is not signed it" do
+        assert_text('Join')
         
+    end
+    test "Test if the FAQ links work and redirect to the correct place" do
+        click_on('FAQ', match: :first)
+        assert_text('t accessing my mic or webcam')
+    end
+    test "test if the home link works" do
+         click_on('FAQ', match: :first)
+         click_on('Home')
+         assert_text('Doing Purposeful Work?');
     end
 end
 
