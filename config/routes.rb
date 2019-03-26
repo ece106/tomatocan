@@ -24,9 +24,6 @@ Rails.application.routes.draw do
   match 'aboutus', to: 'static_pages#aboutus', via: 'get'
   match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
   match 'livestream', to: 'static_pages#livestream', via: 'get'
-
-  match '/events/pastevents' => "events#pastevents", :as => :events_pastevents, via: 'get'
-
   match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
   match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'
     

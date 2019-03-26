@@ -4,17 +4,12 @@ class EventsTest < ActionDispatch::IntegrationTest
     include Capybara::DSL
     # Make `assert_*` methods behave like Minitest assertions
     include Capybara::Minitest::Assertions
-
+    #Capybara::Screenshot.autosave_on_failure = false# disable screenshot on failure
     setup do
-        visit ('http://localhost:3000/')
-        
-    end
-    def teardown
-        Capybara.reset_sessions!
-        Capybara.use_default_driver
+      visit ('/')#user is at the home page by default
     end
     def signup()
-        visit ('http://localhost:3000/')
+        visit ('/')
         click_on('Sign Up', match: :first)
         fill_in(id:'user_name', with: 'name')
         fill_in(id:'user_email', with: 'e@gmail.com')
@@ -23,22 +18,20 @@ class EventsTest < ActionDispatch::IntegrationTest
         fill_in(id:'user_password_confirmation', with:'password')
         click_on(class: 'form-control btn-primary')#Click Signup
         assert_text ('Profile Image')#is user sent to their profile info page?
-        visit ('http://localhost:3000/')
-        
+        visit ('/')
     end
    def createEvent()
        signup()
        click_on('Host Discussion')
        fill_in(id:'event_name', with: 'Intern')
        fill_in(id:'event_desc', with: 'This is a description of the event')
+       
        click_button(class: 'btn btn-lg btn-primary')
-       visit ('http://localhost:3000/')
+       visit ('/')
        assert_text('Intern')#does the event show up on the homepage?
-       click_on('Sign out')
        click_on('Join Discussion')
        assert_text('Live Show')
    end
-  Capybara::Screenshot.autosave_on_failure = false
     test "Should login before hosting a discussion" do
         click_on('Host Discussion')
         assert_text ('Login')
@@ -96,6 +89,19 @@ class EventsTest < ActionDispatch::IntegrationTest
          click_on('FAQ', match: :first)
          click_on('Home')
          assert_text('Doing Purposeful Work?');
+    end
+    test "test if the offer rewards button works" do
+        signup()
+        click_on('Offer Rewards')
+        assert_text('Create a Reward')
+    end
+    test "Test if second FAQ link works on homepage" do
+        click_link(class:'f-link')
+        assert_text('t accessing my mic or webcam')
+    end
+    test "Test if the About link at the bottom of the home page redirects properly" do
+        click_on('About')
+        assert_text('What is CrowdPublish.TV?')
     end
 end
 
