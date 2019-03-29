@@ -74,7 +74,7 @@ class Purchase < ApplicationRecord
       end
     end
 
-    if seller.id == 143 || seller.id == 1336 || seller.id == 1337 || seller.id == 1345 || seller.id == 1368 
+    if seller.id == 143 || seller.id == 1337 || seller.id == 1345 
       charge = Stripe::Charge.create( {
         :amount => amt, 
         :currency => "usd",

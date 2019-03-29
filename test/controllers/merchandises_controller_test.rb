@@ -4,20 +4,20 @@ class MerchandisesControllerTest < ActionController::TestCase
   setup do
     @merchandise = merchandises(:one)
   end
-
   #test run to assert index of merchandise page found
   #passes
 #test "should get index" do
 #    get :index
-      #assert_response :success
+#      assert_response :success
 #assert_not_nil assigns(:merchandises)
 
 #end
+
   #test run to assert a signed in user can load page to create a new merchandise
   #passes
 test "should get new if user signed in" do
 sign_in users(:one)
- get :new
+  get :new
   assert_response :success
 end
 
@@ -47,6 +47,7 @@ end
   #######################################
   ####tests for creating merchandise#####
   #passes
+  
   test "should create merchandise" do
     sign_in users(:one)
     assert_difference('Merchandise.count', 1) do
@@ -142,4 +143,5 @@ end
   # test "should set expiredmerch" do
   #   assert @expiredmerch.valid?
   # end
+ 
 end
