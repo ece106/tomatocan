@@ -154,14 +154,17 @@ class UsersTest < ActionDispatch::IntegrationTest
 		visit('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
-		assert_text('Donate $25.00!')
+		assert_text('user1 product')
 	end
-	test 'Should_donate_25' do
+	test 'Should_buy_user' do
 		visit('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
-		click_on('Donate $25.00!')
+		click_on('Buy for $1.50')
 		fill_in(id:'card_number', with:'4242424242424242')
+	end
+	test 'Should order' do
+
 	end
 	#test number of panels
 
