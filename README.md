@@ -171,6 +171,8 @@ test:
   database: db/test.sqlite3
 ```
 
+DO NOT NAME YOUR DEVELOPMENT DATABASE THE SAME AS YOUR TEST DATABASE!!!
+
 * config/environments/development.rb: 
 
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
