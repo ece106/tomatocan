@@ -25,7 +25,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
   end
 
-  test "should get users supportourwork" do
+  test "should get users support our work" do
     get :supportourwork
     assert_response :success
   end
