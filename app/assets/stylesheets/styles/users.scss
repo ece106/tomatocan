@@ -24,12 +24,6 @@
 	//centers and crops images
 	object-fit: cover;
 }
-#profileTitle {
-	vertical-align: middle;
-    background: rgba(192,192,192,0.5); 
-    margin-top: 25px;
-    border-radius: 15px;
-}
 #profileName {
 	text-transform: capitalize;
 	color: $brand-secondary;
@@ -108,4 +102,10 @@
 }
 #currentImage {
 	float: right;
+}
+
+#discussionWrapping {
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 10px;
 }

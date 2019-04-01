@@ -11,8 +11,8 @@
       <!--Download perk file-->
 
       <% if @merchandise.audio.present? %>
-
       <%end%>
+
       <%if @merchandise.buttontype == 'Donate'%>
         <%= link_to "Donate Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "btn btn-primary" %> 
       <%else%>
@@ -35,5 +35,5 @@
         <% end %>
       <% end %>
 </div>
-<br><br><br><br>
+<br><br><br><br><br><br><br><br>
 </div>

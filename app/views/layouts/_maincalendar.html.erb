@@ -7,6 +7,8 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
+<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+
 <div class="panel panel-default">
   <div class=panel-heading>
     Upcoming Livestream Discussions
@@ -38,7 +40,7 @@
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
           <td class=col-xs-3>
-            <%= link_to "Join Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+            <%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
           </td>
           <td class=col-xs-1>
             <% shareurl = "http://www.CrowdPublish.TV/" + user.permalink %>
@@ -46,7 +48,7 @@
             <div id="social-button"><span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Watch <%= user.name %>'s livestream: <%=  event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: <%= shareurl %>" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span></div>
             <div>
               <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-              <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top"></script>
+              <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top">Share</script>
             </div>  
           </td>  
         </tr>
@@ -61,3 +63,5 @@
     $('[data-toggle="tooltip"]').tooltip()
   })
 </script>
+
+      

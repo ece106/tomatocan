@@ -5,41 +5,45 @@
   text-align: left;
   vertical-align: middle !important;
 }
+
 #calendar-event {
   display: block;
   font-size: 2rem;
   font-weight: 600;
 }
+
 .tooltip-inner {
     font-size: 14px;
   }
+
 #calendar-host {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.50rem;
 }
+
 #calendar-time {
   display: block;
   font-size: 1.25rem;
   text-align: center;
 }
-#calendar-create  {
-  
-}
-#share {      
-} 
+
 /* Padding between Social media buttons */ 
 #social-button {  
     padding-bottom: 10px; 
 } 
+
 .fb-like {  
     padding-top: 3px; 
     padding-bottom: 6px;  
-    }
+}
+
 /* CSS for users/controlpanel */
 #streamDirections{
-    left: 50%;
+  float: right;
+  bottom: 60%;
 }
+
 #controlpanel-events {
-    position: relative;
-    bottom: 20px;
+    margin-top: 60px;
+    right: 15.5%;
 }

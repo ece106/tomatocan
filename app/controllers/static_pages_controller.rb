@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
     timenotutc = Time.now - 10.hours
-    @events = Event.where( "start_at > ?", timenotutc )
+    @events = Event.where( "start_at > ?", timenotutc ).paginate(page: params[:page], :per_page => 12)
     if user_signed_in?
       @user = User.find(current_user.id)
     end
