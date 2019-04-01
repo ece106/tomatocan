@@ -7,6 +7,8 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
+<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+
 <div class="panel panel-default">
   <div class=panel-heading>
     Upcoming Livestream Discussions
