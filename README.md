@@ -26,40 +26,31 @@ Refer to http://github.com/ece106/tomatocan and use tutorials, Google, etc. to h
 e.g. "created_at" - Time and date at which each record was created
 "twitter" - user's twitter handle
 
+2. Which file/view is the users' profile page? What information can users display on their page? 
 
-2. Which file/view is the users' home page? What information can users display on their home page? Where is this information stored in the Tomatocan database?
+3. Where is the users' profile page information stored in the Tomatocan database?
 
-3. What pages/views do users get in their web site when they sign up for Tomatocan?
+4. What files does Rails autogenerate when you generate scaffolding for a table? 
 
-4. What are the default views for all Rails apps? What do they display?
+5. User pages are found by their permalink rather than record id number. What are the routes that were added to the Tomatocan app so the views for user pages could be displayed?
 
-5. What are the routes that were added to the Tomatocan app so the non-default/extra views for user pages could be displayed?
+6. What are the methods that were added to the Tomatocan app so the user views could be displayed? 
 
-6. What are the methods that were added to the Tomatocan app so the non-default/extra user views/pages could be displayed? What file are they in?
+7. What gem is used for signin/signout? How many times is it mentioned in the Tomatocan repository?
 
-7. Where is the method to calcdashboard for users? 
+### TO USE THE TOMATOCAN GITHUB REPO
 
-8. What gem is used for signin/signout? How many times is it mentioned in the Tomatocan repository?
+1. Fork tomatocan to your local machine
 
-9. Fork a copy of the tomatocan github repo (url above) into your GitHub account. Make a minor change that does not affect functionality (such as add a dummy file to the root directory) and request that the Tomatocan admin pull your changes.
+Fork the tomatocan code by clicking the fork button at http://github.com/ece106/tomatocan. Forking will allow you to have a copy of the tomatocan code in your personal github. 
 
-10. Summarize your Ruby & Rails skill level/what you know in your own words.
-
-### TO USE THE TOMATOCAN GITHUB
-
-For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
-
-1. Forking from tomatocan and bringing the code to your local machine
-
-Begin by forking the tomatocan code by pressing the fork button located at http://github.com/ece106/tomatocan. Forking will allow you to have a copy of the tomatocan code in your personal github and will give you a way to request tomatocan to pull your changes. 
-
-In order to bring the tomatocan code to your local machine you must make a clone of the fork you have created. 
+Clone the fork you have created. 
 
 a. On GitHub, navigate to your fork of the tomatocan repository.
 
 b. Under the repository name, click ``` Clone or download ```. Do NOT download.
 
-c. To CLONE the repository: Open a command line in the directory you would like your code to be saved and use the command:
+c. To CLONE the repository: In a terminal, in the directory you would like to store your code:
 
 ```
  git clone https://github.com/YOUR-GITHUB_USERNAME/tomatocan
@@ -67,19 +58,17 @@ c. To CLONE the repository: Open a command line in the directory you would like 
 
 2. Saving your changes to your repository
 
-In order to push your code to your repository you will have to stage your files to commit. You can stage your files by using the following commands:
-
-"Adds modified and new files that are not .ignored to the stage"
+To add modified and new files that are not in .gitignore:
 ```
 git add * :/
 ```
 
-To finish your commit (which will save your current files) use the command:
+To commit your current files:
 ```
 git commit -a -m "Useful Comment of Your Changes/Additions"
 ```
 
-Now you can push your comitted changes to your repository with the following commands:
+Push comitted changes to your repository:
 
 ```
 git push origin master
@@ -90,17 +79,17 @@ or
 git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-TOMATOCAN-REPOSITORY master
 ```
 
-3. Pulling changes from tomatocan into your local machine
+3. Pulling changes from tomatocan master into your local machine
 
-When changes have been made to the code http://github.com/ece106/tomatocan, your github will be behind. So you will have to pull the changes to your local machine and then push them to your repository. To pull changes from tomatocan, be sure to be in the correct directory, and use the command: 
+When changes have been made to the http://github.com/ece106/tomatocan master repo, your own github repo will be behind. Pull the changes to your local machine, then push them to your repository. To pull changes from tomatocan master: 
 
 ```
 git pull https://github.com/ece106/tomatocan.git master
 ```
 
-4. Getting your code onto tomatocan
+4. Getting your code into tomatocan test branch
 
-Once you have made changes to your personal repository you can request for tomatocan to pull your changes into the original repository. To do this you have to create a pull request. One way of creating a pull request is to go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY and there is a button labeled "New Pull Request". After creating a pull request your changes have to be reviewed and then either accepted or denied.
+Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
 ### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
 
@@ -182,6 +171,8 @@ test:
   database: db/test.sqlite3
 ```
 
+DO NOT NAME YOUR DEVELOPMENT DATABASE THE SAME AS YOUR TEST DATABASE!!!
+
 * config/environments/development.rb: 
 
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
@@ -252,6 +243,10 @@ Then type
 at the command line from the tomatocan directory to start the server.
 
 
-And it's good to refer to Michael Hartl's tutorial for a lot of Rails help http://railstutorial.org/book
+Refer to Michael Hartl's tutorial for great Rails knowledge http://railstutorial.org/book
+
+For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
+
+For minitest methods https://guides.rubyonrails.org/testing.html
 
 Copyright &copy; 2019, RoleModel Enterprises, LLC. All rights reserved.

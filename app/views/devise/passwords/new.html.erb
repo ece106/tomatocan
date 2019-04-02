@@ -1,7 +1,8 @@
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+
+	<%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true, :size => 40 %></div><br>

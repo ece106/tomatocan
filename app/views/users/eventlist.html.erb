@@ -9,7 +9,7 @@
 		  <th></th>
 		</tr>
 		<% @events.sort_by{|t| t.start_at}.each do |event| %>
-  	      <tr style="text-align:center">
+  	      <tr style="text-align:left;">
 		    <td><%= link_to event.name, event %></td>
 		    <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %></td>
 		    <td><%= link_to "Edit", edit_event_path(event) %></td>
