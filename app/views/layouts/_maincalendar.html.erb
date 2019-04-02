@@ -58,6 +58,8 @@
   <% end %>
 </div>
 
+<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+
 <script>
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
