@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   # GET /events.json
   def index
-    @events = Event.where( "start_at > ?", Time.now )
+    @events = Event.where( "start_at > ?", Time.now ).paginate(page: params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }

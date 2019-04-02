@@ -1,3 +1,6 @@
+<!-- Set layout of panels for a logged-in user. You do not need to check if user logged in or if user == current user in this view. You should check if host is Heroku though. -->
+
+<!-- Nav tabs -->
 <% if user_signed_in? %>
 <% if current_user.id == @user.id %> 
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
@@ -60,16 +63,20 @@
           <h1>Shows</h1>
         </div>
       </div>
+      <br>
+
       <div class="row">
-        <div class="col-md-2">
-          <%= render 'layouts/streamButton' %>
-          <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-top: 50px; margin-left: 50px;" %>
-        </div>
-          <div class="col-md-6">
-            <%= render file: 'users/eventlist' %><br><br>
+          <div class="col-md-1">
+            <%= render 'layouts/streamButton' %>
+          </div>
+          <div class="col-md-1">
+            <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 170px;" %>
+          </div>
+          <div class="col-md-6" id="controlpanel-events">
+            <%= render file: 'users/eventlist' %><br>
             <%= render file: 'users/pastevents' %>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4" id="streamDirections">
             <%= render 'layouts/streamDirections' %>
           </div>
       </div>
@@ -101,7 +108,5 @@
         <%= render :file => 'users/dashboard' %>
       </div>
     </div>
-
-
 <% end %>
 <% end %>
