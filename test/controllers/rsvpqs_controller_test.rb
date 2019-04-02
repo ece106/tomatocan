@@ -6,11 +6,11 @@ class RsvpqsControllerTest < ActionController::TestCase
     @event = events(:one)
   end
 
-   test "should create rsvpq with email" do
-              post :create, params: {id: @rsvpq.id, rsvpq: { email: 'validemail@email.com' } }
 
-        assert_difference('Rsvpq.count', 1)
-        
+   test "should create rsvpq with email" do
+    assert_difference('Rsvpq.count', 1) do
+      post :create, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
+      end
    end
 
   test "should create rsvpq when signed in" do
@@ -20,14 +20,22 @@ class RsvpqsControllerTest < ActionController::TestCase
         end
    end
 
-  #redirect to home path after successful creation
-  test "should redirect to home_path" do
+  test "should redirect to home_path after successful creation, signed in" do
   sign_in users(:one)
       post :create, params: { rsvpq: { event_id: @event.id } }
       assert_redirected_to home_path
 end
 
-#passing
+  test "should redirect to home_path after successful creation, valid email" do
+    post :create, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
+    assert_redirected_to home_path
+end
+
+  test "should redirect back after unsuccessful creation, invalid email" do
+    post :create, params: {id: @rsvpq.id, rsvpq: { email: 'notavalidemail' } }
+    assert_redirected_to root_path
+end
+
 test "should display FLASH message for invalid email" do
   post :create, params: {id: @rsvpq.id, rsvpq: { email: 'notavalidemail' } }
   assert_equal 'Please enter a valid email address', flash[:error]
@@ -37,8 +45,6 @@ test "should display FLASH message for blank email" do
   post :create, params: {id: @rsvpq.id, rsvpq: { email: '' } }
   assert_equal 'Please enter a valid email address', flash[:error]
 end
-
-
 
   #passes
   test "should show rsvpq" do

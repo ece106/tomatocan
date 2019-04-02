@@ -1,5 +1,5 @@
-class TimeslotsController < ApplicationController
-  before_action :set_timeslot, :logged_in_user, only: [:show, :edit, :update, :destroy]
+ class TimeslotsController < ApplicationController
+  before_action :set_timeslot, only: [:show, :edit, :update, :destroy]
 
   # GET /timeslots
   def index
@@ -9,7 +9,7 @@ class TimeslotsController < ApplicationController
 
   # GET /timeslots/1
   def show
-    @timeslot = Timeslot.find(params[id])
+    @timeslot = Timeslot.find(params[:id])
   end
 
   # GET /timeslots/new
