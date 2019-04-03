@@ -18,6 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
+
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
@@ -43,9 +44,6 @@ group :test, :development do
 #  gem 'factory_girl_rails'
 #  gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
-	gem 'stripe-ruby-mock', :require =>'stripe_mock'
-	gem 'capybara'
-	gem 'selenium-webdriver'
 end
 
 group :production do

@@ -13,15 +13,15 @@
 				<div class="embed-responsive embed-responsive-16by9">
 					<iframe class="embed-responsive-item" src="//www.youtube.com/embed/<%= u.youtube1 %>" allowfullscreen></iframe>
 				</div>
+                <div style="height: 80px">
                   <h4><span><%= link_to u.name, user_profile_path(u.permalink)%></span></h4>
  				  <% if u.genre1.present? && u.genre1 != '' %>
 				    <% genrelist = u.genre1, u.genre2, u.genre3 %>
 				    <% # genrelist.reject!(&:empty?) # why is genre1 if statement true on my localhost %>
 				    <p><%= genrelist.join(', ') %></p>
-				  <% else %>
-				    <br><br>
 				  <% end %>
-			  </div>
+				</div>
+  			  </div>
 			</div>
 		<% end %>
 	</div>
