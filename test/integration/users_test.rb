@@ -6,7 +6,6 @@ class UsersTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   
-	test "Should view profileinfo" do
   	setup do
   		visit ('http://localhost:3000/')
   		def signUpUser()
@@ -29,13 +28,11 @@ class UsersTest < ActionDispatch::IntegrationTest
 		end
   	end
 	test "Should_view_profileinfo" do
-		visit ('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		assert_text ('Discussion Hosts')
 	end
 
 	test "Should_sign_up" do
-		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name2')
 		fill_in(id:'user_email', with: 'e2@gmail.com')
@@ -46,7 +43,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text ('Sign out') 
 	end
 	test "Should_sign_up_and_then_out" do
-		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name2')
 		fill_in(id:'user_email', with: 'e2@gmail.com')
@@ -58,7 +54,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('Sign Up')
 	end
 	test "Should_sign_up_and_then_out_and_then_back_in" do
-		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name2')
 		fill_in(id:'user_email', with: 'e2@gmail.com')
@@ -76,7 +71,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 	end
 	#todo: write a test that fails to sign up
 	test "Should_see_rewards_in_control_panel" do
-		visit ('http://localhost:3000/')
 		signUpUser()
 		signInUser()
 		click_on(class: 'dropdown-toggle')
@@ -124,7 +118,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 	test "Should_show_video" do
 		click_on('Discover Talk Show Hosts')
 		assert_text('Phineas')
-
 	end
 	test "Should_not_show_video" do
 		click_on('Discover Talk Show Hosts')
@@ -148,28 +141,72 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('Passwords do not match')
 	end
 	test 'Should_show_FAQs' do
-		visit('http://localhost:3000/')
 		click_on('FAQ', :match => :first)
 		assert_text('What are the steps for Discussion Hosts to host a show on CrowdPublish.TV?')
 	end
 	#These tests are in progress
 	test 'Should_see_donate' do
-		visit('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
 		assert_text('user1 product')
 	end
+	test 'Should_change_name' do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+		click_on('Control Panel')
+		fill_in(id:'user_name', with:'names')
+		within('div#panel-body') do
+			click_on('saveProfileButton')
+			
+		end
+		assert_text('names')
+	end
+
+	#Stripe error here
 	test 'Should_buy_user' do
 		visit('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
 		click_on('Buy for $1.50')
 		fill_in(id:'card_number', with:'4242424242424242')
+		select("2020", from: 'card_year')
+		click_on('Purchase')
+		assert_text('successfully')
 	end
 	test 'Should order' do
+		visit('http://localhost:3000/')
+		click_on('Discover Talk Show Hosts')
+		click_link('Phineas')
+		click_on('Buy for $1.50')
+		assert_text('If you are purchasing')
+	end
+	test 'Should_host_logged_in' do
+		click_on('Host Discussion')
+		fill_in(id:'event_name', with:'example')
+		click_on(id:'eventSubmit')
+		assert_text('example')
+	end
+	test 'Should_host_logged_out' do
+		click_on('Host Discussion')
+		assert_text('You need to sign up or sign in before continuing.')
+	end
+	test 'Should_see_sign_up_not_logged_in' do
+		within('div#heroImage.row') do
+			assert_text('Sign Up')
+		end
+
+	end
+	test 'Should_see_offer_rewards_logged_in' do
+		signUpUser()
+		signInUser()
+		within('div#heroImage.row') do
+			assert_text('Offer Rewards')
+		end
 
 	end
 	#test number of panels
 
-		
+	
+
 end

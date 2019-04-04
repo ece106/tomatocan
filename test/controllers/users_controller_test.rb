@@ -10,7 +10,10 @@ class UsersControllerTest < ActionController::TestCase
   #   assert_response :success
   #   assert_not_nil assigns(:users)
   # end
-
+  test "should get index" do
+      get :index
+      assert_response :success
+  end
   test "should equate youtube field" do
     youtube="youtube"
     assert_equal(youtube,@user.youtube)
@@ -83,10 +86,6 @@ class UsersControllerTest < ActionController::TestCase
     get :changepassword, params: {permalink: 'user1'}
     assert_response :success
   end
- 
-
-  
-   
   test "should get pastevents logged in" do
     sign_in @user
     user=User.find_by_permalink(@user.permalink)
@@ -100,8 +99,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should get pastevents not logged in" do
      get :pastevents, params: {permalink: 'user2'}
     assert_response :success
-  end
-
+  end 
   test "should get users profileinfo" do 
     get :profileinfo, params: {permalink: 'user1'}
     assert_response :success
