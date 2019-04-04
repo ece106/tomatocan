@@ -19,7 +19,6 @@ class PurchasesControllerTest < ActionController::TestCase
       get :new, params: { pricesold: 25, author_id: seller.id, merchandise: merch }
       assert_response :success
     end
-
     test "should_get_purchases_show" do
       sign_in users(:one)
       get :show, params: {id: @purchases.id }
@@ -76,20 +75,38 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end 
 
-    test "to test POST /purchases creates purchase for the correct purchaser" do
-      sign_in users(:two)
-      #create a merchpdf merchandise for a fixture? @merch_buy
-      #sign in user : buyer
-      #create a purchase for buyer to purchase @merch_buy
-      #check if the purchased merchandise contains merch_pdf
+    require 'stripe'
+    #require_relative 'subscription'
+
+    setup do
+      @user = users(:two)
+      @user1 = users(:one)
+      sign_in @user
+    end
+
+    describe "Subscription" do
+      before do
+        Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+      end
+
+    it "to test POST donation" do
+      #sign_in @user
+      stripe_token = Stripe:Token.create(card: {
+        number: "4242424242424242",
+        exp_month: 7,
+        exp_year: 2100,
+        cvc: "123"
+      })
+      post :create, params: {purchase: {user_id: @user.id, author_id: @user1.id, email: @user.email, pricesold: 5} }
       assert_response :success
     end
+  end
 
     test "to test the POST/purchases creates purchase for the correct seller" do
       sign_in users(:two)
       @merch = merchandises(:one)
       post :create, params: {purchase: {merchandise_id: @merch.id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
       assert_equal(@purchases.author_id, users(:one).id)
-    end  
+    end   
 
 end

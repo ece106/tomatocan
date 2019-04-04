@@ -52,7 +52,7 @@ class PurchasesController < ApplicationController
               filename = filename[filename.length-1]
               data = open("#{@merchandise.audio.to_s}")
               send_data data.read, filename: filename, disposition: 'attachment' 
-            end
+            end 
             #graphic
             if @merchandise.graphic.present?
               filename = @merchandise.graphic.to_s.split('/')

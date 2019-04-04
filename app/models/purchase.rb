@@ -116,6 +116,7 @@ class Purchase < ApplicationRecord
 #        :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
 #        :transfer_group => transfergrp #does this mean anything when there is a source transaction?
 #      })
+
       if self.group_id.present?  #this is for when groups affiliate to help sell
         puts "21x" #############
         transfer = Stripe::Transfer.create({
@@ -128,6 +129,7 @@ class Purchase < ApplicationRecord
       end
     end
 
+    puts "23x" #############
     save!
 
   rescue Stripe::InvalidRequestError => e
