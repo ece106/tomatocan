@@ -68,28 +68,7 @@ class PurchasesControllerTest < ActionController::TestCase
       refute_equal(purchase_demo.merchandise_id, nil, msg = nil)
     end
 
-  require 'stripe_mock'
-
-  setup do
-    @user = users(:one)
-    @email= @user.email
-  end
-
-  describe "MyApp" do
-    let(:stripe_helper) { StripeMock.create_test_helper }
-    before { StripeMock.start }
-    after { StripeMock.stop }
-
-    it "test to create a stripe account for seller" do
-      seller1 = Stripe::Customer.create({
-        email: @email,
-        source: stripe_helper.generate_card_token
-    })
-    assert_equal(seller1.email, @email)
-    end
-  end
-
-    test "user tries to purchase something from himself/herself" do #is response 200 OK but should give an error
+    test "user tries to purchase something from himself/herself" do 
       sign_in users(:one)
       seller = users(:one)
       merch = merchandises(:one)
@@ -97,28 +76,20 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end 
 
-    #test to create a new merch pdfsetup do
-    require 'stripe_mock'
+    test "to test POST /purchases creates purchase for the correct purchaser" do
+      sign_in users(:two)
+      #create a merchpdf merchandise for a fixture? @merch_buy
+      #sign in user : buyer
+      #create a purchase for buyer to purchase @merch_buy
+      #check if the purchased merchandise contains merch_pdf
+      assert_response :success
+    end
 
-    setup do
+    test "to test the POST/purchases creates purchase for the correct seller" do
+      sign_in users(:two)
       @merch = merchandises(:one)
-      @user = users(:one)
-      @email= @user.email
-    end
-
-    describe "POST #create" do
-      let(:stripe_helper) { StripeMock.create_test_helper }
-      before { StripeMock.start }
-      after { StripeMock.stop }
-
-      it "tests creation of merchpdf" do
-        customer = Stripe::Customer.create({
-          email: @email,
-          source: stripe_helper.generate_card_token
-        })
-        plan = stripe_helper.create_plan(:id => 'my_plan', :amount => 150)
-        assert_equal(plan.amount, 150)
-      end 
-    end
+      post :create, params: {purchase: {merchandise_id: @merch.id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
+      assert_equal(@purchases.author_id, users(:one).id)
+    end  
 
 end

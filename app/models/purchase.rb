@@ -16,6 +16,7 @@ class Purchase < ApplicationRecord
   
   def save_with_payment
     if(self.merchandise_id.present?)
+      puts "13x" ##########
       @merchandise = Merchandise.find(self.merchandise_id)
       self.pricesold = @merchandise.price
       self.author_id = @merchandise.user_id 
@@ -31,6 +32,7 @@ class Purchase < ApplicationRecord
       %%end%
       
     else #If a donation is being made
+      puts "14x" ##########
       self.pricesold = pricesold
       self.author_id = author_id
       seller = User.find(self.author_id)
@@ -51,20 +53,24 @@ class Purchase < ApplicationRecord
       end%
 
     if self.email.present?
+      puts "15x" ##########
       customer = Stripe::Customer.create(
         :source => stripe_card_token,  #token from? purchases.js.coffee?
         :description => "anonymous customer", # what info do I really want here
         :email => self.email
       )
     else
+      puts "16x" ##########
       @purchaser = User.find(self.user_id)
       if(@purchaser.stripe_customer_token).present?
+        puts "17x" ##########
         customer = Stripe::Customer.retrieve(@purchaser.stripe_customer_token)
         if stripe_card_token.present?
           customer.source = stripe_card_token
           customer.save
         end
       else 
+        puts "18x" ##########
         customer = Stripe::Customer.create(
           :source => stripe_card_token,  #token from? purchases.js.coffee?
           :description => @purchaser.name, # what info do I really want here
@@ -75,6 +81,7 @@ class Purchase < ApplicationRecord
     end
 
     if seller.id == 143 || seller.id == 1337 || seller.id == 1345 
+      puts "19x" ##########
       charge = Stripe::Charge.create( {
         :amount => amt, 
         :currency => "usd",
@@ -83,6 +90,7 @@ class Purchase < ApplicationRecord
         } 
       )
     else  
+      puts "20x" ##########
 #      transfergrp = "purchase" + (Purchase.maximum(:id) + 1).to_s  #won't work when lots of simultaneous purchases
       appfee = ((amt * 5)/100)
 
@@ -109,6 +117,7 @@ class Purchase < ApplicationRecord
 #        :transfer_group => transfergrp #does this mean anything when there is a source transaction?
 #      })
       if self.group_id.present?  #this is for when groups affiliate to help sell
+        puts "21x" #############
         transfer = Stripe::Transfer.create({
           :amount => (self.groupcut * 100).to_i,
           :currency => "usd",
