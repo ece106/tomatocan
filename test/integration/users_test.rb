@@ -5,6 +5,8 @@ class UsersTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
+  
+	test "Should view profileinfo" do
   	setup do
   		visit ('http://localhost:3000/')
   		def signUpUser()
@@ -31,6 +33,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Discover Talk Show Hosts')
 		assert_text ('Discussion Hosts')
 	end
+
 	test "Should_sign_up" do
 		visit ('http://localhost:3000/')
 		click_on('Sign Up', match: :first)

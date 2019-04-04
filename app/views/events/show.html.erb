@@ -101,7 +101,12 @@
             <div>
               <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="RSVP for <%= @user.name %>'s livestream on <%=  @event.name + "," %> on <%= @event.start_at.strftime("%B %d at %I:%M %p")%> PDT (<%= edt.strftime("%I:%M %p") %> EDT)" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
-      </div>
+        <div>
+
+              <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+              <script type="IN/Share" data-url="<%= facebookurl %>" data-counter="top"></script>
+        </div>
+      </div> 
     <div class= "email-events">
       Or copy & paste this message in an email to your colleagues: <br><br>
       <i>Please join us live at <%= @event.start_at.strftime("%A %B %d, at %I:%M %p") %> PDT, <%= edt.strftime("%I:%M %p") %> EDT as we discuss <%= @event.name %> on CrowdPublish.TV's livestream.<br>

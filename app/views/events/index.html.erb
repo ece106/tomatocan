@@ -40,3 +40,6 @@
   <% else %>
     *** No events near you yet ***
   <% end %>  
+
+  
+      <%= will_paginate @events, renderer: BootstrapPagination::Rails %>

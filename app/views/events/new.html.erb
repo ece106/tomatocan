@@ -31,7 +31,7 @@
           <div class="form-group">
               <h3><%= f.label :buttontype, "Start Time" %></h3>
           <p class="help-block">Pacific Daylight Time (PDT)</p>
-            <%= f.datetime_select :start_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 2 %>
+            <%= f.datetime_select :start_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 1 %>
             <% #= date_field(:event, :start_at) %>
           </div>
 
@@ -47,7 +47,7 @@
             <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
           </div>
 
-            <%= f.submit "Create Event", :class => "btn btn-lg btn-primary", :id => "eventSubmit" %>
+            <%= f.submit "Post Talk Show", :class => "btn btn-lg btn-primary", :id => "eventSubmit" %>
 
         <% end %>  
     </div>
