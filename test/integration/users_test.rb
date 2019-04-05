@@ -1,11 +1,6 @@
 require 'test_helper'
 #require 'capybara'
 class UsersTest < ActionDispatch::IntegrationTest
- 
-  # test "the truth" do
-  #   assert true
-  # end
-  
   	setup do
   		visit ('http://localhost:3000/')
   		def signUpUser()
@@ -31,7 +26,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Discover Talk Show Hosts')
 		assert_text ('Discussion Hosts')
 	end
-
 	test "Should_sign_up" do
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name2')
@@ -103,7 +97,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 		fill_in(id:'user_email', with: 'e2@mail.com')
 		click_on(id:'saveProfileButton',:match => :first)
 		assert_text('Videos')
-
 	end
 	test "Should_not_change_email"do
 		signUpUser()
@@ -156,13 +149,13 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on(class: 'dropdown-toggle')
 		click_on('Control Panel')
 		fill_in(id:'user_name', with:'names')
-		within('div#panel-body') do
-			click_on('saveProfileButton')
-			
-		end
+		click_on(id:'saveProfileButton',:match => :first)
 		assert_text('names')
 	end
-
+	test 'Should_alter_categories' do
+		signUpUser()
+		signInUser()
+	end
 	#Stripe error here
 	test 'Should_buy_user' do
 		visit('http://localhost:3000/')
@@ -182,6 +175,8 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('If you are purchasing')
 	end
 	test 'Should_host_logged_in' do
+		signUpUser()
+		signInUser()
 		click_on('Host Discussion')
 		fill_in(id:'event_name', with:'example')
 		click_on(id:'eventSubmit')
@@ -189,13 +184,12 @@ class UsersTest < ActionDispatch::IntegrationTest
 	end
 	test 'Should_host_logged_out' do
 		click_on('Host Discussion')
-		assert_text('You need to sign up or sign in before continuing.')
+		assert_text('You need to sign in or sign up before continuing.')
 	end
 	test 'Should_see_sign_up_not_logged_in' do
 		within('div#heroImage.row') do
 			assert_text('Sign Up')
 		end
-
 	end
 	test 'Should_see_offer_rewards_logged_in' do
 		signUpUser()
@@ -203,7 +197,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 		within('div#heroImage.row') do
 			assert_text('Offer Rewards')
 		end
-
 	end
 	#test number of panels
 
