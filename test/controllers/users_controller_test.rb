@@ -20,6 +20,8 @@ class UsersControllerTest < ActionController::TestCase
     get :youtubers
     assert_response :success
   end
+#Ambiguous method checking
+
 
   test "should recognize youtubers"do
     assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
