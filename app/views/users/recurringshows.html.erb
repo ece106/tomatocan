@@ -30,15 +30,14 @@
             <span style="font-size:90%;"id=calendar-time><%= start_at.strftime("%l:%M%P") %> MST</span>
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EST</span>
           </td> 
-          <td><% current_user.name %></td>
+          <td> Chris </td>
           <td><%= text_field :topic, :size => 20 %></td>
-          <td>d</td>
-          <td>f</td>
-          <td>g</td>
-          <td>h</td>
-        
-        
+          <td><%= radio_button_tag 'Interviewer', @interviewer %></td>
+          <td><%= radio_button_tag 'Guest 1', @guest %></td>
+          <td><%= radio_button_tag 'Guest 2', @guest2 %></td>
+          <td><%= submit_tag 'Submit' %></td>
     </tr>
+    <% start_at + 7 %>
     <% end -%>
     </table>
   </div>
