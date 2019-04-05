@@ -8,6 +8,8 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
+<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+
 <div class="panel panel-default">
   <div class=panel-heading>
     Upcoming Livestream Discussions
@@ -28,7 +30,7 @@
             Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
-                <%= link_to '(Edit Event)', edit_event_path(event.id), id: "calendar-host" %> 
+                <%= link_to '(Edit Show)', edit_event_path(event.id), id: "calendar-host" %> 
               <% end %>
             <% end %>
           </td>
@@ -39,7 +41,7 @@
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
           <td class=col-xs-3>
-            <%= link_to "Join Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+            <%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
           </td>
           <td class=col-xs-1>
             <% shareurl = "http://www.CrowdPublish.TV/" + user.permalink %>
@@ -56,8 +58,12 @@
 
               <span>
               <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+<<<<<<< HEAD
               <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top"></script>
             </span>
+=======
+              <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top">Share</script>
+>>>>>>> b9f3bdcdb38f45cc0fa99ffa09d7756a088e392b
             </div>  
           </td>  
         </tr>
@@ -67,8 +73,12 @@
   <% end %>
 </div>
 
+<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+
 <script>
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
 </script>
+
+      
