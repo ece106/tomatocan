@@ -6,15 +6,13 @@
 </head>
 
 	<div class="container-fluid">
-		<% if request.host == "crowdpublishtv.herokuapp.com" %>
-			<div class="row">
-				<div class="col-md-4">
+	  <% if request.host == "crowdpublishtv.herokuapp.com" %>
+        <div class="row">
+          <div class="col-md-4">
 					<%= render 'layouts/merchsidebar' %>
-				</div>
-				<div class="col-md-8">
-					<%= render 'layouts/jitsi' %>
-				</div>
-			</div>
+          </div>
+          <div class="col-md-8">
+            <%= render 'layouts/jitsi' %>
             <h4>Instructions for recording to YouTube</h4>
 		    <ol>
 			<li>Click the <b>&#8942;</b> button in the lower right bar of the viewer above.</li>
@@ -22,7 +20,9 @@
 			<li>Sign in with Google.</li>
 			<li>Enter your YouTube key (can be found at the bottom of your <%= link_to 'YouTube Live Dashboard ', "https://www.youtube.com/live_dashboard_splash", :target => "_blank" %>.</li>
             </ol>
-		<% else %>
+          </div>
+        </div>
+      <% else %>
 			<%= render 'layouts/authorform' %>
 			<div class="row" style="padding-top:15px;padding-bottom:30px;">
 					<%= render 'layouts/streamButton' %>
@@ -41,5 +41,5 @@
 					<%= render 'layouts/youtube' %>
 				</div>
 		</div>
-		<% end %>
+      <% end %>
 	</div>
