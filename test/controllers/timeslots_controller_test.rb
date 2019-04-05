@@ -16,7 +16,7 @@ class TimeslotsControllerTest < ActionController::TestCase
   # end
 
   # test "should create timeslot" do
-  #   sign_in users(:one)
+  #   sign_in users(:one)rails
   #   assert_difference('Timeslot.count', 1) do
   #     post :create, params: { timeslot: { end_at: @timeslot.end_at, start_at: @timeslot.start_at, user_id: @timeslot.user_id } }
   #   end

@@ -42,7 +42,7 @@ gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
 #  gem 'factory_girl_rails'
- gem 'capybara'
+  gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
 end
 

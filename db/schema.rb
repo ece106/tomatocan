@@ -216,6 +216,12 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "interviewer_user_id"
+    t.string "interviewer_name"
+    t.string "interviewer_email"
+    t.integer "guest1_user_id"
+    t.string "guest1_name"
+    t.string "guest1_email"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
