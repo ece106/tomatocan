@@ -215,6 +215,10 @@ class EventsTest < ActionDispatch::IntegrationTest
         assert_text('Shoe')
       end
   end
+  test "test if home link works while home" do
+      click_on('Home')
+      assert_text('Doing Purposeful Work?')
+  end
 end
 
 
