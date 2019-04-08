@@ -28,7 +28,8 @@ class PurchasesControllerTest < ActionController::TestCase
     #   sign_in users(:one)
     #   post :create, params: {}
     # end  
-require 'stripe_mock'
+
+#require 'stripe_mock'
 
 describe "MyApp" do
     let(:stripe_helper) { StripeMock.create_test_helper }
@@ -56,5 +57,4 @@ end
 #  assert_equal(e.code, 'card_declined')}
 #  StripeMock.stop
 
-#end
 end

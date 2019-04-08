@@ -18,6 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
+gem 'stripe-ruby-mock', '~> 2.5.6', :require => 'stripe_mock'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'

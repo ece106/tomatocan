@@ -4,12 +4,6 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:one)
    # sign_in @user
   end
-#index view does not exist
-  # test "should get index" do
-  #   get :index
-  #   assert_response :success
-  #   assert_not_nil assigns(:users)
-  # end
 
   test "should equate youtube field" do
     youtube="youtube"
@@ -85,9 +79,6 @@ class UsersControllerTest < ActionController::TestCase
     get :changepassword, params: {permalink: 'user1'}
     assert_response :success
   end
- 
-
-  
    
   test "should get pastevents logged in" do
     sign_in @user
@@ -130,14 +121,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-#  test "should get edit" do  # my edit page is more complicated
-#    get :edit, id: @user.to_param
-#    @book = current_user.books.build
-#    @booklist = Book.where(:user_id => @user.id)
-#    assert_response :success
-
-#  end
-
 
   test "should update user" do
     sign_in @user
@@ -147,32 +130,11 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should redirect to user" do
+    sign_in @user
+    patch :update, params: { id: @user.id, user: { name: 'New Name', youtube1: 'randomchar' } }
+    user = User.find_by_permalink(@user.permalink)
     assert_redirected_to user_profile_path(user.permalink)
   end;
-
-  test "should verify update user with invalid params" do
-    sign_in @user
-
-    @user.errors.clear
-    assert_empty @user.errors.messages
-
-    patch :update, params:{ id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
-      twitter: '@', email: 'fake@fake.com', permalink: 'user1'}}
-
-    assert_not_equal "@", @user.twitter
-    # assert_not_empty @user.errors.messages
-  end
-
-  #test "should verify update user with valid params" do
-   # sign_in @user
-
-   # @user.errors.clear
-   # assert_empty @user.errors.messages
-    
-	#patch :update, params:{ id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
-   # twitter: 'MyTwitter', email: 'fake@fake.com', permalink: 'user1'}}
-    #assert_equal "MyTwitter", @user.twitter
-  #end
 
 #this part added
   test "should verify user twitter" do
@@ -180,7 +142,6 @@ class UsersControllerTest < ActionController::TestCase
 	patch :update, params:{ id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
     twitter: 'MyTwitter', email: 'fake@fake.com', permalink: 'user1'}}
   assert_equal "MyTwitter", @user.twitter
-  #assert_empty @user.errors.messages
-#assert_empty( obj, [msg] ) 	Ensures that obj is empty?.
+
   end
 end

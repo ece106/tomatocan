@@ -6,7 +6,7 @@ class UsersTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   
-	test "Should view profileinfo" do
+	
   	setup do
   		visit ('http://localhost:3000/')
   		def signUpUser()
@@ -166,7 +166,5 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Donate $25.00!')
 		fill_in(id:'card_number', with:'4242424242424242')
 	end
-	#test number of panels
 
-		
 end
