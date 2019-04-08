@@ -1,5 +1,5 @@
 require 'test_helper'
-#require 'capybara'
+require 'capybara'
 class UsersTest < ActionDispatch::IntegrationTest
  
   # test "the truth" do
