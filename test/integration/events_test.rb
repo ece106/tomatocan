@@ -189,35 +189,52 @@ class EventsTest < ActionDispatch::IntegrationTest
     
   end
   test "check if Patron is successfully updated after editing a reward" do
-      createReward()
-      within(id: 'merchSidebar') do
-          click_on('Edit Reward')
-      end
-      click_on(class: 'btn btn-lg btn-primary')
-      assert_text('Patron Perk was successfully updated.')
+    createReward()
+    within(id: 'merchSidebar') do
+      click_on('Edit Reward')
+    end
+    click_on(class: 'btn btn-lg btn-primary')
+    assert_text('Patron Perk was successfully updated.')
   end
   test "test if expired rewards show up in the past rewards" do
-      signup()
-      click_on('name')
-      click_on('Control Panel')
-      click_on('Rewards')
-      click_on(class: 'btn btn-lg btn-warning', match: :first)
-      fill_in(id: 'merchandise_name', with: 'Shoe')
-      fill_in(id: 'merchandise_price', with: '5')
-      fill_in(id: 'merchandise_desc', with: 'this is a description')
+    signup()
+    click_on('name')
+    click_on('Control Panel')
+    click_on('Rewards')
+    click_on(class: 'btn btn-lg btn-warning', match: :first)
+    fill_in(id: 'merchandise_name', with: 'Shoe')
+    fill_in(id: 'merchandise_price', with: '5')
+    fill_in(id: 'merchandise_desc', with: 'this is a description')
       #click_on('2019')
-      click_on('January')
-      click_on(class: 'btn btn-lg btn-primary')
-      click_on('name', match: :first)
-      click_on('Control Panel')
-      click_on('Rewards')
-      within(class: 'media-body') do
-        assert_text('Shoe')
-      end
+    click_on('January')
+    click_on(class: 'btn btn-lg btn-primary')
+    click_on('name', match: :first)
+    click_on('Control Panel')
+    click_on('Rewards')
+    within(class: 'media-body') do
+      assert_text('Shoe')
+    end
   end
   test "test if home link works while home" do
-      click_on('Home')
-      assert_text('Doing Purposeful Work?')
+    click_on('Home')
+    assert_text('Doing Purposeful Work?')
+  end
+  test "discover talk show hosts link should work in the navbar" do
+    click_on('Discover Talk Show Hosts')
+    assert_text('Discussion Hosts')
+  end
+  test "terms of service link works when in the signup page" do
+    click_on('Sign Up')
+    click_on('Terms of Service.')
+    assert_text('CrowdPublish.TV Terms of Service')
+  end
+  test "already a member? sign in link redirects" do
+    click_on('Sign Up')
+    within(class: 'col-lg-6 col-lg-offset-1') do
+    click_on('Sign in')
+    end
+    assert_text('Login')
+  test "" do
   end
 end
 
