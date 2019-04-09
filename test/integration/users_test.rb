@@ -64,13 +64,49 @@ class UsersTest < ActionDispatch::IntegrationTest
 		
 	end
 	#todo: write a test that fails to sign up
-	test "Should_see_rewards_in_control_panel" do
+	test "Should_see_edit_profile_in_control_panel" do
 		signUpUser()
 		signInUser()
 		click_on(class: 'dropdown-toggle')
 		click_on('Control Panel')
-		assert_text('Rewards')
+		assert_text('Edit Profile')
 	end 
+	test "Should_change_about" do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+		click_on('Control Panel')
+		fill_in(id:'user_about',with:'Sample Desc')
+		click_on(id:'saveProfileButton',:match => :first)
+		assert_text('Sample Desc')
+	end
+	test "Should_change_genre1" do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+		click_on('Control Panel')
+		fill_in(id:'user_genre1',with:'Genre1')
+		click_on(id:'saveProfileButton',:match => :first)
+		assert_text('Genre1')
+	end
+	test "Should_change_genre2" do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+		click_on('Control Panel')
+		fill_in(id:'user_genre2',with:'Genre2')
+		click_on(id:'saveProfileButton',:match => :first)
+		assert_text('Genre2')
+	end
+	test "Should_change_genre3" do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+		click_on('Control Panel')
+		fill_in(id:'user_genre3',with:'Genre3')
+		click_on(id:'saveProfileButton',:match => :first)
+		assert_text('Genre3')
+	end
 	test "Should_change_password" do
 		signUpUser()
 		signInUser()
@@ -152,9 +188,10 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on(id:'saveProfileButton',:match => :first)
 		assert_text('names')
 	end
-	test 'Should_alter_categories' do
+	test 'Should_cancel' do
 		signUpUser()
 		signInUser()
+		click_on(id:"cancelProfileButton",:match => :first)
 	end
 	#Stripe error here
 	test 'Should_buy_user' do
