@@ -2,7 +2,8 @@
 
 <p>
   <strong>User:</strong>
-  <%= @timeslot.user_id %>
+  <% user = User.find(@timeslot.user_id) %>
+  <%= link_to user.name, user.permalink, id: "calendar-host" %>
 </p>
 
 <p>
@@ -13,6 +14,11 @@
 <p>
   <strong>End at:</strong>
   <%= @timeslot.end_at %>
+</p>
+
+<p>
+  <strong>Interviewer:</strong>
+  <%= @timeslot.interviewer_user_id %>
 </p>
 
 <%= link_to 'Edit', edit_timeslot_path(@timeslot) %> |

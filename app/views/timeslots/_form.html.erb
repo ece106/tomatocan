@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= current_user.name %>
   </div>
 
   <div class="field">
@@ -24,6 +23,16 @@
   <div class="field">
     <%= form.label :end_at %>
     <%= form.datetime_select :end_at %>
+  </div>
+
+  <div class="field"> 
+    <%= form.radio_button :role, Option 1 %>
+    <%= form.label 'Interviewer' %>
+    <%= form.radio_button :role, :guest1_user_id %>
+    <%= form.label 'Guest' %>
+    <% if Option 1 == checked
+      
+    end %>
   </div>
 
   <div class="actions">

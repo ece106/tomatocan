@@ -1,4 +1,5 @@
  class TimeslotsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   before_action :set_timeslot, only: [:show, :edit, :update, :destroy]
 
   # GET /timeslots
@@ -24,7 +25,6 @@
 
   # POST /timeslots
   def create
-  #  @timeslot = Timeslot.new(timeslot_params)
     @timeslot = current_user.timeslots.build(timeslot_params)
 
     if @timeslot.save
