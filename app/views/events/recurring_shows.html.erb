@@ -1,0 +1,86 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Open Discussion Shows</div>
+  <div class="panel-body" style="text-align:center">
+    <table class="table">
+      <tr>
+        <th>Date</th>
+        <th>Host</th>
+        <th>Topic</th>
+        <th>Interviewer</th>
+        <th>Guest 1</th>
+        <th>Guest2</th>
+        <th>Submit</th>
+      </tr>
+
+      # <% require 'date' %>
+      <% def date_of_next(day) %>
+        <% date = Date.parse(day) %>
+        <% delta = date > Date.today ? 0 : 7 %>
+        <% date + delta %>
+      <% end %>
+
+      <% Date.today %>
+      <% start_at = date_of_next "current_usrid.start_day" %>
+      <% for i in 0..12 do %>
+        <tr style="text-align:center">
+          <td class=col-xs-3>
+            <% edt = start_at + 1.hours %>
+            <span style="font-size:125%;" id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
+            <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> MST</span>
+            <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EST</span>
+          </td>
+          <td><%= current_usrid.name %></td>
+          <td><%= text_field :topic, :size => 20 %></td>
+          <td><%= radio_button_tag(:role, "interviewer") %>
+            <%= label_tag(:role_type, "Interviewer") %>
+          </td>
+          <td><%= radio_button_tag(:role, "guest1") %>
+            <%= label_tag(:role_type, "Guest 1") %>
+          </td>
+          <td><%= radio_button_tag(:role, "guest2") %>
+            <%= label_tag(:role_type, "Guest 2") %>
+          </td>
+          <td><%= f.submit "Submit", :class => "btn btn-sm btn-primary", :id => "eventSubmit" %></td>
+        </tr>
+      <% end %>
+
+      <!-- OR? -->
+
+      <% for i in 0..12 do %>
+        <%= form_for @event do |f| %>
+          <tr style="text-align:center">
+            <td class=col-xs-3>
+              <% edt = start_at + 1.hours %> 
+              <span style="font-size:125%;" id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
+              <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> MST</span>
+              <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EST</span>
+            </td>
+            <td><%= current_usrid.name %></td>
+            <td><%= f.text_field :topic, :size => 20 %></td>
+            <%= f.radio_button_tag(:role, "interviewer") %>
+            <%= f.label_tag(:role_type, "Interviewer") %>
+            <%= f.radio_button_tag(:role, "guest1") %>
+            <%= f.label_tag(:role_type, "Guest 1") %>
+            <%= f.radio_button_tag(:role, "guest2") %>
+            <%= f.label_tag(:role_type, "Guest 2") %>
+            <%= f.submit_tag("Submit") %>
+
+            <% start_date = start_date+7 %>
+          </tr>
+        <% end %>
+      <% end %>
+
+
+    </table>
+  </div>
+</div>
+
+<!-- if interviewer clicked, then topic text box greyed out -->
+<!-- if one of guests clicked, topic text box not greyed out -->
+
+
+
+
+
+
+

@@ -43,6 +43,31 @@ class UsersTest < ActionDispatch::IntegrationTest
 		fill_in(id:'user_password', with: 'password2', :match => :prefer_exact)
 		fill_in(id:'user_password_confirmation', with:'password2')
 		click_on(class: 'form-control btn-primary')
+		click_on('Sign out')
+
+		def signInUser()
+			click_on('Sign In', match: :first)
+			fill_in(id:'user_email', with: 'e@gmail.com')
+			fill_in(id:'user_password', with: 'password')
+			click_on(class: 'form-control btn-primary')
+		end
+
+
+  	end
+	test "Should_view_profileinfo" do
+		visit ('http://localhost:3000/')
+		click_on('Discover Talk Show Hosts')
+		assert_text ('Discussion Hosts')
+	end
+	test "Should_sign_up" do
+		visit ('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name2')
+		fill_in(id:'user_email', with: 'e2@gmail.com')
+		fill_in(id:'user_permalink', with:'username2')
+		fill_in(id:'user_password', with: 'password2', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password2')
+		click_on(class: 'form-control btn-primary')
 		assert_text ('Sign out') 
 	end
 	test "Should_sign_up_and_then_out" do
