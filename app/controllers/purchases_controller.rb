@@ -37,7 +37,12 @@ class PurchasesController < ApplicationController
     def create
       @purchase = Purchase.new(purchase_params)
       if user_signed_in?
+        puts "0" ############################
         @purchase.user_id = current_user.id
+        puts "customer_token is "
+        puts @purchase.stripe_customer_token
+        puts "customer id is "
+        puts @purchase.user_id
       end
       if @purchase.merchandise_id?
         puts "1" ############################

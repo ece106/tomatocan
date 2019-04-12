@@ -3,6 +3,7 @@ require 'test_helper'
 class PurchasesControllerTest < ActionController::TestCase
   setup do
     @purchases = purchases(:one)
+    @purchaser = users(:two) #user 2 is the customer 
   end
 
     test "should_get_purchases_new_purchase" do
@@ -75,38 +76,35 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end 
 
-    require 'stripe'
-    #require_relative 'subscription'
+    test "to create a customer and card" do
+      sign_in @purchaser
+      card = { :number => "4242424242424242", :exp_month => 8, :exp_year => 2060, :cvc => "123"}
+      response = Stripe::Token.create(:card => card)
+      puts response['id'] #stripe_card_token
+      #tok_Err6MO4xam1YkA = stripe-card-token generated
+      customer = Stripe::Customer.create(
+                                        :source => response['id'],
+                                        :description => @purchaser.name,
+                                        :email => @purchaser.email
+                                        )
+      puts customer
+      @purchaser.stripe_customer_token = customer.id
+      puts "helooooooo"
+      puts @purchaser.stripe_customer_token
+      puts users(:two).stripe_customer_token
+      puts @purchaser.id
+      puts "byeeeeeeee"
+      post :create, params: {purchase: {user_id: @purchaser.id, author_id: users(:one).id, stripe_customer_token: @purchaser.stripe_customer_token, pricesold: 10} }
 
-    setup do
-      @user = users(:two)
-      @user1 = users(:one)
-      sign_in @user
-    end
-
-    describe "Subscription" do
-      before do
-        Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-      end
-
-    it "to test POST donation" do
-      #sign_in @user
-      stripe_token = Stripe:Token.create(card: {
-        number: "4242424242424242",
-        exp_month: 7,
-        exp_year: 2100,
-        cvc: "123"
-      })
-      post :create, params: {purchase: {user_id: @user.id, author_id: @user1.id, email: @user.email, pricesold: 5} }
       assert_response :success
-    end
-  end
+    end 
 
-    test "to test the POST/purchases creates purchase for the correct seller" do
-      sign_in users(:two)
-      @merch = merchandises(:one)
-      post :create, params: {purchase: {merchandise_id: @merch.id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
-      assert_equal(@purchases.author_id, users(:one).id)
-    end   
+
+    # test "to test the POST/purchases creates purchase for the correct seller" do
+    #   sign_in users(:two)
+    #   @merch = merchandises(:one)
+    #   post :create, params: {purchase: {merchandise_id: @merch.id, user_id: users(:two).id, author_id: users(:one).id, email: users(:two).email} }
+    #   assert_equal(@purchases.author_id, users(:one).id)
+    # end   
 
 end

@@ -59,12 +59,15 @@ class Purchase < ApplicationRecord
         :description => "anonymous customer", # what info do I really want here
         :email => self.email
       )
+      puts customer.id ###########
+
     else
       puts "16x" ##########
       @purchaser = User.find(self.user_id)
       if(@purchaser.stripe_customer_token).present?
         puts "17x" ##########
         customer = Stripe::Customer.retrieve(@purchaser.stripe_customer_token)
+        puts customer.id ###########
         if stripe_card_token.present?
           customer.source = stripe_card_token
           customer.save
@@ -80,6 +83,8 @@ class Purchase < ApplicationRecord
       end
     end
 
+    puts seller.id ######################
+
     if seller.id == 143 || seller.id == 1337 || seller.id == 1345 
       puts "19x" ##########
       charge = Stripe::Charge.create( {
@@ -93,10 +98,11 @@ class Purchase < ApplicationRecord
       puts "20x" ##########
 #      transfergrp = "purchase" + (Purchase.maximum(:id) + 1).to_s  #won't work when lots of simultaneous purchases
       appfee = ((amt * 5)/100)
-
       token = Stripe::Token.create({
         :customer => customer.id,
       }, {:stripe_account => sellerstripeaccount.id} )
+
+      puts "token end here 20x" #############
 
       charge = Stripe::Charge.create( {
         :amount => amt,  # amt charged to customer's credit card
@@ -116,7 +122,7 @@ class Purchase < ApplicationRecord
 #        :source_transaction => charge.id, # stripe attempts transfer when this isn't here, even when transfer_group is
 #        :transfer_group => transfergrp #does this mean anything when there is a source transaction?
 #      })
-
+      puts "charge here 20x" #############
       if self.group_id.present?  #this is for when groups affiliate to help sell
         puts "21x" #############
         transfer = Stripe::Transfer.create({
