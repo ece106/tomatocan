@@ -192,10 +192,10 @@ class UsersTest < ActionDispatch::IntegrationTest
 		signUpUser()
 		signInUser()
 		click_on(id:"cancelProfileButton",:match => :first)
+		assert_text('Doing Purposeful Work?')
 	end
 	#Stripe error here
 	test 'Should_buy_user' do
-		visit('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
 		click_on('Buy for $1.50')
@@ -205,11 +205,18 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('successfully')
 	end
 	test 'Should order' do
-		visit('http://localhost:3000/')
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
 		click_on('Buy for $1.50')
 		assert_text('If you are purchasing')
+	end
+	test do 'Should click rewards, then profile'
+		click_on(class: 'dropdown-toggle')
+		click_on('Control Panel')
+		click_on('Rewards')
+		click_on('Profile')
+		assert_text
+
 	end
 	test 'Should_host_logged_in' do
 		signUpUser()
