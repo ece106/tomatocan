@@ -34,19 +34,19 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
   def createEvent()
     signup()
-    click_on('Host Discussion')
+    click_on('Host A Show')
     fill_in(id:'event_name', with: 'Intern')
     fill_in(id:'event_desc', with: 'This is a description of the event')
     click_button(class: 'btn btn-lg btn-primary')
     assert_text('Intern')#does the event show up on the homepage?
   end
   test "Should login before hosting a discussion" do
-    click_on('Host Discussion')
+    click_on('Host A Show')
     assert_text ('Login')
   end
   test "Should sign up and then host a discussion and get redirected to new event page" do
     signup()
-    click_on('Host Discussion')
+    click_on('Host A Show')
     fill_in(id:'event_name', with: 'Intern')
     fill_in(id:'event_desc', with: 'This is a description of the event')
     click_button(id: 'eventSubmit')
@@ -57,7 +57,7 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
   test "Should not save event if title of livestream show is not given" do
     signup()
-    click_on('Host Discussion')
+    click_on('Host A Show')
     click_on(class: 'btn btn-lg btn-primary')#button seems to not be visible on the page needs solution
     #assert_text('1 error prohibited this event from being saved:')
   end
@@ -224,29 +224,55 @@ class EventsTest < ActionDispatch::IntegrationTest
     assert_text('Discussion Hosts')
   end
   test "terms of service link works when in the signup page" do
-      click_on('Sign Up', match: :first)
-      click_on('Terms of Service', match: :first)
-      assert_text('CrowdPublish.TV Terms of Service')
+    click_on('Sign Up', match: :first)
+    click_on('Terms of Service', match: :first)
+    assert_text('CrowdPublish.TV Terms of Service')
   end
   test "already a member? sign in link redirects" do
-      click_on('Sign Up', match: :first)
-     within(class: 'col-lg-6 col-lg-offset-1') do
-       click_on('Sign in')
-     end
-      assert_text('Login')
+    click_on('Sign Up', match: :first)
+    within(class: 'col-lg-6 col-lg-offset-1') do
+      click_on('Sign in')
+    end
+    assert_text('Login')
   end
   test "Terms of service link works in the login page" do
-      click_on('Sign In', match: :first)
-      click_on('Terms of Service', match: :first)
-      assert_text('CrowdPublish.TV Terms of Service')
+    click_on('Sign In', match: :first)
+    click_on('Terms of Service', match: :first)
+    assert_text('CrowdPublish.TV Terms of Service')
   end
   test "forgot password link should work in login page" do
-          click_on('Sign In', match: :first)
-          click_on('Forgot your password?')
-          assert_text("email sent from 'CrowdPublish.star'")
+    click_on('Sign In', match: :first)
+    click_on('Forgot your password?')
+    assert_text("email sent from 'CrowdPublish.star'")
   end
-  test "Create Reward page is in-accessible when signed out" do
-  
+  test "Tickets to your local event option should auto-complete fields" do
+    signup()
+    click_on('name')
+    click_on('Control Panel')
+    click_on('Rewards')
+    click_on(class: 'btn btn-lg btn-warning', match: :first)
+
+    click_on('Tickets to your local event')
+    # assert_text('Tickets to My Show')
+  end
+  test "Post to you fan's Facebook page option should auto-complete fields" do
+    signup()
+    click_on('name')
+    click_on('Control Panel')
+    click_on('Rewards')
+    click_on(class: 'btn btn-lg btn-warning', match: :first)
+    click_on("Post to your fan's Facebook page")
+      # assert_text('Facebook Timeline Post from Me')
+  end
+  test "@mention your fan on Twitter should auto-complete fields" do
+    signup()
+    click_on('name')
+    click_on('Control Panel')
+    click_on('Rewards')
+    click_on(class: 'btn btn-lg btn-warning', match: :first)
+    
+    click_on("@mention your fan on Twitter")
+    # assert_text('Facebook Timeline Post from Me')
   end
 end
 
