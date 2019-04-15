@@ -204,7 +204,7 @@ class UsersController < ApplicationController
         redirect_to user_profileinfo_path(current_user.permalink), danger: update_error_message
       end
       @user.errors.clear
-    end  
+    end
   end
   
   def facebook
