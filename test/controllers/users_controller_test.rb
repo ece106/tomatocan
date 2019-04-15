@@ -5,6 +5,10 @@ class UsersControllerTest < ActionController::TestCase
    # sign_in @user
   end
 
+  test "should get index" do
+    get :index
+    assert_response: success
+    
   test "should equate youtube field" do
     youtube="youtube"
     assert_equal(youtube,@user.youtube)
@@ -52,7 +56,9 @@ class UsersControllerTest < ActionController::TestCase
     get :dashboard, params: {permalink: 'user2'}
     assert_response :success
   end
- 
+ #if user id is valid?
+ #assert
+
   test "should get control panel logged in" do
     sign_in @user
     @book = books(:one)

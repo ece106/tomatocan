@@ -12,7 +12,7 @@ class UsersController < ApplicationController
        OR (profilepicurl SIMILAR TO 'http%' AND 
        profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
     userswithpicorder = userswithpic.order('updated_at DESC')
-    @users = userswithpicorder.paginate(:page => params[:page], :per_page => 32)
+    @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
   end
 
   def youtubers
