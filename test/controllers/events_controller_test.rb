@@ -7,7 +7,7 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     test "should retrieve list of all events"do
-        get :index
+        get :index, params: {id: @event.id}
         assert_response :success
     end
     test "should show event" do

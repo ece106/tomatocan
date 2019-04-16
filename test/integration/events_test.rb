@@ -20,6 +20,13 @@ class EventsTest < ActionDispatch::IntegrationTest
     assert_text ('Profile Image')#is user sent to their profile info page?
     visit ('/')
   end
+  def signIn()
+    visit('/')
+    click_on('Sign In', match: :first)
+    fill_in(id: 'user_email', with: 'e@gmail.com')
+    fill_in(id: 'user_password', with: 'password')
+    click_on(class: 'form-control btn-primary')
+  end
   def createReward()
     signup()
     click_on('name')
@@ -30,7 +37,6 @@ class EventsTest < ActionDispatch::IntegrationTest
     fill_in(id: 'merchandise_price', with: '5')
     fill_in(id: 'merchandise_desc', with: 'this is a description')
     click_on(class: 'btn btn-lg btn-primary')
-    assert_text('Shoe')
   end
   def createEvent()
     signup()
@@ -273,6 +279,24 @@ class EventsTest < ActionDispatch::IntegrationTest
     
     click_on("@mention your fan on Twitter")
     # assert_text('Facebook Timeline Post from Me')
+  end
+  test "sales tab should render purchased items" do
+      createReward()
+      visit('/')
+      click_on('Sign out')
+      visit('http://localhost:3000/username')
+      assert_text('Shoe')
+      click_on('Buy')
+      fill_in(id: 'purchase_email', with: 'e@email.com')
+      fill_in(id: 'card_number' , with: '4242424242424242')
+      fill_in(id: 'card_year' , value: '2020')
+      click_on('Purchase')
+      signIn()
+      click_on('Control Panel')
+      click_on('Sales')
+      assert_text('Mark as Read')
+  end
+  test "link to reward on live show page redirects" do
   end
 end
 

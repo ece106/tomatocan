@@ -226,7 +226,7 @@ end
 test 'Should_host_logged_in' do
     signUpUser()
     signInUser()
-    click_on('Host Discussion')
+    click_on('Host A Show')
     fill_in(id:'event_name', with:'example')
     select('2020', from:'event_start_at_1i')
     select('December', from:'event_start_at_2i')
@@ -243,7 +243,7 @@ test 'Should_host_logged_in' do
     #assert_text('example')
 end
 test 'Should_host_logged_out' do
-    click_on('Host Discussion')
+    click_on('Host A Show')
     assert_text('You need to sign in or sign up before continuing.')
 end
 test 'Should_see_sign_up_not_logged_in' do
