@@ -3,7 +3,7 @@
 <p>
   <strong>User:</strong>
   <% user = User.find(@timeslot.user_id) %>
-  <%= link_to user.name, user.permalink, id: "calendar-host" %>
+  <%= link_to user.name, user.permalink %>
 </p>
 
 <p>

@@ -26,13 +26,10 @@
   </div>
 
   <div class="field"> 
-    <%= form.radio_button :role, Option 1 %>
-    <%= form.label 'Interviewer' %>
-    <%= form.radio_button :role, :guest1_user_id %>
-    <%= form.label 'Guest' %>
-    <% if Option 1 == checked
-      
-    end %>
+    <%= form.radio_button(:role, "Interviewer") %>
+    <%= form.label(:interviewer_user_id, "Interviewer") %>
+    <%= form.radio_button :role, 'Guest' %>
+    <%= form.label :guest1_user_id, 'Guest' %>
   </div>
 
   <div class="actions">
