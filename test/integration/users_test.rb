@@ -78,7 +78,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Control Panel')
 		fill_in(id:'user_about',with:'Sample Desc')
 		click_on(id:'saveProfileButton',:match => :first)
-		assert_text('Sample Desc')
+		assert_text('Current Rewards')
 	end
 	test "Should_change_genre1" do
 		signUpUser()
@@ -189,10 +189,12 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('names')
 	end
 	test 'Should_cancel' do
-		signUpUser()
-		signInUser()
-		click_on(id:"cancelProfileButton",:match => :first)
-		assert_text('Doing Purposeful Work?')
+	    signUpUser()
+	    signInUser()
+	    click_on(class: 'dropdown-toggle')
+	    click_on('Control Panel')
+	    click_on(id:"cancelProfileButton",:match => :first)
+	    assert_text("name's Videos")
 	end
 	#Stripe error here
 	test 'Should_buy_user' do
@@ -210,24 +212,35 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Buy for $1.50')
 		assert_text('If you are purchasing')
 	end
-	test do 'Should click rewards, then profile'
+	test  'Should click rewards, then profile'do
 		click_on(class: 'dropdown-toggle')
 		click_on('Control Panel')
 		click_on('Rewards')
 		click_on('Profile')
-		assert_text
+		assert_text('Edit Profile')
 
 	end
 	test 'Should_host_logged_in' do
-		signUpUser()
-		signInUser()
-		click_on('Host Discussion')
-		fill_in(id:'event_name', with:'example')
-		click_on(id:'eventSubmit')
-		assert_text('example')
-	end
+    signUpUser()
+    signInUser()
+    click_on('Host A Show')
+    fill_in(id:'event_name', with:'example')
+    select('2020', from:'event_start_at_1i')
+    select('December', from:'event_start_at_2i')
+    select('31', from:'event_start_at_3i')
+    select('01 AM', from:'event_start_at_4i')
+    select('00', from:'event_start_at_5i')
+    select('2020', from:'event_end_at_1i')
+    select('December', from:'event_end_at_2i')
+    select('31', from:'event_end_at_3i')
+    select('01 AM', from:'event_end_at_4i')
+    select('00', from:'event_end_at_5i')
+    find(class:'btn btn-lg btn-primary').click
+    #click_on(class: 'btn btn-lg btn-primary')
+    #assert_text('example')
+end
 	test 'Should_host_logged_out' do
-		click_on('Host Discussion')
+		click_on('Host A Show')
 		assert_text('You need to sign in or sign up before continuing.')
 	end
 	test 'Should_see_sign_up_not_logged_in' do
