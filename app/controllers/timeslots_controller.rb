@@ -1,5 +1,5 @@
  class TimeslotsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_timeslot, only: [:show, :edit, :update, :destroy]
 
   # GET /timeslots
@@ -37,7 +37,10 @@
   # PATCH/PUT /timeslots/1
   def update
     if @timeslot.update(timeslot_params)
-      redirect_to @timeslot, notice: 'Timeslot was successfully updated.'
+      @timeslot = Timeslot.find(params[:id])
+      @event = Event.create(usrid: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at, name: @timeslot.name)
+      @timeslot.destroy
+      redirect_to timeslots_path, notice: 'Timeslot was successfully updated.'
     else
       render :edit
     end
@@ -57,6 +60,6 @@
 
     # Only allow a trusted parameter "white list" through.
     def timeslot_params
-      params.require(:timeslot).permit(:user_id, :start_at, :end_at)
+      params.require(:timeslot).permit(:name, :user_id, :start_at, :end_at)
     end
 end

@@ -25,6 +25,10 @@
     <%= form.datetime_select :end_at %>
   </div>
 
+  <div class="field">
+    <%= form.text_field(:name, size: 20) %>
+  </div>
+
   <div class="field"> 
     <%= form.radio_button(:role, "Interviewer") %>
     <%= form.label(:interviewer_user_id, "Interviewer") %>

@@ -222,6 +222,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer "guest1_user_id"
     t.string "guest1_name"
     t.string "guest1_email"
+    t.string "name"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
