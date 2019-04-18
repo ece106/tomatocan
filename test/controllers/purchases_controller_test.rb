@@ -76,28 +76,30 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end 
 
-    test "to create a customer and card" do
-      sign_in @purchaser
-      card = { :number => "4242424242424242", :exp_month => 8, :exp_year => 2060, :cvc => "123"}
-      response = Stripe::Token.create(:card => card)
-      puts response['id'] #stripe_card_token
-      #tok_Err6MO4xam1YkA = stripe-card-token generated
-      customer = Stripe::Customer.create(
-                                        :source => response['id'],
-                                        :description => @purchaser.name,
-                                        :email => @purchaser.email
-                                        )
-      puts customer
-      @purchaser.stripe_customer_token = customer.id
-      puts "helooooooo"
-      puts @purchaser.stripe_customer_token
-      puts users(:two).stripe_customer_token
-      puts @purchaser.id
-      puts "byeeeeeeee"
-      post :create, params: {purchase: {user_id: @purchaser.id, author_id: users(:one).id, stripe_customer_token: @purchaser.stripe_customer_token, pricesold: 10} }
+# I will continue working on the tests below after my finals so please don't delete them. 
 
-      assert_response :success
-    end 
+    # test "to create a customer and card" do
+    #   sign_in @purchaser
+    #   card = { :number => "4242424242424242", :exp_month => 8, :exp_year => 2060, :cvc => "123"}
+    #   response = Stripe::Token.create(:card => card)
+    #   puts response['id'] #stripe_card_token
+    #   #tok_Err6MO4xam1YkA = stripe-card-token generated
+    #   customer = Stripe::Customer.create(
+    #                                     :source => response['id'],
+    #                                     :description => @purchaser.name,
+    #                                     :email => @purchaser.email
+    #                                     )
+    #   puts customer
+    #   @purchaser.stripe_customer_token = customer.id
+    #   puts "helooooooo"
+    #   puts @purchaser.stripe_customer_token
+    #   puts users(:two).stripe_customer_token
+    #   puts @purchaser.id
+    #   puts "byeeeeeeee"
+    #   post :create, params: {purchase: {user_id: @purchaser.id, author_id: users(:one).id, stripe_customer_token: @purchaser.stripe_customer_token, pricesold: 10} }
+
+    #   assert_response :success
+    # end 
 
 
     # test "to test the POST/purchases creates purchase for the correct seller" do
