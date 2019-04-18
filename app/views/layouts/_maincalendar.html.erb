@@ -29,7 +29,7 @@
             Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
-                <%= link_to '(Edit Event)', edit_event_path(event.id), id: "calendar-host" %> 
+                <%= link_to '(Edit Show)', edit_event_path(event.id), id: "calendar-host" %> 
               <% end %>
             <% end %>
           </td>
