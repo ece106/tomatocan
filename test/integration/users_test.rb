@@ -3,18 +3,6 @@ require 'test_helper'
 class UsersTest < ActionDispatch::IntegrationTest
   	setup do
   		visit ('http://localhost:3000/')
-  # 		def signUpUser()
-		# 	visit ('http://localhost:3000/')
-		# 	click_on('Sign Up', match: :first)
-		# 	fill_in(id:'user_name', with: 'name')
-		# 	fill_in(id:'user_email', with: 'e@gmail.com')
-		# 	fill_in(id:'user_permalink', with:'username')
-		# 	fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
-		# 	fill_in(id:'user_password_confirmation', with:'password')
-		# 	click_on(class: 'form-control btn-primary')
-		# 	click_on('Sign out')
-			
-		# end
 		def signUpUser(*args)
 			click_on('Sign Up', match: :first)
 			fill_in(id:'user_name', with: 'name')
@@ -26,20 +14,23 @@ class UsersTest < ActionDispatch::IntegrationTest
 			if !args.empty?
 				staySigned= args[0]
 				location= args[1]
+				if staySigned==true
+				case $location
+					when 'controlPanel'
+						click_on(class: 'dropdown-toggle')
+						click_on('Control Panel')
+					when 'home'
+						
+				end
+		
+				elsif staySigned == false || staySigned == nil
+					click_on('Sign out')
+				end
 			else 
 				click_on('Sign out')
 			end
 
-			if staySigned==true
-				case $location
-				when 'controlPanel'
-					click_on(class: 'dropdown-toggle')
-					click_on('Control Panel')
-				end
-		
-			elsif staySigned == false || staySigned == nil
-				click_on('Sign out')
-			end
+			
 		end
 		def signInUser()
 			visit ('http://localhost:3000/')
@@ -98,8 +89,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('Edit Profile')
 	end 
 	test "Should_change_about" do
-		signUpUser()
-		signInUser()
+		signUpUser(true)
 		click_on(class: 'dropdown-toggle')
 		click_on('Control Panel')
 		fill_in(id:'user_about',with:'Sample Desc')
@@ -243,9 +233,12 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
 		click_on('Buy for $1.50')
+		fill_in(id:'purchase_email',with:'example@mail.com')
 		fill_in(id:'card_number', with:'4242424242424242')
 		select("2020", from: 'card_year')
 		click_on('Purchase')
+		save_and_open_page
+
 		assert_text('successfully')
 	end
 	test 'Should order' do
@@ -255,8 +248,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('If you are purchasing')
 	end
 	test  'Should click rewards, then profile'do
-		click_on(class: 'dropdown-toggle')
-		click_on('Control Panel')
+		signUpUser(true,'controlPanel')
 		click_on('Rewards')
 		click_on('Profile')
 		assert_text('Edit Profile')
