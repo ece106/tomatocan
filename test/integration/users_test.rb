@@ -1,14 +1,14 @@
-require 'test_helper'
+require './test_helper'
 #require 'capybara'
 class UsersTest < ActionDispatch::IntegrationTest
  
   # test "the truth" do
   #   assert true
   # end
-  
-	test "Should view profileinfo" do
-  	setup do
+  setup do
   		visit ('http://localhost:3000/')
+	#test "Should view profileinfo" do
+  	#end
   		def signUpUser()
 			visit ('http://localhost:3000/')
 			click_on('Sign Up', match: :first)
@@ -74,7 +74,68 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text ('Sign out') 
 		
 	end
+	#DON'T DELETE. WILL ATTEMPT TO FIX THIS SIGN UP FAILURE TEST
 	#todo: write a test that fails to sign up
+	test "Should say email was taken when same user attempts sign up twice" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Email has already been taken'
+	end
+
+	test "Should say permalink was taken when same user attempts sign up twice" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Permalink has already been taken'
+	end
+
+	test "Should say email was already taken when new user signs up with existing email" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'newusername')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Email has already been taken'
+	end
+
+	test "Should say permalink was already taken when existing user signs up with new email" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'newe@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Permalink has already been taken'
+	end
+
 	test "Should_see_rewards_in_control_panel" do
 		visit ('http://localhost:3000/')
 		signUpUser()

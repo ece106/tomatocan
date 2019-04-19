@@ -7,7 +7,7 @@ gem 'rails-controller-testing'
 gem 'pg'
 #gem 'sqlite3'
 
-gem 'mandrill'	
+gem 'mandrill'  
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -44,6 +44,7 @@ group :test, :development do
 #  gem 'factory_girl_rails'
   gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
+  gem 'capybara-screenshot'
 end
 
 group :production do
@@ -76,6 +77,7 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
-  gem 'turn', :require => false
-end
 
+group :development do
+    gem 'rails_real_favicon'
+end
