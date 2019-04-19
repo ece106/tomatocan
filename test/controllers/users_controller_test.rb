@@ -93,6 +93,12 @@ end
 
   #test "should get stripe callback" do
   #I have no clue how to play around with stripe yet
+  test "should test stripe" do
+    stripeid="acct_1BLIfGFpv54ZlS5f"
+    assert_equal(stripeid,@user.stripeid)
+  end
+
+
 
   test "should create user" do #rails test test/controllers/users_controller_test.rb -n test_should_equate_youtube_field; To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
     assert_difference('User.count', 1) do
