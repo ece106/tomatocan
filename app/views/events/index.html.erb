@@ -1,5 +1,4 @@
 
-  <br><%= link_to 'Browse Past Events', events_pastevents_path %><br>
 
   <h2>Upcoming Events</h2>
 
@@ -13,11 +12,11 @@
           <th>Topic </th>
           <th style="text-align:center">When <div style="font-size:14px; text-align:center"> Pacific Daylight Time </div></th>
           <th style="text-align:center"> <div style="font-size:14px; text-align:center"> EDT </div></th>
-          <th style="text-align:center">Host</th> 
+          <th style="text-align:center">Host</th>
           <th></th>
           </tr>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
-          <% edt = event.start_at + 3.hours %> 
+          <% edt = event.start_at + 3.hours %>
           <tr>
           <td ><%= link_to event.name, event %></td>
           <td ><%= event.start_at.strftime("%A %B %d, %I:%M %p")  %></td>
@@ -29,17 +28,17 @@
           <td>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
-                <%= link_to '(Edit)', edit_event_path(event.id), :id => 'editEvent'%> 
+                <%= link_to '(Edit)', edit_event_path(event.id), :id => 'editEvent'%>
               <% end %>
             <% end %>
-          </td>  
+          </td>
           </tr>
         <% end %>
       </table>
-    </div>  
+    </div>
   <% else %>
     *** No events near you yet ***
-  <% end %>  
+  <% end %>
 
-  
+
       <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
