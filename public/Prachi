@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Scrum Performance Summary - Prachi Miyan 
 =======================================
 Accomplished the following:
@@ -37,3 +38,53 @@ Goals for next week:
     - populate the test suite
 
 =======================================
+goals for the week:
+    Thursday(14/2/2019), Friday(15/2/2019)
+        -Examine the working model of purchases and describe the abstractions and modules in a txt file
+        -Create tests for purchases_controller_test
+        -Read the book 
+
+    Goals accomplished -  Thursday(14/2/2019)
+
+    Goals accomplished -  Friday(15/2/2019)
+=======
+Scrum Performance Summary - Prachi Miyan 
+=======================================
+Accomplished the following:
+    Friday - January 11th
+        - Researched how to run and create tests
+        - Studied Michael Hartl tutorial to understand the architecture of the website
+        - Removed the Deprecation error
+
+Goals for next week:
+    - remove Traceback error
+    - Find root/Documents/tomatocan/test/fixtures/files/uploads in Roni's commits
+    - Run the tests that have been added to purchases_controller_test.rb
+
+=======================================
+=======================================
+Accomplished the following:
+    Tuesday - January 15th
+        - removed the traceback error
+        - removed the error in carrierwave that was preventing tests from running (($ gem install carrierwave) then copy the rest of the files)
+
+
+=======================================
+=======================================
+Accomplished the following:
+    Tuesday - January 22nd
+        - Figured out why users_controller_test had so many errors
+        - Deleted the tests that did not have any views and therefore, were throwing errors. 
+        - Figured out the sqlite3 query error on line #9 of users_controller_test.rb in  can be resolved by switching to postgres
+        - Signed in user to fix run test_should_run_index in users_controller_test.rb
+
+    Thursday - January 24th
+        - Added a test to users_controller_test.rb
+        - Helped Gabe with ruby on rails setup
+
+    
+Goals for next week:
+    - populate the test suite
+
+=======================================
+>>>>>>> 5852d90c4c136d930103a64dd635c4190acdfbf8

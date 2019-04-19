@@ -44,7 +44,7 @@ class Purchase < ApplicationRecord
       end
     end
 
-    sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid) 
+    sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid)
       %%if self.group_id.present? #not used right now
         group = Group.find(self.group_id)
         groupstripeaccount = Stripe::Account.retrieve(group.stripeid) 
