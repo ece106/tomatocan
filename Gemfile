@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby '2.5.1'
 
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3', '~> 1.3.6'
 
 gem 'mandrill'	
 gem 'devise'
@@ -23,6 +23,7 @@ gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
+gem 'capybara'
 
 gem 'rails', '5.2.1'
 gem 'railties', '5.2.1'
