@@ -92,7 +92,7 @@ class PurchasesController < ApplicationController
           @purchase.author_id = User.find(@merchandise.user_id) 
           if user_signed_in?
             @purchase.user_id = current_user.id
-          end
+          end 
           if @purchase.save_with_payment
             seller = User.find(@merchandise.user_id)
             redirect_to user_profile_path(seller.permalink)
