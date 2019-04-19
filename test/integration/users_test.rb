@@ -3,8 +3,19 @@ require 'test_helper'
 class UsersTest < ActionDispatch::IntegrationTest
   	setup do
   		visit ('http://localhost:3000/')
-  		def signUpUser()
-			visit ('http://localhost:3000/')
+  # 		def signUpUser()
+		# 	visit ('http://localhost:3000/')
+		# 	click_on('Sign Up', match: :first)
+		# 	fill_in(id:'user_name', with: 'name')
+		# 	fill_in(id:'user_email', with: 'e@gmail.com')
+		# 	fill_in(id:'user_permalink', with:'username')
+		# 	fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		# 	fill_in(id:'user_password_confirmation', with:'password')
+		# 	click_on(class: 'form-control btn-primary')
+		# 	click_on('Sign out')
+			
+		# end
+		def signUpUser(*args)
 			click_on('Sign Up', match: :first)
 			fill_in(id:'user_name', with: 'name')
 			fill_in(id:'user_email', with: 'e@gmail.com')
@@ -12,7 +23,23 @@ class UsersTest < ActionDispatch::IntegrationTest
 			fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
 			fill_in(id:'user_password_confirmation', with:'password')
 			click_on(class: 'form-control btn-primary')
-			click_on('Sign out')
+			if !args.empty?
+				staySigned= args[0]
+				location= args[1]
+			else 
+				click_on('Sign out')
+			end
+
+			if staySigned==true
+				case $location
+				when 'controlPanel'
+					click_on(class: 'dropdown-toggle')
+					click_on('Control Panel')
+				end
+		
+			elsif staySigned == false || staySigned == nil
+				click_on('Sign out')
+			end
 		end
 		def signInUser()
 			visit ('http://localhost:3000/')
@@ -65,8 +92,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	end
 	#todo: write a test that fails to sign up
 	test "Should_see_edit_profile_in_control_panel" do
-		signUpUser()
-		signInUser()
+		signUpUser(true, 'controlPanel')
 		click_on(class: 'dropdown-toggle')
 		click_on('Control Panel')
 		assert_text('Edit Profile')
@@ -188,13 +214,29 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on(id:'saveProfileButton',:match => :first)
 		assert_text('names')
 	end
-	test 'Should_cancel' do
+	test 'Should_cancel_about' do
 	    signUpUser()
 	    signInUser()
 	    click_on(class: 'dropdown-toggle')
 	    click_on('Control Panel')
 	    click_on(id:"cancelProfileButton",:match => :first)
 	    assert_text("name's Videos")
+	end
+	#Social Section
+	test 'Should_set_Twitter_Handle' do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+	    click_on('Control Panel')
+	    fill_in(id:'user_twitter',with:'name')
+	    click_on('Control Panel')
+	    assert_text('name')
+	end
+	test 'Should_set_video'do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+	    click_on('Control Panel')
 	end
 	#Stripe error here
 	test 'Should_buy_user' do
@@ -218,7 +260,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Rewards')
 		click_on('Profile')
 		assert_text('Edit Profile')
-
 	end
 	test 'Should_host_logged_in' do
     signUpUser()
@@ -255,6 +296,18 @@ end
 			assert_text('Offer Rewards')
 		end
 	end
+	test 'Should change URL' do
+		signUpUser()
+		signInUser()
+		click_on(class: 'dropdown-toggle')
+	    click_on('Control Panel')
+	    click_on('Account')
+	    fill_in(id:'user-permalink',with:'name1')
+	    visit('/name1')
+	    assert_text('name\'s Videos')
+	end
+	
+
 	#test number of panels
 
 	
