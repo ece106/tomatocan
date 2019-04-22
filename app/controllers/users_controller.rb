@@ -194,14 +194,14 @@ class UsersController < ApplicationController
       @user.get_youtube_id
       bypass_sign_in @user
       redirect_to user_profile_path(current_user.permalink)
-    else
+    else  
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       #redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
         
       if params[:user][:on_password_reset] == "changepassword"
         redirect_to user_changepassword_path(current_user.permalink), danger: update_error_message
       else
-        redirect_to user_profileinfo_path(current_user.permalink), danger: update_error_message
+        redirect_to user_profileinfo_path(current_user.permalink), danger: update_erro  r_message
       end
       @user.errors.clear
     end
