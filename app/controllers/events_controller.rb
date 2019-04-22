@@ -9,18 +9,6 @@ class EventsController < ApplicationController
       format.json { render json: @events }
     end
   end
-
-  def pastevents
-    @events = Event.where( "start_at < ?", Time.now )
-    if params[:search].present?
-      if params[:dist].present? && is_number?(params[:dist])
-        @events = @events.near(params[:search], params[:dist], order: 'distance') 
-      else
-        @events = @events.near(params[:search], 50, order: 'distance') 
-      end
-    end
-  end
-
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
@@ -50,12 +38,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-#        redirect_to @event
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
       else
-#        format.html { redirect_to new_event_path }
- #       redirect_to new_event_path, :notice => "Your event was not saved. Check for improper input."
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -82,9 +67,4 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
     end
-
-    def is_number?(obj)
-      obj.to_s == obj.to_i.to_s
-    end
-
 end
