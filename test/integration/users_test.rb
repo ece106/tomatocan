@@ -348,4 +348,32 @@ test "Should say email was taken when same user attempts sign up twice" do
 		click_on(class: 'form-control btn-primary')
 		refute_text 'Email has already been taken'
 	end		
+
+	test "Should_visit_FAQ1" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		within('div#globalNavbar.collapse.navbar-collapse') do
+			click_on(text: 'FAQ')
+		end
+		assert_text('accessing my mic or webcam')	
+	end
+	test "Should_visit_FAQ2" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		within('div#faqBlock.row') do
+			click_on(text: 'FAQ')
+		end
+		assert_text('accessing my mic or webcam')
+	end
+	test "Should_visit_FAQ3" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		within('div.col-sm-2.col-sm-offset-1') do
+			click_on(text: 'FAQ')
+		end
+		assert_text('accessing my mic or webcam')
+	end
 end
