@@ -3,19 +3,9 @@ require 'test_helper'
 class UsersTest < ActionDispatch::IntegrationTest
   	setup do
   		visit ('http://localhost:3000/')
-  # 		def signUpUser()
-		# 	visit ('http://localhost:3000/')
-		# 	click_on('Sign Up', match: :first)
-		# 	fill_in(id:'user_name', with: 'name')
-		# 	fill_in(id:'user_email', with: 'e@gmail.com')
-		# 	fill_in(id:'user_permalink', with:'username')
-		# 	fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
-		# 	fill_in(id:'user_password_confirmation', with:'password')
-		# 	click_on(class: 'form-control btn-primary')
-		# 	click_on('Sign out')
-			
-		# end
 		def signUpUser(*args)
+			#INSTRUCTIONS:
+			#
 			click_on('Sign Up', match: :first)
 			fill_in(id:'user_name', with: 'name')
 			fill_in(id:'user_email', with: 'e@gmail.com')
@@ -23,23 +13,25 @@ class UsersTest < ActionDispatch::IntegrationTest
 			fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
 			fill_in(id:'user_password_confirmation', with:'password')
 			click_on(class: 'form-control btn-primary')
+			# puts(args[0])
+			# puts(args[1])
+			p args
 			if !args.empty?
-				staySigned= args[0]
-				location= args[1]
+				if :staySigned==true
+					p 'here'
+					if :location == "controlPanel"
+						click_on(class: 'dropdown-toggle')
+						click_on('Control Panel')
+						p 'here'
+					elsif :location=='home'||:location==nil
+						visit('/')
+					end
+				elsif :staySigned == false || :staySigned == nil
+					click_on('Sign out')
+				end
 			else 
 				click_on('Sign out')
-			end
-
-			if staySigned==true
-				case $location
-				when 'controlPanel'
-					click_on(class: 'dropdown-toggle')
-					click_on('Control Panel')
-				end
-		
-			elsif staySigned == false || staySigned == nil
-				click_on('Sign out')
-			end
+			end	
 		end
 		def signInUser()
 			visit ('http://localhost:3000/')
@@ -92,7 +84,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	end
 	#todo: write a test that fails to sign up
 	test "Should_see_edit_profile_in_control_panel" do
-		signUpUser(true, 'controlPanel')
+		signUpUser(staySigned: true, location: 'controlPanel')
 		click_on(class: 'dropdown-toggle')
 		click_on('Control Panel')
 		assert_text('Edit Profile')
@@ -206,45 +198,34 @@ class UsersTest < ActionDispatch::IntegrationTest
 		assert_text('user1 product')
 	end
 	test 'Should_change_name' do
-		signUpUser()
-		signInUser()
-		click_on(class: 'dropdown-toggle')
-		click_on('Control Panel')
+		signUpUser(staySigned: true,location:'controlPanel')
 		fill_in(id:'user_name', with:'names')
 		click_on(id:'saveProfileButton',:match => :first)
 		assert_text('names')
 	end
 	test 'Should_cancel_about' do
-	    signUpUser()
-	    signInUser()
-	    click_on(class: 'dropdown-toggle')
-	    click_on('Control Panel')
+	    signUpUser(staySigned: true,location: 'controlPanel')
 	    click_on(id:"cancelProfileButton",:match => :first)
 	    assert_text("name's Videos")
 	end
 	#Social Section
 	test 'Should_set_Twitter_Handle' do
-		signUpUser()
-		signInUser()
-		click_on(class: 'dropdown-toggle')
-	    click_on('Control Panel')
+		signUpUser(staySigned: true,location: 'controlPanel')
 	    fill_in(id:'user_twitter',with:'name')
-	    click_on('Control Panel')
+	    page.all(id:'saveProfileButton')[1]
 	    assert_text('name')
 	end
 	test 'Should_set_video'do
-		signUpUser()
-		signInUser()
-		click_on(class: 'dropdown-toggle')
-	    click_on('Control Panel')
+		signUpUser(staySigned: true,location: 'controlPanel')
 	end
-	#Stripe error here
+	#Javascript errors
 	test 'Should_buy_user' do
 		click_on('Discover Talk Show Hosts')
 		click_link('Phineas')
 		click_on('Buy for $1.50')
 		fill_in(id:'card_number', with:'4242424242424242')
 		select("2020", from: 'card_year')
+		fill_in(id:'purchase_email',with:'example@mail.com')
 		click_on('Purchase')
 		assert_text('successfully')
 	end
@@ -254,35 +235,40 @@ class UsersTest < ActionDispatch::IntegrationTest
 		click_on('Buy for $1.50')
 		assert_text('If you are purchasing')
 	end
+	#Rewards tab
 	test  'Should click rewards, then profile'do
-		click_on(class: 'dropdown-toggle')
-		click_on('Control Panel')
+		signUpUser(staySigned: :true, location: :'controlPanel')
+		#signUpUser()
 		click_on('Rewards')
+		#save_and_open_page
 		click_on('Profile')
 		assert_text('Edit Profile')
 	end
+
 	test 'Should_host_logged_in' do
-    signUpUser()
-    signInUser()
-    click_on('Host A Show')
-    fill_in(id:'event_name', with:'example')
-    select('2020', from:'event_start_at_1i')
-    select('December', from:'event_start_at_2i')
-    select('31', from:'event_start_at_3i')
-    select('01 AM', from:'event_start_at_4i')
-    select('00', from:'event_start_at_5i')
-    select('2020', from:'event_end_at_1i')
-    select('December', from:'event_end_at_2i')
-    select('31', from:'event_end_at_3i')
-    select('01 AM', from:'event_end_at_4i')
-    select('00', from:'event_end_at_5i')
-    find(class:'btn btn-lg btn-primary').click
-    #click_on(class: 'btn btn-lg btn-primary')
-    #assert_text('example')
-end
+	    signUpUser(staySigned: true)
+	    click_on('Host A Show')
+	    fill_in(id:'event_name', with:'example')
+	    select('2020', from:'event_start_at_1i')
+	    select('December', from:'event_start_at_2i')
+	    select('31', from:'event_start_at_3i')
+	    select('01 AM', from:'event_start_at_4i')
+	    select('00', from:'event_start_at_5i')
+	    select('2020', from:'event_end_at_1i')
+	    select('December', from:'event_end_at_2i')
+	    select('31', from:'event_end_at_3i')
+	    select('01 AM', from:'event_end_at_4i')
+	    select('00', from:'event_end_at_5i')
+	    find(class:'btn btn-lg btn-primary').click
+	    #click_on(class: 'btn btn-lg btn-primary')
+	    #assert_text('example')
+	end
 	test 'Should_host_logged_out' do
 		click_on('Host A Show')
 		assert_text('You need to sign in or sign up before continuing.')
+	end
+	test 'should see sales' do
+		signUpUser()
 	end
 	test 'Should_see_sign_up_not_logged_in' do
 		within('div#heroImage.row') do
