@@ -1,7 +1,6 @@
 <!-- Set layout of panels for a logged-in user. You do not need to check if user logged in or if user == current user in this view. You should check if host is Heroku though. -->
 
 <!-- Nav tabs -->
-
 <% if user_signed_in? %>
 <% if current_user.id == @user.id %> 
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
