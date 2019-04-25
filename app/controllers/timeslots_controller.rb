@@ -23,12 +23,30 @@
     @timeslot = Timeslot.find(params[:id])
   end
 
+  def date_of_next(day)
+    timeslotDate = Date.parse(day)
+    delta = timeslotDate > @timeslot.start_at ? 0 : 7
+    timeslotDate + delta
+  end
+
   # POST /timeslots
   def create
     @timeslot = current_user.timeslots.build(timeslot_params)
-
+    nextDate = date_of_next @timeslot.start_at.strftime('%A')
+      for i in 0..2 do
+        if i == 0
+          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at)
+        elsif i == 1
+          @timeslot.start_at = nextDate
+          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at)
+        else
+          nextDate = nextDate + 7
+          @timeslot.start_at = nextDate
+          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at)
+        end
+      end
     if @timeslot.save
-      redirect_to @timeslot, notice: 'Timeslot was successfully created.'
+      redirect_to timeslots_path, notice: 'Timeslot was successfully created.'
     else
       render :new
     end

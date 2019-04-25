@@ -22,7 +22,11 @@
         <td><%= timeslot.end_at %></td>
         <td><%= link_to 'Show', timeslot %></td>
         <td><%= link_to 'Edit', edit_timeslot_path(timeslot) %></td>
-        <td><%= link_to 'Destroy', timeslot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if user == current_user %>
+            <%= link_to 'Destroy', timeslot, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
