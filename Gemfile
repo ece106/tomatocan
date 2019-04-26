@@ -18,7 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
-gem 'stripe-ruby-mock', '~> 2.5.6', :require => 'stripe_mock'
+
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
@@ -27,7 +27,7 @@ gem 'aws-sdk'
 
 gem 'rails', '5.2.1'
 gem 'railties', '5.2.1'
-gem  'bootstrap-sass', '~> 3.2.0.3'
+gem  'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
 gem "will_paginate", "~> 3.0.6" 
