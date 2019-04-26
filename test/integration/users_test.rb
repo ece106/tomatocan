@@ -420,4 +420,15 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(class: 'form-control btn-primary')
         assert_text('Password can\'t be blank')
 	end
+	test "Should not sign up with non alphanumeric characters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: 'user')
+        fill_in(id:'user_email', with: 'user@user.com')
+        fill_in(id:'user_permalink', with:'`~!@#$%^&*()_-=+*/<>')
+        fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'password')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Permalink is invalid')
+	end
 end
