@@ -210,7 +210,7 @@ test 'Should_donate_user' do
     visit('http://localhost:3000/')
     click_on('Discover Talk Show Hosts')
     click_link('Phineas')
-    click_on('Donate $2.00!')
+    click_on(text: 'Donate $2.00!')
     fill_in(id:'card_number', with:'4242424242424242')
     select("2020", from: 'card_year')
     click_on('Purchase')
@@ -258,8 +258,130 @@ test 'Should_see_offer_rewards_logged_in' do
         assert_text('Offer Rewards')
     end
 end
-#test number of panels
 
+test "Should say email was taken when same user attempts sign up twice" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Email has already been taken'
+	end
 
+	test "Should say permalink was taken when same user attempts sign up twice" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Permalink has already been taken'
+	end
 
+	test "Should say email was already taken when new user signs up with existing email" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'newusername')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Email has already been taken'
+	end
+
+	test "Should not say permalink was already taken when new user signs up with existing email" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'e@gmail.com')
+		fill_in(id:'user_permalink', with:'newusername')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		refute_text 'Permalink has already been taken'
+	end
+
+	test "Should say permalink was already taken when existing user signs up with new email" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'newe@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		assert_text 'Permalink has already been taken'
+	end
+
+	test "Should not say email was already taken when existing user signs up with new email" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on('Sign out')
+		click_on('Sign Up', match: :first)
+		fill_in(id:'user_name', with: 'name')
+		fill_in(id:'user_email', with: 'newe@gmail.com')
+		fill_in(id:'user_permalink', with:'username')
+		fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+		fill_in(id:'user_password_confirmation', with:'password')
+		click_on(class: 'form-control btn-primary')
+		refute_text 'Email has already been taken'
+	end		
+
+	test "Should_visit_FAQ1" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		within('div#globalNavbar.collapse.navbar-collapse') do
+			click_on(text: 'FAQ')
+		end
+		assert_text('accessing my mic or webcam')	
+	end
+	test "Should_visit_FAQ2" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		within('div#faqBlock.row') do
+			click_on(text: 'FAQ')
+		end
+		assert_text('accessing my mic or webcam')
+	end
+	test "Should_visit_FAQ3" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		within('div.col-sm-2.col-sm-offset-1') do
+			click_on(text: 'FAQ')
+		end
+		assert_text('accessing my mic or webcam')
+	end
+	test "Should tweet on Twitter" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on()
+		click_on(text: 'Tweet')
+		assert_text('Share a link')
+	end
 end

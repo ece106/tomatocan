@@ -32,9 +32,9 @@ class StaticPagesControllerTest < ActionController::TestCase
   end
 
 #test "correct_head" do
-#	get :home
-#	assert_select 'title', "CrowdPublish.TV"
-# end
+  #get :home
+	#assert_select 'title', "CrowdPublish.TV"
+ #end
 
 
 end
