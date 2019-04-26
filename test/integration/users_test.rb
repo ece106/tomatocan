@@ -376,12 +376,48 @@ test "Should say email was taken when same user attempts sign up twice" do
 		end
 		assert_text('accessing my mic or webcam')
 	end
-	test "Should tweet on Twitter" do
+	test "Should say name can't be blank when nothing is in sign up parameters" do
 		visit('http://localhost:3000/')
-		signUpUser()
-		signInUser()
-		click_on()
-		click_on(text: 'Tweet')
-		assert_text('Share a link')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Name can\'t be blank')
+	end
+	test "Should say email can't be blank when nothing is in sign up parameters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Email can\'t be blank')
+	end
+	test "Should say permalink can't be blank when nothing is in sign up parameters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Permalink can\'t be blank')
+	end
+	test "Should say password can't be blank when nothing is in sign up parameters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Password can\'t be blank')
 	end
 end
