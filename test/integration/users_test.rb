@@ -210,7 +210,7 @@ test 'Should_donate_user' do
     visit('http://localhost:3000/')
     click_on('Discover Talk Show Hosts')
     click_link('Phineas')
-    click_on('Donate $2.00!')
+    click_on(text: 'Donate $2.00!')
     fill_in(id:'card_number', with:'4242424242424242')
     select("2020", from: 'card_year')
     click_on('Purchase')
@@ -375,5 +375,13 @@ test "Should say email was taken when same user attempts sign up twice" do
 			click_on(text: 'FAQ')
 		end
 		assert_text('accessing my mic or webcam')
+	end
+	test "Should tweet on Twitter" do
+		visit('http://localhost:3000/')
+		signUpUser()
+		signInUser()
+		click_on()
+		click_on(text: 'Tweet')
+		assert_text('Share a link')
 	end
 end
