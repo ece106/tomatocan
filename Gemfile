@@ -24,7 +24,7 @@ gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
-
+gem 'capybara-screenshot', :group => :test
 gem 'rails', '5.2.0'
 gem 'railties', '5.2.0'
 gem  'bootstrap-sass'

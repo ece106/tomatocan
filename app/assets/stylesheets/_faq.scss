@@ -8,9 +8,96 @@ p {
 }
 
 .h3 {
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 li {
   margin-left: 10px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+p {
+    font-size:1.1em;
+    margin: 1em 0;
+}
+
+.description {
+  margin: 1em 2.25em;
+}
+
+body {
+    width: 90%;
+    text-align: left;
+    min-width: 300px;
+    max-width: 400px;
+    margin: 1.5em ;
+    color: #333;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 2.5em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+  
+    .inner {
+        padding-left: 1em;
+        overflow: hidden;
+        display: none;
+      
+        &.show {
+          /*display: block;*/
+        }
+    }
+  
+    li {
+        margin: .5em 0;
+      
+        a.toggle {
+            width: 100%;
+            display: block;
+            background: rgba(0,0,0,0.78);
+            color: #fefefe;
+            padding: .75em;
+            border-radius: 0.15em;
+            transition: background .3s ease;
+          
+            &:hover {
+                background: rgba(0, 0, 0, 0.9);
+            }
+        }
+    }
+}
+
+/*.faq_question {
+    margin: 20px;
+    padding: 0px 0px 2px 0px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 23px;
+}
+ 
+.faq_answer_container {
+    height: 0px;
+    overflow: hidden;
+    padding: 0px;
+    margin-left: 20px;
+}
+*/

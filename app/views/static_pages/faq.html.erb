@@ -27,66 +27,128 @@
 
 <br>
 
-  <p>Help</p>
-        <ul>
-            <li><a href="#target3">My browser isn't accessing my mic or webcam</a></li>
-            <!--<li>(other problems)</li> -->
-        </ul>
-    </li>
-  <p>How To</p>
-        <ul>
-            <li>As A Viewer
-                <ul>
-                  <li><a href="#t4">What are viewers supposed to do on CrowdPublish.TV?</a></li>
-                  <!--<li>(other viewer wants)</li>-->
-                </ul>
-            </li>
-            <li>As A Host
-                <ul>
-                  <li><a href="#target">How do discussion hosts set up an account?</a></li>
-                  <li><a href="#t5">How to host a show</a></li>
-                  <li><a href="#t8">Can I broadcast from my phone?</a></li>
-                  <li><a href="#t11">Can use my CrowdPublish.TV page as my website?</a></li>
-                  <li><a href="#t15">How can I record my livestream show to YouTube?</a></li>
-                  <!--<li>(other host wants)</li>-->
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <p>About CrowdPublishTV</p>
-        <ul>
-            <li><a href="#target2"> What type of shows are typically on CrowdPublish.TV?</a></li>
-            <li><a href="#t6">What is a Founding Host?</a></li>
-            <li><a href="#t7">How is CrowdPublish.TV different than Kickstarter or Patreon?</a></li>
-            <li><a href="#t9">How is CrowdPublish.TV different than Zoom or Google Hangouts?</a></li>
-            <li><a href="#t12">How is CrowdPublish.TV different than Facebook live?</a></li>
-            <li><a href="#t10">How is CrowdPublish.TV different than Twitch?</a></li>
-            <li><a href="#t13">Does Crowdpublish.TV fulfill physical items?</a></li>
-            <li><a href="#t14">How much does it cost to use CrowdPublish.TV?</a></li>
-            <!--<li>(other viewer wants)</li>-->
-        </ul>
-    </li>
-    
+<ul class="accordion">
+  
+  
+  
+  <li>
+    <a class="toggle" href="javascript:void(0);">As a Viewer</a>
+    <ul class="inner">
+      <li>
+        <a href="#" class="toggle">What are viewers supposed to do?</a>
+        <div class="inner">
+          <p>
+            <div class = "h3" style = "color:#8C1D40" >
+              <a name="t4">What are viewers supposed to do on CrowdPublish.TV?</a> 
+            </div>
+            <ol> 
+              <li>Check the home page to find out what talk shows are scheduled.</li>
+              <li>Browse Discussion Hosts to discover what they have to offer.</li>
+              <li>Watch Hosts' talk shows. Participate in the chat during the show.</li>
+              <li>Support Discussion Hosts and their causes by purchasing their Rewards or donating to their cause. </li>
+              <li>Send an email to your favorite organizations & personalities who do not currently host CrowdPublish.TV shows & encourage them to host shows.</li>
+            </ol><br>
+          </p>
+        </div>
+      </li>
+      
+      
+      
+    </ul>
+  </li>
+  <li>
+    <a class="toggle" href="javascript:void(0);">As a Host</a>
+    <ul class="inner">
+      <li>
+
+        <a href="#" class="toggle">My browser isn't accessing my mic or webcam</a>
+        <div class="inner">
+          <p>
+           <div class = "h3" style = "color:#8C1D40" > 
+            <a name="target3">My browser isn't accessing my mic or webcam</a> 
+          </div>
+            
+              <p>Safari and Internet Explorer are usually incompatible with any site's livestream. Install Chrome or Firefox instead.</p>
+
+            <br><br> 
+          </p>
+        </div>
+      </li>
+      
+      <li>
+        <a href="#" class="toggle">Can I broadcast from my phone?</a>
+        <div class="inner">
+          <div class = "h3" style = "color:#8C1D40" >
+              <a name="t8">Can I broadcast from my phone?</a>
+          </div> 
+          <p>Yes. You must install the Jitsi app. The chatroom name is 'crowdpublishtv'.</p>
+          <br><br>
+
+        </div>
+      </li>
+      
+      
+    </ul>
+  </li>
+  
+      
 </ul>
+
+
+<script>
+  $('.toggle').click(function(event) {
+    event.preventDefault();
+
+    var $this = $(this);
+  
+    if ($this.next().hasClass('show')) {
+        $this.next().removeClass('show');
+        $this.next().slideUp(350);
+    } else {
+        $this.parent().parent().find('li .inner').removeClass('show');
+        $this.parent().parent().find('li .inner').slideUp(350);
+        $this.next().toggleClass('show');
+        $this.next().slideToggle(350);
+    }
+});
+</script>
+
+
+<!-- 
+<script>
+ $(document).ready(function() {
+ 
+    $('.faq_question').click(function() {
+ 
+        if ($(this).parent().is('.open')){
+            $(this).closest('.faq').find('.faq_answer_container').animate({'height':'0'},250);
+            $(this).closest('.faq').removeClass('open');
+ 
+            }else{
+                var newHeight =$(this).closest('.faq').find('.faq_answer').height() +'px';
+                $(this).closest('.faq').find('.faq_answer_container').animate({'height':newHeight},250);
+                $(this).closest('.faq').addClass('open');
+
+            }
+ 
+    });
+ 
+});
+</script>
+
+
+
 
 
 </div>
 
-<div class="row" >
-  <div class="col-sm-7 col-sm-offset-1 col-xs-12 h4" style = "line-height: 1.5em;" > 
+<!--<div class="row" > 
+  <div class="col-sm-7 col-sm-offset-1 col-xs-12 h4" style = "line-height: 1.5em;" >  -->
 
-<div class = "h3" style = "color:#8C1D40" >
-  <a name="target3">My browser isn't accessing my mic or webcam</a> 
-</div> 
-  <p>Safari and Internet Explorer are usually incompatible with any site's livestream. Install Chrome or Firefox instead.</p>
 
-<br><br>
 
-<div class = "h3" style = "color:#8C1D40" >
-  <a name="t8">Can I broadcast from my phone?</a>
-</div> 
-  <p>Yes. You must install the Jitsi app. The chatroom name is 'crowdpublishtv'.</p>
-<br><br>
+  
+
 
 <div class = "h3" style = "color:#8C1D40" >
   <a name="target2">What type of shows are typically on CrowdPublish.TV?</a>
