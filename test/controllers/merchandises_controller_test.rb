@@ -16,7 +16,7 @@ test "should show merchandise" do
     assert_response :success
 end
 
-test "should get new if user signed in" do
+test "  " do
     sign_in users(:one)
     get :new
     assert_response :success
@@ -99,7 +99,6 @@ test "should set user" do
     assert @user.valid?
 end
  
-#fix this
 test "should confirm user not signed in as different user" do
   sign_in users(:one)
   first_user = users(:one)
@@ -128,9 +127,12 @@ test "should render correct layout for new" do
     assert_template 'application'
 end
 
-# test "should check whether a reward is expired or not" do
-#     sign_in users(:one)
-#     assert_not_same(@expiredmerch, notexpiredmerch)
-# end
+test "should check whether a reward is expired or not" do
+    get :edit, params: {id: @merchandise.id}
+    @user = User.find(@merchandise.user_id)
+    notexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
+    deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
+    assert deadlineorder.all[1].present?
+end
 
 end
