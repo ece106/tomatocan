@@ -10,11 +10,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get profilepic" do
-   pic="hello.jpg"
-   assert_equal(pic,@user.profilepic)
-    end
-
   test "should equate youtube field" do
     youtube="youtube"
     assert_equal(youtube,@user.youtube)
@@ -23,11 +18,6 @@ class UsersControllerTest < ActionController::TestCase
   test "should get users youtubers" do
     get :youtubers
     assert_response :success
-  end
-
-  test "should check password" do
-	pass = User.new.send(:password_digeset, "user1234")
-	assert_equal(pass,  @user.encrypted_password)
   end
 
 #Ambiguous method checking
@@ -105,11 +95,16 @@ end
   #test "should get stripe callback" do
   #I have no clue how to play around with stripe yet
   test "should test stripe" do
-    stripeid="acct_1BLIfGFpv54ZlS5f"
+    stripeid="acct_1E4BAlKFKIozho71"
     assert_equal(stripeid,@user.stripeid)
   end
 
 
+   test "should verify user name" do
+    sign_in @user
+    assert_equal(@user.name, "Phineas")
+  end
+ 
 
   test "should create user" do #rails test test/controllers/users_controller_test.rb -n test_should_equate_youtube_field; To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
     assert_difference('User.count', 1) do
@@ -117,11 +112,6 @@ end
     end
    end
 
-   test "should verify user name" do
-    sign_in @user
-    assert_equal(@user.name, "samiam")
-  end
- 
  test "should redirect new user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
     post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     assert_redirected_to (user_profileinfo_path(assigns(:user).permalink))
@@ -150,38 +140,26 @@ end
   test "should verify user facebook" do
    sign_in @user
   patch :update, params:{ id: @user.id, user: {facebook: 'MyFacebook'} }
-  assert_equal(@user.facebook, "MyFacebook")
+  assert_equal("MyFacebook", @user.facebook)
   end
 
   test "should verify user twitter" do
   sign_in @user
-  patch :update, params:{ id: @user.id, user: {twitter: 'MyTwitter'} }
-  assert_equal(@user.twitter, "MyTwitter")
+  patch :update, params:{ id: @user.id, user: {twitter: 'MyTwitter'}}
+  user = User.find_by_permalink(@user.permalink)
+
+  assert_equal("MyTwitter", user.twitter)
   end
 
-  test "should verify user pinterest" do
-  sign_in @user
-  patch :update, params:{ id: @user.id, user: {pinterest: 'MyPin'} }
-  assert_equal(@user.twitter, "MyPin")
-  end
-
-  test "should verify about" do
+  test "should verify update about" do
      sign_in @user
-     patch :update, param:{ id: @user.id, user: {about: 'Hi'}}
-     assert_equal(@user.about, "Hi")
-  end
-
-  test "should verify blogurl" do
-    sign_in @user
-    patch :update, param:{id: @user.id, user: {blogurl: 'https://url.com'}}
-    assert_equal(@user.blogurl, "https://url.com")
+     patch :update, params:{ id: @user.id, user: {about: 'Hi this is me'}}
+     user = User.find_by_permalink(@user.permalink)
+     assert_equal("Hi this is me", user.about)
   end
 
   test "should verify email" do
     sign_in @user
-    assert_equal(@user.email, "fake@fake.com")
+    assert_equal("fake@fake.com", @user.email)
   end
-
-
-
 end
