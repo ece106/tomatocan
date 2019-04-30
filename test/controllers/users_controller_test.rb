@@ -9,7 +9,12 @@ class UsersControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
-    
+
+  test "should get profilepic" do
+   pic="hello.jpg"
+   assert_equal(pic,@user.profilepic)
+    end
+
   test "should equate youtube field" do
     youtube="youtube"
     assert_equal(youtube,@user.youtube)
@@ -19,6 +24,12 @@ class UsersControllerTest < ActionController::TestCase
     get :youtubers
     assert_response :success
   end
+
+  test "should check password" do
+	pass = User.new.send(:password_digeset, "user1234")
+	assert_equal(pass,  @user.encrypted_password);
+  end
+
 #Ambiguous method checking
 
 
@@ -145,4 +156,6 @@ end
   assert_equal "MyTwitter", @user.twitter
 
   end
+
+
 end
