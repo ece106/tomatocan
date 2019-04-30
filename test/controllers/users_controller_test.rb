@@ -27,7 +27,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should check password" do
 	pass = User.new.send(:password_digeset, "user1234")
-	assert_equal(pass,  @user.encrypted_password);
+	assert_equal(pass,  @user.encrypted_password)
   end
 
 #Ambiguous method checking
@@ -116,6 +116,11 @@ end
       post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     end
    end
+
+   test "should verify user name" do
+    sign_in @user
+    assert_equal(@user.name, "samiam")
+  end
  
  test "should redirect new user" do # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
     post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
@@ -143,19 +148,40 @@ end
   end
 
   test "should verify user facebook" do
- sign_in @user
-  patch :update, params:{ id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
-    facebook: 'MyFacebook', email: 'fake@fake.com', permalink: 'user1'}}
-  assert_equal "MyFacebook", @user.facebook
+   sign_in @user
+  patch :update, params:{ id: @user.id, user: {facebook: 'MyFacebook'} }
+  assert_equal(@user.facebook, "MyFacebook")
   end
 
   test "should verify user twitter" do
- sign_in @user
-	patch :update, params:{ id: @user.id, user: {name: 'Phineas', password: 'p', password_confirmation: 'p',
-    twitter: 'MyTwitter', email: 'fake@fake.com', permalink: 'user1'}}
-  assert_equal "MyTwitter", @user.twitter
-
+  sign_in @user
+  patch :update, params:{ id: @user.id, user: {twitter: 'MyTwitter'} }
+  assert_equal(@user.twitter, "MyTwitter")
   end
+
+  test "should verify user pinterest" do
+  sign_in @user
+  patch :update, params:{ id: @user.id, user: {pinterest: 'MyPin'} }
+  assert_equal(@user.twitter, "MyPin")
+  end
+
+  test "should verify about" do
+     sign_in @user
+     patch :update, param:{ id: @user.id, user: {about: 'Hi'}}
+     assert_equal(@user.about, "Hi")
+  end
+
+  test "should verify blogurl" do
+    sign_in @user
+    patch :update, param:{id: @user.id, user: {blogurl: 'https://url.com'}}
+    assert_equal(@user.blogurl, "https://url.com")
+  end
+
+  test "should verify email" do
+    sign_in @user
+    assert_equal(@user.email, "fake@fake.com")
+  end
+
 
 
 end
