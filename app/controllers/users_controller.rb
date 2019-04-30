@@ -201,7 +201,7 @@ class UsersController < ApplicationController
       if params[:user][:on_password_reset] == "changepassword"
         redirect_to user_changepassword_path(current_user.permalink), danger: update_error_message
       else
-        redirect_to user_profileinfo_path(current_user.permalink), danger: update_erro  r_message
+        redirect_to user_profileinfo_path(current_user.permalink), danger: update_error_message
       end
       @user.errors.clear
     end
