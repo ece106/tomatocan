@@ -3,6 +3,7 @@ ruby "2.6.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
+gem 'capybara-screenshot', :group => :test
 
 gem 'pg'
 #gem 'sqlite3'
@@ -41,11 +42,9 @@ gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
 #  gem 'factory_girl_rails'
-#  gem 'capybara'
-#  gem 'mocha', '~> 1.1.0'
-  gem 'stripe-ruby-mock', :require =>'stripe_mock'
   gem 'capybara'
-  gem 'selenium-webdriver'
+#  gem 'mocha', '~> 1.1.0'
+
 end
 
 group :production do

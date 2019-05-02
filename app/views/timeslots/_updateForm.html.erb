@@ -16,18 +16,23 @@
   </div>
 
   <div class="field">
-    <%= form.label :start_at %>
-    <%= form.datetime_select :start_at %>
+    <strong>Start at:</strong>
+    <%= @timeslot.start_at %>
   </div>
 
   <div class="field">
-    <%= form.label :end_at %>
-    <%= form.datetime_select :end_at %>
+    <strong>End at:</strong>
+    <%= @timeslot.end_at %>
   </div>
 
   <div class="field">
-    <%= form.label :show_duration %>
-    <%= form.select(:show_duration, options_for_select([['1 week', 1], ['2 weeks', 2], ['3 weeks', 3], ['4 weeks', 4], ['5 weeks', 5], ['6 weeks', 6], ['7 weeks', 7], ['8 weeks', 8], ['9 weeks', 9], ['10 weeks', 10], ['11 weeks', 11],['12 weeks', 12]])) %>
+    <% if @timeslot.name != "" %>
+      <strong>Current Topic:</strong>
+      <%= @timeslot.name %>
+    <% else %>
+      <%= form.label :topic %>
+      <%= form.text_field(:name, size: 20) %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -36,10 +41,10 @@
   </div>
 
   <div class="field"> 
-    <%= form.radio_button(:role, 'Interviewer') %>
-    <%= form.label(:role, 'Interviewer') %>
+    <%= form.radio_button(:role, "Interviewer") %>
+    <%= form.label(:interviewer_user_id, "Interviewer") %>
     <%= form.radio_button :role, 'Guest' %>
-    <%= form.label :role, 'Guest' %>
+    <%= form.label :guest1_user_id, 'Guest' %>
   </div>
 
   <div class="actions">

@@ -1,5 +1,5 @@
  class TimeslotsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_timeslot, only: [:show, :edit, :update, :destroy]
 
   # GET /timeslots
@@ -23,26 +23,19 @@
     @timeslot = Timeslot.find(params[:id])
   end
 
-  def date_of_next(day)
-    timeslotDate = Date.parse(day)
-    delta = timeslotDate > @timeslot.start_at ? 0 : 7
-    timeslotDate + delta
-  end
-
   # POST /timeslots
   def create
-    @timeslot = current_user.timeslots.build(timeslot_params)
-    nextDate = date_of_next @timeslot.start_at.strftime('%A')
-      for i in 0..2 do
-        if i == 0
-          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at)
-        elsif i == 1
-          @timeslot.start_at = nextDate
-          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at)
+      @timeslot = current_user.timeslots.build(timeslot_params)
+      for i in 1..@timeslot.show_duration do
+        if i == 1
+          @timeslot = current_user.timeslots.build(timeslot_params)
+          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at, name: @timeslot.name, show_duration: @timeslot.show_duration)
+        elsif i == 2
+          nextDate = @timeslot.start_at + 7.day
+          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: nextDate, end_at: nextDate, name: @timeslot.name, show_duration: @timeslot.show_duration)
         else
-          nextDate = nextDate + 7
-          @timeslot.start_at = nextDate
-          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at)
+          nextDate = nextDate + 7.day
+          @timeslot = Timeslot.create(user_id: @timeslot.user_id, start_at: nextDate, end_at: nextDate, name: @timeslot.name, show_duration: @timeslot.show_duration)
         end
       end
     if @timeslot.save
@@ -78,6 +71,6 @@
 
     # Only allow a trusted parameter "white list" through.
     def timeslot_params
-      params.require(:timeslot).permit(:name, :user_id, :start_at, :end_at)
+      params.require(:timeslot).permit(:name, :user_id, :start_at, :end_at, :show_duration)
     end
 end
