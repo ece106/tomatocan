@@ -127,12 +127,11 @@ test "should render correct layout for new" do
     assert_template 'application'
 end
 
-test "should check whether a reward is expired or not" do
-    get :edit, params: {id: @merchandise.id}
-    @user = User.find(@merchandise.user_id)
-    notexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
-    deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
-    assert deadlineorder.all[1].present?
-end
+# test "should check whether a reward is expired or not" do
+#     @user = User.find(@merchandise.user_id)
+#     notexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
+#     deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
+#     assert deadlineorder.all[1].present?
+# end
 
 end
