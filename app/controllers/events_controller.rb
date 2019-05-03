@@ -32,11 +32,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  # GET 
-  def recurring_shows
-    @event = Event.find(params[:id])
-  end
-
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)

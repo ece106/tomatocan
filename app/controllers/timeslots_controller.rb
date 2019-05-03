@@ -4,8 +4,7 @@
 
   # GET /timeslots
   def index
-    @timeslots = Timeslot.all
-    @events = Event.where( "start_at > ?", Time.now )
+    @timeslots = Timeslot.where( "start_at > ?", Time.now )
   end
 
   # GET /timeslots/1
@@ -51,7 +50,7 @@
       @timeslot = Timeslot.find(params[:id])
       @event = Event.create(usrid: @timeslot.user_id, start_at: @timeslot.start_at, end_at: @timeslot.end_at, name: @timeslot.name)
       @timeslot.destroy
-      redirect_to timeslots_path, notice: 'Timeslot was successfully updated.'
+      redirect_to timeslots_path, notice: 'Show was Successfully Reserved.'
     else
       render :edit
     end

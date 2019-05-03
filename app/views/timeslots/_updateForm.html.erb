@@ -12,42 +12,40 @@
   <% end %>
 
   <div class="field">
-    <%= current_user.name %>
+    <% user = User.find(@timeslot.user_id) %>
+    <strong>Hosted by</strong>
+    <%= link_to user.name, user.permalink %>
   </div>
 
   <div class="field">
-    <strong>Start at:</strong>
-    <%= @timeslot.start_at %>
+    <% edt = @timeslot.start_at + 3.hours %>
+    <strong>Start time:</strong>
+    <%= @timeslot.start_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
+    <i>(<%= edt.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
   </div>
 
   <div class="field">
+    <% edtend = @timeslot.end_at + 3.hours %>
     <strong>End at:</strong>
-    <%= @timeslot.end_at %>
+    <%= @timeslot.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
+    <i>(<%= edtend.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
   </div>
 
   <div class="field">
-    <% if @timeslot.name != "" %>
-      <strong>Current Topic:</strong>
-      <%= @timeslot.name %>
-    <% else %>
-      <%= form.label :topic %>
-      <%= form.text_field(:name, size: 20) %>
-    <% end %>
+    <h5><%= form.label :topic, "Title of LiveStream" %></h5>
+    <%= form.text_field(:name, size: 40) %>
   </div>
+  <br>
 
-  <div class="field">
-    <%= form.label :topic %>
-    <%= form.text_field(:name, size: 20) %>
-  </div>
-
-  <div class="field"> 
+  <!-- <div class="field"> 
     <%= form.radio_button(:role, "Interviewer") %>
     <%= form.label(:interviewer_user_id, "Interviewer") %>
     <%= form.radio_button :role, 'Guest' %>
     <%= form.label :guest1_user_id, 'Guest' %>
   </div>
+  <br> -->
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Sign Up" %>
   </div>
 <% end %>
