@@ -30,18 +30,18 @@ a {
 
 p {
     font-size:1.1em;
-    margin: 1em 0;
 }
 
 .description {
   margin: 1em 2.25em;
+
 }
 
 body {
     width: 90%;
     text-align: left;
-    min-width: 300px;
-    max-width: 400px;
+    min-width: auto;
+    max-width: auto;
     margin: 1.5em ;
     color: #333;
 }
@@ -52,8 +52,12 @@ h1 {
     font-size: 2.5em;
 }
 
+a ul {
+	list-style-type: circle;
+}
+
 ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
   
     .inner {
@@ -71,7 +75,9 @@ ul {
       
         a.toggle {
             width: 100%;
+            float: left;
             display: block;
+            margin-bottom: 10px;
             background: rgba(0,0,0,0.78);
             color: #fefefe;
             padding: .75em;
