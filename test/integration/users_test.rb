@@ -191,6 +191,7 @@ test 'Should_cancel' do
 end
 #Stripe error here
 test 'Should_buy_user' do
+	Capybara.current_driver= :webkit
 	Capybara.javascript_driver= :webkit
 	driver = Capybara.javascript_driver
 	driver.navigate.to '/'
