@@ -249,26 +249,10 @@
         <a href="#" class="toggle">How can I record my livestream show to YouTube?</a>
         <div class="inner">
           <div class = "h3" style = "color:#8C1D40" >
-              <a name="t8">How much does it cost to use CrowdPublish.TV?</a>
-          </div> 
-          <p>
-              Nothing. Free to use, watch, sign up, post donation buttons, post items to sell, set up a time for a show on the home page, host a live show, record the show to YouTube.<br><br>
-
-              Discussion Hosts receive approximately 92% of each transaction they solicit on CrowdPublish.TV. CrowdPublish.TV doesn't get paid until you get paid. Our payment processor (Stripe) keeps $0.30 plus 2.9% of each transaction. CrowdPublish.TV receives 5% of each transaction. 
-          </p>
-          <br><br>
-
-        </div>
-      </li>
-
-      <li>
-        <a href="#" class="toggle">How can I record my livestream show to YouTube?</a>
-        <div class="inner">
-          <div class = "h3" style = "color:#8C1D40" >
               <a name="t8">How can I record my livestream show to YouTube?</a>
           </div> 
           <p>
-            <ol> 
+              <ol> 
               <li>You must set up YouTube Livestream at least 24 hours in advance.</li>
             <li>Get the key from YouTube</li>
             <li>Click Start Livestream Beta</li>
@@ -281,25 +265,10 @@
         </div>
       </li>
 
+      
 
-      <li>
-        <a href="#" class="toggle">How can I record </a><a name="t16">my livestream show to YouTube?</a>
-        <div class="inner">
-          <div class = "h3" style = "color:#8C1D40" >
-              <a name="t8">How can I record my livestream show to YouTube?</a>
-          </div> 
-          <p>
-            <li>You must set up YouTube Livestream at least 24 hours in advance.</li>
-            <li>Get the key from YouTube</li>
-            <li>Click Start Livestream Beta</li>
-            <li>You will need to enter your YouTube key the first time you record</li>
-            <li>Set "People join with camera disabled" as default</li>
-          </p>
-          <br><br>
 
-        </div>
-      </li>
-
+      
     </ul>
   </li>
 </ul>
@@ -307,7 +276,7 @@
 <br><br><br><br>
 
 <script>
-  $('.toggle').click(function(event) {
+  $('.toggle').click(function() {
     event.preventDefault();
 
     var $this = $(this);
@@ -318,8 +287,9 @@
     } else {
         $this.parent().parent().find('li .inner').removeClass('show');
         $this.parent().parent().find('li .inner').slideUp(350);
-        $this.next().toggleClass('show');
+        //$this.next().toggleClass('show');
         $this.next().slideToggle(350);
+
     }
 });
 </script>
