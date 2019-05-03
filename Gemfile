@@ -46,7 +46,7 @@ group :test, :development do
   gem 'stripe-ruby-mock', :require =>'stripe_mock'
   gem 'capybara'
   gem 'selenium-webdriver'
-  #gem 'simplecov'
+  gem 'simplecov', require:false
 end
 
 group :production do

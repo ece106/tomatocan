@@ -5,7 +5,11 @@ require 'minitest/autorun'
 require 'fileutils'
 require 'carrierwave/storage/fog'
 require 'capybara/rails'
+require 'simplecov'
+SimpleCov.start
 require 'capybara/minitest'
+
+
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
