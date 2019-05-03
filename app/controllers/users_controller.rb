@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       @usrgrpnameid = []
       currusergroups.find_each do |group|
         @usrgrpnameid <<  [group.name, group.id] 
-      end 
+      end   
       @numusrgroups = currusergroups.count 
     end 
     respond_to do |format|
