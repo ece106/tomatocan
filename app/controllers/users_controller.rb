@@ -12,7 +12,7 @@ class UsersController < ApplicationController
        OR (profilepicurl SIMILAR TO 'http%' AND 
        profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
     userswithpicorder = userswithpic.order('updated_at DESC')
-    @users = userswithpicorder.paginate(:page => params[:page], :per_page => 32)
+    @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
   end
 
   def youtubers
@@ -194,7 +194,7 @@ class UsersController < ApplicationController
       @user.get_youtube_id
       bypass_sign_in @user
       redirect_to user_profile_path(current_user.permalink)
-    else
+    else  
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       #redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
         
@@ -204,7 +204,7 @@ class UsersController < ApplicationController
         redirect_to user_profileinfo_path(current_user.permalink), danger: update_error_message
       end
       @user.errors.clear
-    end  
+    end
   end
   
   def facebook

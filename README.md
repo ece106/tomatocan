@@ -18,7 +18,6 @@ This README file may change at any time.
 
 ### QUIZ FOR POTENTIAL DEVELOPERS
 To determine current skill level -
-Send your responses to rolemodelenterprises@gmail.com 
 
 Refer to http://github.com/ece106/tomatocan and use tutorials, Google, etc. to help you figure out the answers. 
 
@@ -38,7 +37,11 @@ e.g. "created_at" - Time and date at which each record was created
 
 7. What gem is used for signin/signout? How many times is it mentioned in the Tomatocan repository?
 
-### TO USE THE TOMATOCAN GITHUB REPO
+### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
+
+0. To set up Ruby on Rails on Mac or Linux, go to
+https://gorails.com/setup/osx/10.13-high-sierra
+Make sure you install the Postresql database, not sqlite. No need to create the myapp example since you'll be using the CrowdPublish.TV code.
 
 1. Fork tomatocan to your local machine
 
@@ -56,44 +59,7 @@ c. To CLONE the repository: In a terminal, in the directory you would like to st
  git clone https://github.com/YOUR-GITHUB_USERNAME/tomatocan
 ```
 
-2. Saving your changes to your repository
-
-To add modified and new files that are not in .gitignore:
-```
-git add * :/
-```
-
-To commit your current files:
-```
-git commit -a -m "Useful Comment of Your Changes/Additions"
-```
-
-Push comitted changes to your repository:
-
-```
-git push origin master
-```
-or
-  
-```
-git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-TOMATOCAN-REPOSITORY master
-```
-
-3. Pulling changes from tomatocan master into your local machine
-
-When changes have been made to the http://github.com/ece106/tomatocan master repo, your own github repo will be behind. Pull the changes to your local machine, then push them to your repository. To pull changes from tomatocan master: 
-
-```
-git pull https://github.com/ece106/tomatocan.git master
-```
-
-4. Getting your code into tomatocan test branch
-
-Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
-
-### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
-
-Files To Check/Change/Create: 
+2. Files To Check/Change/Create: 
 
 * gemfile: 
 
@@ -218,7 +184,7 @@ config.action_mailer.default_url_options = {
 end
 ```
 
-Then type
+3. Then type
 ```
 >gem install bundler
 ```
@@ -230,7 +196,7 @@ Then type
 ```
 at the command line to install all the necessary gems.
 
-Then type
+4. Then type
 ```
 >rake db:migrate
 ```
@@ -243,9 +209,47 @@ Then type
 at the command line from the tomatocan directory to start the server.
 
 
+### TO USE THE TOMATOCAN GITHUB REPO
+
+*. Saving your changes to your repository
+
+To add modified and new files that are not in .gitignore:
+```
+git add * :/
+```
+
+To commit your current files:
+```
+git commit -a -m "Useful Comment of Your Changes/Additions"
+```
+
+Push comitted changes to your repository:
+
+```
+git push origin master
+```
+or
+  
+```
+git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-TOMATOCAN-REPOSITORY master
+```
+
+*. Pulling changes from tomatocan master into your local machine
+
+When changes have been made to the http://github.com/ece106/tomatocan master repo, your own github repo will be behind. Pull the changes to your local machine, then push them to your repository. To pull changes from tomatocan master: 
+
+```
+git pull https://github.com/ece106/tomatocan.git master
+```
+
+*. Getting your code into tomatocan test branch
+
+Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
+
+
 Refer to Michael Hartl's tutorial for great Rails knowledge http://railstutorial.org/book
 
-For a list of helpful git commands use the git cheetsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
+For a list of helpful git commands use the git cheatsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
 
 For minitest methods https://guides.rubyonrails.org/testing.html
 

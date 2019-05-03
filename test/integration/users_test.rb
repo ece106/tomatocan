@@ -1,5 +1,8 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
+require 'selenium-webdriver'
+@driver = Selenium::WebDriver.for :firefox
+#@driver.navigate.to 'http://localhost:3000/'
 class UsersTest < ActionDispatch::IntegrationTest
     include Capybara::DSL
     include Capybara::Minitest::Assertions
@@ -24,6 +27,12 @@ class UsersTest < ActionDispatch::IntegrationTest
         fill_in(id:'user_password', with: 'password')
         click_on(class: 'form-control btn-primary')
     end
+end
+test 'selenium_test' do
+    Capybara.server = :webrick
+    Capybara.default_driver = :selenium
+    @driver.navigate.to 'http://localhost:3000/'
+    assert_text('')
 end
 test "Should_view_profileinfo" do
     click_on('Discover Talk Show Hosts')

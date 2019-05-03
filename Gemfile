@@ -24,7 +24,7 @@ gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 gem 'capybara'
-
+gem 'selenium-webdriver'
 gem 'rails', '5.2.2.1'
 gem 'railties', '5.2.2.1'
 gem  'bootstrap-sass', '~> 3.2.0'
@@ -47,7 +47,6 @@ group :test, :development do
 #  gem 'mocha', '~> 1.1.0'
   gem 'capybara-screenshot'
 end
-
 group :production do
      #rake db:create:all
      #rails s -e production
