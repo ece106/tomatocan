@@ -28,12 +28,12 @@ class UsersTest < ActionDispatch::IntegrationTest
         click_on(class: 'form-control btn-primary')
     end
 end
-test 'selenium_test' do
-    Capybara.server = :webrick
-    Capybara.default_driver = :selenium
-    @driver.navigate.to 'http://localhost:3000/'
-    assert_text('')
-end
+# test 'selenium_test' do
+#     Capybara.server = :webrick
+#     Capybara.default_driver = :selenium
+#     @driver.navigate.to 'http://localhost:3000/'
+#     assert_text('')
+# end
 test "Should_view_profileinfo" do
     click_on('Discover Talk Show Hosts')
     assert_text ('Discussion Hosts')
@@ -440,4 +440,13 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(class: 'form-control btn-primary')
         assert_text('Permalink is invalid')
 	end
+    test "Should not show sales when not signed into stripe" do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text:'Sales')
+        assert_text('Sales figures will be displayed on this page after you connect to Stripe.')
+    end
+    
 end
