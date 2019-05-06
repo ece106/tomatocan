@@ -8,7 +8,6 @@ gem 'pg'
 #gem 'sqlite3'
 gem	'stripe-ruby-mock', :require => 'stripe_mock'
 
-gem 'capybara-screenshot', :group => :test
 gem 'mandrill'	
 gem 'devise'
 gem 'fog'   #, '1.6.0'
