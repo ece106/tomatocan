@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def eventlist #this may be obsolete
+  def eventlist
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @rsvpevents = rsvps.where( "start_at > ?", currtime ) 

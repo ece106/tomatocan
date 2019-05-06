@@ -179,4 +179,10 @@ end
      user = User.find_by_permalink(@user.permalink)
      assert_equal("Hi this is me", user.about)
   end
+
+##############################################################################################
+#Have done testing with fixtures
+##############################################################################################
+
+
 end

@@ -19,7 +19,6 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 
-
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
@@ -27,7 +26,7 @@ gem 'aws-sdk'
 
 gem 'rails', '5.2.1'
 gem 'railties', '5.2.1'
-gem  'bootstrap-sass', '~> 3.4.1'
+gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
 gem "will_paginate", "~> 3.0.6" 
@@ -44,7 +43,7 @@ gem 'capybara-screenshot', :group => :test
 
 group :test, :development do
 #  gem 'factory_girl_rails'
-  gem 'capybara'
+#  gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
 end
 
