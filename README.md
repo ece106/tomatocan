@@ -37,7 +37,7 @@ e.g. "created_at" - Time and date at which each record was created
 
 7. What gem is used for signin/signout? How many times is it mentioned in the Tomatocan repository?
 
-### TO USE THE CODE IN YOUR LOCAL TEST ENVIRONMENT
+### TO USE THE CODE IN YOUR LOCAL DEVELOPMENT AND TEST ENVIRONMENT
 
 0. To set up Ruby on Rails on Mac or Linux, go to
 https://gorails.com/setup/osx/10.13-high-sierra
