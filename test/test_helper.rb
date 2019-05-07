@@ -6,7 +6,6 @@ require 'fileutils'
 require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'simplecov'
-SimpleCov.start
 require 'capybara/minitest'
 
 
