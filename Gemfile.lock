@@ -774,6 +774,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    childprocess (1.0.1)
+      rake (< 13.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -1142,6 +1144,9 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
+    selenium-webdriver (3.142.0)
+      childprocess (>= 0.5, < 2.0)
+      rubyzip (~> 1.2, >= 1.2.2)
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -1224,6 +1229,7 @@ DEPENDENCIES
   rails_real_favicon
   railties (= 5.2.0)
   sass-rails (~> 5.0.7)
+  selenium-webdriver
   stripe
   stripe-ruby-mock
   turbolinks

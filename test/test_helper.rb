@@ -6,6 +6,7 @@ require 'fileutils'
 require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'capybara/minitest'
+require 'selenium-webdriver'
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests

@@ -7,6 +7,7 @@ gem 'rails-controller-testing'
 gem 'pg'
 #gem 'sqlite3'
 gem	'stripe-ruby-mock', :require => 'stripe_mock'
+gem 'selenium-webdriver'
 
 gem 'mandrill'	
 gem 'devise'
