@@ -38,7 +38,7 @@
                     <div class = "h3" style = "color:#8C1D40" >
                       <a name="t4">What are viewers supposed to do on CrowdPublish.TV?</a> 
                     </div>
-                      <a href = "test" >
+                      <a>
                       <ul>
                         <li>Check the home page to find out what talk shows are scheduled.</li>
                         <li>Browse Discussion Hosts to discover what they have to offer.</li>
@@ -125,7 +125,7 @@
           </div> 
           <p>
 
-            <a href = "test" >
+            <a>
                       <ul>
                         <li>Check the home page to find out what talk shows are scheduled.</li>
               <li>Browse Discussion Hosts to discover what they have to offer.</li>
@@ -135,44 +135,6 @@
                       </ul><br>
                     </a>
             
-          </p>
-          <br><br>
-
-        </div>
-      </li>
-
-      <li>
-        <a href="#" class="toggle">How is CrowdPublish.TV different than Zoom or Google Hangouts?</a>
-        <div class="inner">
-          <div class = "h3" style = "color:#8C1D40" >
-              <a name="t8">How is CrowdPublish.TV different than Zoom or Google Hangouts?</a>
-          </div> 
-          <p>
-            <ol> 
-              <li>Rewards and Donation buttons are displayed right next to your show.</li>
-              <li>There's a schedule of shows on the home page so the public can watch your shows.</li>
-              <li>You can sell downloads directly from CrowdPublish.TV.</li>
-            </ol><br>
-          </p>
-          <br><br>
-
-        </div>
-      </li>
-
-      <li>
-        <a href="#" class="toggle">How is CrowdPublish.TV different than Facebook live?</a>
-        <div class="inner">
-          <div class = "h3" style = "color:#8C1D40" >
-              <a name="t8">How is CrowdPublish.TV different than Facebook live?</a>
-          </div> 
-          <p>
-            <a href ="testing">
-            <ul> 
-              <li>Instead of talking at the internet for a 15 minute monologue, you have a conversation with your co-hosts where you can allow an audience member to drop in & speak.</li>
-              <li>There's a schedule of shows on the home page so other people's friends and fans can browse what shows are coming up.</li>
-              <li>Rewards and Donation buttons are displayed right next to your show.</li>
-              <li>You can sell downloads directly from CrowdPublish.TV.</li>
-            </ul><br> </a>
           </p>
           <br><br>
 
@@ -190,26 +152,6 @@
             <br>
           </p>
           <br><br>
-        </div>
-      </li>
-
-      <li>
-        <a href="#" class="toggle">How is CrowdPublish.TV different than Twitch? </a>
-        <div class="inner">
-          <div class = "h3" style = "color:#8C1D40" >
-              <a name="t8">How is CrowdPublish.TV different than Twitch?</a>
-          </div> 
-          <p>
-            <a href = "innerBullet">
-            <ul>
-            <li>Silly wabbit, Twitch is for Kids!</li>
-              <li>Twitch has great content for gamers. CrowdPublish.TV is for intellectual & philanthropic topics.</li>
-             </ul> 
-           </a>
-            <br>
-          </p>
-          <br><br>
-
         </div>
       </li>
 
@@ -276,8 +218,31 @@
 <br><br><br><br>
 
 <script>
+var acc = document.getElementsByClassName("toggle");
+var i;
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function(click) {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    click.preventDefault();
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+$(document).click(function(e) {
+  if (!$(e.target).is('.panel-body')) {
+      $('.collapse').collapse('hide');      
+    }
+});
+</script>
+
+<!-- <script>
   $('.toggle').click(function() {
-    event.preventDefault();
+    //event.preventDefault();
 
     var $this = $(this);
   
@@ -285,14 +250,14 @@
         $this.next().removeClass('show');
         $this.next().slideUp(350);
     } else {
-        $this.parent().parent().find('li .inner').removeClass('show');
-        $this.parent().parent().find('li .inner').slideUp(350);
+        $this.parent().parent().find('.inner').removeClass('show');
+        $this.parent().parent().find('.inner').slideUp(350);
         //$this.next().toggleClass('show');
         $this.next().slideToggle(350);
 
     }
 });
-</script>
+</script> -->
 
 
 <!-- 
