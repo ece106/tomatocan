@@ -1,0 +1,33 @@
+<h1>Sign Up to be a Guest for one of our Talkshows</h1>
+
+<h2><%= link_to 'New Timeslot', new_timeslot_path, class: "btn btn-primary btn-sm" %></h2>
+
+<table class="table table-hover" id=calendar>
+  <tbody>
+    <% @timeslots.sort_by{|t| t.start_at}.each do |timeslot| %>
+      <% user = User.find(timeslot.user_id) %>
+      <tr>
+        <td>
+          <%= timeslot.name %> 
+        </td>
+        <td>
+          Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
+        <td class=col-xs-3>
+          <% edt = timeslot.start_at + 3.hours %> 
+          <span style="font-size:125%;" id=calendar-time><%= timeslot.start_at.strftime("%a, %b. %d") %></span>
+          <span style="font-size:90%;" id=calendar-time><%= timeslot.start_at.strftime("%l:%M%P") %> PDT</span>
+          <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
+        </td>
+        <td><%= link_to 'Show Details', timeslot, class: "btn btn-primary btn-sm" %></td>
+        <td><%= link_to 'Sign Up', edit_timeslot_path(timeslot), class: "btn btn-primary btn-sm" %></td>
+        <td>
+          <% if user == current_user %>
+            <%= link_to 'Cancel Show', timeslot, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

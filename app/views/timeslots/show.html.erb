@@ -1,0 +1,30 @@
+Let a Host Know you are Interested in this Timeslot/Topic by Reserving this Show!
+
+<h1><%= @timeslot.name %></h1>
+<p>
+  	<strong>Hosted by</strong>
+ 	  <% user = User.find(@timeslot.user_id) %>
+  	<%= link_to user.name, user.permalink %>
+</p>
+
+<p>
+  	<% edt = @timeslot.start_at + 3.hours %>
+  	<strong>Start time:</strong>
+  	<%= @timeslot.start_at.strftime("%A %B %d, %Y at %I:%M %p") %><i>Pacific Daylight Time (PDT)</i>
+  	<i>(<%= edt.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
+</p>
+
+<p>
+	<% edtend = @timeslot.end_at + 3.hours %>
+  	<strong>End time:</strong>
+  	<%= @timeslot.end_at.strftime("%A %B %d, %Y at %I:%M %p") %><i>Pacific Daylight Time (PDT)</i>
+  	<i>(<%= edtend.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
+</p>
+
+<p>
+  	<strong>Show Span:</strong>
+  	<%= @timeslot.show_duration %> weeks
+</p>
+
+<%= link_to 'Sign Up', edit_timeslot_path(@timeslot), class: "btn btn-primary btn-sm" %> |
+<%= link_to 'Back', timeslots_path, class: "btn btn-primary btn-sm" %>

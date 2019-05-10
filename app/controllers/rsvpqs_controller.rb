@@ -1,5 +1,5 @@
 class RsvpqsController < ApplicationController
-  before_action :set_rsvp, only: [:show, :edit, :update]
+  before_action :set_rsvp, only: [:show, :update]
 #  before_action :authenticate_user!
   layout :resolve_layout
 
@@ -7,8 +7,6 @@ class RsvpqsController < ApplicationController
   def show
 #    :update
   end
-
-
 
   # POST /rsvps
   def create
