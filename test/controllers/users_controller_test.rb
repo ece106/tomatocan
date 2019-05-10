@@ -10,6 +10,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
+  test "should check index" do
+    get :index
+    #assert_equal()
+  end
   test "should equate youtube field" do
     youtube="youtube"
     assert_equal(youtube,@user.youtube)
@@ -184,5 +189,8 @@ end
 #Have done testing with fixtures
 ##############################################################################################
 
-
+  test "should get stripe callback" do
+    get :stripe_callback
+    assert_response :success
+  end 
 end
