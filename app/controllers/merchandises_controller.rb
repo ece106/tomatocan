@@ -18,15 +18,14 @@ class MerchandisesController < ApplicationController
   def new
     @merchandise = Merchandise.new
   end
+
   def standardperks
     @merchandise = Merchandise.new
   end
 
   # GET /merchandises/1/edit
   def edit
-    %%if params[:merchandise][:itempic].present?
-      render :new  ## Render the view for cropping
-    end%
+    #inside body taken care of by before_action
   end
 
   # POST /merchandises
@@ -34,7 +33,7 @@ class MerchandisesController < ApplicationController
     @merchandise = current_user.merchandises.build(merchandise_params)
     if @merchandise.save 
       @merchandise.get_youtube_id
-        redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
+      redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
     else
       render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
     end
@@ -62,7 +61,7 @@ class MerchandisesController < ApplicationController
       if deadlineorder.all[1].present?
         @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
       else
-        @sidebarmerchandise = deadlineorder.all[0..0]  # is this used?
+        @sidebarmerchandise = deadlineorder.all[0..0]
       end
     end
 
