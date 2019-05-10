@@ -457,6 +457,13 @@ test "Should say email was taken when same user attempts sign up twice" do
             assert_text('newtwitterhandle')
         end
     end
+    test 'Should show username in controlpanel' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'View Profile')
+        assert_text('name')
+    end
     # test 'selenium_test' do
     #     Capybara.server = :webrick
     #     Capybara.default_driver = :selenium
