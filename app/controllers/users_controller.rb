@@ -43,6 +43,15 @@ class UsersController < ApplicationController
     end
   end
 
+  #not sure what this does
+  def timeslots
+    @timeslots = Timeslot.where("user_id = ?", @user.id)
+    respond_to do|format|
+      format.html
+      format.json { render json: @user }
+    end
+  end
+
   def eventlist #this may be obsolete
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
@@ -172,7 +181,7 @@ class UsersController < ApplicationController
     current_user.update!(stripeid: @resp.params["stripe_user_id"]) if @resp
     flash[:notice] = "Your account has been successfully created and is ready to process payments!"
   end
-  
+
   # POST /users.json 
   def create
     @user = User.new(user_params)

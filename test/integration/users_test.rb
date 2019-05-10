@@ -1,8 +1,9 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
 require 'selenium-webdriver'
+options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless'])
 @driver = Selenium::WebDriver.for :firefox
-#@driver.navigate.to 'http://localhost:3000/'
+@driver.navigate.to 'http://localhost:3000/'
 class UsersTest < ActionDispatch::IntegrationTest
     include Capybara::DSL
     include Capybara::Minitest::Assertions
@@ -28,12 +29,7 @@ class UsersTest < ActionDispatch::IntegrationTest
         click_on(class: 'form-control btn-primary')
     end
 end
-# test 'selenium_test' do
-#     Capybara.server = :webrick
-#     Capybara.default_driver = :selenium
-#     @driver.navigate.to 'http://localhost:3000/'
-#     assert_text('')
-# end
+
 test "Should_view_profileinfo" do
     click_on('Discover Talk Show Hosts')
     assert_text ('Discussion Hosts')
@@ -448,5 +444,24 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text:'Sales')
         assert_text('Sales figures will be displayed on this page after you connect to Stripe.')
     end
-    
+    test "Should update twitter handle" do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        fill_in(id: 'user_twitter', with: 'newtwitterhandle')
+        click_on(id:"cancelProfileButton",:match => :first)
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        within(id: 'user_twitter') do
+            assert_text('newtwitterhandle')
+        end
+    end
+    # test 'selenium_test' do
+    #     Capybara.server = :webrick
+    #     Capybara.default_driver = :selenium
+    #     visit ('http://localhost:3000/')
+    #     assert_text('')
+    #     Capybara.default_driver = :rack_test
+    # end
 end
