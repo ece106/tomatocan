@@ -189,7 +189,7 @@ test 'Should_cancel' do
     click_on(id:"cancelProfileButton",:match => :first)
     assert_text("name's Videos")
 end
-Stripe error here
+#Stripe error here
 test 'Should_buy_user' do
 	Capybara.current_driver= :webkit
 	Capybara.javascript_driver= :webkit
