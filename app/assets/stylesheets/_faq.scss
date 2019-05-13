@@ -244,7 +244,7 @@ $color_2: red;
         height: 100px;
     }
     input[type=submit] {
-        background: #4B99AD;
+        background: #046A5F;
         padding: 8px 15px 8px 15px;
         border: none;
         color: $color_1;
@@ -322,6 +322,8 @@ ul {
     padding: 0;
   
     .inner {
+        margin-left: 35px;
+        margin-right: 35px;
         padding-left: 1em;
         overflow: hidden;
         display: none;
@@ -335,18 +337,21 @@ ul {
         margin: .5em 0;
       
        a.toggle  {
-            width: 100%;
-            float: left;
+            width: 80%;
+            /*float: left;*/
+            margin: auto;
             display: block;
             margin-bottom: 10px;
-            background: rgba(0,0,0,0.78);
+            background-color: #08A39C;
+            /*background: rgba(0,0,0,0.78);*/
             color: #fefefe;
             padding: .75em;
             border-radius: 0.15em;
             transition: background .3s ease;
           
             &:hover {
-                background: rgba(0, 0, 0, 0.9);
+                background-color: #077570;
+                /*background: rgba(0, 0, 0, 0.9);*/
             }
         }
     }
