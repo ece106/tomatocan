@@ -12,8 +12,8 @@ class UsersControllerTest < ActionController::TestCase
 
 
   test "should check index" do
-    get :index
-    #assert_equal()
+    sign_in @user
+    assert_equal(@user.id, 1)
   end
   test "should equate youtube field" do
     youtube="youtube"
@@ -39,16 +39,14 @@ test "should verify email" do
     assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
   end
 
-  test "should get users support our work" do
-    get :supportourwork
-    assert_response :success
+  test "should recognize supportourwork"do
+    assert_recognizes({controller: 'users',action:'supportourwork'},'supportourwork')
   end
 
   test "should verify user twitter" do
   sign_in @user
   patch :update, params:{ id: @user.id, user: {twitter: 'MyTwitter'}}
   user = User.find_by_permalink(@user.permalink)
-
   assert_equal("MyTwitter", user.twitter)
   end
 
@@ -57,6 +55,8 @@ test "should verify email" do
   patch :update, params:{ id: @user.id, user: {facebook: 'MyFacebook'} }
   assert_equal("MyFacebook", @user.facebook)
   end
+
+
 
   test "should verify update genre1" do
      sign_in @user
@@ -79,9 +79,6 @@ test "should verify email" do
      assert_equal("Programming", user.genre1)
   end
 
-  test "should recognize supportourwork"do
-    assert_recognizes({controller: 'users',action:'supportourwork'},'supportourwork')
-  end
 
   test "should get users show" do #user1 has phases
     get :show, params: {permalink: 'user1'}
@@ -158,11 +155,30 @@ end
     assert_redirected_to (user_profileinfo_path(assigns(:user).permalink))
   end
 
+  test "should check new user index" do
+    post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
+    assert_equal(@user.id,1) 
+
+  end
+
   test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }
     assert_response :success
   end
 
+  # test "should show user path" do
+  #   get :show, params: { user: {id: 1}}
+  #   assert_response :success
+  # end
+  test "should test timeslot user1" do
+    get :timeslots, params: {permalink: 'user1'}
+    assert_response :success
+  end
+
+ test "should test timeslot user2" do
+    get :timeslots, params: {permalink: 'user2'}
+    assert_response :success
+  end
 
   test "should update user" do
     sign_in @user
@@ -185,12 +201,11 @@ end
      assert_equal("Hi this is me", user.about)
   end
 
+
+
 ##############################################################################################
 #Have done testing with fixtures
 ##############################################################################################
 
-  test "should get stripe callback" do
-    get :stripe_callback
-    assert_response :success
-  end 
+
 end
