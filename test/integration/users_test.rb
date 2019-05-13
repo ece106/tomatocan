@@ -1,9 +1,9 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
 require 'selenium-webdriver'
-options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless'])
-@driver = Selenium::WebDriver.for :firefox
-@driver.navigate.to 'http://localhost:3000/'
+#options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless']) don't use this
+#@driver = Selenium::WebDriver.for :firefox
+#@driver.navigate.to 'http://localhost:3000/'
 class UsersTest < ActionDispatch::IntegrationTest
     include Capybara::DSL
     include Capybara::Minitest::Assertions
@@ -449,13 +449,15 @@ test "Should say email was taken when same user attempts sign up twice" do
         signInUser()
         click_on(text: 'name')
         click_on(text: 'Control Panel')
+        #assert page.has_field?('user_twitter', with: '') 
         fill_in(id: 'user_twitter', with: 'newtwitterhandle')
-        click_on(id:"cancelProfileButton",:match => :first)
+        click_on(id:'saveProfileButton',:match => :first)
         click_on(text: 'name')
         click_on(text: 'Control Panel')
-        within(id: 'user_twitter') do
-            assert_text('newtwitterhandle')
-        end
+        #assert page.has_field?("user_twitter", :with=> "twitterhandle")
+        #twitterthing = find('user_twitter').get('new')
+        #assert page.has_field?('user_twitter', with: 'newtwitterhandle') 
+        assert_nil(find_field('user_twitter').value)
     end
     test 'Should show username in controlpanel' do
         signUpUser()
