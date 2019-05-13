@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :timeslots
   resources :relationships
 
   resources :users do
@@ -69,6 +70,8 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
   match '/:permalink/controlpanel' => "users#controlpanel", :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard' => "users#dashboard", :as => :user_dashboard, via: 'get'
+
+  match '/:permalink/timeslots' => "users#timeslots", :as => :user_timeslots, via: 'get'
  
   post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user
 

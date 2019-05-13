@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
   has_many :merchandises 
+  has_many :timeslots, dependent: :destroy
 
 #  has_many :groups, through: :agreements  # Do we need this
 
@@ -87,11 +88,11 @@ class User < ApplicationRecord
     agreement.approved = DateTime.new(1)
     agreement.save
   end  
-  def mark_fulfilled(purchid) 
+  def mark_fulfilled(purchid)
     purchase = Purchase.find(purchid)
     purchase.fulfillstatus = "sent"
     purchase.save
-  end  
+  end
 
   def get_youtube_id
     if self.youtube1.present?
