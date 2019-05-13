@@ -35,7 +35,9 @@ class MerchandisesController < ApplicationController
       @merchandise.get_youtube_id
       redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
     else
-      render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
+      flash.now[:notice] = "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
+      render :new
+      #render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
     end
   end
 

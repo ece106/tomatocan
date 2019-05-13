@@ -46,13 +46,14 @@ end
 #   assert_equal(@users.name, 'chris')
 # end
 
-test "should create merchandise" do
-    sign_in users(:one)
-    assert_difference('Merchandise.count', 1) do
-        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
-        assert_redirected_to user_profile_path(users(:one).permalink)
-    end
-end
+# Is this really needed?
+# test "should create merchandise" do
+#     sign_in users(:one)
+#     assert_difference('Merchandise.count', 1) #do
+#     #     post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+#     #     assert_redirected_to user_profile_path(users(:one).permalink)
+#     # end
+# end
 
 test "should redirect successful merchandise creation" do
     sign_in users(:one)
@@ -66,16 +67,39 @@ test "should throw flag after successful merchandise creation" do
     assert_equal 'Patron Perk was successfully created.', flash[:notice]
 end
 
-test "should throw flag after failed merchandise creation" do
+test "should throw flag for no price" do
   sign_in users(:one)
   post :create, params: { merchandise: { name: 'chris', user_id: '1', desc: 'test1', buttontype: 'one' }}
-  flash.now[:notice] = "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
-  assert_equal 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.', flash[:notice]
+  assert_equal flash[:notice], 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.'                                    
 end
 
-test "should redirect failed merchandise creation attempt" do
+test "should redirect failed merchandise creation attempt for no price" do
   sign_in users(:one)
   post :create, params: { merchandise: { name: 'chris', user_id: 1, desc: 'test', buttontype: 'Buy' }}
+  assert_template :new
+end
+
+test "should throw flag for no name" do
+  sign_in users(:one)
+  post :create, params: { merchandise: { price: '20', user_id: '1', desc: 'test1', buttontype: 'one' }}
+  assert_equal flash[:notice], 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.'                                    
+end
+
+test "should redirect failed merchandise creation attempt for no name" do
+  sign_in users(:one)
+  post :create, params: { merchandise: { price: '20', user_id: 1, desc: 'test', buttontype: 'Buy' }}
+  assert_template :new
+end
+
+test "should throw flag for no price and no name" do
+  sign_in users(:one)
+  post :create, params: { merchandise: { user_id: '1', desc: 'test1', buttontype: 'one' }}
+  assert_equal flash[:notice], 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.'                                    
+end
+
+test "should redirect failed merchandise creation attempt for no price and no name" do
+  sign_in users(:one)
+  post :create, params: { merchandise: { user_id: 1, desc: 'test', buttontype: 'Buy' }}
   assert_template :new
 end
 
@@ -94,6 +118,7 @@ end
 test "should redirect failed update attempt" do
   sign_in users(:one)
   patch :update, params: {id: @merchandise, merchandise: { name: '', user_id: '', price: '', desc: '', buttontype: ''}}
+  #assert_equal flash[:notice], 'Patron Perk was successfully updated.' 
   assert_template :edit
 end
 
@@ -106,12 +131,13 @@ test "should set user" do
     assert @user.valid?
 end
  
-test "should confirm user not signed in as different user" do
-  sign_in users(:one)
-  first_user = users(:one)
-  duplicate_user = users(:two)
-  assert_not_same(first_user, duplicate_user)
-end
+#Is this needed? Does it even test the right thing?
+# test "should confirm user not signed in as different user" do
+#   sign_in users(:one)
+#   first_user = users(:one)
+#   duplicate_user = users(:two)
+#   assert_not_same(first_user, duplicate_user)
+# end
 
 test "should render correct layout for edit" do
     sign_in users(:one)
