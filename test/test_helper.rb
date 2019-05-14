@@ -7,6 +7,7 @@ require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'simplecov'
 require 'capybara/minitest'
+require 'selenium-webdriver'
 
 
 

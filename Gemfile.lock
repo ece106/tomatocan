@@ -770,8 +770,13 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+<<<<<<< HEAD
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+=======
+    childprocess (1.0.1)
+      rake (< 13.0)
+>>>>>>> 531c243d3e80148d8268ad0d5c4e9b4511c9a940
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -1129,7 +1134,7 @@ GEM
     retriable (3.1.2)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
-    sass (3.7.3)
+    sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -1140,9 +1145,18 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+<<<<<<< HEAD
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+=======
+    selenium-webdriver (3.142.1)
+      childprocess (>= 0.5, < 2.0)
+      rubyzip (~> 1.2, >= 1.2.2)
+    sassc (2.0.1)
+      ffi (~> 1.9)
+      rake
+>>>>>>> 531c243d3e80148d8268ad0d5c4e9b4511c9a940
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -1235,7 +1249,10 @@ DEPENDENCIES
   railties (= 5.2.1)
   sass-rails (~> 5.0.7)
   selenium-webdriver
+<<<<<<< HEAD
   simplecov
+=======
+>>>>>>> 531c243d3e80148d8268ad0d5c4e9b4511c9a940
   stripe
   stripe-ruby-mock
   turbolinks
