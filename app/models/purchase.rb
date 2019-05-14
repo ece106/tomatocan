@@ -67,6 +67,7 @@ class Purchase < ApplicationRecord
       else
         puts "16x" ##########
         @purchaser = User.find(self.user_id)
+        puts @purchaser.name + " here 16x" ###########################
         if(@purchaser.stripe_customer_token).present?
           puts "17x stripe customer token is present" ##########
           customer = Stripe::Customer.retrieve(@purchaser.stripe_customer_token)
@@ -88,7 +89,7 @@ class Purchase < ApplicationRecord
         end
       end
   
-      if seller.id == 143 || seller.id == 1337 || seller.id == 1345 
+      if seller.id == 143 || seller.id == 1403 || seller.id == 1452 || seller.id == 1338 || seller.id == 1442 
         puts "19x" ##########
         charge = Stripe::Charge.create( {
           :amount => amt, 
