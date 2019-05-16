@@ -3,11 +3,12 @@ ruby "2.5.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
+#gem 'capybara-screenshot', :group => :test
 
 #gem 'pg'
 gem 'sqlite3', '~> 1.3.6'
 
-gem 'mandrill'	
+gem 'mandrill'  
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -18,7 +19,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
-
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
@@ -44,12 +44,13 @@ group :test, :development do
 #  gem 'factory_girl_rails'
 gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
+
 end
 
 group :production do
      #rake db:create:all
      #rails s -e production
-     #gem 'sqlite3-ruby', :require => 'sqlite3'
+     gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rails_12factor'
 end
 

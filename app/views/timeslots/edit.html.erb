@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<h1>Sign Up to be a Guest on Talkshow</h1>
+		<br>
+		<h4>Update Topic or go with what is there, then Reserve Timeslot to Create an Event on the Main Calendar</h4>
+		<br>
+	</div>
+
+	<div class="row">
+		<%= render 'updateForm', timeslot: @timeslot %>
+	<br>
+	</div>
+
+	<div class="row">
+		<%= link_to 'Back', timeslots_path, class: "btn btn-primary btn-sm" %>
+	</div>
+</div>
