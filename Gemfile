@@ -8,6 +8,8 @@ gem 'rails-controller-testing'
 #gem 'pg'
 gem 'sqlite3', '~> 1.3.6'
 
+gem 'selenium-webdriver'
+
 gem 'mandrill'  
 gem 'devise'
 gem 'fog'   #, '1.6.0'
@@ -50,7 +52,7 @@ end
 group :production do
      #rake db:create:all
      #rails s -e production
-     gem 'sqlite3-ruby', :require => 'sqlite3'
+     #gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rails_12factor'
 end
 
