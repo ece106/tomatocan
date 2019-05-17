@@ -109,7 +109,7 @@ end
 
   test "should get changepassword" do
     get :changepassword, params: {permalink: 'user1'}
-    assert_response :success
+    assert_response :success 
   end
 
   test "should recognize users dashboard logged in"do
@@ -145,7 +145,7 @@ end
   end
 
   test "should create user" do #rails test test/controllers/users_controller_test.rb -n test_should_equate_youtube_field; To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
-    assert_difference('User.count', 1) do
+    assert_equal(User.count, 2) do
       post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     end
    end
@@ -201,11 +201,43 @@ end
      assert_equal("Hi this is me", user.about)
   end
 
+  test "should get followers" do
+     get :followerspage, params: {permalink: 'user1'}
+    assert_response :success
+  end
+
+  test "should get following" do
+     get :followingpage, params: {permalink: 'user1'}
+    assert_response :success
+  end
+
+#  test "should get followers by user id" do
+#    sign_in @user
+#    get :followers , params:{ id: @user.id}
+#    assert_response :success
+#  end
 
 
-##############################################################################################
-#Have done testing with fixtures
-##############################################################################################
+  test "should get follower number" do
+    sign_in @user
+     get :followerspage, params: {permalink: 'user1'}
+     assert_equal(@user.followers.count, 0)
+  end
+
+  test "should get following number" do
+    sign_in @user
+     get :followingpage, params: {permalink: 'user1'}
+     assert_equal(@user.following.count, 0)
+  end
+#Implement follower and following test,
+
+
+  test "should post mark fulfilled" do
+    
+    sign_in @user
+  #  post :markfulfilled, params: {purchid: '1'}
+    assert_response :success
+  end
 
 
 end

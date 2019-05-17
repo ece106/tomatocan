@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
-  before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
+  before_action :set_user, except: [:new, :index, :supportourwork, :youtubersx, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
  #before_action :correct_user, only: [:dashboard, :user_id] 
   #before_action :correct_user, only: [:controlpanel] 
