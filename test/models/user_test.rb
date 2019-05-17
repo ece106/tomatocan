@@ -4,12 +4,8 @@ class TestUser < ActiveSupport::TestCase
   def setup
 #    @request.env['devise.mapping'] = Devise.mappings[:user]
     @user = users(:one)
-#    sign_in @user  #why dont I need this for model
+   #sign_in @user  #why dont I need this for model
   end
-  
-      test "sign in error message displays" do
-        
-      end
       test "user_can_follow_another_user" do
         john = users(:one)
         mark = users(:two)
@@ -27,18 +23,11 @@ class TestUser < ActiveSupport::TestCase
         assert_not john.following?(mark)
       end
 
-      test "test_test" do
-        isTrue = true
-        assert (isTrue)
-      end
-
-      [:email, :name, :permalink, :password ].each do |field|
-        test "#{field.to_s}_must_not_be_empty" do
-          user = User.new
-          user.send "#{field.to_s}=", nil #what does this line do
+        test "userfields_must_not_be_empty" do
+          user = User.new(name: nil,email:nil,permalink:nil,password:nil )
           refute user.valid?
-          refute_empty user.errors[field] #must be in same test as above line in order to have usererrors not be nil
-        end
+          [:name,:email,:permalink,:password].each do |field|
+          refute_empty user.errors[field] end
       end
 
       test "password and password_confirmation must match" do
@@ -98,11 +87,12 @@ class TestUser < ActiveSupport::TestCase
       end
 
     #validates :videodesc1, length: { maximum: 255 }
-      [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
-        test "#{field.to_s}_must_be_less_than255char" do
-          @user.send "#{field.to_s}=", "supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
-          refute @user.valid?, "video description is short enough" 
-          refute_empty @user.errors[field] 
+
+        test "videodesc_must_be_less_than255char" do
+          [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
+            user = User.new("#{field}": /^.{266}/.to_s)
+            refute user.valid?, "video description is short enough"
+            assert_empty user.errors[field]
         end
       end
 
@@ -127,9 +117,20 @@ class TestUser < ActiveSupport::TestCase
       @user.genre1 = "yaaah"
       @user.permalink = "LisaLisa"
       @user.get_youtube_id
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
+      refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)  #why refute?
     end
 
+    test "get_youtube_id_test" do
+      target = "/id12345"
+      compare = "http://youtube.com/watch?v="+ target
+      @user.youtube1 = compare
+      @user.youtube2 = compare
+      @user.youtube3 = compare
+      @user.get_youtube_id
+      assert_equal target, @user.youtube1
+        assert_equal target, @user.youtube2
+        assert_equal target, @user.youtube3
+end
 # redundant tests
 
   test "redundant_test_name_and_permalink_must_not_be_empty" do 
