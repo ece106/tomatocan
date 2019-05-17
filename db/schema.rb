@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer "group2id"
     t.integer "group3id"
     t.integer "usrid"
+    t.integer "interviewer_user_id"
+    t.string "interviewer_name"
+    t.string "interviewer_email"
+    t.integer "guest1_user_id"
+    t.string "guest1_name"
+    t.string "guest1_email"
+    t.integer "guest2_user_id"
+    t.string "guest2_name"
+    t.string "guest2_email"
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
@@ -199,6 +208,22 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "email"
+  end
+
+  create_table "timeslots", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "interviewer_user_id"
+    t.string "interviewer_name"
+    t.string "interviewer_email"
+    t.integer "guest1_user_id"
+    t.string "guest1_name"
+    t.string "guest1_email"
+    t.string "name"
+    t.integer "show_duration"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

@@ -5,7 +5,7 @@
 <% end %>
 
 <meta property="og:description" content="Host Livestream Discussions" />
-<% @title="CrowdPublish.TV" %>
+<% @title="CrowdPublish TV" %>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -94,7 +94,7 @@
       Invite friends and colleagues to sign up & RSVP for this event!
       <div class="event-name">
           <%= @event.name %>
-    </div>
+      </div>
       <div>
         <% facebookurl = "http://www.crowdpublish.tv/" + @user.permalink %>
         <div class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href= "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
