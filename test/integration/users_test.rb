@@ -1,6 +1,6 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
-require 'selenium-webdriver'
+#require 'selenium-webdriver'
 #options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless']) don't use this
 #@driver = Selenium::WebDriver.for :firefox
 #@driver.navigate.to 'http://localhost:3000/'
