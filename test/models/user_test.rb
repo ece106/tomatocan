@@ -131,7 +131,17 @@ class TestUser < ActiveSupport::TestCase
         assert_equal target, @user.youtube2
         assert_equal target, @user.youtube3
 end
-# redundant tests
+
+    test "calc test" do
+      assert_nil @user.totalinfo
+      @user.calcdashboard
+      [:soldtitle,:soldprice,:authorcut,:purchaseid,:soldwhen,:whobought,:address,:fulfilstat,:egoods].each do |field|
+      refute_empty(field)
+      refute_nil @user.totalinfo
+      end
+      end
+
+    # redundant tests
 
   test "redundant_test_name_and_permalink_must_not_be_empty" do 
     user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
