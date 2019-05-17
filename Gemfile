@@ -10,7 +10,6 @@ gem 'pg'
 gem	'stripe-ruby-mock', :require => 'stripe_mock'
 gem 'selenium-webdriver'
 
-gem 'selenium-webdriver'
 
 gem 'mandrill'  
 gem 'devise'
