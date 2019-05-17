@@ -89,7 +89,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    fill_in(id:'user_email', with: 'e@gmail.com')
 	    fill_in(id:'user_password', with: 'password1')
 	    click_on(class: 'form-control btn-primary')
-	    assert_text('CrowdPublish.TV is for nonprofits,')
+	    assert_text('Signed in successfully.')
 	end
 	test "Should_change_email" do
 	    signUpUser()
@@ -181,9 +181,9 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    select(2020, :from=>'merchandise_deadline_1i')
 	    select('July', :from=>'merchandise_deadline_2i')
 	    select('1',:from=> 'merchandise_deadline_3i')
-	    click_on(class: 'form-control btn-primary')
+	    click_on(id: 'perkSubmit')
 	end
-	test "Should " do
+	test "Should See Upcoming shows" do
 		
 	end
 	#########
@@ -235,6 +235,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    click_on('Discover Talk Show Hosts')
 	    click_link('Phineas')
 	    click_on('Buy for $1.50')
+        fill_in(id:'purchase_email', with:'e@mail.com')
 	    fill_in(id:'card_number', with:'4242424242424242')
 	    select("2020", from: 'card_year')
 	    click_on('Purchase')
@@ -245,6 +246,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    click_on('Discover Talk Show Hosts')
 	    click_link('Phineas')
 	    click_on(text: 'Donate $2.00!')
+        fill_in(id:'purchase_email', with:'e@mail.com')
 	    fill_in(id:'card_number', with:'4242424242424242')
 	    select("2020", from: 'card_year')
 	    click_on('Purchase')
@@ -306,7 +308,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 			fill_in(id:'user_password_confirmation', with:'password')
 			click_on(class: 'form-control btn-primary')
 			assert_text 'Email has already been taken'
-		end
+	end
 
 	test "Should say permalink was taken when same user attempts sign up twice" do
 		visit('http://localhost:3000/')
@@ -414,9 +416,10 @@ class UsersTest < ActionDispatch::IntegrationTest
 	test "Should tweet on Twitter" do
 		visit('http://localhost:3000/')
 		signUpUser()
-		signInUser()
-		click_on()
-		click_on(text: 'Tweet')
+		signInUser() 
+        save_and_open_page   
+        click_on(text: 'Tweet')
+
 		assert_text('Share a link')
 	end
 end
