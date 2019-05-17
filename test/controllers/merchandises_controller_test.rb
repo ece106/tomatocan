@@ -23,10 +23,10 @@ test "should get new if user signed in" do
 end
 
 # #Fix this, Doesn't really work how its supposed to because code doesn't prevent this
-# test "shouldn't get new if no user signed in" do
-#   get :new, params: {id: @merchandise.id}
-#   assert_response :success
-# end
+test "shouldn't get new if no user signed in" do
+  get :new, params: {id: @merchandise.id}
+  assert_response :success
+end
 
 test "should get new with merchandise id" do
     sign_in users(:one)
@@ -40,20 +40,28 @@ test "should get edit" do
     assert_response :success
 end
 
-# test "insert name" do
-#   sign_in users(:one)
-#   post :create, params: { merchandise: { name: 'chris'}}
-#   assert_equal(@users.name, 'chris')
-# end
+test "should create 1 merchandise" do
+    sign_in users(:one)
+    assert_difference('Merchandise.count', 1) do
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+    end
+end
 
-# Is this really needed?
-# test "should create merchandise" do
-#     sign_in users(:one)
-#     assert_difference('Merchandise.count', 1) #do
-#     #     post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
-#     #     assert_redirected_to user_profile_path(users(:one).permalink)
-#     # end
-# end
+test "should create 2 merchandises" do
+    sign_in users(:one)
+    assert_difference('Merchandise.count', 2) do
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+        post :create, params: { merchandise: { name: 'rob', user_id: 1, price: 20, desc: 'test1', buttontype: 'Buy' }}
+    end
+end
+
+test "should create 1 merchandise for failed create" do
+    sign_in users(:one)
+    assert_difference('Merchandise.count', ) do
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+        post :create, params: { merchandise: { name: '', user_id: 1, price: 20, desc: 'test1', buttontype: 'Buy' }}
+    end
+end
 
 test "should redirect successful merchandise creation" do
     sign_in users(:one)
@@ -118,7 +126,6 @@ end
 test "should redirect failed update attempt" do
   sign_in users(:one)
   patch :update, params: {id: @merchandise, merchandise: { name: '', user_id: '', price: '', desc: '', buttontype: ''}}
-  #assert_equal flash[:notice], 'Patron Perk was successfully updated.' 
   assert_template :edit
 end
 
@@ -134,9 +141,8 @@ end
 #Is this needed? Does it even test the right thing?
 # test "should confirm user not signed in as different user" do
 #   sign_in users(:one)
-#   first_user = users(:one)
-#   duplicate_user = users(:two)
-#   assert_not_same(first_user, duplicate_user)
+#   sign_in users(:two)
+  
 # end
 
 test "should render correct layout for edit" do

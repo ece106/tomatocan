@@ -37,7 +37,6 @@ class MerchandisesController < ApplicationController
     else
       flash.now[:notice] = "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
       render :new
-      #render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
     end
   end
 
