@@ -184,7 +184,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    click_on(class: 'form-control btn-primary')
 	end
 	test "Should " do
-
+		
 	end
 	#########
 	#todo: write a test that fails to sign up

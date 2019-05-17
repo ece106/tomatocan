@@ -7,8 +7,6 @@ gem 'rails-controller-testing'
 gem 'pg'
 #gem 'sqlite3'
 
-gem 'selenium-webdriver'
-
 gem 'mandrill'  
 gem 'devise'
 gem 'fog'   #, '1.6.0'
