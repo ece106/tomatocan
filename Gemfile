@@ -84,6 +84,4 @@ group :development do
     gem 'rails_real_favicon'
 end
 
-gem "capybara", "~> 3.19"
 
-gem "capybara-screenshot", "~> 1.0"
