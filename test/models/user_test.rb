@@ -141,11 +141,11 @@ end
       end
     end
 
-  test "mark_fulfilled_test" do
-
-    @user.mark_fulfilled()
-    assert_not_empty @user.fulfilledstatus
-  end
+  # test "mark_fulfilled_test" do
+  #
+  #   @user.mark_fulfilled()
+  #   assert_not_empty @user.fulfilledstatus
+  # end
 
   test "validates_twitter_format" do
     @user.twitter = /\A[\w+]+\z/.to_s
