@@ -13,19 +13,18 @@ class MerchandiseTest < ActiveSupport::TestCase
     refute merchandise.valid?
     assert_not_nil merchandise.errors[:price]
   end
-
   #### Test written by lamontano for valdation of button and name
-  #this test is to validate the presence of name
-  test "checks for name" do
-    name_merchandise = Merchandise.new
-    #name_merchandise.send = "name=", nil
-    assert_not name_merchandise.valid?
-    assert_not_nil merchandise.errors[:name]
-  end 
+  
+  test "merchandise name should be present" do
+    @merchandise.name = ""
+    assert_not @merchandise.valid?
+  end
+ 
   #this test is to validat the presence of a button
   test "checks to see if a button is present" do
     button_merchandise = Merchandise.new
     assert_not button_merchandise.valid?
+    puts button_merchandise.errors[:button]
     assert_not_nil button_merchandise.errors[:button]
   end
 
@@ -33,8 +32,8 @@ class MerchandiseTest < ActiveSupport::TestCase
 
 
    test "parse youtube for merchandise" do
-      merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
-      merchandise.get_youtube_id
+      @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
+      @merchandise.get_youtube_id
       refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
     end
 

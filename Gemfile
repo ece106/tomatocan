@@ -19,7 +19,7 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'capybara-screenshot',:group => :test
-
+gem 'selenium-webdriver'
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
@@ -42,9 +42,9 @@ gem 'friendly_id', '~> 5.0.0'
 #gem 'rmagick'
 
 group :test, :development do
-#  gem 'factory_girl_rails'
+  gem 'factory_girl_rails'
   gem 'capybara'
-#  gem 'mocha', '~> 1.1.0'
+  gem 'mocha', '~> 1.1.0'
 end
 
 group :production do
@@ -76,8 +76,4 @@ gem 'sass-rails', '~> 5.0.7'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
-end
-
-group :development do
-    gem 'rails_real_favicon'
 end

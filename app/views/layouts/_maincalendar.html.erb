@@ -40,7 +40,7 @@
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
           <td class=col-xs-3>
-            <%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+            <%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
           </td>
           <td class=col-xs-1>
             <% shareurl = "http://www.CrowdPublish.TV/" + user.permalink %>
@@ -65,5 +65,3 @@
     $('[data-toggle="tooltip"]').tooltip()
   })
 </script>
-
-      

@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  encoding: unicode
+  database: lamontano_tomatocanDB
+  username: lamontano
+
+test:
+  <<: *default
+  encoding: unicode
+  database: lamontano_tomatocanDB
+  username: lamontano
+
+production:
+  <<: *default
+
