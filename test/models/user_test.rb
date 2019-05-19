@@ -89,10 +89,14 @@ class TestUser < ActiveSupport::TestCase
     #validates :videodesc1, length: { maximum: 255 }
 
         test "videodesc_must_be_less_than255char" do
+          def nameover255(len)
+            name = Array('A'..'Z')+Array('a'..'z')
+            Array.new(len){name.sample}.join
+          end
           [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
-            user = User.new("#{field}": /^.{266}/)
+            user = User.new("#{field}": nameover255(266))
             refute user.valid?, "video description is short enough"
-            assert_empty user.errors[field]
+            assert_equal ["is too long (maximum is 255 characters)"], user.errors[field]
         end
       end
 
@@ -145,7 +149,14 @@ end
      user_no_password = User.new(name: nil,email:nil,permalink:nil,)
     refute user_no_password.valid?
   end
-
+ test "name must be less than 50" do
+   def nameoverfifty(len)
+     name = Array('A'..'Z')+Array('a'..'z')
+     Array.new(len){name.sample}.join
+   end
+   user = User.new( name: nameoverfifty(55),email:"email@email.com",permalink:"permalink",password:"password")
+   refute user.valid?
+ end
   # test "mark_fulfilled_test" do
   #
   #   @user.mark_fulfilled()
@@ -153,9 +164,9 @@ end
   # end
 
   test "validates_twitter_test" do
-    @user.twitter = /\A[\w+]+\z\s /
-    assert_empty @user.errors.messages[:twitter]
-    refute_empty @user.twitter
+    user = User.new(twitter:"!@@@#%@#")
+    assert user.errors.messages[:twitter]
+    refute_empty user.twitter
   end
 
     # redundant tests
