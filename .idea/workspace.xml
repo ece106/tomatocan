@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d5ba20d-ec17-4bd1-b78e-2980daf3ec3d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/models/user_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/models/user_test.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -38,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/models/user_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
+            <state relative-caret-position="413">
+              <caret line="171" column="33" selection-start-line="171" selection-start-column="33" selection-end-line="171" selection-end-column="33" />
               <folding>
                 <element signature="e#260#430#0" />
                 <element signature="e#476#674#0" />
@@ -51,18 +50,21 @@
                 <element signature="e#2639#2874#0" />
                 <element signature="e#2983#3139#0" />
                 <element signature="e#3260#3558#0" />
-                <element signature="e#4027#4145#0" />
-                <element signature="e#4235#4360#0" />
-                <element signature="e#4387#4639#0" />
-                <element signature="e#4672#5008#0" />
-                <element signature="e#5031#5288#0" />
-                <element signature="e#5325#5338#0" />
-                <element signature="e#5644#5768#0" />
-                <element signature="e#5644#5836#0" />
-                <element signature="e#5896#6223#0" />
-                <element signature="e#6286#6561#0" />
-                <element signature="e#6617#6717#0" />
-                <element signature="e#6747#6778#0" />
+                <element signature="e#3664#4022#0" />
+                <element signature="e#4126#4244#0" />
+                <element signature="e#4334#4459#0" />
+                <element signature="e#4486#4738#0" />
+                <element signature="e#4771#5107#0" />
+                <element signature="e#5130#5387#0" />
+                <element signature="e#5424#5536#0" />
+                <element signature="e#5571#5895#0" />
+                <element signature="e#66#7389#1" />
+                <element signature="e#6049#6169#0" />
+                <element signature="e#6255#6447#0" />
+                <element signature="e#6507#6834#0" />
+                <element signature="e#6897#7172#0" />
+                <element signature="e#7228#7328#0" />
+                <element signature="e#7358#7389#0" />
               </folding>
             </state>
           </provider>
@@ -71,7 +73,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
+            <state relative-caret-position="-246">
               <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
             </state>
           </provider>
@@ -159,8 +161,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="RailsProjectView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,7 +185,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.Run test 'user_test': tomatocan">
+  <component name="RunManager" selected="Test::Unit/Shoulda/Minitest.test_password_does_change_test: tomatocan">
     <configuration name="Development: tomatocan" type="RailsRunConfigurationType" factoryName="Rails">
       <module name="tomatocan" />
       <predefined_log_file enabled="true" id="RUBY_RAILS_SERVER" />
@@ -339,36 +341,6 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_name_less_than_50: tomatocan" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
-      <module name="tomatocan" />
-      <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/models/user_test.rb" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_name_less_than_50" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test_name_must_be_less_than_50: tomatocan" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
       <module name="tomatocan" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
@@ -392,6 +364,36 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/models/user_test.rb" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_name_must_be_less_than_50" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_password_does_change_test: tomatocan" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true">
+      <module name="tomatocan" />
+      <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-Itest" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/test/models/user_test.rb" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_password_does_change_test" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
@@ -461,11 +463,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test_password_does_change_test: tomatocan" />
         <item itemvalue="Test::Unit/Shoulda/Minitest.Run test 'user_test': tomatocan" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.test_videodesc_must_be_less_than255char: tomatocan" />
         <item itemvalue="Test::Unit/Shoulda/Minitest.test_name_must_be_less_than_50: tomatocan" />
+        <item itemvalue="Test::Unit/Shoulda/Minitest.test_videodesc_must_be_less_than255char: tomatocan" />
         <item itemvalue="Test::Unit/Shoulda/Minitest.test_validates_twitter_test: tomatocan" />
-        <item itemvalue="Test::Unit/Shoulda/Minitest.test_name_less_than_50: tomatocan" />
       </list>
     </recent_temporary>
   </component>
@@ -491,43 +493,44 @@
       <workItem from="1558060971207" duration="6340000" />
       <workItem from="1558122388051" duration="18606000" />
       <workItem from="1558151962617" duration="16101000" />
+      <workItem from="1558282402864" duration="2143000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 07m 27s.xml">
-      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 07m 56s.xml">
-      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 08m 41s.xml">
-      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 09m 09s.xml">
-      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 09m 23s.xml">
-      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 10m 09s.xml">
-      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_videodesc_must_be_less_than255char__tomatocan - 2019.05.19 at 09h 10m 35s.xml">
+    <history-entry file="test_videodesc_must_be_less_than255char__tomatocan - 2019.05.19 at 09h 14m 28s.xml">
       <configuration name="test_videodesc_must_be_less_than255char: tomatocan" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="test_videodesc_must_be_less_than255char__tomatocan - 2019.05.19 at 09h 10m 56s.xml">
+    <history-entry file="test_videodesc_must_be_less_than255char__tomatocan - 2019.05.19 at 09h 14m 51s.xml">
       <configuration name="test_videodesc_must_be_less_than255char: tomatocan" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="test_videodesc_must_be_less_than255char__tomatocan - 2019.05.19 at 09h 11m 49s.xml">
+    <history-entry file="test_videodesc_must_be_less_than255char__tomatocan - 2019.05.19 at 09h 15m 20s.xml">
       <configuration name="test_videodesc_must_be_less_than255char: tomatocan" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'user_test'__tomatocan - 2019.05.19 at 09h 12m 16s.xml">
+    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 15m 57s.xml">
+      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 16m 40s.xml">
+      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 16m 52s.xml">
+      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_name_must_be_less_than_50__tomatocan - 2019.05.19 at 09h 17m 30s.xml">
+      <configuration name="test_name_must_be_less_than_50: tomatocan" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_test_'user_test'__tomatocan - 2019.05.19 at 09h 22m 07s.xml">
       <configuration name="Run test 'user_test': tomatocan" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_password_does_change_test__tomatocan - 2019.05.19 at 09h 53m 17s.xml">
+      <configuration name="test_password_does_change_test: tomatocan" configurationId="TestUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_password_does_change_test__tomatocan - 2019.05.19 at 09h 56m 46s.xml">
+      <configuration name="test_password_does_change_test: tomatocan" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119391000" />
+    <option name="totallyTimeSpent" value="121534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -540,13 +543,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="995" y="27" width="925" height="948" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2377702" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24345848" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49829352" weight="0.32881773" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49829352" visible="true" weight="0.32881773" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39778325" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -623,7 +627,7 @@
     <SUITE FILE_PATH="coverage/tomatocan@test_validates_twiiter_format__tomatocan.rcov" NAME="test_validates_twiiter_format: tomatocan Coverage Results" MODIFIED="1558212722031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test___field_sign_in_error___tomatocan.rcov" NAME="test_#{field}sign_in_error_: tomatocan Coverage Results" MODIFIED="1558028790204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_validates_twitter_test__tomatocan.rcov" NAME="test_validates_twitter_test: tomatocan Coverage Results" MODIFIED="1558233555336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
-    <SUITE FILE_PATH="coverage/tomatocan@Run_test__user_test___tomatocan.rcov" NAME="Run test 'user_test': tomatocan Coverage Results" MODIFIED="1558282335749" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
+    <SUITE FILE_PATH="coverage/tomatocan@Run_test__user_test___tomatocan.rcov" NAME="Run test 'user_test': tomatocan Coverage Results" MODIFIED="1558282918360" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_password_should_be_at_least_8_char__tomatocan.rcov" NAME="test_password_should_be_at_least_8_char: tomatocan Coverage Results" MODIFIED="1558034279470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test__tomatocan.rcov" NAME="test: tomatocan Coverage Results" MODIFIED="1557848418872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_sign_in_error_message_displays__tomatocan.rcov" NAME="test_sign_in_error_message_displays: tomatocan Coverage Results" MODIFIED="1557972110955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
@@ -634,17 +638,18 @@
     <SUITE FILE_PATH="coverage/tomatocan@test_userfields_must_not_be_empty__tomatocan.rcov" NAME="test_userfields_must_not_be_empty: tomatocan Coverage Results" MODIFIED="1558061256451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test___field_to_s__must_be_less_than255char__tomatocan.rcov" NAME="test_#{field.to_s}_must_be_less_than255char: tomatocan Coverage Results" MODIFIED="1558035243632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_parse_youtube__tomatocan.rcov" NAME="test_parse_youtube: tomatocan Coverage Results" MODIFIED="1558055592718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
+    <SUITE FILE_PATH="coverage/tomatocan@test_password_does_change_test__tomatocan.rcov" NAME="test_password_does_change_test: tomatocan Coverage Results" MODIFIED="1558284998126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test___field__sign_in_error_message_test__tomatocan.rcov" NAME="test_#{field}_sign_in_error_message_test: tomatocan Coverage Results" MODIFIED="1558030572927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_sign_in_error___tomatocan.rcov" NAME="test_sign_in_error_: tomatocan Coverage Results" MODIFIED="1558028431403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_make_all_permalinks_lowercase__tomatocan.rcov" NAME="test_make_all_permalinks_lowercase: tomatocan Coverage Results" MODIFIED="1558036486630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
-    <SUITE FILE_PATH="coverage/tomatocan@test_videodesc_must_be_less_than255char__tomatocan.rcov" NAME="test_videodesc_must_be_less_than255char: tomatocan Coverage Results" MODIFIED="1558282308497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
+    <SUITE FILE_PATH="coverage/tomatocan@test_videodesc_must_be_less_than255char__tomatocan.rcov" NAME="test_videodesc_must_be_less_than255char: tomatocan Coverage Results" MODIFIED="1558282509775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@Run_test__purchase_test___tomatocan.rcov" NAME="Run test 'purchase_test': tomatocan Coverage Results" MODIFIED="1557848462762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test___field_to_s__must_not_be_empty__tomatocan.rcov" NAME="test_#{field.to_s}_must_not_be_empty: tomatocan Coverage Results" MODIFIED="1558031650572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_permalink_must_be_unique__tomatocan.rcov" NAME="test_permalink_must_be_unique: tomatocan Coverage Results" MODIFIED="1558035075674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_sign_in_error_message_test__tomatocan.rcov" NAME="test_sign_in_error_message_test: tomatocan Coverage Results" MODIFIED="1557973195124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@Run_test__test_helper___tomatocan.rcov" NAME="Run test 'test_helper': tomatocan Coverage Results" MODIFIED="1557851123068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_test_email__tomatocan.rcov" NAME="test_test_email: tomatocan Coverage Results" MODIFIED="1557883551111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
-    <SUITE FILE_PATH="coverage/tomatocan@test_name_must_be_less_than_50__tomatocan.rcov" NAME="test_name_must_be_less_than_50: tomatocan Coverage Results" MODIFIED="1558282207991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
+    <SUITE FILE_PATH="coverage/tomatocan@test_name_must_be_less_than_50__tomatocan.rcov" NAME="test_name_must_be_less_than_50: tomatocan Coverage Results" MODIFIED="1558282641818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_permalink_must_be_alphanumeric__tomatocan.rcov" NAME="test_permalink_must_be_alphanumeric: tomatocan Coverage Results" MODIFIED="1558035153244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_password_can_be_empty_and_password_confirmation_doesnt_matter__tomatocan.rcov" NAME="test_password_can_be_empty_and_password_confirmation_doesnt_matter: tomatocan Coverage Results" MODIFIED="1558034376566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
     <SUITE FILE_PATH="coverage/tomatocan@test_calc_test__tomatocan.rcov" NAME="test_calc_test: tomatocan Coverage Results" MODIFIED="1558069170881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tomatocan" />
@@ -870,13 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1046">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rbenv/versions/2.6.1/lib/ruby/gems/2.6.0/gems/concurrent-ruby-1.1.4/lib/concurrent/utility/at_exit.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -905,17 +903,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
+        <state relative-caret-position="-246">
           <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/models/user_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
+        <state relative-caret-position="413">
+          <caret line="171" column="33" selection-start-line="171" selection-start-column="33" selection-end-line="171" selection-end-column="33" />
           <folding>
             <element signature="e#260#430#0" />
             <element signature="e#476#674#0" />
@@ -927,18 +932,21 @@
             <element signature="e#2639#2874#0" />
             <element signature="e#2983#3139#0" />
             <element signature="e#3260#3558#0" />
-            <element signature="e#4027#4145#0" />
-            <element signature="e#4235#4360#0" />
-            <element signature="e#4387#4639#0" />
-            <element signature="e#4672#5008#0" />
-            <element signature="e#5031#5288#0" />
-            <element signature="e#5325#5338#0" />
-            <element signature="e#5644#5768#0" />
-            <element signature="e#5644#5836#0" />
-            <element signature="e#5896#6223#0" />
-            <element signature="e#6286#6561#0" />
-            <element signature="e#6617#6717#0" />
-            <element signature="e#6747#6778#0" />
+            <element signature="e#3664#4022#0" />
+            <element signature="e#4126#4244#0" />
+            <element signature="e#4334#4459#0" />
+            <element signature="e#4486#4738#0" />
+            <element signature="e#4771#5107#0" />
+            <element signature="e#5130#5387#0" />
+            <element signature="e#5424#5536#0" />
+            <element signature="e#5571#5895#0" />
+            <element signature="e#66#7389#1" />
+            <element signature="e#6049#6169#0" />
+            <element signature="e#6255#6447#0" />
+            <element signature="e#6507#6834#0" />
+            <element signature="e#6897#7172#0" />
+            <element signature="e#7228#7328#0" />
+            <element signature="e#7358#7389#0" />
           </folding>
         </state>
       </provider>

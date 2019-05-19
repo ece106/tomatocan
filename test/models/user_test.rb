@@ -164,6 +164,14 @@ end
     refute_empty user.twitter
   end
 
+  test "password_change_test" do
+    password = SecureRandom.alphanumeric(8)
+    new_password = SecureRandom.alphanumeric(8)
+    user = User.new(password:password)
+    user.password = new_password
+    assert user.password_changed?
+  end
+
     # redundant tests
 
   test "redundant_test_name_and_permalink_must_not_be_empty" do 
