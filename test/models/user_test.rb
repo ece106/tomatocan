@@ -1,4 +1,4 @@
-require 'test_helper'
+require './test/test_helper.rb'
 
 class TestUser < ActiveSupport::TestCase
   def setup

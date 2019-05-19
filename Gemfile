@@ -18,7 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
-
+gem 'capybara-screenshot',:group => :test
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'

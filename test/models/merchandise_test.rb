@@ -7,17 +7,34 @@ class MerchandiseTest < ActiveSupport::TestCase
    def setup
     @merchandise = merchandises(:one)
   end
-
   test "price should not be empty" do
     merchandise = Merchandise.new
     merchandise.send "price=",nil
     refute merchandise.valid?
-    refute_empty merchandise.errors[:price]
+    assert_not_nil merchandise.errors[:price]
   end
 
-   test "parse youtube for merchanise" do
-      @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
-      @merchandise.get_youtube_id
+  #### Test written by lamontano for valdation of button and name
+  #this test is to validate the presence of name
+  test "checks for name" do
+    name_merchandise = Merchandise.new
+    #name_merchandise.send = "name=", nil
+    assert_not name_merchandise.valid?
+    assert_not_nil merchandise.errors[:name]
+  end 
+  #this test is to validat the presence of a button
+  test "checks to see if a button is present" do
+    button_merchandise = Merchandise.new
+    assert_not button_merchandise.valid?
+    assert_not_nil button_merchandise.errors[:button]
+  end
+
+  ################################################################
+
+
+   test "parse youtube for merchandise" do
+      merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
+      merchandise.get_youtube_id
       refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
     end
 
