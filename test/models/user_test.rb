@@ -4,7 +4,9 @@ class TestUser < ActiveSupport::TestCase
   def setup
 #    @request.env['devise.mapping'] = Devise.mappings[:user]
     @user = users(:one)
-   #sign_in @user  #why dont I need this for model
+    @rand_Az = lambda{|len|name=Array('A'.."z");Array.new(len){name.sample}.join}
+    @name_over = lambda {|len| name = Array('A'..'Z')+Array('a'..'z');Array.new(len) {name.sample}.join}
+#sign_in @user  #why dont I need this for model
   end
       test "user_can_follow_another_user" do
         john = users(:one)
@@ -89,9 +91,8 @@ class TestUser < ActiveSupport::TestCase
     #validates :videodesc1, length: { maximum: 255 }
 
         test "videodesc_must_be_less_than255char" do
-          nameover = lambda{|len|name=Array('A'.."z");Array.new(len){name.sample}.join}
           [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
-            user = User.new("#{field}": nameover.call(266))
+            user = User.new("#{field}": @rand_Az.call(266))
             refute user.valid?
             assert_equal ["is too long (maximum is 255 characters)"], user.errors[field]
         end
@@ -147,8 +148,7 @@ end
     refute user_no_password.valid?
   end
  test "name must be less than 50" do
-   nameover = lambda {|len| name = Array('A'..'Z')+Array('a'..'z');Array.new(len) {name.sample}.join}
-   user = User.new( name: nameover.call(55),email:"email@email.com",permalink:"permalink",password:"password")
+   user = User.new( name: @name_over.call(55),email:"email@email.com",permalink:"permalink",password:"password")
    refute user.valid?
    assert_equal ["is too long (maximum is 50 characters)"], user.errors[:name]
  end
@@ -171,6 +171,14 @@ end
     user.password = new_password
     assert user.password_changed?
   end
+
+  test "following?_test" do
+   user_a =users(:one)
+   user_b =users(:two)
+   assert user_a.valid?
+   assert user_b.valid?
+   refute user_a.following?(user_b)
+     end
 
     # redundant tests
 
