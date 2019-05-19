@@ -89,12 +89,9 @@ class TestUser < ActiveSupport::TestCase
     #validates :videodesc1, length: { maximum: 255 }
 
         test "videodesc_must_be_less_than255char" do
-          def nameover255(len)
-            name = Array('A'..'Z')+Array('a'..'z')
-            Array.new(len){name.sample}.join
-          end
+          nameover = lambda{|len|name=Array('A'.."z");Array.new(len){name.sample}.join }
           [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
-            user = User.new("#{field}": nameover255(266))
+            user = User.new("#{field}": nameover.call(266))
             refute user.valid?, "video description is short enough"
             assert_equal ["is too long (maximum is 255 characters)"], user.errors[field]
         end
@@ -150,11 +147,8 @@ end
     refute user_no_password.valid?
   end
  test "name must be less than 50" do
-   def nameoverfifty(len)
-     name = Array('A'..'Z')+Array('a'..'z')
-     Array.new(len){name.sample}.join
-   end
-   user = User.new( name: nameoverfifty(55),email:"email@email.com",permalink:"permalink",password:"password")
+   nameover = lambda {|len| name = Array('A'..'Z')+Array('a'..'z');Array.new(len) {name.sample}.join}
+   user = User.new( name: nameover.call(55),email:"email@email.com",permalink:"permalink",password:"password")
    refute user.valid?
  end
   # test "mark_fulfilled_test" do
