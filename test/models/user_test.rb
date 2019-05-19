@@ -90,7 +90,7 @@ class TestUser < ActiveSupport::TestCase
 
         test "videodesc_must_be_less_than255char" do
           [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
-            user = User.new("#{field}": /^.{266}/.to_s)
+            user = User.new("#{field}": /^.{266}/)
             refute user.valid?, "video description is short enough"
             assert_empty user.errors[field]
         end
@@ -140,6 +140,11 @@ end
       refute_nil @user.totalinfo
       end
     end
+
+  test "user must have a password" do
+     user_no_password = User.new(name: nil,email:nil,permalink:nil,)
+    refute user_no_password.valid?
+  end
 
   # test "mark_fulfilled_test" do
   #
