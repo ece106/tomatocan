@@ -147,9 +147,9 @@ end
   #   assert_not_empty @user.fulfilledstatus
   # end
 
-  test "validates_twitter_format" do
-    @user.twitter = /\A[\w+]+\z/.to_s
-    assert_empty @user.errors[:twitter]
+  test "validates_twitter_test" do
+    @user.twitter = /\A[\w+]+\z\s /
+    assert_empty @user.errors.messages[:twitter]
     refute_empty @user.twitter
   end
 
