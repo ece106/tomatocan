@@ -4,8 +4,8 @@ ruby "2.5.3"
 gem 'listen'
 gem 'rails-controller-testing'
 
-gem 'pg'
-#gem 'sqlite3'
+#gem 'pg'
+gem 'sqlite3', '~> 1.3.6'
 
 gem 'mandrill'	
 gem 'devise'
@@ -42,7 +42,7 @@ gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
 #  gem 'factory_girl_rails'
-#  gem 'capybara'
+gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
 end
 
