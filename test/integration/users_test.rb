@@ -1,5 +1,9 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
+#require 'selenium-webdriver'
+#options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless']) don't use this
+#@driver = Selenium::WebDriver.for :firefox
+#@driver.navigate.to 'http://localhost:3000/'
 class UsersTest < ActionDispatch::IntegrationTest
     include Capybara::DSL
     include Capybara::Minitest::Assertions
@@ -25,6 +29,7 @@ class UsersTest < ActionDispatch::IntegrationTest
         click_on(class: 'form-control btn-primary')
     end
 end
+
 test "Should_view_profileinfo" do
     click_on('Discover Talk Show Hosts')
     assert_text ('Discussion Hosts')
@@ -376,12 +381,302 @@ test "Should say email was taken when same user attempts sign up twice" do
 		end
 		assert_text('accessing my mic or webcam')
 	end
-	test "Should tweet on Twitter" do
+	test "Should say name can't be blank when nothing is in sign up parameters" do
 		visit('http://localhost:3000/')
-		signUpUser()
-		signInUser()
-		click_on()
-		click_on(text: 'Tweet')
-		assert_text('Share a link')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Name can\'t be blank')
 	end
+	test "Should say email can't be blank when nothing is in sign up parameters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Email can\'t be blank')
+	end
+	test "Should say permalink can't be blank when nothing is in sign up parameters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Permalink can\'t be blank')
+	end
+	test "Should say password can't be blank when nothing is in sign up parameters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: '')
+        fill_in(id:'user_email', with: '')
+        fill_in(id:'user_permalink', with:'')
+        fill_in(id:'user_password', with: '', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Password can\'t be blank')
+	end
+	test "Should not sign up with non alphanumeric characters" do
+		visit('http://localhost:3000/')
+		click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: 'user')
+        fill_in(id:'user_email', with: 'user@user.com')
+        fill_in(id:'user_permalink', with:'`~!@#$%^&*()_-=+*/<>')
+        fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'password')
+        click_on(class: 'form-control btn-primary')
+        assert_text('Permalink is invalid')
+	end
+    test "Should not show sales when not signed into stripe" do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text:'Sales')
+        assert_text('Sales figures will be displayed on this page after you connect to Stripe.')
+    end
+    # test "Should update twitter handle" do
+    #     signUpUser()
+    #     signInUser()
+    #     click_on(text: 'name')
+    #     click_on(text: 'Control Panel')
+    #     #assert page.has_field?('user_twitter', with: '') 
+    #     fill_in(id: 'user_twitter', with: 'newtwitterhandle')
+    #     click_on(id:'saveProfileButton',:match => :first)
+    #     click_on(text: 'name')
+    #     click_on(text: 'Control Panel')
+    #     #assert page.has_field?("user_twitter", :with=> "twitterhandle")
+    #     #twitterthing = find('user_twitter').get('new')
+    #     #assert page.has_field?('user_twitter', with: 'newtwitterhandle') 
+    #     assert_nil(find_field('user_twitter').value)
+    # end
+    test 'Should show username in controlpanel' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'View Profile')
+        assert_text('name')
+    end
+    test 'Should show name field in signup' do
+        visit ('http://localhost:3000/')
+        click_on('Sign Up', match: :first)
+        assert page.has_field?('user_name')
+    end
+    test 'Should show email field in signup' do
+        visit ('http://localhost:3000/')
+        click_on('Sign Up', match: :first)
+        assert page.has_field?('user_email')
+    end
+    test 'Should show username field in signup' do
+        visit ('http://localhost:3000/')
+        click_on('Sign Up', match: :first)
+        assert page.has_field?('user_permalink')
+    end
+    test 'Should show enter password field in signup' do
+        visit ('http://localhost:3000/')
+        click_on('Sign Up', match: :first)
+        assert page.has_field?('user_password')
+    end
+    test 'Should show confirm password field in signup' do
+        visit ('http://localhost:3000/')
+        click_on('Sign Up', match: :first)
+        assert page.has_field?('user_password_confirmation')
+    end
+    test 'Should show email field in signin' do
+        visit ('http://localhost:3000/')
+        click_on('Sign In', match: :first)
+        assert page.has_field?('user_email')
+    end
+    test 'Should show password field in signin' do
+        visit ('http://localhost:3000/')
+        click_on('Sign In', match: :first)
+        assert page.has_field?('user_password')
+    end
+    test 'Should show title of livestream show field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_name')
+    end
+    test 'Should show start date field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_start_at')
+    end
+    test 'Should show start year field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_start_at_1i')
+    end
+    test 'Should show start month field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_start_at_2i')
+    end
+    test 'Should show start day field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_start_at_3i')
+    end
+    test 'Should show start hour field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_start_at_4i')
+    end
+    test 'Should show start minute field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_start_at_5i')
+    end
+    test 'Should show end year field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_end_at_1i')
+    end
+    test 'Should show end month field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_end_at_2i')
+    end
+    test 'Should show end day field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_end_at_3i')
+    end
+    test 'Should show end hour field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_end_at_4i')
+    end
+    test 'Should show end minute field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_end_at_5i')
+    end
+    test 'Should show show description field when posting a new show' do
+        signUpUser()
+        signInUser()
+        click_on('Host a Livestream Discussion')
+        assert page.has_field?('event_desc')
+    end
+    test 'Should show name field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_name')
+    end
+    test 'Should show profilepic field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_profilepic')
+    end
+    test 'Should show about you field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_about')
+    end
+    test 'Should show category field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_genre1')
+    end
+    test 'Should show subcategory field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_genre2')
+    end
+    test 'Should show another subcategory field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_genre3')
+    end
+    test 'Should show bannerpic field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_bannerpic')
+    end
+    test 'Should show twitterhandle field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_twitter')
+    end
+    test 'Should show first youtube project field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_youtube1')
+    end
+    test 'Should show second youtube project field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_youtube2')
+    end
+    test 'Should show third youtube project field when editing profile' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        assert page.has_field?('user_youtube3')
+    end
+    test 'Should show email field when editing account' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text: 'Account')
+        assert page.has_field?('user_email')
+    end
+    test 'Should show custom URL field when editing account' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text: 'Account')
+        assert page.has_field?('user_permalink')
+    end
+    # test 'selenium_test' do
+    #     Capybara.server = :webrick
+    #     Capybara.default_driver = :selenium
+    #     visit ('http://localhost:3000/')
+    #     assert_text('')
+    #     Capybara.default_driver = :rack_test
+    # end
 end
