@@ -1,9 +1,11 @@
 require 'test_helper'
+require 'stripe'
 
 class PurchasesControllerTest < ActionController::TestCase
   setup do
     @purchases = purchases(:one)
     @purchaser = users(:two) #user 2 is the customer 
+    @seller = users(:one)
   end
 
     test "should_get_purchases_new_purchase" do
