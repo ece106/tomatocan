@@ -1,16 +1,13 @@
 source 'http://rubygems.org'
-ruby "2.5.1"
+ruby "2.5.3"
 
 gem 'listen'
 gem 'rails-controller-testing'
-#gem 'capybara-screenshot', :group => :test
 
 #gem 'pg'
 gem 'sqlite3', '~> 1.3.6'
 
-gem 'selenium-webdriver'
-
-gem 'mandrill'  
+gem 'mandrill'	
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -21,13 +18,14 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
+
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '~> 5.2.2.1'
-gem 'railties', '5.2.2.1'
+gem 'rails', '5.2.1'
+gem 'railties', '5.2.1'
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
@@ -46,7 +44,6 @@ group :test, :development do
 #  gem 'factory_girl_rails'
 gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
-
 end
 
 group :production do
