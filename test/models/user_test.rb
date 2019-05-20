@@ -153,9 +153,8 @@ end
    assert_equal ["is too long (maximum is 50 characters)"], user.errors[:name]
  end
   # test "mark_fulfilled_test" do
-  #
-  #   @user.mark_fulfilled()
-  #   assert_not_empty @user.fulfilledstatus
+  #   @user.mark_fulfilled(@user.purchases.ids)
+  #   assert_equal "sent" ,@user.fulfilledstatus
   # end
 
   test "validates_twitter_test" do
