@@ -6,6 +6,7 @@ class TestUser < ActiveSupport::TestCase
     @user = users(:one)
     @rand_Az = lambda{|len|name=Array('A'.."z");Array.new(len){name.sample}.join}
     @name_over = lambda {|len| name = Array('A'..'Z')+Array('a'..'z');Array.new(len) {name.sample}.join}
+
 #sign_in @user  #why dont I need this for model
   end
       test "user_can_follow_another_user" do
@@ -152,10 +153,11 @@ end
    refute user.valid?
    assert_equal ["is too long (maximum is 50 characters)"], user.errors[:name]
  end
-  # test "mark_fulfilled_test" do
-  #   @user.mark_fulfilled(@user.purchases.ids)
-  #   assert_equal "sent" ,@user.fulfilledstatus
-  # end
+  test "mark_fulfilled_test" do
+   purchase = purchases(:one)
+    @user.mark_fulfilled(purchase.id)
+    assert_equal "sent", purchase.fulfillstatus
+  end
 
   test "validates_twitter_test" do
     user = User.new(twitter:"!@@@#%@#")
