@@ -229,15 +229,31 @@ end
      get :followingpage, params: {permalink: 'user1'}
      assert_equal(@user.following.count, 0)
   end
+
 #Implement follower and following test,
 
+#purchid needs to be implemented
 
-  test "should post mark fulfilled" do
+  # test "should post mark fulfilled" do
     
-    sign_in @user
-  #  post :markfulfilled, params: {purchid: '1'}
-    assert_response :success
+  #   sign_in @user
+  # #  post :markfulfilled, params: {purchid: '1'}
+  #   assert_response :success
+  # end
+
+  test "should get control panel for user1" do
+  sign_in @user
+  get :controlpanel, params: {permalink: 'user1'}
+  assert_response :success
   end
+
+  test "should get control panel for user2" do
+  sign_in @user
+  get :controlpanel, params: {permalink: 'user2'}
+  assert_response :success
+end
+
+
 
 
 end
