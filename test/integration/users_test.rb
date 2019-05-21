@@ -183,9 +183,36 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    select('1',:from=> 'merchandise_deadline_3i')
 	    click_on(id: 'perkSubmit')
 	end
-	test "Should See Upcoming shows" do
-		
+	test "Should See shows page" do
+		signUpUser()
+        signInUser()
+        click_on(class: 'dropdown-toggle')
+        click_on('Control Panel')
+        click_on('Shows')
+        assert_text('Your Upcoming Shows')
 	end
+    test "Should See Upcoming Shows"do
+        signUpUser()
+        signInUser()
+        click_on('Host A Show')
+        fill_in(id:'event_name', with:'example')
+        select('2020', from:'event_start_at_1i')
+        select('December', from:'event_start_at_2i')
+        select('31', from:'event_start_at_3i')
+        select('01 AM', from:'event_start_at_4i')
+        select('00', from:'event_start_at_5i')
+        select('2020', from:'event_end_at_1i')
+        select('December', from:'event_end_at_2i')
+        select('31', from:'event_end_at_3i')
+        select('01 AM', from:'event_end_at_4i')
+        select('00', from:'event_end_at_5i')
+        find(class:'btn btn-lg btn-primary').click
+        click_on(class: 'dropdown-toggle')
+        click_on('Control Panel')
+        click_on('Shows')
+        assert_text('example')
+
+    end
 	#########
 	#todo: write a test that fails to sign up
 	#SupportOurWork
@@ -214,7 +241,6 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    click_on("Save Profile")
 	    assert_text('Passwords do not match')
 	end
-	#These tests are in progress
 	test 'Should_see_product' do
 	    click_on('Discover Talk Show Hosts')
 	    click_link('Phineas')
@@ -413,13 +439,5 @@ class UsersTest < ActionDispatch::IntegrationTest
 		end
 		assert_text('accessing my mic or webcam')
 	end
-	test "Should tweet on Twitter" do
-		visit('http://localhost:3000/')
-		signUpUser()
-		signInUser() 
-        save_and_open_page   
-        click_on(text: 'Tweet')
-
-		assert_text('Share a link')
-	end
+	
 end
