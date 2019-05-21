@@ -8,15 +8,17 @@ require 'capybara/rails'
 require 'simplecov'
 require 'capybara/minitest'
 require 'selenium-webdriver'
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> ddb07eaec30727402e1ba39ff51f714bd317214c
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
   # Make `assert_*` methods behave like Minitest assertions
   include Capybara::Minitest::Assertions
-
   # Reset sessions and driver between tests
   # Use super wherever this method is redefined in your individual test classes
   def teardown
