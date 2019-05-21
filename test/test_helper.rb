@@ -7,13 +7,7 @@ require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'simplecov'
 require 'capybara/minitest'
-require 'selenium-webdriver'
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> ddb07eaec30727402e1ba39ff51f714bd317214c
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
