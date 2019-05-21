@@ -156,7 +156,8 @@ end
   test "mark_fulfilled_test" do
    purchase = purchases(:one)
     @user.mark_fulfilled(purchase.id)
-    assert_equal "sent", purchase.fulfillstatus
+    x = Purchase.find(purchase.id)
+    assert_equal "sent", x.fulfillstatus
   end
 
   test "validates_twitter_test" do
