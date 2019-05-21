@@ -5,6 +5,6 @@ one:
   end_at: "2010-02-11 11:02:57"
 two:
   usrid: 2
-  name: Phineas
-  start_at: "2010-02-11 11:02:57"
-  end_at: "2010-02-11 11:02:57"
+  name: eventTwo
+  start_at: <%=Time.now%>
+  end_at: <%=Time.now + 10%>

@@ -49,6 +49,7 @@ group :test, :development do
   gem 'headless'
   gem 'selenium-webdriver'
   gem 'simplecov', require:false
+  gem 'apparition'
 end
 
 group :production do
