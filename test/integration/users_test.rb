@@ -11,7 +11,6 @@ class UsersTest < ActionDispatch::IntegrationTest
     setup do
     visit ('http://localhost:3000/')
     def signUpUser()
-        visit ('http://localhost:3000/')
         click_on('Sign Up', match: :first)
         fill_in(id:'user_name', with: 'name')
         fill_in(id:'user_email', with: 'e@gmail.com')
@@ -22,12 +21,12 @@ class UsersTest < ActionDispatch::IntegrationTest
         click_on('Sign out')
     end
     def signInUser()
-        visit ('http://localhost:3000/')
         click_on('Sign In', match: :first)
         fill_in(id:'user_email', with: 'e@gmail.com')
         fill_in(id:'user_password', with: 'password')
         click_on(class: 'form-control btn-primary')
     end
+
 	end
 	#Control panel
 	#
@@ -163,7 +162,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    click_on(class: 'form-control btn-primary')
 	    assert_text ('Sign out')
 	    
-	end
+	end 
 	test "Should See 'Offer Rewards'"do
 	    signUpUser()
 	    signInUser()
@@ -243,6 +242,7 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    click_on('Discover Talk Show Hosts')
 	    click_link('Phineas')
 	    click_on(text: 'Donate $2.00!')
+        save_and_open_webpage
         fill_in(id:'purchase_email', with:'e@mail.com')
 	    fill_in(id:'card_number', with:'4242424242424242')
 	    select("2020", from: 'card_year')
@@ -272,10 +272,29 @@ class UsersTest < ActionDispatch::IntegrationTest
 	    select('31', from:'event_end_at_3i')
 	    select('01 AM', from:'event_end_at_4i')
 	    select('00', from:'event_end_at_5i')
-	    find(class:'btn btn-lg btn-primary').click
+	    click_on(id:'eventSubmit')
 	    #click_on(class: 'btn btn-lg btn-primary')
-	    #assert_text('example')
+	    assert_text('example')
 	end
+    test 'Should_click_live_show' do
+        signUpUser()
+        signInUser()
+        click_on('Host A Show')
+        fill_in(id:'event_name', with:'example')
+        select('2020', from:'event_start_at_1i')
+        select('December', from:'event_start_at_2i')
+        select('31', from:'event_start_at_3i')
+        select('01 AM', from:'event_start_at_4i')
+        select('00', from:'event_start_at_5i')
+        select('2020', from:'event_end_at_1i')
+        select('December', from:'event_end_at_2i')
+        select('31', from:'event_end_at_3i')
+        select('01 AM', from:'event_end_at_4i')
+        select('00', from:'event_end_at_5i')
+        find(class:'btn btn-lg btn-primary').click
+        #click_on(class: 'btn btn-lg btn-primary')
+        #assert_text('example')
+    end
 	test 'Should_host_logged_out' do
 	    click_on('Host A Show')
 	    assert_text('You need to sign in or sign up before continuing.')
