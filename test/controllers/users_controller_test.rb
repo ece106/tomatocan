@@ -10,6 +10,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
+  test "should check index" do
+    sign_in @user
+    assert_equal(@user.id, 1)
+  end
   test "should equate youtube field" do
     youtube="youtube"
     assert_equal(youtube,@user.youtube)
@@ -20,21 +25,60 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-#Ambiguous method checking
+  test "should verify user name" do
+    sign_in @user
+    assert_equal(@user.name, "Phineas")
+  end
 
+test "should verify email" do
+    sign_in @user
+    assert_equal("fake@fake.com", @user.email)
+  end
 
   test "should recognize youtubers"do
     assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
   end
 
-  test "should get users support our work" do
-    get :supportourwork
-    assert_response :success
-  end
-
   test "should recognize supportourwork"do
     assert_recognizes({controller: 'users',action:'supportourwork'},'supportourwork')
   end
+
+  test "should verify user twitter" do
+  sign_in @user
+  patch :update, params:{ id: @user.id, user: {twitter: 'MyTwitter'}}
+  user = User.find_by_permalink(@user.permalink)
+  assert_equal("MyTwitter", user.twitter)
+  end
+
+   test "should verify user facebook" do
+   sign_in @user
+  patch :update, params:{ id: @user.id, user: {facebook: 'MyFacebook'} }
+  assert_equal("MyFacebook", @user.facebook)
+  end
+
+
+
+  test "should verify update genre1" do
+     sign_in @user
+     patch :update, params:{ id: @user.id, user: {genre1: 'Writing'}}
+     user = User.find_by_permalink(@user.permalink)
+     assert_equal("Writing", user.genre1)
+  end
+
+  test "should verify update genre2" do
+     sign_in @user
+     patch :update, params:{ id: @user.id, user: {genre1: 'Reading'}}
+     user = User.find_by_permalink(@user.permalink)
+     assert_equal("Reading", user.genre1)
+  end
+
+  test "should verify update genre3" do
+     sign_in @user
+     patch :update, params:{ id: @user.id, user: {genre1: 'Programming'}}
+     user = User.find_by_permalink(@user.permalink)
+     assert_equal("Programming", user.genre1)
+  end
+
 
   test "should get users show" do #user1 has phases
     get :show, params: {permalink: 'user1'}
@@ -65,7 +109,7 @@ end
 
   test "should get changepassword" do
     get :changepassword, params: {permalink: 'user1'}
-    assert_response :success
+    assert_response :success 
   end
 
   test "should recognize users dashboard logged in"do
@@ -81,6 +125,7 @@ end
     get :controlpanel, params: {permalink: 'user1',id: @user.id} 
     assert_response :success
     end
+
 
   test "should get users dashboard logged in" do
     sign_in @user
@@ -99,15 +144,8 @@ end
     assert_equal(stripeid,@user.stripeid)
   end
 
-
-   test "should verify user name" do
-    sign_in @user
-    assert_equal(@user.name, "Phineas")
-  end
- 
-
   test "should create user" do #rails test test/controllers/users_controller_test.rb -n test_should_equate_youtube_field; To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
-    assert_difference('User.count', 1) do
+    assert_equal(User.count, 2) do
       post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
     end
    end
@@ -117,11 +155,30 @@ end
     assert_redirected_to (user_profileinfo_path(assigns(:user).permalink))
   end
 
+  test "should check new user index" do
+    post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
+    assert_equal(@user.id,1) 
+
+  end
+
   test "should show user profile" do #user2 has no phases
     get :show, params: {permalink: 'user2' }
     assert_response :success
   end
 
+  # test "should show user path" do
+  #   get :show, params: { user: {id: 1}}
+  #   assert_response :success
+  # end
+  test "should test timeslot user1" do
+    get :timeslots, params: {permalink: 'user1'}
+    assert_response :success
+  end
+
+ test "should test timeslot user2" do
+    get :timeslots, params: {permalink: 'user2'}
+    assert_response :success
+  end
 
   test "should update user" do
     sign_in @user
@@ -137,20 +194,6 @@ end
     assert_redirected_to user_profile_path(user.permalink)
   end
 
-  test "should verify user facebook" do
-   sign_in @user
-  patch :update, params:{ id: @user.id, user: {facebook: 'MyFacebook'} }
-  assert_equal("MyFacebook", @user.facebook)
-  end
-
-  test "should verify user twitter" do
-  sign_in @user
-  patch :update, params:{ id: @user.id, user: {twitter: 'MyTwitter'}}
-  user = User.find_by_permalink(@user.permalink)
-
-  assert_equal("MyTwitter", user.twitter)
-  end
-
   test "should verify update about" do
      sign_in @user
      patch :update, params:{ id: @user.id, user: {about: 'Hi this is me'}}
@@ -158,8 +201,56 @@ end
      assert_equal("Hi this is me", user.about)
   end
 
-  test "should verify email" do
-    sign_in @user
-    assert_equal("fake@fake.com", @user.email)
+  test "should get followers" do
+     get :followerspage, params: {permalink: 'user1'}
+    assert_response :success
   end
+
+  test "should get following" do
+     get :followingpage, params: {permalink: 'user1'}
+    assert_response :success
+  end
+
+#  test "should get followers by user id" do
+#    sign_in @user
+#    get :followers , params:{ id: @user.id}
+#    assert_response :success
+#  end
+
+
+  test "should get follower number" do
+    sign_in @user
+     get :followerspage, params: {permalink: 'user1'}
+     assert_equal(@user.followers.count, 0)
+  end
+
+  test "should get following number" do
+    sign_in @user
+     get :followingpage, params: {permalink: 'user1'}
+     assert_equal(@user.following.count, 0)
+  end
+
+#Implement follower and following test,
+
+#purchid needs to be implemented
+
+  # test "should post mark fulfilled" do
+    
+  #   sign_in @user
+  # #  post :markfulfilled, params: {purchid: '1'}
+  #   assert_response :success
+  # end
+
+  test "should get control panel for user1" do
+  sign_in @user
+  get :controlpanel, params: {permalink: 'user1'}
+  assert_response :success
+  end
+
+  test "should get control panel for user2" do
+  sign_in @user
+  get :controlpanel, params: {permalink: 'user2'}
+  assert_response :success
+end
+
 end
