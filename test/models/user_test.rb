@@ -144,6 +144,15 @@ end
       end
     end
 
+  # test "approve_agreement_test" do
+  #   users(:one).approve_agreement(agreements(:one).id)
+  #   assert Agreement.find(agreements(:one).id).approved?
+  # end
+  # test "decline_agreement_test" do
+  #
+  #
+  # end
+
   test "user must have a password" do
      user_no_password = User.new(name: nil,email:nil,permalink:nil,)
     refute user_no_password.valid?
