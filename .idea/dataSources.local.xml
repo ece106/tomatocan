@@ -10,5 +10,17 @@
       <user-name>pl</user-name>
       <introspection-schemas>@:@</introspection-schemas>
     </data-source>
+    <data-source name="Rails tomatocan: development" uuid="5fc725a6-9c78-44f7-9bc8-b08a1b211a24">
+      <database-info product="PostgreSQL" version="11.3 (Ubuntu 11.3-0ubuntu0.19.04.1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="11.3" exact-driver-version="42.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>pl</user-name>
+      <introspection-schemas>@:@</introspection-schemas>
+    </data-source>
+    <data-source name="Rails tomatocan: test" uuid="122da97a-12d7-4c10-ac22-7d15141047fd">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+      <user-name>p</user-name>
+    </data-source>
   </component>
 </project>
