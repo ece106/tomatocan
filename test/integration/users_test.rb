@@ -444,21 +444,6 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text:'Sales')
         assert_text('Sales figures will be displayed on this page after you connect to Stripe.')
     end
-    # test "Should update twitter handle" do
-    #     signUpUser()
-    #     signInUser()
-    #     click_on(text: 'name')
-    #     click_on(text: 'Control Panel')
-    #     #assert page.has_field?('user_twitter', with: '') 
-    #     fill_in(id: 'user_twitter', with: 'newtwitterhandle')
-    #     click_on(id:'saveProfileButton',:match => :first)
-    #     click_on(text: 'name')
-    #     click_on(text: 'Control Panel')
-    #     #assert page.has_field?("user_twitter", :with=> "twitterhandle")
-    #     #twitterthing = find('user_twitter').get('new')
-    #     #assert page.has_field?('user_twitter', with: 'newtwitterhandle') 
-    #     assert_nil(find_field('user_twitter').value)
-    # end
     test 'Should show username in controlpanel' do
         signUpUser()
         signInUser()
@@ -672,11 +657,4 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text: 'Account')
         assert page.has_field?('user_permalink')
     end
-    # test 'selenium_test' do
-    #     Capybara.server = :webrick
-    #     Capybara.default_driver = :selenium
-    #     visit ('http://localhost:3000/')
-    #     assert_text('')
-    #     Capybara.default_driver = :rack_test
-    # end
 end
