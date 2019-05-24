@@ -8,7 +8,6 @@ end
 test "should get index" do
     get :index
     assert_response :success
-    #assert_not_nil assigns(:merchandises)
 end
 
 test "should show merchandise" do
@@ -20,12 +19,6 @@ test "should get new if user signed in" do
     sign_in users(:one)
     get :new
     assert_response :success
-end
-
-# #Fix this, Doesn't really work how its supposed to because code doesn't prevent this
-test "shouldn't get new if no user signed in" do
-  get :new, params: {id: @merchandise.id}
-  assert_response :success
 end
 
 test "should get new with merchandise id" do
@@ -57,7 +50,7 @@ end
 
 test "should create 1 merchandise for failed create" do
     sign_in users(:one)
-    assert_difference('Merchandise.count', ) do
+    assert_difference('Merchandise.count', 1) do
         post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
         post :create, params: { merchandise: { name: '', user_id: 1, price: 20, desc: 'test1', buttontype: 'Buy' }}
     end
@@ -123,6 +116,18 @@ test "should throw flag after merchandise updated" do
     assert_equal flash[:notice], 'Patron Perk was successfully updated.'
 end
 
+test "should redirect failed update attempt with no name" do
+  sign_in users(:one)
+  patch :update, params: {id: @merchandise, merchandise: {name: '', user_id: '1', price: '1', desc: '', buttontype: 'Buy'}}
+  assert_template :edit
+end
+
+test "should redirect failed update attempt with no price" do
+  sign_in users(:one)
+  patch :update, params: {id: @merchandise, merchandise: {name: 'rob', user_id: '', price: '1', desc: '', buttontype: 'Buy'}}
+  assert_template :edit
+end
+
 test "should redirect failed update attempt" do
   sign_in users(:one)
   patch :update, params: {id: @merchandise, merchandise: { name: '', user_id: '', price: '', desc: '', buttontype: ''}}
@@ -137,13 +142,6 @@ test "should set user" do
     @user = User.find(@merchandise.user_id)
     assert @user.valid?
 end
- 
-#Is this needed? Does it even test the right thing?
-# test "should confirm user not signed in as different user" do
-#   sign_in users(:one)
-#   sign_in users(:two)
-  
-# end
 
 test "should render correct layout for edit" do
     sign_in users(:one)
@@ -165,10 +163,4 @@ test "should render correct layout for new" do
     get :new
     assert_template 'application'
 end
-
-# test "should check whether a reward is expired or not" do
-#     sign_in users(:one)
-#     assert_not_same(@expiredmerch, notexpiredmerch)
-# end
-
 end
