@@ -1,4 +1,3 @@
-
 class Purchase < ApplicationRecord
 
   #  attr_accessible :stripe_customer_token, :bookfiletype, :book_id, :stripe_card_token, :user_id, :merchandise_id

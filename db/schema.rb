@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 201309200000000) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "agreements", id: :serial, force: :cascade do |t|
+  create_table "agreements", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
     t.datetime "created_at"
@@ -23,7 +20,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "approved"
   end
 
-  create_table "books", id: :serial, force: :cascade do |t|
+  create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "blurb"
     t.date "releasedate"
@@ -47,7 +44,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "bkvideodesc2"
   end
 
-  create_table "events", id: :serial, force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.string "name"
     t.datetime "start_at"
     t.datetime "end_at"
@@ -73,7 +70,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_email"
   end
 
-  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
@@ -85,7 +82,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "groups", id: :serial, force: :cascade do |t|
+  create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.float "latitude"
@@ -108,7 +105,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
 
-  create_table "merchandises", id: :serial, force: :cascade do |t|
+  create_table "merchandises", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
     t.float "price"
@@ -161,7 +158,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.date "releasedate"
   end
 
-  create_table "purchases", id: :serial, force: :cascade do |t|
+  create_table "purchases", force: :cascade do |t|
     t.integer "author_id"
     t.integer "book_id"
     t.string "stripe_customer_token"
@@ -192,7 +189,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "reviews", id: :serial, force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
     t.text "blurb"
     t.integer "user_id"
     t.integer "book_id"
@@ -201,7 +198,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "updated_at"
   end
 
-  create_table "rsvpqs", id: :serial, force: :cascade do |t|
+  create_table "rsvpqs", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
     t.integer "guests"
@@ -226,7 +223,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer "show_duration"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "ustreamvid"
