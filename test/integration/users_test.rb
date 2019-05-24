@@ -38,13 +38,17 @@ class UsersTest < ActionDispatch::IntegrationTest
             fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
             fill_in(id:'user_password_confirmation', with:'password')
             click_on(class: 'form-control btn-primary')
-            save_and_open_page
-            if find('Sign out')
+            errMess=''
 
-          	click_on('Sign out')
+            if has_content?('Sign out')
+
+          		click_on('Sign out')
           	else
-          	signInUser() 
+          		visit ('http://localhost:3000/')
             end
+        end
+        def makeMerch()
+
         end
         @time=Time.now
     end
@@ -228,14 +232,13 @@ class UsersTest < ActionDispatch::IntegrationTest
     #Stripe error here
     test 'Should_buy_user' do
         Capybara.current_driver = :selenium_headless
-        Capybara.server = :puma
-        visit('http://localhost:3000/')
+        Capybara.server = :webrick
         devSign()
-        save_and_open_page
         signInUser()
         click_on('Discover Talk Show Hosts')
-        click_link('Phineas')
-        click_on('Buy for $1.50')
+        click_link('names')
+        click_on('Buy for $1.00')
+        save_and_open_page
         fill_in(id:'card_number', with:'4242424242424242')
         fill_in(id:'purchase_email' , with:'e@mail.com')
         select(@time.year, from: 'card_year')
@@ -263,14 +266,6 @@ class UsersTest < ActionDispatch::IntegrationTest
         #purchase deadline is currently 2019 July 24
         click_on(id: 'perkSubmit')
         assert_text('Tickets to My Show')
-    end
-     test 'Should see stripe1'do
-        visit('http://localhost:3000/')
-        signUpUser()
-        signInUser()
-        click_on(class: 'dropdown-toggle')
-        click_on('Control Panel')
-         click_on("connect to Stripe")   
     end
    
     test 'Should_donate_user' do

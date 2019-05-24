@@ -50,7 +50,7 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'simplecov', require:false
   gem 'apparition'
-  gem 'puma'
+  
 end
 
 group :production do
