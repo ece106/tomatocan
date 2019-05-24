@@ -140,7 +140,7 @@ class User < ApplicationRecord
       mysales = Purchase.where('purchases.author_id = ?', self.id).order('created_at DESC')
       mysales.each do |sale| 
         if (!sale.merchandise_id.nil?)
-          perksold = Merchandise.find(sale.merchandise_id) 
+          perksold = Merchandise.find(sale.merchandise_id)
           purchaseName = perksold.name
         else
           purchaseName = 'Donation'
