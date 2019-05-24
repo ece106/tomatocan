@@ -7,7 +7,7 @@ gem 'rails-controller-testing'
 gem 'pg'
 #gem 'sqlite3'
 
-gem 'mandrill'	
+gem 'mandrill'  
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -18,7 +18,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
-
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
@@ -42,8 +41,16 @@ gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
 #  gem 'factory_girl_rails'
-#  gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
+  gem 'capybara-screenshot'
+  gem 'stripe-ruby-mock', :require =>'stripe_mock'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'headless'
+  gem 'selenium-webdriver'
+  gem 'simplecov', require:false
+  gem 'apparition'
+  
 end
 
 group :production do
