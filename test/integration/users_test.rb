@@ -71,7 +71,7 @@ test "Should_sign_up_and_then_out_and_then_back_in" do
     assert_text ('Sign out')
     
 end
-#todo: write a test that fails to sign up
+
 test "Should_see_edit_profile_in_control_panel" do
     signUpUser()
     signInUser()
@@ -656,5 +656,41 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text: 'Control Panel')
         click_on(text: 'Account')
         assert page.has_field?('user_permalink')
+    end
+    test 'Should create reward from controlpanel rewards page' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert_text('Describe this Reward or donation.')#This text appears in the new merchandises page
+    end
+    test 'Should render current buy reward from profileinfo page' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
+        fill_in(id: 'merchandise_price', with: '30')
+        #purchase deadline is currently 2019 July 24
+        click_on(id: 'perkSubmit')
+        assert_text('Tickets to My Show')
+    end
+    test 'Should render current donate reward from profileinfo page' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        select('Donate', from: 'merchandise_buttontype')
+        fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
+        fill_in(id: 'merchandise_price', with: '30')
+        #purchase deadline is currently 2019 July 24
+        click_on(id: 'perkSubmit')
+        assert_text('Tickets to My Show')
     end
 end
