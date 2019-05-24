@@ -577,3 +577,190 @@ Migrating to AddShowDurationToTimeslots (20190426225611)
   [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7625458502128519500)[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from <top (required)> at /home/lamontano/tomatocan/config/environment.rb:7)
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from <top (required)> at /home/lamontano/tomatocan/config/environment.rb:7)
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from <top (required)> at /home/lamontano/tomatocan/config/environment.rb:7)
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at /home/lamontano/.rbenv/versions/2.6.1/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54)
+Started GET "/" for 127.0.0.1 at 2019-05-22 17:39:23 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:39:23.827795')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:39:23.827795')[0m
+  Rendered layouts/_maincalendar.html.erb (9.9ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (2931.6ms)
+  Rendered application/_favicon.html.erb (2.3ms)
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 3034ms (Views: 3015.1ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/aboutus" for 127.0.0.1 at 2019-05-22 17:39:35 -0700
+Processing by StaticPagesController#aboutus as HTML
+  Rendering static_pages/aboutus.html.erb within layouts/application
+  Rendered static_pages/aboutus.html.erb within layouts/application (1.2ms)
+  Rendered application/_favicon.html.erb (11.8ms)
+  Rendered layouts/_header.html.erb (4.7ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 91ms (Views: 85.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-05-22 17:39:36 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:39:36.865604')[0m
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:39:36.865604')[0m
+  Rendered layouts/_maincalendar.html.erb (10.4ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (26.3ms)
+  Rendered application/_favicon.html.erb (18.7ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 131ms (Views: 122.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/aboutus" for 127.0.0.1 at 2019-05-22 17:39:51 -0700
+Processing by StaticPagesController#aboutus as HTML
+  Rendering static_pages/aboutus.html.erb within layouts/application
+  Rendered static_pages/aboutus.html.erb within layouts/application (1.3ms)
+  Rendered application/_favicon.html.erb (21.4ms)
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 138ms (Views: 135.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/supportourwork" for 127.0.0.1 at 2019-05-22 17:39:52 -0700
+Processing by UsersController#supportourwork as HTML
+  Rendering users/supportourwork.erb within layouts/application
+  [1m[36mUser Load (7.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE (LENGTH(stripeid) > 10 AND LENGTH(youtube1) > 7) ORDER BY updated_at DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 24], ["OFFSET", 0]]
+  Rendered users/supportourwork.erb within layouts/application (136.9ms)
+  Rendered application/_favicon.html.erb (3.2ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 190ms (Views: 158.4ms | ActiveRecord: 25.3ms)
+
+
+Started GET "/faq" for 127.0.0.1 at 2019-05-22 17:39:55 -0700
+Processing by StaticPagesController#faq as HTML
+  Rendering static_pages/faq.html.erb within layouts/application
+  Rendered static_pages/faq.html.erb within layouts/application (2.6ms)
+  Rendered application/_favicon.html.erb (11.9ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 74ms (Views: 71.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-05-22 17:40:06 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:40:06.596333')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:40:06.596333')[0m
+  Rendered layouts/_maincalendar.html.erb (2.0ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (4.6ms)
+  Rendered application/_favicon.html.erb (7.9ms)
+  Rendered layouts/_header.html.erb (3.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 61ms (Views: 59.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-05-22 17:40:08 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:40:08.035215')[0m
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-05-22 14:40:08.035215')[0m
+  Rendered layouts/_maincalendar.html.erb (19.8ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (32.4ms)
+  Rendered application/_favicon.html.erb (24.2ms)
+  Rendered layouts/_header.html.erb (4.9ms)
+  Rendered layouts/_footer.html.erb (1.5ms)
+Completed 200 OK in 131ms (Views: 123.9ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-05-22 17:40:10 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.erb (0.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (36.1ms)
+  Rendered application/_favicon.html.erb (10.4ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 132ms (Views: 116.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2019-05-22 17:40:23 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (0.5ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (5.5ms)
+  Rendered application/_favicon.html.erb (7.6ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 74ms (Views: 70.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-05-22 17:41:29 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tgjAl/8JS+vE0OvSFKSQRZVxMAeh7Jp1r6eK6NZb3hzvitoYedjA8g7F9XvYQWUXwi8e55Sr8nCuUPVQ2bh5TQ==", "user"=>{"name"=>"lolos", "email"=>"lalo@gmail.com", "permalink"=>"lolo", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "lalo@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."permalink") = LOWER($1) LIMIT $2[0m  [["permalink", "lolo"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+Redirected to http://localhost:3000/signup
+Completed 302 Found in 75ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2019-05-22 17:41:29 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (2.1ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (7.2ms)
+  Rendered application/_favicon.html.erb (8.5ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 83ms (Views: 82.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/supportourwork" for 127.0.0.1 at 2019-05-22 17:41:51 -0700
+Processing by UsersController#supportourwork as HTML
+  Rendering users/supportourwork.erb within layouts/application
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE (LENGTH(stripeid) > 10 AND LENGTH(youtube1) > 7) ORDER BY updated_at DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 24], ["OFFSET", 0]]
+  Rendered users/supportourwork.erb within layouts/application (8.7ms)
+  Rendered application/_favicon.html.erb (11.6ms)
+  Rendered layouts/_header.html.erb (3.4ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 120ms (Views: 111.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/user1" for 127.0.0.1 at 2019-05-22 17:41:55 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"user1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "user1"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+DEPRECATION WARNING: Dangerous query method (method whose arguments are used as raw SQL) called with non-attribute argument(s): "deadline IS NULL, deadline ASC". Non-attribute arguments will be disallowed in Rails 6.0. This method should not be called with user-provided values, such as request parameters or model attributes. Known-safe values can be passed by wrapping them in Arel.sql(). (called from set_user at /home/lamontano/tomatocan/app/controllers/users_controller.rb:258)
+  [1m[36mMerchandise Load (0.7ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2019-05-22' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2019-05-22' OR deadline IS NULL) ORDER BY deadline IS NULL, deadline ASC[0m  [["user_id", 1]]
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (5.1ms)
+  Rendered layouts/_streamButton.html.erb (2.1ms)
+  Rendered layouts/_merchsidebar.html.erb (4.6ms)
+  Rendered layouts/_youtube.html.erb (0.6ms)
+  Rendered users/show.html.erb within layouts/userpgtemplate (16.8ms)
+  Rendered application/_favicon.html.erb (4.8ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 163ms (Views: 67.2ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/purchases/new?merchandise_id=980190962" for 127.0.0.1 at 2019-05-22 17:42:02 -0700
+Processing by PurchasesController#new as HTML
+  Parameters: {"authenticity_token"=>"pdcdTV/a+qFNkq0EFJP4sW3SWq0u2+Vx5/Hcb3ZEuCv8VQfC2QtxuIeHs63Ydg3jOox0TRucjXTmBqPXeacfeg==", "merchandise_id"=>"980190962"}
+  [1m[36mMerchandise Load (0.5ms)[0m  [1m[34mSELECT  "merchandises".* FROM "merchandises" WHERE "merchandises"."id" = $1 LIMIT $2[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering purchases/new.html.erb within layouts/application
+  Rendered purchases/new.html.erb within layouts/application (6.9ms)
+  Rendered application/_favicon.html.erb (7.6ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 91ms (Views: 64.4ms | ActiveRecord: 3.2ms)
+
+
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from <top (required)> at /home/lamontano/tomatocan/config/environment.rb:7)
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at /home/lamontano/.rbenv/versions/2.6.1/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54)

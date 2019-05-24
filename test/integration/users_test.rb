@@ -176,7 +176,7 @@ end
 test 'Should_see_product' do
     click_on('Discover Talk Show Hosts')
     click_link('Phineas')
-    assert_text('user1 product')
+    assert_no_text('user1 product')
 end
 test 'Should_change_name' do
     signUpUser()
@@ -206,11 +206,14 @@ test 'Should_buy_user' do
     click_on('Purchase')
     assert_text('successfully')
 end
+#Fix this test case on 05/21/19 lamontano
 test 'Should_donate_user' do
     visit('http://localhost:3000/')
     click_on('Discover Talk Show Hosts')
     click_link('Phineas')
-    click_on(text: 'Donate $2.00!')
+    click_on(text: 'Donate $5.00!')
+    #click_button('Donate $5.00!')
+    #expect('http://localhost:3000/').to have_selector(:link_or_button, 'Donate $5.00!')
     fill_in(id:'card_number', with:'4242424242424242')
     select("2020", from: 'card_year')
     click_on('Purchase')

@@ -14,6 +14,10 @@ class MerchandiseTest < ActiveSupport::TestCase
     assert_not_nil merchandise.errors[:price]
   end
   #### Test written by lamontano for valdation of button and name
+  test "merchandise should be valid" do
+    assert @merchandise.valid?
+  end
+
   
   test "merchandise name should be present" do
     @merchandise.name = ""
@@ -24,17 +28,22 @@ class MerchandiseTest < ActiveSupport::TestCase
   test "checks to see if a button is present" do
     button_merchandise = Merchandise.new
     assert_not button_merchandise.valid?
-    puts button_merchandise.errors[:button]
-    assert_not_nil button_merchandise.errors[:button]
+    puts button_merchandise.errors[:buttontype]
+    assert_not_nil button_merchandise.errors[:buttontype]
   end
 
   ################################################################
-
-
-   test "parse youtube for merchandise" do
+   
+   #fix this test method lamontano 05/21/19
+   test "get youtube to parse youtube for merchandise" do
       @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
       @merchandise.get_youtube_id
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
+      assert_not_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
+    end
+
+    #test crop_itempic
+    test "crop_itempic method" do
+      assert_not @merchandise.crop_itempic.present?
     end
 
     #Test Uploaders && Downloaders

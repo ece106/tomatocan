@@ -76,4 +76,7 @@ gem 'sass-rails', '~> 5.0.7'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  #used to test associations
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+
 end
