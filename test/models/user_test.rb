@@ -163,7 +163,6 @@ end
   test "validates_twitter_test" do
     user = User.new(twitter:"!@@@#%@#")
     assert user.errors.messages[:twitter]
-    refute_empty user.twitter
   end
 
   test "password_change_test" do
@@ -177,8 +176,6 @@ end
   test "following?_test" do
    user_a =users(:one)
    user_b =users(:two)
-   assert user_a.valid?
-   assert user_b.valid?
    refute user_a.following?(user_b)
      end
 
