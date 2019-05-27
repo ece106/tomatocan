@@ -4,15 +4,20 @@ one:
   id: 1
   name: Phineas
   email: fake@fake.com
+  ustreamvid: stream_video
+  ustreamsocial: stream_social
   permalink: user1
-  twitter: MyString
-  facebook: MyFacebook
+  twitter: twitter
+  facebook: facebook
+  pinterest: pinterest
   youtube: youtube
-  genre1: MyString
-  genre2: MyString
-  genre3: MyString
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  blogurl: blog_url
+  profilepicurl: profile_picture_url
   profilepic: hello.jpg
-  youtube1: /frlveggg  
+  youtube1: /frlveggg
   address: 20012
   author: author
   about: MyText
@@ -25,15 +30,21 @@ two:
   id: 2
   name: name2
   email: dontchangethisemail@orthisfixture.entry
+  ustreamvid: MyText2
+  ustreamsocial: MyString2
   permalink: user2
   twitter: MyString2
   facebook: MyString2
+  pinterest: MyString2
   youtube: MyString2
   genre1: MyString2
   genre2: MyString2
   genre3: MyString2
+  blogurl: MyString2
+  profilepicurl: MyString2
   profilepic: MyString2
   author: reader
   about: MyText2
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %>
   remember_token: MyString2
+  

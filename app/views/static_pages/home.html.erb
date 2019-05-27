@@ -6,9 +6,14 @@
                             <%= value %>
                       </div>
                 <% end %>
-            </div>
-        <h1 id="heroTitle">Doing Purposeful Work?</h1><br>
-        <h2 id="heroTitle">Host Interactive Livestream Talks To Engage The Intellectually Curious <br>& Receive Donations</h2>
+        </div>
+        <h1 id="heroTitle">JOIN OUR LIVESTREAMS </h1>
+        <h2 id="heroTitle">
+          <br> Wednesdays 5pm PDT / 8pm EDT - Discussions on Faith
+          <br> Thursdays 7pm PDT / 10pm EDT - Music Composition
+          <br> Fridays 12:30pm PDT / 3:30pm EDT - Small Business Talks<br><br>
+          <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %><br>
+          <br> Stay tuned for more weekly topics on Books, International, Environment, & Educational issues</h2>
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>
@@ -28,7 +33,8 @@
 <div class="row darkBlock" id="connectFans">
     <div class="col-md-5">
         <h2>Our Purpose</h2>
-        <p>CrowdPublish.TV is for nonprofits, research centers, small businesses, etc. to broadcast live talk shows how they are doing their part to change the world. Patrons can support the missions of the talk show hosts by making donations during the livestream and when watching the replay. Try a Q&amp;A with your viewers, or collaborate with other discussion hosts to engage in a panel!</p>
+        <p> Broadcast live discussions about what you're doing to change the world. Participate in intellectual discussions to broaden your knowledge. Wednesday evening Faith discussions. Thursday evenings we'll talk about creating Music. Friday lunch/afternoon is Small Business time. We'll add more topics and time slots throughout the summer. 
+        <br><br>Interested in influencing the topics discussed on CrowdPublish.TV? Feel free to <%= link_to 'add your own show', new_event_path %>! We recommend selecting a time immediately before or after other shows for increased exposure.</p>
     </div>
     <div class="col-md-7">
         <%= render 'layouts/maincalendar', collection: @events %>
@@ -45,8 +51,8 @@
 </div>
 <div class="row darkBlock" id="livestream">
     <div class="col-sm-4 col-sm-offset-1">
-<h2>Connect with Intellectually Curious Donors</h2>
-        <p>Viewers can ask questions during your livestream through text chat or by voice. Financial contributions can be made during your livestream and when you're offline. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
+      <h2>Connect with Intellectually Curious Donors</h2>
+      <p>Viewers can ask questions during your livestream through text chat or by voice. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
     </div>
     <div class="col-sm-6 col-sm-offset-1">
       <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>

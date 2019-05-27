@@ -5,6 +5,7 @@ require 'minitest/autorun'
 require 'fileutils'
 require 'carrierwave/storage/fog'
 require 'capybara/rails'
+require 'simplecov'
 require 'capybara/minitest'
 
 class ActionDispatch::IntegrationTest
@@ -12,7 +13,6 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
   # Make `assert_*` methods behave like Minitest assertions
   include Capybara::Minitest::Assertions
-
   # Reset sessions and driver between tests
   # Use super wherever this method is redefined in your individual test classes
   def teardown
