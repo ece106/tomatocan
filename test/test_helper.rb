@@ -5,7 +5,7 @@ require 'minitest/autorun'
 require 'fileutils'
 require 'carrierwave/storage/fog'
 require 'capybara/rails'
-require 'simplecov'
+#require 'simplecov'
 require 'capybara/minitest'
 
 class ActionDispatch::IntegrationTest

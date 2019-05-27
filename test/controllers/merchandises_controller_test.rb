@@ -88,7 +88,7 @@ end
 
 test "should redirect failed merchandise creation attempt for no name" do
   sign_in users(:one)
-  post :create, params: { merchandise: { price: '20', user_id: 1, desc: 'test', buttontype: 'Buy' }}
+  post :create, params: { merchandise: { price: '20', user_id: '1', desc: 'test', buttontype: 'Buy' }}
   assert_template :new
 end
 
