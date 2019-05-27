@@ -36,23 +36,23 @@ end
 test "should create 1 merchandise" do
     sign_in users(:one)
     assert_difference('Merchandise.count', 1) do
-        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
     end
 end
 
 test "should create 2 merchandises" do
     sign_in users(:one)
     assert_difference('Merchandise.count', 2) do
-        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
-        post :create, params: { merchandise: { name: 'rob', user_id: 1, price: 20, desc: 'test1', buttontype: 'Buy' }}
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
+        post :create, params: { merchandise: { name: 'rob', user_id: 1, price: '20', desc: 'test1', buttontype: 'Buy' }}
     end
 end
 
 test "should create 1 merchandise for failed create" do
     sign_in users(:one)
     assert_difference('Merchandise.count', 1) do
-        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
-        post :create, params: { merchandise: { name: '', user_id: 1, price: 20, desc: 'test1', buttontype: 'Buy' }}
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
+        post :create, params: { merchandise: { name: '', user_id: 1, price: '20', desc: 'test1', buttontype: 'Buy' }}
     end
 end
 
@@ -64,7 +64,7 @@ end
 
 test "should throw flag after successful merchandise creation" do
     sign_in users(:one)
-    post :create, params: { merchandise: { name: 'chris', user_id: '1', price: '20', desc: 'test1', buttontype: 'one' }}
+    post :create, params: { merchandise: { name: 'chris', user_id: '1', price: 1, desc: 'test1', buttontype: 'one' }}
     assert_equal 'Patron Perk was successfully created.', flash[:notice]
 end
 
@@ -112,19 +112,19 @@ end
 
 test "should throw flag after merchandise updated" do
     sign_in users(:one)
-    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'one' }}
+    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'one' }}
     assert_equal flash[:notice], 'Patron Perk was successfully updated.'
 end
 
 test "should redirect failed update attempt with no name" do
   sign_in users(:one)
-  patch :update, params: {id: @merchandise, merchandise: {name: '', user_id: '1', price: '1', desc: '', buttontype: 'Buy'}}
+  patch :update, params: {id: @merchandise, merchandise: {name: '', user_id: '1', price: '1', desc: 'test', buttontype: 'Buy'}}
   assert_template :edit
 end
 
 test "should redirect failed update attempt with no price" do
   sign_in users(:one)
-  patch :update, params: {id: @merchandise, merchandise: {name: 'rob', user_id: '', price: '1', desc: '', buttontype: 'Buy'}}
+  patch :update, params: {id: @merchandise, merchandise: {name: 'rob', user_id: '1', price: '', desc: 'test', buttontype: 'Buy'}}
   assert_template :edit
 end
 
@@ -163,4 +163,10 @@ test "should render correct layout for new" do
     get :new
     assert_template 'application'
 end
+
+# test "should throw an error" do
+#   sign_in users(:one)
+#   post :create, params: { merchandise: { name: 'rob', user_id: 1, price: '1', desc: 'test1', buttontype: 'one', deadline: '2019-05-26'}}
+#   assert_equal 'Patron Perk was successfully created.', flash[:notice]
+# end
 end
