@@ -4,10 +4,13 @@ ruby "2.5.3"
 gem 'listen'
 gem 'rails-controller-testing'
 
+
+
 gem 'pg'
 #gem 'sqlite3'
 
-gem 'mandrill'  
+
+gem 'mandrill'	
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -18,6 +21,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
+
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
@@ -40,17 +44,15 @@ gem 'friendly_id', '~> 5.0.0'
 #gem 'rmagick'
 
 group :test, :development do
-#  gem 'factory_girl_rails'
-#  gem 'mocha', '~> 1.1.0'
-  gem 'capybara-screenshot'
-  gem 'stripe-ruby-mock', :require =>'stripe_mock'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'headless'
+  gem 'minitest'
+  gem 'simplecov'
+  gem 'simplecov-lcov'
+	#gem 'undercover'
   gem 'selenium-webdriver'
-  gem 'simplecov', require:false
-  gem 'apparition'
-  
+#  gem 'factory_girl_rails'
+gem 'capybara', '~> 2.13'
+gem 'capybara-screenshot'
+#  gem 'mocha', '~> 1.1.0'
 end
 
 group :production do
