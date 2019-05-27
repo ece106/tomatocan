@@ -14,7 +14,9 @@ p {
 li {
   margin-left: 10px;
 }
-
+/*  #880F42 maroon 
+    #1CA29B blue FAQ menu
+*/
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
 
 * {
@@ -244,12 +246,12 @@ $color_2: red;
         height: 100px;
     }
     input[type=submit] {
-        background: #046A5F;
+        background: #880f42; /* pinkish maroon*/
         padding: 8px 15px 8px 15px;
         border: none;
         color: $color_1;
         &:hover {
-            background: #4691A4;
+            background: #5a0a2c; /* darker pinkish maroon */
             box-shadow: none;
             -moz-box-shadow: none;
             -webkit-box-shadow: none;
@@ -342,7 +344,7 @@ ul {
             margin: auto;
             display: block;
             margin-bottom: 10px;
-            background-color: #08A39C;
+            background-color: #880f42;
             /*background: rgba(0,0,0,0.78);*/
             color: #fefefe;
             padding: .75em;
@@ -350,7 +352,7 @@ ul {
             transition: background .3s ease;
           
             &:hover {
-                background-color: #077570;
+                background-color: #5a0a2c;
                 /*background: rgba(0, 0, 0, 0.9);*/
             }
         }
