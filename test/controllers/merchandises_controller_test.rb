@@ -106,4 +106,5 @@ class MerchandisesControllerTest < ActionController::TestCase
     get :new
     assert_template 'application'
   end
+
 end
