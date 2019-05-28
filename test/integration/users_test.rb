@@ -687,10 +687,41 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text: 'Rewards')
         click_on('Create Reward')
         select('Donate', from: 'merchandise_buttontype')
-        fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
+        fill_in(id: 'merchandise_name', with: 'Donation')
         fill_in(id: 'merchandise_price', with: '30')
         #purchase deadline is currently 2019 July 24
         click_on(id: 'perkSubmit')
-        assert_text('Tickets to My Show')
+        assert_text('Donation')
+    end
+    # test 'Should change buy merchandise to donate merchandise' do
+    #     signUpUser()
+    #     signInUser()
+    #     click_on(text: 'name')
+    #     click_on(text: 'Control Panel')
+    #     click_on(text: 'Rewards')
+    #     click_on('Create Reward')
+    #     fill_in(id: 'merchandise_name', with: 'Buy type')
+    #     fill_in(id: 'merchandise_price', with: '30')
+    #     #purchase deadline is currently 2019 July 24
+    #     click_on(id: 'perkSubmit')
+    #     click_on('Edit Reward',:match => :first)
+    #     select('Donate', from: 'merchandise_buttontype')
+    #     fill_in(id: 'merchandise_name', with: 'Donate type')
+    #     #purchase deadline is currently 2019 July 24
+    #     click_on(id: 'perkSubmit')
+    #     save_and_open_page
+    #     visit ('http://localhost:3000/profileinfo')
+    #     assert_text('Buy type')
+    # end
+    test 'Should create future show from controlpanel' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name')
+        click_on(text: 'Control Panel')
+        click_on(text: 'Shows')
+        click_on('Set Up Future Show')
+        fill_in(id: 'event_name', with: 'Title')
+        click_on('Post Talk Show')
+        assert_text('Title')
     end
 end
