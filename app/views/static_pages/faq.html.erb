@@ -17,7 +17,7 @@
 <h2>Frequently Asked Questions</h2>
 
 <br>
-<p>Browse our frequently asked questions about using and contributing to content on CrowdPublish TV </p>
+<p>Browse our frequently asked questions about using and contributing to content on CrowdPublish TV. </p>
 <br>
 
 <ul class="accordion"> 
@@ -190,28 +190,93 @@
 <br><br><br><br>
 
 
+<!-- <script>
+  var collapsibles = document.querySelectorAll('[toggle]');
+
+document
+    .getElementById('close-all')
+    .addEventListener('click', function () {
+        for (var i = 0; i < collapsibles.length; ++i) {
+            mobiscroll.instances[collapsibles[i].id].hide();
+        }
+    })
+
+
+document
+    .getElementById('toggle')
+    .addEventListener('click', function () {
+        mobiscroll.instances[collapsibles[0].id].toggle();
+    })
+</script>
+ -->
+
 
 <script>
-var acc = document.getElementsByClassName("toggle");
-var i;
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function(click) {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    click.preventDefault();
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
+// var acc = document.getElementsByClassName("toggle");
+// var i;
+// for (i = 0; i < acc.length; i++) {
+//   acc[i].addEventListener("click", function(click) {
+//     this.classList.toggle("active");
+//     var panel = this.nextElementSibling;
+//     click.preventDefault();
+//     if (panel.style.display == "block") {
+//       panel.style.display = "none";
+//     } else {
+//       panel.style.display = "block";
+//     }
+//   });
+// }
 
-$(document).click(function(e) {
-  if (!$(e.target).is('.panel-body')) {
-      $('.collapse').collapse('hide');      
-    }
+$('.toggle').click(function(e) {
+    ;
+    e.preventDefault();
+  
+    var $this = $(this);
+  
+    if ($this.next().hasClass('show')) {
+        //$this.next().slideUp(350);
+       $this.next().removeClass('show');
+
+        
+
+    } 
+    if (!($this.next().hasClass('show'))){
+        //$this.parent().parent().find('li .inner').removeClass('show');
+        //$this.parent().parent().not($this.next()).find('li .inner').slideUp(350);
+        $this.parent().parent().find('ul .inner').slideUp(350);
+        //$this.next().toggleClass('show');
+       
+
+
+    } 
+
+    $this.next().slideToggle(350);
+
+
 });
+
+
+
+// var acc = document.getElementsByClassName("toggle");
+// var i;
+
+// function click_action(){
+//   $('.toggle').removeClass('active');
+//   $('.toggle').removeClass('show');
+
+//   this.classList.toggle("active");
+//   this.nextElementSibling.classList.toggle("show");
+// }
+
+// for (i = 0; i < acc.length; i++) {
+//   acc[i].onclick = click_action;
+// }
+
+// $(document).click(function(e) {
+//   if (!$(e.target).is('.panel-body')) {
+//       $('.collapse').collapse('hide');      
+//     }
+// });
 </script>
 
 
