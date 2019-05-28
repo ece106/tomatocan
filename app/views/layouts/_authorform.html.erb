@@ -1,4 +1,5 @@
 <title> CrowdPublish TV - <%= @user.name %>'s site</title>
+
 <% @descname = @user.name.gsub(/ +/, '-')
 if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_"  end
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
@@ -22,8 +23,6 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 <% else %>
 	<div class="row" id="profileHeader">
 <% end %>
-				
-
 	<% if @user.profilepic.present? && @user.profilepic != '' %>
 		<div class="col-sm-2">
 			<%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
@@ -35,7 +34,16 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 	<% end %>
 	<div class="col-sm-8">
 		<h1 id="profileName"><%= @user.name %></h1>
-		<span id="profileDescription"> <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %></span>
+		<% if @user.genre1.blank? == false %> 
+			<span id="profileDescription"> <%= @user.genre1 %>
+				<% if @user.genre2.blank? == false %> 
+				, <%= @user.genre2 %>
+				<% end %>
+				<% if @user.genre3.blank? == false %> 
+				, <%= @user.genre3 %>
+				<% end %>
+				</span>
+		<% end %>
 	</div>
 </div>
 

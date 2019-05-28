@@ -10,6 +10,7 @@ footer {
 }
 #footer {
     position: relative;
+    box-shadow: 0 50vh 0 50vh $gray-darker;
 }
 #copyright {
     position: absolute;
@@ -20,7 +21,9 @@ footer p.f-header {
     font-size: .85em;
     margin: 0;
     padding: 0;
+
 }
+
 footer a.f-link {
     color: $brand-secondary;
     &:hover {

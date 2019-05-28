@@ -5,15 +5,13 @@ gem 'listen'
 gem 'rails-controller-testing'
 #gem 'capybara-screenshot', :group => :test
 
+
+
 #gem 'pg'
-gem 'sqlite3', '~> 1.3.6'
+gem 'sqlite3'
 
-gem 'simplecov'
-gem 'simplecov-lcov'
 
-gem 'selenium-webdriver'
-
-gem 'mandrill'  
+gem 'mandrill'	
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -46,8 +44,14 @@ gem 'friendly_id', '~> 5.0.0'
 #gem 'rmagick'
 
 group :test, :development do
+  gem 'minitest'
+  gem 'simplecov'
+  gem 'simplecov-lcov'
+	#gem 'undercover'
+  gem 'selenium-webdriver'
 #  gem 'factory_girl_rails'
-gem 'capybara'
+gem 'capybara', '~> 2.13'
+gem 'capybara-screenshot'
 #  gem 'mocha', '~> 1.1.0'
 
 end
