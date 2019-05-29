@@ -6,7 +6,8 @@ class TestUser < ActiveSupport::TestCase
     @user = users(:one)
 #    sign_in @user  #why dont I need this for model
   end
-  
+
+    
       test "sign in error message displays" do
         
       end
