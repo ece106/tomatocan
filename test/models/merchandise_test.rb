@@ -7,18 +7,43 @@ class MerchandiseTest < ActiveSupport::TestCase
    def setup
     @merchandise = merchandises(:one)
   end
-
   test "price should not be empty" do
     merchandise = Merchandise.new
     merchandise.send "price=",nil
     refute merchandise.valid?
-    refute_empty merchandise.errors[:price]
+    assert_not_nil merchandise.errors[:price]
+  end
+  #### Test written by lamontano for valdation of button and name
+  test "merchandise should be valid" do
+    assert @merchandise.valid?
   end
 
-   test "parse youtube for merchanise" do
+  
+  test "merchandise name should be present" do
+    @merchandise.name = ""
+    assert_not @merchandise.valid?
+  end
+ 
+  #this test is to validat the presence of a button
+  test "checks to see if a button is present" do
+    button_merchandise = Merchandise.new
+    assert_not button_merchandise.valid?
+    puts button_merchandise.errors[:buttontype]
+    assert_not_nil button_merchandise.errors[:buttontype]
+  end
+
+  ################################################################
+   
+   #fix this test method lamontano 05/21/19
+   test "get youtube to parse youtube for merchandise" do
       @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
       @merchandise.get_youtube_id
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
+      assert_not_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
+    end
+
+    #test crop_itempic writen by lamontano 05/22/19
+    test "crop_itempic method" do
+      assert_not @merchandise.crop_itempic.present?
     end
 
     #Test Uploaders && Downloaders
@@ -47,3 +72,4 @@ class MerchandiseTest < ActiveSupport::TestCase
       puts "\n\n audio = #{merchandise.audio.file.path}\n\n"
     end
 end
+
