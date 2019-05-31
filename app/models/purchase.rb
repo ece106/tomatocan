@@ -14,16 +14,41 @@ class Purchase < ApplicationRecord
   #  validates :email, :presence => true, :if => loggedin  #cant validate this
   #  validates :bookfiletype, presence: true
 
-  attr_accessor :groupcut
+  attr_accessor :groupcut, :authorcut
 
-  def calculate_non_groupcut merchandise_price
-    @groupcut = 0.0
+  def calculate_groupcut_with_group_id(merchandise_price)
+    ((merchandise_price * 5).to_i).to_f / 100
   end
 
-  def calculate_groupcut merchandise_price
-    @groupcut = ((merchandise_price * 5).to_i).to_f / 100
+  def calculate_groupcut_without_group_id
+    0.0
   end
 
+  def get_groupcut merchandise_price
+    if self.group_id.present?
+      @groupcut = calculate_groupcut_with_group_id(merchandise_price)
+    else
+      @groupcut = calculate_groupcut_without_group_id
+    end
+  end
+
+  def calculate_authorcut_without_group_id(merchandise_price)
+    ((merchandise_price * 92.1).to_i - 30).to_f / 100
+  end
+
+  def calculate_authorcut_with_group_id(merchandise_price)
+    ((merchandise_price * 92).to_i - 30).to_f / 100 - self.groupcut
+  end
+
+  def get_authorcut merchandise_price
+    if self.group_id.present?
+      @authorcut = calculate_authorcut_with_group_id(merchandise_price)
+    else
+      @authorcut = calculate_authorcut_with_group_id(merchandise_price)
+    end
+  end
+
+  # NOTE: Payload method
   def save_with_payment
     if(self.merchandise_id.present?) #if a purchase is being made
       puts "13x" ##########
