@@ -64,7 +64,7 @@ end
 
 test "should throw flag after successful merchandise creation" do
     sign_in users(:one)
-    post :create, params: { merchandise: { name: 'chris', user_id: '1', price: 1, desc: 'test1', buttontype: 'one' }}
+    post :create, params: { merchandise: { name: 'chris', user_id: '1', price: '1', desc: 'test1', buttontype: 'one' }}
     assert_equal 'Patron Perk was successfully created.', flash[:notice]
 end
 
@@ -77,6 +77,18 @@ end
 test "should redirect failed merchandise creation attempt for no price" do
   sign_in users(:one)
   post :create, params: { merchandise: { name: 'chris', user_id: 1, desc: 'test', buttontype: 'Buy' }}
+  assert_template :new
+end
+
+test "should throw flag for inputting letters into price" do
+  sign_in users(:one)
+  post :create, params: {merchandise: {name: 'chris', user_id: '1', price: '1g3', desc: 'test1', buttontype: 'Buy'}}
+  assert_equal flash[:notice], 'Your merchandise was not saved. Check the required info (*), filetypes, or character counts.' 
+end
+
+test "should redirect failed merchandise creation attempt for letters inputted into price" do
+  sign_in users(:one)
+  post :create, params: { merchandise: { name: 'chris', user_id: '1', price: 'hello', desc: 'test', buttontype: 'Buy' }}
   assert_template :new
 end
 
@@ -125,6 +137,12 @@ end
 test "should redirect failed update attempt with no price" do
   sign_in users(:one)
   patch :update, params: {id: @merchandise, merchandise: {name: 'rob', user_id: '1', price: '', desc: 'test', buttontype: 'Buy'}}
+  assert_template :edit
+end
+
+test "should redirect failed update attempt for inputting letters into price" do
+  sign_in users(:one)
+  patch :update, params: {id: @merchandise, merchandise: {name: 'rob', user_id: '1', price: 'one', desc: 'test', buttontype: 'Buy'}}
   assert_template :edit
 end
 

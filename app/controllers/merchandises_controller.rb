@@ -31,9 +31,7 @@ class MerchandisesController < ApplicationController
   # POST /merchandises
   def create
     @merchandise = current_user.merchandises.build(merchandise_params)
-    cost = Merchandise.find(params[:id]).price
-    if cost.to_i != 0
-      @merchandise.save 
+    if @merchandise.save 
       @merchandise.get_youtube_id
       redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
     else
