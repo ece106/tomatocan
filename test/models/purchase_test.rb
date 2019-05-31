@@ -29,7 +29,28 @@ class PurchaseTest < ActiveSupport::TestCase
     merchandise_price = @merchandise.price # => 1.5
     actual_groupcut   = @purchase.calculate_groupcut_with_group_id(merchandise_price)
     expected_groupcut = 0.07
-    assert_equal expected_groupcut, actual_groupcut
+    assert_equal(expected_groupcut, actual_groupcut)
+  end
+
+  test "calculate_groupcut_without_group_id should be correct value" do
+    actual_groupcut   = @purchase.calculate_groupcut_without_group_id
+    expected_groupcut = 0.0
+    assert_equal(expected_groupcut, actual_groupcut)
+  end
+
+  test "calculate_authorcut_without_group_id should be correct value" do
+    merchandise_price  = @merchandise.price
+    actual_authorcut   = @purchase.calculate_authorcut_without_group_id(merchandise_price)
+    expected_authorcut = 1.08
+    assert_equal(expected_authorcut, actual_authorcut)
+  end
+
+  test "calculate_authorcut_with_group_id should be correct value" do
+    merchandise_price  = @merchandise.price
+    groupcut           = @purchase.calculate_groupcut_with_group_id(merchandise_price) # => 0.07
+    actual_authorcut   = @purchase.calculate_authorcut_with_group_id(merchandise_price, groupcut)
+    expected_authorcut = 1.01
+    assert_equal(expected_authorcut, actual_authorcut)
   end
 
   # NOTE: Test authorcut/groupcut with group_id present

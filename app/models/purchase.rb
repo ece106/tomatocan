@@ -36,15 +36,15 @@ class Purchase < ApplicationRecord
     ((merchandise_price * 92.1).to_i - 30).to_f / 100
   end
 
-  def calculate_authorcut_with_group_id(merchandise_price)
-    ((merchandise_price * 92).to_i - 30).to_f / 100 - self.groupcut
+  def calculate_authorcut_with_group_id(merchandise_price, groupcut)
+    ((merchandise_price * 92).to_i - 30).to_f / 100 - groupcut
   end
 
-  def get_authorcut merchandise_price
+  def get_authorcut merchandise_price, groupcut
     if self.group_id.present?
-      @authorcut = calculate_authorcut_with_group_id(merchandise_price)
+      @authorcut = calculate_authorcut_with_group_id(merchandise_price, groupcut)
     else
-      @authorcut = calculate_authorcut_with_group_id(merchandise_price)
+      @authorcut = calculate_authorcut_without_group_id(merchandise_price)
     end
   end
 
