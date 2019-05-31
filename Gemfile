@@ -9,7 +9,7 @@ gem 'rails-controller-testing'
 
 #gem 'pg'
 gem 'sqlite3', '~> 1.3.6'
-
+gem 'apparition'
 
 gem 'mandrill'	
 gem 'devise'
@@ -50,7 +50,7 @@ group :test, :development do
 	#gem 'undercover'
   gem 'selenium-webdriver'
 #  gem 'factory_girl_rails'
-gem 'capybara', '~> 2.13'
+gem 'capybara'
 gem 'capybara-screenshot'
 #  gem 'mocha', '~> 1.1.0'
 

@@ -267,18 +267,19 @@ class UsersTest < ActionDispatch::IntegrationTest
         click_on(id: 'perkSubmit')
         assert_text('Tickets to My Show')
     end
-   
-    test 'Should_donate_user' do
-        visit('http://localhost:3000/')
-        click_on('Discover Talk Show Hosts')
-        click_link('Phineas')
-        click_on(text: 'Donate $2.00!')
-        fill_in(id:'card_number', with:'4242424242424242')
-        fill_in(id:'purchase_email' , with:'e@mail.com')
-        select("2020", from: 'card_year')
-        click_on('Purchase')    
-        assert_text('successfully')
-    end
+
+   # Check put statements in purchases controller and model after running purchases tests
+    # test 'Should_donate_user' do
+    #     visit('http://localhost:3000/')
+    #     click_on('Discover Talk Show Hosts')
+    #     click_link('Phineas')
+    #     click_on(text: 'Donate $2.00!')
+    #     fill_in(id:'card_number', with:'4242424242424242')
+    #     fill_in(id:'purchase_email' , with:'e@mail.com')
+    #     select("2020", from: 'card_year')
+    #     click_on('Purchase')    
+    #     assert_text('successfully')
+    # end
     test 'Should order' do
         visit('http://localhost:3000/')
         click_on('Discover Talk Show Hosts')
