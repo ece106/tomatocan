@@ -4,17 +4,14 @@
 <% if user_signed_in? %>
 <% if current_user.id == @user.id %> 
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
-  <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
+  <li role="presentation" class="active"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab" %></li>
+   <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+  <li role="presentation"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
 </ul>
 
-<div class="row">
-  <br><br>
-  <%= render 'layouts/stripealert' %>
-</div>
+
 
 <!-- Tab panes -->
 <div class="tab-content">
@@ -35,10 +32,15 @@
   <div class="tab-pane" id="rewardsTab">
     <div class="container-fluid">
       <div class="row">
+        <br><br>
+        <%= render 'layouts/stripealert' %>
+      </div>
+      <div class="row">
         <div class="col-xs-12">
           <h1>Manage Rewards</h1>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-6">
           <!--%= render 'layouts/stripealert' %-->
@@ -62,7 +64,7 @@
         <div class="col-md-4">
           <h1>Shows</h1>
         </div>
-        <div class="col-md-8">
+        <div class="fixed-bottom col-md-8" id="shows-button-panel">
           <%= link_to "Start Your Live Show Now", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %> 
           <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
         </div>
@@ -98,8 +100,12 @@
     <div class="tab-pane" id="salesTab">
       <div class="container-fluid">
         <div class="row">
+          <br><br>
+          <%= render 'layouts/stripealert' %>
+        </div>
+        <div class="row">
           <div class="col-md-12">
-            <h1>Rewards Sales</h1>
+            <h1>Reward Sales</h1>
           </div>
         </div>
         <%= render :file => 'users/dashboard' %>

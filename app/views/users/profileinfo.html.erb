@@ -1,9 +1,15 @@
 
 <!--This partial contains two panels unlike the other panel partials because I don't think they'll ever be seperated, but I want them split to save vertical space.-->
 
+
 <% @title=" edit user profile "  %>
 
 <%= render 'layouts/flash_messages' %>
+
+<% if current_page?("/"+current_user.name.downcase+"/profileinfo") %>
+	<!-- Applies the necessary padding when the page is rendered alone.-->
+	<div style="height:70px;"></div>
+<% end %>
 
 <div class="col-md-6">
 	<%= form_for @user, :html => {:multipart => true} do |f| %>
@@ -28,7 +34,7 @@
 					<% end %>
 				<% end %>
 				<p class="help-block">Upload a picture that represents your organization or work (150px &times; 150px is best)</p>
-				<%= f.file_field :profilepic, :class => "form-control" %>
+				<%= f.file_field :profilepic, :class => "form-control",:style => "padding-bottom:40px;" %>
 			</div>
 
 			<div class="form-group">
@@ -48,7 +54,7 @@
 			<div class="form-group">
 				<h3><%=f.label :name, "Banner Image" %></h3>
 				<p class="help-block">Upload a picture to display on top of your profile (1500px &times; 300px is best)</p>
-				<%= f.file_field :bannerpic, :class => "form-control" %>
+				<%= f.file_field :bannerpic, :class => "form-control",:style => "padding-bottom:40px;" %>
 			</div>
 			<div class="btn-group btn-group-lg" id="editProfileButton"> 
 				<%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
