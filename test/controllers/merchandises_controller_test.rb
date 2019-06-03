@@ -21,6 +21,12 @@ test "should get new if user signed in" do
     assert_response :success
 end
 
+# test "should not get new if user signed in" do
+#     #sign_in users(:two)
+#     get :new
+#     assert_equal flash[:notice], 'You are not logged in'
+# end
+
 test "should get new with merchandise id" do
     sign_in users(:one)
     get :new , params: { id: @merchandise.id }

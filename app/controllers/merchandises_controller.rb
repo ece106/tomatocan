@@ -17,7 +17,7 @@ class MerchandisesController < ApplicationController
   # GET /merchandises/new
   def new
     @merchandise = Merchandise.new
-  end
+end
 
   def standardperks
     @merchandise = Merchandise.new
