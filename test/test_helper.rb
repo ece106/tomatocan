@@ -7,13 +7,20 @@ require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'capybara/minitest'
 require 'selenium-webdriver'
+require 'simplecov'
+require './test/test_helper'
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  #add_filter '/spec/' # for rspec
+  add_filter '/test/' # for minitest
+end
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
   # Make `assert_*` methods behave like Minitest assertions
   include Capybara::Minitest::Assertions
-
   # Reset sessions and driver between tests
   # Use super wherever this method is redefined in your individual test classes
   def teardown
@@ -82,6 +89,7 @@ class ActiveSupport::TestCase
   # Returns true inside an integration test.
   def integration_test?
     defined?(post_via_redirect)
+
   end
 end
 
