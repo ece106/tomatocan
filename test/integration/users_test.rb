@@ -231,25 +231,26 @@ test 'Should order' do
     assert_text('If you are purchasing')
 end
 #WILL FIX THIS TEST
-# test 'Should_host_logged_in' do
-#     signUpUser()
-#     signInUser()
-#     click_on('Host A Show')
-#     fill_in(id:'event_name', with:'example')
-#     select('2020', from:'event_start_at_1i')
-#     select('December', from:'event_start_at_2i')
-#     select('31', from:'event_start_at_3i')
-#     select('01 AM', from:'event_start_at_4i')
-#     select('00', from:'event_start_at_5i')
-#     select('2020', from:'event_end_at_1i')
-#     select('December', from:'event_end_at_2i')
-#     select('31', from:'event_end_at_3i')
-#     select('01 AM', from:'event_end_at_4i')
-#     select('00', from:'event_end_at_5i')
-#     find(class:'btn btn-lg btn-primary').click
-#     click_on(class: 'btn btn-lg btn-primary')
-#     assert_text('example')
-# end
+test 'Should_create_new_event_logged_in' do
+    signUpUser()
+    signInUser()
+    click_on('Host A Show')
+    fill_in(id:'event_name', with:'example')
+    select('2020', from:'event_start_at_1i')
+    select('December', from:'event_start_at_2i')
+    select('31', from:'event_start_at_3i')
+    select('01 AM', from:'event_start_at_4i')
+    select('00', from:'event_start_at_5i')
+    select('2020', from:'event_end_at_1i')
+    select('December', from:'event_end_at_2i')
+    select('31', from:'event_end_at_3i')
+    select('01 AM', from:'event_end_at_4i')
+    select('00', from:'event_end_at_5i')
+    find(class:'btn btn-lg btn-primary').click
+    click_on(class: 'btn btn-lg btn-primary')
+    save_and_open_page
+    assert_text('example')
+end
 test 'Should_host_logged_out' do
     click_on('Host A Show')
     assert_text('You need to sign in or sign up before continuing.')
@@ -690,12 +691,13 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text: 'Rewards')
         click_on('Create Reward')
         select('Donate', from: 'merchandise_buttontype')
-        fill_in(id: 'merchandise_name', with: 'Donation')
+        fill_in(id: 'merchandise_name', with: 'Googitygoo')
         fill_in(id: 'merchandise_price', with: '30')
         #purchase deadline is currently 2019 July 24
-        click_on(id: 'perkSubmit')
-        assert_text('Donation')
+        click_on('Create Reward')
+        assert_text('Googitygoo')
     end
+    #This test creating a new show needs to be fixed
     test 'Should create future show from controlpanel' do
         signUpUser()
         signInUser()
@@ -703,9 +705,16 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text: 'Control Panel')
         click_on(text: 'Shows')
         click_on('Set Up Future Show')
-        fill_in(id: 'event_name', with: 'Title')
+        fill_in(id: 'event_name', with: 'NewShow')
+        select('2021', from:'event_end_at_1i')
+        #save_and_open_page
         click_on('Post Talk Show')
-        assert_text('Title')
+        #save_and_open_page
+        visit ('http://localhost:3000/')
+        click_on(id:'calendar-event',:match => :first)
+        #save_and_open_page
+        assert_text('NewShow')
+
     end
     test 'Should render livestream directions from controlpanel' do
         signUpUser()
@@ -715,4 +724,27 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text: 'Shows')
         assert_text('Pre-Show Checklist')
     end
+    test 'Should not create new show if end time is before start time' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Shows')
+        click_on('Set Up Future Show')
+        fill_in(id: 'event_name', with: 'Title1')
+        
+        click_on('Post Talk Show')
+        assert_text('Our Purpose')
+    end
+    # test 'Should render upcoming show from controlpanel' do
+    #     signUpUser()
+    #     signInUser()
+    #     click_on(class: 'btn btn-lg btn-primary')
+    #     fill_in(id: 'event_name', with: 'Upcoming Show Lala')
+    #     click_on(id: 'eventSubmit')
+    #     click_on(text: 'name',:match => :first)
+    #     click_on(text: 'Control Panel')
+    #     click_on(text: 'Shows')
+    #     assert_text('Upcoming Show Lala')
+    # end
 end
