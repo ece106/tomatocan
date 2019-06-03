@@ -14,6 +14,8 @@ class Purchase < ApplicationRecord
   #  validates :email, :presence => true, :if => loggedin  #cant validate this
   #  validates :bookfiletype, presence: true
 
+  # NOTE: Can we refactor the save_with_payment into smaller method calls in order
+  # to test them individually?
   attr_accessor :groupcut, :authorcut
 
   def calculate_groupcut_with_group_id(merchandise_price)
