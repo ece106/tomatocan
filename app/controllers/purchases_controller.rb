@@ -43,6 +43,7 @@ class PurchasesController < ApplicationController
       if @purchase.merchandise_id?
         puts "1" ########### print 1 if the purchase is a merchandise
         @merchandise = Merchandise.find(@purchase.merchandise_id)
+        puts @merchandise.name
         if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
           puts "2" ############## print 2 if the merhandise is any of the above
           if @purchase.save_with_payment

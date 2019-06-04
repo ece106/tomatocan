@@ -32,14 +32,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     end
 
     test 'Should_buy_from_user' do
-        #visit('http://localhost:3000/')
-        signInPurchaser()
-        puts("signed in")
-        click_on('Discover Talk Show Hosts')
-        click_link(@seller.name)
-        puts(@seller.name + " seller name")
-        click_on(text: 'user1 product')
-        puts ("clicked")
+        visit('http://localhost:3000/')
         cardToken = Stripe::Token.create({
           card: {
             number: "4242424242424242",
@@ -49,19 +42,24 @@ class UsersTest < ActionDispatch::IntegrationTest
           }
         })
         customer = Stripe::Customer.create(
-                                          :description => @seller.name,
-                                          :email => @seller.email
+                                          :description => @purchaser.name,
+                                          :email => @purchaser.email
                                           )
         customer.save
-        @seller.update_column(:stripe_customer_token, customer.id)
+        @purchaser.update_column(:stripe_customer_token, customer.id)
 
-        puts (cardToken)
-        puts ("yess ")
+        puts (@purchaser.stripe_customer_token)
 
-        # error here
+        signInPurchaser()
+        puts("signed in")
+        click_on('Discover Talk Show Hosts')
+        click_link(@seller.name)
+        puts(@seller.name + " seller name")
+        click_on('Buy for $1.50')
+        puts ("clicked")
+        
         fill_in(id:'card_number', with:'4242424242424242')
-        fill_in(id:'card_code' , with: '123')
-        select(@time.year, from: 'card_year')
+        select("2020", from: 'card_year')
         click_on('Purchase')
         assert_text('successfully')
     end
