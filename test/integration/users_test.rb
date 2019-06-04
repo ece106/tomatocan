@@ -693,27 +693,8 @@ test "Should say email was taken when same user attempts sign up twice" do
         fill_in(id: 'merchandise_name', with: 'Googitygoo')
         fill_in(id: 'merchandise_price', with: '30')
         #purchase deadline is currently 2019 July 24
-        click_on('Create Reward')
+        click_button('Create Reward')
         assert_text('Googitygoo')
-    end
-    #This test creating a new show needs to be fixed
-    test 'Should create future show from controlpanel' do
-        signUpUser()
-        signInUser()
-        click_on(text: 'name',:match => :first)
-        click_on(text: 'Control Panel')
-        click_on(text: 'Shows')
-        click_on('Set Up Future Show')
-        fill_in(id: 'event_name', with: 'NewShow')
-        select('2021', from:'event_end_at_1i')
-        #save_and_open_page
-        click_on('Post Talk Show')
-        #save_and_open_page
-        visit ('http://localhost:3000/')
-        click_on(id:'calendar-event',:match => :first)
-        #save_and_open_page
-        assert_text('NewShow')
-
     end
     test 'Should render livestream directions from controlpanel' do
         signUpUser()
@@ -723,42 +704,104 @@ test "Should say email was taken when same user attempts sign up twice" do
         click_on(text: 'Shows')
         assert_text('Pre-Show Checklist')
     end
-    # test 'Should not create new show if end time is before start time' do
-    #     signUpUser()
-    #     signInUser()
-    #     click_on(text: 'name',:match => :first)
-    #     click_on(text: 'Control Panel')
-    #     click_on(text: 'Shows')
-    #     click_on('Set Up Future Show')
-    #     fill_in(id: 'event_name', with: 'Title1')
-        
-    #     click_on('Post Talk Show')
-    #     assert_text('Our Purpose')
-    # end
-    # test 'Should render upcoming show from controlpanel' do
-    #     signUpUser()
-    #     signInUser()
-    #     click_on(class: 'btn btn-lg btn-primary')
-    #     fill_in(id: 'event_name', with: 'Upcoming Show Lala')
-    #     click_on(id: 'eventSubmit')
-    #     click_on(text: 'name',:match => :first)
-    #     click_on(text: 'Control Panel')
-    #     click_on(text: 'Shows')
-    #     assert_text('Upcoming Show Lala')
-    # end
-    ##NOTE: TESTS CREATING EVENTS DO NOT WORK. WORKING ON A FIX.
-    # test 'Should_render_reward_price_when_creating_reward' do
-    #     signUpUser()
-    #     signInUser()
-    #     click_on(text: 'name',:match => :first)
-    #     click_on(text: 'Control Panel')
-    #     click_on(text: 'Rewards')
-    #     click_on('Create Reward')
-    #     fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
-    #     fill_in(id: 'merchandise_price', with: '30')
-    #     #purchase deadline is currently 2019 July 24
-    #     click_on(id: 'perkSubmit')
-    #     click_on(text: 'Tickets to My Show')
-    #     assert_text('30.00')
-    # end
+    test 'Should_meet_all_requirements_when_creating_new_reward' do 
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        #Feel free to toggle the next two lines to double check that a perk was not created
+        # fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
+        # fill_in(id: 'merchandise_price', with: '30')
+        #purchase deadline is currently 2019 July 24
+        click_on(id: 'perkSubmit')
+        refute_text('Patron Perk was successfully created')
+    end
+    test 'Should_render_reward_description' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        fill_in(id: 'merchandise_name', with: 'This is a lovely show name. WOW!')
+        fill_in(id: 'merchandise_price', with: '30')
+        fill_in(id: 'merchandise_desc', with: 'This is a lovely description. WOW!')
+        #purchase deadline is currently 2019 July 24
+        click_on(id: 'perkSubmit')
+        assert_text('This is a lovely description. WOW!')
+    end
+    test 'Should_show_type_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_buttontype')
+    end
+    test 'Should_show_title_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_name')
+    end
+    test 'Should_show_price_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_price')
+    end
+    test 'Should_show_description_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_desc')
+    end
+    test 'Should_show_image_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_itempic')
+    end
+    test 'Should_show_youtube_URL_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_youtube')
+    end
+    test 'Should_show_year_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_deadline_1i')
+    end
+    test 'Should_show_day_field_when_creating_new_reward' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Rewards')
+        click_on('Create Reward')
+        assert page.has_field?('merchandise_deadline_3i')
+    end
 end
