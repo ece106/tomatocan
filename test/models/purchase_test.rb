@@ -95,6 +95,7 @@ class PurchaseTest < ActiveSupport::TestCase
   test "customer should save with correct attributes when stripe_card_token present" do
     customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
     assert_equal "fake_stripe_token", customer.source
+    # TODO test for custoemr save?
     # assert customer.save
   end
 
@@ -103,15 +104,29 @@ class PurchaseTest < ActiveSupport::TestCase
     # TODO:
     #   test if seller.id matches any one of these numbers: 143,  1403,  1452,  1338,  1442
     #   check for a local variable charge object
-    seller    = @user
+    seller = @user
+
     seller.id = 143
     assert_equal seller.id, 143
+
+    seller.id = 1403
+    assert_equal seller.id, 1403
+
+    seller.id = 1452
+    assert_equal seller.id, 1452
+
+    seller.id = 1338
+    assert_equal seller.id, 1338
+
+    seller.id = 1442
+    assert_equal seller.id, 1442
 
     amt           = (@merchandise.price * 100).to_i
     desc          = @merchandise.name
     currency_type = "usd"
     customer      = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
     charge_mock   = ChargeMock.new(amt, customer.id, desc)
+
     assert_equal amt, charge_mock.amount
     assert_equal desc, charge_mock.description
     assert_equal currency_type, charge_mock.currency
