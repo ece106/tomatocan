@@ -150,6 +150,8 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_equal(expected_authorcut, actual_authorcut)
   end
 
+  private
+
   class Customer
     attr_accessor :id, :source, :description, :email
 
