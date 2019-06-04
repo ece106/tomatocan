@@ -67,7 +67,7 @@ class PurchaseTest < ActiveSupport::TestCase
   # L93
   test "customer should not be nil when email is present" do
     # TODO: Create a customer and if customer.id and customer.email is not nil
-    customer = Customer.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
     assert_not_nil customer.id, "Customer id cannot be nil"
     assert_not_nil customer.source, "Customer source cannot be nil"
     assert_not_nil customer.description, "Customer description cannot be nil"
@@ -75,39 +75,55 @@ class PurchaseTest < ActiveSupport::TestCase
   end
 
   # L104
-  # test "" do
-  #   # TODO: test existence of the purchaser object, purchase name
-  # end
+  test "purchaser should not be nil when email is not present" do
+    # TODO: test existence of the purchaser object, purchase name
+    @purchaser = @user
+    assert_not_nil @purchaser.name, "Purchaser should have a name"
+    assert_not_nil @purchaser, "Purchaser should not be nil"
+  end
 
-  # # L108
-  # test "" do
-  #   # TODO:
-  #   #   test existence of purchaser's stripe_customer_token present?
-  #   #   test existence of customer
-  # end
-  # 
-  # # L112
-  # test "" do
-  #   # TODO:
-  #   #   test if stripe_card_token present?
-  #   #   test customer.source  should have a stripe_card_token
-  #   #   customer should succesfully save
-  # end
-  # 
-  # # L129
-  # test "" do
-  #   # TODO: 
-  #   #   test if seller.id matches any one of these numbers: 143,  1403,  1452,  1338,  1442
-  #   #   check for a local variable charge object
-  # end
-  # 
+  # L108
+  test "purchaser has stripe_customer_token present" do
+    # TODO:
+    #   test existence of purchaser's stripe_customer_token present?
+    #   test existence of customer
+    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    assert_not_nil customer.id, "Customer id cannot be nil"
+  end
+
+  # L112
+  test "customer should save with correct attributes when stripe_card_token present" do
+    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    assert_equal "fake_stripe_token", customer.source
+    # assert customer.save
+  end
+
+  # L129
+  test "charge should have valid attributes when seller.id equals 143" do
+    # TODO:
+    #   test if seller.id matches any one of these numbers: 143,  1403,  1452,  1338,  1442
+    #   check for a local variable charge object
+    seller    = @user
+    seller.id = 143
+    assert_equal seller.id, 143
+
+    amt           = (@merchandise.price * 100).to_i
+    desc          = @merchandise.name
+    currency_type = "usd"
+    customer      = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    charge_mock   = ChargeMock.new(amt, customer.id, desc)
+    assert_equal amt, charge_mock.amount
+    assert_equal desc, charge_mock.description
+    assert_equal currency_type, charge_mock.currency
+  end
+
   # # L137
   # test "" do
   #   # TODO:
   #   #   test calculate app fee = ((amt * 5)/100)
   #   #   test for local variables custoemr.id, sellerstripeaccount.id, token, charge
   # end
-  # 
+
   # # L169
   # test "" do
   #   # TODO test for these when group_id is not nil
@@ -152,7 +168,7 @@ class PurchaseTest < ActiveSupport::TestCase
 
   private
 
-  class Customer
+  class CustomerMock
     attr_accessor :id, :source, :description, :email
 
     def initialize id, source, description, email
@@ -160,6 +176,17 @@ class PurchaseTest < ActiveSupport::TestCase
       @source = source
       @description = description
       @email = email
+    end
+  end
+
+  class ChargeMock
+    attr_accessor :amount, :customer, :description, :currency
+
+    def initialize amount, customer, description
+      @amount = amount
+      @customer = customer
+      @description = description
+      @currency = "usd"
     end
   end
 end
