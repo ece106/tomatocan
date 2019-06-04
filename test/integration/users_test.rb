@@ -697,24 +697,24 @@ test "Should say email was taken when same user attempts sign up twice" do
         assert_text('Googitygoo')
     end
     #This test creating a new show needs to be fixed
-    # test 'Should create future show from controlpanel' do
-    #     signUpUser()
-    #     signInUser()
-    #     click_on(text: 'name',:match => :first)
-    #     click_on(text: 'Control Panel')
-    #     click_on(text: 'Shows')
-    #     click_on('Set Up Future Show')
-    #     fill_in(id: 'event_name', with: 'NewShow')
-    #     select('2021', from:'event_end_at_1i')
-    #     #save_and_open_page
-    #     click_on('Post Talk Show')
-    #     #save_and_open_page
-    #     visit ('http://localhost:3000/')
-    #     click_on(id:'calendar-event',:match => :first)
-    #     #save_and_open_page
-    #     assert_text('NewShow')
+    test 'Should create future show from controlpanel' do
+        signUpUser()
+        signInUser()
+        click_on(text: 'name',:match => :first)
+        click_on(text: 'Control Panel')
+        click_on(text: 'Shows')
+        click_on('Set Up Future Show')
+        fill_in(id: 'event_name', with: 'NewShow')
+        select('2021', from:'event_end_at_1i')
+        #save_and_open_page
+        click_on('Post Talk Show')
+        #save_and_open_page
+        visit ('http://localhost:3000/')
+        click_on(id:'calendar-event',:match => :first)
+        #save_and_open_page
+        assert_text('NewShow')
 
-    # end
+    end
     test 'Should render livestream directions from controlpanel' do
         signUpUser()
         signInUser()
@@ -747,4 +747,18 @@ test "Should say email was taken when same user attempts sign up twice" do
     #     assert_text('Upcoming Show Lala')
     # end
     ##NOTE: TESTS CREATING EVENTS DO NOT WORK. WORKING ON A FIX.
+    # test 'Should_render_reward_price_when_creating_reward' do
+    #     signUpUser()
+    #     signInUser()
+    #     click_on(text: 'name',:match => :first)
+    #     click_on(text: 'Control Panel')
+    #     click_on(text: 'Rewards')
+    #     click_on('Create Reward')
+    #     fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
+    #     fill_in(id: 'merchandise_price', with: '30')
+    #     #purchase deadline is currently 2019 July 24
+    #     click_on(id: 'perkSubmit')
+    #     click_on(text: 'Tickets to My Show')
+    #     assert_text('30.00')
+    # end
 end
