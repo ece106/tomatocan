@@ -25,25 +25,35 @@ class PurchaseTest < ActiveSupport::TestCase
 
   # =============
 
+  # L58
   test "pricesold should equal merchandise price" do
     @purchase.pricesold = @merchandise.price
     assert_equal @purchase.pricesold, @merchandise.price
   end
 
+  # L60
   test "seller should not be nil" do
     seller = @user
     assert_not_nil seller
   end
 
-  test "description should equal merchandise name" do
-    desc = @merchandise.name
-    assert_equal desc, @merchandise.name
-  end
-
+  # L61
   test "amount should be the correct value" do
     amt = (@merchandise.price * 100).to_i
     expected_amt = 150
     assert_equal expected_amt, amt
+  end
+
+  # L62
+  test "purchase description should not be nil" do
+    desc = @merchandise.name
+    assert_not_nil desc, "Purchase description should not be nil"
+  end
+
+  # L62
+  test "purchase description should equal merchandise name" do
+    desc = @merchandise.name
+    assert_equal desc, @merchandise.name
   end
 
   # L78 models/purchase.rb
@@ -54,8 +64,64 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_equal expected_authorcut, @purchase.authorcut, "authorcut should equal expected value."
   end
 
+  # L93
+  test "customer should not be nil when email is present" do
+    # TODO: Create a customer and if customer.id and customer.email is not nil
+    customer = Customer.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    assert_not_nil customer.id, "Customer id cannot be nil"
+    assert_not_nil customer.source, "Customer source cannot be nil"
+    assert_not_nil customer.description, "Customer description cannot be nil"
+    assert_not_nil customer.email, "Customer email cannot be nil"
+  end
+
+  # L104
+  # test "" do
+  #   # TODO: test existence of the purchaser object, purchase name
+  # end
+
+  # # L108
+  # test "" do
+  #   # TODO:
+  #   #   test existence of purchaser's stripe_customer_token present?
+  #   #   test existence of customer
+  # end
+  # 
+  # # L112
+  # test "" do
+  #   # TODO:
+  #   #   test if stripe_card_token present?
+  #   #   test customer.source  should have a stripe_card_token
+  #   #   customer should succesfully save
+  # end
+  # 
+  # # L129
+  # test "" do
+  #   # TODO: 
+  #   #   test if seller.id matches any one of these numbers: 143,  1403,  1452,  1338,  1442
+  #   #   check for a local variable charge object
+  # end
+  # 
+  # # L137
+  # test "" do
+  #   # TODO:
+  #   #   test calculate app fee = ((amt * 5)/100)
+  #   #   test for local variables custoemr.id, sellerstripeaccount.id, token, charge
+  # end
+  # 
+  # # L169
+  # test "" do
+  #   # TODO test for these when group_id is not nil
+  #   # test to see if tranfer is not nil
+  #   # test transfer.amount should equal (@purchase.groupcut * 100).to_i
+  #   # test transfer.currency should equal "usd"
+  #   # test transfer.destination should equal groupstripeaccount.id
+  #   # test transfer.source_transaction equal to charge.id
+  #   # test transfer.transfer_group should equal transfergrp
+  # end
+
+
   # NOTE: Broke up calculations for groupcuts/authorcuts into granular method
-  # to make it easier to test
+  # to make it easier to test. If approve, will keep. Otherwise, delete these bottom 4 tests.
   test "calculate_groupcut_with_group_id should be correct value" do
     merchandise_price = @merchandise.price # => 1.5
     actual_groupcut   = @purchase.calculate_groupcut_with_group_id(merchandise_price)
@@ -84,4 +150,14 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_equal(expected_authorcut, actual_authorcut)
   end
 
+  class Customer
+    attr_accessor :id, :source, :description, :email
+
+    def initialize id, source, description, email
+      @id = id
+      @source = source
+      @description = description
+      @email = email
+    end
+  end
 end

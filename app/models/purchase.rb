@@ -19,11 +19,11 @@ class Purchase < ApplicationRecord
   attr_accessor :groupcut, :authorcut
 
   def calculate_groupcut_with_group_id(merchandise_price)
-    ((merchandise_price * 5).to_i).to_f / 100
+    @groupcut = ((merchandise_price * 5).to_i).to_f / 100
   end
 
   def calculate_groupcut_without_group_id
-    0.0
+    @groupcut = 0.0
   end
 
   def get_groupcut merchandise_price
@@ -35,7 +35,7 @@ class Purchase < ApplicationRecord
   end
 
   def calculate_authorcut_without_group_id(merchandise_price)
-    ((merchandise_price * 92.1).to_i - 30).to_f / 100
+    @authorcut = ((merchandise_price * 92.1).to_i - 30).to_f / 100
   end
 
   def calculate_authorcut_with_group_id(merchandise_price, groupcut)
