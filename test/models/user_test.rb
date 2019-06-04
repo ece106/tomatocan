@@ -4,11 +4,13 @@ class TestUser < ActiveSupport::TestCase
   def setup
 #    @request.env['devise.mapping'] = Devise.mappings[:user]
     @user = users(:one)
-    @rand_Az = lambda{|len|name=Array('A'.."z");Array.new(len){name.sample}.join}
-    @name_over = lambda {|len| name = Array('A'..'Z')+Array('a'..'z');Array.new(len) {name.sample}.join}
-
-#sign_in @user  #why dont I need this for model
+#    sign_in @user  #why dont I need this for model
   end
+
+    
+      test "sign in error message displays" do
+        
+      end
       test "user_can_follow_another_user" do
         john = users(:one)
         mark = users(:two)
@@ -26,11 +28,18 @@ class TestUser < ActiveSupport::TestCase
         assert_not john.following?(mark)
       end
 
-        test "userfields_must_not_be_empty" do
-          user = User.new(name: nil,email:nil,permalink:nil,password:nil )
+      test "test_test" do
+        isTrue = true
+        assert (isTrue)
+      end
+
+      [:email, :name, :permalink, :password ].each do |field|
+        test "#{field.to_s}_must_not_be_empty" do
+          user = User.new
+          user.send "#{field.to_s}=", nil #what does this line do
           refute user.valid?
-          [:name,:email,:permalink,:password].each do |field|
-          refute_empty user.errors[field] end
+          refute_empty user.errors[field] #must be in same test as above line in order to have usererrors not be nil
+        end
       end
 
       test "password and password_confirmation must match" do
@@ -90,12 +99,11 @@ class TestUser < ActiveSupport::TestCase
       end
 
     #validates :videodesc1, length: { maximum: 255 }
-
-        test "videodesc_must_be_less_than255char" do
-          [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
-            user = User.new("#{field}": @rand_Az.call(266))
-            refute user.valid?
-            assert_equal ["is too long (maximum is 255 characters)"], user.errors[field]
+      [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
+        test "#{field.to_s}_must_be_less_than255char" do
+          @user.send "#{field.to_s}=", "supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
+          refute @user.valid?, "video description is short enough" 
+          refute_empty @user.errors[field] 
         end
       end
 
@@ -120,66 +128,10 @@ class TestUser < ActiveSupport::TestCase
       @user.genre1 = "yaaah"
       @user.permalink = "LisaLisa"
       @user.get_youtube_id
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)  #why refute?
+      refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)
     end
 
-    test "get_youtube_id_test" do
-      target = "/id12345"
-      compare = "http://youtube.com/watch?v="+ target
-      @user.youtube1 = compare
-      @user.youtube2 = compare
-      @user.youtube3 = compare
-      @user.get_youtube_id
-      assert_equal target, @user.youtube1
-        assert_equal target, @user.youtube2
-        assert_equal target, @user.youtube3
-end
-
-    test "calc test" do
-      assert_nil @user.totalinfo
-      @user.calcdashboard
-      [:soldtitle,:soldprice,:authorcut,:purchaseid,:soldwhen,:whobought,:address,:fulfilstat,:egoods].each do |field|
-      refute_empty(field)
-      refute_nil @user.totalinfo
-      end
-    end
-
-  test "user must have a password" do
-     user_no_password = User.new(name: nil,email:nil,permalink:nil,)
-    refute user_no_password.valid?
-  end
- test "name must be less than 50" do
-   user = User.new( name: @name_over.call(55),email:"email@email.com",permalink:"permalink",password:"password")
-   refute user.valid?
-   assert_equal ["is too long (maximum is 50 characters)"], user.errors[:name]
- end
-  test "mark_fulfilled_test" do
-   purchase = purchases(:one)
-    @user.mark_fulfilled(purchase.id)
-    x = Purchase.find(purchase.id)
-    assert_equal "sent", x.fulfillstatus
-  end
-
-  test "validates_twitter_test" do
-    user = User.new(twitter:"!@@@#%@#")
-    assert user.errors.messages[:twitter]
-  end
-
-  test "password_change_test" do
-    password = SecureRandom.alphanumeric(8)
-    new_password = SecureRandom.alphanumeric(8)
-    user = User.new(password:password)
-    user.password = new_password
-    assert user.password_changed?
-  end
-
-  test "following?_test" do
-   user_a =users(:one)
-   user_b =users(:two)
-   refute user_a.following?(user_b)
-     end
-
-    # redundant tests
+# redundant tests
 
   test "redundant_test_name_and_permalink_must_not_be_empty" do 
     user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")

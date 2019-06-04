@@ -7,6 +7,15 @@ require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'capybara/minitest'
 require 'selenium-webdriver'
+require 'simplecov'
+require './test/test_helper'
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/db/'
+  #add_filter '/spec/' # for rspec
+  add_filter '/test/' # for minitest
+end
+
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
@@ -80,6 +89,7 @@ class ActiveSupport::TestCase
   # Returns true inside an integration test.
   def integration_test?
     defined?(post_via_redirect)
+
   end
 end
 
