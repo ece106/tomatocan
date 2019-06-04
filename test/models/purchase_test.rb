@@ -100,6 +100,7 @@ class PurchaseTest < ActiveSupport::TestCase
   end
 
   # L129
+  # NOTE: this tests the "true" block in the if else condition
   test "charge should have valid attributes when seller.id equals 143" do
     # TODO:
     #   test if seller.id matches any one of these numbers: 143,  1403,  1452,  1338,  1442
@@ -124,19 +125,70 @@ class PurchaseTest < ActiveSupport::TestCase
     amt           = (@merchandise.price * 100).to_i
     desc          = @merchandise.name
     currency_type = "usd"
+
+    # TODO: rework this so CustomerMock receives args
     customer      = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
-    charge_mock   = ChargeMock.new(amt, customer.id, desc)
+
+    charge_mock = ChargeMock.new({
+      amount: amt, 
+      customer: customer.id, 
+      currency: "usd",
+      description: desc
+    })
 
     assert_equal amt, charge_mock.amount
     assert_equal desc, charge_mock.description
     assert_equal currency_type, charge_mock.currency
   end
 
-  # # L137
+  #  L137
+  # NOTE: this tests the "false" block in the if else condition
+  test "test if seller.id does not match any one of these numbers: 143,  1403,  1452,  1338,  1442" do
+    # TODO:
+    #   test calculate app fee = ((amt * 5)/100)
+    #   test for local variables custoemr.id, sellerstripeaccount.id, token, charge
+    seller = @user
+    assert_not_equal seller.id, 143
+    assert_not_equal seller.id, 1403
+    assert_not_equal seller.id, 1452
+    assert_not_equal seller.id, 1338
+    assert_not_equal seller.id, 1442
+
+    amt            = (@merchandise.price * 100).to_i # => 1.5 * 100
+    appfee         = ((amt * 5) / 100) # => 7.5
+    expected_value = 7
+    assert_equal expected_value, appfee
+
+    # sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid)
+    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    assert_not_empty customer.id, "Customer id should not be empty"
+    assert_not_nil customer.id, "Customer id should not be nil"
+
+    seller_stripe_account = @user
+    assert_not_nil seller_stripe_account.id, "seller_stripe_account should not be nil"
+
+    expected_stripeid = "acct_1E4BAlKFKIozho71"
+    assert_equal expected_stripeid, seller_stripe_account.stripeid
+
+    # TODO: L144 Test for token creation
+    token_mock = TokenMock.new(customer.id, seller_stripe_account.id)
+    assert_not_nil token_mock, "token must not be nil"
+
+    # TODO: L150 Test for charge creation
+    desc = @merchandise.name
+    charge_mock = ChargeMock.new({
+      amount: amt, 
+      customer: customer.id, 
+      description: desc, 
+      application_fee: appfee,
+      stripe_account: seller_stripe_account.id
+    })
+    assert_not_nil charge_mock, "charge must not be nil"
+  end
+
+  # L169
+  # TODO: Test for group_id.present?
   # test "" do
-  #   # TODO:
-  #   #   test calculate app fee = ((amt * 5)/100)
-  #   #   test for local variables custoemr.id, sellerstripeaccount.id, token, charge
   # end
 
   # # L169
@@ -149,7 +201,6 @@ class PurchaseTest < ActiveSupport::TestCase
   #   # test transfer.source_transaction equal to charge.id
   #   # test transfer.transfer_group should equal transfergrp
   # end
-
 
   # NOTE: Broke up calculations for groupcuts/authorcuts into granular method
   # to make it easier to test. If approve, will keep. Otherwise, delete these bottom 4 tests.
@@ -187,21 +238,39 @@ class PurchaseTest < ActiveSupport::TestCase
     attr_accessor :id, :source, :description, :email
 
     def initialize id, source, description, email
-      @id = id
-      @source = source
+      @id          = id
+      @source      = source
       @description = description
-      @email = email
+      @email       = email
     end
   end
 
+  # TODO: change this to initialize with n amount of args 
   class ChargeMock
-    attr_accessor :amount, :customer, :description, :currency
+    attr_accessor :amount, :customer, :description, :currency, :application_fee, :stripe_account
 
-    def initialize amount, customer, description
-      @amount = amount
-      @customer = customer
-      @description = description
-      @currency = "usd"
+    def initialize args
+      args.each do |k, v|
+        instance_variable_set("@#{k}", v) unless v.nil?
+      end 
+    end
+
+    # def initialize amount, customer, description, application_fee, stripe_account
+    #   @amount          = amount
+    #   @customer        = customer
+    #   @description     = description
+    #   @currency        = "usd"
+    #   @application_fee = application_fee
+    #   @stripe_account  = stripe_account
+    # end
+  end
+
+  class TokenMock
+    attr_accessor :customer_id, :stripe_account
+
+    def initialize customer_id, stripe_account
+      @customer_id    = customer_id
+      @stripe_account = stripe_account
     end
   end
 end
