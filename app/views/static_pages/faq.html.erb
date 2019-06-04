@@ -5,10 +5,7 @@
 <meta charset="UTF-8">
 <title>CrowdPublishTV FAQ</title>
 
-
-
 </head>
-
 
 <body>
 
@@ -22,15 +19,16 @@
 
 <ul class="accordion"> 
   <li>
-    <a class="toggle" href="javascript:void(0);">About CrowdPublish TV</a>
+    <a class="toggle" href="#" >About CrowdPublish TV</a>
       <ul class="inner">
         <li>
             <a href="#" class="toggle">What are viewers supposed to do?</a>
                 <div class="inner">
-                  <p>
                     <div class = "h3" style = "color:#8C1D40" >
                       <a name="t4">What are viewers supposed to do on CrowdPublish TV?</a> 
                     </div>
+
+                    <div id="content-container">
                       <a>
                       <ul>
                         <li>Check the home page to find out what talk shows are scheduled.</li>
@@ -40,47 +38,52 @@
                         <li>Send an email to your favorite organizations & personalities who do not currently host CrowdPublish TV shows & encourage them to host shows.</li>
                       </ul><br>
                     </a>
-                  </p>
+                  </div>
                 </div>
         </li>
 
         <li>
             <a href="#" class="toggle">What type of shows are typically on CrowdPublish TV?</a>
                 <div class="inner">
-                  <p>
                     <div class = "h3" style = "color:#8C1D40" >
                       <a name="t4">What type of shows are typically on CrowdPublish TV?</a> 
                     </div>
+                    <div id="content-container">
                       <p>Philanthropic projects, research projects, anything that an educated audience might be interested in. </p>
-                  </p>
-                </div>
+                    </p>
+
+                    </div>
         </li>
 
         <li>
             <a href="#" class="toggle">Can I use my CrowdPublish TV page as my website?</a>
                 <div class="inner">
-                  <p>
+                  <div id="content-container">
                     <div class = "h3" style = "color:#8C1D40" >
                       <a name="t4">Can I use my CrowdPublish TV page as my website?</a> 
                     </div>
+                  </div>
+                    <div id="content-container">
                       <p>Yes. After you sign up on CrowdPublish TV, add your own photos, videos, writings. Presto, your own web site! Put the url to your CrowdPublish TV site on your email signature, business cards, social media profile, etc. so your fans can easily contribute funds to your work. 
                     <br></p>
-                  </p>
+                  </div>
                 </div>
         </li>
 
         <li>
             <a href="#" class="toggle">Does CrowdPublish TV fulfill physical items?</a>
                 <div class="inner">
-                  <p>
+                    <div id="content-container">
                     <div class = "h3" style = "color:#8C1D40" >
                       <a name="t4">Does CrowdPublish TV fulfill physical items?</a> 
                     </div>
+                  </div>
+                    <div id="content-container">
                       <p>No. Like the model of ebay or crowdfunding platforms, Discussion Hosts are responsible for making sure fans/customers receive what they ordered. Make sure you use these shipments to take advantage of the ability to send fans swag items they'd like to share with their friends, such as stickers, greeting cards, or other items that publicize your work. <br><br>
 
               CHECK DASHBOARD OFTEN to find out if fans purchased any Rewards that need to be fulfilled. 
                     <br></p>
-                  </p>
+                  </div>
                 </div>
         </li>
 
@@ -94,14 +97,17 @@
         <li>
           <a href="#" class="toggle">What do I do if my browser isn't accessing my mic or webcam?</a>
             <div class="inner">
-              <p>
+                <div id="content-container">
                 <div class = "h3" style = "color:#8C1D40" > 
                   <a name="target3">What do I do if my browser isn't accessing my mic or webcam?</a> 
             </div>
+          </div>
+            <div id="content-container">
               <p>Safari and Internet Explorer are usually incompatible with any site's livestream. Please use Chrome or Firefox instead.</p>
             <br><br> 
-          </p>
-        </div>
+              </p>
+            </div>
+          </div>
       </li>
       
       <li>
@@ -150,7 +156,7 @@
               <a name="t8">How much does it cost to use CrowdPublish TV?</a>
           </div> 
           <p>
-              Nothing. Free to use, watch, sign up, post donation buttons, post items to sell, set up a time for a show on the home page, host a live show, record the show to YouTube.<br><br>
+              Nothing! CrowdPublish TV is free to sign up, host a live show, post donation buttons, post items to sell, schedule a show, and record the show to YouTube.<br><br>
 
               Discussion Hosts receive approximately 92% of each transaction they solicit on CrowdPublish TV. CrowdPublish TV doesn't get paid until you get paid. Our payment processor (Stripe) keeps $0.30 plus 2.9% of each transaction. CrowdPublish TV receives 5% of each transaction. 
           </p>
@@ -187,45 +193,9 @@
   </li>
 </ul>
 <br><br><br><br>
-<br><br><br><br>
-
-
-<!-- <script>
-  var collapsibles = document.querySelectorAll('[toggle]');
-
-document
-    .getElementById('close-all')
-    .addEventListener('click', function () {
-        for (var i = 0; i < collapsibles.length; ++i) {
-            mobiscroll.instances[collapsibles[i].id].hide();
-        }
-    })
-
-
-document
-    .getElementById('toggle')
-    .addEventListener('click', function () {
-        mobiscroll.instances[collapsibles[0].id].toggle();
-    })
-</script>
- -->
 
 
 <script>
-// var acc = document.getElementsByClassName("toggle");
-// var i;
-// for (i = 0; i < acc.length; i++) {
-//   acc[i].addEventListener("click", function(click) {
-//     this.classList.toggle("active");
-//     var panel = this.nextElementSibling;
-//     click.preventDefault();
-//     if (panel.style.display == "block") {
-//       panel.style.display = "none";
-//     } else {
-//       panel.style.display = "block";
-//     }
-//   });
-// }
 
 $('.toggle').click(function(e) {
     ;
@@ -237,7 +207,6 @@ $('.toggle').click(function(e) {
         //$this.next().slideUp(350);
        $this.next().removeClass('show');
 
-        
 
     } 
     if (!($this.next().hasClass('show'))){
@@ -246,8 +215,6 @@ $('.toggle').click(function(e) {
         $this.parent().parent().find('ul .inner').slideUp(350);
         //$this.next().toggleClass('show');
        
-
-
     } 
 
     $this.next().slideToggle(350);
@@ -255,32 +222,20 @@ $('.toggle').click(function(e) {
 
 });
 
-
-
-// var acc = document.getElementsByClassName("toggle");
-// var i;
-
-// function click_action(){
-//   $('.toggle').removeClass('active');
-//   $('.toggle').removeClass('show');
-
-//   this.classList.toggle("active");
-//   this.nextElementSibling.classList.toggle("show");
-// }
-
-// for (i = 0; i < acc.length; i++) {
-//   acc[i].onclick = click_action;
-// }
-
-// $(document).click(function(e) {
-//   if (!$(e.target).is('.panel-body')) {
-//       $('.collapse').collapse('hide');      
-//     }
-// });
 </script>
 
 
-<form>
+<h4 style= "text-align: center;" > Don't see your question? </h4>
+<br>
+<p style= "text-align: center;"> Shoot us an email with your question and a member of our team will get back to you shortly!</p>
+<!-- <a href="mailto:someone@example.com?Subject=Hello%20again" align="center" target="_top">CrowdPublishTVSupport@gmail.com</a> -->
+
+<form method = "post" action ="mailto:someone@example.com">
+<p id="submission"><input type="submit" value="Email Us!" ></p>
+</form>     
+  
+
+<!-- UNCOMMENT AND DELETE THIS TEXT ONCE MAILERS ARE SET UP <form>
 
   <h4>Don't see your question?</h4>
   <br>
@@ -308,7 +263,7 @@ $('.toggle').click(function(e) {
         <input type="submit" value="Submit" />
     </li>
 </ul>
-</form>
+</form> -->
 
 </div>
 

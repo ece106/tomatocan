@@ -4,7 +4,6 @@
 <meta property="og:url" content="http://CrowdPublish.TV" />
 <meta property="og:description" content="CrowdPublishTV helps actors, authors increase fan engagement & raise more funds" />
 </head>
-
 	<div class="container-fluid">
 	  <% if request.host == "crowdpublishtv.herokuapp.com" %>
         <div class="row">
@@ -23,6 +22,9 @@
           </div>
         </div>
       <% else %>
+      <!-- "View Profile" leads to here.
+		localhost:3000/username
+			-->
 			<%= render 'layouts/authorform' %>
 			<div class="row" style="padding-top:15px;padding-bottom:30px;">
 					<%= render 'layouts/streamButton' %>
