@@ -44,7 +44,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
     get "password", :to => 'devise/passwords#new', :as => :new_user_password
     get "newpassword", :to => 'devise/passwords#edit', :as => :edit_user_password
 #    patch "password", :to => 'devise/passwords#update', :as => :user_password
-#    put "password", :to => 'devise/passwords#update' #, :as => :user_password
+#    put "password", :to => 'devise/passwords#u pdate' #, :as => :user_password
     match '/password' => 'devise/passwords#create', as: :user_password, via: [:post]
     match '/password' => 'devise/passwords#update', via: [:put, :patch]
   end
@@ -64,7 +64,7 @@ devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations
   match '/:permalink' => "users#show", :as => :user_profile, via: 'get'
   match '/:permalink/followers' => "users#followerspage", :as => :user_followerspage, via: 'get'
   match '/:permalink/following' => "users#followingpage", :as => :user_followingpage, via: 'get'
-  match '/:permalink/eventlist' => "users#eventlist", :as => :user_eventlist, via: 'get'
+  match '/:permalink/event list' => "users#eventlist", :as => :user_eventlist, via: 'get'
   match '/:permalink/pastevents' => "users#pastevents", :as => :user_pastevents, via: 'get'
   match '/:permalink/profileinfo' => "users#profileinfo", :as => :user_profileinfo, via: 'get'
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'

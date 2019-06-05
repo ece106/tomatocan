@@ -12,7 +12,7 @@
     @timeslot = Timeslot.find(params[:id])
   end
 
-  # GET /timeslots/new
+  # GET /timeslots/ne
   def new
     @timeslot = Timeslot.new
   end

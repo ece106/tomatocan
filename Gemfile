@@ -22,7 +22,7 @@ gem 'will_paginate-bootstrap'
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
-#gem 'event-calendar', :require => 'event_calendar'
+gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '5.2.1'
 gem 'railties', '5.2.1'
@@ -41,9 +41,11 @@ gem 'friendly_id', '~> 5.0.0'
 #gem 'rmagick'
 
 group :test, :development do
-#  gem 'factory_girl_rails'
-#  gem 'capybara'
-#  gem 'mocha', '~> 1.1.0'
+  # gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'mocha', '~> 1.1.0'
+  gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
 end
 
 group :production do
