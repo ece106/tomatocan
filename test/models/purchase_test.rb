@@ -73,7 +73,12 @@ class PurchaseTest < ActiveSupport::TestCase
   # L93
   test "customer should not be nil when email is present" do
     # TODO: Create a customer and if customer.id and customer.email is not nil
-    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    customer = CustomerMock.new({
+      id: 1,
+      source: "fake_stripe_token",
+      description: "anonymous customer",
+      email: "fake@mail.com"
+    })
     assert_not_nil customer.id, "Customer id cannot be nil"
     assert_not_nil customer.source, "Customer source cannot be nil"
     assert_not_nil customer.description, "Customer description cannot be nil"
@@ -93,13 +98,23 @@ class PurchaseTest < ActiveSupport::TestCase
     # TODO:
     #   test existence of purchaser's stripe_customer_token present?
     #   test existence of customer
-    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    customer = CustomerMock.new({
+      id: 1,
+      source: "fake_stripe_token",
+      description: "anonymous customer",
+      email: "fake@mail.com"
+    })
     assert_not_nil customer.id, "Customer id cannot be nil"
   end
 
   # L112
   test "customer should save with correct attributes when stripe_card_token present" do
-    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    customer = CustomerMock.new({
+      id: 1,
+      source: "fake_stripe_token",
+      description: "anonymous customer",
+      email: "fake@mail.com"
+    })
     assert_equal "fake_stripe_token", customer.source
     # TODO test for custoemr save?
     # assert customer.save
@@ -133,7 +148,12 @@ class PurchaseTest < ActiveSupport::TestCase
     currency_type = "usd"
 
     # TODO: rework this so CustomerMock receives args
-    customer      = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
+    customer = CustomerMock.new({
+      id: 1,
+      source: "fake_stripe_token",
+      description: "anonymous customer",
+      email: "fake@mail.com"
+    })
 
     charge_mock = ChargeMock.new({
       amount: amt,
@@ -166,8 +186,12 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_equal expected_value, appfee
 
     # sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid)
-    customer = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
-    assert_not_empty customer.id, "Customer id should not be empty"
+    customer = CustomerMock.new({
+      id: 1,
+      source: "fake_stripe_token",
+      description: "anonymous customer",
+      email: "fake@mail.com"
+    })
     assert_not_nil customer.id, "Customer id should not be nil"
 
     seller_stripe_account = @user
@@ -240,18 +264,20 @@ class PurchaseTest < ActiveSupport::TestCase
 
   private
 
+  # NOTE:
+  # We'll create a couple of mock classes to simulate Stripe classes.
+  # We should not really call Stripe from tests.
+  # Consider using a gem like stripe-ruby-mock for the future.
   class CustomerMock
     attr_accessor :id, :source, :description, :email
 
-    def initialize id, source, description, email
-      @id          = id
-      @source      = source
-      @description = description
-      @email       = email
+    def initialize args
+      args.each do |k, v|
+        instance_variable_set("@#{k}", v) unless v.nil?
+      end
     end
   end
 
-  # TODO: change this to initialize with n amount of args
   class ChargeMock
     attr_accessor :amount, :customer, :description, :currency, :application_fee, :stripe_account
 
@@ -260,15 +286,6 @@ class PurchaseTest < ActiveSupport::TestCase
         instance_variable_set("@#{k}", v) unless v.nil?
       end
     end
-
-    # def initialize amount, customer, description, application_fee, stripe_account
-    #   @amount          = amount
-    #   @customer        = customer
-    #   @description     = description
-    #   @currency        = "usd"
-    #   @application_fee = application_fee
-    #   @stripe_account  = stripe_account
-    # end
   end
 
   class TokenMock
