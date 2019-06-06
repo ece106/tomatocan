@@ -25,6 +25,11 @@ class PurchaseTest < ActiveSupport::TestCase
 
   # =============
 
+  test "seller.id should equal merchandise.user_id" do
+    seller = @user
+    assert_equal seller.id, @merchandise.user_id
+  end
+
   # L58
   test "pricesold should equal merchandise price" do
     @purchase.pricesold = @merchandise.price
@@ -33,6 +38,7 @@ class PurchaseTest < ActiveSupport::TestCase
 
   # L60
   test "seller should not be nil" do
+    # Seller should be a user who has a merchandise.user_id
     seller = @user
     assert_not_nil seller
   end
@@ -130,8 +136,8 @@ class PurchaseTest < ActiveSupport::TestCase
     customer      = CustomerMock.new("1", "fake_stripe_token", "anonymous customer", "fake@mail.com")
 
     charge_mock = ChargeMock.new({
-      amount: amt, 
-      customer: customer.id, 
+      amount: amt,
+      customer: customer.id,
       currency: "usd",
       description: desc
     })
@@ -177,9 +183,9 @@ class PurchaseTest < ActiveSupport::TestCase
     # TODO: L150 Test for charge creation
     desc = @merchandise.name
     charge_mock = ChargeMock.new({
-      amount: amt, 
-      customer: customer.id, 
-      description: desc, 
+      amount: amt,
+      customer: customer.id,
+      description: desc,
       application_fee: appfee,
       stripe_account: seller_stripe_account.id
     })
@@ -245,14 +251,14 @@ class PurchaseTest < ActiveSupport::TestCase
     end
   end
 
-  # TODO: change this to initialize with n amount of args 
+  # TODO: change this to initialize with n amount of args
   class ChargeMock
     attr_accessor :amount, :customer, :description, :currency, :application_fee, :stripe_account
 
     def initialize args
       args.each do |k, v|
         instance_variable_set("@#{k}", v) unless v.nil?
-      end 
+      end
     end
 
     # def initialize amount, customer, description, application_fee, stripe_account
