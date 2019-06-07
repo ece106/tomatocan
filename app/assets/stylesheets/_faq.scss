@@ -1,44 +1,44 @@
 ul {
   list-style-type: circle;
-  margin-left: 20px;
+  /*margin-left: 0 auto;*/
 }
 #content-container {
     width: 640px; 
     height: auto;
     margin: 0 auto;
     padding: 10px;
-    position: relative;
-
+    word-wrap: break-word;
 }
-#content-container p {
+
+
+.content-container {
+    display: block;
+    max-width: 640px; 
+    height: auto;
+    margin: 0 auto;
+    /*position: relative;*/
+}
+p {
+  /*margin-left: 10px;*/
+}
+
+/*.content-heading a {
+    text-align: center;
+}
+*/.content-heading {
     width: 640px; 
     height: auto;
     margin: 0 auto;
-    padding: 10px;
-    position: relative;
+   /* padding: 10px;*/
+    font-size: 1.7em;/*
+    position: relative;*/
+    /*text-align: center;*/
 }
-p {
-  margin-left: 20px;
-}
-
-.h3 {
-  width: 640px; 
-    height: auto;
-    margin: 0 auto;
-    padding: 10px;
-
-    position: relative;
-
-}
-
-
 
 li {
   margin-left: 0px;
 }
-/*  #880F42 maroon 
-    #1CA29B blue FAQ menu
-*/
+
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
 
 * {
@@ -194,11 +194,10 @@ $color_2: red;
 
 
 body {
-    width: 90%;
+    width: 100%;
     text-align: left;
     min-width: auto;
     max-width: auto;
-    margin: 1.5em ;
     color: #333;
 }
 
@@ -207,25 +206,18 @@ h1 {
     font-weight: 400;
     font-size: 2.5em;
 }
-/*#content-container {
-    width: 640px; 
-    height: auto;
-    margin: 0 auto;
-    padding: 10px;
-    position: relative;
-}*/
 a ul {
 	list-style-type: circle;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+    /*list-style-type: none;*/
+    padding-left: 0px;
   
     .inner {
         margin-left: 35px;
         margin-right: 35px;
-        padding-left: 1em;
+        /*padding-left: 1em;*/
         overflow: hidden;
         display: none;
       
@@ -238,9 +230,10 @@ ul {
         margin: .5em 0;
       
        a.toggle  {
-            width: 80%;
+            width: 70%;
+            margin: 0 auto;
             /*float: left;*/
-            margin: auto;
+            /*margin: auto;*/
             display: block;
             margin-bottom: 10px;
             background-color: #880f42;
@@ -265,3 +258,51 @@ a {
 #submission {
   text-align: center;
   }
+
+.content-container li {
+    word-break: break-word;
+}
+
+h2 {
+    font-size: 2.5em;
+    padding-left: 14px;
+}
+h4 {
+    padding-left: 14px;
+}
+h5 {
+    font-size: 1.2em;
+}
+p.email-us {
+    text-align: center;
+    padding: 1em;
+}
+
+
+
+@media (min-width: 320px) and (max-width: 480px) {  /* mobile */
+  
+a.toggle {
+    width: 280px;
+}
+
+.content-heading {
+    max-width: 240px;
+    padding-left: 14px ;
+    padding-right: 14px;
+    font-size: 1em;
+    word-break: break-word;
+}
+
+#content-container {
+    max-width: 230px;
+    margin-left: 15px;
+    padding-left: 14px;
+    padding-right: 14px;
+    word-wrap: break-word;
+}
+
+  
+  
+}
+
