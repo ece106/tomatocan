@@ -247,10 +247,10 @@ test 'Should_see_offer_rewards_logged_in' do
 end
 
 test "Should say email was taken when same user attempts sign up twice" do
-		visit('http://localhost:3000/')
+        visit('http://localhost:3000/')
 		signUpUser()
 		signInUser()
-		click_on('Sign out')
+        click_on('Sign out')
 		click_on('Sign Up', match: :first)
 		fill_in(id:'user_name', with: 'name')
 		fill_in(id:'user_email', with: 'e@gmail.com')
