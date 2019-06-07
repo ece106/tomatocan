@@ -190,11 +190,9 @@ class PurchaseTest < ActiveSupport::TestCase
     expected_stripeid = "acct_1E4BAlKFKIozho71"
     assert_equal expected_stripeid, seller_stripe_account.stripeid
 
-    # TODO: L144 Test for token creation
     token_mock = TokenMock.new(customer.id, seller_stripe_account.id)
     assert_not_nil token_mock, "token must not be nil"
 
-    # TODO: L150 Test for charge creation
     desc = @merchandise.name
     charge_mock = ChargeMock.new({
       amount: amt,
@@ -205,10 +203,6 @@ class PurchaseTest < ActiveSupport::TestCase
     })
     assert_not_nil charge_mock, "charge must not be nil"
   end
-
-  # TODO: Test for group_id.present?
-  # test "" do
-  # end
 
   # # L169
   # test "" do
@@ -253,6 +247,16 @@ class PurchaseTest < ActiveSupport::TestCase
     def initialize customer_id, stripe_account
       @customer_id    = customer_id
       @stripe_account = stripe_account
+    end
+  end
+
+  class TransferMock
+    attr_accessor :amount, :currency, :destination, :source_transaction, :transfer_group
+
+    def initialize args
+      args.each do |k, v|
+        instance_variable_set("@#{k}", v) unless v.nil?
+      end
     end
   end
 end
