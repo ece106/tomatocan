@@ -79,7 +79,7 @@ test "Should_see_edit_profile_in_control_panel" do
     click_on('Control Panel')
     assert_text('Edit Profile')
 end
-#test "Should_change_about" do
+# test "Should_change_about" do
 #    signUpUser()
 #    signInUser()
 #    click_on(class: 'dropdown-toggle')
@@ -87,7 +87,7 @@ end
 #    fill_in(id:'user_about',with:'Sample Desc')
 #    click_on(id:'saveProfileButton',:match => :first)
 #    assert_text('Sample Desc')
-#end
+# end
 test "Should_change_genre1" do
     signUpUser()
     signInUser()
