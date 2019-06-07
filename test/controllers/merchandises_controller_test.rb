@@ -21,12 +21,6 @@ test "should get new if user signed in" do
     assert_response :success
 end
 
-# test "should not get new if user signed in" do
-#     #sign_in users(:two)
-#     get :new
-#     assert_equal flash[:notice], 'You are not logged in'
-# end
-
 test "should get new with merchandise id" do
     sign_in users(:one)
     get :new , params: { id: @merchandise.id }
@@ -188,9 +182,5 @@ test "should render correct layout for new" do
     assert_template 'application'
 end
 
-# test "should throw an error" do
-#   sign_in users(:one)
-#   post :create, params: { merchandise: { name: 'rob', user_id: 1, price: '1', desc: 'test1', buttontype: 'one', deadline: '2019-05-26'}}
-#   assert_equal 'Patron Perk was successfully created.', flash[:notice]
-# end
+
 end
