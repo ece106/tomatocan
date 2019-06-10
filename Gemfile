@@ -1,18 +1,24 @@
 source 'http://rubygems.org'
-ruby "2.6.3"
+ruby "2.6.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
+gem 'capybara-screenshot', :group => :test
 
 gem 'pg'
 #gem 'sqlite3'
 
 gem 'mini_racer'
 
-gem 'mandrill'	
+gem 'simplecov'
+
+gem 'selenium-webdriver'
+
+gem 'mandrill'
+
 gem 'devise'
 gem 'fog'   #, '1.6.0'
-gem 'unf' 
+gem 'unf'
 gem 'carrierwave'
 gem 'stripe'
 gem 'oauth2'
@@ -28,10 +34,14 @@ gem 'aws-sdk'
 
 gem 'rails', '5.2.1'
 gem 'railties', '5.2.1'
-gem  'bootstrap-sass', '~> 3.4.0'
+gem  'bootstrap-sass', '~> 3.4.1'
+#
+# gem  'bootstrap-sass', '~> 3.2.0'
+
+
 gem 'autoprefixer-rails'
 #gem 'sprockets'
-gem "will_paginate", "~> 3.0.6" 
+gem "will_paginate", "~> 3.0.6"
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jquery-turbolinks'
@@ -44,14 +54,19 @@ gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
 #  gem 'factory_girl_rails'
+
+  gem 'capybara'
+#  gem 'mocha', '~> 1.1.0'
+
 #  gem 'capybara'
 #  gem 'mocha', '~> 1.1.0'
+
 end
 
 group :production do
-     #rake db:create:all
-     #rails s -e production
-     #gem 'sqlite3-ruby', :require => 'sqlite3'
+  #rake db:create:all
+  #rails s -e production
+  #gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rails_12factor'
 end
 
@@ -61,8 +76,8 @@ gem 'jquery-rails'
 # in production environments by default.
 #group :assets do
 gem 'sass-rails', '~> 5.0.7'
-  gem 'coffee-rails', '~> 4.2.2'
-  gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.2.2'
+gem 'uglifier', '>= 1.3.0'
 #end
 
 # Use unicorn as the web server
@@ -80,5 +95,6 @@ group :test do
 end
 
 group :development do
-    gem 'rails_real_favicon'
+  gem 'rails_real_favicon'
 end
+

@@ -70,7 +70,7 @@
   <b>Start time:</b>
   <%= @event.start_at.strftime("%A %B %d, %Y") %>
   <br> 
-  <%= @event.start_at.strftime("%I:%M %p")%> <i>Pacific Daylight Time(PDT)</i>
+  <i><%= @event.start_at.strftime("%I:%M %p")%> Pacific Daylight Time(PDT)</i>
     <br>
   <i><%= edt.strftime("%I:%M %p") %> Eastern Standard Time(EDT)</i>
 </p>
