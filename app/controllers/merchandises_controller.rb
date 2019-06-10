@@ -17,7 +17,7 @@ class MerchandisesController < ApplicationController
   # GET /merchandises/new
   def new
     @merchandise = Merchandise.new
-  end
+end
 
   def standardperks
     @merchandise = Merchandise.new
@@ -35,7 +35,8 @@ class MerchandisesController < ApplicationController
       @merchandise.get_youtube_id
       redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
     else
-      render action: 'new', :notice => "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
+      flash.now[:notice] = "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
+      render :new
     end
   end
 
@@ -67,7 +68,7 @@ class MerchandisesController < ApplicationController
 
     def merchandise_params
       params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :rttoeditphase,
-       :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype ,
+       :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype,
        :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h)
     end
 
