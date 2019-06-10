@@ -34,9 +34,9 @@ class EventsControllerTest < ActionController::TestCase
 
     # end
 
-    # test "should recognize events"do
-    # assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
-    # end
+    test "should recognize events"do
+         assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
+    end
 
 
 

@@ -5,6 +5,7 @@ gem 'listen'
 gem 'rails-controller-testing'
 gem 'capybara-screenshot', :group => :test
 gem 'selenium-webdriver'
+gem 'simplecov' 
 
 gem 'pg'
 #gem 'sqlite3'
