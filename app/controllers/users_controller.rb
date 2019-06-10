@@ -187,13 +187,23 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 #    @user.latitude = request.location.latitude #geocoder has become piece of junk
 #    @user.longitude = request.location.longitude
+    respond_to do |format|
+      if @user.save
+        WelcomeMailer.with(user:@user).welcome_email.deliver_later(@user)
+        format.html{redirect_to(@user, notice: 'User was successfully created.')}
+        format.json{render json: @user, status: :created, location: @user}
+      else
+      format.html{render action: 'new'}
+      format.json{render json }
+      end
+    end
     if @user.save
       @user.get_youtube_id
       sign_in @user
       redirect_to user_profileinfo_path(current_user.permalink)
     else
-        redirect_to new_user_signup_path, danger: signup_error_message
-        @user.errors.clear
+      redirect_to new_user_signup_path, danger: signup_error_message
+      @user.errors.clear
     end
   end
 
