@@ -35,11 +35,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
-    # if @event.save
-    #   redirect_to "/"
-    # else
-
-    # end
     respond_to do |format|
       if @event.save
         format.html { redirect_to "/" }
