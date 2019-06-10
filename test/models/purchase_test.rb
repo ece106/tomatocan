@@ -121,7 +121,7 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_equal "fake_stripe_token", customer.source
   end
 
-  test "charge should have valid attributes when seller.id equals 143" do
+  test "charge should have valid attributes when seller.id equals a valid number" do
     seller = @user
 
     seller.id = 143
@@ -162,7 +162,7 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_equal currency_type, charge_mock.currency
   end
 
-  test "test if seller.id does not match any one of these numbers: 143,  1403,  1452,  1338,  1442" do
+  test "charge should have valid attributes when seller.id does not equal a valid number" do
     seller = @user
     assert_not_equal seller.id, 143
     assert_not_equal seller.id, 1403
@@ -203,17 +203,6 @@ class PurchaseTest < ActiveSupport::TestCase
     })
     assert_not_nil charge_mock, "charge must not be nil"
   end
-
-  # # L169
-  # test "" do
-  #   # TODO test for these when group_id is not nil
-  #   # test to see if tranfer is not nil
-  #   # test transfer.amount should equal (@purchase.groupcut * 100).to_i
-  #   # test transfer.currency should equal "usd"
-  #   # test transfer.destination should equal groupstripeaccount.id
-  #   # test transfer.source_transaction equal to charge.id
-  #   # test transfer.transfer_group should equal transfergrp
-  # end
 
   private
 
