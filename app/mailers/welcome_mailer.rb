@@ -1,10 +1,11 @@
 class WelcomeMailer < ApplicationMailer
   default from: "crowdpublishtv.star@gmail.com"
-  @user = params(:user)
+
 
   def welcome_email
+    @user_name = :name
     @url = home_url(host:'crowdpublish.TV')
-    mail(to: @user.email, subject: "Welcome")
+    mail(to: :email, subject: "Welcome")
   end
 
 end
