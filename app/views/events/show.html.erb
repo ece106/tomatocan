@@ -4,6 +4,7 @@
       </div>
 <% end %>
 
+<div id="event-page-layout" style="margin: 20px;">
 <meta property="og:description" content="Host Livestream Discussions" />
 <% @title="CrowdPublish TV" %>
 <div id="fb-root"></div>
@@ -15,7 +16,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="row" >
-  <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 " style= "text-align:left" >
+  <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 ">
     <p id="notice"><%= notice %></p>
 
     <% if user_signed_in? %>
@@ -67,16 +68,17 @@
 <p>
   <% edt = @event.start_at + 3.hours %>
   <b>Start time:</b>
-  <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
+  <%= @event.start_at.strftime("%A %B %d, %Y") %>
+  <br> 
+  <%= @event.start_at.strftime("%I:%M %p")%> <i>Pacific Daylight Time(PDT)</i>
     <br>
-  <i>(<%= edt.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
+  <i><%= edt.strftime("%I:%M %p") %> Eastern Standard Time(EDT)</i>
 </p>
+
 <p>
   <% edtend = @event.end_at + 3.hours %>
-  <b>End time:</b>
-    <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
-    <br>
-    <i>(<%= edtend.strftime("%I:%M %p")%> Eastern Time, NY USA)</i>
+  <% ti = (@event.end_at - @event.start_at)/60 %>
+    <b>Duration:</b><%= ti.floor %> minutes
 </p>
 <p>
   <b>More details:</b>
@@ -116,4 +118,6 @@
     </div>
   </div>
 <br><br>
+    </div>
+
 </div>
