@@ -56,7 +56,7 @@ p {
     font-size:1.1em;
 }
 
-$color_1: #fff;
+/*$color_1: #fff;
 $color_2: red;
 
 .form-style-1 {
@@ -149,12 +149,12 @@ $color_2: red;
 
     input[type=submit] {
         background: #880f42; /* pinkish maroon*/
-        padding: 8px 15px 8px 15px;
+        /*padding: 8px 15px 8px 15px;
         border: none;
         color: $color_1;
         &:hover {
             background: #5a0a2c; /* darker pinkish maroon */
-            box-shadow: none;
+            /*box-shadow: none;
             -moz-box-shadow: none;
             -webkit-box-shadow: none;
         }
@@ -164,7 +164,16 @@ $color_2: red;
         color: $color_2;
     }
     textarea {
-    box-sizing: border-box;
+    width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+*/
+    /*box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     border: 1px solid #BEBEBE;
@@ -174,10 +183,10 @@ $color_2: red;
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    }   
-    select {
-    box-sizing: border-box;
+    outline: none;*/
+    /*}   
+    select {*/
+    /*box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     border: 1px solid #BEBEBE;
@@ -187,10 +196,10 @@ $color_2: red;
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
-    outline: none;
-    }
+    outline: none;*/
+    /*}
 }
-
+*/
 
 
 body {
@@ -234,6 +243,7 @@ ul {
             margin: 0 auto;
             /*float: left;*/
             /*margin: auto;*/
+            font-weight: bold;
             display: block;
             margin-bottom: 10px;
             background-color: #880f42;
@@ -276,18 +286,59 @@ h5 {
 p.email-us {
     text-align: center;
     padding: 1em;
+
 }
 
+input[type=text] {
 
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 
-@media (min-width: 320px) and (max-width: 480px) {  /* mobile */
+}
+
+input[type=text]:focus {
+    border-color:#333;
+
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#880f42; 
+    font-weight: bold;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    color: #ffffff;
+}
+
+.toggle:after {
+  content: '\▾';
+  /*content: "▸";*/
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+/*.toggle .collapsed:after{
+  content: "\2212";
+  
+}*/
+
+/*content: "▾";*/
+
+@media only screen and (max-width: 600px) {  /* mobile */
   
 a.toggle {
     width: 280px;
+    font-size: 1em;
 }
 
 .content-heading {
-    max-width: 240px;
+    max-width: 210px;
     padding-left: 14px ;
     padding-right: 14px;
     font-size: 1em;
@@ -296,13 +347,78 @@ a.toggle {
 
 #content-container {
     max-width: 230px;
-    margin-left: 15px;
-    padding-left: 14px;
-    padding-right: 14px;
+    margin-left: 0 auto;
+    padding-left: 18px;
+    padding-right: 18px;
     word-wrap: break-word;
 }
 
-  
-  
+ol {
+    padding-left: 16px;
+}
+h4 {
+    padding-right: 14px;
+}
+
+}
+
+
+@media only screen and (min-width: 601px) {  /* tablet */
+
+.toggle:after {
+  content: '\▼';
+  /*content: "▸";*/
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.content-heading {
+    max-width: 440px;
+    padding-left: 14px ;
+    padding-right: 14px;
+    font-size: 1em;
+    text-align: center;
+    word-break: break-word;
+    font-size: 1.4em;
+}
+
+#content-container {
+    max-width: 440px;
+    margin-left: 0 auto;
+    padding-left: 18px;
+    padding-right: 18px;
+    word-wrap: break-word;
+}
+
+}
+
+@media only screen and (min-width: 992px) { /* Desktop */
+
+.toggle:after {
+  content: '\▼';
+  /*content: "▸";*/
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.content-heading {
+    max-width: 640px;
+    padding-left: 14px ;
+    padding-right: 14px;
+    font-size: 1.6em;
+    word-break: break-word;
+}
+
+#content-container {
+    max-width: 640px;
+    padding-left: 18px;
+    padding-right: 18px;
+    word-wrap: break-word;
+}
+
 }
 
