@@ -4,7 +4,7 @@
       </div>
 <% end %>
 
-<div id="event-page-layout" style="margin: 20px;">
+<div id="event-page-layout" style="margin: 20px; padding-left: 10px;">
 <meta property="og:description" content="Host Livestream Discussions" />
 <% @title="CrowdPublish TV" %>
 <div id="fb-root"></div>
@@ -18,13 +18,6 @@
 <div class="row" >
   <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 ">
     <p id="notice"><%= notice %></p>
-
-    <% if user_signed_in? %>
-      <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit", edit_event_path(@event) %> |
-        <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
-      <% end %>
-    <% end %>
 
     <%= form_for(@rsvp) do |f| %>
       <% if @rsvp.errors.any? %>
@@ -49,7 +42,7 @@
     <% end %><br>
 
 <div class="row">
-    <div class=".col-12 .col-md-8">
+	<div class=".col-12 .col-md-8" style="margin-left: -5px" >
         <h1><%= @event.name %></h1>
     <% if @rsvps.count > 1 %>
         <div class= ".col-6 .col-md-4 rsvp-users">
@@ -59,33 +52,44 @@
             <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
           <% end %>
     <% end %>
-        </div>
-<p>
-  <b>Hosted by
+	</div>
+
+	<% if user_signed_in? %>
+	      <% if @event.usrid == current_user.id %>
+		      <%= link_to "Edit", edit_event_path(@event) %> |
+		      <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+	      <% end %>
+	<% end %>
+<p style="color:#808080">
+ <b>Hosted by
   <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
-</p>
+ </p>
 <br>
 <p>
   <% edt = @event.start_at + 3.hours %>
   <b>Start time:</b>
-  <%= @event.start_at.strftime("%A %B %d, %Y") %>
+  <div style="margin-left:30px">
+  <%= @event.start_at.strftime("%A, %B %d, %Y") %>
   <br> 
-  <i><%= @event.start_at.strftime("%I:%M %p")%> Pacific Daylight Time(PDT)</i>
+  <i><%= @event.start_at.strftime("%I:%M %p")%> PDT</i>
     <br>
-  <i><%= edt.strftime("%I:%M %p") %> Eastern Standard Time(EDT)</i>
+  <i><%= edt.strftime("%I:%M %p") %> EST</i>
 </p>
-
+  </div>
 <p>
-  <% edtend = @event.end_at + 3.hours %>
-  <% ti = (@event.end_at - @event.start_at)/60 %>
-    <b>Duration:</b><%= ti.floor %> minutes
+  <% duration = (@event.end_at - @event.start_at)/60 %>
+  <b>Duration:</b><div style="margin-left:30px"><%= duration.floor %> minutes</div>
 </p>
 <p>
-  <b>More details:</b>
+  <b>More details:</b>  
+  <div >
   <% if @event.desc.present? %>
     <%= simple_format @event.desc.gsub(/\n/, '<br>') %>
-  <% end %>
+  <% else %>
+	<br>No additional details		  
+<% end %>
 </p>
+<%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
 <hr>
 <p>
   <div style= "text-align:left" >
