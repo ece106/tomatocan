@@ -7,6 +7,32 @@ class PurchaseTest < ActiveSupport::TestCase
     @merchandise = merchandises(:one)
   end
 
+  # Testing associations
+  # This is like testing rails itself. So I just test the FK value in respect
+  # to belongs_to (optional).
+
+  test "purchase user_id should equal user.id" do
+    assert_equal @user.id, @purchase.user_id
+  end
+
+  test "purchase merchandise_id should equal merchandise.id" do
+    merchandise              = merchandises(:eight)
+    @purchase.merchandise_id = 1
+    assert_equal merchandise.id, @purchase.merchandise_id
+  end
+
+  test "purchase user_id can be nil" do
+    @purchase.user_id = nil
+    assert_nil @purchase.user_id
+  end
+
+  test "purchase merchandise_id can be nil" do
+    @purchase.merchandise_id = nil
+    assert_nil @purchase.merchandise_id
+  end
+
+  # Testing Validations
+
   [:author_id, :pricesold, :authorcut ].each do |field|
     test "#{field.to_s}_must_not_be_empty" do
       purchase = Purchase.new
@@ -15,6 +41,8 @@ class PurchaseTest < ActiveSupport::TestCase
       refute_empty purchase.errors[field]
     end
   end
+
+  # Testing save_with_payment method
 
   test "check if book_id or merchandise_id is blank" do
     purchase = Purchase.new
@@ -210,6 +238,7 @@ class PurchaseTest < ActiveSupport::TestCase
   # We'll create a couple of mock classes to simulate Stripe classes.
   # We should not really call Stripe from tests.
   # Consider using a gem like stripe-ruby-mock for the future.
+
   class CustomerMock
     attr_accessor :id, :source, :description, :email
 
