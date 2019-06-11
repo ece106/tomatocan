@@ -1,6 +1,5 @@
 ul {
   list-style-type: circle;
-  /*margin-left: 0 auto;*/
 }
 #content-container {
     width: 640px; 
@@ -16,23 +15,13 @@ ul {
     max-width: 640px; 
     height: auto;
     margin: 0 auto;
-    /*position: relative;*/
-}
-p {
-  /*margin-left: 10px;*/
 }
 
-/*.content-heading a {
-    text-align: center;
-}
-*/.content-heading {
+.content-heading {
     width: 640px; 
     height: auto;
     margin: 0 auto;
-   /* padding: 10px;*/
-    font-size: 1.7em;/*
-    position: relative;*/
-    /*text-align: center;*/
+    font-size: 1.7em;
 }
 
 li {
@@ -316,19 +305,11 @@ input[type=submit] {
 
 .toggle:after {
   content: '\▾';
-  /*content: "▸";*/
   color: white;
   font-weight: bold;
   float: right;
   margin-left: 5px;
 }
-
-/*.toggle .collapsed:after{
-  content: "\2212";
-  
-}*/
-
-/*content: "▾";*/
 
 @media only screen and (max-width: 600px) {  /* mobile */
   
@@ -367,7 +348,6 @@ h4 {
 
 .toggle:after {
   content: '\▼';
-  /*content: "▸";*/
   color: white;
   font-weight: bold;
   float: right;
@@ -398,7 +378,6 @@ h4 {
 
 .toggle:after {
   content: '\▼';
-  /*content: "▸";*/
   color: white;
   font-weight: bold;
   float: right;
