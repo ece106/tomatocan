@@ -4,6 +4,9 @@ ul {
   list-style-type: circle;
 }
 #content-container {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     width: 640px; 
     height: auto;
     margin: 0 auto;
@@ -11,8 +14,10 @@ ul {
     word-wrap: break-word;
 }
 
-
 .content-container {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     display: block;
     max-width: 640px; 
     height: auto;
@@ -20,6 +25,9 @@ ul {
 }
 
 .content-heading {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     width: 640px; 
     height: auto;
     margin: 0 auto;
@@ -30,13 +38,11 @@ li {
   margin-left: 0px;
 }
 
-
-
-* {
+/** {
     box-sizing: border-box;
     font-family: 'Open Sans',sans-serif;
     font-weight: 300;
-}
+}*/
 
 a {
     text-decoration: none;
@@ -226,13 +232,16 @@ ul {
     }
   
     li {
-        margin: .5em 0;
+        /*margin: .5em 0;*/
       
        a.toggle  {
             width: 70%;
             margin: 0 auto;
             /*float: left;*/
             /*margin: auto;*/
+            box-sizing: border-box;
+            font-family: 'Open Sans',sans-serif;
+            font-weight: 300;
             font-weight: bold;
             display: block;
             margin-bottom: 10px;
@@ -264,23 +273,37 @@ a {
 }
 
 h2 {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     font-size: 2.5em;
     padding-left: 14px;
 }
 h4 {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     padding-left: 14px;
 }
 h5 {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     font-size: 1.2em;
 }
 p.email-us {
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     text-align: center;
     padding: 1em;
 
 }
 
 input[type=text] {
-
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
     padding:5px; 
     border:2px solid #ccc; 
     -webkit-border-radius: 5px;
@@ -290,7 +313,9 @@ input[type=text] {
 
 input[type=text]:focus {
     border-color:#333;
-
+box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: 300;
 }
 
 input[type=submit] {
@@ -314,7 +339,7 @@ input[type=submit] {
 
 @media only screen and (max-width: 600px) {  /* mobile */
   
-a.toggle {
+.toggle {
     width: 280px;
     font-size: 1em;
 }
