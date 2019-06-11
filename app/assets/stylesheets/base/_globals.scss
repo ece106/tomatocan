@@ -12,12 +12,14 @@ body {
     display: flex !important;
     min-height: 100vh !important;
     flex-direction: column !important;
-	overscroll-behavior: none !important;
+  overscroll-behavior: none !important;
 }
 //Wrapper for footer alignment
 main {
     flex: 1 !important;
 }
+
+
 
 //Styles text-heavy pages like FAQ and ToS. Needs to be moved to their specific CSS because it interferes with navigation styling. 
 /*li {
@@ -27,7 +29,7 @@ main {
 
 //Prevents textareas from being resized out of their columns
 textarea {
-	resize: vertical;
+  resize: vertical;
 }
 
 //Gives a drop shadow to make text readable when we put it over an image
