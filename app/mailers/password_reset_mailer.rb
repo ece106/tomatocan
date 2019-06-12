@@ -3,7 +3,7 @@ class PasswordResetMailer < ApplicationMailer
 
   def password_reset(user)
     @user = user
-    @url = edit_user_password_url(host: 'crowdpublish.TV')
+    @url = user_changepassword_url(@user.permalink)
     mail(to: @user.email, subject: "Password Reset With Crowdpublish.TV")
   end
 end
