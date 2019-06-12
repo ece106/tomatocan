@@ -1,9 +1,10 @@
 require 'test_helper'
 
-class WelcomeMailerTest < ActionMailer::TestCase
+class UserMailerTest < ActionMailer::TestCase
   # test "the truth" do
   #   assert true
   # end
+  #
   @user = users(:one)
   test "welcome email sends" do
     WelcomeMailer.welcome_email(@user).deliver_later

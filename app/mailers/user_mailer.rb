@@ -1,5 +1,12 @@
-class PasswordResetMailer < ApplicationMailer
-  default from: "crowdpublishtv.star@gmail.com"
+class UserMailer < ApplicationMailer
+
+
+  def welcome_email(user)
+    @user = user
+    @url = home_url(host:'crowdpublish.TV')
+    mail(to: @user.email, subject: "Welcome")
+  end
+
 
   def password_reset(user)
     @user = user
@@ -7,3 +14,4 @@ class PasswordResetMailer < ApplicationMailer
     mail(to: @user.email, subject: "Password Reset With Crowdpublish.TV")
   end
 end
+
