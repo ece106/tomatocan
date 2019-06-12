@@ -29,7 +29,9 @@ class ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 end
-
+class ActionMailer::TestCase
+  fixtures :all
+end
 class ActiveSupport::TestCase
   fixtures :all
   # Carrierwave setup and teardown

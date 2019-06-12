@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
-<tilte>Welcome</tilte>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-
+  <title>Welcome to crowdpublish.TV</title>
 </head>
 <body>
-<p> Welcome <%=@username%>, thank you for signing up with crowdpublush.TV. Visit us at <%=@url%></p>
+<p> Welcome to crowdpublish.TV. <br><br>Thank you  <%=@user.name%>, for signing up with crowdpublish.TV.<br><br>
+  Visit us at <a href = "<%=@url%>">crowdpublish.TV</a><br><br>
+Sincerely, <br><br>
+  crowdpublish.TV
+<!--  <img src = "../../../app/assets/images/maroonLogo.png" alt ="Star"/>-->
+</p>
 </body>
 <footer>
-
 </footer>
 </html>

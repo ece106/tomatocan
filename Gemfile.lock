@@ -777,6 +777,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    childprocess (1.0.1)
+      rake (< 13.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -797,6 +799,7 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    docile (1.3.1)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     dry-inflector (0.1.2)
@@ -1147,11 +1150,19 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
+    selenium-webdriver (3.142.3)
+      childprocess (>= 0.5, < 2.0)
+      rubyzip (~> 1.2, >= 1.2.2)
     signet (0.11.0)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    simplecov (0.16.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     socksify (1.7.1)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -1230,6 +1241,8 @@ DEPENDENCIES
   rails_real_favicon
   railties (= 5.2.0)
   sass-rails (~> 5.0.7)
+  selenium-webdriver
+  simplecov
   stripe
   stripe-ruby-mock
   turbolinks
