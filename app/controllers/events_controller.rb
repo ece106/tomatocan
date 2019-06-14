@@ -11,7 +11,12 @@ class EventsController < ApplicationController
   end
   # GET /events/1.json
   def show
+  	puts ("first line") ##########
+  	puts ("first line") ##########
+  	puts ("first line") ##########
+  	#puts (Event.find(params[:id])) ##########
     @event = Event.find(params[:id])
+    puts (@event.usrid) ##########
     @user = User.find(@event.usrid)
     @rsvp = Rsvpq.new
     @rsvpusers = @event.users
@@ -19,6 +24,9 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
+    puts ("first line") ##########
+  	puts ("first line") ##########
+  	puts ("first line") ##########  
     end
   end
 
@@ -61,6 +69,8 @@ class EventsController < ApplicationController
       end
     end
   end
+
+
 
   private
 
