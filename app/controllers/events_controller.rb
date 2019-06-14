@@ -11,13 +11,14 @@ class EventsController < ApplicationController
   end
   # GET /events/1.json
   def show
+
   	puts ("first line") ##########
   	puts ("first line") ##########
   	puts ("first line") ##########
-  	#puts (Event.find(params[:id])) ##########
     @event = Event.find(params[:id])
-    puts (@event.usrid) ##########
+    puts (@event.name) ##########
     @user = User.find(@event.usrid)
+    puts @user.name
     @rsvp = Rsvpq.new
     @rsvpusers = @event.users
     @rsvps = @event.rsvpqs

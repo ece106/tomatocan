@@ -12,37 +12,43 @@ class EventsControllerTest < ActionController::TestCase
     #     assert_response :success
     # end
 
+    #  test "should recognize events" do
+    #      assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
+    # end
+
     #show
-     test "should find event user" do
-        get :show, params: {id: @event.id}
-        assert_equal(@event.id, 1, msg = nil)
-        #assert_response :success
-    end
-
     test "should find event" do
-        #@event = events(:one)
-        get :show, params: {id: @user.id}
-        #assert_equal(@user.id, 1, msg = nil)
+        #sign_in users(:one)
+        get :show, params: {id: @event}
         assert_response :success
+
+        id = @event.usrid
+        assert_equal(id, 1, msg = nil)
+        #event.usrid==1
+        #event.id==980190962
     end
 
-   
+    test "should find user" do
+        get :show, params: {id: @event}
+        #assert_response :success
+        
+        id = @user.id
+        assert_equal(id, 1, msg = nil)
+    end
 
     test "should initalize new rsvp" do
-         #sign_in users(:one)
-         get :show, params: {event: 'one', user: 'one'}
-         assert_response :success
+         #get :show, params: {id: @user.id}
+         assert_equal 1, rsvpqs(:one).guests
+         #assert_response :success
     end
 
     test "should initialize rsvpusers as the event user" do
 
     end
 
-    test "should recognize events"do
-         assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
+    test "should initialize rsvps as event rsvps" do
+        
     end
-
-
 
     #new
     test "should get new event" do
