@@ -1,6 +1,7 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
 require 'capybara/apparition'
+require 'stripe'
 #require 'selenium-webdriver'
 #options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless']) don't use this
 #@driver = Selenium::WebDriver.for :firefox
@@ -19,7 +20,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     setup do
     visit ('http://localhost:3000/')
 
-    def signUpPurchaser()
+  def signUpPurchaser()
       visit ('http://localhost:3000/')
       click_on('Sign Up', match: :first)
       fill_in(id:'user_name', with: 'purchaser')
@@ -37,13 +38,31 @@ class UsersTest < ActionDispatch::IntegrationTest
       fill_in(id:'user_password', with: 'password')
       click_on(class: 'form-control btn-primary')
   end
+
+  def signUpFixture()
+    visit ('http://localhost:3000/')
+    click_on('Sign Up', match: :first)
+    fill_in(id:'user_name', with: @purchaser.name)
+    fill_in(id:'user_email', with: @purchaser.email)
+    fill_in(id:'user_permalink', with: @purchaser.permalink)
+    fill_in(id:'user_password', with: 'password' , :match => :prefer_exact)
+    fill_in(id:'user_password_confirmation', with:'password')
+    click_on(class: 'form-control btn-primary')
+    #click_on('Sign out')
+end
+def signInFixture()
+    visit ('http://localhost:3000/')
+    click_on('Sign In', match: :first)
+    fill_in(id:'user_email', with: @purchaser.email)
+    fill_in(id:'user_password', with: 'password')
+    click_on(class: 'form-control btn-primary')
+end
         
         @time=Time.now
     end
 
     test 'Should_buy_from_user' do
-        signUpPurchaser()
-        signInPurchaser()
+        
         cardToken = Stripe::Token.create({
           card: {
             number: "4242424242424242",
@@ -57,10 +76,10 @@ class UsersTest < ActionDispatch::IntegrationTest
                                           :email => 'pur@gmail.com'
                                           )
         customer.save
+        
+        signUpPurchaser()
+        signInPurchaser()
 
-        # puts (@purchaser.stripe_customer_token)
-
-        # puts("signed in")
         click_on('Discover Talk Show Hosts')
         click_link(@seller.name)
         puts(@seller.name + " seller name")
@@ -68,9 +87,49 @@ class UsersTest < ActionDispatch::IntegrationTest
         puts ("clicked")
         fill_in(id:'card_number', with:'4242424242424242')
         #select("2020", from: 'card_year')
-        click_on('Buy now')
+        click_on('Purchase')
 
-        assert_text 'You have successfully completed the purchase!'
+        assert_text 'Your have successfully completed the purchase!'
     end
+
+    test 'signing up a fixture' do
+      puts @purchaser.encrypted_password
+      signUpFixture()
+      assert_text('Email has already been taken')
+    end
+
+    test 'Testing purchase created by a fixture' do
+        
+      cardToken = Stripe::Token.create({
+        card: {
+          number: "4242424242424242",
+          exp_month: 8,
+          exp_year: 2060,
+          cvc: "123"
+        }
+      })
+      customer = Stripe::Customer.create(
+                                        :description => @purchaser.name,
+                                        :email => @purchaser.email
+                                        )
+      customer.save
+      @purchaser.update_column(:stripe_customer_token, customer.id)
+      puts (@purchaser.stripe_customer_token)
+      
+      signInFixture()
+
+      assert_text 'Signed in successfully.'
+
+      # puts("signed in")
+      # click_on('Discover Talk Show Hosts')
+      # click_link(@seller.name)
+      # puts(@seller.name + " seller name")
+      # click_on('Buy for $1.50')
+      # puts ("clicked")
+      # fill_in(id:'card_number', with:'4242424242424242')
+      # click_on('Purchase')
+
+      # assert_text 'Your have successfully completed the purchase!'
+  end
 
   end

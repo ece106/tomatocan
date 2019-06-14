@@ -18,11 +18,14 @@ class PurchasesController < ApplicationController
     def new
       if(params[:pricesold].present?) # Donation being made
         @purchase = Purchase.new
+        puts "new donation created"
       elsif(params[:merchandise_id].present?) #Purchase being made
         @merchandise = Merchandise.find(params[:merchandise_id])
         @purchase = @merchandise.purchases.new
+        puts "new purchase created"
       end
       if user_signed_in?
+        puts "user is signed in - new"
         if current_user.stripe_customer_token.present?
           customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
           sourceid = customer.default_source
