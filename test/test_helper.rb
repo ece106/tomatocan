@@ -16,6 +16,7 @@ SimpleCov.start 'rails' do
   add_filter '/test/' # for minitest
 end
 
+
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL

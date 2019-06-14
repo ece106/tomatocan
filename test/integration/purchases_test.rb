@@ -44,19 +44,19 @@ class UsersTest < ActionDispatch::IntegrationTest
     test 'Should_buy_from_user' do
         signUpPurchaser()
         signInPurchaser()
-        # cardToken = Stripe::Token.create({
-        #   card: {
-        #     number: "4242424242424242",
-        #     exp_month: 8,
-        #     exp_year: 2060,
-        #     cvc: "123"
-        #   }
-        # })
-        # customer = Stripe::Customer.create(
-        #                                   :description => purchaser,
-        #                                   :email => pur@gmail.com
-        #                                   )
-        # customer.save
+        cardToken = Stripe::Token.create({
+          card: {
+            number: "4242424242424242",
+            exp_month: 8,
+            exp_year: 2060,
+            cvc: "123"
+          }
+        })
+        customer = Stripe::Customer.create(
+                                          :description => 'purchaser',
+                                          :email => 'pur@gmail.com'
+                                          )
+        customer.save
 
         # puts (@purchaser.stripe_customer_token)
 
@@ -67,8 +67,8 @@ class UsersTest < ActionDispatch::IntegrationTest
         click_on('Buy for $1.50')
         puts ("clicked")
         fill_in(id:'card_number', with:'4242424242424242')
-        select("2020", from: 'card_year')
-        click_on('Purchase')
+        #select("2020", from: 'card_year')
+        click_on('Buy now')
 
         assert_text 'You have successfully completed the purchase!'
     end

@@ -43,7 +43,7 @@ class PurchasesController < ApplicationController
       if @purchase.merchandise_id?
         puts "1" ########### print 1 if the purchase is a merchandise
         @merchandise = Merchandise.find(@purchase.merchandise_id)
-        puts @merchandise.name
+        puts @merchandise.merchpdf.present?
         if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
           puts "2" ############## print 2 if the merhandise is any of the above
           if @purchase.save_with_payment
@@ -71,6 +71,7 @@ class PurchasesController < ApplicationController
             end
             #pdf
             if @merchandise.merchpdf.present?
+              puts "3 merch pdf "
               filename = @merchandise.merchpdf.to_s.split('/')
               filename = filename[filename.length-1]
               data = open("#{@merchandise.merchpdf.to_s}") 
