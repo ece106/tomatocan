@@ -253,4 +253,9 @@ end
   assert_response :success
 end
 
+  test "create method sends welcome email " do
+    get :create, params: { user: { name:'username', email: 'email@email.com', password: "password", password_confirmation: "password", permalink: 'plink' } }
+    database_mailbox = ActionMailer::Base.deliveries.size
+    assert_equal 1, database_mailbox
+  end
 end
