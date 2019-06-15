@@ -34,10 +34,14 @@ class EventsController < ApplicationController
 
   # POST /events.json
   def create
-    @event = current_user.events.build(event_params)
-
+    event = current_user.events.build(event_params)
+    user = User.find(event.usrid)
+    user_followers = user.followers
     respond_to do |format|
-      if @event.save
+      if event.save
+        user_followers.each do |recipient|
+          EventMailer.new_event(recipient, event,user).deliver_now
+        end
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
       else
