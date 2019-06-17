@@ -96,7 +96,7 @@ test "Should_change_password" do
     click_on("Save Profile")
     click_on('Sign out')
     click_on('Sign In', match: :first)
-    fill_in(id:'user_email', with: 'e@gmail.com')
+    fill_in(id:'user_email', with: 'fake@fake.com')
     fill_in(id:'user_password', with: 'password1')
     click_on(class: 'form-control btn-primary')
     assert_text('Offer Rewards & Receive Donations')
@@ -142,6 +142,7 @@ test 'Should_fail_change_password' do
 end
 #These tests are in progress
 test 'Should_see_product' do
+    click_on('Sign out')
     click_on('Discover Talk Show Hosts')
     click_link('Phineas')
     assert_text('user1 product')
@@ -350,7 +351,16 @@ end
         assert_text('Permalink is invalid')
 	end
     test "Should not show sales when not signed into stripe" do
-        click_on(text: 'Phineas',:match => :first)
+        click_on('Sign out')
+        click_on('Sign Up', match: :first)
+        fill_in(id:'user_name', with: 'name')
+        fill_in(id:'user_email', with: 'e@gmail.com')
+        fill_in(id:'user_permalink', with:'username')
+        fill_in(id:'user_password', with: 'password', :match => :prefer_exact)
+        fill_in(id:'user_password_confirmation', with:'password')
+        click_on(class: 'form-control btn-primary')
+        visit ('/')
+        click_on(text: 'name',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text:'Sales')
         assert_text('Sales figures will be displayed on this page after you connect to Stripe.')
