@@ -33,6 +33,7 @@ class PurchasesController < ApplicationController
           @last4 = card.last4
           @expmonth = card.exp_month
           @expyear = card.exp_year
+          puts @last4
         end
       end
     end
