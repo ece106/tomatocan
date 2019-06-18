@@ -15,11 +15,11 @@
 <div>
 	<div class=".col-12 .col-md-8">
 		<h1><%= @event.name %></h1>
+	</div>
 
 	<% if user_signed_in? %>
 	      <% if @event.usrid == current_user.id %>
-		      <%= link_to "Edit", edit_event_path(@event) %> |
-		      <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+		      <%= link_to "Edit Show", edit_event_path(@event) %> 
 	      <% end %>
       <% end %>
 
@@ -40,12 +40,13 @@
  <br>
 <p>
 <b>Starts at:</b>
-  <% edt = @event.start_at + 3.hours %>
+<% edt = @event.start_at + 3.hours %>
+<% edtend = @event.end_at + 3.hours %>
   <div style="margin-left:5px">
   <%= @event.start_at.strftime("%B %d, %Y") %> 
   <br>
   <%= @event.start_at.strftime("%I:%M %p")%> PDT
-   /<%= edt.strftime("%I:%M %p") %> EDT 
+  / <%= edt.strftime("%I:%M %p") %> EDT
 </p>
 
   </div>
@@ -62,6 +63,7 @@
 	  No additional details 		  
 <% end %>
 </p>
+<br>
   </div>
 <%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
 
@@ -73,7 +75,7 @@
       <br>
       Invite friends & RSVP for this event! <br>
       <% surl = "http://www.crowdpublish.tv/" + @user.permalink %>
-      <button id="shareBtn" class="showButton">share</button>		
+      <button id="shareBtn" class="showButton">SHARE</button>		
       <div id="pp" class="pop">
 	     
 	     <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= surl %>" target="_blank">
@@ -113,14 +115,15 @@
 	 </div>
  <% end %>
 
+ RSVP for this event: <br>
  <%= f.hidden_field :event_id, :value => @event.id %>
  <% if user_signed_in? %>
 	 <%= f.hidden_field :user_id, :value => current_user.id %>
  <% else %>
 	 
-	 <br><%= f.text_field :email, placeholder: "Enter email" %>
+	 <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
  <% end %>
- <%= f.submit "RSVP NOW" %>
+ <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
  <% end %><br>
 
 	</div>
