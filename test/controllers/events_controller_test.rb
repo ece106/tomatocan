@@ -55,7 +55,10 @@ class EventsControllerTest < ActionController::TestCase
   test "create should send email to followers" do
     sign_in @user
     post :create , params: {event: {start_at: "2010-02-11 11:02:57", usrid: @user.id, name:@user.name}}
+    email = ActionMailer::Base.deliveries.last
+    assert_equal [@user.email.to_s] , email.from
     assert_equal 1, ActionMailer::Base.deliveries.size
+
   end
 #write a test for rsvpq for show
 end

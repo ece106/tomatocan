@@ -256,6 +256,9 @@ end
   test "create method sends welcome email " do
     get :create, params: { user: { name:'username', email: 'email@email.com', password: "password", password_confirmation: "password", permalink: 'plink' } }
     database_mailbox = ActionMailer::Base.deliveries.size
+    email = ActionMailer::Base.deliveries.last
     assert_equal 1, database_mailbox
+    assert_equal ["email@email.com"] , email.to
+    assert_equal ["crowdpublishtv.star@gmail.com"], email.from
   end
 end
