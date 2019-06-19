@@ -97,18 +97,11 @@
       </div>
       <div>
         <% facebookurl = "http://www.crowdpublish.tv/" + @user.permalink %>
-        <div class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href= "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-            <% title = "CrowdPublishTV" %>
-            <% description = "Doing Purposeful Work? Host Interactive Livestream Discussions To Engage With Your Audience" %>
-            <%= social_share_button_tag("Share to Facebook", desc: description, :url => facebookurl) %>
-            <div>
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="RSVP for <%= @user.name %>'s livestream on <%=  @event.name + "," %> on <%= @event.start_at.strftime("%B %d at %I:%M %p")%> PDT (<%= edt.strftime("%I:%M %p") %> EDT)" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        <div>
-
-              <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-              <script type="IN/Share" data-url="<%= facebookurl %>" data-counter="top"></script>
-        </div>
+        <% shareurl = "http://www.crowdpublish.tv/" + @user.permalink %>
+        <% image = "http://www.crowdpublish.tv/assets/starIcon-6366711ec5372faf96c1dd49077ad0d40aaf5522dbc8cb0b6cbd4850dc7470fa.png" %>
+        <%= social_share_button_tag( "Share to Facebook", desc: event.desc, :url => shareurl ) %>
+        <%= social_share_button_tag( event.desc, :url => shareurl, "data-twitter-hashtags"=> "CrowdPublishTV", :allow_sites => %w(twitter)) %>
+        <%= social_share_button_tag( event.desc, :image => image, :url => shareurl, :allow_sites => %w(linkedin)) %>
       </div> 
     <div class= "email-events">
       Or copy & paste this message in an email to your colleagues: <br><br>
