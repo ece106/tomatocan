@@ -28,13 +28,14 @@
             </div>
             <br class="visible-xs-block">
             <div class="col-sm-2">
-                <p class="f-header">Share</p>
-                <% description = "Broadcast live discussions about what you are doing to change the world and participate in intellectual discussions to broaden your knowledge!" %>
-                <% url = "http://www.crowdpublish.tv" %>
-                <% image = "http://www.crowdpublish.tv/assets/starIcon-6366711ec5372faf96c1dd49077ad0d40aaf5522dbc8cb0b6cbd4850dc7470fa.png" %>
-                <%= social_share_button_tag( "Share to Facebook", desc: description, :url => url, :allow_sites => %w(facebook)) %>
-                <%= social_share_button_tag( description, :url => url, "data-twitter-hashtags"=> "CrowdPublishTV", :allow_sites => %w(twitter)) %>
-                <%= social_share_button_tag( description, :image => image, :url => url, :allow_sites => %w(linkedin)) %>
+                <p class="f-header">Social</p>
+                <span class="fb-like" data-href="http://www.crowdpublish.tv/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></span><br>
+                <span>
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Doing Purposeful Work? Host Interactive Livestream Discussions To Engage With Your Audience" data-url="http://www.crowdpublish.tv/" data-hashtags="CrowdPublishTV" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </span>
+            </div>
+            <div class="col-sm-3 pull-right" id="fb">
+                
             </div>
             <div class="col-sm-3 pull-right" id="copyright">
                 <small>&copy; 2019 RoleModel Enterprises, LLC</small>
