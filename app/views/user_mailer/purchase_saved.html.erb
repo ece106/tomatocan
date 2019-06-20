@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Purchase Confirmed</title>
+  <%= stylesheet_link_tag "mailer" %>
+</head>
+<body>Your purchase has been confirmed,<br><br>
+<p>Thank you <%=@user.name%> for purchasing <%=@merchandise.name%>.<br><br>
+  Your purchase totals to $<%=@purchases.price_sold%>.<br><br>
+  Sincerely, <br><br>
+  crowdpublish.TV<br>
+  <%= image_tag 'maroonLogo.png'%>
+</p>
+</body>
+<footer>
+</footer>
+</html>

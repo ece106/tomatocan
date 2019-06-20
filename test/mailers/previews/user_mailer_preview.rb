@@ -3,4 +3,8 @@ class UserMailerPreview < ActionMailer::Preview
   def welcome_email
     UserMailer.with(user: User.first).welcome_email(User.first)
   end
+  def purchase_saved
+  end
+  def donation_saved
+  end
 end
