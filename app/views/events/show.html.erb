@@ -20,8 +20,8 @@
 
     <% if user_signed_in? %>
       <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit", edit_event_path(@event) %> |
-        <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+        <%= link_to "Edit", edit_event_path(@event) %> 
+        <!---<%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |--->
       <% end %>
     <% end %>
 
