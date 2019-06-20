@@ -75,7 +75,6 @@ class PurchasesController < ApplicationController
             end
             #pdf
             if @merchandise.merchpdf.present?
-              puts "3 merch pdf "
               filename = @merchandise.merchpdf.to_s.split('/')
               filename = filename[filename.length-1]
               data = open("#{@merchandise.merchpdf.to_s}") 

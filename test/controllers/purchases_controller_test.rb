@@ -272,6 +272,6 @@ class PurchasesControllerTest < ActionController::TestCase
       @seller.update_column(:id, 143)
       post :create, params: {purchase: {email: @purchaser.email, merchandise_id: merchandises(:one), user_id: @purchaser.id, author_id: @seller.id, stripe_customer_token: @purchaser.stripe_customer_token,stripe_card_token: cardToken['id'], pricesold: 1.5} }
       assert_redirected_to user_profile_path(users(:one).permalink)
-    end 
+    end
 
 end

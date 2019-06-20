@@ -45,8 +45,8 @@ class UsersTest < ActionDispatch::IntegrationTest
     fill_in(id:'user_name', with: @purchaser.name)
     fill_in(id:'user_email', with: @purchaser.email)
     fill_in(id:'user_permalink', with: @purchaser.permalink)
-    fill_in(id:'user_password', with: 'password' , :match => :prefer_exact)
-    fill_in(id:'user_password_confirmation', with:'password')
+    fill_in(id:'user_password', with: "user1234" , :match => :prefer_exact)
+    fill_in(id:'user_password_confirmation', with:"user1234")
     click_on(class: 'form-control btn-primary')
     #click_on('Sign out')
 end
@@ -54,14 +54,14 @@ def signInFixture()
     visit ('http://localhost:3000/')
     click_on('Sign In', match: :first)
     fill_in(id:'user_email', with: @purchaser.email)
-    fill_in(id:'user_password', with: 'password')
+    fill_in(id:'user_password', with: "user1234")
     click_on(class: 'form-control btn-primary')
 end
         
         @time=Time.now
     end
 
-    test 'Should_buy_from_user' do
+    test 'Should_buy_from_user_error' do #card source not present
         signUpPurchaser() #signing up a new user
 
         cardToken = Stripe::Token.create({  #create Stripe account for new user
@@ -79,20 +79,20 @@ end
                                           )
         customer.save
 
-        signInPurchaser() #sign in purchaser  
-
+        signInPurchaser()
         click_on('Discover Talk Show Hosts')
         click_link(@seller.name)
         puts(@seller.name + " seller name")
         click_on('Buy for $1.50!')
         puts ("clicked")
-        fill_in(id:'card_number', with:'4242 4242 4242 4242')
+        #fill_in(id:'purchase_email', with:'pur@gmail.com')
+        fill_in(id:'card_number', with:'4242424242424242')
         fill_in(id:'card_code', with:'123')
-        select("1 - January", from: 'card_month')
-        select("2023", from: 'card_year')
+        #select('1 - January', from: 'card_month')
+        select('2023', from: 'card_year')
         click_on('Purchase')
 
-        assert_text 'Your have successfully completed the purchase!'
+        assert_text 'Your order did not go through. Try again.'
     end
 
     test 'signing up a fixture' do
@@ -101,39 +101,38 @@ end
       assert_text('Email has already been taken')
     end
 
-  #   test 'Testing purchase created by a fixture' do
+    test "purchase_created_by_a_fixture" do
         
-  #     cardToken = Stripe::Token.create({
-  #       card: {
-  #         number: "4242424242424242",
-  #         exp_month: 8,
-  #         exp_year: 2060,
-  #         cvc: "123"
-  #       }
-  #     })
-  #     customer = Stripe::Customer.create( 
-  #                                       :source => cardToken,
-  #                                       :description => @purchaser.name,
-  #                                       :email => @purchaser.email
-  #                                       )
-  #     customer.save
-  #     @purchaser.update_column(:stripe_customer_token, customer.id)
-  #     puts (@purchaser.stripe_customer_token)
+      cardToken = Stripe::Token.create({
+        card: {
+          number: "4242424242424242",
+          exp_month: 8,
+          exp_year: 2060,
+          cvc: "123"
+        }
+      })
+      customer = Stripe::Customer.create( 
+                                        :source => cardToken,
+                                        :description => @purchaser.name,
+                                        :email => @purchaser.email
+                                        )
+      customer.save
+      @purchaser.update_column(:stripe_customer_token, customer.id)
+      puts (@purchaser.stripe_customer_token)
       
-  #     signInFixture()
+      signInFixture()
+      puts("signed in")
+      click_on('Discover Talk Show Hosts')
+      click_link(@seller.name)
+      puts(@seller.name + " seller name")
+      click_on('Buy for $1.50')
+      puts ("clicked")
+      #find(:value, "Buy now").click
+      within '.buyexistingcard' do
+        click_button('Buy now')
+      end
 
-  #     assert_text 'Signed in successfully.'
-
-  #     # puts("signed in")
-  #     # click_on('Discover Talk Show Hosts')
-  #     # click_link(@seller.name)
-  #     # puts(@seller.name + " seller name")
-  #     # click_on('Buy for $1.50')
-  #     # puts ("clicked")
-  #     # fill_in(id:'card_number', with:'4242424242424242')
-  #     # click_on('Purchase')
-
-  #     # assert_text 'Your have successfully completed the purchase!'
-  # end
-
+      assert_text 'You have successfully completed the purchase!'
   end
+
+end
