@@ -8,9 +8,10 @@
 </head>
 <body>Your purchase has been confirmed,<br><br>
 <p>Thank you <%=@user.name%> for purchasing <%=@merchandise.name%>.<br><br>
-  Your purchase totals to $<%=@purchases.price_sold%>.<br><br>
+  Your purchase totals to $<%=@purchase.pricesold%>.<br><br>
   Sincerely, <br><br>
   crowdpublish.TV<br>
+  Visit us at again at <a href= '<%=@url%>'>crowdpublish.TV</a>
   <%= image_tag 'maroonLogo.png'%>
 </p>
 </body>
