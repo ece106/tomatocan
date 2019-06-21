@@ -14,8 +14,41 @@ hr {
 }
 
 .email-events {
-    padding-top: 20px;
+    padding: 5px;
 }
+
+.pop {
+	display: none;
+	width: 75px;
+	background-color: #0077b5;
+	text-align: center;
+	position: relative;
+	margin-top: 10px;
+	
+}
+
+.pop:after{
+	content: "";
+	position: absolute;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent #3B5998 transparent;
+	bottom: 100%;
+	left: 50%;
+	margin-left: -5px;
+	
+}
+    
+.showButton{
+	color: #fff;
+	background-color: #8C1D40;
+	border: #8C1D40;
+	padding: 2px 28px;
+}	  
+
+
+
+
 .rsvp-users {
     float: right;
 }
