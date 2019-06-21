@@ -8,13 +8,12 @@
                 <% end %>
         </div>
         <h1 id="heroTitle">JOIN OUR LIVESTREAMS </h1>
-        <h2 id="heroTitle">
-          <br> Tuesdays 6:30pm PDT / 9:30pm EDT - Learn Web Development
-          <br> Wednesdays 5pm PDT / 8pm EDT - Discussions on Faith
-          <br> Thursdays 7:30pm PDT / 10:30pm EDT - International Awareness
-          <br> Fridays 1pm PDT / 3pm EDT - Health & Wellness Topics<br><br>
+        <h2 id="haveAccount" style="font-size: 30px">
+          <br> Tuesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Tech Tuesday ', '/tech' %>
+          <br> Wednesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Discussions on Faith ', '/faith' %>
+          <br> Thursdays 7:30pm PDT / 10:30pm EDT - <%= link_to 'International Awareness ', '/international' %><br><br>
           <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %><br>
-          <br> Stay tuned for more weekly topics on Books, Innovation, & Environmental issues</h2>
+          <br> Stay tuned for more weekly topics on Books, the Environment, and Womens Issues</h2>
     </div><br><br>
     <!--Sign Up button-->
     <% if user_signed_in? %>

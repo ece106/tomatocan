@@ -1,0 +1,23 @@
+default: &default
+        adapter: postgresql
+        pool: 5
+        timeout: 5000
+
+development:
+        <<: *default
+        encoding: unicode
+        database: devdb
+        host: localhost
+        username: postgres
+        password: reborn2796
+
+test:
+        <<: *default
+        encoding: unicode
+        database: testdb
+        host: localhost
+        username: postgres
+        password: reborn2796
+
+production:
+        <<: *default
