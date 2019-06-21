@@ -7584,3 +7584,38 @@ Processing by EventsController#show as HTML
 Completed 200 OK in 375ms (Views: 191.5ms | ActiveRecord: 21.9ms)
 
 
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from <top (required)> at /home/niceship05/tomatocan/config/environment.rb:7)
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at bin/rails:4)
+Started GET "/" for 127.0.0.1 at 2019-06-21 00:49:46 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-06-20 18:49:46.561016')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-06-20 18:49:46.561016')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE (start_at > '2019-06-20 18:49:46.561016') ORDER BY start_at ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 12], ["OFFSET", 0]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered layouts/_maincalendar.html.erb (122.9ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (368.6ms)
+  Rendered application/_favicon.html.erb (4.8ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 483ms (Views: 448.3ms | ActiveRecord: 20.4ms)
+
+
+Started GET "/events/6" for 127.0.0.1 at 2019-06-21 00:49:50 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 6]]
+  Rendered events/show.html.erb within layouts/application (39.7ms)
+  Rendered application/_favicon.html.erb (9.4ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 199ms (Views: 103.8ms | ActiveRecord: 4.2ms)
+
+
