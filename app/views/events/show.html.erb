@@ -8,9 +8,11 @@
 <meta property="og:description" content="Host Livestream Discussions" />
 <% @title="CrowdPublish.tv" %>
 
-<div>
-    <p id="notice"><%= notice %></p>
-</div>
+    <% if user_signed_in? %>
+      <% if @event.usrid == current_user.id %>
+        <%= link_to "Edit", edit_event_path(@event) %> 
+      <% end %>
+    <% end %>
 
 <div>
 	<div class=".col-12 .col-md-8">
