@@ -43,12 +43,28 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     test "should initialize rsvpusers as the event user" do
-
+        
     end
 
     test "should initialize rsvps as event rsvps" do
         
     end
+
+    test "show render show view" do
+        get :show, params: {id: @event, format: :html}
+        assert_response :success 
+
+        get :show, params: {id: @event, format: :json}
+        assert_response :success 
+        #get :show, params: {}
+            #assert_redirected_to @event
+        #get 'show', :format => :json
+        #request.env["HTTP_ACCEPT"] = "application/json"
+        #request.env["CONTENT_TYPE"] = "application/json"
+        #get :show, to_param
+        #get :show
+        #assert_template :event
+    end    
 
     #new
     test "should get new event" do
