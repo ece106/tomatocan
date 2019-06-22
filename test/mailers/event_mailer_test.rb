@@ -9,7 +9,7 @@ class EventMailerTest < ActionMailer::TestCase
 
     event = Event.first_or_create
     mail = EventMailer.new_event(@recipient,event,@user)
-    assert_equal "Somone you follow has created an event", mail.subject
+    assert_equal "Someone you follow has created an event", mail.subject
     assert_equal [@recipient.email], mail.to
     assert_equal ["crowdpublishtv.star@gmail.com"], mail.from
   end

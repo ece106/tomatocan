@@ -6,6 +6,6 @@ class EventMailer < ApplicationMailer
   end
   def new_event
     @url = event_url(host:'crowdpublish.TV', id: @user.id)
-    mail(to: @recipient.email, subject: "Somone you follow has created an event")
+    mail(to: @recipient.email, subject: "Someone you follow has created an event")
   end
 end
