@@ -8,12 +8,6 @@
 <meta property="og:description" content="Host Livestream Discussions" />
 <% @title="CrowdPublish.tv" %>
 
-    <% if user_signed_in? %>
-      <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit", edit_event_path(@event) %> 
-      <% end %>
-    <% end %>
-
 <div>
 	<div class=".col-12 .col-md-8">
 		<h1><%= @event.name %></h1>
@@ -94,8 +88,8 @@
        return false;"> 
        <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px;" />
 			 </a>																																						
-			 <a href="https://twitter.com/intent/tweet?text=Watch <%= @user.permalink %>'s livestream: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> on: <%= surl %>" 
-			 onclick="window.open('https://twitter.com/intent/tweet?text=Watch <%= @user.permalink %> 's livestream: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> on:<%= surl %>', 
+			 <a href="https://twitter.com/intent/tweet?text=Join <%= @user.permalink %>'s livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= surl %>" 
+			 onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> 's livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= surl %>', 
 			 'newwindow', 
 			 'width=600,height=400,top=80,left=300'); 
 			 return false;"> 
