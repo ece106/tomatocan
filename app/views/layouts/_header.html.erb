@@ -14,15 +14,15 @@
 		</div>
 		<div class="collapse navbar-collapse" id="globalNavbar">
 			<ul class="nav navbar-nav">
-				<% if request.host == "crowdpublishtv.herokuapp.com" %> <!--If the navbar is being rendered in the heroku domain.. -->
-					<li class="nav-item"></li> <!-- ..use absolute routing in navbar.-->
+				<% if request.host == "crowdpublishtv.herokuapp.com" %> <!--If the navbar is being rendered in the crowdpublishtv.herokuapp.com secure server domain.. -->
+					<li class="nav-item"><%= link_to "Home", 'http://CrowdPublish.TV', :title => "About CrowdPublishTV" %></li> <!-- ..use absolute routing in navbar.-->
 					<li class="nav-item"><%= link_to "About", 'http://www.crowdpublish.tv/aboutus', :title => "About CrowdPublishTV" %></li>
-					<li class="nav-item"><%= link_to "Discover Talk Show Hosts", 'http://www.crowdpublish.tv/supportourwork', :title => "Browse Hosts"%></li>
+					<li class="nav-item"><%= link_to "Discover Previous Discussions", 'http://www.crowdpublish.tv/supportourwork', :title => "Browse Hosts"%></li>
 					<li class="nav-item"><%= link_to "FAQ", 'http://www.crowdpublish.tv/faq', :title => "Frequently Asked Questions" %></li>
-				<% else %> <!-- if the navbar is being rendered in from the crowdpublish domain or from localhost..-->
+				<% else %> <!-- if the navbar is being rendered in from the CrowdPublish.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", '/', :title => "Home" %></li>
 					<li class="<%=(current_page?('/aboutus') ? "nav-item active" : "nav-item")%>"><%= link_to "About", '/aboutus', :title => "About CrowdPublishTV" %></li>
-					<li class="<%=(current_page?('/supportourwork') ? "nav-item active" : "nav-item")%>"><%= link_to "Discover Talk Show Hosts", '/supportourwork', :title => "Browse Hosts" %></li>
+					<li class="<%=(current_page?('/supportourwork') ? "nav-item active" : "nav-item")%>"><%= link_to "Discover  Previous Discussions", '/supportourwork', :title => "Browse Hosts" %></li>
 					<li class="<%=(current_page?('/faq') ? "nav-item active" : "nav-item")%>"><%= link_to "FAQ", '/faq', :title => "Frequently Asked Questions" %></li>
 				<% end %>
 			</ul>
