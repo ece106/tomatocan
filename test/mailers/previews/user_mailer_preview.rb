@@ -4,15 +4,13 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.with(user: User.first).welcome_email
   end
   def purchase_saved
-    user = User.new(name: 'user', password: "userpassword", password_confirmation: "userpassword",
-             email: "emai@email.com", permalink: "perma")
+    user = User.last
     merch = Merchandise.first_or_create
     purch = Purchase.new(user: user, merchandise: merch)
     UserMailer.with(seller: User.first, user:user,purchase: purch,merchandise: merch).purchase_saved
     end
   def donation_saved
-    user = User.new(name: 'user', password: "userpassword", password_confirmation: "userpassword",
-                    email: "emai@email.com", permalink: "perma")
+    user = User.last
     purch = Purchase.new(user: user)
     UserMailer.with(seller: User.first, user:user,purchase:purch,).donation_saved
   end
