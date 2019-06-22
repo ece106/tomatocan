@@ -29,7 +29,7 @@
             <br class="visible-xs-block">
             <div class="col-sm-2">
                 <p class="f-header">Share</p>
-                <% url = "http://www.crowdpublish.tv/" %>
+                <% url = "http://www.crowdpublish.tv" %>
                 <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
                 <!-- Facebook Share -->
                 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
@@ -39,7 +39,7 @@
                 <!-- LinkedIn Share -->
                 <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.svg') %>"/></a>
                 <!-- Email Share -->
-                <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=Hi there!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Learn Web Development%0D%0AWednesdays 5pm PDT / 8pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness %0D%0AFridays 1pm PDT / 3pm EDT - Health and Wellness Topics%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A<%= url %>%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.svg') %>"> </a>
+                <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.svg') %>"></a>
             </div>
             <div class="col-sm-3 pull-right" id="fb">
                 
