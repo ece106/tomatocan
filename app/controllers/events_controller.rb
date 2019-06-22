@@ -40,7 +40,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if event.save
         user_followers.each do |recipient|
-          EventMailer.new_event(recipient, event,user).deliver_now
+          EventMailer.with(recipient: recipient, event: event,user: user).new_event.deliver_now
         end
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
