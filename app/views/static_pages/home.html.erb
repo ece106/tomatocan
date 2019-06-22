@@ -7,25 +7,13 @@
                       </div>
                 <% end %>
         </div>
-        <h1 id="heroTitle">JOIN OUR LIVESTREAMS </h1>
-        <h2 id="haveAccount" style="font-size: 30px">
+        <h1 id="heroTitle">JOIN OUR WEEKLY DISCUSSIONS </h1>
+        <h2 id="haveAccount" style="font-size: 30px; line-height: 150%">
           <br> Tuesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Tech Tuesday ', '/tech' %>
           <br> Wednesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Discussions on Faith ', '/faith' %>
           <br> Thursdays 7:30pm PDT / 10:30pm EDT - <%= link_to 'International Awareness ', '/international' %><br><br>
-          <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %><br>
-          <br> Stay tuned for more weekly topics on Books, the Environment, and Womens Issues</h2>
-    </div><br><br>
-    <!--Sign Up button-->
-    <% if user_signed_in? %>
-        <%= link_to "Offer Rewards", new_merchandise_path, :class => "btn btn-lg btn-primary" %>
-    <% else %>
-        <%= link_to 'Sign Up', "/signup", :class => "btn btn-lg btn-primary" %>
-    <% end %>
-    <!--Livestream button-->
-    <%= link_to 'Host A Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
-    <% if !user_signed_in? %>
-        <br><br><p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
-    <% end %>
+    </div>
+          <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %>
 </div>
 <div class=row id=scroll>
   <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
@@ -33,8 +21,9 @@
 <div class="row darkBlock" id="connectFans">
     <div class="col-md-5">
         <h2>Our Purpose</h2>
-        <p> Broadcast live discussions about what you're doing to change the world. Participate in intellectual discussions to broaden your knowledge. Learn Ruby on Rails with us on Tuesday evenings. Wednesday evening Faith discussions. Thursday evenings we'll talk about International Issues. Friday lunch/afternoon is Health & Wellness time. We'll add more topics and time slots throughout the summer. 
-        <br><br>Interested in influencing the topics discussed on CrowdPublish.TV? Feel free to <%= link_to 'add your own show', new_event_path %>! We recommend selecting a time immediately before or after other shows for increased exposure.</p>
+        <p> Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
+
+        CrowdPublish.TV is creating a forum for stimulating conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.
     </div>
     <div class="col-md-7">
         <%= render 'layouts/maincalendar', collection: @events %>
