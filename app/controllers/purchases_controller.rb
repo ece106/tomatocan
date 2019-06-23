@@ -36,6 +36,7 @@ class PurchasesController < ApplicationController
     # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
+    user_mailer_hash ={ user: User.find(@purchase.user_id), seller: User.find(purchase_params[:author_id]),purchase: @purchase}
     if user_signed_in?
       puts "0" ############################
       @purchase.user_id = current_user.id
@@ -43,6 +44,7 @@ class PurchasesController < ApplicationController
     if @purchase.merchandise_id?
       puts "1" ########### print 1 if the purchase is a merchandise
       @merchandise = Merchandise.find(@purchase.merchandise_id)
+      user_mailer_hash.store('merchandise', @merchandise)
       if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
         puts "2" ############## print 2 if the merhandise is any of the above
         if @purchase.save_with_payment
@@ -102,11 +104,11 @@ class PurchasesController < ApplicationController
         end
         if @purchase.save_with_payment
           puts "7" ################################################
-          seller = User.find(@merchandise.user_id)
+
           redirect_to user_profile_path(seller.permalink)
           flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
-          # mailer method for saved purchase
-          # UserMailer.with(seller: seller, user:@purchase.user,purchase: @purchase,merchandise: @merchandise).deliver_now
+          # mailer method for saved purchase and purchase received
+          # UserMailer.with(user_mailer_hash).purchase_saved.purchase_received.deliver_now
         else
           puts "8" ################################################
           redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
@@ -124,7 +126,7 @@ class PurchasesController < ApplicationController
         seller = User.find(purchase_params[:author_id])
         redirect_to user_profile_path(seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + seller.name
         # mailer method for donations
-        # UserMailer.with(seller: seller,user: @purchase.user,purchase: @purchase,).donation_saved.deliver_now
+        # UserMailer.with(user_mailer_hash).donation_saved.donation_received.deliver_now
       else
         puts "12" ################################################
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
@@ -140,4 +142,4 @@ class PurchasesController < ApplicationController
       :book_id, :stripe_card_token,:pricesold, :user_id, :author_id, :merchandise_id, :group_id, :email)
   end
   
-  end
+end
