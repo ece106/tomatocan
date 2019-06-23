@@ -4,8 +4,8 @@ class UserMailer < ApplicationMailer
     @seller = params[:seller]
     @purchase = params[:purchase]
     @merchandise = params[:merchandise]
-    :set_url
   end
+  before_action :set_url ,only: [:welcome_email,:purchase_saved,:donation_saved]
   def welcome_email
     mail(to: @user.email, subject: "Welcome")
   end
@@ -20,6 +20,6 @@ class UserMailer < ApplicationMailer
   private
   def set_url
     @url = home_url(host: 'crowdpublish.TV')
-  #   if you need more url options you can use this method to expand
+    # if you need more url options you can use this method to expand
   end
 end
