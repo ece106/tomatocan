@@ -4,8 +4,12 @@ class EventMailer < ApplicationMailer
     @event = params[:event]
     @user = params[:user]
   end
+  before_action :set_url
   def new_event
-    @url = event_url(host:'crowdpublish.TV', id: @user.id)
     mail(to: @recipient.email, subject: "Someone you follow has created an event")
+  end
+  private
+  def set_url
+    @url = event_url(host:'crowdpublish.TV', id: @user.id)
   end
 end
