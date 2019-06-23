@@ -14,7 +14,7 @@
   <div class="field">
     <h3><%= form.label :topic, "Title of Livestream Show" %></h3>
       <p class="help-block">Choose a topic to discuss or leave it open to your followers to decide</p>
-    <%= form.text_field(:name, size: 40, :value => "Q/A with my homies") %>
+    <%= form.text_field(:name, size: 40) %>
   </div>
 
   <div class="field">
@@ -36,7 +36,7 @@
   </div>
   <br>
 
-  <!-- <div class="field"> 
+  <!-- <div class="field">
     <h3>User's Role for the Show</h3>
     <%= form.radio_button(:role, 'Interviewer') %>
     <%= form.label(:role, 'Interviewer') %>

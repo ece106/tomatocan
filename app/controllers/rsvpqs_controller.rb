@@ -18,6 +18,7 @@ class RsvpqsController < ApplicationController
 
     if @rsvp.save
       flash[:success] = 'Rsvp was successfully created.'
+
       redirect_to home_path
     else
       flash[:error] = 'Please enter a valid email address'
