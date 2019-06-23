@@ -4,25 +4,22 @@ class UserMailer < ApplicationMailer
     @seller = params[:seller]
     @purchase = params[:purchase]
     @merchandise = params[:merchandise]
+    :set_url
   end
-  before_action :set_url
   def welcome_email
-
     mail(to: @user.email, subject: "Welcome")
   end
   # These mailers could use another reason for people to come back to the site
-  # Could use suggested videos based on purchase or donation from the search feature in the future
+  # Could use suggested videos
   def purchase_saved
-
     mail(to: @user.email, subject: 'Your purchase has been confirmed')
   end
   def donation_saved
-
     mail(to: @user.email, subject: 'Your donation is appreciated')
   end
   private
   def set_url
     @url = home_url(host: 'crowdpublish.TV')
-  #   if you need more url you can use this method to expand
+  #   if you need more url options you can use this method to expand
   end
 end

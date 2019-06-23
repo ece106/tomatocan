@@ -3,8 +3,9 @@ class EventMailer < ApplicationMailer
     @recipient = params[:recipient]
     @event = params[:event]
     @user = params[:user]
+    :set_url
   end
-  before_action :set_url
+
   def new_event
     mail(to: @recipient.email, subject: "Someone you follow has created an event")
   end
