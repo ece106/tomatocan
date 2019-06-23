@@ -28,11 +28,18 @@
             </div>
             <br class="visible-xs-block">
             <div class="col-sm-2">
-                <p class="f-header">Social</p>
-                <span class="fb-like" data-href="http://www.crowdpublish.tv/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></span><br>
-                <span>
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Doing Purposeful Work? Host Interactive Livestream Discussions To Engage With Your Audience" data-url="http://www.crowdpublish.tv/" data-hashtags="CrowdPublishTV" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </span>
+                <p class="f-header">Share</p>
+                <% url = "http://www.crowdpublish.tv" %>
+                <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
+                <!-- Facebook Share -->
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
+                <div class="social-share-button" data-href="<%= url %>"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse"><img src="<%= asset_url('social-share-button/facebook.svg') %>"></img></a></div>
+                <!-- Twitter Tweet -->
+                <a href="https://twitter.com/intent/tweet?hashtags=CrowdPublishTV&text=Broadcast%20live%20discussions%20about%20what%20you%27re%20doing%20to%20change%20the%20world%20and%20participate%20in%20intellectual%20discussions%20to%20broaden%20your%20knowledge!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.crowdpublish.tv%2F"><img src="<%= asset_url('social-share-button/twitter.svg') %>"></img></a>
+                <!-- LinkedIn Share -->
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.svg') %>"/></a>
+                <!-- Email Share -->
+                <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.svg') %>"></a>
             </div>
             <div class="col-sm-3 pull-right" id="fb">
                 
