@@ -4,116 +4,135 @@
       </div>
 <% end %>
 
+<div id="event-page-layout" style="width: 50%; margin: auto;">
 <meta property="og:description" content="Host Livestream Discussions" />
-<% @title="CrowdPublish TV" %>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div class="row" >
-  <div class="col-md-7 col-sm-offset-1 col-sm-8 col-xs-8 " style= "text-align:left" >
-    <p id="notice"><%= notice %></p>
+<% @title="CrowdPublish.tv" %>
 
     <% if user_signed_in? %>
       <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit", edit_event_path(@event) %> |
-        <%= link_to "Delete Event", @event, :confirm => 'Are you sure?', :method => :delete %> |
+        <%= link_to "Edit", edit_event_path(@event) %> 
       <% end %>
     <% end %>
 
-    <%= form_for(@rsvp) do |f| %>
-      <% if @rsvp.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-          <ul>
-          <% @rsvp.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
+<div>
+	<div class=".col-12 .col-md-8">
+		<h1><%= @event.name %></h1>
+	</div>
+
+	<% if user_signed_in? %>
+	      <% if @event.usrid == current_user.id %>
+		      <%= link_to "Edit Show", edit_event_path(@event) %> 
+	      <% end %>
       <% end %>
 
-      <%= f.hidden_field :event_id, :value => @event.id %>
-      <% if user_signed_in? %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-      <% else %>
-        Please sign in or enter email to RSVP for this event:
-        <%= f.text_field :email, placeholder: "Enter email" %>
-      <% end %>
-      <%= f.submit "RSVP for this Livestream" %>
-    <% end %><br>
-
-<div class="row">
-    <div class=".col-12 .col-md-8">
-        <h1><%= @event.name %></h1>
-    <% if @rsvps.count > 1 %>
-        <div class= ".col-6 .col-md-4 rsvp-users">
-            <b>Discussion RSVPs:</b>
-          <% @rsvpusers.each do |rsvpuser| %>
-            <%= link_to rsvpuser.name, rsvpuser %>
-            <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
-          <% end %>
-    <% end %>
-        </div>
-<p>
-  <b>Hosted by
+<p style="color:#808080; font-size: 12px;">
+ <b>Hosted by
   <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
+ </p>
+ <% if @rsvps.count > 1 %>
+	 <div>
+		 <b>Discussion RSVPs:</b>
+		 <% @rsvpusers.each do |rsvpuser| %>
+			 <%= link_to rsvpuser.name, rsvpuser %>,
+			 <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
+		 <% end %>
+	 </div>
+ <% end %>
+
+ <br>
+<p>
+<b>Starts at:</b>
+<% edt = @event.start_at + 3.hours %>
+<% edtend = @event.end_at + 3.hours %>
+  <div style="margin-left:5px">
+  <%= @event.start_at.strftime("%B %d, %Y") %> 
+  <br>
+  <%= @event.start_at.strftime("%I:%M %p")%> PDT
+  / <%= edt.strftime("%I:%M %p") %> EDT
+</p>
+
+  </div>
+<p>
+  <% duration = (@event.end_at - @event.start_at)/60 %>
+  <b>Length:</b><div style="margin-left:5px"><%= duration.floor %> minutes</div>
+</p>
+<p>
+  <b>Additional details:</b>  
+  <div style="margin-left:5px; word-wrap:break-word;">
+  <% if @event.desc.present? %>
+    <%= @event.desc %>
+  <% else %>
+	  No additional details 		  
+<% end %>
 </p>
 <br>
-<p>
-  <% edt = @event.start_at + 3.hours %>
-  <b>Start time:</b>
-  <%= @event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
-    <br>
-  <i>(<%= edt.strftime("%I:%M %p") %> Eastern Time, NY USA)</i>
-</p>
-<p>
-  <% edtend = @event.end_at + 3.hours %>
-  <b>End time:</b>
-    <%= @event.end_at.strftime("%A %B %d, %Y at %I:%M %p") %> <i>Pacific Daylight Time (PDT)</i>
-    <br>
-    <i>(<%= edtend.strftime("%I:%M %p")%> Eastern Time, NY USA)</i>
-</p>
-<p>
-  <b>More details:</b>
-  <% if @event.desc.present? %>
-    <%= simple_format @event.desc.gsub(/\n/, '<br>') %>
-  <% end %>
-</p>
-<hr>
+  </div>
+<%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+
 <p>
   <div style= "text-align:left" >
     <% if @rsvps.count > 5 %>
       <b><%= @rsvps.count %> guests said they'll be there</b><br>
     <% end %>
       <br>
-      Invite friends and colleagues to sign up & RSVP for this event!
-      <div class="event-name">
-          <%= @event.name %>
-      </div>
-      <div>
-        <% facebookurl = "http://www.crowdpublish.tv/" + @user.permalink %>
-        <div class="fb-share-button" data-href= <%= facebookurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href= "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-            <div>
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="RSVP for <%= @user.name %>'s livestream on <%=  @event.name + "," %> on <%= @event.start_at.strftime("%B %d at %I:%M %p")%> PDT (<%= edt.strftime("%I:%M %p") %> EDT)" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        <div>
+      Invite friends & RSVP for this event! <br>
+      <% surl = "http://www.crowdpublish.tv/" + @user.permalink %>
+      <button id="shareBtn" class="showButton">SHARE</button>		
+      <div id="pp" class="pop">
+	     
+	     <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= surl %>" target="_blank">
+		        <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25x;" />
+	     
+	     
+		     
+	<a href="http://www.facebook.com/sharer.php?u=<%= surl %>" target="_blank">
+		         <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px;" />
+	</a>
+	
+			     <a href="https://twitter.com/home?status=<%= surl %> <<%= @event.name %>>" target="_blank">
+		<img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:1px;">
+	</a>	
 
-              <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-              <script type="IN/Share" data-url="<%= facebookurl %>" data-counter="top"></script>
-        </div>
+
+      </div>
+	<script>
+		$(function() {
+			    $('button#shareBtn').click(function(event) {
+				            event.preventDefault();
+				           $('div#pp').toggle();
+				        });
+		});
+	</script>
+
+	<div style="margin-top:20px;">	
+ <%= form_for(@rsvp) do |f| %>
+	 <% if @rsvp.errors.any? %>
+	 <div id="error_explanation">
+		 <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+		 <ul>
+			 <% @rsvp.errors.full_messages.each do |msg| %>
+				 <li><%= msg %></li>
+			 <% end %>
+		 </ul>
+	 </div>
+ <% end %>
+
+ RSVP for this event: <br>
+ <%= f.hidden_field :event_id, :value => @event.id %>
+ <% if user_signed_in? %>
+	 <%= f.hidden_field :user_id, :value => current_user.id %>
+ <% else %>
+	 
+	 <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
+ <% end %>
+ <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
+ <% end %><br>
+
+	</div>
+
+	
       </div> 
-    <div class= "email-events">
-      Or copy & paste this message in an email to your colleagues: <br><br>
-      <i>Please join us live at <%= @event.start_at.strftime("%A %B %d, at %I:%M %p") %> PDT, <%= edt.strftime("%I:%M %p") %> EDT as we discuss <%= @event.name %> on CrowdPublish.TV's livestream.<br>
-      To join the discussion, go to<br>
-      http://www.CrowdPublish.TV/<%= @user.permalink %><br>
-      and click on the Join Livestream button. </i>
-    </div>
+ 
   </div>
-<br><br>
-</div>
+    </div>
+	</div> 
