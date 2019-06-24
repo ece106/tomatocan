@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     puts (@event.usrid)
     @rsvp = Rsvpq.new
     @rsvpusers = @event.users
-    puts (@event.users)
+    puts (@events.size)
     @rsvps = @event.rsvpqs
     respond_to do |format|
       format.html # show.html.erb
