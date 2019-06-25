@@ -1,11 +1,7 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
-require 'capybara/apparition'
+#require 'capybara/apparition'
 require 'stripe'
-#require 'selenium-webdriver'
-#options = Selenium::WebDriver::Firefox::Options.new(args: ['-headless']) don't use this
-#@driver = Selenium::WebDriver.for :firefox
-#@driver.navigate.to 'http://localhost:3000/'
 class UsersTest < ActionDispatch::IntegrationTest
 
   setup do
@@ -80,7 +76,7 @@ end
         customer.save
 
         signInPurchaser()
-        click_on('Discover Talk Show Hosts')
+        click_on('Discover Previous Discussions')
         click_link(@seller.name)
         puts(@seller.name + " seller name")
         click_on('Buy for $1.50!')
@@ -101,7 +97,7 @@ end
       assert_text('Email has already been taken')
     end
 
-    test "purchase_created_by_a_fixture" do
+    test "purchase_merchandise_by_a_fixture_whose_card_is_registered_with_stripe" do
         
       cardToken = Stripe::Token.create({
         card: {
@@ -122,17 +118,66 @@ end
       
       signInFixture()
       puts("signed in")
-      click_on('Discover Talk Show Hosts')
+      click_on('Discover Previous Discussions')
       click_link(@seller.name)
       puts(@seller.name + " seller name")
       click_on('Buy for $1.50')
       puts ("clicked")
-      #find(:value, "Buy now").click
       within '.buyexistingcard' do
         click_button('Buy now')
       end
 
       assert_text 'You have successfully completed the purchase!'
-  end
+    end
+
+    test "to_purchase_donation_by_a_fixture_whose_card_is_registered_with_stripe" do
+          
+      cardToken = Stripe::Token.create({
+        card: {
+          number: "4242424242424242",
+          exp_month: 8,
+          exp_year: 2060,
+          cvc: "123"
+        }
+      })
+      customer = Stripe::Customer.create( 
+                                        :source => cardToken,
+                                        :description => @purchaser.name,
+                                        :email => @purchaser.email
+                                        )
+      customer.save
+      @purchaser.update_column(:stripe_customer_token, customer.id)
+      puts (@purchaser.stripe_customer_token)
+      
+      signInFixture()
+      puts("signed in")
+      click_on('Discover Previous Discussions')
+      click_link(@seller.name)
+      puts(@seller.name + " seller name")
+      click_on('Donate $2.00!', match: :first)
+      puts ("clicked")
+      within '.buyexistingcard' do
+        click_button('Buy now')
+      end
+
+      assert_text 'You have successfully completed the purchase!'
+    end
+
+    test "to_purchase_donation_by_a_fixture_whose_card_is_not_registered_with_stripe" 
+        signInFixture()
+        puts("signed in")
+        click_on('Discover Previous Discussions')
+        click_link(@seller.name)
+        puts(@seller.name + " seller name")
+        click_on('Donate $2.00!', match: :first)
+        puts ("clicked")
+
+        fill_in(id:'card_number', with:'4242424242424242')
+        fill_in(id:'card_code', with:'123')
+        #select('1 - January', from: 'card_month')
+        select('2023', from: 'card_year')
+        click_on('Purchase')
+        assert_text 'You have successfully completed the purchase!'
+    end
 
 end

@@ -26,7 +26,6 @@ class Purchase < ApplicationRecord
         amt = (@merchandise.price * 100).to_i 
         desc = @merchandise.name 
         puts self.user_id
-        puts self.email
         %%if self.group_id.present?
           self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
           self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
