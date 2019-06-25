@@ -1,5 +1,23 @@
-<h1>User#purchase_received</h1>
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Purchase received</title>
+  <%= stylesheet_link_tag "mailer" %>
+</head>
+<body>
 
 <p>
-  If you would like to visit, find me in app/views/user_mailer/purchase_received.html.erb
+<%=@seller.name%>,<br><br>
+  <%=@user.name %> has purchased <%=@merchandise.name%> <br>
+  The purchase totals to $<%=@purchase.pricesold%>.<br><br>
+  Sincerely, <br><br>
+  crowdpublish.TV<br><br>
+  Visit us at again at <a href= '<%=@home_url%>'>crowdpublish.TV</a><br><br>
+  <%= image_tag 'maroonLogo.png'%>
 </p>
+</body>
+<footer>
+</footer>
+</html>

@@ -1,5 +1,21 @@
-<h1>User#donation_received</h1>
-
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Donation Confirmed</title>
+  <%= stylesheet_link_tag "mailer" %>
+</head>
+<%=@seller.name %>,<br>
+<body>
 <p>
-  <%= @greeting %>, find me in app/views/user_mailer/donation_received.html.erb
+  <%=@user.name%> has made a donation<br><br>
+  The donation totals to $<%=@purchase.pricesold%>.<br><br>
+  Sincerely, <br><br>
+  crowdpublish.TV<br><br>
+  Visit us at again at <a href= '<%=@home_url%>'>crowdpublish.TV</a><br>
+  <%= image_tag 'maroonLogo.png'%>
 </p>
+</body>
+<footer>
+</footer>
+</html>

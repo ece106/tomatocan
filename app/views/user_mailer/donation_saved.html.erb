@@ -5,9 +5,9 @@
   <title>Donation Confirmed</title>
   <%= stylesheet_link_tag "mailer" %>
 </head>
-<%=@user.name %>,<br>
 <body>
 <p>
+<%=@user.name %>,<br><br>
   Your donation has been confirmed.<br>
   Thank you <%=@user.name%> for donating.<br>
   Your donation totals to $<%=@purchase.pricesold%>.<br><br>
