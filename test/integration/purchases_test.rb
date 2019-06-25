@@ -163,7 +163,7 @@ end
       assert_text 'You have successfully completed the purchase!'
     end
 
-    test "to_purchase_donation_by_a_fixture_whose_card_is_not_registered_with_stripe" 
+    test "to_purchase_donation_by_a_fixture_whose_card_is_not_registered_with_stripe" do
         signInFixture()
         puts("signed in")
         click_on('Discover Previous Discussions')
@@ -172,12 +172,8 @@ end
         click_on('Donate $2.00!', match: :first)
         puts ("clicked")
 
-        fill_in(id:'card_number', with:'4242424242424242')
-        fill_in(id:'card_code', with:'123')
-        #select('1 - January', from: 'card_month')
-        select('2023', from: 'card_year')
         click_on('Purchase')
-        assert_text 'You have successfully completed the purchase!'
+        assert_text 'Could not find payment information'
     end
 
 end
