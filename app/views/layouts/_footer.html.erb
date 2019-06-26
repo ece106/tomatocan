@@ -1,45 +1,47 @@
 <footer>
-    <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
-        fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <div  class="container-fluid">
-        <div class="row" id="footer">
-            <div class="col-sm-2 col-sm-offset-1">
-                <p class="f-header">Site</p>
-                <%= link_to "About", '/aboutus', :class => "f-link" %><br>
-                <%= link_to "FAQ", '/faq', :class => "f-link"  %><br>
-                <%= link_to "Terms of Service", '/tos', :class => "f-link" %>
-            </div>
-            <br class="visible-xs-block">
-            <div class="col-sm-2">
-                <p class="f-header">Contact</p>
-                <a href="mailto:info@crowdpublish.tv" alt="Email" target="_blank" class="f-link">info@CrowdPublish.TV</a><br>
-                Washington DC: 703-495-3185<br>
-                Scottsdale: 602-888-3089<br><br>
-                Headquarters: <br>
-                ASU Venture Devils Suite 1951 <br>
-                1475 N. Scottsdale Rd, <br>
-                Scottsdale, AZ 85257 
-            </div>
-            <br class="visible-xs-block">
-            <div class="col-sm-2">
-                <p class="f-header">Social</p>
-                <span class="fb-like" data-href="http://www.crowdpublish.tv/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></span><br>
-                <span>
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Doing Purposeful Work? Host Interactive Livestream Discussions To Engage With Your Audience" data-url="http://www.crowdpublish.tv/" data-hashtags="CrowdPublishTV" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </span>
-            </div>
-            <div class="col-sm-3 pull-right" id="fb">
-                
-            </div>
-            <div class="col-sm-3 pull-right" id="copyright">
-                <small>&copy; 2019 RoleModel Enterprises, LLC</small>
-            </div>
-        </div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <div  class="container-fluid">
+    <div class="row" id="footer">
+      <div class="col-sm-2 col-sm-offset-1">
+        <p class="f-header">Site</p>
+        <%= link_to "About", '/aboutus', :class => "f-link" %><br>
+        <%= link_to "FAQ", '/faq', :class => "f-link"  %><br>
+        <%= link_to "Terms of Service", '/tos', :class => "f-link" %>
+      </div>
+      <br class="visible-xs-block">
+      <div class="col-sm-2">
+        <p class="f-header">Contact</p>
+        <a href="mailto:info@crowdpublish.tv" alt="Email" target="_blank" class="f-link">info@CrowdPublish.TV</a><br>
+        Washington DC: 703-495-3185<br>
+        Scottsdale: 602-888-3089<br><br>
+        Headquarters: <br>
+        ASU Venture Devils Suite 1951 <br>
+        1475 N. Scottsdale Rd, <br>
+        Scottsdale, AZ 85257 
+      </div>
+      <br class="visible-xs-block">
+      <div class="col-sm-2">
+        <p class="f-header">Social</p>
+        <span class="fb-like" data-href="http://www.crowdpublish.tv/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></span><br>
+        <span>
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Doing Purposeful Work? Host Interactive Livestream Discussions To Engage With Your Audience" data-url="http://www.crowdpublish.tv/" data-hashtags="CrowdPublishTV" data-show-count="false">
+            Tweet
+          </a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </span>
+      </div>
+      <div class="col-sm-3 pull-right" id="fb">
+      </div>
+      <div class="col-sm-3 pull-right" id="copyright">
+        <small>&copy; 2019 RoleModel Enterprises, LLC</small>
+      </div>
     </div>
+  </div>
 </footer>

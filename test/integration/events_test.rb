@@ -317,4 +317,3 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
 end
 
-
