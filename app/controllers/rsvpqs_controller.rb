@@ -15,11 +15,10 @@ class RsvpqsController < ApplicationController
     end
 
     if @rsvp.save
-      binding.pry
       flash[:success] = 'Rsvp was successfully created.'
 
       rsvpq_mailer_hash = { rsvpq: @rsvp, user: current_user }
-      RsvpqMailer.with(rsvpq_mailer_hash).rsvpq_created
+      RsvpqMailer.with(rsvpq_mailer_hash).rsvpq_created.deliver_later
 
       redirect_to home_path
     else
