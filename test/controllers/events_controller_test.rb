@@ -7,10 +7,11 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     #index
-    # test "should retrieve list of all events"do
-    #     get :index, params: {id: @event.id}
-    #     assert_response :success
-    # end
+    test "should retrieve list of all events"do
+        #get :index, params: {id: @event.id}
+        get :index
+        assert_response :success
+    end
 
     #  test "should recognize events" do
     #      assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
@@ -56,14 +57,6 @@ class EventsControllerTest < ActionController::TestCase
 
         get :show, params: {id: @event, format: :json}
         assert_response :success 
-        #get :show, params: {}
-            #assert_redirected_to @event
-        #get 'show', :format => :json
-        #request.env["HTTP_ACCEPT"] = "application/json"
-        #request.env["CONTENT_TYPE"] = "application/json"
-        #get :show, to_param
-        #get :show
-        #assert_template :event
     end    
 
     #new
