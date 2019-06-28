@@ -16,10 +16,11 @@ class PurchasesControllerTest < ActionController::TestCase
                                    stripe_customer_token: @purchaser.stripe_customer_token,
                                    stripe_card_token: @token.id,
                                    pricesold: 10 }
-    @customer = Stripe::Customer.create(
-        description: @purchaser.name,
-        email: @purchaser.email)
+    @customer = Stripe::Customer.create(description: @purchaser.name,
+        																email: @purchaser.email)
+		@merchandise = merchandises(:one)
   end
+
   test 'should_get_purchases_new_purchase' do
     @merchandises = merchandises(:one)
     sign_in users(:two)
@@ -232,21 +233,19 @@ class PurchasesControllerTest < ActionController::TestCase
     @merch.update_column(:user_id, 143)
     @purchaser.update_column(:stripe_customer_token, customer.id)
     @seller.update_column(:id, 143)
-    post :create, params: { purchase: { email: @purchaser.email, merchandise_id: merchandises(:one), user_id: @purchaser.id, author_id: @seller.id, stripe_customer_token: @purchaser.stripe_customer_token, stripe_card_token: cardToken['id'], pricesold: 1.5 } }
+    post :create, params: { purchase: { email: @purchaser.email, 
+																				merchandise_id: merchandises(:one), 
+																				user_id: @purchaser.id, 
+																				author_id: @seller.id, 
+																				stripe_customer_token: @purchaser.stripe_customer_token, 
+																				stripe_card_token: cardToken['id'], 
+																				pricesold: 1.5 } }
     assert_redirected_to user_profile_path(users(:one).permalink)
   end
   test 'purchase with merchandise sends mail'do
-    user_one = users(:one)
-    user_two = users(:two)
-    merch = merchandises(:one)
-    customer = Stripe::Customer.create(description: user_one.name,
-                                       email:user_one.email)
-    customer.save
-    post :create, params: { purchase: { email: user_one.email,
-                                        merchandise_id: merch.id, user_id: user_one.id, author_id: user_two.id,
-                                        stripe_customer_token: user_one.stripe_customer_token,
-                                        stripe_card_token: @token.id,
-                                        price_sold: 1.5, }}
+    @purchase_info[:merchandise_id] = @merchandise
+    @customer.save
+    post :create, params: { purchase: @purchase_info} 
     database_mailbox = ActionMailer::Base.deliveries.size
     # There should be 2 emails in the box one for each seller one for buyer
     assert_equal 2, database_mailbox
