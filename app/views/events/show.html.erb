@@ -123,8 +123,8 @@
             <%= f.hidden_field :user_id, value: current_user.id %>
           <% else %>
             <br><%= f.text_field :email, style: "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
-          <%= f.submit "RSVP NOW", style: "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", id: "RSVPsubmit" %>
           <% end %>
+          <%= f.submit "RSVP NOW", style: "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", id: "RSVPsubmit" %>
           <br>
         <% end %>
         <br>
