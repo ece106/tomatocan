@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Event Reminder</title>
+  <%= stylesheet_link_tag "mailer" %>
+</head>
+<body>
+<p>
+  Hello, <%= @user.name %> <br><br>
+  <%= @user.name %> this is a reminder about your event, <%=@event.name %>. Your made this event for this date <%=@event.start_at%><br>
+  Please invite your friends <a href ='<%=@url %>'>Click here!</a> <br><br>
+  Sincerely,<br>
+  crowdpublish.TV
+</p>
+<%= image_tag 'maroonLogo.png'%>
+</body>
+</html>
