@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h1>Rsvpq#rsvpq_created</h1>
+
+  <div class="alert alert-success" role="alert">
+    <p>Thank you <%= @user.name %> for creating an rsvp.</p>
+    <p>Your Rsvp for this event: <%= link_to "Event", @url %></p>
+  </div>
+</div>
+
+<style>
+.alert {
+  font: #155724;
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+</style>
