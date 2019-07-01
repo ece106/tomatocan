@@ -49,9 +49,6 @@
 
 <p>
   <div style= "text-align:left" >
-    <% if @rsvps.count > 5 %>
-      <b><%= @rsvps.count %> guests said they'll be there</b><br>
-    <% end %>
       <br>
       Invite friends! <br>
       <% surl = "http://www.crowdpublish.tv/" + @user.permalink %>
@@ -116,8 +113,8 @@
 	</div>
 
   <% if @rsvps.count > 5 %>
+    <br><b><%= @rsvps.count %> guests said they'll be there</b><br>
 	<div>
-	  <b>RSVPs:</b>
 	  <% @rsvpusers.each do |rsvpuser| %>
 	    <%= link_to rsvpuser.name, rsvpuser %>,
 		<% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
