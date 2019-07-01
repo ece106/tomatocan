@@ -43,8 +43,24 @@ class EventsControllerTest < ActionController::TestCase
          #assert_response :success
     end
 
-    test "should initialize rsvpusers as the event user" do
-        
+    test "should_initialize_rsvpusers_as_the_event_user" do
+       puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGHHHHHHHHHHHHHHHHHH"
+       rsvpuser = @event.users
+       #puts rsvpuser(:one).id
+       #puts rsvpuser.find(:name)
+        puts rsvpuser
+        rsvp = @event.rsvpqs
+        rsvp.each do |num|
+            #puts num.event.inspect
+        end  
+        assert_equal rsvp[0].event, @event
+        #puts rsvp.guests 
+        #@rsvpq.guests
+    
+        puts "BBBBGHHHHHHHHHHHHH"
+       #uid = @user.id
+       #@event.update_column(:usrid, uid)
+       #puts @event.usrid
     end
 
     test "should initialize rsvps as event rsvps" do

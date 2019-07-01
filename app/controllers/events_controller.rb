@@ -18,9 +18,10 @@ class EventsController < ApplicationController
     puts (@event.usrid)
     @rsvp = Rsvpq.new
     @rsvpusers = @event.users
-    puts (@event.rsvpqs.size)
     #puts (User.size)
     @rsvps = @event.rsvpqs
+    #puts (@euser.rsvpqs.first) 
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
