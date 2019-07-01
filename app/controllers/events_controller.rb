@@ -21,11 +21,10 @@ class EventsController < ApplicationController
     #puts (User.size)
     @rsvps = @event.rsvpqs
     #puts (@euser.rsvpqs.first) 
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
-    puts ("first line") ##########
+    puts ("last line") ##########
     end
   end
 

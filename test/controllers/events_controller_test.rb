@@ -13,9 +13,10 @@ class EventsControllerTest < ActionController::TestCase
         assert_response :success
     end
 
-    #  test "should recognize events" do
-    #      assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
-    # end
+    test "should recognize events" do
+        #assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
+        assert_recognizes({:controller =>'events', :action =>'show', :id =>'index'}, 'events/index')
+    end
 
     #show
     test "should find event" do
@@ -43,28 +44,27 @@ class EventsControllerTest < ActionController::TestCase
          #assert_response :success
     end
 
+
     test "should_initialize_rsvpusers_as_the_event_user" do
-       puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGHHHHHHHHHHHHHHHHHH"
+       puts "BEGINING"
        rsvpuser = @event.users
        #puts rsvpuser(:one).id
        #puts rsvpuser.find(:name)
-        puts rsvpuser
-        rsvp = @event.rsvpqs
-        rsvp.each do |num|
-            #puts num.event.inspect
-        end  
-        assert_equal rsvp[0].event, @event
-        #puts rsvp.guests 
-        #@rsvpq.guests
-    
-        puts "BBBBGHHHHHHHHHHHHH"
-       #uid = @user.id
-       #@event.update_column(:usrid, uid)
-       #puts @event.usrid
+       puts rsvpuser
+       #@rsvpq.guests
+       puts "MIDDLE"
+       uid = @user.id
+       @event.update_column(:usrid, uid)
+       puts @event.usrid
+       puts "END"
     end
 
     test "should initialize rsvps as event rsvps" do
-        
+        rsvp = @event.rsvpqs
+        rsvp.each do |num|
+            puts num.event.inspect
+        end  
+        assert_equal rsvp[0].event, @event
     end
 
     test "show render show view" do
