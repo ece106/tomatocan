@@ -7,47 +7,46 @@
 <div id="event-page-layout" style="width: 50%; margin: auto;">
   <meta property="og:description" content="Host Livestream Discussions" />
   <% @title="CrowdPublish.tv" %>
-<div>
-<div class=".col-12 .col-md-8" style="margin-bottom:-10px">
-  <h1><%= @event.name %></h1>
-</div>
+  <div>
+  <div class=".col-12 .col-md-8" style="margin-bottom:-10px">
+    <h1><%= @event.name %></h1>
+  </div>
 
-<% if user_signed_in? %>
-  <% if @event.usrid == current_user.id %>
-    <%= link_to "Edit Show", edit_event_path(@event)%> 
+  <% if user_signed_in? %>
+    <% if @event.usrid == current_user.id %>
+      <%= link_to "Edit Show", edit_event_path(@event)%> 
+    <% end %>
   <% end %>
-<% end %>
 
-<p style="color:#808080; font-size: 18px;">
-  <b>Hosted by
-  <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
-</p>
+  <p style="color:#808080; font-size: 18px;">
+    <b>Hosted by
+    <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
+  </p>
 
-<h3>
-<% edt = @event.start_at + 3.hours %>
-<% edtend = @event.end_at + 3.hours %>
-<div style="margin-left:5px">
-  <%= @event.start_at.strftime("%A, %B %d") %> 
-  <br>
-  <%= @event.start_at.strftime("%I:%M %p")%> PDT
-  / <%= edt.strftime("%I:%M %p") %> EDT
-</div>
-</h3>
+  <h3>
+    <% edt = @event.start_at + 3.hours %>
+    <% edtend = @event.end_at + 3.hours %>
+    <div style="margin-left:5px">
+      <%= @event.start_at.strftime("%A, %B %d") %> 
+      <br>
+      <%= @event.start_at.strftime("%I:%M %p")%> PDT
+      / <%= edt.strftime("%I:%M %p") %> EDT
+    </div>
+  </h3>
 
   <% duration = (@event.end_at - @event.start_at)/60 #WHY THE HELL AM I SEEING CALCULATIONS IN VIEWS!!!!!!!!!!!!!!!!!!!!! %>
 
-<div style="margin-left:5px">
-  <%= duration.floor %> minutes
-</div> <br>
-<%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+  <div style="margin-left:5px">
+    <%= duration.floor %> minutes
+  </div> <br>
+  <%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
 
-<div style="margin-left:5px; word-wrap:break-word;">
-  <% if @event.desc.present? %>
-    <br><br><%= @event.desc %>
-  <% end %>
-</div>
+  <div style="margin-left:5px; word-wrap:break-word;">
+    <% if @event.desc.present? %>
+      <br><br><%= @event.desc %>
+    <% end %>
+  </div>
 
-<p>
   <div style= "text-align:left" >
       <br>
       Invite friends! <br>
@@ -123,7 +122,5 @@
   <% end %>
 
 </div> 
- 
-</div>
-</div>
+</div> 
 </div> 
