@@ -1,9 +1,8 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
+
 class EventsTest < ActionDispatch::IntegrationTest
- include Capybara::DSL
- include Capybara::Minitest::Assertions
- Capybara::Screenshot.autosave_on_failure = false# disable screenshot on failure
+
   setup do
     visit ('/')#user is at the home page by default
     click_on('Sign In', match: :first)
@@ -101,7 +100,7 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
   test "Test if the FAQ links work and redirect to the correct place" do
     within(class: 'collapse navbar-collapse') do
-        click_on('FAQ')
+      click_on('FAQ')
     end
     assert_text('t accessing my mic or webcam')
   end
@@ -117,13 +116,13 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
   test "test if second FAQ link works" do
     within(id:'faqBlock') do #click the link within the div class
-        click_on('FAQ')
+      click_on('FAQ')
     end
     assert_text('t accessing my mic or webcam')
   end
   test "Test if bottom FAQ link works on homepage" do
     within(class: "col-sm-2 col-sm-offset-1") do #click the link within the div class
-        click_on('FAQ')
+      click_on('FAQ')
     end
     assert_text('t accessing my mic or webcam')
   end
@@ -187,18 +186,18 @@ class EventsTest < ActionDispatch::IntegrationTest
   test "rewards should show in create a reward after creating them" do
     createReward()
     within(id: 'merchSidebar') do
-        assert_text('Shoe')
+      assert_text('Shoe')
     end
   end
   test "check if edit reward directs to the right place" do
     createReward()
     within(id: 'merchSidebar') do
-        click_on('Edit Reward', match: :first)
+      click_on('Edit Reward', match: :first)
     end
     assert_text('Edit Reward: Shoe')
   end
   test "check if the reward is updated after the rewards is edited and saved" do
-    
+
   end
   test "check if Patron is successfully updated after editing a reward" do
     createReward()
@@ -217,8 +216,8 @@ class EventsTest < ActionDispatch::IntegrationTest
     fill_in(id: 'merchandise_name', with: 'Shoe')
     fill_in(id: 'merchandise_price', with: '5')
     fill_in(id: 'merchandise_desc', with: 'this is a description')
-      #click_on('2019')
-      #click_on('January')
+    #click_on('2019')
+    #click_on('January')
     click_on(class: 'btn btn-lg btn-primary')
     click_on('Phineas', match: :first)
     click_on('Control Panel')
@@ -278,7 +277,7 @@ class EventsTest < ActionDispatch::IntegrationTest
     click_on('Rewards')
     click_on(class: 'btn btn-lg btn-warning', match: :first)
     click_on("Post to your fan's Facebook page")
-      # assert_text('Facebook Timeline Post from Me')
+    # assert_text('Facebook Timeline Post from Me')
   end
   test "@mention your fan on Twitter should auto-complete fields" do
     #signup()
@@ -286,31 +285,30 @@ class EventsTest < ActionDispatch::IntegrationTest
     click_on('Control Panel')
     click_on('Rewards')
     click_on(class: 'btn btn-lg btn-warning', match: :first)
-    
+
     click_on("@mention your fan on Twitter")
     # assert_text('Facebook Timeline Post from Me')
   end
   test "sales tab should render purchased items" do
-      createReward()
-      visit('/')
-      click_on('Sign out')
-      visit('http://localhost:3000/username')
-      assert_text('Shoe')
-      click_on('Buy')
-      fill_in(id: 'purchase_email', with: 'e@email.com')
-      fill_in(id: 'card_number' , with: '4242424242424242')
-      fill_in(id: 'card_year' , value: '2020')
-      click_on('Purchase')
-      click_on('Sign In', match: :first)
-      fill_in(id: 'user_email', with: 'fake@fake.com')
-      fill_in(id: 'user_password', with: 'user1234')
-      click_on(class: 'form-control btn-primary')
-      click_on('Control Panel')
-      click_on('Sales')
-      assert_text('Mark as Read')
+    createReward()
+    visit('/')
+    click_on('Sign out')
+    visit('http://localhost:3000/username')
+    assert_text('Shoe')
+    click_on('Buy')
+    fill_in(id: 'purchase_email', with: 'e@email.com')
+    fill_in(id: 'card_number' , with: '4242424242424242')
+    fill_in(id: 'card_year' , value: '2020')
+    click_on('Purchase')
+    click_on('Sign In', match: :first)
+    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_password', with: 'user1234')
+    click_on(class: 'form-control btn-primary')
+    click_on('Control Panel')
+    click_on('Sales')
+    assert_text('Mark as Read')
   end
   test "link to reward on live show page redirects" do
   end
 end
-
 
