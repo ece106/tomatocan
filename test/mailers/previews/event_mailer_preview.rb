@@ -5,7 +5,7 @@ class EventMailerPreview < ActionMailer::Preview
     EventMailer.with(user: User.first, event: Event.first_or_create, recipient: User.last).new_event
   end
   def event_reminder
-    event = Event.create(start_at:(Time.now + 3.days))
+    event = Event.create(start_at: DateTime.now, name: 'event in 3 days')
     EventMailer.with(user: User.first, event: event).event_reminder
   end
 end

@@ -20,11 +20,13 @@ class EventMailer < ApplicationMailer
  private
 
   def set_url
-    @url = event_url(host:'crowdpublish.TV', id: @user.id)
+    @home_url = event_url(host:'crowdpublish.TV', id: @user.id)
+    @share_url = tellfriends_url(host: 'crowdpublish.TV')
   end
 
   def format_date
     @start_date = Time.parse(@event.start_at.to_s)
-    @date_subject_format = @start_date.strftime('%d/%m/%Y')
+    @date_subject_format = @start_date.strftime('%m/%d/%Y')
+    @date_body_format = @start_date.strftime('%m/%d/%Y at %I:%M %p')
   end
 end
