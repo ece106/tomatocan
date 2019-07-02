@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
-  before_action :check_event_time,except:[:new,:create]
+  after_action :check_event_time, except: [:create,:new]
  #before_action :correct_user, only: [:dashboard, :user_id] 
   #before_action :correct_user, only: [:controlpanel] 
   #Where did this method go?
@@ -310,15 +310,3 @@ class UsersController < ApplicationController
     return msg
   end
 
-
-  def check_event_time
-    return false if @mail_sent || @user.events.any?
-
-    @user.events.each do|event|
-      notification_time = Time.parse(event.start_at) - 3.days
-      if Time.now == notification_time
-        @mail_sent = EventMailer.with(user: @user,event: event)
-      end
-    end
-  end
-end

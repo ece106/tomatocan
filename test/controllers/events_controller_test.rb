@@ -60,7 +60,6 @@ class EventsControllerTest < ActionController::TestCase
     email = ActionMailer::Base.deliveries.last
     assert_equal [@user_two.email.to_s] , email.to
     assert_equal 1, ActionMailer::Base.deliveries.size
-
-  end
+  end	
 #write a test for rsvpq for show
 end
