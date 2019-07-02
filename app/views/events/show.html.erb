@@ -1,73 +1,55 @@
 <% flash.each do |key, value| %>
-  <div class="<%= flash_class(key) %>">
-    <%= value %>
-  </div>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
 <% end %>
 
 <div id="event-page-layout" style="width: 50%; margin: auto;">
   <meta property="og:description" content="Host Livestream Discussions" />
   <% @title="CrowdPublish.tv" %>
-
   <div>
-    <div class=".col-12 .col-md-8" style="margin-bottom:-10px">
-      <h1><%= @event.name %></h1>
-    </div>
+  <div class=".col-12 .col-md-8" style="margin-bottom:-10px">
+    <h1><%= @event.name %></h1>
+  </div>
 
-    <% if user_signed_in? %>
-      <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit Show", edit_event_path(@event)%>
-      <% end %>
+  <% if user_signed_in? %>
+    <% if @event.usrid == current_user.id %>
+      <%= link_to "Edit Show", edit_event_path(@event)%> 
     <% end %>
+  <% end %>
 
-    <p style="color:#808080; font-size: 18px;">
+  <p style="color:#808080; font-size: 18px;">
     <b>Hosted by
-      <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
-    </p>
-    <% if @rsvps.count > 1 %>
-      <div>
-        <b>Discussion RSVPs:</b>
-        <% @rsvpusers.each do |rsvpuser| %>
-          <%= link_to rsvpuser.name, rsvpuser %>,
-        <% end %>
-      </div>
-    <% end %>
+    <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
+  </p>
 
-    <br>
-    <p>
-    <b>Starts at:</b>
+  <h3>
     <% edt = @event.start_at + 3.hours %>
     <% edtend = @event.end_at + 3.hours %>
     <div style="margin-left:5px">
-      <%= @event.start_at.strftime("%B %d, %Y") %>
+      <%= @event.start_at.strftime("%A, %B %d") %> 
       <br>
       <%= @event.start_at.strftime("%I:%M %p")%> PDT
       / <%= edt.strftime("%I:%M %p") %> EDT
-    </p>
+    </div>
+  </h3>
 
-    </div>
-    <p>
-    <% duration = (@event.end_at - @event.start_at)/60 %>
-    <b>Length:</b><div style="margin-left:5px"><%= duration.floor %> minutes</div>
-    </p>
-    <p>
-    <b>Additional details:</b>
-    <div style="margin-left:5px; word-wrap:break-word;">
-      <% if @event.desc.present? %>
-        <%= @event.desc %>
-      <% else %>
-        No additional details
-      <% end %>
-    </p>
-    <br>
-    </div>
-    <%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, class: 'btn btn-lg btn-warning' %>
-    <p>
-    <div style= "text-align:left" >
-      <% if @rsvps.count > 5 %>
-        <b><%= @rsvps.count %> guests said they'll be there</b><br>
-      <% end %>
+  <% duration = (@event.end_at - @event.start_at)/60 #WHY THE HELL AM I SEEING CALCULATIONS IN VIEWS!!!!!!!!!!!!!!!!!!!!! %>
+
+  <div style="margin-left:5px">
+    <%= duration.floor %> minutes
+  </div> <br>
+  <%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+
+  <div style="margin-left:5px; word-wrap:break-word;">
+    <% if @event.desc.present? %>
+      <br><br><%= @event.desc %>
+    <% end %>
+  </div>
+
+  <div style= "text-align:left" >
       <br>
-      Invite friends & RSVP for this event! <br>
+      Invite friends! <br>
       <% surl = "http://www.crowdpublish.tv/" + @user.permalink %>
 
       <button id="shareBtn" class="showButton">SHARE</button>
@@ -104,31 +86,41 @@
         });
       </script>
 
-      <div style="margin-top:20px;">
-        <%= form_for(@rsvp) do |f| %>
-          <% if @rsvp.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-              <ul>
-                <% @rsvp.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+	<div style="margin-top:20px;">	
+      <%= form_for(@rsvp) do |f| %>
+	    <% if @rsvp.errors.any? %>
+	      <div id="error_explanation">
+		    <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+		    <ul>
+			  <% @rsvp.errors.full_messages.each do |msg| %>
+			    <li><%= msg %></li>
+			  <% end %>
+		    </ul>
+ 	</div>
+  <% end %>
 
-          <p>RSVP for this event:</p>
-          <%= f.hidden_field :event_id, value: @event.id %>
-          <% if user_signed_in? %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-          <% else %>
-            <br><%= f.text_field :email, style: "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
-          <% end %>
-          <%= f.submit "RSVP NOW", style: "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", id: "RSVPsubmit" %>
-          <br>
-        <% end %>
-        <br>
-      </div>
+  <br>RSVP for this discussion: <br>
+  <%= f.hidden_field :event_id, :value => @event.id %>
+  <% if user_signed_in? %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  <% else %>
+	<br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
+  <% end %>
+  <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
+<% end %><br>
+
+	</div>
+
+  <% if @rsvps.count > 5 %>
+    <br><b><%= @rsvps.count %> guests said they'll be there</b><br>
+	<div>
+	  <% @rsvpusers.each do |rsvpuser| %>
+	    <%= link_to rsvpuser.name, rsvpuser %>,
+		<% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
+	  <% end %>
     </div>
-  </div>
-</div>
+  <% end %>
+
+</div> 
+</div> 
+</div> 
