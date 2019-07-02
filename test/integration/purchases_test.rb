@@ -113,7 +113,7 @@ end
         assert_text 'Your order did not go through. Try again.'
     end
 
-
+    # Will finish the test below after setting up receipts for purchases
     # test "to_purchase_a_merchandise_with_card" do #card source not present in stripe dashboard
     #   puts "test 2"
     #   signInFixture()

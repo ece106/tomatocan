@@ -18,14 +18,11 @@ class PurchasesController < ApplicationController
     def new
       if(params[:pricesold].present?) # Donation being made
         @purchase = Purchase.new
-        puts "new donation created"
       elsif(params[:merchandise_id].present?) #Purchase being made
         @merchandise = Merchandise.find(params[:merchandise_id])
         @purchase = @merchandise.purchases.new
-        puts "new purchase created"
       end
       if user_signed_in?
-        puts "user is signed in - new"
         if current_user.stripe_customer_token.present?
           customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
           sourceid = customer.default_source
@@ -33,7 +30,6 @@ class PurchasesController < ApplicationController
           @last4 = card.last4
           @expmonth = card.exp_month
           @expyear = card.exp_year
-          puts @last4
         end
       end
     end
@@ -47,7 +43,6 @@ class PurchasesController < ApplicationController
       if @purchase.merchandise_id?
         puts "1" ########### print 1 if the purchase is a merchandise
         @merchandise = Merchandise.find(@purchase.merchandise_id)
-        puts @merchandise.merchpdf.present?
         if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
           puts "2" ############## print 2 if the merhandise is any of the above
           if @purchase.save_with_payment

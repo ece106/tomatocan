@@ -18,14 +18,11 @@ class Purchase < ApplicationRecord
       if(self.merchandise_id.present?) #if a purchase is being made
         puts "13x" ##########
         @merchandise = Merchandise.find(self.merchandise_id)
-        puts @merchandise.name ########
-        puts @merchandise.desc #######
         self.pricesold = @merchandise.price
         self.author_id = @merchandise.user_id 
         seller = User.find(@merchandise.user_id)
         amt = (@merchandise.price * 100).to_i 
         desc = @merchandise.name 
-        puts self.user_id
         %%if self.group_id.present?
           self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
           self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
