@@ -47,8 +47,7 @@
 
     </div>
     <p>
-    <% duration = (@event.end_at - @event.start_at)/60 %>
-    <b>Length:</b><div style="margin-left:5px"><%= duration.floor %> minutes</div>
+    <b>Length:</b><div class="event-duration" style="margin-left:5px"><%= @duration %> minutes</div>
     </p>
     <p>
     <b>Additional details:</b>

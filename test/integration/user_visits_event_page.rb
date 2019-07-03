@@ -20,19 +20,31 @@ class UserVisitsEventPage < ActionDispatch::IntegrationTest
   end
 
   test "should see the correct event title" do
-    page.has_css?('.col-12 .col-md-8')
-    page.has_css?('h1')
-
     page.has_content?(@event.name)
   end
 
-  test "should see the correct event host link" do
-    page.has_link?('a')
+  test "should see the correct event host" do
     page.has_content?(@user.name)
   end
 
-  test "should see the correct start time" do
+  # TODO: Coming back to this
+  test "should see the edit_event link" do
+    page.has_link?(edit_event_path(@event))
+    # page.click_on(edit_event_path(@event))
+  end
+
+  test "should see the correct start date" do
     page.has_content?(@event.start_at.strftime("%B %d, %Y"))
+  end
+
+  test "should see the correct start at timezones" do
+    page.has_content?(@event.start_at.strftime("%I:%M %p"))
+    page.has_content?((@event.start_at + 3).strftime("%I:%M %p"))
+  end
+
+  test "should see the correct duration" do
+    # @duration = ((@event.end_at - @event.start_at) / 60).floor
+    page.has_css?(".event-duration")
   end
 
 end
