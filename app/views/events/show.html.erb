@@ -34,10 +34,9 @@
     </div>
   </h3>
 
-  <% duration = (@event.end_at - @event.start_at)/60 #WHY THE HELL AM I SEEING CALCULATIONS IN VIEWS!!!!!!!!!!!!!!!!!!!!! %>
 
   <div style="margin-left:5px">
-    <%= duration.floor %> minutes
+    <%= @duration %> minutes
   </div> <br>
   <%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
 
@@ -48,6 +47,26 @@
   </div>
 
   <div style= "text-align:left" >
+    <p>
+    <b>Length:</b><div class="event-duration" style="margin-left:5px"><%= @duration %> minutes</div>
+    </p>
+    <p>
+    <b>Additional details:</b>
+    <div style="margin-left:5px; word-wrap:break-word;">
+      <% if @event.desc.present? %>
+        <%= @event.desc %>
+      <% else %>
+        No additional details
+      <% end %>
+    </p>
+    <br>
+    </div>
+    <%= link_to "Join Live Show", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, class: 'btn btn-lg btn-warning' %>
+    <p>
+    <div style= "text-align:left" >
+      <% if @rsvps.count > 5 %>
+        <b><%= @rsvps.count %> guests said they'll be there</b><br>
+      <% end %>
       <br>
       Invite friends! <br>
       <% surl = "http://www.crowdpublish.tv/" + @user.permalink %>
