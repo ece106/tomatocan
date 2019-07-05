@@ -13,17 +13,17 @@ class Purchase < ApplicationRecord
   #  validates :merchandise_id, presence: true
   #  validates :email, :presence => true, :if => loggedin  #cant validate this
   #  validates :bookfiletype, presence: true
-
-  def save_with_payment
-    if(self.merchandise_id.present?) #if a purchase is being made
-      puts "13x" ##########
-      @merchandise = Merchandise.find(self.merchandise_id)
-      self.pricesold = @merchandise.price
-      self.author_id = @merchandise.user_id
-      seller = User.find(@merchandise.user_id)
-      amt = (@merchandise.price * 100).to_i
-      desc = @merchandise.name
-      %%if self.group_id.present?
+    
+    def save_with_payment
+      if(self.merchandise_id.present?) #if a purchase is being made
+        puts "13x" ##########
+        @merchandise = Merchandise.find(self.merchandise_id)
+        self.pricesold = @merchandise.price
+        self.author_id = @merchandise.user_id 
+        seller = User.find(@merchandise.user_id)
+        amt = (@merchandise.price * 100).to_i 
+        desc = @merchandise.name 
+        %%if self.group_id.present?
           self.groupcut = ((@merchandise.price * 5).to_i).to_f/100
           self.authorcut = ((@merchandise.price * 92).to_i - 30).to_f/100 - self.groupcut
         else%
@@ -145,6 +145,7 @@ class Purchase < ApplicationRecord
     save!
 
   rescue Stripe::InvalidRequestError => e
+    puts "Stripe error in model!"
     logger.error "Stripe error while creating customer: #{e.message}"
     errors.add :base, "There was a problem with your credit card."
     false
