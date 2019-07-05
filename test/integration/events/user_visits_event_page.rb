@@ -4,9 +4,9 @@ require 'capybara-screenshot/minitest'
 class UserVisitsEventPage < ActionDispatch::IntegrationTest
 
   setup do
-    @user  = users(:one)
-    @event = events(:one)
-    @rsvpq = rsvpqs(:one)
+    @user  = users :one
+    @event = events :one
+    @rsvpq = rsvpqs :one
 
     sign_in_as @user
 
@@ -17,7 +17,7 @@ class UserVisitsEventPage < ActionDispatch::IntegrationTest
     page.status_code == 200
   end
 
-  test "visits events page unsuccessfully" do
+  test "visits event page unsuccessfully" do
     page.status_code == 400
   end
 
@@ -56,9 +56,13 @@ class UserVisitsEventPage < ActionDispatch::IntegrationTest
 
     click_on id: "shareBtn"
 
-    assert page.has_xpath? "//img[@src = 'https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i' and @alt='LinkedIn']"
-    assert page.has_xpath? "//img[@src = 'https://www.facebook.com/images/fb_icon_325x325.png' and @alt='Facebook']"
-    assert page.has_xpath? "//img[@src = 'https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png' and @alt='Twitter']"
+    linkedin_img = "//img[@src = 'https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i' and @alt='LinkedIn']"
+    facebook_img = "//img[@src = 'https://www.facebook.com/images/fb_icon_325x325.png' and @alt='Facebook']"
+    twitter_img = "//img[@src = 'https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png' and @alt='Twitter']"
+
+    assert page.has_xpath? linkedin_img
+    assert page.has_xpath? facebook_img
+    assert page.has_xpath? twitter_img
   end
 
   test "can make an rsvp for event" do
