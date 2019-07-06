@@ -160,27 +160,6 @@ test 'Should_cancel' do
     click_on(id:"cancelProfileButton",:match => :first)
     assert_text("Phineas's Videos")
 end
-#Stripe error here
-test 'Should_buy_user' do
-    visit('http://localhost:3000/')
-    click_on('Discover Talk Show Hosts')
-    click_link('Phineas')
-    click_on('Buy for $1.50')
-    fill_in(id:'card_number', with:'4242424242424242')
-    select("2020", from: 'card_year')
-    click_on('Purchase')
-    assert_text('successfully')
-end
-test 'Should_donate_user' do
-    visit('http://localhost:3000/')
-    click_on('Discover Talk Show Hosts')
-    click_link('Phineas')
-    click_on(text: 'Donate $2.00!')
-    fill_in(id:'card_number', with:'4242424242424242')
-    select("2020", from: 'card_year')
-    click_on('Purchase')
-    assert_text('successfully')
-end
 test 'Should order' do
     visit('http://localhost:3000/')
     click_on('Discover Talk Show Hosts')
