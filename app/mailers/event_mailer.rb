@@ -1,5 +1,7 @@
-require 'time'
 class EventMailer < ApplicationMailer
+
+  self.delivery_job = SendEventReminderJob
+
   before_action do
     @recipient = params[:recipient]
     @event = params[:event]
@@ -11,6 +13,7 @@ class EventMailer < ApplicationMailer
 
   def new_event
     mail(to: @recipient.email, subject: "Someone you follow has created an event")
+
   end
 
   def event_reminder

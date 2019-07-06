@@ -34,14 +34,12 @@ class EventsController < ApplicationController
 
   # POST /events.json
   def create
-    event = current_user.events.build(event_params)
-    user = User.find(event.usrid)
-    user_followers = user.followers
+    @event = current_user.events.build(event_params)
+    user = User.find(@event.usrid)
+		reminder_date = @event.start_at - 2.days
     respond_to do |format|
-      if event.save
-        user_followers.each do |recipient|
-          EventMailer.with(recipient: recipient, event: event,user: user).new_event.deliver_now
-        end
+      if @event.save
+  			SendEventReminderJob.set(wait_until: reminder_date).perform_later(user,@event)
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
       else
@@ -71,4 +69,5 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
     end
+		
 end

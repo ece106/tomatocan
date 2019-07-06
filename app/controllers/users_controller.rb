@@ -309,4 +309,5 @@ class UsersController < ApplicationController
 
     return msg
   end
+end
 

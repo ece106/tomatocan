@@ -1,12 +1,15 @@
 class UserMailer < ApplicationMailer
-  before_action do
+ 
+	before_action do
     @user = params[:user]
     @seller = params[:seller]
     @purchase = params[:purchase]
     @merchandise = params[:merchandise]
   end
+
   before_action :set_url
-  def welcome_email
+  
+	def welcome_email
     mail(to: @user.email, subject: "Welcome")
   end
   # purchase and donation saved could use another reason for people to come back to the site

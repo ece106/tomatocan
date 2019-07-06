@@ -1,5 +1,6 @@
 require 'test_helper'
 class EventsControllerTest < ActionController::TestCase
+	include ActiveJob::TestHelper
   setup do
     @event = events(:one)
     @user = users(:one)
@@ -52,14 +53,9 @@ class EventsControllerTest < ActionController::TestCase
     assert_empty @event.errors.messages
   end
 
-  test "create should send email to followers" do
-    sign_in @user
-    sign_in @user_two
-    @user_two.follow(@user)
-    post :create , params: {event: {start_at: "2010-02-11 11:02:57", usrid: @user.id, name: @user.name}}
-    email = ActionMailer::Base.deliveries.last
-    assert_equal [@user_two.email.to_s] , email.to
-    assert_equal 1, ActionMailer::Base.deliveries.size
-  end	
-#write a test for rsvpq for show
+  test 'create should send a reminder functional test' do
+		sign_in @user	
+		post :create , params: {event: {start_at: Time.now + 2.days, usrid: @user.id, name: @user.name}}
+		assert_enqueued_jobs(1)
+	end
 end
