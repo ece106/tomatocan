@@ -4,6 +4,9 @@ require 'test_helper'
 require 'stripe'
 
 class PurchasesControllerTest < ActionController::TestCase
+
+	include ActiveJob::TestHelper
+
   setup do
     @purchases = purchases(:one)
     @purchaser = users(:two) # user 2 is the customer
@@ -246,15 +249,13 @@ class PurchasesControllerTest < ActionController::TestCase
     @purchase_info[:merchandise_id] = @merchandise
     @customer.save
     post :create, params: { purchase: @purchase_info} 
-    database_mailbox = ActionMailer::Base.deliveries.size
+		assert_enqueued_jobs(2)
     # There should be 2 emails in the box one for each seller one for buyer
-    assert_equal 2, database_mailbox
   end
   test 'donation sends mail' do
     sign_in @purchaser
     @customer.save
     post :create, params: {purchase: @purchase_info}
-    database_mailbox = ActionMailer::Base.deliveries.size
-    assert_equal 2, database_mailbox
+		assert_enqueued_jobs(2)
   end
 end
