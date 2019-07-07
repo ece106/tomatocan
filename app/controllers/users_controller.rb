@@ -191,7 +191,7 @@ class UsersController < ApplicationController
     @user.get_youtube_id
     sign_in @user
     redirect_to user_profileinfo_path(current_user.permalink)
-    UserMailer.with(user: @user).welcome_email.deliver_now
+    UserMailer.with(user: @user).welcome_email.deliver_later
   else
     redirect_to new_user_signup_path, danger: signup_error_message
     @user.errors.clear

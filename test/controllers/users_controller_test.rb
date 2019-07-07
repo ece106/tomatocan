@@ -1,6 +1,9 @@
 require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
-  setup do
+	
+	include ActiveJob::TestHelper
+  
+	setup do
     @user = users(:one)
    # sign_in @user
   end
@@ -242,23 +245,19 @@ end
   # end
 
   test "should get control panel for user1" do
-  sign_in @user
-  get :controlpanel, params: {permalink: 'user1'}
-  assert_response :success
+  	sign_in @user
+  	get :controlpanel, params: {permalink: 'user1'}
+  	assert_response :success
   end
 
   test "should get control panel for user2" do
-  sign_in @user
-  get :controlpanel, params: {permalink: 'user2'}
-  assert_response :success
-end
+  	sign_in @user
+  	get :controlpanel, params: {permalink: 'user2'}
+  	assert_response :success
+  end
 
-  test "create method sends welcome email " do
-    get :create, params: { user: { name:'username', email: 'email@email.com', password: "password", password_confirmation: "password", permalink: 'plink' } }
-    database_mailbox = ActionMailer::Base.deliveries.size
-    email = ActionMailer::Base.deliveries.last
-    assert_equal 1, database_mailbox
-    assert_equal ["email@email.com"] , email.to
-    assert_equal ["crowdpublishtv.star@gmail.com"], email.from
+  test "create method sends welcome email" do
+    get :create, params: { user: { name: 'username', email: 'email@email.com', password: "password", password_confirmation: "password", permalink: 'plink' } }
+		assert_enqueued_jobs(1)
   end
 end
