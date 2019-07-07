@@ -47,16 +47,22 @@ hr {
 .title .text{
 	color: #fff;
 	position:absolute;
-	font-size: 50px;
+	font-size: 40px;
 	text-align:center;
 	width: 100%;
-	height: 100%;
-	margin-top: 125px;
 	z-index:999;
 	left:0;
-	top:0;
-
+	right: 0;
+	top: 10%;
 }
+
+@media screen and (min-width: 1000px){
+	.title .text{
+		top: 15%;
+		font-size:80px;
+	}
+}
+
 
 .rsvp-users {
     float: right;
