@@ -2,13 +2,12 @@ class EventMailer < ApplicationMailer
 
   self.delivery_job = SendEventReminderJob
 
-  before_action do
-    @recipient = params[:recipient]
+  before_action do 
     @event = params[:event]
     @user = params[:user]
   end
 
-  before_action :set_url , only: [:new_event,:event_reminder]
+  before_action :set_url , only: [:event_reminder]
   before_action :format_date, only: [:event_reminder]
 
   def event_reminder
@@ -18,7 +17,7 @@ class EventMailer < ApplicationMailer
  private
 
   def set_url
-    @home_url = event_url(host:'crowdpublish.TV', id: @user.id)
+    @event_url = event_url(host:'crowdpublish.TV', id: @user.id)
     @share_url = tellfriends_url(host: 'crowdpublish.TV')
   end
 
