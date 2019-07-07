@@ -1,7 +1,5 @@
 class EventMailer < ApplicationMailer
 
-  self.delivery_job = SendEventReminderJob
-
   before_action do 
     @event = params[:event]
     @user = params[:user]
