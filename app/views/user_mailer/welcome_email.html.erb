@@ -4,15 +4,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
   <title>Welcome to crowdpublish.TV</title>
-  <%= stylesheet_link_tag "mailer" %>
+  <style> 
+    body {border: 5px solid #000000; padding:2%;}  
+    div.one{margin: 10px auto 10px auto; text-align: left; border: 5px solid #000000; width : 40%;padding: 50px; }
+    div.img{margin: 10% auto 10% auto;padding: 5%; }
+  </style> 
 </head>
 <body>
-<p> Welcome, <br><br>Thank you  <%=@user.name%>, for signing up with crowdpublish.TV.<br><br>
-  Visit us at <a href = "<%=@home_url%>">crowdpublish.TV</a><br><br>
-Sincerely, <br><br>
-  crowdpublish.TV<br>
-  <%= image_tag 'maroonLogo.png'%>
-</p>
+  <div class = "one">
+          <p> Welcome,<br><br>
+      Thank you  <%=@user.name%>, for signing up with crowdpublish.TV.<br><br>
+      Visit us at <a href = "<%=@home_url%>">crowdpublish.TV</a><br><br>
+      Sincerely, <br>
+      crowdpublish.TV<br>
+    </p>
+    <div class = "img">
+      <%= image_tag 'maroonLogo.png', size: "200x200"%>
+    </div>
+  </div>  
 </body>
 <footer>
 </footer>
