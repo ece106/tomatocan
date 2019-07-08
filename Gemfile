@@ -1,31 +1,17 @@
 source 'http://rubygems.org'
-<<<<<<< HEAD
 ruby "2.6.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
 gem 'capybara-screenshot', :group => :test
+
+gem 'pg'
+#gem 'sqlite3'
+gem	'stripe-ruby-mock', :require => 'stripe_mock'
 gem 'selenium-webdriver'
-gem 'simplecov' 
-=======
-ruby "2.5.1"
+gem 'simplecov'
 
-gem 'listen'
-gem 'rails-controller-testing'
-#gem 'capybara-screenshot', :group => :test
->>>>>>> 62222906787e3229a276ab1acce704eccd16229a
-
-
-<<<<<<< HEAD
 gem 'mandrill'  
-=======
-
-#gem 'pg'
-gem 'sqlite3', '~> 1.3.6'
-gem 'apparition'
-
-gem 'mandrill'	
->>>>>>> 62222906787e3229a276ab1acce704eccd16229a
 gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -40,16 +26,10 @@ gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
-
-<<<<<<< HEAD
 gem 'rails', '5.2.1'
 gem 'railties', '5.2.1'
 gem  'bootstrap-sass', '~> 3.4.1'
-=======
-gem 'rails', '~> 5.2.2.1'
-gem 'railties', '5.2.2.1'
-gem  'bootstrap-sass', '~> 3.2.0'
->>>>>>> 62222906787e3229a276ab1acce704eccd16229a
+
 gem 'autoprefixer-rails'
 #gem 'sprockets'
 gem "will_paginate", "~> 3.0.6" 
@@ -65,12 +45,7 @@ gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
 #  gem 'factory_girl_rails'
-<<<<<<< HEAD
   gem 'capybara'
-=======
-gem 'capybara'
-gem 'capybara-screenshot'
->>>>>>> 62222906787e3229a276ab1acce704eccd16229a
 #  gem 'mocha', '~> 1.1.0'
 
 end
@@ -108,4 +83,4 @@ end
 
 group :development do
     gem 'rails_real_favicon'
-end
+end 

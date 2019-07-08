@@ -7,15 +7,22 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     #index
-    test "should retrieve list of all events"do
+    test "should_retrieve_list_of_all_events" do
         #get :index, params: {id: @event.id}
         get :index
         assert_response :success
+
+        event = Event.create(:usrid => 4, :name => 'Ichi-chan', :start_at => "2020-02-11 11:02:57")
+        sample_event = Event.where( "start_at > ?", Time.now )
+        assert_equal(event.usrid, sample_event[0].usrid)
+
+        #get :show, params: {id: event, format: :html}
+        #assert_response :success 
     end
 
-    test "should recognize events" do
-        #assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
-        assert_recognizes({:controller =>'events', :action =>'show', :id =>'index'}, 'events/index')
+    test "should_recognize_events" do
+        assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
+        #assert_recognizes({:controller =>'events', :action =>'show', :id =>'index'}, 'events/index')
     end
 
     #show
@@ -67,7 +74,7 @@ class EventsControllerTest < ActionController::TestCase
         assert_equal rsvp[0].event, @event
     end
 
-    test "show render show view" do
+    test "show_render_show_view" do
         get :show, params: {id: @event, format: :html}
         assert_response :success 
 
