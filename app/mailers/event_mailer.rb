@@ -16,7 +16,6 @@ class EventMailer < ApplicationMailer
 
   def set_url
     @event_url = event_url(host:'crowdpublish.TV', id: @user.id)
-    @share_url = tellfriends_url(host: 'crowdpublish.TV')
   end
 
   def format_date
