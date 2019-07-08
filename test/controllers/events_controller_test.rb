@@ -119,6 +119,5 @@ class EventsControllerTest < ActionController::TestCase
         patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas' }}
         assert_empty @event.errors.messages
     end
-#write a test for rsvpq for show
 
 end
