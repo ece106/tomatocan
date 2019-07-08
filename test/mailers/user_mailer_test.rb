@@ -35,7 +35,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal [@seller.email], mail.to
     assert_equal ['crowdpublishtv.star@gmail.com'], mail.from
 	end
-test 'purchase_received mail to,from,subject' do
+	test 'purchase_received mail to,from,subject' do
 	  @mail_hash[:merchandise] = @merchandise
 		mail = UserMailer.with(@mail_hash).donation_received
 		assert_equal "#{@user.name} has made a donation", mail.subject
