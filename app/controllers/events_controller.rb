@@ -36,7 +36,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build(event_params)
     user = User.find(@event.usrid)
-		reminder_date = @event.start_at - 2.days
+    reminder_date = @event.start_at - 2.days
     respond_to do |format|
       if @event.save
         EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: reminder_date)
@@ -69,5 +69,5 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
   end
-		
+    
 end
