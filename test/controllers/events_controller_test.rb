@@ -1,6 +1,6 @@
 require 'test_helper'
 class EventsControllerTest < ActionController::TestCase
-	include ActiveJob::TestHelper
+	 include ActiveJob::TestHelper
   setup do
     @event = events(:one)
     @user = users(:one)
@@ -54,8 +54,7 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test 'create should send a reminder functional test' do
-		sign_in @user	
-		post :create , params: {event: {start_at: Time.now + 2.days, usrid: @user.id, name: @user.name}}
-		assert_enqueued_jobs(1)
+    sign_in @user
+    post :create , params: {event: {start_at: Time.now + 2.days, usrid: @user.id, name: @user.name}} assert_enqueued_jobs(1)
 	end
 end
