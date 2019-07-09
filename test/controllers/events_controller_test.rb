@@ -55,6 +55,7 @@ class EventsControllerTest < ActionController::TestCase
 
   test 'create should send a reminder functional test' do
     sign_in @user
-    post :create , params: {event: {start_at: Time.now + 2.days, usrid: @user.id, name: @user.name}} assert_enqueued_jobs(1)
-	end
+    post :create , params: {event: {start_at: Time.now + 2.days, usrid: @user.id, name: @user.name}}
+    assert_enqueued_jobs(1)
+  end
 end
