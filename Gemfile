@@ -9,7 +9,7 @@ gem 'rails-controller-testing'
 gem 'pg'
 #gem 'sqlite3'
 #gem 'capybara'
-
+gem 'capybara-screenshot', :group => :test
 gem 'mandrill'	
 gem 'devise'
 gem 'fog'   #, '1.6.0'
@@ -21,6 +21,12 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
+
+gem 'apparition', '~> 0.2.0'
+ # gem 'capybara'
+# gem 'capybara-screenshot', :group => :test
+  gem 'listen'
+  gem 'rails-controller-testing'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
