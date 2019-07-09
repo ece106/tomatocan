@@ -3,6 +3,7 @@ class RsvpqMailer < ApplicationMailer
   before_action do
     @rsvpq = params[:rsvpq]
     @user  = params[:user]
+    @event = params[:event]
   end
 
   before_action :set_url, only: [:rsvpq_created]
@@ -16,7 +17,7 @@ class RsvpqMailer < ApplicationMailer
   private
 
   def set_url
-    @url = event_url(host:'localhost:3000', id: @rsvpq.event_id)
+    @url = event_url(host: :host, id: @user.id)
   end
 
 end
