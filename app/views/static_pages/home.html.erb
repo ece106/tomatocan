@@ -79,11 +79,14 @@
   </div>
 </div>
 
-<!-- Upcoming Events -->
+<!-- WeekDays -->
 <%#= render "layouts/upcoming_events", collection: @events %>
 
 <!-- Upcoming Events -->
 <%= render "events/upcoming_events", collection: @events %>
+
+<!-- Row Only -->
+<%#= render "events/upcoming_events_row_only", collection: @events %>
 
 <div class="cptv-section-2" id="offerPerks">
   <div class="container">

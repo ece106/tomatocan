@@ -7,12 +7,13 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="upcoming-events__section">
+<div class="upcoming-events__section" id="connectFans">
   <div class="upcoming-events__header">
     <div class="container">
-      <h1><%= link_to "Upcoming Events", events_path %></h1>
+      <h1 class="h1">Next event in</h1>
+      <h1>04:35:22</h1>
       <br />
-      <h3>Head to our <%= link_to "Events", events_path %> page to view all of our scheduled events.</h3>
+      <h3>Head to our <span id="events-link"><%= link_to "Events", events_path %></span> page to view all of our scheduled events.</h3>
     </div>
   </div>
 
@@ -34,7 +35,7 @@
           </div>
           <div class="col-sm-6 col-2">
             <div>
-              <h3><%= distance_of_time_in_words(event.start_at, Time.now) %></h3>
+              <h3><%= distance_of_time_in_words(event.start_at, Time.now) %> from now</h3>
             </div>
             <a
                tabindex="0"

@@ -26,7 +26,6 @@
 
 /**** Jumbotron ****/
 .cptv-jumbotron {
-  font-family: 'DM Sans', sans-serif;
   margin-top: 40px;
   // margin: 60px -15px 70px -15px;
   color: #fff;
@@ -76,7 +75,6 @@
     }
 
     input::placeholder {
-      color: #d3d3d3;
     }
 
     .btn {
@@ -169,17 +167,21 @@
 .ctpv-section-3-col-2 {
 }
 
+#tos-signup {
+  text-align: center;
+}
+
 /**** Media Queries ****/
 
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
 // Small devices (landscape phones, 576px and up)
-@media (max-width: 576px) {
+@media (min-width: 576px) {
   .jumbotron-col-2 {
     border-radius: 5px;
     background-color: #FFF;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px 40px 20px 40px;
+    padding: 40px 40px 20px 40px;
     margin: auto;
     margin-top: 50px;
     max-width: 645px;
@@ -232,11 +234,10 @@
   }
 
   .jumbotron-col-2 {
-    width: 340px;
+    width: 400px;
     border-radius: 5px;
     margin-top: 10px;
-    margin-left: 228px;
-    padding: 20px 20px 20px 20px;
+    margin-left: 168px;
     background-color: #FFF;
     background-color: rgba(0, 0, 0, 0.7);
   }
