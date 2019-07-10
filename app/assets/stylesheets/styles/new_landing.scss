@@ -1,0 +1,246 @@
+// LANDING PAGE SCSS
+
+.btn-rounded {
+  border-radius: 5px;
+}
+
+.btn-alert {
+}
+
+.aboutus-section-header {
+  margin: 0 auto;
+
+  .aboutus-title {
+    color: #62142d;
+  }
+}
+
+.aboutus-section-body {
+  margin: 0 auto;
+  max-width: 1064px;
+}
+
+.aboutus-subtitle {
+  color: #62142d;
+}
+
+/**** Jumbotron ****/
+.cptv-jumbotron {
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 40px;
+  // margin: 60px -15px 70px -15px;
+  color: #fff;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url("heroImage.jpg");
+  background-color: transparent;
+  background-size: cover;
+  background-position: center top;
+  padding-bottom: 100px;
+
+  .btn {
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .h1 {
+    font-size: 38px;
+    font-weight: 600;
+  }
+
+  .lead {
+    font-weight: 600;
+    font-size: 32px;
+  }
+
+  .view-schedule-btn-wrapper {
+    padding-top: 20px;
+  }
+
+  .jumbotron-sign-up {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .jumbotron-sign-in-link {
+    color: #FFC627;
+  }
+
+  .jumbotron-col-2 {
+    input {
+      border-radius: 5px;
+      height: 45px;
+      font-size: 18px;
+      background-color: #eee;
+    }
+
+    input::placeholder {
+      color: #d3d3d3;
+    }
+
+    .btn {
+      width: 100%;
+      height: 45px;
+    }
+  }
+}
+
+.form-group-small {
+  text-align: center;
+}
+
+.jumbotron-wrapper {
+  padding: 100px 0 100px 0;
+}
+
+// CPTV Section 1
+
+.cptv-section-1 {
+  padding-bottom: 80px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.aboutus-title {
+  font-weight: 600;
+}
+
+.aboutus-subtitle {
+  @extend .aboutus-title;
+}
+
+// CPTV Section 2
+.cptv-section-2 {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.cptv-section-2-header {
+}
+
+.cptv-section-2-body {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+// CPTV Section 3
+
+.cptv-section-3 {
+  margin-top: 50px;
+}
+
+.cptv-section-3-header {
+  text-align: center;
+
+  h2 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #62142d;
+  }
+}
+
+.cptv-section-3-body {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 660px;
+
+  .form-group {
+    input {
+      border-radius: 5px;
+      height: 45px;
+      width: 440px;
+      font-size: 18px;
+    }
+
+    .col-sm-8 {
+      text-align: right;
+    }
+
+    .col-sm-4 {
+      text-align: left;
+    }
+  }
+}
+
+.cptv-section-3-col-1 {
+}
+
+.ctpv-section-3-col-2 {
+}
+
+/**** Media Queries ****/
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+  .jumbotron-col-2 {
+    border-radius: 5px;
+    background-color: #FFF;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px 40px 20px 40px;
+    margin: auto;
+    margin-top: 50px;
+    max-width: 645px;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+// @media (min-width: 576px) {
+//   .jumbotron-col-2 {
+//     border-radius: 5px;
+//     background-color: #FFF;
+//     background-color: rgba(0, 0, 0, 0.7);
+//     padding: 20px 40px 20px 40px;
+//     margin: auto;
+//     margin-top: 100px;
+//     max-width: 645px;
+//   }
+// }
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+  .jumbotron-col-2 {
+    background-color: #FFF;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+  }
+
+  .jumbotron-nav-link {
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .jumbotron-col-2 {
+    background-color: #FFF;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+  }
+
+  .jumbotron-nav-link {
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cptv-jumbotron {
+    .jumbotron-col-1 {
+      text-align: left;
+    }
+  }
+
+  .jumbotron-col-2 {
+    width: 340px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 228px;
+    padding: 20px 20px 20px 20px;
+    background-color: #FFF;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.partial-signup-form-btn {
+}

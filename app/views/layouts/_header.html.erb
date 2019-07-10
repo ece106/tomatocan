@@ -1,54 +1,51 @@
-<header>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#globalNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<% if request.host == "crowdpublishtv.herokuapp.com" %><!-- if the navbar is being rendered in the heroku domain -->
-					<%= link_to image_tag("starIcon.png", :class => "navbar-brand", :title => "CrowdPublishTV", :id => "navbarLogo"), 'http://www.crowdpublish.tv' %> <!-- ^ use absolute routing in navbar ^ -->
-				<% else %> <!-- if the navbar is being rendered in from the crowdpublish domain or from localhost -->
-					<%= link_to image_tag("starIcon.png", :class => "navbar-brand", :title => "CrowdPublishTV", :id => "navbarLogo"), '/' %>
-			<% end %>
-		</div>
-		<div class="collapse navbar-collapse" id="globalNavbar">
-			<ul class="nav navbar-nav">
-				<% if request.host == "crowdpublishtv.herokuapp.com" %> <!--If the navbar is being rendered in the crowdpublishtv.herokuapp.com secure server domain.. -->
-					<li class="nav-item"><%= link_to "Home", 'http://CrowdPublish.TV', :title => "About CrowdPublishTV" %></li> <!-- ..use absolute routing in navbar.-->
-					<li class="nav-item"><%= link_to "About", 'http://www.crowdpublish.tv/aboutus', :title => "About CrowdPublishTV" %></li>
-					<li class="nav-item"><%= link_to "Discover Previous Discussions", 'http://www.crowdpublish.tv/supportourwork', :title => "Browse Hosts"%></li>
-					<li class="nav-item"><%= link_to "FAQ", 'http://www.crowdpublish.tv/faq', :title => "Frequently Asked Questions" %></li>
-				<% else %> <!-- if the navbar is being rendered in from the CrowdPublish.TV domain or from localhost..-->
-					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", '/', :title => "Home" %></li>
-					<li class="<%=(current_page?('/aboutus') ? "nav-item active" : "nav-item")%>"><%= link_to "About", '/aboutus', :title => "About CrowdPublishTV" %></li>
-					<li class="<%=(current_page?('/supportourwork') ? "nav-item active" : "nav-item")%>"><%= link_to "Discover  Previous Discussions", '/supportourwork', :title => "Browse Hosts" %></li>
-					<li class="<%=(current_page?('/faq') ? "nav-item active" : "nav-item")%>"><%= link_to "FAQ", '/faq', :title => "Frequently Asked Questions" %></li>
-				<% end %>
-			</ul>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#globalNavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <% if request.host == "crowdpublishtv.herokuapp.com" %><!-- if the navbar is being rendered in the heroku domain -->
+      <%= link_to image_tag("starIcon.png", :class => "navbar-brand", :title => "CrowdPublishTV", :id => "navbarLogo"), 'http://www.crowdpublish.tv' %> <!-- ^ use absolute routing in navbar ^ -->
+    <% else %> <!-- if the navbar is being rendered in from the crowdpublish domain or from localhost -->
+      <%= link_to image_tag("starIcon.png", :class => "navbar-brand", :title => "CrowdPublishTV", :id => "navbarLogo"), '/' %>
+    <% end %>
+  </div>
+  <div class="collapse navbar-collapse" id="globalNavbar">
+    <ul class="nav navbar-nav">
+      <% if request.host == "crowdpublishtv.herokuapp.com" %> <!--If the navbar is being rendered in the crowdpublishtv.herokuapp.com secure server domain.. -->
+        <li class="nav-item"><%= link_to "Home", 'http://CrowdPublish.TV', :title => "About CrowdPublishTV" %></li> <!-- ..use absolute routing in navbar.-->
+        <li class="nav-item"><%= link_to "About", 'http://www.crowdpublish.tv/aboutus', :title => "About CrowdPublishTV" %></li>
+        <li class="nav-item"><%= link_to "Discover Previous Discussions", 'http://www.crowdpublish.tv/supportourwork', :title => "Browse Hosts"%></li>
+        <li class="nav-item"><%= link_to "FAQ", 'http://www.crowdpublish.tv/faq', :title => "Frequently Asked Questions" %></li>
+      <% else %> <!-- if the navbar is being rendered in from the CrowdPublish.TV domain or from localhost..-->
+        <li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", '/', :title => "Home" %></li>
+        <li class="<%=(current_page?('/aboutus') ? "nav-item active" : "nav-item")%>"><%= link_to "About", '/aboutus', :title => "About CrowdPublishTV" %></li>
+        <li class="<%=(current_page?('/supportourwork') ? "nav-item active" : "nav-item")%>"><%= link_to "Discover  Previous Discussions", '/supportourwork', :title => "Browse Hosts" %></li>
+        <li class="<%=(current_page?('/faq') ? "nav-item active" : "nav-item")%>"><%= link_to "FAQ", '/faq', :title => "Frequently Asked Questions" %></li>
+      <% end %>
+    </ul>
 
-			<ul class="nav navbar-nav navbar-right">
-				<% if user_signed_in? %>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get %></li>
-							<li><%= link_to "Control Panel", user_controlpanel_url(current_user.permalink), method: :get %></li>
-						</ul>
-					</li>
-					<li>
-						<p class="navbar-btn">
-							<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %>
-						</p>
-					</li>
-				<% else %>
-					<li>
-						<p class="navbar-btn">
-							<%= link_to "Sign Up", '/signup', class: "btn btn-primary" %>
-							<%= link_to 'Sign In', "/login", class: "btn btn-default" %>
-						</p>
-					</li>
-				<% end %>
-			</ul>
-		</div>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get %></li>
+            <li><%= link_to "Control Panel", user_controlpanel_url(current_user.permalink), method: :get %></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-default btn-rounded nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Sign Up", '/signup', class: "" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign In', "/login", class: ""  %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </nav>

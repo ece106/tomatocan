@@ -1,56 +1,162 @@
-<div class="row" id="heroImage">
-    <div>
-        <div class="alert">
-                <% flash.each do |key, value| %>
-                      <div class="<%= flash_class(key) %>">
-                            <%= value %>
-                      </div>
-                <% end %>
+<!-- Jumbotron -->
+<div class="jumbotron jumobtron-fluid cptv-jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 jumbotron-col-1">
+        <p class="h1">JOIN OUR LIVESTREAMS</p>
+        <p class="h1">Real People. Real Topics.</p>
+        <br />
+        <br />
+        <p class="lead">
+        Join us for weekly topics on Faith,
+        Technology, Environmental issues & more!
+        </p>
+        <br />
+        <span class="jumbotron-nav-link">
+          <a href=#connectFans class="btn btn-primary btn-lg">View Schedule</a>
+        </span>
+        <span class="jumbotron-nav-link">
+          <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", class: "btn btn-lg btn-primary btn-alert" %>
+        </span>
+        <!-- <button type="button" class="btn btn-primary btn-lg">View Schedule</button> -->
+      </div>
+      <% if !user_signed_in? %>
+        <div class="col-sm-6 jumbotron-col-2">
+          <h4>Create an account to host live streams!</h4>
+          <%= render "devise/registrations/new" %>
+          <!--
+            <form>
+            <div class="form-group">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username">
+            </div>
+            <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Create your account</button>
+            <p class="jumbotron-sign-up">Already a member? <%#= link_to "Sign In", "#", class: "jumbotron-sign-in-link" %></p>
+            </form>
+          -->
         </div>
-        <h1 id="heroTitle">JOIN WEEKLY LIVESTREAM DISCUSSIONS RIGHT HERE </h1>
-        <h2 id="haveAccount" style="font-size: 30px; line-height: 150%">
-          <br> Tuesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Tech Tuesday ', '/tech' %>
-          <br> Wednesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Discussions on Faith ', '/faith' %>
-          <br> Thursdays 7:30pm PDT / 10:30pm EDT - <%= link_to 'International Awareness ', '/international' %><br><br>
+      <% end %>
     </div>
-          <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %>
+  </div>
 </div>
-<div class=row id=scroll>
-  <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
-</div>
-<div class="row darkBlock" id="connectFans">
-    <div class="col-md-5">
-        <h2>Our Purpose</h2>
-        <p> Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
 
-        CrowdPublish.TV is creating a forum for thought-provoking conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.
+<!-- Our Purpose -->
+<div class="cptv-section-1">
+  <div class="container">
+    <div class="aboutus-section-header">
+      <h2 class="aboutus-title">Our Purpose</h2>
     </div>
-    <div class="col-md-7">
-        <%= render 'layouts/maincalendar', collection: @events %>
+    <div class="aboutus-section-body">
+      <p class="lead">
+      Broadcast live discussions about what you're doing to change the world.
+      Participate in intellectual discussions to broaden your knowledge. Learn
+      Ruby on Rails with us on Tuesday evenings. Wednesday evening Faith
+      discussions. Thursday evenings we'll talk about international issues.
+      Friday lunch/afternoon is Health & Wellness time. We'll add more topics and
+      time slots throughout the summer.
+      </p>
     </div>
+  </div>
+  <br />
+  <div class="container">
+    <div class="aboutus-section-header">
+      <h2 class="aboutus-subtitle">Interested in influencing the topics discussed on CrowdPublish.tv?</h2>
+    </div>
+    <div class="aboutus-section-body">
+      <p class="lead">
+      Feel free to add your own show! We recommend selecting a time immediately
+      before or after other shows for increased exposure.
+      </p>
+    </div>
+  </div>
 </div>
-<div class="row lightBlock" id="offerPerks">
-    <div class="col-sm-6">
-      <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
+
+<!-- Upcoming Events -->
+<%#= render "layouts/upcoming_events", collection: @events %>
+
+<!-- Upcoming Events -->
+<%= render "events/upcoming_events", collection: @events %>
+
+<div class="cptv-section-2" id="offerPerks">
+  <div class="container">
+    <div class="row">
+      <div class="ctpv-section-2-col-1 col-sm-6">
+        <div class="cptv-section-2-header">
+          <%= image_tag("homePerks.jpg", class: "hidden-xs", style: "height:250px") %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="cptv-section-2-body">
+          <p class="lead">
+          Broadcast live discussions about what you're doing to change the world.
+          Participate in intellectual discussions to broaden your knowledge. Learn
+          Ruby on Rails with us on Tuesday evenings. Wednesday evening Faith
+          discussions. Thursday evenings we'll talk about international issues.
+          Friday lunch/afternoon is Health & Wellness time. We'll add more topics and
+          time slots throughout the summer.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-4 col-sm-offset-1">
-        <h2>Offer Rewards & Receive Donations</h2>
-        <p>Alongside viewing your livestream, viewers can support you through donations or by purchasing your downloads or physical items. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your livestream viewers.</p>
-    </div>
+  </div>
 </div>
-<div class="row darkBlock" id="livestream">
-    <div class="col-sm-4 col-sm-offset-1">
-      <h2>Connect with Intellectually Curious Donors</h2>
-      <p>Viewers can ask questions during your livestream through text chat or by voice. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
+
+<div class="cptv-section-3">
+  <div class="container">
+    <div class="cptv-section-3-header">
+      <h2>Find out when our events are posted.</h2>
     </div>
-    <div class="col-sm-6 col-sm-offset-1">
-      <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
+    <div class="cptv-section-3-body">
+      <form>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-8">
+              <input type="email" class="form-control" placeholder="Enter Email" />
+            </div>
+            <div class="col-sm-4">
+              <button type="submit" class="btn btn-primary btn-rounded btn-lg">Notify Me</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
-<div class="row" id="faqBlock">
-    <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3>
-    <br>
-    <% if !user_signed_in? %>
-        <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
-    <% end %>
+
+<div class="cptv-section-2" id="offerPerks">
+  <div class="container">
+    <div class="row">
+      <div class="ctpv-section-2-col-1 col-sm-6">
+        <div class="cptv-section-2-header">
+          <%= image_tag("homeFans.jpg", class: "hidden-xs", style: "height:250px") %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="cptv-section-2-body">
+          <p class="lead">
+          Broadcast live discussions about what you're doing to change the world.
+          Participate in intellectual discussions to broaden your knowledge. Learn
+          Ruby on Rails with us on Tuesday evenings. Wednesday evening Faith
+          discussions. Thursday evenings we'll talk about international issues.
+          Friday lunch/afternoon is Health & Wellness time. We'll add more topics and
+          time slots throughout the summer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>

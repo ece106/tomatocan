@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-    def facebookLogin
+  def facebookLogin
       user = User.from_omniauth(env["omniauth.auth"])
       session[:user_id] = user.id
       redirect_to root_url
