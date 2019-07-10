@@ -1,14 +1,18 @@
 <div class="container">
-	<div class="row">
-		<h1>New Timeslot</h1>
-			<p>Make a regular "timeslot" that you'll be available for a weekly show. If your followers are interested, they will sign up for the timeslot, and it will create a livestream event on the site's main calendar.</p>
-	</div>
-	<div class="row">
-		<%= render 'form', timeslot: @timeslot %>
-	</div>
+  <div class="row">
+    <h1>New Timeslot</h1>
+    <p>
+    Make a regular "timeslot" that you'll be available for a weekly show. If
+    your followers are interested, they will sign up for the timeslot, and it
+    will create a livestream event on the site's main calendar.
+    </p>
+  </div>
 
+  <div class="row">
+    <%= render 'form', timeslot: @timeslot %>
+  </div>
 
-	<div class="row">
-		<%= link_to 'Back', timeslots_path %>
-	</div>
+  <div class="row">
+    <%= link_to 'Back', timeslots_path %>
+  </div>
 </div>

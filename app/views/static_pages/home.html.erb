@@ -1,5 +1,6 @@
 
 <div class="row" id="heroImage">
+<<<<<<< HEAD
     <div class="alert">
       <% flash.each do |key, value| %>
             <div class="<%= flash_class(key) %>">
@@ -39,11 +40,29 @@
       </div>
     </div>  
   </div>   
+=======
+    <div>
+        <div class="alert">
+                <% flash.each do |key, value| %>
+                      <div class="<%= flash_class(key) %>">
+                            <%= value %>
+                      </div>
+                <% end %>
+        </div>
+        <h1 id="heroTitle">JOIN WEEKLY LIVESTREAM DISCUSSIONS RIGHT HERE </h1>
+        <h2 id="haveAccount" style="font-size: 30px; line-height: 150%">
+          <br> Tuesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Tech Tuesday ', '/tech' %>
+          <br> Wednesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Discussions on Faith ', '/faith' %>
+          <br> Thursdays 7:30pm PDT / 10:30pm EDT - <%= link_to 'International Awareness ', '/international' %><br><br>
+    </div>
+          <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %>
+>>>>>>> 62222906787e3229a276ab1acce704eccd16229a
 </div>
 
 <div class="row" id="scroll">
     <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
 </div>
+<<<<<<< HEAD
   <div class="row">
     <div class="col-md-12">
         <h3>Our Purpose</h3>
@@ -57,6 +76,14 @@
         <h3>Upcoming Events</h3>
         <p id="event">Head to our <a>Events </a>page to view our full schedule</p>
         <br>
+=======
+<div class="row darkBlock" id="connectFans">
+    <div class="col-md-5">
+        <h2>Our Purpose</h2>
+        <p> Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
+
+        CrowdPublish.TV is creating a forum for thought-provoking conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.
+>>>>>>> 62222906787e3229a276ab1acce704eccd16229a
     </div>
     <div class="col-md-12">
         <%= render 'layouts/maincalendar', collection: @events %>
