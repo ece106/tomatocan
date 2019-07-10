@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 #homeWrapper {
     text-align: center;
     //Prevents space between header and heroImage on Firefox.
@@ -6,6 +7,11 @@
 
 p {
     text-align: left;
+}
+.title {
+    padding-left: 30px;
+    width: 500px;
+    top: 50px;
 }
 #heroImage {
     background-image: image-url('heroImage.jpg');
@@ -18,25 +24,103 @@ p {
 #heroImage .alert{
     top: 100px;
 }
+h1 {
+    font-weight: bolder;
+    font-family: 'Oswald';
+    font-size: 50px;
+}
+h2 {
+    font-weight: lighter;
+    font-family: 'Oswald';
+    font-size: 40px;
+}
+h3 {
+    font-weight: lighter;
+    font-family: 'Oswald';
+    font-size: 30px;
+}
 #heroTitle, #heroImage small {
     color: white;
-        text-shadow: $overlaid-text;
+    text-shadow: $overlaid-text;
+    text-align: left;
+}
+#buttonTitle{
+    text-align: left;
 }
 #haveAccount {
     color: white;
-        font-size: 1.75rem;
-    text-align: center;
+    font-size: 1.75rem;
+    text-align: left;
     font-weight: 600;
-        text-shadow: $overlaid-text;
+    text-shadow: $overlaid-text;
 }
 #haveAccount a {
     color: $brand-secondary;
 }
-
+.signUpForm {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.4);
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    float: right;
+    overflow: hidden;
+    position: absolute;
+    top: 200px;
+    right: -100px;
+}
+input {
+    line-height: 30px;
+    width: 100%;
+}
+.col-md-5 {
+    text-align: center;
+    width: 100%;
+    clear: both;
+    padding: 60px 100px;
+}
+h3 {
+    color: #8C1D40;
+}
+form h3 {
+  color: white;
+}
+hr {
+  border: 1px solid #d9d9d9;
+}
+.col-md-12 {
+    width: 100%;
+    clear: both;
+    padding: 30px 100px;
+}
+.col-md-12 #learnMore { 
+    padding: 20px;
+    background: url("camera.jpg");
+    background-repeat: no-repeat;
+    background-color: rgba(255,255,255, 0.2);
+    background-origin: padding-box;
+    opacity: 0.2;
+    width: 80%;
+    height: 80vh;
+}
+#learnMore h3 {
+    padding: 0px 100px;
+    font-weight: bold;
+    font-size: 40px;
+    color: #8C1D40;
+    text-align: center;
+}
+#learnMore p {
+    padding: 0px 100px;
+    font-weight: bold;
+    text-align: center;
+}
+#event {
+    text-align: center;
+}
 .alert {
-  padding-top: 20px;
-  width: 80%;
-  display:inline-block;
+    padding-top: 20px;
+    width: 80%;
+    display:inline-block;
 }
 #scroll h1{
     color: white;
@@ -74,23 +158,4 @@ p {
     transform: translate(0px, 20px);
     opacity: 0;
   }
-}
-.col-md-5 p {
-    font-size: 15px;
-    padding: 15px;
-}
-.darkBlock {
-    background-color: $gray-lighter;
-}
-#faqBlock, .lightBlock, .darkBlock {
-    padding: 30px 20px;
-}
-#faqBlock {
-    padding-top: 80px;
-}
-#connectFans {
-    min-height: 310px;
-}
-#lightBlock, #darkBlock {
-    padding-top: 80px;
 }
