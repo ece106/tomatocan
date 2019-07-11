@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   # GET /events.json
   def index
-    @events = Event.where( "start_at > ?", Time.now )
+    # @events = Event.where( "start_at > ?", Time.now ).recent
+    @events = Event.upcoming.recent
 
     respond_to do |format|
       format.html # index.html.erb
