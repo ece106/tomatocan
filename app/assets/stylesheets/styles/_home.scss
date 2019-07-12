@@ -7,11 +7,11 @@
 
 p {
     text-align: left;
+    font-size: 15px;
 }
 .title {
-    padding-left: 30px;
-    width: 500px;
-    top: 50px;
+    padding-left: 80px;
+    width: 700px;
 }
 #heroImage {
     background-image: image-url('heroImage.jpg');
@@ -72,12 +72,6 @@ input {
     line-height: 30px;
     width: 100%;
 }
-.col-md-5 {
-    text-align: center;
-    width: 100%;
-    clear: both;
-    padding: 60px 100px;
-}
 h3 {
     color: #8C1D40;
 }
@@ -90,32 +84,108 @@ hr {
 .col-md-12 {
     width: 100%;
     clear: both;
-    padding: 30px 100px;
+    padding: 0px 250px;
 }
-.col-md-12 #learnMore { 
-    padding: 20px;
-    background: url("camera.jpg");
-    background-repeat: no-repeat;
-    background-color: rgba(255,255,255, 0.2);
-    background-origin: padding-box;
-    opacity: 0.2;
-    width: 80%;
-    height: 80vh;
+#event {
+    text-align: center;
 }
-#learnMore h3 {
+.hero {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    text-align: center;
+} 
+.hero::before { 
+    background-image: url("camera.jpg");
+    background-size: 100% 100%;
+    content: "";
+    display: block;
+    position: absolute;
+    top:30px;
+    left:0;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    z-index:-2;
+}
+@media (min-width: 320px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 460px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 720px) {
+.hero::before {
+background-image: url("camera.jpg");;
+}
+}
+
+@media (min-width: 980px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 1240px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 1500px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 1760px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+/*.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}*/
+.learnMore {
+    text-align: center;
+    padding: 0px 80px;
+}
+.learnMore h3 {
     padding: 0px 100px;
     font-weight: bold;
     font-size: 40px;
     color: #8C1D40;
     text-align: center;
 }
-#learnMore p {
-    padding: 0px 100px;
+.learnMore p {
+    padding: 0px 200px;
     font-weight: bold;
     text-align: center;
+    font-size: 20px;
 }
-#event {
-    text-align: center;
+#rewards, #connect {
+    width: 100%;
+    clear: both;
+    padding: 0px 80px;
+}
+#rewards h2, #connect h2 {
+    font-size: 30px;
+    color: #8C1D40;
+}
+#rewards p, #connect p {
+    font-size: 20px;
 }
 .alert {
     padding-top: 20px;

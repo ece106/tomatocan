@@ -1,9 +1,6 @@
 source 'http://rubygems.org'
-<<<<<<< HEAD
+
 ruby '2.6.3'
-=======
-ruby "2.5.1"
->>>>>>> 62222906787e3229a276ab1acce704eccd16229a
 
 gem 'listen'
 gem 'rails-controller-testing'
@@ -11,8 +8,8 @@ gem 'rails-controller-testing'
 
 
 
-#gem 'pg'
-gem 'sqlite3', '~> 1.3.6'
+gem 'pg'
+#gem 'sqlite3', '~> 1.3.6'
 gem 'apparition'
 
 gem 'mandrill'	

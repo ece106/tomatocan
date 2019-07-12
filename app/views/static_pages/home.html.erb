@@ -1,6 +1,5 @@
 
 <div class="row" id="heroImage">
-<<<<<<< HEAD
     <div class="alert">
       <% flash.each do |key, value| %>
             <div class="<%= flash_class(key) %>">
@@ -8,9 +7,9 @@
             </div>
       <% end %>
     </div>
-  <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <div class="title">
+        <br><br><br><br>
         <h1 id="heroTitle">JOIN OUR LIVESTREAMS </h1>
         <h2 id="heroTitle">Real People. Real Topics. </h2> <br>
         <h3 id="heroTitle"> Join us for weekly topics on Faith, Innovations, Environmental Issues & more!</h3>
@@ -20,10 +19,12 @@
         <%= link_to 'View Schedule', events_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 0px; border-radius: 5px;" %>
         <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
         </h2>
+        <br><br><br><br>
       </div>
     </div>
         
-    <div class="col-md-6">
+    <div class="col-sm-6">
+      <br><br><br><br><br><br><br><br><br>
       <div class="signUpForm">
         <form action="/action_page.php">
           <br>
@@ -36,38 +37,20 @@
           <br><br>
           <p id="haveAccount">Have an account? <%= link_to 'Sign in.', "/login" %></p>
           <br><br>
-      </form> 
+        </form> 
       </div>
-    </div>  
-  </div>   
-=======
-    <div>
-        <div class="alert">
-                <% flash.each do |key, value| %>
-                      <div class="<%= flash_class(key) %>">
-                            <%= value %>
-                      </div>
-                <% end %>
-        </div>
-        <h1 id="heroTitle">JOIN WEEKLY LIVESTREAM DISCUSSIONS RIGHT HERE </h1>
-        <h2 id="haveAccount" style="font-size: 30px; line-height: 150%">
-          <br> Tuesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Tech Tuesday ', '/tech' %>
-          <br> Wednesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Discussions on Faith ', '/faith' %>
-          <br> Thursdays 7:30pm PDT / 10:30pm EDT - <%= link_to 'International Awareness ', '/international' %><br><br>
-    </div>
-          <%= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %>
->>>>>>> 62222906787e3229a276ab1acce704eccd16229a
+    </div>    
 </div>
 
 <div class="row" id="scroll">
     <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
 </div>
-<<<<<<< HEAD
   <div class="row">
     <div class="col-md-12">
+        <br><br>
         <h3>Our Purpose</h3>
         <p> Broadcast live discussions about what you're doing to change the world. Participate in intellectual discussions to broaden your knowledge. Learn Ruby on Rails with us on Tuesday evenings. Wednesday evening Faith discussions. Thursday evenings we'll talk about International Issues. Friday lunch/afternoon is Health & Wellness time. We'll add more topics and time slots throughout the summer.</p> 
-        <br><br><br>
+        <br><br>
         <h3>Join the conversation & change the world!</h3>
         <p> Content encouraging new users and inviting their friends, colleagues, etc should go here. Content encouraging new users and inviting their friends, colleagues, etc should go here. Content encouraging new users and inviting their friends, colleagues, etc should go here. Content encouraging new users and inviting their friends, colleagues, etc should go here.</p>
         <br><br>
@@ -76,28 +59,16 @@
         <h3>Upcoming Events</h3>
         <p id="event">Head to our <a>Events </a>page to view our full schedule</p>
         <br>
-=======
-<div class="row darkBlock" id="connectFans">
-    <div class="col-md-5">
-        <h2>Our Purpose</h2>
-        <p> Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
-
-        CrowdPublish.TV is creating a forum for thought-provoking conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.
->>>>>>> 62222906787e3229a276ab1acce704eccd16229a
     </div>
     <div class="col-md-12">
         <%= render 'layouts/maincalendar', collection: @events %>
     </div>
-        <br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br>
+  </div>
 
-    <div class="col-md-12">
-      <div id="learnMore">
-      <br><br><br><br><br><br><br><br>
+  <div class="learnMore">
+    <div class="hero flex-center">
+      <div class="hero-message">
+      <br><br><br><br><br><br><br><br><br>
       <h3>Do you have something to say?</h3>
       <h3>Host your own show & influence others!</h3>
       <br>
@@ -108,29 +79,30 @@
       </div>
     </div>
   </div>
-        <div class="row">
+
+
+<div class="row" id="rewards">
         <br><br><br><br><br><br><br>
-        <div class="col-sm-6">
-        <%= image_tag("reward.jpg", :class => "hidden-xs", :style => "height:350px") %>
+        <div class="col-xs-6">
+        <%= image_tag("reward.jpg", :class => "hidden-xs", :style => "width:100%") %>
         </div>
-        <div class="col-sm-6">
-        <br><br><br>
+        <div class="col-xs-6">
+        <br><br><br><br>
         <h2>Offer Rewards & Receive Donations</h2>
         <p>Alongside viewing your livestream, viewers can support you through donations or by purchasing your downloads or physical items. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your livestream viewers.</p>
         </div>
       </div>
-    </div>
+  </div>
      <br><br><br>
-    <div class="connect">
-      <div class="row">
-        <div class="col-sm-6">
-        <%= image_tag("connect.jpg", :class => "hidden-xs", :style => "height:350px") %>
+<div class="row" id="connect">
+        <div class="col-xs-6">
+        <%= image_tag("connect.jpg", :class => "hidden-xs", :style => "width:100%") %>
         </div>
-
-        <div class="col-sm-6">
-        <br><br><br>
+        <div class="col-xs-6">
+        <br><br><br><br>
         <h2>Connect with Intellectually Curious Donors</h2>
         <p>Viewers can ask questions during your livestream through text chat or by voice. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
         </div>
       </div>
     </div>
+     <br><br><br>
