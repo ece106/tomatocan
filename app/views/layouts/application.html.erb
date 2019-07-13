@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="http://example.com/image.png" />
     <%= render 'application/favicon' %>
 
-<%= stylesheet_link_tag    '_faq', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    '_faq', media: 'all', 'data-turbolinks-track' => true %>
 
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application" %>
@@ -16,35 +16,35 @@
     <%= csrf_meta_tags %>
 
     <% if Rails.env.development? || Rails.env.test? %>
-        <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
+      <%= tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY %>
     <% else %>
-        <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %> 
+      <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] %>
     <% end %>
-  
+
     <% if content_for? :forusers %>
-        <%= yield :forusers %>
+      <%= yield :forusers %>
     <% end %>
 
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
-    
-<body>
-    
+  </head>
+
+  <body>
+
     <%= render 'layouts/header' %>
 
     <main id="absoluteWrapper">
-        <%= yield %>
+      <%= yield %>
     </main>
 
     <%= render 'layouts/footer' %>
 
     <% #= devise_error_messages! %>
     <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
     <% end %>
 
-</body>
+  </body>
 </html>
