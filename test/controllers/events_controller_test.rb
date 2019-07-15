@@ -21,7 +21,7 @@ class EventsControllerTest < ActionController::TestCase
     end 
     
     test "should render index view" do
-        get :index, params: {id: @event1, format: :html}
+        get :index, params: {id: event1, format: :html}
         assert_response :success 
 
         get :index, params: {id: @event1, format: :json}
