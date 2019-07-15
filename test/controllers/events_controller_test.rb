@@ -8,16 +8,24 @@ class EventsControllerTest < ActionController::TestCase
 
     #index
     test "should_retrieve_list_of_all_events" do
-        #get :index, params: {id: @event.id}
-        get :index
+        get :index, params: {id: @event.id}
+        #get :index
         assert_response :success
+    end
 
-        event = Event.create(:usrid => 4, :name => 'Ichi-chan', :start_at => "2020-02-11 11:02:57")
+    test "should accquire events greater than starting time" do 
+        #user1 = User.create(:id => 4, :name => 'Ichi-chan')
+        @event1 = Event.create(:usrid => 2, :name => 'Dark Water', :start_at => "2020-02-11 11:02:57")
         sample_event = Event.where( "start_at > ?", Time.now )
-        assert_equal(event.usrid, sample_event[0].usrid)
+        assert_equal(@event1.usrid, sample_event[0].usrid)
+    end 
+    
+    test "should render index view" do
+        get :index, params: {id: @event1, format: :html}
+        assert_response :success 
 
-        #get :show, params: {id: event, format: :html}
-        #assert_response :success 
+        get :index, params: {id: @event1, format: :json}
+        assert_response :success 
     end
 
     test "should_recognize_events" do

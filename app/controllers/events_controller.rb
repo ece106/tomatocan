@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   	puts ("first line") ##########
     @event = Event.find(params[:id])
     puts (@event.name) ##########
+    #puts (@event.user.id)
     @user = User.find(@event.usrid)
     puts (@event.usrid)
     @rsvp = Rsvpq.new
