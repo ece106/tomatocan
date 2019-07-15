@@ -16,7 +16,7 @@
 	<div class="col-sm-6 col-sm-offset-1">
 	<h2 style="margin-left: 3%; margin-top:6%; font-size: 18px">Welcome to <b>International Thursday!</b> 
 		<br>International Thursday will open your eyes to the different countries and cultures around the world.
-		<br>Meet us here on CrowdPublishTV at 7:30 pm every Thursday.
+		<br>Meet us <%= link_to 'here on CrowdPublishTV ', '/lisa' %>  at 7:30 pm every Thursday.
 	</h2>
 	</div>
 
@@ -25,7 +25,7 @@
 	</div>
 
 	<div class="col-sm-6 col-sm-offset-1">
-		<h3 style="margin-top: 5%; margin-left:5%;font-size: 18px">
+		<h3 style="margin-top: 10%; margin-left:5%;font-size: 18px">
 			<b>Our goal is to:</b>
 			<ul style="margin-left: 5%">
 				<li>Provide educational and culture awareness</li>
@@ -36,11 +36,12 @@
 	</div>
 	<div class="col-sm-4">
 		<div style="margin: 5%">
+			<%= image_tag "study_abroad.jpg", width: "80%" %>
 		</div>
 	</div>
 
 	<div class="col-sm-6 col-sm-offset-1">
-		<h4 style="margin-top:5%; margin-left:5%; font-size: 18px">
+		<h4 style="margin-top:5%; margin-left:3%; font-size: 18px">
 			<b>Discussion Topics include: </b>
 			<ul style="margin-left: 5%">
 				<li>World Cultures</li>
@@ -56,7 +57,10 @@
 			<%= image_tag "globe.jpg", width: "80%" %>
 		</div>
 	</div>
-
+	
+	<div class="col-sm-8 col-sm-offset-1">
+		Got an International-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
+	</div>
 </div>
 
 
