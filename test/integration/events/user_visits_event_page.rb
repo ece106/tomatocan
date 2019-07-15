@@ -8,7 +8,7 @@ class UserVisitsEventPage < ActionDispatch::IntegrationTest
     @event = events :one
     @rsvpq = rsvpqs :one
 
-    sign_in_as @user
+    sign_in
 
     visit event_path @event
   end
@@ -28,11 +28,6 @@ class UserVisitsEventPage < ActionDispatch::IntegrationTest
   test "should see the correct event host" do
     assert page.has_content? @user.name
   end
-
-  # TODO: coming back to this
-  # test "should see the edit event link" do
-  #   assert page.has_link?("Edit Show")
-  # end
 
   test "should see the correct start date" do
     assert page.has_content? @event.start_at.strftime("%A, %B %d")
@@ -71,12 +66,15 @@ class UserVisitsEventPage < ActionDispatch::IntegrationTest
 
   private
 
-  def sign_in_as user
+  def sign_in
     visit root_path
-    click_on 'Sign In', match: :first
-    fill_in id: 'user_email', with: user.email
-    fill_in id: 'user_password', with: user.encrypted_password
-    click_on class: 'form-control btn-primary'
+
+    click_on('Sign In', match: :first)
+
+    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_password', with: 'user1234')
+
+    click_on(class: 'form-control btn-primary')
   end
 
 end
