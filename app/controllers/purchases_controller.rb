@@ -36,10 +36,11 @@ class PurchasesController < ApplicationController
     # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
-    user_mailer_hash ={ user: User.find(@purchase.user_id), seller: User.find(purchase_params[:author_id]),purchase: @purchase}
-    if user_signed_in?
-      puts "0" ############################
-      @purchase.user_id = current_user.id
+    user_mailer_hash ={purchase: @purchase}
+    
+    if user_signed_in? 
+      @purchase.user_id = current_user.id 
+      user_mailer_hash[:user] = User.find(@purchase.user_id) 
     end
     if @purchase.merchandise_id?
       puts "1" ########### print 1 if the purchase is a merchandise
@@ -105,12 +106,14 @@ class PurchasesController < ApplicationController
         if @purchase.save_with_payment
           puts "7" ################################################
           seller = User.find(@merchandise.user_id)
-          redirect_to user_profile_path(seller.permalink)
-          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
-          # mailer method for saved purchase and purchase received
+          user_mailer_hash[:seller] = seller
           user_mailer_hash[:merchandise] = @merchandise
           UserMailer.with(user_mailer_hash).purchase_saved.deliver_later
           UserMailer.with(user_mailer_hash).purchase_received.deliver_later
+          redirect_to user_profile_path(seller.permalink)
+          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
+          # mailer method for saved purchase and purchase received
+
         else
           puts "8" ################################################
           redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
@@ -125,9 +128,11 @@ class PurchasesController < ApplicationController
       if @purchase.save_with_payment
         puts "11" ################################################
         # Route back to author profile after donation
+
+        seller = User.find(purchase_params[:author_id])
+        user_mailer_hash[:seller] = seller
         UserMailer.with(user_mailer_hash).donation_saved.deliver_later
         UserMailer.with(user_mailer_hash).donation_received.deliver_later
-        seller = User.find(purchase_params[:author_id])
         redirect_to user_profile_path(seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + seller.name
         # mailer method for donations
 
