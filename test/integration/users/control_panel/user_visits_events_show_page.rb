@@ -1,14 +1,16 @@
 require "test_helper"
 require "capybara-screenshot/minitest"
 
-class UserVisitsControlPanelShowsPage < ActionDispatch::IntegrationTest
+class UserVistsEventShowPage < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
 
     visit "/#{@user.permalink}/controlpanel"
   end
 
-  test "flunk" do
+  test "user visits event show page on control panel" do
+    visit "/#{@user.permalink}/controlpanel"
     binding.pry
   end
+
 end
