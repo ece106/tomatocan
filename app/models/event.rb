@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
-#  has_event_calendar
-#  belongs_to :user
+  #  has_event_calendar
+  # belongs_to :user
+
   has_many :rsvpqs
   has_many :users, through: :rsvpqs
   validates :usrid, presence: true
@@ -36,3 +37,4 @@ class Event < ApplicationRecord
 #  after_validation :geocode, if: :address_changed? # don't do this until geocoder gem improves
 
 end
+
