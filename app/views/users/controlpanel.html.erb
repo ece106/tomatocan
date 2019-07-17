@@ -4,7 +4,7 @@
 <% if user_signed_in? %>
 <% if current_user.id == @user.id %> 
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
-  <li role="presentation" class="active"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab" %></li>
+  <li role="presentation" class="active"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab", id: "user-events-control-panel" %></li>
   <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
    <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab" %></li>

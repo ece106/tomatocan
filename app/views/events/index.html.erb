@@ -2,6 +2,12 @@
 
 <%= link_to 'Create a New Event', new_event_path %> <br><br>
 
+
+<%= month_calendar events: @events, attribute: :start_at do |date, events| %>
+  <div><%= date %></div>
+  <div><%= events %></div>
+<% end %>
+
 <% if @events.count.nil? %>
   *** No events near you yet ***
 <% else %>

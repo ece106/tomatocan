@@ -37,6 +37,8 @@ class User < ApplicationRecord
   # Other default devise modules available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
   scope :updated_at, -> { where(order: 'DESC') }
+  scope :expired_merch, -> { where("deadline IS NULL, deadline ASC", Date.today) }
+  scope :order_by_not_expired_merch, -> { order('deadline IS NULL, deadline ASC') }
   after_initialize :assign_defaults_on_new_user, if: -> {new_record?}
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
