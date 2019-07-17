@@ -57,8 +57,8 @@ end
       @merchandise = Merchandise.find(params[:id])
       @user = User.find(@merchandise.user_id)
       @expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
-      notexpiredmerch = @user.merchandises.where("deadline > ? OR deadline IS NULL", Date.today)
-      deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
+      notexpiredmerch = @user.merchandises.not_expired_merch
+      deadlineorder = notexpiredmerch.order_by_not_expired_merch.order_deadline_by_asc
       if deadlineorder.all[1].present?
         @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
       else
