@@ -3,13 +3,13 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
- #before_action :correct_user, only: [:dashboard, :user_id] 
-  #before_action :correct_user, only: [:controlpanel] 
+ #before_action :correct_user, only: [:dashboard, :user_id]
+  #before_action :correct_user, only: [:controlpanel]
   #Where did this method go?
 
   def index
     userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
-       OR (profilepicurl SIMILAR TO 'http%' AND 
+       OR (profilepicurl SIMILAR TO 'http%' AND
        profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
     userswithpicorder = userswithpic.order('updated_at DESC')
     @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
@@ -28,15 +28,15 @@ class UsersController < ApplicationController
 
   def show
 #    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
-    @numusrgroups = 0 
+    @numusrgroups = 0
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
       @usrgrpnameid = []
       currusergroups.find_each do |group|
-        @usrgrpnameid <<  [group.name, group.id] 
-      end 
-      @numusrgroups = currusergroups.count 
-    end 
+        @usrgrpnameid <<  [group.name, group.id]
+      end
+      @numusrgroups = currusergroups.count
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -55,10 +55,10 @@ class UsersController < ApplicationController
   def eventlist #this may be obsolete
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at > ?", currtime ) 
+    @rsvpevents = rsvps.where( "start_at > ?", currtime )
     @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @user }
     end
   end
@@ -66,9 +66,9 @@ class UsersController < ApplicationController
     currtime = Time.now
     @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at < ?", currtime ) 
+    @rsvpevents = rsvps.where( "start_at < ?", currtime )
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @user }
     end
   end
@@ -111,7 +111,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit 76
   def markfulfilled  #called from button on author dashboard
-    current_user.mark_fulfilled(params[:purchid])  
+    current_user.mark_fulfilled(params[:purchid])
     redirect_to user_dashboard_path(current_user.permalink)
   end
 
@@ -127,21 +127,21 @@ class UsersController < ApplicationController
 
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at > ?", currtime ) 
+    @rsvpevents = rsvps.where( "start_at > ?", currtime )
     @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @user }
     end
     @pastevents = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @pastrsvps = rsvps.where( "start_at < ?", currtime ) 
+    @pastrsvps = rsvps.where( "start_at < ?", currtime )
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @user }
     end
 
-      if @user.merchandises.any? 
+      if @user.merchandises.any?
         expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
         @expiredmerchandise = expiredmerch.order('deadline ASC')
       end
@@ -157,7 +157,7 @@ class UsersController < ApplicationController
     @totalinfo = @user.totalinfo
     @purchasesinfo = @user.purchasesinfo
 
-      if @user.merchandises.any? 
+      if @user.merchandises.any?
         expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
         @expiredmerchandise = expiredmerch.order('deadline ASC')
       end
@@ -182,7 +182,7 @@ class UsersController < ApplicationController
     flash[:notice] = "Your account has been successfully created and is ready to process payments!"
   end
 
-  # POST /users.json 
+  # POST /users.json
   def create
     @user = User.new(user_params)
 #    @user.latitude = request.location.latitude #geocoder has become piece of junk
@@ -203,10 +203,10 @@ class UsersController < ApplicationController
       @user.get_youtube_id
       bypass_sign_in @user
       redirect_to user_profile_path(current_user.permalink)
-    else  
+    else
 #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       #redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
-        
+
       if params[:user][:on_password_reset] == "changepassword"
         redirect_to user_changepassword_path(current_user.permalink), danger: update_error_message
       else
@@ -215,7 +215,7 @@ class UsersController < ApplicationController
       @user.errors.clear
     end
   end
-  
+
   def facebook
     @facebook = from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |facebook|
@@ -232,11 +232,11 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:permalink, :name, :email, :password, 
-        :about, :author, :password_confirmation, :genre1, :genre2, :genre3, 
-        :twitter, :title, :profilepic, :profilepicurl, :remember_me, 
-        :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
-        :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password, 
+      params.require(:user).permit(:permalink, :name, :email, :password,
+        :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
+        :twitter, :title, :profilepic, :profilepicurl, :remember_me,
+        :facebook, :address, :latitude, :longitude, :youtube1, :youtube2,
+        :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
         :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
     end
 
@@ -251,18 +251,19 @@ class UsersController < ApplicationController
       end
     end
 
-    def set_user 
+    def set_user
       @user = User.find_by_permalink(params[:permalink]) || current_user
-      if @user.merchandises.any? 
-        notexpiredmerch = @user.expired_merch
-        deadlineorder = notexpiredmerch.order_by_not_expired_merch
+      if @user.merchandises.any?
+        notexpiredmerch = @user.merchandises.not_expired_merch
+        deadlineorder   = notexpiredmerch.order_by_not_expired_merch.order_deadline_by_asc
+
         if deadlineorder.all[1].present?
           puts deadlineorder.all[1]
           @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
         else
           @sidebarmerchandise = deadlineorder.all[0..0]
         end
-      end 
+      end
     end
      # returns a string of error messages for the user signup page
     def signup_error_message
@@ -271,7 +272,7 @@ class UsersController < ApplicationController
           msg += ("Name " + @user.errors.messages[:name][0] + "\n")
         end
         if @user.errors.messages[:email].present?
-          @user.errors.messages[:email].each do |email| 
+          @user.errors.messages[:email].each do |email|
             msg += ("Email " + email + "\n")
           end
         end
@@ -281,7 +282,7 @@ class UsersController < ApplicationController
         if @user.errors.messages[:password].present?
           msg += ("Password " + @user.errors.messages[:password][0] + "\n")
         end
-        
+
         return msg
     end
 
