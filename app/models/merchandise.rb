@@ -19,7 +19,6 @@ class Merchandise < ApplicationRecord
   scope :not_expired_merch,          -> { where("deadline >= ? OR deadline IS NULL", Date.today) }
   scope :order_by_not_expired_merch, -> { order(:deadline, nil) }
   scope :order_deadline_by_asc,      -> { order(:deadline, :asc) }
-  # scope :order_by_not_expired_merch, -> { order('deadline IS NULL, deadline ASC') }
 
   attr_accessor :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h
   after_update :crop_itempic
