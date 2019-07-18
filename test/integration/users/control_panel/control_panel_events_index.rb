@@ -11,7 +11,6 @@ class ControlPanelEventsIndex < ActionDispatch::IntegrationTest
   end
 
   test "user sees the correct content" do
-    binding.pry
     find(class: "events-tab").click
   end
 
