@@ -36,7 +36,7 @@ class PurchasesController < ApplicationController
     # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
-    user_mailer_hash ={purchase: @purchase}
+    user_mailer_hash = {purchase: @purchase}
     
     if user_signed_in? 
       @purchase.user_id = current_user.id 
@@ -134,8 +134,6 @@ class PurchasesController < ApplicationController
         UserMailer.with(user_mailer_hash).donation_saved.deliver_later
         UserMailer.with(user_mailer_hash).donation_received.deliver_later
         redirect_to user_profile_path(seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + seller.name
-        # mailer method for donations
-
     else
         puts "12" ################################################
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
