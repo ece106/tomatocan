@@ -3,7 +3,7 @@
     Your Upcoming Shows
   </div>
   <% if @events.present? %>
-    <table class="table events-index">
+    <table class="table">
       <tr>
         <th>Show </th>
         <th>Time</th>
@@ -12,7 +12,7 @@
       <% @events.sort_by{|t| t.start_at}.each do |event| %>
         <tr style="text-align:left;">
           <td><%= link_to event.name, event, class: "event-name" %></td>
-          <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p"), class: "event-start-date %></td>
+          <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %></td>
           <td><%= link_to "Edit", edit_event_path(event) %></td>
         </tr>
       <% end %>

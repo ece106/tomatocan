@@ -1,7 +1,7 @@
 require "test_helper"
 require "capybara-screenshot/minitest"
 
-class ControlPanelEventsIndex < ActionDispatch::IntegrationTest
+class ControlPanelEventsList < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
 
