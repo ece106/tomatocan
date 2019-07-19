@@ -255,7 +255,8 @@ class UsersController < ApplicationController
       @user = User.find_by_permalink(params[:permalink]) || current_user
       if @user.merchandises.any?
         notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
-        deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
+        deadlineorder = notexpiredmerch.order(deadline: :asc)
+        # deadlineorder = notexpiredmerch.order(Arel.sql('deadline IS NULL, deadline ASC'))
 
         if deadlineorder.all[1].present?
           puts deadlineorder.all[1]
