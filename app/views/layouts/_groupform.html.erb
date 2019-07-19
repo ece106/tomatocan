@@ -1,8 +1,8 @@
-<title> CrowdPublish.TV - <%= @group.name %>'s site</title>
+<title> ThinQ.TV - <%= @group.name %>'s site</title>
 <% @descname = @group.name.gsub(/ +/, '-') %>
 
 <% content_for :forusers do %>
-  <meta name="description" content= <%= @descname + " on CrowdPublishTV" %>
+  <meta name="description" content= <%= @descname + " on ThinQTV" %>
 <% end %>
 
 This really needs different content
@@ -12,23 +12,22 @@ This really needs different content
     <ul class="nav pull-left">
       <ul class="nav navbar-nav">
         <% if @group.permalink %>
-          <li><%= link_to "About " + @group.name, group_path(@group.permalink) %> 
+          <li><%= link_to "About " + @group.name, group_path(@group.permalink) %>
         <% end %>
-      </ul>    
+      </ul>
     </ul>
 
     <div class="usermenu" >
       <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to " CrowdPublishTV Home ", root_path %>
+          <li><%= link_to " ThinQTV Home ", root_path %>
         <% if user_signed_in? %>
-          <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %> 
+          <li><%= link_to "#{current_user.name}", user_profile_path(current_user.permalink) %>
           <li><%= link_to " Sign out ", destroy_user_session_path, :method => :delete %>
         <% else %>
-          <li><%= link_to 'SIGN UP!', "/signup" %> 
-          <li><%= link_to "Sign in", new_user_session_path %> 
+          <li><%= link_to 'SIGN UP!', "/signup" %>
+          <li><%= link_to "Sign in", new_user_session_path %>
         <% end %>
-      </ul>  
+      </ul>
     </div>
   </div>
 </header>
-
