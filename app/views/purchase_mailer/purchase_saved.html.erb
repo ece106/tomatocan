@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <head>
-  <title>Donation Confirmed</title>
-  </head> 
- <body>
-    <div class = "header">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Purchase Confirmed</title>  
+</head>
+<body>
+  <div class = "header">
       <h1 style="color:White">Thank you!</h1>
     </div>
-    <div class = "one">
-      <p>
-      <b><%=@user.name %></b><br><br>
-        Thanks once again for your donation of $<%=@purchase.pricesold%>.<br><br>
-        We really appreciate supporting <%=@seller.name%>.<br><br>
-        Please consider sharing your recent donation to <%@seller.name%> with friends and family through your social media networks below!<br><br><br>
-        Thank You,<br><br>
-        <b>crowdpublish.TV</b><br><br>
-        Visit us at again at <a href= '<%=@home_url%>'>crowdpublish.TV</a><br><br>
-      </p>
-      <%=image_tag 'starIcon.png', size: "50x50"%>
-    </div>
-    <div class = "footer">
+  <div class = "one">
+    <p>
+    <%if @user.present?%>
+      <%=@user.name %>
+      <%end%>
+      <br><br>
+      Your purchase has been confirmed.
+      Thank you for purchasing <%=@merchandise.name%>.
+      Your purchase totals to $<%=@purchase.pricesold%>.<br><br>
+      Sincerely, <br>
+      crowdpublish.TV<br><br>
+      Visit us at again at <a href= '<%=@home_url%>'>crowdpublish.TV</a><br><br>
+      <div class = "img">
+        <%= image_tag 'maroonLogo.png', size: "200x200"%>
+      </div>
+    </p>
+  </div>  
+  <div class = "footer">
       <p style = "color:white" class="f-header">Share</p>
         <% url = "http://www.crowdpublish.tv" %>
         <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
@@ -66,4 +72,8 @@
       padding: .5%; 
     }
   </style> 
+</html>
+</body>
+<footer>
+</footer>
 </html>

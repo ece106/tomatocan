@@ -3,9 +3,9 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-  <title>Purchase Confirmed</title>
-  <style> 
-    body {border: 5px solid #000000; padding:2%;} 
+  <title>Purchase received</title>
+ <style> 
+    body {border: 5px solid #000000; padding:2%;}  
     div.one{margin: 10px auto 10px auto; text-align: left; border: 5px solid #000000; width : 40%;padding: 50px; }
     div.img{margin: 10% auto 10% auto;padding: 5%; }
   </style> 
@@ -13,13 +13,12 @@
 <body>
   <div class = "one">
     <p>
-      <%=@user.name %>, <br><br>
-      Your purchase has been confirmed.
-      Thank you <%=@user.name%> for purchasing <%=@merchandise.name%>.
-      Your purchase totals to $<%=@purchase.pricesold%>.<br><br>
-      Sincerely, <br>
-      crowdpublish.TV<br><br>
-      Visit us at again at <a href= '<%=@home_url%>'>crowdpublish.TV</a><br><br>
+      <%=@seller.name%>,<br><br>
+      There has been a purchase of <%=@merchandise.name%> 
+      the purchase totals to $<%=@purchase.pricesold%>.<br><br>
+      sincerely, <br>
+      crowdpublish.tv<br><br>
+      visit us at again at <a href= '<%=@home_url%>'>crowdpublish.tv</a><br><br>
       <div class = "img">
         <%= image_tag 'maroonLogo.png', size: "200x200"%>
       </div>
