@@ -21,7 +21,7 @@ class EventsControllerTest < ActionController::TestCase
     end 
     
     test "should render index view" do
-        get :index, params: {id: event1, format: :html}
+        get :index, params: {id: @event1, format: :html}
         assert_response :success 
 
         get :index, params: {id: @event1, format: :json}
@@ -61,12 +61,10 @@ class EventsControllerTest < ActionController::TestCase
 
 
     test "should_initialize_rsvpusers_as_the_event_user" do
+       #rsvpuser = @event.users
        puts "BEGINING"
-       rsvpuser = @event.users
-       #puts rsvpuser(:one).id
-       #puts rsvpuser.find(:name)
+       rsvpuser = User.find(@event.usrid)
        puts rsvpuser
-       #@rsvpq.guests
        puts "MIDDLE"
        uid = @user.id
        @event.update_column(:usrid, uid)
