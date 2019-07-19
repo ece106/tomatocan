@@ -6,6 +6,9 @@ class EventsControllerTest < ActionController::TestCase
     @rsvpq = rsvpqs(:one)
     end
 
+    #event.usrid==1
+    #event.id==980190962
+
     #index
     test "should_retrieve_list_of_all_events" do
         get :index, params: {id: @event.id}
@@ -35,47 +38,39 @@ class EventsControllerTest < ActionController::TestCase
 
     #show
     test "should find event" do
-        #sign_in users(:one)
-        get :show, params: {id: @event}
+        get :show, params: {id: @event.id}
         assert_response :success
-
-        id = @event.usrid
-        assert_equal(id, 1, msg = nil)
-        #event.usrid==1
-        #event.id==980190962
+        assert_not_nil(@event.usrid, msg = nil)
     end
 
     test "should find user" do
-        get :show, params: {id: @event}
+        #get :show, params: {id: @event}
         #assert_response :success
-        
-        id = @user.id
-        assert_equal(id, 1, msg = nil)
+        user = User.find(@event.usrid)
+        assert_equal user.id, @event.usrid
     end
 
     test "should initalize new rsvp" do
-         #get :show, params: {id: @user.id}
-         assert_equal 1, rsvpqs(:one).guests
-         #assert_response :success
+        rsvp = Rsvpq.new
+        assert_equal true, rsvp.event.nil?
     end
 
 
     test "should_initialize_rsvpusers_as_the_event_user" do
        #rsvpuser = @event.users
-       puts "BEGINING"
-       rsvpuser = User.find(@event.usrid)
-       puts rsvpuser
-       puts "MIDDLE"
-       uid = @user.id
-       @event.update_column(:usrid, uid)
-       puts @event.usrid
-       puts "END"
+       #uid = @event.usrid
+       #users(:two).update_column(:id, uid)
+       rsvpuser = @event.rsvpqs
+       rsvpuser.each do |num|
+            puts num.user.inspect
+       end 
+       flunk (msg = "gonna get cody's help on this")
     end
 
     test "should initialize rsvps as event rsvps" do
         rsvp = @event.rsvpqs
         rsvp.each do |num|
-            puts num.event.inspect
+            puts num.inspect
         end  
         assert_equal rsvp[0].event, @event
     end
@@ -96,7 +91,7 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     #edit
-    test "should get edit if user is signed in" do
+    test "should be able to edit if user is signed in" do
         sign_in users(:one)
         get :edit, params: { id: @event.id }
         assert_response :success
@@ -128,7 +123,6 @@ class EventsControllerTest < ActionController::TestCase
     
     test "should verify event update" do
         sign_in users(:one)
-    
         patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas' }}
         assert_empty @event.errors.messages
     end

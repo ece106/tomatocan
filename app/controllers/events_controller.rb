@@ -3,14 +3,11 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   # GET /events.json
   def index
-    puts ("first first line")
     @events = Event.where( "start_at > ?", Time.now )
-    puts (@events[0])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
-    puts ("last last line")
   end
   # GET /events/1.json
   def show
