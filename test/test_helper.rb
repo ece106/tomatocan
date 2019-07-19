@@ -18,10 +18,16 @@ end
 
 
 class ActionDispatch::IntegrationTest
+  fixtures :all
+
+  Capybara::Screenshot.autosave_on_failure = false
+
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+
   # Make `assert_*` methods behave like Minitest assertions
   include Capybara::Minitest::Assertions
+
   # Reset sessions and driver between tests
   # Use super wherever this method is redefined in your individual test classes
   def teardown

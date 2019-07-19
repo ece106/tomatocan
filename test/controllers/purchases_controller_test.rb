@@ -78,6 +78,55 @@ class PurchasesControllerTest < ActionController::TestCase
       assert_response :success
     end 
 
+    test "get_new_donation_for_user_who_has_a_stripe_customer_token" do
+      puts "test 1 for new"
+      sign_in @purchaser
+      cardToken = Stripe::Token.create({
+        card: {
+          number: "4242424242424242",
+          exp_month: 8,
+          exp_year: 2060,
+          cvc: "123"
+        }
+      })
+      customer = Stripe::Customer.create(
+                                        :source => cardToken,
+                                        :description => @purchaser.name,
+                                        :email => @purchaser.email
+                                        )
+      #customer.default_source = 
+      customer.save
+      @purchaser.update_column(:stripe_customer_token, customer.id)
+      get :new, params: {pricesold: 25, author_id: @seller.id}
+      assert_response :success
+    end
+
+    test "get_new_purchase_merchandise_for_user_who_has_a_stripe_customer_token" do
+      puts "test 1 for new"
+      sign_in @purchaser
+      cardToken = Stripe::Token.create({
+        card: {
+          number: "4242424242424242",
+          exp_month: 8,
+          exp_year: 2060,
+          cvc: "123"
+        }
+      })
+      customer = Stripe::Customer.create(
+                                        :source => cardToken,
+                                        :description => @purchaser.name,
+                                        :email => @purchaser.email
+                                        )
+      #customer.default_source = 
+      customer.save
+      @purchaser.update_column(:stripe_customer_token, customer.id)
+      @merch = merchandises(:two)
+      get :new, params: {pricesold: 25, author_id: @seller.id, merchandise_id: @merch.id}
+      assert_response :success
+    end
+
+
+
     test "to create a donation for customer who is registered with Stripe and whose email is posted" do
       puts "test 1"
       sign_in @purchaser
@@ -223,6 +272,6 @@ class PurchasesControllerTest < ActionController::TestCase
       @seller.update_column(:id, 143)
       post :create, params: {purchase: {email: @purchaser.email, merchandise_id: merchandises(:one), user_id: @purchaser.id, author_id: @seller.id, stripe_customer_token: @purchaser.stripe_customer_token,stripe_card_token: cardToken['id'], pricesold: 1.5} }
       assert_redirected_to user_profile_path(users(:one).permalink)
-    end 
+    end
 
 end
