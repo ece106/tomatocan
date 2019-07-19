@@ -78,7 +78,6 @@ class Purchase < ApplicationRecord
         end
       else
         puts "18x" ##########
-        binding.pry
         customer = Stripe::Customer.create(
           :source => stripe_card_token,  #token from? purchases.js.coffee?
           :description => @purchaser.name, # what info do I really want here
