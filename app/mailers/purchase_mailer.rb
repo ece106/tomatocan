@@ -9,28 +9,38 @@ class PurchaseMailer < ApplicationMailer
   end
   
   before_action :set_url
-
   before_action :create_subject, only: [:purchase_received, :donation_received]
 
   def purchase_saved
+    inline_images
     create_recipient_saved
     mail(to: @recipient, subject: 'Your purchase has been confirmed')
   end
 
   def donation_saved
+    inline_images
     create_recipient_saved
     mail(to: @recipient, subject: 'Your donation is appreciated')
   end
 
   def purchase_received
+    inline_images
     mail(to: @seller.email, subject: "#{@buyer_name} has made a purchase")
   end
 
   def donation_received
+    inline_images
     mail(to: @seller.email, subject: "#{@buyer_name} has made a donation")
   end
 
   private 
+
+  def inline_images
+    img_path ="app/assets/images/social-share-button"
+    img_list = ['email.svg','facebook.svg','linkedin.svg','twitter.svg']
+    img_list.each {|x| attachments.inline[x] = File.read("#{img_path}/#{x}")}
+    attachments.inline['starIcon.png'] = File.read("app/assets/images/starIcon.png")
+  end
 
   def create_recipient_saved
     if @user.present?

@@ -9,10 +9,18 @@ class EventMailer < ApplicationMailer
   before_action :format_date, only: [:event_reminder]
 
   def event_reminder
+    inline_images
     mail(to: @user.email, subject: "A reminder for your event on #{@date_subject_format}")
   end
 
  private
+
+  def inline_images
+    img_path ="app/assets/images/social-share-button"
+    img_list = ['email.svg','facebook.svg','linkedin.svg','twitter.svg']
+    img_list.each {|x| attachments.inline[x] = File.read("#{img_path}/#{x}")}
+    attachments.inline['starIcon.png'] = File.read("app/assets/images/starIcon.png")
+  end
 
   def set_url
     @event_url = event_url(host:'crowdpublish.TV', id: @user.id)
