@@ -7,6 +7,7 @@ class UserMailer < ApplicationMailer
   before_action :set_url
 
   def welcome_email
+    inline_images
     mail(to: @user.email, subject: "Welcome")
   end
   
