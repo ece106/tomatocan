@@ -16,4 +16,13 @@ class UserMailer < ApplicationMailer
     @home_url = home_url(host: 'crowdpublish.TV')
     # if you need more url options you can use this method to expand
   end
+
+  
+  def inline_images
+    img_path ="app/assets/images/social-share-button"
+    img_list = ['email.svg','facebook.svg','linkedin.svg','twitter.svg']
+    img_list.each {|x| attachments.inline[x] = File.read("#{img_path}/#{x}")}
+    attachments.inline['starIcon.png'] = File.read("app/assets/images/starIcon.png")
+  end
+
 end
