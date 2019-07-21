@@ -33,6 +33,8 @@ class UserEditsEventPage < ActionDispatch::IntegrationTest
 
     click_on class: "update-event-btn"
 
+    assert current_path, event_path(@event)
+
     assert page.has_content? "Updating Event Name"
     assert page.has_content? "New Event Description"
   end

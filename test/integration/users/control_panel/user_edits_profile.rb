@@ -7,10 +7,7 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
 
     sign_in
 
-    click_on class: "dropdown-toggle"
-    click_on class: "control-panel-link"
-
-    # visit "/#{@user.permalink}/controlpanel"
+    visit "/#{@user.permalink}/controlpanel"
   end
 
   test "can edit profile page with correct attributes" do

@@ -1,5 +1,11 @@
 // LANDING PAGE SCSS
 
+.container-1 {
+  font-family: "Circular Std", sans-serif;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
 .landing-link {
   color: #FFC627;
 }
@@ -47,6 +53,7 @@
 
 .aboutus-section-header {
   margin: 0 auto;
+  padding-right: 20px;
 
   .aboutus-title {
     color: #62142d;
@@ -122,6 +129,10 @@
   }
 }
 
+.jumbotron-container {
+  @extend .container-1;
+}
+
 .form-group-small {
   text-align: center;
 }
@@ -133,6 +144,7 @@
 // CPTV Section 1
 
 .cptv-section-1 {
+  @extend .container-1;
   padding-bottom: 80px;
   border-bottom: 1px solid #eee;
   text-align: center;
@@ -148,8 +160,8 @@
 
 // CPTV Section 2
 .cptv-section-2 {
+  @extend .container-1;
   margin-top: 100px;
-  text-align: center;
 }
 
 .cptv-section-2-header {
@@ -272,10 +284,10 @@
   }
 
   .jumbotron-col-2 {
-    width: 400px;
+    // width: 400px;
     border-radius: 5px;
     margin-top: 10px;
-    margin-left: 168px;
+    // margin-left: 168px;
     background-color: #FFF;
     background-color: rgba(0, 0, 0, 0.7);
   }

@@ -40,10 +40,14 @@ class UserVisitsEventPage < ActionDispatch::IntegrationTest
 
   test "can join live discussion successfully" do
     click_on "Join Live Discussion"
+
+    assert_equal current_path, "/#{@user.permalink}"
   end
 
   test "can join live show successfully" do
     click_on "Join Live Show"
+
+    assert_equal current_path, "/#{@user.permalink}"
   end
 
   test "can share event" do

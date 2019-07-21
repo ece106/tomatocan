@@ -31,6 +31,14 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
     assert_equal current_path, "/#{@user.permalink}"
   end
 
+  test "user cancels edits account settings with same attributes" do
+    find(class: "account-settings-tab", text: "Account").click
+
+    click_on class: "btn btn-default cancel-acct-settings-btn"
+
+    assert_equal current_path, "/#{@user.permalink}"
+  end
+
   private
 
   def sign_in
