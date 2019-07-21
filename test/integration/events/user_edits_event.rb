@@ -1,7 +1,7 @@
 require "test_helper"
 require "capybara-screenshot/minitest"
 
-class UserEditsEventPage < ActionDispatch::IntegrationTest
+class UserEditsEvent < ActionDispatch::IntegrationTest
   setup do
     @user  = users :one
     @event = events :one
