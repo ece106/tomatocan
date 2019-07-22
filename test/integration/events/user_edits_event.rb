@@ -15,6 +15,16 @@ class UserEditsEvent < ActionDispatch::IntegrationTest
     page.status_code == 200
   end
 
+  test "update event with invalid attributes" do
+    fill_in id: "event_name", with: ""
+    fill_in id: "event_desc", with: "http://www.thinq.tv/"
+
+    click_on class: "update-event-btn"
+
+    assert_equal current_path, event_path(@event)
+    assert page.has_content? "2 errors prohibited this event from being saved:"
+  end
+
   test "update event with valid attributes" do
     fill_in id: "event_name", with: "Updating Event Name"
     fill_in id: "event_desc", with: "New Event Description"
