@@ -1,4 +1,4 @@
-<title> CrowdPublish TV - <%= @user.name %>'s site</title>
+<title> ThinQ TV - <%= @user.name %>'s site</title>
 
 <% @descname = @user.name.gsub(/ +/, '-')
 if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_"  end
@@ -34,12 +34,12 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 	<% end %>
 	<div class="col-sm-8">
 		<h1 id="profileName"><%= @user.name %></h1>
-		<% if @user.genre1.blank? == false %> 
+		<% if @user.genre1.blank? == false %>
 			<span id="profileDescription"> <%= @user.genre1 %>
-				<% if @user.genre2.blank? == false %> 
+				<% if @user.genre2.blank? == false %>
 				, <%= @user.genre2 %>
 				<% end %>
-				<% if @user.genre3.blank? == false %> 
+				<% if @user.genre3.blank? == false %>
 				, <%= @user.genre3 %>
 				<% end %>
 				</span>

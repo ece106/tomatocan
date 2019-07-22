@@ -29,12 +29,12 @@
             Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
-                <%= link_to '(Edit Show)', edit_event_path(event.id), id: "calendar-host" %> 
+                <%= link_to '(Edit Show)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
             <% end %>
           </td>
           <td class=col-xs-3>
-            <% edt = event.start_at + 3.hours %> 
+            <% edt = event.start_at + 3.hours %>
             <span style="font-size:125%;" id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
             <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> PDT</span>
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
@@ -43,14 +43,14 @@
             <%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
           </td>
           <td class=col-xs-1>
-            <% shareurl = "http://www.CrowdPublish.TV/" + user.permalink %>
+            <% shareurl = "http://www.ThinQ.TV/" + user.permalink %>
               <div id= "social-button"><span class="fb-share-button" data-href= <%= shareurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= shareurl %> class="fb-xfbml-parse-ignore">Share</a></span></div>
             <div id="social-button"><span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Watch <%= user.name %>'s livestream: <%=  event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: <%= shareurl %>" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span></div>
             <div>
               <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
               <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top">Share</script>
-            </div>  
-          </td>  
+            </div>
+          </td>
         </tr>
         <% end %>
       </tbody>

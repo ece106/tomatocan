@@ -6,8 +6,8 @@
 <%- end -%>
 
 <div class="container">
-    
-    <% if request.host == "crowdpublishtv.herokuapp.com" %> 
+
+    <% if request.host == "crowdpublishtv.herokuapp.com" %>
         You must confirm your sign in to access Stripe
     <% end %>
 
@@ -33,9 +33,9 @@
                         </label>
                     </div>
                 <% end -%>
-                
-                <small>By clicking 'Sign In,' you agree to the CrowdPublishTV <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
-                
+
+                <small>By clicking 'Sign In,' you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+
                 <%= f.submit "Sign In", :class => "form-control btn-primary" %>
             <% end %>
             </div>

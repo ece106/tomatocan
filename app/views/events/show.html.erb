@@ -6,7 +6,7 @@
 
 <div id="event-page-layout" style="width: 50%; margin: auto;">
   <meta property="og:description" content="Host Livestream Discussions" />
-  <% @title="CrowdPublish.tv" %>
+  <% @title="ThinQ.tv" %>
   <div>
   <div class=".col-12 .col-md-8" style="margin-bottom:-10px">
     <h1><%= @event.name %></h1>
@@ -14,7 +14,7 @@
 
   <% if user_signed_in? %>
     <% if @event.usrid == current_user.id %>
-      <%= link_to "Edit Show", edit_event_path(@event)%> 
+      <%= link_to "Edit Show", edit_event_path(@event)%>
     <% end %>
   <% end %>
 
@@ -27,7 +27,7 @@
     <% edt = @event.start_at + 3.hours %>
     <% edtend = @event.end_at + 3.hours %>
     <div style="margin-left:5px">
-      <%= @event.start_at.strftime("%A, %B %d") %> 
+      <%= @event.start_at.strftime("%A, %B %d") %>
       <br>
       <%= @event.start_at.strftime("%I:%M %p")%> PDT
       / <%= edt.strftime("%I:%M %p") %> EDT
@@ -50,7 +50,7 @@
   <div style= "text-align:left" >
       <br>
       Invite friends! <br>
-      <% surl = "http://www.crowdpublish.tv/" + @user.permalink %>
+      <% surl = "http://www.ThinQ.tv/" + @user.permalink %>
 
       <button id="shareBtn" class="showButton">SHARE</button>
       <div id="pp" class="pop">
@@ -86,7 +86,7 @@
         });
       </script>
 
-	<div style="margin-top:20px;">	
+	<div style="margin-top:20px;">
       <%= form_for(@rsvp) do |f| %>
 	    <% if @rsvp.errors.any? %>
 	      <div id="error_explanation">
@@ -121,6 +121,6 @@
     </div>
   <% end %>
 
-</div> 
-</div> 
-</div> 
+</div>
+</div>
+</div>
