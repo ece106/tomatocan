@@ -5,8 +5,9 @@
   <title>Donation Confirmed</title>
   </head> 
  <body>
-    <div class = "header">
-      <h1 style="color:White">Thank you!</h1>
+    <div class="banner">
+           <h2 style="color:White">&ensp;&ensp;Thank you!</h2>
+           <h5 style="color:White">Thinq.tv &emsp;</h5>
     </div>
     <div class = "one">
       <p>
@@ -45,16 +46,30 @@
      
      font-family: 'Montserrat', sans-serif;
     }  
-    h1{
-      padding: .5%;
-      width: 95%;
-      margin: 1px auto 1px auto;
-      text-align: left;
-      font-size: 50pt;
+    .banner{
+      background-image: linear-gradient(rgba(139,9,66,0.7),rgba(139,9,66,0.7)), url('/assets/group_1.png');
+      height: 250px;
+      padding-bottom: 20px;
+      position: relative;
+      background-size: 100% 100%;
+      content: "";
+      display: block;
+      width: 100%;
+      z-index:-2;
     }
-    div.header{
-      background-color: #8B0942;
-      padding: 1.5%;
+    h2 {
+      float:left;
+      font-size: 60px;
+      position: absolute;
+      top: 40px;
+      left: 0;
+    }
+    h5 {
+      float:right;
+      font-size: 30px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
     }
     div.one{
       font-size: 18pt; 
