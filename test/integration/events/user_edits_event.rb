@@ -16,6 +16,7 @@ class UserEditsEvent < ActionDispatch::IntegrationTest
   end
 
   test "update event with invalid attributes" do
+    fill_in id: "event_name", with: ""
     fill_in id: "event_desc", with: "http://www.thinq.tv/"
 
     click_on class: "update-event-btn"
