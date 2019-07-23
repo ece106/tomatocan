@@ -1,9 +1,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> <% "Support " + @user.name + "'s Projects" %> </title>
-<meta property="og:url" content="http://CrowdPublish.TV" />
+<meta property="og:url" content="http://ThinQ.TV" />
 <meta property="og:image" content="http://crowdpublish.tv/images/crowdpublishLogo.png" />
-<meta property="og:description" content="CrowdPublishTV helps actors, filmmakers, authors increase fan engagement & raise more funds" />
+<meta property="og:description" content="ThinQTV helps actors, filmmakers, authors increase fan engagement & raise more funds" />
 </head>
 
 <% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
@@ -12,16 +12,16 @@
   <div id="page-content-wrapper">
     <div class="page-content" >
       <div class="container-flex" style="margin-top:-30px; ">
-    
+
 <% if @user.following.count > 0 %>
   <% @user.following.each do |tmpFollowing| %>
 
     <div class="col-md-3 col-sm-4 col-xs-6" >
       <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:170px; overflow:hidden;" >
-        <% if tmpFollowing.profilepic.present? %> 
-          <%= link_to(image_tag(tmpFollowing.profilepic.url.to_s, :height => "170",  :title => tmpFollowing.name ),user_profile_path(tmpFollowing.permalink)) %> 
+        <% if tmpFollowing.profilepic.present? %>
+          <%= link_to(image_tag(tmpFollowing.profilepic.url.to_s, :height => "170",  :title => tmpFollowing.name ),user_profile_path(tmpFollowing.permalink)) %>
         <% elsif tmpFollowing.profilepicurl.present? %>
-          <%= link_to(image_tag(tmpFollowing.profilepicurl, :height => "170", :title => tmpFollowing.name), user_profile_path(tmpFollowing.permalink)) %> 
+          <%= link_to(image_tag(tmpFollowing.profilepicurl, :height => "170", :title => tmpFollowing.name), user_profile_path(tmpFollowing.permalink)) %>
         <% end %>
       <br><%= link_to tmpFollowing.name, user_profile_path(tmpFollowing.permalink) %>
       <br><br>
@@ -30,7 +30,7 @@
   <% end %>
 
 <% else  %>
-      <div><h1>You Are Not Following Anyone</h1></div>      
+      <div><h1>You Are Not Following Anyone</h1></div>
 <% end %>
 
     </div>

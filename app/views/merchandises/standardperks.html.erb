@@ -2,12 +2,12 @@
 <% if user_signed_in? %>
 
   <div class="helps" >
-    Offer standard Rewards as-is or customize for your project or expertise. </i> 
+    Offer standard Rewards as-is or customize for your project or expertise. </i>
   </div><br>
 
 
-  <div class="row" > 
-    <div class="col-sm-6 col-xs-12" > 
+  <div class="row" >
+    <div class="col-sm-6 col-xs-12" >
       <div class="socialize" style="padding-bottom:10px" >
         Engage directly with fans
       </div>
@@ -102,7 +102,7 @@
                 <b>Perk Name </b><br>
                 <%= f.text_field :name, size: 60, value: "Patrons Only behind the scenes Secrets " || :name %><br><br>
                 <b>About this Reward </b><br>
-                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br> 
+                What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "I'll email you my Patrons Only news blog that contains Secrets about what happened this week behind the scenes of my latest movie - My take on what goes on when the camera is off." || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 30.00 || :price %>USD<br>
@@ -162,7 +162,7 @@
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br><br>
                 <b>Reward Picture </b><br>
                 Upload a picture (optional) that represents the Reward you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
-                <br><%= f.file_field :itempic %> 
+                <br><%= f.file_field :itempic %>
                 <%= button_to "Offer Name in Credits Reward", class: "button" %>
               <% end %>
               </div>
@@ -240,7 +240,7 @@
               <%= form_for(@merchandise) do |f| %>
                 <b>Reward Title </b><br>
                 <%= f.text_field :name, size: 60, value: "Live Online Reading before it's released" || :name %><br><br>
-                <b>About this Reward </b><br> 
+                <b>About this Reward </b><br>
                 What is this Reward? Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
                 <%= f.text_area :desc, cols: 62, rows: 7, value: "Fans can reserve a spot to listen to me give a 10 minute reading on Skype, Hangouts, or Facetime. Suggested times are: Weeknights at 7:00pm PST and 7:15 PST. " || :desc %><br><br>
             <b>Price </b><br>
@@ -453,9 +453,9 @@
       </div> <% "end col" %>
 
 
-      <div class="col-sm-6 col-xs-12" > 
+      <div class="col-sm-6 col-xs-12" >
         <div class="socialize" style="padding-bottom:10px" >
-          Special content relevant to your story 
+          Special content relevant to your story
         </div>
 
      <div class="font19left" >
@@ -554,7 +554,7 @@
                 $<%= f.text_field :price, size: 10, value: 40.00 || :price %>USD<br><br>
                 <b>Reward Picture </b><br>
                 Upload a picture (optional) that represents the Reward you are offering (.jpg, .gif, .jpeg, or .png) - <i>a square picture works best</i>
-                <br><%= f.file_field :itempic %> 
+                <br><%= f.file_field :itempic %>
                 <%= button_to "Offer Name in Credits Reward", class: "button" %><br><br>
               <% end %>
               </div>
@@ -676,7 +676,7 @@
             <a class="accordion-toggle25" data-toggle="collapse" href="#accordion-toggle25">
               <span>
                 <b>Combo</b> Package
-              </span> 
+              </span>
               <span class="hidden25more">
                 ...Hide <b>Combo Package</b> details<br><br>
               </span>
@@ -704,7 +704,7 @@
 
   <%= button_to "Add my own custom Reward", new_merchandise_path , method: :get, class: "button" %>
 
-<br>All Rewards offered for sale through CrowdPublish.TV are meant to be immediately available and fulfilled within a week. 
+<br>All Rewards offered for sale through ThinQ.tv are meant to be immediately available and fulfilled within a week. 
 <br><b>Check your dashboard often</b> to see if any Perks were ordered by your Fans.<br>
 
   <br>I'm done adding Rewards for now. <%= link_to "Go to my page " , user_profile_path(current_user.permalink) %> and see how it looks.
