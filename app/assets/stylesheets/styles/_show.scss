@@ -56,45 +56,6 @@ hr {
 	top: 10%;
 }
 
-.topic {
-	float: left;
-	width: 50%;
-	margin-bottom: 5%;
-	margin-top: 3%;
-}
-
-.topicImg{
-	float: right;
-	width: 40%;
-	margin-right: 10%;
-	margin-bottom: 10%;
-	margin-top:3%;
-}
-
-@media screen and (min-width: 1000px){
-	.title .text{
-		top: 15%;
-		font-size:80px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.topic {
-		width: 100%;
-		font-size: 100%;
-	}
-
-	.topicImg {
-		width: 80%;
-		float: left;
-		margin-top: -2%;
-		margin-left: 2%;
-	}
-}
-
-
-
-
 .rsvp-users {
     float: right;
 }
