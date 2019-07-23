@@ -1,14 +1,29 @@
+<!DOCTYPE html>
 <html>
-  <body>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Purchase Confirmed</title>  
+</head>
+<body>
   <div class = "header">
-    <h1 style="color:White">Rsvp created</h1>
-  </div>
-    <div class="one">
-      <p>Thank you <%= @user.name %> for creating an rsvp.</p>
-      <p>Your Rsvp for this event: <%= link_to "Event", @url %></p>
-      <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
+      <h1 style="color:White">Thank you!</h1>
     </div>
+  <div class = "one">
+    <p>
+    <%if @user.present?%>
+      <%=@user.name %>
+      <%end%>
+      <br><br>
+      Your purchase has been confirmed.
+      Thank you for purchasing <%=@merchandise.name%>.
+      Your purchase totals to $<%=@purchase.pricesold%>.<br><br>
+      Sincerely, <br>
+      thinq.tv<br><br>
+      Visit us at again at <a href= '<%=@home_url%>'>thinq.tv</a><br><br>  
+    </p>
       <div class = "img">
+        <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
       </div>
   </div>  
   <div class = "footer">
@@ -61,11 +76,4 @@
 </body>
 <footer>
 </footer>
-</html>
-  </div>
-</body>
-<footer>
-</footer>
-</html>
-  </style> 
 </html>

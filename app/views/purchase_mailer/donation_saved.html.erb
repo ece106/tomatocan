@@ -1,16 +1,28 @@
+<!DOCTYPE html>
 <html>
-  <body>
-  <div class = "header">
-    <h1 style="color:White">Rsvp created</h1>
-  </div>
-    <div class="one">
-      <p>Thank you <%= @user.name %> for creating an rsvp.</p>
-      <p>Your Rsvp for this event: <%= link_to "Event", @url %></p>
-      <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <head>
+  <title>Donation Confirmed</title>
+  </head> 
+ <body>
+    <div class = "header">
+      <h1 style="color:White">Thank you!</h1>
     </div>
-      <div class = "img">
-      </div>
-  </div>  
+    <div class = "one">
+      <p>
+       <%if @user.present?%>
+      <b><%=@user.name %></b><br><br>
+       <%end%>
+        Thanks once again for your donation of $<%=@purchase.pricesold%>.<br><br>
+        We really appreciate supporting <%=@seller.name%>.<br><br>
+        Please consider sharing your recent donation to <%@seller.name%> with friends and family through your social media networks below!<br><br><br>
+        Thank You,<br><br>
+        <b>thinq.tv</b><br><br>
+        Visit us at again at <a href= '<%=@home_url%>'>thinq.tv</a><br><br>
+      </p>
+      <%=image_tag attachments['starIcon.png'].url, size: "50x50" ,alt: "star icon"%>
+    </div>
+    
   <div class = "footer">
       <p style = "color:white" class="f-header">Share</p>
         <% url = "http://www.crowdpublish.tv" %>
@@ -58,14 +70,4 @@
     }
   </style> 
 </html>
-</body>
-<footer>
-</footer>
-</html>
-  </div>
-</body>
-<footer>
-</footer>
-</html>
-  </style> 
-</html>
+

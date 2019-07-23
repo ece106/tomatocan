@@ -1,14 +1,24 @@
+<!DOCTYPE html>
 <html>
-  <body>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Welcome to crowdpublish.TV</title>
+</head>
+<body>
   <div class = "header">
-    <h1 style="color:White">Rsvp created</h1>
+    <h1 style="color:White">Welcome!</h1>
   </div>
-    <div class="one">
-      <p>Thank you <%= @user.name %> for creating an rsvp.</p>
-      <p>Your Rsvp for this event: <%= link_to "Event", @url %></p>
-      <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
-    </div>
+  <div class = "one">
+      <p> Welcome,<br><br>
+        Thank you  <%=@user.name%>, for signing up with thinq.tv!<br><br>
+        Visit us at <a href = "<%=@home_url%>">thinq.tv</a><br><br>
+        Sincerely, <br>
+        thinq.tv<br>
+      </p>
       <div class = "img">
+        <% image_tag attachments['laptop.jpg'].url%>
+        <%= image_tag attachments['change.jpg'].url%>
       </div>
   </div>  
   <div class = "footer">
@@ -67,5 +77,8 @@
 <footer>
 </footer>
 </html>
-  </style> 
+  </div>  
+</body>
+<footer>
+</footer>
 </html>

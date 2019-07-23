@@ -3,8 +3,9 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
- #before_action :correct_user, only: [:dashboard, :user_id]
-  #before_action :correct_user, only: [:controlpanel]
+
+  #before_action :correct_user, only: [:dashboard, :user_id] 
+  #before_action :correct_user, only: [:controlpanel] 
   #Where did this method go?
 
   def index
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-#    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
+    #    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     @numusrgroups = 0
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
@@ -73,7 +74,7 @@ class UsersController < ApplicationController
     end
   end
   def profileinfo
-#    @user.updating_password = false
+    #    @user.updating_password = false
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
@@ -140,11 +141,10 @@ class UsersController < ApplicationController
       format.html
       format.json { render json: @user }
     end
-
-      if @user.merchandises.any?
-        expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
-        @expiredmerchandise = expiredmerch.order('deadline ASC')
-      end
+    if @user.merchandises.any? 
+      expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
+      @expiredmerchandise = expiredmerch.order('deadline ASC')
+    end
   end
 
   def dashboard
@@ -157,10 +157,10 @@ class UsersController < ApplicationController
     @totalinfo = @user.totalinfo
     @purchasesinfo = @user.purchasesinfo
 
-      if @user.merchandises.any?
-        expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
-        @expiredmerchandise = expiredmerch.order('deadline ASC')
-      end
+    if @user.merchandises.any?
+      expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
+      @expiredmerchandise = expiredmerch.order('deadline ASC')
+    end
   end
 
   def stripe_callback
@@ -185,15 +185,16 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-#    @user.latitude = request.location.latitude #geocoder has become piece of junk
-#    @user.longitude = request.location.longitude
+    #    @user.latitude = request.location.latitude #geocoder has become piece of junk
+    #    @user.longitude = request.location.longitude
     if @user.save
       @user.get_youtube_id
       sign_in @user
       redirect_to user_profileinfo_path(current_user.permalink)
+      UserMailer.with(user: @user).welcome_email.deliver_later
     else
-        redirect_to new_user_signup_path, danger: signup_error_message
-        @user.errors.clear
+      redirect_to new_user_signup_path, danger: signup_error_message
+      @user.errors.clear
     end
   end
 
@@ -204,7 +205,7 @@ class UsersController < ApplicationController
       bypass_sign_in @user
       redirect_to user_profile_path(current_user.permalink)
     else
-#      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
+      #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       #redirect_to user_profileinfo_path(current_user.permalink), :notice => "Your profile was not saved. Check character counts or filetype for profile picture."
 
       if params[:user][:on_password_reset] == "changepassword"
@@ -231,65 +232,62 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:permalink, :name, :email, :password,
-        :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-        :twitter, :title, :profilepic, :profilepicurl, :remember_me,
-        :facebook, :address, :latitude, :longitude, :youtube1, :youtube2,
-        :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
-        :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
-    end
+  def user_params
+    params.require(:user).permit(:permalink, :name, :email, :password, 
+                                 :about, :author, :password_confirmation, :genre1, :genre2, :genre3, 
+                                 :twitter, :title, :profilepic, :profilepicurl, :remember_me, 
+                                 :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
+                                 :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password, 
+                                 :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
+  end
 
-    def resolve_layout
-      case action_name
-      when "index", "youtubers", "supportourwork", "stripe_callback"
-        'application'
-      when "profileinfo", "changepassword"
-        'editinfotemplate'
+  def resolve_layout
+    case action_name
+    when "index", "youtubers", "supportourwork", "stripe_callback"
+      'application'
+    when "profileinfo", "changepassword"
+      'editinfotemplate'
+    else
+      'userpgtemplate'
+    end
+  end
+
+  def set_user 
+    @user = User.find_by_permalink(params[:permalink]) || current_user
+    if @user.merchandises.any? 
+      notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
+      deadlineorder = notexpiredmerch.order('deadline IS NULL, deadline ASC')
+      if deadlineorder.all[1].present?
+        puts deadlineorder.all[1]
+        @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
       else
-        'userpgtemplate'
+        @sidebarmerchandise = deadlineorder.all[0..0]
       end
-    end
-
-    def set_user
-      @user = User.find_by_permalink(params[:permalink]) || current_user
-      if @user.merchandises.any?
-        notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
-        deadlineorder = notexpiredmerch.order(deadline: :asc)
-
-        if deadlineorder.all[1].present?
-          # puts deadlineorder.all[1]
-          @sidebarmerchandise = deadlineorder.all[0..0] + deadlineorder.all[1..-1].sort_by(&:price)
-        else
-          @sidebarmerchandise = deadlineorder.all[0..0]
-        end
-      end
-    end
-     # returns a string of error messages for the user signup page
+    end 
+    # returns a string of error messages for the user signup page
     def signup_error_message
-       msg = ""
-        if @user.errors.messages[:name].present?
-          msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+      msg = ""
+      if @user.errors.messages[:name].present?
+        msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+      end
+      if @user.errors.messages[:email].present?
+        @user.errors.messages[:email].each do |email| 
+          msg += ("Email " + email + "\n")
         end
-        if @user.errors.messages[:email].present?
-          @user.errors.messages[:email].each do |email|
-            msg += ("Email " + email + "\n")
-          end
-        end
-        if @user.errors.messages[:permalink].present?
-          msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
-        end
-        if @user.errors.messages[:password].present?
-          msg += ("Password " + @user.errors.messages[:password][0] + "\n")
-        end
+      end
+      if @user.errors.messages[:permalink].present?
+        msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
+      end
+      if @user.errors.messages[:password].present?
+        msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+      end
 
-        return msg
+      return msg
     end
 
     def update_error_message
       msg = ""
       if @user.errors.messages[:name].present?
-        msg += ("Name " + @user.errors.messages[:name][0] + "\n")
       end
       if @user.errors.messages[:email].present?
         msg += ("Email " + @user.errors.messages[:email][0] + "\n")
@@ -309,4 +307,5 @@ class UsersController < ApplicationController
 
       return msg
     end
+  end
 end

@@ -1,14 +1,24 @@
+<!DOCTYPE html>
 <html>
-  <body>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Event Reminder</title>
+</head>
+<body>
   <div class = "header">
-    <h1 style="color:White">Rsvp created</h1>
+    <h1 style = "color:White">You have an upcoming event!</h1>
   </div>
-    <div class="one">
-      <p>Thank you <%= @user.name %> for creating an rsvp.</p>
-      <p>Your Rsvp for this event: <%= link_to "Event", @url %></p>
-      <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
-    </div>
-      <div class = "img">
+  <div class = "one">
+    <p> Hello, <%= @user.name %> <br><br>
+     <%= @user.name %> this is a reminder about your event, <%=@event.name %>.
+     You made this event for this date <%=@date_body_format%>. 
+     Please invite your friends to your <a href = <%=@event_url%>>event</a>.<br><br>
+     Sincerely,<br>
+     thinq.tv
+     </p>
+     <div class = "img">
+        <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
       </div>
   </div>  
   <div class = "footer">
@@ -61,11 +71,4 @@
 </body>
 <footer>
 </footer>
-</html>
-  </div>
-</body>
-<footer>
-</footer>
-</html>
-  </style> 
 </html>
