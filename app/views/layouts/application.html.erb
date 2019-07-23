@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="http://example.com/image.png" />
     <%= render 'application/favicon' %>
 
-<%= stylesheet_link_tag    '_faq', media: 'all', 'data-turbolinks-track' => true %>
+
 
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application" %>
@@ -16,11 +16,11 @@
     <%= csrf_meta_tags %>
 
     <% if Rails.env.development? || Rails.env.test? %>
-        <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
+        <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <% else %>
-        <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %> 
+        <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
     <% end %>
-  
+
     <% if content_for? :forusers %>
         <%= yield :forusers %>
     <% end %>
@@ -30,9 +30,9 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-    
+
 <body>
-    
+
     <%= render 'layouts/header' %>
 
     <main id="absoluteWrapper">

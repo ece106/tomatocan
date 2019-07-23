@@ -19,7 +19,7 @@
                     <h2><%=f.label :name, "Username" %></h2>
                     <p class="help-block">Alphanumeric characters only. Less than 20 characters.</p>
                     <div class="input-group">
-                        <div class="input-group-addon">crowdpublish.tv/</div>
+                        <div class="input-group-addon">ThinQ.tv/</div>
                         <%= f.text_field :permalink, placeholder: "username", maxlength: 20, :class => "form-control" %>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <p class="help-block">Confirm password</p>
                     <%= f.password_field :password_confirmation, :class => "form-control" %>
                 </div>
-                <small>By clicking 'Sign Up,' you agree to the CrowdPublishTV <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+                <small>By clicking 'Sign Up,' you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
                 <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
             <% end %>
             </div>
