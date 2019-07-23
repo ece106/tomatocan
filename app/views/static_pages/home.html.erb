@@ -58,6 +58,7 @@
     </div>    
 </div>
 
+<<<<<<< HEAD
 <div class="row" id="scroll">
     <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
 </div>
@@ -75,6 +76,9 @@
         <h3>Upcoming Events</h3>
         <p id="event">Head to our <a>Events </a>page to view our full schedule</p>
         <br>
+=======
+        ThinQ.tv is creating a forum for thought-provoking conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.
+>>>>>>> a8860e8f4ab117d5739e029dfa7a744b65c1cd5f
     </div>
     <div class="col-md-12">
         <%= render 'layouts/maincalendar', collection: @events %>
@@ -121,4 +125,23 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
      <br><br><br>
+=======
+</div>
+<div class="row darkBlock" id="livestream">
+    <div class="col-sm-4 col-sm-offset-1">
+      <h2>Connect with Intellectually Curious Donors</h2>
+      <p>Viewers can ask questions during your livestream through text chat or by voice. Save your livestream & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
+    </div>
+    <div class="col-sm-6 col-sm-offset-1">
+      <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
+    </div>
+</div>
+<div class="row" id="faqBlock">
+    <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3>
+    <br>
+    <% if !user_signed_in? %>
+        <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
+    <% end %>
+>>>>>>> a8860e8f4ab117d5739e029dfa7a744b65c1cd5f

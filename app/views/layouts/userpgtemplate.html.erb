@@ -11,9 +11,9 @@
 
 
     <% if Rails.env.development? || Rails.env.test? %>
-    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <% else %>
-    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %> 
+    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
     <% end %>
 
     <% if content_for? :forusers %>
@@ -26,13 +26,13 @@
 </head>
 
 <%= render 'layouts/header' %>
-    
+
 <body>
     <main>
         <%= yield %>
     </main>
 </body>
 
-<%= render 'layouts/footer' %>   
-    
+<%= render 'layouts/footer' %>
+
 </html>

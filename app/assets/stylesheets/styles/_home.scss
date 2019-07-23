@@ -2,7 +2,7 @@
 #homeWrapper {
     text-align: center;
     //Prevents space between header and heroImage on Firefox.
-    margin-top: -20px;  
+    margin-top: -20px;
 }
 
 p {
@@ -229,3 +229,25 @@ background-image: url("camera.jpg");
     opacity: 0;
   }
 }
+<<<<<<< HEAD
+=======
+.col-md-5 p {
+    font-size: 15px;
+    padding: 15px;
+}
+.darkBlock {
+    background-color: $gray-lighter;
+}
+#faqBlock, .lightBlock, .darkBlock {
+    padding: 30px 20px;
+}
+#faqBlock {
+    padding-top: 80px;
+}
+#connectFans {
+    min-height: 310px;
+}
+#lightBlock, #darkBlock {
+    padding-top: 80px;
+}
+>>>>>>> a8860e8f4ab117d5739e029dfa7a744b65c1cd5f
