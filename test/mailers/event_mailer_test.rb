@@ -10,6 +10,6 @@ class EventMailerTest < ActionMailer::TestCase
   test 'to, from' do
     mail = EventMailer.with(@mail_hash).event_reminder
     assert_equal ["#{@user.email}"] , mail.to
-    assert_equal ["crowdpublish.TV"], mail.from
+    assert_equal ['crowdpublishtv.star@gmail.com'], mail.from
   end
 end
