@@ -1,0 +1,24 @@
+<%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Organization Name" %>
+  </div>
+  <div class="form-group">
+    <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+  </div>
+  <div class="form-group">
+    <!-- <small>Alphanumeric characters only. Less than 20 characters.</small> -->
+    <div class="input-group">
+      <div class="input-group-addon">crowdpublish.tv/</div>
+      <%= f.text_field :permalink, placeholder: "username", maxlength: 20, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <small>Enter password (Minimum 8 characters)</small>
+    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password" %>
+  </div>
+  <%= f.button "Create your account", class: "btn btn-primary partial-signup-form-btn" %>
+  <div id="tos-signup">
+    <small>By signing up you agree to the <%= link_to("Terms of Service", tos_path, target: "_blank") %>.</small>
+  </div>
+<% end %>
