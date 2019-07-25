@@ -1,26 +1,61 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="ThinQ tv" content="Where authors and actors earn more money from their loyal fans">
-<title>ThinQtv - The Future of Empowerment is Your Story</title>
+<title>ThinQ.tv - The Future of Empowerment is Your Story</title>
 </head>
+<div class="title">
+	<%= image_tag "tech.jpg", width:"100%" %>
+	<h1 class="text">Tech Tuesday</h1>
+</div>
+
 
 <div class="row" >
-  <div class="col-sm-7 col-sm-offset-1 col-xs-12" >
-    <h2 class="aboutHeader">
-      Tech Tuesdays
-    </h2 ><br>
-    <h4 style = "line-height: 1.5em;">
-      We're launching Tech topics with Learn Web Development in Ruby on Rails discussions and UI/UX discussions. Meet us <%= link_to 'here on ThinQtv ', '/lisa' %> at 6:30 pm PDT every Tuesday for Ruby on Rails, 12:00 pm PDT every Tuesday for UI/UX.<br>
-      In the Rails discussions we'll talk about: <br>Model View Controller code structures, <br>Ruby Gems, <br>Tests, Tests, & more Tests.
-      <br><br>
-      In the UI/UX discussions we'll talk about the current design of ThinQ.tv.
-      <br><br>
-
-      Once we build a critical mass of participants for the Ruby on Rails discussions, Future topics later in the evenings on Tuesdays include: <br>Innovation & Entrepreneurship, <br>Big Tech, and <br>Women in Tech.
-
-    </h4><br><br>
-      Got a Tech-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %> <br><br>
-
-
-<br><br><br>
+  <div class="col-sm-6 col-sm-offset-1" >
+	<h2 style="margin-left: 3%; margin-top:5%; margin-right: 3%;font-size: 20px">
+	  <div style="font-size: 22px">Welcome to <b>Tech Tuesday!</b></div>
+		  <br>We're launching Tech topics with cover Web Development in Ruby on Rails discussions and UI/UX discussions. 
+		  <br>Meet us <%= link_to 'on ThinQ.tv ', '/lisa' %> at 6:30 pm PDT every Tuesday. 
+	</h2>
   </div>
+
+  <div class="col-sm-6 col-sm-offset-1">
+	  <h3 style="margin-top: 3%; margin-left: 5%; font-size: 20px">
+		<b>Web Development in Ruby on Rails:</b>
+			<ul style="margin-left: 5%">
+				<li>Model View Controller code structures</li>
+				<li>Ruby Gems</li>
+				<li>Tests, Tests, & more Tests</li>
+			</ul>
+	  </h3>
+  </div>
+
+  <div class="col-sm-4">
+	  <div style="margin: 5%">
+		  <%= image_tag "tech_ruby.jpg", width: "80%" %>
+	  </div>
+  </div>
+
+  <div class="col-sm-6 col-sm-offset-1">
+	  <h4 style="margin-top: 5%; margin-left: 3%; font-size: 20px">
+		  <b>UX/UI discussions will cover topics in:</b>
+			<ul style="margin-left: 5%">
+				<li>The importance of UX</li>
+				<li>How UX and UI go hand in hand</li>
+				<li>Women in Tech</li>
+				<li>Big Tech, Innovation and Entrepreneurship</li>
+			</ul>
+	  </h4>
+  </div>
+
+  <div class="col-sm-4">
+	  <div style="margin:5%; margin-top: 10%;">
+		  <%= image_tag "UX_UI.jpg", width: "80%" %>
+	  </div>
+  </div>
+
+  <div class="col-sm-8 col-sm-offset-1">
+	  <div style="margin:5%">
+		  Got a Tech-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %> 
+  	</div>
+  </div>
+</div>

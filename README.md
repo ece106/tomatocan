@@ -247,6 +247,26 @@ git pull https://github.com/ece106/tomatocan.git master
 Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
 
+### REQUIREMENTS TO REMAIN IN THE THINQ.TV INTERNSHIP PROGRAM
+
+We'll allow most appropriately-skilled college students the opportunity to earn great knowledge in the Thinq.tv internship program. However after the first three weeks, we have minimum requirements to continued access to our time and resources:
+
+You must spend at least 10 hours per week on helping Thinq.tv grow. This is an internship at a business. It is not your toy app.
+Push to github 5 times per week.
+Attend two main livestreams per week (Tech, Faith, International).
+Contribute enough to justify a pull request every 3 weeks.
+Invite parents and friends to participate on live conversations - and prove it by their appearance.
+Cell phones off. We must not see your cell phone at all while you are in our offices. 
+
+Add the following columns to your Goals & Accomplishments sheet:
+- Livestreams attended 
+- Person you brought into the conversation with you
+- The days you pushed to github
+- Summary of your pull request
+
+
+
+
 Refer to Michael Hartl's tutorial for great Rails knowledge http://railstutorial.org/book
 
 For a list of helpful git commands use the git cheatsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
@@ -254,3 +274,4 @@ For a list of helpful git commands use the git cheatsheet: https://services.gith
 For minitest methods https://guides.rubyonrails.org/testing.html
 
 Copyright &copy; 2019, RoleModel Enterprises, LLC. All rights reserved.
+
