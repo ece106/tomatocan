@@ -7,8 +7,6 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     sign_in
 
-    binding.pry
-
     visit "/#{@user.permalink}/controlpanel"
   end
 
