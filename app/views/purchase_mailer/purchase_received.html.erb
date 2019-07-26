@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-  <title>Purchase received</title>
+  <title>Purchase Received</title>
 </head>
 <body>
+  <br>
   <div class = "header">
-    <h1 style="color:White">You have received a purchase!</h1>
+    <h2>ThinQ.tv</h2>
   </div>
-  <div class = "one">
+  <br>      
+  <div class = "one"> 
+    <h1 style="font-size: 40px; color: #8B0942; font-style: bold;" align="center" >You have received a purchase!</h1>
+    <br>
     <p>
-      <%=@seller.name%>,<br><br>
-      There has been a purchase of <%=@merchandise.name%> 
-      the purchase totals to $<%=@purchase.pricesold%>.<br><br>
-      sincerely, <br>
-      thinq.tv<br><br>
-      visit us at again at <a href= '<%=@home_url%>'>thinq.tv</a><br><br>
-      </div>
+    <%=@seller.name%>,<br><br>
+      There has been a purchase of <%=@merchandise.name%>.<br>
+      The purchase totals of $<%=@purchase.pricesold%><br><br><br>
+    
+    Best, <br>
+    ThinQ.tv
     </p>
-      <div class = "img">
+    <div class = "img">
         <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
       </div>
-  </div>  
+    <p>Visit us at again at <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">ThinQ.tv</a></p>
+    <br> 
+    </div>  
   <div class = "footer">
-      <p style = "color:white" class="f-header">Share</p>
+    <table id="info" align="center" width="100%">
+        <td colspan="4"><p>Contact us<br><a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a><br>Washington DC: 703-495-3185<br> Scottsdale: 602-888-3089</p>
+        </td>
+        <td colspan="4"><p>Headquarters<br>ASU Venture Devils Suite 1951<br>1475 N.Scottsdale Rd,<br>Scottsdale, AZ 85257</p>
+        </td>
+        <td colspan="4">
+        <p style = "color:white" class="f-header">Share</p>
         <% url = "http://www.crowdpublish.tv" %>
         <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
         <!-- Facebook Share -->
@@ -36,31 +46,24 @@
         <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><%=image_tag attachments['linkedin.svg'].url%></a>
         <!-- Email Share -->
         <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><%=image_tag attachments['email.svg'].url%></a>
-      </div> 
-    </div>
+      </div>
+      <br>
+      </td>
+</table>
   </body>
  <style> 
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
     body {
      
      font-family: 'Montserrat', sans-serif;
+     text-align: center;
     }  
-    h1{
-      padding: .5%;
-      width: 95%;
-      margin: 1px auto 1px auto;
-      text-align: left;
-      font-size: 50pt;
-    }
-    div.header{
-      background-color: #8B0942;
-      padding: 1.5%;
-    }
+    
     div.one{
       font-size: 18pt; 
       margin: 10px auto 10px auto;
       text-align: left; 
-      width : 90%;
+      width : 60%;
       padding: 1%; 
     }
     div.footer{
@@ -68,9 +71,29 @@
       margin: 10px auto 10px auto;
       padding: .5%; 
     }
+    table {
+      width: 60%;
+      border: 0px;
+      text-align: center;
+      margin: auto;
+      padding: 0;
+      border-spacing: 0px;
+      border-color: none;
+      border-collapse: collapse;
+    }
+    #info p {
+      color: white;
+      font-size: 15px;
+    }
+    #info a.f-link {
+      color: #FFC627;
+    }
+    #info a {
+      color: #FFC627;
+      text-decoration-line: none;
+      text-decoration-color: #FFC627;
+    }
   </style> 
 </html>
-</body>
-<footer>
-</footer>
-</html>
+
+
