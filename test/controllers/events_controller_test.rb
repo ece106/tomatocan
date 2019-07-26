@@ -1,127 +1,131 @@
 require 'test_helper'
 class EventsControllerTest < ActionController::TestCase
     setup do
-    @event = events(:one)
-    @user = users(:one)
-    @rsvpq = rsvpqs(:one)
+        @event = events(:one)
+        @user = users(:one)
+        @rsvpq = rsvpqs(:one)
     end
 
     #event.usrid==1
     #event.id==980190962
 
     #index
-    test "should_retrieve_list_of_all_events" do
-        get :index, params: {id: @event.id}
-        #get :index
-        assert_response :success
-    end
-
-    test "should accquire events greater than starting time" do 
-        #user1 = User.create(:id => 4, :name => 'Ichi-chan')
+    test "#index should return all events with start at greater than current time" do
         @event1 = Event.create(:usrid => 2, :name => 'Dark Water', :start_at => "2020-02-11 11:02:57")
         sample_event = Event.where( "start_at > ?", Time.now )
         assert_equal(@event1.usrid, sample_event[0].usrid)
-    end 
-    
-    test "should render index view" do
-        get :index, params: {id: @event1, format: :html}
-        assert_response :success 
-
-        get :index, params: {id: @event1, format: :json}
-        assert_response :success 
+        assert_equal(@event1.user_id, sample_event[0].user_id)
     end
+    
+    test "#index should respond to the correct format" do
+        get :index, params: {id: @event.id, format: :html}
+        assert_response :success 
 
-    test "should_recognize_events" do
-        assert_recognizes({:controller => 'events', :action => 'index'}, {:path => 'events', :method => :get})
-        #assert_recognizes({:controller =>'events', :action =>'show', :id =>'index'}, 'events/index')
+        get :index, params: {id: @event.id, format: :json}
+        assert_response :success 
+        binding.pry
     end
 
     #show
-    test "should find event" do
+    test "#show should find correct event" do
         get :show, params: {id: @event.id}
         assert_response :success
+        
         assert_not_nil(@event.usrid, msg = nil)
     end
 
-    test "should find user" do
-        #get :show, params: {id: @event}
-        #assert_response :success
+    test "#show should find correct user" do
+        get :show, params: {id: @event.id}
+        assert_response :success
+       
         user = User.find(@event.usrid)
         assert_equal user.id, @event.usrid
     end
 
-    test "should initalize new rsvp" do
+    test "#show should initalize new rsvp" do
+        get :show, params: {id: @event.id}
+        assert_response :success
+        
         rsvp = Rsvpq.new
         assert_equal true, rsvp.event.nil?
     end
 
 
-    test "should_initialize_rsvpusers_as_the_event_user" do
-       #rsvpuser = @event.users
-       #uid = @event.usrid
-       #users(:two).update_column(:id, uid)
-       rsvpuser = @event.rsvpqs
-       rsvpuser.each do |num|
-            puts num.user.inspect
-       end 
-       flunk (msg = "gonna get cody's help on this")
+    test "#show should have the correct count for rsvpusers" do
+        get :show, params: {id: @event.id}
+        assert_response :success
+        
+        @event_three = events(:three)
+        @valid_rsvpq_one = rsvpqs(:valid_rsvpq_one)
+        @valid_rsvpq_two = rsvpqs(:valid_rsvpq_two)
+        rsvpusers = @event_three.users
+        
+        assert_equal rsvpusers.count, 2
     end
 
-    test "should initialize rsvps as event rsvps" do
-        rsvp = @event.rsvpqs
-        rsvp.each do |num|
-            puts num.inspect
-        end  
-        assert_equal rsvp[0].event, @event
+    test "#show should initialize rsvps as event rsvps" do
+        get :show, params: {id: @event.id}
+        assert_response :success
+
+        @event_three = events(:three)
+        @valid_rsvpq_one = rsvpqs(:valid_rsvpq_one)
+        @valid_rsvpq_two = rsvpqs(:valid_rsvpq_two)
+        rsvps = @event_three.rsvpqs
+        
+        assert_equal rsvps.count, 2
+        binding.pry
     end
 
-    test "show_render_show_view" do
-        get :show, params: {id: @event, format: :html}
+    test "#show should respond to the correct format" do
+        get :show, params: {id: @event.id, format: :html}
         assert_response :success 
 
-        get :show, params: {id: @event, format: :json}
+        get :show, params: {id: @event.id, format: :json}
         assert_response :success 
     end    
 
     #new
-    test "should get new event" do
+    test "#new should instantiate new event object" do
         sign_in users(:one)
         get :new
         assert_response :success
     end
 
     #edit
-    test "should be able to edit if user is signed in" do
+    test "#edit should be able to edit if user is signed in" do
         sign_in users(:one)
         get :edit, params: { id: @event.id }
         assert_response :success
     end
 
     #create
-    test "should create events" do
+    test "#create should create events" do
         sign_in users(:one)
          assert_difference('Event.count', 1) do
              post :create, params: { event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas' } }
          end
     end
-    test "should redirect if events are created" do
+
+    test "#create should redirect if events are created and saved" do
         sign_in users(:one)
         post :create, params: { event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas'  } }
            assert_redirected_to '/'
     end
-    test "should verify if event was created" do
+
+    test "#create should verify if event was created" do
       sign_in users(:one)
       post :create, params: { event: { start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas'  } }
         assert_empty @event.errors.messages
     end
+
     #update
-    test "should redirect after updating" do
+    test "#update should redirect after updating" do
         sign_in users(:one)
         patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57",  usrid: '1', name: 'Phineas'  }}
         assert_redirected_to event_path(@event.id)
     end
     
-    test "should verify event update" do
+    test "#update should verify event update" do
         sign_in users(:one)
         patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas' }}
         assert_empty @event.errors.messages

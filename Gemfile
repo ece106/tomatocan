@@ -79,6 +79,7 @@ gem 'sass-rails', '~> 5.0.7'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'pry-byebug'
 end
 
 group :development do
