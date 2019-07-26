@@ -1,6 +1,6 @@
 <div class="col-md-6">
 <%= form_for @user, :html => {:multipart => true} do |f| %>
-	
+
 <div class="panel panel-primary">
 <div class="panel-heading">
 	Account
@@ -21,7 +21,7 @@
 		<h3><%=f.label :name, "Custom URL" %></h3>
 		<p class="help-block">For a limited time, you will be allowed to change your custom URL handle. Alphanumeric characters only. URL handle must be less than 20 characters.</p>
 		<div class="input-group">
-			<div class="input-group-addon">crowdpublish.tv/</div>
+			<div class="input-group-addon">ThinQ.tv/</div>
 			<%= f.text_field :permalink, placeholder: "yourcustomurl", maxlength: 20, :class => "form-control" %>
 		</div>
 	</div>

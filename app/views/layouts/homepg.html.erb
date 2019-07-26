@@ -14,9 +14,9 @@
     <%= csrf_meta_tags %>
 
     <% if Rails.env.development? || Rails.env.test? %>
-        <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %> 
+        <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <% else %>
-        <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %> 
+        <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
     <% end %>
 
     <% if content_for? :forusers %>
@@ -31,11 +31,11 @@
 
 <body>
         <%= render 'layouts/header' %>
-        
+
         <main class="container-fluid" id="homeWrapper">
             <%= yield %>
-        </main> 
-        
+        </main>
+
         <%= render 'layouts/footer' %>
 
     <% #= devise_error_messages! %>
