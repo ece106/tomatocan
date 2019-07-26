@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   #  before_action :authenticate_user!, only: [:new ]
-    # GET /purchases/1
+  # GET /purchases/1
   def show
     @purchase = Purchase.find(params[:id])
     if (!@purchase.merchandise_id.nil?) #If this is a donation do not look for merchandise
@@ -9,12 +9,12 @@ class PurchasesController < ApplicationController
       id = loot.user_id
       @user = User.find(id)
     end
-      respond_to do |format|
+    respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @purchase }
     end
   end
-    # GET /purchases/new
+  # GET /purchases/new
   def new
     if(params[:pricesold].present?) # Donation being made
       @purchase = Purchase.new
@@ -33,11 +33,11 @@ class PurchasesController < ApplicationController
       end
     end
   end
-    # POST /purchases 
+  # POST /purchases 
   def create
     @purchase = Purchase.new(purchase_params)
     purchase_mailer_hash = {purchase: @purchase}
-    
+
     if user_signed_in? 
       @purchase.user_id = current_user.id 
       purchase_mailer_hash[:user] = User.find(@purchase.user_id) 
@@ -134,19 +134,19 @@ class PurchasesController < ApplicationController
         PurchaseMailer.with(purchase_mailer_hash).donation_saved.deliver_later
         PurchaseMailer.with(purchase_mailer_hash).donation_received.deliver_later
         redirect_to user_profile_path(seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + seller.name
-    else
+      else
         puts "12" ################################################
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+      end
     end
   end
-  end
-  
-    private
-      # Use callbacks to share common setup or constraints between actions.
-  
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+
   def purchase_params
     params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut, :shipaddress,
-      :book_id, :stripe_card_token,:pricesold, :user_id, :author_id, :merchandise_id, :group_id, :email)
+                                     :book_id, :stripe_card_token,:pricesold, :user_id, :author_id, :merchandise_id, :group_id, :email)
   end
-  
+
 end

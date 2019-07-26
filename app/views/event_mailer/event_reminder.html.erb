@@ -3,19 +3,18 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-  <title>Event Reminder</title>
+  <title>ThinqTV Conversation Reminder</title>
 </head>
 <body>
   <div class = "header">
-    <h1 style = "color:White">You have an upcoming event!</h1>
+    <h1 style = "color:White">You have an upcoming conversation!</h1>
   </div>
   <div class = "one">
     <p> Hello, <%= @user.name %> <br><br>
-     <%= @user.name %> this is a reminder about your event, <%=@event.name %>.
-     You made this event for this date <%=@date_body_format%>. 
-     Please invite your friends to your <a href = <%=@event_url%>>event</a>.<br><br>
+     <%= @user.name %> this is a reminder about your Thinq.tv conversation, <%=@event.name %>, at <%=@date_body_format%>. 
+     Please invite your friends to your <a href = <%=@event_url%>>conversation</a>.<br><br>
      Sincerely,<br>
-     thinq.tv
+     Thinq.tv
      </p>
      <div class = "img">
         <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
@@ -23,7 +22,7 @@
   </div>  
   <div class = "footer">
       <p style = "color:white" class="f-header">Share</p>
-        <% url = "http://www.crowdpublish.tv" %>
+        <% url = "http://www.thinq.tv" %>
         <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
