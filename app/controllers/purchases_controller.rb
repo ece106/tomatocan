@@ -54,17 +54,21 @@ class PurchasesController < ApplicationController
       end
     when 'Buy'
       assign_user_id
-        case @purchase.save_with_payment
-        when true
-          merchandise_check_type
-          @purchase_mailer_hash[:merchandise] = @merchandise
-          PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
-          PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
-          redirect_to user_profile_path(@seller.permalink)
-          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
-        when false 
-          redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+      case @purchase.save_with_payment
+      when true
+        @purchase_mailer_hash[:merchandise] = @merchandise
+        PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
+        PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
+        attachments = @merchandise.get_non_empty_attachments
+        attachments.each do |key,value|
+          send_data_to_buyer key, value and return 
         end
+        redirect_to user_profile_path(@seller.permalink)
+        flash[:notice] = "Your Purchase is successfull"
+        #redirect_to user_profile_path(@seller.permalink)
+      when false 
+        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+      end
     end
   end
   
@@ -78,30 +82,11 @@ class PurchasesController < ApplicationController
       when false
       end
   end
+   
 
-  def merchandise_check_type
-    @merchandise.attributes.each do |name, value|
-      case name
-      when 'audio'
-        set_file_name_and_value(name,value)
-      when 'graphic' 
-        set_file_name_and_value(name,value)
-      when 'video'
-        set_file_name_and_value(name,value)
-      when 'merchpdf' 
-        set_file_name_and_value(name,value)
-      when 'merchmobi'
-        set_file_name_and_value(name,value)
-      when 'merchepub'
-        set_file_name_and_value(name,value)
-      end
-    end
-  end
-
-  def set_file_name_and_value name, value
-    if value.present?
-      data = open("#{value}")
-      send_data data.read, filename: name, disposition: 'attachment' 
+  def send_data_to_buyer name, value 
+    if value != nil
+      send_data "#{value}" , filename: name, disposition: 'inline'  
     end
   end
   #if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?

@@ -18,6 +18,27 @@ class Merchandise < ApplicationRecord
   attr_accessor :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h
   after_update :crop_itempic
 
+  def get_non_empty_attachments 
+    merchandise_attachments = {}
+    self.attributes.each do  |name, value|
+      case name
+      when 'audio'
+        merchandise_attachments['audio'] = value
+      when 'graphic' 
+        merchandise_attachments['graphic'] = value
+      when 'video'
+        merchandise_attachments['video'] = value
+      when 'merchpdf' 
+        merchandise_attachments['merchpdf'] = value
+      when 'merchmobi'
+        merchandise_attachments['merchmobi'] = value
+      when 'merchepub'
+        merchandise_attachments['merchepub'] = value
+      end
+    end
+    merchandise_attachments
+  end
+
   def crop_itempic
     itempic.recreate_versions! if itempic_crop_x.present?
   end
@@ -38,4 +59,6 @@ class Merchandise < ApplicationRecord
         url.match(regex)[1]
       end
     end
+    
+
 end
