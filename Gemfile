@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+<<<<<<< HEAD
 
 ruby '2.6.3'
 
@@ -11,6 +12,16 @@ gem 'rails-controller-testing'
 gem 'pg'
 #gem 'sqlite3', '~> 1.3.6'
 gem 'apparition'
+=======
+ruby "2.5.3"
+
+gem 'listen'
+gem 'rails-controller-testing'
+
+gem 'pg'
+#gem 'sqlite3'
+
+>>>>>>> ba8f2ea7ae5ee3dc5ef9deec13a5b34741b3eaf3
 
 gem 'mandrill'	
 gem 'devise'
@@ -23,13 +34,22 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
+<<<<<<< HEAD
+=======
+
+>>>>>>> ba8f2ea7ae5ee3dc5ef9deec13a5b34741b3eaf3
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
+<<<<<<< HEAD
 gem 'rails', '~> 5.2.2.1'
 gem 'railties', '5.2.2.1'
+=======
+gem 'rails', '5.2.1'
+gem 'railties', '5.2.1'
+>>>>>>> ba8f2ea7ae5ee3dc5ef9deec13a5b34741b3eaf3
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
@@ -51,10 +71,19 @@ group :test, :development do
 	#gem 'undercover'
   gem 'selenium-webdriver'
 #  gem 'factory_girl_rails'
+<<<<<<< HEAD
 gem 'capybara'
 gem 'capybara-screenshot'
 #  gem 'mocha', '~> 1.1.0'
 
+=======
+#  gem 'mocha', '~> 1.1.0'
+  gem 'apparition', '~> 0.2.0'
+  gem 'capybara'
+  gem 'capybara-screenshot', :group => :test
+  gem 'listen'
+  gem 'rails-controller-testing'
+>>>>>>> ba8f2ea7ae5ee3dc5ef9deec13a5b34741b3eaf3
 end
 
 group :production do

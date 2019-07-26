@@ -1,5 +1,6 @@
 
 <div class="row" id="heroImage">
+<<<<<<< HEAD
     <div class="alert">
       <% flash.each do |key, value| %>
             <div class="<%= flash_class(key) %>">
@@ -40,6 +41,26 @@
         </form> 
       </div>
     </div>    
+=======
+    <div>
+        <div class="alert">
+                <% flash.each do |key, value| %>
+                      <div class="<%= flash_class(key) %>">
+                            <%= value %>
+                      </div>
+                <% end %>
+        </div>
+        <h1 id="heroTitle">JOIN WEEKLY LIVE ONLINE CONVERSATIONS RIGHT HERE </h1>
+        <h2 id="haveAccount" style="font-size: 30px; line-height: 150%">
+          <br> Tuesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Tech Tuesday ', '/tech' %>
+          <br> Wednesdays 7:00pm PDT / 10:00pm EDT - <%= link_to 'Conversations on Faith ', '/faith' %>
+          <br> Thursdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'International Awareness ', '/international' %><br><br>
+    </div>
+          <%= link_to 'Join Conversation', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %>
+</div>
+<div class=row id=scroll>
+  <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
+>>>>>>> ba8f2ea7ae5ee3dc5ef9deec13a5b34741b3eaf3
 </div>
 
 <div class="row" id="scroll">
