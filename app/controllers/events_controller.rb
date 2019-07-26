@@ -3,7 +3,9 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   # GET /events.json
   def index
-    @events = Event.where( "start_at > ?", Time.now )
+    # @events = Event.where( "start_at > ?", Time.now ).recent
+    @events = Event.upcoming.recent
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
@@ -11,11 +13,13 @@ class EventsController < ApplicationController
   end
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
-    @user = User.find(@event.usrid)
-    @rsvp = Rsvpq.new
+    @event     = Event.find(params[:id])
+    @user      = User.find(@event.usrid)
+    @rsvp      = Rsvpq.new
     @rsvpusers = @event.users
-    @rsvps = @event.rsvpqs
+    @rsvps     = @event.rsvpqs
+    @duration  = ((@event.end_at - @event.start_at) / 60).floor
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
