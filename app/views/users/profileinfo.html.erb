@@ -44,8 +44,8 @@
 			</div>
 
 			<div class="form-group">
-				<h3><%=f.label :name, "Discussion Topics" %></h3>
-				<p class="help-block">Three categories that categorize what you discuss your live talk shows.</p>
+				<h3><%=f.label :name, "Conversation Topics" %></h3>
+				<p class="help-block">Three categories that categorize what you discuss your live conversations.</p>
 				<%= f.text_field :genre1, :class => "form-control", placeholder: "Category" %>
 				<%= f.text_field :genre2, :class => "form-control", placeholder: "Subcategory" %>
 				<%= f.text_field :genre3, :class => "form-control", placeholder: "Another subcategory" %>
@@ -56,7 +56,7 @@
 				<p class="help-block">Upload a picture to display on top of your profile (1500px &times; 300px is best)</p>
 				<%= f.file_field :bannerpic, :class => "form-control",:style => "padding-bottom:40px;" %>
 			</div>
-			<div class="btn-group btn-group-lg" id="editProfileButton"> 
+			<div class="btn-group btn-group-lg" id="editProfileButton">
 				<%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
 				<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
 			</div>

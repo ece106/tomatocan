@@ -1,10 +1,10 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">Your Past Shows
+  <div class="panel-heading">Your Past Conversations
   </div>
 
 <% if @pastevents.present? %>
   <table >  <tr>
-    <th>Show </th>
+    <th>Conversation </th>
     <th>Time</th>
     <tr>
   <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
@@ -14,8 +14,8 @@
   <tr>
   <% end %>
   </table>
-<% else %>  
-  <%= @user.name %> hasn't posted any past shows
-<% end %>  
- 
+<% else %>
+  <%= @user.name %> hasn't posted any past conversations
+<% end %>
+
 </div>

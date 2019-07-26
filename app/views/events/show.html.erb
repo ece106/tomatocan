@@ -5,7 +5,7 @@
 <% end %>
 
 <div id="event-page-layout" style="width: 50%; margin: auto;">
-  <meta property="og:description" content="Host Livestream Discussions" />
+  <meta property="og:description" content="Host Conversations" />
   <% @title="ThinQ.tv" %>
   <div>
   <div class=".col-12 .col-md-8" style="margin-bottom:-10px">
@@ -14,7 +14,7 @@
 
   <% if user_signed_in? %>
     <% if @event.usrid == current_user.id %>
-      <%= link_to "Edit Show", edit_event_path(@event)%>
+      <%= link_to "Edit Conversation ", edit_event_path(@event)%>
     <% end %>
   <% end %>
 
@@ -39,7 +39,7 @@
   <div style="margin-left:5px">
     <%= duration.floor %> minutes
   </div> <br>
-  <%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+  <%= link_to "Join Live Conversation ", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
 
   <div style="margin-left:5px; word-wrap:break-word;">
     <% if @event.desc.present? %>
@@ -99,7 +99,7 @@
  	</div>
   <% end %>
 
-  <br>RSVP for this discussion: <br>
+  <br>RSVP for this Conversation: <br>
   <%= f.hidden_field :event_id, :value => @event.id %>
   <% if user_signed_in? %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
