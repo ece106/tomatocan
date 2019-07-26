@@ -4,11 +4,7 @@
 <% if user_signed_in? %>
 <% if current_user.id == @user.id %>
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
-<<<<<<< HEAD
-  <li role="presentation" class="active"><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab" %></li>
-=======
-  <li role="presentation" class="active"><%= link_to "Shows", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
+  <li role="presentation" class="active"><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
   <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
    <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "profile-settings-tab" %></li>
@@ -69,13 +65,8 @@
           <h1>Conversations</h1>
         </div>
         <div class="fixed-bottom col-md-8" id="shows-button-panel">
-<<<<<<< HEAD
-          <%= link_to "Start Your Conversation Now", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-          <%= link_to 'Set Up Future Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
-=======
-          <%= link_to "Start Your Live Show Now", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning', id: "stream-btn" %> 
-          <%= link_to 'Set Up Future Show', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
+          <%= link_to "Start Your Conversation Now", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning', id: "stream-btn" %>
+          <%= link_to 'Set Up Future Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
         </div>
       </div>
       <br>

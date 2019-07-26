@@ -3,14 +3,9 @@
   </div>
 
 <% if @pastevents.present? %>
-<<<<<<< HEAD
-  <table >  <tr>
-    <th>Conversation </th>
-=======
   <table class="past-events-list">
     <tr>
-    <th>Show </th>
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
+    <th>Conversation </th>
     <th>Time</th>
     <tr>
   <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
@@ -20,13 +15,8 @@
   <tr>
   <% end %>
   </table>
-<<<<<<< HEAD
-<% else %>
-  <%= @user.name %> hasn't posted any past conversations
-=======
   <% else %>
-  <%= @user.name %> hasn't posted any past shows
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
+  <%= @user.name %> hasn't posted any past conversations
 <% end %>
 
 </div>

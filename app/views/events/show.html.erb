@@ -5,28 +5,19 @@
 <% end %>
 
 <div id="event-page-layout" style="width: 50%; margin: auto;">
-<<<<<<< HEAD
   <meta property="og:description" content="Host Conversations" />
   <% @title="ThinQ.tv" %>
-=======
-  <meta property="og:description" content="Host Livestream Discussions" />
-  <% @title="CrowdPublish.tv" %>
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
+
   <div>
     <div class=".col-12 .col-md-8" style="margin-bottom:-10px">
       <h1><%= @event.name %></h1>
     </div>
 
-<<<<<<< HEAD
-  <% if user_signed_in? %>
-    <% if @event.usrid == current_user.id %>
-      <%= link_to "Edit Conversation ", edit_event_path(@event)%>
-=======
+
     <% if user_signed_in? %>
       <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit Show", edit_event_path(@event)%>
+        <%= link_to "Edit Conversation", edit_event_path(@event)%>
       <% end %>
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
     <% end %>
 
     <p style="color:#808080; font-size: 18px;">
@@ -46,17 +37,11 @@
     </h3>
 
 
-<<<<<<< HEAD
-  <div style="margin-left:5px">
-    <%= duration.floor %> minutes
-  </div> <br>
-  <%= link_to "Join Live Conversation ", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-=======
+
     <div style="margin-left:5px">
       <%= @duration %> minutes
     </div> <br>
-    <%= link_to "Join Live Discussion", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
+    <%= link_to "Join Live Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
 
     <div style="margin-left:5px; word-wrap:break-word;">
       <% if @event.desc.present? %>
@@ -136,8 +121,8 @@
               </div>
             <% end %>
 
-<<<<<<< HEAD
-  <br>RSVP for this Conversation: <br>
+
+  <br>RSVP for this conversation: <br>
   <%= f.hidden_field :event_id, :value => @event.id %>
   <% if user_signed_in? %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -146,17 +131,7 @@
   <% end %>
   <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
 <% end %><br>
-=======
-            <br>RSVP for this discussion: <br>
-            <%= f.hidden_field :event_id, :value => @event.id %>
-            <% if user_signed_in? %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-            <% else %>
-              <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
-          <% end %>
-          <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
-        <% end %><br>
->>>>>>> aa8cf426584873cccaaacf35cfc33509567d0aaf
+
 
         </div>
 
