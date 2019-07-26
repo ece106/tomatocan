@@ -1,5 +1,9 @@
 //This file gives hierarchy to SASS files used on the site; this file and its @imports are added to the top of all other SCSS files.
 
+@import "styles/aboutus.scss";
+@import "styles/_faq.scss";
+//The above sheets should be combined into 1 _staticpages.scss
+
 //Overrides Bootstrap-defined variables
 @import "base/variables.scss";
 
@@ -18,5 +22,3 @@
 @import "styles/users.scss";
 @import "styles/panels.scss";
 @import "styles/show.scss";
-@import "styles/aboutus.scss";
-@import "styles/_faq.scss";

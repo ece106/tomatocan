@@ -35,8 +35,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
+    user = User.find(@event.usrid)
+    @reminder_date = @event.start_at - 2.days
     respond_to do |format|
       if @event.save
+        EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
       else
@@ -49,9 +52,9 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
-
     respond_to do |format|
       if @event.update_attributes(event_params)
+        update_reminder
         format.html { redirect_to @event }
         format.json { head :ok }
       else
@@ -62,8 +65,15 @@ class EventsController < ApplicationController
   end
 
   private
+  
+  def update_reminder
+    user = User.find(@event.usrid)
+    @reminder_date = @event.start_at - 2.days 
+    EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
+  end
 
-    def event_params
-      params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
-    end
+  def event_params
+    params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
+  end
+    
 end
