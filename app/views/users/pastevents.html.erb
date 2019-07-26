@@ -3,19 +3,20 @@
   </div>
 
 <% if @pastevents.present? %>
-  <table >  <tr>
+  <table class="past-events-list">
+    <tr>
     <th>Show </th>
     <th>Time</th>
     <tr>
   <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
   <tr>
-    <td><%= link_to event.name, event %><br><br></td>
+    <td><%= link_to event.name, event, class: "past-event-name" %><br><br></td>
     <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
   <tr>
   <% end %>
   </table>
-<% else %>  
+  <% else %>
   <%= @user.name %> hasn't posted any past shows
-<% end %>  
- 
+<% end %>
+
 </div>

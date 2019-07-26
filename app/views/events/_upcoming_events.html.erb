@@ -1,0 +1,87 @@
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="upcoming-events__section" id="connectFans">
+
+  <div class="upcoming-events__header">
+    <div class="container">
+      <h3>Head to our <span id="events-link"><%= link_to "Events", events_path %></span> page to view all of our scheduled events.</h3>
+    </div>
+  </div>
+
+  <div class="upcoming-events__body">
+    <div class="container">
+      <% @events.each do |event| %>
+        <% user = User.find(event.usrid) %>
+        <div class="upcoming-event__section row">
+          <div class="col-sm-6 col-1">
+            <%#= event.start_at.strftime("%A, %b %d") %>
+            <h3 class="event-name"><%= link_to event.name, event_path(event) %> | <%= event.start_at.strftime("%A, %b %d") %></h3>
+            <p class="lead"><b>Host: <%= link_to user.name, "" %></b></p>
+            <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam...
+            </p>
+            </p>
+          </div>
+          <div class="col-sm-6 col-2">
+            <div>
+              <h3><%= distance_of_time_in_words(event.start_at, Time.now) %> from now</h3>
+            </div>
+            <a
+               tabindex="0"
+               class="btn btn-primary btn-lg btn-rounded"
+               role="button"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-placement="top"
+               title="Dismissible popover"
+               data-content="And here's some amazing content. It's very engaging. Right?">
+              Share
+            </a>
+            <br />
+            <br />
+            <button type="button" class="btn btn-primary btn-lg btn-rounded">Remind Me</button>
+          <br />
+          <br />
+          <% if event.start_at == Time.now %>
+            <button type="button" class="btn btn-primary btn-lg btn-rounded">Join Now</button>
+          <% else %>
+            <button type="button" class="btn btn-disabled btn-lg btn-rounded">Join Now</button>
+          <% end %>
+          <br />
+          <!--
+          <%# shareurl = "http://www.CrowdPublish.TV/" + user.permalink %>
+          <div id= "social-button">
+            <span class="fb-share-button" data-href= <%#= shareurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%#= shareurl %> class="fb-xfbml-parse-ignore">Share</a>
+            </span>
+          </div>
+          <div id="social-button">
+            <span>
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Watch <%#= user.name %>'s livestream: <%#=  event.name + "," %> <%#= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: <%#= shareurl %>" data-show-count="false">Tweet</a>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </span>
+          </div>
+          <div>
+            <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+            <script type="IN/Share" data-url="<%#= shareurl %>" data-counter="top">Share</script>
+          </div> -->
+        </div>
+      </div>
+    <% end %>
+    <div class="pagination-row">
+      <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
