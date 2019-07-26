@@ -1,0 +1,76 @@
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="upcoming-events__section container-fluid" id="connectFans">
+  <div class="upcoming-events__header">
+    <div class="container">
+      <h1 class="h1">Next event in</h1>
+      <h1>04:35:22</h1>
+      <%#= link_to 'Join Discussion', "https://crowdpublishtv.herokuapp.com/lisa", class: "btn btn-lg btn-primary btn-alert" %>
+      <br />
+      <h3>Head to our <span id="events-link"><%= link_to "Events", events_path %></span> page to view all of our scheduled events.</h3>
+    </div>
+  </div>
+
+  <div class="upcoming-events__body">
+    <div class="container">
+      <% @events.each do |event| %>
+        <% user = User.find(event.usrid) %>
+        <div class="upcoming-event__section">
+          <div class="col-sm-6 col-1 event-card">
+            <h3 class="event-name">
+              <%= link_to event.name, event_path(event) %> | <%= event.start_at.strftime("%A, %b %d") %>
+            </h3>
+            <p class="lead">
+            <b>Host: <%= link_to user.name, "" %></b>
+            </p>
+            <p class="lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam...
+            </p>
+            </p>
+            <div>
+              <h3><%= distance_of_time_in_words(event.start_at, Time.now) %> from now</h3>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-1">
+                <a
+                  tabindex="0"
+                  class="btn btn-primary btn-lg btn-rounded"
+                  role="button"
+                  data-toggle="popover"
+                  data-trigger="focus"
+                  data-placement="top"
+                  title="Dismissible popover"
+                  data-content="And here's some amazing content. It's very engaging. Right?">
+                  Share
+                </a>
+                <br />
+                <br />
+                <button type="button" class="btn btn-primary btn-lg btn-rounded">Remind Me</button>
+              </div>
+              <div class="col-sm-6 col-1">
+                <% if event.start_at == Time.now %>
+                  <button type="button" class="btn btn-primary btn-lg btn-rounded">Join Now</button>
+                <% else %>
+                  <button type="button" class="btn btn-disabled btn-lg btn-rounded">Join Now</button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <!--
+        <div class="pagination-row">
+        <%#= will_paginate @events, renderer: BootstrapPagination::Rails %>
+        </div> -->
+    </div>
+  </div>
+</div>

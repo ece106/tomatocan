@@ -1,0 +1,120 @@
+<div class="upcoming-events">
+  <div class="container">
+    <a class="btn btn-primary btn-lg" id="pills-sunday-tab" data-toggle="pill" href="#pills-sunday" role="tab" aria-controls="pills-sunday" aria-selected="true">
+      Sunday
+    </a>
+    <a class="btn btn-primary btn-lg" id="pills-monday-tab" data-toggle="pill" href="#pills-monday" role="tab" aria-controls="pills-monday" aria-selected="false">
+      Monday
+    </a>
+    <a class="btn btn-primary btn-lg" id="pills-tuesday-tab" data-toggle="pill" href="#pills-tuesday" role="tab" aria-controls="pills-tuesday" aria-selected="false">
+      Tuesday
+    </a>
+    <a class="btn btn-primary btn-lg" id="pills-wednesday-tab" data-toggle="pill" href="#pills-wednesday" role="tab" aria-controls="pills-wednesday" aria-selected="false">
+      Wednesday
+    </a>
+    <a class="btn btn-primary btn-lg" id="pills-thursday-tab" data-toggle="pill" href="#pills-thursday" role="tab" aria-controls="pills-thursday" aria-selected="false">
+      Thursday
+    </a>
+    <a class="btn btn-primary btn-lg" id="pills-friday-tab" data-toggle="pill" href="#pills-friday" role="tab" aria-controls="pills-friday" aria-selected="false">
+      Friday
+    </a>
+    <a class="btn btn-primary btn-lg" id="pills-saturday-tab" data-toggle="pill" href="#pills-saturday" role="tab" aria-controls="pills-saturday" aria-selected="false">
+      Saturday
+    </a>
+
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade" id="pills-sunday" role="tabpanel" aria-labelledby="pills-sunday-tab">
+        <div class="upcoming-event-section">
+          <% if @sunday_events.empty? %>
+            <h2>Not Events Today!</h2>
+          <% else %>
+            <% @sunday_events.each do |sunday_event| %>
+              <div class="upcoming-event flex">
+                <div class="col-1">
+                  <h2><%= sunday_event.name %></h2>
+                </div>
+                <div class="col-2">
+                  <button class="button btn-primary btn-lg">Join Now</button>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-monday" role="tabpanel" aria-labelledby="pills-monday-tab">
+        <div class="upcoming-event">
+          <% if @monday_events.empty? %>
+            <h2>Not Events Today!</h2>
+          <% end %>
+          <% @monday_events.each do |monday_event| %>
+            <div>
+              <%= monday_event.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-tuesday" role="tabpanel" aria-labelledby="pills-tuesday-tab">
+        <div class="upcoming-event">
+          <% if @tuesday_events.empty? %>
+            <h2>Not Events Today!</h2>
+          <% end %>
+          <% @tuesday_events.each do |tuesday_event| %>
+            <div>
+              <%= tuesday_event.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-wednesday" role="tabpanel" aria-labelledby="pills-wednesday-tab">
+        <div class="upcoming-event">
+          <% if @wednesday_events.empty? %>
+            <h2>Not Events Today!</h2>
+          <% end %>
+          <% @wednesday_events.each do |wednesday_event| %>
+            <div>
+              <%= wednesday_event.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-thursday" role="tabpanel" aria-labelledby="pills-thursday-tab">
+        <div class="upcoming-event">
+          <% if @thursday_events.empty? %>
+            <h2>Not Events Today!</h2>
+          <% end %>
+          <% @thursday_events.each do |thursday_event| %>
+            <div>
+              <%= thursday_event.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-friday" role="tabpanel" aria-labelledby="pills-friday-tab">
+        <div class="upcoming-event">
+          <% if @friday_events.empty? %>
+            <h2>Not Events Today!</h2>
+          <% end %>
+          <% @friday_events.each do |friday_event| %>
+            <div>
+              <%= friday_event.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-saturday" role="tabpanel" aria-labelledby="pills-saturday-tab">
+        <div class="upcoming-event">
+          <% if @saturday_events.empty? %>
+            <h2>Not Events Today!</h2>
+          <% end %>
+          <% @saturday_events.each do |saturday_event| %>
+            <div>
+              <%= saturday_event.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%#= will_paginate @events, renderer: BootstrapPagination::Rails %>
