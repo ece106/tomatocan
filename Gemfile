@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby "2.6.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
@@ -85,6 +85,7 @@ gem 'sass-rails', '~> 5.0.7'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'pry-byebug'
 end
 
 group :development do
