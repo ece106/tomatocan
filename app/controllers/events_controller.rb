@@ -68,6 +68,8 @@ class EventsController < ApplicationController
     end
   end
 
+
+
   private
   
   def update_reminder
