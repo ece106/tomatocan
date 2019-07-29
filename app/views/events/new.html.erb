@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row" >
-<h1>Post a New Show Time</h1>
-        <p>By creating an event below, the details of your livestream will be posted on the Home page of ThinQ.tv. This will allow your viewers to easily find the time and date of your livestream discussion.</p>
+<h1>Post a New Conversation Time</h1>
+        <p>By creating an event below, the details of your conversation will be posted on the Home page of ThinQ.tv. This will allow your viewers to easily find the time and date of your conversation.</p>
     </div>
 
     <div class="row">
@@ -23,8 +23,8 @@
         <%= f.hidden_field :usrid, value: current_user.id %>
 
           <div class="form-group">
-            <h3><%= f.label :buttontype, "*Title of Livestream Show" %></h3>
-                    <p class="help-block">What will you be discussing in your livestream?</p>
+            <h3><%= f.label :buttontype, "*Title of Conversation" %></h3>
+                    <p class="help-block">What will you be discussing in your conversation ?</p>
             <%= f.text_field :name, :size => 80 %><p>
           </div>
 
@@ -41,12 +41,12 @@
           </div>
 
           <div class="form-group">
-            <h3><%= f.label :buttontype, "Details about Livestream Discussion Topic" %></h3>
+            <h3><%= f.label :buttontype, "Details about Conversation Topic" %></h3>
                     <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
             <%= f.text_area :desc, :cols => 82, :rows => 7 %><p>
           </div>
 
-            <%= f.submit "Post Talk Show", :class => "btn btn-lg btn-primary create-event-btn", :id => "eventSubmit" %>
+            <%= f.submit "Post Conversation ", :class => "btn btn-lg btn-primary", :id => "eventSubmit" %>
 
         <% end %>
     </div>

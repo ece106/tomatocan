@@ -266,10 +266,10 @@
               <div class="accordion-inner">
               <%= form_for(@merchandise) do |f| %>
                 <b>Perk Name </b><br>
-                <%= f.text_field :name, size: 60, value: "Attend My Panel Discussion"|| :name %><br><br>
+                <%= f.text_field :name, size: 60, value: "Attend My Conversation Panel"|| :name %><br><br>
                 <b>About this Reward </b><br>
                 Main reason someone might want this Reward? (You may edit this before fans purchase)<br>
-                <%= f.text_area :desc, cols: 62, rows: 7, value: "Four local authors are putting on a panel discussion about our books on May 9 7:30pm at the Central Library in Phoenix. Come and join the Q & A. " || :desc %><br><br>
+                <%= f.text_area :desc, cols: 62, rows: 7, value: "Four local authors are putting on a conversation panel about our books on May 9 7:30pm at the Central Library in Phoenix. Come and join the Q & A. " || :desc %><br><br>
                 <b>Price </b><br>
                 $<%= f.text_field :price, size: 10, value: 20.00 || :price %>USD<br>
                 <%= button_to "Offer Event Reward", class: "button" %>
@@ -704,7 +704,7 @@
 
   <%= button_to "Add my own custom Reward", new_merchandise_path , method: :get, class: "button" %>
 
-<br>All Rewards offered for sale through ThinQ.tv are meant to be immediately available and fulfilled within a week. 
+<br>All Rewards offered for sale through ThinQ.tv are meant to be immediately available and fulfilled within a week.
 <br><b>Check your dashboard often</b> to see if any Perks were ordered by your Fans.<br>
 
   <br>I'm done adding Rewards for now. <%= link_to "Go to my page " , user_profile_path(current_user.permalink) %> and see how it looks.
