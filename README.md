@@ -251,21 +251,24 @@ Once you have made changes to your personal repository you can request to pull y
 
 We'll allow most appropriately-skilled college students the opportunity to earn great knowledge in the Thinq.tv internship program. However after the first three weeks, we have minimum requirements to continued access to our time and resources:
 
-You must spend at least 10 hours per week on helping Thinq.tv grow. This is an internship at a business. It is not your toy app.
-Push to github 5 times per week.
-Attend two main livestreams per week (Tech, Faith, International).
-Contribute enough to justify a pull request every 3 weeks.
-Invite parents and friends to participate on live conversations - and prove it by their appearance.
-Cell phones off. We must not see your cell phone at all while you are in our offices. 
+- You must spend at least 10 hours per week on helping Thinq.tv grow. This is an internship at a business. It is not your toy app.
+- Push to github 5 times per week. 
+- Attend at least one of the Faith or International Conversations per week.
+- Contribute enough to justify a pull request every 3 weeks.
+- Share conversations on your social media accounts every week: LinkedIn, Twitter, Facebook, Instagram. Tag Lisa's or Thinq.TV's account on the post to prove that the Conversation was shared.
+- Invite parents and friends to participate on live conversations - and prove it by their appearance.
+- Cell phones off. We must not see your cell phone at all while you are in our offices. 
+- Keep your hours updated on the in/out google calendar. Otherwise we'll assume you will not be fulfilling your 10 hours/week.
 
 Add the following columns to your Goals & Accomplishments sheet:
-- Livestreams attended 
+- Conversations attended 
 - Person you brought into the conversation with you
+- Dates & social media accounts where you Shared conversations
 - The days you pushed to github
 - Summary of your pull request
 
 
-
+### RESOURCES
 
 Refer to Michael Hartl's tutorial for great Rails knowledge http://railstutorial.org/book
 
