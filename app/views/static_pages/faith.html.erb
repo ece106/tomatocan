@@ -1,7 +1,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="ThinQ tv" content="Where authors and actors earn more money from their loyal fans">
-<title>ThinQtv - The Future of Empowerment is Your Story</title>
+<meta name="ThinQ.tv" content="Conversations to make you THINQ and take action: Thought provoking conversations to feed your brain">
+<title>ThinQ.tv - Conversations to make you THINQ</title>
 </head>
 
 <div class="title">
@@ -10,53 +10,47 @@
 </div>
 
 
-<div class="row" >
+<div class="row">
 	<div class="col-sm-6 col-sm-offset-1">
-		<h2 style="margin-left: 3%; margin-top:10%; font-size: 20px">
-			<div style="font-size: 22px">Welcome to <b>Faith Wednesday</b></div>
-			<br>You can learn about different faiths on Faith Wednesday
-			<br>We are currently lauching Faith topics with Catholic students. 
-			<br>Meet us <%= link_to 'here on ThinQ.tv', '/lisa' %> at 6:30 pm every Wesnesday. 
-		</h2>
+		<div class="row">
+			<h2 style="margin-left: 3%; margin-top:5%; font-size: 20px">
+				<div style="font-size: 22px; margin-bottom: 1%;">Welcome to <b>Faith Wednesday</b></div>
+				<br>You can learn about different faiths on Faith Wednesday
+				<br>We are currently launching Faith topics with Catholic students.
+				<br>Meet us here on<%= link_to ' ThinQ.tv', '/lisa' %> at 6:30 pm every Wednesday.
+			</h2>
 
-		<h3 style="margin-top: 15%; margin-left: 5%; font-size: 20px">
-			<b>Current Topics include:</b>
-			<ul style="margin-left: 5%">
-				<li>Apologetics</li>
-				<li>Evangelization</li>
-				<li>Relationships</li>
-				<li>Living out your faith in everyday life</li>
-			</ul>
-		</h3>
-	</div>
-	
+			<h3 style="margin-top: 6%; margin-left: 6%; font-size: 20px">
+				<b>Current Topics include:</b>
+				<ul style="margin-left: 5%">
+					<li>Apologetics</li>
+					<li>Evangelization</li>
+					<li>Relationships</li>
+					<li>Living out your faith in everyday life</li>
+				</ul>
+			</h3>
+
+			<h3 style="margin-top: 8%; margin-left: 6%; font-size: 20px">
+				<b>Future Topics:</b>
+				<ul style="margin-left: 5%">
+					<li>Muslim student issues</li>
+					<li>Jewish student issues</li>
+					<li>Missionary work</li>
+					<li>Faith & Science</li>
+				</ul>
+			</h3>
+
+			<div style="margin-left:6%; margin-top: 10%">
+				Got a Faith-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
+			</div>
+		</div>
+  </div>
+
+
 	<div class="col-sm-4">
-		<div style="margin: 5%; margin-top: 10%">
+		<div style="margin: 5%; margin-top: 15%">
 			<%= image_tag "open_faith.jpg", width: "100%" %>
 		</div>
 	</div>
-	<div class="col-sm-6 col-sm-offset-1">
-		<h3 style="margin-top: 10%; margin-left: 5%; font-size: 20px">
-			<b>Future Topics:</b>
-			<ul style="margin-left: 5%">
-				<li>Muslim student issues</li>
-				<li>Jewish student issues</li>
-				<li>Missionary work</li>
-				<li>Faith & Science</li>
-			</ul>
-		</h3>
-
-		<div style="margin-left:5%; margin-top: 10%">
-			Got a Faith-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
-		</div>
-	</div>
-	
-	<div class="col-sm-4">
-		<div style="margin:5%">
-			<%= image_tag "faith_mountain.jpg", width:"100%" %>
-		</div>
-	</div>
-
-
 
 </div>
