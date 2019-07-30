@@ -17,12 +17,12 @@
 				<% if request.host == "crowdpublishtv.herokuapp.com" %> <!--If the navbar is being rendered in the ThinQ.tv.herokuapp.com secure server domain.. -->
 					<li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', :title => "About ThinQ.tv" %></li> <!-- ..use absolute routing in navbar.-->
 					<li class="nav-item"><%= link_to "About", 'http://www.ThinQ.tv/aboutus', :title => "About ThinQ.tv" %></li>
-					<li class="nav-item"><%= link_to "Discover Previous Discussions", 'http://www.ThinQ.tv/supportourwork', :title => "Browse Hosts"%></li>
+					<li class="nav-item"><%= link_to "Discover Previous Conversations", 'http://www.ThinQ.tv/supportourwork', :title => "Browse Hosts"%></li>
 					<li class="nav-item"><%= link_to "FAQ", 'http://www.ThinQ.tv/faq', :title => "Frequently Asked Questions" %></li>
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", '/', :title => "Home" %></li>
 					<li class="<%=(current_page?('/aboutus') ? "nav-item active" : "nav-item")%>"><%= link_to "About", '/aboutus', :title => "About ThinQ.tv" %></li>
-					<li class="<%=(current_page?('/supportourwork') ? "nav-item active" : "nav-item")%>"><%= link_to "Discover  Previous Discussions", '/supportourwork', :title => "Browse Hosts" %></li>
+					<li class="<%=(current_page?('/supportourwork') ? "nav-item active" : "nav-item")%>"><%= link_to "Discover  Previous Conversations", '/supportourwork', :title => "Browse Hosts" %></li>
 					<li class="<%=(current_page?('/faq') ? "nav-item active" : "nav-item")%>"><%= link_to "FAQ", '/faq', :title => "Frequently Asked Questions" %></li>
 				<% end %>
 			</ul>
