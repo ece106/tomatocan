@@ -109,9 +109,9 @@
         <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
         <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
         <%if(params[:merchandise_id].present?)%>
-            <%= f.submit "Purchase" %><br><br>
+            <%= f.submit "Purchase", id: 'purchase-btn' %><br><br>
         <%else%>
-          <%= f.submit "Donate" %>
+          <%= f.submit "Donate", id: 'donation-btn' %>
         <%end%>
       <% end %>
 
