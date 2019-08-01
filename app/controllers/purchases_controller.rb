@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   #  before_action :authenticate_user!, only: [:new ]
-  # GET /purchases/1
+
   def show
     @purchase = Purchase.find(params[:id])
     if !@purchase.merchandise_id.nil? #If this is a donation do not look for merchandise
@@ -14,7 +14,7 @@ class PurchasesController < ApplicationController
       format.json { render json: @purchase }
     end
   end
-  # GET /purchases/new
+
   def new
     if params[:pricesold].present? # Donation being made
       @purchase = Purchase.new
@@ -31,7 +31,7 @@ class PurchasesController < ApplicationController
       end
     end
   end
-  # POST /purchases
+
   def create
     @purchase                      = Purchase.new(purchase_params)
     @purchase_mailer_hash          = { purchase: @purchase }
@@ -60,11 +60,10 @@ class PurchasesController < ApplicationController
         PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
         attachments = @merchandise.get_non_empty_attachments
         attachments.each do |key,value|
-          send_data_to_buyer key, value and return
+          send_data_to_buyer value and return
         end
         flash[:notice] = "Your Purchase is successfull"
         redirect_to user_profile_path(@seller.permalink)
-        #redirect_to user_profile_path(@seller.permalink)
       when false
         redirect_back fallback_location: request.referrer, notice: "Your order did not go through. Try again."
       end
@@ -82,58 +81,11 @@ class PurchasesController < ApplicationController
     end
   end
 
-
-  def send_data_to_buyer name, value
+  def send_data_to_buyer value
     if value != nil
-      send_data "#{value}" , filename: name, disposition: 'inline'
+      send_data "#{value}" , filename: value, disposition: 'attachment'
     end
   end
-
-  #if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
-  #      #audio
-  #  if @merchandise.audio.present?
-  #    filename = @merchandise.audio.to_s.split('/')
-  #    filename = filename[filename.length-1]
-  #    data = open("#{@merchandise.audio.to_s}")
-  #    send_data data.read, filename: filename, disposition: 'attachment'
-  #  end
-  #  #graphic
-  #  if @merchandise.graphic.present?
-  #    filename = @merchandise.graphic.to_s.split('/')
-  #    filename = filename[filename.length-1]
-  #    data = open("#{@merchandise.graphic.to_s}")
-  #    send_data data.read, filename: filename, disposition: 'attachment'
-  #  end
-  #  #video
-  #  if @merchandise.video.present?
-  #    filename = @merchandise.video.to_s.split('/')
-  #    filename = filename[filename.length-1]
-  #    data = open("#{@merchandise.video.to_s}")
-  #    send_data data.read, filename: filename, disposition: 'attachment'
-  #  end
-  #  #pdf
-  #  if @merchandise.merchpdf.present?
-  #    filename = @merchandise.merchpdf.to_s.split('/')
-  #    filename = filename[filename.length-1]
-  #    data = open("#{@merchandise.merchpdf.to_s}")
-  #    send_data data.read, filename: filename, disposition: 'attachment'
-  #  end
-  #  #mobi
-  #  if @merchandise.merchmobi.present?
-  #    filename = @merchandise.merchmobi.to_s.split('/')
-  #    filename = filename[filename.length-1]
-  #    data = open("#{@merchandise.merchmobi.to_s}")
-  #    send_data data.read, filename: filename, disposition: 'attachment'
-  #  end
-  #  #epub
-  #  if @merchandise.merchepub.present?
-  #    filename = @merchandise.merchepub.to_s.split('/')
-  #    filename = filename[filename.length-1]
-  #    data = open("#{@merchandise.merchepub.to_s}")
-  #    send_data data.read, filename: filename, disposition: 'attachment'
-  #  end
-  # end
-  # end
 
   def purchase_params
     params.require(:purchase).permit(:stripe_customer_token, :bookfiletype,
