@@ -37,7 +37,7 @@ class PurchaseMailer < ApplicationMailer
 
   def inline_images
     img_path ="app/assets/images/social-share-button"
-    img_list = ['email.svg','facebook.svg','linkedin.svg','twitter.svg']
+    img_list = ['email.png','facebook.png','linkedin.png','twitter.png']
     img_list.each {|x| attachments.inline[x] = File.read("#{img_path}/#{x}")}
     attachments.inline['starIcon.png'] = File.read("app/assets/images/starIcon.png")
   end

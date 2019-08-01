@@ -11,7 +11,7 @@
   </div>
   <div class = "one">
     <p> Hello, <%= @user.name %> <br><br>
-     <%= @user.name %> this is a reminder about your Thinq.tv conversation, <%=@event.name %>, at <%=@date_body_format%>. 
+     <%= @user.name %> this is a reminder about your Thinq.tv conversation, <%=@event.name %>, at <%=@date_body_format%>.
      Please invite your friends to your <a href = <%=@event_url%>>conversation</a>.<br><br>
      Sincerely,<br>
      Thinq.tv
@@ -19,29 +19,29 @@
      <div class = "img">
         <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
       </div>
-  </div>  
+  </div>
   <div class = "footer">
       <p style = "color:white" class="f-header">Share</p>
         <% url = "http://www.thinq.tv" %>
-        <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
+        <% desc = "Broadcast live conversations about what you're doing to change the world and participate in intellectual conversations to broaden your knowledge!"%>
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-        <div class="social-share-button" data-href="<%= url %>"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse"><%=image_tag attachments['facebook.svg'].url%></a>
+        <div class="social-share-button" data-href="<%= url %>"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse"><%=image_tag attachments['facebook.png'].url%></a>
         <!-- Twitter Tweet -->
-        <a href="https://twitter.com/intent/tweet?hashtags=CrowdPublishTV&text=Broadcast%20live%20discussions%20about%20what%20you%27re%20doing%20to%20change%20the%20world%20and%20participate%20in%20intellectual%20discussions%20to%20broaden%20your%20knowledge!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.crowdpublish.tv%2F"><%=image_tag attachments['twitter.svg'].url%></a>
+        <a href="https://twitter.com/intent/tweet?hashtags=CrowdPublishTV&text=Broadcast%20live%20discussions%20about%20what%20you%27re%20doing%20to%20change%20the%20world%20and%20participate%20in%20intellectual%20discussions%20to%20broaden%20your%20knowledge!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.crowdpublish.tv%2F"><%=image_tag attachments['twitter.png'].url%></a>
         <!-- LinkedIn Share -->
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><%=image_tag attachments['linkedin.svg'].url%></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><%=image_tag attachments['linkedin.png'].url%></a>
         <!-- Email Share -->
-        <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><%=image_tag attachments['email.svg'].url%></a>
-      </div> 
+        <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Conversations on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><%=image_tag attachments['email.png'].url%></a>
+      </div>
     </div>
   </body>
- <style> 
+ <style>
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
     body {
-     
+
      font-family: 'Montserrat', sans-serif;
-    }  
+    }
     h1{
       padding: .5%;
       width: 95%;
@@ -54,18 +54,18 @@
       padding: 1.5%;
     }
     div.one{
-      font-size: 18pt; 
+      font-size: 18pt;
       margin: 10px auto 10px auto;
-      text-align: left; 
+      text-align: left;
       width : 90%;
-      padding: 1%; 
+      padding: 1%;
     }
     div.footer{
-      background-color: #8B0942; 
+      background-color: #8B0942;
       margin: 10px auto 10px auto;
-      padding: .5%; 
+      padding: .5%;
     }
-  </style> 
+  </style>
 </html>
 </body>
 <footer>

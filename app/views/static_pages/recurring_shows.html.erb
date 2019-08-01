@@ -7,7 +7,7 @@
 
 
 <div class="panel panel-primary">
-  <div class="panel-heading">Open Discussion Shows</div>
+  <div class="panel-heading">Open Conversations</div>
   <div class="panel-body" style="text-align:center">
     <table class="table">
     <tr>
@@ -25,8 +25,8 @@
       # <% start_date = start_date.strftime("%A %B %d, %Y at %I:%M %p") %>
 
       <% for i in 0..12 do %>
-        <td><%= start_date %></td> 
-        <td><%= current_usrid.name %></td> 
+        <td><%= start_date %></td>
+        <td><%= current_usrid.name %></td>
         <td><textarea></textarea></td>
         <td><input onclick = "document.getElementById("Topic").disabled=this.checked;" type="radio" id="interviewer" name="one"><label for="one">Interviewer</label></td>
         <td><input onclick = "document.getElementById("Topic").disabled=this.checked;" type="radio" id="guest1" name="one"><label for="two">Guest1</label></td>
@@ -41,10 +41,3 @@
 
 <!-- if interviewer clicked, then topic text box greyed out -->
 <!-- if one of guests clicked, topic text box not greyed out -->
-
-
-
-
-
-
-

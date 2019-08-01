@@ -7,6 +7,10 @@
     <%= image_tag(@merchandise.itempic.url.to_s, height: '200px') %><br>
   <% end %>
 
+  <%= @merchandise.get_non_empty_attachments do |attachment| %>
+    <%= attachment %>
+  <% end %>
+
   <h3><%= @merchandise.name %> </h3>
     <% if @user.stripeid.present? || @user.id == 143  %>
       <!--Download perk file-->
