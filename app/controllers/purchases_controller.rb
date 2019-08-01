@@ -24,12 +24,10 @@ class PurchasesController < ApplicationController
     end
     if user_signed_in?
       if current_user.stripe_customer_token.present?
-        customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
-        sourceid = customer.default_source
-        card = customer.sources.retrieve(sourceid)
-        @last4 = card.last4
-        @expmonth = card.exp_month
-        @expyear = card.exp_year
+        @card     = @purchase.retrieve_customer_card(current_user)
+        @last4    = @card.last4
+        @expmonth = @card.exp_month
+        @expyear  = @card.exp_year
       end
     end
   end
@@ -48,7 +46,8 @@ class PurchasesController < ApplicationController
       when true
         PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
-        redirect_to user_profile_path(@seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + @seller.name
+        flash[:notice] = "You successfully donated $" + @merchandise.price + " . Thank you for being a donor of " + @seller.name
+        redirect_to user_profile_path(@seller.permalink)
       when false
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
@@ -61,11 +60,10 @@ class PurchasesController < ApplicationController
         PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
         attachments = @merchandise.get_non_empty_attachments
         attachments.each do |key,value|
-          send_data_to_buyer key, value and return 
+          send_data_to_buyer value and return 
         end
-        redirect_to user_profile_path(@seller.permalink)
         flash[:notice] = "Your Purchase is successfull"
-        #redirect_to user_profile_path(@seller.permalink)
+        redirect_to user_profile_path(@seller.permalink)
       when false 
         redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
       end
@@ -84,9 +82,9 @@ class PurchasesController < ApplicationController
   end
    
 
-  def send_data_to_buyer name, value 
+  def send_data_to_buyer value 
     if value != nil
-      send_data "#{value}" , filename: name, disposition: 'inline'  
+      send_data "#{value}" , filename: value, disposition: 'attachment'  
     end
   end
   #if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
