@@ -1,4 +1,6 @@
 class Purchase < ApplicationRecord
+  require 'payment_gateway'
+
   belongs_to :user, optional: true
   belongs_to :merchandise, optional: true
 
@@ -16,7 +18,7 @@ class Purchase < ApplicationRecord
     end
 
     begin
-      save! # Save to stripe
+      save!
     rescue Stripe::InvalidRequestError => e
     end
   end
@@ -31,12 +33,10 @@ class Purchase < ApplicationRecord
     end
 
     begin
-      save! # Save to stripe
+      save!
     rescue Stripe::InvalidRequestError => e
     end
   end
-
-  # ==========================================================
 
   def setup_payment_information
     @merchandise = Merchandise.find(self.merchandise_id)
@@ -51,18 +51,15 @@ class Purchase < ApplicationRecord
   end
 
   def process_anonymous_payment_with_merchandise
-    charge = Stripe::Charge.create(
-      {
-        amount: @amount,
-        currency: 'usd',
-        source: self.stripe_card_token,
-        description: @merchandise.desc,
-        application_fee: @application_fee
-      },
-      {
-        stripe_account: @seller_stripe_account.id
-      }
-    );
+    charge_params = {
+      amount: @amount,
+      currency: 'usd',
+      source: self.stripe_card_token,
+      description: @merchandise.desc,
+      application_fee: @application_fee
+    }
+    charge_opts_params = { stripe_account: @seller_stripe_account.id }
+    PaymentGateway.create_charge(charge_params, charge_opts_params)
   end
 
   def process_user_payment_with_merchandise
@@ -70,178 +67,121 @@ class Purchase < ApplicationRecord
 
     if @buyer.stripe_customer_token.present?
       @returning_customer = Stripe::Customer.retrieve(@buyer.stripe_customer_token)
+      token_params        = { customer: @returning_customer.id }
+      token_opts_params   = { stripe_account: @seller_stripe_account.id }
+      @token              = PaymentGateway.create_token(token_params, token_opts_params)
 
-      token = Stripe::Token.create(
-        {
-          customer: @returning_customer.id
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
+      charge_params = {
+        amount: @amount,
+        currency: 'usd',
+        source: @token.id,
+        description: @merchandise.desc,
+        application_fee: @application_fee
+      }
+      charge_opts_params = { stripe_account: @seller_stripe_account.id }
 
-      charge = Stripe::Charge.create(
-        {
-          amount: @amount,
-          currency: 'usd',
-          source: token.id,
-          description: @merchandise.desc,
-          application_fee: @application_fee
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
+      PaymentGateway.create_charge(charge_params, charge_opts_params)
     else
-      customer = Stripe::Customer.create({
+      customer_params = {
         source: self.stripe_card_token,
         description: @merchandise.desc,
-        email: self.email,
-      })
+        email: self.email
+      }
+      @customer = PaymentGateway.create_customer(customer_params)
+      # @buyer.update_attribute(:stripe_customer_token, @customer.id)
+      @buyer.stripe_customer_token = @customer.id
+      token_params      = { customer: @customer.id }
+      token_opts_params = { stripe_account: @seller_stripe_account.id }
+      @token            = PaymentGateway.create_token(token_params, token_opts_params)
 
-      @buyer.update_attribute(:stripe_customer_token, @customer.id)
-
-      token = Stripe::Token.create(
-        {
-          customer: @customer.id
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
-
-      charge = Stripe::Charge.create(
-        {
-          amount: @amount,
-          currency: "usd",
-          source: token.id,
-          description: @merchandise.desc,
-          application_fee: @application_fee
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
+      charge_params = {
+        amount: @amount,
+        currency: "usd",
+        source: @token.id,
+        description: @merchandise.desc,
+        application_fee: @application_fee
+      }
+      charge_opts_params = { stripe_account: @seller_stripe_account.id }
+      PaymentGateway.create_charge(charge_params, charge_opts_params)
     end
   end
 
   def process_anonymous_donation
-    charge = Stripe::Charge.create(
-      {
-        amount: @amount,
-        currency: 'usd',
-        source: self.stripe_card_token,
-        description: @merchandise.desc,
-        application_fee: @application_fee,
-        receipt_email: self.email
-      },
-      {
-        stripe_account: @seller_stripe_account.id
-      }
-    );
+    charge_params = {
+      amount: @amount,
+      currency: 'usd',
+      source: self.stripe_card_token,
+      description: @merchandise.desc,
+      application_fee: @application_fee
+    }
+    charge_opts_params = { stripe_account: @seller_stripe_account.id }
+
+    PaymentGateway.create_charge(charge_params, charge_opts_params)
   end
 
   def process_user_donation
     @donator = User.find(self.user_id)
 
-    # NOTE: Check to see if the donator has donated before.
-    # If they have donated before, then retrive the stripe customer token
-    if @donator.stripe_customer_token.present? # Returning donator
-      # Retrieve the returning customer Stripe information
+    if @donator.stripe_customer_token.present?
       @returning_customer = Stripe::Customer.retrieve(@donator.stripe_customer_token)
+      token_params        = { customer: @returning_customer.id }
+      token_opts_params   = { stripe_account: @seller_stripe_account.id }
+      @token              = PaymentGateway.create_token(token_params, token_opts_params)
 
-      # Create a token on behalf the returning customer's Stripe id
-      token = Stripe::Token.create(
-        {
-          customer: @returning_customer.id
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
+      charge_params = {
+        amount: @amount,
+        currency: 'usd',
+        source: @token.id,
+        description: @merchandise.desc,
+        application_fee: @application_fee
+      }
+      charge_opts_params = {
+        stripe_account: @seller_stripe_account.id
+      }
 
-      # Create the charge for the returning customer
-      charge = Stripe::Charge.create(
-        {
-          amount: @amount,
-          currency: 'usd',
-          source: token.id,
-          description: @merchandise.desc,
-          application_fee: @application_fee
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
+      PaymentGateway.create_charge(charge_params, charge_opts_params)
       # @returning_donator.source = self.stripe_card_token
       # @returning_donator.save
     else
-      # User making their first donation
-      # NOTE:if self.stripe_card_token is nil or "", this will throw exception here.
-      # This edge case happens when the form is "auto-filled"
-      # @new_donator = PaymentGateway::StripePortal.create_customer(self, merchandise)
-      # @token = PaymentGateway::StripePortal.create_token(@new_donator.id, @seller_stripe_account.id)
-      # PaymentGateway::StripePortal.create_charge(@amount, @token, @merchandise, @application_fee, @seller_stripe_account)
-      customer = Stripe::Customer.create({
+      customer_params =  {
         source: self.stripe_card_token,
         description: @merchandise.desc,
-        email: self.email,
-      })
-
+        email: self.email
+      }
+      @customer = PaymentGateway.create_customer(customer_params)
       @donator.update_attribute(:stripe_customer_token, @customer.id)
 
-      token = Stripe::Token.create(
-        {
-          customer: customer.id
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
+      token_params = { customer: @customer.id }
+      token_opts_params = { stripe_account: @seller_stripe_account.id }
+      @token = PaymentGateway.create_token(token_params, token_opts_params)
 
-      charge = Stripe::Charge.create(
-        {
-          amount: @amount,
-          currency: "usd",
-          source: token.id,
-          description: @merchandise.desc,
-          application_fee: @application_fee
-        },
-        {
-          stripe_account: @seller_stripe_account.id
-        }
-      )
+      charge_params = {
+        amount: @amount,
+        currency: "usd",
+        source: @token.id,
+        description: @merchandise.desc,
+        application_fee: @application_fee
+      }
+      charge_opts_params = { stripe_account: @seller_stripe_account.id }
+      PaymentGateway.create_charge(charge_params, charge_opts_params)
     end
   end
 
   def is_returning_customer?
     self.stripe_customer_token.present? ? true : false
   end
-  
+
   def retrieve_seller
     merchandise = Merchandise.find(self.merchandise_id)
     seller      = merchandise.user_id
   end
 
-  def retrieve_current_user_last4 current_user
+  def retrieve_customer_card(current_user)
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
     sourceid = customer.default_source
     card     = customer.sources.retrieve(sourceid)
-    @last4   = card.last4
-  end
 
-  def retrieve_current_user_expmonth current_user
-    customer  = Stripe::Customer.retrieve(current_user.stripe_customer_token)
-    sourceid  = customer.default_source
-    card      = customer.sources.retrieve(sourceid)
-    @expmonth = card.exp_month
-  end
-
-  def retrieve_current_user_expyear current_user
-    customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
-    sourceid = customer.default_source
-    card     = customer.sources.retrieve(sourceid)
-    @expyear = card.exp_year
+    card
   end
 
   private
