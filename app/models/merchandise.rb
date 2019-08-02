@@ -19,25 +19,25 @@ class Merchandise < ApplicationRecord
   attr_accessor :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h
   after_update :crop_itempic
 
-  def get_non_empty_attachments
-    merchandise_attachments = {}
+  def get_filename_and_data
+    filename_and_data = []
     self.attributes.each do  |name, value|
       case name
       when 'audio'
-        merchandise_attachments['audio'] = value
-      when 'graphic'
-        merchandise_attachments['graphic'] = value
+        filename_and_data = [value, audio]
+      when 'graphic' 
+        filename_and_data = [value, graphic]
       when 'video'
-        merchandise_attachments['video'] = value
-      when 'merchpdf'
-        merchandise_attachments['merchpdf'] = value
+        filename_and_data = [value, video]
+      when 'merchpdf' 
+        filename_and_data = [value, merchpdf]
       when 'merchmobi'
-        merchandise_attachments['merchmobi'] = value
+        filename_and_data = [value, merchmobi]
       when 'merchepub'
-        merchandise_attachments['merchepub'] = value
+        filename_and_data = [value, merchepub]
       end
     end
-    merchandise_attachments
+    filename_and_data
   end
 
   def crop_itempic
@@ -54,11 +54,11 @@ class Merchandise < ApplicationRecord
   end
 
   private
-
-  def parse_youtube url
-    regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-    if url.match(regex)
-      url.match(regex)[1]
+    def parse_youtube url
+      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+      if url.match(regex)
+        url.match(regex)[1]
+      end
     end
   end
 
