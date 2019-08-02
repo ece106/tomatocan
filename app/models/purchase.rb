@@ -8,49 +8,36 @@ class Purchase < ApplicationRecord
   validates :pricesold, presence: true
   validates :authorcut, presence: true
 
-  def save_payment_with_merchandise
-    setup_payment_information
-
-    if is_purchase_anonymous?
-      process_anonymous_payment_with_merchandise
-    else
-      process_user_payment_with_merchandise
-    end
-
+  def save_with_payment
     begin
+      setup_payment_information
+      is_merchandise_buy_or_donate? ? save_payment_with_merchandise : save_payment_with_donation
       save!
     rescue Stripe::InvalidRequestError => e
     end
   end
 
+  def save_payment_with_merchandise
+    is_purchase_anonymous? ? anonymous_merchandise_payment : user_merchandise_payment
+  end
+
   def save_payment_with_donation
-    setup_payment_information
-
-    if is_purchase_anonymous?
-      process_anonymous_donation
-    else
-      process_user_donation
-    end
-
-    begin
-      save!
-    rescue Stripe::InvalidRequestError => e
-    end
+    is_purchase_anonymous? ? anonymous_donation : user_donation
   end
 
   def setup_payment_information
     @merchandise = Merchandise.find(self.merchandise_id)
     self.update_attribute(:pricesold, @merchandise.price)
 
-    @seller                = User.find(@merchandise.user_id)
-    @seller_stripe_account = retrieve_seller_stripe_account(@seller)
-    self.author_id         = @seller.id
+    seller                 = User.find(@merchandise.user_id)
+    @seller_stripe_account = retrieve_seller_stripe_account(seller)
+    self.author_id         = seller.id
     self.authorcut         = calculate_authorcut
     @amount                = calculate_amount
     @application_fee       = calculate_application_fee @amount
   end
 
-  def process_anonymous_payment_with_merchandise
+  def anonymous_merchandise_payment
     charge_params = {
       amount: @amount,
       currency: 'usd',
@@ -62,7 +49,7 @@ class Purchase < ApplicationRecord
     PaymentGateway.create_charge(charge_params, charge_opts_params)
   end
 
-  def process_user_payment_with_merchandise
+  def user_merchandise_payment
     @buyer = User.find(self.user_id)
 
     if @buyer.stripe_customer_token.present?
@@ -106,7 +93,7 @@ class Purchase < ApplicationRecord
     end
   end
 
-  def process_anonymous_donation
+  def anonymous_donation
     charge_params = {
       amount: @amount,
       currency: 'usd',
@@ -119,7 +106,7 @@ class Purchase < ApplicationRecord
     PaymentGateway.create_charge(charge_params, charge_opts_params)
   end
 
-  def process_user_donation
+  def user_donation
     @donator = User.find(self.user_id)
 
     if @donator.stripe_customer_token.present?
@@ -165,6 +152,10 @@ class Purchase < ApplicationRecord
       charge_opts_params = { stripe_account: @seller_stripe_account.id }
       PaymentGateway.create_charge(charge_params, charge_opts_params)
     end
+  end
+
+  def is_merchandise_buy_or_donate?
+    @merchandise.buttontype == 'Buy' ? true : false
   end
 
   def is_returning_customer?
