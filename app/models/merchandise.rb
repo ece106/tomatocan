@@ -19,7 +19,7 @@ class Merchandise < ApplicationRecord
   attr_accessor :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h
   after_update :crop_itempic
 
-  def get_filename 
+  def get_filename_and_data
     filename_and_data = []
     self.attributes.each do  |name, value|
       case name
