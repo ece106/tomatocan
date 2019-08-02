@@ -2,32 +2,6 @@
 
 <%= link_to 'Create a New Event', new_event_path %> <br><br>
 
-
-<div style="margin-left: 200px; width: 450px; height: 450px;">
-  <%= month_calendar events: @events, attribute: :start_at do |date, events| %>
-    <div>
-      <%= date.day %>
-    </div>
-    <div>
-      <% events.each do |event| %>
-        <%= event.name %>
-      <% end %>
-    </div>
-  <% end %>
-<div>
-
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-
 <% if @events.count.nil? %>
   *** No events near you yet ***
 <% else %>
@@ -65,5 +39,6 @@
   </div>
 <% end %>
 
-
 <%#= will_paginate @events, renderer: BootstrapPagination::Rails %>
+
+
