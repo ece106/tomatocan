@@ -25,11 +25,11 @@ class Merchandise < ApplicationRecord
       case name
       when 'audio'
         filename_and_data = [value, audio]
-      when 'graphic' 
+      when 'graphic'
         filename_and_data = [value, graphic]
       when 'video'
         filename_and_data = [value, video]
-      when 'merchpdf' 
+      when 'merchpdf'
         filename_and_data = [value, merchpdf]
       when 'merchmobi'
         filename_and_data = [value, merchmobi]
@@ -54,12 +54,11 @@ class Merchandise < ApplicationRecord
   end
 
   private
-    def parse_youtube url
-      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-      if url.match(regex)
-        url.match(regex)[1]
-      end
+
+  def parse_youtube url
+    regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+    if url.match(regex)
+      url.match(regex)[1]
     end
   end
-
 end

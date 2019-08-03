@@ -29,7 +29,6 @@ class Purchase < ApplicationRecord
     is_purchase_anonymous? ? anonymous_donation : user_donation
   end
 
-  #- Setup payment information
   def setup_payment_information
     # self.update_attribute(:pricesold, @merchandise.price)
     @merchandise               = Merchandise.find(self.merchandise_id)
@@ -43,7 +42,7 @@ class Purchase < ApplicationRecord
   end
 
   def anonymous_merchandise_payment
-    PaymentGateway.create_anonymous_charge(self, CURRENCY, @merchandise)
+    PaymentGateway.create_anonymous_charge(self, CURRENCY)
   end
 
   def user_merchandise_payment
@@ -52,26 +51,19 @@ class Purchase < ApplicationRecord
     if @buyer.stripe_customer_token.present?
       @returning_customer = Stripe::Customer.retrieve(@buyer.stripe_customer_token)
       self.token          = PaymentGateway.create_token(self, @returning_customer)
-      PaymentGateway.create_charge(self, CURRENCY, @merchandise)
-    else
-      customer_params = {
-        source: self.stripe_card_token,
-        description: @merchandise.desc,
-        email: self.email
-      }
-      @customer = PaymentGateway.create_customer(customer_params)
-      # @buyer.update_attribute(:stripe_customer_token, @customer.id)
-      @buyer.stripe_customer_token = @customer.id
-      token_params                 = { customer: @customer.id }
-      token_opts_params            = { stripe_account: self.seller_stripe_account.id }
-      self.token                   = PaymentGateway.create_token(token_params, token_opts_params)
 
-      PaymentGateway.create_charge(self, CURRENCY, @merchandise)
+      PaymentGateway.create_charge(self, CURRENCY)
+    else
+      @customer = PaymentGateway.create_customer(self)
+      @buyer.update_attribute(:stripe_customer_token, @customer.id)
+      self.token = PaymentGateway.create_token(self, @customer)
+
+      PaymentGateway.create_charge(self, CURRENCY)
     end
   end
 
   def anonymous_donation
-    PaymentGateway.create_anonymous_charge(self, CURRENCY, @merchandise)
+    PaymentGateway.create_anonymous_charge(self, CURRENCY)
   end
 
   def user_donation
@@ -79,32 +71,19 @@ class Purchase < ApplicationRecord
 
     if @donator.stripe_customer_token.present?
       @returning_customer = Stripe::Customer.retrieve(@donator.stripe_customer_token)
-      token_params        = { customer: @returning_customer.id }
-      token_opts_params   = { stripe_account: self.seller_stripe_account.id }
-      self.token          = PaymentGateway.create_token(token_params, token_opts_params)
+      self.token          = PaymentGateway.create_token(self, @returning_customer)
 
-      PaymentGateway.create_charge(self, CURRENCY, @merchandise)
-      # PaymentGateway.create_charge(charge_params, charge_opts_params)
+      PaymentGateway.create_charge(self, CURRENCY)
       # @returning_donator.source = self.stripe_card_token
       # @returning_donator.save
     else
-      customer_params =  {
-        source: self.stripe_card_token,
-        description: @merchandise.desc,
-        email: self.email
-      }
-      @customer = PaymentGateway.create_customer(customer_params)
+      @customer = PaymentGateway.create_customer(self)
       @donator.update_attribute(:stripe_customer_token, @customer.id)
+      self.token = PaymentGateway.create_token(self, @customer)
 
-      token_params      = { customer: @customer.id }
-      token_opts_params = { stripe_account: self.seller_stripe_account.id }
-      self.token        = PaymentGateway.create_token(token_params, token_opts_params)
-
-      PaymentGateway.create_charge(self, CURRENCY, @merchandise)
+      PaymentGateway.create_charge(self, CURRENCY)
     end
   end
-
-  # ===============================================
 
   def is_merchandise_buy_or_donate?
     @merchandise.buttontype == 'Buy' ? true : false
