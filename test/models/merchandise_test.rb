@@ -4,12 +4,19 @@ class MerchandiseTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-   def setup
+  def setup
     @merchandise = merchandises(:one)
     @all_merchandises = merchandises.each  { |x| @all_merchandises = x } 
     @merchandise_attachments = [:merchpdf,:merchmobi,:graphic,:video,:merchepub,:audio]
-   end
+  end
 
+  test 'merchandise_with_attachments not empty' do
+    merchandise_with_attachments = @all_merchandises.each { |x| @merchandise_attachments.each { |p| x[p] } }
+    @merchandise_attachments.each do |x|
+    refute_empty merchandise_with_attachments.each { |p| p[x] } 
+    end
+  end
+   
   test "price should not be empty" do
     merchandise = Merchandise.new
     merchandise.send "price=",nil
