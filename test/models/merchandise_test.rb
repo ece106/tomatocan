@@ -1,9 +1,7 @@
 require 'test_helper'
 
 class MerchandiseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
   def setup
     @merchandise = merchandises(:one)
     @all_merchandises = merchandises.each  { |x| @all_merchandises = x } 
@@ -36,4 +34,5 @@ class MerchandiseTest < ActiveSupport::TestCase
       assert_equal @all_merchandises.each { |p| p[x] }, filename_and_data_all.each { |q| q[x] }
     end
   end
+ 
 end
