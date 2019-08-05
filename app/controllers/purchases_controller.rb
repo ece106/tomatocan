@@ -1,5 +1,4 @@
 class PurchasesController < ApplicationController
-  #  before_action :authenticate_user!, only: [:new ]
 
   def show
     @purchase = Purchase.find(params[:id])
@@ -44,10 +43,10 @@ class PurchasesController < ApplicationController
       when true
         PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
-        flash[:notice] = "You successfully donated $" + @merchandise.price.to_s + " . Thank you for being a donor of " + @seller.name
+        flash[:notice] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for being a donor of ' + @seller.name
         redirect_to user_profile_path(@seller.permalink)
       when false
-        redirect_back fallback_location: request.referrer, notice: "Your order did not go through. Try again."
+        redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end
     when 'Buy'
       assign_user_id
@@ -57,12 +56,12 @@ class PurchasesController < ApplicationController
         PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
         filename_and_data = @merchandise.get_filename_and_data
-        filename = filename_and_data[0] 
+        filename = filename_and_data[0]
         data = filename_and_data[1]
         send_data_to_buyer data, filename and return
         redirect_to user_profile_path(@seller.permalink)
       when false
-        redirect_back fallback_location: request.referrer, notice: "Your order did not go through. Try again."
+        redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end
     end
   end

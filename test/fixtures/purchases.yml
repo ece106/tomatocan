@@ -10,10 +10,48 @@ one:
   authorcut: 18.1
 
 two:
-  author_id: 2 
+  author_id: 2
   user_id: 2
   group_id: 2
   merchandise: one
   stripe_customer_token: MyString
   pricesold: 50.5
   authorcut: 38.1
+
+# FK user_id to user id 4 (buyer)
+merchandise_purchase:
+  user_id: 4
+  merchandise_id: 1
+  author_id:
+  book_id:
+  stripe_customer_token:
+  plan_id:
+  stripe_card_token:
+  bookfiletype:
+  pricesold:
+  authorcut:
+  paid:
+  group_id:
+  groupcut:
+  shipaddress: "First time customer buying with pdf!"
+  fulfillstatus:
+  email: null
+
+# FK user_id to user id 5 (donator)
+donation_purchase:
+  user_id: 5
+  merchandise_id: 1
+  author_id:
+  book_id:
+  stripe_customer_token:
+  plan_id:
+  stripe_card_token:
+  bookfiletype:
+  pricesold:
+  authorcut:
+  paid:
+  group_id:
+  groupcut:
+  shipaddress: "First time customer buying with pdf!"
+  fulfillstatus:
+  email: testdonation@mail.com

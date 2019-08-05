@@ -8,94 +8,116 @@ class Purchase < ApplicationRecord
   validates :pricesold, presence: true
   validates :authorcut, presence: true
 
-  attr_accessor :amount, :application_fee, :seller, :seller_stripe_account, :token
+  attr_accessor :amount, :application_fee, :seller,
+                :seller_stripe_account, :token, :currency
 
-  CURRENCY = 'usd'
+  CURRENCY = 'usd'.freeze
 
   def save_with_payment
+    setup_payment_information
+    merchandise_buy_or_donate? ? merchandise_payment : donation_payment
     begin
-      setup_payment_information
-      is_merchandise_buy_or_donate? ? save_payment_with_merchandise : save_payment_with_donation
       save!
     rescue Stripe::InvalidRequestError => e
     end
   end
 
-  def save_payment_with_merchandise
-    is_purchase_anonymous? ? anonymous_merchandise_payment : user_merchandise_payment
+  def merchandise_payment
+    purchase_anonymous? ? anonymous_merchandise_payment : user_merchandise_payment
   end
 
-  def save_payment_with_donation
-    is_purchase_anonymous? ? anonymous_donation : user_donation
+  def donation_payment
+    purchase_anonymous? ? anonymous_donation : user_donation
   end
 
   def setup_payment_information
     # self.update_attribute(:pricesold, @merchandise.price)
+    # self.seller_stripe_account = retrieve_seller_stripe_account(seller)
     @merchandise               = Merchandise.find(self.merchandise_id)
     self.pricesold             = @merchandise.price
     self.seller                = User.find(@merchandise.user_id)
-    self.seller_stripe_account = retrieve_seller_stripe_account(seller)
+    self.seller_stripe_account = PaymentGateway.retrieve_seller_account(seller.stripeid)
     self.author_id             = seller.id
-    self.authorcut             = calculate_authorcut
-    self.amount                = calculate_amount
-    self.application_fee       = calculate_application_fee self.amount
+    self.authorcut             = calculate_authorcut(self.pricesold)
+    self.amount                = calculate_amount(self.pricesold)
+    self.application_fee       = calculate_application_fee(self.amount)
+    self.currency              = CURRENCY
   end
 
+  # Creates the stripe charge object for an anonymous purchase with a merchandise.
   def anonymous_merchandise_payment
-    PaymentGateway.create_anonymous_charge(self, CURRENCY)
+    PaymentGateway.create_anonymous_charge(self)
   end
 
-  def user_merchandise_payment
-    @buyer = User.find(self.user_id)
-
-    if @buyer.stripe_customer_token.present?
-      @returning_customer = Stripe::Customer.retrieve(@buyer.stripe_customer_token)
-      self.token          = PaymentGateway.create_token(self, @returning_customer)
-
-      PaymentGateway.create_charge(self, CURRENCY)
-    else
-      @customer = PaymentGateway.create_customer(self)
-      @buyer.update_attribute(:stripe_customer_token, @customer.id)
-      self.token = PaymentGateway.create_token(self, @customer)
-
-      PaymentGateway.create_charge(self, CURRENCY)
-    end
-  end
-
+  # Creates the stripe charge object for an anonymous donation purchase.
   def anonymous_donation
-    PaymentGateway.create_anonymous_charge(self, CURRENCY)
+    PaymentGateway.create_anonymous_charge(self)
   end
 
+  # Checks if the user is anonymous or returning buyer.
+  def user_merchandise_payment
+    buyer = User.find(self.user_id)
+
+    buyer.stripe_customer_token.present? ? returning_customer(buyer) : first_time_buyer(buyer)
+  end
+
+  # Checks if the user is anonymous or returning donator.
   def user_donation
-    @donator = User.find(self.user_id)
-
-    if @donator.stripe_customer_token.present?
-      @returning_customer = Stripe::Customer.retrieve(@donator.stripe_customer_token)
-      self.token          = PaymentGateway.create_token(self, @returning_customer)
-
-      PaymentGateway.create_charge(self, CURRENCY)
-      # @returning_donator.source = self.stripe_card_token
-      # @returning_donator.save
-    else
-      @customer = PaymentGateway.create_customer(self)
-      @donator.update_attribute(:stripe_customer_token, @customer.id)
-      self.token = PaymentGateway.create_token(self, @customer)
-
-      PaymentGateway.create_charge(self, CURRENCY)
-    end
+    donator = User.find(self.user_id)
+    donator.stripe_customer_token.present? ? returning_donator(donator) : first_time_donator(donator)
   end
 
-  def is_merchandise_buy_or_donate?
+  # Creates the stripe charge object for the returning customer by check the
+  # buyer's stripe_customer_token.
+  def returning_customer(buyer)
+    returning_customer = PaymentGateway.retrieve_customer(buyer.stripe_customer_token)
+    self.token         = PaymentGateway.create_token(self, returning_customer)
+
+    PaymentGateway.create_charge(self)
+  end
+
+  # Creates the stripe charge object for a first time buyer.
+  def first_time_buyer(buyer)
+    customer   = PaymentGateway.create_customer(self)
+    self.token = PaymentGateway.create_token(self, customer)
+
+    PaymentGateway.create_charge(self)
+    buyer.update_attribute(:stripe_customer_token, customer.id)
+  end
+
+  # Creates the stripe charge object for the returning customer by check the
+  # donator's stripe_customer_token.
+  def returning_donator(donator)
+    # returning_customer = Stripe::Customer.retrieve(donator.stripe_customer_token)
+    returning_customer = PaymentGateway.retrieve_customer(donator.stripe_customer_token)
+    self.token         = PaymentGateway.create_token(self, returning_customer)
+
+    PaymentGateway.create_charge(self)
+  end
+
+  # Creates the Stripe charge object for a first time donator.
+  def first_time_donator(donator)
+    customer   = PaymentGateway.create_customer(self)
+    self.token = PaymentGateway.create_token(self, customer)
+
+    PaymentGateway.create_charge(self)
+    donator.update_attribute(:stripe_customer_token, customer.id)
+  end
+
+  #- Helper methods
+
+  def merchandise_buy_or_donate?
     @merchandise.buttontype == 'Buy' ? true : false
   end
 
-  def is_returning_customer?
-    self.stripe_customer_token.present? ? true : false
-  end
+  # def returning_customer?
+  #   self.stripe_customer_token.present? ? true : false
+  # end
 
   def retrieve_seller
     merchandise = Merchandise.find(self.merchandise_id)
     seller      = merchandise.user_id
+    seller
   end
 
   def retrieve_customer_card(current_user)
@@ -105,25 +127,25 @@ class Purchase < ApplicationRecord
     card
   end
 
-  private
+  # private
 
-  def is_purchase_anonymous?
+  def purchase_anonymous?
     self.email.present? ? true : false
   end
 
-  def retrieve_seller_stripe_account(seller)
-    Stripe::Account.retrieve(seller.stripeid)
+  # def retrieve_seller_stripe_account(seller)
+  #   Stripe::Account.retrieve(seller.stripeid)
+  # end
+
+  def calculate_amount(pricesold)
+    (pricesold * 100).to_i
   end
 
-  def calculate_amount
-    (self.pricesold * 100).to_i
+  def calculate_authorcut(pricesold)
+    ((pricesold * 92.1).to_i - 30).to_f/100
   end
 
-  def calculate_authorcut
-    ((self.pricesold * 92.1).to_i - 30).to_f/100
-  end
-
-  def calculate_application_fee amount
+  def calculate_application_fee(amount)
     ((amount * 5)/100)
   end
 
