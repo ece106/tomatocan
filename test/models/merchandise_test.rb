@@ -13,7 +13,7 @@ class MerchandiseTest < ActiveSupport::TestCase
   test 'merchandise_with_attachments not empty' do
     merchandise_with_attachments = @all_merchandises.each { |x| @merchandise_attachments.each { |p| x[p] } }
     @merchandise_attachments.each do |x|
-    refute_empty merchandise_with_attachments.each { |p| p[x] } 
+      refute_empty merchandise_with_attachments.each { |p| p[x] } 
     end
   end
    
