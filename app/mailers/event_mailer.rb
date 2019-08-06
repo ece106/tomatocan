@@ -1,6 +1,6 @@
 class EventMailer < ApplicationMailer
 
-  before_action do 
+  before_action do
     @event = params[:event]
     @user = params[:user]
   end
@@ -23,7 +23,7 @@ class EventMailer < ApplicationMailer
   end
 
   def set_url
-    @event_url = event_url(host:'crowdpublish.TV', id: @user.id)
+    @event_url = event_url(host:'ThinQ.tv', id: @user.id)
   end
 
   def format_date

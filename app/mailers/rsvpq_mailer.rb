@@ -20,7 +20,7 @@ class RsvpqMailer < ApplicationMailer
   def set_url
     @url = event_url(host: :host, id: @user.id)
   end
- 
+
   def inline_images
     img_path ="app/assets/images/social-share-button"
     img_list = ['email.png','facebook.png','linkedin.png','twitter.png']
