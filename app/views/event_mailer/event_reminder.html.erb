@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
-
+<link href='https://fonts.googleapis.com/css?family=Montserrat&display=swap' rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
   <title>Event Reminder</title>
 </head>
-<body>
+<body style="font-family: 'Montserrat', sans-serif; text-align: center;">
   <br>
   <div class = "header">
     <h2>ThinQ.tv</h2>
   </div>
   <br>
-  <div class = "one">
+  <div style="font-size: 18pt; margin: 10px auto 10px auto; text-align: left; width : 60%; padding: 1%;" >
     <h1 style="font-size: 40px; color: #8B0942; font-style: bold;" align="center" > Just a friendly reminder for your upcoming event!</h1>
     <br>
     <p> Hello, <%= @user.name %> <br><br>
-<<<<<<< HEAD
      This is a reminder about your event, <%=@event.name%>
      <br><br>
      Hosted by:<br>
@@ -26,131 +25,39 @@
      <br><br>
      Best,<br>
      ThinQ.tv
-=======
-     <%= @user.name %> this is a reminder about your Thinq.tv conversation, <%=@event.name %>, at <%=@date_body_format%>.
-     Please invite your friends to your <a href = <%=@event_url%>>conversation</a>.<br><br>
-     Sincerely,<br>
-     Thinq.tv
->>>>>>> c9e536007b4c03c14431f10b9f4c7aef05946065
      </p>
      <br>
      <div class = "img">
         <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
       </div>
-<<<<<<< HEAD
      <br>
      <p style="font-size: 30px; font-style: bold;"><b>Can't make it?</b></p>
      <p>Don't worry, we host weekly shows so you'll never miss out! Check out our event schedule <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">here</a>.</p>
      <br><br>
   </div>  
-   <div class = "footer">
+   <div style="background-color: #8B0942; margin: 10px auto 10px auto; padding: .5%; ">
     <h1 style="color:white; font-size: 40px;">See You Soon!</h1> 
-    <table id="info" align="center" width="100%">
-        <td colspan="4"><p>Contact us<br><a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a><br>Washington DC: 703-495-3185<br> Scottsdale: 602-888-3089</p>
+    <table align="center" width="100%" style="width: 60%; border: 0px; text-align: center; margin: auto; padding: 0; border-spacing: 0px; border-color: none;border-collapse: collapse;">
+        <td colspan="4"><p style = "color:white; font-size: 15px;">Contact us<br><a href="mailto:info@thinq.tv" alt="Email" target="_blank" style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;">info@ThinQ.tv</a><br>Washington DC: 703-495-3185<br> Scottsdale: 602-888-3089</p>
         </td>
-        <td colspan="4"><p>Headquarters<br>ASU Venture Devils Suite 1951<br>1475 N.Scottsdale Rd,<br>Scottsdale, AZ 85257</p>
+        <td colspan="4"><p style = "color:white; font-size: 15px;">Headquarters<br>ASU Venture Devils Suite 1951<br>1475 N.Scottsdale Rd,<br>Scottsdale, AZ 85257</p>
         </td>
         <td colspan="4">
-        <p style = "color:white" class="f-header">Share</p>
-        <% url = "http://www.crowdpublish.tv" %>
+        <p style = "color:white; font-size: 15px;" class="f-header">Share</p>
+        <% url = "http://www.thinq.tv/" %>
         <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
-=======
-  </div>
-  <div class = "footer">
-      <p style = "color:white" class="f-header">Share</p>
-        <% url = "http://www.thinq.tv" %>
-        <% desc = "Broadcast live conversations about what you're doing to change the world and participate in intellectual conversations to broaden your knowledge!"%>
->>>>>>> c9e536007b4c03c14431f10b9f4c7aef05946065
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-        <div class="social-share-button" data-href="<%= url %>"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse"><%=image_tag attachments['facebook.png'].url%></a>
+        <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
         <!-- Twitter Tweet -->
-        <a href="https://twitter.com/intent/tweet?hashtags=CrowdPublishTV&text=Broadcast%20live%20discussions%20about%20what%20you%27re%20doing%20to%20change%20the%20world%20and%20participate%20in%20intellectual%20discussions%20to%20broaden%20your%20knowledge!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.crowdpublish.tv%2F"><%=image_tag attachments['twitter.png'].url%></a>
+        <a href="https://twitter.com/intent/tweet?hashtags=CrowdPublishTV&text=Broadcast%20live%20discussions%20about%20what%20you%27re%20doing%20to%20change%20the%20world%20and%20participate%20in%20intellectual%20discussions%20to%20broaden%20your%20knowledge!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.crowdpublish.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
         <!-- LinkedIn Share -->
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><%=image_tag attachments['linkedin.png'].url%></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['linkedin.png'].url%></a>
         <!-- Email Share -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><%=image_tag attachments['email.svg'].url%></a>
+        <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['email.png'].url%></a>
       </div>
       <br>
       </td>
 </table>
-=======
-        <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Conversations on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><%=image_tag attachments['email.svg'].url%></a>
-=======
-        <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Conversations on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><%=image_tag attachments['email.png'].url%></a>
->>>>>>> 821635fab17814c3ec6a3a6f05b91ecb92d8e8ed
-      </div>
-    </div>
->>>>>>> c9e536007b4c03c14431f10b9f4c7aef05946065
   </body>
- <style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-    body {
-
-     font-family: 'Montserrat', sans-serif;
-<<<<<<< HEAD
-     text-align: center;
-    }  
-    
-=======
-    }
-    h1{
-      padding: .5%;
-      width: 95%;
-      margin: 1px auto 1px auto;
-      text-align: left;
-      font-size: 50pt;
-    }
-    div.header{
-      background-color: #8B0942;
-      padding: 1.5%;
-    }
->>>>>>> c9e536007b4c03c14431f10b9f4c7aef05946065
-    div.one{
-      font-size: 18pt;
-      margin: 10px auto 10px auto;
-<<<<<<< HEAD
-      text-align: left; 
-      width : 60%;
-      padding: 1%; 
-=======
-      text-align: left;
-      width : 90%;
-      padding: 1%;
->>>>>>> c9e536007b4c03c14431f10b9f4c7aef05946065
-    }
-    div.footer{
-      background-color: #8B0942;
-      margin: 10px auto 10px auto;
-      padding: .5%;
-    }
-<<<<<<< HEAD
-    table {
-      width: 60%;
-      border: 0px;
-      text-align: center;
-      margin: auto;
-      padding: 0;
-      border-spacing: 0px;
-      border-color: none;
-      border-collapse: collapse;
-    }
-    #info p {
-      color: white;
-      font-size: 15px;
-    }
-    #info a.f-link {
-      color: #FFC627;
-    }
-    #info a {
-      color: #FFC627;
-      text-decoration-line: none;
-      text-decoration-color: #FFC627;
-    }
-  </style> 
-=======
-  </style>
->>>>>>> c9e536007b4c03c14431f10b9f4c7aef05946065
 </html>
