@@ -9498,3 +9498,139 @@ Processing by StaticPagesController#tech as HTML
 Completed 200 OK in 62ms (Views: 59.6ms | ActiveRecord: 0.5ms)
 
 
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from <top (required)> at /home/ck/tomatocan/config/environment.rb:7)
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at bin/rails:4)
+Started GET "/" for 127.0.0.1 at 2019-08-06 09:41:38 -0700
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:41:38.917040')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:41:38.917040')[0m
+  Rendered layouts/_maincalendar.html.erb (5.6ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (210.3ms)
+  Rendered application/_favicon.html.erb (3.3ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (2.4ms)
+Completed 200 OK in 399ms (Views: 268.9ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/tech" for 127.0.0.1 at 2019-08-06 09:41:50 -0700
+Processing by StaticPagesController#tech as HTML
+  Rendering static_pages/tech.html.erb within layouts/application
+  Rendered static_pages/tech.html.erb within layouts/application (2.7ms)
+  Rendered application/_favicon.html.erb (5.5ms)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (6.9ms)
+  Rendered layouts/_footer.html.erb (2.6ms)
+Completed 200 OK in 64ms (Views: 62.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-08-06 09:41:56 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:41:56.354753')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:41:56.354753')[0m
+  Rendered layouts/_maincalendar.html.erb (4.7ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (7.8ms)
+  Rendered application/_favicon.html.erb (3.3ms)
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (2.1ms)
+Completed 200 OK in 57ms (Views: 52.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/faith" for 127.0.0.1 at 2019-08-06 09:41:58 -0700
+Processing by StaticPagesController#faith as HTML
+  Rendering static_pages/faith.html.erb within layouts/application
+  Rendered static_pages/faith.html.erb within layouts/application (4.5ms)
+  Rendered application/_favicon.html.erb (3.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_footer.html.erb (6.1ms)
+Completed 200 OK in 90ms (Views: 88.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-08-06 09:42:05 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:42:05.739138')[0m
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:42:05.739138')[0m
+  Rendered layouts/_maincalendar.html.erb (3.6ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (7.1ms)
+  Rendered application/_favicon.html.erb (3.2ms)
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (2.8ms)
+Completed 200 OK in 57ms (Views: 51.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/international" for 127.0.0.1 at 2019-08-06 09:42:07 -0700
+Processing by StaticPagesController#international as HTML
+  Rendering static_pages/international.html.erb within layouts/application
+  Rendered static_pages/international.html.erb within layouts/application (2.2ms)
+  Rendered application/_favicon.html.erb (8.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_footer.html.erb (2.7ms)
+Completed 200 OK in 87ms (Views: 85.8ms | ActiveRecord: 0.4ms)
+
+
+DEPRECATION WARNING: `secrets.secret_token` is deprecated in favor of `secret_key_base` and will be removed in Rails 6.0. (called from <top (required)> at /home/ck/tomatocan/config/environment.rb:7)
+DEPRECATION WARNING: Using `Rails::Application` subclass to start the server is deprecated and will be removed in Rails 6.0. Please change `run Crowdpublishtv::Application` to `run Rails.application` in config.ru. (called from require at bin/rails:4)
+Started GET "/international" for 127.0.0.1 at 2019-08-06 09:58:35 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#international as HTML
+  Rendering static_pages/international.html.erb within layouts/application
+  Rendered static_pages/international.html.erb within layouts/application (278.8ms)
+  Rendered application/_favicon.html.erb (6.1ms)
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (59.7ms)
+  Rendered layouts/_footer.html.erb (4.0ms)
+Completed 200 OK in 435ms (Views: 417.7ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-08-06 09:58:39 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:58:39.380046')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:58:39.380046')[0m
+  Rendered layouts/_maincalendar.html.erb (6.6ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (9.3ms)
+  Rendered application/_favicon.html.erb (7.0ms)
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (2.1ms)
+Completed 200 OK in 67ms (Views: 53.0ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-08-06 09:58:42 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:58:42.977734')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2019-08-06 06:58:42.977734')[0m
+  Rendered layouts/_maincalendar.html.erb (2.1ms)
+  Rendered static_pages/home.html.erb within layouts/homepg (4.4ms)
+  Rendered application/_favicon.html.erb (5.6ms)
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (2.1ms)
+Completed 200 OK in 68ms (Views: 58.1ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/tech" for 127.0.0.1 at 2019-08-06 09:58:46 -0700
+Processing by StaticPagesController#tech as HTML
+  Rendering static_pages/tech.html.erb within layouts/application
+  Rendered static_pages/tech.html.erb within layouts/application (2.2ms)
+  Rendered application/_favicon.html.erb (3.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_footer.html.erb (2.2ms)
+Completed 200 OK in 93ms (Views: 56.4ms | ActiveRecord: 0.4ms)
+
+
