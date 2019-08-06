@@ -7,7 +7,7 @@
 # Do not remove the frozen string literal comment. It is a 'magic' ruby comment
 # that ensures that all string literals in this module are frozen, as if
 # .freeze has been called on each of the strings.
-class PaymentGateway
+module PaymentGateway
 
   def self.retrieve_seller_account(seller_stripeid)
     Stripe::Account.retrieve(seller_stripeid)
