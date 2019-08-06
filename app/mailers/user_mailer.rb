@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
- 
+
   before_action do
     @user = params[:user]
   end
@@ -10,15 +10,15 @@ class UserMailer < ApplicationMailer
     inline_images
     mail(to: @user.email, subject: "Welcome")
   end
-  
+
   private
 
   def set_url
-    @home_url = home_url(host: 'crowdpublish.TV')
+    @home_url = home_url(host: 'ThinQ.tv')
     # if you need more url options you can use this method to expand
   end
 
-  
+
   def inline_images
     img_path ="app/assets/images/social-share-button"
     img_path_two = "app/assets/images"

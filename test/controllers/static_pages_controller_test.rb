@@ -35,6 +35,6 @@ class StaticPagesControllerTest < ActionController::TestCase
 
   # test "correct_head" do
   # get :home
-  # assert_select 'title', "CrowdPublish.TV"
+  # assert_select 'title', "ThinQ.tv"
   # end
 end

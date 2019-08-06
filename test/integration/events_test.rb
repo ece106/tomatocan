@@ -128,11 +128,11 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
   test "Test if the About link at the bottom of the home page redirects properly" do
     click_on('About')
-    assert_text('What is CrowdPublish.TV?')
+    assert_text('What is ThinQ.tv?')
   end
   test "terms of service link should redirect to the right page" do
     click_on('Terms of Service')
-    assert_text('CrowdPublish.TV Terms of Service')
+    assert_text('ThinQ.tv Terms of Service')
   end
   test "Test if set up future show button works in the Shows tab" do
     #signup()
@@ -238,7 +238,7 @@ class EventsTest < ActionDispatch::IntegrationTest
     click_on('Sign out')
     click_on('Sign Up', match: :first)
     click_on('Terms of Service', match: :first)
-    assert_text('CrowdPublish.TV Terms of Service')
+    assert_text('ThinQ.tv Terms of Service')
   end
   test "already a member? sign in link redirects" do
     click_on('Sign out')
@@ -252,7 +252,7 @@ class EventsTest < ActionDispatch::IntegrationTest
     click_on('Sign out')
     click_on('Sign In', match: :first)
     click_on('Terms of Service', match: :first)
-    assert_text('CrowdPublish.TV Terms of Service')
+    assert_text('ThinQ.tv Terms of Service')
   end
   test "forgot password link should work in login page" do
     click_on('Sign out')
@@ -311,4 +311,3 @@ class EventsTest < ActionDispatch::IntegrationTest
   test "link to reward on live show page redirects" do
   end
 end
-
