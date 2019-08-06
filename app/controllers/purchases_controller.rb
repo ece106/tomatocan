@@ -43,7 +43,6 @@ class PurchasesController < ApplicationController
       when true
         PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
-        flash[:notice] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for being a donor of ' + @seller.name
         redirect_to user_profile_path(@seller.permalink)
       when false
         redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
@@ -56,8 +55,8 @@ class PurchasesController < ApplicationController
         PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
         filename_and_data = @merchandise.get_filename_and_data
-        filename = filename_and_data[0]
-        data = filename_and_data[1]
+        filename = filename_and_data[:filename]
+        data = filename_and_data[:data]
         send_data_to_buyer data, filename and return
         redirect_to user_profile_path(@seller.permalink)
       when false
@@ -78,7 +77,9 @@ class PurchasesController < ApplicationController
   end
 
   def send_data_to_buyer data, filename
+    if filename != nil 
       send_data data.read , filename: filename, disposition: 'attachment'
+    end
   end
 
   def purchase_params
