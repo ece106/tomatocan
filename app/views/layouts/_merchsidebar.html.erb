@@ -92,7 +92,10 @@
             <% end %>
 				
             <% if (merch.buttontype) == 'Donate' %>
-              <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
+              <%#= render "purchases/modal_purchase_form", merch: merch, user: @user %>
+              <% if request.host == "crowdpublishtv.herokuapp.com" %>
+                <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
+              <% end %>
               <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
             <% else %>
               <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
@@ -116,14 +119,15 @@
                 <td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
               <% end %>
             <% end %>
-            <%= merch %>
-				
-          <%if (merch.buttontype) == 'Donate'%>
-            <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
+
+          <% if (merch.buttontype) == 'Donate'%>
+            <% if request.host == "crowdpublishtv.herokuapp.com" %>
+              <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
+            <% end %>
             <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
-          <%else%>
+          <% else%>
             <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
-          <%end%>
+          <% end%>
 				
           <% if @user.stripeid.present? || @user.id == 143 %>   
             <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>

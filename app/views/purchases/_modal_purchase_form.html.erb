@@ -18,7 +18,7 @@
           <%= form.hidden_field :author_id, value: params[:author_id] %>
           <%= form.hidden_field :user_id, value: user.id %>
           <%= form.hidden_field :merchandise_id, value: merch.id %>
-          <%= form.hidden_field :modal_donation, value: true %>
+          <%#= form.hidden_field :livestream, value: true %>
           <div class="form-wrapper">
             <%= text_field_tag :email, nil, name: nil, placeholder: 'Email', class: 'form-control' %>
           </div>
