@@ -44,7 +44,11 @@ class PurchasesController < ApplicationController
         PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
         flash[:notice] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for being a donor of ' + @seller.name
-        redirect_to user_profile_path(@seller.permalink)
+        if params[:modal_donation] == true
+          # live conversation stream path here
+        else
+          redirect_to user_profile_path(@seller.permalink)
+        end
       when false
         redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end

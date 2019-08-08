@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @purchase = Purchase.new
     #    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     @numusrgroups = 0
     if user_signed_in?

@@ -17,12 +17,12 @@
 	</div>
 </div>
 
+<!--
 <script src="https://checkout.stripe.com/checkout.js"
         class="stripe-button"
         data-email=""
         data-key=""
-        data-locale="auto"></script>
-
+        data-locale="auto"></script> -->
 
 <!--Actual panel-->
 <div class="panel panel-primary">
@@ -92,6 +92,7 @@
             <% end %>
 				
             <% if (merch.buttontype) == 'Donate' %>
+              <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
               <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
             <% else %>
               <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
@@ -115,8 +116,10 @@
                 <td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
               <% end %>
             <% end %>
+            <%= merch %>
 				
           <%if (merch.buttontype) == 'Donate'%>
+            <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
             <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
           <%else%>
             <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
