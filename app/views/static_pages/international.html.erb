@@ -1,10 +1,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="ThinQ tv" content="width=device-width, initial-scale=1">
-<title>ThinQ.tv - The Future of Empowerment is Your Story</title>
+<meta name="ThinQ.tv" content="width=device-width, initial-scale=1">
+<title>ThinQ.tv - Conversations to make you THINQ</title>
 </head>
 
-<body style=>
 
 <div class="title">
 	<%= image_tag "international.jpg", width:"100%" %>
@@ -14,56 +13,43 @@
 
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-1">
-		<h2 style="margin-left: 3%; margin-top:10%; font-size: 20px">
-			<div style="font-size: 22px">Welcome to <b>International Thursday!</b> </div>
-		<br>International Thursday will open your eyes to the different countries and cultures around the world.
-		<br>Meet us <%= link_to 'here on ThinQ.tv', '/lisa' %>  at 6:00 pm (PDT) every Thursday.
-	</h2>
+	  <div class="row">
+			<h2 style="margin-left: 3%; margin-top:10%; font-size: 20px">
+				<div style="font-size: 22px; margin-bottom: 1%;">Welcome to <b>International Thursday!</b> </div>
+			    <br>International Thursday will open your eyes to the different countries and cultures around the world.
+			    <br>Meet us here on<%= link_to ' ThinQ.tv', '/lisa' %>  at 6:00 pm (PDT) every Thursday.
+		  </h2>
+
+				<h3 style="margin-top: 6%; margin-left:6%;font-size: 20px">
+					<b>Our goal is to:</b>
+					<ul style="margin-left: 5%">
+						<li>Provide educational and cultural awareness</li>
+						<li>Promote a better understanding of different cultures</li>
+						<li>Enhance a deeper appreciation of other cultures </li>
+					</ul>
+				</h3>
+
+				<h4 style="margin-top:8%; margin-left:6%; font-size: 20px">
+					<b>Conversation Topics include: </b>
+					<ul style="margin-left: 5%">
+						<li>World Cultures</li>
+						<li>Studying Abroad</li>
+						<li>Living in another country</li>
+						<li>Moving to the U.S.</li>
+						<li>Traveling</li>
+					</ul>
+				</h4>
+
+				<div style="margin-left: 6%; margin-top:8%;">
+				Got an International-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
+				</div>
+    </div>
 	</div>
 
-
-	<div class="col-sm-4">
+	<div class="col-sm-4" style="margin-top: 2%; margin-top:7%">
+			  <div style="margin:2%">
+				  <%= image_tag "globe.jpg", width: "80%" %>
+			  </div>
 	</div>
 
-	<div class="col-sm-6 col-sm-offset-1">
-		<h3 style="margin-top: 12%; margin-left:5%;font-size: 20px">
-			<b>Our goal is to:</b>
-			<ul style="margin-left: 5%">
-				<li>Provide educational and culture awareness</li>
-				<li>Promote a better understanding of different culutres</li>
-				<li>Enhance a deeper appreciation of other cultures </li>
-			</ul>
-		</h3>
-	</div>
-	<div class="col-sm-4">
-		<div style="margin: 5%">
-			<%= image_tag "study_abroad.jpg", width: "80%" %>
-		</div>
-	</div>
-
-	<div class="col-sm-6 col-sm-offset-1">
-		<h4 style="margin-top:5%; margin-left:3%; font-size: 20px">
-			<b>Conversation Topics include: </b>
-			<ul style="margin-left: 5%">
-				<li>World Cultures</li>
-				<li>Studying Abroad</li>
-				<li>Living in another country</li>
-				<li>Moving to the U.S.</li>
-				<li>Travling</li>
-			</ul>
-		</h4>
-	</div>
-	<div class="col-sm-4">
-		<div style="margin:5%">
-			<%= image_tag "globe.jpg", width: "80%" %>
-		</div>
-	</div>
-
-	<div class="col-sm-8 col-sm-offset-1">
-		<div style="margin-left: 5%">
-		Got an International-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
-		</div>
-	</div>
 </div>
-
-</body>

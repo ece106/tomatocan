@@ -1,13 +1,13 @@
 class PurchaseMailer < ApplicationMailer
-  
+
   before_action do
-    @user = params[:user] 
+    @user = params[:user]
     @seller = params[:seller]
     @purchase = params[:purchase]
     @merchandise = params[:merchandise]
     @non_user_email = params[:non_user_email]
   end
-  
+
   before_action :set_url
   before_action :create_subject, only: [:purchase_received, :donation_received]
 
@@ -33,7 +33,7 @@ class PurchaseMailer < ApplicationMailer
     mail(to: @seller.email, subject: "#{@buyer_name} has made a donation")
   end
 
-  private 
+  private
 
   def inline_images
     img_path ="app/assets/images/social-share-button"
@@ -51,15 +51,15 @@ class PurchaseMailer < ApplicationMailer
   end
 
   def create_subject
-    if @user.present? 
+    if @user.present?
       @buyer_name = @user.name
-    else 
+    else
       @buyer_name = @purchase.email
     end
   end
 
   def set_url
-    @home_url = home_url(host: 'crowdpublish.TV')
+    @home_url = home_url(host: 'ThinQ.tv')
     # if you need more url options you can use this method to expand
   end
 
