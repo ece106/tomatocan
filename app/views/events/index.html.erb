@@ -1,6 +1,5 @@
 
 
-<<<<<<< HEAD
   <h2>Upcoming Events</h2>
 
   <%= link_to 'Create a New Event', new_event_path %> <br><br>
@@ -10,7 +9,6 @@
       <table class="table table-hover">
         <thead>
           <tr>
-=======
 <% if @events.count.nil? %>
   *** No events near you yet ***
 <% else %>
@@ -18,7 +16,6 @@
     <table class="table table-hover">
       <thead>
         <tr>
->>>>>>> 9a3ee4bf7c2932cc621a131d243719fcc1267fb6
           <th>Topic </th>
           <th style="text-align:center">When <div style="font-size:14px; text-align:center"> Pacific Daylight Time </div></th>
           <th style="text-align:center"> <div style="font-size:14px; text-align:center"> EDT </div></th>
@@ -50,11 +47,9 @@
     *** No events near you yet ***
   <% end %>
 
-<<<<<<< HEAD
 
       <%- #<%= will_paginate @events, renderer: BootstrapPagination::Rails-%>
-=======
+
 <%#= will_paginate @events, renderer: BootstrapPagination::Rails %>
 
 
->>>>>>> 9a3ee4bf7c2932cc621a131d243719fcc1267fb6
