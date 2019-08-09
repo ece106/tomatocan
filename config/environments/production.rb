@@ -7,13 +7,13 @@ config.action_mailer.smtp_settings = {
    :user_name => "crowdpublishtv.star@gmail.com",
    :password  => ENV['GMAIL_PWD'], # SMTP password is any valid API key
    :authentication => 'plain' # Mandrill supports 'plain' or 'login'
-#   :domain => 'www.crowdpublish.tv', # your domain to identify your server when connecting
+#   :domain => 'www.ThinQ.tv', # your domain to identify your server when connecting
  }
 # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
   config.force_ssl = false  #otherwise heroku reroute will say i'm a liar
 
-  config.action_mailer.default_url_options = { 
+  config.action_mailer.default_url_options = {
     :host => 'http://www.thinq.tv', :protocol => 'http' }
 
   # Code is not reloaded between requests.

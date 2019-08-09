@@ -1,8 +1,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="ThinQ tv" content="Where authors and actors earn more money from their loyal fans">
-<title>ThinQ.tv - The Future of Empowerment is Your Story</title>
+<meta name="ThinQ.tv" content="Conversations to make you THINQ and take action: Thought provoking conversations to feed your brain">
+<title>ThinQ.tv - Conversations to make you THINQ</title>
 </head>
+
+
 <div class="title">
 	<%= image_tag "tech.jpg", width:"100%" %>
 	<h1 class="text">Tech Tuesday</h1>
@@ -11,51 +13,65 @@
 
 <div class="row" >
   <div class="col-sm-6 col-sm-offset-1" >
-	<h2 style="margin-left: 3%; margin-top:5%; margin-right: 3%;font-size: 20px">
-	  <div style="font-size: 22px">Welcome to <b>Tech Tuesday!</b></div>
-		  <br>We're launching Tech topics with cover Web Development in Ruby on Rails conversations and UI/UX conversations.
-		  <br>Meet us <%= link_to 'on ThinQ.tv ', '/lisa' %> at 6:30 pm PDT every Tuesday.
-	</h2>
+		<div class ="row">
+			<div class="col-sm-12"
+	      <h2 style="margin-left: 3%; margin-top:5%; margin-right: 3%;font-size: 20px">
+	        <div style="font-size: 22px">Welcome to <b>Tech Tuesday!</b></div>
+		        <br>We're launching Tech topics with cover Web Development in Ruby on Rails conversations and UI/UX conversations.
+		        <br>Meet us on<%= link_to ' ThinQ.tv ', '/lisa' %> at 6:30 pm PDT every Tuesday.
+						 <br><br>
+	      </h2>
+		  </div>
+
+
+    <div class="col-sm-12">
+	    <h3 style="margin-top: 3%; margin-left: 5%; font-size: 20px">
+		    <b>Web Development in Ruby on Rails:</b>
+			    <ul style="margin-left: 5%">
+				    <li>Model View Controller code structures</li>
+				    <li>Ruby Gems</li>
+				    <li>Tests, Tests, & more Tests</li>
+						<br>
+			   </ul>
+	    </h3>
+    </div>
+
+
+    <div class="col-sm-12">
+	    <h4 style="margin-top: 5%; margin-left: 3%; font-size: 20px">
+		    <b>UX/UI conversations will cover topics in:</b>
+			    <ul style="margin-left: 5%">
+				    <li>The importance of UX</li>
+				    <li>How UX and UI go hand in hand</li>
+				    <li>Women in Tech</li>
+				    <li>Big Tech, Innovation and Entrepreneurship</li>
+			   </ul>
+	    </h4>
+    </div>
+	</div>
+
+    <div class="col-sm-12">
+	    <div style="margin:5%">
+				<br>
+		    Got a Tech-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
+				<br><br>
+  	  </div>
+    </div>
   </div>
 
-  <div class="col-sm-6 col-sm-offset-1">
-	  <h3 style="margin-top: 3%; margin-left: 5%; font-size: 20px">
-		<b>Web Development in Ruby on Rails:</b>
-			<ul style="margin-left: 5%">
-				<li>Model View Controller code structures</li>
-				<li>Ruby Gems</li>
-				<li>Tests, Tests, & more Tests</li>
-			</ul>
-	  </h3>
-  </div>
 
-  <div class="col-sm-4">
-	  <div style="margin: 5%">
-		  <%= image_tag "tech_ruby.jpg", width: "80%" %>
+	<div class="col-sm-4" style="margin-top: 2%;">
+		<br><br>
+		<div class="row">
+				<div style="margin: 5%">
+					<%= image_tag "tech_ruby.jpg", width: "70%" %>
+				</div>
+		</div>
+		<br>
+		<div class="row">
+			  <div style="margin:5%">
+				  <%= image_tag "UX_UI.jpg", width: "70%" %>
+			  </div>
 	  </div>
-  </div>
-
-  <div class="col-sm-6 col-sm-offset-1">
-	  <h4 style="margin-top: 5%; margin-left: 3%; font-size: 20px">
-		  <b>UX/UI conversations will cover topics in:</b>
-			<ul style="margin-left: 5%">
-				<li>The importance of UX</li>
-				<li>How UX and UI go hand in hand</li>
-				<li>Women in Tech</li>
-				<li>Big Tech, Innovation and Entrepreneurship</li>
-			</ul>
-	  </h4>
-  </div>
-
-  <div class="col-sm-4">
-	  <div style="margin:5%; margin-top: 10%;">
-		  <%= image_tag "UX_UI.jpg", width: "80%" %>
-	  </div>
-  </div>
-
-  <div class="col-sm-8 col-sm-offset-1">
-	  <div style="margin:5%">
-		  Got a Tech-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
-  	</div>
-  </div>
+	</div>
 </div>
