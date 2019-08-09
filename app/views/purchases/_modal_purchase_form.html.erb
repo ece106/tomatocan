@@ -1,0 +1,49 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Donate
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered new-purchase-modal-wrapper" role="document">
+    <%= form_for @purchase do |form| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title donation-title" id="exampleModalLongTitle">Support Our Host</h3>
+        </div>
+        <div class="modal-body new-purchase-modal">
+          <%= form.hidden_field :stripe_card_token %>
+          <%= form.hidden_field :group_id, value: params[:group_id] %>
+          <%= form.hidden_field :pricesold, value: params[:pricesold] %>
+          <%= form.hidden_field :author_id, value: params[:author_id] %>
+          <%= form.hidden_field :user_id, value: user.id %>
+          <%= form.hidden_field :merchandise_id, value: merch.id %>
+          <%#= form.hidden_field :livestream, value: true %>
+          <div class="form-wrapper">
+            <%= text_field_tag :email, nil, name: nil, placeholder: 'Email', class: 'form-control' %>
+          </div>
+          <div class="form-wrapper">
+            <%= text_field_tag :card_number, nil, name: nil, placeholder: 'Card Number', class: 'form-control' %>
+          </div>
+          <div class="form-wrapper">
+            <%= text_field_tag :card_code, nil, name: nil, placeholder: 'CVV', class: 'form-control' %>
+          </div>
+          <div class="modal-date-selector">
+            <%= select_month nil, { add_month_numbers: true }, { name: nil, id: 'card_month' } %>
+            <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 5 }, { name: nil, id: 'card_year' } %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <%= form.submit ("Donate $" + sprintf('%.2f', merch.price) + "!"), class: 'purchase-modal-btn' %>
+          </div>
+          <br />
+          <div>
+            <%= link_to "I don't want to support " + user.name, data: { dismiss: "modal" } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

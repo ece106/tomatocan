@@ -1,6 +1,4 @@
 class Purchase < ApplicationRecord
-  require 'payment_gateway'
-
   belongs_to :user, optional: true
   belongs_to :merchandise, optional: true
 
@@ -8,15 +6,17 @@ class Purchase < ApplicationRecord
   validates :pricesold, presence: true
   validates :authorcut, presence: true
 
+  include PaymentGateway
+
   attr_accessor :amount, :application_fee, :seller,
                 :seller_stripe_account, :token, :currency
 
   CURRENCY = 'usd'.freeze
 
   def save_with_payment
-    setup_payment_information
-    merchandise_buy_or_donate? ? merchandise_payment : donation_payment
     begin
+      setup_payment_information
+      merchandise_buy_or_donate? ? merchandise_payment : donation_payment
       save!
     rescue Stripe::InvalidRequestError => e
     end
@@ -110,16 +110,6 @@ class Purchase < ApplicationRecord
     @merchandise.buttontype == 'Buy' ? true : false
   end
 
-  # def returning_customer?
-  #   self.stripe_customer_token.present? ? true : false
-  # end
-
-  def retrieve_seller
-    merchandise = Merchandise.find(self.merchandise_id)
-    seller      = merchandise.user_id
-    seller
-  end
-
   def retrieve_customer_card(current_user)
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
     sourceid = customer.default_source
@@ -127,7 +117,7 @@ class Purchase < ApplicationRecord
     card
   end
 
-  # private
+  private
 
   def purchase_anonymous?
     self.email.present? ? true : false
