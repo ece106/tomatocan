@@ -92,7 +92,7 @@
             <% end %>
 				
             <% if (merch.buttontype) == 'Donate' %>
-              <%#= render "purchases/modal_purchase_form", merch: merch, user: @user %>
+              <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
               <% if request.host == "crowdpublishtv.herokuapp.com" %>
                 <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
               <% end %>
@@ -121,6 +121,7 @@
             <% end %>
 
           <% if (merch.buttontype) == 'Donate'%>
+            <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
             <% if request.host == "crowdpublishtv.herokuapp.com" %>
               <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
             <% end %>
