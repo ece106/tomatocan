@@ -16,11 +16,12 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   end
 
   test 'user makes a dontation with a new card' do
-    user_sign_in 
-    visit new_purchase_path pricesold: @purchase.pricesold
+    user_sign_in @user_two
+    visit "/#{@user_one.permalink}" 
+    click_on 'Donate'
     card_information_entry
     click_on 'Donate'   
-    assert_text 'You have successfully completed the purchase!'
+    assert_equal "/#{@user_one.permalink}", current_path
   end
   
   test 'user makes a donation with stripe_card_token present ' do
@@ -32,30 +33,19 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
 
   #non user makes a donation
   
-  def user_sign_in  
-    visit root_path
-    click_on id: 'sign-in-btn'
-    fill_in id: 'user_email', with: "dontchangethisemail@orthisfixture.entry"
-    fill_in id: 'user_password', with: "user1234"
+  def user_sign_in  user
+    visit root_path 
+    click_on 'Sign In' 
+    fill_in id: 'user_email', with: "#{user.email}"
+    fill_in id: 'user_password', with: "#{user.password}"
     click_on class: 'form-control btn-primary'
   end
 
   def card_information_entry 
-    fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
     fill_in id: 'card_number', with: "#{@card_number}"
     fill_in id: 'card_code', with: "#{@cvc}"
     select 'August', from: 'card_month'
     select '2024', from: 'card_year'
   end 
-
- # def create_customer
-  #  customer = Stripe::Customer.create(source: ,
-   #                                    description:,
-    #                                   email: 
-
-
-    
- # end
-  
 
 end 

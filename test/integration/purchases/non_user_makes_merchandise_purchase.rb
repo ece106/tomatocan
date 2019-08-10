@@ -21,7 +21,6 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     fill_in id: 'card_number', with: "#{SecureRandom.alphanumeric(16)}" #wrong credit card info 
     click_on 'purchase-btn'
-    assert has_css? '#stripe_error'
     assert_raises('e') { click_on 'purchase-btn' }
   end
 
@@ -30,12 +29,9 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     click_on 'Buy'
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     card_information_entry
-    @purchase.setup_payment_information
-    stripe_card_token = stripe_token_create
-    @purchase.stripe_card_token = stripe_card_token.id
-    click_on 'purchase-btn' 
+    assert page.has_button? 'Purchase'
+    click_on 'Purchase' 
     assert_equal "/#{@user_one.permalink}", current_path
-    refute has_css? '#stripe_error'
   end
 
   private
