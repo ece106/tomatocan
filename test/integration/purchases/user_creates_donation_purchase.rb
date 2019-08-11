@@ -21,7 +21,9 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     visit "/#{@user_one.permalink}"
     first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
     card_information_entry
+    binding.pry
     click_on 'Purchase'   
+
     assert_equal "/#{@user_one.permalink}", current_path
   end
   
@@ -31,12 +33,15 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @user_two.update_attribute :stripe_customer_token, token.id
     visit "/#{@user_one.permalink}"
     first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
+
     assert page.has_css? '.last4'
+
     click_on 'Buy now'
+
     assert_equal "/#{@user_one.permalink}", current_path
   end
 
-  #non user makes a donation
+  private 
   
   def user_sign_in  user
     visit root_path 

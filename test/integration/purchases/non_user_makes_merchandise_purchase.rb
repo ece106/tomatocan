@@ -17,21 +17,29 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
 
   test 'non user enters in wrong information card declined' do
     visit "/#{@user_one.permalink}"
-    visit new_purchase_path merchandise_id: @merchandise.id
+    first(:link, "#{@merchandise.buttontype} for $#{@merchandise.price}0!").click
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     fill_in id: 'card_number', with: "#{SecureRandom.alphanumeric(16)}" #wrong credit card info 
-    click_on 'purchase-btn'
-    assert_raises('e') { click_on 'purchase-btn' }
+    click_on 'Purchase'
+    assert @purchase.errors.any?
+    assert_current_path new_purchase_path merchandise_id: @merchandise.id
+    assert_raises('e')
   end
 
   test 'non user makes merchandise purchase with new card' do
     visit "/#{@user_one.permalink}"
-    click_on 'Buy'
+    first(:link, "#{@merchandise.buttontype} for $#{@merchandise.price}0!").click
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     card_information_entry
+
     assert page.has_button? 'Purchase'
-    click_on 'Purchase' 
-    assert_equal "/#{@user_one.permalink}", current_path
+
+    click_on 'Purchase'
+    
+    refute @purchase.errors.any? 
+
+    #assert current path when recipts are done
+    
   end
 
   private
