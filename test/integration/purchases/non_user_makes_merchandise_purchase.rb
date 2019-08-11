@@ -36,12 +36,6 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
 
   private
 
-  def stripe_token_create
-    Stripe::Token.create( { card: { number: @card_number,
-                                    exp_month: '8',
-                                    exp_year: '2060',
-                                    cvc: '123' } } ) 
-  end
 
   def card_information_entry 
     fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"

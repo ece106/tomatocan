@@ -9,6 +9,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   setup do
     @purchase = purchases(:one)
     @user_one = users(:one) 
+    @donation_merch = merchandises(:seven)
     @user_two = users(:two)
     @card_number = "4242424242424242" 
     @cvc = "123"
@@ -17,18 +18,22 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
 
   test 'user makes a dontation with a new card' do
     user_sign_in @user_two
-    visit "/#{@user_one.permalink}" 
-    click_on 'Donate'
+    visit "/#{@user_one.permalink}"
+    first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
     card_information_entry
-    click_on 'Donate'   
+    click_on 'Purchase'   
     assert_equal "/#{@user_one.permalink}", current_path
   end
   
-  test 'user makes a donation with stripe_card_token present ' do
-    user_sign_in
-    
- 
-
+  test 'user makes a donation with stripe_customer_token present' do
+    user_sign_in @user_two
+    token = stripe_token_create @user_two
+    @user_two.update_attribute :stripe_customer_token, token.id
+    visit "/#{@user_one.permalink}"
+    first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
+    assert page.has_css? '.last4'
+    click_on 'Buy now'
+    assert_equal "/#{@user_one.permalink}", current_path
   end
 
   #non user makes a donation
@@ -48,4 +53,15 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     select '2024', from: 'card_year'
   end 
 
+  def stripe_token_create user
+    card_token = Stripe::Token.create( { card: { number: "#{@card_number}",
+                                    exp_month: '8',
+                                    exp_year: '2020',
+                                    cvc: '123' } } ) 
+    Stripe::Customer.create(source: card_token,
+                            description: 'test',
+                            email: user.email)
+ 
+
+  end
 end 
