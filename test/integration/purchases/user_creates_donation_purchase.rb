@@ -18,31 +18,38 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
 
   test 'user makes a dontation with a new card' do
     user_sign_in @user_two
-    visit "/#{@user_one.permalink}"
-    first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
+    visit_and_select_donation
     card_information_entry
     binding.pry
-    click_on 'Purchase'   
-
-    assert_equal "/#{@user_one.permalink}", current_path
+    click_on 'Donation'   
   end
   
   test 'user makes a donation with stripe_customer_token present' do
     user_sign_in @user_two
     token = stripe_token_create @user_two
     @user_two.update_attribute :stripe_customer_token, token.id
-    visit "/#{@user_one.permalink}"
-    first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
-
+    visit_and_select_donation
     assert page.has_css? '.last4'
+    assert page.has_button? 'Donate now'
 
-    click_on 'Buy now'
+  end
 
-    assert_equal "/#{@user_one.permalink}", current_path
+  test 'user uses different card to donate' do
+    user_sign_in @user_two
+    token = stripe_token_create @user_two
+    visit_and_select_donation
+    assert page.has_css? '.diffcard'
+    click_on class: 'diffcard'
+    assert page.has_css? '#card_number' 
   end
 
   private 
   
+  def visit_and_select_donation
+    visit "/#{@user_one.permalink}"
+    first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
+  end
+
   def user_sign_in  user
     visit root_path 
     click_on 'Sign In' 

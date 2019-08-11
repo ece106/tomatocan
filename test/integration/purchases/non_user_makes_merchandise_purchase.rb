@@ -7,7 +7,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
   Capybara::Screenshot.autosave_on_failure = false
 
   setup do
-    @purchase = purchases(:one)
+    @purchase = purchases(:two)
     @user_one = users(:one) 
     @card_number = "4242424242424242" 
     @cvc = "123"
@@ -18,24 +18,30 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
   test 'non user enters in wrong information card declined' do
     visit "/#{@user_one.permalink}"
     first(:link, "#{@merchandise.buttontype} for $#{@merchandise.price}0!").click
+
+    assert page.has_css? '#purchase_email'
+
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
-    fill_in id: 'card_number', with: "#{SecureRandom.alphanumeric(16)}" #wrong credit card info 
     click_on 'Purchase'
+
     assert @purchase.errors.any?
+
     assert_current_path new_purchase_path merchandise_id: @merchandise.id
-    assert_raises('e')
   end
 
   test 'non user makes merchandise purchase with new card' do
     visit "/#{@user_one.permalink}"
     first(:link, "#{@merchandise.buttontype} for $#{@merchandise.price}0!").click
+    
+    assert page.has_css? '#purchase_email'
+
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     card_information_entry
 
     assert page.has_button? 'Purchase'
 
     click_on 'Purchase'
-    
+
     refute @purchase.errors.any? 
 
     #assert current path when recipts are done
