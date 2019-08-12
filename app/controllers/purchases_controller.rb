@@ -15,12 +15,15 @@ class PurchasesController < ApplicationController
   end
 
   def new
-    if params[:pricesold].present? # Donation being made
-      @purchase = Purchase.new
-    elsif params[:merchandise_id].present? #Purchase being made
-      @merchandise = Merchandise.find(params[:merchandise_id])
-      @purchase = @merchandise.purchases.new
-    end
+    @purchase = Purchase.new
+    @merchandise = Merchandise.find(params[:merchandise_id])
+    # NOTE: IDK about this
+    # if params[:pricesold].present? # Donation being made
+    #   @purchase = Purchase.new
+    # elsif params[:merchandise_id].present? #Purchase being made
+    #   @merchandise = Merchandise.find(params[:merchandise_id])
+    #   @purchase = @merchandise.purchases.new
+    # end
     if user_signed_in? && current_user.stripe_customer_token.present?
       @card     = @purchase.retrieve_customer_card(current_user)
       @last4    = @card.last4

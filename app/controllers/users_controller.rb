@@ -29,6 +29,14 @@ class UsersController < ApplicationController
 
   def show
     @purchase = Purchase.new
+    # NOTE: IDK about this
+    # if user_signed_in? && current_user.stripe_customer_token.present?
+    #   @card     = @purchase.retrieve_customer_card(current_user)
+    #   @last4    = @card.last4
+    #   @expmonth = @card.exp_month
+    #   @expyear  = @card.exp_year
+    # end
+
     #    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     @numusrgroups = 0
     if user_signed_in?
