@@ -85,23 +85,22 @@
               <% if daysaway.nil? || daysaway.zero? %>
                 <td>Last day!</td>
               <% elsif (daysaway <= 7) %>
-                <td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+                <td>Only <%= pluralize(daysaway.to_s, 'day') %> left!</td>
               <% else %>
-                <td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+                <td><%= pluralize(daysaway.to_s, 'day') %> left!</td>
               <% end %>
             <% end %>
 				
             <% if (merch.buttontype) == 'Donate' %>
-              <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
-              <% if request.host == "crowdpublishtv.herokuapp.com" %>
-                <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
-              <% end %>
               <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
             <% else %>
               <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
             <% end %>
 				
-            <% if @user.stripeid.present? || @user.id == 143 %>   
+            <% if @user.stripeid.present? %>   
+              <% if request.host == "crowdpublishtv.herokuapp.com" && merch.buttontype == 'Donate' %>
+                <%= render "purchases/modal_purchase_form", merch: merch, user: @user, buy_price: buyPrice %>
+              <% end %>
               <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
             <% else %>
               <br> * <%= @user.name %> cannot accept funds yet
@@ -114,23 +113,22 @@
               <% if daysaway.nil? || daysaway.zero? %>
                 <td>Last day!</td>
               <% elsif (daysaway <= 7) %>
-                <td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+                <td>Only <%= pluralize(daysaway.to_s, 'day') %> left!</td>
               <% else %>
-                <td><%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left!</td>
+                <td><%= pluralize(daysaway.to_s, 'day') %> left!</td>
               <% end %>
             <% end %>
 
           <% if (merch.buttontype) == 'Donate'%>
-            <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
-            <% if request.host == "crowdpublishtv.herokuapp.com" %>
-              <%= render "purchases/modal_purchase_form", merch: merch, user: @user %>
-            <% end %>
             <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
           <% else%>
             <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
           <% end%>
 				
-          <% if @user.stripeid.present? || @user.id == 143 %>   
+          <% if @user.stripeid.present? %>   
+            <% if request.host == "crowdpublishtv.herokuapp.com" && merch.buttontype == 'Donate' %>
+              <%= render "purchases/modal_purchase_form", merch: merch, user: @user, buy_price: buyPrice %>
+            <% end %>
             <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
           <% else %>
             <br> * <%= @user.name %> cannot accept funds yet

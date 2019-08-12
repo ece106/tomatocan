@@ -95,7 +95,6 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test 'to create a donation for customer who is registered with Stripe and whose email is posted' do
-    puts 'test 1'
     sign_in @purchaser
     cardToken = Stripe::Token.create(
       card: {
@@ -105,7 +104,7 @@ class PurchasesControllerTest < ActionController::TestCase
         cvc: '123'
       }
     )
-    puts cardToken['id'] # stripe_card_token
+    # puts cardToken['id'] # stripe_card_token
     customer = Stripe::Customer.create(
       description: @purchaser.name,
       email: @purchaser.email
@@ -117,7 +116,7 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test 'to create a donation for customer who is registered with Stripe but whose email is not posted' do
-    puts 'test 2'
+    # puts 'test 2'
     sign_in @purchaser
     cardToken = Stripe::Token.create(
       card: {
@@ -138,7 +137,7 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test 'to create a donation for customer who is not registered with Stripe' do
-    puts 'test 3'
+    # puts 'test 3'
     sign_in @purchaser
     cardToken = Stripe::Token.create(
       card: {
@@ -158,7 +157,7 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test 'to create a merchandise purchase for merchandise(:one) when the purchaser is signed in, email is posted and is registered with Stripe' do
-    puts 'test 4'
+    # puts 'test 4'
     sign_in @purchaser
     cardToken = Stripe::Token.create(
       card: {
@@ -179,7 +178,7 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test 'to create a merchandise purchase for merchandise(:one) when purchaser is not signed in but has email posted and is registered with Stripe' do
-    puts 'test 5'
+    # puts 'test 5'
     cardToken = Stripe::Token.create(
       card: {
         number: '4242424242424242',
@@ -199,7 +198,7 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test 'to create a merchandise purchase for merchandise(:one) when purchaser is not signed in, has no email address posted and is not registered with Stripe' do
-    puts 'test 6'
+    # puts 'test 6'
     cardToken = Stripe::Token.create(
       card: {
         number: '4242424242424242',
