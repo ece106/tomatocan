@@ -11,44 +11,50 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     @user_one = users(:one) 
     @card_number = "4242424242424242" 
     @cvc = "123"
-    @merchandise = merchandises(:one)
+    @merchandise = merchandises(:one_empty_attachments)
+    @merchandise_with_attachment = merchandises(:one) 
 
   end
 
   test 'non user enters in wrong information card declined' do
-    visit "/#{@user_one.permalink}"
-    first(:link, "#{@merchandise.buttontype} for $#{@merchandise.price}0!").click
-
+    visit_and_select_buy @user_one, @merchandise
     assert page.has_css? '#purchase_email'
-
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     click_on 'Purchase'
-
+    binding.pry
     assert @purchase.errors.any?
-
     assert_current_path new_purchase_path merchandise_id: @merchandise.id
   end
 
   test 'non user makes merchandise purchase with new card' do
-    visit "/#{@user_one.permalink}"
-    first(:link, "#{@merchandise.buttontype} for $#{@merchandise.price}0!").click
-    
+    visit_and_select_buy @user_one, @merchandise
     assert page.has_css? '#purchase_email'
-
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     card_information_entry
-
     assert page.has_button? 'Purchase'
-
     click_on 'Purchase'
-
+    binding.pry
     refute @purchase.errors.any? 
 
     #assert current path when recipts are done
+  end
+  
+  test 'non user makes a merchandise purchase with attachments' do
+    visit_and_select_buy @user_one, @merchandise_with_attachment
+    fill_in id: 'purchase_email', with: "onetimeemail@email.com"
+    card_information_entry
+    assert page.has_button? 'Purchase'
+    click_on 'Purchase'
     
+    #assert that the merchandise is sending
   end
 
   private
+
+  def visit_and_select_buy seller, merchandise
+    visit "/#{seller.permalink}"
+    first(:link, "#{merchandise.buttontype} for $#{merchandise.price}0!").click
+  end
 
 
   def card_information_entry 

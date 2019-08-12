@@ -21,7 +21,8 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     visit_and_select_donation
     card_information_entry
     binding.pry
-    click_on 'Donation'   
+  #  assert page.has_button? 'Donate'
+    click_on 'purchase-btn'   
   end
   
   test 'user makes a donation with stripe_customer_token present' do
@@ -41,6 +42,9 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     assert page.has_css? '.diffcard'
     click_on class: 'diffcard'
     assert page.has_css? '#card_number' 
+    assert page.has_css? '#card_code'
+    assert page.has_css? '#card_month'
+    assert page.has_css? '#card_year'
   end
 
   private 
