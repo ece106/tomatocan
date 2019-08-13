@@ -1,22 +1,19 @@
-<div class="calendar-container">
-  <h2><b>Conversations</b></h2>
-  <div class="container">
-    <nav class="navbar">
-      <b><%= link_to "Technology", "#" %></b>
-      <b><%= link_to "Faith", "#" %></b>
-      <b><%= link_to "International", "#" %></b>
-    </nav>
-
-    <%= month_calendar attribute: :start_at, events: @events do |date, events| %>
-      <%= date.day %>
-
-      <% @events.each do |event| %>
-        <br />
-        <% if event.start_at.strftime("%Y-%m-%d").eql? date.strftime("%Y-%m-%d")  %>
-
-          <%= render "events/show_modal", event: event %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
+<div>
+  <h1>Conversations</h1>
 </div>
+
+<nav class="navbar">
+  <span class="cal-nav-action"><%= link_to "Technology", "#" %></span>
+  <span class="cal-nav-action"><%= link_to "Faith", "#" %></span>
+  <span class="cal-nav-action"><%= link_to "International", "#" %></span>
+</nav>
+
+<%= month_calendar attribute: :start_at, events: @events do |date, events| %>
+  <%= date.day %>
+  <% @events.each do |event| %>
+    <br />
+    <% if event.start_at.strftime("%Y-%m-%d").eql? date.strftime("%Y-%m-%d")  %>
+      <%= render "events/show_modal", event: event %>
+    <% end %>
+  <% end %>
+<% end %>

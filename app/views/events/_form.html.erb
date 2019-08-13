@@ -1,0 +1,26 @@
+<div class="row">
+  <%= f.hidden_field :usrid, value: current_user.id %>
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "*Title of Conversation" %></h3>
+    <p class="help-block">What will you be discussing in your conversation ?</p>
+    <%= f.text_field :name, size: 80 %><p>
+  </div>
+
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "Start Time" %></h3>
+    <p class="help-block">Pacific Daylight Time (PDT)</p>
+    <%= f.datetime_select :start_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 1 %>
+  </div>
+
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "End Time" %></h3>
+    <p class="help-block">Pacific Daylight Time (PDT)</p>
+    <%= f.datetime_select :end_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 2 %><br>
+  </div>
+
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "Details about Conversation Topic" %></h3>
+    <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
+    <%= f.text_area :desc, cols: 82, rows: 7 %><p>
+  </div>
+</div>
