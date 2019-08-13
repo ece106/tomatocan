@@ -22,8 +22,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     click_on 'Purchase'
     binding.pry
-    assert @purchase.errors.any?
-    assert_current_path new_purchase_path merchandise_id: @merchandise.id
+    refute_empty @purchase.errors.full_messages  
   end
 
   test 'non user makes merchandise purchase with new card' do
@@ -34,8 +33,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     assert page.has_button? 'Purchase'
     click_on 'Purchase'
     binding.pry
-    refute @purchase.errors.any? 
-
+    assert_empty @purchase.errors.full_messages
     #assert current path when recipts are done
   end
   
@@ -45,7 +43,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'Purchase'
-    
+    #assert the recipt page  
     #assert that the merchandise is sending
   end
 
@@ -53,7 +51,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
 
   def visit_and_select_buy seller, merchandise
     visit "/#{seller.permalink}"
-    first(:link, "#{merchandise.buttontype} for $#{merchandise.price}0!").click
+    find(:link, "#{merchandise.buttontype} for $#{merchandise.price}0!", match: :first).click
   end
 
 

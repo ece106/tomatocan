@@ -14,7 +14,7 @@
       <%= f.hidden_field :group_id, :value => params[:group_id] %>
       <%= f.hidden_field :pricesold, :value => params[:pricesold] %>
       <%= f.hidden_field :author_id, :value => params[:author_id] %>
-      <%= f.hidden_field :merchandise_id %>
+      <%= f.hidden_field :merchandise_id, :value => params[:merchandise_id] %>
       <% if @purchase.errors.any? %>
         <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
         <% @purchase.errors.full_messages.each do |msg| %> 

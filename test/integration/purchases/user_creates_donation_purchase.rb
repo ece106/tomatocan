@@ -20,7 +20,6 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     user_sign_in @user_two
     visit_and_select_donation
     card_information_entry
-    binding.pry
   #  assert page.has_button? 'Donate'
     click_on 'purchase-btn'   
   end
@@ -51,7 +50,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   
   def visit_and_select_donation
     visit "/#{@user_one.permalink}"
-    first(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!").click
+    find(:link, "#{@donation_merch.buttontype} $#{@donation_merch.price}0!", match: :first).click
   end
 
   def user_sign_in  user
