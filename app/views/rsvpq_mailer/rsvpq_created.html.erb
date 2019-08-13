@@ -15,7 +15,7 @@
       <h1 style="font-size: 40px; color: #8B0942; font-style: bold;" align="center"> You are on our guest list!</h1>
       <br>
       <p>Thank you <%= @user.name %> for creating a RSVP!.<br><br>
-      We received your RSVP for this event: <%= link_to "Event", @url %><br><br><br>
+      We received your RSVP for this event: <%= link_to "Event", @event.url %><br><br><br>
       Here are your event details:<br>
       Event name: <%=@event.name%><br>
       Hosted by: <%=@host.name%> <br>
