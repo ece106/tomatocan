@@ -43,9 +43,6 @@
             <%= select_month nil, { add_month_numbers: true }, { name: nil, id: 'card_month' } %>
             <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 5 }, { name: nil, id: 'card_year' } %>
           </div>
-          <div class="form-wrapper">
-            <%= text_area :message, nil, name: nil, placeholder: 'Give feedback!', class: 'form-control', size: "180" %>
-          </div>
         </div>
         <div class="modal-footer">
           <div>

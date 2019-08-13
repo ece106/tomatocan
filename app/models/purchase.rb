@@ -42,6 +42,7 @@ class Purchase < ApplicationRecord
     self.amount                = calculate_amount(self.pricesold)
     self.application_fee       = calculate_application_fee(self.amount)
     self.currency              = CURRENCY
+    binding.pry
   end
 
   # Creates the stripe charge object for an anonymous purchase with a merchandise.
@@ -117,26 +118,23 @@ class Purchase < ApplicationRecord
     card
   end
 
-  private
-
   def purchase_anonymous?
     self.email.present? ? true : false
+  end
 
-    # def retrieve_seller_stripe_account(seller)
-    #   Stripe::Account.retrieve(seller.stripeid)
-    # end
+  # def retrieve_seller_stripe_account(seller)
+  #   Stripe::Account.retrieve(seller.stripeid)
+  # end
 
-    def calculate_amount(pricesold)
-      (pricesold * 100).to_i
-    end
+  def calculate_amount(pricesold)
+    (pricesold * 100).to_i
+  end
 
-    def calculate_authorcut(pricesold)
-      ((pricesold * 92.1).to_i - 30).to_f/100
-    end
+  def calculate_authorcut(pricesold)
+    ((pricesold * 92.1).to_i - 30).to_f/100
+  end
 
-    def calculate_application_fee(amount)
-      ((amount * 5)/100)
-    end
-
+  def calculate_application_fee(amount)
+    ((amount * 5)/100)
   end
 end
