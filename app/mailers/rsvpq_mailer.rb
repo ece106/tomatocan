@@ -4,6 +4,7 @@ class RsvpqMailer < ApplicationMailer
     @rsvpq = params[:rsvpq]
     @user  = params[:user]
     @event = params[:event]
+    @host = User.find(@event.usrid)
   end
 
   before_action :set_url, only: [:rsvpq_created]
