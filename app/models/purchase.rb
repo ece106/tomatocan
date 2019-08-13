@@ -9,7 +9,7 @@ class Purchase < ApplicationRecord
   include PaymentGateway
 
   attr_accessor :amount, :application_fee, :seller,
-                :seller_stripe_account, :token, :currency
+    :seller_stripe_account, :token, :currency
 
   CURRENCY = 'usd'.freeze
 
@@ -121,22 +121,22 @@ class Purchase < ApplicationRecord
 
   def purchase_anonymous?
     self.email.present? ? true : false
+
+    # def retrieve_seller_stripe_account(seller)
+    #   Stripe::Account.retrieve(seller.stripeid)
+    # end
+
+    def calculate_amount(pricesold)
+      (pricesold * 100).to_i
+    end
+
+    def calculate_authorcut(pricesold)
+      ((pricesold * 92.1).to_i - 30).to_f/100
+    end
+
+    def calculate_application_fee(amount)
+      ((amount * 5)/100)
+    end
+
   end
-
-  # def retrieve_seller_stripe_account(seller)
-  #   Stripe::Account.retrieve(seller.stripeid)
-  # end
-
-  def calculate_amount(pricesold)
-    (pricesold * 100).to_i
-  end
-
-  def calculate_authorcut(pricesold)
-    ((pricesold * 92.1).to_i - 30).to_f/100
-  end
-
-  def calculate_application_fee(amount)
-    ((amount * 5)/100)
-  end
-
 end
