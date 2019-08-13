@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+<div id="show-event">
+  <%= link_to "", data: { toggle: 'modal', target: '#showEventModal_' + event.id.to_s }, remote: true do %>
+    <span class="badge badge-light">
+
+      <%= event.name %>
+    </span>
+  <% end %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="showEventModal_<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <%= params %>
+        <h1 class="modal-title" id="exampleModalLongTitle">
+          <%= link_to event.name, event %>
+        </h1>
+        <h3>Hosted by: <%= link_to retrieve_host(event).name, "#" %></h3>
+        <h3><%= event.start_at.strftime("%I:%M %p") %></h3>
+      </div>
+      <div class="modal-body">
+        <p><%= event.desc %></p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Learn More", event %>
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def retrieve_host event 
+    event.user_id.nil? ? User.find(event.usrid) : User.find(event.user_id)
+  end
+
   def full_title(page_title)
     base_title = "ThinQ.tv"
     if page_title.empty?
