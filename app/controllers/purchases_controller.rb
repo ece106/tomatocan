@@ -37,7 +37,7 @@ class PurchasesController < ApplicationController
     @purchase_mailer_hash          = { purchase: @purchase }
     @merchandise                   = Merchandise.find(@purchase.merchandise_id)
     @seller                        = User.find(@merchandise.user_id)
-    # @purchase.update_attribute(:pricesold, @merchandise.price)
+
     @purchase_mailer_hash[:seller] = @seller
 
     case @merchandise.buttontype

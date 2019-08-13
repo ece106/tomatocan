@@ -6,9 +6,13 @@ class Purchase < ApplicationRecord
   validates :pricesold, presence: true
   validates :authorcut, presence: true
 
+  validates :email, presence: true
+  validates :card_number, presence: true
+  validates :card_code, presence: true
+
   include PaymentGateway
 
-  attr_accessor :amount, :application_fee, :seller,
+  attr_accessor :card_number, :card_code, :amount, :application_fee, :seller,
     :seller_stripe_account, :token, :currency
 
   CURRENCY = 'usd'.freeze
@@ -42,7 +46,6 @@ class Purchase < ApplicationRecord
     self.amount                = calculate_amount(self.pricesold)
     self.application_fee       = calculate_application_fee(self.amount)
     self.currency              = CURRENCY
-    binding.pry
   end
 
   # Creates the stripe charge object for an anonymous purchase with a merchandise.

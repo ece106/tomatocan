@@ -18,13 +18,15 @@
           <%= form.hidden_field :author_id, value: params[:author_id] %>
           <%= form.hidden_field :merchandise_id, value: merch.id %>
           <%#= form.hidden_field :user_id, value: user.id %>
-          <%#= form.hidden_field :livestream, value: true %>
           <% if @purchase.errors.any? %>
             <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
             <% @purchase.errors.full_messages.each do |msg| %> 
               <%= msg %>
             <% end %>
           <% end %>
+          <div id="stripe_error">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          </div>
           <div class="form-wrapper">
             <% if user_signed_in? %>
               <%= f.hidden_field :user_id, value: current_user.id %>
