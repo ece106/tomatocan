@@ -6,10 +6,14 @@ class Purchase < ApplicationRecord
   validates :pricesold, presence: true
   validates :authorcut, presence: true
 
+  validates :email, presence: true
+  validates :card_number, presence: true
+  validates :card_code, presence: true
+
   include PaymentGateway
 
-  attr_accessor :amount, :application_fee, :seller,
-                :seller_stripe_account, :token, :currency
+  attr_accessor :card_number, :card_code, :amount, :application_fee, :seller,
+    :seller_stripe_account, :token, :currency
 
   CURRENCY = 'usd'.freeze
 
@@ -117,8 +121,6 @@ class Purchase < ApplicationRecord
     card
   end
 
-  private
-
   def purchase_anonymous?
     self.email.present? ? true : false
   end
@@ -138,5 +140,4 @@ class Purchase < ApplicationRecord
   def calculate_application_fee(amount)
     ((amount * 5)/100)
   end
-
 end
