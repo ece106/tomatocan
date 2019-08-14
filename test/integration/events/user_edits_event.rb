@@ -47,7 +47,6 @@ class UserEditsEvent < ActionDispatch::IntegrationTest
 
     assert page.has_content? "Updating Event Name"
     assert page.has_content? "New Event Description"
-    binding.pry
   end
 
   private
