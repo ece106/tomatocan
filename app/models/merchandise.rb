@@ -16,21 +16,21 @@ class Merchandise < ApplicationRecord
   mount_uploader :merchpdf, MerchpdfUploader
 
   def get_filename_and_data
-    filename_and_data = []
+    filename_and_data = {}
     self.attributes.each do  |name, value|
       case name
       when 'audio'
-        filename_and_data = [value, audio]
+        filename_and_data = {filename: value, data: audio}
       when 'graphic'
-        filename_and_data = [value, graphic]
+        filename_and_data = {filename: value, data: graphic}
       when 'video'
-        filename_and_data = [value, video]
+        filename_and_data = {filename: value, data: video}
       when 'merchpdf'
-        filename_and_data = [value, merchpdf]
+        filename_and_data = {filename: value, data: merchpdf}    
       when 'merchmobi'
-        filename_and_data = [value, merchmobi]
+        filename_and_data = {filename: value, data: merchmobi}
       when 'merchepub'
-        filename_and_data = [value, merchepub]
+        filename_and_data = {filename: value, data: merchepub}
       end
     end
     filename_and_data
