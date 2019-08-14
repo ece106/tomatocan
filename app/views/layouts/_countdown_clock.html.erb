@@ -9,8 +9,8 @@
   <% if Time.current < Time.parse(start_time) %>
     <div id="clockdiv">
       <div>
-      <span class="days"></span>
-      <div class="smalltext">Days</div>
+        <span class="days"></span>
+        <div class="smalltext">Days</div>
       </div>
       <div>
         <span class="hours"></span>
@@ -33,11 +33,11 @@
       <br>
       Hosted by: <%= link_to user.name, user.permalink %>
     </div>
-  <% elsif (Time.current > Time.parse(start_time)) && (Time.current < Time.parse(end_time)) %>
+    <% elsif (Time.current > Time.parse(start_time)) && (Time.current < Time.parse(end_time)) %>
     <div id="eventCurrentdiv">
       <h3><%= link_to "\"" + name + "\"", address, :class=> "currentEvent", title: description, 'data-toggle': "tooltip", 'data-placement': "bottom" %></h3><p> is live right now!</p>
       <br>
       Hosted by: <%= link_to user.name, user.permalink %>
     </div>
-  <% end %>
-<% end %>
+    <% end %>
+    <% end %>
