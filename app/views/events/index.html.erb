@@ -1,7 +1,14 @@
-<h2>Upcoming Events</h2>
 
-<%= link_to 'Create a New Event', new_event_path %> <br><br>
 
+  <h2>Upcoming Events</h2>
+
+  <%= link_to 'Create a New Event', new_event_path %> <br><br>
+
+  <% if @events.count != 0 %>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
 <% if @events.count.nil? %>
   *** No events near you yet ***
 <% else %>
@@ -14,30 +21,34 @@
           <th style="text-align:center"> <div style="font-size:14px; text-align:center"> EDT </div></th>
           <th style="text-align:center">Host</th>
           <th></th>
-        </tr>
-        <%# @events.sort_by{|t| t.start_at}.each do |event| %>
-          <% @events.each do |event| %>
-            <% edt = event.start_at + 3.hours %>
-            <tr>
-              <td ><%= link_to event.name, event %></td>
-              <td ><%= event.start_at.strftime("%A %B %d, %I:%M %p")  %></td>
-              <td ><%= edt.strftime("%I:%M %p")  %></td>
-              <td>
-                <% user = User.find(event.usrid) %>
-                <%= link_to user.name, user_profile_path(user.permalink) %> </b>
-              </td>
-              <td>
-                <% if user_signed_in? %>
-                  <% if event.usrid == current_user.id %>
-                    <%= link_to '(Edit)', edit_event_path(event.id), :id => 'editEvent'%>
-                  <% end %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-    </table>
-  </div>
-<% end %>
+          </tr>
+        <% @events.sort_by{|t| t.start_at}.each do |event| %>
+          <% edt = event.start_at + 3.hours %>
+          <tr>
+          <td ><%= link_to event.name, event %></td>
+          <td ><%= event.start_at.strftime("%A %B %d, %I:%M %p")  %></td>
+          <td ><%= edt.strftime("%I:%M %p")  %></td>
+          <td>
+              <% user = User.find(event.usrid) %>
+              <%= link_to user.name, user_profile_path(user.permalink) %> </b>
+          </td>
+          <td>
+            <% if user_signed_in? %>
+              <% if event.usrid == current_user.id %>
+                <%= link_to '(Edit)', edit_event_path(event.id), :id => 'editEvent'%>
+              <% end %>
+            <% end %>
+          </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% else %>
+    *** No events near you yet ***
+  <% end %>
+
+
+      <%- #<%= will_paginate @events, renderer: BootstrapPagination::Rails-%>
 
 <%#= will_paginate @events, renderer: BootstrapPagination::Rails %>
 
