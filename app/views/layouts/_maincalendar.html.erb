@@ -37,7 +37,37 @@
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
           <td class=col-xs-3>
-            <%= link_to "Join Live Conversation", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+
+            <% @rsvp = Rsvpq.new %>
+            <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
+            <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
+            <% if (Time.current > Time.parse(start_time) ) && (Time.current < Time.parse(end_time)) %>
+
+              <%= link_to "Join Conversation NOW", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+
+            <% else %>
+              <%= form_for(@rsvp) do |f| %>
+                <% if @rsvp.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                    <ul>
+                      <% @rsvp.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <%= f.hidden_field :event_id, :value => event.id %>
+                <% if user_signed_in? %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                <% else %>
+                  <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
+                <% end %>
+                <%= f.submit "RSVP", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
+              <% end %>
+            <% end %>
+
           </td>
           <td class=col-xs-1>
             <% shareurl = "http://www.THINQ.tv/" + user.permalink %>
