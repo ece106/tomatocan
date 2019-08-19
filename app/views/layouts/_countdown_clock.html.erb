@@ -1,0 +1,45 @@
+<% if @events.count != 0 %>
+  <% @events.sort_by{|t| t.start_at} %>
+  <% address = @events.first() %>
+  <% name = @events.first().name %>
+  <% description = @events.first().desc %>
+  <% start_time = @events.first().start_at.strftime("%B %d %Y") + ' ' + @events.first().start_at.strftime("%T") + " PDT" %>
+  <% end_time = @events.first().end_at.strftime("%B %d %Y") + ' ' + @events.first().end_at.strftime("%T") + " PDT" %>
+  <% user = User.find(@events.first().usrid) %>
+  <% if Time.current < Time.parse(start_time) %>
+    <div id="clockdiv">
+      <div>
+      <span class="days"></span>
+      <div class="smalltext">Days</div>
+      </div>
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+      <script>
+        initializeClock('clockdiv', '<%= start_time %>');
+      </script>
+    </div>
+    <div id="nextEventdiv">
+      <p>Until </p><h3><%= link_to "\"" + name + "\"", address, title: description, 'data-toggle': "tooltip", 'data-placement': "bottom" %></h3><p> goes live!</p>
+      <br>
+      Hosted by: <%= link_to user.name, user.permalink %>
+    </div>
+  <% elsif (Time.current > Time.parse(start_time)) && (Time.current < Time.parse(end_time)) %>
+    <div id="eventCurrentdiv">
+      <h3><%= link_to "\"" + name + "\"", address, :class=> "currentEvent", title: description, 'data-toggle': "tooltip", 'data-placement': "bottom" %></h3>
+      <p> is LIVE right NOW!</p><br>
+      <%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
+      <br>
+      Hosted by: <%= link_to user.name, user.permalink %>
+    </div>
+  <% end %>
+<% end %>
