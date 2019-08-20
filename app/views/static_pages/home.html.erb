@@ -1,5 +1,11 @@
-<div class="row" id="heroImage">
-    <div>
+<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+
+<div class="banner">
+  <div class="home-video-wrapper" style="background-image: linear-gradient(rgba(51,51,51,0.6),rgba(51,51,51,0.6));">
+        <%= video_tag('WelcomeToThinQtv.mp4', controls: 'false', autoplay: 'true', loop: 'true', muted: 'true', class: "home_video")%>
+
+    <div class="row">
+      <div class="herocaption col-xs-12 " id="home">
         <div class="alert">
                 <% flash.each do |key, value| %>
                       <div class="<%= flash_class(key) %>">
@@ -7,50 +13,90 @@
                       </div>
                 <% end %>
         </div>
-        <h1 id="heroTitle">JOIN WEEKLY LIVE ONLINE CONVERSATIONS RIGHT HERE </h1>
-        <h2 id="haveAccount" style="font-size: 30px; line-height: 150%">
-          <br> Tuesdays 6:30pm PDT / 9:30pm EDT - <%= link_to 'Tech Tuesday ', '/tech' %>
-          <br> Wednesdays 7:00pm PDT / 10:00pm EDT - <%= link_to 'Conversations on Faith ', '/faith' %>
-          <br> Thursdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'International Awareness ', '/international' %><br><br>
+        <h2 id="heroTitle" style="font-size: 60px; color: #FFC627; font-family: Helvetica, sans-serif; ">Conversations to make you ThinQ!</h2>
+          <h2 style="margin-top: 40px;" >Real People. Real Topics. </h2> <br>
+          <h3 id="heroTitle" style="color: white; padding: 10px; ">Join us for LIVE conversations on Tech, Faith, International Awareness & more!</h3>
+            <h2 style="margin-top: 40px;" >Tuesdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'Tech Tuesday ', '/tech', :style => "color: #FFC627; font-weight: bold;" %><br>
+            <h2 style="margin-top: 20px;" >Wednesdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'Conversations on Faith ', '/faith', :style => "color: #FFC627; font-weight: bold;"%><br>
+            <h2 style="margin-top: 20px;" >Thursdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'International Awareness ', '/international', :style => "color: #FFC627; font-weight: bold;" %>
+            </h2>
+          <br><br>
+          <h2 id="buttonTitle">
+          <%= link_to 'Join Conversation', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
+          </h2>
+      </div>
     </div>
-          <%= link_to 'Join Conversation', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary" %>
+  </div>
 </div>
-<div class=row id=scroll>
-  <a href= #connectFans><h1 class="glyphicon glyphicon-chevron-down"></h1></a>
-</div>
-<div class="row darkBlock" id="connectFans">
-    <div class="col-md-5">
-        <h2>Our Purpose</h2>
-        <p> Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
 
-        ThinQ.tv is creating a forum for thought-provoking conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.
+<div class="main">
+    <br><br><br>
+    <div class="row" >
+      <div class="col-md-4 col-md-offset-1 col-xs-11">
+        <h2 style="font-weight: bolder; margin-bottom: 20px; font-size: 40px; color: #8C1D40; font-family: Oswald, sans-serif;">&emsp;&emsp;Upcoming Conversations</h2>
+      </div>
+      <div class="col-md-6">
+         <%= render 'layouts/countdown_clock', collection: @events %>
+      </div>
     </div>
-    <div class="col-md-7">
-        <%= render 'layouts/maincalendar', collection: @events %>
+    <div class="row" >
+      <div class="col-md-9 col-md-offset-1 col-xs-11">
+          <%= render 'layouts/maincalendar', collection: @events %>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-5 col-md-offset-1">
+        <%= image_tag("circle1.png", :class => "hidden-xs", :style => "width:100%")%>
+      </div>
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        
+        <h3 style="font-weight: bolder; font-size: 30px; color: #8C1D40;">Our Purpose</h3><br>
+        <p style="text-align: left; font-size: 20px;"> 
+        Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
+        ThinQ.tv is creating a forum for thought-provoking conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.</p><br><br>
+        <br><br>
+      </div>
+    </div>
+    <div class="row learnMore" style="background-color: #FFC627;">
+    <div class="col-md-8 col-md-offset-2 col-xs-11">
+      <br><br>
+      <h3>Have something to say?</h3>
+      <h3>Host your own Conversation!</h3>
+      <br>
+      <p>Interested in influencing the topics discussed on ThinQ.tv? Feel free to add your own Conversation to the schedule and invite friends! </p>
+      To get more exposure for your Conversation, we recommend selecting a time immediately before or after other scheduled conversations.
+      <br><br>
+      <p><%= link_to 'Add Your Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 0px; border-radius: 5px;" %></p>
+      <br>
+    </div>
+    </div>
+    <div class="info">
+      <div class="row" id="rewards">
+          <div class="col-md-6">
+            <br>
+            <h2 style="background-color: #8C1D40; color: white; padding: 15px;">Offer Rewards & Receive Donations</h2>
+            <p style="text-align: left;">Alongside viewing your Conversation, viewers can support you through donations or by purchasing your downloads or physical items. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your Conversation cohorts.</p>
+          </div>
+      </div>
+      
+      <div class="row" id="connect">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <h2 style="background-color: #8C1D40; color: white; padding: 15px;">Connect with Intellectually Curious Donors</h2>
+            <p style="text-align: left;">Viewers can ask questions during your Conversation through text chat or by voice. Save your Conversation & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
+          </div>
+      </div>
     </div>
 </div>
-<div class="row lightBlock" id="offerPerks">
-    <div class="col-sm-6">
-      <%= image_tag("homePerks.jpg", :class => "hidden-xs", :style => "height:250px") %>
-    </div>
-    <div class="col-sm-4 col-sm-offset-1">
-        <h2>Offer Rewards & Receive Donations</h2>
-        <p>Alongside viewing your conversation, viewers can support you through donations or by purchasing your downloads or physical items. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your conversation viewers.</p>
-    </div>
-</div>
-<div class="row darkBlock" id="livestream">
-    <div class="col-sm-4 col-sm-offset-1">
-      <h2>Connect with Intellectually Curious Donors</h2>
-      <p>Viewers can ask questions during your live conversation through text chat or by voice. Save your conversation & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
-    </div>
-    <div class="col-sm-6 col-sm-offset-1">
-      <%= image_tag("homeFans.jpg", :class => "hidden-xs", :style => "height:250px") %>
-    </div>
-</div>
-<div class="row" id="faqBlock">
-    <h3>Want to know more? Visit our <%= link_to "FAQ.", '/faq' %></h3>
-    <br>
-    <% if !user_signed_in? %>
-        <%= link_to 'Join', "/signup", :class => "btn btn-lg btn-primary" %>
-    <% end %>
 
+
+
+
+
+
+
+
+
+
+
+ 
