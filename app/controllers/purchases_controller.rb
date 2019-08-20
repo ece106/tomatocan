@@ -63,7 +63,8 @@ class PurchasesController < ApplicationController
         filename = filename_and_data[:filename]
         data = filename_and_data[:data]
         send_data_to_buyer data, filename and return
-        redirect_to user_profile_path(@seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + @seller.name
+        redirect_to user_profile_path(@seller.permalink) 
+        flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
       when false
         redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end
