@@ -15,7 +15,7 @@ class PurchasesControllerTest < ActionController::TestCase
                                                  exp_month: 8, exp_year: 2050,
                                                  cvc: 132})
     @purchase_info ={ user_id: @purchaser.id,
-                                   author_id: @seller.id,
+                      author_id: users(:one).id,
                                    stripe_customer_token: @purchaser.stripe_customer_token,
                                    stripe_card_token: @token.id,
                                    pricesold: 10 }
@@ -158,34 +158,13 @@ class PurchasesControllerTest < ActionController::TestCase
     assert_redirected_to user_profile_path(users(:one).permalink)
   end
 
-  test 'to create a merchandise purchase for merchandise(:one) when the purchaser is signed in, email is posted and is registered with Stripe' do
-    puts 'test 4'
-    sign_in @purchaser
-    cardToken = Stripe::Token.create(
-      card: {
-        number: '4242424242424242',
-        exp_month: 8,
-        exp_year: 2060,
-        cvc: '123'
-      }
-    )
-    customer = Stripe::Customer.create(
-      description: @purchaser.name,
-      email: @purchaser.email
-    )
-    customer.save
-    @purchaser.update_column(:stripe_customer_token, customer.id)
-    post :create, params: { purchase: { email: @purchaser.email, merchandise_id: merchandises(:one), user_id: @purchaser.id, author_id: @seller.id, stripe_customer_token: @purchaser.stripe_customer_token, stripe_card_token: cardToken['id'], pricesold: 1.5 } }
-    assert_redirected_to user_profile_path(users(:one).permalink)
-  end
-
-
-  test 'purchase with merchandise sends mail'do
+  test 'purchase with merchandise sends mail' do
     @purchase_info[:merchandise_id] = merchandises(:one).id 
     post :create, params: { purchase: @purchase_info }
       assert_enqueued_jobs(2)
     # There should be 2 emails in the box one for each seller one for buyer
   end
+
   test 'donation sends mail' do
     sign_in @purchaser
     @purchase_info[:merchandise_id] = @donation_merchandise.id
