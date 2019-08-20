@@ -1,84 +1,59 @@
 <!DOCTYPE html>
 <html>
-
+<link href='https://fonts.googleapis.com/css?family=Montserrat&display=swap' rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
   <title>Welcome to ThinQ.TV</title>
 </head>
-<body>
+<body style="font-family: 'Montserrat', sans-serif; text-align: center;">
+  <br>
   <div class = "header">
-    <h1 style="color:White">Welcome!</h1>
+    <h2>ThinQ.tv</h2>
   </div>
-  <div class = "one">
-      <p> Welcome,<br><br>
-        Thank you  <%=@user.name%>, for signing up with thinq.tv!<br><br>
-        Visit us at <a href = "<%=@home_url%>">thinq.tv</a><br><br>
-        Sincerely, <br>
-        thinq.tv<br>
-      </p>
-      <div class = "img">
-        <% image_tag attachments['laptop.jpg'].url%>
-        <%= image_tag attachments['change.jpg'].url%>
-      </div>
+  <br><br>
+  <div style="font-size: 18pt; margin: 10px auto 10px auto; text-align: center; width : 60%; padding: 1%;" >
+      <h1 style="font-size: 40px"><%=@user.name%>, we're glad you are here!</h1>
+      <br><br>
+      <p style="color: #404040;font-size: 18px; "> Thanks for joining us! <br><br> You can login, check out upcoming events, join our discussions today and many more! </p>
+      <br><br><br>
+      <a href="http://www.thinq.tv/" target="_blank" style="margin-left: 0px; border-radius: 5px; color: white; background-color: #8B0942; font-size: 15px; padding: 15px 25px; text-decoration: none;">Explore Now</a>
   </div>
-  <div class = "footer">
-      <p style = "color:white" class="f-header">Share</p>
-        <% url = "http://www.ThinQ.tv" %>
-        <% desc = "Broadcast live conversations about what you're doing to change the world and participate in intellectual conversations to broaden your knowledge!"%>
+
+      <br><br><br><br>
+  <table align="center">
+      <td colspan="3"><%= image_tag attachments['laptop.png'].url%></td>
+      <td colspan="2"><p style="color: #404040;font-size: 18px;"> Join us for our weekly discussions on Faith, <br>Tech and International Awareness </p></td>
+      <td>&emsp;</td>
+      <td colspan="2"><a href="http://www.thinq.tv/", style='float:right; text-decoration-line: none;'><span style="font-size: 80px; color: #8B0942;">&#62;</span></a></td>
+  </table>
+      <br><br><br>
+      <br><br><br>
+ 
+
+  <div style="background-color: #8B0942; margin: 10px auto 10px auto; padding: .5%; ">
+    <table align="center" width="100%" style="width: 60%; border: 0px; text-align: center; margin: auto; padding: 0; border-spacing: 0px; border-color: none;border-collapse: collapse;">
+        <td colspan="4"><p style = "color:white; font-size: 15px;">Contact us<br><a href="mailto:info@thinq.tv" alt="Email" target="_blank" style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;">info@ThinQ.tv</a><br>Washington DC: 703-495-3185<br> Scottsdale: 602-888-3089</p>
+        </td>
+        <td colspan="4"><p style = "color:white; font-size: 15px;">Headquarters<br>ASU Venture Devils Suite 1951<br>1475 N.Scottsdale Rd,<br>Scottsdale, AZ 85257</p>
+        </td>
+        <td colspan="4">
+        <p style = "color:white; font-size: 15px;" class="f-header">Share</p>
+        <% url = "http://www.thinq.tv/" %>
+        <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-        <div class="social-share-button" data-href="<%= url %>"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse"><%=image_tag attachments['facebook.png'].url%></a>
+        <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
         <!-- Twitter Tweet -->
-        <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Broadcast%20live%20conversations%20about%20what%20you%27re%20doing%20to%20change%20the%20world%20and%20participate%20in%20intellectual%20conversations%20to%20broaden%20your%20knowledge!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><%=image_tag attachments['twitter.png'].url%></a>
+        <a href="https://twitter.com/intent/tweet?hashtags=CrowdPublishTV&text=Broadcast%20live%20discussions%20about%20what%20you%27re%20doing%20to%20change%20the%20world%20and%20participate%20in%20intellectual%20discussions%20to%20broaden%20your%20knowledge!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.crowdpublish.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
         <!-- LinkedIn Share -->
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><%=image_tag attachments['linkedin.png'].url%></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=CrowdPublishTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['linkedin.png'].url%></a>
         <!-- Email Share -->
-        <a href="mailto:?subject=Check out this site called ThinQTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Conversations on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A"><%=image_tag attachments['email.png'].url%></a>
-      </div>
-    </div>
-  </body>
- <style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-    body {
+        <a href="mailto:?subject=Check out this site called CrowdPublishTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:30pm PDT / 9:30pm EDT - Tech Tuesday%0D%0AWednesdays 6:30pm PDT / 9:30pm EDT - Discussions on Faith%0D%0AThursdays 7:30pm PDT / 10:30pm EDT - International Awareness%0D%0A%0D%0AStay tuned for more weekly topics on Books, Innovation, and Environmental issues.%0D%0A%0D%0A%0D%0A%0D%0A", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['email.png'].url%></a>
+        </div>
+      <br>
+      </td>
+  </table>
+</div>
+</body>   
+</html>
 
-     font-family: 'Montserrat', sans-serif;
-    }
-    h1{
-      padding: .5%;
-      width: 95%;
-      margin: 1px auto 1px auto;
-      text-align: left;
-      font-size: 50pt;
-    }
-    div.header{
-      background-color: #8B0942;
-      padding: 1.5%;
-    }
-    div.one{
-      font-size: 18pt;
-      margin: 10px auto 10px auto;
-      text-align: left;
-      width : 90%;
-      padding: 1%;
-    }
-    div.footer{
-      background-color: #8B0942;
-      margin: 10px auto 10px auto;
-      padding: .5%;
-    }
-  </style>
-</html>
-</body>
-<footer>
-</footer>
-</html>
-  </div>
-</body>
-<footer>
-</footer>
-</html>
-  </div>
-</body>
-<footer>
-</footer>
-</html>

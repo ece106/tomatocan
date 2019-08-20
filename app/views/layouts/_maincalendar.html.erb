@@ -10,9 +10,6 @@
 <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 
 <div class="panel panel-default">
-  <div class=panel-heading>
-    Upcoming LIVE Online Conversations
-  </div>
   <% if user_signed_in? %>
     <div class=panel-body>
         <%= link_to 'Host a Live Conversation', new_event_path, class: "btn btn-warning", id: "tableHost calendar-create" %>
@@ -25,7 +22,7 @@
         <% user = User.find(event.usrid) %>
         <tr>
           <td class=col-xs-5>
-            <%= link_to event.name, event, id: "calendar-event", title: event.desc, 'data-toggle': "tooltip", 'data-placement': "left" %>
+            <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
             Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
@@ -40,13 +37,43 @@
             <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
           <td class=col-xs-3>
-            <%= link_to "Join Live Conversation", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+
+            <% @rsvp = Rsvpq.new %>
+            <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
+            <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
+            <% if (Time.current > Time.parse(start_time) ) && (Time.current < Time.parse(end_time)) %>
+
+              <%= link_to "Join Conversation NOW", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+
+            <% else %>
+              <%= form_for(@rsvp) do |f| %>
+                <% if @rsvp.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                    <ul>
+                      <% @rsvp.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <%= f.hidden_field :event_id, :value => event.id %>
+                <% if user_signed_in? %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                <% else %>
+                  <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
+                <% end %>
+                <%= f.submit "RSVP", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
+              <% end %>
+            <% end %>
+
           </td>
           <td class=col-xs-1>
             <% shareurl = "http://www.THINQ.tv/" + user.permalink %>
               <div id= "social-button"><span class="fb-share-button" data-href= <%= shareurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= shareurl %> class="fb-xfbml-parse-ignore">Share</a></span></div>
             <div id="social-button"><span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Participate in <%= user.name %>'s Conversation: <%=  event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: <%= shareurl %>" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span></div>
-            <div>
+            <div id="social-button-in">
               <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
               <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top">Share</script>
             </div>

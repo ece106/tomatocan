@@ -26,5 +26,6 @@ module Crowdpublishtv
       # Enable the asset pipeline
     config.assets.enabled = true
 #    Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+    config.assets.paths << "#{Rails.root}/app/assets/video"
   end
 end

@@ -1,96 +1,247 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet');
 #homeWrapper {
     text-align: center;
     //Prevents space between header and heroImage on Firefox.
     margin-top: -20px;
 }
 
-p {
-    text-align: left;
-}
-#heroImage {
-    background-image: image-url('heroImage.jpg');
-    background-color: transparent;
-    background-size: cover;
-    background-position: center top;
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-#heroImage .alert{
-    top: 100px;
-}
-#heroTitle, #heroImage small {
-    color: white;
-        text-shadow: $overlaid-text;
-}
-#haveAccount {
-    color: white;
-        font-size: 1.75rem;
-    text-align: center;
-    font-weight: 600;
-        text-shadow: $overlaid-text;
-}
-#haveAccount a {
-    color: $brand-secondary;
+@media (min-width: 767px) {
+    .herocaption {
+        margin-top:150px;
+    }
 }
 
-.alert {
-  padding-top: 20px;
-  width: 80%;
-  display:inline-block;
+.home_video {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    object-fit: cover;
+    top: 30px;
+    left: 13px;
+    z-index: -2;
 }
-#scroll h1{
+.home-video-wrapper {
+    height: 107vh;
+    width: 100vw;
+    top: 50px;
+    display: flex;
+}
+#home {
     color: white;
     position: absolute;
-    top: 92%;
-    left: 48.5%;
-    width: 24px;
-    height: 24px;
-    -webkit-animation: scroll-graphic 1.5s infinite;
-    animation: scroll-graphic 1.5s infinite;
-    box-sizing: border-box;
+    text-align: center;
+    z-index: 0;
+    font-weight: bolder;
 }
-@-webkit-keyframes scroll-graphic {
-  0% {
-    -webkit-transform: translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translate(0px, 20px);
-    opacity: 0;
-  }
+h1#home{
+    font-weight: bolder;
+    font-size: 50px;
 }
-@keyframes scroll-graphic {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(0px, 20px);
-    opacity: 0;
-  }
+h2#home {
+    font-weight: lighter;
+    font-size: 40px;
 }
-.col-md-5 p {
-    font-size: 15px;
+h3#home {
+    font-weight: lighter;
+    font-size: 30px;
+}
+h4#home {
+    font-weight: lighter;
+    font-size: 30px;
+}
+.main {
+    /*background-image: linear-gradient(to bottom right, #8C1D40, #d84170);*/
+    background-color: white;
+    background-size: cover;
+    background-repeat: repeat-x;
+    position: relative;
+    width: 100vw; 
+}
+.banner, .main{
+    position: -webkit-sticky;
+    position: sticky;
+    top:30px;
+}
+
+#rewards, #connect {
+    clear: both;
+    padding: 0px 80px;
+}
+#rewards h2, #connect h2 {
+    font-size: 30px;
+    color: #8C1D40;
+}
+#rewards p, #connect p {
+    font-size: 20px;
+}
+.col-md-12 {
+    width: 100%;
+    clear: both;
+    padding: 0px 250px;
+}
+.hero-wrapper {
+    display: flex;
+}
+.hero-message {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
+    position: relative;
+    text-align: center;
+} 
+.hero-message::before { 
+    background-image: url("camera.jpg");
+    background-size: 100% 100%;
+    content: "";
+    display: block;
+    position: relative;
+    top:30px;
+    left:0;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    z-index:-1;
+}
+@media (min-width: 320px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 460px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 720px) {
+.hero::before {
+background-image: url("camera.jpg");;
+}
+}
+
+@media (min-width: 980px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 1240px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 1500px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+
+@media (min-width: 1760px) {
+.hero::before {
+background-image: url("camera.jpg");
+}
+}
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+.learnMore {
+    text-align: center;
+//    padding: 0px 80px;
+}
+.learnMore h3 {
+    padding: 0px 100px;
+    font-weight: bold;
+    font-size: 40px;
+    color: #8C1D40;
+    text-align: center;
+}
+.learnMore p {
+//    padding: 0px 200px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+.foot1 {
+    background-image: image_url("foot_img.png");
+    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center bottom;
+}
+.box {
+    background-color: #8C1D40;
+    transform: rotate(60deg);
+    width: 200px;
+    height: 200px;
+}
+.box p {
+    transform: rotate(-60deg);
+    margin: 15px;
+    color: #FFB310;
+    font-size: 80px;
+}
+
+#clockdiv{
+    color: #fff;
+    display: inline-block;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+#clockdiv > div{
+    background: #8C1D40;
+    border-radius: 10px;
+    display: inline-block;
+    height: 80px;
+    width: 70px;
+}
+#clockdiv div > span{
+    display: inline-block;
+    padding-top: 0px;
+}
+.days, .hours, .minutes, .seconds{
+    font-size: 40px;
+}
+.smalltext{
+    color: $brand-secondary;
+    font-size: 16px;
+    font-weight: bold;
+}
+#nextEventdiv, #eventCurrentdiv{
     padding: 15px;
 }
-.darkBlock {
-    background-color: $gray-lighter;
+#nextEventdiv h3, #eventCurrentdiv h3{
+    display: inline;
 }
-#faqBlock, .lightBlock, .darkBlock {
-    padding: 30px 20px;
+#nextEventdiv p, #eventCurrentdiv p{
+    display: inline;
+    font-size: 20px;
 }
-#faqBlock {
-    padding-top: 80px;
+.info {
+    background-image: image_url("connect_icon.png");
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: bottom left;
 }
-#connectFans {
-    min-height: 310px;
+
+#info1{
+    float:left;
+    clear:right;
 }
-#lightBlock, #darkBlock {
-    padding-top: 80px;
+#info2{
+    float:left;
+    clear:right;
 }
+.breadcrumb1 :after {
+    content: "";
+    border-top: 40px solid  
+}
+    
+
