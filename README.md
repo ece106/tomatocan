@@ -277,18 +277,18 @@ For a list of helpful git commands use the git cheatsheet: https://services.gith
 For minitest methods https://guides.rubyonrails.org/testing.html
 
 
-### LISA'S RULES THAT SHE THOUGHT WERE OBVIOUS BUT APPARENTLY ARE NOT
+### LISA'S RULES THAT SHE THOUGHT WERE OBVIOUS
 
-• ThinQ.tv is not your toy app for your professor to give you a smiley face. ThinQ.tv is a business. If you do not believe in what we are accomplishing, you need to work for someone else.
-• If you do not make a pull request every week or 2, you are wasting your time in your own corner with your own toy app.
-• NEVER delete your .gitignore
-• NEVER push secret keys to the internet. People get fired for this! 
-• ALWAYS look at your github pushes to make sure you didn't break everything with stupid typos or merge errors.
-• NEVER make a pull request that has broken stuff you're leaving for everyone else to clean up. 
-• NEVER use the same database for test and development. You will lose ALL your date in your development database. This was mentioned already, but people still keep doing it.
-• Never put spaces in filenames. Do you ever put spaces in your variable names? No. 
-• Never call anything on ThinQ.tv an event. These are Conversations.
-• 
+- ThinQ.tv is not your toy app for your professor to give you a smiley face. ThinQ.tv is a business. If you do not believe in what we are accomplishing, you shouldn't work here.
+- If you do not make a pull request every 2 or 3 weeks, you are wasting your time in your own corner with your own toy app.
+- NEVER delete your .gitignore
+- NEVER push secret keys to the internet. People get fired for this! 
+- ALWAYS look at your github pushes to make sure you didn't break everything with typos or merge errors.
+- NEVER make a pull request that has broken stuff you're leaving for everyone else to clean up. 
+- NEVER use the same database for test and development. You will lose ALL your date in your development database. This was mentioned already, but people still keep doing it.
+- Never put spaces in filenames. Do you ever put spaces in your variable names? No. 
+- Never call anything on ThinQ.tv an event. These are Conversations.
+ 
 
 
 

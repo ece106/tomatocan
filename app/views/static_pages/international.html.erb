@@ -12,24 +12,22 @@
 
 
 <div class="row">
-	<div class="col-sm-6 col-sm-offset-1">
-	  <div class="row">
-			<h2 style="margin-left: 3%; margin-top:10%; font-size: 20px">
-				<div style="font-size: 22px; margin-bottom: 1%;">Welcome to <b>International Thursday!</b> </div>
+  <div class="col-md-6 col-md-offset-1">
+    <h2 style="margin-top: 50px; font-size: 20px">
+				<div style="font-size: 22px; ;">Welcome to <b>International Thursday!</b> </div>
 			    <br>International Thursday will open your eyes to the different countries and cultures around the world.
-			    <br>Meet us here on<%= link_to ' ThinQ.tv', '/lisa' %>  at 6:00 pm (PDT) every Thursday.
-		  </h2>
+			    Meet us <%= link_to "here", 'https://crowdpublishtv.herokuapp.com/lisa' %> at 6:00 pm (PDT) every Thursday.
+    </h2>
 
-				<h3 style="margin-top: 6%; margin-left:6%;font-size: 20px">
+				<h4 style="margin-top: 30px; font-size: 20px">
 					<b>Our goal is to:</b>
 					<ul style="margin-left: 5%">
-						<li>Provide educational and cultural awareness</li>
 						<li>Promote a better understanding of different cultures</li>
 						<li>Enhance a deeper appreciation of other cultures </li>
 					</ul>
-				</h3>
+				</h4>
 
-				<h4 style="margin-top:8%; margin-left:6%; font-size: 20px">
+				<h4 style="margin-top: 30px; font-size: 20px">
 					<b>Conversation Topics include: </b>
 					<ul style="margin-left: 5%">
 						<li>World Cultures</li>
@@ -46,13 +44,12 @@
 				<div style="margin-left: 6%; margin-top:8%;">
 				Got an International-related topic you'd like to discuss? <%= link_to 'Submit Here ', new_event_path %>
 				</div>
-    </div>
 	</div>
 
-	<div class="col-sm-4" style="margin-top: 2%; margin-top:7%">
-			  <div style="margin:2%">
-				  <%= image_tag "globe.jpg", width: "80%" %>
-			  </div>
-	</div>
+  <div class="col-md-4" >
+    <div style="margin-top: 50px">
+      <%= image_tag "globe.jpg", width: "80%" %>
+    </div>
+  </div>
 
 </div>
