@@ -4,9 +4,9 @@
     <!-- metta tags for share buttons-->
     <meta property="og:url"           content="http://www.thinq.tv" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="ThinQ.tv" />
+    <meta property="og:title"         content="Conversations to make you ThinQ" />
     <meta property="og:description"   content="Conversations to make you THINQ and take action: Thought provoking conversations to feed your brain" />
-    <meta property="og:image"         content= <%= image_tag("hero3.jpg") %> />
+    <meta property="og:image"         content="<%= image_tag 'starIcon.png', width: '100%' %>" />
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "https://js.stripe.com/v2/", 'application', 'data-turbolinks-track' => true %>
-    <link rel="shortcut icon" type="favicon.ico" href="http://www.ThinQ.tv/assets/crowdPublishIcon.png">
+    <link rel="shortcut icon" type="favicon.ico" href='<%= image_tag "starIcon.png", width: "100%" %>'>
 
     <%= csrf_meta_tags %>
 
@@ -31,10 +31,6 @@
         <%= yield :forusers %>
     <% end %>
 
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>

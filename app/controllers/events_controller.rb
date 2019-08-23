@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     @rsvpusers = @event.users
     @rsvps     = @event.rsvpqs
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
+    @surl = "http://www.ThinQ.tv/" + @user.permalink
 
     respond_to do |format|
       format.html # show.html.erb
