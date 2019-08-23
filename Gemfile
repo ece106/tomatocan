@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby "2.6.3"
 
 gem 'listen'
 gem 'rails-controller-testing'
@@ -8,10 +8,10 @@ gem 'pg'
 #gem 'sqlite3'
 
 
-gem 'mandrill'	
+gem 'mandrill'
 gem 'devise'
 gem 'fog'   #, '1.6.0'
-gem 'unf' 
+gem 'unf'
 gem 'carrierwave'
 gem 'stripe'
 gem 'oauth2'
@@ -19,7 +19,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
-gem 'simple_calendar'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
@@ -31,7 +30,7 @@ gem 'railties', '5.2.1'
 gem  'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
-gem "will_paginate", "~> 3.0.6" 
+gem "will_paginate", "~> 3.0.6"
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jquery-turbolinks'
@@ -53,6 +52,7 @@ group :test, :development do
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
+  gem 'listen'
   gem 'rails-controller-testing'
 end
 
