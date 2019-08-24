@@ -36,16 +36,12 @@
       </div>
     </h3>
 
-    <div style="margin-left:5px">
-      <%= @duration %> minutes
-    </div> <br>
-    <%= link_to "Join Live Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
+    <br><%= link_to "Join Live Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
 
     <div style= "text-align:left" >
-      <p>
+      <br>
       <b>Length:</b><div style="margin-left:5px"><%= @duration %> minutes</div>
-      </p>
-      <p>
+      <br>
       <b>Additional details:</b>
       <div style="margin-left:5px; word-wrap:break-word;">
         <% if @event.desc.present? %>
