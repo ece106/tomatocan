@@ -1,0 +1,34 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <h2><span class="calendar-title"><b><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></b></span></h2>
+  </div>
+
+  <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+  <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &block) %>
+              <% else %>
+                <% block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

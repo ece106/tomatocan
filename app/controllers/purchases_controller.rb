@@ -34,6 +34,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
+    binding.pry
     @purchase                      = Purchase.new(purchase_params)
     @purchase_mailer_hash          = { purchase: @purchase }
     @merchandise                   = Merchandise.find(@purchase.merchandise_id)

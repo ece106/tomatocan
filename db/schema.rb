@@ -126,10 +126,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "merchmobi"
     t.string "merchpdf"
     t.datetime "expiration"
-    t.integer "itempic_crop_x"
-    t.integer "itempic_crop_y"
-    t.integer "itempic_crop_w"
-    t.integer "itempic_crop_h"
     t.string "buttontype"
   end
 

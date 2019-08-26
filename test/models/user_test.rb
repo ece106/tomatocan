@@ -73,7 +73,7 @@ class TestUser < ActiveSupport::TestCase
 
   #validates :permalink, format:     { with: /\A[\w+]+\z/ }
   test "permalink must be alphanumeric" do
-    @user.permalink = "whatthe@#$%&!"
+    @user.permalink = "whatthe@#&!"
     refute @user.valid?, "permalink alphanumeric"
     refute_empty @user.errors[:permalink]
   end
@@ -145,7 +145,7 @@ class TestUser < ActiveSupport::TestCase
   end
 
   test "user must have a password" do
-    user_no_password = User.new(name: nil,email:nil,permalink:nil,)
+    user_no_password = User.new(name: nil,email:nil,permalink:nil)
     refute user_no_password.valid?
   end
   test "name must be less than 50" do

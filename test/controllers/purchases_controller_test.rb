@@ -96,7 +96,6 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test 'to create a donation for customer who is registered with Stripe and whose email is posted' do
-    puts 'test 1'
     sign_in @purchaser
     cardToken = Stripe::Token.create(
       card: {

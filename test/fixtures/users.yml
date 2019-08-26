@@ -22,7 +22,9 @@ one:
   author: author
   about: MyText
   twitter: MyTwitter
-  stripeid: acct_1E4BAlKFKIozho71
+  # stripeid: acct_1E4BAlKFKIozho71
+  # stripeid: <%#= ENV['STRIPE_SECRET_KEY'] %>
+  stripeid: <%= Figaro.env.stripe_connect_client_id %>
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
   remember_token: MyString
 
@@ -47,4 +49,81 @@ two:
   about: MyText2
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %>
   remember_token: MyString2
-  
+
+seller:
+  id: 3
+  name: Test Seller
+  email: seller@mail.com
+  ustreamvid: stream_video
+  ustreamsocial: stream_social
+  permalink: test_buyer1
+  twitter: twitter
+  facebook: facebook
+  pinterest: pinterest
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  blogurl: blog_url
+  profilepicurl: profile_picture_url
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  address: 20012
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  stripeid: <%= Figaro.env.stripe_connect_client_id %>
+  # stripeid: acct_1ExkXyIpU3Ga9QmO
+  # stripeid: <%#= ENV['STRIPE_SECRET_KEY'] %>
+  encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
+  remember_token: MyString
+
+buyer:
+  id: 4
+  name: Test Buyer
+  email: buyer@mail.com
+  ustreamvid: stream_video
+  ustreamsocial: stream_social
+  permalink: buyer1
+  twitter: twitter
+  facebook: facebook
+  pinterest: pinterest
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  blogurl: blog_url
+  profilepicurl: profile_picture_url
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  address: 20012
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
+  remember_token: MyString
+
+donator:
+  id: 5
+  name: Test Donator
+  email: donator@mail.com
+  ustreamvid: stream_video
+  ustreamsocial: stream_social
+  permalink: donator1
+  twitter: twitter
+  facebook: facebook
+  pinterest: pinterest
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  blogurl: blog_url
+  profilepicurl: profile_picture_url
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  address: 20012
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
+  remember_token: MyString

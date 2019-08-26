@@ -4,17 +4,17 @@
 <br> 
     <%= form_for @purchase do |f| %>
       <% if user_signed_in? %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
       <% else %>
         <b>* EMAIL is required:</b>
         <%= f.text_field :email, placeholder: "Enter email", size: 50 %><br><br>
       <% end %>
 
       <%= f.hidden_field :stripe_card_token %>
-      <%= f.hidden_field :group_id, :value => params[:group_id] %>
-      <%= f.hidden_field :pricesold, :value => params[:pricesold] %>
-      <%= f.hidden_field :author_id, :value => params[:author_id] %>
-      <%= f.hidden_field :merchandise_id %>
+      <%= f.hidden_field :group_id, value: params[:group_id] %>
+      <%= f.hidden_field :pricesold, value: params[:pricesold] %>
+      <%= f.hidden_field :author_id, value: params[:author_id] %>
+      <%= f.hidden_field :merchandise_id, value: params[:merchandise_id] %>
       <% if @purchase.errors.any? %>
         <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
         <% @purchase.errors.full_messages.each do |msg| %> 
@@ -33,7 +33,7 @@
         If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info.<br><br>
         You may leave this box blank if you are making a donation or purchasing a download.<br><br>
         Instructions to seller for sending item:
-        <%= f.text_area :shipaddress, :cols => 50, :rows => 3 %><p>
+        <%= f.text_area :shipaddress, cols: 50, rows: 3 %><p>
       </div>
 
       <% if user_signed_in? %>
@@ -43,7 +43,8 @@
               <%= text_field_tag :card_number, nil, name: nil %><br><br>
   
               <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-              <%= text_field_tag :card_code, nil, name: nil %><br><br>
+              <%# = text_field_tag :card_code, nil, name: nil %><br><br>
+              <%= text_field_tag :card_code %><br><br>
 
               <%= label_tag :card_month, "Card Expiration" %>
               <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>

@@ -34,7 +34,7 @@
 			    			<%= truncate(merch.desc, length: 150) %>
 				    		<%= link_to 'more', '', class: "read-more-#{merch.id}" %>
 					    	<script>
-						    	$('.read-more-<%= merch.id %>').on('click', function(e) 
+						    	$('.read-more-<%= merch.id %>').on('click', function(e)
                     { e.preventDefault()
   							      $(this).parent().html('<%= escape_javascript merch.desc %>')
 										})
@@ -44,7 +44,7 @@
               <%= merch.desc %>
             <% end %>
           <% end %>
-				
+
 
           <% if user_signed_in? %>
             <% if current_user.id == @user.id %>
@@ -55,29 +55,29 @@
 
             <!-- TODO: Switch to below button when edit Reward form can be shown as a modal-->
             <!--%= button_tag "Edit Reward", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
-				
+
           <% if merch.deadline != nil %>
               <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
-              <br><b> 
+              <br><b>
               <% if daysaway == 0 %>
                 <td>Last day available!</td>
               <% elsif (daysaway <= 7 ) %>
                 <td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left until it's gone!</td>
               <% end %></b>
           <% end %>
-				
+
           <% if (merch.buttontype) == 'Donate' %>
               <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
           <% else %>
               <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
           <% end %>
-				
-          <% if @user.stripeid.present? || @user.id == 143 %>   
+
+          <% if @user.stripeid.present? || @user.id == 143 %>
               <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning pull-right", :target => "_blank" %>
           <% else %>
               <br> * <%= @user.name %> cannot accept funds yet
           <% end %>
-  				
+
         </div>
 			</div>
   		<hr>
@@ -96,7 +96,7 @@
             <% btnTxt = ("Donate $" + sprintf('%.2f',100) + "!") %>
             <%= link_to btnTxt, new_purchase_path(:pricesold => 100, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
         <% else %>
-          <%= @user.name %> has not made sales or donations available yet. 
+          <%= @user.name %> has not made sales or donations available yet.
         <% end %>
   	<% end %>
 </div>
