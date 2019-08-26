@@ -48,10 +48,6 @@ class Purchase < ApplicationRecord
 
     sellerstripeaccount = Stripe::Account.retrieve(seller.stripeid)
     puts seller.stripeid + " <-- SELLER stripeid" ###########
-    %%if self.group_id.present? #not used right now
-          group = Group.find(self.group_id)
-          groupstripeaccount = Stripe::Account.retrieve(group.stripeid)
-        end%
 
     if self.email.present?
       puts "15x" ##########
