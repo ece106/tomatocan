@@ -1,13 +1,20 @@
 require 'test_helper'
 
 class MerchandiseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-   def setup
+
+  def setup
     @merchandise = merchandises(:one)
+    @all_merchandises = merchandises.each  { |x| @all_merchandises = x } 
+    @merchandise_attachments = [:merchpdf,:merchmobi,:graphic,:video,:merchepub,:audio]
   end
 
+  test 'merchandise_with_attachments not empty' do
+    merchandise_with_attachments = @all_merchandises.each { |x| @merchandise_attachments.each { |p| x[p] } }
+    @merchandise_attachments.each do |x|
+      refute_empty merchandise_with_attachments.each { |p| p[x] } 
+    end
+  end
+   
   test "price should not be empty" do
     merchandise = Merchandise.new
     merchandise.send "price=",nil
@@ -15,35 +22,17 @@ class MerchandiseTest < ActiveSupport::TestCase
     refute_empty merchandise.errors[:price]
   end
 
-   test "parse youtube for merchanise" do
-      @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
-      @merchandise.get_youtube_id
-      refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
-    end
+  test "parse youtube for merchandise" do
+    @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
+    @merchandise.get_youtube_id
+    refute_equal("http://youtube.com/watch?v=/frlviTJc", @merchandise.youtube)
+  end
 
-    #Test Uploaders && Downloaders
-    test "show me the full filepath of pdf" do
-      merchandise = merchandises(:one)
-      puts "\n\n merchpdf = #{merchandise.merchpdf.file.path}\n\n"
+  test 'get_filename_and_data valid' do
+    filename_and_data_all = @all_merchandises.each { |x| x.get_filename_and_data }
+    @merchandise_attachments.each do |x|   
+      assert_equal @all_merchandises.each { |p| p[x] }, filename_and_data_all.each { |q| q[x] }
     end
-    test "show me the full filepath of mobi" do
-      merchandise = merchandises(:two)
-      puts "\n\n merchmobi = #{merchandise.merchmobi.file.path}\n\n"
-    end
-    test "show me the full filepath of epub" do
-      merchandise = merchandises(:five)
-      puts "\n\n merchepub = #{merchandise.merchepub.file.path}\n\n"
-    end
-    test "show me the full filepath of graphic" do
-      merchandise = merchandises(:three)
-      puts "\n\n graphic = #{merchandise.graphic.file.path}\n\n"
-    end
-    test "show me the full filepath of video" do
-      merchandise = merchandises(:four)
-      puts "\n\n video = #{merchandise.video.file.path}\n\n"
-    end
-    test "show me the full filepath of audio" do
-      merchandise = merchandises(:six)
-      puts "\n\n audio = #{merchandise.audio.file.path}\n\n"
-    end
+  end
+ 
 end

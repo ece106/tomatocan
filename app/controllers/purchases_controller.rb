@@ -1,20 +1,19 @@
 class PurchasesController < ApplicationController
-  #  before_action :authenticate_user!, only: [:new ]
-  # GET /purchases/1
+
   def show
     @purchase = Purchase.find(params[:id])
-    if (!@purchase.merchandise_id.nil?) #If this is a donation do not look for merchandise
-      loot = Merchandise.find(@purchase.merchandise_id)
+    if !@purchase.merchandise_id.nil? #If this is a donation do not look for merchandise
+      loot      = Merchandise.find(@purchase.merchandise_id)
       @itemname = loot.name
-      id = loot.user_id
-      @user = User.find(id)
+      id        = loot.user_id
+      @user     = User.find(id)
     end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @purchase }
     end
   end
-  # GET /purchases/new
+
   def new
     if(params[:pricesold].present?) # Donation being made
       @purchase = Purchase.new
@@ -33,122 +32,68 @@ class PurchasesController < ApplicationController
       end
     end
   end
-  # POST /purchases 
+
   def create
-    @purchase = Purchase.new(purchase_params)
-    purchase_mailer_hash = {purchase: @purchase}
+    @purchase                      = Purchase.new(purchase_params)
+    @purchase_mailer_hash          = { purchase: @purchase }
+    @merchandise                   = Merchandise.find(@purchase.merchandise_id)
+    @seller                        = User.find(@merchandise.user_id)
+    @purchase_mailer_hash[:seller] = @seller
 
-    if user_signed_in? 
-      @purchase.user_id = current_user.id 
-      purchase_mailer_hash[:user] = User.find(@purchase.user_id) 
-    end
-    if @purchase.merchandise_id?
-      puts "1" ########### print 1 if the purchase is a merchandise
-      @merchandise = Merchandise.find(@purchase.merchandise_id)
-
-      if @merchandise.audio.present? || @merchandise.graphic.present? || @merchandise.video.present? || @merchandise.merchpdf.present? || @merchandise.merchmobi.present? || @merchandise.merchepub.present? #Is this if statement really the way we want to code?
-        puts "2" ############## print 2 if the merhandise is any of the above
-        if @purchase.save_with_payment
-          puts "3" ########### print 3 is the purchase is saved with payment = true (model)
-          #audio
-          if @merchandise.audio.present?
-            filename = @merchandise.audio.to_s.split('/')
-            filename = filename[filename.length-1]
-            data = open("#{@merchandise.audio.to_s}")
-            send_data data.read, filename: filename, disposition: 'attachment' 
-          end 
-          #graphic
-          if @merchandise.graphic.present?
-            filename = @merchandise.graphic.to_s.split('/')
-            filename = filename[filename.length-1]
-            data = open("#{@merchandise.graphic.to_s}")
-            send_data data.read, filename: filename, disposition: 'attachment' 
-          end
-          #video
-          if @merchandise.video.present?
-            filename = @merchandise.video.to_s.split('/')
-            filename = filename[filename.length-1]
-            data = open("#{@merchandise.video.to_s}")
-            send_data data.read, filename: filename, disposition: 'attachment' 
-          end
-          #pdf
-          if @merchandise.merchpdf.present?
-            filename = @merchandise.merchpdf.to_s.split('/')
-            filename = filename[filename.length-1]
-            data = open("#{@merchandise.merchpdf.to_s}") 
-            send_data data.read, filename: filename, disposition: 'attachment'
-          end
-          #mobi
-          if @merchandise.merchmobi.present?
-            filename = @merchandise.merchmobi.to_s.split('/')
-            filename = filename[filename.length-1]
-            data = open("#{@merchandise.merchmobi.to_s}")
-            send_data data.read, filename: filename, disposition: 'attachment' 
-          end
-          #epub
-          if @merchandise.merchepub.present?
-            filename = @merchandise.merchepub.to_s.split('/')
-            filename = filename[filename.length-1]
-            data = open("#{@merchandise.merchepub.to_s}") 
-            send_data data.read, filename: filename, disposition: 'attachment' 
-          end
-        else
-          puts "4" ################################################
-          redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
-        end
-      else 
-        puts "5" ################################################
-        @purchase.author_id = User.find(@merchandise.user_id) 
-        if user_signed_in?
-          puts "6" ################################################
-          @purchase.user_id = current_user.id
-        end
-        if @purchase.save_with_payment
-          puts "7" ################################################
-          seller = User.find(@merchandise.user_id)
-          purchase_mailer_hash[:seller] = seller
-          purchase_mailer_hash[:merchandise] = @merchandise
-          PurchaseMailer.with(purchase_mailer_hash).purchase_saved.deliver_later
-          PurchaseMailer.with(purchase_mailer_hash).purchase_received.deliver_later
-          redirect_to user_profile_path(seller.permalink)
-          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
-          # mailer method for saved purchase and purchase received
-
-        else
-          puts "8" ################################################
-          redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
-        end
+    case @merchandise.buttontype
+    when 'Donate'
+      assign_user_id
+      case @purchase.save_with_payment
+      when true
+        PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
+        PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
+        flash[:notice] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for being a donor of ' + @seller.name
+        redirect_to user_profile_path(@seller.permalink)
+      when false
+        redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end
-    else # Making a donation 
-      puts "9" ################################################
-      if user_signed_in?
-        puts "10" ################################################
-        @purchase.user_id = current_user.id
-      end
-      if @purchase.save_with_payment
-        puts "11" ################################################
-        # Route back to author profile after donation
-
-        seller = User.find(purchase_params[:author_id])
-        purchase_mailer_hash[:seller] = seller
-        PurchaseMailer.with(purchase_mailer_hash).donation_saved.deliver_later
-        PurchaseMailer.with(purchase_mailer_hash).donation_received.deliver_later
-        redirect_to user_profile_path(seller.permalink), :notice => "You successfully donated $" + purchase_params[:pricesold] + " . Thank you for being a donor of " + seller.name
-      else
-        puts "12" ################################################
-        redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
+    when 'Buy'
+      assign_user_id
+      case @purchase.save_with_payment
+      when true
+        @purchase_mailer_hash[:merchandise] = @merchandise
+        PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
+        PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
+        filename_and_data = @merchandise.get_filename_and_data
+        filename = filename_and_data[:filename]
+        data = filename_and_data[:data]
+        send_data_to_buyer data, filename and return
+        redirect_to user_profile_path(@seller.permalink) 
+        flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
+      when false
+        redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end
     end
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
+  def assign_user_id
+    case user_signed_in?
+    when true
+      @purchase.user_id = current_user.id
+      @purchase_mailer_hash[:user] = User.find(@purchase.user_id)
+    when false
+    end
+  end
+
+  def send_data_to_buyer data, filename
+    if filename != nil
+      send_data data.read , filename: filename, disposition: 'attachment'
+    end
+  end
 
   def purchase_params
-    params.require(:purchase).permit( :stripe_customer_token, :bookfiletype, :groupcut, :shipaddress,
-                                     :book_id, :stripe_card_token,:pricesold, :user_id, :author_id, :merchandise_id, :group_id, :email)
+    params.require(:purchase).permit(:stripe_customer_token, :bookfiletype,
+                                     :groupcut, :shipaddress, :book_id,
+                                     :stripe_card_token,:pricesold, :user_id,
+                                     :author_id, :merchandise_id, :group_id,
+                                     :email)
   end
 
 end
-
-
