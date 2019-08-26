@@ -20,7 +20,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     user_sign_in @user_two
     visit_and_select_donation
     card_information_entry
-  #  assert page.has_button? 'Donate'
+    assert page.has_button? 'Donate'
     click_on 'purchase-btn'   
   end
   

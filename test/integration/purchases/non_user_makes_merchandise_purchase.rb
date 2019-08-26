@@ -11,8 +11,8 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     @user_one = users(:one) 
     @card_number = "4242424242424242" 
     @cvc = "123"
-    @merchandise = merchandises(:one_empty_attachments)
-    @merchandise_with_attachment = merchandises(:one) 
+    @merchandise = merchandises(:one)
+    @merchandise_with_attachment = merchandises(:one_with_attachment) 
 
   end
 
@@ -21,20 +21,16 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     assert page.has_css? '#purchase_email'
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     click_on 'Purchase'
-    binding.pry
-    refute_empty @purchase.errors.full_messages  
+    assert page.has_css? '#stripe_error'
   end
 
-  test 'non user makes merchandise purchase with new card' do
+  test 'non user makes merchandise purchase with new card no attachment' do
     visit_and_select_buy @user_one, @merchandise
     assert page.has_css? '#purchase_email'
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'Purchase'
-    binding.pry
-    assert_empty @purchase.errors.full_messages
-    #assert current path when recipts are done
   end
   
   test 'non user makes a merchandise purchase with attachments' do
