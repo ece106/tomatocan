@@ -22,7 +22,7 @@
         <% user = User.find(event.usrid) %>
         <tr>
           <td class=col-xs-5>
-            <%= link_to event.name, event, id: "calendar-event", title: event.desc, 'data-toggle': "tooltip", 'data-placement': "left" %>
+            <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
             Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>

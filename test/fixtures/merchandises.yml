@@ -6,7 +6,7 @@ one:
   price: 1.5
   desc: desc of user1 product
   itempic: picture of user1 product
-  merchpdf: user1.pdf
+  merchpdf: 
   buttontype: Buy
 two:
   name: Donate $1.50!
@@ -100,4 +100,17 @@ one_empty_attachments:
   desc: desc of user1 product
   itempic: picture of user1 product
   merchpdf: 
+  price: 2
+  desc: Donation
+  itempic: donate.jpg
+  merchpdf: 
+  buttontype: Donate
+
+one_with_attachment:
+  name: user1 product
+  user_id: 1
+  price: 1.5
+  desc: desc of user1 product
+  itempic: picture of user1 product
+  merchpdf: user1.pdf
   buttontype: Buy

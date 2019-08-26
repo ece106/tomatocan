@@ -15,20 +15,21 @@ class PurchasesController < ApplicationController
   end
 
   def new
-    @purchase = Purchase.new
-    @merchandise = Merchandise.find(params[:merchandise_id])
-    # NOTE: IDK about this
-    # if params[:pricesold].present? # Donation being made
-    #   @purchase = Purchase.new
-    # elsif params[:merchandise_id].present? #Purchase being made
-    #   @merchandise = Merchandise.find(params[:merchandise_id])
-    #   @purchase = @merchandise.purchases.new
-    # end
-    if user_signed_in? && current_user.stripe_customer_token.present?
-      @card     = @purchase.retrieve_customer_card(current_user)
-      @last4    = @card.last4
-      @expmonth = @card.exp_month
-      @expyear  = @card.exp_year
+    if(params[:pricesold].present?) # Donation being made
+      @purchase = Purchase.new
+    elsif(params[:merchandise_id].present?) #Purchase being made
+      @merchandise = Merchandise.find(params[:merchandise_id])
+      @purchase = @merchandise.purchases.new
+    end
+    if user_signed_in?
+      if current_user.stripe_customer_token.present?
+        customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
+        sourceid = customer.default_source
+        card = customer.sources.retrieve(sourceid)
+        @last4 = card.last4
+        @expmonth = card.exp_month
+        @expyear = card.exp_year
+      end
     end
   end
 
@@ -37,7 +38,6 @@ class PurchasesController < ApplicationController
     @purchase_mailer_hash          = { purchase: @purchase }
     @merchandise                   = Merchandise.find(@purchase.merchandise_id)
     @seller                        = User.find(@merchandise.user_id)
-
     @purchase_mailer_hash[:seller] = @seller
 
     case @merchandise.buttontype
@@ -63,7 +63,8 @@ class PurchasesController < ApplicationController
         filename = filename_and_data[:filename]
         data = filename_and_data[:data]
         send_data_to_buyer data, filename and return
-        redirect_to user_profile_path(@seller.permalink)
+        redirect_to user_profile_path(@seller.permalink) 
+        flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
       when false
         redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end

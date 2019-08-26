@@ -5,7 +5,7 @@
         <%= video_tag('WelcomeToThinQtv.mp4', controls: 'false', autoplay: 'true', loop: 'true', muted: 'true', class: "home_video")%>
 
     <div class="row">
-      <div class="col-md-12" id="home">
+      <div class="herocaption col-xs-12 " id="home">
         <div class="alert">
                 <% flash.each do |key, value| %>
                       <div class="<%= flash_class(key) %>">
@@ -13,7 +13,7 @@
                       </div>
                 <% end %>
         </div>
-        <h2 id="heroTitle" style="font-size: 80px; color: #FFC627; font-family: Helvetica, sans-serif; margin-top: 150px;">Conversations to make you ThinQ!</h2>
+        <h2 id="heroTitle" style="font-size: 60px; color: #FFC627; font-family: Helvetica, sans-serif; ">Conversations to make you ThinQ!</h2>
           <h2 style="margin-top: 40px;" >Real People. Real Topics. </h2> <br>
           <h3 id="heroTitle" style="color: white; padding: 10px; ">Join us for LIVE conversations on Tech, Faith, International Awareness & more!</h3>
             <h2 style="margin-top: 40px;" >Tuesdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'Tech Tuesday ', '/tech', :style => "color: #FFC627; font-weight: bold;" %><br>
@@ -31,36 +31,34 @@
 
 <div class="main">
     <br><br><br>
-    <div class="row" id="main1">
-      <div class="col-xs-4 col-xs-offset-1">
-        <h2 style="font-weight: bolder; font-size: 50px; color: #8C1D40; font-family: Oswald, sans-serif;">&emsp;&emsp;Upcoming Conversations</h2>
+    <div class="row" >
+      <div class="col-md-4 col-md-offset-1 col-xs-11">
+        <h2 style="font-weight: bolder; margin-bottom: 20px; font-size: 40px; color: #8C1D40; font-family: Oswald, sans-serif;">&emsp;&emsp;Upcoming Conversations</h2>
       </div>
-      <div class="col-xs-6">
+      <div class="col-md-6">
          <%= render 'layouts/countdown_clock', collection: @events %>
       </div>
     </div>
-    <div class="row" id="main2">
-      <div class="col-xs-12">
-        <div class="event_calendar">
+    <div class="row" >
+      <div class="col-md-9 col-md-offset-1 col-xs-11">
           <%= render 'layouts/maincalendar', collection: @events %>
-        </div>
       </div>
     </div>
-    <div class="row" id="main3">
-      <div class="col-xs-1"></div>
-      <div class="col-xs-5">
+    <div class="row" >
+      <div class="col-md-5 col-md-offset-1">
         <%= image_tag("circle1.png", :class => "hidden-xs", :style => "width:100%")%>
       </div>
-      <div class="col-xs-5">
-        <br><br>
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        
         <h3 style="font-weight: bolder; font-size: 30px; color: #8C1D40;">Our Purpose</h3><br>
         <p style="text-align: left; font-size: 20px;"> 
         Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
-        ThinQ.tv is creating a forum for thought-provoking conversations about any intellectual topic. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.</p><br><br>
+        ThinQ.tv is creating a forum for thought-provoking conversations. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.</p><br><br>
         <br><br>
-      </div>    
+      </div>
     </div>
-  <div class="learnMore" style="background-color: #FFC627;">
+    <div class="row learnMore" style="background-color: #FFC627;">
+    <div class="col-md-8 col-md-offset-2 col-xs-11">
       <br><br>
       <h3>Have something to say?</h3>
       <h3>Host your own Conversation!</h3>
@@ -70,26 +68,25 @@
       <br><br>
       <p><%= link_to 'Add Your Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 0px; border-radius: 5px;" %></p>
       <br>
-  </div>
-  <div class="info">
+    </div>
+    </div>
+    <div class="info">
       <div class="row" id="rewards">
-          <div class="col-xs-6" id="info1">
-            <br><br><br><br>
+          <div class="col-md-6">
+            <br>
             <h2 style="background-color: #8C1D40; color: white; padding: 15px;">Offer Rewards & Receive Donations</h2>
             <p style="text-align: left;">Alongside viewing your Conversation, viewers can support you through donations or by purchasing your downloads or physical items. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your Conversation cohorts.</p>
           </div>
-        <div class="col-xs-6"></div>
       </div>
-      <br><br>
+      
       <div class="row" id="connect">
-            <div class="col-xs-6"></div>
-            <div class="col-xs-6" id="info2">
-            <br><br><br><br>
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
             <h2 style="background-color: #8C1D40; color: white; padding: 15px;">Connect with Intellectually Curious Donors</h2>
             <p style="text-align: left;">Viewers can ask questions during your Conversation through text chat or by voice. Save your Conversation & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
-            </div>
+          </div>
       </div>
-  </div>
+    </div>
 </div>
 
 
