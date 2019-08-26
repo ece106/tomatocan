@@ -6,10 +6,6 @@ class Purchase < ApplicationRecord
   validates :pricesold, presence: true
   validates :authorcut, presence: true
 
-  validates :email, presence: true
-  validates :card_number, presence: true
-  validates :card_code, presence: true
-
   include PaymentGateway
 
   attr_accessor :card_number, :card_code, :amount, :application_fee, :seller,
