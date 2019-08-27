@@ -23,20 +23,41 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
     fill_in id: "event_name", with: "New Test Event Name"
     fill_in id: "event_desc", with: "New Event Description"
 
+<<<<<<< HEAD
     select "2019", from: "event_start_at_1i"
     select "August", from: "event_start_at_2i"
+=======
+    select "2020", from: "event_start_at_1i"
+    select "July", from: "event_start_at_2i"
+>>>>>>> 45ff2752a985c01f21b95a3a085629d7d79a7970
     select "16", from: "event_start_at_3i"
     select "03 PM", from: "event_start_at_4i"
-    select "30", from: "event_start_at_5i"
+    select "00", from: "event_start_at_5i"
 
+<<<<<<< HEAD
     select "2019", from: "event_end_at_1i"
     select "August", from: "event_end_at_2i"
+=======
+    select "2020", from: "event_end_at_1i"
+    select "July", from: "event_end_at_2i"
+>>>>>>> 45ff2752a985c01f21b95a3a085629d7d79a7970
     select "16", from: "event_end_at_3i"
     select "04 PM", from: "event_end_at_4i"
     select "30", from: "event_end_at_5i"
 
+<<<<<<< HEAD
     click_on class: "btn btn-lg btn-primary"
     #assert_equal current_path, root_path
+=======
+    click_on id: "eventSubmit"
+
+    # NOTE: For some reason, capybara cannot register this click_on action.
+    # In the debugger, it does not return Obsolete class when using click_on.
+    # This is a special case for this test.
+    # assert_equal current_path, root_path
+    # assert page.has_content? "New Test Event Name"
+    # assert page.has_content? "New Event Description"
+>>>>>>> 45ff2752a985c01f21b95a3a085629d7d79a7970
   end
 
   private

@@ -1,12 +1,11 @@
 class Merchandise < ApplicationRecord
-
   belongs_to :user
   has_many :purchases
 
   validates :price, presence: true
   validates :name, presence: true
   validates :buttontype, presence: true
-  validates_numericality_of :price
+  validates :price, numericality: true
 
   mount_uploader :itempic, MerchpicUploader
   mount_uploader :audio, AudioUploader
@@ -16,11 +15,25 @@ class Merchandise < ApplicationRecord
   mount_uploader :merchmobi, MerchmobiUploader
   mount_uploader :merchpdf, MerchpdfUploader
 
-  attr_accessor :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h
-  after_update :crop_itempic
-
-  def crop_itempic
-    itempic.recreate_versions! if itempic_crop_x.present?
+  def get_filename_and_data
+    filename_and_data = {}
+    self.attributes.each do  |name, value|
+      case name
+      when 'audio'
+        filename_and_data = {filename: value, data: audio}
+      when 'graphic'
+        filename_and_data = {filename: value, data: graphic}
+      when 'video'
+        filename_and_data = {filename: value, data: video}
+      when 'merchpdf'
+        filename_and_data = {filename: value, data: merchpdf}    
+      when 'merchmobi'
+        filename_and_data = {filename: value, data: merchmobi}
+      when 'merchepub'
+        filename_and_data = {filename: value, data: merchepub}
+      end
+    end
+    filename_and_data
   end
 
   def get_youtube_id
@@ -33,10 +46,11 @@ class Merchandise < ApplicationRecord
   end
 
   private
-    def parse_youtube url
-      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-      if url.match(regex)
-        url.match(regex)[1]
-      end
+
+  def parse_youtube url
+    regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+    if url.match(regex)
+      url.match(regex)[1]
     end
+  end
 end

@@ -6,7 +6,7 @@ one:
   price: 1.5
   desc: desc of user1 product
   itempic: picture of user1 product
-  merchpdf: user1.pdf
+  merchpdf: 
   buttontype: Buy
 two:
   name: Donate $1.50!
@@ -47,7 +47,7 @@ six:
   desc: MyText
   itempic: MyString
   audio: Test.mp3
-  buttontype: Donate  
+  buttontype: Donate
 seven:
   name: donateTest!
   user_id: 1
@@ -56,12 +56,61 @@ seven:
   itempic: donate.jpg
   merchpdf: donate.pdf
   buttontype: Donate
-eight:
-  id: 1
-  name: donateTest!
+
+# FK goes to user_id 3 (seller)
+merchandise_with_attachment:
+  user_id: 3
+  name: Test Donation
+  price: 7.0
+  desc: "Test merchandise description."
+  itempic:
+  goal:
+  youtube:
+  audio:
+  video:
+  graphic:
+  merchepub:
+  merchmobi:
+  merchpdf: rails5.pdf
+  expiration:
+  buttontype: "Buy"
+
+# FK goes to user_id 3 (seller)
+merchandise_as_donation:
+  user_id: 3
+  name: Test Donation
+  price: 7.0
+  desc:
+  itempic:
+  goal:
+  youtube:
+  audio:
+  video:
+  graphic:
+  merchepub:
+  merchmobi:
+  merchpdf:
+  expiration:
+  buttontype: "Donate"
+  
+one_empty_attachments:
+  name: user1 product
   user_id: 1
+  price: 1.5
+  desc: desc of user1 product
+  itempic: picture of user1 product
+  merchpdf: 
   price: 2
   desc: Donation
   itempic: donate.jpg
-  merchpdf: donate.pdf
+  merchpdf: 
   buttontype: Donate
+
+one_with_attachment:
+  name: user1 product
+  user_id: 1
+  price: 1.5
+  desc: desc of user1 product
+  itempic: picture of user1 product
+  merchpdf: user1.pdf
+  buttontype: Buy

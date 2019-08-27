@@ -1,0 +1,68 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#exampleModalCenter">
+  <%= buy_price %>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered new-purchase-modal-wrapper" role="document">
+    <%= form_for @purchase, method: :post do |form| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title donation-title" id="exampleModalLongTitle">Support Our Host</h3>
+        </div>
+        <div class="modal-body new-purchase-modal">
+          <%= form.hidden_field :stripe_card_token %>
+          <%= form.hidden_field :group_id, value: params[:group_id] %>
+          <%= form.hidden_field :pricesold, value: params[:pricesold] %>
+          <%= form.hidden_field :author_id, value: params[:author_id] %>
+          <%= form.hidden_field :merchandise_id, value: merch.id %>
+          <%#= form.hidden_field :user_id, value: user.id %>
+          <% if @purchase.errors.any? %>
+            <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
+            <% @purchase.errors.full_messages.each do |msg| %> 
+              <%= msg %>
+            <% end %>
+          <% end %>
+          <div id="stripe_error">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          </div>
+          <div class="form-wrapper">
+            <% if user_signed_in? %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+            <% else %>
+              <label>* EMAIL is required:</label>
+              <%= form.text_field :email, placeholder: 'Email', class: 'form-control' %>
+            <% end %>
+          </div>
+          <div class="form-wrapper">
+            <%= text_field_tag :card_number, nil, placeholder: 'Card Number', class: 'form-control' %>
+          </div>
+          <div class="form-wrapper">
+            <%= text_field_tag :card_code, nil, name: nil, placeholder: 'CVV', class: 'form-control' %>
+          </div>
+          <div class="modal-date-selector">
+            <%= select_month nil, { add_month_numbers: true }, { name: nil, id: 'card_month' } %>
+            <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 5 }, { name: nil, id: 'card_year' } %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <%= form.submit ("Donate $" + sprintf('%.2f', merch.price) + "!"), class: 'purchase-modal-btn' %>
+          </div>
+          <br />
+          <div>
+            <%= link_to "I don't want to support " + user.name, data: { dismiss: "modal" } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+	var carduse = 'global variable card';
+	function existingcard () {
+		carduse = "existingcustomer";
+	}  
+</script>

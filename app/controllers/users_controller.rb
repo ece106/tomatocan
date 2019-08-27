@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    #    @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
+    # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     @numusrgroups = 0
     if user_signed_in?
       currusergroups = Group.where("user_id = ?", current_user.id)
@@ -193,7 +193,8 @@ class UsersController < ApplicationController
       redirect_to user_profileinfo_path(current_user.permalink)
       UserMailer.with(user: @user).welcome_email.deliver_later
     else
-      redirect_to new_user_signup_path, danger: signup_error_message
+      # redirect_to new_user_signup_path, danger: signup_error_message
+      redirect_to new_user_signup_path
       @user.errors.clear
     end
   end

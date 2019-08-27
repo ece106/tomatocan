@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     @rsvpusers = @event.users
     @rsvps     = @event.rsvpqs
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
+    @surl = "http://www.ThinQ.tv/" + @user.permalink
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,6 +40,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
+    @event.update_attribute(:user_id, params["event"]["usrid"])
     user = User.find(@event.usrid)
     @reminder_date = @event.start_at - 2.days
     respond_to do |format|
