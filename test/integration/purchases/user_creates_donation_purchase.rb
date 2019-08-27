@@ -9,7 +9,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   setup do
     @purchase = purchases(:one)
     @user_one = users(:one) 
-    @donation_merch = merchandises(:seven)
+    @donation_merch = merchandises(:eight)
     @user_two = users(:two)
     @card_number = "4242424242424242" 
     @cvc = "123"
@@ -17,11 +17,12 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   end
 
   test 'user makes a dontation with a new card' do
-    user_sign_in @user_two
+    user_sign_in @user_two_
     visit_and_select_donation
     card_information_entry
-    assert page.has_button? 'Donate'
+    #assert page.has_button? 'Donate'
     click_on 'purchase-btn'   
+    assert_current_path "/#{@user_one.permalink}"
   end
   
   test 'user makes a donation with stripe_customer_token present' do
@@ -29,7 +30,8 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     token = stripe_token_create @user_two
     @user_two.update_attribute :stripe_customer_token, token.id
     visit_and_select_donation
-    assert page.has_css? '.last4'
+    binding.pry
+    assert page.has_field? '.last4'
     assert page.has_button? 'Donate now'
 
   end
