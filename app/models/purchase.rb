@@ -9,14 +9,21 @@ class Purchase < ApplicationRecord
   include PaymentGateway
 
   attr_accessor :card_number, :card_code, :amount, :application_fee, :seller,
-    :seller_stripe_account, :token, :currency
+    :seller_stripe_account, :token, :currency, :authori
 
   CURRENCY = 'usd'.freeze
 
   def save_with_payment
     begin
-      setup_payment_information
-      merchandise_buy_or_donate? ? merchandise_payment : donation_payment
+      # Check for a defaut donation
+      if self.merchandise_id.nil?
+        setup_default_donation 
+        default_donation_payment
+      else 
+        setup_payment_information
+        merchandise_buy_or_donate? ? merchandise_payment : donation_payment
+      end
+
       save!
     rescue Stripe::InvalidRequestError => e
     end
@@ -28,6 +35,34 @@ class Purchase < ApplicationRecord
 
   def donation_payment
     purchase_anonymous? ? anonymous_donation : user_donation
+  end
+
+  def default_donation_payment
+    # self.author_id.nil? ? user_default_donation : anonymous_default_donation
+    self.stripe_card_token.present? ? anonymous_default_donation : user_default_donation
+  end
+
+  def anonymous_default_donation
+    PaymentGateway.create_anonymous_charge(self)
+  end
+
+  def user_default_donation
+    # PaymentGateway.create_anonymous_charge(self)
+    donator            = User.find(self.user_id)
+    returning_customer = PaymentGateway.retrieve_customer(donator.stripe_customer_token)
+    self.token         = PaymentGateway.create_token(self, returning_customer)
+
+    PaymentGateway.create_charge(self)
+  end
+
+  def setup_default_donation
+    self.seller                = User.find(self.author_id)
+    self.seller_stripe_account = PaymentGateway.retrieve_seller_account(self.seller.stripeid)
+    # self.author_id             = self.seller.id
+    self.authorcut             = calculate_authorcut(self.pricesold)
+    self.amount                = calculate_amount(self.pricesold)
+    self.application_fee       = calculate_application_fee(self.amount)
+    self.currency              = CURRENCY
   end
 
   def setup_payment_information
