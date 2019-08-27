@@ -1,27 +1,7 @@
 //This file places main.css.scss at the top of every stylesheet, allowing correct hierarchy on every page.
 
 /*
+*= require simple_calendar
 *= require_self
 *= require main
 */  
-
-
-/*
-Directory structure:
-+--- assets/
-|   +--- stylesheets/
-|       +--- /application.scss
-|       +--- /main.scss
-|           +--- base/
-|               +--- /variables.scss
-|               +--- /globals.scss
-|               +--- /header.scss
-|               +--- /footer.scss
-|               +--- /scaffolds.scss
-|           +--- styles/
-|               +--- /new.scss
-|               +--- /home.scss
-|               +--- /panels.scss
-|               +--- /users.scss
-*/
-
