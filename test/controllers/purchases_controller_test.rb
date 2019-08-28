@@ -22,7 +22,7 @@ class PurchasesControllerTest < ActionController::TestCase
     @customer = Stripe::Customer.create(description: @purchaser.name,
         																email: @purchaser.email)
  		 @merchandise = merchandises(:one)
-     @donation_merchandise = merchandises(:eight)
+     @donation_merchandise = merchandises(:seven)
   end
 
   test 'should_get_purchases_new_purchase' do
