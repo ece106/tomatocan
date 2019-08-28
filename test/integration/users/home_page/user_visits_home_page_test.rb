@@ -79,8 +79,9 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end  
 
   test "should open email after clicking on contact email in footer" do
-  	#click_on(class: 'f-link')
+  	email_img = "//img[@src='http://localhost:3000/assets/social-share-button/email-50fbaa4af41b348e91e118113e4920ae829e86eb929a1a581d284eeacb9b070b.png']"
 
+    assert page.has_xpath? email_img
   end	
 
   test "should be able to share website with social media" do
