@@ -2,8 +2,8 @@ require 'test_helper'
 
 class MerchandisesControllerTest < ActionController::TestCase
   setup do
-  @merchandise = merchandises(:one)
-end
+    @merchandise = merchandises(:one)
+  end
 
   test "should get index" do
     get :index

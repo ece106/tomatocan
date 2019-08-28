@@ -1,4 +1,14 @@
 module ApplicationHelper
+  def retrieve_host event 
+    event.user_id.nil? ? User.find(event.usrid) : User.find(event.user_id)
+  end
+
+  def render_profile_image(user)
+    if !user.profilepic.nil?
+      image_tag(user.profilepic.url.to_s, size: '120x120')
+    end
+  end
+
   def full_title(page_title)
     base_title = "ThinQ.tv"
     if page_title.empty?

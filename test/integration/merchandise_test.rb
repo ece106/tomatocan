@@ -10,6 +10,7 @@ class MerchandisesTest < ActionDispatch::IntegrationTest
     fill_in(id: 'user_email', with: 'fake@fake.com')
     fill_in(id: 'user_password', with: 'user1234')
     click_on(class: 'form-control btn-primary')
+    @user = users(:one)
 end
     test 'Should create reward from controlpanel rewards page' do
         # signUpUser()
@@ -21,15 +22,15 @@ end
         assert_text('Describe this Reward or donation.')#This text appears in the new merchandises page
     end
     test 'Should render current buy reward from profileinfo page' do
-        click_on(text: 'name',:match => :first)
-        click_on(text: 'Control Panel')
-        click_on(text: 'Rewards')
-        click_on('Create Reward')
-        fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
-        fill_in(id: 'merchandise_price', with: '30')
-        #purchase deadline is currently 2019 July 24
-        click_on(id: 'perkSubmit')
-        assert_text('Tickets to My Show')
+      visit "/#{@user.permalink}"
+      click_on(text: 'Control Panel')
+      click_on(text: 'Rewards')
+      click_on('Create Reward')
+      fill_in(id: 'merchandise_name', with: 'Tickets to My Show')
+      fill_in(id: 'merchandise_price', with: '30')
+      #purchase deadline is currently 2019 July 24
+      click_on(id: 'perkSubmit')
+      assert_text('Tickets to My Show')
     end
     test 'Should render current donate reward from profileinfo page' do
         click_on(text: 'Phineas',:match => :first)
@@ -44,7 +45,7 @@ end
         assert_text('Googitygoo')
     end
     test "Should meet all requirements creating new reward" do
-        click_on('Phineas')
+        visit "/#{@user.permalink}"
         click_on('Control Panel')
         click_on('Rewards')
         click_on(class: 'btn btn-lg btn-warning', match: :first)
@@ -55,9 +56,9 @@ end
         assert_text('Shoe')
     end
     test 'Should_not_meet_all_requirements_when_creating_new_reward' do 
-        click_on('Phineas')
-        click_on('Control Panel')
-        click_on('Rewards')
+        visit "/#{@user.permalink}"
+        click_on 'Control Panel'
+        click_on 'Rewards'
         #purchase deadline is currently 2019 July 24
         click_on(class: 'btn btn-lg btn-warning', match: :first)
         click_on(class: 'btn btn-lg btn-primary')
