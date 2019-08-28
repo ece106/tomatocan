@@ -24,6 +24,7 @@ gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
+gem "figaro"
 
 gem 'rails', '5.2.1'
 gem 'railties', '5.2.1'

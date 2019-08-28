@@ -84,7 +84,13 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end	
 
   test "should be able to share website with social media" do
-  	#assert_redirected_to %r(\Ahttp://localhost:3000/assets/social-share-button/facebook-cc0ec86441dbe9e86b58ac3e84d30dd1de8830c74e41e424aa447327795850df.png)
+    linkedin_img = "//img[@src = 'http://localhost:3000/assets/social-share-button/linkedin-4bd3da9688f79a4a37a35b73581fb0fef97ed295ed16b39a9e9d50e69c4d8b22.png']"
+    facebook_img = "//img[@src = 'http://localhost:3000/assets/social-share-button/facebook-cc0ec86441dbe9e86b58ac3e84d30dd1de8830c74e41e424aa447327795850df.png']"
+    twitter_img = "//img[@src = 'http://localhost:3000/assets/social-share-button/twitter-c58b38cdffe427a2b16dac360e8c6ecb8d615a522c8e22aa0774e7cd57679c85.png']"
+
+    assert page.has_xpath? linkedin_img
+    assert page.has_xpath? facebook_img
+    assert page.has_xpath? twitter_img
   end	
 
 
