@@ -193,8 +193,8 @@ class UsersController < ApplicationController
       redirect_to user_profileinfo_path(current_user.permalink)
       UserMailer.with(user: @user).welcome_email.deliver_later
     else
-      # redirect_to new_user_signup_path, danger: signup_error_message
-      redirect_to new_user_signup_path
+       redirect_to new_user_signup_path, danger: signup_error_message
+      #redirect_to new_user_signup_path
       @user.errors.clear
     end
   end
@@ -265,6 +265,8 @@ class UsersController < ApplicationController
         @sidebarmerchandise = deadlineorder.all[0..0]
       end
     end 
+  end 
+
     # returns a string of error messages for the user signup page
     def signup_error_message
       msg = ""
@@ -274,7 +276,6 @@ class UsersController < ApplicationController
       if @user.errors.messages[:email].present?
         @user.errors.messages[:email].each do |email| 
           msg += ("Email " + email + "\n")
-        end
       end
       if @user.errors.messages[:permalink].present?
         msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
