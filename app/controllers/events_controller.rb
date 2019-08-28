@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
+    @event.update_attribute(:user_id, params["event"]["usrid"])
     user = User.find(@event.usrid)
     @reminder_date = @event.start_at - 2.days
     respond_to do |format|
