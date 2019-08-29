@@ -14,29 +14,41 @@ class UserLandingHeader < ActionDispatch::IntegrationTest
 		assert page.has_id? 'navbarLogo'
 		click_on id: navbarLogo
 		binding.pry
-		assert_equal(current_path, root_path)
+		assert_equal current_path, root_path
 	end
 
 	test 'home button visits static page successfully' do 
 		assert page.has_button? 'Home'
 		click_on 'Home'
 
-		assert_equal(current_path, root_path)
+		assert_equal current_path, root_path
 	end
 
 	test 'about button goes to about page successfully' do
 		assert page.has_button? 'About'
 		click_on 'About'
+		
+		about_page = find()
+		
+		assert_equal current_path, about_page
 	end
 
 	test "go to Discover Previous Conversations successfully" do
 		assert page.has_button? 'Discover Previous Conversations'
 		click_on 'Discover Previous Conversations'
+		
+		discover_prev_page = find()
+		
+		assert_equal current_path, discover_prev_page
 	end
 
 	test "go to FAQ page successfully" do
 		assert page.has_button? 'FAQ'
 		click_on 'FAQ'
+		
+		faq_page = find()
+		
+		assert_equal current_path, faq_page
 	end
 
 	test "go to View Profile page successfully" do
