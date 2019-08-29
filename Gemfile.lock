@@ -868,6 +868,8 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
+    figaro (1.1.1)
+      thor (~> 0.14)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (2.2.0)
@@ -1280,6 +1282,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.2.2)
   devise
+  figaro
   fog
   friendly_id (~> 5.0.0)
   geocoder
