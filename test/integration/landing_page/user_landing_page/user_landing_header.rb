@@ -4,6 +4,7 @@ require "capybara-screenshot/minitest"
 class UserLandingHeader < ActionDispatch::IntegrationTest
 	setup do
 		@test_user = user :one
+		@event = event :one
 		
 		sign_in
 		
@@ -17,38 +18,19 @@ class UserLandingHeader < ActionDispatch::IntegrationTest
 		assert_equal current_path, root_path
 	end
 
-	test 'home button visits static page successfully' do 
-		assert page.has_button? 'Home'
-		click_on 'Home'
-
-		assert_equal current_path, root_path
-	end
-
-	test 'about button goes to about page successfully' do
-		assert page.has_button? 'About'
-		click_on 'About'
+	test 'navigation buttons successful' do 
+		assert page.has_class? 'nav-item'
+		click_on class: 'nav-item'
 		
-		about_page = find()
+		home_page = root_path
+		about_page = find('link=About')
+		dpc_page = find('link=Discover Previous Conversations')
+		faq_page = find('link=FAQ')
 		
-		assert_equal current_path, about_page
-	end
-
-	test "go to Discover Previous Conversations successfully" do
-		assert page.has_button? 'Discover Previous Conversations'
-		click_on 'Discover Previous Conversations'
-		
-		discover_prev_page = find()
-		
-		assert_equal current_path, discover_prev_page
-	end
-
-	test "go to FAQ page successfully" do
-		assert page.has_button? 'FAQ'
-		click_on 'FAQ'
-		
-		faq_page = find()
-		
-		assert_equal current_path, faq_page
+		assert page.has_xpath? home_page
+		assert page.has_xpath? about_page
+		assert page.has_xpath? dpc_page
+		assert page.has_xpath? faq_page
 	end
 
 	test "go to View Profile page successfully" do

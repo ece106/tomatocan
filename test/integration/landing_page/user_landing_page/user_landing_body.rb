@@ -4,34 +4,52 @@ require 'capybara-screenshot/minitst'
 class UserLandingBody < ActionDispatch::IntegreationTest
 	setup do
 		@test_user = user :one
-
+		@event = events :one
+		
     sign_in
-
+		
     visit root_path
 	end
 		
-	test 'tech tuesday link' do
+	test 'tech tuesday links' do
 		assert page.has_link? 'Tech Tuesday'
 		click_link 'Tech Tuesday'
+		
+		tech_page = find('Tech Tuesday')
+		
+		assert_equal current_path, tech_page
 	end
 	
 	test 'conversations on faith link' do
 		assert page.has_link? 'Conversations on Faith'
 		click_link 'Conversations on Faith'
+		
+		faith_page = find('Conversations on Faith')
+		
+		assert_equal current_path, faith_page
 	end
 
-	test 'International Awareness link'do
+	test 'international awareness link'do
 		assert page.has_link? 'International Awareness'
 		click_link 'Internatoinal Awareness'
+		
+		international_page = find('International Awareness')
+		
+		assert_equal current_path, international_page
 	end
 	
 	test 'Join Conversation successfully' do
 		assert page.has_button? 'Join Conversation'
 		click_button 'Join Conversation'
+		
+		converse_page = find('Join Conversation')
+		
+		assert_equal current_path, converse_page
 	end
 	
 	test 'Countdown Clock Runs Successfully' do
-		skip	
+		assert page.has_layout? 'layouts/countdown_clock'
+			
 	end
 	
 	test 'Link to Upcoming Conversation' do
@@ -43,7 +61,7 @@ class UserLandingBody < ActionDispatch::IntegreationTest
 	end
 
 	test 'calender render succesful' do
-		skip
+		assert page.has_layout? 'layout/maincalender'
 	end
 	
 	test 'hosting a converstion successfully' do
@@ -53,6 +71,10 @@ class UserLandingBody < ActionDispatch::IntegreationTest
 	test 'adding a new conversation successfully' do
 		assert page.has_button? 'Add your Conversation'
 		click_button 'Add your Conversation'
+		
+		add_converse_page = find('Add your Conversation')
+		
+		assert_equal current_path, add_converse_page
 	end
 	
 	def sign_in
