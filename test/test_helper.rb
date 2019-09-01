@@ -17,15 +17,35 @@ SimpleCov.start 'rails' do
 end
 
 class ActionDispatch::IntegrationTest
-  fixtures :all
-
-  Capybara::Screenshot.autosave_on_failure = false
-
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
-
   # Make `assert_*` methods behave like Minitest assertions
   include Capybara::Minitest::Assertions
+  fixtures :all
+  Capybara::Screenshot.autosave_on_failure = false
+
+  setup do
+    @card_number           = "4242424242424242"
+    @cvc                   = "123"
+  end
+
+  def user_sign_in  user
+    session = Capybara::Session.new(:selenium_headless)
+    session.visit root_path 
+    session.click_on 'Sign In' 
+    session.fill_in id: 'user_email',    with:  "#{user.email}"
+    session.fill_in id: 'user_password', with:  "#{user.password}"
+    binding.pry
+    session.click_on class: 'form-control btn-primary'
+  end
+
+  def card_information_entry 
+    fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
+    fill_in id: 'card_number',          with: "#{@card_number}"
+    fill_in id: 'card_code',            with: "#{@cvc}"
+    select 'August',                    from: 'card_month'
+    select '2024',                      from: 'card_year'
+  end
 
   # Reset sessions and driver between tests
   # Use super wherever this method is redefined in your individual test classes
