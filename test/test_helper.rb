@@ -30,13 +30,11 @@ class ActionDispatch::IntegrationTest
   end
 
   def user_sign_in  user
-    session = Capybara::Session.new(:selenium_headless)
-    session.visit root_path 
-    session.click_on 'Sign In' 
-    session.fill_in id: 'user_email',    with:  "#{user.email}"
-    session.fill_in id: 'user_password', with:  "#{user.password}"
-    binding.pry
-    session.click_on class: 'form-control btn-primary'
+   visit root_path 
+   click_on 'Sign In' 
+   fill_in id: 'user_email',    with:  "#{user.email}"
+   fill_in id: 'user_password', with:  "#{user.password}"
+   click_on class: 'form-control btn-primary'
   end
 
   def card_information_entry 
