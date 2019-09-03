@@ -78,22 +78,35 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   	end	
   end  
 
-  test "should open email after clicking on contact email in footer" do
-  	email_img = "//img[@src='http://localhost:3000/assets/social-share-button/email-50fbaa4af41b348e91e118113e4920ae829e86eb929a1a581d284eeacb9b070b.png']"
+  test "images should exist for social media sharing buttons in footer" do
+    email_img = "//footer/div/div/div[3]/a[3]/img"
+    linkedin_img = "//footer/div/div/div[3]/a[2]/img"
+    facebook_img = "//footer/div/div/div[3]/div/a/img"
+    twitter_img = "//footer/div/div/div[3]/a[1]/img"
 
     assert page.has_xpath? email_img
-  end	
-
-  test "should be able to share website with social media" do
-    linkedin_img = "//img[@src = 'http://localhost:3000/assets/social-share-button/linkedin-4bd3da9688f79a4a37a35b73581fb0fef97ed295ed16b39a9e9d50e69c4d8b22.png']"
-    facebook_img = "//img[@src = 'http://localhost:3000/assets/social-share-button/facebook-cc0ec86441dbe9e86b58ac3e84d30dd1de8830c74e41e424aa447327795850df.png']"
-    twitter_img = "//img[@src = 'http://localhost:3000/assets/social-share-button/twitter-c58b38cdffe427a2b16dac360e8c6ecb8d615a522c8e22aa0774e7cd57679c85.png']"
-
     assert page.has_xpath? linkedin_img
     assert page.has_xpath? facebook_img
     assert page.has_xpath? twitter_img
-  end	
+  end
 
+   test "should be a link for emailing website in footer" do
+    within("div#footer.row") do
+      assert page.has_link?('info@ThinQ.tv')
+    end
+  end 
+
+  test "links should exist for social media sharing buttons in footer" do
+    linkedin_link = "/html/body/header/footer/div/div/div[3]/a[2]"
+    facebook_link = "/html/body/header/footer/div/div/div[3]/div/a"
+    twitter_link = "/html/body/header/footer/div/div/div[3]/a[1]"
+    email_link = "/html/body/header/footer/div/div/div[3]/a[3]"
+
+    assert page.has_xpath? linkedin_link
+    assert page.has_xpath? facebook_link
+    assert page.has_xpath? twitter_link
+    assert page.has_xpath? email_link
+  end
 
   def sign_in
     visit root_path
