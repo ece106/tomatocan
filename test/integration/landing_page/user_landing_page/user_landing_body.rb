@@ -1,9 +1,9 @@
 require 'test_helper'
-require 'capybara-screenshot/minitst'
+require 'capybara-screenshot/minitest'
 
-class UserLandingBody < ActionDispatch::IntegreationTest
+class UserLandingBody < ActionDispatch::IntegrationTest
 	setup do
-		@test_user = user :one
+		@user = users :one
 		@event = events :one
 		
     sign_in
@@ -48,7 +48,7 @@ class UserLandingBody < ActionDispatch::IntegreationTest
 	end
 	
 	test 'Countdown Clock Runs Successfully' do
-		assert page.has_layout? 'layouts/countdown_clock'
+		assert page.has_xpath? 'layouts/countdown_clock'
 			
 	end
 	
@@ -61,7 +61,7 @@ class UserLandingBody < ActionDispatch::IntegreationTest
 	end
 
 	test 'calender render succesful' do
-		assert page.has_layout? 'layout/maincalender'
+		assert page.has_xpath? 'layout/maincalender'
 	end
 	
 	test 'hosting a converstion successfully' do
@@ -78,12 +78,12 @@ class UserLandingBody < ActionDispatch::IntegreationTest
 	end
 	
 	def sign_in
-    visit root_path user
+    visit root_path users
 
     click_on 'Sign In', match: :first
 
-    fill_in id: 'user_email', with: "#{user.email}"
-    fill_in id: 'user_password', with: "#{user.password}"
+    fill_in id: 'user_email', with: "#{@user.email}"
+    fill_in id: 'user_password', with: "#{@user.password}"
 
     click_on class: 'form-control btn-primary'
   end
