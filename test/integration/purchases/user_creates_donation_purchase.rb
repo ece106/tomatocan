@@ -22,7 +22,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @visit_new_donation.call @donation_merch.id
     card_information_entry
     assert page.has_button? 'Purchase'
-    click_on 'purchase-btn'   
+    click_on 'Purchase'   
     assert_current_path "/#{@user_one.permalink}"
   end
 
@@ -34,8 +34,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @visit_new_donation.call @donation_merch.id
     assert page.has_css? '.last4'
     assert page.has_button? 'Buy now'
-    click_on 'purchase-btn'   
-
+    find(:button, 'Buy now', match: :first).click
   end
 
   test 'user uses different card to donate' do
@@ -44,20 +43,26 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @user_two.update_attribute :stripe_customer_token, token.id
     @visit_new_donation.call @donation_merch.id
     assert page.has_css? '.diffcard'
-    find(:link, 'diffcard', match: :first).click
+    click_on class: 'diffcard'
     @card_css.each { |x| assert page.has_css? x }
   end
+
   #this is a default donation
-  test 'user makes a default donation for the first time' do
+  test 'user makes a default donation' do
     user_sign_in @user_two
     [25,50,100].each do |price| 
       @visit_default_donation.call @purchase.author_id, price
-      binding.pry
       card_information_entry
       assert page.has_button? 'Donate'
-      click_on 'donation-btn'
+      click_on 'Donate' 
       assert_current_path "/#{ @user_one.permalink }"
+      @user_two.update_attribute :stripe_customer_token, ""
     end
+  end
+
+  def teardown 
+    @user_two.update_attribute :stripe_customer_token, ""
+    click_on 'Sign out'
   end
 
   private 

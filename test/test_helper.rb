@@ -33,7 +33,7 @@ class ActionDispatch::IntegrationTest
    visit root_path 
    click_on 'Sign In' 
    fill_in id: 'user_email',    with:  "#{user.email}"
-   fill_in id: 'user_password', with:  "#{user.password}"
+   fill_in id: 'user_password', with:  "user1234"
    click_on class: 'form-control btn-primary'
   end
 

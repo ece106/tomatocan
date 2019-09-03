@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'PurchasesHelperTest'
 require 'capybara-screenshot/minitest'
 require 'stripe'
 class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
