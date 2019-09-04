@@ -35,6 +35,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     assert page.has_css? '.last4'
     assert page.has_button? 'Buy now'
     find(:button, 'Buy now', match: :first).click
+    assert_current_path "/#{ @user_one.permalink }"
   end
 
   test 'user uses different card to donate' do
@@ -45,6 +46,10 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     assert page.has_css? '.diffcard'
     click_on class: 'diffcard'
     @card_css.each { |x| assert page.has_css? x }
+    card_information_entry 
+    assert page.has_button? 'Buy now'
+    find(:button, 'Buy now', match: :first).click
+    assert_current_path "/#{ @user_one.permalink }"
   end
 
   #this is a default donation
@@ -62,7 +67,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
 
   def teardown 
     @user_two.update_attribute :stripe_customer_token, ""
-    click_on 'Sign out'
+    click_on class: 'btn btn-default'
   end
 
   private 

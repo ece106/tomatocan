@@ -7,7 +7,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
   Capybara::Screenshot.autosave_on_failure = false
 
   setup do
-    @purchase                    = purchases(:two)
+    @purchase                    = purchases(:one)
     @user_one                    = users(:one)
     @card_number                 = "4242424242424242"
     @cvc                         = "123"
@@ -17,13 +17,13 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
 
   end
 
-  test 'non user enters in wrong information card declined' do
-    @visit_new_purchase.call @merchandise.id
-    assert page.has_css? '#purchase_email'
-    fill_in id: 'purchase_email',   with: "onetimeemail@email.com"
-    click_on 'Purchase'
-    assert page.has_css? '#stripe_error'
-  end
+  #test 'non user enters in wrong information card declined' do
+    #@visit_new_purchase.call @merchandise.id
+    #assert page.has_css? '#purchase_email'
+    #fill_in id: 'purchase_email',   with: "onetimeemail@email.com"
+    #click_on 'Purchase'
+    #assert @purchase.errors.any?
+  #end
 
   test 'non user makes merchandise purchase with new card no attachment' do
     @visit_new_purchase.call @merchandise.id
@@ -31,7 +31,8 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     fill_in id: 'purchase_email',   with: "onetimeemail@email.com"
     card_information_entry
     assert page.has_button? 'Purchase'
-    click_on 'Purchase'
+    click_on 'purchase-btn'
+    assert_current_path "/#{@user_one.permalink}"
   end
   
   test 'non user makes a merchandise purchase with attachments' do
@@ -40,8 +41,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'Purchase'
-    #assert the recipt page  
-    #assert that the merchandise is sending
+    #assert that the merchandise is sendindd
   end
 
 end

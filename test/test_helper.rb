@@ -31,7 +31,7 @@ class ActionDispatch::IntegrationTest
 
   def user_sign_in  user
    visit root_path 
-   click_on 'Sign In' 
+   click_on class: 'btn btn-default'
    fill_in id: 'user_email',    with:  "#{user.email}"
    fill_in id: 'user_password', with:  "user1234"
    click_on class: 'form-control btn-primary'
