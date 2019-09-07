@@ -14,17 +14,19 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @visit_new_donation     = lambda { |donation_id| visit new_purchase_path  merchandise_id: donation_id }
     @visit_default_donation = lambda { |author_id, price| visit new_purchase_path  author_id: author_id, pricesold: price }
     @card_css               = ['#card_number','#card_code','#card_month','#card_year']
+    @default_prices         = [25,50,100] #if changes occur to defualt donation prices you can edit this list
+
   end
 
   #right now this is based on merchandise_id in the view and the button will show up purchase because it is a donation merchandise
-  test 'user makes a dontation with a new card' do
-    user_sign_in @user_two
-    @visit_new_donation.call @donation_merch.id
-    card_information_entry
-    assert page.has_button? 'Purchase'
-    click_on 'Purchase'   
-    assert_current_path "/#{@user_one.permalink}"
-  end
+  #test 'user makes a dontation with a new card' do
+    #user_sign_in @user_two
+    #@visit_new_donation.call @donation_merch.id
+    #card_information_entry
+    #assert page.has_button? 'Purchase'
+    #click_on 'Purchase'   
+    #assert_current_path "/#{@user_one.permalink}"
+  #end
 
   #this is also a donation merchandise donation so it will have a purchase button as well as a buy now
   test 'user makes a donation with stripe_customer_token present' do
@@ -55,7 +57,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   #this is a default donation
   test 'user makes a default donation' do
     user_sign_in @user_two
-    [25,50,100].each do |price| 
+    @default_prices.each do |price| 
       @visit_default_donation.call @purchase.author_id, price
       card_information_entry
       assert page.has_button? 'Donate'

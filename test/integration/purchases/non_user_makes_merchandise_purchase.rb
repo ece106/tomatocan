@@ -28,7 +28,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
   test 'non user makes merchandise purchase with new card no attachment' do
     @visit_new_purchase.call @merchandise.id
     assert page.has_css? '#purchase_email'
-    fill_in id: 'purchase_email',   with: "onetimeemail@email.com"
+    fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'purchase-btn'
@@ -37,7 +37,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
   
   test 'non user makes a merchandise purchase with attachments' do
     @visit_new_purchase.call @merchandise_with_attachment.id
-    fill_in id: 'purchase_email',   with: "onetimeemail@email.com"
+    fill_in id: 'purchase_email', with: "onetimeemail@email.com"
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'Purchase'
