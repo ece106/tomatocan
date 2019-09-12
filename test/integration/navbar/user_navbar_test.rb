@@ -2,18 +2,14 @@ require "test_helper"
 require "capybara-screenshot/minitest"
 require "pry"
 
-class UserLandingHeader < ActionDispatch::IntegrationTest
+class UserNavbar < ActionDispatch::IntegrationTest
 	setup do
 		@user = users :one
 		@event = events :one
 		
-		sign_in
+		sign_in @user
 		
 		visit root_path	
-	end
-
-	test 'logo link' do
-		skip
 	end
   
 	test 'navitem buttons' do
@@ -50,22 +46,25 @@ class UserLandingHeader < ActionDispatch::IntegrationTest
 	end
 		
 	test 'logout successfully' do
-		assert page.has_css? ('btn btn-default')
-		click_on class: 'btn btn-default'
+		#assert page.has_css? 'btn btn-default'
+		click_on class: 'btn btn-default', match: :first
 		
-		assert current_path, root_path
+		assert '/', current_path
 	end
 
 	private
 	
-	def sign_in
-		visit root_path users
+	def sign_in users
+		visit root_path
 
-		click_on 'Sign In', match: :first
+		click_on class: 'btn btn-default'
 
-		fill_in id: 'user_email', with: "#{@user.email}"
-		fill_in id: 'user_password', with: "#{@user.password}"
+		fill_in id: 'user_email', with: "#{users.email}"
+		fill_in id: 'user_password', with: "user1234"
 
 		click_on class: 'form-control btn-primary'
+	end
+	
+	def teardown
 	end
 end

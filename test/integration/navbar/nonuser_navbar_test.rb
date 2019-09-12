@@ -1,7 +1,6 @@
 require "test_helper"
 require "capybara-screenshot/minitest"
 require "pry"
-require "securerandom"
 
 class NonuserNavbar < ActionDispatch::IntegrationTest
 	setup do
@@ -30,6 +29,7 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
 		assert_equal '/signup', current_path
 		sign_up
 		assert_equal '/fake_user/profileinfo', current_path
+		click_on class: 'btn btn-default', match: :first
 	end
 
 	test 'sign in' do
@@ -57,12 +57,12 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
 		click_on class: 'form-control btn-primary'
 	end
 
-  def sign_in user
+  def sign_in users
     visit root_path 
 			
 		click_on class: 'btn btn-default'
 		
-		fill_in id: 'user_email',    with:  "#{user.email}"
+		fill_in id: 'user_email',    with:  "#{users.email}"
 		fill_in id: 'user_password', with:  "user1234"
 		
 		click_on class: 'form-control btn-primary'
