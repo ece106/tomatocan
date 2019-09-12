@@ -24,25 +24,27 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert_equal '/faq', current_path
   end
 	
-	test "go to View Profile page successfully" do
+	test 'view profile page' do
+		assert text, "#{@user.name}"
 		assert page.has_css? '.dropdown'
 		assert page.has_css? '.dropdown-toggle'
-		drop_down = find_element(class: 'dropdown')
-		click_on class: 'dropdown'
-		assert dropdown.has_button? 'Profile'
-		click_on 'Profile'
-		
-		assert_equal current_path, "/#{@user.permalink}"
+		find(class: 'dropdown-toggle',match: :first).click
+
+		assert page.has_link? 'View Profile'
+		find_link('View Profile',match: :first).click
+		assert_equal "/#{@user.permalink}", current_path
 	end
 	
-	test "go to Control Panel page" do
-		assert page.has_button? ('//[@class="dropdown"]')
-    drop_down = find_element(class: 'dropdown')
-    click_on class: 'dropdown'
-    assert dropdown.has_button? 'Control Panel'
-    click_on 'Control Panel'
+	test 'view control panel page' do
+		assert text, "#{@user.name}"
+		assert page.has_css? '.dropdown'
+		assert page.has_css? '.dropdown-toggle'
+		find(class: 'dropdown-toggle',match: :first).click
 
-		assert_equal current_path, "/#{@user.permalink}"
+    assert page.has_link? 'Control Panel'
+		find_link('Control Panel',match: :first).click
+		#ask about the user.permalink thing not working below
+		assert_equal "/#{@user.permalink}/controlpanel", current_path
 	end
 		
 	test 'logout successfully' do
