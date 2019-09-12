@@ -3,7 +3,8 @@ require 'test_helper'
 class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
-    #@event = events :one
+    @event = events :one
+
     sign_in
   end
 
@@ -58,18 +59,18 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end	
 
    test "should be able to host a live conversation" do
-    within("div.row.learnMore") do
-      click_on("Add Your Conversation", match: :first)
+    within("div.panel.panel-default") do
+      click_on("Host a Live Conversation", match: :first)
       assert_equal current_path, new_event_path
     end 
   end  
 
-  test "should be able to RSVP for conversations" do
+  test "should show event on home page" do
      assert has_content? @event.name
-     assert page.has_selector?(:link_or_button, 'RSVP')
-     within("div#calendar.row") do
-      click_on("RSVP")
-    end
+     #within("div#calendar.row") do
+      #assert page.has_button?('RSVPsubmit')
+      #click_on(id: "RSVPsubmit")
+    #end
   end  
 
   test "should be able to add my own conversation" do
