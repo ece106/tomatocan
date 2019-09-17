@@ -55,7 +55,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   end
 
   #this is a default donation
-  test 'user makes a default donation' do
+  test 'user makes a default donation first time' do
     user_sign_in @user_two
     @default_prices.each do |price| 
       @visit_default_donation.call @purchase.author_id, price
