@@ -11,12 +11,16 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
   
   test 'navitem buttons' do 
     assert page.has_css? '.nav-item'
+    assert page.has_link? 'Home'
     find_link('Home', match: :first).click
     assert_equal '/', current_path
+    assert page.has_link? 'About'
     find_link('About', match: :first).click
     assert_equal '/aboutus', current_path
+    assert page.has_link? 'Discover Previous Conversations'
     find_link('Discover Previous Conversations', match: :first).click
-    assert_equal '/supportourwork', current_path 
+    assert_equal '/supportourwork', current_path
+    assert page.has_link? 'FAQ'
     find_link('FAQ', match: :first).click
     assert_equal '/faq', current_path
   end

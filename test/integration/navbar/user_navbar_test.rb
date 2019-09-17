@@ -11,19 +11,26 @@ class UserNavbar < ActionDispatch::IntegrationTest
     visit root_path 
   end
   
-  test 'navitem buttons' do
+  test 'navitem buttons and logout' do
     assert page.has_css? '.nav-item'
+    assert page.has_link? 'Home'
     find_link('Home', match: :first).click
     assert_equal '/', current_path
+    assert page.has_link? 'About'
     find_link('About', match: :first).click
     assert_equal '/aboutus', current_path
+    assert page.has_link? 'Discover Previous Conversations'
     find_link('Discover Previous Conversations', match: :first).click
     assert_equal '/supportourwork', current_path
+    assert page.has_link? 'FAQ'
     find_link('FAQ', match: :first).click
     assert_equal '/faq', current_path
+    click_on class: 'btn btn-default', match: :first
+
+    assert '/', current_path
   end
   
-  test 'view profile page' do
+  test 'view profile page and logout' do
     assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
     assert page.has_css? '.dropdown-toggle'
@@ -32,9 +39,12 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'View Profile'
     find_link('View Profile',match: :first).click
     assert_equal "/#{@user.permalink}", current_path
+    click_on class: 'btn btn-default', match: :first
+
+    assert '/', current_path
   end
   
-  test 'view control panel page' do
+  test 'view control panel page and logout' do
     assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
     assert page.has_css? '.dropdown-toggle'
@@ -43,15 +53,11 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Control Panel'
     find_link('Control Panel',match: :first).click
     assert_equal "/#{@user.permalink}/controlpanel", current_path
-  end
-    
-  test 'logout successfully' do
-    #assert page.has_css? 'btn btn-default'
     click_on class: 'btn btn-default', match: :first
-    
+
     assert '/', current_path
   end
-
+  
   private
   
   def sign_in users
@@ -64,7 +70,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
 
     click_on class: 'form-control btn-primary'
   end
-  
+
   def teardown
   end
 end
