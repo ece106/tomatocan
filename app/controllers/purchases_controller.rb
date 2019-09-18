@@ -38,24 +38,23 @@ class PurchasesController < ApplicationController
 
     # For Default Donation
     if !@purchase.merchandise_id.present?
-      # @seller = User.find(params["purchase"]["author_id"])
       @purchase_mailer_hash          = { purchase: @purchase }
       @seller                        = User.find(@purchase.author_id)
       @purchase_mailer_hash[:seller] = @seller
-      @purchase.save_with_payment
-      flash[:notice] = 'You successfully donated $' + @purchase.pricesold.to_s + ' . Thank you for being a donor of ' + @seller.name
-      redirect_to user_profile_path(@seller.permalink) 
-      PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
-      PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
+      assign_user_id
+      if @purchase.save_with_payment
+        flash[:notice] = 'You successfully donated $' + @purchase.pricesold.to_s + ' . Thank you for being a donor of ' + @seller.name
+        redirect_to user_profile_path(@seller.permalink) 
+        PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
+        PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
+      else
+        redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
+      end
     else
       @purchase_mailer_hash          = { purchase: @purchase }
       @merchandise                   = Merchandise.find(@purchase.merchandise_id)
       @seller                        = User.find(@merchandise.user_id)
       @purchase_mailer_hash[:seller] = @seller
-    end
-
-    # Non Default Donation
-    if @purchase.merchandise_id.present?
       case @merchandise.buttontype
       when 'Donate'
         assign_user_id

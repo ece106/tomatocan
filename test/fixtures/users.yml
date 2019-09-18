@@ -22,9 +22,7 @@ one:
   author: author
   about: MyText
   twitter: MyTwitter
-  # stripeid: acct_1E4BAlKFKIozho71
-  # stripeid: <%#= ENV['STRIPE_SECRET_KEY'] %>
-  stripeid: <%= Figaro.env.stripe_connect_client_id %>
+  stripeid: acct_1FJnd1AoBciSI7MG
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
   remember_token: MyString
 
@@ -72,9 +70,7 @@ seller:
   author: author
   about: MyText
   twitter: MyTwitter
-  stripeid: <%= Figaro.env.stripe_connect_client_id %>
-  # stripeid: acct_1ExkXyIpU3Ga9QmO
-  # stripeid: <%#= ENV['STRIPE_SECRET_KEY'] %>
+  stripeid: acct_1FJnd1AoBciSI7MG
   encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
   remember_token: MyString
 

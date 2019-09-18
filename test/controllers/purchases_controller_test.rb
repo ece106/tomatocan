@@ -22,7 +22,7 @@ class PurchasesControllerTest < ActionController::TestCase
     @customer = Stripe::Customer.create(description: @purchaser.name,
         																email: @purchaser.email)
  		 @merchandise = merchandises(:one)
-     @donation_merchandise = merchandises(:eight)
+     @donation_merchandise = merchandises(:seven)
   end
 
   test 'should_get_purchases_new_purchase' do
@@ -93,68 +93,6 @@ class PurchasesControllerTest < ActionController::TestCase
     merch = merchandises(:one)
     get :new, params: { pricesold: 25, author_id: seller.id, merchandise: merch }
     assert_response :success
-  end
-
-  test 'to create a donation for customer who is registered with Stripe and whose email is posted' do
-    sign_in @purchaser
-    cardToken = Stripe::Token.create(
-      card: {
-        number: '4242424242424242',
-        exp_month: 8,
-        exp_year: 2060,
-        cvc: '123'
-      }
-    )
-    puts cardToken['id'] # stripe_card_token
-    customer = Stripe::Customer.create(
-      description: @purchaser.name,
-      email: @purchaser.email
-    )
-    customer.save
-    @purchaser.update_column(:stripe_customer_token, customer.id)
-    post :create, params: { purchase: { user_id: @purchaser.id, merchandise_id: @donation_merchandise.id, email: @purchaser.email, author_id: @seller.id, stripe_customer_token: @purchaser.stripe_customer_token, stripe_card_token: cardToken['id'], pricesold: 10 } }
-    assert_redirected_to user_profile_path(users(:one).permalink)
-  end
-
-  test 'to create a donation for customer who is registered with Stripe but whose email is not posted' do
-    puts 'test 2'
-    sign_in @purchaser
-    cardToken = Stripe::Token.create(
-      card: {
-        number: '4242424242424242',
-        exp_month: 8,
-        exp_year: 2060,
-        cvc: '123'
-      }
-    )
-    customer = Stripe::Customer.create(
-      description: @purchaser.name,
-      email: @purchaser.email
-    )
-    customer.save
-    @purchaser.update_column(:stripe_customer_token, customer.id)
-    post :create, params: { purchase: { user_id: @purchaser.id, merchandise_id: @donation_merchandise.id, author_id: @seller.id, stripe_customer_token: @purchaser.stripe_customer_token, stripe_card_token: cardToken['id'], pricesold: 10 } }
-    assert_redirected_to user_profile_path(users(:one).permalink)
-  end
-
-  test 'to create a donation for customer who is not registered with Stripe' do
-    puts 'test 3'
-    sign_in @purchaser
-    cardToken = Stripe::Token.create(
-      card: {
-        number: '4242424242424242',
-        exp_month: 8,
-        exp_year: 2060,
-        cvc: '123'
-      }
-    )
-    customer = Stripe::Customer.create(
-      description: @purchaser.name,
-      email: @purchaser.email
-    )
-    customer.save
-    post :create, params: { purchase: { user_id: @purchaser.id, author_id: @seller.id, merchandise_id: @donation_merchandise.id, stripe_card_token: cardToken['id'], pricesold: 10 } }
-    assert_redirected_to user_profile_path(users(:one).permalink)
   end
 
   test 'purchase with merchandise sends mail' do
