@@ -3,39 +3,29 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat&display=swap' rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-  <title>Event Reminder</title>
+  <title>Conversation Reminder</title>
 </head>
-<body style="font-family: 'Montserrat', sans-serif; text-align: center;">
-  <br>
-  <div class = "header">
-    <h2>ThinQ.tv</h2>
-  </div>
-  <br>
-  <div style="font-size: 18pt; margin: 10px auto 10px auto; text-align: left; width : 60%; padding: 1%;" >
-    <h1 style="font-size: 40px; color: #8B0942; font-style: bold;" align="center" > Just a friendly reminder for your upcoming Conversation on ThinQ.tv!</h1>
+<body style="font-family: 'Montserrat', sans-serif;">
+  <div style="font-size: 12pt; margin: 10px auto 10px auto; text-align: left; width : 60%; padding: 1%;" >
+    <h1 style="font-size: 30px; color: #8B0942; font-style: bold;" align="center" > Thank you for hosting a conversation about <%=@event.name%> on ThinQ.tv!</h1>
     <br>
-    <p> Hello, <%= @user.name %> <br><br>
-     This is a reminder about your conversation, <%=@event.name%>
-     <br><br>
-     Hosted by:<br>
-     <%=@user.name%> <br>
-     <%=@date_body_format%> <br>
-     <%=@event.desc%><br>
-     Please invite your friends to discuss <%=@event.name%> with this link: <a href=<%=@event_url%>, target="_blank" style="color: #8B0942; text-decoration-line: none;"><%=@event_url%></a>
-     <br><br>
-     Best,<br>
-     ThinQ.tv
-     </p>
-     <br>
-     <div class = "img">
-        <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
-      </div>
-     <br>
-     <p style="font-size: 30px; font-style: bold;"><b>Can't make it?</b></p>
-     <p>Don't worry, we host weekly shows so you'll never miss out! Check out our schedule of Conversations <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">here</a>.</p>
-     <br><br>
+    <p> Hello <%= @user.name %>, <br>
+      ThinQ.tv is inventing Participatory TV! Your Conversation is posted on our home page schedule for <%=@date_body_format%> <br>
+      <%=@event.desc%><br><br>
+      Please invite your friends and colleagues to participate in your conversation by forwarding this message and encouraging them to RSVP here <a href=<%=@event_url%>, target="_blank" style="color: #8B0942; text-decoration-line: none;"><%=@event_url%></a>.<br>
+      To be a part of the Conversation, go to <a href="http://ThinQ.tv", target="_blank" style="color: #8B0942; text-decoration-line: none;">ThinQ.tv</a> and click the "Join Conversation" button for the topic on the schedule that you'd like to participate in.  
+      Please go to that site in advance to make sure your browser is compatible with your webcam. Recent versions Chrome and Firefox work best. Do not use Safari.<br>
+
+      If you must participate in our Conversation by phone, download the JITSI app in advance and join the THINQTV chatroom.
+    </p>
+    <div class = "img">
+      <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
+    </div>
+    <p>Participate in other upcoming LIVE online Conversations too! Check out our <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">schedule</a>.</p>
+    <br><br>
   </div>  
-   <div style="background-color: #8B0942; margin: 10px auto 10px auto; padding: .5%; ">
+  
+  <div style="background-color: #8B0942; margin: 10px auto 10px auto; padding: .5%; ">
     <h1 style="color:white; font-size: 40px;">See You Soon!</h1> 
     <table align="center" width="100%" style="width: 60%; border: 0px; text-align: center; margin: auto; padding: 0; border-spacing: 0px; border-color: none;border-collapse: collapse;">
         <td colspan="4"><p style = "color:white; font-size: 15px;">Contact us<br><a href="mailto:info@thinq.tv" alt="Email" target="_blank" style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;">info@ThinQ.tv</a><br>Washington DC: 703-495-3185<br> Scottsdale: 602-888-3089</p>
@@ -45,7 +35,7 @@
         <td colspan="4">
         <p style = "color:white; font-size: 15px;" class="f-header">Share</p>
         <% url = "http://www.thinq.tv/" %>
-        <% desc = "Broadcast live discussions about what you're doing to change the world and participate in intellectual discussions to broaden your knowledge!"%>
+        <% desc = "Participate in live online thought-provoking conversations!"%>
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
         <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.crowdpublish.tv%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
