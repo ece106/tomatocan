@@ -6,7 +6,6 @@ one:
   price: 1.5
   desc: desc of user1 product
   itempic: picture of user1 product
-  merchpdf: 
   buttontype: Buy
 two:
   name: Donate $1.50!
@@ -54,7 +53,6 @@ seven:
   price: 2
   desc: Donation
   itempic: donate.jpg
-  merchpdf: donate.pdf
   buttontype: Donate
 
 # FK goes to user_id 3 (seller)
@@ -103,7 +101,6 @@ one_empty_attachments:
   price: 2
   desc: Donation
   itempic: donate.jpg
-  merchpdf: 
   buttontype: Donate
 
 one_with_attachment:
