@@ -39,10 +39,10 @@ class PurchasesController < ApplicationController
     # For Default Donation
     if !@purchase.merchandise_id.present?
       @purchase_mailer_hash          = { purchase: @purchase }
-      @seller                        = User.find(@purchase.seller)
+      @seller                        = User.find(@purchase.author_id)
       @purchase_mailer_hash[:seller] = @seller
       assign_user_id
-      if @purchase.default
+      if @purchase.save_with_payment
         flash[:notice] = 'You successfully donated $' + @purchase.pricesold.to_s + ' . Thank you for being a donor of ' + @seller.name
         redirect_to user_profile_path(@seller.permalink) 
         PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
