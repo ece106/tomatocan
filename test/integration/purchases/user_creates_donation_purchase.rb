@@ -67,6 +67,19 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'user makes a default donation as a returning customer' do
+    user_sign_in @user_two
+    token = stripe_token_create @user_two
+    @user_two.update_attribute :stripe_customer_token, token.id
+    @default_prices.each do |price| 
+      @visit_default_donation.call @purchase.author_id, price
+      card_information_entry
+      assert page.has_button? 'Donate now'
+      find(:button, 'Donate now', match: :first).click
+      assert_current_path "/#{ @user_one.permalink }"
+    end
+  end
+
   def teardown 
     @user_two.update_attribute :stripe_customer_token, ""
     click_on class: 'btn btn-default'
