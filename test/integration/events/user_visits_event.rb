@@ -39,7 +39,7 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
   end
 
   test "can join live discussion successfully" do
-    click_on "Join Live Discussion"
+    click_on "Join Live Conversation"
 
     assert_equal current_path, "/#{@user.permalink}"
   end
@@ -51,7 +51,7 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
   end
 
   test "can share event" do
-    page.has_css? "#shareBtn"
+    assert page.has_css? "#shareBtn"
 
     click_on id: "shareBtn"
 

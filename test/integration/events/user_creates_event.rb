@@ -10,13 +10,11 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
     visit new_event_path
   end
 
-  # NOTE: Need to come back to this. Capybara can't click on button.
-  # Functionality still works though.
   test "create event with invalid attributes" do
     fill_in id: "event_name", with: ""
     fill_in id: "event_desc", with: "http://www.thinq.tv/"
 
-    click_on class: "create-event-btn"
+    click_on class: "btn btn-lg btn-primary"
 
     assert_equal current_path, new_event_path
   end
