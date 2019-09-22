@@ -8,56 +8,13 @@
   <meta property="og:description" content="Host Conversations" />
   <% @title="ThinQ.tv" %>
 
-  <div>
-    <div class=".col-md-8" style="margin-bottom:-10px">
-      <h1><%= @event.name %></h1>
-    </div>
-
-
     <% if user_signed_in? %>
       <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit Conversation", edit_event_path(@event)%>
+        <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
       <% end %>
     <% end %>
 
-    <p style="color:#808080; font-size: 18px;">
-    <b>Hosted by
-      <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
-    </p>
-
-    <h3>
-      <% edt = @event.start_at + 3.hours %>
-      <% edtend = @event.end_at + 3.hours %>
-      <div style="margin-left:5px">
-        <%= @event.start_at.strftime("%A, %B %d") %>
-        <br>
-        <%= @event.start_at.strftime("%I:%M %p")%> PDT
-        / <%= edt.strftime("%I:%M %p") %> EDT
-      </div>
-    </h3>
-
-    <br><%= link_to "Join Live Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
-
-    <div style= "text-align:left" >
-      <br>
-      <b>Length:</b><div style="margin-left:5px"><%= @duration %> minutes</div>
-      <br>
-      <b>Additional details:</b>
-      <div style="margin-left:5px; word-wrap:break-word;">
-        <% if @event.desc.present? %>
-          <%= @event.desc %>
-        <% else %>
-          No additional details
-        <% end %>
-      </p>
-      <br>
-      </div>
-      <p>
       <div style= "text-align:left" >
-        <% if @rsvps.count > 5 %>
-          <b><%= @rsvps.count %> guests said they'll be there</b><br>
-        <% end %>
-        <br>
         <b>Invite friends! </b><br>
 
     <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be assets, not urls to remote images we do not control-->
@@ -81,7 +38,7 @@
              'width=600,height=400,top=80,left=300');
              return false;">
              <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:1px;">
-          </a>
+          </a><br><br>
         </div>
 
         <div style="margin-top:20px;">
@@ -97,23 +54,52 @@
               </div>
             <% end %>
 
-            <br>RSVP for this conversation: <br>
             <%= f.hidden_field :event_id, :value => @event.id %>
             <% if user_signed_in? %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
             <% else %>
-	            <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
+              <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
             <% end %>
-            <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
+            <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br><br>
           <% end %><br>
         </div>
+      <div>
+    <p style="font-size: 18px;">
+    <b>Email this message to friends & colleagues: </b></p>
+    Join me for a Conversation about
 
-        <% if @rsvps.count > 5 %>
-          <br><b><%= @rsvps.count %> guests said they'll be there</b><br>
+    <div class=".col-md-8" style="margin-bottom:-10px">
+      <h1><%= @event.name %></h1>
+    </div>
+
+    <p style="color:#808080; font-size: 18px;">
+    <b>Hosted by
+      <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
+    </p>
+    
+    <h3>
+      <% edt = @event.start_at + 3.hours %>
+      <div>
+        <%= @event.start_at.strftime("%A, %B %d") %>
+        <br>
+        <%= @event.start_at.strftime("%I:%M %p")%> PDT
+        / <%= edt.strftime("%I:%M %p") %> EDT
+      </div>
+    </h3>
+
+      <%= @duration %> minutes<br><br>
+        <% if @event.desc.present? %>
+          <b><%= @event.desc %></b>
+          <br><br>
+        <% end %>
+      To participate in the Conversation, go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the     <br><%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-primary' %> button for the topic on the schedule for <%= @event.name %>. <br><br>
+      Please go to that site in advance to make sure your browser is compatible with your webcam. Recent versions Chrome and Firefox work best. Do not use Safari. If you participate in our Conversation by phone, download the JITSI app in advance and join the THINQTV chatroom.<br>
+
+        <% if @rsvps.count > 0 %>
+          <br><b>Conversationalists who said they would be there:</b><br>
           <div>
             <% @rsvpusers.each do |rsvpuser| %>
               <%= link_to rsvpuser.name, rsvpuser %>,
-              <% nguests = Rsvpq.where("user_id = ? AND event_id = ?", rsvpuser.id, @event.id) %>
             <% end %>
           </div>
         <% end %>
