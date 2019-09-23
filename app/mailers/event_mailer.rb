@@ -10,7 +10,7 @@ class EventMailer < ApplicationMailer
 
   def event_reminder
     inline_images
-    mail(to: @user.email, subject: "A reminder for your event on #{@date_subject_format}")
+    mail(to: @user.email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
   end
 
  private
@@ -23,7 +23,7 @@ class EventMailer < ApplicationMailer
   end
 
   def set_url
-    @event_url = event_url(host:'ThinQ.tv', id: @user.id)
+    @event_url = event_url(host:'ThinQ.tv', id: @event.id)
   end
 
   def format_date

@@ -9,7 +9,7 @@ class Purchase < ApplicationRecord
   include PaymentGateway
 
   attr_accessor :card_number, :card_code, :amount, :application_fee, :seller,
-    :seller_stripe_account, :token, :currency, :authori
+    :seller_stripe_account, :token, :currency
 
   CURRENCY = 'usd'.freeze
 
