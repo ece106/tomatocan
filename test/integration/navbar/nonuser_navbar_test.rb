@@ -14,12 +14,15 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Home'
     find_link('Home', match: :first).click
     assert_equal '/', current_path
-    assert page.has_link? 'About'
-    find_link('About', match: :first).click
-    assert_equal '/aboutus', current_path
     assert page.has_link? 'Discover Previous Conversations'
     find_link('Discover Previous Conversations', match: :first).click
     assert_equal '/supportourwork', current_path
+    assert page.has_link? 'Invite Us To Speak'
+    find_link('Invite Us To Speak', match: :first).click
+    assert_equal '/drschaeferspeaking', current_path
+    assert page.has_link? 'Be a ThinQtv Influencer!'
+    find_link('Be a ThinQtv Influencer!', match: :first).click
+    assert_equal '/internship', current_path
     assert page.has_link? 'FAQ'
     find_link('FAQ', match: :first).click
     assert_equal '/faq', current_path
@@ -40,7 +43,7 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Sign In'
     find_link('Sign In', match: :first).click
     assert_equal '/login', current_path
-    sign_in @user
+    user_sign_in @user
     assert_equal '/', current_path
     click_on class: 'btn btn-default', match: :first
   end
