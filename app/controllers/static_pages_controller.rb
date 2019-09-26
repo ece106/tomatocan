@@ -8,8 +8,24 @@ class StaticPagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    timenotutc = Time.now - 10.hours
+    timenotutc = Time.now - 9.hours
     @events = Event.where( "start_at > ?", timenotutc ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
+    mstnow = Time.now - 7.hours
+    @currconvo = Event.where( "start_at < ? AND end_at > ?", mstnow, mstnow ).first
+
+    if @currconvo.present?
+      @name = @currconvo.name
+      @description = @currconvo.desc
+      @start_time = @currconvo.start_at.strftime("%B %d %Y") + ' ' + @currconvo.start_at.strftime("%T") + " PDT"
+      @end_time = @currconvo.end_at.strftime("%B %d %Y") + ' ' + @currconvo.end_at.strftime("%T") + " PDT"
+      @host = User.find(@currconvo.usrid)
+    else
+      @name = @events.first.name
+      @description = @events.first.desc
+      @start_time = @events.first.start_at.strftime("%B %d %Y") + ' ' + @events.first.start_at.strftime("%T") + " PDT"
+      @end_time = @events.first.end_at.strftime("%B %d %Y") + ' ' + @events.first.end_at.strftime("%T") + " PDT"
+      @host = User.find(@events.first.usrid)  
+    end  
 
     if user_signed_in?
       @user = User.find(current_user.id)
