@@ -41,8 +41,8 @@
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
-            <% if (Time.current > Time.parse(start_time) ) && (Time.current < Time.parse(end_time)) %>
 
+            <% if ((Time.current - 7.hours) > Time.parse(start_time) ) && ((Time.current - 7.hours) < Time.parse(end_time)) %>
               <%= link_to "Join Conversation NOW", "https://crowdpublishtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
 
             <% else %>
