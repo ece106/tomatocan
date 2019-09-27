@@ -14,19 +14,19 @@ class StaticPagesController < ApplicationController
     @currconvo = Event.where( "start_at < ? AND end_at > ?", mstnow, mstnow ).first
 
     if @currconvo.present?
-      @name = @currconvo.name
-      @description = @currconvo.desc
-      @start_time = @currconvo.start_at.strftime("%B %d %Y") + ' ' + @currconvo.start_at.strftime("%T") + " PDT"
-      @end_time = @currconvo.end_at.strftime("%B %d %Y") + ' ' + @currconvo.end_at.strftime("%T") + " PDT"
-      @host = User.find(@currconvo.usrid)
+      displayconvo = @currconvo
+    elsif @events.first.start_at < mstnow
+      displayconvo = @events[1]
     else
-      @name = @events.first.name
-      @description = @events.first.desc
-      @start_time = @events.first.start_at.strftime("%B %d %Y") + ' ' + @events.first.start_at.strftime("%T") + " PDT"
-      @end_time = @events.first.end_at.strftime("%B %d %Y") + ' ' + @events.first.end_at.strftime("%T") + " PDT"
-      @host = User.find(@events.first.usrid)  
+      displayconvo = @events.first
     end  
 
+      @name = displayconvo.name
+      @description = displayconvo.desc
+      @start_time = displayconvo.start_at.strftime("%B %d %Y") + ' ' + displayconvo.start_at.strftime("%T") + " PDT"
+      @end_time = displayconvo.end_at.strftime("%B %d %Y") + ' ' + displayconvo.end_at.strftime("%T") + " PDT"
+      @host = User.find(displayconvo.usrid)
+        
     if user_signed_in?
       @user = User.find(current_user.id)
     end
