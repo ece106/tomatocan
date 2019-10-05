@@ -12,7 +12,7 @@
 <div class="panel panel-default">
   <% if user_signed_in? %>
     <div class=panel-body>
-        <%= link_to 'Host a Live Conversation', new_event_path, class: "btn btn-warning", id: "tableHost calendar-create" %>
+        <%= link_to 'Host a Live Conversation', new_event_path, class: "btn btn-warning" %>
     </div>
   <% end %>
   <% if @events.count != 0 %>

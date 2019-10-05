@@ -7,7 +7,7 @@
       <br>
       Hosted by: <%= link_to @host.name, @host.permalink %>
     </div>
-  <% else %>
+  <% elsif Time.current < Time.parse(@start_time) %>
     <div id="clockdiv">
       <div>
       <span class="days"></span>
@@ -30,7 +30,7 @@
       </script>
     </div> 
     <div id="nextEventdiv">
-      <p>Until </p><h3><%= link_to @name, event_path(@events.first.id), title: @description, 'data-toggle': "tooltip", 'data-placement': "bottom" %></h3><p> goes live!</p>
+      <p>Until </p><h3><%= link_to @name, event_path(@events.first.id), title: @description %></h3><p> goes live!</p>
       <br>
       Hosted by: <%= link_to @host.name, @host.permalink %>
     </div>

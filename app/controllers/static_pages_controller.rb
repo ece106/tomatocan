@@ -8,23 +8,22 @@ class StaticPagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    timenotutc = Time.now - 9.hours
-    @events = Event.where( "start_at > ?", timenotutc ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
+    showrecentconvo = Time.now - 9.hours
+    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
     mstnow = Time.now - 7.hours
     @currconvo = Event.where( "start_at < ? AND end_at > ?", mstnow, mstnow ).first
+    nextevent = Event.where( "start_at > ?", mstnow ).order('start_at ASC').first
 
     if @currconvo.present?
       displayconvo = @currconvo
-    elsif @events.first.start_at < mstnow
-      displayconvo = @events[1]
-    else
-      displayconvo = @events.first
+    else @events.first.start_at < mstnow
+      displayconvo = nextevent
     end  
 
       @name = displayconvo.name
       @description = displayconvo.desc
-      @start_time = displayconvo.start_at.strftime("%B %d %Y") + ' ' + displayconvo.start_at.strftime("%T") + " PDT"
-      @end_time = displayconvo.end_at.strftime("%B %d %Y") + ' ' + displayconvo.end_at.strftime("%T") + " PDT"
+      @start_time = displayconvo.start_at.strftime("%B %d %Y") + ' ' + displayconvo.start_at.strftime("%T") 
+      @end_time = displayconvo.end_at.strftime("%B %d %Y") + ' ' + displayconvo.end_at.strftime("%T") 
       @host = User.find(displayconvo.usrid)
         
     if user_signed_in?
@@ -35,8 +34,6 @@ class StaticPagesController < ApplicationController
   def faq
   end
   def suggestedperks
-  end
-  def aboutus
   end
   def livestream
   end
