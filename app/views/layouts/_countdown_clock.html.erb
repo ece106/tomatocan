@@ -1,13 +1,14 @@
 <% if @events.count != 0 %>
-  <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
-    <div id="eventCurrentdiv">
   <%= Time.current %> .... <%= Time.parse(@start_time) %> .... <%= Time.parse(@end_time) %>
+
+  <% if (Time.current > Time.parse(@start_time + 7.hours)) && (Time.current < Time.parse(@end_time + 7.hours)) %>
+    <div id="eventCurrentdiv">
       <p> is LIVE right NOW!</p><br>
       <%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
       <br>
       Hosted by: <%= link_to @host.name, @host.permalink %>
     </div>
-  <% elsif Time.current < Time.parse(@start_time) %>
+  <% elsif Time.current < Time.parse(@start_time + 7.hours) %>
     <div id="clockdiv">
       <div>
       <span class="days"></span>
