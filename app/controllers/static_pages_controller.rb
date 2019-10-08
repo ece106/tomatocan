@@ -15,16 +15,16 @@ class StaticPagesController < ApplicationController
     nextevent = Event.where( "start_at > ?", mstnow ).order('start_at ASC').first
 
     if @currconvo.present?
-      displayconvo = @currconvo
+      @displayconvo = @currconvo
     else @events.first.start_at < mstnow
-      displayconvo = nextevent
+      @displayconvo = nextevent
     end  
 
-      @name = displayconvo.name
-      @description = displayconvo.desc
-      @start_time = displayconvo.start_at.strftime("%B %d %Y") + ' ' + displayconvo.start_at.strftime("%T") 
-      @end_time = displayconvo.end_at.strftime("%B %d %Y") + ' ' + displayconvo.end_at.strftime("%T") 
-      @host = User.find(displayconvo.usrid)
+      @name = @displayconvo.name
+      @description = @displayconvo.desc
+      @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") 
+      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") 
+      @host = User.find(@displayconvo.usrid)
         
     if user_signed_in?
       @user = User.find(current_user.id)
