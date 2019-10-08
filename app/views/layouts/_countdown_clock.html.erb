@@ -1,7 +1,7 @@
 <% if @events.count != 0 %>
 
-  <% startT = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") %>
-  <% endT = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") %>
+  <% startT = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT" %>
+  <% endT = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT" %>
 
   <%= Time.current %> .... <%= Time.parse(@start_time) %> .... <%= Time.parse(@end_time) %><br>
   <%= Time.current %> .... <%= Time.parse(startT) %> .... <%= Time.parse(endT) %>
