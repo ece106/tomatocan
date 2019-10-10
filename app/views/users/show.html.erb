@@ -4,44 +4,45 @@
 <meta property="og:url" content="http://ThinQ.TV" />
 <meta property="og:description" content="ThinQTV helps actors, authors increase fan engagement & raise more funds" />
 </head>
-	<div class="container-fluid" >
-	  <% if request.host == "crowdpublishtv.herokuapp.com" %>
-        <div class="row" id="dashboardTabs">
-          <div class="col-md-4">
-					<%= render 'layouts/merchsidebar' %>
-          </div>
-          <div class="col-md-8">
-            <%= render 'layouts/jitsi' %>
-            <h4>Instructions for recording to YouTube</h4>
-		    <ol>
-			<li>Click the <b>&#8942;</b> button in the lower right bar of the viewer above.</li>
-			<li>Click 'Start live stream [BETA].'</li>
-			<li>Sign in with Google.</li>
-			<li>Enter your YouTube key (can be found at the bottom of your <%= link_to 'YouTube Live Dashboard ', "https://www.youtube.com/live_dashboard_splash", :target => "_blank" %>.</li>
-            </ol>
-          </div>
+  <div class="container-fluid" >
+    <% if request.host == "crowdpublishtv.herokuapp.com" %>
+      <div class="row" id="dashboardTabs">
+        <div class="col-md-4">
+          <%= render 'layouts/merchsidebar' %>
         </div>
-      <% else %>
-      <!-- "View Profile" leads to here.
-		localhost:3000/username
-			-->
-			<%= render 'layouts/authorform' %>
-			<div class="row" style="padding-top:15px;padding-bottom:30px;">
-					<%= render 'layouts/streamButton' %>
-			</div>
-			<% flash.each do |key, value| %>
-				<div class="alert alert-<%= key %> alert-dismissible" role="alert">
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				  <%= value %>
-				 </div>
-			<% end %>
-			<div class="row">
-				<div class="col-md-4">
-					<%= render 'layouts/merchsidebar' %>
-				</div>
-				<div class="col-md-8">
-					<%= render 'layouts/youtube' %>
-				</div>
-		</div>
+        <div class="col-md-8">
+          <%= render 'layouts/jitsi' %>
+          <h4>Instructions for recording to YouTube</h4>
+		  <ol>
+          <li>Click the <b>&#8942;</b> button in the lower right bar of the viewer above.</li>
+          <li>Click 'Start live stream [BETA].'</li>
+          <li>Sign in with Google.</li>
+          <li>Enter your YouTube key (can be found at the bottom of your <%= link_to 'YouTube Live Dashboard ', "https://www.youtube.com/live_dashboard_splash", :target => "_blank" %>.</li>
+          </ol>
+        </div>
+      </div>
+    <% else %>
+      <%= render 'layouts/authorform' %>
+      <div class="row" style="padding-top:15px;padding-bottom:30px;">
+        <%= render 'layouts/streamButton' %>
+      </div>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= value %>
+        </div>
       <% end %>
-	</div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <%= render 'layouts/merchsidebar' %>
+        </div>
+        <div class="col-md-8">
+          <% if @events.present? %>
+            <%= render 'layouts/maincalendar', collection: @events %><br>
+          <% end %>
+          <%= render 'layouts/youtube' %>
+        </div>
+      </div>
+    <% end %>
+  </div>

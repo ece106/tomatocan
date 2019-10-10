@@ -29,15 +29,9 @@ class UsersController < ApplicationController
 
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
-    @numusrgroups = 0
-    if user_signed_in?
-      currusergroups = Group.where("user_id = ?", current_user.id)
-      @usrgrpnameid = []
-      currusergroups.find_each do |group|
-        @usrgrpnameid <<  [group.name, group.id]
-      end
-      @numusrgroups = currusergroups.count
-    end
+    userid = @user.id
+    upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid)
+    @events = upcomingevents.paginate(page: params[:page], :per_page => 6)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

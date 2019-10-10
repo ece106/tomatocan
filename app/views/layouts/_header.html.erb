@@ -18,13 +18,13 @@
 					<li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', :title => "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li> <!-- ..use absolute routing in navbar.-->
 					<li class="nav-item"><%= link_to "Discover Previous Conversations", 'http://www.ThinQ.tv/supportourwork', :title => "Browse Conversation Hosts"%></li>
 					<li class="nav-item"><%= link_to "Invite Us To Speak", 'http://www.ThinQ.tv/drschaeferspeaking', :title => "To your organization - In Person!" %></li>
-					<li class="nav-item"><%= link_to "Be a ThinQtv Influencer!", 'http://www.ThinQ.tv/internship', :title => "Remotely or in Scottsdale" %></li>
+					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/internship', :title => "Remotely or in Scottsdale" %></li>
 					<li class="nav-item"><%= link_to "FAQ", 'http://www.ThinQ.tv/faq', :title => "Frequently Asked Questions" %></li>
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", '/', :title => "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li>
 					<li class="<%=(current_page?('/supportourwork') ? "nav-item active" : "nav-item")%>"><%= link_to "Discover Previous Conversations", '/supportourwork', :title => "Browse Conversation Hosts" %></li>
-					<li class="<%=(current_page?('/faq') ? "nav-item active" : "nav-item")%>"><%= link_to "Invite Us To Speak", '/drschaeferspeaking', :title => "To your organization - In Person!" %></li>
-					<li class="<%=(current_page?('/faq') ? "nav-item active" : "nav-item")%>"><%= link_to "Be a ThinQtv Influencer!", '/internship', :title => "Remotely or in Scottsdale" %></li>
+					<li class="<%=(current_page?('/drschaeferspeaking') ? "nav-item active" : "nav-item")%>"><%= link_to "Invite Us To Speak", '/drschaeferspeaking', :title => "To your organization - In Person!" %></li>
+					<li class="<%=(current_page?('/internship') ? "nav-item active" : "nav-item")%>"><%= link_to "Get Involved!", '/internship', :title => "Remotely or in Scottsdale" %></li>
 					<li class="<%=(current_page?('/faq') ? "nav-item active" : "nav-item")%>"><%= link_to "FAQ", '/faq', :title => "Frequently Asked Questions" %></li>
 				<% end %>
 			</ul>
