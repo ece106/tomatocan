@@ -10,11 +10,6 @@
 <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 
 <div class="panel panel-default">
-  <% if user_signed_in? %>
-    <div class=panel-body>
-        <%= link_to 'Host a Live Conversation', new_event_path, class: "btn btn-warning" %>
-    </div>
-  <% end %>
   <% if @events.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>

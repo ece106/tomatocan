@@ -46,6 +46,9 @@
     <div class="row" id="countdown_clock">
       <div class="col-md-4 col-md-offset-1 col-xs-11">
         <h2>Upcoming Conversations</h2>
+          <% if user_signed_in? %>
+            <%= link_to 'Host a Live Conversation', new_event_path, class: "btn btn-warning" %>
+          <% end %>
       </div>
       <div class="col-md-6">
          <%= render 'layouts/countdown_clock' %>

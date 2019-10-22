@@ -8,16 +8,48 @@
   <meta property="og:description" content="Host Conversations" />
   <% @title="ThinQ.tv" %>
 
+        <div style="margin-top:20px;">
+          <%= form_for(@rsvp) do |f| %>
+            <% if @rsvp.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                <ul>
+                  <% @rsvp.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <%= f.hidden_field :event_id, :value => @event.id %>
+            <% if user_signed_in? %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+            <% else %>
+              <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
+            <% end %>
+            <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
+          <% end %>
+        </div>
+
+  <div>
     <% if user_signed_in? %>
       <% if @event.usrid == current_user.id %>
         <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
       <% end %>
     <% end %>
 
-      <div style= "text-align:left" >
-        <b>Invite friends! </b><br>
+        <% if @rsvps.count > 0 %>
+          <br><b>Conversationalists who said they would be there:</b><br>
+          <div>
+            <% @rsvpusers.each do |rsvpuser| %>
+              <%= link_to rsvpuser.name, rsvpuser %>,
+            <% end %>
+          </div>
+        <% end %>
+        <h2>Share the Conversation with friends! </h2>
+        <div style="margin-left: 50px">
 
-    <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be assets, not urls to remote images we do not control-->
+    <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
              onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
              'newwindow',
@@ -41,69 +73,28 @@
           </a><br><br>
         </div>
 
-        <div style="margin-top:20px;">
-          <%= form_for(@rsvp) do |f| %>
-            <% if @rsvp.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-                <ul>
-                  <% @rsvp.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
+    <h3>Make sure your people are part of the Conversation. </h3>
+    <h2>EMAIL THIS MESSAGE TO FRIENDS AND COLLEAGUES: </h2>
 
-            <%= f.hidden_field :event_id, :value => @event.id %>
-            <% if user_signed_in? %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-            <% else %>
-              <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
-            <% end %>
-            <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br><br>
-          <% end %><br>
-        </div>
-      <div>
-    <p style="font-size: 18px;">
-    <b>Email this message to friends & colleagues: </b></p>
-    Join me for a Conversation about
-
-    <div class=".col-md-8" style="margin-bottom:-10px">
-      <h1><%= @event.name %></h1>
-    </div>
-
-    <p style="color:#808080; font-size: 18px;">
-    <b>Hosted by
-      <%= link_to @user.name, user_profile_path(@user.permalink) %> </b>
-    </p>
-    
-    <h3>
-      <% edt = @event.start_at + 3.hours %>
-      <div>
-        <%= @event.start_at.strftime("%A, %B %d") %>
-        <br>
-        <%= @event.start_at.strftime("%I:%M %p")%> PDT
-        / <%= edt.strftime("%I:%M %p") %> EDT
+    <div style="font-size: 18px; font-style: italic;">
+      Join me for a Conversation about<br>
+      <div style="font-color: #F00">
+        <b><%= @event.name %></b><br>
+        <b>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </b><br>
       </div>
-    </h3>
+    
+      <% edt = @event.start_at + 3.hours %>
+      <%= @event.start_at.strftime("%A, %B %d") %> <br>
+      <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT<br>
 
-      <%= @duration %> minutes<br><br>
+      <%= @duration %> minutes<br>
         <% if @event.desc.present? %>
           <b><%= @event.desc %></b>
-          <br><br>
+          <br>
         <% end %>
-      To participate in the Conversation, go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the     <br><%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-primary' %> button for the topic on the schedule for <%= @event.name %>. <br><br>
+      To participate in the Conversation, go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the <br><%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-primary' %> button for <%= @event.name %>. <br>
       Please go to that site in advance to make sure your browser is compatible with your webcam. Recent versions Chrome and Firefox work best. Do not use Safari. If you participate in our Conversation by phone, download the JITSI meet app in advance and join the THINQTV chatroom.<br>
 
-        <% if @rsvps.count > 0 %>
-          <br><b>Conversationalists who said they would be there:</b><br>
-          <div>
-            <% @rsvpusers.each do |rsvpuser| %>
-              <%= link_to rsvpuser.name, rsvpuser %>,
-            <% end %>
-          </div>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>
