@@ -18,7 +18,7 @@
                 <% end %>
         </div>
           <h2 id="heroTitle1">Conversations to make you ThinQ!</h2>
-          <h3 id="heroTitle3">Participate in LIVE conversations on Tech, Faith, International Awareness & more!</h3>
+          <h3 id="heroTitle3">Participate in LIVE video conversations on Tech, Faith, International Awareness & more!</h3>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
               <h3>We're talking about <%= link_to @name, event_path(@currconvo.id), title: @description %></h3>  

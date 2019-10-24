@@ -77,7 +77,7 @@
     <h2>EMAIL THIS MESSAGE TO FRIENDS AND COLLEAGUES: </h2>
 
     <div style="font-size: 18px; font-style: italic;">
-      Join me for a Conversation about<br>
+      Join me for a LIVE video Conversation and talk with us about<br>
       <div style="font-color: #F00">
         <b><%= @event.name %></b><br>
         <b>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </b><br>
@@ -92,8 +92,8 @@
           <b><%= @event.desc %></b>
           <br>
         <% end %>
-      To participate in the Conversation, go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the <br><%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-primary' %> button for <%= @event.name %>. <br>
-      Please go to that site in advance to make sure your browser is compatible with your webcam. Recent versions Chrome and Firefox work best. Do not use Safari. If you participate in our Conversation by phone, download the JITSI meet app in advance and join the THINQTV chatroom.<br>
+      It's easy to be a part of the Conversation! Go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the <br><%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-primary' %> button. <br>
+      If you'd like to participate in our Conversation by phone, download the JITSI meet app and join the THINQTV chatroom.<br>
 
     </div>
   </div>
