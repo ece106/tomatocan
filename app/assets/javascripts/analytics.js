@@ -39,6 +39,9 @@
   ga('create', 'UA-74064103-1', 'auto');
   ga('send', 'pageview');
 
+  ga('create', 'UA-150909386-1', 'auto');
+  ga('send', 'pageview');
+
   // Check if current url is a profileinfo or edit page. urlArray[3] == "stories" &&
 
 var urlArray = window.location.href.split( '/' );
