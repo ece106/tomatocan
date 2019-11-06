@@ -8,9 +8,9 @@ class StaticPagesController < ApplicationController
   layout :resolve_layout
 
   def home
-    showrecentconvo = Time.now - 8.hours
+    showrecentconvo = Time.now - 10.hours
     @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
-    mstnow = Time.now - 6.hours
+    mstnow = Time.now - 8.hours
     @currconvo = Event.where( "start_at < ? AND end_at > ?", mstnow, mstnow ).first
     nextevent = Event.where( "start_at > ?", mstnow ).order('start_at ASC').first
 
