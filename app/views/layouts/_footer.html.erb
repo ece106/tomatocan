@@ -29,16 +29,16 @@
             <div class="col-sm-2">
                 <p class="f-header">Share</p>
                 <% url = "http://www.ThinQ.tv" %>
-                <% desc = "Participate in thought-provoking conversations and learn to love the world more deeply!"%>
+                <% desc = "Participate in thought-provoking conversations!"%>
                 <!-- Facebook Share -->
                 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
                 <div class="social-share-button" data-href="<%= url %>"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"><img src="<%= asset_url('social-share-button/facebook.png') %>"></img></a></div>
                 <!-- Twitter Tweet -->
-                <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Participate%20in%20live%20thought-provoking%20conversations%20and%20learn%20to%20love%20the%20world%20more%20deeply!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
+                <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Participate%20in%20live%20thought-provoking%20conversations%20or%20Host%20your%20own%20Live%20Video%20office%20hours!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
                 <!-- LinkedIn Share -->
                 <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
                 <!-- Email Share -->
-                <a href="mailto:?subject=Check out this site called ThinQTV!&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AThe schedule is: Tuesdays 6:00pm PDT / 9:00pm EDT - Tech Tuesday%0D%0AWednesdays 6:00pm PDT / 9:00pm EDT - Conversations on Faith%0D%0AThursdays 6:00pm PDT / 9:00pm EDT - International Cultures%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.png') %>"></a>
+                <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.png') %>"></a>
             </div>
             <div class="col-sm-3 pull-right" id="fb">
 

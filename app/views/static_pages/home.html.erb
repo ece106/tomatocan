@@ -17,7 +17,6 @@
                 <% end %>
         </div>
           <h2 id="heroTitle1">Conversations to make you ThinQ!</h2>
-          <h3 id="heroTitle3">Participate in LIVE video conversations on Tech, Faith, International Awareness & more!</h3>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
               <h3>We're talking about <%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
@@ -28,12 +27,12 @@
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'Try a Conversation', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
+            <%= link_to 'Try a Live Video Conversation', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
             </h2>
           <% end %>
-          <h2 id="heroTitle4">Tuesdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'Tech Tuesday ', '/tech',:class => "topic_link"%></h2>
-          <h2 id="heroTitle4">Wednesdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'Conversations on Faith ', '/faith', :class => "topic_link"%></h2>
-          <h2 id="heroTitle4">Thursdays 6:00pm PDT / 9:00pm EDT - <%= link_to 'International Awareness ', '/international',:class => "topic_link"%>
+          <h2 id="heroTitle4"><%= link_to 'Host your own personal live video Office Hours', new_event_path,:class => "topic_link"%></h2>
+          <h2 id="heroTitle4">Drop in to thought-provoking conversations on a variety of topics</h2>
+          <h2 id="heroTitle4">Make meaningful professional & social connections with other smart people
           </h2>
       </div>
     </div>

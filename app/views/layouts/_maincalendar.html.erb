@@ -66,7 +66,7 @@
           <td class=col-xs-1>
             <% shareurl = "http://www.THINQ.tv/" + user.permalink %>
               <div id= "social-button"><span class="fb-share-button" data-href= <%= shareurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= shareurl %> class="fb-xfbml-parse-ignore">Share</a></span></div>
-            <div id="social-button"><span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Participate in <%= user.name %>'s Conversation: <%=  event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: <%= shareurl %>" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span></div>
+            <div id="social-button"><span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Participate in <%= user.name %>'s Conversation: <%=  event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PST: <%= shareurl %>" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span></div>
             <div id="social-button-in">
               <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
               <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top">Share</script>
