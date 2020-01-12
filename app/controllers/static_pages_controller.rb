@@ -33,9 +33,13 @@ class StaticPagesController < ApplicationController
 
   def faq
   end
-  def suggestedperks
+  def getinvolved
+  end
+  def internship
   end
   def livestream
+  end
+  def noharassment
   end
 
   def tellfriends
@@ -59,37 +63,5 @@ class StaticPagesController < ApplicationController
       'application'
     end
   end
-
-  # def set_upcoming_events
-  #   # @events = Event.all
-  #   timenotutc = Time.now - 10.hours
-  #   @events = Event.where("start_at > ?", timenotutc).order('start_at ASC')
-
-  #   @sunday_events    = []
-  #   @monday_events    = []
-  #   @tuesday_events   = []
-  #   @wednesday_events = []
-  #   @thursday_events  = []
-  #   @friday_events    = []
-  #   @saturday_events  = []
-
-  #   @events.each do |event|
-  #     if event.start_at.strftime("%A") == "Sunday"
-  #       @sunday_events.push(event)
-  #     elsif event.start_at.strftime("%A") == "Monday"
-  #       @monday_events.push(event)
-  #     elsif event.start_at.strftime("%A") == "Tuesday"
-  #       @tuesday_events.push(event)
-  #     elsif event.start_at.strftime("%A") == "Wednesday"
-  #       @wednesday_events.push(event)
-  #     elsif event.start_at.strftime("%A") == "Thursday"
-  #       @thursday_events.push(event)
-  #     elsif event.start_at.strftime("%A") == "Friday"
-  #       @friday_events.push(event)
-  #     elsif event.start_at.strftime("%A") == "Saturday"
-  #       @saturday_events.push(event)
-  #     end
-  #   end
-  # end
 
 end
