@@ -184,6 +184,9 @@ config.action_mailer.default_url_options = {
 end
 ```
 
+You must create the databases on your machine. They must be named the same as in your database.yml file.
+https://www.guru99.com/postgresql-create-database.html
+
 3. Then type
 ```
 >gem install bundler
@@ -249,15 +252,15 @@ Once you have made changes to your personal repository you can request to pull y
 
 ### REQUIREMENTS TO REMAIN IN THE THINQ.TV INTERNSHIP PROGRAM
 
-We'll allow most appropriately-skilled college students the opportunity to earn great knowledge in the Thinq.tv internship program. However after the first three weeks, we have minimum requirements to continued access to our time and resources:
+We'll allow most appropriately-skilled college students the opportunity to earn great knowledge in the Thinq.tv internship program. Some of our interns have been fantastic teammates and have been hired for great careers after completing 160 hours of our program. However since many interns have proved to be unready for adulthood, after the first three weeks, we have minimum requirements to continued access to our time and resources:
 
-- You must spend at least 10 hours per week on helping Thinq.tv grow. This is an internship at a business. It is not your toy app.
+- You must spend at least 10 hours per week on helping Thinq.tv grow. This is an internship at a business. It is not your toy app homework assignment.
 - Push to github 5 times per week.
-- Attend at least one of the Faith or International Conversations per week. If you are not willing to be a part of why we exist, you do not belong here.
+- Attend at least one of the Conversations posted on the home page per week. If you are not willing to be a part of our mission, you should not be taking up our time nor mental space.
 - Contribute enough to justify a pull request every 3 weeks.
-- Share conversations on your social media accounts every week: LinkedIn, Twitter, Facebook, Instagram. Tag Lisa's or Thinq.TV's account on the post to prove that the Conversation was shared.
+- Share conversations on your social media accounts every week: LinkedIn, Twitter, Facebook, Instagram. Tag YourOnlineMom's or Thinq.TV's account on the post to prove that the Conversation was shared.
 - Invite parents and friends to participate on live conversations - and prove it by their appearance.
-- Cell phones off. We must not see your cell phone at all while you are in our offices.
+- Cell phones off. We must not see your cell phone at all while you are in our offices. I do not allow you in my space to watch you text your friends.
 - Keep your hours updated on the in/out google calendar. Otherwise we'll assume you will not be fulfilling your 10 hours/week.
 
 Add the following columns to your Goals & Accomplishments sheet:
@@ -271,25 +274,29 @@ Add the following columns to your Goals & Accomplishments sheet:
 ### RESOURCES
 
 Refer to Michael Hartl's tutorial for great Rails knowledge http://railstutorial.org/book
+You only need to go through chapters 2-6. And maybe 10 & 13. Do NOT build the toy app. Only use Hartl's tutorial as a reference for understanding ThinQ.tv rails code.
 
 For a list of helpful git commands use the git cheatsheet: https://services.github.com/on-demand/downloads/github-git-cheat-sheet/
 
 For minitest methods https://guides.rubyonrails.org/testing.html
 
 
-### LISA'S RULES THAT SHE THOUGHT WERE OBVIOUS
+### PROFESSIONAL WORKPLACE RULES 
 
-- ThinQ.tv is not your toy app for your professor to give you a smiley face. ThinQ.tv is a business. If you do not believe in what we are accomplishing, you shouldn't work here.
-- If you do not make a pull request every 2 or 3 weeks, you are wasting your time in your own corner with your own toy app.
+- ThinQ.tv is not your toy app for your professor to give you a smiley face. ThinQ.tv is a business. No employer wants you to build a toy app homework assignment. 
+- If you do not believe in your employer's mission, you won't do well. Therefore everything you do must be toward getting more actively involved users/paying customers. 
+- Exercise good judgement. Changing colors does not bring in users. Adding pictures does not bring in users. Clarifying information does. Do not add confusing distractions to the site.
+- If you do not make a pull request every 2 or 3 weeks, you are using your time extremely poorly in your own corner with your own toy app.
 - NEVER delete your .gitignore
 - NEVER push secret keys to the internet. People get fired for this! 
-- ALWAYS look at your github pushes to make sure you didn't break everything with typos or merge errors.
-- NEVER make a pull request that has broken stuff you're leaving for everyone else to clean up. 
-- NEVER use the same database for test and development. You will lose ALL your date in your development database. This was mentioned already, but people still keep doing it.
+- ALWAYS ALWAYS ALWAYS ALWAYS ALWAYS look over your github pushes to make sure you didn't break everything with typos or merge errors.
+- NEVER make a pull request that has broken stuff you're leaving for everyone else to clean up. This is not a homework assignement. There is no partial credit for software that does not work. I am not going to pass you to get you out of my hair.
+- NEVER leave technical debt messy confusing code for everyone else to clean up. 
+- NEVER use the same database for test and development. You will lose ALL your data in your development database. This was mentioned already, but people still keep doing it.
 - Never put spaces in filenames. Do you ever put spaces in your variable names? No. 
 - Never call anything on ThinQ.tv an event. These are Conversations.
  
 
 
 
-Copyright &copy; 2019, RoleModel Enterprises, LLC. All rights reserved.
+Copyright &copy; 2020, RoleModel Enterprises, LLC. All rights reserved.
