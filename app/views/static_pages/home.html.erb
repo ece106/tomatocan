@@ -16,6 +16,7 @@
                       </div>
                 <% end %>
         </div>
+        <% if @displayconvo.present? %>
           <h2 id="heroTitle1">Conversations to make you ThinQ!</h2>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
@@ -30,9 +31,11 @@
             <%= link_to 'Try a Live Video Conversation', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
             </h2>
           <% end %>
-          <h2 id="heroTitle4"><%= link_to "Host meaningful live video conversations", new_event_path, :class => "topic_link"%></h2>
-          <h2 id="heroTitle4"> Invite friends and colleagues to discuss socially conscious topics</h2>
-          <h2 id="heroTitle4"><%= link_to "Join the movement to foster harassment-free online culture", getinvolved_path, :class => "topic_link" %> </h2>
+        <% end %>
+          <h2 id="heroTitle4"><%= link_to "Adults: Invite colleagues to conversations about online culture and norms", new_event_path, :class => "topic_link"%></h2>
+          <h2 id="heroTitle4"><%= link_to "Be an Online Mom, Dad, Big Brother, or Big Sis", parents_path, :class => "topic_link"%></h2>
+          <h2 id="heroTitle4"> Students: Be heard by responsible adults </h2>
+          <h2 id="heroTitle4"><%= link_to "Organizations: Join the movement to foster harassment-free live video community", getinvolved_path, :class => "topic_link" %> </h2>
       </div>
     </div>
   </div>
@@ -65,42 +68,11 @@
         <h3>Our Purpose</h3><br>
         <p> 
         Imagine a party where you can join in on a variety of conversations. Except at this party, you're talking to people in Japan, New York, Denmark, and Mexico City - all at the same time!<br><br>
-        ThinQ.tv is creating a forum for thought-provoking conversations. We're starting with Tech, Faith, and International topics and expanding to more topics to feed your brain.</p><br><br>
+        ThinQ.tv is creating a forum for thought-provoking conversations.</p><br><br>
         <br><br>
       </div>
     </div>
-    <br><br>    
-    <div class="row learnMore">
-    <div class="col-md-8 col-md-offset-2 col-xs-11">
-      <br><br>
-      <h3>Have something to say?</h3>
-      <h3>Host your own Conversation!</h3>
-      <br>
-      <p>Interested in influencing the topics discussed on ThinQ.tv? Feel free to add your own Conversation to the schedule and invite friends! </p>
-      To get more exposure for your Conversation, we recommend selecting a time immediately before or after other scheduled conversations.
-      <br><br>
-      <p><%= link_to 'Add Your Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 0px; border-radius: 5px;" %></p>
-      <br>
-    </div>
-    </div>
-    <div class="info">
-      <div class="row" id="rewards">
-          <div class="col-md-6" id="info1">
-            <h2>Offer Rewards & Receive Donations</h2>
-            <p>Alongside viewing your Conversation, viewers can support you through donations or by purchasing your downloads or physical items. Offer a post to their Facebook wall, downloads of your writings, or other exclusive products to your Conversation cohorts.</p>
-          </div>
-          <div class="col-md-6"></div>
-      </div>
-      
-      <div class="row" id="connect">
-          <div class="col-md-6"></div>
-          <div class="col-md-6" id="info2">
-            <h2>Connect with Intellectually Curious Donors</h2>
-            <p>Viewers can ask questions during your Conversation through text chat or by voice. Save your Conversation & YouTube videos to your profile so donors and fans can watch your content at their convenience. </p>
-          </div>
-          <br><br>
-      </div>
-    </div>
+    <br><br> 
     <br><br>
 </div>
 </body>

@@ -10,21 +10,23 @@ class StaticPagesController < ApplicationController
   def home
     showrecentconvo = Time.now - 10.hours
     @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
-    mstnow = Time.now - 8.hours
-    @currconvo = Event.where( "start_at < ? AND end_at > ?", mstnow, mstnow ).first
-    nextevent = Event.where( "start_at > ?", mstnow ).order('start_at ASC').first
+    pstnow = Time.now - 8.hours
+    currconvo = Event.where( "start_at < ? AND end_at > ?", pstnow, pstnow ).first
+    nextevent = Event.where( "start_at > ?", pstnow ).order('start_at ASC').first 
 
-    if @currconvo.present?
-      @displayconvo = @currconvo
-    else @events.first.start_at < mstnow
+    if currconvo.present?
+      @displayconvo = currconvo
+    else 
       @displayconvo = nextevent
     end  
 
+    if @displayconvo.present?
       @name = @displayconvo.name
       @description = @displayconvo.desc
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PST"
       @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PST"
       @host = User.find(@displayconvo.usrid)
+    end  
         
     if user_signed_in?
       @user = User.find(current_user.id)
@@ -39,7 +41,7 @@ class StaticPagesController < ApplicationController
   end
   def livestream
   end
-  def noharassment
+  def parents
   end
 
   def tellfriends
