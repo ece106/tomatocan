@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby "2.7.0"
 
 gem 'listen'
 gem 'rails-controller-testing'
