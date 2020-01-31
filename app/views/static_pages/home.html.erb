@@ -12,8 +12,8 @@
                       </div>
                 <% end %>
         </div>
+        <h2 id="heroTitle1">Conversations to make you ThinQ!</h2>
         <% if @displayconvo.present? %>
-          <h2 id="heroTitle1">Conversations to make you ThinQ!</h2>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
               <h3>We're talking about <%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
@@ -30,7 +30,7 @@
         <% end %>
           <h2 id="heroTitle4"><%= link_to "Adults: Be an Online Mom, Dad, Big Brother, or Big Sis", parents_path, :class => "topic_link"%></h2>
           <h2 id="heroTitle4"> Students: Be heard by responsible adults </h2>
-          <h2 id="heroTitle4"><%= link_to "Organizations: Join the movement to foster harassment-free live video community", getinvolved_path, :class => "topic_link" %> </h2>
+          <h2 id="heroTitle4"><%= link_to "Organizations: Join the coalition to foster harassment-free live video community", getinvolved_path, :class => "topic_link" %> </h2>
       </div>
     </div>
   </div>
@@ -62,9 +62,9 @@
         <h3>Our Purpose</h3><br>
         <p> 
         ThinQ.tv is a platform for live video thought-provoking conversations. </p>
-        <p>We're inviting churches, schools, parents' organizations, women's organizations, and any other interested groups to form a coalition to steer live video culture toward a harassment-free, civilized society where we can all grow our minds. <%= link_to 'Get involved!', getinvolved_path %>
+        <p>We're inviting churches, schools, parents' organizations, women's organizations, and any other interested groups to form a coalition to steer live video culture toward a harassment-free, civilized society where we can all grow our minds. Help us draft the Bystander Guide for harassment intervention and stage Stop Online Sexual Harassment days. <%= link_to 'Get involved!', getinvolved_path %>
         </p>
-        <p> Are you a good listener? <%= link_to 'Become an Online Mom or Dad', parents_path %> and post a Conversation time for high school & college students to drop in and be heard. 
+        <p> Are you a good listener?Help draft the Bystander Guide <%= link_to 'Become an Online Mom or Dad', parents_path %> and post a Conversation time for high school & college students to drop in and be heard. 
         </p>
         <p>
         Need to ask us questions LIVE? Drop in to any Your Online Mom session scheduled on the <%= link_to 'ThinQ.tv', "/" %> home page & meet our Founder, Dr. Lisa Schaefer.</p>

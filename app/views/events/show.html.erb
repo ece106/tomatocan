@@ -42,7 +42,7 @@
           <br><b>Conversationalists who said they would be there:</b><br>
           <div>
             <% @rsvpusers.each do |rsvpuser| %>
-              <%= link_to rsvpuser.name, rsvpuser %>,
+              <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
             <% end %>
           </div>
         <% end %>
