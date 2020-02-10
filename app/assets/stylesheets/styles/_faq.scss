@@ -1,5 +1,125 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
 
+body {
+    
+    background-color: #e0d2c3 !important;
+}
+
+#container{
+
+    background-color: #880f42;
+    padding: 70px;
+    text-align: center;
+
+}
+
+#container h1 {
+
+    color: white;
+    /*line-height: 22px;*/
+    /*border-radius: 50%;*/
+    
+}
+
+#container h4 {
+
+    color: white;
+
+}
+
+#container .search_box{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2f3640;
+    height: 50px;
+    border-radius: 40px;
+    padding: 8px; 
+}
+
+#container .input_box {
+
+    border: none;
+    outline: none;
+    background: none;
+    float: left;
+    padding: 0;
+    color: #fff;
+    font-size: 16px;
+    transition: 0.4s all;
+    line-height: 30px;
+    width: 0;
+}
+
+
+#container .btn {
+
+    
+    color: #1abc9c;
+    float: right;
+    text-decoration: none;
+    width: 33px;
+    height: 33px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    padding-right: 25px;
+}
+
+#container .search_box:hover .input_box {
+    width: 240px;
+    padding: 0 6px;
+}
+
+#container .search_box:hover .btn{
+    background-color: #e0d2c3;
+}
+
+
+
+#content .aboutus{
+
+    position: relative;
+    width: 900px;
+    height: 300px;
+    padding: 10px;
+
+    background: rgba(255,255,255,.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    margin: auto auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    border: double;
+    border-radius: 10px;
+}
+
+#content .aboutus h3 {
+
+    color: black;
+
+    text-align: center;
+    line-height: 0px;
+    text-decoration: underline;
+    padding-bottom: 2px;
+}
+
+#content .aboutus p {
+    font-family: 'helvetica' , sans-sarif;
+    font-size: 10pt;  
+    text-align: center; 
+    line-height: 2em; 
+    width: 100%;
+    padding: 60px;
+    margin: -50px auto;
+    
+
+
+}
+
+
+
 ul {
   list-style-type: circle;
 }
