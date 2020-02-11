@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'crowdpublishtv.star@gmail.com'
+  default from: 'thinqtvstaff@gmail.com'
   layout 'mailer'
 
 
