@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   match 'noharassment',   to: 'static_pages#noharassment', via: 'get'
   match 'getinvolved',    to: 'static_pages#getinvolved', via: 'get'
   match 'parents',        to: 'static_pages#parents', via: 'get'
+  match 'boardofdirectors',        to: 'static_pages#boardofdirectors', via: 'get'
   match 'tos',            to: 'static_pages#tos', via: 'get'
   match 'aboutus',        to: 'static_pages#aboutus', via: 'get'
   match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
