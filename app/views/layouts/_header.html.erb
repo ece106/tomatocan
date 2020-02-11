@@ -6,7 +6,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<% if request.host == "crowdpublishtv.herokuapp.com" %><!-- if the navbar is being rendered in the heroku domain -->
+			<% if request.host == "thinQtv.herokuapp.com" %><!-- if the navbar is being rendered in the heroku domain -->
 					<%= link_to image_tag("starIcon.png", :class => "navbar-brand", :title => "ThinQ.tv", :id => "navbarLogo"), 'http://www.ThinQ.tv' %> <!-- ^ use absolute routing in navbar ^ -->
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ domain or from localhost -->
 					<%= link_to image_tag("starIcon.png", :class => "navbar-brand", :title => "ThinQ.tv", :id => "navbarLogo"), '/' %>
@@ -14,7 +14,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="globalNavbar">
 			<ul class="nav navbar-nav">
-				<% if request.host == "crowdpublishtv.herokuapp.com" %> <!--If the navbar is being rendered in the ThinQ.tv.herokuapp.com secure server domain.. -->
+				<% if request.host == "thinQtv.herokuapp.com" %> <!--If the navbar is being rendered in the ThinQ.tv.herokuapp.com secure server domain.. -->
 					<li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', :title => "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li> <!-- ..use absolute routing in navbar.-->
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get Involved! <span class="caret"></span></a>
