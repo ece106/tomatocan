@@ -27,7 +27,7 @@ body {
 
 }
 
-#container .search_box{
+/*#container .search_box{
     position: absolute;
     top: 30%;
     left: 50%;
@@ -74,7 +74,7 @@ body {
 
 #container .search_box:hover .btn{
     background-color: #e0d2c3;
-}
+} */
 
 
 
@@ -372,6 +372,87 @@ ul {
         }
     }
 }
+
+
+.questions{
+
+  position: relative;
+  width: 900px;
+  height: 800px;
+  padding: 30px;
+
+
+  background: transparent;
+  background: rgba(255,255,255,.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  margin: auto auto;
+  /*margin-top: 2em;*/
+  margin-bottom: 2em;
+
+  border: double;
+  border-radius: 10px;
+
+
+  /*text-align: left;*/
+  margin-top: 80px;
+}
+
+#p1,#p2,#p3,#p4,#p5,#p6,#p7,#p8,#p9,#p10,#p11{
+  height:0px;
+  overflow:hidden;
+  text-align: left;
+  padding-left: 30px;
+  font-size: 12px;
+  -moz-transition:all .5s linear;
+  -webkit-transition:all .5s linear;
+  -o-transition:all .5s linear;
+  transition:all .5s linear;
+} 
+
+ #btn1,#btn2,#btn3,#btn4,#btn5,#btn6,#btn7,#btn8,#btn9,#btn10,#btn11{
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+  /*border: none;*/
+  box-shadow: 1px 1px #880f42;
+  
+  border: 1px solid #880f42;
+  background: none;
+  padding: 10px 10px;
+  font-size: 15px;
+  font-family: "montserrat";
+  cursor: pointer;
+  /*margin: 10px;*/
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+  color: #880f42;
+  /*color: #3498db;*/
+}
+
+#btn1:hover,#btn2:hover,#btn3:hover,#btn4:hover,#btn5:hover,#btn6:hover,#btn7:hover,#btn8:hover,#btn9:hover,#btn10:hover,#btn11:hover {
+  color: #fff;
+}
+
+
+#btn1::before,#btn2::before,#btn3::before,#btn4::before,#btn5::before,#btn6::before,#btn7::before,#btn8::before,#btn9::before,#btn10::before,#btn11::before{
+  top: 0;
+  border-radius: 0 0 0 0;
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: #880f42;
+  z-index: -1;
+  transition: 0.8s;
+}
+
+#btn1:hover::before,#btn2:hover::before,#btn3:hover::before,#btn4:hover::before,#btn5:hover::before,#btn6:hover::before,#btn7:hover::before,#btn8:hover::before
+,#btn9:hover::before,#btn10:hover::before,#btn11:hover::before{
+  height: 100%;
+}
+
 
 a {
     text-decoration: none !important;
