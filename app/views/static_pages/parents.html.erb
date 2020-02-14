@@ -1,28 +1,48 @@
-<div class="row" style="background-color: #E0D2C3; padding-top: 15px; padding-bottom: 10px; margin-bottom: 10px">
-  <h3 class="aboutHeader">Join us to create a space where teens have role models to talk to!</h3>
-  <h4>
+
+<div class="top" style="background-color: #f2e4d9;">
+  <div class="top" style="background-color: #dfbc9f; padding-top: 20px; padding-bottom: 20px">
+  <h6 class="Header" style="text-align: center; font-size: 35px; ">
+    Become an Online Parent or Big Sibling
+  </h6>
+</div>
+<div class="row" style="background-color: #ecd7c6; padding-bottom: 10px;">
+  <h3 class="aboutHeader" style = "text-align: center; font-size: 30px;">Create an online culture where students have responsible adults and peers to talk to
+  </h3>
+</div>
+<div class="row" style="background-color: #f2e4d9; padding-top: 1px; margin-bottom: 0px; padding-bottom: 10px; font-size: 20">
+  <h4 style="line-height: 1.5em">
+    <br>
     We need responsible adults to be Online Moms, Dads, Big Brothers or Big Sisters for an hour or two per week.<br><br>
     Be a role model to a younger generation to promote a healthy culture of thought-provoking live video conversations. <br>
     Become an Online Parent or Sibling and <%= link_to 'post Conversation times', new_event_path %>  for high school & college students to drop in and be heard.<br><br>
  
-    Anyone who has questions is encouraged to drop in to any Your Online Mom session scheduled on the <%= link_to 'ThinQ.tv', "/" %> home page. <br>
+    Anyone who has questions is encouraged to drop in to any Your Online Mom session scheduled on the <%= link_to 'ThinQ.tv', root_path %> home page. <br>
   </h4>
-</div>  
-<div class="row" style="background-color: #F2EBE4; padding-bottom: 20px; padding-top: 15px" >
-    <h3 style = "color:#8C1D40">What PARENTS & BIG BROTHERS & SISTERS can do: </h3>
-    <div style="font-size: 18px; line-height: 1.5em">
-      - Post times on ThinQ.tv when you'll be at a computer or phone when teens can have someone who will listen<br>
-      - Invite other adults to be Online Parents or Siblings<br>
-      - Participate in conversations listed on the <%= link_to 'ThinQ.tv schedule', "/" %><br>
+</div>
+  
+<div class="row" style="background-color: #ecd7c6; padding-bottom: 5px; padding-top: 5px">
+  <h3 class="aboutHeader" style="text-align: center;font-size: 30px; font-weight: bold;">
+    Join Us
+  </h3>
+</div>
+<div class="row" style="background-color: #f2e4d9; padding-bottom: 20px; padding-top: 5px" >
+  <h3 style = "color:#8C1D40">What Responsible Adults can do: </h3>
+  <%=image_tag("volunteer.png", :style => "width: 25%", :align =>"right")%>
+    <div style="font-size: 20px; line-height: 1.5em">
+      - Post times on ThinQ.tv when you'll be at a computer or phone when students can have someone who will listen<br>
+      - Nominate other adults to be Online Parents or Siblings<br>
+      - Tell students they can drop in & be heard<br>
       - Spread the word via social media <br>
     </div>
 
       <h3 style = "color:#8C1D40">How to become an Online Parent or Sibling: </h3>
       <div style="font-size: 18px; line-height: 1.5em">
-        - Drop in to any of the Your Online Mom Conversations by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', "/" %> so we can meet you <br>
+        - Drop in to any of the live video Your Online Mom Conversations by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', root_path %> so we can meet you <br>
         - <%= link_to 'Post times', new_event_path %> for students to drop in to talk to you <br>
       </div> 
 </div>
+</div>
+
 
 
 

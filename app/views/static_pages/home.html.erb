@@ -12,25 +12,27 @@
                       </div>
                 <% end %>
         </div>
-        <h2 id="heroTitle1">Conversations to make you ThinQ!</h2>
+
+        <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Verdana', sans-serif;" > Conversations that make you ThinQ</div>
+        <div style="display:inline;" > <%= image_tag("logoGold60.png", :style => "margin-bottom: 20px")%></div>
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
-              <h3>We're talking about <%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
+              <h3>We're talking about <%= link_to @name, event_path(@displayconvo.id), title: @description, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
-              <%= link_to "Join Conversation", "https://crowdpublishtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
+              <%= link_to "Join Conversation", "https://thinQtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
               <br>
               Hosted by: <%= link_to @host.name, @host.permalink %>
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'Try a Live Video Conversation', "https://crowdpublishtv.herokuapp.com/lisa", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
+            <%= link_to 'Try a Live Video Conversation', "https://crowdpublishtv.herokuapp.com/youronlinemom", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
             </h2>
           <% end %>
         <% end %>
           <h2 id="heroTitle4"><%= link_to "Adults: Be an Online Mom, Dad, Big Brother, or Big Sis", parents_path, :class => "topic_link"%></h2>
           <h2 id="heroTitle4"> Students: Be heard by responsible adults </h2>
-          <h2 id="heroTitle4"><%= link_to "Organizations: Join the coalition to foster harassment-free live video community", getinvolved_path, :class => "topic_link" %> </h2>
+          <h2 id="heroTitle4"><%= link_to "Organizations: Join the coalition to foster a harassment-free culture in live video", getinvolved_path, :class => "topic_link" %> </h2>
       </div>
     </div>
   </div>
@@ -55,8 +57,8 @@
       </div>     
     </div>
     <div class="row" id="purpose">
-      <div class="col-md-5 col-md-offset-1">
-        <%= image_tag("circle1.png", :class => "hidden-xs", :style => "width:100%")%>
+      <div class="col-md-5 col-md-offset-1", style="margin-top: 40px">
+        <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-left: auto;  margin-right: auto;")%>
       </div>
       <div class="col-md-5 col-md-offset-1 col-xs-12">     
         <h3>Our Purpose</h3><br>
@@ -64,7 +66,7 @@
         ThinQ.tv is a platform for live video thought-provoking conversations. </p>
         <p>We're inviting churches, schools, parents' organizations, women's organizations, and any other interested groups to form a coalition to steer live video culture toward a harassment-free, civilized society where we can all grow our minds. Help us draft the Bystander Guide for harassment intervention and stage Stop Online Sexual Harassment days. <%= link_to 'Get involved!', getinvolved_path %>
         </p>
-        <p> Are you a good listener?Help draft the Bystander Guide <%= link_to 'Become an Online Mom or Dad', parents_path %> and post a Conversation time for high school & college students to drop in and be heard. 
+        <p> Are you a good listener? <%= link_to 'Become an Online Mom or Dad', parents_path %> and post a Conversation time for high school & college students to drop in and be heard. 
         </p>
         <p>
         Need to ask us questions LIVE? Drop in to any Your Online Mom session scheduled on the <%= link_to 'ThinQ.tv', "/" %> home page & meet our Founder, Dr. Lisa Schaefer.</p>
