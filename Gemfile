@@ -20,6 +20,7 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
+gem 'grape'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'

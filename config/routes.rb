@@ -91,4 +91,6 @@ Rails.application.routes.draw do
       get 'buy'
     end
   end
+
+  mount API::Base, at:"/" # Match root path to root of api
 end
