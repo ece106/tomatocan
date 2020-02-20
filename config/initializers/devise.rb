@@ -1,7 +1,7 @@
 Devise.setup do |config|
    config.secret_key = 'DEVISE_SECRET_KEY'
 #   config.secret_key = ENV['DEVISE_SECRET_KEY']  #I'm not convinced heroku uses this. Locally, rails s won't start if above line is not set. But heroku doesn't choke if this line isn't set.
-   config.mailer_sender = 'CrowdPublishTV.star@gmail.com'
+   config.mailer_sender = 'thinQtvStaff@gmail.com'
    require 'devise/orm/active_record'
    config.case_insensitive_keys = [ :email ]
    config.strip_whitespace_keys = [ :email ]
