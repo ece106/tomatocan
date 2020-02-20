@@ -8,7 +8,7 @@ class Purchase < ApplicationRecord
 
   include PaymentGateway
 
-  attr_accessor :card_number, :card_code, :amount, :application_fee, :seller,
+  attr_accessor :card_number, :card_code, :amount, :application_fee_amount, :seller,
     :seller_stripe_account, :token, :currency
 
   CURRENCY = 'usd'.freeze
@@ -61,7 +61,7 @@ class Purchase < ApplicationRecord
     # self.author_id             = self.seller.id
     self.authorcut             = calculate_authorcut(self.pricesold)
     self.amount                = calculate_amount(self.pricesold)
-    self.application_fee       = calculate_application_fee(self.amount)
+    self.application_fee_amount = calculate_application_fee_amount(self.amount)
     self.currency              = CURRENCY
   end
 
