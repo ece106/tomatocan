@@ -15,6 +15,13 @@
 
         <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Verdana', sans-serif;" > Conversations that make you ThinQ</div>
         <div style="display:inline;" > <%= image_tag("logoGold60.png", :style => "margin-bottom: 20px")%></div>
+          <h2 id="heroTitle4"><% link_to "Adults: Be an Online Mom, Dad, Big Brother, or Big Sis", parents_path, :class => "topic_link", :title => "Host online hours where students can drop in when they need someone to listen" %></h2>
+          <h2 id="heroTitle4"> <% link_to "Students: Be heard by responsible adults", root_path %> </h2>
+
+          <div style="display:inline; font-size: 40px; color:#ffc627; font-family: 'Verdana', sans-serif;" ><%= link_to "Join the coalition", getinvolved_path, :class => "btn btn-lg btn-primary", :style => "border-radius: 5px; font-size: 40px", :title => "We need Founding Organizations to help foster a culture where calling out online harassment is the norm" %><br>
+          <%= link_to "to create Bystander Guidelines", getinvolved_path, :class => "topic_link", :title => "We need Founding Organizations to help foster a culture where calling out online harassment is the norm" %><br>
+          <%= link_to "for calling out online harassment", getinvolved_path, :class => "topic_link", :title => "We need Founding Organizations to foster a culture where calling out online harassment is the norm" %> <br><br></div>
+
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
@@ -26,13 +33,10 @@
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'Try a Live Video Conversation', "https://thinqtv.herokuapp.com/youronlinemom", :class => "btn btn-lg btn-primary", :style => "margin-left: 30px; border-radius: 5px;" %>
+            <%= link_to 'Try a Live Video Conversation', "https://thinqtv.herokuapp.com/youronlinemom", :class => "btn btn-lg btn-primary", :style => "border-radius: 5px;" %>
             </h2>
           <% end %>
         <% end %>
-          <h2 id="heroTitle4"><%= link_to "Adults: Be an Online Mom, Dad, Big Brother, or Big Sis", parents_path, :class => "topic_link"%></h2>
-          <h2 id="heroTitle4"> Students: Be heard by responsible adults </h2>
-          <h2 id="heroTitle4"><%= link_to "Organizations: Join the coalition to foster a harassment-free culture in live video", getinvolved_path, :class => "topic_link" %> </h2>
       </div>
     </div>
   </div>
