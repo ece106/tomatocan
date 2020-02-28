@@ -1,0 +1,61 @@
+  <h2>Bystander Guidelines</h2>
+<div class="row" style="background-color: #E0D2C3; padding-top: 15px; padding-bottom: 10px; margin-bottom: 10px">
+  <h3 class="aboutHeader">Mission: Create a culture where speaking up against sexual harassment is the norm</h3>
+      <h4><br>
+        The internet needs parents. When dealing with harassment in live video, thinQ of it as caring parenting. Assume that they are good kids (even if they're 50) who are having a bad day and need to be heard and redirected. Make sure harassment victims know you have their back - otherwise they will leave, the harassers will continue - the good people leave and we're left with a platform of trolls.
+         <br><br>
+        Below we created a first cut at examples of the Bystander Guidelines we will develop. As the internet is a constantly evolving entity, so will be the Guidelines. 
+      </h4>
+</div>  
+
+ <ul class="accordion">
+    <li>
+      <a href="#" class="toggle">Someone insults another conversationalist</a>
+      <div class="inner">
+        <div id="content-container">
+          <p>Ask why he is lashing out. Is there something going on in his life that is upsetting him? Tell him to apologize.</p>
+          <p>Make sure the person being insulted is validated. Ask if she is upset and if she needs something else to be said to make her feel like ThinQ.tv is still a welcoming place for her. Make sure she knows you have her back.</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a href="#" class="toggle">Someone takes off his pants</a>
+      <div class="inner">
+        <div id="content-container">
+          <p>Block him.</p>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a href="#" class="toggle">A girl crawls around the floor in her underwear</a>
+      <div class="inner">
+        <div id="content-container">
+          <p>Ask if she has better choices.</p>
+        </div>
+      </div>
+    </li>
+
+  </ul>  
+
+</div><br>
+
+<script>
+  $('.toggle').click(function(e) {
+    ;
+    e.preventDefault();
+
+    var $this = $(this);
+
+    if ($this.next().hasClass('show')) {
+        //$this.next().slideUp(350);
+       $this.next().removeClass('show');
+    }
+    if (!($this.next().hasClass('show'))){
+        //$this.parent().parent().find('li .inner').removeClass('show');
+        //$this.parent().parent().not($this.next()).find('li .inner').slideUp(350);
+        $this.parent().parent().find('ul .inner').slideUp(350);
+        //$this.next().toggleClass('show');
+    }
+    $this.next().slideToggle(350);
+  });
+</script>
