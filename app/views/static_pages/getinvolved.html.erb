@@ -37,7 +37,7 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
   padding: 0px;
 }
 
-.location-icon{
+.location-icon, .location-icon1, .location-icon2 {
   position: relative;
   width: 100%;
   background: linear-gradient(to right, #ff6a00, #ee0979);
@@ -56,8 +56,21 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
   
 }
 
+.location-icon1 > img {
 
-.location-content{
+  height:325px;
+  
+}
+
+
+.location-icon2 > img {
+
+  height:325px;
+  
+}
+
+
+.location-content, .location-content1, .location-content2{
      position:absolute;
      bottom:0;
      left:0;
@@ -82,7 +95,31 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
    }
 
 
-     .arrow{
+.location-content1 > p{
+   color:white;
+   font-size:14px;
+
+   padding:0px 0px 10px 0px;
+   padding-top: 65px;
+   margin:0px;
+   text-align:center;
+   }
+
+
+.location-content2 > p{
+   color:white;
+   font-size:14px;
+
+   padding:0px 0px 10px 0px;
+   padding-top: 65px;
+   margin:0px;
+   text-align:center;
+   }
+
+
+
+
+  .arrow, .arrow1, .arrow2 {
    position:absolute;
    bottom:10px;
    left:50%;
@@ -101,21 +138,69 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
    transition:0.5s;
   }
 
+  .arrow1 > i{
+   font-size:30px;
+   color:white;
+   cursor:pointer;
+   transition:0.5s;
+  }
+
+  .arrow2 > i{
+   font-size:30px;
+   color:white;
+   cursor:pointer;
+   transition:0.5s;
+  }
+
+
   .active.location-icon{
     transform:translateY(-5%);
    }
+
+  .active.location-icon1{
+    transform:translateY(-5%);
+   }
+
+    .active.location-icon2{
+    transform:translateY(-5%);
+   }
+
 
   .active{
    transform:translateY(80%);
   }
   
-  .rotate{
+  .rotate, .rotate1, .rotate2 {
    transform:rotate(180deg);
    transform-origin:center center;
   }
 
 </style>
 <body>
+
+  <div class="container" style="padding-bottom: 100px;">
+
+    <div class="row">
+      <div class="col-lg-6 pink" style= "height: auto; margin-top: 100px;">
+        <p style="padding-top: 100px;">
+          asdbjasdjkbajsdb
+          asdbjdasdbka
+          sdhadbbasdas
+          asdbkbasdkjbasd
+          asdbkbasdjkbasd
+          asdbjkbasdkbasd
+          lkasdkjasdjkbads
+
+        </p>
+
+      </div>
+      <div class="col-lg-6 pink">
+        <!-- <img src="bod.jpg" class="img-fluid"> -->
+        <%= image_tag("organization.jpg", height: "400" , width: "500")%>
+      </div>
+    </div>
+  </div>
+
 
   <div class="container" style="padding-bottom: 300px;">
     <div class="row">
@@ -149,7 +234,7 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
 
       <div class="col-lg-4 text-center">
         <div class="location text-center">
-          <div class="location-icon">
+          <div class="location-icon1">
 
             <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
             
@@ -157,7 +242,7 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
             <h4 style="margin-top: 10px; font-size: 20px; font-weight: bold;"> How to get others involved: </h4>
           </div>
 
-          <div class="location-content">
+          <div class="location-content1">
             
             <p>
 
@@ -169,15 +254,15 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
 
           </div>
 
-          <div class="arrow">
-              <i class="fa fa-angle-down" id="angle" aria-hidden="true"></i>
+          <div class="arrow1">
+              <i class="fa fa-angle-down" id="angle1" aria-hidden="true"></i>
           </div>
         </div>
       </div>
 
       <div class="col-lg-4 text-center ">
         <div class="location text-center">
-          <div class="location-icon">
+          <div class="location-icon2">
 
             <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
             
@@ -185,7 +270,7 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
             <h4 style="margin-top: 10px; font-size: 20px; font-weight: bold;"> How to join the YourOnlineMom Coalition: </h4>
           </div>
 
-          <div class="location-content">
+          <div class="location-content2">
             
             <p>
 
@@ -197,8 +282,8 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
 
           </div>
 
-          <div class="arrow">
-              <i class="fa fa-angle-down" id="angle" aria-hidden="true"></i>
+          <div class="arrow2">
+              <i class="fa fa-angle-down" id="angle2" aria-hidden="true"></i>
           </div>
         </div>
       </div>
@@ -234,6 +319,24 @@ background: linear-gradient(to right, #fffcdc, #d9a7c7);
      $('.location-content').toggleClass('active');
          $('.location-icon').toggleClass('active');
      $('#angle').toggleClass('rotate');
+    });
+        
+   });
+
+      $(document).ready(function(){
+        $('.arrow1').click(function(){
+     $('.location-content1').toggleClass('active');
+         $('.location-icon1').toggleClass('active');
+     $('#angle1').toggleClass('rotate1');
+    });
+        
+   });
+
+     $(document).ready(function(){
+        $('.arrow2').click(function(){
+     $('.location-content2').toggleClass('active');
+         $('.location-icon2').toggleClass('active');
+     $('#angle2').toggleClass('rotate2');
     });
         
    });
