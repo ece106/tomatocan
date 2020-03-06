@@ -18,9 +18,10 @@
           <h2 id="heroTitle4"><% link_to "Adults: Be an Online Mom, Dad, Big Brother, or Big Sis", parents_path, :class => "topic_link", :title => "Host online hours where students can drop in when they need someone to listen" %></h2>
           <h2 id="heroTitle4"> <% link_to "Students: Be heard by responsible adults", root_path %> </h2>
 
-          <div style="display:inline; font-size: 40px; color:#ffc627; font-family: 'Arial';" ><%= link_to "Join the coalition", getinvolved_path, :class => "btn btn-lg btn-primary", :style => "border-radius: 5px; font-size: 40px", :title => "We need Founding Organizations to help foster a culture where calling out online harassment is the norm" %><br>
-          <%= link_to "to create Bystander Guidelines", getinvolved_path, :class => "topic_link", :title => "We need Founding Organizations to help foster a culture where calling out online harassment is the norm" %><br>
-          <%= link_to "for calling out online harassment", getinvolved_path, :class => "topic_link", :title => "We need Founding Organizations to foster a culture where calling out online harassment is the norm" %> <br><br></div>
+          <div style="display:inline; font-size: 40px; color:#ffc627; font-family: 'Arial';" >
+            <%= link_to "Responsible adults and peers to listen to you", "https://thinqtv.herokuapp.com/youronlinemom", :class => "topic_link", :title => "Foster a culture where calling out online harassment is the norm" %><br><br>
+            <%= link_to "Become an Online Parent or Peer", parents_path, :class => "btn btn-lg btn-primary", :style => "border-radius: 5px; font-size: 40px" %><br><br>
+          </div>
 
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
