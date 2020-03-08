@@ -19,11 +19,13 @@
 					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/parents', :title => "Join the YourOnlineMom coalition to speak up against sexual harassment in live video!" %></li>
 					<li class="nav-item"><%= link_to "Invite Us To Speak", 'http://www.ThinQ.tv/drschaeferspeaking', :title => "To your organization - In Person!" %></li>
 					<li class="nav-item"><%= link_to "Bystander Guidelines", 'http://www.ThinQ.tv/bystanderguidelines', :title => "Our first rough draft" %></li>
+					<li class="nav-item"><%= link_to "Why ThinQ", 'http://www.ThinQ.tv/aboutus', :title => "Our first rough draft" %></li>
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", root_path, :title => "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li>
 					<li class="nav-item"><%= link_to "Get Involved!", parents_path, :title => "Join the YourOnlineMom coalition to speak up against sexual harassment in live video!" %></li>
 					<li class="<%=(current_page?('/drschaeferspeaking') ? "nav-item active" : "nav-item")%>"><%= link_to "Invite Us To Speak", drschaeferspeaking_path, :title => "To your organization - In Person!" %></li>
 					<li class="nav-item"><%= link_to "Bystander Guidelines", bystanderguidelines_path, :title => "Our first rough draft" %></li>
+					<li class="nav-item"><%= link_to "Why ThinQ", aboutus_path, :title => "Our first rough draft" %></li>
 				<% end %>
 			</ul>
 
