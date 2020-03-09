@@ -18,9 +18,10 @@
           <h2 id="heroTitle4"><% link_to "Adults: Be an Online Mom, Dad, Big Brother, or Big Sis", parents_path, :class => "topic_link", :title => "Host online hours where students can drop in when they need someone to listen" %></h2>
           <h2 id="heroTitle4"> <% link_to "Students: Be heard by responsible adults", root_path %> </h2>
 
-          <div style="display:inline; font-size: 40px; color:#ffc627; font-family: 'Arial';" ><%= link_to "Join the coalition", getinvolved_path, :class => "btn btn-lg btn-primary", :style => "border-radius: 5px; font-size: 40px", :title => "We need Founding Organizations to help foster a culture where calling out online harassment is the norm" %><br>
-          <%= link_to "to create Bystander Guidelines", getinvolved_path, :class => "topic_link", :title => "We need Founding Organizations to help foster a culture where calling out online harassment is the norm" %><br>
-          <%= link_to "for calling out online harassment", getinvolved_path, :class => "topic_link", :title => "We need Founding Organizations to foster a culture where calling out online harassment is the norm" %> <br><br></div>
+          <div style="display:inline; font-size: 40px; color:#ffc627; font-family: 'Arial';" >
+            <%= link_to "Responsible adults and peers to listen to you", "https://thinqtv.herokuapp.com/youronlinemom", :class => "topic_link", :title => "Foster a culture where calling out online harassment is the norm" %><br><br>
+            <%= link_to "Become an Online Parent or Peer", parents_path, :class => "btn btn-lg btn-primary", :style => "border-radius: 5px; font-size: 40px" %><br><br>
+          </div>
 
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
@@ -46,9 +47,9 @@
     <br>
     <div class="row" id="countdown_clock">
       <div class="col-md-4 col-md-offset-1 col-xs-11">
-        <h2>Upcoming Conversations</h2>
+        <h2>Schedule of Responsible Listeners</h2>
           <% if user_signed_in? %>
-            <%= link_to 'Host a Live Conversation', new_event_path, class: "btn btn-warning" %>
+            <%= link_to 'Host your Online Office Hours', new_event_path, class: "btn btn-warning" %>
           <% end %>
       </div>
       <div class="col-md-6">
@@ -68,9 +69,9 @@
         <h3>Our Purpose</h3><br>
         <p> 
         ThinQ.tv is a platform for live video thought-provoking conversations. </p>
-        <p>We're inviting individuals and organizations to form a coalition to help us draft Bystander Guidelines for harassment intervention and stage Stop Online Sexual Harassment days. <%= link_to 'Get involved!', getinvolved_path %>
+        <p>We're inviting individuals and organizations to form a coalition to help us draft Bystander Guidelines for harassment intervention. <%= link_to 'Get involved!', getinvolved_path %>
         </p>
-        <p> Are you a good listener? <%= link_to 'Become an Online Mom or Dad', parents_path %> and post a Conversation time for high school & college students to drop in and be heard. 
+        <p> Are you a good listener? <%= link_to 'Become an Online Mom, Dad, Big Brother or Sister', parents_path %> and post a Conversation time for high school & college students to drop in and be heard. 
         </p>
         <h4>
         <br>Need to ask us questions LIVE? Drop in to any Your Online Mom session scheduled above & meet our Founder, Dr. Lisa Schaefer.</h4>
