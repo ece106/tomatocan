@@ -93,7 +93,7 @@
           <div style = "margin-left: 5px">
             <% edt = @event.start_at + 3.hours %>
             <%= @event.start_at.strftime("%A, %B %d") %> <br>
-            <%= @event.start_at.strftime("%I:%M %p")%> PST / <%= edt.strftime("%I:%M %p") %> EST
+            <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
             <br> <%= @duration %> minutes <br>
           </div>
         </div>
@@ -155,8 +155,8 @@
               return false;">
               <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px;" />
             </a>&nbsp
-            <a href="https://twitter.com/intent/tweet?text=Join <%= @user.permalink %>'s livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PST: <%= @surl %>"
-              onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> 's livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PST:<%= @surl %>',
+            <a href="https://twitter.com/intent/tweet?text=Join <%= @user.permalink %>'s livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
+              onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> 's livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
               'newwindow',
               'width=600,height=400,top=80,left=300');
               return false;">
