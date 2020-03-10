@@ -9,7 +9,6 @@
       <h3>ABOUT US</h3>
       <p>
         ThinQ.tv is a platform for live video thought-provoking conversations.
-        <br>
         We're inviting churches, schools, parents' organizations, women's organizations, and any other interested groups to form a coalition to steer live video culture toward a harassment-free, civilized society where we can all grow our minds. <%= link_to 'Get involved!', getinvolved_path %>
         <br>
         Are you a good listener? <%= link_to 'Become an Online Mom or Dad', parents_path %> and post a Conversation time for high school & college students to drop in and be heard.
@@ -20,7 +19,7 @@
   </div>  
   <ul class="accordion">
     <li>
-      <a href="#" class="toggle">WHAT IS THINQ.TV</a>
+      <a href="#" class="toggle">WHAT IS THINQ.TV ?</a>
       <div class="inner">
         <div id="content-container">
           <p>ThinQ.tv is like a Zoom meeting or Google Hangout, except that people can drop in to the Conversation from the home page schedule instead of having to be invited with a link. Please browse the current schedule and drop in to any of the Conversations posted. You may also post your own Conversation.</p>
@@ -28,7 +27,7 @@
       </div>
     </li>
     <li>
-          <a href="#" class="toggle">WHAT PEOPLE DO ON THINQ.TV</a>
+          <a href="#" class="toggle">WHAT PEOPLE DO ON THINQ.TV ?</a>
           <div class="inner">
             <div id="content-container">
               <p>Conversations - Conversations on all topics are permitted. We’re fostering a culture of intelligent thought, fellowship, and empathy. We encourage talking with people and listening - a Conversation, rather than the typical norm of internet video where one person talks at the internet.</p>
@@ -173,18 +172,12 @@
   $('.toggle').click(function(e) {
     ;
     e.preventDefault();
-
     var $this = $(this);
-
     if ($this.next().hasClass('show')) {
-        //$this.next().slideUp(350);
        $this.next().removeClass('show');
     }
     if (!($this.next().hasClass('show'))){
-        //$this.parent().parent().find('li .inner').removeClass('show');
-        //$this.parent().parent().not($this.next()).find('li .inner').slideUp(350);
-        $this.parent().parent().find('ul .inner').slideUp(350);
-        //$this.next().toggleClass('show');
+        $this.parent().parent().find('ul .inner').slideUp(350);       
     }
     $this.next().slideToggle(350);
   });
