@@ -92,5 +92,13 @@ Rails.application.routes.draw do
     end
   end
 
-  mount API::Base, at:"/" # Match root path to root of api
+  namespace :api do
+    namespace :v1 do
+      devise_for :users
+      resources :users, :only=>[:index, :show]
+      resources :sessions
+    end
+  end
+
+  #mount API::Base, at:"/" # Match root path to root of api
 end
