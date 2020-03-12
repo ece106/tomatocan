@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < DeviseController
+    acts_as_token_authentication_handler_for User, fallback: :none
     skip_before_action :verify_authenticity_token
     prepend_before_action :require_no_authentication, :only => [:create]
     #include Devise::Controllers::Helpers
@@ -10,15 +11,17 @@ class Api::V1::SessionsController < DeviseController
         return invalid_login_attempt unless resource
 
         if resource.valid_password?(params[:user][:password])
-            sign_in("user", resource)
-            render :json=> {:success=>true, :email=>resource.email}#:auth_token=>resource.authentication_token, :email=>resource.email}
+            sign_in resource, store: false
+            render :json=> {:success=>true, :token=>resource.authentication_token, :last_sign_in=>resource.last_sign_in_at, :current_sign_in=>resource.current_sign_in_at}
             return
         end
         invalid_login_attempt
     end
 
     def destroy
+        name_stl = resource_name
         sign_out(resource_name)
+        render :json=> {:success=>true, :name=>name_stl}
     end
 
     protected

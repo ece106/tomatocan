@@ -99,6 +99,4 @@ Rails.application.routes.draw do
       resources :sessions
     end
   end
-
-  #mount API::Base, at:"/" # Match root path to root of api
 end

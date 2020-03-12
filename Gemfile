@@ -10,6 +10,7 @@ gem 'pg'
 
 gem 'mandrill'	
 gem 'devise'
+gem 'simple_token_authentication'
 #gem 'devise-token-auth'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
