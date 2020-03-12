@@ -19,9 +19,9 @@ class Api::V1::SessionsController < DeviseController
     end
 
     def destroy
-        name_stl = resource_name
-        sign_out(resource_name)
-        render :json=> {:success=>true, :name=>name_stl}
+        use_rname = current_user.name
+        sign_out(current_user)
+        render :json=> {:success=>true, :name=>use_rname}
     end
 
     protected
