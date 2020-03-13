@@ -1,20 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
 
-body {
-    
-    background-color: #e0d2c3 !important;
-}
-
 #container{
-
     background-color: #880f42;
     padding: 70px;
     text-align: center;
-
 }
 
 #content{
-    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -22,7 +14,6 @@ body {
 }
 
 #content .aboutus{
-
     position: relative;
     width: 900px;
     height: auto;
@@ -33,16 +24,13 @@ body {
     margin: auto auto;
     margin-top: 2em;
     margin-bottom: 2em;
-    
 
     border: double;
     border-radius: 10px;
 }
 
 #content .aboutus h3 {
-
     color: black;
-
     text-align: center;
     line-height: 0px;
     text-decoration: underline;
@@ -78,23 +66,11 @@ ul {
     width: 130%;
 }
 
-#content-container li {
-    margin-left:-20px;
-}
-
-
-li {
-  margin-left: 50px;
-}
-
-
 .accordion{
-
   position: relative;
   width: 70%;
   height: auto;
   padding: 30px;
-
 
   background: transparent;
   background: rgba(255,255,255,.2);
@@ -106,12 +82,9 @@ li {
   border: double;
   border-radius: 10px;
 
-
   /*text-align: left;*/
   margin-top: 80px;
 }
-
-
 
 ul {
     list-style-type: none;
@@ -128,7 +101,6 @@ ul {
           /*display: block;*/
         }
     } 
-
 }
 
 ul li a.toggle {
@@ -222,7 +194,6 @@ ol {
 h4 {
     padding-right: 14px;
 }
-
 }
 
 
