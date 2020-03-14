@@ -8,7 +8,10 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @events }
+      format.json { @events.each do |event|
+        @user = User.find(event.usrid)
+        render :json => {:event => event, :user => @user.permalink}
+      end}
     end
   end
   # GET /events/1.json
@@ -23,7 +26,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @event }
+      format.json { render :json => {:event => @event, :user => @user.permalink }}
     end
   end
 
