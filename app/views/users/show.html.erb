@@ -76,9 +76,19 @@
 
     <% else %>
       <%= render 'layouts/authorform' %>
-      <div class="row" style="padding-top:15px;padding-bottom:30px;">
-        <%= render 'layouts/streamButton' %>
-      </div>
+      <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+            <div id="eventCurrentdiv">
+              <h3>We're talking about <%= @displayconvo.name %></h3>  
+              <p> right NOW!</p> 
+              <%= link_to "Join Conversation", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
+              <br>
+            </div>
+      <% else %>
+        <div class="row" style="padding-top:15px;padding-bottom:30px;">
+          <%= render 'layouts/streamButton' %>
+        </div>
+      <% end %>
+
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %> alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

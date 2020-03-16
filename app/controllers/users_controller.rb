@@ -29,6 +29,13 @@ class UsersController < ApplicationController
 
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
+    pdtnow = Time.now - 7.hours
+    id = @user.id
+    currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
+    if currconvo.present?
+      @displayconvo = currconvo
+    end  
+
     userid = @user.id
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
     @events = upcomingevents.paginate(page: params[:page], :per_page => 4)
