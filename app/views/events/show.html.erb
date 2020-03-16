@@ -118,22 +118,25 @@
         <! Share Area -->
         <div style = "padding: 3px 0px 3px 0px; font-size: 23px;">
           <b>Make sure your people are involved</b>
-          <div style = "font-size: 15px">
+          <div style = "font-size: 15px; padding-bottom: 2px;">
             E-Mail this conversation to friends and colleagues:
           </div>
-          <table width="100%" border="0" cellspacing="10" cellpadding="10">
-            <tr>
-              <td>
-                <table border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td bgcolor="#8C1D40" style="padding: 0px 13px 3px 13px; border-radius:2px" align="center"> 
-                      <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20conversation%20about%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #fff; text-decoration: none; display: inline-block;">EMAIL &rarr;</a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+        
+          <div style="margin-left: 10px;">
+            <table width="100%" border="0" cellspacing="10" cellpadding="10">
+              <tr>
+                <td>
+                  <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td bgcolor="#8C1D40" style="padding: 0px 13px 3px 13px; border-radius: 2px;" align="center"> 
+                        <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20conversation%20about%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #fff; text-decoration: none; display: inline-block;">EMAIL &rarr;</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
 
           <div style = "font-size: 15px">
             Share the conversation on social media:
