@@ -49,7 +49,7 @@
             <% else %>
               <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
             <% end %>
-            <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
+            <%= f.submit "RSVP NOW", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
             <% end %>
         
           <% if user_signed_in? %>
