@@ -14,12 +14,12 @@
         </div>
 
         <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > Conversations that make you ThinQ</div>
-        <div style="display:inline;" > <%= image_tag("logoGold60.png", :style => "margin-bottom: 20px")%></div>
+        <div style="display:inline;" > <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%></div>
           <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
-            <br><%= link_to "Responsible adults and peers to listen to you", "https://thinqtv.herokuapp.com/youronlinemom", :class => "topic_link", :title => "Foster a culture where calling out online harassment is the norm" %>
+            <br><%= link_to "Live Video Fellowship", fellowship_path, class: "topic_link", title: "When you can't be there in person" %>
           </div>
             <br><br>
-            <%= link_to "Become an Online Parent or Peer", parents_path, :class => "btn btn-lg btn-primary", :style => "border-radius: 5px; font-size: 40px" %><br><br>
+            <%= link_to "Be Here For Your People", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 40px", title: "Sign up on ThinQ.tv so you can listen to the people who need you " %><br><br>
 
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
@@ -32,7 +32,7 @@
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'Try a Live Video Conversation', "https://thinqtv.herokuapp.com/youronlinemom", :class => "btn btn-lg btn-primary", :style => "border-radius: 5px;" %>
+            <%= link_to 'Try a Live Video Conversation', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;" %>
             </h2>
           <% end %>
         <% end %>
