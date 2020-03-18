@@ -19,7 +19,7 @@
             <br><%= link_to "Live Video Fellowship", fellowship_path, class: "topic_link", title: "When you can't be there in person" %>
           </div>
             <br><br>
-            <%= link_to "Be Here For Your People", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 40px", title: "Sign up on ThinQ.tv so you can listen to the people who need you " %><br><br>
+            <%= link_to "Be Here For Your People", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 40px", title: "Sign up to host live video office hours or small group conversations" %><br><br>
 
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
@@ -45,9 +45,10 @@
     <br>
     <div class="row" id="countdown_clock">
       <div class="col-md-4 col-md-offset-1 col-xs-11">
-        <h2>Schedule of Responsible Listeners</h2>
+        <h2>Schedule of Office Hours</h2>
+        <h3>Drop in and be heard!</h3>
           <% if user_signed_in? %>
-            <%= link_to 'Post your Online Office Hours', new_event_path, class: "btn btn-warning" %>
+            or <%= link_to 'Post your Own Online Office Hours', new_event_path, class: "btn btn-warning" %>
           <% end %>
       </div>
       <div class="col-md-6">
@@ -67,7 +68,7 @@
         <h3>Our Purpose</h3><br>
         <p> 
         ThinQ.tv is a platform for live video thought-provoking conversations. </p>
-        <p>We're inviting individuals and organizations to form a coalition to help us draft Bystander Guidelines for harassment intervention. <%= link_to 'Get involved!', getinvolved_path %>
+        <p>Host live video office hours or small group conversations. 
         </p>
         <p> Are you a good listener? <%= link_to 'Become an Online Mom, Dad, Big Brother or Sister', parents_path %> and post a Conversation time for high school & college students to drop in and be heard. 
         </p>
