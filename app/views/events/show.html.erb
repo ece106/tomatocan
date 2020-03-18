@@ -59,7 +59,7 @@
           <% end %>
 
           
-          <% if @rsvps.count > 0 %>
+          <% if @rsvpusers.count > 0 %>
             <br><br><br><br><br><br><br><br>
             <b>Conversationalists who said they would be there:</b><br>
             <div>
@@ -102,7 +102,7 @@
         <div style = "padding: 3px 0px 3px 0px">
           <div style="padding: 5px 5px 5px 5px; font-style: italic; font-size: 15px; background-color: #F2EBE4;">
           <% if @event.desc.present? %>
-            <b> <%= @event.desc %> </b> <br>
+            <b> <%= @event.desc.gsub(/\n/, '<br>').html_safe %> </b> <br>
           <% end %>
           </div>
         </div>
