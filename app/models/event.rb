@@ -35,6 +35,7 @@ class Event < ApplicationRecord
     super.except.tap do |hash|
       @user = User.find(usrid)
       hash["permalink"] = @user.permalink
+      hash["username"] = @user.name
     end
   end
 
