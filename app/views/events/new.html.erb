@@ -1,10 +1,9 @@
 <div class="container">
   <div class="row" >
-    <h1>Post a time to host Online Office Hours</h1>
+    <h1>Post a time to host live video Fellowship Hours</h1>
     <p>
-      By entering a Conversation below, the details of your conversation will be posted on our home page schedule. 
+      By entering a time for Fellowship Hours below, the details of your Fellowship Hour will be posted on our home page schedule. 
       Make sure you have your browser open or have the THINQTV chatroom open on the JitsiMeet phone app during your posted time.
-      Teens & young adults will be able to drop in to talk to you during your office hour.
     </p>
   </div>
   <% if @event.errors.any? %>
@@ -22,7 +21,7 @@
     <%= form_for @event do |f| %>
       <%= render "events/form", f: f, event: @event %>
 
-      <%= f.submit "Post Conversation ", class: "btn btn-lg btn-primary create-event-btn", id: "eventSubmit" %>
+      <%= f.submit "Post Fellowship Hour", class: "btn btn-lg btn-primary create-event-btn", id: "eventSubmit" %>
     <% end %>
   </div>
 </div>
