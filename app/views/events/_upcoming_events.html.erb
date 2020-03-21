@@ -22,7 +22,7 @@
         <div class="upcoming-event__section row">
           <div class="col-sm-6 col-1">
             <%#= event.start_at.strftime("%A, %b %d") %>
-            <h3 class="event-name"><%= link_to event.name, event_path(event) %> | <%= event.start_at.strftime("%A, %b %d") %></h3>
+            <h3 class="event-name"><%= link_to event.name, event_path(event) %> | <%= event.start_at.strftime("%A, %b %d") %></h3> 
             <p class="lead"><b>Host: <%= link_to user.name, "" %></b></p>
             <p class="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

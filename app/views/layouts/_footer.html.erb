@@ -25,16 +25,21 @@
                 <p class="f-header">Share</p>
                 <% domainurl = "http://www.ThinQ.tv" %>
                 <% desc = "Participate in thought-provoking conversations!"%>
-                <!-- Facebook Share -->
+              
+                <!-- Share -->
                 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-                <div class="social-share-button" data-href="<%= domainurl %>"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"><img src="<%= asset_url('social-share-button/facebook.png') %>"></img></a></div>
-
-                <!-- Twitter Tweet -->
-                <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Participate%20in%20live%20thought-provoking%20conversations%20or%20Host%20your%20own%20Live%20Video%20office%20hours!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
-                <!-- LinkedIn Share -->
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
-                <!-- Email Share -->
-                <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= domainurl %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.png') %>"></a>
+                <div class="social-share-button" data-href="<%= domainurl %>">
+                  <!-- Facebook Share -->
+                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse">
+                    <img src="<%= asset_url('social-share-button/facebook.png') %>"></img>
+                  </a>
+                  <!-- Twitter Tweet -->
+                  <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Participate%20in%20live%20thought-provoking%20conversations%20or%20Host%20your%20own%20Live%20Video%20office%20hours!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
+                  <!-- LinkedIn Share -->
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
+                  <!-- Email Share -->
+                  <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= domainurl %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.png') %>"></a>
+                </div>
             </div>
             <div class="col-sm-3 pull-right" id="fb">
 
