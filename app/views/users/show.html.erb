@@ -8,27 +8,88 @@
     <% if request.host == "thinqtv.herokuapp.com" %>
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
         <div class="col-md-4">
-          <%= render 'layouts/merchsidebar' %>
+          <div style="padding: 0px 0px 5px 0px">
+            <%= render 'layouts/merchsidebar' %>
+          </div>
+
+        <! Invite Area -->
+        <div style = "padding: 3px 5px 7px 5px; font-size: 18px; background-color: #F2EBE4">
+          <b>Invite friends to join this conversation</b>
+          <div style = "font-size: 15px; margin-left: 7px">
+            Invite via E-Mail:
+          </div>
+          <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20https://thinqtv.herokuapp.com/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px">E-Mail &#9993</a>
+          
+          <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+            Invite via SMS:
+          </div>
+          <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20https://thinqtv.herokuapp.com/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px">SMS &#9743</a>
+
+          <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+            Invite via social media:
+          </div>
+
+          <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
+          <div style="margin-left: 17px">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+              onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
+              'newwindow',
+              'width=600,height=400,top=100,left=300');
+              return false;">
+              <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25px;" />
+            </a>&nbsp
+            <a href="http://www.facebook.com/sharer.php?u=<%= @surl %>"
+              onclick="window.open('http://www.facebook.com/sharer.php?u=<%= @surl %>',
+              'newwindow',
+              'width=600,height=400,top=100,left=300');
+              return false;">
+              <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px;" />
+            </a>&nbsp
+            <a href="https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom"
+              onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom,
+              'newwindow',
+              'width=600,height=400,top=80,left=300');
+              return false;">
+            <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:1px;">
+            </a><br>
+          </div>
         </div>
+      </div>
+
         <div class="col-md-8">
           <%= render 'layouts/jitsi' %>
-          <h4>If you're not seeing or hearing the Live Conversation in the viewer above:</h4>
-          <li>Are you using Safari? Close that and use Chrome or Firefox. Safari can never be used for live video. - or -</li>
-          <li>Reload the page. (Press F5) - or -</li>
-          <li>If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -</li>
-          <li>Turn up the volume on your speakers. - or - </li>
-          <li>Update Chrome or Firefox to the latest version. - or - </li>
-          <li>Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -</li>
-          <li>Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)</li>
-          You may also type in the chat - click on the Open/Close Chat icon next to the hand above.
-          <br><br>
+          <div class="container">
+            <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
+              <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
+                <p>- Are you using Safari? Close that and use Chrome or Firefox. Safari can never be used for live video. - or -<br>
+                - Reload the page. (Press F5) - or -<br>
+                - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
+                - Turn up the volume on your speakers. - or - <br>
+                - Update Chrome or Firefox to the latest version. - or - <br>
+                - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
+                - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
+                - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
+              </div>
+          </div>
+          <br>
         </div>
       </div>
+
     <% else %>
       <%= render 'layouts/authorform' %>
-      <div class="row" style="padding-top:15px;padding-bottom:30px;">
-        <%= render 'layouts/streamButton' %>
-      </div>
+      <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+            <div id="eventCurrentdiv">
+              <h3>We're talking about <%= @displayconvo.name %></h3>  
+              <p> right NOW!</p> 
+              <%= link_to "Join Conversation", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
+              <br>
+            </div>
+      <% else %>
+        <div class="row" style="padding-top:15px;padding-bottom:30px;">
+          <%= render 'layouts/streamButton' %>
+        </div>
+      <% end %>
+
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %> alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -44,7 +105,6 @@
           <% if @events.present? %>
             <%= render 'layouts/maincalendar', collection: @events %><br>
           <% end %>
-          <%= render 'layouts/youtube' %>
         </div>
       </div>
     <% end %>

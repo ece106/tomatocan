@@ -28,15 +28,16 @@
           <td class=col-xs-3>
             <% edt = event.start_at + 3.hours %>
             <span style="font-size:125%;" id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
-            <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> PST</span>
-            <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EST</span>
+            <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> PDT</span>
+            <span style="font-size:90%;" id=calendar-time><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
           <td class=col-xs-3>
 
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
-            <% if ((Time.current - 8.hours) > Time.parse(start_time) ) && ((Time.current - 8.hours) < Time.parse(end_time)) %>
+
+            <% if ((Time.current - 7.hours) > Time.parse(start_time) ) && ((Time.current - 7.hours) < Time.parse(end_time)) %>
               <%= link_to "Join Conversation NOW", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
 
             <% else %>
@@ -58,18 +59,20 @@
                 <% else %>
                   <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email", :class =>"enter_email" %>
                 <% end %>
-                <%= f.submit "RSVP", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
+                <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
               <% end %>
             <% end %>
 
           </td>
           <td class=col-xs-1>
-            <% shareurl = "http://www.THINQ.tv/" + user.permalink %>
-              <div id= "social-button"><span class="fb-share-button" data-href= <%= shareurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= shareurl %> class="fb-xfbml-parse-ignore">Share</a></span></div>
-            <div id="social-button"><span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Participate in <%= user.name %>'s Conversation: <%=  event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PST: <%= shareurl %>" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span></div>
+            <% domainurl = "http://www.thinq.tv/" + user.permalink %>
+              <div id= "social-button"><span class="fb-share-button" data-href= <%= domainurl %> data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href=<%= domainurl %> class="fb-xfbml-parse-ignore">Share</a></span></div>
+
+            <div id="social-button"><span><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text= "Participate in <%= user.name %>'s Conversation: <%=  event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: <%= domainurl %>" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></span></div>
+            
             <div id="social-button-in">
               <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-              <script type="IN/Share" data-url="<%= shareurl %>" data-counter="top">Share</script>
+              <script type="IN/Share" data-url="<%= domainurl %>" data-counter="top">Share</script>
             </div>
           </td>
         </tr>

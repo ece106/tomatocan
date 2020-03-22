@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
   match 'livestream',     to: 'static_pages#livestream', via: 'get'
   match 'internship',     to: 'static_pages#internship', via: 'get'
+  match 'bystanderguidelines',    to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',     to: 'static_pages#drschaeferspeaking', via: 'get'
+  match 'fellowship',     to: 'static_pages#fellowship', via: 'get'
   
   match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
   match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'

@@ -4,11 +4,33 @@
   </div>
 <% end %>
 
-<div id="event-page-layout" style="width: 50%; margin: auto;">
-  <meta property="og:description" content="Host Conversations" />
-  <% @title="ThinQ.tv" %>
+<! TOP HALF -->
+<div id="event-page-layout" style="width: 100%; margin: auto; background-color: #F2EBE4;">
+  <div class="row" style = "padding-top:15px; padding-bottom:20px;">
 
-        <div style="margin-top:20px;">
+    <! PROFILE PICTURE -->
+    <div class="col-md-3" style="text-align:center; padding: 10px 5px 10px 10px;">
+      <% if @user.profilepic.present? && @user.profilepic != '' %>
+        <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
+      <% end %><br><br>  
+    </div>
+
+    <! CONVERSATION NAME & HOST -->
+    <div class="col-md-5">
+      <br><br><br><br><br><br><br><br><br><br><br>
+      <div class="aboutHeader" style = "font-size: 30px; margin-left: 25px">  
+        <b><%= @event.name %></b>
+      </div>
+      <div style ="margin-left: 30px">
+        <b>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </b><br>
+      </div>
+    </div>
+
+    <! RSVP & EDIT BUTTONS -->
+    <div class="col-md-4" style="padding: 10px 5px 10px 10px;">
+      <meta property="og:description" content="Host Conversations" />
+      <% @title="ThinQ.tv" %>
+        <div style="margin-top:0px; text-align:right">
           <%= form_for(@rsvp) do |f| %>
             <% if @rsvp.errors.any? %>
               <div id="error_explanation">
@@ -27,74 +49,138 @@
             <% else %>
               <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
             <% end %>
-            <%= f.submit "RSVP NOW", :style => "color: #fff; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
+            <%= f.submit "RSVP NOW", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
+            <% end %>
+        
+          <% if user_signed_in? %>
+            <% if @event.usrid == current_user.id %>
+              <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
+            <% end %>
+          <% end %>
+
+          
+          <% if @rsvpusers.count > 0 %>
+            <br><br><br><br><br><br><br><br>
+            <b>Conversationalists who said they would be there:</b><br>
+            <div>
+              <% @rsvpusers.each do |rsvpuser| %>
+                <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
+              <% end %>
+            </div>
           <% end %>
         </div>
-
-  <div>
-    <% if user_signed_in? %>
-      <% if @event.usrid == current_user.id %>
-        <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
-      <% end %>
-    <% end %>
-
-        <% if @rsvps.count > 0 %>
-          <br><b>Conversationalists who said they would be there:</b><br>
-          <div>
-            <% @rsvpusers.each do |rsvpuser| %>
-              <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
-            <% end %>
-          </div>
-        <% end %>
-        <h2>Share the Conversation with friends! </h2>
-        <div style="margin-left: 50px">
-
-    <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
-             onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
-             'newwindow',
-             'width=600,height=400,top=100,left=300');
-             return false;">
-             <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25px;" />
-          </a>&nbsp
-          <a href="http://www.facebook.com/sharer.php?u=<%= @surl %>"
-             onclick="window.open('http://www.facebook.com/sharer.php?u=<%= @surl %>',
-             'newwindow',
-             'width=600,height=400,top=100,left=300');
-             return false;">
-             <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px;" />
-          </a>&nbsp
-          <a href="https://twitter.com/intent/tweet?text=Join <%= @user.permalink %>'s livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PST: <%= @surl %>"
-             onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> 's livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PST:<%= @surl %>',
-             'newwindow',
-             'width=600,height=400,top=80,left=300');
-             return false;">
-             <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:1px;">
-          </a><br><br>
-        </div>
-
-    <h3>Make sure your people are part of the Conversation. </h3>
-    <h2>EMAIL THIS MESSAGE TO FRIENDS AND COLLEAGUES: </h2>
-
-    <div style="font-size: 18px; font-style: italic;">
-      Join me for a LIVE video Conversation and talk with us about<br>
-      <div style="font-color: #F00">
-        <b><%= @event.name %></b><br>
-        <b>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </b><br>
-      </div>
-    
-      <% edt = @event.start_at + 3.hours %>
-      <%= @event.start_at.strftime("%A, %B %d") %> <br>
-      <%= @event.start_at.strftime("%I:%M %p")%> PST / <%= edt.strftime("%I:%M %p") %> EST<br>
-
-      <%= @duration %> minutes<br>
-        <% if @event.desc.present? %>
-          <b><%= @event.desc %></b>
-          <br>
-        <% end %>
-      It's easy to be a part of the Conversation! Go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the <br><%= link_to "Join Conversation", "https://thinQtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-primary' %> button. <br>
-      If you'd like to participate in our Conversation by phone, download the JITSI meet app and join the THINQTV chatroom.<br>
-
     </div>
   </div>
+</div>
+
+<! BOTTOM HALF -->
+<div id="event-page-layout" style="width: 100%; margin: auto;">
+    <div class="row" style = "padding-top:15px; padding-bottom:30px;">
+
+      <! LEFTHAND SIDE -->
+      <div class="col-md-7" style="text-align:left; padding: 10px 5px 10px 10px;">
+
+        <! Quick Summary Box -->
+        <div style = "padding: 3px 0px 3px 0px">
+          <div style="padding: 5px 5px 5px 5px; font-style: italic; font-size: 18px; background-color: #F2EBE4;">
+            Join me for a LIVE video Conversation and talk with us about <b> <%= @event.name %>! </b> <br>
+          </div>
+        </div>
+
+        <! When Box -->
+        <div style="padding: 3px 0px 3px 0px">
+          <b> When: </b>
+          <div style = "margin-left: 5px">
+            <% edt = @event.start_at + 3.hours %>
+            <%= @event.start_at.strftime("%A, %B %d") %> <br>
+            <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
+            <br> <%= @duration %> minutes <br>
+          </div>
+        </div>
+
+        <! EVENT DESCRIPTION -->
+        <div style = "padding: 3px 0px 3px 0px">
+          <div style="padding: 5px 5px 5px 5px; font-style: italic; font-size: 15px; background-color: #F2EBE4;">
+          <% if @event.desc.present? %>
+            <b> <%= @event.desc.gsub(/\n/, '<br>').html_safe %> </b> <br>
+          <% end %>
+          </div>
+        </div>
+      </div>
+
+      <! PLACEHOLDER -->
+      <div class="col-md-1">
+      </div>
+
+      <! RIGHTHAND SIDE -->
+      <div class="col-md-4" style="text-align:left; padding: 10px 10px 10px 5px;">
+
+        <! Share Area -->
+        <div style = "padding: 3px 0px 3px 0px; font-size: 23px;">
+          <b>Make sure your people are involved</b>
+          <div style = "font-size: 15px">
+            E-Mail this conversation to friends and colleagues:
+          </div>
+          <table width="100%" border="0" cellspacing="10" cellpadding="10">
+            <tr>
+              <td>
+                <table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td bgcolor="#8C1D40" style="padding: 0px 13px 3px 13px; border-radius:2px" align="center"> 
+                      <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20conversation%20about%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #fff; text-decoration: none; display: inline-block;">EMAIL &rarr;</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+
+          <div style = "font-size: 15px">
+            Share the conversation on social media:
+          </div>
+
+          <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
+          <div style="margin-left: 10px">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+              onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
+              'newwindow',
+              'width=600,height=400,top=100,left=300');
+              return false;">
+              <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25px;" />
+            </a>&nbsp
+            <a href="http://www.facebook.com/sharer.php?u=<%= @surl %>"
+              onclick="window.open('http://www.facebook.com/sharer.php?u=<%= @surl %>',
+              'newwindow',
+              'width=600,height=400,top=100,left=300');
+              return false;">
+              <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px;" />
+            </a>&nbsp
+            <a href="https://twitter.com/intent/tweet?text=Join <%= @user.permalink %>'s livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
+              onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> 's livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
+              'newwindow',
+              'width=600,height=400,top=80,left=300');
+              return false;">
+              <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:1px;">
+            </a><br><br>
+          </div>
+        </div>
+
+        <! Help Area -->
+        <div style = "padding: 3px 0px 3px 0px">
+          <div style = "font-size: 17px; padding: 5px 5px 5px 5px; background-color: #F2EBE4;">
+            <b>It's easy to be a part of the Conversation!</b> <br>
+            <div style = "font-size: 14px; font-style: italic">
+              On Desktop: <br>
+              <div style = "margin-left: 5px">
+                Go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the <%= link_to "Join Conversation", "https://thinQtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-sm btn-primary' %> button. <br>
+              </div>
+              On Mobile:
+              <div style = "margin-left: 5px">
+                Download the JITSI meet app and join the THINQTV chatroom.<br> 
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
 </div>

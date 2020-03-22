@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   acts_as_token_authenticatable
-# We really should have somehow combined several User and Group methods into some kind of StripeAccount model since they do the same thing
+
   attr_accessor :monthperkinfo, :monthbookinfo, :incomeinfo, :salebyfiletype, :salebyperktype, :totalinfo, 
   :purchasesinfo, :on_password_reset
 
@@ -14,8 +14,6 @@ class User < ApplicationRecord
   has_many :events, :through => :rsvpqs
   has_many :merchandises 
   has_many :timeslots, dependent: :destroy
-
-#  has_many :groups, through: :agreements  # Do we need this
 
   # Active Relationships (A user following a user)
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id" #, dependent: :destroy (if a user is deleted, delete the relationship)

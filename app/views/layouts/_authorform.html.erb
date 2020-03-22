@@ -5,7 +5,7 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-<% if request.host == "thinQtv.herokuapp.com" %>
+<% if request.host == "thinqtv.herokuapp.com" %>
 	<div class="row" id="profileBanner" style="display:none">
 <% else %>
 	<div class="row" id="profileBanner">
@@ -18,7 +18,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 	<% end %>
 	</div>
 
-<% if request.host == "thinQtv.herokuapp.com" %>
+<% if request.host == "thinqtv.herokuapp.com" %>
 	<div class="row" id="profileHeader" style="display:none">
 <% else %>
 	<div class="row" id="profileHeader">
@@ -29,7 +29,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 		</div>
 	<% else %>
 		<div class="col-sm-2">
-			<%= image_tag "maroonLogo.png", :class => "img-circle", :id => "profileImage", style: "background-color:white" %>
+			<%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "profileImage", style: "background-color:white" %>
 		</div>
 	<% end %>
 	<div class="col-sm-8">

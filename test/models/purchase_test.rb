@@ -1,4 +1,4 @@
-require 'test_helper'
+require https://dashboard.stripe.com/connect-update 'test_helper'
 
 class PurchaseTest < ActiveSupport::TestCase
   setup do
@@ -38,7 +38,7 @@ class PurchaseTest < ActiveSupport::TestCase
 
   test '#calculate_application_fee returns the correct value' do
     amount = @merchandise_purchase.send(:calculate_amount, @merchandise_with_attachment.price)
-    expected_app_fee = @merchandise_purchase.send(:calculate_application_fee, amount)
+    expected_app_fee = @merchandise_purchase.send(:calculate_application_fee_amount, amount)
     assert_equal expected_app_fee, 35
   end
 
