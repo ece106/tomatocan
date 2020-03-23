@@ -1,7 +1,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> <% "Support " + @user.name + "'s Projects" %> </title>
+  <meta property="og:url"           content="https://thinqtv.herokuapp.com/youronlinemom" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Conversations to make you ThinQ" />
+  <meta property="og:description"   content="Conversations to make you THINQ: Live Video conversations to feed your brain" />
+  <meta property="og:image"         content="<%= image_tag 'starIcon.png', width: '100%' %>
 </head>
+
   <div class="container-fluid" >
     <% if request.host == "thinqtv.herokuapp.com" %>
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
@@ -27,7 +33,7 @@
             Invite via social media:
           </div>
 
-          <% domainurl = "http://ThinQ.tv/" %>
+          <% domainurl = "https://thinqtv.herokuapp.com/youronlinemom" %>
           <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
           <div style="margin-left: 17px">
             <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"

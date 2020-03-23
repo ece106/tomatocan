@@ -27,7 +27,7 @@
         </head>
         
         <tr>
-          <td class=col-xs-2>
+          <td class=col-xs-3>
             <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
             Hosted by: <a href="<%= link_to user.name, user.permalink, id: "calendar-host" %></a>
             <% if user_signed_in? %>
@@ -81,8 +81,8 @@
             <% domainurl = "http://www.thinq.tv/"%>
 
               <!-- Facebook Share -->
-              <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %>"
-                onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %>',
+              <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"
+                onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>',
                 'newwindow',
                 'width=600,height=400,top=100,left=300');
                 return false;">
