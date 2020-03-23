@@ -26,8 +26,7 @@
             <div id="eventCurrentdiv">
               <h3>We're talking about <%= link_to @name, event_path(@displayconvo.id), title: @description, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
-              <%= link_to "Join Fellowship Hour", "https://thinQtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
-              <br>
+              <%= link_to "Join Fellowship Hour", "https://thinQtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %><br>
               Hosted by: <%= link_to @host.name, @host.permalink %>
             </div>
           <% else %>
