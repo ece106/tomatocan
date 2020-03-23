@@ -1,308 +1,37 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<style type="text/css">
-  
-body{
- margin:0px;
- padding:0px;
- box-sizing:border-box;
-background: linear-gradient(to right, #fffcdc, #d9a7c7);
-}
-
-.jumbotron{
-
-    position: relative;
-    height: auto;
-    padding: 10px;
-    background: rgba(255,255,255,.2);
-    margin: auto auto;
-    margin-bottom: 2em;
-    border-radius: 10px;
-}
-
-.location{
-  position:relative;
-  width: 100%;
-  padding: 0px;
-}
-
-.location-icon, .location-icon1, .location-icon2 {
-  position: relative;
-  width: 100%;
-  background: linear-gradient(to right, #fffcdc, #d9a7c7);
-  height: 444px;
-  z-index: 99;
-  /*text-align: center;*/
-  border-radius: 10px;
-  box-shadow: 0px -9px 10px rgba(0,0,0,0.2);
-  transform: translateY(50px);
-  transition:1s;
-}
-
-.location-icon > img {
-
-  height:325px;
-  
-}
-
-.location-icon1 > img {
-
-  height:325px;
-  
-}
-
-
-.location-icon2 > img {
-
-  height:325px;
-  
-}
-
-
-.location-content, .location-content1, .location-content2{
-     position:absolute;
-     bottom:0;
-     left:0;
-     width:100%;
-     padding:28px 25px;
-     border-radius:10px;
-     background:linear-gradient(to right, #fffcdc, #d9a7c7);
-     z-index: 1;
-     box-shadow:0px 0px 10px rgba(0,0,0,0.3);
-     transform:translateY(20%);
-     transition:1s;
-  }
-
-  .location-content > p{
-   color:black;
-   font-size:18px;
-
-   padding:0px 0px 10px 0px;
-   padding-top: 65px;
-   margin:0px;
-
-   }
-
-
-.location-content1 > p{
-  
-   background-position: relative;
-   color:black;
-   font-size:18px;
-
-   padding:0px 0px 10px 0px;
-   padding-top: 65px;
-   margin:0px;
-  
-   }
-
-
-.location-content2 > p{
-   color:black;
-   font-size:18px;
-
-   padding:0px 0px 10px 0px;
-   padding-top: 65px;
-   margin:0px;
-
-   }
-
-
-
-
-  .arrow, .arrow1, .arrow2 {
-   position:absolute;
-   bottom:10px;
-   left:50%;
-   transform:translateX(-50%);
-   width:40px;
-   height: 0.5px;
-   z-index:333;
-   cursor:pointer;
-
-  }
-
-  .arrow > i{
-   font-size:30px;
-   color:black;
-   cursor:pointer;
-   transition:0.5s;
-  }
-
-  .arrow1 > i{
-   font-size:30px;
-   color:black;
-   cursor:pointer;
-   transition:0.5s;
-  }
-
-  .arrow2 > i{
-   font-size:30px;
-   color:black;
-   cursor:pointer;  
-   transition:0.5s;
-  }
-
-
-  .active.location-icon{
-    transform:translateY(-5%);
-   }
-
-  .active.location-icon1{
-    transform:translateY(-5%);
-   }
-
-    .active.location-icon2{
-    transform:translateY(-5%);
-   }
-
-
-  .active{
-   transform:translateY(80%);
-  }
-  
-  .rotate, .rotate1, .rotate2 {
-   transform:rotate(180deg);
-   transform-origin:center center;
-  }
-
-    .fa-border-icon {
-    border-width: 3px;
-    border-style: solid;
-    border-color: orange;
-    border-image: initial;
-    border-radius: 50% 50% 50% 50%; 
-    padding: 6% 9% 6% 9%; 
-}
-
-</style>
-
-<div class="box" style=" background: rgba(255,255,255,.2); padding-left: 100px; padding-right: 100px;" >
-   <%= image_tag("volunteer.png", height:"500px", width:"100%")%> 
-</div>
-<div class="jumbotron" >
-
-  <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-top: 20px; margin-left: auto;  margin-right: auto; height: 150px;")%><br>
-
-    <h3 class="aboutHeader" style="  text-align: center;  color: #8C1D40;"> Our Mission: </h3><br>
-    <h3 class="aboutHeader" style=" text-align: center; color: black;"> Create a culture where speaking up against sexual harassment is the norm</h3>
-      <p style="line-height: 1.3em;  padding-left: 200px; padding-right: 200px; ">
+<div class="row" style="padding-top: 15px; padding-bottom: 10px; margin-bottom: 10px">
+  <div class="col-md-3">
+    <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-left: auto;  margin-right: auto; height: 150px;")%>
+  </div>
+  <div class="col-md-offset-1 col-md-8" style="padding-right: 15px;">
+    <p style="display:inline;">Our Mission: </p>
+    <h3 class="aboutHeader" style="display:inline;"> Create a culture where speaking up against sexual harassment is the norm</h3>
+      <h4 style="line-height: 1.3em">
         Live video conversations are becoming more mainstream as video technology evolves. However several platforms and apps have defaulted to a culture where women are solicited for nude pictures and lewd acts for money. When we walk down the street in public, we are not assumed to be prostitutes, why is that the assumption when we are online? Thus women leave the table and their voices go unheard. <br><br>
 
         Want an internet culture where harassment and sexual solicitations are not the norm? We're inviting individuals and organizations to form a Coalition to steer live video culture toward a civilized society where speaking up against harassment is the norm.<br>
-      </p>
+      </h4>
+  </div>  
 </div>
-<div class="row" style="padding-bottom: 300px;">
-  <div class="col-lg-4 ">
-    <div class="location">
-      <div class="location-icon">
-        <%= image_tag("organization.jpg", width: "100%")%>
-        <h4 style="margin-top: 10px; font-size: 20px; font-weight: bold; text-align: center;"> What can Organizations do: </h4>
-      </div>
-      <div class="location-content">
-        <p>
-      - Participate in drafting Bystander Guidelines for what people can do when they witness harassment in live video. Drop in to any YourOnlineMom live video office hours on the ThinQ.tv schedule on our home page schedule to suggest guidelines. <br>
-      - Vet potential Online Parents or Siblings.<br>
-      - Help us stage periodic Intervention Days to take over apps that have high sexual harassment activity by sending your members into the apps to enact the Bystander Guidelines.<br>
-      - Get others involved.<br>
-        </p>
-      </div>
-      <div class="arrow">
-            <i class="fa fa-angle-down" id="angle" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="location">
-          <div class="location-icon1">          
-            <%= image_tag("hands.jpg", width:"100%")%> 
-            <h4 style="margin-top: 10px; font-size: 20px; font-weight: bold; text-align: center;"> How to get others involved:  </h4>
-          </div>
-          <div class="location-content1">         
-            <p>
-            - Nominate adults to be <%= link_to "Online Parents or Siblings", parents_path %>.<br>
-            - Invite other organizations who have a stake in addressing online sexual harassment to participate in drafting bystander guidelines - women's organizations, parent organizations, college student organizations. <br>
-            - Announce to student organizations, churches, schools that high school & college students can drop in during times listed on ThinQ.tv to find a responsible adult who will listen. <br>
-            - Spread the word via social media. <br>
-            </p>
-          </div>
-          <div class="arrow1">
-              <i class="fa fa-angle-down" id="angle1" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="location">
-          <div class="location-icon2">        
-            <%= image_tag("coalition.jpg", width:"100%")%>
-            <h4 style="margin-top: 10px; font-size: 20px; font-weight: bold; text-align: center;"> How your organization can join the YourOnlineMom Coalition:  </h4>
-          </div>
-          <div class="location-content2">    
-            <p>
+
+<div class="row" >
+    <h3 class="aboutHeader">What can ORGANIZATIONS do: </h3>
+    <div style="font-size: 18px; line-height: 1.5em">
+      - Participate in drafting <%= link_to 'Bystander Guidelines', bystanderguidelines_path %> for what people can do when they witness harassment in live video. Drop in to any YourOnlineMom live video office hours on the <%= link_to 'ThinQ.tv schedule', "/" %> on our home page schedule to suggest guidelines.<br>
+      - Vet potential <%= link_to "Online Parents or Siblings", parents_path %>.<br>
+      - Help us stage periodic Intervention Days to take over apps that have high sexual harassment activity by sending your members into the apps to enact the Bystander Guidelines. <br>
+      - Get others involved. <br>
+      
+      <h3 style = "color:#8C1D40">How to get others involved: </h3>
+      - Nominate adults to be <%= link_to "Online Parents or Siblings", parents_path %>.<br>
+      - Invite other organizations who have a stake in addressing online sexual harassment to participate in drafting bystander guidelines - women's organizations, parent organizations, college student organizations. <br>
+      - Announce to student organizations, churches, schools that high school & college students can drop in during times listed on ThinQ.tv to find a responsible adult who will listen. <br>
+      - Spread the word via social media. <br>
+
+      <h3 style = "color:#8C1D40">How your organization can join the YourOnlineMom Coalition: </h3>
         - Email info@ThinQ.tv to state your interest or call 602-888-3089. <br>
         - Drop in to any of the live video YourOnlineMom office hours hosted by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', "/" %> so we can meet you & you can ask questions. <br>
-        <br>
-        <br>
-        <br>
-        <br>
-            </p>
-          </div>
-          <div class="arrow2">
-              <i class="fa fa-angle-down" id="angle2" aria-hidden="true"></i>
-      </div>
-    </div>
-   </div>
- </div>
-<div  style="background: rgba(255,255,255,.2);  padding-bottom: 25px;">
-  <div class="container">
-    <div class="row" style="padding-top: 50px; ">
-      <div class="col-lg-4 col-md-4 col-sm-6" style="text-align: center; ">
-        <i class="fa fa-address-card fa-border-icon" style="font-size:90px;color:lightgreen;"></i>
-        <h1 style="font-weight: bold; color: #8C1D40;">Apply</h1>
-        <p style=" padding: 5px; font-weight:bold; font-size: 25px;"> Join us in contributing to our society. </p>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-6" style=" text-align: center; font-size: 50px; font-weight: bold;">OR
-    </div>
-      <div class="col-lg-4 col-md-4 col-sm-6" style="text-align: center;">
-        <i class="fa fa-users fa-border-icon" style="font-size:90px;color:lightgreen;"></i>
-        <h1 style="font-weight: bold; color: #8C1D40;">Nominate</h1>
-        <p style=" padding: 5px; font-weight:bold; font-size: 25px;"> If you think your peers would be interested, spread the word. </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12" style=" text-align: center;">
-        <h1><%= link_to 'Apply Here', boardofdirectors_path, :class => "btn btn-lg btn-primary", :style => "border-radius:5px;"%></h1>
-    </div>
-      </div> 
-    </div>
-    </div>
-  </div>
- <script>
-   $(document).ready(function(){
-        $('.arrow').click(function(){
-     $('.location-content').toggleClass('active');
-         $('.location-icon').toggleClass('active');
-     $('#angle').toggleClass('rotate');
-    });
-        
-   });
+    </div> 
 
-      $(document).ready(function(){
-        $('.arrow1').click(function(){
-     $('.location-content1').toggleClass('active');
-         $('.location-icon1').toggleClass('active');
-     $('#angle1').toggleClass('rotate1');
-    });
-        
-   });
-
-     $(document).ready(function(){
-        $('.arrow2').click(function(){
-     $('.location-content2').toggleClass('active');
-         $('.location-icon2').toggleClass('active');
-     $('#angle2').toggleClass('rotate2');
-    });
-        
-   });
- </script>
+</div><br>
 
 
