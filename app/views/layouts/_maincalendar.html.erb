@@ -43,7 +43,6 @@
             <font size="3"> <b>/</b> </font><%= edt.strftime("%l:%M%P") %> EDT</span>
           </td>
           <td class=col-xs-4>
-
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
@@ -52,7 +51,6 @@
               <%= link_to "Join Conversation NOW", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
 
             <% else %>
-              <div>
                 <%= form_for(@rsvp) do |f| %>
                   <% if @rsvp.errors.any? %>
                     <div id="error_explanation">
@@ -68,14 +66,13 @@
                   <%= f.hidden_field :event_id, :value => event.id %>
                   <% if user_signed_in? %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit" %>
                   <% else %>
-                    <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
+                    <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
+                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
                   <% end %>
-                  <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
                 <% end %>
-              </div>
             <% end %>
-
           </td>
 
 
