@@ -22,7 +22,7 @@
           <meta property="og:url"           content="http://thinq.tv/<%=user.permalink%>" />
           <meta property="og:type"          content="website" />
           <meta property="og:title"         content="Conversations to make you ThinQ" />
-          <meta property="og:description"   content="Conversations to make you THINQ: Live Video conversations to feed your brain" />
+          <meta property="og:description"   content="Conversations to make you THINQ: Live Video fellowship to feed your brain" />
           <meta property="og:image"         content="<%= image_tag 'starIcon.png', width: '100%' %>
         </head>
         
@@ -32,7 +32,7 @@
             Hosted by: <a href="<%= link_to user.name, user.permalink, id: "calendar-host" %></a>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
-                <%= link_to '(Edit Conversation)', edit_event_path(event.id), id: "calendar-host" %>
+                <%= link_to '(Edit Fellowship Hour)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
             <% end %>
           </td>
@@ -48,7 +48,7 @@
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
             <% if ((Time.current - 7.hours) > Time.parse(start_time) ) && ((Time.current - 7.hours) < Time.parse(end_time)) %>
-              <%= link_to "Join Conversation NOW", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+              <%= link_to "Join Fellowship NOW", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
 
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
@@ -90,8 +90,8 @@
               </a>&nbsp
 
               <!-- Twitter Share -->
-              <a href="https://twitter.com/intent/tweet?text=Participate in <%= user.name %>'s Conversation: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>"
-                onclick="window.open('https://twitter.com/intent/tweet?text=Participate in <%= user.name %>'s Conversation: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>,
+              <a href="https://twitter.com/intent/tweet?text=Join <%= user.name %> in Fellowship: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>"
+                onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= user.name %> in Fellowship: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>,
                 'newwindow',
                 'width=600,height=400,top=80,left=300');
                 return false;">

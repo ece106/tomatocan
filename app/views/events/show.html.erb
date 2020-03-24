@@ -54,14 +54,14 @@
         
           <% if user_signed_in? %>
             <% if @event.usrid == current_user.id %>
-              <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
+              <%= link_to "Edit Fellowship Hour", edit_event_path(@event)%><br><br>
             <% end %>
           <% end %>
 
           
           <% if @rsvpusers.count > 0 %>
             <br><br><br><br><br><br><br><br>
-            <b>Conversationalists who said they would be there:</b><br>
+            <b>Who will be there:</b><br>
             <div>
               <% @rsvpusers.each do |rsvpuser| %>
                 <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
@@ -83,7 +83,7 @@
         <! Quick Summary Box -->
         <div style = "padding: 3px 0px 3px 0px">
           <div style="padding: 5px 5px 5px 5px; font-style: italic; font-size: 18px; background-color: #F2EBE4;">
-            Join me for a LIVE video Conversation and talk with us about <b> <%= @event.name %>! </b> <br>
+            Join me for LIVE video Fellowship: <b> <%= @event.name %>! </b> <br>
           </div>
         </div>
 
@@ -119,11 +119,11 @@
         <div style = "padding: 3px 0px 0px 0px; font-size: 23px;">
           <b>Make sure your people are involved</b>
           <div style = "font-size: 15px">
-            E-Mail this conversation to friends and colleagues:
+            E-Mail this fellowship hour to friends and colleagues:
           </div> 
-          <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20conversation%20about%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 15px; color: white; margin-left: 10px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">E-Mail &#9993</a>
+          <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20fellowship%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 15px; color: white; margin-left: 10px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">E-Mail &#9993</a>
           <div style = "font-size: 15px; padding-top: 5px">
-            Share the conversation on social media:
+            Share fellowship on social media:
           </div>
 
           <% domainurl = "http://www.ThinQ.tv/" %>
@@ -143,8 +143,8 @@
               return false;">
               <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px; border-radius:4px" />
             </a>&nbsp
-            <a href="https://twitter.com/intent/tweet?text=Join <%= @user.permalink %>'s livestream for an exciting conversation on: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
-              onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> 's livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
+            <a href="https://twitter.com/intent/tweet?text=Join <%= @user.name %> for fellowship and conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
+              onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> for fellowship and conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
               'newwindow',
               'width=600,height=400,top=80,left=300');
               return false;">
@@ -156,7 +156,7 @@
         <! Help Area -->
         <div style = "padding: 3px 0px 0px 0px">
           <div style = "font-size: 17px; padding: 5px 5px 5px 5px; background-color: #F2EBE4;">
-            <b>It's easy to be a part of the Conversation!</b> <br>
+            <b>It's easy to be a part of the Fellowship!</b> <br>
             <div style = "font-size: 14px; font-style: italic">
               On Desktop: <br>
               <div style = "margin-left: 5px">
