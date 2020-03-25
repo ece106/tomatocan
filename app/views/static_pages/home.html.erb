@@ -19,14 +19,14 @@
             <br><%= link_to "Live Video Fellowship", fellowship_path, class: "topic_link", title: "When you can't be there in person" %>
           </div>
             <br><br>
-            <%= link_to "Be Here For Others", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 40px", title: "Sign up to host live video fellowship hours" %><br><br>
+            <%= link_to "Be Here For Others", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 30px", title: "Sign up to host live video fellowship hours" %><br><br>
 
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
-              <h3>We're talking about <%= link_to @name, event_path(@displayconvo.id), title: @description, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
-              <p> right NOW!</p><br>
-              <%= link_to "Join Fellowship Hour", "https://thinQtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %><br>
+              <h3>Fellowship Hour <%= link_to @name, event_path(@displayconvo.id), title: @description, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
+              <p> is happening right NOW!</p><br>
+              <%= link_to "Join Fellowship Hour", "https://thinQtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; font-size: 40px;" %><br>
               Hosted by: <%= link_to @host.name, @host.permalink %>
             </div>
           <% else %>
