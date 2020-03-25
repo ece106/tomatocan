@@ -26,10 +26,11 @@
           <meta property="og:image"         content="<%= image_tag 'starIcon.png', width: '100%' %>
         </head>
         
+        
         <tr>
           <td class=col-xs-3>
             <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
-            Hosted by: <%= link_to user.name, user.permalink, id: "calendar-host" %>
+            Hosted by: <%= link_to user.name, user.permalink %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
                 <%= link_to '(Edit Fellowship Hour)', edit_event_path(event.id), id: "calendar-host" %>
@@ -113,7 +114,7 @@
       </tbody>
     </table>
   <% end %>
-</div>
+</>
 
 <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 
