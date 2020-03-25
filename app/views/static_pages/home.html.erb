@@ -18,9 +18,7 @@
           <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
             <br><%= link_to "Live Video Fellowship", fellowship_path, class: "topic_link", title: "When you can't be there in person" %>
           </div>
-            <br><br>
-            <%= link_to "Be Here For Others", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 30px", title: "Sign up to host live video fellowship hours" %><br><br>
-
+            
         <% if @displayconvo.present? %>
           <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
             <div id="eventCurrentdiv">
@@ -34,7 +32,8 @@
             <%= link_to 'See an example Live Video Fellowship Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;" %>
             </h2>
           <% end %>
-        <% end %>
+        <% end %><br><br>
+            <%= link_to "Be Here For Others", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 30px", title: "Sign up to host live video fellowship hours" %><br><br>
       </div>
     </div>
   </div>
