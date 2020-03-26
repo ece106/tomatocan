@@ -1,23 +1,46 @@
 <div class="container-fluid" >
-      <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
-        <div class="col-md-7">
-          <%= render 'layouts/jitsi' %>
-          <div class="container">
-            <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
-              <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
-                <p>- Are you using Safari? Close that and use Chrome or Firefox. Safari can never be used for live video. - or -<br>
-                - Reload the page. (Press F5) - or -<br>
+  <% if request.host == "thinqtv.herokuapp.com" %>
+
+
+    <div class="col-md-8">
+      <script src="https://meet.jit.si/external_api.js"></script>
+      <script>
+        jQuery(document).ready(function($) {
+          var domain = "meet.jit.si";
+          var options = {
+            roomName: "thinqtv", 
+            parentNode: document.querySelector('#meet')
+          }
+          var api = new JitsiMeetExternalAPI(domain, options);
+        });
+      </script>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          ThinQ.tv Live Fellowship
+        </div>
+        <div class="panel-body embed-responsive embed-responsive-16by9">
+          <div class="embed-responsive-item" id="meet"></div>
+        </div>
+      </div>
+
+        Click “Allow” if a popup box asks to access your mic or camera. 
+      <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">Click Here for troubleshooting ideas if you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
+        <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
+          <p>- Are you using Safari? Close that and use Chrome or Firefox. Safari can never be used for live video. - or -<br>
+            - Reload the page. (Press F5) - or -<br>
                 - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
                 - Turn up the volume on your speakers. - or - <br>
                 - Update Chrome or Firefox to the latest version. - or - <br>
                 - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
                 - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
                 - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
-              </div>
+            </p>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-5">
+        <div class="col-md-4">
           <div class="panel panel-default">
             <div class="panel-heading" style="background-color: #8C1D40; color: #ffffff">
 	            Schedule
@@ -43,7 +66,13 @@
                 </tbody>
               </table>
             <% end %> 
+          </div>
         </div>
-      </div>
-    </div>
+  <% else %>
+    <br><br>
+      <%= link_to "Click here to Join Fellowship Conversation", "https://thinQtv.herokuapp.com/seniorliving", class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; font-size: 40px;" %><br><br><br><br>
+    Send a link to this page to your parents & grandparents!<br><br>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <% end %> 
 </div>

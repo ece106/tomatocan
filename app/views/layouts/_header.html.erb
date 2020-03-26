@@ -17,13 +17,13 @@
 				<% if request.host == "thinqtv.herokuapp.com" %> <!--If the navbar is being rendered in the ThinQ.tv.herokuapp.com secure server domain.. -->
 					<li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', title: "Invite friends to join thought-provoking Conversations on ThinQ.tv", target: "_blank" %></li> <!-- ..use absolute routing in navbar.-->
 					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/fellowship', title: "Become an Online Fellowship Host!", target: "_blank" %></li>
-					<li class="nav-item"><%= link_to "Invite Us To Speak", 'http://www.ThinQ.tv/drschaeferspeaking', title: "To your organization - In Person!", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Bystander Guidelines", 'http://www.ThinQ.tv/bystanderguidelines', title: "Our first rough draft", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Why ThinQ", 'http://www.ThinQ.tv/aboutus', title: "Our first rough draft", target: "_blank" %></li>
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", root_path, title: "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li>
 					<li class="nav-item"><%= link_to "Get Involved!", fellowship_path, title: "Become an Online Fellowship Host!" %></li>
 					<li class="nav-item"><%= link_to "Why ThinQ", aboutus_path, title: "Our first rough draft" %></li>
+					<li class="nav-item"><%= link_to "FOR SENIOR CITZENS", seniorliving_path, title: "Keep your grandparents from feeling isolated" %></li>
 				<% end %>
 			</ul>
 
