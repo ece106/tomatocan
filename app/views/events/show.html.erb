@@ -54,14 +54,14 @@
         
           <% if user_signed_in? %>
             <% if @event.usrid == current_user.id %>
-              <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
+              <%= link_to "Edit Fellowship Hour", edit_event_path(@event)%><br><br>
             <% end %>
           <% end %>
 
           
           <% if @rsvpusers.count > 0 %>
             <br><br><br><br><br><br><br><br>
-            <b>Conversationalists who said they would be there:</b><br>
+            <b>Who will be there:</b><br>
             <div>
               <% @rsvpusers.each do |rsvpuser| %>
                 <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
@@ -83,7 +83,7 @@
         <! Quick Summary Box -->
         <div style = "padding: 3px 0px 3px 0px">
           <div style="padding: 5px 5px 5px 5px; font-style: italic; font-size: 18px; background-color: #F2EBE4;">
-            Join me for a LIVE video Conversation and talk with us about <b> <%= @event.name %>! </b> <br>
+            Join me for LIVE video Fellowship: <b> <%= @event.name %>! </b> <br>
           </div>
         </div>
 
@@ -116,29 +116,17 @@
       <div class="col-md-4" style="text-align:left; padding: 10px 10px 10px 5px;">
 
         <! Share Area -->
-        <div style = "padding: 3px 0px 3px 0px; font-size: 23px;">
+        <div style = "padding: 3px 0px 0px 0px; font-size: 23px;">
           <b>Make sure your people are involved</b>
           <div style = "font-size: 15px">
-            E-Mail this conversation to friends and colleagues:
-          </div>
-          <table width="100%" border="0" cellspacing="10" cellpadding="10">
-            <tr>
-              <td>
-                <table border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td bgcolor="#8C1D40" style="padding: 0px 13px 3px 13px; border-radius:2px" align="center"> 
-                      <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20conversation%20about%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #fff; text-decoration: none; display: inline-block;">EMAIL &rarr;</a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-
-          <div style = "font-size: 15px">
-            Share the conversation on social media:
+            E-Mail this fellowship hour to friends and colleagues:
+          </div> 
+          <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20fellowship%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 15px; color: white; margin-left: 10px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">E-Mail &#9993</a>
+          <div style = "font-size: 15px; padding-top: 5px">
+            Share fellowship on social media:
           </div>
 
+          <% domainurl = "http://www.ThinQ.tv/" %>
           <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
           <div style="margin-left: 10px">
             <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
@@ -153,26 +141,26 @@
               'newwindow',
               'width=600,height=400,top=100,left=300');
               return false;">
-              <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px;" />
+              <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px; border-radius:4px" />
             </a>&nbsp
-            <a href="https://twitter.com/intent/tweet?text=Join <%= @user.permalink %>'s livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
-              onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> 's livestream for an exciting conversation on: <<%= @event.name %>> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
+            <a href="https://twitter.com/intent/tweet?text=Join <%= @user.name %> for fellowship and conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
+              onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> for fellowship and conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
               'newwindow',
               'width=600,height=400,top=80,left=300');
               return false;">
-              <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:1px;">
+              <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:4px;">
             </a><br><br>
           </div>
         </div>
 
         <! Help Area -->
-        <div style = "padding: 3px 0px 3px 0px">
+        <div style = "padding: 3px 0px 0px 0px">
           <div style = "font-size: 17px; padding: 5px 5px 5px 5px; background-color: #F2EBE4;">
-            <b>It's easy to be a part of the Conversation!</b> <br>
+            <b>It's easy to be a part of the Fellowship!</b> <br>
             <div style = "font-size: 14px; font-style: italic">
               On Desktop: <br>
               <div style = "margin-left: 5px">
-                Go to <a href="http://ThinQ.tv", target="_blank"">ThinQ.tv</a> and click the <%= link_to "Join Conversation", "https://thinQtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-sm btn-primary' %> button. <br>
+                Go to <a href="http://ThinQ.tv", target="_blank">ThinQ.tv</a> and click the <%= link_to "Join Fellowship Hour", "https://thinQtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-sm btn-primary' %> button. <br>
               </div>
               On Mobile:
               <div style = "margin-left: 5px">

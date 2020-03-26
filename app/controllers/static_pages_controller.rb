@@ -9,7 +9,33 @@ class StaticPagesController < ApplicationController
 
   def home
     showrecentconvo = Time.now - 10.hours
-    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
+    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    pdtnow = Time.now - 7.hours
+    currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow ).first
+    nextevent = Event.where( "start_at > ?", pdtnow ).order('start_at ASC').first 
+
+    if currconvo.present?
+      @displayconvo = currconvo
+    else 
+      @displayconvo = nextevent
+    end  
+
+    if @displayconvo.present?
+      @name = @displayconvo.name
+      @description = @displayconvo.desc
+      @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
+      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
+      @host = User.find(@displayconvo.usrid)
+    end  
+        
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
+  end
+
+  def seniorliving
+    showrecentconvo = Time.now - 10.hours
+    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
     pdtnow = Time.now - 7.hours
     currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow ).first
     nextevent = Event.where( "start_at > ?", pdtnow ).order('start_at ASC').first 

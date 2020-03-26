@@ -1,11 +1,11 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">Your Past Conversations
+  <div class="panel-heading">Your Past Fellowship Hours
   </div>
 
 <% if @pastevents.present? %>
   <table class="past-events-list">
     <tr>
-    <th>Conversation </th>
+    <th>Fellowship </th>
     <th>Time</th>
     <tr>
   <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
@@ -16,7 +16,7 @@
   <% end %>
   </table>
   <% else %>
-  <%= @user.name %> hasn't posted any past conversations
+  <%= @user.name %> hasn't posted any past fellowhip hours
 <% end %>
 
 </div>
