@@ -75,7 +75,7 @@ class Purchase < ApplicationRecord
     self.author_id             = seller.id
     self.authorcut             = calculate_authorcut(self.pricesold)
     self.amount                = calculate_amount(self.pricesold)
-    self.application_fee       = calculate_application_fee(self.amount)
+    self.application_fee_amount       = calculate_application_fee_amount(self.amount)
     self.currency              = CURRENCY
   end
 
@@ -168,7 +168,7 @@ class Purchase < ApplicationRecord
     ((pricesold * 92.1).to_i - 30).to_f/100
   end
 
-  def calculate_application_fee(amount)
+  def calculate_application_fee_amount(amount)
     ((amount * 5)/100)
   end
 end
