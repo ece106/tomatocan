@@ -1,35 +1,73 @@
-<div class="row" style="background-color: #ecd7c6; padding-bottom: 10px;">
-  <h3 class="aboutHeader" style = "text-align: center; font-size: 30px;">When you can't socialize in person - Be on ThinQ.tv to Be There for others 
-  </h3>
-</div>
-<div class="row" style="padding-top: 15px; margin-bottom: 0px; padding-bottom: 10px; font-size: 18px;
-    font-family: Helvetica;
-    line-height: 24px;
-    font-weight: 400;">
-  <%=image_tag("circle1.png", :style => "width: 10%", :align =>"right")%>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="cover">
+ <div class="jumbotron" style=" height: 610px; background-color: rgba(255,255,255,.2);">
+  <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-top: 20px; margin-left: auto;  margin-right: auto; height: 150px;")%><br>
+    <h3 class="aboutHeader" style = "text-align: center; font-size: 30px;">When you can't socialize in person - Be on ThinQ.tv to Be There for others </h3>
+    <p> 
     Due to COVID-19, churches and schools are closed. Workplaces and social gatherings have shut down. Senior living centers have isolated their residents alone in their rooms. People who do not feel connected to others are more likely to catch a cold, experience depression, develop heart disease, have lower cognitive function and live a shorter life. According to a March 2020 Scientific American article, the best thing to prevent loneliness during a time of social distancing is video chat.<br><br>
 
     ThinQ.tv is a platform where people can host live video fellowship online. It’s similar to hosting Meetups on Zoom. ThinQ.tv breaks the paradigm of “talking at” the internet - where one camera broadcasts live video at a social media platform and expects others to passively observe with little interaction. Instead, ThinQ.tv is for “listening to” people. Rather than a platform where you have to be invited to observe a conversation, everyone is welcome to participate in ThinQ.tv fellowship hours. <br><br>
 
-    So far we have reached out to religious organizations, student organizations, and senior living centers. 
- <br><br>
-
-  <h3 style = "color:#8C1D40">What You can do: </h3>
-    <div style=" line-height: 1.5em">
-      - Spread the word via social media, email, phone inviting people to listen, play a trivia game, or even pray with others on ThinQ.tv!. <br>
-      - Upon signup, you may <%= link_to 'Post Fellowship Hours', new_event_path %> on the ThinQ.tv schedule when you'll be at a computer or phone to listen to the people who would love to talk to you. <br>
-      - Send a link to your ThinQ.tv page to your membership or your friends to invite them to converse & let them know you'll be here for them during those times. <br>
+    So far we have reached out to religious organizations, student organizations, and senior living centers.<br><br>
+    </p> 
+</div> 
+<div class="row" style="background-color: #E0d2c3; padding-top: 50px; padding-left: 400px; padding-bottom: 100px; ">
+  <div class="col-lg-6">
+    <div class="flip-card-container">
+      <div class="flip-card">
+        <div class="flip-card-front">
+          <%= image_tag("involved.jpg")%>
+          <h3 style = " padding-top: 10px; font-weight: bold; color:white">What You can do: </h3>
+        </div>
+      <div class="flip-card-back">
+          <p>
+          - Upon signup, you may <%= link_to 'Post Fellowship Hours', new_event_path %> on the ThinQ.tv schedule when you'll be at a computer or phone to listen to the people who'd love to talk to you. <br>
+          - Send a link to your ThinQ.tv page to your membership or your friends to invite them to converse & let them know you'll be here for them during those times. <br>
+          - Spread the word via social media. <br>
+          </p>
+        </div>
+      </div>
     </div>
-
-      <h3 style = "color:#8C1D40">Questions? </h3>
-      <div style=" line-height: 1.5em">
-        - Drop in to any of the live video YourOnlineMom conversations by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', root_path %> so we can meet you. <br><br>
-      </div> 
+  </div>
+  <div class="col-lg-6">
+    <div class="flip-card-container">
+      <div class="flip-card">
+        <div class="flip-card-front">
+          <%= image_tag("question.jpg")%>
+          <h3 style = "padding-top: 10px; font-weight: bold; color:white">Questions? </h3>
+        </div>
+      <div class="flip-card-back">
+          <p>
+            - Drop in to any of the live video YourOnlineMom conversations by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', root_path %> so we can meet you. <br><br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="row" style="background-color: #F2EBE4; text-align: center; padding-bottom: 20px; margin-bottom: 10px">
-  <h1 class="aboutHeader">Apply to be on our BOARD OF ADVISORS!</h1>
-  <br>
-  <%= link_to 'Apply Here', boardofdirectors_path, :class => "btn btn-lg btn-primary", :style => "border-radius:5px;"%>
-</div>  
-
+<div  style="background: rgba(255,255,255,.2);  padding-bottom: 25px;">
+  <div class="container">
+    <h1 class="aboutHeader" style="text-align: center;">Apply to be on the YourOnlineMom BOARD OF ADVISORS!</h1><br>
+    <div class="row" style="padding-top: 50px; ">
+      <div class="col-lg-4 col-md-4 col-sm-6" style="text-align: center; ">
+        <i class="fa fa-address-card fa-border-icon" style="font-size:90px;color:lightgreen;"></i>
+        <h1 style="font-weight: bold; color: #8C1D40;">Apply</h1>
+        <p style=" padding: 5px; font-weight:bold; font-size: 25px;"> Join us in contributing to our society. </p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6" style=" text-align: center; font-size: 50px; font-weight: bold;">OR
+    </div>
+      <div class="col-lg-4 col-md-4 col-sm-6" style="text-align: center;">
+        <i class="fa fa-users fa-border-icon" style="font-size:90px;color:lightgreen;"></i>
+        <h1 style="font-weight: bold; color: #8C1D40;">Nominate</h1>
+        <p style=" padding: 5px; font-weight:bold; font-size: 25px;"> If you think your peers would be interested, spread the word. </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12" style=" text-align: center;">
+        <h1><%= link_to 'Apply Here', boardofdirectors_path, :class => "btn btn-lg btn-primary", :style => "border-radius:5px;"%></h1>
+    </div>
+      </div> 
+    </div>
+    </div>
+</div>
 
