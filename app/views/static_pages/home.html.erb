@@ -16,7 +16,7 @@
         <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > Conversations that make you ThinQ</div>
         <div style="display:inline;" > <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%></div>
           <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
-            <br><%= link_to "Live Video Fellowship", fellowship_path, class: "topic_link", title: "When you can't be there in person" %>
+            <br><%= link_to "Live Video Fellowship", fellowship_path, class: "topic_link", title: "Like Meetup on Zoom" %>
           </div>
             
         <% if @displayconvo.present? %>
@@ -29,7 +29,7 @@
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'See an example Live Video Fellowship Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;" %>
+            <%= link_to 'See an example Live Video Fellowship Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
             </h2>
           <% end %>
         <% end %><br><br>
