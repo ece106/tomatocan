@@ -11,12 +11,14 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
 <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+<%i = 0%>
 
 <div class="panel panel-default">
   <% if @events.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
+        <% i += 1 %>
         <% user = User.find(event.usrid) %>
         <head>
 
@@ -34,7 +36,6 @@
             })
            },
            function (response) {
-//your code goes here
             });
           </script>
 
@@ -51,10 +52,18 @@
             <% end %>
           </td>
           <td class=col-xs-3>
-            <% edt = event.start_at + 3.hours %>
-            <span style="font-size:125%;" id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
-            <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> PDT 
-            <font size="3"> <b>/</b> </font><%= edt.strftime("%l:%M%P") %> EDT</span>
+            <span style="font-size:125%;" id='event-time-day<%=i%>'></span>
+            <br/>
+            <span style="font-size:90%;"id=event-time<%=i%>><font size="3"/></span> 
+            <script type="text/javascript">
+              var r_time = "<%= event.start_at.strftime("%FT%T%:z") %>";
+              var date = new Date(Date.parse(r_time));
+              date.setHours(date.getHours() + 7);
+              var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+              var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
+              document.getElementById('event-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
+              document.getElementById('event-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+            </script>
           </td>
           <td class=col-xs-4>
             <% @rsvp = Rsvpq.new %>

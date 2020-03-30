@@ -33,6 +33,12 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  # this is a test
+  test 'should_get_test' do
+    get: test
+    assert_response: success
+  end
+
   # test "correct_head" do
   # get :home
   # assert_select 'title', "ThinQ.tv"
