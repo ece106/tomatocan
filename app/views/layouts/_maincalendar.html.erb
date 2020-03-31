@@ -1,12 +1,3 @@
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
-
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
@@ -26,16 +17,21 @@
             action_type: 'og.shares',
             action_properties: JSON.stringify({
               object: {
-                'og:url': "http://thinq.tv/<%=user.permalink%>" ,
+                'og:url': "http://thinq.tv/<%= user.permalink %>" ,
                 'og:title': "Conversations to make you ThinQ",
                 'og:description': "Conversations to make you THINQ: Live Video fellowship to feed your brain",
                 'og:image': "<%= image_tag user.profilepic.url.to_s, width: '100%' %>" ,
               }
             })
            },
-           function (response) {
-//your code goes here
-            });
+           function (d, s, id) {
+                 //what code goes here? Maybe that function at the top of this file?
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk');
           </script>
 
         </head>
