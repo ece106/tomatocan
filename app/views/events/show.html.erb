@@ -17,11 +17,21 @@
 
     <! CONVERSATION NAME & HOST -->
     <div class="col-md-5">
-      <br><br><br><br><br><br><br><br><br><br><br>
-      <div class="aboutHeader" style = "font-size: 30px; margin-left: 25px">  
-        <b><%= @event.name %></b>
-      </div>
       <div style ="margin-left: 30px">
+        <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+          <br><br><br><br>
+          <div id="eventCurrentdiv" >
+              <h3>We're talking about <%= @displayconvo.name %></h3>  
+              <p> right NOW!   </p> 
+              <%= link_to " Join LIVE Fellowship Hour", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+              <br>
+          </div>
+        <% else %>
+          <br><br><br><br><br><br><br><br><br><br><br>
+          <div class="aboutHeader" style = "font-size: 30px; margin-left: 25px">  
+            <b><%= @event.name %></b>
+          </div>
+        <% end %>
         <b>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </b><br>
       </div>
     </div>
