@@ -23,7 +23,6 @@
           <th></th>
           </tr>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
-          <% edt = event.start_at + 3.hours %>
           <tr>
           <td ><%= link_to event.name, event %></td>
           <td ><%= event.start_at.strftime("%A %B %d, %I:%M %p")  %></td>

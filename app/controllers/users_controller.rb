@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     usersvidorder = userswithyoutube.order('updated_at DESC')
     @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 12)
   end
+
   def supportourwork
     userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
     stripeorder = userswstripe.order('updated_at DESC')
@@ -28,10 +29,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
-    pdtnow = Time.now - (Time.zone.utc_offset / 1.hours)
     id = @user.id
-    currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
+    currconvo = Event.where("start_at < ? AND end_at > ? AND usrid = ?", Time.now, Time.now, id ).first
     if currconvo.present?
       @displayconvo = currconvo
     end  
@@ -44,16 +43,6 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-
-  #not sure what this does
-  def timeslots
-    @timeslots = Timeslot.where("user_id = ?", @user.id)
-    respond_to do|format|
-      format.html
-      format.json { render json: @user }
-    end
-  end
-
   
   def profileinfo
     #    @user.updating_password = false
@@ -68,6 +57,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  
   #don't do anything right now. Need views added
   def followers
     @title = "Followers"
@@ -211,7 +201,6 @@ class UsersController < ApplicationController
       facebook.save!
     end
   end
-
 
   private
 
