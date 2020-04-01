@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
-    pdtnow = Time.now - 7.hours
+    pdtnow = Time.now - (Time.zone.utc_offset / 1.hours)
     id = @user.id
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end  
 
     userid = @user.id
-    upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
+    upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now, userid).order('start_at ASC')
     @events = upcomingevents.paginate(page: params[:page], :per_page => 4)
     respond_to do |format|
       format.html # show.html.erb
@@ -54,26 +54,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def eventlist #this may be obsolete
-    currtime = Time.now
-    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at > ?", currtime )
-    @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
-    respond_to do |format|
-      format.html
-      format.json { render json: @user }
-    end
-  end
-  def pastevents #may be obsolete
-    currtime = Time.now
-    @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
-    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at < ?", currtime )
-    respond_to do |format|
-      format.html
-      format.json { render json: @user }
-    end
-  end
+  
   def profileinfo
     #    @user.updating_password = false
     respond_to do |format|
