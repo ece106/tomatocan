@@ -70,7 +70,7 @@
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
-            <% if ((Time.current - Time.zone.utc_offset / 1.hour) > Time.parse(start_time) ) && ((Time.current - Time.zone.utc_offset / 1.hour) < Time.parse(end_time)) %>
+            <% if ((Time.current - 7.hours) > Time.parse(start_time) ) && ((Time.current - 7.hours) < Time.parse(end_time)) %>
               <%= link_to "Join Fellowship Hour NOW", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
 
             <% else %>
