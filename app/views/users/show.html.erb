@@ -7,9 +7,10 @@
   <meta property="og:title"         content="Conversations to make you ThinQ" />
   <meta property="og:description"   content="Conversations to make you THINQ: Live Video conversations to feed your brain" />
   <% if @user.profilepic.present? %>
-    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>"
+    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
+  <% else %>
+    <meta property="og:image"       content="http://www.thinq.tv/assets/logoDigitalHollow300-cc7f592db0da99605a2e7a2a7faefa4d1f659b0c563880a34173ec43ba2fe62d.png" />
   <% end %>  
-</head>
 
   <div class="container-fluid" >
      <% if request.host == "thinqtv.herokuapp.com" %>
