@@ -9,7 +9,7 @@
   <% if @user.profilepic.present? %>
     <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
   <% else %>
-    <meta property="og:image"       content="http://www.thinq.tv/assets/logoDigitalHollow300-cc7f592db0da99605a2e7a2a7faefa4d1f659b0c563880a34173ec43ba2fe62d.png" />
+    <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
   <% end %>  
 
   <div class="container-fluid" >
