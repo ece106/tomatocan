@@ -9,32 +9,6 @@
       <tbody>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
         <% user = User.find(event.usrid) %>
-        <head>
-
-        <script>
-          FB.ui({
-            method: 'share_open_graph',
-            action_type: 'og.shares',
-            action_properties: JSON.stringify({
-              object: {
-                'og:url': "http://www.thinq.tv/<%= user.permalink %>" ,
-                'og:title': "Conversations to make you ThinQ",
-                'og:description': "Conversations to make you THINQ: Live Video fellowship to feed your brain",
-                'og:image': "<%= image_tag user.profilepic.url.to_s, width: '100%' %>" ,
-              }
-            })
-           },
-           function (d, s, id) {
-                 //is this the code that goes here? 
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk');
-          </script>
-
-        </head>
         
         <tr>
           <td class=col-xs-3>
