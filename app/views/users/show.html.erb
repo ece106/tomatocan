@@ -10,7 +10,9 @@
     <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
   <% else %>
     <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
-  <% end %>  
+  <% end %>
+<% end %>
+
 
   <div class="container-fluid" >
      <% if request.host == "thinqtv.herokuapp.com" %>
