@@ -1,19 +1,5 @@
 <% domain = "https://boiling-reef-18462.herokuapp.com/"%>
 
-<% content_for :head do %>
-  <title> <% "Support " + @user.name %> </title>
-  <link rel="canonical" href="https://boiling-reef-18462.herokuapp.com" />
-  <meta property="og:url"           content="https://boiling-reef-18462.herokuapp.com/<%= @user.permalink %>" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Boiling reef user" />
-  <meta property="og:description"   content="Linked to a boiling reef user finally" />
-  <% if @user.profilepic.present? %>
-    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s %>" />
-  <% else %>
-    <meta property="og:image"       content="<%= image_tag "logoDigitalHollow300.png" %>" />
-  <% end %>  
-<% end %>
-
   <div class="container-fluid" >
      <% if request.host == "thinqtv.herokuapp.com" %>
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
@@ -88,6 +74,21 @@
 
     <% else %>
       <%= render 'layouts/authorform' %>
+
+      <% content_for :head do %>
+        <title> <% "Support " + @user.name %> </title>
+        <link rel="canonical" href="https://boiling-reef-18462.herokuapp.com" />
+        <meta property="og:url"           content="https://boiling-reef-18462.herokuapp.com/<%= @user.permalink %>" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="Boiling reef user" />
+        <meta property="og:description"   content="Linked to a boiling reef user finally" />
+        <% if @user.profilepic.present? %>
+          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s %>" />
+        <% else %>
+          <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
+        <% end %>  
+      <% end %>
+      
       <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
             <div id="eventCurrentdiv" style="text-align: center;">
               <h3>We're talking about <%= @displayconvo.name %></h3>  
