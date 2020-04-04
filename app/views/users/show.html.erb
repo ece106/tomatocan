@@ -1,8 +1,6 @@
-<% domain = "http://www.thinq.tv/"%>
-
 <% content_for :head do %>
   <title> <% "Support " + @user.name %> </title>
-  <meta property="og:url"           content="<%=domain%><%=@user.permalink%>" />
+  <meta property="og:url"           content="http://www.thinq.tv/<%= @user.permalink %>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Conversations to make you ThinQ" />
   <meta property="og:description"   content="Conversations to make you THINQ: Live Video conversations to feed your brain" />
