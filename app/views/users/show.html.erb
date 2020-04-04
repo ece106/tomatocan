@@ -1,15 +1,20 @@
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> <% "Support " + @user.name %> </title>
-  <meta property="og:url"           content="http://thinq.tv/<%=@user.permalink%>" />
+<% domain = "http://www.thinq.tv/"%>
+
+<% content_for :head do %>
+  <title> <% "Support " + @user.name %> </title>
+  <meta property="og:url"           content="<%=domain%><%=@user.permalink%>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Conversations to make you ThinQ" />
   <meta property="og:description"   content="Conversations to make you THINQ: Live Video conversations to feed your brain" />
-  <meta property="og:image"         content="<%= image_tag 'starIcon.png', width: '100%' %>"
-</head>
+  <% if @user.profilepic.present? %>
+    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
+  <% else %>
+    <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
+  <% end %>
+<% end %>
 
   <div class="container-fluid" >
-    <% if request.host == "thinqtv.herokuapp.com" %>
+     <% if request.host == "thinqtv.herokuapp.com" %>
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
         <div class="col-md-4">
           <div style="padding: 0px 0px 5px 0px">
@@ -83,10 +88,10 @@
     <% else %>
       <%= render 'layouts/authorform' %>
       <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
-            <div id="eventCurrentdiv">
+            <div id="eventCurrentdiv" style="text-align: center;">
               <h3>We're talking about <%= @displayconvo.name %></h3>  
-              <p> right NOW!</p> 
-              <%= link_to "Join Conversation", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px;" %>
+              <p> right NOW!   </p> 
+              <%= link_to " Join LIVE Fellowship Hour", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
               <br>
             </div>
       <% else %>

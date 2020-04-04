@@ -16,7 +16,7 @@
         <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > Conversations that make you ThinQ</div>
         <div style="display:inline;" > <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%></div>
           <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
-            <br><%= link_to "Live Video Fellowship", fellowship_path, class: "topic_link", title: "When you can't be there in person" %>
+            <br><%= link_to "Discover Fellowship via Live Video", fellowship_path, class: "topic_link", title: "Like a cocktail party on Zoom" %>
           </div>
             
         <% if @displayconvo.present? %>
@@ -29,11 +29,11 @@
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'See an example Live Video Fellowship Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;" %>
+            <%= link_to 'See an example Live Video Fellowship Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
             </h2>
           <% end %>
         <% end %><br><br>
-            <%= link_to "Be Here For Others", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 30px", title: "Sign up to host live video fellowship hours" %><br><br>
+            <%= link_to "Be Here For Others", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 25px", title: "Sign up to host live video fellowship hours" %><br><br>
       </div>
     </div>
   </div>
@@ -44,9 +44,9 @@
     <div class="row" id="countdown_clock">
       <div class="col-md-4 col-md-offset-1 col-xs-11">
         <h2>Schedule of Fellowship Hours</h2>
-        <h3>Drop in and be heard!</h3>
+        <h3>Come talk about news, books, trivia games, prayer </h3>
           <% if user_signed_in? %>
-            or <%= link_to 'Post your Own Fellowship Hours', new_event_path, class: "btn btn-warning", title: "Host drop-in prayer sessions or invite people to ask questions about your area of expertise" %>
+            <%= link_to 'Post your Own Fellowship Hours', new_event_path, class: "btn btn-warning", title: "Host drop-in prayer sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
       </div>
       <div class="col-md-6">
