@@ -5,10 +5,10 @@
 <% end %>
 
 <% content_for :head do %>
-  <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + event_path(@event) %>" />
+  <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + event_path(@event.id) %>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="<%= @event.name %>" />
-  <meta property="og:description"   content="Boiling reef event <%= @event.desc %> connected" />
+  <meta property="og:description"   content="<%= @event.desc %>" />
   <meta property="og:image"         content="<%= image_tag @user.profilepic.url.to_s %>" />
 <% end %>
 
