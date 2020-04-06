@@ -1,20 +1,7 @@
 <% domain = "https://boiling-reef-18462.herokuapp.com/"%>
 
-<% content_for :head do %>
-  <title> <% "Support " + @user.name %> </title>
-  <meta property="og:url"           content="<%=domain%><%=@user.permalink%>" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Boiling Reef User" />
-  <meta property="og:description"   content="Boiling Reef User <%=@user.permalink%>" />
-  <% if @user.profilepic.present? %>
-    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
-  <% else %>
-    <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
-  <% end %>
-<% end %>
-
   <div class="container-fluid" >
-     <% if request.host == "thinqtv.herokuapp.com" %>
+    <% if request.host == "thinqtv.herokuapp.com" %>
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
         <div class="col-md-4">
           <div style="padding: 0px 0px 5px 0px">
