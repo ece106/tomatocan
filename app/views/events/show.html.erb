@@ -8,8 +8,8 @@
   <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + event_path(@event) %>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Boiling Reef Event" />
-  <meta property="og:description"   content="Boiling reef <%= @event.id %> event connected" />
-  <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+  <meta property="og:description"   content="Boiling reef event <%= @event.id %> connected" />
+  <meta property="og:image"         content="<%= image_tag @user.profilepic.url.to_s %>" />
 <% end %>
 
 <! TOP HALF -->
