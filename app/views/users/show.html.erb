@@ -1,4 +1,21 @@
+<<<<<<< HEAD
 <% domain = "https://boiling-reef-18462.herokuapp.com/"%>
+=======
+<% domain = "http://www.thinq.tv/"%>
+
+<% content_for :head do %>
+  <title> <% "Support " + @user.name %> </title>
+  <meta property="og:url"           content="<%=domain%><%=@user.permalink%>" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Conversations to make you ThinQ" />
+  <meta property="og:description"   content="Conversations to make you THINQ: Live Video conversations to feed your brain" />
+  <% if @user.profilepic.present? %>
+    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
+  <% else %>
+    <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
+  <% end %>
+<% end %>
+>>>>>>> 83a9ac7452569af7fe0e0a7c5545a1e3f5a8eaf0
 
   <div class="container-fluid" >
      <% if request.host == "thinqtv.herokuapp.com" %>
