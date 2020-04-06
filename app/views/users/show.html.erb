@@ -1,4 +1,5 @@
 <% domain = "https://boiling-reef-18462.herokuapp.com/"%>
+
 <% content_for :head do %>
   <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
   <meta property="og:type"          content="website" />
@@ -78,7 +79,8 @@
                 - @user.permalink: <%= @user.permalink %> <br> 
                 - @user.id: <%= @user.id %> <br>
                 - In tag <%= "https://boiling-reef-18462.herokuapp.com/" + @user.permalink %> <br>
-                - New: <%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>
+                - New: <%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %> <br>
+                - Test: <%= user_profile_path(@user.permalink)%>
               </div>
           </div>
           <br>

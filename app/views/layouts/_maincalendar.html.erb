@@ -65,8 +65,8 @@
             <% domainurl = "https://boiling-reef-18462.herokuapp.com/"%>
 
               <!-- Facebook Share -->
-              <a href="http://www.facebook.com/sharer.php?u=https://boiling-reef-18462.herokuapp.com/<%= user.permalink %>"
-                onclick="window.open('http://www.facebook.com/sharer.php?u=https://boiling-reef-18462.herokuapp.com/<%= user.permalink %>',
+              <a href="http://www.facebook.com/sharer.php?u=<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(user.permalink) %>"
+                onclick="window.open('http://www.facebook.com/sharer.php?u=<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(user.permalink) %>',
                 'newwindow',
                 'width=600,height=400,top=100,left=300');
                 return false;">
