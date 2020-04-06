@@ -1,20 +1,14 @@
 <% domain = "https://boiling-reef-18462.herokuapp.com/"%>
-      <% content_for :head do %>
-        <title> <% "Support " + @user.name %> </title>
-        <link rel="canonical" href="https://boiling-reef-18462.herokuapp.com" />
-        <meta property="og:url"           content="https://boiling-reef-18462.herokuapp.com/<%= @user.permalink %>" />
-        <meta property="og:type"          content="website" />
-        <meta property="og:title"         content="Boiling reef user" />
-        <meta property="og:description"   content="Linked to a boiling reef user finally" />
-        <% if @user.profilepic.present? %>
-          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s %>" />
-        <% else %>
-          <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
-        <% end %>  
-      <% end %>
+<% content_for :head do %>
+  <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com/" + @user.permalink %>" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Boiling Reef User" />
+  <meta property="og:description"   content="Boiling reef <%= @user %> connected" />
+  <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+<% end %>
 
   <div class="container-fluid" >
-    <% if request.host == "thinqtv.herokuapp.com" %>
+    <% #if request.host == "thinqtv.herokuapp.com" %>
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
         <div class="col-md-4">
           <div style="padding: 0px 0px 5px 0px">
@@ -79,13 +73,18 @@
                 - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
                 - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
                 - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
+                - User path: <%= user_path(@user) %> <br>
+                - @user: <%= @user %> <br>
+                - @user.permalink: <%= @user.permalink %> <br> 
+                - @user.id: <%= @user.id %> <br>
+                - In tag <%= "https://boiling-reef-18462.herokuapp.com/" + @user.permalink %> <br>
               </div>
           </div>
           <br>
         </div>
       </div>
 
-    <% else %>
+    <% #else %>
       <%= render 'layouts/authorform' %>
       
       <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
@@ -118,5 +117,5 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+    <% #end %>
   </div>
