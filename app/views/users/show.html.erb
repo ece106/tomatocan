@@ -1,6 +1,6 @@
 <% domain = "https://boiling-reef-18462.herokuapp.com/"%>
 <% content_for :head do %>
-  <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_path(@user) %>" />
+  <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Boiling Reef User" />
   <meta property="og:description"   content="Boiling reef <%= @user %> connected" />
@@ -8,7 +8,7 @@
 <% end %>
 
   <div class="container-fluid" >
-    <% if request.host == "thinqtv.herokuapp.com" %>
+    <% #if request.host == "thinqtv.herokuapp.com" %>
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
         <div class="col-md-4">
           <div style="padding: 0px 0px 5px 0px">
@@ -29,7 +29,7 @@
           <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20https://thinqtv.herokuapp.com/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">SMS &#9743</a>
 
           <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
-            Invite via social media:
+            Invite via social media: 
           </div>
 
           <% domainurl = "https://thinqtv.herokuapp.com/youronlinemom" %>
@@ -78,13 +78,14 @@
                 - @user.permalink: <%= @user.permalink %> <br> 
                 - @user.id: <%= @user.id %> <br>
                 - In tag <%= "https://boiling-reef-18462.herokuapp.com/" + @user.permalink %> <br>
+                - New: <%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>
               </div>
           </div>
           <br>
         </div>
       </div>
 
-    <% else %>
+    <% #else %>
       <%= render 'layouts/authorform' %>
       
       <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
@@ -117,5 +118,5 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+    <% #end %>
   </div>
