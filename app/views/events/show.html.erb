@@ -4,6 +4,14 @@
   </div>
 <% end %>
 
+<% content_for :head do %>
+  <meta property="og:url"           content=<%= "https://boiling-reef-18462.herokuapp.com" + event_path(@event) %> />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Boiling Reef Event" />
+  <meta property="og:description"   content="Boiling reef <%= @event.id %> event connected" />
+  <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+<% end %>
+
 <! TOP HALF -->
 <div id="event-page-layout" style="width: 100%; margin: auto; background-color: #F2EBE4;">
   <div class="row" style = "padding-top:15px; padding-bottom:20px;">
@@ -135,7 +143,7 @@
             Share fellowship on social media:
           </div>
 
-          <% domainurl = "http://www.ThinQ.tv/" %>
+          <% domainurl = "https://boiling-reef-18462.herokuapp.com/" %>
           <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
           <div style="margin-left: 10px">
             <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
@@ -145,8 +153,8 @@
               return false;">
               <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25px;" />
             </a>&nbsp
-            <a href="http://www.facebook.com/sharer.php?u=<%= @surl %>"
-              onclick="window.open('http://www.facebook.com/sharer.php?u=<%= @surl %>',
+            <a href="http://www.facebook.com/sharer.php?u=https://boiling-reef-18462.herokuapp.com/events/<%= @event.id %>"
+              onclick="window.open('http://www.facebook.com/sharer.php?u=https://boiling-reef-18462.herokuapp.com/events/<%= @event.id %>',
               'newwindow',
               'width=600,height=400,top=100,left=300');
               return false;">
