@@ -951,8 +951,9 @@ GEM
     bcrypt (3.1.13)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
-    bootstrap-sass (3.2.0.4)
-      sass (~> 3.2)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
     builder (3.2.4)
     capybara (3.30.0)
       addressable
@@ -1000,7 +1001,7 @@ GEM
     execjs (2.7.0)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
-    ffi (1.11.3)
+    ffi (1.12.2)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (2.2.0)
@@ -1347,6 +1348,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.2.1)
+      ffi (~> 1.9)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -1411,7 +1414,7 @@ DEPENDENCIES
   aws-sdk-s3
   bcrypt
   bcrypt-ruby (~> 3.1.2)
-  bootstrap-sass (~> 3.2.0)
+  bootstrap-sass (~> 3.4.1)
   capybara
   capybara-screenshot
   carrierwave
