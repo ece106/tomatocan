@@ -1,14 +1,17 @@
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> <% "Support " + @user.name %> </title>
-  <meta property="og:url"           content="http://thinq.tv/<%=@user.permalink%>" />
+<% domain = "http://www.thinq.tv/"%>
+
+<% content_for :head do %>
+  <title> <% "Support " + @user.name %> </title>
+  <meta property="og:url"           content="<%=domain%><%=@user.permalink%>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Conversations to make you ThinQ" />
   <meta property="og:description"   content="Conversations to make you THINQ: Live Video conversations to feed your brain" />
   <% if @user.profilepic.present? %>
-    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>"
-  <% end %>  
-</head>
+    <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
+  <% else %>
+    <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
+  <% end %>
+<% end %>
 
   <div class="container-fluid" >
      <% if request.host == "thinqtv.herokuapp.com" %>

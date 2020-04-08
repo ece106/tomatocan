@@ -46,6 +46,27 @@ class EventsController < ApplicationController
 
   # POST /events.json
   def create
+    curr_time_offset = params[:timeZone]
+    now = Time.now
+    date = Time.new(
+      params["event"]["start_at(1i)"], # year
+      params["event"]["start_at(2i)"], # month
+      params["event"]["start_at(3i)"], # day
+      params["event"]["start_at(4i)"], # hour
+      params["event"]["start_at(5i)"], # minute
+      0,                               # seconds
+      params[:timeZone]                # timeZone
+    )
+
+    converted_time = date.in_time_zone("Pacific Time (US & Canada)")
+
+    params["event"]["start_at(1i)"] = converted_time.year.to_s   # year
+    params["event"]["start_at(2i)"] = converted_time.month.to_s  # month
+    params["event"]["start_at(3i)"] = converted_time.day.to_s    # day
+    params["event"]["start_at(4i)"] = converted_time.hour.to_s   # hour
+    params["event"]["start_at(5i)"] = converted_time.min.to_s    # minute
+
+    
     @event = current_user.events.build(event_params)
     @event.update_attribute(:user_id, params["event"]["usrid"])
     user = User.find(@event.usrid)

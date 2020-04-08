@@ -1,158 +1,39 @@
 <div class="row">
-    <%= f.hidden_field :usrid, value: current_user.id %>
-    <div class="form-group">
-        <h3><%= f.label :buttontype, "*Title of Conversation" %></h3>
-        <p class="help-block">Will your Fellowship hour have a topic? Do you have an area of expertise?</p>
-        <%= f.text_field :name, size: 80 %><p>
-    </div>
-
-    <div class="form-group">
-        <h3><%= f.label :buttontype, "Start Time" %></h3>
-        <p class="help-block" id="help-time-id"></p>
-        <select id="years_0" name="years"></select>
-        <select id="months_0" name="months" onchange="changeNumDays(this)"></select>
-        <select id="days_0" name="days"></select>
-        —
-        <select id="hours_0"></select>
-        :
-        <select id="minutes_0">
-            <option value="0">00</option>
-            <option value="1">15</option>
-            <option value="2">30</option>
-            <option value="3">45</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <h3><%= f.label :buttontype, "End Time" %></h3>
-        <p class="help-block" id=help-time-id1></p>
-        <select id="years_1" name="years"></select>
-        <select id="months_1" name="months" onchange="changeNumDays(this)"></select>
-        <select id="days_1" name="days"></select>
-        —
-        <select id="hours_1"></select>
-        :
-        <select id="minutes_1">
-            <option value="0">00</option>
-            <option value="1">15</option>
-            <option value="2">30</option>
-            <option value="3">45</option>
-        </select>
-    </div>
-
-    <script>
-        var elements = []
-        var types = ["years_", "months_", "days_", "hours_", "minutes_"]
-        //get selectBox objects
-        var appendNum = 0
-        for (i = 0; i <= 5; i += 5) {
-            for (j = 0; j < 5; j++) {
-                elements[j + i] = document.getElementById(types[j] + appendNum)
-            }
-            appendNum += 1
-        }
-
-
-        function getDaysInMonth(month, year) {
-            return new Date(year, month, 0).getDate();
-        }
-
-        function changeNumDays(selectObj) {
-            var selectYear, selectDay
-
-            if (selectObj.id == "months_0") {
-                selectYear = document.getElementById("years_0")
-                selectDay = document.getElementById("days_0")
+  <%= f.hidden_field :usrid, value: current_user.id %>
+  <input type="hidden" id="timeZone" name="timeZone">
+     <script>
+        var offset = -1 * new Date().getTimezoneOffset() / 60
+        var offset = -1 * (new Date().getTimezoneOffset() / 60)
+            if (offset < 0) {
+                offset = "-" + ("0" + (-1 * offset)).slice(-2) + ":00"
             } else {
-                selectYear = document.getElementById("years_1")
-                selectDay = document.getElementById("days_1")
+                offset = "+" + ("0" + offset).slice(-2) + ":00"
             }
-
-            //generate days
-            var selMonth = selectObj.selectedIndex + 1
-            var selYear = selectYear.options[selectYear.selectedIndex].text
-
-            // remove options
-            for (a in selectDay.options) {
-                selectDay.options.remove(0)
-            }
-            for (i = 1; i <= getDaysInMonth(selMonth, selYear); i++) {
-                selectDay.options[i - 1] = new Option(i)
-            }
-        }
-
-        // generation loop
-        for (currOffset = 0; currOffset <= 5; currOffset += 5) {
-            // generate years
-            var years = [new Date().getFullYear(), new Date().getFullYear() + 1]
-            for (index in years) {
-                elements[currOffset].options[elements[currOffset].options.length] = new Option(years[index], index)
-            }
-
-            //generate months
-            var months = {
-                1: 'January',
-                2: 'February',
-                3: 'March',
-                4: 'April',
-                5: 'May',
-                6: 'June',
-                7: 'July',
-                8: 'August',
-                9: 'September',
-                10: 'October',
-                11: 'November',
-                12: 'December'
-            }
-            for (index in months) {
-                // set default to current month
-                if (index == (new Date().getMonth() + 1)) {
-                    elements[currOffset + 1].options[elements[currOffset + 1].options.length] = new Option(months[index], index, true, true)
-                } else {
-                    elements[currOffset + 1].options[elements[currOffset + 1].options.length] = new Option(months[index], index)
-                }
-            }
-
-            //generate days for curr month
-            for (i = 1; i <= getDaysInMonth(elements[currOffset + 1].selectedIndex + 1, elements[currOffset].options[elements[currOffset].selectedIndex].text); i++) {
-                elements[currOffset + 2].options[i - 1] = new Option(i)
-            }
-
-            //generate hours
-            var ampm = "AM"
-            for (i = 0; i < 24; i++) {
-                if (i == 0) {
-                    elements[currOffset + 3].options[i] = new Option(12 + " " + ampm)
-                } else if (i == 12) {
-                    ampm = "PM"
-                    elements[currOffset + 3].options[i] = new Option(12 + " " + ampm)
-                } else {
-                    elements[currOffset + 3].options[i] = new Option(i % 12 + " " + ampm)
-                }
-            }
-        }
+        document.getElementById("timeZone").value = offset
+        alert(offset)
+        
     </script>
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "*Title of Conversation" %></h3>
+    <p class="help-block">Will your Fellowship hour have a topic? Do you have an area of expertise?</p>
+    <%= f.text_field :name, size: 80 %><p>
+  </div>
 
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "Start Time" %></h3>
+    <p class="help-block">Pacific Daylight Time (PDT)</p>
+    <%= f.datetime_select :start_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 1 %>
+  </div>
 
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "End Time" %></h3>
+    <p class="help-block">Pacific Daylight Time (PDT)</p>
+    <%= f.datetime_select :end_at, ampm: true, default: 7.days.from_now, minute_step: 15, start_year: Date.today.year, end_year: Date.today.year + 1 %><br>
+  </div>
 
-    <script>
-        s
-        var option = {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric',
-            timeZoneName: 'long'
-        };
-        var currDate = new Date();
-        var str = "Today is " + currDate.toLocaleString(undefined, option);
-
-        document.getElementById('help-time-id').innerHTML = str;
-        document.getElementById('help-time-id1').innerHTML = str;
-    </script>
-
-    <div class="form-group">
-        <h3><%= f.label :buttontype, "Details about Conversation Topic" %></h3>
-        <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
-        <%= f.text_area :desc, cols: 82, rows: 7 %><p>
-    </div>
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "Details about Conversation Topic" %></h3>
+    <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
+    <%= f.text_area :desc, cols: 82, rows: 7 %><p>
+  </div>
 </div>
