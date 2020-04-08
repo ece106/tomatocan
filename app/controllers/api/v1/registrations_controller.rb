@@ -1,6 +1,5 @@
 class Api::V1::RegistrationsController < Api::V1::BaseApiController
     acts_as_token_authentication_handler_for User, fallback: :none
-    respond_to :json
     def create
         def user_params
             params.require(:user).permit(:email, :name, :permalink, :password)

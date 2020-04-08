@@ -1,5 +1,13 @@
-class Api::V1::BaseApiController < ApplicationController
-    skip_before_action :verify_authenticity_token
+class Api::V1::BaseApiController < ActionController::API
     respond_to :json
-    acts_as_token_authentication_handler_for User, fallback: :none
+    def renew_authentication_token(resource)
+        loop do
+            token = Devise.friendly_token
+            if not User.where(authentication_token: token).first
+                resource.authentication_token = token
+                break
+            end
+        end
+        
+    end
 end

@@ -1,10 +1,6 @@
-class Api::V1::SessionsController < DeviseController
+class Api::V1::SessionsController < Api::V1::BaseApiController
     acts_as_token_authentication_handler_for User, fallback: :none
-    skip_before_action :verify_authenticity_token
-    prepend_before_action :require_no_authentication, :only => [:create]
-    #include Devise::Controllers::Helpers
     before_action :ensure_params_exist
-    respond_to :json
     def create
         #build_resource
         resource = User.find_for_database_authentication(:email=>params[:user][:email])
@@ -12,6 +8,7 @@ class Api::V1::SessionsController < DeviseController
 
         if resource.valid_password?(params[:user][:password])
             sign_in resource, store: false
+            renew_authentication_token(resource)
             render :json=> {:success=>true, :name=> resource.name, :token=>resource.authentication_token, :last_sign_in=>resource.last_sign_in_at, :current_sign_in=>resource.current_sign_in_at}
             return
         end
