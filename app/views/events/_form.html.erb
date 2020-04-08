@@ -56,9 +56,14 @@
                 return full;
             }
         }
-
-        document.getElementById("hb1").innerHTML = getTimezoneName()
-        document.getElementById("hb2").innerHTML = getTimezoneName()
+        var route = String("<%=request.env['PATH_INFO']%>")
+        if (route.includes("edit") == true) {
+          document.getElementById("hb1").innerHTML = "Pacific Time"
+          document.getElementById("hb2").innerHTML = "Pacific Time"
+        } else {
+          document.getElementById("hb1").innerHTML = getTimezoneName()
+          document.getElementById("hb2").innerHTML = getTimezoneName()
+        }
 
     </script>
 </div>
