@@ -2,7 +2,6 @@ class Api::V1::SessionsController < Api::V1::BaseApiController
     acts_as_token_authentication_handler_for User, fallback: :none
     before_action :ensure_params_exist
     def create
-        #build_resource
         resource = User.find_for_database_authentication(:email=>params[:user][:email])
         return invalid_login_attempt unless resource
 
