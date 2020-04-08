@@ -14,6 +14,7 @@ class Api::V1::RegistrationsControllerTest < ActionController::TestCase
     assert_not_nil json_response['success']
     assert_not_nil json_response['name']
     assert_not_nil json_response['token']
+    assert_not_nil json_response['permalink']
   end
 
   test "failed registration should return 422" do

@@ -21,6 +21,7 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
     assert_not_nil(json_response['success'])
     assert_not_nil(json_response['name'])
     assert_not_nil(json_response['token'])
+    assert_not_nil(json_response['permalink'])
   end
 
 end
