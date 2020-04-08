@@ -32,7 +32,6 @@
             <script type="text/javascript">
               var r_time = "<%= event.start_at.strftime("%FT%T%:z") %>";
               var date = new Date(Date.parse(r_time));
-              alert(date)
               date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
               var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
               var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
