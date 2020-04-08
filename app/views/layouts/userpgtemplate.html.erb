@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
     <meta name="viewport" content="width=devicewidth, initial-scale=1">
     <title><%= full_title(yield(:title)) + " " + @user.name %></title>
     <%= stylesheet_link_tag    "application" %>
