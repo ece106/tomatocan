@@ -8,8 +8,26 @@
   <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
 <% end %>
 
+<% content_for :head do %>
+  <meta property="og:url"           content="https://thinqtv.herokuapp.com/" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="ThinQ TV Viewer" />
+  <meta property="og:description"   content="ThinQ TV Viewer connected" />
+  <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+<% end %>
+
   <div class="container-fluid" >
     <% if request.host == "thinqtv.herokuapp.com" %>
+
+      <!-- Meta Tags -->
+      <% content_for :head do %>
+        <meta property="og:url"           content="https://thinqtv.herokuapp.com/" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="ThinQ TV Viewer" />
+        <meta property="og:description"   content="ThinQ TV Viewer connected" />
+        <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+      <% end %>
+
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
         <div class="col-md-4">
           <div style="padding: 0px 0px 5px 0px">
@@ -87,7 +105,7 @@
         </div>
       </div>
 
-    <% else %>
+    <% #else %>
       <% content_for :head do %>
         <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
         <meta property="og:type"          content="website" />
@@ -127,5 +145,5 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+    <% #end %>
   </div>
