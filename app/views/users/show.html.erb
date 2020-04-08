@@ -8,9 +8,9 @@
         <meta property="og:title"         content="ThinQ TV Viewer" />
         <meta property="og:description"   content="ThinQ TV Viewer connected" />
         <% if @user.profilepic.present? %>
-          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
+          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s %>" />
         <% else %>
-          <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
+          <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png' %>" />
         <% end %>
       <% end %>
 
@@ -92,9 +92,9 @@
         <meta property="og:title"         content="Boiling Reef User <%= @user.permalink %>" />
         <meta property="og:description"   content="Boiling reef <%= @user.permalink %> connected now" />
         <% if @user.profilepic.present? %>
-          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s, width: '100%' %>" />
+          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s %>" />
         <% else %>
-          <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png', width: '100%' %>" />
+          <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png' %>" />
         <% end %>
       <% end %>
       <%= render 'layouts/authorform' %>
