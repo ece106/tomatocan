@@ -7,7 +7,7 @@
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="ThinQ TV Viewer" />
         <meta property="og:description"   content="ThinQ TV Viewer connected" />
-        <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+        <meta property="og:image"         content="<%= image_tag @user.profilepic.url.to_s %>" />
       <% end %>
 
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
@@ -93,7 +93,7 @@
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="Boiling Reef User <%= @user.permalink %>" />
         <meta property="og:description"   content="Boiling reef <%= @user.permalink %> connected now" />
-        <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+        <meta property="og:image"         content="<%= image_tag @user.profilepic.url.to_s %>" />
       <% end %>
       <%= render 'layouts/authorform' %>
       
