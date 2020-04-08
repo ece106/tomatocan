@@ -1,21 +1,3 @@
-<% domain = "https://boiling-reef-18462.herokuapp.com/"%>
-
-<% content_for :head do %>
-  <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Boiling Reef User" />
-  <meta property="og:description"   content="Boiling reef <%= @user %> connected" />
-  <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
-<% end %>
-
-<% content_for :head do %>
-  <meta property="og:url"           content="https://thinqtv.herokuapp.com" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="ThinQ TV Viewer" />
-  <meta property="og:description"   content="ThinQ TV Viewer connected" />
-  <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
-<% end %>
-
   <div class="container-fluid" >
     <% if request.host == "thinqtv.herokuapp.com" %>
 
