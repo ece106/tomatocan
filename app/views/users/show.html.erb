@@ -105,7 +105,7 @@
         </div>
       </div>
 
-    <% #else %>
+    <% else %>
       <% content_for :head do %>
         <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
         <meta property="og:type"          content="website" />
@@ -145,5 +145,5 @@
           <% end %>
         </div>
       </div>
-    <% #end %>
+    <% end %>
   </div>
