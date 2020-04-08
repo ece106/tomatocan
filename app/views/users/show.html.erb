@@ -91,8 +91,8 @@
       <% content_for :head do %>
         <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
         <meta property="og:type"          content="website" />
-        <meta property="og:title"         content="Boiling Reef User" />
-        <meta property="og:description"   content="Boiling reef <%= @user %> connected" />
+        <meta property="og:title"         content="Boiling Reef User <%= @user.permalink %>" />
+        <meta property="og:description"   content="Boiling reef <%= @user.permalink %> connected now" />
         <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
       <% end %>
       <%= render 'layouts/authorform' %>
