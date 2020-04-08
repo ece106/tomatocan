@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   match 'bystanderguidelines',    to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',     to: 'static_pages#drschaeferspeaking', via: 'get'
   match 'fellowship',     to: 'static_pages#fellowship', via: 'get'
+  match 'seniorliving',   to: 'static_pages#seniorliving', via: 'get'
   
   match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
   match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'

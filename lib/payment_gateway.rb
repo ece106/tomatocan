@@ -58,7 +58,7 @@ module PaymentGateway
         currency: purchase.currency,
         source: purchase.token.id,
         description: purchase.shipaddress,
-        application_fee: purchase.application_fee
+        application_fee_amount: purchase.application_fee_amount
       },
       {
         stripe_account: purchase.seller_stripe_account.id

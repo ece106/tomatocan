@@ -21,6 +21,13 @@ class EventsController < ApplicationController
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
     @surl = "http://www.ThinQ.tv/" + @user.permalink
 
+    pdtnow = Time.now - 7.hours + 5.minutes
+    id = @user.id
+    currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
+    if currconvo.present?
+      @displayconvo = currconvo
+    end  
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event}

@@ -1,31 +1,30 @@
 <header>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#globalNavbar">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<% if request.host == "thinqtv.herokuapp.com" %><!-- if the navbar is being rendered in the heroku domain -->
-					<%= link_to image_tag("starIcon.png", class: "navbar-brand", title: "ThinQ.tv", id: "navbarLogo"), 'http://www.ThinQ.tv' %> <!-- ^ use absolute routing in navbar ^ -->
-				<% else %> <!-- if the navbar is being rendered in from the ThinQ domain or from localhost -->
-					<%= link_to image_tag("starIcon.png", class: "navbar-brand", title: "ThinQ.tv", id: "navbarLogo"), '/' %>
-			<% end %>
-		</div>
-		<div class="collapse navbar-collapse" id="globalNavbar">
+      <% if request.host == "thinqtv.herokuapp.com" %><!-- if the navbar is being rendered in the heroku domain -->
+        <%= link_to image_tag("starIcon.png", class: "navbar-brand", title: "ThinQ.tv", id: "navbarLogo"), 'http://www.ThinQ.tv' %> <!-- ^ use absolute routing in navbar ^ -->
+      <% else %> <!-- if the navbar is being rendered in from the ThinQ domain or from localhost -->
+        <%= link_to image_tag("starIcon.png", class: "navbar-brand", title: "ThinQ.tv", id: "navbarLogo"), '/' %>
+      <% end %>
+    </div>
+    <div class="collapse navbar-collapse" id="globalNavbar">
 			<ul class="nav navbar-nav">
-				<% if request.host == "thinqtv.herokuapp.com" %> <!--If the navbar is being rendered in the ThinQ.tv.herokuapp.com secure server domain.. -->
+				<% if request.host == "thinqtv.herokuapp.com" %> 
 					<li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', title: "Invite friends to join thought-provoking Conversations on ThinQ.tv", target: "_blank" %></li> <!-- ..use absolute routing in navbar.-->
-					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/parents', title: "Join the YourOnlineMom coalition to speak up against sexual harassment in live video!", target: "_blank" %></li>
-					<li class="nav-item"><%= link_to "Invite Us To Speak", 'http://www.ThinQ.tv/drschaeferspeaking', title: "To your organization - In Person!", target: "_blank" %></li>
+					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/fellowship', title: "Become an Online Fellowship Host!", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Bystander Guidelines", 'http://www.ThinQ.tv/bystanderguidelines', title: "Our first rough draft", target: "_blank" %></li>
-					<li class="nav-item"><%= link_to "Why ThinQ", 'http://www.ThinQ.tv/aboutus', title: "Our first rough draft", target: "_blank" %></li>
+					<li class="nav-item"><%= link_to "About ThinQ", 'http://www.ThinQ.tv/aboutus', title: "Our first rough draft", target: "_blank" %></li>
+
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", root_path, title: "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li>
-					<li class="nav-item"><%= link_to "Get Involved!", parents_path, title: "Join the YourOnlineMom coalition to speak up against sexual harassment in live video!" %></li>
-					<li class="<%=(current_page?('/drschaeferspeaking') ? "nav-item active" : "nav-item")%>"><%= link_to "Invite Us To Speak", drschaeferspeaking_path, title: "To your organization - In Person!" %></li>
-					<li class="nav-item"><%= link_to "Bystander Guidelines", bystanderguidelines_path, :title => "Our first rough draft" %></li>
-					<li class="nav-item"><%= link_to "Why ThinQ", aboutus_path, title: "Our first rough draft" %></li>
+					<li class="nav-item"><%= link_to "Get Involved!", fellowship_path, title: "Become an Online Fellowship Host!" %></li>
+					<li class="nav-item"><%= link_to "About ThinQ", aboutus_path, title: "Our first rough draft" %></li>
+					<li class="nav-item"><%= link_to "FOR SENIOR CITZENS", seniorliving_path, title: "Keep grandparents from feeling isolated" %></li>
 				<% end %>
 			</ul>
 
@@ -44,13 +43,19 @@
 						</p>
 					</li>
 				<% else %>
-					<li>
-						<p class="navbar-btn">
-							<%= link_to "Sign Up", '/signup', class: "btn btn-primary" %>
-							<%= link_to 'Sign In', "/login", class: "btn btn-default" %>
-						</p>
-					</li>
+                  <li>
+					<p class="navbar-btn">
+                    <% if request.host == "thinqtv.herokuapp.com" %> 
+                      <%= link_to "Sign Up", '/signup', class: "btn btn-primary", target: "_blank" %>
+					  <%= link_to 'Sign In', "/login", class: "btn btn-default", target: "_blank" %>
+                    <% else %>
+                      <%= link_to "Sign Up", '/signup', class: "btn btn-primary" %>
+					  <%= link_to 'Sign In', "/login", class: "btn btn-default" %>
+                    <% end %>
+					</p>
+				  </li>
 				<% end %>
 			</ul>
-		</div>
-</nav>
+    </div>
+  </nav>
+</header>
