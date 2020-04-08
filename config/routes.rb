@@ -94,4 +94,12 @@ Rails.application.routes.draw do
       get 'buy'
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      devise_for :users
+      resources :users, :only=>[:index, :show]
+      resources :sessions
+    end
+  end
 end

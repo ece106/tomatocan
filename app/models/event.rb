@@ -31,6 +31,14 @@ class Event < ApplicationRecord
     end
   end
 
+  def as_json(*)
+    super.except.tap do |hash|
+      @user = User.find(usrid)
+      hash["permalink"] = @user.permalink
+      hash["username"] = @user.name
+    end
+  end
+
 #  validates_numericality_of :end_at, less_than: ->(t) { t.start_at + 3.hours }, allow_blank: true, message: " date can't be more than 3 hours after Event start time"
 
 #  geocoded_by :address
