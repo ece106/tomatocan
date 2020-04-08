@@ -48,7 +48,7 @@ class EventsController < ApplicationController
   def create
     curr_time_offset = params[:timeZone]
     now = Time.now
-    date = Time.new(
+    start_date = Time.new(
       params["event"]["start_at(1i)"], # year
       params["event"]["start_at(2i)"], # month
       params["event"]["start_at(3i)"], # day
@@ -58,14 +58,29 @@ class EventsController < ApplicationController
       params[:timeZone]                # timeZone
     )
 
-    converted_time = date.in_time_zone("Pacific Time (US & Canada)")
+    end_date = Time.new(
+      params["event"]["end_at(1i)"], # year
+      params["event"]["end_at(2i)"], # month
+      params["event"]["end_at(3i)"], # day
+      params["event"]["end_at(4i)"], # hour
+      params["event"]["end_at(5i)"], # minute
+      0,                               # seconds
+      params[:timeZone]                # timeZone
+    )
 
-    params["event"]["start_at(1i)"] = converted_time.year.to_s   # year
-    params["event"]["start_at(2i)"] = converted_time.month.to_s  # month
-    params["event"]["start_at(3i)"] = converted_time.day.to_s    # day
-    params["event"]["start_at(4i)"] = converted_time.hour.to_s   # hour
-    params["event"]["start_at(5i)"] = converted_time.min.to_s    # minute
+    # calculate local time in pacific time
+    converted_start_time = start_date.in_time_zone("Pacific Time (US & Canada)")
+    converted_end_time = end_date.in_time_zone("Pacific Time (US & Canada)")
 
+    # edit params from local time to pacific time to store in database
+    params["event"]["start_at(1i)"] = converted_start_time.year.to_s   # set start year
+    params["event"]["start_at(2i)"] = converted_start_time.month.to_s  # set start month
+    params["event"]["start_at(3i)"] = converted_start_time.day.to_s    # set start day
+    params["event"]["start_at(4i)"] = converted_start_time.hour.to_s   # set start hour
+    params["event"]["end_at(1i)"] = converted_end_time.year.to_s   # set end year
+    params["event"]["end_at(2i)"] = converted_end_time.month.to_s  # set end month
+    params["event"]["end_at(3i)"] = converted_end_time.day.to_s    # set end day
+    params["event"]["end_at(4i)"] = converted_end_time.hour.to_s   # set end hour
     
     @event = current_user.events.build(event_params)
     @event.update_attribute(:user_id, params["event"]["usrid"])
@@ -97,8 +112,6 @@ class EventsController < ApplicationController
       end
     end
   end
-
-
 
   private
   
