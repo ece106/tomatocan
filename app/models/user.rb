@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  acts_as_token_authenticatable
-
   attr_accessor :monthperkinfo, :monthbookinfo, :incomeinfo, :salebyfiletype, :salebyperktype, :totalinfo, 
   :purchasesinfo, :on_password_reset
 
