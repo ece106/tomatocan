@@ -1,10 +1,6 @@
 
-//This file gives hierarchy to SASS files used on the site; this file and its @imports are added to the top of all other SCSS files.
-
 @import "styles/aboutus.scss";
 @import "styles/_faq.scss";
-@import "styles/_fellowship.scss";
-@import "styles/_getinvolved.scss";
 //The above sheets should be combined into 1 _staticpages.scss
 
 //Overrides Bootstrap-defined variables
@@ -13,6 +9,8 @@
 //Bootstrap files
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome.css";
+@import "font-awesome";
 
 //Global styles
 @import "base/globals.scss";
