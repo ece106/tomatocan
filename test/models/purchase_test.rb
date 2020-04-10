@@ -1,4 +1,4 @@
-require https://dashboard.stripe.com/connect-update 'test_helper'
+require 'test_helper'
 
 class PurchaseTest < ActiveSupport::TestCase
   setup do
