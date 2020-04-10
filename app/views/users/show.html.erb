@@ -89,7 +89,7 @@
         <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="Boiling Reef User <%= @user.permalink %>" />
-        <meta property="og:description"   content="Boiling reef <%= @user.permalink %> connected now" />
+        <meta property="og:description"   content="Boiling reef <%= @user.permalink %> connected now and genre 1 is <%= @user.genre1 %> and genre 2 is <%= @user.genre2 %> and genre 3 is <%= @user.genre3 %>" />
         <% if @user.profilepic.present? %>
           <meta property="og:image"       content="https://boiling-reef-18462.herokuapp.com<%= @user.profilepic.url.to_s %>" />
         <% else %>
