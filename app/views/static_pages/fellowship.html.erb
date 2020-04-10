@@ -1,35 +1,111 @@
-<div class="row" style="background-color: #ecd7c6; padding-bottom: 10px;">
-  <h3 class="aboutHeader" style = "text-align: center; font-size: 30px;">During COVID-19<br>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="row" style="background-color: white; padding-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5); ">
+  <h3 class="aboutHeader" style = "text-align: center; font-size: 30px;">
     Can't socialize in person?<br>
     Drop in for fellowship on ThinQ.tv! 
   </h3>
 </div>
-<div class="row" style="padding-top: 15px; margin-bottom: 0px; padding-bottom: 10px; font-size: 18px;
-    font-family: Helvetica;
-    line-height: 24px;
-    font-weight: 400;">
-  <%=image_tag("circle1.png", :style => "width: 10%", :align =>"right")%>
-    
-    ThinQ.tv is a platform where people can host live video fellowship online. It’s similar to having a cocktail party on Zoom. Drop in to a conversation and meet interesting people. <br><br>
 
-    ThinQ.tv breaks the paradigm of “talking at” the internet - where one camera broadcasts live video at a social media platform and expects others to passively observe with little interaction. Instead, ThinQ.tv is for “listening to” people. Unlike Zoom, where you have to be invited to observe a conversation, everyone is welcome to participate in ThinQ.tv fellowship hours - like a Meetup. <br><br>
 
-  <h3 style = "color:#8C1D40">What You can do: </h3>
-    <div style=" line-height: 1.5em">
-      - Invite people who are shut in - send a link to grandma: http://www.ThinQ.tv/seniorliving <br>
-      - Bring friends & family into the conversations you join so you can participate together<br>
-      - Let your networks know about ThinQ.tv Fellowship Hours by sharing on social media<br>
+  <div class="row" style="margin-bottom: 20px; padding-bottom: 20px; margin-top: 20px; ">
+    <div class="col-lg-4 col-md-12" style=" margin-top:0px; margin-bottom: 0px; padding: 0px; ">
+          <%= image_tag("videoconference.jpg", :style => "min-height: 372px; max-height:auto; width:100%;")%>
+      </div>
 
-  <h3 style = "color:#8C1D40">What you might want to talk about: </h3>
-    <div style=" line-height: 1.5em">
-      - News/current events 
-      - Books & movies
-      - Play trivia games 
-      - Pray with each other <br>
+    <div class="col-lg-8 col-md-12" style=" min-height: 372px;  max-height: auto; margin-top: 0px; box-shadow: 0 5px 15px rgba(0,0,0,.5);">
+        <h3 style=" padding-top: 5px; padding-bottom: 2px; margin-bottom: 5px; color: #8C1D40; font-weight: bold;"> WHAT IS THINQ.TV:</h3>
+        <p class= "paragraph1" >
+          - A platform where people can join live video fellowship online. It’s similar to going to a Cocktail Party on Zoom. <br><br>
+        </p>
+
+        <!-- <div class="col-lg-8 col-md-12" style=" width:100%; padding-bottom: 20px; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5);"> -->
+        <h3 style="margin-top: 10px; margin-bottom: 5px; color:#8C1D40; font-weight: bold;"> HELP THOSE ISOLATED BY COVID-19:</h3>
+       <p class= "paragraph2" >
+
+      - Invite friends & family to conversations when you'll be there so you can participate together. <br>
+      - Invite seniors who are quarantined by sending them this link <%= link_to "http://www.ThinQ.tv/seniorliving", seniorliving_path%>
+        OR email them directly 
+        <button class="button1" ><a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20conversations%20to%20keep%20you%20from%20feeling%20isolated%20during%20COVID-19.%20A%20Fellowship%20Host%20will%20be%20live%20on%20ThinQ.tv%20to%20listen,%20play%20a%20trivia%20game,%20or%20even%20pray%20with%20you.%20Go%20to%20http://www.ThinQ.tv/seniorliving%20and%20click%20on%20Click%20Here%20to%20Join%20Fellowship%20Conversation." alt="Email" target="_blank" style="color: white">E-Mail &#9993</a></button> <br>
+      - Spread the word about <span style="font-weight: bold; ">THINQ.TV </span> via 
+                     <% domainurl = "http://www.ThinQ.tv" %>
+                <% desc = "Participate in thought-provoking conversations!"%>
+              
+                <!-- Share -->
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
+                
+                  <!-- Facebook Share -->
+                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"
+                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse',
+                    'newwindow',
+                    'width=600,height=400,top=100,left=300');
+                    return false;">
+                    <img src="<%= asset_url('social-share-button/facebook.png') %>"></img>
+                  </a>
+                  <!-- Twitter Tweet -->
+                  <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Participate%20in%20live%20thought-provoking%20conversations%20or%20Host%20your%20own%20Live%20Video%20office%20hours!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
+                  <!-- LinkedIn Share -->
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
+                  <!-- Email Share -->
+                  <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= domainurl %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.png') %>"></a>
+                <!-- </div> -->
+        </p>
+               
+               
+ 
+          
+        <!-- </div> -->
+      </div>
+  </div>
+
+
+
+<div class="container">
+<div class="row" >
+  <div class="col-lg-6 col-md-12 col-sm-12" style="margin-bottom: 60px;">
+    <div class="cardHolder">
+      <div class="cardFlip">
+        <div class="frontSide">
+          <%= image_tag("activities.jpg")%>
+          <h3 style = " padding-top: 10px; font-weight: bold; color:white">What You might want to talk about: </h3>
+        </div>
+      <div class="backSide">
+          <p>
+           - News <br><br>
+           - Books <br><br>
+           - Trivia games <br><br>
+           - You can even pray with others on THINQ.TV!. <br><br>
+          </p>
+        </div>
+      </div>
     </div>
-
-      <h3 style = "color:#8C1D40">Questions? </h3>
-      <div style=" line-height: 1.5em">
-        - Drop in to any of the live video YourOnlineMom conversations by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', root_path %> so we can meet you. <br><br>
-      </div> 
+  </div>
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="cardHolder">
+      <div class="cardFlip">
+        <div class="frontSide" >
+          <%= image_tag("question.jpg")%>
+          <h3 style = "padding-top: 10px; font-weight: bold; color:white">Questions? </h3>
+        </div>
+      <div class="backSide">
+          <p>
+            - Drop in to any of the live video YourOnlineMom conversations by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', root_path %> so we can meet you. <br><br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
+ <script>
+   $(document).ready(function(){
+        $('.arrow').click(function(){
+     $('.location-content').toggleClass('current');
+         $('.location-icon').toggleClass('current');
+     $('#angle').toggleClass('rotate');
+    });
+        
+   });
+
+  </script>
