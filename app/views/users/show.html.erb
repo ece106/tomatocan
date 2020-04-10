@@ -1,5 +1,5 @@
   <div class="container-fluid" >
-    <% if request.host == "thinqtv.herokuapp.com" %>
+    <% #if request.host == "thinqtv.herokuapp.com" %>
 
       <!-- Meta Tags -->
       <% content_for :head do %>
@@ -8,9 +8,9 @@
         <meta property="og:title"         content="ThinQ TV Viewer" />
         <meta property="og:description"   content="ThinQ TV Viewer connected" />
         <% if @user.profilepic.present? %>
-          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s %>" />
+          <meta property="og:image"       content="https://boiling-reef-18462.herokuapp.com<%= @user.profilepic.url.to_s %>" />
         <% else %>
-          <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png' %>" />
+          <meta property="og:image"       content="http://www.thinq.tv/assets/logoDigitalHollow300-cc7f592db0da99605a2e7a2a7faefa4d1f659b0c563880a34173ec43ba2fe62d.png" />
         <% end %>
       <% end %>
 
@@ -78,23 +78,23 @@
                 - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
                 - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
                 - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
-                - <%= image_tag @user.profilepic.url.to_s %> <br>
+                - https://boiling-reef-18462.herokuapp.com<%= @user.profilepic.url.to_s %> <br>
               </div>
           </div>
           <br>
         </div>
       </div>
 
-    <% else %>
+    <% #else %>
       <% content_for :head do %>
         <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="Boiling Reef User <%= @user.permalink %>" />
         <meta property="og:description"   content="Boiling reef <%= @user.permalink %> connected now" />
         <% if @user.profilepic.present? %>
-          <meta property="og:image"       content="<%= image_tag @user.profilepic.url.to_s %>" />
+          <meta property="og:image"       content="https://boiling-reef-18462.herokuapp.com<%= @user.profilepic.url.to_s %>" />
         <% else %>
-          <meta property="og:image"       content="<%= image_tag 'logoDigitalHollow300.png' %>" />
+          <meta property="og:image"       content="http://www.thinq.tv/assets/logoDigitalHollow300-cc7f592db0da99605a2e7a2a7faefa4d1f659b0c563880a34173ec43ba2fe62d.png" />
         <% end %>
       <% end %>
       <%= render 'layouts/authorform' %>
@@ -129,5 +129,5 @@
           <% end %>
         </div>
       </div>
-    <% end %>
+    <% #end %>
   </div>
