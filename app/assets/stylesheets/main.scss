@@ -1,3 +1,5 @@
+//This file gives hierarchy to SASS files used on the site; this file and its @imports are added to the top of all other SCSS files.
+
 @import "styles/aboutus.scss";
 @import "styles/_faq.scss";
 @import "styles/_fellowship.scss";
@@ -10,7 +12,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome.css";
-
+@import "font-awesome";
 
 //Global styles
 @import "base/globals.scss";
@@ -26,6 +28,7 @@
 
 @import "styles/stripe-modal.scss";
 @import "calendar/styles.scss";
+
 
 
 
