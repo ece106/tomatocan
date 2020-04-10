@@ -59,7 +59,35 @@
             }
         }
 
+        var route = String("<%=request.env['PATH_INFO']%>")
+
         document.getElementById("hb1").innerHTML = getTimezoneName()
         document.getElementById("hb2").innerHTML = getTimezoneName()
+
+        if (route.includes("edit") == true) {
+            var r_time = "<%= event.start_at.strftime("%FT%T%:z") %>"
+            var r_e_time = "<%= event.end_at.iso8601 %>"
+            var st_date = new Date(Date.parse(r_time))
+            var en_date = new Date(Date.parse(r_e_time))
+            
+            st_date.setHours(st_date.getHours() + parseInt("<%=offset%>"))
+            en_date.setHours(en_date.getHours() + parseInt("<%=offset%>"))
+            
+            var t_1 = new Date(Date.parse(st_date.toLocaleString()))
+            var t_2 = new Date(Date.parse(en_date.toLocaleString()))
+
+
+            document.getElementById("event_start_at_1i").value = t_1.getFullYear()
+            document.getElementById("event_start_at_2i").value = t_1.getMonth() + 1
+            document.getElementById("event_start_at_3i").value = t_1.getDate()
+            document.getElementById("event_start_at_4i").selectedIndex = t_1.getHours()
+            document.getElementById("event_start_at_5i").value = ("0" + t_1.getMinutes()).slice(-2)
+
+            document.getElementById("event_end_at_1i").value = t_2.getFullYear()
+            document.getElementById("event_end_at_2i").value = t_2.getMonth() + 1
+            document.getElementById("event_end_at_3i").value = t_2.getDate()
+            document.getElementById("event_end_at_4i").selectedIndex = t_2.getHours()
+            document.getElementById("event_end_at_5i").value = ("0" + t_2.getMinutes()).slice(-2)
+        }
     </script>
 </div>
