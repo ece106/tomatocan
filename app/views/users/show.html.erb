@@ -3,7 +3,7 @@
 
       <!-- Meta Tags -->
       <% content_for :head do %>
-        <meta property="og:url"           content="https://thinqtv.herokuapp.com" />
+        <meta property="og:url"           content="<%= "https://thinqtv.herokuapp.com" + user_profile_path(@user.permalink) %>" />
         <meta property="og:type"          content="website" />
         <meta property="og:title"         content="ThinQ TV Viewer" />
         <meta property="og:description"   content="ThinQ TV Viewer connected" />
@@ -78,7 +78,6 @@
                 - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
                 - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
                 - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
-                - https://boiling-reef-18462.herokuapp.com<%= @user.profilepic.url.to_s %> <br>
               </div>
           </div>
           <br>
