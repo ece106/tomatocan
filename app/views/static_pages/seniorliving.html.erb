@@ -56,6 +56,7 @@
       <!-- Right Hand (Schedule) -->
       <div class="col-md-4">
         <!-- Schedule -->
+        <% i = 0%>
         <div class="panel panel-default">
           <!-- Label for schedule -->
           <div class="panel-heading" style="background-color: #8C1D40; color: #ffffff">
@@ -66,6 +67,7 @@
             <table class="table table-hover" id=calendar>
               <tbody>
                 <% @events.sort_by{|t| t.start_at}.each do |event| %>
+                <% i += 1%>
                 <% user = User.find(event.usrid) %>
                 <tr>
                   <td class=col-xs-6>
@@ -74,8 +76,19 @@
                   </td>
                   <td class=col-xs-6>
                     <% edt = event.start_at + 3.hours %>
-                    <span style="font-size:125%;" id=calendar-time><%= event.start_at.strftime("%a, %b. %d") %></span>
-                    <span style="font-size:90%;"id=calendar-time><%= event.start_at.strftime("%l:%M%P") %> PDT</span>
+                    <span style="font-size:125%;" id=calendar-time-day<%=i%>><%= event.start_at.strftime("%a, %b. %d") %></span>
+                    <br>
+                    <span style="font-size:90%;"id=calendar-time<%=i%>></span>
+                    <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
+                    <script type="text/javascript">
+                        var r_time = "<%= event.start_at.strftime("%FT%T%:z") %>";
+                        var date = new Date(Date.parse(r_time));
+                        date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+                        var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+                        var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short'};
+                        document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
+                        document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+                      </script>
                   </td>
                 </tr>
                 <% end %>
@@ -87,10 +100,7 @@
       </div>  
     </div>
 
-
   <% else %>
-
-
     <br><br>
       <center><%= link_to " Click here to Join Fellowship Conversation", "https://thinQtv.herokuapp.com/seniorliving", class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 8px" %></center>
       <br><br><br>
