@@ -8,7 +8,7 @@
       <meta property="og:title"         content="Join <%= @user.permalink %>'s Fellowship Hour" />
       <meta property="og:description"   content="<%= @user.permalink %>'s fellowship is happening right now!" />
       <% if @user.profilepic.present? %>
-        <meta property="og:image"       content="https://authorprofile.s3.amazonaws.com<%= @user.profilepic.url.to_s %>" />
+        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
       <% else %>
         <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
       <% end %>
