@@ -20,7 +20,7 @@ gem 'omniauth'
 # Use Devise for authentication
 gem 'devise', '~> 4.2'
 # Use Omniauth Facebook plugin
-gem 'omniauth-facebook','~> 4.0'\
+gem 'omniauth-facebook','~> 4.0'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
