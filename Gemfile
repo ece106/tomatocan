@@ -9,7 +9,8 @@ gem 'pg'
 
 
 gem 'mandrill'	
-gem 'devise'
+# Use Devise for authentication
+gem 'devise','~> 4.2'
 gem 'simple_token_authentication'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
