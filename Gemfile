@@ -18,8 +18,6 @@ gem 'carrierwave'
 gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'
-# Use Devise for authentication
-gem 'devise','~> 4.2'
 # Use Omniauth Facebook plugin
 gem 'omniauth-facebook','~> 4.0'
 gem 'koala'
