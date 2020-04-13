@@ -70,8 +70,6 @@ class EventsController < ApplicationController
     end
   end
 
-
-
   private
 
   def convert_time
