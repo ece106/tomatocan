@@ -36,8 +36,9 @@ class EventsController < ApplicationController
 
   # POST /events.json
   def create
+    convert_time # call convert time method
     @event = current_user.events.build(event_params)
-    @event.update_attribute(:user_id, params["event"]["usrid"])
+    @event.update_attribute(:user_id, params[:event][:usrid])
     user = User.find(@event.usrid)
     @reminder_date = @event.start_at - 2.days
     respond_to do |format|
@@ -55,6 +56,8 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
+    convert_time # call convert time method
+
     respond_to do |format|
       if @event.update_attributes(event_params)
         update_reminder
@@ -70,6 +73,46 @@ class EventsController < ApplicationController
 
 
   private
+
+  def convert_time
+    curr_time_offset = params[:timeZone]
+    now = Time.now
+    start_date = Time.new(
+      params[:event]["start_at(1i)"], # year
+      params[:event]["start_at(2i)"], # month
+      params[:event]["start_at(3i)"], # day
+      params[:event]["start_at(4i)"], # hour
+      params[:event]["start_at(5i)"], # minute
+      0,                               # seconds
+      params[:timeZone]                # timeZone
+    )
+
+    end_date = Time.new(
+      params[:event]["end_at(1i)"], # year
+      params[:event]["end_at(2i)"], # month
+      params[:event]["end_at(3i)"], # day
+      params[:event]["end_at(4i)"], # hour
+      params[:event]["end_at(5i)"], # minute
+      0,                               # seconds
+      params[:timeZone]                # timeZone
+    )
+
+    # calculate local time in pacific time
+    converted_start_time = start_date.in_time_zone("Pacific Time (US & Canada)")
+    converted_end_time = end_date.in_time_zone("Pacific Time (US & Canada)")
+
+    # edit params from local time to pacific time to store in database
+    params[:event]["start_at(1i)"] = converted_start_time.year.to_s   # set start year
+    params[:event]["start_at(2i)"] = converted_start_time.month.to_s  # set start month
+    params[:event]["start_at(3i)"] = converted_start_time.day.to_s    # set start day
+    params[:event]["start_at(4i)"] = converted_start_time.hour.to_s   # set start hour
+    params[:event]["start_at(5i)"] = converted_start_time.min.to_s # set start mins
+    params[:event]["end_at(1i)"] = converted_end_time.year.to_s   # set end year
+    params[:event]["end_at(2i)"] = converted_end_time.month.to_s  # set end month
+    params[:event]["end_at(3i)"] = converted_end_time.day.to_s    # set end day
+    params[:event]["end_at(4i)"] = converted_end_time.hour.to_s   # set end hour
+    params[:event]["end_at(5i)"] = converted_end_time.min.to_s # set start mins
+  end
   
   def update_reminder
     user = User.find(@event.usrid)
