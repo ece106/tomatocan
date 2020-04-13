@@ -97,9 +97,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      devise_for :users
+      devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
       resources :users, :only=>[:index, :show]
       resources :sessions
     end
   end
+
 end

@@ -218,6 +218,8 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "stripesignup"
     t.string "bannerpic"
     t.string "authentication_token", limit: 30
+    t.string "provider", limit: 50, default: "", null: false
+    t.string "uid", limit: 500, default: "", null: false
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
