@@ -31,9 +31,9 @@
       <meta property="og:title"         content="Join <%= @user.permalink %>'s Fellowship Hour" />
       <meta property="og:description"   content="<%= @user.permalink %>'s fellowship is happening right now!" />
       <% if @user.profilepic.present? %>
-        <meta property="og:image"       content="https://thinqtv.herokuapp.com<%= @user.profilepic.url.to_s %>" />
+        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
       <% else %>
-        <meta property="og:image"       content="http://www.thinq.tv/assets/logoDigitalHollow300-cc7f592db0da99605a2e7a2a7faefa4d1f659b0c563880a34173ec43ba2fe62d.png" />
+        <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
       <% end %>
     <% end %>
 
@@ -140,10 +140,18 @@
       <meta property="og:title"         content="View <%= @user.permalink %>'s profile on ThinQ.tv" />
       <meta property="og:description"   content="Connect with <%= @user.permalink %> in talking about <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %>" />
       <% if @user.profilepic.present? %>
+<<<<<<< HEAD
         <meta property="og:image"       content="http://www.thinq.tv<%= @user.profilepic.url.to_s %>" />
 >>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
+=======
+<<<<<<< HEAD
+        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
+=======
+        <meta property="og:image"       content=" <%= @user.profilepic.url.to_s %>" />
+>>>>>>> eab9907b57614ac19a9e53feee02c8e43f3f6159
+>>>>>>> fbe03c375a73a8ef519ff86d861380c5f9b13920
       <% else %>
-        <meta property="og:image"       content="http://www.thinq.tv/assets/logoDigitalHollow300-cc7f592db0da99605a2e7a2a7faefa4d1f659b0c563880a34173ec43ba2fe62d.png" />
+        <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
       <% end %>
     <% end %>
 
@@ -152,7 +160,7 @@
       <div id="eventCurrentdiv" style="text-align: center;">
         <h3>We're talking about <%= @displayconvo.name %></h3>  
         <p> right NOW!   </p> 
-        <%= link_to " Join LIVE Fellowship Hour " + camicon, "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+        <%= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
         <br>
       </div>
     <% else %>
