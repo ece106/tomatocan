@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "agreements", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "approved"
-  end
-
   create_table "books", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "blurb"
@@ -129,34 +121,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "buttontype"
   end
 
-  create_table "movieroles", force: :cascade do |t|
-    t.string "role"
-    t.string "roledesc"
-    t.integer "user_id"
-    t.integer "movie_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "movies", force: :cascade do |t|
-    t.string "title"
-    t.text "about"
-    t.string "youtube1"
-    t.string "youtube2"
-    t.string "youtube3"
-    t.string "videodesc1"
-    t.string "videodesc2"
-    t.string "videodesc3"
-    t.string "moviepic"
-    t.string "genre"
-    t.float "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "director"
-    t.date "releasedate"
-  end
-
   create_table "purchases", id: :serial, force: :cascade do |t|
     t.integer "author_id"
     t.integer "book_id"
@@ -206,22 +170,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "email"
   end
 
-  create_table "timeslots", force: :cascade do |t|
-    t.integer "user_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "interviewer_user_id"
-    t.string "interviewer_name"
-    t.string "interviewer_email"
-    t.integer "guest1_user_id"
-    t.string "guest1_name"
-    t.string "guest1_email"
-    t.string "name"
-    t.integer "show_duration"
-  end
-
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -269,6 +217,8 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "stripe_customer_token"
     t.datetime "stripesignup"
     t.string "bannerpic"
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
     t.index ["remember_token"], name: "index_users_on_remember_token"

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
     <% if content_for?(:head) %>
       <%= yield(:head) %>
     <% end %>
@@ -25,11 +26,39 @@
     <% if content_for? :forusers %>
       <%= yield :forusers %>
     <% end %>
+=======
+>>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
+  <% end %>
+
+  <% if content_for? :forusers %>
+    <%= yield :forusers %>
+  <% end %>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= render 'application/favicon' %>
+  <%= favicon_link_tag 'starIcon.png' %>
+
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "https://js.stripe.com/v2/", 'application', 'data-turbolinks-track' => true %>
+  <link rel="shortcut icon" type="favicon.ico" href="http://www.ThinQ.tv/assets/crowdPublishIcon.png">
+  <%= csrf_meta_tags %>
+
+  <% if Rails.env.development? || Rails.env.test? %>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+  <% else %>
+    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
+  <% end %>
+
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 
 <body>

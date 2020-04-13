@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head>
     <% if content_for?(:head) %>
       <%= yield(:head) %>
     <% end %>
     
+=======
+  <head>
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
+
+    <% if content_for? :forusers %>
+      <%= yield :forusers %>
+    <% end %>
+
+>>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
     <meta name="viewport" content="width=devicewidth, initial-scale=1">
     <title><%= full_title(yield(:title)) + " " + @user.name %></title>
     <%= stylesheet_link_tag    "application" %>
@@ -13,30 +25,25 @@
     <%= csrf_meta_tags %>
     <%= render 'application/favicon' %>
 
-
     <% if Rails.env.development? || Rails.env.test? %>
-    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+      <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <% else %>
-    <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
-    <% end %>
-
-    <% if content_for? :forusers %>
-    <%= yield :forusers %>
+      <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
     <% end %>
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-</head>
+  </head>
 
-<%= render 'layouts/header' %>
+  <%= render 'layouts/header' %>
 
-<body>
+  <body>
     <main>
-        <%= yield %>
+      <%= yield %>
     </main>
-</body>
+  </body>
 
-<%= render 'layouts/footer' %>
-
+  <%= render 'layouts/footer' %>
+  
 </html>

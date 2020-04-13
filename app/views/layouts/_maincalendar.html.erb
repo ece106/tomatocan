@@ -32,7 +32,7 @@
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
             <% if ((Time.current - 7.hours) > Time.parse(start_time) ) && ((Time.current - 7.hours) < Time.parse(end_time)) %>
-              <%= link_to "Join Fellowship Hour NOW", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm" %>
+              <%= link_to " Join Fellowship Hour NOW ", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm fa fa-video-camera" %>
 
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
