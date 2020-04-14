@@ -10,7 +10,6 @@ gem 'pg'
 
 gem 'mandrill'	
 gem 'devise'
-gem 'simple_token_authentication'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'

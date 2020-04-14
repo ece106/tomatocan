@@ -1,11 +1,10 @@
 class Api::V1::SessionsController < Api::V1::BaseApiController
-    acts_as_token_authentication_handler_for User, fallback: :none
     before_action :ensure_params_exist
     def create
         resource = User.find_for_database_authentication(:email=>params[:user][:email])
         return invalid_login_attempt unless resource
 
-        if resource.valid_password?(params[:user][:password])
+        if resource.valid_password?(params[:user][:password]) || Devise.secure_compare(resource.authentication_token, params[:user][:token])
             sign_in resource, store: false
             renew_authentication_token(resource)
             render :json=> {:success=>true, :name=> resource.name, :token=>resource.authentication_token, :permalink=>resource.permalink, :last_sign_in=>resource.last_sign_in_at, :current_sign_in=>resource.current_sign_in_at}
