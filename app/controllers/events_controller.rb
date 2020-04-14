@@ -1,17 +1,15 @@
 class EventsController < ApplicationController
 #  before_action :authenticate_user!, except: [:index, :show]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
-  # GET /events.json
-  def index
-    # @events = Event.where( "start_at > ?", Time.now ).recent
-    @events = Event.upcoming.recent
 
+  def index
+    @events = Event.upcoming.recent
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
   end
-  # GET /events/1.json
+    # GET /events/1.json
   def show
     @event     = Event.find(params[:id])
     @user      = User.find(@event.usrid)
