@@ -15,6 +15,7 @@ Devise.setup do |config|
    #For facebook login
    config.omniauth :facebook, ENV['329188258042368'],
    ENV['4d5f6b40c4716f3107d7cf506eebdfbb'],
+   scope: 'public_profile,email',
    callback_url: "http://localhost:3000/users/auth/facebook/callback"
    config.omniauth_path_prefix = "/api/users/auth"
 end
