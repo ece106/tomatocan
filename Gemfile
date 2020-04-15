@@ -61,6 +61,7 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
   gem 'rails-controller-testing'
+  gem 'dotenv', '~> 2.2.1'
 end
 
 group :production do
