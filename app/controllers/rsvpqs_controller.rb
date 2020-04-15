@@ -16,6 +16,8 @@ class RsvpqsController < ApplicationController
 
     if @rsvp.save
       flash[:success] = 'Rsvp was successfully created.'
+      @event = Event.find(params[:rsvpq][:event_id])
+      RsvpMailer.with(user: current_user , event: @event).rsvp_reminder.deliver_now
       redirect_to home_path
     else
       flash[:error] = 'Please enter a valid email address'
