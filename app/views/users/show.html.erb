@@ -141,6 +141,7 @@
       <meta property="og:description"   content="Connect with <%= @user.permalink %> in talking about <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %>" />
       <% if @user.profilepic.present? %>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <meta property="og:image"       content="http://www.thinq.tv<%= @user.profilepic.url.to_s %>" />
 >>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
 =======
@@ -150,6 +151,9 @@
         <meta property="og:image"       content=" <%= @user.profilepic.url.to_s %>" />
 >>>>>>> eab9907b57614ac19a9e53feee02c8e43f3f6159
 >>>>>>> fbe03c375a73a8ef519ff86d861380c5f9b13920
+=======
+        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
+>>>>>>> 49f49e3aa8eea47f2f9aa8db72387bf5690e1a6e
       <% else %>
         <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
       <% end %>
