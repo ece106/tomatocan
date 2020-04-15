@@ -1,7 +1,8 @@
 <div class="panel panel-primary">
   <div class="panel-heading">Your Past Fellowship Hours
   </div>
-
+  <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
+  <% i = 0 %>
 <% if @pastevents.present? %>
   <table class="past-events-list">
     <tr>
@@ -9,9 +10,16 @@
     <th>Time</th>
     <tr>
   <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
+  <% i += 1%>
   <tr>
     <td><%= link_to event.name, event, class: "past-event-name" %><br><br></td>
-    <td><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p")  %><br><br></td>
+    <td id="tp<%= i %>"><br><br></td>
+    <script>
+      var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+      date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+      var options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'long', year: 'numeric' };
+      document.getElementById('tp<%=i%>').innerHTML = date.toLocaleString(undefined, options);
+    </script>
   <tr>
   <% end %>
   </table>
