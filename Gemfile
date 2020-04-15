@@ -20,6 +20,8 @@ gem 'oauth2'
 gem 'omniauth'
 # Use Omniauth Facebook plugin
 gem 'omniauth-facebook','~> 4.0'
+# Use ActiveRecord Sessions
+gem 'activerecord-session_store','~> 1.0'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
