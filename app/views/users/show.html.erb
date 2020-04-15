@@ -1,4 +1,3 @@
-<<<<<<< HEAD
   <div class="container-fluid" >
     <% if request.host == "thinqtv.herokuapp.com" %>
 
@@ -20,29 +19,6 @@
           <div style="padding: 0px 0px 5px 0px">
             <%= render 'layouts/merchsidebar' %>
           </div>
-=======
-<div class="container-fluid" >
-  <% if request.host == "thinqtv.herokuapp.com" %>
-
-    <!-- Meta Tags for Facebook sharing -->
-    <% content_for :head do %>
-      <meta property="og:url"           content="<%= "https://thinqtv.herokuapp.com" + user_profile_path(@user.permalink) %>" />
-      <meta property="og:type"          content="website" />
-      <meta property="og:title"         content="Join <%= @user.permalink %>'s Fellowship Hour" />
-      <meta property="og:description"   content="<%= @user.permalink %>'s fellowship is happening right now!" />
-      <% if @user.profilepic.present? %>
-        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
-      <% else %>
-        <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
-      <% end %>
-    <% end %>
-
-    <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
-      <div class="col-md-4">
-        <div style="padding: 0px 0px 5px 0px">
-          <%= render 'layouts/merchsidebar' %>
-        </div>
->>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
 
       <!-- Invite Area -->
       <div style = "padding: 3px 5px 7px 5px; font-size: 18px; background-color: #F2EBE4">
@@ -57,15 +33,9 @@
         </div>
         <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20https://thinqtv.herokuapp.com/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">SMS &#9743</a>
 
-<<<<<<< HEAD
           <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
             Invite via social media: 
           </div>
-=======
-        <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
-          Invite via social media:
-        </div>
->>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
 
         <% domainurl = "https://thinqtv.herokuapp.com/youronlinemom" %>
         <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
@@ -107,8 +77,7 @@
         <br>
       </div>
     </div>
-
-<<<<<<< HEAD
+    
     <% else %>
       <% content_for :head do %>
         <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
@@ -130,43 +99,6 @@
               <%= link_to " Join LIVE Fellowship Hour", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
               <br>
             </div>
-=======
-  <% else %>
-  
-    <!-- Meta Tags for Facebook Share -->
-    <% content_for :head do %>
-      <meta property="og:url"           content="<%= "http://www.thinq.tv" + user_profile_path(@user.permalink) %>" />
-      <meta property="og:type"          content="website" />
-      <meta property="og:title"         content="View <%= @user.permalink %>'s profile on ThinQ.tv" />
-      <meta property="og:description"   content="Connect with <%= @user.permalink %> in talking about <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %>" />
-      <% if @user.profilepic.present? %>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <meta property="og:image"       content="http://www.thinq.tv<%= @user.profilepic.url.to_s %>" />
->>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
-=======
-<<<<<<< HEAD
-        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
-=======
-        <meta property="og:image"       content=" <%= @user.profilepic.url.to_s %>" />
->>>>>>> eab9907b57614ac19a9e53feee02c8e43f3f6159
->>>>>>> fbe03c375a73a8ef519ff86d861380c5f9b13920
-=======
-        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
->>>>>>> 49f49e3aa8eea47f2f9aa8db72387bf5690e1a6e
-      <% else %>
-        <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
-      <% end %>
-    <% end %>
-
-    <%= render 'layouts/authorform' %>
-    <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
-      <div id="eventCurrentdiv" style="text-align: center;">
-        <h3>We're talking about <%= @displayconvo.name %></h3>  
-        <p> right NOW!   </p> 
-        <%= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
-        <br>
-      </div>
     <% else %>
       <div class="row" style="padding-top:15px;padding-bottom:30px;">
         <%= render 'layouts/streamButton' %>

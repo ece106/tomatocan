@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-<head>
-    <% if content_for?(:head) %>
-      <%= yield(:head) %>
-    <% end %>
-    
-=======
   <head>
     <% if content_for?(:head) %>
       <%= yield(:head) %>
@@ -16,7 +9,6 @@
       <%= yield :forusers %>
     <% end %>
 
->>>>>>> 8ba99858aec776a539760f5a5dabd14b393e8224
     <meta name="viewport" content="width=devicewidth, initial-scale=1">
     <title><%= full_title(yield(:title)) + " " + @user.name %></title>
     <%= stylesheet_link_tag    "application" %>
