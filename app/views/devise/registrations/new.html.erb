@@ -30,43 +30,13 @@
             <p class="help-block">Confirm password</p>
             <%= f.password_field :password_confirmation, :class => "form-control" %>
           </div>
-          <small>By clicking 'Sign Up,' you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+          <small>By clicking 'Sign Up', you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
           <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
+          <div id="fb-root"></div>
+          <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=329188258042368&autoLogAppEvents=1"></script>
+          <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div>
         <% end %>
       </div>
     </div>
-    <br><br><br><br><br>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '{your-app-id}',
-          cookie     : true,
-          xfbml      : true,
-          version    : '{api-version}'
-        });
-        FB.AppEvents.logPageView();      
-      };
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <div class="col-lg-5" style="background-color: #F2EBE4">
-      Login box here
-      <script>
-        <fb:login-button
-          scope="public_profile,email"
-          onlogin="checkLoginState();">
-        </fb:login-button>
-        function checkLoginState() {
-          FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-          });
-        }
-      </script>
-    </div> 
   </div>
 </div>
