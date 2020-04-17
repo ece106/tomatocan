@@ -9,8 +9,7 @@ gem 'pg'
 
 
 gem 'mandrill'	
-# Use Devise for authentication
-gem 'devise','~> 4.2'
+gem 'devise'
 gem 'simple_token_authentication'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
@@ -18,8 +17,7 @@ gem 'carrierwave'
 gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'
-# Use Omniauth Facebook plugin
-gem 'omniauth-facebook','~> 4.0'
+gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
@@ -59,7 +57,6 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
   gem 'rails-controller-testing'
-  gem 'dotenv', '~> 2.2.1'
 end
 
 group :production do
