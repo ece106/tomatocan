@@ -10,14 +10,6 @@
     <%= yield :forusers %>
   <% end %>
 
-  <!-- Facebook Login -->
-  <% unless current_user %> 
-    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-  <% else %>
-    <%= current_user[:name] %>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-  <% end %>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
