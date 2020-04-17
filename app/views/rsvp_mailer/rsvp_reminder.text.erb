@@ -1,6 +1,6 @@
-Hello, <%= @user.name %>
-<%= @user.name %> this is a reminder about your event, <%=@event.name %>.
-Your made this event for this date <%=@event.start_at%><br>
+Hello, <%if @user.nil? %><%else%><%=@user.name%>,<%end%>
+this is a reminder about your event, <%=@event.name %>.
+You made this event for this date <%=@event.start_at%>
 Please invite your friends
 Sincerely,
 ThinQ.tv

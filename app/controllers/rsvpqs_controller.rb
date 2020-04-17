@@ -17,7 +17,14 @@ class RsvpqsController < ApplicationController
     if @rsvp.save
       flash[:success] = 'Rsvp was successfully created.'
       @event = Event.find(params[:rsvpq][:event_id])
-      RsvpMailer.with(user: current_user , event: @event).rsvp_reminder.deliver_now
+      offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
+      @reminder_date = @event.start_at + offset.hours - 1.hours
+      @email = params[:rsvpq][:email]
+      if current_user
+        RsvpMailer.with(user: current_user, event: @event).rsvp_reminder.deliver_later(wait_until: @reminder_date)
+      else
+        RsvpMailer.with(email: @email, event: @event).rsvp_reminder.deliver_later(wait_until: @reminder_date)
+      end
       redirect_to home_path
     else
       flash[:error] = 'Please enter a valid email address'

@@ -3,6 +3,7 @@ class RsvpMailer < ApplicationMailer
     before_action do
         @event = params[:event]
         @user = params[:user]
+        @email = params[:email]
     end
 
     before_action :set_url , only: [:rsvp_reminder]
@@ -10,7 +11,11 @@ class RsvpMailer < ApplicationMailer
 
     def rsvp_reminder
         inline_images
-        mail(to: @user.email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
+        if @user.nil?
+            mail(to: @email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
+        else
+            mail(to: @user.email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
+        end
     end
 
     private
