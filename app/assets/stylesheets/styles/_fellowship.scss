@@ -4,13 +4,13 @@
   
   font-size: 18px; 
   padding-top: 2px; 
-  line-height: 1.0em;
+  line-height: 1.7em;
 }
 
 .paragraph2 {
   
   font-size:19px;  
-  line-height: 2.0em;
+  line-height: 1.7em;
   padding-top: 2px;
 
 }
@@ -77,3 +77,59 @@
   font-size: 18px;
   line-height: 1.5em;
 }
+
+  .speaking{
+    font-family: sans-serif;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 40px;
+    max-width: 1500px;
+    position: relative;
+    color: #8C1D40;
+    font-weight: bold;
+  }
+
+  .speaking:before {
+    content: "";
+    display:block;
+    width:550px;
+    height: 2px;
+    background: #ecd7c6;
+    position:  absolute;
+    left:0%;
+    top: 50%;
+    z-index: -2;
+
+  }
+  .speaking:after {
+    content: "";
+    display:block;
+    width:550px;
+    height: 2px;
+    background: #ecd7c6;
+    position:  absolute;
+    right:0%;
+    top: 50%;
+    z-index: -2;
+
+  }
+
+  .speaking span {
+
+    background: #fff;
+  }
+
+  hr.one {
+    border: none;
+    height: 2px;
+    background: #ecd7c6;
+  }
+
+  .box p {
+    font-family: "essonnes-headline", 'Georgia', serif;
+    padding-top: 80px;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+  }
