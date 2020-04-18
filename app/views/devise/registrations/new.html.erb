@@ -1,40 +1,83 @@
 <div class="container">
   <%= render 'layouts/flash_messages' %>
   <div class="row">
-    <div class="col-lg-6 col-lg-offset-1">
-      <h1>Sign Up</h1>
-      <p>Already a member? <%= link_to 'Sign in', "/login" %>!</p>
+    <div class="col-lg-6 col-lg-offset-3" style="padding:20px 0px 0px 0px">
       <div class="well">
         <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
-          <div class="form-group">
-            <h2><%= f.label :name, "Name" %></h2>
-            <p class="help-block">Enter your name or the name of your organization.</p>
-            <%= f.text_field :name, :autofocus => true, :class => "form-control" %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Sign Up</b>
           </div>
+          <p>Already a member? <%= link_to 'Sign in', "/login" %>!</p>
+        </div>
+          
+          <!-- Name Box -->
           <div class="form-group">
-            <h2><%= f.label :email %></h2>
-            <%= f.email_field :email, :class => "form-control" %>
-          </div>
-          <div class="form-group">
-            <h2><%=f.label :name, "Username" %></h2>
-            <p class="help-block">Alphanumeric characters only. Less than 20 characters.</p>
             <div class="input-group">
-              <div class="input-group-addon">ThinQ.tv/</div>
-              <%= f.text_field :permalink, placeholder: "username", maxlength: 20, :class => "form-control" %>
+              <div class="input-group-addon">
+                <i class="fa fa-user" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :name, placeholder: "Name: Enter your name or the name of your organization" ,:autofocus => true, :class => "form-control" %>
             </div>
           </div>
+
+          <!-- Email Box -->
           <div class="form-group">
-            <h2><%= f.label :password %></h2>
-            <p class="help-block">Enter password (Minimum 8 characters)</p>
-            <%= f.password_field :password, :class => "form-control" %>
-            <p class="help-block">Confirm password</p>
-            <%= f.password_field :password_confirmation, :class => "form-control" %>
+            <div class="input-group">
+              <div class="input-group-addon" style="font-size:20px">
+                &#9993
+              </div>
+              <%= f.email_field :email, placeholder:"Email", :class => "form-control" %>
+            </div>
           </div>
-          <small>By clicking 'Sign Up', you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
-          <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
-          <div id="fb-root"></div>
-          <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=329188258042368&autoLogAppEvents=1"></script>
-          <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div>
+
+          <!-- Username Box -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                ThinQ.tv/
+              </div>
+              <%= f.text_field :permalink, placeholder: "Username: Less than 20 alphanumeric characters only", maxlength: 20, :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Password Boxes -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-lock" style="font-size:20px"></i>
+              </div>
+              <%= f.password_field :password, placeholder:"Enter password (Minimum 8 characters)", :class => "form-control" %>
+            </div>
+            <div class="input-group" style="padding:15px 0px 0px 0px">
+              <div class="input-group-addon">
+                <i class="fa fa-lock" style="font-size:20px"></i>
+              </div>
+              <%= f.password_field :password_confirmation, placeholder:"Confirm password", :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-8" style="margin-left:-50px">
+              <small>By clicking 'Sign Up', you agree to the <br> ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+            </div>
+            <div class="col-md-5" >
+              <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
+            </div>
+          </div>
+
+          <!-- Or -->
+          <div style="text-align:center; padding-bottom:10px">
+            OR
+          </div>
+
+          <!-- Facebook Login Button -->
+          <div style="text-align:center">
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=329188258042368&autoLogAppEvents=1"></script>
+            <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+          </div>
         <% end %>
       </div>
     </div>
