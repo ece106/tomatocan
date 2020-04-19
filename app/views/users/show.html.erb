@@ -1,9 +1,12 @@
 <div class="container-fluid" >
+  <!-- commenting out for testing purposes, PUTBACK-->
   <% if request.host == "thinqtv.herokuapp.com" %>
 
     <!-- Meta Tags for Facebook sharing -->
     <% content_for :head do %>
-      <meta property="og:url"           content="<%= "https://thinqtv.herokuapp.com" + user_profile_path(@user.permalink) %>" />
+      <!-- commenting out for testing purposes, PUTBACK-->
+      <!-- <meta property="og:url"           content="<%= "https://thinqtv.herokuapp.com" + user_profile_path(@user.permalink) %>" /> -->
+      <meta property="og:url"           content="<%= "https://meet.jit.si/HelloTesting" %>" /> <!--KARL-->
       <meta property="og:type"          content="website" />
       <meta property="og:title"         content="Join <%= @user.permalink %>'s Fellowship Hour" />
       <meta property="og:description"   content="<%= @user.permalink %>'s fellowship is happening right now!" />
@@ -37,7 +40,9 @@
           Invite via social media:
         </div>
 
-        <% domainurl = "https://thinqtv.herokuapp.com/youronlinemom" %>
+        <!-- commenting out for testing purposes, PUTBACK-->
+        <%# domainurl = "https://thinqtv.herokuapp.com/youronlinemom" %>
+        <% domainurl = "https://meet.jit.si/HelloTesting" %> <!--KARL-->
         <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
         <div style="margin-left: 17px">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"

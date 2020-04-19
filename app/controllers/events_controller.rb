@@ -18,6 +18,7 @@ class EventsController < ApplicationController
     @rsvps     = @event.rsvpqs
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
     @surl = "http://www.ThinQ.tv/" + @user.permalink
+    #@surl      = "https://meet.jit.si/HelloTesting" #KARL
 
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
