@@ -7,23 +7,24 @@
 </head>
 <body style="font-family: 'Montserrat', sans-serif;">
   <div style="font-size: 12pt; margin: 10px auto 10px auto; text-align: left; width : 60%; padding: 1%;" >
-    <h1 style="font-size: 30px; color: #8B0942; font-style: bold;" align="center" > Thank you for your RSVP to "<%=@event.name%>" on ThinQ.tv!</h1>
+    <h1 style="font-size: 30px; color: #8B0942; font-style: bold;" align="center" >"<%=@event.name%>" is LIVE in 1 hour on ThinQ.tv!</h1>
     <br>
-    <p><%if @user.nil? %><%else%><%=@user.name%>,<%end%><br>
+    <p> <%if @user.nil? %><%else%><%=@user.name%>,<%end%><br>
       This email is to remind you of your RSVP on <%=@date_body_format%>
       <br><br>
       
-      <%if @event.desc?%>Description:<br><%=@event.desc%><%end%>
-      Please invite your friends and colleagues to participate in your conversation by forwarding this message and encouraging them to RSVP here <a href=<%=@event_url%> target="_blank" style="color: #8B0942; text-decoration-line: none;"><%=@event_url%></a>.<br>
+      <%if @event.desc?%>Event Description:<br><%=@event.desc%><br><br><%end%>
+      Please invite your friends and colleagues to participate in your conversation by forwarding this message and encouraging them to RSVP here <a href=<%=@event_url%> target="_blank" style="color: #8B0942; text-decoration-line: none;"><%=@event_url%></a>.
+      <br><br>
       To be a part of the Conversation, go to <a href="http://ThinQ.tv", target="_blank" style="color: #8B0942; text-decoration-line: none;">ThinQ.tv</a> and click the "Join Conversation" button for the topic on the schedule that you'd like to participate in.  
       Please go to that site in advance to make sure your browser is compatible with your webcam. Recent versions Chrome and Firefox work best. Do not use Safari.<br>
 
-      If you must participate in our Conversation by phone, download the JITSI app in advance and join the THINQTV chatroom.
+      If you must participate in our Conversation by phone, download the JITSI app in advance and join the ThinQ.TV chatroom.
     </p>
     <div class = "img">
       <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
     </div>
-    <p>Participate in other upcoming LIVE online Conversations too! Check out our <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">schedule</a>.</p>
+    <p>Participate in other upcoming LIVE online conversations too! Check out our <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">schedule</a>.</p>
     <br><br>
   </div>  
   
