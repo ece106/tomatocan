@@ -63,7 +63,9 @@ class StaticPagesController < ApplicationController
   end
   def getinvolved
   end
-  def internship
+  def jointheteam
+  end
+  def bystanderguidelines
   end
   def livestream
   end
