@@ -1,12 +1,11 @@
 <div class="container-fluid" >
   <!-- commenting out for testing purposes, PUTBACK-->
-  <% if request.host == "thinqtv.herokuapp.com" %>
+  <%# if request.host == "thinqtv.herokuapp.com" %>
+  <% if request.local? and user_signed_in?%>
 
     <!-- Meta Tags for Facebook sharing -->
     <% content_for :head do %>
-      <!-- commenting out for testing purposes, PUTBACK-->
-      <!-- <meta property="og:url"           content="<%= "https://thinqtv.herokuapp.com" + user_profile_path(@user.permalink) %>" /> -->
-      <meta property="og:url"           content="<%= "https://meet.jit.si/HelloTesting" %>" /> <!--KARL-->
+      <meta property="og:url"           content="<%= "https://thinqtv.herokuapp.com" + user_profile_path(@user.permalink) %>" />
       <meta property="og:type"          content="website" />
       <meta property="og:title"         content="Join <%= @user.permalink %>'s Fellowship Hour" />
       <meta property="og:description"   content="<%= @user.permalink %>'s fellowship is happening right now!" />
@@ -40,9 +39,7 @@
           Invite via social media:
         </div>
 
-        <!-- commenting out for testing purposes, PUTBACK-->
-        <%# domainurl = "https://thinqtv.herokuapp.com/youronlinemom" %>
-        <% domainurl = "https://meet.jit.si/HelloTesting" %> <!--KARL-->
+        <% domainurl = "https://thinqtv.herokuapp.com/youronlinemom" %>
         <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
         <div style="margin-left: 17px">
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
@@ -56,7 +53,7 @@
             <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px; border-radius: 4px" />
           </a>&nbsp
           <a href="https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom"
-            onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom,'
+            onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom',
             'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
             <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:4px;">
           </a><br>
@@ -103,7 +100,9 @@
       <div id="eventCurrentdiv" style="text-align: center;">
         <h3>We're talking about <%= @displayconvo.name %></h3>  
         <p> right NOW!   </p> 
-        <%= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+        <!--COMMENTING FOR TEST PURPOSES, PUT BACK-->
+        <%#= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+        <%= link_to " Join LIVE Fellowship Hour ", root_path + @user.permalink , class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
         <br>
       </div>
     <% else %>

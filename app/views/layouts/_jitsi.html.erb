@@ -3,7 +3,8 @@
 	jQuery(document).ready(function($) {
 		var domain = "meet.jit.si";
 		var options = {
-			roomName: "HelloTesting" //"thinqtv", //<%= @user.permalink %>",
+			<%# HelloTesting room name is temp; change back to thinqtv%>
+			roomName: "HelloTesting", //"thinqtv", //<%= @user.permalink %>",
 			parentNode: document.querySelector('#meet')
 		}
 		var api = new JitsiMeetExternalAPI(domain, options);
