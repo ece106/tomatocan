@@ -1,13 +1,13 @@
-<div class="box" style="background-image: url(/assets/audience.jpg); background-repeat: no-repeat; background-position: center; background-size: cover; height: 400px; ">
+<div class="box" style="background: url( <%= asset_path 'audience.jpg' %>); background-repeat: no-repeat; background-position: center; background-size: cover; height: 400px; ">
 <p style="padding-left: 10px;">
-  INVITE DR. LISA SCHAEFER <br>
-  TO SPEAK : <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link" style="font-size: 30px; color: #ecd7c6;">info@ThinQ.tv</a>
+  LISA SCHAEFER <br> KEYNOTES & NEWS SEGMENTS <br>
+  <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link" style="font-size: 30px; color: #ecd7c6;">info@ThinQ.tv</a>
 </p>      
 </div>
 <div class="row" >
   <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
-    <h3 class="aboutHeader" style="text-align: center; font-size: 48px">
-      Lisa Schaefer: Conversations to Make You ThinQ
+    <h3 class="aboutHeader" style="padding-left: 100px; text-align: center; font-size: 48px">
+       Conversations to Make You ThinQ
     </h3 >
           <div class="col-sm-4" >
             <%= image_tag("lisaSpeaks.jpg", float: "right", width: "90%", height: "290")%>
@@ -104,3 +104,9 @@
     </h4>  
   </div>
 <br><br><br>
+
+<h1> New Invite </h1>
+
+<%= render partial: "invites/form" %>
+
+

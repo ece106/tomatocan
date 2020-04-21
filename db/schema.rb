@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
 
+  create_table "invites", force: :cascade do |t|
+    t.string "firstname", null: false
+    t.string "lastname", null: false
+    t.string "email", null: false
+    t.integer "phone_number"
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "merchandises", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
@@ -224,14 +234,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
-  end
-
-  create_table "widgets", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
