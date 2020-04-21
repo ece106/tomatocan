@@ -65,6 +65,8 @@ class StaticPagesController < ApplicationController
   end
   def jointheteam
   end
+  def drschaeferspeaking
+  end
   def bystanderguidelines
   end
   def livestream
