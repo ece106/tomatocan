@@ -77,6 +77,16 @@
             </div>
         </div>
         <br>
+        <!--BAN BUTTON, BUT DOES NOT YET WORK-->
+        <% if current_user.id == @convo.usrid  %>
+          <div>
+            <%= form_for @user do |f| %>
+              <% options = options_from_collection_for_select(@users, "id", "name") %>
+              <%= f.select :name, options  %>
+              <%= f.submit "Ban User" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -102,7 +112,7 @@
         <p> right NOW!   </p> 
         <!--COMMENTING FOR TEST PURPOSES, PUT BACK-->
         <%#= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
-        <%= link_to " Join LIVE Fellowship Hour ", root_path + @user.permalink , class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+        <%= link_to " Join LIVE Fellowship Hour ", root_path + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
         <br>
       </div>
     <% else %>

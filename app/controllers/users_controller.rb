@@ -28,11 +28,19 @@ class UsersController < ApplicationController
   end
 
   def show
+    @users = User.all #KARL
+
+    pdtnow = Time.now - 7.hours + 5.minutes #KARL
+    currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first #KARL
+    if currconvo.present?
+      @convo     = currconvo #KARL
+    end
+  
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
-    if currconvo.present?
+    if currconvo.present? and 
       @displayconvo = currconvo
     end  
 
