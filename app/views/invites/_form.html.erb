@@ -1,16 +1,4 @@
-<% @invite = Invite.new %>
 
-<% if @errors.present? %>
-  <div class="errors">
-    <ul>
-      <% @errors.each do |error| %>
-
-         <li> <%= error %> </li>
-
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <%= form_for(@invite) do |form| %>
 
@@ -22,6 +10,11 @@
   <div class="form-group">
     <%= form.label :lastname %>
     <%= form.text_field :lastname %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
   </div>
 
   <div class="form-group">
