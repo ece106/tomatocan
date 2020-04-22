@@ -80,10 +80,11 @@
         <!--BAN BUTTON, BUT DOES NOT YET WORK-->
         <% if current_user.id == @convo.usrid  %>
           <div>
-            <%= form_for @user do |f| %>
+            <%= form_for :id do |f| %>
               <% options = options_from_collection_for_select(@users, "id", "name") %>
-              <%= f.select :name, options %>
-              <%= f.submit "Ban User" %>
+              <%= f.select params[:id] , options %>
+              <%#= :host_id => current_user.id %>
+              <%= f.submit "Ban User", :onclick => :ban” %>
             <% end %>
           </div>
         <% end %>

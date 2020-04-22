@@ -240,7 +240,31 @@ class UsersController < ApplicationController
   end
 
 
+  def ban #KARL
+  #   user = User.new(user_params)
+  #   if user.save
+
+
+    # @banned_users = BannedUser.all 
+    @banned_user = BannedUser.new(banned_user_params)
+    @banned_user.user_id = params[:id][0]
+
+    pdtnow = Time.now - 7.hours + 5.minutes #KARL
+    currcon = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first #KARL
+    if currcon.present?
+      @con = currcon
+      @banned_user.host_id = @con.usrid
+    end
+
+    @banned_user.save()
+  end
+
+
   private
+
+  def banned_user_params # KARL
+    params.permit(:user_id, :host_id, id: [])
+  end
 
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password, 
