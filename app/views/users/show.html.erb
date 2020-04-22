@@ -82,7 +82,7 @@
           <div>
             <%= form_for @user do |f| %>
               <% options = options_from_collection_for_select(@users, "id", "name") %>
-              <%= f.select :name, options  %>
+              <%= f.select :name, options %>
               <%= f.submit "Ban User" %>
             <% end %>
           </div>
