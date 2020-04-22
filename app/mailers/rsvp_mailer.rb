@@ -4,6 +4,7 @@ class RsvpMailer < ApplicationMailer
         @event = params[:event]
         @user = params[:user]
         @email = params[:email]
+        @zone = params[:timeZone]
     end
 
     before_action :set_url , only: [:rsvp_reminder]
@@ -24,11 +25,12 @@ class RsvpMailer < ApplicationMailer
         img_path ="app/assets/images/social-share-button"
         img_list = ['email.png','facebook.png','linkedin.png','twitter.png']
         img_list.each {|x| attachments.inline[x] = File.read("#{img_path}/#{x}")}
-        attachments.inline['starIcon.png'] = File.read("app/assets/images/starIcon.png")
+        attachments.inline['logoDigitalHollow300.png'] = File.read("app/assets/images/logoDigitalHollow300.png")
     end
 
     def set_url
         @event_url = event_url(host:'ThinQ.tv', id: @event.id)
+        @user_link = "https://thinqtv.herokuapp.com/" + User.find(@event.usrid).permalink
     end
 
     def format_date
