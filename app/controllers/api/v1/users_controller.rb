@@ -15,7 +15,7 @@ class Api::V1::UsersController < Api::V1::BaseApiController
 
     private
     def user_params
-        params.require(:user).permit(:permalink, :name, :email, :password, 
+        params.permit(:permalink, :name, :email, :password, 
                                      :about, :author, :password_confirmation, :genre1, :genre2, :genre3, 
                                      :twitter, :title, :profilepic, :profilepicurl, :remember_me, 
                                      :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
