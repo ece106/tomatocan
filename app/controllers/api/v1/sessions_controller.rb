@@ -7,7 +7,7 @@ class Api::V1::SessionsController < Api::V1::BaseApiController
         if resource.valid_password?(params[:user][:password]) || Devise.secure_compare(resource.authentication_token, params[:user][:token])
             sign_in resource, store: false
             renew_authentication_token(resource)
-            render :json=> {:success=>true, :name=> resource.name, :token=>resource.authentication_token, :permalink=>resource.permalink, :last_sign_in=>resource.last_sign_in_at, :current_sign_in=>resource.current_sign_in_at}
+            render :json=> {:success=>true, :name=> resource.name, :token=>resource.authentication_token, :permalink=>resource.permalink, :email=>resource.email, :last_sign_in=>resource.last_sign_in_at, :current_sign_in=>resource.current_sign_in_at}
             return
         end
         invalid_login_attempt

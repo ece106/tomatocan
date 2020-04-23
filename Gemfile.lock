@@ -1362,10 +1362,6 @@ GEM
       multi_json (~> 1.10)
     simple_calendar (2.3.0)
       rails (>= 3.0)
-    simple_token_authentication (1.17.0)
-      actionmailer (>= 3.2.6, < 7)
-      actionpack (>= 3.2.6, < 7)
-      devise (>= 3.2, < 6)
     simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -1450,7 +1446,6 @@ DEPENDENCIES
   sass-rails (~> 5.0.7)
   selenium-webdriver
   simple_calendar
-  simple_token_authentication
   simplecov
   simplecov-lcov
   stripe

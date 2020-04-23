@@ -6,7 +6,7 @@ class Api::V1::RegistrationsController < Api::V1::BaseApiController
         end
         user = User.new(user_params)
         if user.save
-            render :json=> {:success=>true, :name=>user.name, :token=>user.authentication_token, :permalink=>user.permalink}, :status=>201
+            render :json=> {:success=>true, :name=>user.name, :token=>user.authentication_token, :permalink=>user.permalink}, :email=>user.email, :status=>201
             return
         else
             warden.custom_failure!
