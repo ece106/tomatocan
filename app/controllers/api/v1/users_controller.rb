@@ -6,7 +6,7 @@ class Api::V1::UsersController < Api::V1::BaseApiController
         elsif current_user.name == params[:id]
             if current_user.update_attributes(user_params)
                 prof = params[:profilepic].presence
-                if prof:
+                if prof
                     current_user.profilepic = params[:profilepic]
                     current_user.save
                 end
