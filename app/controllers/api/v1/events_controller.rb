@@ -1,4 +1,12 @@
-class Api::V1::EventsController < Api::V1::BaseApiController    
+class Api::V1::EventsController < Api::V1::BaseApiController
+
+    def index
+        pdtnow = Time.now - 7.hours
+        @events = Event.where( "end_at > ?", pdtnow)
+
+        render json: @events
+    end
+
     def create
         @event = current_user.events.build(event_params)
         @event.update_attribute(:user_id, params["event"]["usrid"])
