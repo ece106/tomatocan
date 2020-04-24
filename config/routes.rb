@@ -78,6 +78,10 @@ Rails.application.routes.draw do
   match '/:permalink/controlpanel'   => "users#controlpanel",   :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard'      => "users#dashboard",      :as => :user_dashboard, via: 'get'
 
+  match '/:permalink'                => "users#ban",     :as => :ban, via: 'post' #NEW
+  match '/:permalink'                => "users#unban",     :as => :unban, via: 'delete' #NEW
+
+
   match '/:permalink/timeslots' => "users#timeslots", :as => :user_timeslots, via: 'get'
 
   post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user

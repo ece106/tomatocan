@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
+  before_action :gohome, only: [:show] # NEW
+  # after_action :refresh, only: [:ban] # NEW - DOESN'T WORK
 
   #before_action :correct_user, only: [:dashboard, :user_id] 
   #before_action :correct_user, only: [:controlpanel] 
@@ -28,11 +30,19 @@ class UsersController < ApplicationController
   end
 
   def show
+    @users = User.all #NEW
+
+    pdtnow = Time.now - 7.hours + 5.minutes #NEW
+    currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first #NEW
+    if currconvo.present?
+      @convo     = currconvo #NEW
+    end
+  
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
-    if currconvo.present?
+    if currconvo.present? and 
       @displayconvo = currconvo
     end  
 
@@ -232,7 +242,78 @@ class UsersController < ApplicationController
   end
 
 
+  def ban #NEW
+    @banned_user = BannedUser.new(banned_user_params)
+    @banned_user.user_id = params[:id][0]
+
+    pdtnow = Time.now - 7.hours + 5.minutes 
+    currcon = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first 
+    if currcon.present?
+      @con = currcon
+      @banned_user.host_id = @con.usrid
+    end
+
+    if @banned_user.host_id != @banned_user.user_id
+      @banned_user.save()
+    end
+  end
+
+  def unban #NEW
+    @user_to_unban = BannedUser.new(banned_user_params)
+    @user_to_unban.user_id = params[:id][0]
+
+    pdtnow = Time.now - 7.hours + 5.minutes 
+    currcon = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first 
+    if currcon.present?
+      @con = currcon
+      @user_to_unban.host_id = @con.usrid
+    end
+
+    if @user_to_unban.host_id != @user_to_unban.user_id
+      BannedUser.where(:user_id => @user_to_unban.user_id).where(:host_id => @user_to_unban.host_id).delete_all
+    end
+  end
+
+  def gohome #NEW
+    if current_user != nil
+      if banned?(current_user)
+        flash[:error] = "You are banned from this conversation."
+        redirect_to root_path, id: current_user.id
+      end
+    end
+  end
+
+  def banned?(current_user) # NEW
+    pdtnow = Time.now - 7.hours + 5.minutes 
+    currcon = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first 
+    if currcon.present?
+      user = current_user.id
+      # host = @con.usrid
+      if BannedUser.exists?(['user_id = ?', user])
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
+
+  # def refresh #NEW - DOESN'T WORK
+  #   if current_user != nil
+  #     if banned?(current_user)
+  #       redirect_to 
+  #     end
+  #   end
+  # end
+  
+
+
   private
+
+  def banned_user_params # NEW
+    params.permit(:user_id, :host_id, id: [])
+  end
 
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password, 

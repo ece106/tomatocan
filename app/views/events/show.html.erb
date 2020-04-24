@@ -32,7 +32,9 @@
           <div id="eventCurrentdiv" >
               <h3>We're talking about <%= @displayconvo.name %></h3>  
               <p> right NOW!   </p> 
-              <%= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
+              <!--COMMENTING FOR TESTING, PUT BACK-->
+              <%#= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
+              <%= link_to " Join LIVE Fellowship Hour ", root_path + @user.permalink , class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %> <!--NEW-->
               <br>
           </div>
         <% else %>
@@ -45,7 +47,7 @@
       </div>
     </div>
 
-    <! RSVP & EDIT BUTTONS -->
+    <!-- RSVP & EDIT BUTTONS -->
     <div class="col-md-4" style="padding: 10px 5px 10px 10px;">
       <% @title="ThinQ.tv" %>
         <div style="margin-top:0px; text-align:right">
@@ -76,7 +78,6 @@
             <% end %>
           <% end %>
 
-          
           <% if @rsvpusers.count > 0 %>
             <br><br><br><br><br><br><br><br>
             <b>Who will be there:</b><br>
