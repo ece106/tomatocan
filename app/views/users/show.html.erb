@@ -77,7 +77,6 @@
         <br>
       </div>
     </div>
-<<<<<<< HEAD
 
   <% else %>
   
@@ -91,20 +90,6 @@
         <meta property="og:image"       content=" <%= @user.profilepic.url.to_s %>" />
       <% else %>
         <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
-=======
-    
-    <% else %>
-      <% content_for :head do %>
-        <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(@user.permalink) %>" />
-        <meta property="og:type"          content="website" />
-        <meta property="og:title"         content="Boiling Reef User <%= @user.permalink %>" />
-        <meta property="og:description"   content="Boiling reef <%= @user.permalink %> connected now and genre 1 is <%= @user.genre1 %> and genre 2 is <%= @user.genre2 %> and genre 3 is <%= @user.genre3 %>" />
-        <% if @user.profilepic.present? %>
-          <meta property="og:image"       content="https://boiling-reef-18462.herokuapp.com<%= @user.profilepic.url.to_s %>" />
-        <% else %>
-          <meta property="og:image"       content="http://www.thinq.tv/assets/logoDigitalHollow300-cc7f592db0da99605a2e7a2a7faefa4d1f659b0c563880a34173ec43ba2fe62d.png" />
-        <% end %>
->>>>>>> f9663f7b5bc1bd20e099e7b67f890d662a933cdc
       <% end %>
       <%= render 'layouts/authorform' %>
       
