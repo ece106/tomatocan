@@ -22,7 +22,9 @@
       <table align="center">
         <td align="center">
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 18px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href=<%=@user_link%> target="_blank">
+            href=<%=@user_link%> 
+            target="_blank"
+            rel="noopener noreferrer">
             🎥Join Fellowship Hour
           </a>
         </td>
@@ -33,24 +35,28 @@
         <td align="center">
           <!-- Facebook share -->
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href="https://www.facebook.com/share.php?u=<%=@event_url%>&quote=<%=URI::encode(@share_message)%>"
-            target="_blank">
+            href="https://www.facebook.com/share.php?u=<%=@share_url%>&quote=<%=URI::encode(@share_message)%>"
+            target="_blank"
+            rel="noopener noreferrer">
             <%= image_tag attachments['facebook.png'].url %> Facebook
           </a>
           <!-- Twitter share -->
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href="https://twitter.com/intent/tweet?url=<%=@event_url%>&text=<%=URI::encode(@share_message)%>"
-            target="_blank">
+            href="https://twitter.com/intent/tweet?url=<%=@share_url%>&text=<%=URI::encode(@share_message)%>"
+            target="_blank"
+            rel="noopener noreferrer">
             <%= image_tag attachments['twitter.png'].url %> Twitter
           </a>
           <!-- Linkedin share -->
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href="https://linkedin.com/shareArticle?mini=true&url=<%=@event_url%>" target="_blank">
+            href="https://linkedin.com/shareArticle?mini=true&url=<%=@share_url%>" 
+            target="_blank"
+            rel="noopener noreferrer">
             <%= image_tag attachments['linkedin.png'].url %> Linkedin
           </a>
           <!-- Email share -->
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href="mailto:?subject=<%=URI::encode(@share_email_subject)%>&body=<%=URI::encode(@share_message + "\n" + @event_url)%>"
+            href="mailto:?subject=<%=URI::encode(@share_email_subject)%>&body=<%=URI::encode(@share_email_content)%>"
             target="_blank">
             <%= image_tag attachments['email.png'].url %> Email
           </a>

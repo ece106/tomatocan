@@ -37,9 +37,12 @@ class RsvpMailer < ApplicationMailer
         @start_date = Time.parse(@event.start_at.to_s)
         @date_subject_format = @start_date.strftime('%m/%d/%Y')
         @date_body_format = @start_date.strftime('%m/%d/%Y at ')
-        @share_message = "Join us at ThinQ.tv and participate in thought-provoking video conversations about books, current events, and trivia games!"
-        @share_email_subject = "Join me at ThinQ.tv"
         @event_owner = User.find(@event.usrid).name
+        @share_url = URI::encode("http://thinq.tv")
+        @share_message = "Join us at ThinQ.tv and participate in thought-provoking video conversations about books, current events, and trivia games."
+        @share_email_subject = "Join me in a conversation"
+        @share_email_content = %{Hey!\nJoin me at https://ThinQ.tv today at #{@zone.to_s}. #{@event_owner} is hosting a live video conversation titled #{@event.name} and I would be glad to have you there.
+         Here's a brief description: #{@event.desc.truncate_words(10)}}
     end
 
 end
