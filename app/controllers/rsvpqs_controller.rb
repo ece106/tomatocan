@@ -21,9 +21,9 @@ class RsvpqsController < ApplicationController
       @reminder_date = @event.start_at + offset.hours - 1.hours
       @email = params[:rsvpq][:email]
       if current_user
-        RsvpMailer.with(user: current_user, event: @event, timeZone: params[:timeZone]).rsvp_reminder.deliver_now #later(wait_until: @reminder_date)
+        RsvpMailer.with(user: current_user, event: @event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: @reminder_date)
       else
-        RsvpMailer.with(email: @email, event: @event, timeZone: params[:timeZone]).rsvp_reminder.deliver_now #later(wait_until: @reminder_date)
+        RsvpMailer.with(email: @email, event: @event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: @reminder_date)
       end
       redirect_to home_path
     else

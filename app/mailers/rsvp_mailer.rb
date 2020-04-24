@@ -8,14 +8,14 @@ class RsvpMailer < ApplicationMailer
     end
 
     before_action :set_url , only: [:rsvp_reminder]
-    before_action :format_date, only: [:rsvp_reminder]
+    before_action :format_content, only: [:rsvp_reminder]
 
     def rsvp_reminder
         inline_images
         if @user.nil?
             mail(to: @email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
         else
-            mail(to: @user.email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
+            mail(to: @user.email, subjct: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
         end
     end
 
@@ -33,10 +33,14 @@ class RsvpMailer < ApplicationMailer
         @user_link = "https://thinqtv.herokuapp.com/" + User.find(@event.usrid).permalink
     end
 
-    def format_date
+    def format_content
         @start_date = Time.parse(@event.start_at.to_s)
         @date_subject_format = @start_date.strftime('%m/%d/%Y')
-        @date_body_format = @start_date.strftime('%m/%d/%Y at %I:%M %p')
+        @date_body_format = @start_date.strftime('%m/%d/%Y at ')
+        @share_message = "Join us at ThinQ.tv and participate in thought-provoking video conversations about books, current events, and trivia games!"
+        @share_email_subject = "Join me at ThinQ.tv"
+        @event_owner = User.find(@event.usrid).name
     end
+
 end
   

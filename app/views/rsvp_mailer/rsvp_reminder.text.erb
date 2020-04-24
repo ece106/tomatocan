@@ -1,6 +1,7 @@
 Hello<%if @user.nil? %>,<%else%> <%=@user.name%>,<%end%>
-This is a reminder about your event, <%=@event.name %>.
-You made this event for this date <%=@date_body_format%>
-Please invite your friends
+This is a reminder about <%=@event.name %>.
+This conversation is happening on <%=@date_body_format%><%=@zone%>.
+Please feel free to invite your friends to participate in this
+thought-provoking conversation at ThinQ.tv.
 Sincerely,
 ThinQ.tv
