@@ -1,5 +1,7 @@
 <div class="container-fluid" >
-  <% if request.host == "thinqtv.herokuapp.com" %>
+  <!-- commenting out for testing purposes, PUTBACK-->
+  <%# if request.host == "thinqtv.herokuapp.com" %>
+  <% if request.local? and user_signed_in? and @convo != nil%>
 
     <!-- Meta Tags for Facebook sharing -->
     <% content_for :head do %>
@@ -51,7 +53,7 @@
             <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px; border-radius: 4px" />
           </a>&nbsp
           <a href="https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom"
-            onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom,'
+            onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom',
             'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
             <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:4px;">
           </a><br>
@@ -75,6 +77,23 @@
             </div>
         </div>
         <br>
+        <!--BAN BUTTON, BUT DOES NOT YET WORK-->
+        <% if current_user.id == @convo.usrid  %>
+          <div>
+            <%= form_for :id do |f| %>
+              <% options = options_from_collection_for_select(@users, "id", "name") %>
+              <%= f.select params[:id] , options %>
+              <%= f.submit "Ban User", :onclick => :ban” %>
+            <% end %>
+          </div>
+          <div>
+            <%= form_for :id, :html => { :method => :delete } do |f| %>
+              <% options = options_from_collection_for_select(@users, "id", "name") %>
+              <%= f.select params[:id] , options %>
+              <%= f.submit "Unban User", :onclick => :unban” %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -98,7 +117,9 @@
       <div id="eventCurrentdiv" style="text-align: center;">
         <h3>We're talking about <%= @displayconvo.name %></h3>  
         <p> right NOW!   </p> 
-        <%= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+        <!--COMMENTING FOR TEST PURPOSES, PUT BACK-->
+        <%#= link_to " Join LIVE Fellowship Hour ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+        <%= link_to " Join LIVE Fellowship Hour ", root_path + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
         <br>
       </div>
     <% else %>

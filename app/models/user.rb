@@ -55,7 +55,8 @@ class User < ApplicationRecord
 
   before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
-
+  
+  
   # Helper methods for Relationships
 
   # Follow a user
