@@ -74,9 +74,11 @@
 
           <!-- Facebook Login Button -->
           <div style="text-align:center">
-            <div id="fb-root"></div>
-            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=329188258042368&autoLogAppEvents=1"></script>
-            <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+            <% unless current_user %>
+              <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path %>
+            <% else %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <% end %>
           </div>
         <% end %>
       </div>
