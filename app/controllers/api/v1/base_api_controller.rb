@@ -1,6 +1,6 @@
 class Api::V1::BaseApiController < ActionController::API
     before_action :authenticate_user_from_token!
-    respond_to :json
+    respond_to :json, :multipart_form
     def renew_authentication_token(resource)
         loop do
             token = Devise.friendly_token

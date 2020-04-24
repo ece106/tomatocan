@@ -1,6 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseApiController
     def update
-        respond_to :json, :multipart_form
         if current_user.nil?
             render :json=> {:success=>false}, :status=>401
             return
