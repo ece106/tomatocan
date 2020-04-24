@@ -83,7 +83,6 @@
             <%= form_for :id do |f| %>
               <% options = options_from_collection_for_select(@users, "id", "name") %>
               <%= f.select params[:id] , options %>
-              <%#= :host_id => current_user.id %>
               <%= f.submit "Ban User", :onclick => :ban” %>
             <% end %>
           </div>

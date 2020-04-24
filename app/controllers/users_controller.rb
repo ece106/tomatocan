@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
+  before_action :gohome, only: [:show] # KARL
 
   #before_action :correct_user, only: [:dashboard, :user_id] 
   #before_action :correct_user, only: [:controlpanel] 
@@ -28,12 +29,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @users = User.all #KARL
+    @users = User.all #NEW
 
-    pdtnow = Time.now - 7.hours + 5.minutes #KARL
-    currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first #KARL
+    pdtnow = Time.now - 7.hours + 5.minutes #NEW
+    currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first #NEW
     if currconvo.present?
-      @convo     = currconvo #KARL
+      @convo     = currconvo #NEW
     end
   
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
@@ -240,24 +241,30 @@ class UsersController < ApplicationController
   end
 
 
-  def ban #KARL
-  #   user = User.new(user_params)
-  #   if user.save
-
-
-    # @banned_users = BannedUser.all 
+  def ban #NEW
     @banned_user = BannedUser.new(banned_user_params)
     @banned_user.user_id = params[:id][0]
 
-    pdtnow = Time.now - 7.hours + 5.minutes #KARL
-    currcon = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first #KARL
+    pdtnow = Time.now - 7.hours + 5.minutes 
+    currcon = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first 
     if currcon.present?
       @con = currcon
       @banned_user.host_id = @con.usrid
     end
-
-    @banned_user.save()
+    if @banned_user.host_id != @banned_user.user_id
+      @banned_user.save()
+    end
   end
+
+  def gohome #KARL
+    if current_user != nil
+      if current_user.banned?(current_user)
+        flash[:error] = "You are banned from this conversation."
+        redirect_to root_path
+      end
+    end
+  end
+  
 
 
   private
