@@ -1,7 +1,7 @@
 <div class="container-fluid" >
   <!-- commenting out for testing purposes, PUTBACK-->
   <%# if request.host == "thinqtv.herokuapp.com" %>
-  <% if request.local? and user_signed_in?%>
+  <% if request.local? and user_signed_in? and @convo != nil%>
 
     <!-- Meta Tags for Facebook sharing -->
     <% content_for :head do %>
@@ -84,6 +84,13 @@
               <% options = options_from_collection_for_select(@users, "id", "name") %>
               <%= f.select params[:id] , options %>
               <%= f.submit "Ban User", :onclick => :ban” %>
+            <% end %>
+          </div>
+          <div>
+            <%= form_for :id, :html => { :method => :delete } do |f| %>
+              <% options = options_from_collection_for_select(@users, "id", "name") %>
+              <%= f.select params[:id] , options %>
+              <%= f.submit "Unban User", :onclick => :unban” %>
             <% end %>
           </div>
         <% end %>

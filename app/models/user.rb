@@ -55,23 +55,8 @@ class User < ApplicationRecord
 
   before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
-
-  def banned?(current_user) # NEW
-    pdtnow = Time.now - 7.hours + 5.minutes 
-    currcon = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow).first 
-    if currcon.present?
-      user = current_user.id
-      # host = @con.usrid
-      if BannedUser.exists?(['user_id = ?', user])
-        return true
-      else
-        return false
-      end
-    else
-      return false
-    end
-  end
-
+  
+  
   # Helper methods for Relationships
 
   # Follow a user
