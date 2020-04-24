@@ -5,12 +5,7 @@ class Api::V1::UsersController < Api::V1::BaseApiController
             return
         elsif current_user.name == params[:id]
             if current_user.update_attributes(user_params)
-                prof = params[:profilepic].presence
-                if prof
-                    current_user.profilepic = params[:profilepic]
-                    current_user.save
-                end
-                render :json=> {:success=>true, :token=>current_user.authentication_token}
+                render :json=> {:success=>true, :token=>current_user.authentication_token, :pic=>current_user.profilepic}
                 return
             else
                 render :json=> {:success=>false, :errors=>get_errors}, :status=>422
