@@ -56,8 +56,14 @@
                       </ul>
                     </div>
                   <% end %>
-              
+                  <input type="hidden" id="timeZone<%=i%>" name="timeZone">
                   <%= f.hidden_field :event_id, :value => event.id %>
+                  <script>
+                    var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"))
+                    date.setHours(date.getHours() + parseInt("<%=offset%>"))
+                    var optionsTime = { hour: '2-digit', minute: '2-digit'};
+                    document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)
+                  </script>
                   <% if user_signed_in? %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit" %>

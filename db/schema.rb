@@ -226,12 +226,4 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
-  create_table "widgets", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
