@@ -66,6 +66,7 @@ class StaticPagesController < ApplicationController
   def jointheteam
   end
   def drschaeferspeaking
+    @message = Message.new
   end
   def bystanderguidelines
   end
