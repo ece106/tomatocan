@@ -71,6 +71,8 @@ class StaticPagesController < ApplicationController
   end
   def livestream
   end
+  def vieweronhost
+  end
   def parents
   end
 
