@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
   has_many :merchandises 
-  has_many :timeslots, dependent: :destroy
 
   # Active Relationships (A user following a user)
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id" #, dependent: :destroy (if a user is deleted, delete the relationship)

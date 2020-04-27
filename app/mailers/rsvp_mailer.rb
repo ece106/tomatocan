@@ -41,7 +41,7 @@ class RsvpMailer < ApplicationMailer
         @event_owner = User.find(@event.usrid).name
         @share_message = %W{
                                 #{@event_owner} is hosting a video conversation today at #{@time}. Come join us for a fun, thought
-                                provoking video call.
+                                provoking video conversation.
                             }.join(' ')
         @share_email_subject = "Invitation to Participate"
         @share_email_content = %W{
