@@ -4,5 +4,4 @@ class RsvpMailerPreview < ActionMailer::Preview
         @event = Event.find(1) # input event number
         RsvpMailer.with(user: User.first, event: @event).rsvp_reminder
     end
-  end
-  
+end

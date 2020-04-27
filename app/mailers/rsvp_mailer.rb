@@ -4,7 +4,7 @@ class RsvpMailer < ApplicationMailer
         @event = params[:event]
         @user = params[:user]
         @email = params[:email]
-        @zone = params[:timeZone]
+        @time = params[:timeZone]
     end
 
     before_action :set_url , only: [:rsvp_reminder]
@@ -15,7 +15,7 @@ class RsvpMailer < ApplicationMailer
         if @user.nil?
             mail(to: @email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
         else
-            mail(to: @user.email, subjct: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
+            mail(to: @user.email, subject: "A reminder for your ThinQ.tv Conversation on #{@date_subject_format}")
         end
     end
 
@@ -30,7 +30,8 @@ class RsvpMailer < ApplicationMailer
 
     def set_url
         @event_url = event_url(host:'ThinQ.tv', id: @event.id)
-        @user_link = "https://thinqtv.herokuapp.com/" + User.find(@event.usrid).permalink
+        @user_url = "https://thinqtv.herokuapp.com/" + User.find(@event.usrid).permalink
+        @share_url = "http://thinq.tv"
     end
 
     def format_content
@@ -38,11 +39,18 @@ class RsvpMailer < ApplicationMailer
         @date_subject_format = @start_date.strftime('%m/%d/%Y')
         @date_body_format = @start_date.strftime('%m/%d/%Y at ')
         @event_owner = User.find(@event.usrid).name
-        @share_url = URI::encode("http://thinq.tv")
-        @share_message = "Join us at ThinQ.tv and participate in thought-provoking video conversations about books, current events, and trivia games."
-        @share_email_subject = "Join me in a conversation"
-        @share_email_content = %{Hey!\nJoin me at https://ThinQ.tv today at #{@zone.to_s}. #{@event_owner} is hosting a live video conversation titled #{@event.name} and I would be glad to have you there.
-         Here's a brief description: #{@event.desc.truncate_words(10)}}
+        @share_message = %W{
+                                #{@event_owner} is hosting a video conversation today at #{@time}. Come join us for a fun, thought
+                                provoking video call.
+                            }.join(' ')
+        @share_email_subject = "Invitation to Participate"
+        @share_email_content = %W{
+                                Hey!\nJoin me at #{@user_url} today at #{@time}. #{@event_owner} is hosting a 
+                                live video conversation titled "#{@event.name}" and I would be glad to have you participate.
+                                
+                                Here's a brief description of what it's about:\n #{@event.desc.truncate_words(15)}\n
+                                Thank you.
+                            }.join(' ')
     end
 
 end
