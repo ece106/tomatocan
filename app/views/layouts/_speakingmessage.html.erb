@@ -1,0 +1,32 @@
+<%= form_for(@message) do |form| %>
+  <div class="row" style="padding-left: 0px; padding-right: 0px;">
+      <div class="col-lg-6 col-md-6">
+        <div class="form-group">
+            <%= form.label :fullname %>
+            <%= form.text_field :fullname, class: "form-control" %>
+        </div>       
+      </div>
+       <div class="col-lg-6 col-md-6">
+        <div class="form-group">
+            <%= form.label :phone_number %>
+            <%= form.text_field :phone_number, class: "form-control" %>
+        </div>        
+        
+      </div>
+  </div>  
+  <div class="form-group">
+    <%= form.label :email_Address %>
+    <%= form.text_field :email , class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :message%>
+    <%= form.text_area :message, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Send Message' %>
+  </div>
+<% end %>

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :rsvpqs
   resources :purchases
   resources :events
+  resources :messages
 
   devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations: "users/registrations", passwords: "users/passwords"}
   as :user do

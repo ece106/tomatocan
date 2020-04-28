@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["slug"], name: "index_groups_on_slug", unique: true
   end
 
+  create_table "invites", force: :cascade do |t|
+    t.string "firstname", null: false
+    t.string "lastname", null: false
+    t.string "email", null: false
+    t.integer "phone_number"
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "merchandises", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
@@ -119,6 +129,16 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "merchpdf"
     t.datetime "expiration"
     t.string "buttontype"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "fullname", null: false
+    t.string "email", null: false
+    t.integer "phone_number"
+    t.string "subject", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "purchases", id: :serial, force: :cascade do |t|
