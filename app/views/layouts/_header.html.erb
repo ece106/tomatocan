@@ -16,16 +16,14 @@
 			<ul class="nav navbar-nav">
 				<% if request.host == "thinqtv.herokuapp.com" %> 
 					<li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', title: "Invite friends to join thought-provoking Conversations on ThinQ.tv", target: "_blank" %></li> <!-- ..use absolute routing in navbar.-->
-					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/fellowship', title: "Become a Conversation Host!", target: "_blank" %></li>
+					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/getinvolved', title: "Become a Conversation Host!", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Have us on your Podcast", 'http://www.ThinQ.tv/drschaeferspeaking', title: "Or news segment", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Join the Team", 'http://www.ThinQ.tv/jointheteam', title: "Work with us", target: "_blank" %></li>
-					<li class="nav-item"><%= link_to "About ThinQ", 'http://www.ThinQ.tv/aboutus', title: "Our first rough draft", target: "_blank" %></li>
 
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", root_path, title: "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li>
-					<li class="nav-item"><%= link_to "Get Involved!", fellowship_path, title: "Become a Conversation Host!" %></li>
+					<li class="nav-item"><%= link_to "Get Involved!", getinvolved_path, title: "Become a Conversation Host!" %></li>
 					<li class="nav-item"><%= link_to "Have us on your Podcast", drschaeferspeaking_path, title: "Or news segment" %></li>
-					<li class="nav-item"><%= link_to "About ThinQ", aboutus_path, title: "Our first rough draft" %></li>
 					<li class="nav-item"><%= link_to "Join the Team", jointheteam_path, title: "Work with us" %></li>
 					<li class="nav-item"><%= link_to "FOR SENIOR CITZENS", seniorliving_path, title: "Keep grandparents from feeling isolated" %></li>
 				<% end %>
