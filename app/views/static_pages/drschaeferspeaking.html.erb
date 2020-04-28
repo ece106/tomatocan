@@ -46,7 +46,7 @@
   </div>
 </div>
 <div class="container">
-<div class="row " >
+<div class="row">
           <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; ">
             <%= image_tag("ignite.png",  class:'img-responsive', width: "200")%>
           </div>
@@ -98,21 +98,16 @@
           </div>
 </div><br><br>
 </div>
-<br><br>
+<br>
   <div class="col-lg-7 col-lg-offset-1 col-md-8 col-md-offset-1 col-xs-12 ">
-    <h4 style="text-align: center"> 
+    <h4 style="text-align: center "> 
       And many other universities and technical organizations
     </h4>  
   </div>
 <br><br><br>
-
-<!-- <h3 class="speaking" style="font-size: 32px;">
-    <span>Message for Dr. LISA SCHAEFER</span>
-</h3 > -->
-<!-- <h1 style="text-align: center;"> New Message for Dr. LISA SCHAEFER </h1> -->
 <div class="container" style=" margin-left: 10px; margin-right: 10px; max-width: 920px; margin: auto;">
 <p style=" padding-top: 10px;color : #8C1D40; margin-bottom: 0px;font-size: 32px; font-family: essonnes-headline, Georgia, serif;  ">Invite Dr. Schaefer to Speak </p>
 <hr class="one" style="margin-top: 0px; ">
 <%=render 'layouts/flash_messages'%>
-<%= render partial: "layouts/form" %>
+<%= render partial: "layouts/speakingmessage" %>
 </div>
