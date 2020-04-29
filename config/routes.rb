@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   match 'jointheteam',    to: 'static_pages#jointheteam', via: 'get'
   match 'bystanderguidelines',    to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',     to: 'static_pages#drschaeferspeaking', via: 'get'
+  match 'harassment',     to: 'static_pages#harassment', via: 'get'
   match 'fellowship',     to: 'static_pages#fellowship', via: 'get'
   match 'seniorliving',   to: 'static_pages#seniorliving', via: 'get'
   
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   resources :rsvpqs
   resources :purchases
   resources :events
+  resources :messages
 
   devise_for :users, :skip => [:sessions, :passwords], :controllers => {registrations: "users/registrations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"} 
   as :user do
