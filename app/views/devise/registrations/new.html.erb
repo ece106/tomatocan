@@ -33,6 +33,15 @@
           <small>By clicking 'Sign Up,' you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
           <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
         <% end %>
+
+        <!-- app/views/pages/home.html.erb -->
+
+        <% unless current_user %>
+          <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+        <% else %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <% end %>
+        
       </div>
     </div>
     

@@ -12,4 +12,6 @@ Devise.setup do |config|
    config.password_length = 8..128
    config.reset_password_within = 6.hours
    config.sign_out_via = :delete
+   config.omniauth_path_prefix = "/users/auth"
+   config.omniauth :facebook, "229746418286819", "d63aa7173d1fd68a75c32801b72f163d", callback_url: "http://localhost:3000/users/auth/facebook/callback"
 end

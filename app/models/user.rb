@@ -23,7 +23,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable #, :validatable #:confirmable 
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]#:confirmable 
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 
@@ -123,8 +124,8 @@ class User < ApplicationRecord
       monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
         AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
 
-# monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
-# Don't know why this line doesn't work
+      # monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
+      # Don't know why this line doesn't work
 
       monthperksales = monthsales.where('merchandise_id IS NOT NULL')
       #perkearnings = monthperksales.sum(:authorcut)
@@ -154,7 +155,26 @@ class User < ApplicationRecord
             fulfillstat: sale.fulfillstatus, egoods: "" } 
       end
       # Place Campaigns supported on dashboard later
-  end  
+  end
+  
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.permalink = auth.info.name.delete(' ')
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name   # assuming the user model has a name
+      user.image = auth.info.image # assuming the user model has an image
+    end
+  end
 
   private
     def assign_defaults_on_new_user 
