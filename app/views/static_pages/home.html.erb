@@ -20,7 +20,7 @@
 >>>>>>> bc2b08d1601ccbd4987827af7ef4a7dc8ee6c47f
         <div style="display:inline;" > <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%></div>
         <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
-          <br><%= link_to "Video Chat for Social People with Curious Minds", fellowship_path, class: "topic_link", title: "Like a cocktail party on Zoom" %>
+          <br><%= link_to "Video Chat for People who are Well-Informed", getinvolved_path, class: "topic_link", title: "Like a cocktail party on Zoom" %>
         </div>
             
         <% if @displayconvo.present? %>
@@ -29,7 +29,7 @@
               <h3>Conversation <%= link_to @name, event_path(@displayconvo.id), title: @description, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> is happening right NOW!</p><br>
               <%= link_to " Join Conversation ", "https://thinQtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %><br>
-              Hosted by: <%= link_to @host.name, @host.permalink %>
+              Hosted by: <%= link_to @host.name, @host.permalink, style: "font-size: 40px; text-shadow: 1px 1px 1px #fff" %>
             </div>
           <% else %>
             <h2 id="buttonTitle">
