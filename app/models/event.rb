@@ -24,6 +24,8 @@ class Event < ApplicationRecord
 
   time = Proc.new { |r| r.start_at.to_f + 3.hours.to_f }
 
+  validates_numericality_of :end_at, less_than: ->(t) { (t.start_at.to_f + 3.hours.to_f) }, allow_blank: true, message: " time can't be more than 3 hours after Conversation start time"
+
   validate :endat_greaterthan_startat
   def endat_greaterthan_startat
     if end_at.present? && end_at < start_at
@@ -38,10 +40,5 @@ class Event < ApplicationRecord
       hash["username"] = @user.name
     end
   end
-
-#  validates_numericality_of :end_at, less_than: ->(t) { t.start_at + 3.hours }, allow_blank: true, message: " date can't be more than 3 hours after Event start time"
-
-#  geocoded_by :address
-#  after_validation :geocode, if: :address_changed? # don't do this until geocoder gem improves
 
 end

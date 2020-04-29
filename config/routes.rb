@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :timeslots
   resources :relationships
 
   resources :users do
@@ -26,9 +25,11 @@ Rails.application.routes.draw do
   match 'aboutus',        to: 'static_pages#aboutus', via: 'get'
   match 'suggestedperks', to: 'static_pages#suggestedperks', via: 'get'
   match 'livestream',     to: 'static_pages#livestream', via: 'get'
+  match 'vieweronhost',   to: 'static_pages#vieweronhost', via: 'get'
   match 'jointheteam',    to: 'static_pages#jointheteam', via: 'get'
   match 'bystanderguidelines',    to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',     to: 'static_pages#drschaeferspeaking', via: 'get'
+  match 'harassment',     to: 'static_pages#harassment', via: 'get'
   match 'fellowship',     to: 'static_pages#fellowship', via: 'get'
   match 'seniorliving',   to: 'static_pages#seniorliving', via: 'get'
   
@@ -39,8 +40,13 @@ Rails.application.routes.draw do
   resources :rsvpqs
   resources :purchases
   resources :events
+  resources :messages
 
+<<<<<<< HEAD
   devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations: "users/registrations", passwords: "users/passwords", omniauth_callbacks: "users/omniauth_callbacks" }
+=======
+  devise_for :users, :skip => [:sessions, :passwords], :controllers => {registrations: "users/registrations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"} 
+>>>>>>> bc2b08d1601ccbd4987827af7ef4a7dc8ee6c47f
   as :user do
     get 'login'  => 'devise/sessions#new',    :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
@@ -77,8 +83,6 @@ Rails.application.routes.draw do
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
   match '/:permalink/controlpanel'   => "users#controlpanel",   :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard'      => "users#dashboard",      :as => :user_dashboard, via: 'get'
-
-  match '/:permalink/timeslots' => "users#timeslots", :as => :user_timeslots, via: 'get'
 
   post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user
 

@@ -66,10 +66,13 @@ class StaticPagesController < ApplicationController
   def jointheteam
   end
   def drschaeferspeaking
+    @message = Message.new
   end
   def bystanderguidelines
   end
   def livestream
+  end
+  def vieweronhost
   end
   def parents
   end
