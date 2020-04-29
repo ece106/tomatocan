@@ -5,13 +5,11 @@ gem 'listen'
 gem 'rails-controller-testing'
 
 gem 'pg'
-#gem 'sqlite3'
-
 
 gem 'mandrill'	
 gem 'devise'
 gem 'simple_token_authentication'
-gem 'fog'   #, '1.6.0'
+gem 'fog-aws'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
@@ -27,23 +25,19 @@ gem 'font-awesome-rails'
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
-#gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '6.0.2.2'
 gem 'railties', '6.0.2.2'
 gem  'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
-#gem 'sprockets'
 gem "will_paginate"
-# Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jquery-turbolinks'
 gem 'bcrypt'
 gem 'turbolinks'
 gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
-#gem "paperclip", "~> 2.0"
-#gem 'rmagick'
+
 
 group :test, :development do
   gem 'minitest'
@@ -56,7 +50,6 @@ group :test, :development do
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
-  gem 'rails-controller-testing'
 end
 
 group :production do
