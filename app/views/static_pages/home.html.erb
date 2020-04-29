@@ -72,11 +72,6 @@
       <h4>
         <br>Need to ask us questions LIVE? Drop in to any YourOnlineMom session scheduled above & meet our Founder, Dr. Lisa Schaefer.
       </h4>
-      <% unless current_user %>
-              <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path %>
-            <% else %>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-            <% end %>
     </div>
   </div>
 </div>
