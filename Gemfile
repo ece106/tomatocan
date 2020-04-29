@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby "2.7.0"
 
 gem 'listen'
 gem 'rails-controller-testing'
@@ -29,12 +29,12 @@ gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '5.2.1'
-gem 'railties', '5.2.1'
+gem 'rails', '6.0.2.2'
+gem 'railties', '6.0.2.2'
 gem  'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
-gem "will_paginate", "~> 3.0.6" 
+gem "will_paginate"
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jquery-turbolinks'
@@ -91,5 +91,6 @@ group :test do
 end
 
 group :development do
+    gem 'puma'
     gem 'rails_real_favicon'
 end
