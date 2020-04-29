@@ -1,11 +1,11 @@
-<!-- Set layout of panels for a logged-in user. You do not need to check if user logged in or if user == current user in this view. You should check if host is Heroku though. -->
+Conversation<!-- Set layout of panels for a logged-in user. You do not need to check if user logged in or if user == current user in this view. You should check if host is Heroku though. -->
 
 <!-- Nav tabs -->
 <% if user_signed_in? %>
 <% if current_user.id == @user.id %>
 <ul class="nav nav-pills nav-justified" id="dashboardTabs">
   <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "profile-settings-tab" %></li>
-  <li role="presentation"><%= link_to "Fellowship Hours", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
+  <li role="presentation"><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
   <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
    <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
   <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
@@ -62,11 +62,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
-          <h1>Fellowship Hours</h1>
+          <h1>Conversations</h1>
         </div>
         <div class="fixed-bottom col-md-8" id="shows-button-panel">
-          <%= link_to "Start Your Fellowship Hour Now", "https://thinQtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning', id: "stream-btn" %>
-          <%= link_to 'Set Up Future Fellowship', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
+          <%= link_to "Start Your Conversation Now", "https://thinQtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning', id: "stream-btn" %>
+          <%= link_to 'Set Up Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
         </div>
       </div>
       <br>

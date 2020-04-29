@@ -121,6 +121,16 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "buttontype"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "fullname", null: false
+    t.string "email", null: false
+    t.string "phone_number"
+    t.string "subject", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "purchases", id: :serial, force: :cascade do |t|
     t.integer "author_id"
     t.integer "book_id"
@@ -224,14 +234,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
-  end
-
-  create_table "widgets", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "stock"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

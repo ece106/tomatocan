@@ -3,5 +3,4 @@ class ApplicationMailer < ActionMailer::Base
   default from: '"ThinQ tv" <info@ThinQ.tv>'
   layout 'mailer'
 
-
 end
