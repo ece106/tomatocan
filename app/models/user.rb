@@ -23,7 +23,6 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   devise :database_authenticatable, :registerable,
-<<<<<<< HEAD
          :recoverable, :rememberable, :trackable,
          :validatable, :omniauthable, :omniauth_providers => [:facebook] #:confirmable 
 
@@ -45,10 +44,6 @@ class User < ApplicationRecord
     end
   end
   
-=======
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]#:confirmable 
->>>>>>> bc2b08d1601ccbd4987827af7ef4a7dc8ee6c47f
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 

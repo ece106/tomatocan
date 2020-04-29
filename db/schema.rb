@@ -228,20 +228,22 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "stripesignup"
     t.string "bannerpic"
     t.string "authentication_token", limit: 30
-<<<<<<< HEAD
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 500, default: "", null: false
-=======
-    t.string "provider"
-    t.string "uid"
-    t.text "image"
->>>>>>> bc2b08d1601ccbd4987827af7ef4a7dc8ee6c47f
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
