@@ -22,15 +22,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def facebookLogin
-      user = User.from_omniauth(env["omniauth.auth"])
-      session[:user_id] = user.id
-      put "iran"
-      redirect_to root_url
-    end
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_url
+  end
 
-    def facebookLogout
-      session[:user_id] = nil
-      redirect_to root_url
-    end
+  def facebookLogout
+    session[:user_id] = nil
+    redirect_to root_url
+  end
   
 end
