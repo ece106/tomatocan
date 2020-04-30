@@ -2,14 +2,16 @@ source 'http://rubygems.org'
 ruby "2.7.0"
 
 gem 'listen'
-gem 'rails-controller-testing'
-
 gem 'pg'
 
 gem 'mandrill'	
 gem 'devise'
 gem 'simple_token_authentication'
+<<<<<<< HEAD
 gem 'fog-aws'
+=======
+gem 'fog-aws'   #, '1.6.0'
+>>>>>>> 5104cee454792e2a875cb4835fed3a318a365ac9
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
@@ -30,7 +32,13 @@ gem 'rails', '6.0.2.2'
 gem 'railties', '6.0.2.2'
 gem  'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
+<<<<<<< HEAD
 gem "will_paginate"
+=======
+#gem 'sprockets'
+gem "will_paginate" 
+# Use ActiveModel has_secure_password
+>>>>>>> 5104cee454792e2a875cb4835fed3a318a365ac9
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jquery-turbolinks'
 gem 'bcrypt'
@@ -84,6 +92,10 @@ group :test do
 end
 
 group :development do
+<<<<<<< HEAD
     gem 'puma'
+=======
+  gem 'puma'
+>>>>>>> 5104cee454792e2a875cb4835fed3a318a365ac9
     gem 'rails_real_favicon'
 end
