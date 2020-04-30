@@ -15,10 +15,8 @@ class Api::V1::EventsController < Api::V1::BaseApiController
         @event = current_user.events.build(event_params)
         @event.update_attribute(:user_id, current_user.id)
         @event.update_attribute(:usrid, current_user.id)
-        #@event.start_at = DateTime.strptime(event_params[:start_at], '%Y-%m-%dT%H:%M:%S')
-        @reminder_date = @event.start_at - 2.days
         if @event.save
-            render json: @event, status: :created, location: @event
+            render :json=> {:success=>true, :token=>current_user.authentication_token}
         else
             render json: @event.errors, status: :unprocessable_entity
         end
