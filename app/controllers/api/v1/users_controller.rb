@@ -4,8 +4,10 @@ class Api::V1::UsersController < Api::V1::BaseApiController
             render :json=> {:success=>false}, :status=>401
             return
         elsif current_user.name == params[:id]
-            if current_user.update_attributes(user_params)
-                render :json=> {:success=>true, :token=>current_user.authentication_token, :pic=>current_user.profilepic}
+            if current_user.valid_password?(params[:current_password]) and current_user.update_attributes(user_params)
+                render :json=> {:success=>true, :name=>current_user.name, :token=>current_user.authentication_token, :profpic=>current_user.profilepic,
+              :about=>current_user.about, :genre1=>current_user.genre1, :genre2=>current_user.genre2, :genre3=>current_user.genre3, :bannerpic=>current_user.bannerpic,
+            :email=>current_user.email, :permalink=>current_user.permalink}
                 return
             else
                 render :json=> {:success=>false, :errors=>get_errors}, :status=>422
@@ -27,27 +29,6 @@ class Api::V1::UsersController < Api::V1::BaseApiController
                                      :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
     end
     def get_errors
-        errors = []
-        if current_user.errors.messages[:name].present?
-            errors.push(current_user.errors.messages[:name][0])
-        end
-=begin
-        if current_user.errors.messages[:email].present?
-          msg += ("Email " + @user.errors.messages[:email][0] + "\n")
-        end
-        if current_user.errors.messages[:permalink].present?
-          msg += ("URL handle " + @user.errors.messages[:permalink][0] + "\n")
-        end
-        if current_user.errors.messages[:password_confirmation].present?
-          msg += ( "Passwords do not match \n")
-        end
-        if current_user.errors.messages[:password].present?
-          msg += ("Password " + @user.errors.messages[:password][0] + "\n")
-        end
-        if current_user.errors.messages[:twitter].present?
-          msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
-        end
-=end
-        return errors
+        return current_user.errors.messages
       end
 end

@@ -8,20 +8,50 @@ class Api::V1::EventsController < Api::V1::BaseApiController
     end
 
     def create
+        if current_user.nil?
+            render :json=> {:success=>false}, :status=>401
+            return
+        end
         @event = current_user.events.build(event_params)
-        @event.update_attribute(:user_id, params["event"]["usrid"])
-        user = User.find(@event.usrid)
+        @event.update_attribute(:user_id, current_user.id)
+        @event.update_attribute(:usrid, current_user.id)
+        #@event.start_at = DateTime.strptime(event_params[:start_at], '%Y-%m-%dT%H:%M:%S')
         @reminder_date = @event.start_at - 2.days
-        respond_to do |format|
-            if @event.save
-                EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
-                render json: @event, status: :created, location: @event
-            else
-                render json: @event.errors, status: :unprocessable_entity
-            end
+        if @event.save
+            render json: @event, status: :created, location: @event
+        else
+            render json: @event.errors, status: :unprocessable_entity
         end
     end
 
+    def destroy
+        if current_user.nil?
+            render :json=> {:success=>false}, :status=>401
+            return
+        elsif Event.find_by_id(params[:id]).nil? or Event.find_by_id(params[:id]).usrid != current_user.id
+            render :json=> {:success=>false}, :status=>422
+            return
+        end
+        Event.find_by_id(params[:id]).destroy
+        render :json=> {:success=>true}
+    end
+
+    def update
+        @event = Event.find(params[:id])
+        if @event.nil?
+            render :json=> {:success=>false}, status=>422
+            return
+        elsif current_user.nil? or current_user.id != @event.usrid
+            render :json=> {:success=>false}, :status=>401
+            return
+        end
+
+        if @event.update_attributes(event_params)
+            render :json=> {:success=>true, :name=>@event.name, :start_at=>@event.start_at, :end_at=>@event.end_at, :desc=>@event.desc}
+        else
+            render :json=> {:errors=>@event.errors}, :status=>422
+        end
+      end
 
     def event_params
         params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
