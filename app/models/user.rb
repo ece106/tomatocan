@@ -187,5 +187,4 @@ class User < ApplicationRecord
         url.match(regex)[1]
       end
     end
-
 end
