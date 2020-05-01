@@ -68,9 +68,8 @@ end
     end
 
     def merchandise_params
-      params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic, :rttoeditphase,
-       :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype,
-       :itempic_crop_x, :itempic_crop_y, :itempic_crop_w, :itempic_crop_h)
+      params.require(:merchandise).permit(:name, :user_id, :price, :desc, :itempic,
+       :deadline, :youtube, :audio, :video, :graphic, :merchmobi, :merchepub, :merchpdf, :buttontype)
     end
 
     def resolve_layout
