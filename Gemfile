@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby "2.6.3"
 
 gem 'listen'
 gem 'rails-controller-testing'
@@ -11,7 +11,7 @@ gem 'pg'
 gem 'mandrill'	
 gem 'devise'
 gem 'simple_token_authentication'
-gem 'fog'   #, '1.6.0'
+gem 'fog-aws'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
