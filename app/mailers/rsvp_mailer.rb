@@ -48,7 +48,7 @@ class RsvpMailer < ApplicationMailer
                                 Hey!\nJoin me at #{@user_url} today at #{@time}. #{@event_owner} is hosting a 
                                 live video conversation titled "#{@event.name}" and I would be glad to have you participate.
                                 
-                                Here's a brief description of what it's about:\n #{@event.desc.truncate_words(15)}\n
+                                Here's a brief description of what it's about:\n #{@event.desc.to_s.truncate_words(15)}\n
                                 Thank you.
                             }.join(' ')
     end
