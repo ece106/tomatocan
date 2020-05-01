@@ -7,7 +7,6 @@ gem 'pg'
 gem 'mandrill'	
 gem 'devise'
 gem 'fog-aws'   #, '1.6.0'
->>>>>>> 5104cee454792e2a875cb4835fed3a318a365ac9
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
