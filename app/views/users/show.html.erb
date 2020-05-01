@@ -1,5 +1,5 @@
-  <div class="container-fluid" >
-    <% if request.host == "thinqtv.herokuapp.com" %>
+<div class="container-fluid" >
+  <% if request.host == "thinqtv.herokuapp.com" %>
 
     <!-- Meta Tags for Facebook sharing -->
     <% content_for :head do %>
@@ -12,6 +12,7 @@
       <% else %>
         <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
       <% end %>
+    <% end %>
 
       <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
         <div class="col-md-4">
