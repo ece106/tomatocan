@@ -78,11 +78,11 @@
 
           <!-- Share Buttons -->
           <td class=col-xs-2>
-            <% domainurl = "http://www.thinq.tv/"%>
+            <% domainurl = "https://boiling-reef-18462.herokuapp.com/"%>
 
               <!-- Facebook Share -->
-              <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"
-                onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>',
+              <a href="http://www.facebook.com/sharer.php?u=<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(user.permalink) %>"
+                onclick="window.open('http://www.facebook.com/sharer.php?u=<%= "https://boiling-reef-18462.herokuapp.com" + user_profile_path(user.permalink) %>',
                 'newwindow',
                 'width=600,height=400,top=100,left=300');
                 return false;">
