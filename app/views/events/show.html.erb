@@ -4,12 +4,13 @@
   </div>
 <% end %>
 
+<!-- Meta Tags for Facebook -->
 <% content_for :head do %>
-  <meta property="og:url"           content="<%= "https://boiling-reef-18462.herokuapp.com" + event_path(@event) %>" />
+  <meta property="og:url"           content="<%= "http://www.thinq.tv" + event_path(@event) %>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="<%= @event.name %>" />
   <meta property="og:description"   content="<%= @event.desc %>" />
-  <meta property="og:image"         content="https://boiling-reef-18462.herokuapp.com<%= @user.profilepic.url.to_s %>" />
+  <meta property="og:image"         content="<%= @user.profilepic.url.to_s %>" />
 <% end %>
 
 <! TOP HALF -->
