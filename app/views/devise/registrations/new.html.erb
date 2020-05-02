@@ -73,6 +73,8 @@
           </div>
 
           <!-- Facebook Login Button -->
+          <div id="fb-root"></div>
+          <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=566814783947187&autoLogAppEvents=1"></script>
           <div style="text-align:center">
             <% unless current_user %>
               <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path %>
