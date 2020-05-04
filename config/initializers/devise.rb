@@ -12,7 +12,6 @@ Devise.setup do |config|
    config.password_length = 8..128
    config.reset_password_within = 6.hours
    config.sign_out_via = :delete
-   config.omniauth_path_prefix = '/users/auth'
-   config.omniauth :facebook, "566814783947187", "841733b04b92defa62fde1b29f0da0ac", callback_url: "http://localhost:3000/users/auth/facebook/callback"
-   #callback_url: "https://boiling-reef-18462.herokuapp.com/users/auth/facebook/callback"
+   config.omniauth_path_prefix = "/users/auth"
+   config.omniauth :facebook, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, callback_url: "http://localhost:3000/users/auth/facebook/callback"
 end
