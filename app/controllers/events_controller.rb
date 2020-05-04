@@ -48,8 +48,9 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     @event.update_attribute(:user_id, params[:event][:usrid])
     user = User.find(@event.usrid)
+    offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
+    reminder_hour = @event.start_at + offset.hours - 1.hours
     @reminder_date = @event.start_at - 1.days #why is the scope beyond local? Do we use this variable in a view? I doubt it.
-    reminder_hour = @event.start_at - 1.hour
     respond_to do |format|
       if @event.save
         EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
