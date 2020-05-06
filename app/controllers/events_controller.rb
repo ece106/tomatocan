@@ -48,10 +48,13 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
     @event.update_attribute(:user_id, params[:event][:usrid])
     user = User.find(@event.usrid)
-    @reminder_date = @event.start_at - 2.days
+    offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
+    reminder_hour = @event.start_at + offset.hours - 1.hours
+    @reminder_date = @event.start_at - 1.days #why is the scope beyond local? Do we use this variable in a view? I doubt it.
     respond_to do |format|
       if @event.save
         EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
+        EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
       else
@@ -122,7 +125,7 @@ class EventsController < ApplicationController
   
   def update_reminder
     user = User.find(@event.usrid)
-    @reminder_date = @event.start_at - 2.days 
+    @reminder_date = @event.start_at - 1.hour 
     EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
   end
 

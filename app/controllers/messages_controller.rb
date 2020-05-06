@@ -2,7 +2,8 @@ class MessagesController < ApplicationController
   def create
       @message = Message.new(message_params)
     if @message.save
-      MessageMailer.with(message: @message).message_reminder.deliver_later(wait: 2.minute)
+      messagedelay = Time.now - 5.seconds
+      MessageMailer.with(message: @message).message_reminder.deliver_later(wait_until: messagedelay)
       flash[:success] = "Message was succesfully sent"
       redirect_to drschaeferspeaking_path
     else
@@ -11,9 +12,9 @@ class MessagesController < ApplicationController
     end
   end
     private
-  	def message_params
-    	params.require(:message).permit(:fullname, :phone_number, :email, :subject, :message)
-  	end 
+    def message_params
+      params.require(:message).permit(:fullname, :phone_number, :email, :subject, :message)
+    end 
 
 
 

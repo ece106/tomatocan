@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   match 'jointheteam',    to: 'static_pages#jointheteam', via: 'get'
   match 'bystanderguidelines',    to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',     to: 'static_pages#drschaeferspeaking', via: 'get'
+  match 'harassment',     to: 'static_pages#harassment', via: 'get'
   match 'fellowship',     to: 'static_pages#fellowship', via: 'get'
   match 'seniorliving',   to: 'static_pages#seniorliving', via: 'get'
   
@@ -96,8 +97,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :users
-      resources :users, :only=>[:index, :show]
+      resources :users
       resources :sessions
+      resources :events
     end
   end
 end

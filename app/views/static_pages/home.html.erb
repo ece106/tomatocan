@@ -16,7 +16,7 @@
         <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > Conversations to make you ThinQ</div>
         <div style="display:inline;" > <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%></div>
         <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
-          <br><%= link_to "Video Chat for Social People with Curious Minds", fellowship_path, class: "topic_link", title: "Like a cocktail party on Zoom" %>
+          <br><%= link_to "Grassroots Movements via Video Chat to keep you Well-Informed", getinvolved_path, class: "topic_link", title: "Like a cocktail party on Zoom" %>
         </div>
             
         <% if @displayconvo.present? %>
@@ -25,7 +25,7 @@
               <h3>Conversation <%= link_to @name, event_path(@displayconvo.id), title: @description, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> is happening right NOW!</p><br>
               <%= link_to " Join Conversation ", "https://thinQtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %><br>
-              Hosted by: <%= link_to @host.name, @host.permalink %>
+              Hosted by: <%= link_to @host.name, @host.permalink, style: "font-size: 40px; text-shadow: 1px 1px 1px #fff" %>
             </div>
           <% else %>
             <h2 id="buttonTitle">
@@ -33,7 +33,7 @@
             </h2>
           <% end %>
         <% end %><br><br>
-        <%= link_to "Be Here For Others", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 25px", title: "Sign up to host live video Conversations" %><br><br>
+        <%= link_to "Get Out the Vote!", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 25px", title: "Sign up to host live video Conversations" %><br><br>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
   <div class="row" id="countdown_clock">
     <div class="col-md-4 col-md-offset-1 col-xs-11">
       <h2>Schedule of Conversations</h2>
-        <h3>Come talk about news, books, trivia games</h3>
+        <h3>Topics to motivate Getting Out the Vote!</h3>
           <% if user_signed_in? %>
             <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
@@ -65,12 +65,12 @@
     <div class="col-md-5 col-md-offset-1 col-xs-12">
       <h3>Our Purpose</h3><br>
       <p>
-        ThinQ.tv is a platform for live video thought-provoking conversations. Need to be heard? Drop in to any of the Conversations posted above.
+        Instead of the paradigm of an organization inviting people to listen to one person talk on social media, ThinQ.tv is for grassroots movements to motivate people through small group conversations. It’s similar to going to a cocktail party on Zoom. We're discussing about issues important in the 2020 election.
         <br><br>
-        Are you a good listener? <%= link_to 'Host live video Conversations', new_event_path %> for those in need.
+        Want to lead the Conversation? <%= link_to 'Host live video Conversations', new_event_path %>
       </p>
       <h4>
-        <br>Need to ask us questions LIVE? Drop in to any YourOnlineMom session scheduled above & meet our Founder, Dr. Lisa Schaefer.
+        <br>Need to ask us questions LIVE? Drop in to any session hosted by Dr. Lisa Schaefer above & meet our Founder.
       </h4>
     </div>
   </div>
