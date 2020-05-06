@@ -1,6 +1,5 @@
 <div class="container-fluid" >
   <% if request.host == "thinqtv.herokuapp.com" %>
-
     <!-- Meta Tags for Facebook sharing -->
     <% content_for :head do %>
       <meta property="og:url"           content="<%= "https://thinqtv.herokuapp.com" + user_profile_path(@user.permalink) %>" />
@@ -92,15 +91,15 @@
         <meta property="og:image"       content="http://www.thinq.tv/logoDigitalHollow300.png" />
       <% end %>
     <% end %>
-
-    <%= render 'layouts/authorform' %>
-    <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
-      <div id="eventCurrentdiv" style="text-align: center;">
-        <h3>We're talking about <%= @displayconvo.name %></h3>  
-        <p> right NOW!   </p> 
-        <%= link_to " Join LIVE Conversation ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
-        <br>
-      </div>
+      <%= render 'layouts/authorform' %>
+      
+      <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+        <div id="eventCurrentdiv" style="text-align: center;">
+          <h3>We're talking about <%= @displayconvo.name %></h3>  
+          <p> right NOW!   </p> 
+          <%= link_to " Join LIVE Fellowship Hour", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+          <br>
+        </div>
     <% else %>
       <div class="row" style="padding-top:15px;padding-bottom:30px;">
         <%= render 'layouts/streamButton' %>
