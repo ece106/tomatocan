@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
-ruby "2.6.3"
+
+ruby "2.7.0"
 
 gem 'listen'
 gem 'pg'
-
 gem 'mandrill'	
 gem 'devise'
-gem 'fog-aws'   #, '1.6.0'
+gem 'fog-aws'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
@@ -18,54 +18,45 @@ gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
 gem 'rack-cors'
 gem 'font-awesome-rails'
-
 gem 'pry'
-gem 'aws-sdk-s3' #aws-s3'
+gem 'aws-sdk-s3'
 gem 'aws-sdk'
-
-gem 'rails', '6.0.2.2'
-gem 'railties', '6.0.2.2'
-gem  'bootstrap-sass', '~> 3.4.1'
+gem 'rails', '6.0.3'
+gem 'railties', '6.0.3'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
-#gem 'sprockets'
 gem "will_paginate" 
-# Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jquery-turbolinks'
 gem 'bcrypt'
 gem 'turbolinks'
 gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
-
+gem 'jquery-rails' # Use jquery as the JavaScript library
 
 group :test, :development do
   gem 'minitest'
   gem 'simplecov'
   gem 'simplecov-lcov'
-	#gem 'undercover'
   gem 'selenium-webdriver'
-#  gem 'factory_girl_rails'
-#  gem 'mocha', '~> 1.1.0'
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
 end
 
 group :production do
-     #rake db:create:all
-     #rails s -e production
-     #gem 'sqlite3-ruby', :require => 'sqlite3'
+  #rake db:create:all
+  #rails s -e production
+  #gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rails_12factor'
 end
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 #group :assets do
 gem 'sass-rails', '~> 5.0.7'
-  gem 'coffee-rails'
-  gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails'
+gem 'uglifier', '>= 1.3.0'
 #end
 
 # Use unicorn as the web server
@@ -84,5 +75,5 @@ end
 
 group :development do
   gem 'puma'
-    gem 'rails_real_favicon'
+  gem 'rails_real_favicon'
 end
