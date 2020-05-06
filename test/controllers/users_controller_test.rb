@@ -173,20 +173,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # test "should show user path" do
-  #   get :show, params: { user: {id: 1}}
-  #   assert_response :success
-  # end
-  test "should test timeslot user1" do
-    get :timeslots, params: {permalink: 'user1'}
-    assert_response :success
-  end
-
-  test "should test timeslot user2" do
-    get :timeslots, params: {permalink: 'user2'}
-    assert_response :success
-  end
-
   test "should update user" do
     sign_in @user
     patch :update, params: { id: @user.id, user: { name: 'New Name', youtube1: 'randomchar' } }

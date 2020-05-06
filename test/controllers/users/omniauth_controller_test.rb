@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TimeslotTest < ActiveSupport::TestCase
+class Users::OmniauthControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

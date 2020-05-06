@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :timeslots
   resources :relationships
 
   resources :users do
@@ -43,7 +42,7 @@ Rails.application.routes.draw do
   resources :events
   resources :messages
 
-  devise_for :users, :skip => [:sessions, :passwords], controllers: {registrations: "users/registrations", passwords: "users/passwords"}
+  devise_for :users, :skip => [:sessions, :passwords], :controllers => {registrations: "users/registrations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"} 
   as :user do
     get 'login'  => 'devise/sessions#new',    :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
@@ -81,8 +80,6 @@ Rails.application.routes.draw do
   match '/:permalink/controlpanel'   => "users#controlpanel",   :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard'      => "users#dashboard",      :as => :user_dashboard, via: 'get'
 
-  match '/:permalink/timeslots' => "users#timeslots", :as => :user_timeslots, via: 'get'
-
   post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user
 
   # get '/:friendly_id', to: 'groups#show'
@@ -102,4 +99,5 @@ Rails.application.routes.draw do
       resources :events
     end
   end
+
 end

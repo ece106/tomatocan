@@ -22,7 +22,6 @@ gem 'font-awesome-rails'
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
-#gem 'event-calendar', :require => 'event_calendar'
 
 gem 'rails', '6.0.2.2'
 gem 'railties', '6.0.2.2'
@@ -37,8 +36,7 @@ gem 'bcrypt'
 gem 'turbolinks'
 gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
-#gem "paperclip", "~> 2.0"
-#gem 'rmagick'
+
 
 group :test, :development do
   gem 'minitest'
@@ -51,7 +49,6 @@ group :test, :development do
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
-  gem 'rails-controller-testing'
 end
 
 group :production do
@@ -67,7 +64,7 @@ gem 'jquery-rails'
 # in production environments by default.
 #group :assets do
 gem 'sass-rails', '~> 5.0.7'
-  gem 'coffee-rails', '~> 4.2.2'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.3.0'
 #end
 
