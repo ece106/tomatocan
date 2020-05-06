@@ -168,6 +168,11 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.permalink = auth.info.name.delete(' ')
+      perma = 0
+      while @user.errors.messages[:permalink].present?
+        user.permalink = user.permalink+perma
+        perma += 1
+      end
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name   # assuming the user model has a name

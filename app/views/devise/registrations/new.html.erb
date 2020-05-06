@@ -73,11 +73,12 @@
           </div>
 
           <!-- Facebook Login Button -->
-          <div id="fb-root"></div>
-          <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=566814783947187&autoLogAppEvents=1"></script>
-          <div style="text-align:center">
+          <div style="text-align:center"> 
             <% unless current_user %>
-              <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path %>
+              <a href="/users/auth/facebook" style="margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 3px; padding: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #4267B2; color: #fff;">
+                <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" alt="Facebook Logo" style="width:40px; height:36px; margin-left: -10px">
+                <b>Sign Up With Facebook</b> 
+              </a>
             <% else %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             <% end %>

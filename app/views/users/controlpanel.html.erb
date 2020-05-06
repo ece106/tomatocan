@@ -19,12 +19,12 @@ Conversation<!-- Set layout of panels for a logged-in user. You do not need to c
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
-          <h1><div style="text-align:center">Edit Profile</div></h1>
+          <h1>Edit Profile</h1>
         </div>
       </div>
       <div class="row">
         <!-- Make a button to see "view" mode of profile -->
-        <%= render 'users/profileinfo' %>
+        <%= render :file => 'users/profileinfo' %>
       </div>
     </div>
   </div>
@@ -73,8 +73,8 @@ Conversation<!-- Set layout of panels for a logged-in user. You do not need to c
 
       <div class="row">
           <div class="col-md-6" >
-            <%= render 'users/eventlist' %><br>
-            <%= render 'users/pastevents' %>
+            <%= render file: 'users/eventlist' %><br>
+            <%= render file: 'users/pastevents' %>
           </div>
           <div class="col-md-4" >
             <%= render 'layouts/streamDirections' %>
@@ -91,7 +91,7 @@ Conversation<!-- Set layout of panels for a logged-in user. You do not need to c
         </div>
       </div>
       <div class="row">
-        <%= render 'users/accountinfo' %>
+        <%= render :file => 'users/accountinfo' %>
       </div>
       <!-- Might want some sort of Stripe Connect panel here-->
     </div>
@@ -108,7 +108,7 @@ Conversation<!-- Set layout of panels for a logged-in user. You do not need to c
             <h1>Reward Sales</h1>
           </div>
         </div>
-        <%= render 'users/dashboard' %>
+        <%= render :file => 'users/dashboard' %>
       </div>
     </div>
 <% end %>

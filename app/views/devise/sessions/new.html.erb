@@ -67,7 +67,10 @@
           <!-- Log In With Facebook -->
           <div style="text-align:center">
             <%- resource_class.omniauth_providers.each do |provider| %>
-              <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+              <a href="/users/auth/facebook" style="margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 3px; padding: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #4267B2; color: #fff;">
+                <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" alt="Facebook Logo" style="width:40px; height:36px; margin-left: -10px">
+                <b>Sign In With Facebook</b> 
+              </a>
             <% end -%>
           </div>
         <% end %>
