@@ -37,7 +37,13 @@
         <!-- app/views/pages/home.html.erb -->
 
         <% unless current_user %>
-          <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+          <a href="/users/auth/facebook" 
+            style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 3px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #4267B2; color: #fff;">
+            <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg"
+              style="width:50px; height:50px; align:center"
+            >
+            Sign in with facebook 
+           </a>
         <% else %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         <% end %>
