@@ -4,65 +4,98 @@
 
 <% @title=" edit user profile "  %>
 
-<%= render 'layouts/flash_messages' %>
+  <%= render 'layouts/flash_messages' %>
 
-<% if current_page?("/"+current_user.name.downcase+"/profileinfo") %>
-	<!-- Applies the necessary padding when the page is rendered alone.-->
-	<div style="height:70px;"></div>
-<% end %>
+  <% if current_page?("/"+current_user.name.downcase+"/profileinfo") %>
+    <!-- Applies the necessary padding when the page is rendered alone.-->
+    <div style="height:70px;"></div>
+  <% end %>
 
-<div class="col-md-6">
-	<%= form_for @user, :html => {:multipart => true} do |f| %>
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			About
-		</div>
-		<div class="panel-body">
-			<div class="form-group">
-				<h3><%=f.label :name, "Name" %></h3>
-				<p class="help-block">This could be your name or your organization's name</p>
-				<%= f.text_field :name, maxlength: 50, :type => "name", :class => "form-control" %>
-			</div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7" style="margin-left:-50px">
+      <%= form_for @user, :html => {:multipart => true} do |f| %>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          About
+        </div>
+        <div class="panel-body">
 
-			<div class="form-group">
-				<h3><%=f.label :name, "Profile Image" %></h3>
-				<% if @user.profilepic.present? && @user.profilepic != '' %>
-					<%= image_tag @user.profilepic.url.to_s, :height => "150" %>
-				<% elsif @user.profilepicurl %>
-					<% if @user.profilepicurl.match(/http/) %>
-						<%= image_tag @user.profilepicurl, :height => "150" %><br >
-					<% end %>
-				<% end %>
-				<p class="help-block">Upload a picture of you or your organization logo (150px &times; 150px is best)</p>
-				<%= f.file_field :profilepic, :class => "form-control",:style => "padding-bottom:40px;" %>
-			</div>
+          <div class="row" style="margin-bottom:-20px">
+          
+            <!-- Profile Picture -->
+            <div class="col-md-4" style="margin-left:-65px; margin-top:-30px;">
+              <div class="form-group">
+                <h3><%=f.label :name, "Profile Image" %></h3>
+                <% if @user.profilepic.present? && @user.profilepic != '' %>
+                  <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
+                <% elsif @user.profilepicurl %>
+                  <% if @user.profilepicurl.match(/http/) %>
+                    <%= image_tag @user.profilepicurl, :height => "150", :width => "150" %><br>
+                  <% end %>
+                <% else %> 
+                  <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
+                <% end %>
+                  <%= f.file_field :profilepic, :style => "padding-top:5px;" %>
+                <p class="help-block">150px &times; 150px is best</p>
+              </div>
+            </div>
 
-			<div class="form-group">
-				<h3><%=f.label :name, "About you" %></h3>
-				<p class="help-block">Tell us a little about you or your organization.</p>
-				<%= f.text_area :about, placeholder: 'About Me / Organization', :class => "form-control" %>
-			</div>
+            <!-- Header -->
+            <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
+              <div class="form-group">
+                <h3><%=f.label :name, "Banner Image" %></h3>
+                <% if @user.bannerpic.present? && @user.bannerpic != '' %>
+                  <div style="margin-top:20px">
+                  <%= image_tag @user.bannerpic.url.to_s, height: "126", :width => "630", :id => "userBannerImage"%>
+                  </div>
+                <% else %>
+                  <div style="margin-top:20px">
+                  <%= image_tag "crowddark.png", height: "126", :width => "630", :id => "userBannerImage" %>
+                  </div>
+                <% end %>
+                <%= f.file_field :bannerpic, :style => "padding-top:19px;" %>
+                <p class="help-block">1500px &times; 300px is best</p>
+              </div>
+            </div>
 
-			<div class="form-group">
-				<h3><%=f.label :name, "Conversation Topics" %></h3>
-				<p class="help-block">Three topics you enjoy or have expertise in.</p>
-				<%= f.text_field :genre1, :class => "form-control", placeholder: "Topic 1" %>
-				<%= f.text_field :genre2, :class => "form-control", placeholder: "Topic 2" %>
-				<%= f.text_field :genre3, :class => "form-control", placeholder: "Topic 3" %>
-			</div>
+          </div>
 
-			<div class="form-group">
-				<h3><%=f.label :name, "Banner Image" %></h3>
-				<p class="help-block">Upload a picture to display on top of your profile (1500px &times; 300px is best)</p>
-				<%= f.file_field :bannerpic, :class => "form-control",:style => "padding-bottom:40px;" %>
-			</div>
-			<div class="btn-group btn-group-lg" id="editProfileButton">
-				<%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
-				<%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
-			</div>
-		</div>
-	</div>
-</div>
+
+          <!-- Name -->
+          <div class="form-group" style="margin-top:0px">
+              <div style="margin-bottom:-15px">
+                <h3><%= f.label :name, "Name" %></h3>
+              </div>
+              <%= f.text_field :name, maxlength: 50, :type => "name", :class => "form-control", placeholder: "This could be your name or your organization's name" %>
+          </div>
+
+          <!-- About You -->
+          <div class="form-group">
+            <div style="margin-bottom:-14px">
+              <h3><%=f.label :name, "About you" %></h3>
+            </div>
+            <%= f.text_area :about, placeholder: 'Tell us a little about you or your organization', :class => "form-control" %>
+          </div>
+
+          <!-- Three Topics -->
+          <div class="form-group">
+            <div style="font-size:25px; margin-bottom:-7px;"><%=f.label :name, "Conversation Topics" %></div>
+            <%= f.text_field :genre1, :class => "form-control", placeholder: "Topic 1" %>
+            <%= f.text_field :genre2, :class => "form-control", placeholder: "Topic 2" %>
+            <%= f.text_field :genre3, :class => "form-control", placeholder: "Topic 3" %>
+          </div>
+
+          <!-- Cancel and Save Buttons -->
+          <div class="btn-group btn-group-lg" id="editProfileButton">
+            <%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
+            <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 
 <% end %>
 

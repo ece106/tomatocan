@@ -10,7 +10,7 @@ class ProfilepicUploader < CarrierWave::Uploader::Base
     storage :file  # but what if I want to test fog/aws
     #storage :fog
   else
-    storage :fog
+    storage :file
   end
 
   def store_dir
