@@ -9,7 +9,7 @@ class BannerpicUploader < CarrierWave::Uploader::Base
   if Rails.env.development? || Rails.env.test?
     storage :file  # but what if I want to test fog/aws
   else
-    storage :file
+    storage :fog
   end
  
   def store_dir
