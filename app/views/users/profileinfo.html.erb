@@ -31,7 +31,7 @@
                   <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
                 <% elsif @user.profilepicurl %>
                   <% if @user.profilepicurl.match(/http/) %>
-                    <%= image_tag @user.profilepicurl, :height => "150", :width => "150" %><br>
+                    <%= image_tag @user.profilepicurl, :height => "100%", :width => "100%" %><br>
                   <% end %>
                 <% else %> 
                   <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
@@ -41,7 +41,16 @@
               </div>
             </div>
 
-            <!-- Header -->
+            <!-- Header (For Now) -->
+            <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
+              <div class="form-group">
+                <h3><%=f.label :name, "Banner Image" %></h3>
+                <%= f.file_field :bannerpic, :style => "padding-top:0px;" %>
+                <p class="help-block">1500px &times; 300px is best</p>
+              </div>
+            </div>
+
+            <!-- Header Fix Later 
             <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
@@ -58,9 +67,8 @@
                 <p class="help-block">1500px &times; 300px is best</p>
               </div>
             </div>
-
+            -->
           </div>
-
 
           <!-- Name -->
           <div class="form-group" style="margin-top:0px">
