@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   def create
       @message = Message.new(message_params)
     if @message.save
-      MessageMailer.with(message: @message).message_reminder.deliver_now
+      MessageMailer.with(message: @message).message_reminder.deliver_later(wait: 2.minute)
       flash[:success] = "Message was succesfully sent"
       redirect_to drschaeferspeaking_path
     else
@@ -28,6 +28,9 @@ class MessagesController < ApplicationController
       end
       if @message.errors.messages[:message].present?
         msg += ("Message " + @message.errors.messages[:message][0] + "\n")
+      end
+      if @message.errors.messages[:email].present?
+        msg += ("Email " + @message.errors.messages[:email][0] + "\n")
       end
       return msg
     end
