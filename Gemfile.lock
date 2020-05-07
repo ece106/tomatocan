@@ -1106,7 +1106,6 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
-    pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -1199,6 +1198,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
+    sqlite3-ruby (1.3.3)
+      sqlite3 (>= 1.3.3)
     stripe (5.20.0)
     thor (1.0.1)
     thread_safe (0.3.6)
@@ -1256,7 +1258,6 @@ DEPENDENCIES
   oauth2
   omniauth
   omniauth-facebook
-  pg
   pry
   puma
   rack-cors
@@ -1270,6 +1271,7 @@ DEPENDENCIES
   simple_calendar
   simplecov
   simplecov-lcov
+  sqlite3-ruby
   stripe
   turbolinks
   turn
@@ -1279,7 +1281,7 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 RUBY VERSION
-   ruby 2.5.7p206
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.1.4
