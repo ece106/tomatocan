@@ -2,8 +2,8 @@ if Rails.env.development? || Rails.env.test?
   secretfacebk = FACEBOOK_APP_SECRET
   fbappid = FACEBOOK_APP_ID
 else
-  secretfacebk = ENV[FACEBOOK_APP_SECRET]
-  fbappid = ENV[FACEBOOK_APP_ID]
+  secretfacebk = ENV['FACEBOOK_APP_SECRET']
+  fbappid = ENV['FACEBOOK_APP_ID']
 end
 
 Devise.setup do |config|
