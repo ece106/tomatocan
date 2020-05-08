@@ -22,9 +22,10 @@ gem 'font-awesome-rails'
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
+#gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '6.0.2.2'
-gem 'railties', '6.0.2.2'
+gem 'rails', '6.0.3'
+gem 'railties', '6.0.3'
 gem  'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
@@ -36,7 +37,8 @@ gem 'bcrypt'
 gem 'turbolinks'
 gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
-
+#gem "paperclip", "~> 2.0"
+#gem 'rmagick'
 
 group :test, :development do
   gem 'minitest'
@@ -49,6 +51,7 @@ group :test, :development do
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
+  gem 'rails-controller-testing'
 end
 
 group :production do
