@@ -133,3 +133,31 @@
     color: white;
     text-align: left;
   }
+
+.rotate, .rotate1, .rotate2{
+   transform:rotate(180deg);
+   transform-origin:center center;
+  }
+  .text {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 18px;
+    font-weight: 400;
+
+  }
+  .team .container{
+    min-width:auto;
+    max-width: 1300px;
+    height: auto;
+    padding: 10px;
+
+    background: rgba(255,255,255,.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    margin: auto auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 10px;
+}
