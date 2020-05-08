@@ -3,6 +3,15 @@ require 'will_paginate/array'
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :update_sanitized_params, if: :devise_controller?
+  before_filter :banned?
+
+  def banned?
+    if current_user.present? && current_user.banned?
+      sign_out current_user
+      flash[:error] = "This account has been banned"
+      root_path
+    end
+  end
 
   protect_from_forgery
 #  include SessionsHelper
