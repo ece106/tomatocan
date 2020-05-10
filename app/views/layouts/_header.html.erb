@@ -47,8 +47,8 @@
                   <li>
 					<p class="navbar-btn">
                     <% if request.host == "thinqtv.herokuapp.com" %> 
-                      <%= link_to "Sign Up", '/signup', class: "btn btn-primary", target: "_blank" %>
-					  <%= link_to 'Sign In', "/login", class: "btn btn-default", target: "_blank" %>
+                      <%= link_to "Sign Up", 'http://www.thinq.tv/signup', class: "btn btn-primary", target: "_blank" %>
+					  <%= link_to 'Sign In', "http://www.thinq.tv/login", class: "btn btn-default", target: "_blank" %>
                     <% else %>
                       <%= link_to "Sign Up", '/signup', class: "btn btn-primary" %>
 					  <%= link_to 'Sign In', "/login", class: "btn btn-default" %>
