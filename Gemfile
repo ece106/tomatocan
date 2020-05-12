@@ -37,6 +37,7 @@ gem 'coffee-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'puma'
+gem 'activerecord-session_store'
 
 group :test, :development do
   gem 'minitest'
