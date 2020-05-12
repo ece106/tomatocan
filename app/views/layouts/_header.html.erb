@@ -6,7 +6,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-      <% if request.host == "thinqtv.herokuapp.com" %><!-- if the navbar is being rendered in the heroku domain -->
+      <% if request.host == "https://boiling-reef-18462.herokuapp.com/" %><!-- if the navbar is being rendered in the heroku domain -->
         <%= link_to image_tag("starIcon.png", class: "navbar-brand", title: "ThinQ.tv", id: "navbarLogo"), 'http://www.ThinQ.tv' %> <!-- ^ use absolute routing in navbar ^ -->
       <% else %> <!-- if the navbar is being rendered in from the ThinQ domain or from localhost -->
         <%= link_to image_tag("starIcon.png", class: "navbar-brand", title: "ThinQ.tv", id: "navbarLogo"), '/' %>
@@ -14,7 +14,7 @@
     </div>
     <div class="collapse navbar-collapse" id="globalNavbar">
 			<ul class="nav navbar-nav">
-				<% if request.host == "thinqtv.herokuapp.com" %> 
+				<% if request.host == "https://boiling-reef-18462.herokuapp.com/" %> 
 					<li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', title: "Invite friends to join thought-provoking Conversations on ThinQ.tv", target: "_blank" %></li> <!-- ..use absolute routing in navbar.-->
 					<li class="nav-item"><%= link_to "Get Involved!", 'http://www.ThinQ.tv/getinvolved', title: "Become a Conversation Host!", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Have us on your Podcast", 'http://www.ThinQ.tv/drschaeferspeaking', title: "Or news segment", target: "_blank" %></li>
@@ -46,7 +46,7 @@
 				<% else %>
                   <li>
 					<p class="navbar-btn">
-                    <% if request.host == "thinqtv.herokuapp.com" %> 
+                    <% if request.host == "https://boiling-reef-18462.herokuapp.com/" %> 
                       <%= link_to "Sign Up", '/signup', class: "btn btn-primary", target: "_blank" %>
 					  <%= link_to 'Sign In', "/login", class: "btn btn-default", target: "_blank" %>
                     <% else %>
