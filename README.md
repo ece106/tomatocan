@@ -16,27 +16,6 @@ This README file may change at any time.
 
 
 
-### QUIZ FOR POTENTIAL DEVELOPERS
-To determine current skill level -
-
-Refer to http://github.com/ece106/tomatocan and use tutorials, Google, etc. to help you figure out the answers.
-
-1. Copy schema.rb and save it as schema.txt. Describe each field of the events, merchandises, purchases, rsvpqs, and users tables.
-e.g. "created_at" - Time and date at which each record was created
-"twitter" - user's twitter handle
-
-2. Which file/view is the users' profile page? What information can users display on their page?
-
-3. Where is the users' profile page information stored in the Tomatocan database?
-
-4. What files does Rails autogenerate when you generate scaffolding for a table?
-
-5. User pages are found by their permalink rather than record id number. What are the routes that were added to the Tomatocan app so the views for user pages could be displayed?
-
-6. What are the methods that were added to the Tomatocan app so the user views could be displayed?
-
-7. What gem is used for signin/signout? How many times is it mentioned in the Tomatocan repository?
-
 ### TO USE THE CODE IN YOUR LOCAL DEVELOPMENT AND TEST ENVIRONMENT
 
 0. To set up Ruby on Rails on Mac or Linux, go to
@@ -88,6 +67,8 @@ STRIPE_PUBLIC_KEY = "allfake"
 GMAIL_PWD = "superfake"
 Stripe.api_key = STRIPE_SECRET_KEY
 STRIPE_CONNECT_CLIENT_ID = "superfake"
+FACEBOOK_APP_ID = "numbers"
+FACEBOOK_APP_SECRET = "secret"
 ```
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from users). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/aakeys.rb with your accounts' keys.
