@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
@@ -22,7 +23,7 @@ gem 'aws-sdk-s3'
 gem 'aws-sdk'
 gem 'rails', '6.0.3'
 gem 'railties', '6.0.3'
-gem  'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 gem "will_paginate" 
 gem 'bcrypt-ruby', '~> 3.1.2'
@@ -30,11 +31,12 @@ gem 'jquery-turbolinks'
 gem 'bcrypt'
 gem 'turbolinks'
 gem 'geocoder'
-gem 'friendly_id', '~> 5.0.0'
-gem 'sass-rails', '~> 5.0.7'
+gem 'friendly_id'
+gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'puma'
 
 group :test, :development do
   gem 'minitest'
@@ -48,7 +50,6 @@ group :test, :development do
 end
 
 group :production do
-  gem 'puma'
   gem 'rails_12factor'
 end
 
@@ -57,6 +58,5 @@ group :test do
 end
 
 group :development do
-  gem 'puma'
   gem 'rails_real_favicon'
 end
