@@ -139,29 +139,29 @@
         <div style = "font-size: 15px">
           E-Mail this Conversation to friends and colleagues:
         </div> 
-        <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 15px; color: white; margin-left: 10px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">E-Mail &#9993</a>
+        <a href="mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20<%= @event.name %>%20at%20ThinQ.tv!%20<%= @event.start_at.strftime("%A, %B %d") %>%20<%= @event.start_at.strftime("%I:%M %p")%>%20PDT%20/%20<%= edt.strftime("%I:%M %p") %>%20EDT.%20<%= @event.desc %>" alt="Email" target="_blank" style="font-size: 15px; color: white; margin-left: 10px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">E-Mail 📧</a>
         <div style = "font-size: 15px; padding-top: 5px">
           Share this Conversation on social media:
         </div>
         <% domainurl = "http://www.ThinQ.tv/" %>
         <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
         <div style="margin-left: 10px">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
-            onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
-            'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
-            <%= image_tag("linkedin_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
-
-          </a>&nbsp
           <a href="http://www.facebook.com/sharer.php?u=<%= @surl %>"
             onclick="window.open('http://www.facebook.com/sharer.php?u=<%= @surl %>',
             'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
-            <%= image_tag("facebook_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
-          </a>&nbsp
+              <%= image_tag("facebook_icon.png", :style => "width:25px; height:25px;")%>
+          </a>
           <a href="https://twitter.com/intent/tweet?text=Join <%= @user.name %> for interesting conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
             onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> for thought-provoking conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
             'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
-            <%= image_tag("twitter_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
-          </a><br><br>
+            <%= image_tag("twitter_icon.png", :style => "width:25px; height:25px;") %>
+          </a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+            onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
+            'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
+            <%= image_tag("linkedin_icon.png", :style => "margin-left: 0px; width:25px; height:25px;") %>
+          </a>
+          <br><br>
         </div>
       </div>
 
