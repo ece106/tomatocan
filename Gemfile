@@ -10,7 +10,6 @@ gem 'fog-aws'
 gem 'unf' 
 gem 'carrierwave'
 gem 'stripe'
-gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
@@ -38,6 +37,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'puma'
 gem 'activerecord-session_store'
+gem 'doorkeeper'
 
 group :test, :development do
   gem 'minitest'
@@ -48,6 +48,8 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
   gem 'rails-controller-testing'
+  gem 'rails_real_favicon'
+
 end
 
 group :production do
@@ -56,8 +58,4 @@ end
 
 group :test do
   gem 'turn', :require => false
-end
-
-group :development do
-  gem 'rails_real_favicon'
 end
