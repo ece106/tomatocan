@@ -5,7 +5,7 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-<% if request.host == "https://boiling-reef-18462.herokuapp.com/" %>
+<% if request.host == "https://thinqtv.herokuapp.com/" %>
 	<div class="row" id="profileBanner" style="display:none">
 <% else %>
 	<div class="row" id="profileBanner">
@@ -18,7 +18,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 	<% end %>
 	</div>
 
-<% if request.host == "https://boiling-reef-18462.herokuapp.com/" %>
+<% if request.host == "https://thinqtv.herokuapp.com/" %>
 	<div class="row" id="profileHeader" style="display:none">
 <% else %>
 	<div class="row" id="profileHeader">
