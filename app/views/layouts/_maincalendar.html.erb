@@ -42,7 +42,7 @@
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-              <%= link_to " Join Conversation NOW ", "https://boiling-reef-18462.herokuapp.com//" + user.permalink, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              <%= link_to " Join Conversation NOW ", "https://boiling-reef-18462.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm fa fa-video-camera" %>
               
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
@@ -86,7 +86,7 @@
               'newwindow',
               'width=600,height=400,top=100,left=300');
               return false;">
-              <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px; border-radius:4px" />
+              <%= image_tag("facebook_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
             </a>&nbsp
 
               <!-- Twitter Share -->
@@ -95,7 +95,7 @@
                 'newwindow',
                 'width=600,height=400,top=80,left=300');
                 return false;">
-              <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:4px;">
+              <%= image_tag("twitter_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
               </a>
 
             <!-- LinkedIn -->
@@ -104,7 +104,7 @@
               'newwindow',
               'width=600,height=400,top=100,left=300');
               return false;">
-            <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25px;" />
+              <%= image_tag("linkedin_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
             </a>&nbsp
             
           </td>

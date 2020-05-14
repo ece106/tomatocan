@@ -45,6 +45,4 @@ class ApplicationController < ActionController::Base
   end
   helper_method :facebook_user
 
-
-
 end
