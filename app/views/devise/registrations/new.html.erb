@@ -67,22 +67,21 @@
             </div>
           </div>
 
-          <!-- Or -->
+          <!-- Facebook Sign Up Button (commented out until SSO works)
           <div style="text-align:center; padding-bottom:10px">
             OR
           </div>
-
-          <!-- Facebook Login Button -->
           <div style="text-align:center"> 
             <% unless current_user %>
-              <a href="/users/auth/facebook" style="margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 3px; padding: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #4267B2; color: #fff;">
-                <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" alt="Facebook Logo" style="width:40px; height:36px; margin-left: -10px">
+              <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: rgb(52,121,235); color: #fff;">
+                <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
                 <b>Sign Up With Facebook</b> 
               </a>
             <% else %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             <% end %>
           </div>
+          -->
         <% end %>
       </div>
     </div>
