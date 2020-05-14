@@ -22,9 +22,9 @@ class Event < ApplicationRecord
   scope :recent,   -> { order(:start_at, :desc) }
   scope :upcoming, -> { where('start_at > ?', Time.now) }
 
-  time = Proc.new { |r| r.start_at.to_f + 3.hours.to_f }
+  time = Proc.new { |r| r.start_at.to_f + 3.hours.to_f } #what the hell is this variable for
 
-  validates_numericality_of :end_at, less_than: ->(t) { (t.start_at.to_f + 3.hours.to_f) }, allow_blank: true, message: " time can't be more than 3 hours after Conversation start time"
+  validates_numericality_of :end_at, less_than: ->(t) { (t.start_at.to_f + 5.hours.to_f) }, allow_blank: true, message: " time can't be more than 3 hours after Conversation start time"
 
   validate :endat_greaterthan_startat
   def endat_greaterthan_startat
