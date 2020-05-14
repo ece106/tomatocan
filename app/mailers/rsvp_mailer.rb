@@ -30,7 +30,7 @@ class RsvpMailer < ApplicationMailer
 
     def set_url
         @event_url = event_url(host:'ThinQ.tv', id: @event.id)
-        @user_url = "https://thinqtv.herokuapp.com/" + User.find(@event.usrid).permalink
+        @user_url = "https://boiling-reef-18462.herokuapp.com/" + User.find(@event.usrid).permalink
         @share_url = "http://thinq.tv"
     end
 
