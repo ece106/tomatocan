@@ -1,112 +1,5 @@
 <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
-<style type="text/css">
-  
-  #articles .caler {
 
-    border-collapse: collapse;
-    width: 100%; }
-
-/*    td, th {
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
-      padding: 6px;
-      border: 1px solid #999;
-    }*/
-
-    th {
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
-      padding: 6px;
-      border: 1px solid #999;
-      background: #DDD;
-      color: #666;
-      text-align: center;
-      width: 14.2857142857143%;
-    }
-
-    td{
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
-      padding: 6px;
-      border: 1px solid #999;
-      background: #FFF;
-      color: #777;
-      height: 80px;
-      vertical-align: top;
-      font-size: 16px;
-    }
-
-    .notmonth { color: #CCC; }
-    .today { background-color: #D7F2FF; }
-
-  /*}*/
-
-  #articles #month {
-    margin: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    
-    a {
-      text-decoration: none;
-      padding: 0 10px;
-      color: #999;
-    }
-  }
-
-  #articles ul {
-    font-size: 11px;
-    padding-left: 20px;
-  }
-
-.title {
-  font-family: sans-serif;
-  color: #dc2d5e;
-  text-align: center;
-}
-
-.tabContainer{
-  width: 100%;
-  height: auto;
-}
-
-.tabContainer .buttonContainer {
-  height: 15%;
-}
-
-.tabContainer .buttonContainer button{
-  width: 25%;
-  height: 100%;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px;
-  font-family: sans-serif;
-  font-size: 18px;
-  background-color: #eee;
-}
-
-.tabContainer .buttonContainer button:hover{
-  background-color: #d7d4d4;
-}
-
-.tabContainer .tabPanel{
-  height: auto;
-  background-color: gray;
-  color: white;
-  text-align: center;
-  padding-top: 105px;
-  /*padding-bottom: 10px;*/
-  box-sizing: border-box;
-  font-family: sans-serif;
-  font-size: 22px;
-  display: none;
-
-
-}
-
-</style>
 <div class="banner">
   <div class="home-video-wrapper">
     <%= video_tag('WelcomeToThinQtv.mp4', controls: 'false', autoplay: 'true', loop: 'true', muted: 'true', playsinline: 'true', class: "home_video")%>
@@ -164,33 +57,32 @@
 
 
  
-<div class="row" id="calendar"> 
+<!-- <div class="row" id="calendar">  -->
 <div class="tabContainer">
+
+ <div class="col-md-9 col-md-offset-1 col-xs-11"> 
   <div class="buttonContainer">
 
-    <button onclick="showPanel(0,'#f44336')">Tab 1</button>
-    <button onclick="showPanel(1,'#4caf50')">Tab 2</button>
-    <button onclick="showPanel(2,'#2196f3')">Tab 3</button>
-    <button onclick="showPanel(3,'#ff5722')">Tab 4</button>
+    <button onclick="showPanel(0,'#f44336')">List View </button>
+    <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
+    <!-- <button onclick="showPanel(2,'#2196f3')">Tab 3</button> -->
+    <!-- <button onclick="showPanel(3,'#ff5722')">Tab 4</button> -->
   </div>
-
+</div>
   <div class="tabPanel">
-    
+    <div class="row" id="calendar"> 
       <div class="col-md-9 col-md-offset-1 col-xs-11"> 
             <%= render 'layouts/maincalendar', collection: @events %> 
        </div>   
-
+      </div>
     
   </div>
 
 
 
   <div class="tabPanel" >
-  <div id="articles">
-    <%= caler do |date| %>
-      <%= date.day %>
-      <% end %>
-    </div>
+       <%= render 'layouts/monthcalendar', collection: @events %>
+
 </div>
 
 
@@ -199,9 +91,9 @@
   <div class="tabPanel">Tab 4:Content</div> 
 
 </div>
-</div>
+<!-- </div> -->
 
-</div>
+
 
   <div class="row" id="purpose">
     <div class="col-md-3 col-md-offset-1", style="margin-top: 40px">
@@ -233,12 +125,14 @@
       node.style.color="";
     });
 
-    tabButtons[panelIndex].style.backgroundColor=colorCode;
-    tabButtons[panelIndex].style.color="white";
+    tabButtons[panelIndex].style.backgroundColor="none";
+    tabButtons[panelIndex].style.color="none";
     tabPanels.forEach(function(node) {
       node.style.display="none";
     });
     tabPanels[panelIndex].style.display="block";
-    tabPanels[panelIndex].style.backgroundColor=colorCode;
+    tabPanels[panelIndex].style.backgroundColor="white";
   } 
+  showPanel(0,'#f44336');
 </script>
+
