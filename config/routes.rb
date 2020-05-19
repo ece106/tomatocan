@@ -43,7 +43,6 @@ Rails.application.routes.draw do
   resources :events
   resources :messages
 
-  devise_for :users, :skip => [:sessions, :passwords], :controllers => {registrations: "users/registrations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"} 
   as :user do
     get 'login'  => 'devise/sessions#new',    :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
@@ -98,6 +97,12 @@ Rails.application.routes.draw do
       resources :users
       resources :sessions
       resources :events
+    end
+  end
+
+  scope module: :api, defaults: { format: :json }, path: 'api' do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      devise_for :users, :skip => [:sessions, :passwords], :controllers => {registrations: 'api/v1/users/registrations', passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"} 
     end
   end
 
