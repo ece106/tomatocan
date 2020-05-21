@@ -1,7 +1,7 @@
 
 <style type="text/css">
   
-  #articles .caler {
+  #events .caler {
 
     border-collapse: collapse;
     width: 100%; }
@@ -15,16 +15,15 @@
 
      th {
       font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
+      font-size: 12px;
       padding: 6px;
       border: 1px solid #999;
-      background: #DDD;
-      color: #666;
+      background: #8C1D40;
       text-align: center;
       width: 14.2857142857143%;
     }
 
-      td{
+     td{
       font-family: "Lucida Grande", arial, helvetica, sans-serif;
       font-size: 10px;
       padding: 6px;
@@ -35,6 +34,7 @@
       
       vertical-align: top;
       font-size: 16px;
+      overflow: hidden;
     }
 
     .notmonth { color: #CCC; }
@@ -42,7 +42,7 @@
 
   /*}*/
 
-  #articles #month {
+  #events #month {
     margin: 0;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -55,9 +55,14 @@
     }
   }
 
-  #articles ul {
-    font-size: 11px;
+
+  #events ul {
+    font-size: 15px;
     padding-left: 20px;
+  }
+
+  #events ul li{
+    list-style-type: circle;
   }
 
 .title {
@@ -111,27 +116,93 @@
 
 }
 
+ #calendar-time {
+  display: block;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+
 </style>
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
-<%i = 0%>
+<% i = 0 %>
+<% j = 0 %>
+<% k = 0 %>
+<% l = 0 %>
 
 
 
 <div class="container" style="padding-top: 50px; float: center; width: auto; max-width: 1470px;">
-<div id="articles">
-	<%= caler do |date| %>
-		<%= date.day %>
-      <% if @events.count != 0 %>
-        <% @events.sort_by{|t| t.start_at}.each do |event| %>
-        <% user = User.find(event.usrid) %>
-        <% i += 1 %>  
-        <%= link_to user.name, user.permalink, id: "calendar-event" %>
-        Let's talk about <%= link_to event.name, event, title: event.desc %>
-
-      <% end %>  
-	<% end %>
-	</div>
-</div>
+<div id="events">
+  <h2 id="month" style="color: black;"> <%= @monthforCalendar.strftime("%B %Y") %> </h2>
+<%= caler @monthforCalendar do |date| %>
+<%= date.day %>
+<% count = 0 %>
+  <% @eventsAll.each do |event| %>
+      <% if event.start_at.to_date.eql?(date.to_date) %>
+          <% count+=1 %>
+          <% k += 1 %>
+        <% else %>
+          <% k = 0 %>
+      <% end %>
+        <% if k <=2 %> 
+         <% if event.start_at.to_date.eql?(date.to_date) %>
+            <ul>
+            <% user = User.find(event.usrid) %>
+            <% i += 1 %>  
+            <li><%= link_to user.name, user.permalink, id: "calendar-event" %></li>
+            Topic: <%= link_to event.name, event, title: event.desc%>
+            <br>
+            <%= event.start_at.strftime("%I:%M %p") %>
+            </ul>
+            <br>
+          <% end %>
+        <% end %>
+  <% end %>
+  <span class="more" style="display: none;">
+  <% @eventsAll.each do |event| %>
+      <% if event.start_at.to_date.eql?(date.to_date) %>
+          <% l += 1 %>
+        <% else %>
+          <% l = 0 %>
+      <% end %>
+        <% if l > 2 %> 
+         <% if event.start_at.to_date.eql?(date.to_date) %>
+            <ul>
+            <% user = User.find(event.usrid) %>
+            <% i += 1 %>  
+            <li><%= link_to user.name, user.permalink, id: "calendar-event" %></li>
+            Topic: <%= link_to event.name, event, title: event.desc%>
+            <br>
+            <%= event.start_at.strftime("%I:%M %p") %>
+            </ul>
+            <br>
+          <% end %>
+        <% end %>
+  <% end %>
+  </span>
+  <% if count > 2 %>
+    <button class="expand" style="background-color: #8C1D40; color: white; border-radius: 8px;">read more</button> 
+  <% end %>      
 <% end %>
+</div>
+</div>
 
+
+  <script>
+$(document).ready(function(){
+   $(".expand").click(function(){
+      $(this).prev().toggle();
+      $(this).siblings('.dots').toggle();
+      $(this).find('.total').show();
+      if($(this).text()=='read more'){
+  $(this).text('read less');
+      }
+      else{
+  $(this).text('read more');
+      }
+   });
+});
+  </script>

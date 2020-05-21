@@ -4,7 +4,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.upcoming.recent
-    @events_by_date = @events.group_by(&:start_date)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
