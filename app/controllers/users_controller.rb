@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     usersvidorder = userswithyoutube.order('updated_at DESC')
     @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 12)
   end
+
   def supportourwork
     userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
     stripeorder = userswstripe.order('updated_at DESC')
@@ -30,12 +31,22 @@ class UsersController < ApplicationController
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     pdtnow = Time.now - 7.hours + 5.minutes
+    @index = 0
     id = @user.id
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
       @displayconvo = currconvo
     end  
 
+    currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
+    @otherconvos = []
+    if currconvos.present?
+      currconvos.each do |convo|
+        if convo != @displayconvo
+          @otherconvos.push(convo)
+        end
+      end
+    end
     userid = @user.id
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
     @events = upcomingevents.paginate(page: params[:page], :per_page => 4)
@@ -55,6 +66,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+  
   def pastevents #may be obsolete
     currtime = Time.now
     @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
@@ -301,5 +313,6 @@ class UsersController < ApplicationController
 
       return msg
     end
+    
   end
 end
