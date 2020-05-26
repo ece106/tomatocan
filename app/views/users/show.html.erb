@@ -69,7 +69,7 @@
           <% if @otherconvos.present? %>
               <% @otherconvos.each do |t| %>
                 <%host=User.find(t.usrid)%>
-                <%= link_to t.name, "http://localhost:3000/" + host.permalink, class: "btn btn-lg", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
+                <%= link_to t.name, "https://thinQtv.herokuapp.com/" + host.permalink, class: "btn btn-lg", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
               <%end%>
           <%end%>
         </div>
