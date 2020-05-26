@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
-  before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
+  before_action :authenticate_user!, only: [:update, :dashboard, :controlpanel ]
 
   #before_action :correct_user, only: [:dashboard, :user_id] 
   #before_action :correct_user, only: [:controlpanel] 
@@ -44,27 +44,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-
-  def eventlist #this may be obsolete
-    currtime = Time.now
-    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at > ?", currtime )
-    @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
-    respond_to do |format|
-      format.html
-      format.json { render json: @user }
-    end
-  end
-  def pastevents #may be obsolete
-    currtime = Time.now
-    @events = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
-    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at < ?", currtime )
-    respond_to do |format|
-      format.html
-      format.json { render json: @user }
-    end
-  end
+  
   def profileinfo
     #    @user.updating_password = false
     respond_to do |format|
