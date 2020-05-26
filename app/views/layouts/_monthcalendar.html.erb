@@ -1,129 +1,3 @@
-
-<style type="text/css">
-  
-  #events .caler {
-
-    border-collapse: collapse;
-    width: 100%; }
-
-/*    td, th {
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
-      padding: 6px;
-      border: 1px solid #999;
-    }*/
-
-     th {
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 12px;
-      padding: 6px;
-      border: 1px solid #999;
-      background: #8C1D40;
-      text-align: center;
-      width: 14.2857142857143%;
-    }
-
-     td{
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
-      padding: 6px;
-      border: 1px solid #999;
-      background: #FFF;
-      color: #020202;
-      height: 150px;
-      
-      vertical-align: top;
-      font-size: 16px;
-      overflow: hidden;
-    }
-
-    .notmonth { color: #CCC; }
-    .today { background-color: #D7F2FF; }
-
-  /*}*/
-
-  #events #month {
-    margin: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    
-    a {
-      text-decoration: none;
-      padding: 0 10px;
-      color: #999;
-    }
-  }
-
-
-  #events ul {
-    font-size: 15px;
-    padding-left: 20px;
-  }
-
-  #events ul li{
-    list-style-type: circle;
-  }
-
-.title {
-  font-family: sans-serif;
-  color: #dc2d5e;
-  /*text-align: center;*/
-}
-
-.tabContainer{
-  width: 100%;
-  height: auto;
-  
-}
-
-.tabContainer .buttonContainer {
-  height: 15%;
-  /*text-align: center;*/
-  padding-left: 70px;
-}
-
-.tabContainer .buttonContainer button{
-  width: 300px;
-  height: 100%;
-  float: center;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px;
-  font-family: sans-serif;
-  font-size: 18px;
-  background-color: #eee;
-  
-}
-
-.tabContainer .buttonContainer button:hover{
-  background-color: #d7d4d4;
-}
-
-.tabContainer .tabPanel{
-  height: auto;
-  background-color: gray;
-  color: white;
-  /*text-align: center;*/
-  padding-top: 10px;
-  /*padding-bottom: 10px;*/
-  box-sizing: border-box;
-  font-family: sans-serif;
-  /*font-size: 22px;*/
-  display: none;
-
-
-}
-
- #calendar-time {
-  display: block;
-  font-size: 1.25rem;
-  text-align: center;
-}
-
-
-</style>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
@@ -131,9 +5,6 @@
 <% j = 0 %>
 <% k = 0 %>
 <% l = 0 %>
-
-
-
 <div class="container" style="padding-top: 50px; float: center; width: auto; max-width: 1470px;">
 <div id="events">
   <h2 id="month" style="color: black;"> <%= @monthforCalendar.strftime("%B %Y") %> </h2>
@@ -149,15 +20,16 @@
       <% end %>
         <% if k <=2 %> 
          <% if event.start_at.to_date.eql?(date.to_date) %>
-            <ul>
             <% user = User.find(event.usrid) %>
             <% i += 1 %>  
-            <li><%= link_to user.name, user.permalink, id: "calendar-event" %></li>
-            Topic: <%= link_to event.name, event, title: event.desc%>
+            <ul>
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            By: <%= link_to user.name, user.permalink %>
             <br>
-            <%= event.start_at.strftime("%I:%M %p") %>
+            <% localTime = event.start_at + 2.hours %>
+            <%= localTime.strftime("%I:%M %p") %>
+            <%= Time.now.getlocal.zone %>
             </ul>
-            <br>
           <% end %>
         <% end %>
   <% end %>
@@ -173,35 +45,35 @@
             <ul>
             <% user = User.find(event.usrid) %>
             <% i += 1 %>  
-            <li><%= link_to user.name, user.permalink, id: "calendar-event" %></li>
-            Topic: <%= link_to event.name, event, title: event.desc%>
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            By: <%= link_to user.name, user.permalink %>
             <br>
-            <%= event.start_at.strftime("%I:%M %p") %>
+            <% localTime = event.start_at + 2.hours %>
+            <%= localTime.strftime("%I:%M %p") %>
+            <%= Time.now.getlocal.zone %>
             </ul>
-            <br>
           <% end %>
         <% end %>
   <% end %>
+   <br>
   </span>
   <% if count > 2 %>
-    <button class="expand" style="background-color: #8C1D40; color: white; border-radius: 8px;">read more</button> 
+    <button class="expand" >More Conversations</button> 
   <% end %>      
 <% end %>
 </div>
 </div>
-
-
   <script>
 $(document).ready(function(){
    $(".expand").click(function(){
       $(this).prev().toggle();
       $(this).siblings('.dots').toggle();
       $(this).find('.total').show();
-      if($(this).text()=='read more'){
-  $(this).text('read less');
+      if($(this).text()=='More Conversations'){
+  $(this).text('Less Conversations');
       }
       else{
-  $(this).text('read more');
+  $(this).text('More Conversations');
       }
    });
 });
