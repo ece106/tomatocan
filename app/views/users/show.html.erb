@@ -61,17 +61,19 @@
 
     <div class="col-md-8">
       <%= render 'layouts/jitsi' %>
-        <div class = "container">
-          <a href="#convo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">Other conversations happening right now &#9660 </a>
-            <div id="convo" class="collapse" style="font-size: 13px; padding-left: 5px">
-              <% if @otherconvos.present? %>
-                <% @otherconvos.each do |t| %>
-                  <%host=User.find(t.usrid)%>
-                  <%= link_to t.name, "http://localhost:3000/" + host.permalink, class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
-                <%end%>
-              <%end%>
-            </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Other conversations happening right now
         </div>
+        <div class = "container">
+          <% if @otherconvos.present? %>
+              <% @otherconvos.each do |t| %>
+                <%host=User.find(t.usrid)%>
+                <%= link_to t.name, "http://localhost:3000/" + host.permalink, class: "btn btn-lg", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
+              <%end%>
+          <%end%>
+        </div>
+      </div>
         <div class="container">
           <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
             <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
