@@ -28,7 +28,9 @@ class Event < ApplicationRecord
 
   validate :endat_greaterthan_startat
   def endat_greaterthan_startat
-    if end_at.present? && end_at < start_at
+    #start_at.present? added for testing purpuoses (Absence throws nil comparasion during testing)
+    #It is redundant otherwise since validates rule already avoids this issue
+    if end_at.present? && start_at.present? && end_at < start_at
       errors.add(:end_at, "End time must be after start time")
     end
   end
