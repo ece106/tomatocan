@@ -34,14 +34,15 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem 'puma'
 gem 'activerecord-session_store'
-gem 'doorkeeper'
+gem "puma", "~> 4.3"
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem "sass-rails", "~> 6.0"
+gem "ed25519", "~> 1.2"
+gem "bcrypt_pbkdf", "~> 1.0"
 
 group :test, :development do
   gem 'minitest'
