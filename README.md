@@ -40,20 +40,6 @@ c. To CLONE the repository: In a terminal, in the directory you would like to st
 
 2. Files To Check/Change/Create:
 
-* gemfile:
-
-If you're using sqlite3:
-    Comment out
-```
-    #gem 'pg'
-```
-and uncomment
-```
-gem 'sqlite3'
-
-```
-If you're using postgresql, leave the gemfile as is.
-
 * config/initializers/aakeys.rb:
     Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
@@ -99,23 +85,6 @@ test:
 
 production:
   <<: *default
-```
-
-For sqlite3:
-
-```
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
-development:
-  <<: *default
-  database: db/development.sqlite3
-
-test:
-  <<: *default
-  database: db/test.sqlite3
 ```
 
 DO NOT NAME YOUR DEVELOPMENT DATABASE THE SAME AS YOUR TEST DATABASE!!!

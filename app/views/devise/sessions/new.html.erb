@@ -62,9 +62,8 @@
           <!-- Sign In Button -->
           <%= f.submit "Sign In", :class => "form-control btn-primary" %>
 
-          <!-- Facebook Sign In Button (commented out until SSO works)
+          <!-- Facebook Sign In Button (commented out until SSO works) -->
           <br><div style="text-align:center">OR</div><br>
-
           <div style="text-align:center">
             <%- resource_class.omniauth_providers.each do |provider| %>
               <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: rgb(52,121,235); color: #fff;">
@@ -73,7 +72,7 @@
               </a>
             <% end -%>
           </div>
-          -->
+
         <% end %>
         </div>
       </div>
