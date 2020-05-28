@@ -18,10 +18,10 @@ gem 'simple_calendar'
 gem 'rack-cors'
 gem 'font-awesome-rails'
 gem 'pry'
-gem 'aws-sdk-s3'
 gem 'aws-sdk'
 gem 'rails', '6.0.3'
 gem 'railties', '6.0.3'
+gem 'sprockets', '~>3.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 gem "will_paginate" 
@@ -37,11 +37,11 @@ gem 'jquery-rails'
 gem 'puma'
 gem 'activerecord-session_store'
 gem 'doorkeeper'
-gem "appengine"
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+gem "sass-rails", "~> 6.0"
 
 group :test, :development do
   gem 'minitest'
