@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.0"
 
-set :application, "tomatocan"
+set :application, "myapp"
 set :repo_url, "git@github.com:asanchez0527/tomatocan.git"
 
 # Default branch is :master

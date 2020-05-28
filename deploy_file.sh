@@ -42,8 +42,12 @@ sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
 # configure nginx
 # edit the following file with
 sudo nano /etc/nginx/conf.d/mod-http-passenger.conf 
-# change second line to passenger_ruby /home/deploy/.rbenv/shims/ruby;
+# change second line to 
+# start
+passenger_ruby /home/deploy/.rbenv/shims/ruby;
+# end
 sudo service nginx start
+sudo rm /etc/nginx/sites-enabled/default
 # edit the following file with
 sudo nano /etc/nginx/sites-enabled/myapp
 # start file
@@ -78,5 +82,21 @@ sudo service nginx reload
 sudo apt-get install -y postgresql postgresql-contrib libpq-dev
 sudo su - postgres
 createuser --pwprompt deploy
-createdb -O deploy tomatocan
+createdb -O deploy myapp
 exit
+
+
+DEVISE_SECRET_KEY='fake'
+AWS_KEY='morefake'
+AWS_SECRET_KEY='pretend'
+AWS_BUCKET='yourawsbucketname'
+STRIPE_SECRET_KEY="madeup"
+STRIPE_PUBLIC_KEY="allfake"
+GMAIL_PWD="bgmmeg65wtzgf9"
+Stripe.api_key=STRIPE_SECRET_KEY
+STRIPE_CONNECT_CLIENT_ID="superfake"
+FACEBOOK_APP_ID="228315535169936"
+FACEBOOK_APP_SECRET="9f4def20fc09ce5c5ebcc74cafc4a6fd"
+SECRET_KEY_BASE="fa54c112293bc1811ecb54da71fa2d0c9fd346575f9fc1b495defaee88b99d0ea78bc9c61597711fe57989996d7c8f2343449431901648171b2918ee16e9f642"
+
+./certbot-auto certonly --manual --preferred-challenges dns -d 'boilingreef.com' -d 'www.boilingreef.com'
