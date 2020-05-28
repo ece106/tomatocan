@@ -22,7 +22,7 @@ Devise.setup do |config|
    config.sign_out_via = :delete
    config.omniauth_path_prefix = "/users/auth"
    if Rails.env.production?
-      config.omniauth :facebook, fbappid, secretfacebk, callback_url: "http://thinqtv.herokuapp.com/users/auth/facebook/callback"
+      config.omniauth :facebook, fbappid, secretfacebk, callback_url: "https://boilingreef.com/users/auth/facebook/callback"
    else
       config.omniauth :facebook, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, callback_url: "http://localhost:3000/users/auth/facebook/callback"
    end
