@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 ruby "2.7.0"
 
-gem 'listen'
-gem 'pg'
+gem "rails", "~> 6.0"
+gem "listen", "~> 3.2"
+gem "pg", "~> 1.2"
 gem 'mandrill'	
 gem 'devise'
 gem 'fog-aws'
@@ -19,7 +20,6 @@ gem 'rack-cors'
 gem 'font-awesome-rails'
 gem 'pry'
 gem 'aws-sdk'
-gem 'rails', '6.0.3'
 gem 'railties', '6.0.3'
 gem 'sprockets', '~>3.0'
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -43,6 +43,7 @@ gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem "sass-rails", "~> 6.0"
 gem "ed25519", "~> 1.2"
 gem "bcrypt_pbkdf", "~> 1.0"
+gem "concurrent-ruby", "~> 1.1"
 
 group :test, :development do
   gem 'minitest'

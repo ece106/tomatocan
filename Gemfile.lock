@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actioncable (6.0.3)
       actionpack (= 6.0.3)
@@ -1283,6 +1283,7 @@ DEPENDENCIES
   capybara-screenshot
   carrierwave
   coffee-rails
+  concurrent-ruby (~> 1.1)
   devise
   ed25519 (~> 1.2)
   fog-aws
@@ -1292,16 +1293,16 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   koala
-  listen
+  listen (~> 3.2)
   mandrill
   minitest
   omniauth
   omniauth-facebook
-  pg
+  pg (~> 1.2)
   pry
   puma (~> 4.3)
   rack-cors
-  rails (= 6.0.3)
+  rails (~> 6.0)
   rails-controller-testing
   rails_12factor
   rails_real_favicon
