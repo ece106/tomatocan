@@ -31,7 +31,6 @@ class EventTest < ActiveSupport::TestCase
     #start_at present
     #Time with maximum time limit
     @eventT.end_at =   @eventT.start_at + 3.hour
-    puts @eventT.end_at
     assert @eventT.save, "Event not saved with present start_at"
     #start_at absent
     @eventT.start_at = nil
