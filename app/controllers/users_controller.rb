@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
-  before_action :authenticate_user!, only: [:edit, :update, :dashboard ]
+  before_action :authenticate_user!
 
   #before_action :correct_user, only: [:dashboard, :user_id] 
   #before_action :correct_user, only: [:controlpanel] 
@@ -246,6 +246,7 @@ class UsersController < ApplicationController
   end
 
   def set_user 
+    
     @user = User.find_by_permalink(params[:permalink]) || current_user
     if @user.merchandises.any? 
       notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
