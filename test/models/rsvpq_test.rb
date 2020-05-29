@@ -2,22 +2,26 @@ require 'test_helper'
 
 class RsvpqTest < ActiveSupport::TestCase
 
-  def setup
-    @rsvpq = rsvpqs(:one)
+  setup do
+    @rsvpqT = Rsvpq.find(1)
   end
 
-  [:event_id].each do |field|
-    test "#{field}_must_not_be_empty" do
-      @rsvpq.send "#{field}=", nil
-      refute @rsvpq.valid?
-      refute_empty @rsvpq.errors[field]
-    end
-    end
-  [:email].each do |field|
-    test 'test_email' do
+  test "event_id_must_not_be_empty" do
+    @rsvpqT.event_id = nil
+    assert_not @rsvpqT.valid?, "Empty event_id accepted"
+
+    @rsvpqT.event_id = rsvpqs(:valid_rsvpq_two).event_id
+    assert @rsvpqT.valid?, "Valid event_id not accepted"
+  end
+
+  test 'test_email' do
+    #Email format test
     email_entry =  'this@@@@email@@@@.wontwork.'
-    @rsvpq.send "#{field}=", email_entry
-    refute @rsvpq.valid?
-    end
-end
+    @rsvpqT.email = email_entry
+    assert_not @rsvpqT.valid?, "Invalid email format accepted"
+    #Email presence test
+    @rsvpqT.email = "thisIsmyEmail@gmail.com"
+    @rsvpqT.user_id = nil
+    assert @rsvpqT.valid?, "email present when user_id absent should be valid"
+  end
 end
