@@ -4,6 +4,7 @@ class EventTest < ActiveSupport::TestCase
   setup do
     #Basic data setup
     @eventT = Event.first
+    @eventT2 = Event.find(3)
     @invalidFormat = ["http", ".co", ".com", ".net", ".tv", ".uk", ".ly", ".me",
       ".biz", ".mobi", ".cn", "kickstarter", "barnesandnoble", "smashwords",
       "itunes", "amazon", "eventbrite", "rsvpify", "evite", "meetup"]
@@ -79,6 +80,14 @@ class EventTest < ActiveSupport::TestCase
 
     @eventT.start_at = Time.now
     @eventT.end_at = @eventT.start_at - 2.hours
-    assert_not @eventT.save, "Accepting events wit start_at > end_at"
+    assert_not @eventT.save, "Accepting events with start_at > end_at"
+  end
+
+  test "rsvpqs association" do
+    assert @eventT2.rsvpqs.count > 0, "event is not associated to rsvpqs"
+  end
+
+  test "users association" do
+    assert @eventT2.users.count > 0, "rsvpqs is not associated to users"
   end
 end
