@@ -39,18 +39,46 @@ class EventTest < ActiveSupport::TestCase
     assert_not @eventT.save, "Event saved with absent start_at"
   end
 
-  test "Name without url" do
-    name = @eventT.name
-    errorMsg = "Event saved with invalid name: "
+  test "name without url" do
+    evalFormat do |format|
+      @eventT.name = events(:one).name + format
+    end
+  end
+
+  test "desc without url" do
+    evalFormat do |format|
+      @eventT.desc = events(:four).desc + format
+    end
+  end
+
+  test "address without url" do
+    evalFormat do |format|
+      @eventT.address = "Testing Address"+ format
+    end
+  end
+
+  def evalFormat
+    errorMsg = "Event saved with invalid format: "
     isInvalid = false
     @invalidFormat.each do |format|
-      @eventT.name = name + format
+      yield format
       isInvalid ||= @eventT.save
       if isInvalid then
-        errorMsg.concat @eventT.name
+        errorMsg.concat format
         break
       end
     end
     assert_not isInvalid, errorMsg
+  end
+
+  test "endat_greaterthan_startat" do
+    #end_at greater than start_at
+    @eventT.end_at = Time.now
+    @eventT.start_at = @eventT.end_at - 2.hours
+    assert @eventT.save, "Not accepting events with end_at > start_at"
+
+    @eventT.start_at = Time.now
+    @eventT.end_at = @eventT.start_at - 2.hours
+    assert_not @eventT.save, "Accepting events wit start_at > end_at"
   end
 end
