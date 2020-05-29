@@ -4,7 +4,9 @@ class EventTest < ActiveSupport::TestCase
   setup do
     #Basic data setup
     @eventT = Event.first
-
+    @invalidFormat = ["http", ".co", ".com", ".net", ".tv", ".uk", ".ly", ".me",
+      ".biz", ".mobi", ".cn", "kickstarter", "barnesandnoble", "smashwords",
+      "itunes", "amazon", "eventbrite", "rsvpify", "evite", "meetup"]
   end
 
   test "validate presence of usrid" do
@@ -35,5 +37,20 @@ class EventTest < ActiveSupport::TestCase
     #start_at absent
     @eventT.start_at = nil
     assert_not @eventT.save, "Event saved with absent start_at"
+  end
+
+  test "Name without url" do
+    name = @eventT.name
+    errorMsg = "Event saved with invalid name: "
+    isInvalid = false
+    @invalidFormat.each do |format|
+      @eventT.name = name + format
+      isInvalid ||= @eventT.save
+      if isInvalid then
+        errorMsg.concat @eventT.name
+        break
+      end
+    end
+    assert_not isInvalid, errorMsg
   end
 end
