@@ -7,8 +7,8 @@
 <% l = 0 %>
 <div class="container" style="padding-top: 50px; float: center; width: auto; max-width: 1470px;">
 <div id="events">
-  <h2 id="month" style="color: black;"> <%= @monthforCalendar.strftime("%B %Y") %> </h2>
-<%= caler @monthforCalendar do |date| %>
+  <h2 id="month" style="color: black;"> <%= Date.today.strftime("%B %Y") %> </h2>
+<%= caler Date.today do |date| %>
 <%= date.day %>
 <% count = 0 %>
   <% @eventsAll.each do |event| %>
@@ -26,9 +26,15 @@
             <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
             By: <%= link_to user.name, user.permalink %>
             <br>
-            <% localTime = event.start_at + 2.hours %>
-            <%= localTime.strftime("%I:%M %p") %>
-            <%= Time.now.getlocal.zone %>
+            <% edt = event.start_at + 3.hours %>
+            <span style="font-size:90%;"id=month-calendar-time<%=i%>></span>
+            <script>
+            var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+            date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+            var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+            var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
+            document.getElementById('month-calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+          </script>          
             </ul>
           <% end %>
         <% end %>
@@ -48,9 +54,15 @@
             <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
             By: <%= link_to user.name, user.permalink %>
             <br>
-            <% localTime = event.start_at + 2.hours %>
-            <%= localTime.strftime("%I:%M %p") %>
-            <%= Time.now.getlocal.zone %>
+            <% edt = event.start_at + 3.hours %>
+            <span style="font-size:90%;"id=month-calendar-time<%=i%>></span>
+            <script>
+            var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+            date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+            var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+            var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
+            document.getElementById('month-calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+          </script>   
             </ul>
           <% end %>
         <% end %>
@@ -77,4 +89,9 @@ $(document).ready(function(){
       }
    });
 });
+
   </script>
+
+
+
+
