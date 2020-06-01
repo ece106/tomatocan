@@ -31,7 +31,6 @@ class UsersController < ApplicationController
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     pdtnow = Time.now - 7.hours + 5.minutes
-    @index = 0
     id = @user.id
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
@@ -54,6 +53,14 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @user }
     end
+
+    #ban-feature
+    @host = User.find(@displayconvo.usrid)
+    users = User.all
+    if(users.current_page?(event_path(@host.permalink))){
+      @currusers.push(users)
+    }
+    
   end
 
   def profileinfo
