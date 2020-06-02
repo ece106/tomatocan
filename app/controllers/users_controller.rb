@@ -185,7 +185,7 @@ class UsersController < ApplicationController
       redirect_to user_profileinfo_path(current_user.permalink)
       UserMailer.with(user: @user).welcome_email.deliver_later
     else
-       redirect_to new_user_signup_path, danger: signup_error_message
+      redirect_to new_user_signup_path, danger: signup_error_message
       #redirect_to new_user_signup_path
       @user.errors.clear
     end

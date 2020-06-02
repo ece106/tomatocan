@@ -18,15 +18,6 @@ class UsersControllerTest < ActionController::TestCase
     sign_in @user
     assert_equal(@user.id, 1)
   end
-  test "should equate youtube field" do
-    youtube="youtube"
-    assert_equal(youtube,@user.youtube)
-  end
-
-  test "should get users youtubers" do
-    get :youtubers
-    assert_response :success
-  end
 
   test "should verify user name" do
     sign_in @user

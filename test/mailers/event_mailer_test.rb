@@ -10,6 +10,6 @@ class EventMailerTest < ActionMailer::TestCase
   test 'to, from' do
     mail = EventMailer.with(@mail_hash).event_reminder
     assert_equal ["#{@user.email}"] , mail.to
-    assert_equal ['thinqtvstaff@gmail.com'], mail.from
+    assert_equal ['info@ThinQ.tv'], mail.from
   end
 end
