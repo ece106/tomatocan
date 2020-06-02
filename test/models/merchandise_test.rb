@@ -44,6 +44,14 @@ class MerchandiseTest < ActiveSupport::TestCase
     refute @merchandise.valid?, 'saved merchandise with a non numerical price'
   end
 
+  test "user association" do
+    refute defined?(@merchandise.user) == nil, 'saved merchandise with no user'
+  end
+
+  test "purchases association" do
+    refute defined?(@merchandise.purchases) == nil, 'no association between merchandises and purchases'
+  end
+
   test "parse youtube for merchandise" do
     @merchandise.youtube = "http://youtube.com/watch?v=/frlviTJc"
     @merchandise.get_youtube_id
