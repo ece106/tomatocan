@@ -1,3 +1,89 @@
 <div class="container">
- 
+  <%= render 'layouts/flash_messages' %>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+        <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Sign Up</b>
+          </div>
+          <p>Already a member? <%= link_to 'Sign in', "/login" %>!</p>
+        </div>
+          
+          <!-- Name Box -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :name, placeholder: "Name: Enter your name or the name of your organization" ,:autofocus => true, :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Email Box -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon" style="font-size:20px">
+                &#9993
+              </div>
+              <%= f.email_field :email, placeholder:"Email", :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Username Box -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                ThinQ.tv/
+              </div>
+              <%= f.text_field :permalink, placeholder: "Username: Less than 20 alphanumeric characters only", maxlength: 20, :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Password Boxes -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-lock" style="font-size:20px"></i>
+              </div>
+              <%= f.password_field :password, placeholder:"Enter password (Minimum 8 characters)", :class => "form-control" %>
+            </div>
+            <div class="input-group" style="padding:15px 0px 0px 0px">
+              <div class="input-group-addon">
+                <i class="fa fa-lock" style="font-size:20px"></i>
+              </div>
+              <%= f.password_field :password_confirmation, placeholder:"Confirm password", :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-8" style="margin-left:-50px">
+              <small>By clicking 'Sign Up', you agree to the <br> ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+            </div>
+            <div class="col-md-5" >
+              <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
+            </div>
+          </div>
+
+          <!-- Facebook Sign Up Button (commented out until SSO works) -->
+          <div style="text-align:center; padding-bottom:10px">
+            OR
+          </div>
+          <div style="text-align:center"> 
+            <% unless current_user %>
+              <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: rgb(52,121,235); color: #fff;">
+                <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
+                <b>Sign Up With Facebook</b> 
+              </a>
+            <% else %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <% end %>
+          </div>
+          
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
