@@ -6,6 +6,7 @@ class UserMailerTest < ActionMailer::TestCase
   # end
   setup do
     @user = users(:one)
+	@mail_check = {event: events(:one),user: @user}
   end
   
   #As of June 2, 2020 all tests pass
@@ -22,5 +23,16 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal ['info@ThinQ.tv'], mail.from
 	assert_equal "", mail.body.to_s
   end
-    
+  
+  #sends an email and checks if it got queued
+  test 'delivery check' do
+	
+	mail = UserMailer.with(user: @user).welcome_email
+	
+	assert_emails 1 do
+		mail.deliver_later
+	end
+	
+  end
+  
 end

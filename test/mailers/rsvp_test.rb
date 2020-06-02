@@ -12,6 +12,7 @@ class RsvpMailerTest < ActionMailer::TestCase
     @timeZone = "1:00 PM"
   end
 
+#checks if emails are sent and the content of the emails
   test 'thanks for rsvp' do
     email = RsvpMailer.with(user: @user, event: @event, timeZone: @timeZone).rsvp_reminder
     email_2 = RsvpMailer.with(email: @email, event: @event, timeZone: @timeZone).rsvp_reminder
@@ -31,16 +32,5 @@ class RsvpMailerTest < ActionMailer::TestCase
     assert email.subject.include?('A reminder for your ThinQ.tv Conversation on')
     assert email_2.subject.include?('A reminder for your ThinQ.tv Conversation on')
   end
-  
-
-  #Test makes sure that user cannot rsvp without putting in an email.
-  test 'Not signed rsvp' do
-	email_empty = RsvpMailer.with(user: '', event:@event, timeZone: @timeZone).rsvp_reminder
-	
-	email_empty.deliver_later
-	
-	assert_no_emails
-  end
-	
 	
 end
