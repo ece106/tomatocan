@@ -12,12 +12,13 @@ test "user signed in successfully" do
   end
 end
 
-test "error message displayed" do
+test "error message didn't display" do
   fail_sign_in do
   page.find("div#flash_alert")
   end
 end
-test"error message has red background" do
+  #message represents what case is if test fails
+test"error message has no red background" do
   fail_sign_in do
   page.has_css?('.alert.alert-danger')
   end
