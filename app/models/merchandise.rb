@@ -6,6 +6,7 @@ class Merchandise < ApplicationRecord
   validates :name, presence: true
   validates :buttontype, presence: true
   validates :price, numericality: true
+  validates :buttontype, inclusion: { in: ["Buy","Donate"]}
 
   mount_uploader :itempic, MerchpicUploader
   mount_uploader :audio, AudioUploader
