@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-  resources :relationships
-
-  use_doorkeeper do
-    skip_controllers :authorizations, :applications,
-      :authorized_applications
-  end
+  resources :relationshipss
   
   resources :users do
     member do
