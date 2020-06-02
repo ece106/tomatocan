@@ -238,46 +238,46 @@ class UsersController < ApplicationController
   end
 
     # returns a string of error messages for the user signup page
-    def signup_error_message
-      msg = ""
-      if @user.errors.messages[:name].present?
-        msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+  def signup_error_message
+    msg = ""
+    if @user.errors.messages[:name].present?
+      msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+    end
+    if @user.errors.messages[:email].present?
+      @user.errors.messages[:email].each do |email|
+        msg += ("Email " + email + "\n")
       end
-      if @user.errors.messages[:email].present?
-        @user.errors.messages[:email].each do |email|
-          msg += ("Email " + email + "\n")
-      end
-      if @user.errors.messages[:permalink].present?
-        msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
-      end
-      if @user.errors.messages[:password].present?
-        msg += ("Password " + @user.errors.messages[:password][0] + "\n")
-      end
-
-      return msg
+    end
+    if @user.errors.messages[:permalink].present?
+      msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
+    end
+    if @user.errors.messages[:password].present?
+      msg += ("Password " + @user.errors.messages[:password][0] + "\n")
     end
 
-    def update_error_message
-      msg = ""
-      if @user.errors.messages[:name].present?
-      end
-      if @user.errors.messages[:email].present?
-        msg += ("Email " + @user.errors.messages[:email][0] + "\n")
-      end
-      if @user.errors.messages[:permalink].present?
-        msg += ("URL handle " + @user.errors.messages[:permalink][0] + "\n")
-      end
-      if @user.errors.messages[:password_confirmation].present?
-        msg += ( "Passwords do not match \n")
-      end
-      if @user.errors.messages[:password].present?
-        msg += ("Password " + @user.errors.messages[:password][0] + "\n")
-      end
-      if @user.errors.messages[:twitter].present?
-        msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
-      end
+    return msg
+  end
 
-      return msg
+  def update_error_message
+    msg = ""
+    if @user.errors.messages[:name].present?
     end
+    if @user.errors.messages[:email].present?
+      msg += ("Email " + @user.errors.messages[:email][0] + "\n")
+    end
+    if @user.errors.messages[:permalink].present?
+      msg += ("URL handle " + @user.errors.messages[:permalink][0] + "\n")
+    end
+    if @user.errors.messages[:password_confirmation].present?
+      msg += ( "Passwords do not match \n")
+    end
+    if @user.errors.messages[:password].present?
+      msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+    end
+    if @user.errors.messages[:twitter].present?
+      msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
+    end
+
+    return msg
   end
 end
