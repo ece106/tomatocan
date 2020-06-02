@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="col-md-3"></div>
-    <div class="col-md-7" style="margin-left:-50px">
+    <div class="col-md-7" style="margin-left:-50px; padding-top:20px">
       <%= form_for @user, :html => {:multipart => true} do |f| %>
       <div class="panel panel-primary">
         <div class="panel-heading">
@@ -21,27 +21,23 @@
         </div>
         <div class="panel-body">
 
-          <div class="row" style="margin-bottom:-20px">
+          <div class="row" style="margin-bottom:-20px; padding:0px">
           
             <!-- Profile Picture -->
-            <div class="col-md-4" style="margin-left:-65px; margin-top:-30px;">
+            <div class="col-md-3" style="margin-top:-20px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
-                  <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
-                <% elsif @user.profilepicurl %>
-                  <% if @user.profilepicurl.match(/http/) %>
-                    <%= image_tag @user.profilepicurl, :height => "100%", :width => "100%" %><br>
-                  <% end %>
+                  <%= image_tag(@user.profilepic.url.to_s, :class => "img-circle", :style => "height:120; width:120; margin-top:-15px", :id => "profileInfoImage") %>
                 <% else %> 
-                  <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
+                  <%= image_tag("logoDigitalHollow300.png", :class => "img-circle", :style => "height:120; width:120; margin-top:-15px", :id => "profileInfoImage")%>
                 <% end %>
                   <%= f.file_field :profilepic, :style => "padding-top:5px;" %>
                 <p class="help-block">150px &times; 150px is best</p>
               </div>
             </div>
 
-            <!-- Header (For Now) -->
+            <!-- Header (Old)
             <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
@@ -49,25 +45,24 @@
                 <p class="help-block">1500px &times; 300px is best</p>
               </div>
             </div>
-
-            <!-- Header (Fix Later) 
-            <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
+            -->
+ 
+            <div class="col-md-9" style="margin-top:-20px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <% if @user.bannerpic.present? && @user.bannerpic != '' %>
-                  <div style="margin-top:20px">
-                  <%= image_tag @user.bannerpic.url.to_s, height: "126", :width => "630", :id => "userBannerImage"%>
+                  <div id="profileInfoBanner" style="margin-top:20px">
+                    <%= image_tag(@user.bannerpic.url.to_s, :style => "height:150px; margin-top:-15px", :id => "userBannerImage")%> <br>
                   </div>
                 <% else %>
-                  <div style="margin-top:20px">
-                  <%= image_tag "crowddark.png", height: "126", :width => "630", :id => "userBannerImage" %>
+                  <div id="profileInfoBanner" style="margin-top:20px;">
+                    <%= image_tag("crowddark.png", :class => "img-responsive", :style => "height:130px; margin-top:-13px", :id => "userBannerImage")%> <br>
                   </div>
                 <% end %>
-                <%= f.file_field :bannerpic, :style => "padding-top:19px;" %>
+                <%= f.file_field :bannerpic, :style => "padding-top:23px;" %>
                 <p class="help-block">1500px &times; 300px is best</p>
               </div>
             </div>
-            -->
           </div>
 
           <!-- Name -->
