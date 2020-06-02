@@ -1,10 +1,6 @@
 require 'will_paginate/array'
 
 class ApplicationController < ActionController::Base
-
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  respond_to :json
   
   before_action :store_user_location!, if: :storable_location?
   before_action :update_sanitized_params, if: :devise_controller?
