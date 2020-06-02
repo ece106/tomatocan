@@ -35,14 +35,14 @@
         <td align="center">
           <!-- Facebook share -->
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href="https://www.facebook.com/share.php?u=<%=@user_url%>&quote=<%=URI::encode(@share_message)%>"
+            href="https://www.facebook.com/share.php?u=<%=@user_url%>"
             target="_blank"
             rel="noopener noreferrer">
             <%= image_tag attachments['facebook.png'].url %> Facebook
           </a>
           <!-- Twitter share -->
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href="https://twitter.com/intent/tweet?url=<%=@user_url%>&text=<%=URI::encode(@share_message)%>"
+            href="https://twitter.com/intent/tweet?url=<%=@user_url%>"
             target="_blank"
             rel="noopener noreferrer">
             <%= image_tag attachments['twitter.png'].url %> Twitter
@@ -56,7 +56,7 @@
           </a>
           <!-- Email share -->
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
-            href="mailto:?subject=<%=URI::encode(@share_email_subject)%>&body=<%=ERB::Util.url_encode(@share_email_content)%>"
+            href="mailto:?"
             target="_blank">
             <%= image_tag attachments['email.png'].url %> Email
           </a>
