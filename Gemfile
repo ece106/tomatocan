@@ -58,10 +58,6 @@ group :test, :development do
   gem 'rails_real_favicon'
 end
 
-group :production do
-  gem 'rails_12factor'
-end
-
 group :test do
   gem 'turn', :require => false
 end
