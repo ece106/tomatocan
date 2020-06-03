@@ -24,7 +24,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get users youtubers" do
-    get :youtubers, {format: "text/html"}
+    get :youtubers, params: {format: "text/html"}
     assert_response :success
   end
 
