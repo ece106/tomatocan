@@ -32,14 +32,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   		click_on("Discover Previous Conversations", match: :first)
   		assert_equal current_path, supportourwork_path
   	end	
-  end 
-
-  test "should go to FAQ page when clicking on FAQ in header"  do
-  	within("div#globalNavbar.collapse.navbar-collapse") do
-  		click_on('FAQ', match: :first)
-  		assert_equal current_path, faq_path
-  	end	
-  end 
+  end
 
   test "should go to view profile after clicking on user name and clicking view profile"  do
   	click_on(class: "dropdown-toggle")
@@ -59,8 +52,8 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end	
 
    test "should be able to host a live conversation" do
-    within("div.panel.panel-default") do
-      click_on("Host a Live Conversation", match: :first)
+    within("div#countdown_clock") do
+      click_on("Post your Own Conversation", match: :first)
       assert_equal current_path, new_event_path
     end 
   end  

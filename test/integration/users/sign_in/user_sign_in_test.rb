@@ -1,5 +1,5 @@
 require 'test_helper'
-#tests for sign in error message upon failed sign in
+#tests for sign in error message upon failed sign in - blake
 class UserSignInTest < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
