@@ -16,7 +16,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		click_on('Home', match: :first)
   		assert_equal current_path, root_path
-  	end	
+  	end
   end
 
   test "should go to about page when clicking about in header"  do
@@ -31,14 +31,14 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		click_on("Discover Previous Conversations", match: :first)
   		assert_equal current_path, supportourwork_path
-  	end	
+  	end
   end
 
   test "should go to view profile after clicking on user name and clicking view profile"  do
   	click_on(class: "dropdown-toggle")
   	click_on("View Profile", match: :first)
   	assert_equal current_path, user_profile_path(@user.permalink)
-  end 
+  end
 
   test "should go to control panel after clicking on user name and clicking control panel"  do
   	click_on(class: "dropdown-toggle")
