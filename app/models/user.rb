@@ -48,9 +48,6 @@ class User < ApplicationRecord
   validates_length_of   :password, within:  Devise.password_length, allow_blank: true, :if => :password
   validates_format_of   :email, with: Devise.email_regexp, allow_blank: true, :if => :email_changed?
   validates :twitter, format: /\A[\w+]+\z/, allow_blank: true
-  validates :videodesc1, length: { maximum: 255 }
-  validates :videodesc2, length: { maximum: 255 }
-  validates :videodesc3, length: { maximum: 255 }
 
   before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
