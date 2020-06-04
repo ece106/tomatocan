@@ -84,6 +84,11 @@
               <% @rsvpusers.each do |rsvpuser| %>
                 <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
               <% end %>
+              <% @rsvps.each do |rsvp| %>
+                <% unless rsvp.email.blank? %>
+                  <%= rsvp.email %>,
+                <% end %>
+              <% end %>
             </div>
           <% end %>
         </div>
