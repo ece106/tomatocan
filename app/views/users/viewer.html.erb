@@ -56,41 +56,22 @@
   </div>
 </div>
 
-<script src="https://meet.jit.si/external_api.js"></script>
-<script>
-	jQuery(document).ready(function($) {
-		var domain = "meet.jit.si";
-		var options = {
-			roomName: "thinqtv/", <%= @user.permalink %>,
-			parentNode: document.querySelector('#meet')
-		}
-		var api = new JitsiMeetExternalAPI(domain, options);
-	});
-</script>
-
 <div class="col-md-8">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <%= @user.name %>'s Live Conversation
+  <%= render 'layouts/jitsi' %>
+    <div class="container">
+      <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
+        <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
+          <p>- Are you using Safari or Edge? Close that and use Chrome or Firefox. - or -<br>
+          - Reload the page. (Press F5) - or -<br>
+          - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
+          - Turn up the volume on your speakers. - or - <br>
+          - Update Chrome or Firefox to the latest version. - or - <br>
+          - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
+          - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
+          - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
+        </div>
     </div>
-    <div class="panel-body embed-responsive embed-responsive-16by9">
-      <div class="embed-responsive-item" id="meet"></div>
-    </div>
-  </div>
-  <div class="container">
-    <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
-      <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
-        <p>- Are you using Safari or Edge? Close that and use Chrome or Firefox. - or -<br>
-        - Reload the page. (Press F5) - or -<br>
-        - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
-        - Turn up the volume on your speakers. - or - <br>
-        - Update Chrome or Firefox to the latest version. - or - <br>
-        - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
-        - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
-        - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
-      </div>
-  </div>
-  <br>
+    <br>
   </div>
 </div>
 </div>
