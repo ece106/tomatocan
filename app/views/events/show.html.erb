@@ -150,17 +150,17 @@
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
             onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
             'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
-            <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25px;" />
+            <%= image_tag("social-share-button/linkedin.png")%>
           </a>&nbsp
           <a href="http://www.facebook.com/sharer.php?u=<%= @surl %>"
             onclick="window.open('http://www.facebook.com/sharer.php?u=<%= @surl %>',
             'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
-            <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px; border-radius:4px" />
+            <%= image_tag("social-share-button/facebook.png")%>
           </a>&nbsp
           <a href="https://twitter.com/intent/tweet?text=Join <%= @user.name %> for interesting conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT: <%= @surl %>"
             onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= @user.permalink %> for thought-provoking conversation: <%= @event.name %> at <%= @event.start_at.strftime("%B %d, %I:%M %p") %> PDT:<%= @surl %>',
             'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
-            <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:4px;">
+            <%= image_tag("social-share-button/twitter.png")%>
           </a><br><br>
         </div>
       </div>
