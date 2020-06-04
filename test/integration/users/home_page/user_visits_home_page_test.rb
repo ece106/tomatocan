@@ -8,10 +8,6 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     sign_in
   end
 
-  #test "the truth" do
-  #  assert true
-  #end
-
   test "should go to home after clicking on home" do
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		click_on('Home', match: :first)
@@ -29,7 +25,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   #dpc = discover previous conversations
   test "should go to dpc page when clicking on dpc in header"  do
   	within("div#globalNavbar.collapse.navbar-collapse") do
-  		click_on("Discover Previous Conversations", match: :first)
+  		click_on("Have us on your Podcast", match: :first)
   		assert_equal current_path, supportourwork_path
   	end
   end

@@ -1,5 +1,5 @@
-<% flash.each do |name, msg| %>
-	<div class='alert alert-<%= name %>'>
-		<%= simple_format msg.gsub(/\n/, '<br>') %>
-	</div>
-<% end %>
+<%- flash.each do |name, msg| -%>
+  <div class="alert alert-danger" role="alert">
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<%- end -%>
