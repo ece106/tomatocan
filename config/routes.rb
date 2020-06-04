@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   resources :events
   resources :messages
 
-  devise_for :users, :skip => [:sessions, :passwords], :controllers => {registrations: "users/registrations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"} 
+  devise_for :users, :skip => [:sessions, :passwords], :controllers => {registrations: 'api/v1/users/registrations', passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"} 
   as :user do
     get 'login'  => 'devise/sessions#new',    :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session

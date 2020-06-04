@@ -57,6 +57,11 @@ class User < ApplicationRecord
 
   # Helper methods for Relationships
 
+  def authenticate(email, password)
+    user = User.find_for_authentication(email: email)
+    user.try(:valid_password?, password) ? user : nil
+  end
+
   # Follow a user
   def follow(other_user)
     following << other_user

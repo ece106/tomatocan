@@ -226,6 +226,7 @@ class UsersController < ApplicationController
   end
 
   def set_user 
+    
     @user = User.find_by_permalink(params[:permalink]) || current_user
     if @user.merchandises.any? 
       notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
