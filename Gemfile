@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.7"
+ruby "2.7.0"
 
 gem 'listen'
 gem 'pg'
@@ -24,8 +24,8 @@ gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '6.0.2.2'
-gem 'railties', '6.0.2.2'
+gem 'rails', '6.0.3'
+gem 'railties', '6.0.3'
 gem  'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
@@ -67,7 +67,7 @@ gem 'jquery-rails'
 # in production environments by default.
 #group :assets do
 gem 'sass-rails', '~> 5.0.7'
-  gem 'coffee-rails', '~> 4.2.2'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.3.0'
 #end
 
