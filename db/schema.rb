@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "authentication_token", limit: 30
     t.string "provider"
     t.string "uid"
-    t.string "confimation_token"
+    t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
