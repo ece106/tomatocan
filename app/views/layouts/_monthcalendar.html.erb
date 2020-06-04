@@ -8,6 +8,7 @@
 <div class="container" style="padding-top: 50px; float: center; width: auto; max-width: 1470px;">
 <div id="events">
   <h2 id="month" style="color: black;"> <%= Date.today.strftime("%B %Y") %> </h2>
+  <!-- the caler is a method defined in app/helpers/month_calendar_helper.rb -->
 <%= caler Date.today do |date| %>
 <%= date.day %>
 <% count = 0 %>
