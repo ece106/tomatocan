@@ -41,14 +41,14 @@
 <div class="main">
   <br>
   <div class="row" id="countdown_clock">
-    <div class="col-md-4 col-md-offset-1 col-xs-11">
+    <div class="col-md-4 col-md-offset-1 col-xs-12">
       <h2>Chat Room Schedule</h2>
         <h3>Topics important to you in the 2020 election</h3>
           <% if user_signed_in? %>
             <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-xs-12">
       <%= render 'layouts/countdown_clock' %>
     </div>
   </div>
