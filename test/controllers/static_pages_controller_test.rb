@@ -18,16 +18,6 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'should_get_suggestedperks' do
-    get :suggestedperks
-    assert_response :success
-  end
-
-  test 'should_get_tellfriends' do
-    get :tellfriends
-    assert_response :success
-  end
-
   test 'should_get_tos' do
     get :tos
     assert_response :success
