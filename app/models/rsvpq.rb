@@ -7,6 +7,8 @@ class Rsvpq < ApplicationRecord
 	
 	validates :email, uniqueness: {scope: :event_id}
 
+	validates :user_id, uniqueness: {scope: :event_id}
+
 	validates :email, presence: {unless: :user_id? }
 
 end
