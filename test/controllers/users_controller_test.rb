@@ -8,24 +8,17 @@ class UsersControllerTest < ActionController::TestCase
     # sign_in @user
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-  end
-
-
   test "should check index" do
     sign_in @user
     assert_equal(@user.id, 1)
   end
+  test "should get index" do
+    get :index, params: {format: "text/html"}
+    assert_response :success
+  end
   test "should equate youtube field" do
     youtube="youtube"
     assert_equal(youtube,@user.youtube)
-  end
-
-  test "should get users youtubers" do
-    get :youtubers
-    assert_response :success
   end
 
   test "should verify user name" do
@@ -40,6 +33,11 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should recognize youtubers"do
     assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
+  end
+
+  test "should get users youtubers" do
+    get :youtubers, params: {format: "text/html"}
+    assert_response :success
   end
 
   test "should recognize supportourwork"do
@@ -104,6 +102,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get users profileinfo" do 
+    sign_in @user
     get :profileinfo, params: { permalink: 'user1' }
     assert_response :success
   end
