@@ -5,7 +5,7 @@ class Rsvpq < ApplicationRecord
 	validates :event_id, presence: true
 	validates_format_of   :email, with: Devise.email_regexp, allow_blank: true
 	
-	validates_uniqueness_of :email, :message => 'Entered email already has an rsvp'
+	validates :email, uniqueness: {scope: :event_id}
 
 	validates :email, presence: {unless: :user_id? }
 
