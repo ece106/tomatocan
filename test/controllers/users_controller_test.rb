@@ -12,9 +12,6 @@ class UsersControllerTest < ActionController::TestCase
     sign_in @user
     assert_equal(@user.id, 1)
   end
-  test "should get index" do
-    get :index, params: {format: "text/html"}
-    assert_response :success
   end
   test "should equate youtube field" do
     youtube="youtube"
@@ -33,11 +30,6 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should recognize youtubers"do
     assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
-  end
-
-  test "should get users youtubers" do
-    get :youtubers, params: {format: "text/html"}
-    assert_response :success
   end
 
   test "should recognize supportourwork"do
