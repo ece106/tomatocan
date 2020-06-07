@@ -6,6 +6,11 @@
 }
 #calendar td {
   text-align: left;
+  border: none;
+  border-bottom: 1px solid #dfdada;
+  height: 0px;
+  font-size: 14px;
+
   vertical-align: middle !important;
 
 }
@@ -53,4 +58,142 @@
 #controlpanel-events {
     margin-top: 60px;
     right: 15.5%;
+}
+
+
+  #events .caler {
+
+    border-collapse: collapse;
+    width: 100%; }
+
+/*    td, th {
+      font-family: "Lucida Grande", arial, helvetica, sans-serif;
+      font-size: 10px;
+      padding: 6px;
+      border: 1px solid #999;
+    }*/
+
+     th {
+      font-family: "Lucida Grande", arial, helvetica, sans-serif;
+      font-size: 12px;
+      padding: 6px;
+      border: 1px solid #999;
+      background: #8C1D40;
+      text-align: center;
+      width: 14.2857142857143%;
+    }
+
+     td{
+      font-family: "Lucida Grande", arial, helvetica, sans-serif;
+      font-size: 10px;
+      padding: 6px;
+      border: 1px solid #999;
+      background: #FFF;
+      color: #020202;
+      height: 150px;
+      
+      vertical-align: top;
+      font-size: 16px;
+      overflow: hidden;
+    }
+
+    .notmonth { color: #CCC; }
+    .today { background-color: #D7F2FF; }
+
+  /*}*/
+
+  #events #month {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    
+    a {
+      text-decoration: none;
+      padding: 0 10px;
+      color: #999;
+    }
+  }
+
+
+  #events ul {
+    font-size: 15px;
+    padding-left: 20px;
+  }
+
+  #events ul li{
+    list-style-type: circle;
+  }
+
+.title {
+  font-family: sans-serif;
+  color: #dc2d5e;
+  /*text-align: center;*/
+}
+
+.tabContainer{
+  width: 100%;
+  height: auto;
+  
+}
+
+.tabContainer .buttonContainer {
+  height: 15%;
+  /*text-align: center;*/
+  padding-left: 70px;
+
+}
+
+.tabContainer .buttonContainer button{
+  width: 300px;
+  height: 100%;
+  float: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #8C1D40;
+  color: white;
+  border-radius: 8px;
+  margin-top: 5px;
+  
+}
+
+.tabContainer .buttonContainer button:hover{
+  background-color: #d7d4d4;
+  color: black;
+}
+
+.tabContainer .tabPanel{
+  height: auto;
+  background-color: gray;
+  color: white;
+  /*text-align: center;*/
+  padding-top: 10px;
+  /*padding-bottom: 10px;*/
+  box-sizing: border-box;
+  font-family: sans-serif;
+  /*font-size: 22px;*/
+  display: none;
+
+
+}
+
+ #calendar-time {
+  display: block;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.expand{
+  background: none;
+  padding: 0; 
+  border: none; 
+  font-family: arial, sans-serif; 
+  color: #069; 
+  text-decoration: underline; 
+  cursor: pointer; 
 }
