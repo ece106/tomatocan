@@ -1,0 +1,98 @@
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+
+<% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
+<% i = 0 %>
+<% j = 0 %>
+<% k = 0 %>
+<% l = 0 %>
+<div class="container" style="padding-top: 50px; float: center; width: auto; max-width: 1470px;">
+<div id="events">
+  <h2 id="month" style="color: black;"> <%= Date.today.strftime("%B %Y") %> </h2>
+  <!-- the caler is a method defined in app/helpers/month_calendar_helper.rb -->
+<%= caler Date.today do |date| %>
+<%= date.day %>
+<% count = 0 %>
+  <% @eventsAll.each do |event| %>
+      <% if event.start_at.to_date.eql?(date.to_date) %>
+          <% count+=1 %>
+          <% k += 1 %>
+        <% else %>
+          <% k = 0 %>
+      <% end %>
+        <% if k <=2 %> 
+         <% if event.start_at.to_date.eql?(date.to_date) %>
+            <% user = User.find(event.usrid) %>
+            <% i += 1 %>  
+            <ul>
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            By: <%= link_to user.name, user.permalink %>
+            <br>
+            <% edt = event.start_at + 3.hours %>
+            <span style="font-size:90%;"id=month-calendar-time<%=i%>></span>
+            <script>
+            var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+            date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+            var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+            var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
+            document.getElementById('month-calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+          </script>          
+            </ul>
+          <% end %>
+        <% end %>
+  <% end %>
+  <span class="more" style="display: none;">
+  <% @eventsAll.each do |event| %>
+      <% if event.start_at.to_date.eql?(date.to_date) %>
+          <% l += 1 %>
+        <% else %>
+          <% l = 0 %>
+      <% end %>
+        <% if l > 2 %> 
+         <% if event.start_at.to_date.eql?(date.to_date) %>
+            <ul>
+            <% user = User.find(event.usrid) %>
+            <% i += 1 %>  
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            By: <%= link_to user.name, user.permalink %>
+            <br>
+            <% edt = event.start_at + 3.hours %>
+            <span style="font-size:90%;"id=month-calendar-time<%=i%>></span>
+            <script>
+            var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+            date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+            var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+            var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
+            document.getElementById('month-calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+          </script>   
+            </ul>
+          <% end %>
+        <% end %>
+  <% end %>
+   <br>
+  </span>
+  <% if count > 2 %>
+    <button class="expand" >More Conversations</button> 
+  <% end %>      
+<% end %>
+</div>
+</div>
+  <script>
+$(document).ready(function(){
+   $(".expand").click(function(){
+      $(this).prev().toggle();
+      $(this).siblings('.dots').toggle();
+      $(this).find('.total').show();
+      if($(this).text()=='More Conversations'){
+  $(this).text('Less Conversations');
+      }
+      else{
+  $(this).text('More Conversations');
+      }
+   });
+});
+
+  </script>
+
+
+
+
