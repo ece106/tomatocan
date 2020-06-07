@@ -88,20 +88,28 @@
           <% end %>
 
           
-          <% if @rsvpusers.count > 0 %>
+          <% if @rsvps.count > 0 %>
             <br><br><br><br><br><br><br><br>
-            <b>Who will be there:</b><br>
-            <div>
+            <!-- Default dropleft button -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+              <span class="caret"></span> &nbsp; Who will be there
+            </button>
+            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
               <% @rsvpusers.each do |rsvpuser| %>
-                <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
+                <%= link_to user_profile_path(rsvpuser.permalink) do %>
+                  <div class="dropdown-item"><%= rsvpuser.name %></div>
+                <% end %>
               <% end %>
-              <br>
               <% @rsvps.each do |rsvp| %>
                 <% unless rsvp.email.blank? %>
-                  <%= rsvp.email %>,
+                  <% parts = rsvp.email.split('@') %>
+                  <div class="dropdown-item"><%= parts[0] %></div>
                 <% end %>
               <% end %>
             </div>
+          </div>
+
           <% end %>
         </div>
     </div>
