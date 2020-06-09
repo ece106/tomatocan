@@ -21,7 +21,7 @@
                   <span aria-hidden="true">&times;</span>
               </button>
               <span class="clearfix">
-                <span id="stripeAlertText">Hello World, You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Rewards!</span>
+                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Rewards!</span>
                 <span class="pull-right">
                   <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
                 </span>
