@@ -9,9 +9,7 @@ class UsersController < ApplicationController
   #Where did this method go?
 
   def index
-    userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
-       OR (profilepicurl SIMILAR TO 'http%' AND
-       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
+    userswithpic = User.where("profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'")
     userswithpicorder = userswithpic.order('updated_at DESC')
     @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
   end
@@ -206,7 +204,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-                                 :twitter, :title, :profilepic, :profilepicurl, :remember_me,
+                                 :twitter, :title, :profilepic, :remember_me,
                                  :facebook, :latitude, :longitude, :youtube1, :youtube2,
                                  :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
                                  :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )

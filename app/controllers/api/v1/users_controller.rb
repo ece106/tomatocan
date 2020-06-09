@@ -28,15 +28,15 @@ class Api::V1::UsersController < Api::V1::BaseApiController
     def user_params
         params.permit(:permalink, :name, :email, :password,
                                      :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-                                     :twitter, :title, :profilepic, :profilepicurl, :remember_me,
-                                     :facebook, :latitude, :longitude, :youtube1, :youtube2, 
+                                     :twitter, :title, :profilepic, :remember_me,
+                                     :facebook, :latitude, :longitude, :youtube1, :youtube2,
                                      :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
                                      :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
     end
     def user_params_less_access
       params.permit(:name,
                                      :about, :author, :genre1, :genre2, :genre3,
-                                     :twitter, :title, :profilepic, :profilepicurl, :remember_me,
+                                     :twitter, :title, :profilepic, :remember_me,
                                      :facebook, :latitude, :longitude, :youtube1, :youtube2,
                                      :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
                                      :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
