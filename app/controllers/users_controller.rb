@@ -207,7 +207,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
                                  :twitter, :title, :profilepic, :profilepicurl, :remember_me,
-                                 :facebook, :address, :latitude, :longitude, :youtube1, :youtube2,
+                                 :facebook, :latitude, :longitude, :youtube1, :youtube2,
                                  :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
                                  :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
   end
