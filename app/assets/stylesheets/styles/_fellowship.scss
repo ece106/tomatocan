@@ -125,6 +125,7 @@
     background: #ecd7c6;
   }
 
+
   .box p {
     font-family: "essonnes-headline", 'Georgia', serif;
     padding-top: 80px;
@@ -132,6 +133,8 @@
     font-weight: bold;
     color: white;
     text-align: left;
+
+
   }
 
 .rotate, .rotate1, .rotate2{
@@ -160,4 +163,27 @@
     margin-top: 2em;
     margin-bottom: 2em;
     border-radius: 10px;
+}
+
+.card-shadow {
+  min-width: auto; 
+  box-shadow:0 .5rem 1rem rgba(0,0,0,.15); 
+  border: 1px solid rgba(0,0,0,.125); 
+  max-width: 50rem;
+}
+
+.card-body h4 {
+  
+  margin-top: 20px; 
+  margin-left: 5px !important;
+  margin-right: 5px; 
+  font-size: 20px; 
+  font-weight: bold;
+}
+
+#angle, #angle1, #angle2 {
+  font-size:30px; 
+  color:black; 
+  cursor:pointer;
+  transition:0.5s;
 }
