@@ -85,14 +85,20 @@
           <br>
 
           <!-- Google Sign Up Button (commented out until SSO works) -->
+          <div style="text-align:center; padding-bottom:10px">
+            OR
+          </div>
           <div style="text-align:center"> 
             <% unless current_user %>
-              <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+              <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #db3236; color: #fff;">
+                <b>Sign Up With Google</b> 
+              </a>
             <% else %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             <% end %>
           </div>
-          
+
+
         <% end %>
       </div>
     </div>
