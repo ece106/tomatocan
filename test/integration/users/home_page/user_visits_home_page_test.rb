@@ -26,7 +26,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   test "should go to dpc page when clicking on dpc in header"  do
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		click_on("Have us on your Podcast", match: :first)
-  		assert_equal current_path, supportourwork_path
+  		assert_equal current_path, drschaeferspeaking_path
   	end
   end
 
