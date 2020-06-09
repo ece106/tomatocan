@@ -13,6 +13,7 @@
           <div style="text-align:center">
             <h1>Login</h1>
             <p>Not a member? <%= link_to "Sign up", new_user_signup_path %></p>
+            <p>Didn't receive confirmation email? <%= link_to "Resend", new_user_confirmation_path %></p>
           </div>
           <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
 
