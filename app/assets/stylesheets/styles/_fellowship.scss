@@ -1,13 +1,18 @@
+
+
 .paragraph1 {
+  
   font-size: 18px; 
   padding-top: 2px; 
   line-height: 1.7em;
 }
 
 .paragraph2 {
+  
   font-size:19px;  
   line-height: 1.7em;
   padding-top: 2px;
+
 }
 
 .button1{
@@ -15,14 +20,12 @@
   border-radius: 4px; 
   padding-top: 4px
 }
-
 .cardHolder {
   width: 100%;
   max-width: 400px;
   height: 400px;
   perspective: 1000px;
 }
-
 .cardFlip {
   position: relative;
   width: 100%;
@@ -34,9 +37,9 @@
 .cardHolder:hover .cardFlip {
   transform: rotateY(180deg); 
 }
-
 /* Position the front and back side */
 .frontSide{
+
   position: absolute;
   width: 100%;
   height: 100%;
@@ -49,7 +52,6 @@
   color: #fff;
   height: 444px;
 }
-
 .backSide {
   position: absolute;
   width: 100%;
@@ -63,12 +65,12 @@
   transform: rotateY(180deg); 
 }
 
+
 .frontSide img {
   width: 100%;
   height:325px;
   border-radius: 0.5rem; 
 }
-
 .backSide p {
   color:#333;
   margin: 1rem;
@@ -76,7 +78,7 @@
   line-height: 1.5em;
 }
 
-.speaking {
+  .speaking{
     font-family: sans-serif;
     margin: 20px auto;
     text-align: center;
@@ -87,7 +89,7 @@
     font-weight: bold;
   }
 
-.speaking:before {
+  .speaking:before {
     content: "";
     display:block;
     width:550px;
@@ -97,9 +99,9 @@
     left:0%;
     top: 50%;
     z-index: -2;
-}
 
-.speaking:after {
+  }
+  .speaking:after {
     content: "";
     display:block;
     width:550px;
@@ -109,33 +111,37 @@
     right:0%;
     top: 50%;
     z-index: -2;
-}
 
-.speaking span {
+  }
+
+  .speaking span {
+
     background: #fff;
-}
+  }
 
-hr.one {
+  hr.one {
     border: none;
     height: 2px;
     background: #ecd7c6;
-}
+  }
 
-.box p {
+
+  .box p {
     font-family: "essonnes-headline", 'Georgia', serif;
     padding-top: 80px;
     font-size: 36px;
     font-weight: bold;
     color: white;
     text-align: left;
-}
+
+
+  }
 
 .rotate, .rotate1, .rotate2{
    transform:rotate(180deg);
    transform-origin:center center;
   }
-
-.text {
+  .text {
     margin-top: 0;
     margin-bottom: 1rem;
     line-height: 1.5;
@@ -143,9 +149,9 @@ hr.one {
     margin-right: 15px;
     font-size: 18px;
     font-weight: 400;
-}
 
-.team .container{
+  }
+  .team .container{
     min-width:auto;
     max-width: 1300px;
     height: auto;
@@ -159,50 +165,25 @@ hr.one {
     border-radius: 10px;
 }
 
-.board-of-director-title-section {
-  padding-top: 10rem; 
-  padding-bottom: 20rem; 
+.card-shadow {
+  min-width: auto; 
+  box-shadow:0 .5rem 1rem rgba(0,0,0,.15); 
+  border: 1px solid rgba(0,0,0,.125); 
+  max-width: 50rem;
 }
 
-.board-of-director-title-section h4{
-  color: rgba(230, 230, 230, 1);
-  margin-bottom:0.1rem;
+.card-body h4 {
+  
+  margin-top: 20px; 
+  margin-left: 5px !important;
+  margin-right: 5px; 
+  font-size: 20px; 
+  font-weight: bold;
 }
 
-.board-of-director-title-section h2{
-  font-size:6rem; 
-  font-weight:bold;
-  margin-top: 1rem; 
-  line-height:7rem;
-  color: white;
-}
-
-.board-of-director-title-section h3{
-  font-weight: lighter;
-  color: white;
-}
-
-
-.board-of-director-content-section {
-  padding: 4rem 10rem 4rem 10rem;
-}
-
-.board-of-director-content-section h2 {
-  color:#8C1D40; 
-  font-weight:bold; 
-  padding-bottom:3rem; 
-  line-height:5rem; 
-  font-size:3.5rem;
-}
-
-.board-of-director-content-section p {
-  font-size:20px; 
-  font-weight:700; 
-  color: rgba(90, 90, 90, 1); 
-  padding-bottom: 15px;
-}
-
-.board-of-director-content-section-bullet-points {
-  font-size: 18px; 
-  line-height: 1.5em;
+#angle, #angle1, #angle2 {
+  font-size:30px; 
+  color:black; 
+  cursor:pointer;
+  transition:0.5s;
 }
