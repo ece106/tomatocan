@@ -5,12 +5,12 @@ ruby "2.7.0"
 gem "rails", "~> 6.0"
 gem "listen", "~> 3.2"
 gem "pg", "~> 1.2"
+gem "stripe", "~> 5.22"
 gem 'mandrill'	
 gem 'devise'
 gem 'fog-aws'
 gem 'unf' 
 gem 'carrierwave'
-gem 'stripe'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
@@ -34,7 +34,6 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
-gem 'activerecord-session_store'
 gem "puma", "~> 4.3"
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
@@ -56,10 +55,6 @@ group :test, :development do
   gem 'capybara-screenshot', :group => :test
   gem 'rails-controller-testing'
   gem 'rails_real_favicon'
-end
-
-group :production do
-  gem 'rails_12factor'
 end
 
 group :test do

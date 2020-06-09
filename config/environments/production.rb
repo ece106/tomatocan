@@ -11,7 +11,7 @@ config.action_mailer.smtp_settings = {
  }
 # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
-  config.force_ssl = false  #otherwise heroku reroute will say i'm a liar
+  config.force_ssl = true  #otherwise heroku reroute will say i'm a liar
 
   config.action_mailer.default_url_options = {
     :host => 'http://www.thinq.tv', :protocol => 'http' }
@@ -96,9 +96,9 @@ config.action_mailer.smtp_settings = {
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Do not dump schema after migrations.
