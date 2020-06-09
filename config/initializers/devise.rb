@@ -14,9 +14,9 @@ Devise.setup do |config|
    config.omniauth_path_prefix = "/users/auth"
    if Rails.env.production?
       config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], callback_url: "https://boilingreef.com/users/auth/facebook/callback"
-      config.omniauth :google, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], callback_url: "https://boilingreef.com/users/auth/google/callback"
+      config.omniauth :google, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], callback_url: "https://boilingreef.com/users/auth/google_oauth2/callback"
    else
       config.omniauth :facebook, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, callback_url: "http://localhost:3000/users/auth/facebook/callback"
-      config.omniauth :google, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, callback_url: "http://localhost:3000/users/auth/google/callback"
+      config.omniauth :google_oauth2, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
    end
 end

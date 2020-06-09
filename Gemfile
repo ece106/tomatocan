@@ -13,7 +13,7 @@ gem 'unf'
 gem 'carrierwave'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem "omniauth-google", "~> 1.0"
+gem "omniauth-google-oauth2", "~> 0.8.0"
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
@@ -61,4 +61,5 @@ end
 group :test do
   gem 'turn', :require => false
 end
+
 
