@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]#:confirmable 
+         :omniauthable, :omniauth_providers => [:facebook, :google]#:confirmable 
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 
@@ -165,6 +165,8 @@ class User < ApplicationRecord
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      elsif data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end
     end
