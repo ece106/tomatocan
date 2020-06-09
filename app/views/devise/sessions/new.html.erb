@@ -73,6 +73,15 @@
             <% end -%>
           </div>
 
+          <!-- Google Sign In Button (commented out until SSO works) -->
+          <div style="text-align:center">
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #db3236; color: #fff;">
+                <b>Sign In With Google</b> 
+              </a>
+            <% end -%>
+          </div>
+
         <% end %>
         </div>
       </div>
