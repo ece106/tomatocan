@@ -5,12 +5,12 @@ ruby "2.7.0"
 gem "rails", "~> 6.0"
 gem "listen", "~> 3.2"
 gem "pg", "~> 1.2"
+gem "stripe", "~> 5.22"
 gem 'mandrill'	
 gem 'devise'
 gem 'fog-aws'
 gem 'unf' 
 gem 'carrierwave'
-gem 'stripe'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
