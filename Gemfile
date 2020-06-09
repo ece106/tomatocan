@@ -44,7 +44,6 @@ gem "sass-rails", "~> 6.0"
 gem "ed25519", "~> 1.2"
 gem "bcrypt_pbkdf", "~> 1.0"
 gem "concurrent-ruby", "~> 1.1"
-# gem "google_sign_in", "~> 1.2"
 
 group :test, :development do
   gem 'minitest'
@@ -61,5 +60,3 @@ end
 group :test do
   gem 'turn', :require => false
 end
-
-
