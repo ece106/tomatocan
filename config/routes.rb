@@ -45,7 +45,9 @@ Rails.application.routes.draw do
 
   devise_for :users, :skip => [:sessions, :passwords, :confirmations], :controllers => {registrations: "users/registrations", confirmations: "users/confirmations", passwords: "users/passwords", :omniauth_callbacks => "users/omniauth_callbacks"}
   as :user do
-    get 'confirmations' => 'users/confirmations#show', :as => :user_confirmation
+    get 'confirmation' => 'users/confirmations#show', :as => :user_confirmation
+    get 'confirmation/new' => 'users/confirmations#new', :as => :new_user_confirmation
+    post 'confirmation' => 'users/confirmations#create'
     get 'login'  => 'devise/sessions#new',    :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
