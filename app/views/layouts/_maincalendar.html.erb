@@ -86,7 +86,8 @@
               'newwindow',
               'width=600,height=400,top=100,left=300');
               return false;">
-              <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" style="margin-left: -4px; width:25px; height:25px; border-radius:4px" />
+              <%= image_tag("social-share-button/facebook.png")%>
+             
             </a>&nbsp
 
               <!-- Twitter Share -->
@@ -95,16 +96,16 @@
                 'newwindow',
                 'width=600,height=400,top=80,left=300');
                 return false;">
-              <img src="https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png" alt="Twitter" style="margin-left:-4px; width:25px; height:25px;border-radius:4px;">
-              </a>
+                <%= image_tag("social-share-button/twitter.png")%>
+              </a>&nbsp
 
             <!-- LinkedIn -->
-            <a style="margin-left: 3px" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
               onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
               'newwindow',
               'width=600,height=400,top=100,left=300');
               return false;">
-            <img src="https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i" alt="LinkedIn" style="width:25px; height:25px;" />
+              <%= image_tag("social-share-button/linkedin.png")%>
             </a>&nbsp
             
           </td>
@@ -115,8 +116,10 @@
   <% end %>
 </>
 
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 
+
+</div>
+<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 <script>
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
