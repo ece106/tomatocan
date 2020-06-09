@@ -7,7 +7,7 @@ class BannerpicUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   if Rails.env.development? || Rails.env.test?
-    storage :fog  # but what if I want to test fog/aws
+    storage :file  # but what if I want to test fog/aws
   else
     storage :fog
   end
