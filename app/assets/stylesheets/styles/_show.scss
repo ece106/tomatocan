@@ -61,7 +61,7 @@
 
 .rsvp-dropdown{
 	min-width: 260px;
-	font-size: 16px;
+	font-size: 18px;
 	height: auto;
     max-height: 400px;
     overflow-x: hidden;
@@ -73,5 +73,11 @@
 		&:hover{
 			background-color: #f1f2f6;
 		}
+	}
+
+	.rsvp-image{
+		height: 18px;
+		width: 18px;
+		margin-right: 10px;
 	}
 }

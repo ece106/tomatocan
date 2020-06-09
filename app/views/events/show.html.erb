@@ -93,12 +93,24 @@
             <!-- Default dropleft button -->
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
-              <span class="caret"></span> &nbsp; Who will be there
+              <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
             </button>
             <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
               <% @rsvpusers.each do |rsvpuser| %>
                 <%= link_to user_profile_path(rsvpuser.permalink) do %>
-                  <div class="dropdown-item"><%= rsvpuser.name %></div>
+                  <div class="dropdown-item">
+                    <span>
+                      <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
+                        <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'rsvp-image' %>
+                      <% elsif rsvpuser.profilepicurl %>
+                        <% if rsvpuser.profilepicurl.match(/http/) %>
+                          <%= image_tag rsvpuser.profilepicurl, :class => 'rsvp-image' %>
+                        <% end %>
+                      <% else %> 
+                        <%= image_tag "logoDigitalHollow300.png", :class => 'rsvp-image' %>
+                      <% end %>
+                    </span>
+                    <%= rsvpuser.name %></div>
                 <% end %>
               <% end %>
               <% @rsvps.each do |rsvp| %>
