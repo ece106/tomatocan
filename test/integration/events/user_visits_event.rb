@@ -39,21 +39,15 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
   end
 
   test "can join live discussion successfully" do
-    click_on "Join Live Conversation"
-
-    assert_equal current_path, "/#{@user.permalink}"
-  end
-
-  test "can join live show successfully" do
-    click_on "Join Live Show"
+    click_on "Join Conversation"
 
     assert_equal current_path, "/#{@user.permalink}"
   end
 
   test "can share event" do
-    assert page.has_css? "#shareBtn"
+    assert page.has_css? "shareBtn"
 
-    click_on id: "shareBtn"
+    click_on id: "#shareBtn"
 
     linkedin_img = "//img[@src = 'https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i' and @alt='LinkedIn']"
     facebook_img = "//img[@src = 'https://www.facebook.com/images/fb_icon_325x325.png' and @alt='Facebook']"
