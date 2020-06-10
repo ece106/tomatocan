@@ -92,27 +92,6 @@ class User < ApplicationRecord
     purchase.save
   end
 
-  def get_youtube_id
-    if self.youtube1.present?
-      if self.youtube1.match(/youtube.com/) || self.youtube1.match(/youtu.be/)
-        youtube1parsed = parse_youtube self.youtube1
-        self.update_attribute(:youtube1, youtube1parsed)
-      end
-    end
-    if self.youtube2.present?
-      if self.youtube2.match(/youtube.com/) || self.youtube2.match(/youtu.be/)
-        youtube2parsed = parse_youtube self.youtube2
-        self.update_attribute(:youtube2, youtube2parsed)
-      end
-    end
-    if self.youtube3.present?
-      if self.youtube3.match(/youtube.com/) || self.youtube3.match(/youtu.be/)
-        youtube3parsed = parse_youtube self.youtube3
-        self.update_attribute(:youtube3, youtube3parsed)
-      end
-    end
-  end  
-
   def calcdashboard # Poll users for desired metrics
     self.monthperkinfo = []
     self.incomeinfo = []
@@ -181,10 +160,4 @@ class User < ApplicationRecord
       self.author = "storyteller" unless self.author
     end
 
-    def parse_youtube url
-      regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
-      if url.match(regex)
-        url.match(regex)[1]
-      end
-    end
 end
