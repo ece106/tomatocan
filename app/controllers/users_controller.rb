@@ -172,6 +172,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       bypass_sign_in @user
+      updateEmail
       redirect_to user_profile_path(current_user.permalink)
     else
       #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
@@ -183,6 +184,13 @@ class UsersController < ApplicationController
         redirect_to user_profileinfo_path(current_user.permalink), danger: update_error_message
       end
       @user.errors.clear
+    end
+  end
+
+  def updateEmail
+    unless current_user.email.eql? params[:user][:email]
+      flash[:info] = "A confirmation message for your new email has been sent to: " + params[:user][:email]
+      flash[:info] += " to save changes confirm email first"
     end
   end
 
