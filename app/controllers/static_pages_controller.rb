@@ -53,7 +53,6 @@ class StaticPagesController < ApplicationController
       @name = @displayconvo.name
       @description = @displayconvo.desc
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
-      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
       @host = User.find(@displayconvo.usrid)
     end  
         
