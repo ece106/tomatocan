@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def update_sanitized_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:permalink, :name, :updating_password, :email, :password, :author, :password_confirmation, :remember_me, :latitude, :longitude])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:permalink, :name, :updating_password, :email, :password, :author, :password_confirmation, :remember_me])
   end
 
   def facebook_user
