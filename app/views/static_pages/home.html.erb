@@ -52,25 +52,26 @@
       <%= render 'layouts/countdown_clock' %>
     </div>
   </div>
-<div class="tabContainer">
- <div class="col-md-9 col-md-offset-1 col-xs-11"> 
-  <div class="buttonContainer">
-    <button onclick="showPanel(0,'#f44336')">List View </button>
-    <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
-    <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
-  </div>
-</div>
-  <div class="tabPanel">
-    <div class="row" id="calendar"> 
-      <div class="col-md-9 col-md-offset-1 col-xs-11"> 
-            <%= render 'layouts/maincalendar', collection: @events %> 
-       </div>   
+  <div class="tabContainer">
+    <div class="col-md-9 col-md-offset-1 col-xs-11"> 
+      <div class="buttonContainer">
+        <button onclick="showPanel(0,'#f44336')">List View </button>
+        <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
+        <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
+      </div>
+    </div>
+    <div class="tabPanel">
+      <div class="row" id="calendar"> 
+        <div class="col-md-9 col-md-offset-1 col-xs-11"> 
+          <%= render 'layouts/maincalendar', collection: @events %> 
+        </div>   
       </div> 
-  </div>
-  <div class="tabPanel" >
+    </div>
+    <div class="tabPanel" >
        <%= render 'layouts/monthcalendar', collection: @eventsAll %>
-</div>
-</div>
+    </div> 
+  </div>
+
   <div class="row" id="purpose">
     <div class="col-md-3 col-md-offset-1", style="margin-top: 40px">
       <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-left: auto;  margin-right: auto;")%>
@@ -88,28 +89,6 @@
     </div>
   </div>
 </div>
-
-
-<!-- Javascript does NOT NOT NOT belong in .erb files!!! -->
-
-<script type="text/javascript">
-  var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");
-  var tabPanels=document.querySelectorAll(".tabContainer .tabPanel");
-
-  function showPanel (panelIndex, colorCode) {
-    tabButtons.forEach(function(node) {
-      node.style.backgroundColor="";
-      node.style.color="";
-    });
-
-    tabButtons[panelIndex].style.backgroundColor="none";
-    tabButtons[panelIndex].style.color="none";
-    tabPanels.forEach(function(node) {
-      node.style.display="none";
-    });
-    tabPanels[panelIndex].style.display="block";
-    tabPanels[panelIndex].style.backgroundColor="white";
-  } 
-  showPanel(0,'#f44336');
-</script>
-
+    <script type="text/javascript">
+      showPanel(0,'#f44336');
+    </script>
