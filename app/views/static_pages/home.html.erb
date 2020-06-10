@@ -13,7 +13,7 @@
             </div>
           <% end %>
         </div>
-        <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > Conversations to make you ThinQ</div>
+        <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > Conversations to make you THINQ</div>
         <div style="display:inline;" > <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%></div>
         <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
           <br><%= link_to "Grassroots Movements via Video Chat to keep you Well-Informed", getinvolved_path, class: "topic_link", title: "Like a cocktail party on Zoom" %>
@@ -41,36 +41,37 @@
 <div class="main">
   <br>
   <div class="row" id="countdown_clock">
-    <div class="col-md-4 col-md-offset-1 col-xs-11">
-      <h2>Schedule of Conversations</h2>
-        <h3>Topics to motivate Getting Out the Vote!</h3>
+    <div class="col-md-4 col-md-offset-1 col-xs-12">
+      <h2>Chat Room Schedule</h2>
+        <h3>Topics important to you in the 2020 election</h3>
           <% if user_signed_in? %>
             <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 col-xs-12">
       <%= render 'layouts/countdown_clock' %>
     </div>
   </div>
-<div class="tabContainer">
- <div class="col-md-9 col-md-offset-1 col-xs-11"> 
-  <div class="buttonContainer">
-    <button onclick="showPanel(0,'#f44336')">List View </button>
-    <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
-    <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
-  </div>
-</div>
-  <div class="tabPanel">
-    <div class="row" id="calendar"> 
-      <div class="col-md-9 col-md-offset-1 col-xs-11"> 
-            <%= render 'layouts/maincalendar', collection: @events %> 
-       </div>   
+  <div class="tabContainer">
+    <div class="col-md-9 col-md-offset-1 col-xs-11"> 
+      <div class="buttonContainer">
+        <button onclick="showPanel(0,'#f44336')">List View </button>
+        <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
+        <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
+      </div>
+    </div>
+    <div class="tabPanel">
+      <div class="row" id="calendar"> 
+        <div class="col-md-9 col-md-offset-1 col-xs-11"> 
+          <%= render 'layouts/maincalendar', collection: @events %> 
+        </div>   
       </div> 
-  </div>
-  <div class="tabPanel" >
+    </div>
+    <div class="tabPanel" >
        <%= render 'layouts/monthcalendar', collection: @eventsAll %>
-</div>
-</div>
+    </div> 
+  </div>
+
   <div class="row" id="purpose">
     <div class="col-md-3 col-md-offset-1", style="margin-top: 40px">
       <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-left: auto;  margin-right: auto;")%>
@@ -78,7 +79,7 @@
     <div class="col-md-5 col-md-offset-1 col-xs-12">
       <h3>Our Purpose</h3><br>
       <p>
-        Instead of the paradigm of an organization inviting people to listen to one person talk on social media, ThinQ.tv is for grassroots movements to motivate people through small group conversations. It’s similar to going to a cocktail party on Zoom. We're discussing about issues important in the 2020 election.
+        Instead of the paradigm of an organization inviting people to listen to one person talk on social media, ThinQ.tv is for grassroots movements to motivate people through small group conversations. It’s similar to going to a cocktail party on Zoom. Anyone can post a conversation and anyone can join. We're discussing about issues important in the 2020 election.
         <br><br>
         Want to lead the Conversation? <%= link_to 'Host live video Conversations', new_event_path %>
       </p>
@@ -88,26 +89,6 @@
     </div>
   </div>
 </div>
-
-
-<script type="text/javascript">
-  var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");
-  var tabPanels=document.querySelectorAll(".tabContainer .tabPanel");
-
-  function showPanel (panelIndex, colorCode) {
-    tabButtons.forEach(function(node) {
-      node.style.backgroundColor="";
-      node.style.color="";
-    });
-
-    tabButtons[panelIndex].style.backgroundColor="none";
-    tabButtons[panelIndex].style.color="none";
-    tabPanels.forEach(function(node) {
-      node.style.display="none";
-    });
-    tabPanels[panelIndex].style.display="block";
-    tabPanels[panelIndex].style.backgroundColor="white";
-  } 
-  showPanel(0,'#f44336');
-</script>
-
+    <script type="text/javascript">
+      showPanel(0,'#f44336');
+    </script>
