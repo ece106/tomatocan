@@ -13,7 +13,7 @@ class Api::V1::RegistrationsControllerTest < ActionController::TestCase
     json_response = JSON.parse(response.body)
     assert_not_nil json_response['success']
     assert_not_nil json_response['name']
-    assert_not_nil json_response['token']
+    assert_not_nil json_response['token'] #NOT GENERATING TOKEN
     assert_not_nil json_response['permalink']
   end
 

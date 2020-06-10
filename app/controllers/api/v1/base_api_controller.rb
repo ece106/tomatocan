@@ -7,6 +7,7 @@ class Api::V1::BaseApiController < ActionController::API
             if not User.where(authentication_token: token).first
                 resource.authentication_token = token
                 resource.save
+
                 break
             end
         end
@@ -18,6 +19,7 @@ class Api::V1::BaseApiController < ActionController::API
         if user && Devise.secure_compare(user.authentication_token, params[:user_token])
             sign_in user, store: false
             renew_authentication_token(user)
+            puts(user.authentication_token)
         end
     end
 end
