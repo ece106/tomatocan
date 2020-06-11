@@ -5,7 +5,6 @@ class EventsController < ApplicationController
   def index
     @events = Event.upcoming.recent
     respond_to do |format|
-      format.text/html
       format.html # index.html.erb
       format.json { render json: @events }
     end
@@ -124,10 +123,31 @@ class EventsController < ApplicationController
     if params[:event]["start_at(2i)"] == "December"
       params[:event]["start_at(2i)"] = 12
     end
+    if params[:event]["start_at(1i)"] == "Mon"
+      params[:event]["start_at(1i)"] = 2
+    end
+    if params[:event]["start_at(1i)"] == "Tue"
+      params[:event]["start_at(1i)"] = 3
+    end
+    if params[:event]["start_at(1i)"] == "Wed"
+      params[:event]["start_at(1i)"] = 4
+    end
+    if params[:event]["start_at(1i)"] == "Thu"
+      params[:event]["start_at(1i)"] = 5
+    end
+    if params[:event]["start_at(1i)"] == "Fri"
+      params[:event]["start_at(1i)"] = 6
+    end
+    if params[:event]["start_at(1i)"] == "Sat"
+      params[:event]["start_at(1i)"] = 7
+    end
+    if params[:event]["start_at(1i)"] == "Sun"
+      params[:event]["start_at(1i)"] = 1
+    end
     start_date = Time.new(
       params[:event]["start_at(1i)"].to_i, # year
       params[:event]["start_at(2i)"], # month
-      params[:event]["start_at(3i)"].to_i, # day
+      params[:event]["start_at(3i)"], # day
       params[:event]["start_at(4i)"].to_i, # hour
       params[:event]["start_at(5i)"].to_i, # minute
       0,                               # seconds
