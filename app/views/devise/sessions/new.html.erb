@@ -1,6 +1,8 @@
   <% @title=" Community " %>
 
   <!--Used to display error message when invalid credentials are inputted -->
+
+
   <div class="container">
     <%= render 'layouts/flash_messages'%>
     <% if request.host == "thinqtv.herokuapp.com" %>
@@ -16,6 +18,14 @@
             <p>Didn't receive confirmation email? <%= link_to "Resend", new_user_confirmation_path %></p>
           </div>
           <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
+
+          <!--Used to display error message when invalid credentials are inputted -->
+  <%- flash.each do |name, msg| -%>
+  <div class="alert alert-danger" role="alert">
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      </div>
+  <%- end -%>
+
 
           <!-- Email Box -->
           <div class="form-group">

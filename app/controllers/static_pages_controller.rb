@@ -34,12 +34,14 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def seniorliving
+  def studyhall
     showrecentconvo = Time.now - 10.hours
-    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @events = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Study Hall' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @eventsAll = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Study Hall' )
     pdtnow = Time.now - 7.hours
-    currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow ).first
-    nextevent = Event.where( "start_at > ?", pdtnow ).order('start_at ASC').first 
+    pdtnext = Time.now - 8.hours
+    currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Study Hall' ).first
+    nextevent = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Study Hall' ).order('start_at ASC').first 
 
     if currconvo.present?
       @displayconvo = currconvo
@@ -51,7 +53,6 @@ class StaticPagesController < ApplicationController
       @name = @displayconvo.name
       @description = @displayconvo.desc
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
-      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
       @host = User.find(@displayconvo.usrid)
     end  
         
@@ -74,8 +75,6 @@ class StaticPagesController < ApplicationController
   def livestream
   end
   def vieweronhost
-  end
-  def parents
   end
 
   def tellfriends
