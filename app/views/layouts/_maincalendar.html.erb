@@ -14,7 +14,15 @@
         <% i += 1 %>  
         <tr>
           <td class=col-xs-3>
-            <%= link_to user.name, user.permalink, id: "calendar-event" %>
+            <% rsvpeople = "Join us!" %>
+            <% rsvpusers = event.users %>
+            <% if rsvpusers.count > 0 %>
+              <% rsvpusers.each do |rsvpuser| %>
+                <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
+              <% end %>
+            <% end %>
+            <%= link_to user.name, user.permalink, id: "calendar-event", title: rsvpeople %>
+
             Let's talk about <%= link_to event.name, event, title: event.desc %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
@@ -22,7 +30,7 @@
               <% end %>
             <% end %>
           </td>
-          <td class=col-xs-3>
+          <td class=col-xs-2>
             <% edt = event.start_at + 3.hours %>
             <span style="font-size:125%;" id=calendar-time-day<%=i%>></span>
             <br>
@@ -36,7 +44,10 @@
             document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
             document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
           </script>
-          <td class=col-xs-4>
+          <td class=col-xs-3>
+            <%= rsvpeople %>
+          </td>  
+          <td class=col-xs-2>
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
@@ -99,7 +110,7 @@
               </a>
 
             <!-- LinkedIn -->
-            <a style="margin-left: 3px" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
               onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
               'newwindow',
               'width=600,height=400,top=100,left=300');
@@ -115,8 +126,10 @@
   <% end %>
 </>
 
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 
+
+</div>
+<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 <script>
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()

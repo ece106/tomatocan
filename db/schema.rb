@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer "guest2_user_id"
     t.string "guest2_name"
     t.string "guest2_email"
+    t.string "topic"
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

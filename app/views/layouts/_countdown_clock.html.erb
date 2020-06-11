@@ -1,5 +1,5 @@
 <% if @events.count != 0 %>
-  <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@end_time)) %>
+  <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
     <div id="eventCurrentdiv">
       <h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
       <p> is LIVE right NOW!</p><br>
