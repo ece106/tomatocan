@@ -14,11 +14,11 @@
         <% i += 1 %>  
         <tr>
           <td class=col-xs-3>
-            <% rsvpeople = "Join us! " %>
+            <% rsvpeople = "Join us!" %>
             <% rsvpusers = event.users %>
             <% if rsvpusers.count > 0 %>
               <% rsvpusers.each do |rsvpuser| %>
-                <% rsvpeople = rsvpeople + rsvpuser.name %>
+                <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
               <% end %>
             <% end %>
             <%= link_to user.name, user.permalink, id: "calendar-event", title: rsvpeople %>
@@ -30,7 +30,7 @@
               <% end %>
             <% end %>
           </td>
-          <td class=col-xs-3>
+          <td class=col-xs-2>
             <% edt = event.start_at + 3.hours %>
             <span style="font-size:125%;" id=calendar-time-day<%=i%>></span>
             <br>
@@ -44,7 +44,10 @@
             document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
             document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
           </script>
-          <td class=col-xs-4>
+          <td class=col-xs-3>
+            <%= rsvpeople %>
+          </td>  
+          <td class=col-xs-2>
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>

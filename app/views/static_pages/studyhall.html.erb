@@ -1,18 +1,12 @@
-<div class="box" style="background: url( <%= asset_path 'team.jpg' %> ); background-repeat: no-repeat; background-position: center center; background-size: cover; min-height: 450px; max-height: auto; text-align: center; margin: auto; padding:0;">
-  <!-- team: https://unsplash.com/photos/QckxruozjRg -->
-  <p style="padding-top: 380px;padding-left: 10px;">
-    What is Study Hall <br>
-  </p>      
-</div>
 <div class="team">
   <div class="container">
     <div class="row"  >
-      <div class="col-lg-6 col-md-6" style=" margin-top:0px; margin-bottom: 0px; padding: 10px; ">
-        <h3 class="aboutHeader" style="text-align: center;" > ATTEND A VIDEO CHAT STUDY HALL </h3> 
+      <div class="col-lg-6 col-md-6">
+        <h3 class="aboutHeader" style="text-align: center;" > What is STUDY HALL </h3> 
         <h4 style = "line-height: 1.5em" >
-          Hang out in video chat with other people learning topics you're interested in <br>
-          It's like going to a study room with students and colleagues learning the same skills you're interested in <br>
-          Peers and possibly mentors are there while you're working incase you have questions or need someone to bounce ideas <br>
+          - Hang out in video chat with other people learning topics you're interested in <br>
+          - It's like going to a study room with students and colleagues learning the same skills you're interested in <br>
+          - Peers and possibly mentors are there while you're working incase you have questions or need someone to bounce ideas <br>
         </h4>          
       </div>
       <div class="col-md-6 col-xs-12" style=" margin-top:0px; margin-bottom: 0px; padding: 10px; ">
@@ -31,7 +25,7 @@
     <div class="col-md-6 col-xs-12">
           <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
-            <%= link_to 'Post Study Hall Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
+            <%= link_to 'Post Study Hall Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in Study Hall sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
   </div>
@@ -45,7 +39,7 @@
     </div>
     <div class="tabPanel">
       <div class="row" id="calendar"> 
-        <div class="col-md-10 col-md-offset-1 col-xs-12"> 
+        <div class="col-xs-12"> 
           <%= render 'layouts/maincalendar', collection: @events %> 
         </div>   
       </div> 
@@ -69,16 +63,13 @@
               <h4> UX Surveys <br> </h4>
               <p class="text" >
               <span id="dots"></span><span id="more" style="display:none; "> 
-                We currently have a group meeting several times per week to work on survey questions related to the ThinQ.tv site.<br><br>
-                  <span><b>Learning Outcomes:</b></span>
-                    <br><br>
-                    - Teamwork with remote colleagues<br>
-                    - Effective methods for building online community fellowship<br>
+                We currently have a group meeting several times per week to work on survey questions related to the ThinQ.tv site. The purpose of the UX Surveys Study Hall is to: <br>
+                - Be in the video chat viewer for each other incase you want feedback from others with UX career interests. <br>
+                - Form a support group available several hours per day who are there when you want to be around others also improving their UX Survey skills.<br>
               </span>
               </p>
 
           <div class="arrowdown" style="text-align: center;"> 
-            <!-- WHY IS THIS NOT A BOOTSTRAP ACCORDION???!!! -->
             <i class="fa fa-angle-down" id="angle" aria-hidden="true" onclick="read()"></i>
           </div> 
             </div>
@@ -95,14 +86,11 @@
               <h4> RUBY ON RAILS Web Development <br> </h4>
               <p class="text">
             <span id="dots1"></span><span id="more1" style="display:none;"> 
-              Front and back end
-                    We are currently working with the existing code base for ThinQ.tv. <br><br>
-                <span><b>Learning Outcomes:</b></span><br><br>
-                  - Ruby on Rails<br>
-                  - Test Driven Development in MiniTest<br>
-                  - Real-world experience at a tech startup<br><br>
-                  - You are required to begin installation of the environment on your machine in advance of meeting with us. Go to <b><a href="https://github.com/ece106/tomatocan" target="_blank"> https://github.com/ece106/tomatocan </a></b> for instructions.<br>
-                  - Write tests to expand the current test suite for Test Driven Development<br><br>
+              Front and back end developers can co-work or co-hack with each other. The purpose of the Rails Study Hall is to: <br>
+              - Be in the video chat viewer for each other incase you have Rails questions while working on your project. <br>
+              - Form a support group available several hours per day who are there when you want to be around others also improving their Rails skills. <br><br>
+
+              Several of us are working with the existing code base for ThinQ.tv to learn Ruby on Rails. Our repository is at <b><a href="https://github.com/ece106/tomatocan" target="_blank"> https://github.com/ece106/tomatocan </a></b> if you'd like to learn Rails by contributing to ThinQ.tv's code, the first step is to fork & clone the repository. Drop in to Study Hall hours and ask us how to join our Discord channel and find the list of tasks to work on.<br>
             </span>
               </p>
 
@@ -124,13 +112,10 @@
               <p class="text">
             <span id="dots2"></span>
             <span id="more2" style="display:none;"> 
-              You will gain tech startup experience in user outreach and integrating html/CSS into Ruby on Rails.<br><br>
-              <span><b>Learning Outcomes:</b></span><br><br>
-                - User experience surveys and observation<br>
-                - Front-end development for embedded Ruby<br>
-                - For those who will be writing front end code in addition to contributing designs, you will be expected to install the Ruby on Rails environment on your machine. Go to <b><a href="https://github.com/ece106/tomatocan" target="_blank"></b> https://github.com/ece106/tomatocan </a>for instructions.<br>
-                - Solicit feedback from potential platform users to understand their perceptions of the site<br>
-                - Improve site usage and design based on user feedback<br><br>
+              ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers Study Hall is to: <br>
+              - Meet other female developers from around the US <br>
+              - Support each other<br>
+              - Bring #metoo issues we all face out in the open without backlash for doing so
             </span>
               </p>
             <div class="arrowdown" style="text-align: center;"> 

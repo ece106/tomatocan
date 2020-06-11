@@ -17,8 +17,10 @@
   showPanel(0,'#f44336');
 
 
-      function read(){
         var i=0;
+        var k=0;
+        var j=0;
+      function read(){
         if(!i){
           document.getElementById("more").style.display ="inline";
           document.getElementById("dots").style.display ="none";
@@ -33,8 +35,6 @@
         }
       }
       function read1(){
-        var k=0;
-
         if(!k){
           document.getElementById("more1").style.display ="inline";
           document.getElementById("dots1").style.display ="none";
@@ -49,7 +49,6 @@
         }
       }
       function read2(){
-        var j=0;
         if(!j){
           document.getElementById("more2").style.display ="inline";
           document.getElementById("dots2").style.display ="none";
