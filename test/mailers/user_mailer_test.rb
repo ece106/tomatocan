@@ -10,7 +10,8 @@ class UserMailerTest < ActionMailer::TestCase
   test 'welcome email to,from,subject' do
     mail = UserMailer.with(user: @user).welcome_email
     assert_equal "Welcome", mail.subject
+    puts(mail.subject)
     assert_equal [@user.email] ,mail.to
-    assert_equal ['thinqtvstaff@gmail.com'], mail.from
+    assert_equal ['info@ThinQ.tv'], mail.from
   end
 end 
