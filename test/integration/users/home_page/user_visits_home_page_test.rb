@@ -18,7 +18,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   test "should go to about page when clicking about in header"  do
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		click_on('About Us', match: :first)
-  		assert_equal current_path, aboutus_path
+  		assert_equal current_path, getinvolved_path
   	end
   end
 
@@ -63,8 +63,8 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end  
 
   test "should be able to add my own conversation" do
-    within("div.row.learnMore") do
-      click_on("Add Your Conversation", match: :first)
+    within("div#countdown_clock.row") do
+      click_on("Post your Own Conversation", match: :first)
       assert_equal current_path, new_event_path
     end 
   end  
@@ -86,10 +86,10 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end  
 
   test "images should exist for social media sharing buttons in footer" do
-    email_img = "//footer/div/div/div[3]/a[3]/img"
-    linkedin_img = "//footer/div/div/div[3]/a[2]/img"
-    facebook_img = "//footer/div/div/div[3]/div/a/img"
-    twitter_img = "//footer/div/div/div[3]/a[1]/img"
+    email_img = "//html/body/footer/div/div/div[3]/div/a[4]/img"
+    linkedin_img = "//html/body/footer/div/div/div[3]/div/a[3]/img"
+    facebook_img = "//html/body/footer/div/div/div[3]/div/a[1]/img"
+    twitter_img = "//html/body/footer/div/div/div[3]/div/a[2]/img"
 
     assert page.has_xpath? email_img
     assert page.has_xpath? linkedin_img
@@ -104,15 +104,15 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end 
 
   test "links should exist for social media sharing buttons in footer" do
-    linkedin_link = "/html/body/header/footer/div/div/div[3]/a[2]"
-    facebook_link = "/html/body/header/footer/div/div/div[3]/div/a"
-    twitter_link = "/html/body/header/footer/div/div/div[3]/a[1]"
-    email_link = "/html/body/header/footer/div/div/div[3]/a[3]"
+    linkedin_link = "html body footer div.container-fluid div#footer.row div.col-sm-2 div.social-share-button a img"
+    facebook_link = "html body footer div.container-fluid div#footer.row div.col-sm-2 div.social-share-button a img"
+    twitter_link = "html body footer div.container-fluid div#footer.row div.col-sm-2 div.social-share-button a img"
+    email_link = "html body footer div.container-fluid div#footer.row div.col-sm-2 div.social-share-button a img"
 
-    assert page.has_xpath? linkedin_link
-    assert page.has_xpath? facebook_link
-    assert page.has_xpath? twitter_link
-    assert page.has_xpath? email_link
+    assert page.has_css? twitter_link
+    assert page.has_css? facebook_link
+    assert page.has_css? linkedin_link
+    assert page.has_css? email_link
   end
 
   def sign_in
