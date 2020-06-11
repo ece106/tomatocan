@@ -14,7 +14,15 @@
         <% i += 1 %>  
         <tr>
           <td class=col-xs-3>
-            <%= link_to user.name, user.permalink, id: "calendar-event" %>
+            <% rsvpeople = "Join us! " %>
+            <% rsvpusers = event.users %>
+            <% if rsvpusers.count > 0 %>
+              <% rsvpusers.each do |rsvpuser| %>
+                <% rsvpeople = rsvpeople + rsvpuser.name %>
+              <% end %>
+            <% end %>
+            <%= link_to user.name, user.permalink, id: "calendar-event", title: rsvpeople %>
+
             Let's talk about <%= link_to event.name, event, title: event.desc %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
