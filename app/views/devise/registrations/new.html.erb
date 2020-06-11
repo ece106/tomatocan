@@ -67,35 +67,22 @@
             </div>
           </div>
 
-          <!-- Facebook Sign Up Button (commented out until SSO works) -->
           <div style="text-align:center; padding-bottom:10px">
             OR
           </div>
+          
+          <!-- Facebook Sign Up Button -->
           <div style="text-align:center"> 
-            <% unless current_user %>
-              <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: rgb(52,121,235); color: #fff;">
-                <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
-                <b>Sign Up With Facebook</b> 
-              </a>
-            <% else %>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-            <% end %>
-          </div>
-
-          <br>
-
-          <!-- Google Sign Up Button (commented out until SSO works) -->
-          <div style="text-align:center; padding-bottom:10px">
-            OR
-          </div>
-          <div style="text-align:center"> 
-            <% unless current_user %>
-              <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #db3236; color: #fff;">
-                <b>Sign Up With Google</b> 
-              </a>
-            <% else %>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-            <% end %>
+            <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
+              <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
+              <b>Sign Up With Facebook</b> 
+            </a>
+            <b>  <b>
+          <!-- Google Sign Up Button -->
+            <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
+              <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
+              <b>Sign Up With Google</b> 
+            </a>
           </div>
 
 
