@@ -7,10 +7,11 @@ require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'capybara/minitest'
 require 'selenium-webdriver'
-require 'simplecov'
+#require 'simplecov'
 require './test/test_helper'
 
 #Simple cov used to generate a coverage report
+
 SimpleCov.start 'rails' do
   add_filter '/bin/'
   add_filter '/db/'
