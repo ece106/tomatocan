@@ -1,9 +1,7 @@
   <% @title=" Community " %>
 
   <!--Used to display error message when invalid credentials are inputted -->
-  <%- flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  <%- end -%>
+
 
   <div class="container">
 
@@ -19,6 +17,14 @@
             <p>Not a member? <%= link_to "Sign up", new_user_signup_path %></p>
           </div>
           <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
+
+          <!--Used to display error message when invalid credentials are inputted -->
+  <%- flash.each do |name, msg| -%>
+  <div class="alert alert-danger" role="alert">
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      </div>
+  <%- end -%>
+
 
           <!-- Email Box -->
           <div class="form-group">
@@ -55,9 +61,9 @@
           <% end -%>
 
           <!-- Agree to ToS Prompt -->
-          <div style="text-align:center; margin-top:-15px; margin-bottom:-10px"> 
+          <div style="text-align:center; margin-top:-15px; margin-bottom:-10px">
             <small>By clicking 'Sign In,' you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
-          </div> 
+          </div>
 
           <!-- Sign In Button -->
           <%= f.submit "Sign In", :class => "form-control btn-primary" %>
@@ -69,7 +75,7 @@
             <%- resource_class.omniauth_providers.each do |provider| %>
               <a href="/users/auth/facebook" style="margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 3px; padding: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #4267B2; color: #fff;">
                 <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" alt="Facebook Logo" style="width:40px; height:36px; margin-left: -10px">
-                <b>Sign In With Facebook</b> 
+                <b>Sign In With Facebook</b>
               </a>
             <% end -%>
           </div>

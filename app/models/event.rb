@@ -1,9 +1,7 @@
 class Event < ApplicationRecord
-  #  has_event_calendar
-  # belongs_to :user
-
   has_many :rsvpqs
   has_many :users, through: :rsvpqs
+  validates :start_at, uniqueness: { scope: [:topic] }
   validates :usrid, presence: true
   validates :name, presence: true
   validates :start_at, presence: true
@@ -26,12 +24,16 @@ class Event < ApplicationRecord
 
   validates_numericality_of :end_at, less_than: ->(t) { (t.start_at.to_f + 5.hours.to_f) }, allow_blank: true, message: " time can't be more than 3 hours after Conversation start time"
 
+=begin
   validate :endat_greaterthan_startat
   def endat_greaterthan_startat
-    if end_at.present? && end_at < start_at
+    #start_at.present? added for testing purpuoses (Absence throws nil comparasion during testing)
+    #It is redundant otherwise since validates rule already avoids this issue
+    if end_at.present? && start_at.present? && end_at < start_at
       errors.add(:end_at, "End time must be after start time")
     end
   end
+=end
 
   def as_json(*)
     super.except.tap do |hash|
