@@ -21,4 +21,16 @@ module DeviseHelper
    !resource.errors.empty?
   end
 
+  def showDeviseErrors
+    unless resource.errors.empty?
+      errorMsg = resource.errors.full_messages.join("<br>")
+      html = <<-HTML
+      <div class='alert alert-danger' role='alert'>
+        #{errorMsg}
+      </div>
+      HTML
+      return html.html_safe
+    end
+    return ""
+  end
 end
