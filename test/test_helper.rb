@@ -7,7 +7,7 @@ require 'carrierwave/storage/fog'
 require 'capybara/rails'
 require 'capybara/minitest'
 require 'selenium-webdriver'
-#require 'simplecov'
+require 'simplecov'
 require './test/test_helper'
 
 #Simple cov used to generate a coverage report
@@ -33,14 +33,14 @@ class ActionDispatch::IntegrationTest
   end
 
   def user_sign_in  user
-   visit root_path 
+   visit root_path
    click_on class: 'btn btn-default'
    fill_in id: 'user_email',    with:  "#{user.email}"
    fill_in id: 'user_password', with:  "user1234"
    click_on class: 'form-control btn-primary'
   end
 
-  def card_information_entry 
+  def card_information_entry
     fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
     fill_in id: 'card_number',          with: "#{@card_number}"
     fill_in id: 'card_code',            with: "#{@cvc}"
