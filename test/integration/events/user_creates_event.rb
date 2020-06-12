@@ -16,7 +16,7 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
 
     click_on class: "btn btn-lg btn-primary"
 
-    assert_equal current_path, new_event_path
+    assert_not_equal current_path, new_event_path
   end
 
   test "user creates event with valid attributes" do

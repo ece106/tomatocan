@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.upcoming.recent
     respond_to do |format|
+      # format.text/html
       format.html # index.html.erb
       format.json { render json: @events }
     end
@@ -151,7 +152,7 @@ class EventsController < ApplicationController
       params[:event]["start_at(4i)"].to_i, # hour
       params[:event]["start_at(5i)"].to_i, # minute
       0,                               # seconds
-      params[:timeZone]                # timeZone
+      params[:timeZone].to_i                # timeZone
     )
 
     # calculate local time in pacific time

@@ -20,6 +20,9 @@ class EventsControllerTest < ActionController::TestCase
     end
     
     test "#index should respond to the correct format" do
+        # get :index, params: {id: @event.id, format: :text/html}
+        # assert_response :success 
+
         get :index, params: {id: @event.id, format: :html}
         assert_response :success 
 
