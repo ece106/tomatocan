@@ -66,8 +66,17 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
 
   test "can make an rsvp for event" do
     click_on id: "RSVPsubmit"
+    assert_equal current_path, home_path
   end
 
+  test "can make an rsvp for event with email" do
+    sign_out
+    fill_in(id: 'rsvpq_email', with: 'fake@fake.com')
+    click_on id: "RSVPsubmit"
+    assert_equal current_path, home_path
+  end
+
+  
   private
 
   def sign_in
@@ -81,4 +90,8 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
     click_on(class: 'form-control btn-primary')
   end
 
+  def sign_out
+    click_on('Sign out', match: :first)
+    visit event_path @event
+  end
 end
