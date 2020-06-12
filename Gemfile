@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.7.0"
+ruby "2.5.1"
 
 gem 'listen'
 gem 'pg'
@@ -24,8 +24,8 @@ gem 'aws-sdk-s3' #aws-s3'
 gem 'aws-sdk'
 #gem 'event-calendar', :require => 'event_calendar'
 
-gem 'rails', '6.0.3'
-gem 'railties', '6.0.3'
+gem 'rails', '4.2.10'
+gem 'railties', '4.2.10'
 gem  'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 #gem 'sprockets'
