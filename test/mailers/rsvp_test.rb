@@ -2,6 +2,9 @@ require 'test_helper'
 
 class RsvpMailerTest < ActionMailer::TestCase
 
+#As of June 2, 2020 all tests work
+#Getting a DEPRECATION WARNING:but that should not be an issue unless the website begins to use rails 6.1
+
   def setup
     @event = Event.find(1)
     @user = User.first
@@ -9,11 +12,13 @@ class RsvpMailerTest < ActionMailer::TestCase
     @timeZone = "1:00 PM"
   end
 
+#checks if emails are sent and the content of the emails
   test 'thanks for rsvp' do
     email = RsvpMailer.with(user: @user, event: @event, timeZone: @timeZone).rsvp_reminder
     email_2 = RsvpMailer.with(email: @email, event: @event, timeZone: @timeZone).rsvp_reminder
 
-    assert_emails 1 do
+    #Sends the emails and then tests if emails got queued
+	assert_emails 1 do
       email.deliver_later
     end
     assert_emails 1 do
@@ -27,4 +32,5 @@ class RsvpMailerTest < ActionMailer::TestCase
     assert email.subject.include?('A reminder for your ThinQ.tv Conversation on')
     assert email_2.subject.include?('A reminder for your ThinQ.tv Conversation on')
   end
+	
 end
