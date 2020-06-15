@@ -61,9 +61,9 @@ class EventsController < ApplicationController
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+      end #ends if statements
+    end #ends respond_to
+  end #ends create function
 
   # PUT /events/1.json
   def update
