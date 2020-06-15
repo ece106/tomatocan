@@ -94,3 +94,25 @@ donator:
   twitter: MyTwitter
   encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
   remember_token: MyString
+
+confirmedUser:
+  id: 6
+  name: userConfirmed
+  email: thinqtesting@gmail.com
+  permalink: userConfirmed
+  twitter: twitter
+  facebook: facebook
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
+  remember_token: MyString
+  confirmation_token: fVQxEs5s9vC2VawpbZam
+  confirmed_at: 2020-06-15 19:57:29.51622
+  confirmation_sent_at: 2020-06-15 19:56:37.3012
