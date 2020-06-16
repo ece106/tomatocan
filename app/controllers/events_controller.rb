@@ -124,27 +124,6 @@ class EventsController < ApplicationController
     if params[:event]["start_at(2i)"] == "December"
       params[:event]["start_at(2i)"] = 12
     end
-    if params[:event]["start_at(1i)"] == "Mon"
-      params[:event]["start_at(1i)"] = 2
-    end
-    if params[:event]["start_at(1i)"] == "Tue"
-      params[:event]["start_at(1i)"] = 3
-    end
-    if params[:event]["start_at(1i)"] == "Wed"
-      params[:event]["start_at(1i)"] = 4
-    end
-    if params[:event]["start_at(1i)"] == "Thu"
-      params[:event]["start_at(1i)"] = 5
-    end
-    if params[:event]["start_at(1i)"] == "Fri"
-      params[:event]["start_at(1i)"] = 6
-    end
-    if params[:event]["start_at(1i)"] == "Sat"
-      params[:event]["start_at(1i)"] = 7
-    end
-    if params[:event]["start_at(1i)"] == "Sun"
-      params[:event]["start_at(1i)"] = 1
-    end
     start_date = Time.new(
       params[:event]["start_at(1i)"].to_i, # year
       params[:event]["start_at(2i)"], # month
@@ -165,11 +144,11 @@ class EventsController < ApplicationController
     params[:event]["start_at(3i)"] = converted_start_time.day.to_s    # set start day
     params[:event]["start_at(4i)"] = converted_start_time.hour.to_s   # set start hour
     params[:event]["start_at(5i)"] = converted_start_time.min.to_s # set start mins
-    params[:event]["end_at(1i)"] = converted_end_time.year.to_s   # set end year
-    params[:event]["end_at(2i)"] = converted_end_time.month.to_s  # set end month
-    params[:event]["end_at(3i)"] = converted_end_time.day.to_s    # set end day
-    params[:event]["end_at(4i)"] = converted_end_time.hour.to_s   # set end hour
-    params[:event]["end_at(5i)"] = converted_end_time.min.to_s # set start mins
+    # params[:event]["end_at(1i)"] = converted_end_time.year.to_s   # set end year
+    # params[:event]["end_at(2i)"] = converted_end_time.month.to_s  # set end month
+    # params[:event]["end_at(3i)"] = converted_end_time.day.to_s    # set end day
+    # params[:event]["end_at(4i)"] = converted_end_time.hour.to_s   # set end hour
+    # params[:event]["end_at(5i)"] = converted_end_time.min.to_s # set start mins
   end
   
   def update_reminder

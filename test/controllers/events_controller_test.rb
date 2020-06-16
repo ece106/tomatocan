@@ -8,21 +8,18 @@ class EventsControllerTest < ActionController::TestCase
     @rsvpq = rsvpqs(:one)
   end
 
-  #event.usrid==1
-  #event.id==980190962
+  # event.usrid==1
+  # event.id==980190962
 
     #index
     test "#index should return all events with start at greater than current time" do
         @event1 = Event.create(:usrid => 2, :name => 'Dark Water', :start_at => "2020-02-11 11:02:57")
         sample_event = Event.where( "start_at > ?", Time.now )
-        # assert_equal(@event1.usrid, sample_event[2].usrid)
-        # assert_equal(@event1.user_id, sample_event[2].user_id)
+        assert_equal(@event1.usrid, sample_event[2].usrid)
+        assert_equal(@event1.user_id, sample_event[2].user_id)
     end
     
     test "#index should respond to the correct format" do
-        # get :index, params: {id: @event.id, format: :text/html}
-        # assert_response :success 
-
         get :index, params: {id: @event.id, format: :html}
         assert_response :success 
 

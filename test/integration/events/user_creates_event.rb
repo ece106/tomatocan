@@ -29,11 +29,11 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
     select "03 PM", from: "event_start_at_4i"
     select "00", from: "event_start_at_5i"
 
-    select "2020", from: "event_end_at_1i"
-    select "July", from: "event_end_at_2i"
-    select "16", from: "event_end_at_3i"
-    select "04 PM", from: "event_end_at_4i"
-    select "00", from: "event_end_at_5i"
+    # select "2020", from: "event_end_at_1i"
+    # select "July", from: "event_end_at_2i"
+    # select "16", from: "event_end_at_3i"
+    # select "04 PM", from: "event_end_at_4i"
+    # select "00", from: "event_end_at_5i"
 
     click_on id: "eventSubmit"
 

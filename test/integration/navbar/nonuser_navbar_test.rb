@@ -14,18 +14,24 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Home'
     find_link('Home', match: :first).click
     assert_equal '/', current_path
-    assert page.has_link? 'Discover Previous Conversations'
-    find_link('Discover Previous Conversations', match: :first).click
-    assert_equal '/supportourwork', current_path
-    assert page.has_link? 'Invite Us To Speak'
-    find_link('Invite Us To Speak', match: :first).click
+    assert page.has_link? 'About Us'
+    find_link('About Us', match: :first).click
+    assert_equal '/getinvolved', current_path
+    assert page.has_link? 'Have us on your Podcast'
+    find_link('Have us on your Podcast', match: :first).click
     assert_equal '/drschaeferspeaking', current_path
-    assert page.has_link? 'Be a ThinQtv Influencer!'
-    find_link('Be a ThinQtv Influencer!', match: :first).click
-    assert_equal '/internship', current_path
+    assert page.has_link? 'Join the Team'
+    find_link('Join the Team', match: :first).click
+    assert_equal '/jointheteam', current_path
+    assert page.has_link? 'Study Hall'
+    find_link('Study Hall', match: :first).click
+    assert_equal '/studyhall', current_path
     assert page.has_link? 'FAQ'
     find_link('FAQ', match: :first).click
     assert_equal '/faq', current_path
+    assert page.has_link? 'Terms of Service'
+    find_link('Terms of Service', match: :first).click
+    assert_equal '/tos', current_path
   end
   
   test 'sign up' do
