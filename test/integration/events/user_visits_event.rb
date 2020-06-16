@@ -45,7 +45,7 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
   end
 
   test "can share event" do
-
+  	
     linkedin_img = "//img[@src = 'https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>' and @alt='LinkedIn']"
     facebook_img = "//img[@src = 'https://www.facebook.com/images/fb_icon_325x325.png' and @alt='Facebook']"
     twitter_img = "//img[@src = 'https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png' and @alt='Twitter']"

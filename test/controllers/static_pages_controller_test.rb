@@ -9,7 +9,7 @@ class StaticPagesControllerTest < ActionController::TestCase
   # end
 
   test 'should_get_aboutus' do
-    get :aboutus
+    get :getinvolved
     assert_response :success
   end
 
