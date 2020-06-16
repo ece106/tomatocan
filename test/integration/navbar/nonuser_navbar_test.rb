@@ -34,7 +34,10 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Sign Up'
     find_link('Sign Up', match: :first).click
     assert_equal '/signup', current_path
-    user_sign_up @user
+    assert_emails 1 do
+      #Confirmation email is sent after signup
+      user_sign_up @user
+    end
     assert_equal '/login', current_path
   end
 
