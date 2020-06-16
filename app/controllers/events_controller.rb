@@ -44,6 +44,7 @@ class EventsController < ApplicationController
 
   # POST /events.json
   def create
+
     convert_time # call convert time method
     @event = current_user.events.build(event_params)
     @event.update_attribute(:user_id, params[:event][:usrid])
@@ -96,19 +97,9 @@ class EventsController < ApplicationController
       params[:timeZone]                # timeZone
     )
 
-    end_date = Time.new(
-      params[:event]["end_at(1i)"], # year
-      params[:event]["end_at(2i)"], # month
-      params[:event]["end_at(3i)"], # day
-      params[:event]["end_at(4i)"], # hour
-      params[:event]["end_at(5i)"], # minute
-      0,                               # seconds
-      params[:timeZone]                # timeZone
-    )
-
     # calculate local time in pacific time
     converted_start_time = start_date.in_time_zone("Pacific Time (US & Canada)")
-    converted_end_time = end_date.in_time_zone("Pacific Time (US & Canada)")
+    converted_end_time = start_date.in_time_zone("Pacific Time (US & Canada)") + 1.hour
 
     # edit params from local time to pacific time to store in database
     params[:event]["start_at(1i)"] = converted_start_time.year.to_s   # set start year
@@ -130,7 +121,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
+    params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :usrid, :user_id)
   end
     
 end

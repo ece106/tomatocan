@@ -9,7 +9,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index
+    get :index, params: {format: "text/html"}
     assert_response :success
   end
 
@@ -24,7 +24,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get users youtubers" do
-    get :youtubers
+    get :youtubers, params: {format: "text/html"}
     assert_response :success
   end
 
@@ -103,14 +103,15 @@ class UsersControllerTest < ActionController::TestCase
     assert_recognizes({controller: 'users',action:'pastevents', permalink:'user1'},'user1/pastevents')
   end
 
-  test "should get users profileinfo" do 
+  test "should get users profileinfo" do
+    sign_in @user
     get :profileinfo, params: { permalink: 'user1' }
     assert_response :success
   end
 
   test "should get changepassword" do
     get :changepassword, params: {permalink: 'user1'}
-    assert_response :success 
+    assert_response :success
   end
 
   test "should recognize users dashboard logged in"do
@@ -123,7 +124,7 @@ class UsersControllerTest < ActionController::TestCase
     @purchase = purchases(:one)
     #   puts @book.id
     #   puts "Notice that the book id is some ridiculously huge integer."
-    get :controlpanel, params: {permalink: 'user1',id: @user.id} 
+    get :controlpanel, params: {permalink: 'user1',id: @user.id}
     assert_response :success
   end
 
@@ -147,9 +148,9 @@ class UsersControllerTest < ActionController::TestCase
     # assert_equal(stripeid, @user.stripeid)
   end
 
-  # rails test test/controllers/users_controller_test.rb -n test_should_equate_youtube_field; 
+  # rails test test/controllers/users_controller_test.rb -n test_should_equate_youtube_field;
   # To test whether address/zip from IP is saved, need to test registrations controller. But can't do on localhost.
-  test "should create user" do 
+  test "should create user" do
     user = User.create(name: 'TestUser', email: 'test@mail.com', password: 'secret123', password_confirmation: 'secret123', permalink: 'testuser')
     assert_not_nil user
     # assert_equal(User.count, 2) do
@@ -164,7 +165,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should check new user index" do
     post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
-    assert_equal(@user.id,1) 
+    assert_equal(@user.id,1)
 
   end
 
@@ -234,14 +235,14 @@ class UsersControllerTest < ActionController::TestCase
   #   assert_response :success
   # end
 
-  test "should get control panel for user1" do 
-    sign_in @user 
-    get :controlpanel, params: {permalink: 'user1'} 
+  test "should get control panel for user1" do
+    sign_in @user
+    get :controlpanel, params: {permalink: 'user1'}
     assert_response :success
   end
 
-  test "should get control panel for user2" do 
-    sign_in @user 
+  test "should get control panel for user2" do
+    sign_in @user
     get :controlpanel, params: {permalink: 'user2'}
     assert_response :success
   end

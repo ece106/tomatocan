@@ -55,12 +55,6 @@ class UsersController < ApplicationController
     end
 
     #ban-feature
-    @host = User.find(@displayconvo.usrid)
-    users = User.all
-    if(users.current_page?(event_path(@host.permalink))){
-      @currusers.push(users)
-    }
-    
   end
 
   def profileinfo

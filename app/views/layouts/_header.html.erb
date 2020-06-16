@@ -19,12 +19,14 @@
 					<li class="nav-item"><%= link_to "About Us", 'http://www.ThinQ.tv/getinvolved', title: "Get your networks talking about the issues!", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Have us on your Podcast", 'http://www.ThinQ.tv/drschaeferspeaking', title: "Or news segment", target: "_blank" %></li>
 					<li class="nav-item"><%= link_to "Join the Team", 'http://www.ThinQ.tv/jointheteam', title: "Work with us", target: "_blank" %></li>
+					<li class="nav-item"><%= link_to "Study Hall", 'http://www.ThinQ.tv/studyhall', title: "Co-work/hack with us", target: "_blank" %></li>
 
 				<% else %> <!-- if the navbar is being rendered in from the ThinQ.TV domain or from localhost..-->
 					<li class="<%=(current_page?('/') ? "nav-item active" : "nav-item")%>"><%= link_to "Home", root_path, title: "Invite friends to join thought-provoking Conversations on ThinQ.tv" %></li>
 					<li class="nav-item"><%= link_to "About Us", getinvolved_path, title: "Get your networks talking about the issues!" %></li>
 					<li class="nav-item"><%= link_to "Have us on your Podcast", drschaeferspeaking_path, title: "Or news segment" %></li>
 					<li class="nav-item"><%= link_to "Join the Team", jointheteam_path, title: "Work with us" %></li>
+					<li class="nav-item"><%= link_to "Study Hall", studyhall_path, title: "Co-work/hack with us" %></li>
 				<% end %>
 			</ul>
 
