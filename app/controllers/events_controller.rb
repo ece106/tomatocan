@@ -45,6 +45,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
 
+	print "\n\n\n\n\n\n\nAQUI EMPIEZA LA FUNCION\n#{@name}\n\n\n\n\n\n\n"
     convert_time # call convert time method
     @event = current_user.events.build(event_params)
     @event.update_attribute(:user_id, params[:event][:usrid])
