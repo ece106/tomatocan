@@ -21,11 +21,8 @@ class UserMailer < ApplicationMailer
 
   def inline_images
     img_path ="app/assets/images/social-share-button"
-    img_path_two = "app/assets/images"
     img_list = ['email.png','facebook.png','linkedin.png','twitter.png']
-    img_list_two = ["laptop.png"]
     img_list.each {|x| attachments.inline[x] = File.read("#{img_path}/#{x}")}
-    img_list_two.each {|a| attachments.inline[a] = File.read("#{img_path_two}/#{a}")}
   end
 
 end

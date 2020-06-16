@@ -208,10 +208,9 @@ We'll allow most appropriately-skilled college students the opportunity to earn 
 - Push to github 5 times per week.
 - Attend at least one of the Conversations posted on the home page per week. If you are not willing to be a part of our mission, you should not be taking up our time nor mental space.
 - Contribute enough to justify a pull request every 3 weeks.
-- Share conversations on your social media accounts every week: LinkedIn, Twitter, Facebook, Instagram. Tag YourOnlineMom's or Thinq.TV's account on the post to prove that the Conversation was shared.
+- Share conversations on your social media accounts every week: LinkedIn, Twitter, Facebook, Instagram. Tag Thinq.TV's account on the post to prove that the Conversation was shared.
 - Invite parents and friends to participate on live conversations - and prove it by their appearance.
-- Cell phones off. We must not see your cell phone at all while you are in our offices. I do not allow you in my space to watch you text your friends.
-- Keep your hours updated on the in/out google calendar. Otherwise we'll assume you will not be fulfilling your 10 hours/week.
+- Keep your hours updated on the Study Hall Schedule. Otherwise we'll assume you will not be fulfilling your 10 hours/week.
 
 Add the following columns to your Goals & Accomplishments sheet:
 - Conversations attended
@@ -230,6 +229,8 @@ For a list of helpful git commands use the git cheatsheet: https://services.gith
 
 For minitest methods https://guides.rubyonrails.org/testing.html
 
+For Capybara integration tests https://devhints.io/capybara
+
 
 ### PROFESSIONAL WORKPLACE RULES 
 
@@ -244,7 +245,6 @@ For minitest methods https://guides.rubyonrails.org/testing.html
 - NEVER leave technical debt messy confusing code for everyone else to clean up. 
 - NEVER use the same database for test and development. You will lose ALL your data in your development database. This was mentioned already, but people still keep doing it.
 - Never put spaces in filenames. Do you ever put spaces in your variable names? No. 
-- Never call anything on ThinQ.tv an event. These are Conversations.
  
 
 
