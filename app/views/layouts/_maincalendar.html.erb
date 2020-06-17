@@ -45,7 +45,7 @@
             document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
             document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
           </script>
-          <td class="col-xs-3" style="overflow: visible;">
+          <td class="col-xs-3 overflow-visible">
             <% rsvps = event.rsvpqs %>
              <% rsvpusers = event.users %>
             <% if rsvps.count > 0 %>
