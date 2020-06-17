@@ -6,10 +6,13 @@
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
    }
 
+<<<<<<< HEAD
 .card{
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
    }
 
+=======
+>>>>>>> origin/master
 
 </style>
  <!-- <div class="row" style="background-color: white; padding-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5); ">
@@ -40,7 +43,11 @@
       <%= image_tag("videoconference.jpg", :style => "min-height: 372px; max-height:auto; width:100%;")%>
   	</div>
 
+<<<<<<< HEAD
   	<div class= "card col-lg-8 col-md-12 mt-0 mb-0 p-0">
+=======
+  	<div class= "col-lg-8 col-md-12 mt-0 mb-0 p-0">
+>>>>>>> origin/master
 		  <h3 class ="pt-1 pb-1 mb-1 text-danger"><strong>WHAT IS THINQ.TV:</strong></h3>
 		  <p class= "paragraph1" >
           * A platform where people can join intellectual video chat online. It’s similar to going to a Cocktail Party on Zoom. Drop in to a conversation on the home page schedule & discover interesting conversations to motivate each other to get involved with the 2020 election! <br>
@@ -53,6 +60,7 @@
       <p class = "paragraph2">- Spread the word about <strong>THINQ.TV</strong> via <% domainurl = "http://www.ThinQ.tv" %>
                 <% desc = "Participate in Conversations about the 2020 election!"%>
                             <!-- Facebook -->                    
+<<<<<<< HEAD
                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"
                     onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse',
                     'newwindow',
@@ -68,6 +76,16 @@
                     return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
      </p>
      <br>
+=======
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"
+                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse')"
+                    >  <img src="<%= asset_url('social-share-button/facebook.png') %>"></img></a>
+               			 <!-- Twitter -->
+                  <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections!%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations.&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
+               			 <!-- LinkedIn -->
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
+     </p>
+>>>>>>> origin/master
      </div>
 
 
