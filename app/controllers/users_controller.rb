@@ -53,7 +53,6 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @user }
     end
-
     #ban-feature
   end
 
