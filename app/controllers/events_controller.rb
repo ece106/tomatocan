@@ -45,26 +45,36 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
 
-	print "\n\n\n\n\n\n\nAQUI EMPIEZA LA FUNCION\n#{@name}\n\n\n\n\n\n\n"
+	
+	
     convert_time # call convert time method
     @event = current_user.events.build(event_params)
-    @event.update_attribute(:user_id, params[:event][:usrid])
-    user = User.find(@event.usrid)
-    offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
-    reminder_hour = @event.start_at + offset.hours - 1.hours
-    @reminder_date = @event.start_at - 1.days #why is the scope beyond local? Do we use this variable in a view? I doubt it.
-    respond_to do |format|
-      if @event.save
-        EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
-        EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
-        format.html { redirect_to "/" }
-        format.json { render json: @event, status: :created, location: @event }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end #ends if statements
-    end #ends respond_to
-  end #ends create function
+	print "\n\n\n\n\n\n\nAQUI EMPIEZA LA FUNCION\n#{@event.name}\n\n\n\n\n\n\n"
+	
+	#LOGRASTES HACER QUE NO ACEPTARA "" PERO NECESITAS ENSENAR EL ERROR BIEN
+	
+	if(@event.name != "")
+		@event.update_attribute(:user_id, params[:event][:usrid])
+		user = User.find(@event.usrid)
+		offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
+		reminder_hour = @event.start_at + offset.hours - 1.hours
+		@reminder_date = @event.start_at - 1.days #why is the scope beyond local? Do we use this variable in a view? I doubt it.
+		respond_to do |format|
+		  if @event.save
+			EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
+			EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
+			format.html { redirect_to "/" }
+			format.json { render json: @event, status: :created, location: @event }
+		  else
+			format.html { render action: "new" }
+			format.json { render json: @event.errors, status: :unprocessable_entity }
+		  end #ends if statements
+		end #ends respond_to
+		else
+			format.html { render action: "new" }
+			format.json { render json: @event.errors, status: :unprocessable_entity }
+	end #ends if(@event.name != "")
+  end #ends create method
 
   # PUT /events/1.json
   def update
