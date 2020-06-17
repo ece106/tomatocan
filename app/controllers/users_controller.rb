@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:update, :dashboard, :controlpanel ]
 
-  #before_action :correct_user, only: [:dashboard, :user_id] 
-  #before_action :correct_user, only: [:controlpanel] 
+  #before_action :correct_user, only: [:dashboard, :user_id]
+  #before_action :correct_user, only: [:controlpanel]
   #Where did this method go?
 
   def index
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     usersvidorder = userswithyoutube.order('updated_at DESC')
     @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 12)
   end
-
   def supportourwork
     userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
     stripeorder = userswstripe.order('updated_at DESC')
@@ -53,7 +52,6 @@ class UsersController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @user }
     end
-    #ban-feature
   end
 
   def profileinfo
@@ -124,7 +122,7 @@ class UsersController < ApplicationController
       format.html
       format.json { render json: @user }
     end
-    if @user.merchandises.any? 
+    if @user.merchandises.any?
       expiredmerch = @user.merchandises.where("deadline < ?", Date.today)
       @expiredmerchandise = expiredmerch.order('deadline ASC')
     end
@@ -171,7 +169,6 @@ class UsersController < ApplicationController
     #    @user.latitude = request.location.latitude #geocoder has become piece of junk
     #    @user.longitude = request.location.longitude
     if @user.save
-      @user.get_youtube_id
       sign_in @user
       redirect_to user_profileinfo_path(current_user.permalink)
       UserMailer.with(user: @user).welcome_email.deliver_later
@@ -185,7 +182,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     if @user.update_attributes(user_params)
-      @user.get_youtube_id
       bypass_sign_in @user
       redirect_to user_profile_path(current_user.permalink)
     else
@@ -217,11 +213,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:permalink, :name, :email, :password, 
-                                 :about, :author, :password_confirmation, :genre1, :genre2, :genre3, 
-                                 :twitter, :title, :profilepic, :profilepicurl, :remember_me, 
-                                 :facebook, :address, :latitude, :longitude, :youtube1, :youtube2, 
-                                 :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password, 
+    params.require(:user).permit(:permalink, :name, :email, :password,
+                                 :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
+                                 :twitter, :title, :profilepic, :profilepicurl, :remember_me,
+                                 :facebook, :address, :latitude, :longitude, :youtube1, :youtube2,
+                                 :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
                                  :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
   end
 
@@ -236,9 +232,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def set_user 
+  def set_user
     @user = User.find_by_permalink(params[:permalink]) || current_user
-    if @user.merchandises.any? 
+    if @user.merchandises.any?
       notexpiredmerch = @user.merchandises.where("deadline >= ? OR deadline IS NULL", Date.today)
       deadlineorder = notexpiredmerch.order(deadline: :asc)
 
@@ -247,51 +243,50 @@ class UsersController < ApplicationController
       else
         @sidebarmerchandise = deadlineorder.all[0..0]
       end
-    end 
-  end 
+    end
+  end
 
     # returns a string of error messages for the user signup page
-    def signup_error_message
-      msg = ""
-      if @user.errors.messages[:name].present?
-        msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+  def signup_error_message
+    msg = ""
+    if @user.errors.messages[:name].present?
+      msg += ("Name " + @user.errors.messages[:name][0] + "\n")
+    end
+    if @user.errors.messages[:email].present?
+      @user.errors.messages[:email].each do |email|
+        msg += ("Email " + email + "\n")
       end
-      if @user.errors.messages[:email].present?
-        @user.errors.messages[:email].each do |email| 
-          msg += ("Email " + email + "\n")
-      end
-      if @user.errors.messages[:permalink].present?
-        msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
-      end
-      if @user.errors.messages[:password].present?
-        msg += ("Password " + @user.errors.messages[:password][0] + "\n")
-      end
-
-      return msg
+    end
+    if @user.errors.messages[:permalink].present?
+      msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
+    end
+    if @user.errors.messages[:password].present?
+      msg += ("Password " + @user.errors.messages[:password][0] + "\n")
     end
 
-    def update_error_message
-      msg = ""
-      if @user.errors.messages[:name].present?
-      end
-      if @user.errors.messages[:email].present?
-        msg += ("Email " + @user.errors.messages[:email][0] + "\n")
-      end
-      if @user.errors.messages[:permalink].present?
-        msg += ("URL handle " + @user.errors.messages[:permalink][0] + "\n")
-      end
-      if @user.errors.messages[:password_confirmation].present?
-        msg += ( "Passwords do not match \n")
-      end
-      if @user.errors.messages[:password].present?
-        msg += ("Password " + @user.errors.messages[:password][0] + "\n")
-      end
-      if @user.errors.messages[:twitter].present?
-        msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
-      end
+    return msg
+  end
 
-      return msg
+  def update_error_message
+    msg = ""
+    if @user.errors.messages[:name].present?
     end
-    
+    if @user.errors.messages[:email].present?
+      msg += ("Email " + @user.errors.messages[:email][0] + "\n")
+    end
+    if @user.errors.messages[:permalink].present?
+      msg += ("URL handle " + @user.errors.messages[:permalink][0] + "\n")
+    end
+    if @user.errors.messages[:password_confirmation].present?
+      msg += ( "Passwords do not match \n")
+    end
+    if @user.errors.messages[:password].present?
+      msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+    end
+    if @user.errors.messages[:twitter].present?
+      msg += ("Twitter handle " + @user.errors.messages[:twitter][0] + "\n")
+    end
+
+    return msg
   end
 end
