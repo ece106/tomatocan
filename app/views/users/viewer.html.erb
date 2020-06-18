@@ -71,6 +71,21 @@
 
     <div class="col-md-8">
       <!--<%= render 'layouts/jitsi' %> -->
+      <% if @otherconvos.present? %>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Other conversations happening right now
+          </div>
+          <div class = "container">
+            <% @otherconvos.each do |t| %>
+              <%host=User.find(t.usrid)%>
+              <%= link_to t.name, "https://thinQtv.herokuapp.com/" + host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
+            <%end%>
+          </div>
+        </div>
+        <div>
+      <%end%>
+      
         <div class="container">
           <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
             <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
