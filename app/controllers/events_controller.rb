@@ -45,36 +45,31 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
 
-	
-	
     convert_time # call convert time method
     @event = current_user.events.build(event_params)
-	print "\n\n\n\n\n\n\nAQUI EMPIEZA LA FUNCION\n#{@event.name}\n\n\n\n\n\n\n"
 	
-	#LOGRASTES HACER QUE NO ACEPTARA "" PERO NECESITAS ENSENAR EL ERROR BIEN
+	#parecer ser que todo funciona nms pruebala otra vez y checa la base de datos no agrege cosas que no debe de y desaste de los espacios de mas.
 	
-	if(@event.name != "")
+	print "\n\n\n\n\n\n\nAQUI EMPIEZA LA FUNCION\n#{@event.name}\n\n\n\n\n\n\n" #BORRA ESTO
+    if(@event.name != "")
 		@event.update_attribute(:user_id, params[:event][:usrid])
 		user = User.find(@event.usrid)
 		offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
 		reminder_hour = @event.start_at + offset.hours - 1.hours
 		@reminder_date = @event.start_at - 1.days #why is the scope beyond local? Do we use this variable in a view? I doubt it.
-		respond_to do |format|
-		  if @event.save
-			EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
-			EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
-			format.html { redirect_to "/" }
-			format.json { render json: @event, status: :created, location: @event }
-		  else
-			format.html { render action: "new" }
-			format.json { render json: @event.errors, status: :unprocessable_entity }
-		  end #ends if statements
-		end #ends respond_to
-		else
-			format.html { render action: "new" }
-			format.json { render json: @event.errors, status: :unprocessable_entity }
-	end #ends if(@event.name != "")
-  end #ends create method
+	end # @even.name != "" ends here
+	respond_to do |format|
+	  if @event.save
+		EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
+		EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
+		format.html { redirect_to "/" }
+		format.json { render json: @event, status: :created, location: @event }
+	  else
+		format.html { render action: "new" }
+		format.json { render json: @event.errors, status: :unprocessable_entity }
+	  end # if @event.save ends here
+	end # respond_to ends here
+  end # def creat ends here
 
   # PUT /events/1.json
   def update
