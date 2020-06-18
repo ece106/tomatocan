@@ -65,7 +65,7 @@ Conversation<!-- Set layout of panels for a logged-in user. You do not need to c
           <h1>Conversations</h1>
         </div>
         <div class="fixed-bottom col-md-8" id="shows-button-panel">
-          <%= link_to "Start Your Conversation Now", "https://thinqtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning', id: "stream-btn" %>
+          <%= link_to "Start Your Conversation Now", request.base_url + "/" + @user.permalink + "/viewer", :class => 'btn btn-lg btn-warning', id: "stream-btn" %>
           <%= link_to 'Set Up Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
         </div>
       </div>
