@@ -6,25 +6,25 @@
 
 <!-- Meta Tags for Facebook -->
 <% content_for :head do %>
-  <meta property="og:url"           content="<%= "http://www.thinq.tv" + event_path(@event) %>" />
+  <meta property="og:url"           content="<%= "https://www.thinq.tv" + event_path(@event) %>" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="<%= @event.name %>" />
   <meta property="og:description"   content="<%= @event.desc %>" />
   <meta property="og:image"         content="<%= @user.profilepic.url.to_s %>" />
 <% end %>
 
-<! TOP HALF -->
+<!-- TOP HALF -->
 <div id="event-page-layout" style="width: 100%; margin: auto; background-color: #F2EBE4;">
   <div class="row" style = "padding-top:15px; padding-bottom:20px;">
 
-    <! PROFILE PICTURE -->
+    <!-- PROFILE PICTURE -->
     <div class="col-md-3" style="text-align:center; padding: 10px 5px 10px 10px;">
       <% if @user.profilepic.present? && @user.profilepic != '' %>
         <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
       <% end %><br><br>  
     </div>
 
-    <! CONVERSATION NAME & HOST -->
+    <!-- CONVERSATION NAME & HOST -->
     <div class="col-md-5">
       <div style ="margin-left: 30px">
         <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
@@ -32,7 +32,7 @@
           <div id="eventCurrentdiv" >
               <h3>We're talking about <%= @displayconvo.name %></h3>  
               <p> right NOW!   </p> 
-              <%= link_to " Join LIVE Conversation ", "https://thinqtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
+              <%= link_to " Join LIVE Conversation ", request.base_url + "/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
               <br>
           </div>
         <% else %>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <! RSVP & EDIT BUTTONS -->
+    <!-- RSVP & EDIT BUTTONS -->
     <div class="col-md-4" style="padding: 10px 5px 10px 10px;">
       <% @title="ThinQ.tv" %>
         <div style="margin-top:0px; text-align:right">
@@ -90,11 +90,11 @@
   </div>
 </div>
 
-<! BOTTOM HALF -->
+<!-- BOTTOM HALF -->
 <div id="event-page-layout" style="width: 100%; margin: auto;">
   <div class="row" style = "padding-top:15px; padding-bottom:30px;">
 
-    <! LEFTHAND SIDE -->
+    <!-- LEFTHAND SIDE -->
     <div class="col-md-7" style="text-align:left; padding: 10px 5px 10px 10px;">
 
       <! Quick Summary Box -->
@@ -104,7 +104,7 @@
         </div>
       </div>
 
-      <! When Box -->
+      <!-- When Box -->
       <div style="padding: 3px 0px 3px 0px">
         <b> When: </b>
         <div style = "margin-left: 5px">
@@ -115,7 +115,7 @@
         </div>
       </div>
 
-      <! EVENT DESCRIPTION -->
+      <!-- EVENT DESCRIPTION -->
       <div style = "padding: 3px 0px 3px 0px">
         <div style="padding: 5px 5px 5px 5px; font-style: italic; font-size: 15px; background-color: #F2EBE4;">
         <% if @event.desc.present? %>
@@ -125,14 +125,14 @@
       </div>
     </div>
 
-    <! PLACEHOLDER -->
+    <!-- PLACEHOLDER -->
     <div class="col-md-1">
     </div>
 
-    <! RIGHTHAND SIDE -->
+    <!-- RIGHTHAND SIDE -->
     <div class="col-md-4" style="text-align:left; padding: 10px 10px 10px 5px;">
 
-      <! Share Area -->
+      <!-- Share Area -->
       <div style = "padding: 3px 0px 0px 0px; font-size: 23px;">
         <b>Make sure your people are involved</b>
         <div style = "font-size: 15px">
@@ -142,7 +142,8 @@
         <div style = "font-size: 15px; padding-top: 5px">
           Share this Conversation on social media:
         </div>
-        <% domainurl = "http://www.ThinQ.tv/" %>
+
+        <% domainurl = request.base_url %>
         <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
         <div style="margin-left: 10px">
           <a href="http://www.facebook.com/sharer.php?u=<%= @surl %>"
@@ -164,14 +165,14 @@
         </div>
       </div>
 
-      <! Help Area -->
+      <!-- Help Area -->
       <div style = "padding: 3px 0px 0px 0px">
         <div style = "font-size: 17px; padding: 5px 5px 5px 5px; background-color: #F2EBE4;">
           <b>It's easy to be a part of the Conversation!</b> <br>
           <div style = "font-size: 14px; font-style: italic">
             On Desktop: <br>
             <div style = "margin-left: 5px">
-              Go to <a href="http://ThinQ.tv", target="_blank">ThinQ.tv</a> and click the <%= link_to " Join Conversation", "https://thinq.tv/" + @user.permalink + "/viewer", :class => 'btn btn-sm btn-primary fa fa-video-camera' %> button. <br>
+              Go to <a href="<%= request.base_url %>", target="_blank">ThinQ.tv</a> and click the <%= link_to " Join Conversation", request.base_url + "/" + @user.permalink + "/viewer", :class => 'btn btn-sm btn-primary fa fa-video-camera' %> button. <br>
             </div>
             On Mobile:
             <div style = "margin-left: 5px">

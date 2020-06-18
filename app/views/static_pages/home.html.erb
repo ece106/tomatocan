@@ -27,7 +27,7 @@
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
+            <%= link_to 'See an example Live Video Conversation Room', request.base_url + "/youronlinemom/viewer", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
             </h2>
           <% end %>
         <% end %><br><br>
