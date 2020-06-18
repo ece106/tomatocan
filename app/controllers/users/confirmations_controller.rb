@@ -1,3 +1,6 @@
+# Personalized default controller created by devise.
+# Changes to default actions can be made here
+
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
