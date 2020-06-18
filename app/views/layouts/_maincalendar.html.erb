@@ -17,9 +17,8 @@
             <% rsvpeople = "Join us!" %>
             <% rsvpusers = event.users %>
             <% if rsvpusers.count > 0 %>
-              <% rsvpusers.each do |rsvpuser| %>
-                <% rsvpeople = "" %>
-                <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
+              <% rsvpeople = "" %>
+              <% rsvpeople = rsvpusers.join(",") %>
               <% end %>
             <% end %>
 
