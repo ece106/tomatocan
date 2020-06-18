@@ -18,6 +18,7 @@
             <% rsvpusers = event.users %>
             <% if rsvpusers.count > 0 %>
               <% rsvpusers.each do |rsvpuser| %>
+                <% rsvpeople = "" %>
                 <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
               <% end %>
             <% end %>
