@@ -10,11 +10,11 @@
     </div>
     <div class="collapse navbar-collapse" id="globalNavbar">
 			<ul class="nav navbar-nav"> 
-        <li class="nav-item"><%= link_to "Home", 'http://ThinQ.tv', title: "Invite friends to join thought-provoking Conversations on ThinQ.tv", target: "_blank" %></li> <!-- ..use absolute routing in navbar.-->
-        <li class="nav-item"><%= link_to "About Us", 'http://www.ThinQ.tv/getinvolved', title: "Get your networks talking about the issues!", target: "_blank" %></li>
-        <li class="nav-item"><%= link_to "Have us on your Podcast", 'http://www.ThinQ.tv/drschaeferspeaking', title: "Or news segment", target: "_blank" %></li>
-        <li class="nav-item"><%= link_to "Join the Team", 'http://www.ThinQ.tv/jointheteam', title: "Work with us", target: "_blank" %></li>
-        <li class="nav-item"><%= link_to "Study Hall", 'http://www.ThinQ.tv/studyhall', title: "Co-work/hack with us", target: "_blank" %></li>
+        <li class="nav-item"><%= link_to "Home", request.base_url, title: "Invite friends to join thought-provoking Conversations on ThinQ.tv", target: "_blank" %></li> <!-- ..use absolute routing in navbar.-->
+        <li class="nav-item"><%= link_to "About Us", request.base_url + '/getinvolved', title: "Get your networks talking about the issues!", target: "_blank" %></li>
+        <li class="nav-item"><%= link_to "Have us on your Podcast", request.base_url + 'drschaeferspeaking', title: "Or news segment", target: "_blank" %></li>
+        <li class="nav-item"><%= link_to "Join the Team", request.base_url + '/jointheteam', title: "Work with us", target: "_blank" %></li>
+        <li class="nav-item"><%= link_to "Study Hall", request.base_url + '/studyhall', title: "Co-work/hack with us", target: "_blank" %></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
