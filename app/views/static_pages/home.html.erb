@@ -27,7 +27,7 @@
             </div>
           <% else %>
             <h2 id="buttonTitle">
-            <%= link_to 'See an example Live Video Conversation Room', request.base_url + "/youronlinemom/viewer", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
+            <%= link_to 'See an example Live Video Conversation Room', "/youronlinemom/viewer", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
             </h2>
           <% end %>
         <% end %><br><br>
@@ -87,6 +87,7 @@
     </div>
   </div>
 </div>
-    <script type="text/javascript">
-      showPanel(0,'#f44336');
-    </script>
+
+<script type="text/javascript">
+  showPanel(0,'#f44336');
+</script>
