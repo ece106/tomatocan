@@ -14,7 +14,7 @@ config.action_mailer.smtp_settings = {
   config.force_ssl = false  #otherwise heroku reroute will say i'm a liar
 
   config.action_mailer.default_url_options = {
-    :host => 'http://www.thinq.tv', :protocol => 'http' }
+    :host => 'https://www.thinq.tv', :protocol => 'https' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
