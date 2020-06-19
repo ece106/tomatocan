@@ -1,6 +1,6 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
-require 'rspec'
+require 'selenium-webdriver'
 
 class UserVisitsEvent < ActionDispatch::IntegrationTest
 
@@ -51,8 +51,12 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
     facebook_img = "//img[@src = 'social-share-button/facebook.png' and @alt='Facebook']"
     twitter_img = "//img[@src = 'social-share-button/twitter.png' and @alt='Twitter']"
 
-    # click_on linkedin_img
-    page.driver.browser.window_handles.length.should == 1
+    click_button linkedin_img
+    assert page.driver.browser.switch_to.alert.accept
+    click_button facebook_img
+    assert page.driver.browser.switch_to.alert.accept
+    click_button twitter_img
+    assert page.driver.browser.switch_to.alert.accept
   	
   end
 
@@ -74,3 +78,4 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
   end
 
 end
+
