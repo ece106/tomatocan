@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
+require 'rspec'
 
 class UserVisitsEvent < ActionDispatch::IntegrationTest
 
@@ -44,15 +45,15 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
     assert_equal current_path, "/#{@user.permalink}"
   end
 
-  test "can share event" do
-  	
-    linkedin_img = "//img[@src = 'https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>' and @alt='LinkedIn']"
-    facebook_img = "//img[@src = 'https://www.facebook.com/images/fb_icon_325x325.png' and @alt='Facebook']"
-    twitter_img = "//img[@src = 'https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png' and @alt='Twitter']"
+  test "can share event and pop up window" do
 
-    assert page.has_xpath? linkedin_img
-    assert page.has_xpath? facebook_img
-    assert page.has_xpath? twitter_img
+    linkedin_img = "//img[@src = 'social-share-button/linkedin.png' and @alt='LinkedIn']"
+    facebook_img = "//img[@src = 'social-share-button/facebook.png' and @alt='Facebook']"
+    twitter_img = "//img[@src = 'social-share-button/twitter.png' and @alt='Twitter']"
+
+    # click_on linkedin_img
+    page.driver.browser.window_handles.length.should == 1
+  	
   end
 
   test "can make an rsvp for event" do
