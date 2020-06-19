@@ -11,11 +11,11 @@ class Users::EmailConfirmationTest < ActionDispatch::IntegrationTest
 
   test "confirmation sent" do
     visit new_user_signup_path
-    assert_emails 1 do
+    assert_emails 2 do
       user_sign_up @newUser
     end
     assert_equal current_path, new_user_session_path
-    assert find(class: "alert-danger").has_text?("You have to confirm your account before continuing.")
+    assert find(class: "alert-success").has_text?("You have successfully signed up! An email has been sent for you to confirm your account.")
   end
 
   test "signin with unconfirmed email" do
@@ -27,7 +27,7 @@ class Users::EmailConfirmationTest < ActionDispatch::IntegrationTest
     confirmationEmailToken = "/confirmation?confirmation_token=#{@unconfirmedUser.confirmation_token}"
     visit confirmationEmailToken
     assert_equal current_path, new_user_session_path
-    assert find(class: "alert-danger").has_text?("Your account was successfully confirmed.")
+    assert find(class: "alert-success").has_text?("Your account was successfully confirmed.")
     visit confirmationEmailToken
     assert_equal current_path, user_confirmation_path
     assert find(class: "alert-danger").has_text?("Email was already confirmed, please try signing in")
@@ -42,7 +42,7 @@ class Users::EmailConfirmationTest < ActionDispatch::IntegrationTest
       click_on class: "form-control btn-primary"
       assert_equal current_path, new_user_session_path
     end
-    assert find(class: "alert-danger").has_text?("You will receive an email with instructions about how to confirm your account in a few minutes.")
+    assert find(class: "alert-success").has_text?("You will receive an email with instructions about how to confirm your account in a few minutes.")
   end
 
   test "change email" do
