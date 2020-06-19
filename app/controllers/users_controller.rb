@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
       @displayconvo = currconvo
-    end  
+    end
 
     currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
     @otherconvos = []
@@ -167,8 +167,7 @@ class UsersController < ApplicationController
     #    @user.latitude = request.location.latitude #geocoder has become piece of junk
     #    @user.longitude = request.location.longitude
     if @user.save
-      sign_in @user
-      redirect_to user_profileinfo_path(current_user.permalink)
+      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
       UserMailer.with(user: @user).welcome_email.deliver_later
     else
        redirect_to new_user_signup_path, danger: signup_error_message
