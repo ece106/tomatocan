@@ -34,8 +34,17 @@ class UsersController < ApplicationController
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
       @displayconvo = currconvo
-    end
+    end  
 
+    currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
+    @otherconvos = []
+    if currconvos.present?
+      currconvos.each do |convo|
+        if convo != @displayconvo
+          @otherconvos.push(convo)
+        end
+      end
+    end
     userid = @user.id
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
     @events = upcomingevents.paginate(page: params[:page], :per_page => 4)
