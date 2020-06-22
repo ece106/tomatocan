@@ -14,7 +14,23 @@
     tabPanels[panelIndex].style.display="block";
     tabPanels[panelIndex].style.backgroundColor="white";
   } 
-  showPanel(0,'#f44336');
+
+  function showPanel2 (panelIndex, colorCode) {
+    var tabButtons2=document.querySelectorAll(".tabContainer2 .buttonContainer button");
+    var tabPanels2=document.querySelectorAll(".tabContainer2 .tabPanel2");
+    tabButtons2.forEach(function(node) {
+      node.style.backgroundColor="";
+      node.style.color="";
+    });
+
+    tabButtons2[panelIndex].style.backgroundColor="none";
+    tabButtons2[panelIndex].style.color="none";
+    tabPanels2.forEach(function(node) {
+      node.style.display="none";
+    });
+    tabPanels2[panelIndex].style.display="block";
+    tabPanels2[panelIndex].style.backgroundColor="white";
+  } 
 
 
         var i=0;

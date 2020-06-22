@@ -1,5 +1,5 @@
 <div class="container-fluid" style="padding-bottom: 15px" >
-  <%if request.host == "thinqtv.herokuapp.com" %>
+  <% if request.host == "thinqtv.herokuapp.com" %>
 
     <!-- Meta Tags for Facebook sharing -->
     <% content_for :head do %>
@@ -89,7 +89,7 @@
       </div>
     </div>
 
-  <%else %>
+  <% else %>
   
     <!-- Meta Tags for Facebook Share -->
     <% content_for :head do %>
@@ -135,5 +135,5 @@
         <% end %>
       </div>
     </div>
-  <%end %>
+  <% end %>
 </div>
