@@ -22,17 +22,7 @@
                 <% end %>
               <% end %>
 
-            <% if event.topic == "Study Hall" %>
-              <div id = "calendar-event">
-                <%= link_to "Study Hall", event, id: "calendar-event", title: event.name %>
-              </div>
-            <% elsif event.topic == "User Research" %>
-              <div id = "calendar-event">
-                <%= link_to "User Research", event, id: "calendar-event", title: event.name %>
-              </div>
-            <% else %>
-              <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
-            <% end %>  
+            <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
             <%= link_to user.name, user.permalink, title: rsvpeople %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
