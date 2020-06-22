@@ -134,18 +134,40 @@
 .tabContainer{
   width: 100%;
   height: auto;
-  
+}
+.tabContainer2{
+  width: 100%;
+  height: auto;
 }
 
 .tabContainer .buttonContainer {
   height: 15%;
   /*text-align: center;*/
   padding-left: 70px;
+}
 
+.tabContainer2 .buttonContainer {
+  height: 15%;
+  /*text-align: center;*/
+  padding-left: 70px;
 }
 
 .tabContainer .buttonContainer button{
-  width: 300px;
+  width: 200px;
+  float: center;
+  cursor: pointer;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #8C1D40;
+  color: white;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.tabContainer2 .buttonContainer button{
+  width: 200px;
   height: 100%;
   float: center;
   border: none;
@@ -159,7 +181,6 @@
   color: white;
   border-radius: 8px;
   margin-top: 5px;
-  
 }
 
 .tabContainer .buttonContainer button:hover{
