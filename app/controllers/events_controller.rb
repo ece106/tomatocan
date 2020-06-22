@@ -51,13 +51,18 @@ class EventsController < ApplicationController
 	#parecer ser que todo funciona nms pruebala otra vez y checa la base de datos no agrege cosas que no debe de y desaste de los espacios de mas.
 	
 	print "\n\n\n\n\n\n\nAQUI EMPIEZA LA FUNCION\n#{@event.name}\n\n\n\n\n\n\n" #BORRA ESTO
-    if(@event.name != "")
+    
+	@event.name = (@event.name).strip #removes front and trailing spaces
+	
+	print"\neste es todo el string (#{@event.name})\n\n"
+	
+	if(@event.name != "")
 		@event.update_attribute(:user_id, params[:event][:usrid])
 		user = User.find(@event.usrid)
 		offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
 		reminder_hour = @event.start_at + offset.hours - 1.hours
 		@reminder_date = @event.start_at - 1.days #why is the scope beyond local? Do we use this variable in a view? I doubt it.
-	end # @even.name != "" ends here
+	end # if @even.name != "" ends here
 	respond_to do |format|
 	  if @event.save
 		EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
