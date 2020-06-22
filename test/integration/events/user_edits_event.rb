@@ -19,15 +19,15 @@ class UserEditsEvent < ActionDispatch::IntegrationTest
     fill_in id: "event_name", with: ""
     fill_in id: "event_desc", with: "http://www.thinq.tv/"
 
-    click_on class: "update-event-btn"
+    click_on class: "btn btn-lg btn-primary update-event-btn"
 
     assert_equal current_path, event_path(@event)
     assert page.has_css? "#error_explanation"
   end
 
   test "update event with valid attributes" do
-    fill_in id: "event_name", with: "Updating Event Name"
-    fill_in id: "event_desc", with: "New Event Description"
+    fill_in id: "event_name", with: "Title of Conversation"
+    fill_in id: "event_desc", with: "Details about Conversation Topic"
 
     select "2020", from: "event_start_at_1i"
     select "July", from: "event_start_at_2i"
@@ -41,12 +41,12 @@ class UserEditsEvent < ActionDispatch::IntegrationTest
     # select "04 PM", from: "event_end_at_4i"
     # select "00", from: "event_end_at_5i"
 
-    click_on class: "update-event-btn"
+    click_on class: "btn btn-lg btn-primary update-event-btn"
 
     assert current_path, event_path(@event)
 
-    assert page.has_content? "Updating Event Name"
-    assert page.has_content? "New Event Description"
+    assert page.has_content? "Title of Conversation"
+    assert page.has_content? "Details about Conversation Topic"
   end
 
   private

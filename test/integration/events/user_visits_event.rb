@@ -51,12 +51,20 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
     facebook_img = "//img[@src = 'social-share-button/facebook.png' and @alt='Facebook']"
     twitter_img = "//img[@src = 'social-share-button/twitter.png' and @alt='Twitter']"
 
-    click_button linkedin_img
-    assert page.driver.browser.switch_to.alert.accept
-    click_button facebook_img
-    assert page.driver.browser.switch_to.alert.accept
-    click_button twitter_img
-    assert page.driver.browser.switch_to.alert.accept
+    new_linkedin_sharewindow = window_opened_by { click_link linkedin_img }
+    within_window new_linkedin_sharewindow do
+      assert page.has_content?
+    end
+
+    new_facebook_sharewindow = window_opened_by { click_link facebook_img }
+    within_window new_facebook_sharewindow do
+      assert page.has_content?
+    end
+
+    new_twitter_sharewindow = window_opened_by { click_link twitter_img }
+    within_window new_twitter_sharewindow do
+      assert page.has_content?
+    end
   	
   end
 
