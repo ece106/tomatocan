@@ -13,28 +13,24 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
   test "can edit profile page with correct attributes" do
     fill_in id: "user_name", with: "Cody Karunas"
     fill_in id: "user_about", with: "About me description"
-    fill_in id: "user_genre1", with: "Test Category"
-    fill_in id: "user_genre2", with: "Test Category"
-    fill_in id: "user_genre3", with: "Test Category"
+    fill_in id: "user_genre1", with: "Topic 1"
+    fill_in id: "user_genre2", with: "Topic 2"
+    fill_in id: "user_genre3", with: "Topic 3"
 
     find("input[name='commit']", match: :first).click
 
     assert page.has_content? "Cody Karunas"
-    assert page.has_content? "Test Category"
-    assert page.has_content? "Test Category"
-  end
-
-  test "can edit social media with correct attributes" do
-    fill_in id: "user_twitter", with: "test_twitter_handle"
-    fill_in id: "user_youtube1", with: "http://www.youtube.com/watch?v=/frlviTJcVUo"
-    fill_in id: "user_youtube2", with: "http://www.youtube.com/watch?v=/frlviTJcVUo"
-    fill_in id: "user_youtube3", with: "http://www.youtube.com/watch?v=/frlviTJcVUo"
-
-    find(id: "cancelProfileButton", match: :first).click
+    assert page.has_content? "Topic 1"
+    assert page.has_content? "Topic 2"
+    assert page.has_content? "Topic 3"
   end
 
   test "can cancel edit profile page" do
     find(id: "cancelProfileButton", match: :first).click
+  end
+
+  test "can save edit profile page" do 
+    find(id: "saveProfileButton", match: :first).click
   end
 
   private

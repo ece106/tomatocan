@@ -20,21 +20,29 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on class: "save-acct-info-btn"
 
-    assert_equal current_path, "/#{test_permalink}"
+    assert_equal current_path, "/#{@user_permalink}"
   end
 
-  test "user edits account settings with same attributes" do
+  test "user changes password" do
     find(class: "account-settings-tab", text: "Account").click
 
-    click_on class: "save-acct-info-btn"
+    click_on class: "btn btn-default change-password-btn"
 
-    assert_equal current_path, "/#{@user.permalink}"
+    assert_equal current_path, "/#{@user_permalink}/changepassword"
   end
 
   test "user cancels edits account settings with same attributes" do
     find(class: "account-settings-tab", text: "Account").click
 
     click_on class: "btn btn-default cancel-acct-settings-btn"
+
+    assert_equal current_path, "/#{@user.permalink}"
+  end
+
+  test "user saves edits account settings with same attributes" do
+    find(class: "account-settings-tab", text: "Account").click
+
+    click_on class: "btn btn-primary save-acct-info-btn"
 
     assert_equal current_path, "/#{@user.permalink}"
   end

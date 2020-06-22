@@ -14,7 +14,7 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "upcoming events has the correct events" do
-    within("#event-list-table") do
+    within("table") do
       assert has_content? @test_event_one.name
       assert has_content? @test_event_one.start_at.strftime("%A %B %d, %Y at %I:%M %p")
 
@@ -24,7 +24,7 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "can edit event name in upcoming events panel" do
-    within("#event-list-table") do
+    within("table") do
       click_on "Edit", match: :first
     end
 
@@ -49,7 +49,7 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "upcoming events has the correct count" do
-    within("#event-list-table") do
+    within("table") do
       upcoming_events_count = find_all(".event-name").to_a.count
       assert_equal upcoming_events_count, 2
     end
