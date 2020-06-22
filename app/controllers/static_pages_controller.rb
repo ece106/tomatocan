@@ -2,23 +2,32 @@ class StaticPagesController < ApplicationController
   include ApplicationHelper
 
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
-
-  # before_action :set_upcoming_events, only: [:home]
-
   layout :resolve_layout
 
   def home
     showrecentconvo = Time.now - 10.hours
-    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
-    @eventsAll = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC')
+    @conversations = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
+    @conversationsall = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' )
+
+    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' )
     pdtnow = Time.now - 7.hours
-    currconvo = Event.where( "start_at < ? AND end_at > ?", pdtnow, pdtnow ).first
-    nextevent = Event.where( "start_at > ?", pdtnow ).order('start_at ASC').first 
+    pdtnext = Time.now - 8.hours
+    currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Conversation' ).first
+    nextconvo = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Conversation' ).order('start_at ASC').first 
+
+    currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ? OR topic = ?)", pdtnow, pdtnext, 'Study Hall', 'User Research' ).order('start_at ASC').first
+    nextstudy = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", pdtnow, 'User Research', 'Study Hall' ).order('start_at ASC').first 
 
     if currconvo.present?
       @displayconvo = currconvo
     else 
-      @displayconvo = nextevent
+      @displayconvo = nextconvo
+    end  
+    if currstudy.present?
+      @displaystudy = currstudy
+    else 
+      @displaystudy = nextstudy
     end  
 
     if @displayconvo.present?
@@ -28,6 +37,14 @@ class StaticPagesController < ApplicationController
       @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
       @host = User.find(@displayconvo.usrid)
     end  
+    if @displaystudy.present?
+      @namestudy = @displaystudy.name
+      @descriptionstudy = @displaystudy.desc
+      @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
+      @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
+      @hoststudy = User.find(@displaystudy.usrid)
+      @topic = @displaystudy.topic
+    end  
         
     if user_signed_in?
       @user = User.find(current_user.id)
@@ -36,24 +53,27 @@ class StaticPagesController < ApplicationController
 
   def studyhall
     showrecentconvo = Time.now - 10.hours
-    @events = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Study Hall' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
-    @eventsAll = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Study Hall' )
+
+    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' )
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
-    currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Study Hall' ).first
-    nextevent = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Study Hall' ).order('start_at ASC').first 
 
-    if currconvo.present?
-      @displayconvo = currconvo
+    currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ? OR topic = ?)", pdtnow, pdtnext, 'Study Hall', 'User Research' ).order('start_at ASC').first
+    nextstudy = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", pdtnow, 'User Research', 'Study Hall' ).order('start_at ASC').first 
+
+    if currstudy.present?
+      @displaystudy = currstudy
     else 
-      @displayconvo = nextevent
+      @displaystudy = nextstudy
     end  
 
-    if @displayconvo.present?
-      @name = @displayconvo.name
-      @description = @displayconvo.desc
-      @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
-      @host = User.find(@displayconvo.usrid)
+    if @displaystudy.present?
+      @namestudy = @displaystudy.name
+      @descriptionstudy = @displaystudy.desc
+      @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
+      @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
+      @hoststudy = User.find(@displaystudy.usrid)
     end  
         
     if user_signed_in?
