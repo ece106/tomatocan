@@ -1,52 +1,44 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @conversations, renderer: BootstrapPagination::Rails %>
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 <%i = 0%>
 
 <div class="panel panel-default">
-  <% if @events.count != 0 %>
+  <% if @conversations.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
-        <% @events.sort_by{|t| t.start_at}.each do |event| %>
+        <% @conversations.sort_by{|t| t.start_at}.each do |event| %>
           <% user = User.find(event.usrid) %>
           <% i += 1 %>  
           <tr>
-            <td class=col-xs-2>
-              <% rsvpeople = "Join us!" %>
-              <% rsvpusers = event.users %>
-              <% if rsvpusers.count > 0 %>
-                <% rsvpusers.each do |rsvpuser| %>
-                  <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
-                <% end %>
-              <% end %>
+            <td class=col-xs-3>
 
-            <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
-            <%= link_to user.name, user.permalink, title: rsvpeople %>
+              <div id = "calendar-event">
+                <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
+              </div>
+            <%= link_to user.name, user.permalink %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
                 <%= link_to '(Edit Conversation)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
             <% end %>
-          </td>
-          <td class=col-xs-2>
-            <span style="font-size:125%;" id=calendar-time-day<%=i%>></span>
-            <br>
-            <span style="font-size:90%;"id=calendar-time<%=i%>></span>
-          </td>
+            </td>
+            <td class=col-xs-3>
+              <span style="font-size:125%;" id=convocalendar-time-day<%=i%>></span>
+              <br>
+              <span style="font-size:90%;"id=convocalendar-time<%=i%>></span>
+            </td>
           <script>
             var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
             date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
             var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
             var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
-            document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
-            document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+            document.getElementById('convocalendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
+            document.getElementById('convocalendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
           </script>
           <td class=col-xs-3>
-            <%= rsvpeople %>
-          </td>  
-          <td class=col-xs-2>
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
@@ -125,11 +117,7 @@
     </table>
   <% end %>
 </>
-
-
-
 </div>
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 <script>
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
