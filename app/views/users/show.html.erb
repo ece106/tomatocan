@@ -1,4 +1,4 @@
-<div class="container-fluid" >
+<div class="container-fluid" style="padding-bottom: 15px" >
   <% if request.host == "thinqtv.herokuapp.com" %>
 
     <!-- Meta Tags for Facebook sharing -->
@@ -19,7 +19,6 @@
           <div style="padding: 0px 0px 5px 0px">
             <%= render 'layouts/merchsidebar' %>
           </div>
-
       <!-- Invite Area -->
       <div style = "padding: 3px 5px 7px 5px; font-size: 18px; background-color: #F2EBE4">
         <b>Invite friends to join this conversation</b>
@@ -44,7 +43,6 @@
             onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
             'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
             <%= image_tag("social-share-button/linkedin.png")%>
-            
           </a>&nbsp
           <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %>" 
             onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %>',
@@ -54,26 +52,38 @@
           <a href="https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom"
             onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20https://thinqtv.herokuapp.com/youronlinemom,'
             'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
-           <%= image_tag("social-share-button/twitter.png")%>
+            <%= image_tag("social-share-button/twitter.png")%>
           </a><br>
         </div>
       </div>
     </div>
-
     <div class="col-md-8">
       <%= render 'layouts/jitsi' %>
-        <div class="container">
-          <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
-            <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
-              <p>- Are you using Safari or Edge? Close that and use Chrome or Firefox. - or -<br>
-              - Reload the page. (Press F5) - or -<br>
-              - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
-              - Turn up the volume on your speakers. - or - <br>
-              - Update Chrome or Firefox to the latest version. - or - <br>
-              - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
-              - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
-              - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
-            </div>
+      <% if @otherconvos.present? %>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Other conversations happening right now
+          </div>
+          <div class = "container">
+            <% @otherconvos.each do |t| %>
+              <%host=User.find(t.usrid)%>
+              <%= link_to t.name, "https://thinQtv.herokuapp.com/" + host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
+            <%end%>
+          </div>
+        </div>
+        <div>
+      <%end%>
+        <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 14px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
+          <div id="demo" class="collapse" style="font-size: 14px; padding-left: 5px">
+            <p>- Are you using Safari or Edge? Close that and use Chrome or Firefox. - or -<br>
+            - Reload the page. (Press F5) - or -<br>
+            - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
+            - Turn up the volume on your speakers. - or - <br>
+            - Update Chrome or Firefox to the latest version. - or - <br>
+            - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
+            - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
+            - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
+          </div>
         </div>
         <br>
       </div>

@@ -41,3 +41,32 @@ function initializeClock(id, endtime) {
 var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 
+
+
+function initializeClockstudy(id, endtime) {
+  var clockstudy = document.getElementById(id);
+  var daysSpanstudy = clockstudy.querySelector('.daystudy');
+  var hoursSpanstudy = clockstudy.querySelector('.hourstudy');
+  var minutesSpanstudy = clockstudy.querySelector('.minutestudy');
+  var secondsSpanstudy = clockstudy.querySelector('.secondstudy');
+
+  function updateClockstudy() {
+    var t = getTimeRemaining(endtime);
+
+    daysSpanstudy.innerHTML = t.days;
+    hoursSpanstudy.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpanstudy.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpanstudy.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeintervalstudy);
+      location.reload();
+    }
+  }
+
+  updateClockstudy();
+  var timeintervalstudy = setInterval(updateClockstudy, 1000);
+}
+
+var deadlinestudy = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+initializeClockstudy('clockdivstudy', deadlinestudy);
