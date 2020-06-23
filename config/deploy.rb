@@ -1,6 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.0"
 
+server '34.94.48.16', user: 'deploy', roles: %w{app db web}
+
 set :application, "myapp"
 set :repo_url, "git@github.com:honestabej/tomatocan.git"
 
