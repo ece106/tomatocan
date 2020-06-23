@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "provider"
     t.string "uid"
     t.bit "banned", limit: 1, default: -> { "(0)::bit(1)" }, null: false
+    t.string "blockedby", array: true
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true

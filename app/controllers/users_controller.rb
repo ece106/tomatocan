@@ -209,7 +209,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def attendee
+  def block
+    @user.id = 24
     
   end
 
