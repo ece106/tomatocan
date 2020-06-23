@@ -13,7 +13,7 @@
   <% end %>
 
   <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div style="padding: 0px 0px 5px 0px">
         <%= render 'layouts/merchsidebar' %>
       </div>
@@ -46,7 +46,7 @@
           <a href="https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20<%= request.base_url %>/youronlinemom"
             onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20<%= request.base_url %>/youronlinemom,'
             'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
-              <%= image_tag("twitter_icon.png", :style => "width:25px; height:25px;")%>
+              <%= image_tag("twitter_icon.png", :style => "width:25px; height:25px;") %>
           </a>
           <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
             onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
@@ -62,15 +62,15 @@
           <div class="panel-heading">
             Attendees of <%= @user.permalink %>'s conversation
           </div>
-          <%= current_user.permalink %>
+          <%= render 'layouts/attendees' %>
         </div>
       </div>
 
       
     </div>
 
-    <div class="col-md-8">
-      <!--<%= render 'layouts/jitsi' %> -->
+    <div class="col-md-9">
+      <%= render 'layouts/jitsi' %>
       <% if @otherconvos.present? %>
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -86,19 +86,19 @@
         <div>
       <%end%>
       
-        <div class="container">
-          <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 18px; ">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
-            <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
-              <p>- Are you using Safari or Edge? Close that and use Chrome or Firefox. - or -<br>
-              - Reload the page. (Press F5) - or -<br>
-              - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
-              - Turn up the volume on your speakers. - or - <br>
-              - Update Chrome or Firefox to the latest version. - or - <br>
-              - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
-              - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
-              - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
-            </div>
+      <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 20px; margin-left: -20px">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
+          <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
+            <p>- Are you using Safari or Edge? Close that and use Chrome or Firefox. - or -<br>
+            - Reload the page. (Press F5) - or -<br>
+            - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
+            - Turn up the volume on your speakers. - or - <br>
+            - Update Chrome or Firefox to the latest version. - or - <br>
+            - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
+            - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
+            - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
           </div>
+        </div>
         <br>
       </div>
     </div>

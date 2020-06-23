@@ -209,6 +209,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def attendee
+    
+  end
 
   private
 
