@@ -69,9 +69,11 @@ class EventsController < ApplicationController
 		EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
 		format.html { redirect_to "/" }
 		format.json { render json: @event, status: :created, location: @event }
+		print"\n(#{@event.name}) si se guardo\n"
 	  else
 		format.html { render action: "new" }
 		format.json { render json: @event.errors, status: :unprocessable_entity }
+		print"\n#{@event.name} no se guardo\n"
 	  end # if @event.save ends here
 	end # respond_to ends here
   end # def creat ends here
@@ -105,7 +107,7 @@ class EventsController < ApplicationController
       params[:event]["start_at(4i)"], # hour
       params[:event]["start_at(5i)"], # minute
       0,                               # seconds
-      params[:timeZone]                # timeZone
+      params[:timeZone]#.to_i              # timeZone
     )
 
     # calculate local time in pacific time
