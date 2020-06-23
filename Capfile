@@ -39,3 +39,5 @@ set :rbenv_ruby, '2.7.0'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
+
+server '34.94.48.16', user: 'deploy', roles: %w{app db web}
