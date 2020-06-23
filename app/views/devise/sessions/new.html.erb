@@ -15,17 +15,11 @@
           <div style="text-align:center">
             <h1>Login</h1>
             <p>Not a member? <%= link_to "Sign up", new_user_signup_path %></p>
+            <p>Didn't receive confirmation email? <%= link_to "Resend", new_user_confirmation_path %></p>
           </div>
           <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
-
           <!--Used to display error message when invalid credentials are inputted -->
-  <%- flash.each do |name, msg| -%>
-  <div class="alert alert-danger" role="alert">
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-      </div>
-  <%- end -%>
-
-
+          <%= render "layouts/flash_messages"%>
           <!-- Email Box -->
           <div class="form-group">
             <div class="input-group">
@@ -70,7 +64,7 @@
 
           <br><div style="text-align:center">OR</div><br>
 
-          <!-- Log In With Facebook 
+          <!-- Log In With Facebook
           <div style="text-align:center">
             <%- resource_class.omniauth_providers.each do |provider| %>
               <a href="/users/auth/facebook" style="margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 3px; padding: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #4267B2; color: #fff;">
