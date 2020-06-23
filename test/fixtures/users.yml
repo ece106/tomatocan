@@ -4,21 +4,15 @@ one:
   id: 1
   name: Phineas
   email: fake@fake.com
-  ustreamvid: stream_video
-  ustreamsocial: stream_social
   permalink: user1
   twitter: twitter
   facebook: facebook
-  pinterest: pinterest
   youtube: youtube
   genre1: first_genre1
   genre2: second_genre1
   genre3: third_genre1
-  blogurl: blog_url
-  profilepicurl: profile_picture_url
   profilepic: hello.jpg
   youtube1: /frlveggg
-  address: 20012
   author: author
   about: MyText
   twitter: MyTwitter
@@ -30,18 +24,13 @@ two:
   id: 2
   name: name2
   email: dontchangethisemail@orthisfixture.entry
-  ustreamvid: MyText2
-  ustreamsocial: MyString2
   permalink: user2
   twitter: MyString2
   facebook: MyString2
-  pinterest: MyString2
   youtube: MyString2
   genre1: MyString2
   genre2: MyString2
   genre3: MyString2
-  blogurl: MyString2
-  profilepicurl: MyString2
   profilepic: MyString2
   author: reader
   about: MyText2
@@ -52,21 +41,15 @@ seller:
   id: 3
   name: Test Seller
   email: seller@mail.com
-  ustreamvid: stream_video
-  ustreamsocial: stream_social
   permalink: test_buyer1
   twitter: twitter
   facebook: facebook
-  pinterest: pinterest
   youtube: youtube
   genre1: first_genre1
   genre2: second_genre1
   genre3: third_genre1
-  blogurl: blog_url
-  profilepicurl: profile_picture_url
   profilepic: hello.jpg
   youtube1: /frlveggg
-  address: 20012
   author: author
   about: MyText
   twitter: MyTwitter
@@ -78,21 +61,15 @@ buyer:
   id: 4
   name: Test Buyer
   email: buyer@mail.com
-  ustreamvid: stream_video
-  ustreamsocial: stream_social
   permalink: buyer1
   twitter: twitter
   facebook: facebook
-  pinterest: pinterest
   youtube: youtube
   genre1: first_genre1
   genre2: second_genre1
   genre3: third_genre1
-  blogurl: blog_url
-  profilepicurl: profile_picture_url
   profilepic: hello.jpg
   youtube1: /frlveggg
-  address: 20012
   author: author
   about: MyText
   twitter: MyTwitter
@@ -103,23 +80,38 @@ donator:
   id: 5
   name: Test Donator
   email: donator@mail.com
-  ustreamvid: stream_video
-  ustreamsocial: stream_social
   permalink: donator1
   twitter: twitter
   facebook: facebook
-  pinterest: pinterest
   youtube: youtube
   genre1: first_genre1
   genre2: second_genre1
   genre3: third_genre1
-  blogurl: blog_url
-  profilepicurl: profile_picture_url
   profilepic: hello.jpg
   youtube1: /frlveggg
-  address: 20012
   author: author
   about: MyText
   twitter: MyTwitter
   encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
   remember_token: MyString
+
+confirmedUser:
+  id: 6
+  name: userconfirmed
+  email: thinqtesting@gmail.com
+  permalink: userconfirmed
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
+  remember_token: MyString
+  confirmation_token: fVQxEs5s9vC2VawpbZam
+  confirmed_at: 2020-06-15 19:57:29.51622
+  confirmation_sent_at: 2020-06-15 19:56:37.3012
+
+unconfirmedUser:
+  id: 7
+  name: unconfirmed
+  permalink: unconfirmed
+  email: unconfirmed@gmail.com
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
+  confirmation_token: fVQxEs5s9vC2VawpbZbb
+  confirmation_sent_at: 2020-06-15 19:56:37.3012
+  unconfirmed_email: newunconfirmedemail@gmail.com
