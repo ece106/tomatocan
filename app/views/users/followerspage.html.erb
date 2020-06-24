@@ -16,8 +16,6 @@
       <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:170px; overflow:hidden;" >
         <% if tmpFollower.profilepic.present? %>
           <%= link_to(image_tag(tmpFollower.profilepic.url.to_s, :height => "170",  :title => tmpFollower.name ),user_profile_path(tmpFollower.permalink)) %>
-        <% elsif tmpFollower.profilepicurl.present? %>
-          <%= link_to(image_tag(tmpFollower.profilepicurl, :height => "170", :title => tmpFollower.name), user_profile_path(tmpFollower.permalink)) %>
         <% end %>
       <br><%= link_to tmpFollower.name, user_profile_path(tmpFollower.permalink) %>
       <br><br>

@@ -1,29 +1,29 @@
 class User < ApplicationRecord
 
-  attr_accessor :monthperkinfo, :monthbookinfo, :incomeinfo, :salebyfiletype, :salebyperktype, :totalinfo, 
+  attr_accessor :monthperkinfo, :monthbookinfo, :incomeinfo, :salebyfiletype, :salebyperktype, :totalinfo,
   :purchasesinfo, :on_password_reset
 
-  has_many :books 
-  has_many :movies 
-  has_many :movieroles 
+  has_many :books
+  has_many :movies
+  has_many :movieroles
   has_many :reviews
 #  has_many :groups
   has_many :purchases
   has_many :rsvpqs
   has_many :events, :through => :rsvpqs
-  has_many :merchandises 
+  has_many :merchandises
 
   # Active Relationships (A user following a user)
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id" #, dependent: :destroy (if a user is deleted, delete the relationship)
   # Passive Relationships (A user followed by a user)
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id" #, dependent: :destroy (if a user is deleted, delete the relationship)
 
-  has_many :following, through: :active_relationships, source: :followed 
+  has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]#:confirmable 
+         :omniauthable, :omniauth_providers => [:facebook]#:confirmable
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 
@@ -48,9 +48,6 @@ class User < ApplicationRecord
   validates_length_of   :password, within:  Devise.password_length, allow_blank: true, :if => :password
   validates_format_of   :email, with: Devise.email_regexp, allow_blank: true, :if => :email_changed?
   validates :twitter, format: /\A[\w+]+\z/, allow_blank: true
-  validates :videodesc1, length: { maximum: 255 }
-  validates :videodesc2, length: { maximum: 255 }
-  validates :videodesc3, length: { maximum: 255 }
 
   before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
@@ -76,16 +73,16 @@ class User < ApplicationRecord
     !password.blank?
   end
 
-  def approve_agreement(agreeid) 
+  def approve_agreement(agreeid)
     agreement = Agreement.find(agreeid)
     agreement.approved = DateTime.now
     agreement.save
-  end  
-  def decline_agreement(agreeid) 
+  end
+  def decline_agreement(agreeid)
     agreement = Agreement.find(agreeid)
     agreement.approved = DateTime.new(1)
     agreement.save
-  end  
+  end
   def mark_fulfilled(purchid)
     purchase = Purchase.find(purchid)
     purchase.fulfillstatus = "sent"
@@ -99,7 +96,7 @@ class User < ApplicationRecord
 
     # how many items sold & revenue each month
     while monthq < Date.today + 1.month do
-      monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ? 
+      monthsales = Purchase.where('extract(month from created_at) = ? AND extract(year from created_at) = ?
         AND author_id = ?', monthq.strftime("%m"), monthq.strftime("%Y"), self.id)
 
       # monthsales = Purchase.where("strftime('%m', created_at) = ?", monthq.strftime("%m"))
@@ -108,14 +105,14 @@ class User < ApplicationRecord
       monthperksales = monthsales.where('merchandise_id IS NOT NULL')
       #perkearnings = monthperksales.sum(:authorcut)
       # total monthly revenue
-      #self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: perkearnings} 
+      #self.incomeinfo << {month: monthq.strftime("%B %Y"), monthtotal: perkearnings}
       monthq = monthq + 1.month
     end
 
-    #list of all sales since user stripeid 
+    #list of all sales since user stripeid
       self.totalinfo = []
       mysales = Purchase.where('purchases.author_id = ?', self.id).order('created_at DESC')
-      mysales.each do |sale| 
+      mysales.each do |sale|
         if (!sale.merchandise_id.nil?)
           perksold = Merchandise.find(sale.merchandise_id)
           purchaseName = perksold.name
@@ -123,18 +120,18 @@ class User < ApplicationRecord
           purchaseName = 'Donation'
         end
         if sale.user_id.present?
-          customer = User.find(sale.user_id) 
-          whobought = customer.name 
+          customer = User.find(sale.user_id)
+          whobought = customer.name
         else
-          whobought = "anonymous" 
+          whobought = "anonymous"
         end
-        self.totalinfo << {soldtitle: purchaseName, soldprice: sale.pricesold, authorcut: sale.authorcut, 
-            purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: whobought, address: sale.shipaddress, 
-            fulfillstat: sale.fulfillstatus, egoods: "" } 
+        self.totalinfo << {soldtitle: purchaseName, soldprice: sale.pricesold, authorcut: sale.authorcut,
+            purchaseid: sale.id, soldwhen: sale.created_at.to_date, whobought: whobought, address: sale.shipaddress,
+            fulfillstat: sale.fulfillstatus, egoods: "" }
       end
       # Place Campaigns supported on dashboard later
   end
-  
+
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -156,7 +153,7 @@ class User < ApplicationRecord
   end
 
   private
-    def assign_defaults_on_new_user 
+    def assign_defaults_on_new_user
       self.author = "storyteller" unless self.author
     end
 
