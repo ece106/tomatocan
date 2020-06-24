@@ -195,11 +195,11 @@ When changes have been made to the http://github.com/ece106/tomatocan master rep
 git pull https://github.com/ece106/tomatocan.git master
 ```
 
-*. Getting your code into tomatocan test branch
+* Getting your code into tomatocan test branch
 
 Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
-###HOW TO TEST A  TEST BRANCH
+### HOW TO TEST A  TEST BRANCH
 
 How to test branches on your local machine.
 
@@ -219,6 +219,7 @@ The following  steps will be similiar to when you were first forking and cloning
 
 Create new development and test databases for testing (This is necessary because the code that you will be tested might mess up  your database)
 If you don't remember how to create a database you can use this reference https://www.guru99.com/postgresql-create-database.html
+
 DO NOT NAME YOUR DEVELOPMENT DATABASE THE SAME AS YOUR TEST DATABASE AND GIVE THEM DIFFERENT NAMES FROM THE ONES YOU'RE USING ON YOUR CODE!!!
 
 After creating your database create the following file config/database.yml
@@ -322,10 +323,11 @@ Now there's 3 things to check
 
 2. Run the tests related to the pull request: run any tests that were changed and that test the features that were recently implemented. Leave a comment in your report if you believe that the tests are insufficient or useless. Report any tests that failed.
 
-3.Lastly run rails s to test the website as a user: try the new features yourself make sure they work test for common cases and corner cases. Then test the rest of the website to make sure that the new code does not break any part of the website.
+3. Lastly run rails s to test the website as a user: try the new features yourself make sure they work test for common cases and corner cases. Then test the rest of the website to make sure that the new code does not break any part of the website.
 
-Once the 3 steps are done write a small report detailing your experience and whether or not the new code works and if it should form part of the website.
+Once the 3 steps are done write a small report detailing your experience and whether or not the new code works, post it in the conversation for the pull request and tell Lisa that you are done testing.
 
+Now that you're done with  testing you can delete the folder where you cloned the test branch.
 
 ### REQUIREMENTS TO REMAIN IN THE THINQ.TV INTERNSHIP PROGRAM
 
