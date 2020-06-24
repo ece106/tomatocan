@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   has_many :rsvpqs
   has_many :users, through: :rsvpqs
   validates :start_at, uniqueness: { scope: :topic, message: "Can't have simultaneous Conversations/Study Halls" }
-  validates :usrid, presence: true
+  validates :user_id, presence: true
   validates :name, presence: true
   validates :start_at, presence: true
   validates :name, format: { without: /http|\.co|\.com|\.org|\.net|\.tv|\.uk|\.ly|\.me|\.biz|\.mobi|\.cn|kickstarter|barnesandnoble|smashwords|itunes|amazon|eventbrite|rsvpify|evite|meetup/i, message: "s
@@ -37,7 +37,7 @@ class Event < ApplicationRecord
 
   def as_json(*)
     super.except.tap do |hash|
-      @user = User.find(usrid)
+      @user = User.find(user_id)
       hash["permalink"] = @user.permalink
       hash["username"] = @user.name
     end

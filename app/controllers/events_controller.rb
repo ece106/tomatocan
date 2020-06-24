@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     # GET /events/1.json
   def show
     @event     = Event.find(params[:id])
-    @user      = User.find(@event.usrid)
+    @user      = User.find(@event.user_id)
     @rsvp      = Rsvpq.new
     @rsvpusers = @event.users
     @rsvps     = @event.rsvpqs
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
 
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
-    currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
+    currconvo = Event.where( "start_at < ? AND end_at > ? AND user_id = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
       @displayconvo = currconvo
     end  
@@ -49,7 +49,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        @event.update_attribute(:user_id, params[:event][:usrid])
+        @event.update_attribute(:user_id, params[:event][:user_id])
         user = User.find(@event.user_id)
         offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
         reminder_hour = @event.start_at + offset.hours - 1.hours
@@ -115,13 +115,13 @@ class EventsController < ApplicationController
   end
   
   def update_reminder
-    user = User.find(@event.usrid)
+    user = User.find(@event.user_id)
     @reminder_date = @event.start_at - 1.hour 
     EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
   end
 
   def event_params
-    params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :usrid, :user_id)
+    params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :user_id, :user_id)
   end
     
 end

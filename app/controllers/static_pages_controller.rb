@@ -35,14 +35,14 @@ class StaticPagesController < ApplicationController
       @description = @displayconvo.desc
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
       @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
-      @host = User.find(@displayconvo.usrid)
+      @host = User.find(@displayconvo.user_id)
     end  
     if @displaystudy.present?
       @namestudy = @displaystudy.name
       @descriptionstudy = @displaystudy.desc
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
-      @hoststudy = User.find(@displaystudy.usrid)
+      @hoststudy = User.find(@displaystudy.user_id)
       @topic = @displaystudy.topic
     end  
         
@@ -73,7 +73,7 @@ class StaticPagesController < ApplicationController
       @descriptionstudy = @displaystudy.desc
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
-      @hoststudy = User.find(@displaystudy.usrid)
+      @hoststudy = User.find(@displaystudy.user_id)
     end  
         
     if user_signed_in?

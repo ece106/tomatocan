@@ -10,14 +10,14 @@ class EventTest < ActiveSupport::TestCase
       "itunes", "amazon", "eventbrite", "rsvpify", "evite", "meetup"]
   end
 
-  test "validate presence of usrid" do
-    #usrid present
-    @eventT.usrid = events(:one).usrid  #Ensuring usrid is present
-    assert @eventT.save, "Event not saved with present usrid"
+  test "validate presence of user_id" do
+    #user_id present
+    @eventT.user_id = events(:one).user_id  #Ensuring user_id is present
+    assert @eventT.save, "Event not saved with present user_id"
 
     #userid absent
-    @eventT.usrid = nil
-    assert_not @eventT.save, "Event saved with absent usrid"
+    @eventT.user_id = nil
+    assert_not @eventT.save, "Event saved with absent user_id"
   end
 
   test "validate presence of name" do
