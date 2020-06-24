@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "banned_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "host_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "books", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "blurb"
@@ -71,6 +64,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_name"
     t.string "guest2_email"
     t.string "topic"
+    t.index ["start_at", "topic"], name: "index_events_on_start_at_and_topic", unique: true
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
@@ -237,6 +231,4 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
-  add_foreign_key "banned_users", "users", column: "host_id", on_delete: :cascade
-  add_foreign_key "banned_users", "users", on_delete: :cascade
 end

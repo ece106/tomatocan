@@ -32,7 +32,7 @@
           <div id="eventCurrentdiv" >
               <h3>We're talking about <%= @displayconvo.name %></h3>  
               <p> right NOW!   </p> 
-              <%= link_to " Join LIVE Conversation ", "https://thinQtv.herokuapp.com/" + @user.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
+              <%= link_to " Join LIVE " + @displayconvo.topic, "https://thinQtv.herokuapp.com/" + @user.permalink + "?chatrm=" + @displayconvo.topic, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
               <br>
           </div>
         <% else %>
