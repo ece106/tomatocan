@@ -1,0 +1,5 @@
+<% unless resource.errors.empty? %>
+  <div class='alert alert-danger' role='alert'>
+      <%= resource.errors.full_messages.join('<br>') %>
+  </div>
+<% end %>
