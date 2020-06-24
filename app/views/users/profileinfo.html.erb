@@ -22,18 +22,14 @@
         <div class="panel-body">
 
           <div class="row" style="margin-bottom:-20px">
-          
+
             <!-- Profile Picture -->
             <div class="col-md-4" style="margin-left:-65px; margin-top:-30px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
                   <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
-                <% elsif @user.profilepicurl %>
-                  <% if @user.profilepicurl.match(/http/) %>
-                    <%= image_tag @user.profilepicurl, :height => "100%", :width => "100%" %><br>
-                  <% end %>
-                <% else %> 
+                <% else %>
                   <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
                 <% end %>
                   <%= f.file_field :profilepic, :style => "padding-top:5px;" %>
@@ -50,7 +46,7 @@
               </div>
             </div>
 
-            <!-- Header (Fix Later) 
+            <!-- Header (Fix Later)
             <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
@@ -99,7 +95,7 @@
             <%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
             <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
           </div>
-          
+
         </div>
       </div>
     </div>
