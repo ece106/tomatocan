@@ -42,9 +42,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
   test 'view profile page and logout' do
     assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
-    assert page.has_css? '.dropdown-toggle'
-    find(class: 'dropdown-toggle',match: :first).click
-
+    assert page.has_css? '.dropdown-menu'
     assert page.has_link? 'View Profile'
     find_link('View Profile',match: :first).click
     assert_equal "/#{@user.permalink}", current_path
@@ -56,9 +54,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
   test 'view control panel page and logout' do
     assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
-    assert page.has_css? '.dropdown-toggle'
-    find(class: 'dropdown-toggle',match: :first).click
-
+    assert page.has_css? '.dropdown-menu'
     assert page.has_link? 'Control Panel'
     find_link('Control Panel',match: :first).click
     assert_equal "/#{@user.permalink}/controlpanel", current_path

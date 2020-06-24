@@ -26,11 +26,11 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
   end
 
   test "can cancel edit profile page" do
-    find(id: "cancelProfileButton", match: :first).click
+    find_link('Cancel', match: :first).click
   end
 
   test "can save edit profile page" do 
-    find(id: "saveProfileButton", match: :first).click
+    find_link('Save Changes', match: :first).click
   end
 
   private
