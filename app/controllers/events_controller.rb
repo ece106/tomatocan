@@ -69,7 +69,8 @@ class EventsController < ApplicationController
 		EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
 		format.html { redirect_to "/" }
 		format.json { render json: @event, status: :created, location: @event }
-		print"\n(#{@event.name}) si se guardo\n"
+		print"\n(#{@event.name}) si se guardo topic is #{@event.topic} \n"
+		
 	  else
 		format.html { render action: "new" }
 		format.json { render json: @event.errors, status: :unprocessable_entity }
