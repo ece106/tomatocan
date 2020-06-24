@@ -35,9 +35,9 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
 	end
 
 	test "should go to sign up when clicking get out the vote" do
-		within("#home") do
-			click_on('Get Out the Vote!', match: :first)
-			assert_equal current_path, new_user_signup_path
+		within("#homeWrapper") do
+			click_on('See an example Live Video Conversation Room', match: :first)
+			assert_equal current_path, youronlinemom_path
 		end
 	end
 end

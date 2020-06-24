@@ -23,7 +23,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end
 
   #dpc = discover previous conversations
-  test "should go to dpc page when clicking on dpc in header"  do
+  test "should go to dpc page when clicking on podcast in header"  do
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		click_on("Have us on your Podcast", match: :first)
   		assert_equal current_path, drschaeferspeaking_path
@@ -47,8 +47,8 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   	assert_equal current_path, root_path
   end	
 
-   test "should be able to host a live conversation" do
-    within("div#countdown_clock") do
+   test "should be able to host a conversation" do
+    within("div#countdown_clock.col-md-6") do
       click_on("Post your Own Conversation", match: :first)
       assert_equal current_path, new_event_path
     end 
@@ -62,9 +62,9 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     #end
   end  
 
-  test "should be able to add my own conversation" do
-    within("div#countdown_clock.row") do
-      click_on("Post your Own Conversation", match: :first)
+  test "should be able to host study hall" do
+    within("div#countdown_clock.col-md-4") do
+      click_on("Post your own Study Hall hour", match: :first)
       assert_equal current_path, new_event_path
     end 
   end  
@@ -120,7 +120,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')
