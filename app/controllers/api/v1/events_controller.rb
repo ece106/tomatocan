@@ -14,7 +14,6 @@ class Api::V1::EventsController < Api::V1::BaseApiController
         end
         @event = current_user.events.build(event_params)
         @event.update_attribute(:user_id, current_user.id)
-        @event.update_attribute(:user_id, current_user.id)
         if @event.save
             render :json=> {:success=>true, :token=>current_user.authentication_token}
         else
@@ -52,6 +51,6 @@ class Api::V1::EventsController < Api::V1::BaseApiController
       end
 
     def event_params
-        params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :user_id, :user_id, :group1id, :group2id, :group3id )
+        params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :user_id, :group1id, :group2id, :group3id )
     end
 end
