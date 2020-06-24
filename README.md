@@ -59,7 +59,7 @@ FACEBOOK_APP_SECRET = "secret"
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from users). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/aakeys.rb with your accounts' keys.
 
-*config/database.yml
+* config/database.yml
 
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
@@ -102,8 +102,8 @@ config.action_mailer.perform_deliveries = true
 config.action_mailer.smtp_settings = {
   :address => "smtp.gmail.com",
   :port => 587,
-  :user_name => "randomemail@gmail.com",
-  :password => 'fake',
+  :user_name => "thinqtesting@gmail.com",
+  :password => 'testingtesting',
   :authentication => 'plain',
   :enable_starttls_auto => true
 }
@@ -198,6 +198,133 @@ git pull https://github.com/ece106/tomatocan.git master
 *. Getting your code into tomatocan test branch
 
 Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
+
+###HOW TO TEST A  TEST BRANCH
+
+How to test branches on your local machine.
+
+Go to the test branch on ece106 get the name of the test branch you want to test
+
+now go to your terminal create a new folder where the test branch will be tested.
+
+All of the steps in here will be done in the folder where you will clone the test branch
+
+cd into the folder you created for testing and rclone the testing branch with the following command
+
+```
+git clone --single-branch --branch <branchname> https://github.com/ece106/tomatocan.git
+```
+
+The following  steps will be similiar to when you were first forking and cloning your repo.
+
+Create new development and test databases for testing (This is necessary because the code that you will be tested might mess up  your database)
+If you don't remember how to create a database you can use this reference https://www.guru99.com/postgresql-create-database.html
+DO NOT NAME YOUR DEVELOPMENT DATABASE THE SAME AS YOUR TEST DATABASE AND GIVE THEM DIFFERENT NAMES FROM THE ONES YOU'RE USING ON YOUR CODE!!!
+
+After creating your database create the following file config/database.yml
+
+```
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  encoding: unicode
+  database: YOUR_DEVELOPMENT_DATABASE_NAME
+  username: YOUR_USERNAME
+
+test:
+  <<: *default
+  encoding: unicode
+  database: YOUR_TEST_DATABASE_NAME
+  username: YOUR_USERNAME
+
+production:
+  <<: *default
+```
+
+Replace the database names and usernames with your username and the databases you just created.
+
+* config/environments/development.rb:
+
+Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
+
+```
+Rails.application.configure do
+
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.smtp_settings = {
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :user_name => "thinqtesting@gmail.com",
+  :password => 'testingtesting',
+  :authentication => 'plain',
+  :enable_starttls_auto => true
+}
+config.action_mailer.default_url_options = {
+  host: "localhost:3000", protocol: "http"
+}
+  config.cache_classes = false
+  config.eager_load = false
+  config.consider_all_requests_local = true
+
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+    }
+  else
+    config.action_controller.perform_caching = false
+    config.cache_store = :null_store
+  end
+
+  config.active_support.deprecation = :log
+  config.active_record.migration_error = :page_load
+  config.assets.debug = true
+  config.assets.quiet = true
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+end
+```
+
+Now create config/initializers/aakeys.rb (DO NOT CHANGE THE NAME)
+```
+DEVISE_SECRET_KEY = 'fake'
+AWS_KEY = 'morefake'
+AWS_SECRET_KEY = 'pretend'
+AWS_BUCKET = 'yourawsbucketname'
+STRIPE_SECRET_KEY = "madeup"
+STRIPE_PUBLIC_KEY = "allfake"
+GMAIL_PWD = "superfake"
+Stripe.api_key = STRIPE_SECRET_KEY
+STRIPE_CONNECT_CLIENT_ID = "superfake"
+FACEBOOK_APP_ID = "numbers"
+FACEBOOK_APP_SECRET = "secret"
+```
+
+run the necesarry migrations on your newly created databases
+```
+>rake db:migrate
+>rails db:migrate RAILS_ENV=test
+```
+
+Now you're ready to test.
+Check the conversation tab on the pull request sometimes the the person that did the pull request put information there stating what they did and what they want you to check.
+
+Now there's 3 things to check 
+
+1. The changes that were done to the code: is the new code readable, neat, and necesarry. (Make sure there is no spaghetti code, inlince CSS, and/or embedded CSS.)
+
+2. Run the tests related to the pull request: run any tests that were changed and that test the features that were recently implemented. Leave a comment in your report if you believe that the tests are insufficient or useless. Report any tests that failed.
+
+3.Lastly run rails s to test the website as a user: try the new features yourself make sure they work test for common cases and corner cases. Then test the rest of the website to make sure that the new code does not break any part of the website.
+
+Once the 3 steps are done write a small report detailing your experience and whether or not the new code works and if it should form part of the website.
 
 
 ### REQUIREMENTS TO REMAIN IN THE THINQ.TV INTERNSHIP PROGRAM
