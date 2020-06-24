@@ -66,8 +66,8 @@
           </div>
           <div class = "container">
             <% @otherconvos.each do |t| %>
-              <%host=User.find(t.usrid)%>
-              <%= link_to t.name, "https://thinQtv.herokuapp.com/" + host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
+              <% host=User.find(t.usrid) %> 
+              <%= link_to t.name, "https://thinqtv.herokuapp.com/" + host.permalink + "?chatrm=" + t.topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %> &nbsp &nbsp
             <%end%>
           </div>
         </div>
