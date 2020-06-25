@@ -10,7 +10,7 @@
         <a style="padding:0px 0px 0px 5px;" href="<%= request.base_url %>/<%= current_user.permalink %>"><%= current_user.permalink %></a>
       </div>
       <% if current_user.permalink == @user.permalink %>
-        <div class="col-sm-1" style="margin-top: -4px">
+        <div class="col-sm-1">
             <a style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">Block</a>
         </div>
       <% end %>
