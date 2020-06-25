@@ -4,8 +4,8 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
     @event = events :one
-
-    sign_in
+    @confirmedUser = users :confirmedUser
+    user_sign_in(@confirmedUser)
   end
 
   test "should go to home after clicking on home" do
@@ -33,13 +33,13 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   test "should go to view profile after clicking on user name and clicking view profile"  do
   	click_on(class: "dropdown-toggle")
   	click_on("View Profile", match: :first)
-  	assert_equal current_path, user_profile_path(@user.permalink)
+  	assert_equal current_path, user_profile_path(@confirmedUser.permalink)
   end
 
   test "should go to control panel after clicking on user name and clicking control panel"  do
   	click_on(class: "dropdown-toggle")
   	click_on("Control Panel", match: :first)
-  	assert_equal current_path, user_controlpanel_path(@user.permalink)
+  	assert_equal current_path, user_controlpanel_path(@confirmedUser.permalink)
   end
 
   test "should be able to sign out correctly" do
@@ -54,12 +54,14 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     end 
   end  
 
-  test "should show event on home page" do
+  test "should show event on home page and rsvp should work" do
+    create_conversation_event
      assert has_content? @event.name
-     #within("div#calendar.row") do
-      #assert page.has_button?('RSVPsubmit')
-      #click_on(id: "RSVPsubmit")
-    #end
+     within("div#calendar.row") do
+      assert page.has_button?('RSVPsubmit')
+      click_on(id: "RSVPsubmit")
+      assert page.has_text?('Rsvp was successfully created.')
+    end
   end  
 
   test "should be able to host study hall" do
@@ -113,16 +115,5 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     assert page.has_css? facebook_link
     assert page.has_css? linkedin_link
     assert page.has_css? email_link
-  end
-
-  def sign_in
-    visit root_path
-
-    click_on('Sign In', match: :first)
-
-    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
-    fill_in(id: 'user_password', with: 'user1234')
-
-    click_on(class: 'form-control btn-primary')
   end
 end

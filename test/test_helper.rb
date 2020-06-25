@@ -136,6 +136,16 @@ class ActiveSupport::TestCase
     end
   end
 
+  def create_conversation_event
+      within 'div#countdown_clock.col-md-6'
+      click_button('Post your Own Conversation')
+      fill_in id: 'event_name', with: "Random Test Event"
+      click_on(id: 'event_topic', match: :first)
+      click_on('Conversation', match: :first)
+      fill_in id: 'event_desc', with: "test event"
+      click_on(id: 'eventSubmit')
+    end
+
   private
 
   # Returns true inside an integration test.
