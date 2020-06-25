@@ -19,14 +19,17 @@
         <div class="buttonContainer">
           <button onclick="showPanel(0,'#f44336')">List View </button>
           <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
-          <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
+          <button onclick="showPanel(2,'#2196f3')">Weekly Calendar </button>
         </div>
       <div class="tabPanel" >
-            <%= render 'layouts/convocalendar', collection: @conversations %> 
+            <%= render 'layouts/convocalendar', collection: @conversations %>
       </div>
       <div class="tabPanel" >
         <%= render 'layouts/monthcalendar', collection: @conversationsall %>
-      </div> 
+      </div>
+      <div class="tabPanel">
+    	<%= render 'layouts/weeklycalendar', collection: @eventsAll %>
+     </div>
     </div>
   </div>
 
@@ -41,20 +44,20 @@
             </div>
           <% end %>
         </div>
-        <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > 
+        <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" >
           Conversations to make you THINQ
         </div>
-        <div style="display:inline;" > 
+        <div style="display:inline;" >
           <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
         </div>
-        <div style="display:inline; font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
+        <div style="display:inline; font-size: 30px; color:#ffc627; font-family: 'Arial';" >
           Video Chat about the latest News Headlines
         </div>
 
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <h3>We're talking about <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
+              <h3>We're talking about <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>
               <p> right NOW!</p><br>
               <%= link_to " Join Conversation NOW ", "https://thinqtv.herokuapp.com/" + @hoststudy.permalink + "?chatrm=" + @topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %>
 
@@ -77,13 +80,13 @@
 
 <div class="main">
       <div class="row">
-        <h3 class="aboutHeader" style="text-align: center;" > What is STUDY HALL </h3> 
+        <h3 class="aboutHeader" style="text-align: center;" > What is STUDY HALL </h3>
         <h4 style = "text-align: center; line-height: 1.5em" >
-          A place to meet people for pair-programming <br> 
+          A place to meet people for pair-programming <br>
           Hang out in video chat with other people learning topics you're interested in - we're currently working on Web Development topics related to building ThinQ.tv <br>
           Peers and possibly mentors are there while you're working incase you have questions or need someone to bounce ideas <br>
           Or work quietly in the chat room to be there for each other when that Aha moment happens
-        </h4>          
+        </h4>
       </div>
       <br><br>
   <div class="row">
@@ -98,24 +101,28 @@
     </div>
   </div>
   <div class="tabContainer2">
-    <div class="col-md-9 col-md-offset-1 col-xs-11"> 
+    <div class="col-md-9 col-md-offset-1 col-xs-11">
       <div class="buttonContainer">
         <button onclick="showPanel2(0,'#f44336')">List View </button>
         <button onclick="showPanel2(1,'#4caf50')">Monthly View </button>
-        <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
+        <button onclick="showPanel2(2,'#2196f3')">Weekly Calendar </button>
       </div>
     </div>
     <div class="tabPanel2">
-      <div class="row" id="calendar"> 
-        <div class="col-md-11 col-xs-12"> 
-          <%= render 'layouts/maincalendar', collection: @events %> 
-        </div>   
-      </div> 
+      <div class="row" id="calendar">
+        <div class="col-md-11 col-xs-12">
+          <%= render 'layouts/maincalendar', collection: @events %>
+        </div>
+      </div>
     </div>
     <div class="tabPanel2" >
        <%= render 'layouts/monthcalendar', collection: @eventsAll %>
-    </div> 
+    </div>
+    <div class="tabPanel2">
+      <%= render 'layouts/weeklycalendar', collection: @eventsAll %>
+      </div>
   </div>
+
 
   <div class="row" id="purpose">
     <div class="col-md-3 col-md-offset-1", style="margin-top: 40px">
@@ -133,7 +140,7 @@
       </h4>
     </div>
   </div>
-</div>  
+</div>
     <script type="text/javascript">
       showPanel(0,'#f44336');
       showPanel2(0,'#f44336');
