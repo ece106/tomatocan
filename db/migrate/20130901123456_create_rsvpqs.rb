@@ -5,7 +5,6 @@ class CreateRsvpqs < ActiveRecord::Migration[4.2]
                 t.integer :event_id
                 t.integer :user_id
                 t.integer :guests
-        
                 t.timestamps
             end
         end

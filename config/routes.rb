@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   match 'drschaeferspeaking',     to: 'static_pages#drschaeferspeaking', via: 'get'
   match 'seniorliving',   to: 'static_pages#seniorliving', via: 'get'
   match 'studyhall',      to: 'static_pages#studyhall', via: 'get'
-  
+  match 'blocked',        to: 'static_pages#blocked', via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
   match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'
 

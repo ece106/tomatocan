@@ -2,7 +2,7 @@
 
   <% current_user.blockedBy.each do |blocked| %>
     <% if blocked == @user.permalink %>
-      <meta http-equiv="refresh" content="0; URL=<%=request.base_url%>"/>
+      <meta http-equiv="refresh" content="0; URL=<%=request.base_url%>/blocked"/>
     <% end %> 
   <% end %>
 
