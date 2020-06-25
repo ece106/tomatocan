@@ -10,10 +10,19 @@
         <a style="padding:0px 0px 0px 5px;" href="<%= request.base_url %>/<%= current_user.permalink %>"><%= current_user.permalink %></a>
       </div>
       <% if current_user.permalink == @user.permalink %>
-        <div class="col-sm-1">
-            <a style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px">Block</a>
+        <div class="col-sm-1" style="margin-top:-7px">
+          <button onclick="blockUser()" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px"> 
+            Block
+          </button>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  function blockUser(){
+    <% array = current_user.blockedBy %>
+    <%= current_user.update({'blockedBy': array << @user.permalink}) %>
+  }
+</script>
