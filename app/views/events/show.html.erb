@@ -101,9 +101,9 @@
                     <span>
                       <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
                         <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'rsvp-image' %>
-                      <% elsif rsvpuser.profilepicurl %>
-                        <% if rsvpuser.profilepicurl.match(/http/) %>
-                          <%= image_tag rsvpuser.profilepicurl, :class => 'rsvp-image' %>
+                      <% elsif !rsvpuser.profilepic.url.nil? %>
+                        <% if rsvpuser.profilepic.url.match(/http/) %>
+                          <%= image_tag rsvpuser.profilepic.url, :class => 'rsvp-image' %>
                         <% end %>
                       <% else %> 
                         <%= image_tag "logoDigitalHollow300.png", :class => 'rsvp-image' %>
