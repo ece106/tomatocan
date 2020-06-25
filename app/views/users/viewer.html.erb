@@ -6,6 +6,17 @@
     <% end %> 
   <% end %>
 
+  <!-- Update list of users attending the conversation -->
+  <% pdtnow = Time.now - 7.hours + 5.minutes %>
+  <% id = @user.id %>
+  <% currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first %>
+  
+  <% array = currconvo.attending %>
+  <% if !array.include? current_user.permalink %>
+      <%= currconvo.update({'attending': array << current_user.permalink}) %>
+  <% end %>
+
+
   <div class = "container-fluid">
   <% content_for :head do %>
     <meta property="og:url"           content="<%= "https://www.thinq.tv" + user_profile_path(@user.permalink) %>" />

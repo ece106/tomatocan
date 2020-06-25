@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_name"
     t.string "guest2_email"
     t.string "topic"
-    t.text "attending", array: true
+    t.text "attending", default: [], array: true
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

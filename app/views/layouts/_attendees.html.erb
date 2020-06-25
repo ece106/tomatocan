@@ -1,28 +1,36 @@
+<% pdtnow = Time.now - 7.hours + 5.minutes %>
+<% id = @user.id %>
+<% currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first %>
+
 <div style="padding:8px 0px 8px 0px; font-size: 15px">
-  <div style="padding:5px 0px 5px 0px">
+  <div style="padding:5px 0px 0px 0px">
     <div class="row">
-      <div class="col-sm-11" style="margin-left:-35px">
-        <% if current_user.profilepic.present? && current_user.profilepic != '' %>
-            <%= image_tag current_user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
-        <% else %>
-            <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
-        <% end %>
-        <a style="padding:0px 0px 0px 5px;" href="<%= request.base_url %>/<%= current_user.permalink %>"><%= current_user.permalink %></a>
-      </div>
-      <% if current_user.permalink == @user.permalink %>
-        <div class="col-sm-1" style="margin-top:-7px">
-          <button onclick="blockUser()" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px"> 
-            Block
-          </button>
+      <% currconvo.attending.each do |attendee| %>
+        <% user = User.find_by_permalink(attendee) %>
+        <div class="col-sm-11" style="margin-left:-35px">
+          <% if user.profilepic.present? && user.profilepic != '' %>
+              <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+          <% else %>
+              <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+          <% end %>
+          <a style="padding:0px 0px 0px 5px;" href="<%= request.base_url %>/<%= user.permalink %>"><%= user.permalink %></a>
         </div>
+        <% if current_user.permalink == @user.permalink %>
+          <div class="col-sm-1" style="margin-top:-7px">
+            <button onclick="blockuser()" id="block_button" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 5px 3px 5px; border-radius: 3px"> 
+              Block
+            </button>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 </div>
-
+<% if button.is_clicked %>
 <script>
   function blockUser(){
-    <% array = current_user.blockedBy %>
-    <%= current_user.update({'blockedBy': array << @user.permalink}) %>
+    alert("ran")
+    '<% array = user.blockedBy %>'
+    '<% user.update({'blockedBy': array << @user.permalink}) %>'
   }
 </script>
