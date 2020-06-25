@@ -17,9 +17,9 @@ class ApplicationController < ActionController::Base
 
   #Stores pervious user url and reroutes user back after sign_in
   private
-  
+
   def storable_location?
-    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
   end
 
   def store_user_location!
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource_or_scope)
     if request.host == "thinqtv.herokuapp.com"
       @user = user_dashboard_path(current_user.permalink)
-    else  
+    else
       stored_location_for(resource_or_scope) || super
     end
   end
@@ -37,8 +37,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def update_sanitized_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:permalink, :name, :updating_password, :email, :password, :author, :password_confirmation, :remember_me, :address, :latitude, :longitude])
-  end  
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:permalink, :name, :updating_password, :email, :password, :author, :password_confirmation, :remember_me])
+  end
 
   def facebook_user
     @facebook_user ||= User.find(session[:user_id]) if session[:user_id]

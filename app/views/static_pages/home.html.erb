@@ -6,7 +6,7 @@
       <br>
       <div class="col-md-3" >
         <h3>Conversation Schedule</h3>
-        <h4>Topics important to you in the 2020 election</h4>
+        <h4>Come talk about topics important to you in the 2020 US election!</h4>
           <% if user_signed_in? %>
             <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
@@ -45,7 +45,10 @@
           Conversations to make you THINQ
         </div>
         <div style="display:inline;" > 
-          <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%>
+          <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
+        </div>
+        <div style="display:inline; font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
+          Video Chat about the latest News Headlines
         </div>
 
         <% if @displaystudy.present? %>
@@ -76,9 +79,10 @@
       <div class="row">
         <h3 class="aboutHeader" style="text-align: center;" > What is STUDY HALL </h3> 
         <h4 style = "text-align: center; line-height: 1.5em" >
-          Hang out in video chat with other people learning topics you're interested in <br>
-          It's like going to a study room with students and colleagues learning the same skills you're interested in <br>
+          A place to meet people for pair-programming <br> 
+          Hang out in video chat with other people learning topics you're interested in - we're currently working on Web Development topics related to building ThinQ.tv <br>
           Peers and possibly mentors are there while you're working incase you have questions or need someone to bounce ideas <br>
+          Or work quietly in the chat room to be there for each other when that Aha moment happens
         </h4>          
       </div>
       <br><br>
@@ -125,7 +129,7 @@
         Want to lead the Conversation? <%= link_to 'Host live video Conversations', new_event_path %>
       </p>
       <h4>
-        <br>Need to ask us questions LIVE? Drop in to any session hosted by Dr. Lisa Schaefer above & meet our Founder.
+        <br>Need to ask us questions LIVE? Drop in to any Study Hall session.
       </h4>
     </div>
   </div>
