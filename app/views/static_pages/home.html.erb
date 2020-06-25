@@ -51,8 +51,8 @@
               Video Chat about the latest News Headlines
             </div>
 
-          <% if @displaystudy.present? %>
-            <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
+            <% if @displaystudy.present? %>
+              <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
               <div id="eventCurrentdiv">
                 <h3>We're talking about <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
                 <p> right NOW!</p><br>
@@ -66,13 +66,13 @@
               <br><br>
               <h3>OR Hang out in our new <%= link_to "Study Hall", studyhall_path %> </h3>
               <% end %>
-              <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
   <br><br><br>
 
   <div class="main">
@@ -128,12 +128,13 @@
         <br><br>
         Want to lead the Conversation? <%= link_to 'Host live video Conversations', new_event_path %>
       </p>
-      <h4>
-        <br>Need to ask us questions LIVE? Drop in to any Study Hall session.
-      </h4>
+      <p>
+        <br>
+          Need to ask us questions LIVE? Drop in to any Study Hall session.
+      </p>
     </div>
   </div>
-</div>  
+</div>
     <script type="text/javascript">
       showPanel(0,'#f44336');
       showPanel2(0,'#f44336');
