@@ -89,3 +89,8 @@ group :development do
   gem 'puma'
     gem 'rails_real_favicon'
 end
+
+
+gem 'minitest-rails'
+
+gem 'test-unit'

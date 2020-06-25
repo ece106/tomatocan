@@ -5,13 +5,13 @@ require "pry"
 class UserNavbar < ActionDispatch::IntegrationTest
   setup do
     @user = users :one
-    
-    user_sign_in @user
-    
-    visit root_path 
+    @confirmedUser = users :confirmedUser
+
+    visit root_path
+
   end
   
-  test 'navitem buttons and logout' do
+  feature 'navitem buttons and logout' do
     assert page.has_css? '.nav-item'
     assert page.has_link? 'Home'
     find_link('Home', match: :first).click
@@ -34,28 +34,36 @@ class UserNavbar < ActionDispatch::IntegrationTest
   end
   
   test 'view profile page and logout' do
-    assert text, "#{@user.name}"
+    assert text, "#{@confirmedUser.name}"
     assert page.has_css? '.dropdown'
     assert page.has_css? '.dropdown-toggle'
-    find(class: 'dropdown-toggle',match: :first).click
+    find(class: 'dropdown',match: :first).click
 
     assert page.has_link? 'View Profile'
     find_link('View Profile',match: :first).click
-    assert_equal "/#{@user.permalink}", current_path
+    assert_equal "/#{@confirmedUser.permalink}", current_path
     click_on class: 'btn btn-default', match: :first
 
     assert '/', current_path
   end
-  
+
+  test 'view control panel and confirm navbar elements' do
+    user_sign_in @confirmedUser
+    assert text, "#{@confirmedUser.name}"
+    find(class: 'dropdown-toggle', match: :first).click
+    click_on('Control Panel', match: :first)
+    assert_equal "/#{@confirmedUser.permalink}/controlpanel", current_path
+  end
+
   test 'view control panel page and logout' do
-    assert text, "#{@user.name}"
+    assert text, "#{@confirmedUser.name}"
     assert page.has_css? '.dropdown'
     assert page.has_css? '.dropdown-toggle'
     find(class: 'dropdown-toggle',match: :first).click
 
     assert page.has_link? 'Control Panel'
     find_link('Control Panel',match: :first).click
-    assert_equal "/#{@user.permalink}/controlpanel", current_path
+    assert_equal "/#{@confirmedUser.permalink}/controlpanel", current_path
     click_on class: 'btn btn-default', match: :first
 
     assert '/', current_path

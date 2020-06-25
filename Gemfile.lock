@@ -1089,6 +1089,9 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    minitest-rails (6.0.1)
+      minitest (~> 5.10)
+      railties (~> 6.0.0)
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -1111,6 +1114,7 @@ GEM
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    power_assert (1.2.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -1204,6 +1208,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stripe (5.21.0)
+    test-unit (3.3.6)
+      power_assert
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -1257,6 +1263,7 @@ DEPENDENCIES
   listen
   mandrill
   minitest
+  minitest-rails
   oauth2
   omniauth
   omniauth-facebook
@@ -1275,6 +1282,7 @@ DEPENDENCIES
   simplecov
   simplecov-lcov
   stripe
+  test-unit
   turbolinks
   turn
   uglifier (>= 1.3.0)
@@ -1283,7 +1291,7 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.6.3p62
 
 BUNDLED WITH
    2.1.2
