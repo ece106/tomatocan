@@ -21,10 +21,10 @@
             <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
           <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
           </div>
-          <div class="tabPanel" >
+          <div class="tabPanel" style="overflow: auto; height: 55vh;">
             <%= render 'layouts/convocalendar', collection: @conversations %> 
           </div>
-          <div class="tabPanel" >
+          <div class="tabPanel" style="overflow: auto; height: 55vh;">
             <%= render 'layouts/monthcalendar', collection: @conversationsall %>
           </div> 
         </div>
