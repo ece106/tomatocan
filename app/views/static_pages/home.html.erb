@@ -1,6 +1,5 @@
-<div class="banner">
-  <div class="home-video-wrapper">
-    <div class="row">
+<div class="home-video-wrapper">
+  <div class="row">
   <div class="col-md-6 col-xs-12" id="countdown_clock">
     <div class="main">
       <br>
@@ -50,28 +49,46 @@
         <div style="display:inline; font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
           Video Chat about the latest News Headlines
         </div>
+        <div style="display:inline; font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
+          Video Chat about the latest News Headlines
+        </div><br><br><br>
+
+        <h3><i>New to ThinQ.tv?</i>
+          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path %>.
+          <br>Drop in to ask questions about ThinQ.tv! </h3>
+        <br><br>
 
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <h3>We're talking about <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
+              <h3>We're having Study Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
-              <%= link_to " Join Conversation NOW ", "https://thinqtv.herokuapp.com/" + @hoststudy.permalink + "?chatrm=" + @topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %>
-
+              <%= link_to " Join Study Hall NOW ", "https://thinqtv.herokuapp.com/" + @hoststudy.permalink + "?chatrm=Study%20Hall", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %>
             </div>
-          <% else %>
-            <h2 id="buttonTitle">
-            <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
-            </h2>
-            <br><br>
-            <h3>OR Hang out in our new <%= link_to "Study Hall", studyhall_path %> </h3>
+          <% end %>
+        <% end %>
+        <% if @displayresearch.present? %> 
+          <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
+            <div id="eventCurrentdiv">
+              <h3>We're working on User Research about <%= link_to @namestudy, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></h3>  
+              <p> right NOW!</p><br>
+              <%= link_to " Join User Research NOW ", "https://thinqtv.herokuapp.com/" + @hostresearch.permalink + "?chatrm=User%20Research", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %>
+            </div>
+          <% end %>
+        <% end %>
+        <% if @displaystudy.present? && @displayresearch.present? %>
+          <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
+            <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
+              <h2 id="buttonTitle">
+              <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              </h2>
+            <% end %>
           <% end %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-  </div>
 </div>
 <br><br><br>
 
@@ -117,7 +134,7 @@
     </div> 
   </div>
 
-  <div class="row" id="purpose">
+  <div class="row" >
     <div class="col-md-3 col-md-offset-1", style="margin-top: 40px">
       <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-left: auto;  margin-right: auto;")%>
     </div>
@@ -136,5 +153,4 @@
 </div>  
     <script type="text/javascript">
       showPanel(0,'#f44336');
-      showPanel2(0,'#f44336');
     </script>
