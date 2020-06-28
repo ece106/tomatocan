@@ -1,43 +1,4 @@
-<<<<<<< HEAD
 <div class="alert">
-=======
-<div class="home-video-wrapper">
-  <div class="row">
-    <div class="col-md-6 col-xs-12" id="countdown_clock">
-      <div class="main">
-        <br>
-          <div class="col-md-3" >
-            <h3>Conversation Schedule</h3>
-            <h4>Come talk about topics important to you in the 2020 US election!</h4>
-            <% if user_signed_in? %>
-              <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
-            <% end %>
-          </div>
-          <div class="col-md-3">
-            <%= render 'layouts/countdown_clock' %>
-          </div>
-      </div>
-    <div class="tabContainer">
-        <div class="buttonContainer">
-          <button onclick="showPanel(0,'#f44336')">List View </button>
-          <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
-          <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
-        </div>
-      <div class="tabPanel" style="overflow: auto; height: 66vh;">
-            <%= render 'layouts/convocalendar', collection: @conversations %> 
-      </div>
-      <div class="tabPanel" style="overflow: auto; height: 66vh;">
-        <%= render 'layouts/monthcalendar', collection: @conversationsall %>
-      </div> 
-    </div>
-  </div> 
-
-  <div class="col-md-6 col-xs-12">
-
-    <div class="row">
-      <div class="herocaption col-xs-12 " id="home">
-        <div class="alert">
->>>>>>> clipping issue homepage
           <% flash.each do |key, value| %>
             <div class="<%= flash_class(key) %>">
               <%= value %>
