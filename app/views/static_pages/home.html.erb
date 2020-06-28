@@ -17,7 +17,7 @@
     </div>
     <div class="tabContainer">
         <div class="buttonContainer">
-          <button onclick="showPanel(0,'#f44336')">List View </button>
+          <button onclick="showPanel(0,'#f44336')">List View test test test </button>
           <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
           <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
         </div>
@@ -56,7 +56,7 @@
             <div id="eventCurrentdiv">
               <h3>We're talking about <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
-              <%= link_to " Join Conversation NOW ", "https://thinqtv.herokuapp.com/" + @hoststudy.permalink + "?chatrm=" + @topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %>
+              <%= link_to " Join Conversation NOW  test", "https://thinqtv.herokuapp.com/" + @hoststudy.permalink + "?chatrm=" + @topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %>
 
             </div>
           <% else %>
