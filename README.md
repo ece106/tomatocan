@@ -159,7 +159,7 @@ Then type
 ```
 >rails s
 ```
-at the command line from the tomatocan directory to start the server.
+at the command line from the tomatocan directory to start the server. Open your browser and go to localhost:3000.
 
 
 ### TO USE THE TOMATOCAN GITHUB REPO
