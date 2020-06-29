@@ -7,7 +7,7 @@
 <% l = 0 %>
  <% @passing1 = 0%>
 
-<div class="container" style="padding-top: 30px; float: center; width: 100%; max-width: 2470px;overflow-y: scroll; overflow-x: scroll; ">
+<div class="container" style="padding-top: 30px; float: center; width: 100%; max-width: 2470px;">
 
 <div id="events">
   <h2 id="month" style="color: black;"> <%= @monthforCalendar.strftime("%B %Y") %>
@@ -40,7 +40,12 @@
 </div>
 </div>
 
-
+.container {
+  width: 100px;
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 <script>
   function Panel1 (panelIndex, colorCode) {
