@@ -217,96 +217,22 @@ git clone --single-branch --branch <branchname> https://github.com/ece106/tomato
 
 The following  steps will be similiar to when you were first forking and cloning your repo.
 
-Create new development and test databases for testing (This is necessary because the code that you will be tested might mess up  your database)
+Create new development and test databases for testing (This is necessary because the code that you will be testing might mess up your database)
 If you don't remember how to create a database you can use this reference https://www.guru99.com/postgresql-create-database.html
 
 DO NOT NAME YOUR DEVELOPMENT DATABASE THE SAME AS YOUR TEST DATABASE AND GIVE THEM DIFFERENT NAMES FROM THE ONES YOU'RE USING ON YOUR CODE!!!
 
-After creating your database create the following file config/database.yml
+* After creating your database create the following file config/database.yml
 
-```
-default: &default
-  adapter: postgresql
-  pool: 5
-  timeout: 5000
+similiar to the one you have on your own code but with the new database names you just created.
 
-development:
-  <<: *default
-  encoding: unicode
-  database: YOUR_DEVELOPMENT_DATABASE_NAME
-  username: YOUR_USERNAME
+* Create config/environments/development.rb:
 
-test:
-  <<: *default
-  encoding: unicode
-  database: YOUR_TEST_DATABASE_NAME
-  username: YOUR_USERNAME
+Similiar to how you did before.
 
-production:
-  <<: *default
-```
+* Now create config/initializers/aakeys.rb (DO NOT CHANGE THE NAME)
 
-Replace the database names and usernames with your username and the databases you just created.
-
-* config/environments/development.rb:
-
-Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
-
-```
-Rails.application.configure do
-
-config.action_mailer.raise_delivery_errors = true
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.perform_deliveries = true
-config.action_mailer.smtp_settings = {
-  :address => "smtp.gmail.com",
-  :port => 587,
-  :user_name => "thinqtesting@gmail.com",
-  :password => 'testingtesting',
-  :authentication => 'plain',
-  :enable_starttls_auto => true
-}
-config.action_mailer.default_url_options = {
-  host: "localhost:3000", protocol: "http"
-}
-  config.cache_classes = false
-  config.eager_load = false
-  config.consider_all_requests_local = true
-
-  if Rails.root.join('tmp/caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
-    config.cache_store = :null_store
-  end
-
-  config.active_support.deprecation = :log
-  config.active_record.migration_error = :page_load
-  config.assets.debug = true
-  config.assets.quiet = true
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-end
-```
-
-Now create config/initializers/aakeys.rb (DO NOT CHANGE THE NAME)
-```
-DEVISE_SECRET_KEY = 'fake'
-AWS_KEY = 'morefake'
-AWS_SECRET_KEY = 'pretend'
-AWS_BUCKET = 'yourawsbucketname'
-STRIPE_SECRET_KEY = "madeup"
-STRIPE_PUBLIC_KEY = "allfake"
-GMAIL_PWD = "superfake"
-Stripe.api_key = STRIPE_SECRET_KEY
-STRIPE_CONNECT_CLIENT_ID = "superfake"
-FACEBOOK_APP_ID = "numbers"
-FACEBOOK_APP_SECRET = "secret"
-```
+Again similiar to how you have done before.
 
 run the necesarry migrations on your newly created databases
 ```
@@ -316,6 +242,9 @@ run the necesarry migrations on your newly created databases
 
 Now you're ready to test.
 Check the conversation tab on the pull request sometimes the the person that did the pull request put information there stating what they did and what they want you to check.
+
+Important note: You need to add at least one user to do some testing on the local host. This requires you sign up into the localhost for the test branch you're testing and confirm the new user. Also
+because of the changes made to the config/environments/development.rb you will be recieving emails
 
 Now there's 3 things to check 
 
