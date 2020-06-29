@@ -4,11 +4,11 @@ require "pry"
 
 class UserNavbar < ActionDispatch::IntegrationTest
   setup do
-    @user = users :one
-    
-    user_sign_in @user
-    
-    visit root_path 
+    @test_user = users :confirmedUser
+
+    user_sign_in @test_user
+
+    visit new_event_path
   end
   
   test 'navitem buttons and logout' do
@@ -40,31 +40,40 @@ class UserNavbar < ActionDispatch::IntegrationTest
   end
   
   test 'view profile page and logout' do
-    assert text, "#{@user.name}"
+    # assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
     assert page.has_css? '.dropdown-menu'
     assert page.has_link? 'View Profile'
     find_link('View Profile',match: :first).click
-    assert_equal "/#{@user.permalink}", current_path
+    assert_equal "/#{@test_user.permalink}", current_path
     click_on class: 'btn btn-default', match: :first
 
     assert '/', current_path
   end
   
   test 'view control panel page and logout' do
-    assert text, "#{@user.name}"
+    # assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
     assert page.has_css? '.dropdown-menu'
     assert page.has_link? 'Control Panel'
     find_link('Control Panel',match: :first).click
-    assert_equal "/#{@user.permalink}/controlpanel", current_path
+    assert_equal "/#{@test_user.permalink}/controlpanel", current_path
     click_on class: 'btn btn-default', match: :first
 
     assert '/', current_path
   end
   
   private
+  def usign_in
+    visit root_path
 
+    click_on('Sign In', match: :first)
+
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
+    fill_in(id: 'user_password', with: 'user1234')
+
+    click_on(class: 'form-control btn-primary')
+  end
   def teardown
   end
 end

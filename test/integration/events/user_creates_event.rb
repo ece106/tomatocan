@@ -1,11 +1,11 @@
-require "test_helper"
+	require "test_helper"
 require "capybara-screenshot/minitest"
 
 class UserCreatesEvent < ActionDispatch::IntegrationTest
   setup do
-    @test_user = users :one
+    @test_user = users :confirmedUser
 
-    sign_in
+    user_sign_in @test_user
 
     visit new_event_path
   end
@@ -53,7 +53,7 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')

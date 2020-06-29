@@ -3,11 +3,11 @@ require "capybara-screenshot/minitest"
 
 class UserEditsProfile < ActionDispatch::IntegrationTest
   setup do
-    @user = users :one
+    @test_user = users :confirmedUser
 
-    sign_in
+    user_sign_in @test_user
 
-    visit "/#{@user.permalink}/controlpanel"
+    visit "/#{@confirmedUser.permalink}/controlpanel"
   end
 
   test "can edit profile page with correct attributes" do
@@ -26,11 +26,11 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
   end
 
   test "can cancel edit profile page" do
-    find_link('Cancel', match: :first).click
+    find(id: "cancelProfileButton", match: :first).click
   end
 
   test "can save edit profile page" do 
-    find_link('Save Changes', match: :first).click
+    find(id: "saveProfileButton", match: :first).click
   end
 
   private
@@ -40,7 +40,7 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')
