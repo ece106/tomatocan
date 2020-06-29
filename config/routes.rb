@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   match 'tos',            to: 'static_pages#tos', via: 'get'
   match 'aboutus',        to: 'static_pages#aboutus', via: 'get'
   match 'livestream',     to: 'static_pages#livestream', via: 'get'
-  match 'ux',             to: 'static_pages#ux', via: 'get'
+  match 'ux',             to: 'static_pages#chat', via: 'get'
   match 'vieweronhost',   to: 'static_pages#vieweronhost', via: 'get'
   match 'jointheteam',    to: 'static_pages#jointheteam', via: 'get'
   match 'bystanderguidelines',    to: 'static_pages#bystanderguidelines', via: 'get'
