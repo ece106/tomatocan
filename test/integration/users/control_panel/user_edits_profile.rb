@@ -7,30 +7,40 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
 
     user_sign_in @test_user
 
-    visit "/#{@confirmedUser.permalink}/controlpanel"
+    visit "/#{@test_user.permalink}/controlpanel"
   end
 
   test "can edit profile page with correct attributes" do
-    fill_in id: "user_name", with: "Cody Karunas"
-    fill_in id: "user_about", with: "About me description"
+
+    find(class: "profile-settings-tab", text: "Profile").click
+
+    fill_in id: "user_name", with: "Name"
+    fill_in id: "user_about", with: "About me"
     fill_in id: "user_genre1", with: "Topic 1"
     fill_in id: "user_genre2", with: "Topic 2"
     fill_in id: "user_genre3", with: "Topic 3"
 
-    find("input[name='commit']", match: :first).click
-
-    assert page.has_content? "Cody Karunas"
+    assert page.has_content? "Name"
+    assert page.has_content? "About me"
     assert page.has_content? "Topic 1"
     assert page.has_content? "Topic 2"
     assert page.has_content? "Topic 3"
   end
 
   test "can cancel edit profile page" do
-    find(id: "cancelProfileButton", match: :first).click
+    find(class: "profile-settings-tab", text: "Profile").click
+
+    click_on id: "cancelProfileButtonn"
+
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   test "can save edit profile page" do 
-    find(id: "saveProfileButton", match: :first).click
+    find(class: "profile-settings-tab", text: "Profile").click
+
+    click_on id: "saveProfileButtonn"
+
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   private

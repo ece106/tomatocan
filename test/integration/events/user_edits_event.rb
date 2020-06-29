@@ -4,11 +4,11 @@ require "capybara-screenshot/minitest"
 class UserEditsEvent < ActionDispatch::IntegrationTest
   setup do
     @test_user  = users :confirmedUser
-    @test_event = events :one
+    @test_event_one = events :three
 
     user_sign_in @test_user
 
-    visit edit_event_path @test_event
+    visit edit_event_path @test_event_one
   end
 
   test "visits edit event page successfully" do

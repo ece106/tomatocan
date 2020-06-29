@@ -3,23 +3,23 @@ require "capybara-screenshot/minitest"
 
 class UserChangesPassword < ActionDispatch::IntegrationTest
   setup do
-    @user = users :one
+    @test_user = users :confirmedUser
 
-    sign_in
+    user_sign_in @test_user
 
-    visit "/#{@user.permalink}/changepassword"
+    visit "/#{@test_user.permalink}/changepassword"
   end
 
   test "user changes password with valid attributes" do
 
-    # find(class: "account-settings-tab", text: "Change password").click
+    fill_in id: "user_password", with: "newpassword"
+    fill_in(id: "user_password_confirmation", with: "newpassword")
 
-    fill_in id: "user_password", with: "newpass"
-    fill_in(id: "user_password_confirmation", with: "newpassconfirmation")
+    assert page.has_content? "newpassword"
 
     click_on "Save Profile"
 
-    assert_equal current_path, "/#{@user_permalink}"
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   private
@@ -29,7 +29,7 @@ class UserChangesPassword < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')

@@ -3,11 +3,11 @@ require "capybara-screenshot/minitest"
 
 class UserEditsAccountSettings < ActionDispatch::IntegrationTest
   setup do
-    @user = users :one
+    @test_user = users :confirmedUser
 
-    sign_in
+    user_sign_in @test_user
 
-    visit "/#{@user.permalink}/controlpanel"
+    visit "/#{@test_user.permalink}/controlpanel"
   end
 
   test "user edits account settings with valid attributes" do
@@ -18,9 +18,13 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
     fill_in id: "user_email", with: "test@mail.com"
     fill_in(id: "user_permalink", with: test_permalink)
 
-    click_on class: "save-acct-info-btn"
+    assert page.has_content? "test@mail.com"
+    assert page.has_content? test_permalink
 
-    assert_equal current_path, "/#{@user_permalink}"
+    click_on class: "btn btn-primary save-acct-info-btn"
+
+    assert_equal current_path, "/#{test_permalink}"
+
   end
 
   test "user changes password" do
@@ -28,7 +32,7 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on class: "btn btn-default change-password-btn"
 
-    assert_equal current_path, "/#{@user_permalink}/changepassword"
+    assert_equal current_path, "/#{@test_user.permalink}/changepassword"
   end
 
   test "user cancels edits account settings with same attributes" do
@@ -36,7 +40,7 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on class: "btn btn-default cancel-acct-settings-btn"
 
-    assert_equal current_path, "/#{@user.permalink}"
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   test "user saves edits account settings with same attributes" do
@@ -44,7 +48,7 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on class: "btn btn-primary save-acct-info-btn"
 
-    assert_equal current_path, "/#{@user.permalink}"
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   private
@@ -54,7 +58,7 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')

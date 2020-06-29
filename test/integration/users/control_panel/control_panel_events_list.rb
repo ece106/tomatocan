@@ -3,18 +3,20 @@ require "capybara-screenshot/minitest"
 
 class ControlPanelEventsList < ActionDispatch::IntegrationTest
   setup do
-    @user           = users :one
+    @test_user           = users :confirmedUser
     @test_event_one = events :three
     @test_event_two = events :four
     @past_event     = events :past_event
 
     sign_in
 
-    visit "/#{@user.permalink}/controlpanel"
+    visit "/#{@test_user.permalink}/controlpanel"
   end
 
   test "upcoming events has the correct events" do
-    within("table") do
+    find(class: "events-tab", text: "Conversations").click
+
+    within(class: "table") do
       assert has_content? @test_event_one.name
       assert has_content? @test_event_one.start_at.strftime("%A %B %d, %Y at %I:%M %p")
 
@@ -99,7 +101,7 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   test "can start live show" do
     click_on id: "stream-btn"
 
-    assert current_path, "https://thinQtv.herokuapp.com/#{@user.permalink}"
+    assert current_path, "https://thinQtv.herokuapp.com/#{@test_user.permalink}"
   end
 
   private
@@ -109,10 +111,11 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')
   end
+
 
 end
