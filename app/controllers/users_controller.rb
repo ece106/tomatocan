@@ -212,19 +212,8 @@ class UsersController < ApplicationController
   respond_to :js, :json, :html
 
   def block
-    pdtnow = Time.now - 7.hours + 5.minutes
-    id = @user.id
-    currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
-
-    currconvo.attending.each do |attendee|
-      user = User.find_by_permalink(attendee)
-      array = user.blockedBy
-      user.update({'blockedBy': array << @user.permalink})
-    end
-
-
-    user = User.find_by_permalink("test")
-    user.update_attribute(:name, "worked")
+    array = User.find_by_id(params[:to_block]).blockedBy
+    User.find_by_id(params[:to_block]).update({'blockedBy': array << @user.permalink})
   end
 
   private
