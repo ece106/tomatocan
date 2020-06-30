@@ -23,7 +23,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end
 
   #dpc = discover previous conversations
-  test "should go to dpc page when clicking on podcast in header"  do
+  test "should go to have us on your podcast link"  do
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		click_on("Have us on your Podcast", match: :first)
   		assert_equal current_path, drschaeferspeaking_path
@@ -64,11 +64,17 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     end
   end  
 
-  test "should be able to host study hall" do
+  test "should be able to visit study hall" do
     within("div#globalNavbar.collapse.navbar-collapse") do
       click_on("Study Hall", match: :first)
       assert_equal current_path, studyhall_path
-      end
+    end
+    if has_content? @event.name
+      then assert has_css?("#RSVPsubmit"), "RSVP button not showing"
+    assert has_table?(class: "calendar"), "Not showing listView calendar"
+    end
+    click_on("Monthly View", match: :first)
+    assert has_table?(class: "caler"), "Not showing calendar"
       click_on("Post Study Hall Hour", match: :first)
       assert_equal current_path, new_event_path
   end  

@@ -30,11 +30,11 @@ class ActionDispatch::IntegrationTest
   Capybara::Screenshot.autosave_on_failure = false
 
   #this is for visual webdriver comment out if you dont have chrome and selenium-webdriver installed
-  Capybara.register_driver :chrome do |app|
-   Capybara::Selenium::Driver.new(app, browser: :chrome)
-  end
+  #Capybara.register_driver :chrome do |app|
+  #Capybara::Selenium::Driver.new(app, browser: :chrome)
+  #end
   #this goes with selenium webdriver comment out if you dont have chrome and the driver downloaded
-  Capybara.current_driver = :chrome
+  #Capybara.current_driver = :chrome
 
   setup do
     @card_number           = "4242424242424242"
