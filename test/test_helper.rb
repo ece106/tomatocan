@@ -137,14 +137,13 @@ class ActiveSupport::TestCase
   end
 
   def create_conversation_event
-      within 'div#countdown_clock.col-md-6'
-      click_button('Post your Own Conversation')
+    visit root_path
+    within("div#countdown_clock")
+    click_on("Post your Own Conversation")
       fill_in id: 'event_name', with: "Random Test Event"
-      click_on(id: 'event_topic', match: :first)
-      click_on('Conversation', match: :first)
-      fill_in id: 'event_desc', with: "test event"
-      click_on(id: 'eventSubmit')
-    end
+    click_on("Post Conversation")
+  end
+  #need to correct event table issue first
 
   private
 

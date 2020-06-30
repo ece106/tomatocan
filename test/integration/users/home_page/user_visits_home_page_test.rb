@@ -48,7 +48,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end	
 
    test "should be able to host a conversation" do
-    within("div#countdown_clock.col-md-6") do
+    within("div#countdown_clock") do
       click_on("Post your Own Conversation", match: :first)
       assert_equal current_path, new_event_path
     end 
@@ -65,10 +65,12 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end  
 
   test "should be able to host study hall" do
-    within("div#countdown_clock.col-md-4") do
-      click_on("Post your own Study Hall hour", match: :first)
+    within("div#globalNavbar.collapse.navbar-collapse") do
+      click_on("Study Hall", match: :first)
+      assert_equal current_path, studyhall_path
+      end
+      click_on("Post Study Hall Hour", match: :first)
       assert_equal current_path, new_event_path
-    end 
   end  
 
 
