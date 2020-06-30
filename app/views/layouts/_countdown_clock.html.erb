@@ -3,7 +3,7 @@
     <div id="eventCurrentdiv">
       <h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
       <p> is LIVE right NOW!</p>
-      <%= link_to " Join Conversation ", "https://thinqtv.herokuapp.com/" + @hoststudy.permalink + "?chatrm=" + @displayconvo.topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
+      <%= link_to " Join Conversation ", "https://thinqtv.herokuapp.com/" + @host.permalink + "?chatrm=" + @displayconvo.topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
       <br>
       Hosted by: <%= link_to @host.name, @host.permalink %>
     </div>
