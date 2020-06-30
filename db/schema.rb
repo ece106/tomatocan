@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 201309200000000) do
+ActiveRecord::Schema.define(version: 2020_06_30_183558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "provider"
     t.string "uid"
     t.text "blockedBy", default: [], array: true
+    t.integer "last_viewed"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true

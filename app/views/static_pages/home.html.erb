@@ -1,3 +1,7 @@
+<% if user_signed_in? %>
+  <% current_user.update_column(:last_viewed, 0) %>
+<% end %>
+
 <div class="banner">
   <div class="home-video-wrapper">
     <%= video_tag('WelcomeToThinQtv.mp4', controls: 'false', autoplay: 'true', loop: 'true', muted: 'true', playsinline: 'true', class: "home_video")%>

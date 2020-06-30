@@ -1,4 +1,5 @@
 <% if user_signed_in? %>
+  <% current_user.update_column(:last_viewed, @user.id) %>
 
   <% current_user.blockedBy.each do |blocked| %>
     <% if blocked == @user.permalink %>
@@ -9,13 +10,6 @@
   <!-- Update list of users attending the conversation -->
   <% pdtnow = Time.now - 7.hours + 5.minutes %>
   <% id = @user.id %>
-  <% currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first %>
-  
-  <% array = currconvo.attending %>
-  <% if !array.include? current_user.permalink %>
-      <%= currconvo.update({'attending': array << current_user.permalink}) %>
-  <% end %>
-
 
   <div class = "container-fluid">
   <% content_for :head do %>
@@ -78,13 +72,11 @@
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            Attendees of <%= @user.permalink %>'s conversation
+            Attendees of <%= @user.name %>'s conversation
           </div>
           <%= render 'layouts/attendees' %>
         </div>
       </div>
-
-      
     </div>
 
     <div class="col-md-9">
