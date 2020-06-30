@@ -16,7 +16,6 @@
       <%= currconvo.update({'attending': array << current_user.permalink}) %>
   <% end %>
 
-
   <div class = "container-fluid">
   <% content_for :head do %>
     <meta property="og:url"           content="<%= "https://www.thinq.tv" + user_profile_path(@user.permalink) %>" />
@@ -77,7 +76,7 @@
       <!-- List of participants -->
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
-          <div class="panel-heading">
+          <div class="panel-heading" style="margin-bottom:-10px">
             Attendees of <%= @user.permalink %>'s conversation
           </div>
           <%= render 'layouts/attendees' %>

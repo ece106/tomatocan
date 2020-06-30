@@ -78,7 +78,9 @@ Rails.application.routes.draw do
   match '/:permalink/controlpanel'   => "users#controlpanel",   :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard'      => "users#dashboard",      :as => :user_dashboard, via: 'get'
 
-  post '/:permalink/markfulfilled' => 'users#markfulfilled', :as => :markfulfilled_user
+  post '/:permalink/markfulfilled'   => 'users#markfulfilled',  :as => :markfulfilled_user
+
+  post '/users/block'               => "users#block"
 
   # get '/:friendly_id', to: 'groups#show'
 
