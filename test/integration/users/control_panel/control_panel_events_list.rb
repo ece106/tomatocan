@@ -3,7 +3,7 @@ require "capybara-screenshot/minitest"
 
 class ControlPanelEventsList < ActionDispatch::IntegrationTest
   setup do
-    @test_user           = users :confirmedUser
+    @test_user      = users :confirmedUser
     @test_event_one = events :three
     @test_event_two = events :four
     @past_event     = events :past_event
@@ -14,9 +14,9 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "upcoming events has the correct events" do
-    find(class: "events-tab", text: "Conversations").click
+    find(class: "panel panel-primary", text: "Conversations").click
 
-    within(class: "table") do
+    within('event-list-table') do
       assert has_content? @test_event_one.name
       assert has_content? @test_event_one.start_at.strftime("%A %B %d, %Y at %I:%M %p")
 
@@ -26,7 +26,9 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "can edit event name in upcoming events panel" do
-    within("table") do
+    find(class: "events-tab", text: "Conversations").click
+
+    within(id: "event-list-table") do
       click_on "Edit", match: :first
     end
 
@@ -51,6 +53,8 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "upcoming events has the correct count" do
+    find(class: "events-tab", text: "Conversations").click
+    
     within("table") do
       upcoming_events_count = find_all(".event-name").to_a.count
       assert_equal upcoming_events_count, 2
@@ -58,6 +62,8 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "past shows has the correct events" do
+    find(class: "events-tab", text: "Conversations").click
+
     within(".past-events-list") do
       assert has_content? @past_event.name
       assert has_content? @past_event.start_at.strftime("%A %B %d, %Y at %I:%M %p")
@@ -65,6 +71,8 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "past shows has the correct count" do
+    find(class: "events-tab", text: "Conversations").click
+
     within(".past-events-list") do
       past_events_count = find_all(".past-event-name").to_a.count
       assert_equal past_events_count, 2
