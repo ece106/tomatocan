@@ -16,7 +16,7 @@
 
 
 
-<div class="container" style="padding-top: 50px; float: center; width: auto; max-width: 1470px;">
+<div class="container" style="padding-top:50px; float: center; width: auto; max-width: 1470px;">
 <span class="more">
   <% if @events.count != 0 %>
     <table class="table table-hover" id=calendar>
@@ -24,8 +24,6 @@
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
 
             <% if event.start_at.to_date.eql?(@passingdaytodayy ) %>
-
-
 
         <% user = User.find(event.usrid) %>
         <% i += 1 %>
@@ -39,8 +37,7 @@
                       <% end %>
                     <% end %>
                     <%= link_to user.name, user.permalink, id: "calendar-event", title: rsvpeople %>
-
-                    Let's talk about <%= link_to event.name, event, title: event.desc %>
+                    <%= link_to event.name, event, title: event.desc %>
                     <% if user_signed_in? %>
                       <% if event.usrid == current_user.id %>
                         <%= link_to '(Edit Conversation)', edit_event_path(event.id), id: "calendar-host" %>
@@ -102,7 +99,41 @@
                         <% end %>
                     <% end %>
                   </td>
-                </tr>
+
+                   <!-- Share Buttons -->
+          <td class=col-xs-2>
+            <% domainurl = "http://www.thinq.tv/"%>
+
+            <!-- Facebook Share -->
+            <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"
+              onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>',
+              'newwindow',
+              'width=600,height=400,top=100,left=300');
+              return false;">
+              <%= image_tag("social-share-button/facebook.png")%>
+             
+            </a>&nbsp
+
+              <!-- Twitter Share -->
+              <a href="https://twitter.com/intent/tweet?text=Join <%= user.name %>'s' Conversation to talk about: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>%20Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations."
+                onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= user.name %> Conversation: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>,
+                'newwindow',
+                'width=600,height=400,top=80,left=300');
+                return false;">
+                <%= image_tag("social-share-button/twitter.png")%>
+              </a>&nbsp
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+              onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
+              'newwindow',
+              'width=600,height=400,top=100,left=300');
+              return false;">
+              <%= image_tag("social-share-button/linkedin.png")%>
+            </a>&nbsp
+            
+          </td>
+        </tr>
 
         <% end %>
 
