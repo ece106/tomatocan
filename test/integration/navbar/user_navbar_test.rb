@@ -64,7 +64,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
   end
   
   private
-  def usign_in
+  def sign_in
     visit root_path
 
     click_on('Sign In', match: :first)

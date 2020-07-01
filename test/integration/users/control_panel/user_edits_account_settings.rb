@@ -18,6 +18,8 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
     fill_in id: "user_email", with: "test@mail.com"
     fill_in(id: "user_permalink", with: test_permalink)
 
+    find("input[name='commit']", match: :first).click
+
     assert page.has_content? "test@mail.com"
     assert page.has_content? test_permalink
 

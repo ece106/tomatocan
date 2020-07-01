@@ -20,6 +20,8 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
     fill_in id: "user_genre2", with: "Topic 2"
     fill_in id: "user_genre3", with: "Topic 3"
 
+    find("input[name='commit']", match: :first).click
+
     assert page.has_content? "Name"
     assert page.has_content? "About me"
     assert page.has_content? "Topic 1"
