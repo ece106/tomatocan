@@ -1,64 +1,69 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="row" style="background-color: white; padding-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5); ">
-  <h3 class="aboutHeader" style = "text-align: center; font-size: 30px;">
-    ELECTION 2020<BR>
-    Can't go to a fundraising party in person?<br>
-    Drop in for Conversations on ThinQ.tv! 
-  </h3>
-</div>
+   <div class = "jumbotron pb-3 mb-1" >   
+   <div class = "container-fluid">  
+              <h2 class = "text-center text-danger"><strong>ELECTION 2020</strong></h2>
+              <h2 class = "text-center text-danger"><strong>Can't go to a fundraising party in person?</strong></h2>
+              <h2 class = "text-center text-danger"><strong>Drop in for Conversations on ThinQ.tv!</strong></h2>
+            </div>
+          </div>
 
-  <div class="row" style="margin-bottom: 20px; padding-bottom: 20px; margin-top: 20px; ">
-    <div class="col-lg-4 col-md-12" style=" margin-top:0px; margin-bottom: 0px; padding: 0px; ">
-          <%= image_tag("videoconference.jpg", :style => "min-height: 372px; max-height:auto; width:100%;")%>
-      </div>
+<br>
+  
+ <div class = "row mb-1 pb-3 mt-1">
+  <div class = "col-lg-4 col-md-12 mt-0 mb-0 p-0">
+      <%= image_tag("videoconference.jpg", :style => "min-height: 372px; max-height:auto; width:100%;")%>
+    </div>
 
-    <div class="col-lg-8 col-md-12" style=" min-height: 372px;  max-height: auto; margin-top: 0px; box-shadow: 0 5px 15px rgba(0,0,0,.5);">
-        <h3 style=" padding-top: 5px; padding-bottom: 2px; margin-bottom: 5px; color: #8C1D40; font-weight: bold;"> WHAT IS THINQ.TV:</h3>
-        <p class= "paragraph1" >
-          - A platform where people can join intellectual video chat online. It’s similar to going to a Cocktail Party on Zoom. Drop in to a conversation on the home page schedule & discover interesting conversations to motivate each other to get involved with the 2020 election! <br>
-          - ThinQ.tv is for people who like to keep themselved well-informed to have conversations about current events - politics, science, social justice.
-        </p><br>
 
-        <!-- <div class="col-lg-8 col-md-12" style=" width:100%; padding-bottom: 20px; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5);"> -->
-        <h3 style="margin-top: 10px; margin-bottom: 5px; color:#8C1D40; font-weight: bold;"> HELP US MOTIVATE OTHERS TO GET OUT THE VOTE:</h3>
-       <p class= "paragraph2" >
+    <div class= "card col-lg-8 col-md-12 mt-0 mb-0 p-0">
 
-      - Invite friends & family to conversations when you'll be there so you can participate together. <br>
-      - <button class="button1" ><a href="mailto:?&subject=Join%20me%20for%20conversations%20about%202020%20elections%20on%20ThinQ.tv!&body=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations." alt="Email" target="_blank" style="color: white">E-Mail &#9993</a></button> <br>
-      - Spread the word about <span style="font-weight: bold; ">THINQ.TV </span> via 
-                     <% domainurl = "http://www.ThinQ.tv" %>
+    <div class= "col-lg-12 col-md-12 mt-0 mb-0 p-0">
+
+      <h3 class ="pt-1 pb-1 mb-1 text-danger"><strong>WHAT IS THINQ.TV:</strong></h3>
+      <p class= "paragraph1" >
+          * A platform where people can join intellectual video chat online. It’s similar to going to a Cocktail Party on Zoom. Drop in to a conversation on the home page schedule & discover interesting conversations to motivate each other to get involved with the 2020 election! <br>
+          * ThinQ.tv is for people who like to keep themselved well-informed to have conversations about current events - politics, science, social justice.
+        </p>
+        <br>
+          <h3 class ="pt-1 pb-1 mb-1 text-danger"><strong>HELP US MOTIVATE OTHERS TO GET OUT THE VOTE:</strong></h3>
+         <p class= "paragraph2">* Invite friends & family to conversations when you'll be there so you can participate together.</p>
+         <p- class= "paragraph2">- <a href="mailto:?&subject=Join%20me%20for%20conversations%20about%202020%20elections%20on%20ThinQ.tv!&body=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations." class = "btn btn-danger btn-lg">E-mail <span class="glyphicon glyphicon-envelope"></span></a></p>
+      
+      <p class = "paragraph2">- Spread the word about <strong>THINQ.TV</strong> via <% domainurl = "http://www.ThinQ.tv" %>
                 <% desc = "Participate in Conversations about the 2020 election!"%>
-              
-                <!-- Share -->
-                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-                
-                  <!-- Facebook Share -->
-                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"
+                            <!-- Facebook -->                    
+
+                 <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"
                     onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse',
                     'newwindow',
                     'width=600,height=400,top=100,left=300');
                     return false;">
                     <img src="<%= asset_url('social-share-button/facebook.png') %>"></img>
                   </a>
-                  <!-- Twitter Tweet -->
+                     <!-- Twitter -->
                   <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections!%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations.&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
-                  <!-- LinkedIn Share -->
-                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
-                <!-- </div> -->
-        </p>
-        <!-- </div> -->
-      </div>
-  </div>
+                     <!-- LinkedIn -->
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open('https://www.linkedin.com/uas/login?session_redirect=https%3A%2F%2Fwww.linkedin.com%2FshareArticle%3Fmini%3Dtrue%26url%3Dhttp%3A%2F%2Fwww.ThinQ.tv%26title%3DThinQTV%26summary%3DParticipate%2520in%2520Conversations%2520about%2520the%25202020%2520election%21', 'newwindow',
+                    'width=600,height=400,top=100,left=300'); 
+                    return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
+     </p>                 
+     </div>
+   </div>
+   <br>
+   
+</div>  
+<br>
+
 
 <div class="container">
 <div class="row" >
-  <div class="col-lg-6 col-md-12 col-sm-12" style="margin-bottom: 60px;">
+  <div class="col-lg-6 col-md-12 col-sm-12  mb-2"">
     <div class="cardHolder">
       <div class="cardFlip">
         <div class="frontSide">
           <%= image_tag("activities.jpg")%>
-          <h3 style = " padding-top: 10px; font-weight: bold; color:white">Ideas for what to talk about: </h3>
+          <h3 class = "pt-1"><strong>Ideas for what to talk about: </strong></h3>
         </div>
       <div class="backSide">
           <p>
@@ -77,11 +82,11 @@
       <div class="cardFlip">
         <div class="frontSide" >
           <%= image_tag("question.jpg")%>
-          <h3 style = "padding-top: 10px; font-weight: bold; color:white">Questions? </h3>
+          <h3 class = "pt-1"><strong>Questions?</strong></h3>
         </div>
       <div class="backSide">
           <p>
-            - Drop in to any of the Study Hall hours listed on the <%= link_to 'ThinQ.tv Study Hall schedule', studyhall_path %> so we can meet you. <br><br>
+            - Drop in to any of the conversations hosted by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', root_path %> so we can meet you. <br><br>
           </p>
         </div>
       </div>
@@ -89,6 +94,7 @@
   </div>
 </div>
 </div>
+<br>
 
  <script>
    $(document).ready(function(){

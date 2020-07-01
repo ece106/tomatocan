@@ -1,6 +1,4 @@
-
-
-.paragraph1 {
+paragraph1 {
   
   font-size: 18px; 
   padding-top: 2px; 
@@ -160,4 +158,45 @@
     margin-top: 2em;
     margin-bottom: 2em;
     border-radius: 10px;
+}
+
+.box
+{
+    position: relative;
+}
+
+.bottom-left 
+{
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+.img-squares 
+{
+height: 331.917px;
+min-width: auto;
+width:100%;
+}
+
+.background-web
+{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; height: 400px;
+}
+
+.background-team
+{
+  background-image: url(team.jpg);
+}
+
+.background-drspeech
+{
+  background-image: url(audience.jpg);
+}
+
+.text-white
+{
+  color:white;
 }
