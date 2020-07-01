@@ -1,108 +1,130 @@
-<div class="box" style="background: url( <%= asset_path 'audience.jpg' %> ); background-repeat: no-repeat; background-position: center; background-size: cover; height: 400px; ">
-<p style="padding-left: 80px;">
+<section class="box" style="background: url( <%= asset_path 'audience.jpg' %> ); background-repeat: no-repeat; background-position: center; background-size: cover; height: 400px; ">  
+</section>
+<div class="box background-web background-audience">
+<h1 class="bottom-left"><strong>
   DR. LISA SCHAEFER <br>
-  KEYNOTES, PODCASTS, AND NEWS SEGMENTS : <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link" style="font-size: 30px; color: #ecd7c6;">info@ThinQ.tv</a>
-</p>      
+  KEYNOTES, PODCASTS, AND NEWS SEGMENTS : <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link text-warning">info@ThinQ.tv</a>
+</strong></h1>  
+
 </div>
 <%= render 'layouts/flash_messages'%>
-<div class="row" >
-  <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
-          <div class="col-md-3 col-sm-4" > <br>
-            <%= image_tag("lisaSpeaks.jpg", float: "right", width: "90%", height: "290")%>
+<section class="row" >
+  <br><br>
+  <div class="col-lg-10 col-lg-offset-1 col-md-9 col-md-offset-1 col-xs-12">
+          <div class="col-md-3 col-sm-4"> <br>
+            <%= image_tag("lisaSpeaks.jpg", float: "right", :class=> "img-responsive img-rounded")%>
           </div>
-          <div class="col-sm-8 " style=" font-size: 18px; line-height: 1.2em">
-    <h3 class="aboutHeader" style="text-align: center; font-size: 48px">
-      Conversations to Make You ThinQ
-    </h3 >
-            <br>ThinQ.tv founder, <%= link_to "Dr. Lisa Schaefer", '/youronlinemom' %>,  earned her Ph.D. in systems engineering at Arizona State University and was a Future Vision innovator at a think tank in Washington, DC. She taught at several universities and was a volunteer Lobby Corps member on Capitol Hill for a women’s organization. Dr. Schaefer is the writer/producer of Budget Justified, a true story about #metoo and other shenanigans at the FAA, and Lisa's 80s Catholic High School Movie, a true comedy about class clown twins versus math girl. She has spoken at many universities, conferences, and cable television shows.
-
+         <div class="col-sm-9">
+            <h1 class="aboutHeader text-center">
+              Conversations to Make You ThinQ
+            </h1>
+            <br>
+            <h4>
+              ThinQ.tv founder, <%= link_to "Dr. Lisa Schaefer", '/youronlinemom' %>,  earned her Ph.D. in systems engineering at Arizona State University and was a Future Vision innovator at a think tank in Washington, DC. She taught at several universities and was a volunteer Lobby Corps member on Capitol Hill for a women’s organization. Dr. Schaefer is the writer/producer of Budget Justified, a true story about #metoo and other shenanigans at the FAA, and Lisa's 80s Catholic High School Movie, a true comedy about class clown twins versus math girl. She has spoken at many universities, conferences, and cable television shows.
+            </h4>
           </div>
-          <div class="col-sm-8 " style="font-size: 18px; line-height: 1.2em; font-style: italic;"> 
-            <br>Invite Lisa to speak on your podcast <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a> 602-888-3089<br><br> 
+          <div class="col-sm-8"> 
+            <h4>
+            <em>Invite Lisa to speak on your podcast <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a> 602-888-3089<br><br> 
+            </em>
+            </h4>
           </div>
   </div>
-</div>
-<div class="row" >
+</section>
+<br><br>
+<section class="row" >
   <div class="col-lg-10 col-lg-offset-1 col-md-9 col-md-offset-1 col-xs-12">
-    <h3 class="speaking" >
-      <span>Speaking Topics</span>
-    </h3 >
+    <h1 class="speaking text-primary text-center" >
+      <strong><span>Speaking Topics</span></strong>
+    </h1>
       Inspired by her years of university professor experience, Dr. Schaefer's talks are very interactive where she asks the audience as many questions as they ask her. An avid learner as well as teacher, she understands that the professor always learns from the students.<br>
-      <hr class="one">
-      <h4 style="display:inline; font-weight: bolder; font-size: 20px; ">  Media For Civic Engagement: How You Can Get Out the Vote with Video Chat </h4><br>
+      <br><hr class="one">
+      <h4 class="text-center">
+      <strong>  
+        Media For Civic Engagement: <br>
+        How You Can Get Out the Vote with Video Chat 
+      </strong></h4>
       Instead of the paradigm of an organization inviting people to listen to one person talk on social media, ThinQ.tv is for grassroots movements to motivate people through small group conversations. It’s similar to going to a cocktail party on Zoom. We're discussing about issues important in the 2020 election. Let's talk about how you can make the world a better place one conversation at a time! <br><br>
       <hr class="one">
-      <h4 style="display:inline; font-weight: bolder; font-size: 20px; "> For Womens Podcasts & News:
-      Toward a Sexual Harassment-Free Internet </h4><br>
+      <h4 class="text-center"><strong> 
+      For Womens Podcasts & News:
+      Toward a Sexual Harassment-Free Internet </strong></h4>
       Live video is becoming more prominent in web platforms and phone apps. We can work together to lead a culture where people don't look the other way when creepiness happens.
-      <br><br>
-    <h3 class="aboutHeader" style="font-size: 32px; text-align: center; " >
-      Where Dr. Lisa Spread The Word
-    </h3 >
   </div>
-</div>
-<div class="container">
-<div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; ">
-            <%= image_tag("ignite.png",  class:'img-responsive', width: "200")%>
+</section>
+<br><br>
+<section class="container">
+<h1 class="aboutHeader text-center" >
+      Where Dr. Lisa Spread The Word
+    </h1 ><br>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("ignite.png",  class:'img-responsive', width: "200", height: "200")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; ">
-            <%= image_tag("utoronto.png", class:'img-responsive',width: "200")%>
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("utoronto.png", class:'img-responsive',width: "200", height: "200")%>
           </div>
 
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; ">
-            <%= image_tag("jiaotong.png", class:'img-responsive',width: "200")%>
+          <div class="col-lg-3 col-md-4 col-sm-4" >
+            <%= image_tag("jiaotong.png", class:'img-responsive',width: "200", height: "200")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; ">
-            <%= image_tag("rubyrails.png" , class:'img-responsive')%>
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("rubyrails.png" , class:'img-responsive', height: "200")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px;">
-            <%= image_tag("seedspot.png", class:'img-responsive',width: "200" )%>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("seedspot.png", class:'img-responsive',width: "200", height: "150" )%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; padding-top: 20px;">
-            <%= image_tag("pureheart.png", class:'img-responsive', width: "250")%>
+          <div class="col-lg-3 col-md-4 col-sm-4" >
+            <%= image_tag("pureheart.png", class:'img-responsive', width: "250", height: "150")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; padding-top: 20px;">
-            <%= image_tag("sttheresaphx.jpg", class:'img-responsive' ,width: "250")%>
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("sttheresaphx.jpg", class:'img-responsive' ,width: "250", height: "150")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; ">
-           <%= image_tag("stmary.png", class:'img-responsive', width: "250")%>
+          <div class="col-lg-3 col-md-4 col-sm-4" >
+           <%= image_tag("stmary.png", class:'img-responsive', width: "185", height: "80")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; ">
-            <%= image_tag("marymount.png", class:'img-responsive', width: "350")%>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-4" >
+            <%= image_tag("marymount.png", class:'img-responsive', width: "200", height: "150")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; width: 230px; background-color:#77aadd; padding-top: 10px; ">
-            <%= image_tag("umary.png", class:'img-responsive', width: "150")%>
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("umary.png", class:'img-responsive', id: 'bg-White-Text',width: "230", height: "150")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; ">
-            <%= image_tag("1mcups.png", class:'img-responsive', width: "200")%>
+          <div class="col-lg-3 col-md-4 col-sm-4" >
+            <%= image_tag("1mcups.png",  class:"img-responsive", width: "200", height: "150")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; width: 280px;">
-            <%= image_tag("channel10.jpg", class:'img-responsive', width: "350")%>
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("channel10.jpg", class:'img-responsive', width: "220", height: "180")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 130px; width: 220px; padding-top: 2px; margin-right: 20px;">
-            <%= image_tag("iheart.jpg", class:'img-responsive')%>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-4" >
+            <%= image_tag("iheart.jpg", class:'img-responsive', height: "130")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; width: 240px; margin-right: 20px;">
-            <%= image_tag("kojonam.jpg", class:'img-responsive')%>
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("kojonam.jpg", class:'img-responsive', height: "170")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; width: 220px;margin-right: 20px;">
-            <%= image_tag("abc.jpg", class:'img-responsive')%>
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <%= image_tag("abc.jpg", class:'img-responsive', height: "170")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; width: 240px;margin-right: 20px;">
-            <%= image_tag("founder.png", class:'img-responsive')%>
+          <div class="col-lg-3 col-md-4 col-sm-4" >
+            <%= image_tag("founder.png", class:'img-responsive', height: "170")%>
           </div>
-</div><br><br>
-</div>
+    </div>
+<br><br>
 <br>
-  <div class="col-lg-7 col-lg-offset-1 col-md-8 col-md-offset-1 col-xs-12 ">
-    <h4 style="text-align: center "> 
+    <h4 class="text-center"> 
       And many other universities and technical organizations
     </h4>  
-  </div>
+
+   
+  </section>
 <br><br><br>
-<div class="container" style=" margin-left: 10px; margin-right: 10px; max-width: 920px; margin: auto;">
-<p style=" padding-top: 10px;color : #8C1D40; margin-bottom: 0px;font-size: 32px; font-family: essonnes-headline, Georgia, serif;  ">Invite Dr. Schaefer to Speak </p>
-<hr class="one" style="margin-top: 0px; ">
+<div class="container text">
+<h1 class="aboutHeader text-left" >Invite Dr. Schaefer to Speak </h1>
+<hr class="one" >
 <%= render partial: "layouts/speakingmessage" %>
 </div>
