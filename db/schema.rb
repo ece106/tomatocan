@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer "guests"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "email"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
