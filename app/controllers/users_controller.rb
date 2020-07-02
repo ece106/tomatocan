@@ -9,9 +9,7 @@ class UsersController < ApplicationController
   #Where did this method go?
 
   def index
-    userswithpic = User.where( "profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'
-       OR (profilepicurl SIMILAR TO 'http%' AND
-       profilepicurl SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)%') ")
+    userswithpic = User.where("profilepic SIMILAR TO '%(jpg|gif|tif|png|jpeg|GIF|JPG|JPEG|TIF|PNG)'")
     userswithpicorder = userswithpic.order('updated_at DESC')
     @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
   end
@@ -34,7 +32,7 @@ class UsersController < ApplicationController
     currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
       @displayconvo = currconvo
-    end  
+    end
 
     currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
     @otherconvos = []
@@ -169,8 +167,7 @@ class UsersController < ApplicationController
     #    @user.latitude = request.location.latitude #geocoder has become piece of junk
     #    @user.longitude = request.location.longitude
     if @user.save
-      sign_in @user
-      redirect_to user_profileinfo_path(current_user.permalink)
+      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
       UserMailer.with(user: @user).welcome_email.deliver_later
     else
        redirect_to new_user_signup_path, danger: signup_error_message
@@ -183,6 +180,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       bypass_sign_in @user
+      updateEmailMsg
       redirect_to user_profile_path(current_user.permalink)
     else
       #      flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
@@ -227,12 +225,19 @@ class UsersController < ApplicationController
 
   private
 
+  def updateEmailMsg
+    unless current_user.email.eql? params[:user][:email]
+      flash[:info] = "A confirmation message for your new email has been sent to: " + params[:user][:email]
+      flash[:info] += " to save changes confirm email first"
+    end
+  end
+
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-                                 :twitter, :title, :profilepic, :profilepicurl, :remember_me,
-                                 :facebook, :address, :latitude, :longitude, :youtube1, :youtube2,
-                                 :youtube3, :videodesc1, :videodesc2, :videodesc3, :updating_password,
+                                 :twitter, :title, :profilepic, :remember_me,
+                                 :facebook, :youtube1, :youtube2,
+                                 :youtube3, :updating_password,
                                  :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
   end
 

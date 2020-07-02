@@ -10,26 +10,19 @@
     <table class="table table-hover" id=calendar>
       <tbody>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
-        <% user = User.find(event.usrid) %>
-        <% i += 1 %>  
-        <tr>
-          <td class=col-xs-3>
-            <% rsvpeople = "Join us!" %>
-            <% rsvpusers = event.users %>
-            <% if rsvpusers.count > 0 %>
-              <% rsvpusers.each do |rsvpuser| %>
-                <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
+          <% user = User.find(event.usrid) %>
+          <% i += 1 %>  
+          <tr>
+            <td class=col-xs-2>
+              <% rsvpeople = "Join us!" %>
+              <% rsvpusers = event.users %>
+              <% if rsvpusers.count > 0 %>
+                <% rsvpusers.each do |rsvpuser| %>
+                  <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
+                <% end %>
               <% end %>
-            <% end %>
 
-            <% if event.topic == "Study Hall" %>
-              <div id = "calendar-event">
-                <%= link_to "Study Hall", event, id: "calendar-event", title: event.name %>
-              </div>
-            <% else %>
-              <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
-            <% end %> 
-
+            <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
             <%= link_to user.name, user.permalink, title: rsvpeople %>
 
             <% if user_signed_in? %>
@@ -40,7 +33,6 @@
           </td>
 
           <td class=col-xs-2>
-            <% edt = event.start_at + 3.hours %>
             <span style="font-size:125%;" id=calendar-time-day<%=i%>></span>
             <br>
             <span style="font-size:90%;"id=calendar-time<%=i%>></span>
@@ -65,7 +57,8 @@
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-              <%= link_to " Join Conversation NOW ", request.base_url + "/" + user.permalink + "/viewer", class: "btn btn-primary btn-sm fa fa-video-camera" %>             
+              <%= link_to " Join Conversation NOW ", user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              
             <% else %>
               <%= form_for(@rsvp) do |f| %>
                 <% if @rsvp.errors.any? %>

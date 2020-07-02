@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_email"
     t.string "topic"
     t.text "attending", default: [], array: true
+    t.index ["start_at", "topic"], name: "index_events_on_start_at_and_topic", unique: true
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
@@ -185,17 +186,12 @@ ActiveRecord::Schema.define(version: 201309200000000) do
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.text "ustreamvid"
-    t.text "ustreamsocial"
     t.string "twitter"
     t.string "facebook"
-    t.string "pinterest"
     t.string "youtube"
     t.string "genre1"
     t.string "genre2"
     t.string "genre3"
-    t.string "blogurl"
-    t.string "profilepicurl"
     t.string "profilepic"
     t.string "author"
     t.text "about"
@@ -213,18 +209,10 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "permalink"
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
     t.string "slug"
     t.text "youtube1"
     t.text "youtube2"
     t.text "youtube3"
-    t.string "videodesc1"
-    t.string "videodesc2"
-    t.string "videodesc3"
-    t.string "blogradio"
-    t.text "blogtalkradio"
     t.string "stripeid"
     t.string "stripe_customer_token"
     t.datetime "stripesignup"
@@ -235,6 +223,10 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.text "blockedBy", default: [], array: true
     t.integer "last_viewed"
     t.text "BlockedUsers", default: [], array: true
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
