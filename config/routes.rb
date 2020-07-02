@@ -82,6 +82,9 @@ match '/merchandises/new' => 'merchandises#new',                          :as =>
   match '/:permalink/dashboard'      => "users#dashboard",      :as => :user_dashboard, via: 'get'
   post '/:permalink/markfulfilled'   => 'users#markfulfilled',  :as => :markfulfilled_user
 
+  post '/users/block'               => "users#block"
+  post '/users/unblock'             => "users#unblock"
+
   # get '/:friendly_id', to: 'groups#show'
 
   resources :merchandises do
