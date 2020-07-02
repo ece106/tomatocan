@@ -69,7 +69,7 @@
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
-            Attendees of <%= @user.permalink %>'s conversation
+            Attendees of <%= @user.name %>'s conversation
           </div>
           <%= render 'layouts/attendees' %>
         </div>
@@ -86,7 +86,7 @@
           <div class = "container">
             <% @otherconvos.each do |t| %>
               <%host=User.find(t.usrid)%>
-              <%= link_to t.name, "https://thinQtv.herokuapp.com/" + host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
+              <%= link_to t.name, host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
             <%end%>
           </div>
         </div>
@@ -96,7 +96,6 @@
       <div class="container">
         <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 20px; margin-left: -20px">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
           <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
-            <p>- Are you using Safari or Edge? Close that and use Chrome or Firefox. - or -<br>
             - Reload the page. (Press F5) - or -<br>
             - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
             - Turn up the volume on your speakers. - or - <br>
