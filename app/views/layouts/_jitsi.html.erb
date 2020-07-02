@@ -1,18 +1,18 @@
 <script src="https://meet.jit.si/external_api.js"></script>
-<% username = '' %>
-	<% if user_signed_in? %> 
-		<% username = current_user.name%>
-	<% else %>
-		<% username = "thinqer"%>
-	<% end %>
+
+<% username = 'thinqer' %>
+<% if user_signed_in? %> 
+	<% username = current_user.name %>
+<% end %>
+
 <script>
 	jQuery(document).ready(function($) {
 		var domain = "meet.jit.si";
 		var options = {
-			roomName: "<%= params[:chatrm] %>djfklasdjfkldas",
+			roomName: "<%= params[:chatrm] %>",
 			parentNode: document.querySelector('#meet'),
 			userInfo: {
-				displayName: <%= username %>,
+				displayName: "<%= username %>",
 			}
 		}
 		var api = new JitsiMeetExternalAPI(domain, options);
