@@ -13,7 +13,7 @@
           <% end %>
           <a style="padding:0px 0px 0px 5px;" href="<%= request.base_url %>/<%= user.permalink %>"><%= user.name %></a>
         </div>
-        <% if current_user.permalink == @user.permalink %>
+        <% if current_user.permalink == @user.permalink && user.permalink != @user.permalink %>
           <div class="col-sm-3" style="margin-top:3px">
               <%= button_to 'Block', action: :block, :to_block => user%>
           </div>
