@@ -18,7 +18,25 @@
         </div>
         <% #if current_user.permalink == @user.permalink %>
           <div class="col-sm-3" style="margin-top:3px">
-            <%= button_to 'Block', action: :block, :to_block => user%>
+          <button id="button">a word</button>
+          <script>
+            var toggle = true
+            if (toggle) {
+              $("#button").click(function(e) {
+                  e.preventDefault();
+                  $.ajax({
+                    type: "POST",
+                    url: "/users/block",
+                    data: {to_block: <%= user %>},
+                    dataType: "text"
+                  })
+                  toggle = false
+                } else {
+                  toggle = true
+                }
+          </script>
+              <%= button_to 'Block', action: :block, :to_block => user%>
+
           </div>
         <% #end %>
       <% end %>

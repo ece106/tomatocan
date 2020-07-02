@@ -216,6 +216,12 @@ class UsersController < ApplicationController
     User.find_by_id(params[:to_block]).update({'blockedBy': array << @user.permalink})
   end
 
+  def unblock
+    array = User.find_by_id(params[:to_block]).blockedBy
+    array -= [User.find_by_id(params[:to_block])]
+    User.find_by_id(params[:to_block]).update({'blockedBy': array})
+  end
+
   private
 
   def user_params
