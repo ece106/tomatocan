@@ -220,13 +220,13 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "authentication_token", limit: 30
     t.string "provider"
     t.string "uid"
-    t.text "blockedBy", default: [], array: true
-    t.integer "last_viewed"
-    t.text "BlockedUsers", default: [], array: true
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.text "blockedBy", default: [], array: true
+    t.integer "last_viewed"
+    t.text "BlockedUsers", default: [], array: true
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
