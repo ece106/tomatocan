@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   post '/:permalink/markfulfilled'   => 'users#markfulfilled',  :as => :markfulfilled_user
 
   post '/users/block'               => "users#block"
+  post '/users/unblock'             => "users#unblock"
 
   # get '/:friendly_id', to: 'groups#show'
 
