@@ -49,14 +49,14 @@ class PurchaseTest < ActiveSupport::TestCase
   test '#purchase_anonymous? for merchandise_purchase should return false' do
     assert_equal @merchandise_purchase.send(:purchase_anonymous?), false
   end
-
+  #email field is the email of the anonymous buyer
+  #user_id is the id of the seller the one providing the
   test '#anonymous_merchandise_payment' do
-    @anon_merch_purchase.send(:purchase_anonymous?)
-
     # Setup payment information
     @anon_merch_purchase.setup_payment_information
 
     # Create and update purchase with token
+
     stripe_card_token = create_token
     @anon_merch_purchase.stripe_card_token = stripe_card_token.id
 
