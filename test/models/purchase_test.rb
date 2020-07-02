@@ -26,6 +26,25 @@ class PurchaseTest < ActiveSupport::TestCase
     @anon_donation_purchase.update_attribute(:merchandise_id, @merchandise_as_donation.id)
   end
 
+  #VALIDATIONS
+  test "author_id presence" do
+    newPurchase = Purchase.create(pricesold: 12.0, authorcut: 10);
+    assert_not newPurchase.valid?
+    assert_not_empty newPurchase.errors[:author_id]
+  end
+
+  test "pricesold presence" do
+    newPurchase = Purchase.create(author_id: 1, authorcut: 10);
+    assert_not newPurchase.valid?
+    assert_not_empty newPurchase.errors[:pricesold]
+  end
+
+  test "authorcut presence" do
+    newPurchase = Purchase.create(author_id: 1, pricesold: 12.0);
+    assert_not newPurchase.valid?
+    assert_not_empty newPurchase.errors[:authorcut]
+  end
+
   test '#calculate_amount returns the correct value' do
     expected_value = @merchandise_purchase.send(:calculate_amount, @merchandise_with_attachment.price)
     assert_equal expected_value, 700
@@ -49,14 +68,12 @@ class PurchaseTest < ActiveSupport::TestCase
   test '#purchase_anonymous? for merchandise_purchase should return false' do
     assert_equal @merchandise_purchase.send(:purchase_anonymous?), false
   end
-  #email field is the email of the anonymous buyer
-  #user_id is the id of the seller the one providing the
+
   test '#anonymous_merchandise_payment' do
     # Setup payment information
     @anon_merch_purchase.setup_payment_information
 
     # Create and update purchase with token
-
     stripe_card_token = create_token
     @anon_merch_purchase.stripe_card_token = stripe_card_token.id
 
@@ -68,7 +85,6 @@ class PurchaseTest < ActiveSupport::TestCase
   end
 
   test '#anonymous_donation' do
-    @anon_donation_purchase.send(:purchase_anonymous?)
 
     # Setup payment information
     @anon_donation_purchase.setup_payment_information
