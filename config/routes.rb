@@ -16,22 +16,23 @@ Rails.application.routes.draw do
   get "attachments/download"
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
-  match 'home',           to: 'static_pages#home', via: 'get'
-  match 'faq',            to: 'static_pages#faq', via: 'get'
-  match 'getinvolved',    to: 'static_pages#getinvolved', via: 'get'
-  match 'boardofdirectors',        to: 'static_pages#boardofdirectors', via: 'get'
-  match 'tos',            to: 'static_pages#tos', via: 'get'
-  match 'livestream',     to: 'static_pages#livestream', via: 'get'
-  match 'ux',             to: 'static_pages#chat', via: 'get'
-  match 'vieweronhost',   to: 'static_pages#vieweronhost', via: 'get'
-  match 'jointheteam',    to: 'static_pages#jointheteam', via: 'get'
-  match 'bystanderguidelines',    to: 'static_pages#bystanderguidelines', via: 'get'
-  match 'drschaeferspeaking',     to: 'static_pages#drschaeferspeaking', via: 'get'
-  match 'seniorliving',   to: 'static_pages#seniorliving', via: 'get'
-  match 'studyhall',      to: 'static_pages#studyhall', via: 'get'
-  match 'blocked',        to: 'static_pages#blocked', via: 'get'
-  match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
-  match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'
+  match 'home',                     to: 'static_pages#home',                via: 'get'
+  match 'faq',                      to: 'static_pages#faq',                 via: 'get'
+  match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
+  match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
+  match 'tos',                      to: 'static_pages#tos',                 via: 'get'
+  match 'livestream',               to: 'static_pages#livestream',          via: 'get'
+  match 'ux',                       to: 'static_pages#chat',                via: 'get'
+  match 'vieweronhost',             to: 'static_pages#vieweronhost',        via: 'get'
+  match 'jointheteam',              to: 'static_pages#jointheteam',         via: 'get'
+  match 'bystanderguidelines',      to: 'static_pages#bystanderguidelines', via: 'get'
+  match 'drschaeferspeaking',       to: 'static_pages#drschaeferspeaking',  via: 'get'
+  match 'seniorliving',             to: 'static_pages#seniorliving',        via: 'get'
+  match 'studyhall',                to: 'static_pages#studyhall',           via: 'get'
+  match 'blocked',                  to: 'static_pages#blocked',             via: 'get'
+  match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
+  match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
+match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
   resources :merchandises
   resources :rsvpqs
@@ -79,10 +80,7 @@ Rails.application.routes.draw do
   match '/:permalink/changepassword' => "users#changepassword", :as => :user_changepassword, via: 'get'
   match '/:permalink/controlpanel'   => "users#controlpanel",   :as => :user_controlpanel, via: 'get'
   match '/:permalink/dashboard'      => "users#dashboard",      :as => :user_dashboard, via: 'get'
-
   post '/:permalink/markfulfilled'   => 'users#markfulfilled',  :as => :markfulfilled_user
-
-  post '/users/block'               => "users#block"
 
   # get '/:friendly_id', to: 'groups#show'
 
