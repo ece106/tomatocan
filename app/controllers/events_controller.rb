@@ -1,4 +1,3 @@
-
 class EventsController < ApplicationController
 #  before_action :authenticate_user!, except: [:index, :show]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
@@ -47,17 +46,9 @@ class EventsController < ApplicationController
   def create
     convert_time # call convert time method
     @event = current_user.events.build(event_params)
+
     respond_to do |format|
-	
-	#parecer ser que todo funciona nms pruebala otra vez y checa la base de datos no agrege cosas que no debe de.
-	
-	#print "\n\n\n\n\n\n\nAQUI EMPIEZA LA FUNCION\n#{@event.name}\n\n\n\n\n\n\n" #BORRA ESTO
-    
-	@event.name = (@event.name).strip #removes front and trailing spaces
-	
-	print"\neste es todo el string (#{@event.name})\n"
-	
-      if ((@event.save) && (@event.name != ""))
+      if @event.save
         @event.update_attribute(:user_id, params[:event][:usrid])
         user = User.find(@event.user_id)
         offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
@@ -67,14 +58,12 @@ class EventsController < ApplicationController
         EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
-		#print"\nConversation Saved\n"
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
-		#print"\nConversation not saved\n"
-      end# if @event.save ends here
-	end # respond_to ends here
-  end # def creat ends here
+      end
+    end
+  end
 
   # PUT /events/1.json
   def update
@@ -97,7 +86,7 @@ class EventsController < ApplicationController
 
   def convert_time
     curr_time_offset = params[:timeZone]
-	now = Time.now
+    now = Time.now
     start_date = Time.new(
       params[:event]["start_at(1i)"], # year
       params[:event]["start_at(2i)"], # month
@@ -105,7 +94,7 @@ class EventsController < ApplicationController
       params[:event]["start_at(4i)"], # hour
       params[:event]["start_at(5i)"], # minute
       0,                               # seconds
-      params[:timeZone]              # timeZone
+      params[:timeZone]                # timeZone
     )
 
     # calculate local time in pacific time

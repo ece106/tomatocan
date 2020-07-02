@@ -7,7 +7,7 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
 
     user_sign_in @test_user
 
-    visit new_event_path
+    visit edit_event_path @event
   end
 
 =begin
