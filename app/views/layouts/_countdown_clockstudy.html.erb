@@ -6,7 +6,7 @@
             <div id="eventCurrentdiv">
               <h3>We're having Study Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
-              <%= link_to " Join Study Hall NOW ", "https://thinqtv.herokuapp.com/" + @hoststudy.permalink + "?chatrm=Study%20Hall", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
+              <%= link_to " Join Study Hall NOW ", @hoststudy.permalink + "/viewer?chatrm=Study%20Hall", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -15,7 +15,7 @@
             <div id="eventCurrentdiv">
               <h3>We're working on User Research about <%= link_to @namestudy, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
-              <%= link_to " Join User Research NOW ", "https://thinqtv.herokuapp.com/" + @hostresearch.permalink + "?chatrm=User%20Research", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
+              <%= link_to " Join User Research NOW ", @hostresearch.permalink + "/viewer?chatrm=User%20Research", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
