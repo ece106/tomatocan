@@ -47,6 +47,7 @@ class RsvpqsController < ApplicationController
     @rsvp = Rsvpq.find(params[:id])
   end
 
+
   def rsvpq_params
     params.require(:rsvpq).permit(:event_id, :user_id, :guests, :email)
   end
