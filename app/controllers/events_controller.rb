@@ -37,6 +37,14 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def destroy
+
+    if @rsvpusers == @user
+      @deleteRSVP=Rsvpq.find(params[:id])
+      @deleteRSVP.destroy
+      end
+    redirect_to home_path, :notice => "Your RSVP has been Deleted!"
+  end
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
