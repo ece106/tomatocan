@@ -32,7 +32,7 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
   test "can cancel edit profile page" do
     find(class: "profile-settings-tab", text: "Profile").click
 
-    click_on id: "cancelProfileButtonn"
+    click_on id: "cancelProfileButton"
 
     assert_equal current_path, "/#{@test_user.permalink}"
   end
@@ -40,7 +40,7 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
   test "can save edit profile page" do 
     find(class: "profile-settings-tab", text: "Profile").click
 
-    click_on id: "saveProfileButtonn"
+    click_on class: "btn btn-primary"
 
     assert_equal current_path, "/#{@test_user.permalink}"
   end

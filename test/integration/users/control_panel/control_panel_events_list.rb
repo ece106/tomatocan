@@ -4,8 +4,7 @@ require "capybara-screenshot/minitest"
 class ControlPanelEventsList < ActionDispatch::IntegrationTest
   setup do
     @test_user      = users :confirmedUser
-    @test_event_one = events :three
-    @test_event_two = events :four
+    @test_event_one = events :confirmedUser_event
     @past_event     = events :past_event
 
     sign_in
@@ -14,21 +13,18 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "upcoming events has the correct events" do
-    # find(class: "events-tab", text: "Conversations").click
+    find(class: "events-tab", text: "Conversations").click
 
-    within("table#event-list-table") do
+    within(id: "event-list-table") do
       assert has_content? @test_event_one.name
       assert has_content? @test_event_one.start_at.strftime("%A %B %d, %Y at %I:%M %p")
-
-      assert has_content? @test_event_two.name
-      assert has_content? @test_event_two.start_at.strftime("%A %B %d, %Y at %I:%M %p")
     end
   end
 
   test "can edit event name in upcoming events panel" do
     find(class: "events-tab", text: "Conversations").click
 
-    within("table") do
+    within(id: "event-list-table") do
       click_on "Edit", match: :first
     end
 
@@ -53,18 +49,18 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   end
 
   test "upcoming events has the correct count" do
-    find(class: "events-list")
+    find(class: "events-tab", text: "Conversations").click
     
-    within(class: "table") do
+    within(id: "event-list-table") do
       upcoming_events_count = find_all(".event-name").to_a.count
-      assert_equal upcoming_events_count, 2
+      assert_equal upcoming_events_count, 1
     end
   end
 
   test "past shows has the correct events" do
     find(class: "events-tab", text: "Conversations").click
 
-    within(".past-events-list") do
+    within(class: "past-events-list") do
       assert has_content? @past_event.name
       assert has_content? @past_event.start_at.strftime("%A %B %d, %Y at %I:%M %p")
     end
@@ -73,9 +69,9 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   test "past shows has the correct count" do
     find(class: "events-tab", text: "Conversations").click
 
-    within(".past-events-list") do
+    within(class: "past-events-list") do
       past_events_count = find_all(".past-event-name").to_a.count
-      assert_equal past_events_count, 2
+      assert_equal past_events_count, 1
     end
   end
 
