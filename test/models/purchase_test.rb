@@ -25,6 +25,9 @@ class PurchaseTest < ActiveSupport::TestCase
     @anon_donation_purchase = purchases :anon_donation_purchase
     @anon_donation_purchase.update_attribute(:merchandise_id, @merchandise_as_donation.id)
 
+    #Pruchase no merchandises
+    @purchase_no_merchandise = purchases :donation_no_merchandise
+
     # Card
     @stripe_card_token = create_token
 
@@ -49,6 +52,7 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_not_empty newPurchase.errors[:authorcut]
   end
 
+  #Unit test
   test '#calculate_amount returns the correct value' do
     expected_value = @merchandise_purchase.send(:calculate_amount, @merchandise_with_attachment.price)
     assert_equal expected_value, 700
@@ -73,6 +77,24 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_equal @merchandise_purchase.send(:purchase_anonymous?), false
   end
 
+  test '#default_donation_payment' do
+    @purchase_no_merchandise.setup_default_donation
+
+    #anonymous donation
+
+    #stripe_card_token not present calls user_default_donation
+    @purchase_no_merchandise.stripe_card_token = @stripe_card_token.id
+    anonymousCharge = @purchase_no_merchandise.default_donation_payment
+    assert_not_nil anonymousCharge, 'Anonymous charge should not be nil'
+    assert_equal anonymousCharge.status, 'succeeded'
+
+    #stripe_card_token not present calls user_default_donation
+    #Charge to user with a stripe_customer_token
+    @purchase_no_merchandise.stripe_card_token = nil
+    noCardTokenCharge = @purchase_no_merchandise.default_donation_payment
+    assert_not_nil anonymousCharge, 'Anonymous charge should not be nil'
+    assert_equal anonymousCharge.status, 'succeeded'
+  end
   test '#anonymous_merchandise_payment' do
     # Setup payment information
     @anon_merch_purchase.setup_payment_information
@@ -102,6 +124,14 @@ class PurchaseTest < ActiveSupport::TestCase
     # Assert charge
     assert_not_nil charge, 'Stripe Charge object should not be nil.'
     assert_equal charge.status, 'succeeded'
+  end
+
+  test "#user_merchandise_payment" do
+    returning_or_first_time(@merchandise_purchase) {@merchandise_purchase.user_merchandise_payment}
+  end
+
+  test '#user_donation' do
+    returning_or_first_time(@donation_purchase) {@donation_purchase.user_donation}
   end
 
   test '#customer_first_time_and_returning' do
@@ -135,6 +165,15 @@ class PurchaseTest < ActiveSupport::TestCase
 
     assert_not_nil returning_charge, 'Charge object should not be nil for returning customer.'
     assert_equal returning_charge.status, 'succeeded'
+  end
+
+  test '#merchandise_buy_or_donate?' do
+    #initializing local @merchandise variable
+    @merchandise_purchase.setup_payment_information
+    @donation_purchase.setup_payment_information
+
+    assert_not @donation_purchase.merchandise_buy_or_donate?
+    assert @merchandise_purchase.merchandise_buy_or_donate?
   end
 
   test '#retrieve_customer_card for donation' do
@@ -183,5 +222,18 @@ class PurchaseTest < ActiveSupport::TestCase
         cvc: "123"
       }
     })
+  end
+
+  def returning_or_first_time(purchase)
+    purchase.stripe_card_token = @stripe_card_token.id
+    purchase.setup_payment_information
+    yield
+    user = User.find(purchase.user_id)
+
+    assert_not_empty user.stripe_customer_token
+
+    assert_no_changes -> {user.stripe_customer_token}, "stripe_customer_token should not change" do
+      yield
+    end
   end
 end
