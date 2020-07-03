@@ -199,65 +199,6 @@ git pull https://github.com/ece106/tomatocan.git master
 
 Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
 
-### HOW TO TEST A  TEST BRANCH
-
-How to test branches on your local machine.
-
-Go to the test branch on ece106 get the name of the test branch you want to test
-
-now go to your terminal create a new folder where the test branch will be tested.
-
-All of the steps in here will be done in the folder where you will clone the test branch
-
-cd into the folder you created for testing and rclone the testing branch with the following command
-
-```
-git clone --single-branch --branch <branchname> https://github.com/ece106/tomatocan.git
-```
-
-The following  steps will be similiar to when you were first forking and cloning your repo.
-
-Create new development and test databases for testing (This is necessary because the code that you will be testing might mess up your database)
-If you don't remember how to create a database you can use this reference https://www.guru99.com/postgresql-create-database.html
-
-DO NOT NAME YOUR DEVELOPMENT DATABASE THE SAME AS YOUR TEST DATABASE AND GIVE THEM DIFFERENT NAMES FROM THE ONES YOU'RE USING ON YOUR CODE!!!
-
-* After creating your database create the following file config/database.yml
-
-similiar to the one you have on your own code but with the new database names you just created.
-
-* Create config/environments/development.rb:
-
-Similiar to how you did before.
-
-* Now create config/initializers/aakeys.rb (DO NOT CHANGE THE NAME)
-
-Again similiar to how you have done before.
-
-run the necesarry migrations on your newly created databases
-```
->rake db:migrate
->rails db:migrate RAILS_ENV=test
-```
-
-Now you're ready to test.
-Check the conversation tab on the pull request sometimes the the person that did the pull request put information there stating what they did and what they want you to check.
-
-Important note: You need to add at least one user to do some testing on the local host. This requires you sign up into the localhost for the test branch you're testing and confirm the new user. Also
-because of the changes made to the config/environments/development.rb you will be recieving emails
-
-Now there's 3 things to check 
-
-1. The changes that were done to the code: is the new code readable, neat, and necesarry. (Make sure there is no spaghetti code, inlince CSS, and/or embedded CSS.)
-
-2. Run the tests related to the pull request: run any tests that were changed and that test the features that were recently implemented. Leave a comment in your report if you believe that the tests are insufficient or useless. Report any tests that failed.
-
-3. Lastly run rails s to test the website as a user: try the new features yourself make sure they work test for common cases and corner cases. Then test the rest of the website to make sure that the new code does not break any part of the website.
-
-Once the 3 steps are done write a small report detailing your experience and whether or not the new code works, post it in the conversation for the pull request and tell Lisa that you are done testing.
-
-Now that you're done with  testing you can delete the folder where you cloned the test branch.
-
 ### REQUIREMENTS TO REMAIN IN THE THINQ.TV INTERNSHIP PROGRAM
 
 We'll allow most appropriately-skilled college students the opportunity to earn great knowledge in the Thinq.tv internship program. Some of our interns have been fantastic teammates and have been hired for great careers after completing 160 hours of our program. However since many interns have proved to be unready for adulthood, after the first three weeks, we have minimum requirements to continued access to our time and resources:
