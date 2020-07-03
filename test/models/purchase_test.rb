@@ -24,6 +24,10 @@ class PurchaseTest < ActiveSupport::TestCase
     # Anonymous 'Donation'
     @anon_donation_purchase = purchases :anon_donation_purchase
     @anon_donation_purchase.update_attribute(:merchandise_id, @merchandise_as_donation.id)
+
+    # Card
+    @stripe_card_token = create_token
+
   end
 
   #VALIDATIONS
@@ -73,15 +77,15 @@ class PurchaseTest < ActiveSupport::TestCase
     # Setup payment information
     @anon_merch_purchase.setup_payment_information
 
-    # Create and update purchase with token
-    stripe_card_token = create_token
-    @anon_merch_purchase.stripe_card_token = stripe_card_token.id
+    # Initialize card token
+    @anon_merch_purchase.stripe_card_token = @stripe_card_token.id
 
     # Create charge
     charge = @anon_merch_purchase.anonymous_merchandise_payment
 
     # Assert charge
     assert_not_nil charge, 'Stripe Charge object should not be nil.'
+    assert_equal charge.status, 'succeeded'
   end
 
   test '#anonymous_donation' do
@@ -89,60 +93,56 @@ class PurchaseTest < ActiveSupport::TestCase
     # Setup payment information
     @anon_donation_purchase.setup_payment_information
 
-    # Create and update purchase with token
-    stripe_card_token = create_token
-    @anon_donation_purchase.stripe_card_token = stripe_card_token.id
+    # Initialize card token
+    @anon_donation_purchase.stripe_card_token = @stripe_card_token.id
 
     # Create charge
     charge = @anon_donation_purchase.anonymous_donation
 
     # Assert charge
     assert_not_nil charge, 'Stripe Charge object should not be nil.'
+    assert_equal charge.status, 'succeeded'
   end
 
-  test '#returning_customer' do
+  test '#customer_first_time_and_returning' do
     # Setup payment information
     @merchandise_purchase.setup_payment_information
 
-    # Create the token for the source
-    stripe_card_token = create_token
-    @merchandise_purchase.stripe_card_token = stripe_card_token.id
+    # Initialize card token
+    @merchandise_purchase.stripe_card_token = @stripe_card_token.id
 
     # Process buyer so buyer has a stripe_customer_token
-    @merchandise_purchase.first_time_buyer(@buyer)
-
-    # Returning charge
+    first_time_charge = @merchandise_purchase.first_time_buyer(@buyer)
     returning_charge = @merchandise_purchase.returning_customer(@buyer)
 
-    # Assert
+    assert_not_empty @buyer.stripe_customer_token, 'First time customer token should have been created'
+
     assert_not_nil returning_charge, 'Charge object should not be nil for returning customer.'
+    assert_equal returning_charge.status, 'succeeded', 'Returning customer charge should have succeeded.'
   end
 
-  test '#returning_donator' do
+  test '#donator_first_time_and_returning' do
     # Setup payment information
     @donation_purchase.setup_payment_information
 
-    # Create the token for the source
-    stripe_card_token = create_token
-    @donation_purchase.stripe_card_token = stripe_card_token.id
+    # Initialize card token
+    @donation_purchase.stripe_card_token = @stripe_card_token.id
 
-    # Process buyer so buyer has a stripe_customer_token
-    @donation_purchase.first_time_donator(@donator)
-
-    # Returning charge
+    first_time_charge = @donation_purchase.first_time_donator(@donator)
     returning_charge = @donation_purchase.returning_donator(@donator)
 
-    # Assert
+    assert_not_empty @donator.stripe_customer_token, 'First time donator token should have been created'
+
     assert_not_nil returning_charge, 'Charge object should not be nil for returning customer.'
+    assert_equal returning_charge.status, 'succeeded'
   end
 
   test '#retrieve_customer_card for donation' do
     # Setup payment information
     @donation_purchase.setup_payment_information
 
-    # Create the token for the source
-    stripe_card_token = create_token
-    @donation_purchase.stripe_card_token = stripe_card_token.id
+    # Initialize card token
+    @donation_purchase.stripe_card_token = @stripe_card_token.id
 
     # Process buyer so buyer has a stripe_customer_token
     @donation_purchase.first_time_donator(@donator)
@@ -151,6 +151,7 @@ class PurchaseTest < ActiveSupport::TestCase
     card = @donation_purchase.retrieve_customer_card(@donator)
 
     assert_not_nil card, 'Card should not be nil'
+    assert_equal card.id, @stripe_card_token[:card][:id]
   end
 
   test '#save_with_payment should throw Stripe InvalidRequestError' do
@@ -161,15 +162,13 @@ class PurchaseTest < ActiveSupport::TestCase
 
   # WIP
   test '#save_with_payment for donation' do
-    stripe_card_token_id = create_token.id
-    @donation_purchase.update_attribute(:stripe_card_token, stripe_card_token_id)
+    @donation_purchase.stripe_card_token = @stripe_card_token.id
     @donation_purchase.save_with_payment
   end
 
   # WIP
   test '#save_with_payment for merchandise purchase' do
-    stripe_card_token_id = create_token.id
-    @merchandise_purchase.update_attribute(:stripe_card_token, stripe_card_token_id)
+    @merchandise_purchase.stripe_card_token = @stripe_card_token.id
     @merchandise_purchase.save_with_payment
   end
 
