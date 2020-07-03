@@ -1,5 +1,5 @@
 <script src="https://meet.jit.si/external_api.js"></script>
-<% username = 'thinqer' %>
+<% username = 'thinQer' %>
 <% if user_signed_in? %> 
     <% username = current_user.name%>
 <% end %>
@@ -9,9 +9,9 @@
 		var domain = "meet.jit.si";
 		var options = {
 			roomName: "<%= params[:chatrm] %>",
-			parentNode: document.querySelector('#meet')
+			parentNode: document.querySelector('#meet'),
             userInfo: {
-                displayName: "<%= username %>",
+                displayName: "<%= username %>"
             }
 		}
 		var api = new JitsiMeetExternalAPI(domain, options);
