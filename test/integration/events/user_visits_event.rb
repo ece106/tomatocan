@@ -14,6 +14,12 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
 	
   end
 
+=begin
+As of 07/03/2020 all tests work
+
+tests focused on testing the conent of the user profile.
+=end
+
   test "visits event page successfully" do
     
 	page.status_code == 200

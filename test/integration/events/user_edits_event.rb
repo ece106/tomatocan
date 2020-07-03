@@ -12,10 +12,10 @@ class UserEditsEvent < ActionDispatch::IntegrationTest
   end
 
 =begin
-As of 07/02/2020 all tests work
+As of 07/03/2020 all tests work
 
 READ ME
-These tests focus on creating valid and invalid events
+These tests focus on editing events to valid and invalid attributes
 
 Note: options start at 1 so for the month option[1] = January, for day option[5] = day 5, and 
 so on.

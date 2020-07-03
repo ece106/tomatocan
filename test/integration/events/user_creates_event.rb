@@ -11,7 +11,7 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
   end
 
 =begin
-As of 07/02/2020 all tests work
+As of 07/03/2020 all tests work
 
 READ ME
 These tests focus on creating valid and invalid events
