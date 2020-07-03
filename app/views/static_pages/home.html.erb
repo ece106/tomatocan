@@ -67,23 +67,32 @@
       </div>
     </div>
     <div class="tabContainer">
+    <div class="col-md-10 col-md-offset-1 col-xs-12">
         <div class="buttonContainer" style="padding-top: 240px; float: center; width: auto; max-width: 1470px;">
           <button onclick="showPanel(0,'#f44336')">List View </button>
           <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
           <button onclick="showPanel(2,'#2196f3')">Weekly Calendar </button>
         </div>
+        
       <div class="tabPanel">
+      <div class="row" id="calendar">
+        <div class="col-xs-12">
         <%= render 'layouts/convocalendar', collection: @conversations %>
+      </div>
+      </div>
       </div>
       <div class="tabPanel">
         <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
       </div>
-      <div class="tabPanel">Tab 3:Content
+      <div class="tabPanel">
+      <div class="col-xs-12">
         <%= render 'layouts/weeklycalendar', collection: @conversations %>
+        </div>
     </div>
     </div>
-  </div>
 
+  </div>
+</div>
 <br><br><br>
     <script type="text/javascript">
       showPanel(0,'#f44336');
