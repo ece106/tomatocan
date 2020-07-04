@@ -1,6 +1,6 @@
 require 'test_helper'
 class EventsControllerTest < ActionController::TestCase
-	 include ActiveJob::TestHelper
+     include ActiveJob::TestHelper
   setup do
     @event = events(:one)
     @user = users(:one)
@@ -8,8 +8,8 @@ class EventsControllerTest < ActionController::TestCase
     @rsvpq = rsvpqs(:one)
   end
 
-  # event.usrid==1
-  # event.id==980190962
+  #event.usrid==1
+  #event.id==980190962
 
     #index
     test "#index should return all events with start at greater than current time" do
@@ -72,7 +72,7 @@ class EventsControllerTest < ActionController::TestCase
         @valid_rsvpq_one = rsvpqs(:valid_rsvpq_one)
         @valid_rsvpq_two = rsvpqs(:valid_rsvpq_two)
         rsvps = @event_three.rsvpqs
-		assert_equal rsvps.count, 2
+        assert_equal rsvps.count, 2
     end
 
     test "#show should respond to the correct format" do
