@@ -105,7 +105,7 @@ time_zone_test = "-07:00"
     click_on class: "btn btn-lg btn-primary", match: :first
 
 	assert page.has_css? "#error_explanation"
-	assert page.has_content? "Desc riptions ...URLs are not allowed in event descriptions. Keep in mind that people will be searching here for actual gatherings that they can attend, or to find out when you'll be livestreaming. They will not be searching for sites to browse. Paste all information attendees need here."
+	assert page.has_content? "Desc descriptions ...URLs are not allowed in event descriptions. Keep in mind that people will be searching here for actual gatherings that they can attend, or to find out when you'll be livestreaming. They will not be searching for sites to browse. Paste all information attendees need here."
 	
   end
 
