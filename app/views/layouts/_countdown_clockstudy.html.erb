@@ -13,7 +13,7 @@
         <% if @displayresearch.present? %> 
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
-              <h3>We're working on User Research about <%= link_to @namestudy, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></h3>  
+              <h3>We're working on User Research about <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
               <%= link_to " Join User Research NOW ", "https://thinqtv.herokuapp.com/" + @hostresearch.permalink + "?chatrm=User%20Research", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
