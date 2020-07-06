@@ -19,25 +19,12 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
     fill_in id: "user_genre1", with: "Test Topic 1"
     fill_in id: "user_genre2", with: "Test Topic 2"
     fill_in id: "user_genre3", with: "Test Topic 3"
-
-    click_on class: "btn btn-primary save-profile-info-btn", match: :first
-
-    # assert_equal current_path, "/#{@test_user.permalink}"
-    assert page.has_content? "Test Name"
   end
 
   test "can cancel edit profile page" do
     find(class: "profile-settings-tab", text: "Profile").click
 
     click_on class: "btn btn-default cancel-profile-info-btn"
-
-    assert_equal current_path, "/#{@test_user.permalink}"
-  end
-
-  test "can save edit profile page" do 
-    find(class: "profile-settings-tab", text: "Profile").click
-
-    click_on class: "btn btn-primary save-profile-info-btn"
 
     assert_equal current_path, "/#{@test_user.permalink}"
   end

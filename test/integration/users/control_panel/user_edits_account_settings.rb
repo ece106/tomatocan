@@ -28,6 +28,9 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on class: "btn btn-default change-password-btn"
 
+    fill_in id: "user_password", with: "newpassword"
+    fill_in(id: "user_password_confirmation", with: "newpassword")
+
     assert_equal current_path, "/#{@test_user.permalink}/changepassword"
   end
 
