@@ -30,16 +30,16 @@ class Purchase < ApplicationRecord
   end
 
   def merchandise_payment
-    purchase_anonymous? ? anonymous_merchandise_payment : user_merchandise_payment
+    is_anonymous? ? anonymous_merchandise_payment : user_merchandise_payment
   end
 
   def donation_payment
-    purchase_anonymous? ? anonymous_donation : user_donation
+    is_anonymous? ? anonymous_donation : user_donation
   end
 
   def default_donation_payment
     # self.author_id.nil? ? user_default_donation : anonymous_default_donation
-    self.stripe_card_token.present? ? anonymous_default_donation : user_donation
+    is_anonymous? ? anonymous_default_donation : user_donation
   end
 
   def anonymous_default_donation
@@ -143,7 +143,7 @@ class Purchase < ApplicationRecord
     card
   end
 
-  def purchase_anonymous?
+  def is_anonymous?
     self.email.present? ? true : false
   end
 
