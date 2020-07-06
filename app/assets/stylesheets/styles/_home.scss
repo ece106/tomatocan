@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet');
 
-html-body {
+html, body {
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -324,7 +324,7 @@ html-body {
     float:left;
     font-weight: bold;
   }
-  .livestreamInfo-h4 {
+  .livestreamInfo h4 {
     line-height: 1.5em; 
     padding-left: 40px; 
     clear:left;
@@ -332,7 +332,7 @@ html-body {
   .col-md-4 {
     padding: 10px 30px;
   }
-  .col-md-4-h4 {
+  .col-md-4 h4 {
     line-height: 1.5em; 
     margin-left: -15px; 
     background-color: #8C1D40; 
@@ -355,7 +355,10 @@ html-body {
       float:left;
       font-size: 25px;
     }
-    
+    .livestreamInfo h4 {
+      padding-left: 10px; 
+      clear:left;
+    }
     .col-md-4 {
       padding: 5px 20px;
     }
