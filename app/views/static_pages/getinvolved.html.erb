@@ -8,7 +8,7 @@
             </div>
           </div>
 
-<br>
+
   
  <div class = "row mb-1 pb-3 mt-1">
   <div class = "col-lg-4 col-md-12 mt-0 mb-0 p-0">
@@ -20,20 +20,19 @@
 
     <div class= "col-lg-12 col-md-12 mt-0 mb-0 p-0">
 
-      <h3 class ="pt-1 pb-1 mb-1 text-danger"><strong>WHAT IS THINQ.TV:</strong></h3>
-      <p class= "paragraph1" >
-          * A platform where people can join intellectual video chat online. It’s similar to going to a Cocktail Party on Zoom. Drop in to a conversation on the home page schedule & discover interesting conversations to motivate each other to get involved with the 2020 election! <br>
+      <h2 class ="pt-1 pb-1 mb-1 text-danger"><strong>WHAT IS THINQ.TV:</strong></h2>
+      <p class = "lead">
+          * A platform where people can join intellectual video chat online. It’s similar to going to a Cocktail Party on Zoom. Drop in to a conversation on the home page schedule & discover interesting conversations to motivate each other to get involved with the 2020 election!
+           <br>
           * ThinQ.tv is for people who like to keep themselved well-informed to have conversations about current events - politics, science, social justice.
-        </p>
-        <br>
+      </p>
           <h3 class ="pt-1 pb-1 mb-1 text-danger"><strong>HELP US MOTIVATE OTHERS TO GET OUT THE VOTE:</strong></h3>
-         <p class= "paragraph2">* Invite friends & family to conversations when you'll be there so you can participate together.</p>
-         <p- class= "paragraph2">- <a href="mailto:?&subject=Join%20me%20for%20conversations%20about%202020%20elections%20on%20ThinQ.tv!&body=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations." class = "btn btn-danger btn-lg">E-mail <span class="glyphicon glyphicon-envelope"></span></a></p>
+         <p class = "lead">* Invite friends & family to conversations when you'll be there so you can participate together.</p>
+         <p>- <a href="mailto:?&subject=Join%20me%20for%20conversations%20about%202020%20elections%20on%20ThinQ.tv!&body=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations." class = "btn btn-danger btn-lg">E-mail <span class="glyphicon glyphicon-envelope"></span></a></p>
       
-      <p class = "paragraph2">- Spread the word about <strong>THINQ.TV</strong> via <% domainurl = "http://www.ThinQ.tv" %>
+      <p class = "lead">- Spread the word about <strong>THINQ.TV</strong> via <% domainurl = "http://www.ThinQ.tv" %>
                 <% desc = "Participate in Conversations about the 2020 election!"%>
-                            <!-- Facebook -->                    
-
+                            <!-- Facebook -->                  
                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"
                     onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse',
                     'newwindow',
@@ -56,45 +55,48 @@
 <br>
 
 
-<div class="container">
-<div class="row" >
-  <div class="col-lg-6 col-md-12 col-sm-12  mb-2"">
-    <div class="cardHolder">
-      <div class="cardFlip">
-        <div class="frontSide">
-          <%= image_tag("activities.jpg")%>
-          <h3 class = "pt-1"><strong>Ideas for what to talk about: </strong></h3>
-        </div>
-      <div class="backSide">
-          <p>
-           - Current events <br><br>
-           - Social Justice <br><br>
-           - Environmental issues <br><br>
-           - TED talks <br><br>
-           - John Oliver, Hasan Minhaj, or Seth Meyers shows <br><br>
-          </p>
-        </div>
-      </div>
+  <div class = "container">
+    <div class = "row">
+
+<div class="col-lg-6 col-md-12 col-sm-12  mb-2 container-hover">
+  <%= image_tag("activities.jpg", :class => "img-squares")%>
+   <h3 class = "bg-primary text-center"><strong> IDEAS TO TALK ABOUT</strong><br><br> </h3>  
+  <div class="overlay">
+    <br>
+    <br>
+   <p class="text-center lead">
+        - Current events
+        <br>
+        <br>
+        - Social Justice
+        <br>
+        <br>
+        - Environmental issues
+        <br>
+        <br>
+        - TED talks
+        <br>
+        <br>
+        - John Oliver, Hasan Minhaj, or Seth Meyers 
+</p>
     </div>
-  </div>
-  <div class="col-lg-6 col-md-12 col-sm-12">
-    <div class="cardHolder">
-      <div class="cardFlip">
-        <div class="frontSide" >
-          <%= image_tag("question.jpg")%>
-          <h3 class = "pt-1"><strong>Questions?</strong></h3>
-        </div>
-      <div class="backSide">
-          <p>
-            - Drop in to any of the conversations hosted by Dr. Lisa Schaefer listed on the <%= link_to 'ThinQ.tv schedule', root_path %> so we can meet you. <br><br>
-          </p>
-        </div>
-      </div>
-    </div>
+</div>
+
+
+<div class="col-lg-6 col-md-12 col-sm-12  mb-2 container-hover">
+  <%= image_tag("question.jpg", :class => "img-squares")%>
+    <h3 class = "bg-primary text-center"><strong>QUESTIONS?</strong><br><br></h3>
+  <div class="overlay">
+    <br><br><br><br><br><br><br>
+    <p class="text-center lead">
+    - Drop in to any of the Study Hall hours listed on the <%= link_to 'ThinQ.tv Study Hall schedule', studyhall_path %> so we can meet you. <br><br>
+  </p>
   </div>
 </div>
-</div>
-<br>
+
+    </div>
+  </div>
+
 
  <script>
    $(document).ready(function(){
