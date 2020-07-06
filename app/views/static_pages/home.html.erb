@@ -67,7 +67,7 @@
         <%= render 'layouts/countdown_clock' %>
       </div>
     </div>
-    <div class="tabContainer">
+    <div class="tabContainer" style="max-width:100%; max-height:100%;display:block; padding-top:240px;">
         <div class="buttonContainer">
           <button onclick="showPanel(0,'#f44336')">List View </button>
           <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
@@ -79,7 +79,7 @@
       <div class="tabPanel">
         <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
       </div>
-      <div class="tabPanel">Tab 3:Content
+      <div class="tabPanel">
         <%= render 'layouts/weeklycalendar', collection: @conversations %>
     </div>
     </div>
