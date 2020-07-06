@@ -17,9 +17,9 @@ class Purchase < ApplicationRecord
     begin
       # Check for a defaut donation
       if self.merchandise_id.nil?
-        setup_default_donation 
+        setup_default_donation
         default_donation_payment
-      else 
+      else
         setup_payment_information
         merchandise_buy_or_donate? ? merchandise_payment : donation_payment
       end
@@ -39,20 +39,11 @@ class Purchase < ApplicationRecord
 
   def default_donation_payment
     # self.author_id.nil? ? user_default_donation : anonymous_default_donation
-    self.stripe_card_token.present? ? anonymous_default_donation : user_default_donation
+    self.stripe_card_token.present? ? anonymous_default_donation : user_donation
   end
 
   def anonymous_default_donation
     PaymentGateway.create_anonymous_charge(self)
-  end
-
-  def user_default_donation
-    # PaymentGateway.create_anonymous_charge(self)
-    donator            = User.find(self.user_id)
-    returning_customer = PaymentGateway.retrieve_customer(donator.stripe_customer_token)
-    self.token         = PaymentGateway.create_token(self, returning_customer)
-
-    PaymentGateway.create_charge(self)
   end
 
   def setup_default_donation
