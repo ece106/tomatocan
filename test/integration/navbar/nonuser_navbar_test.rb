@@ -15,11 +15,18 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Home'
     find_link('Home', match: :first).click
     assert_equal '/', current_path
+<<<<<<< HEAD
     assert page.has_link? 'About Us'
     find_link('About Us', match: :first).click
     assert_equal '/getinvolved', current_path
     assert page.has_link? 'Have us on your Podcast'
     find_link('Have us on your Podcast', match: :first).click
+=======
+    find_link('Discover Previous Conversations', match: :first).click
+    assert_equal '/supportourwork', current_path
+    assert page.has_link? 'Invite Us To Speak'
+    find_link('Invite Us To Speak', match: :first).click
+>>>>>>> 52036c4e623df2fefedc433cae06d9fe87d42a20
     assert_equal '/drschaeferspeaking', current_path
     assert page.has_link? 'Join the Team'
     find_link('Join the Team', match: :first).click
