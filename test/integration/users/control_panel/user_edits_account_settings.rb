@@ -11,22 +11,16 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
   end
 
   test "user edits account settings with valid attributes" do
-    test_permalink = "user123"
 
     find(class: "account-settings-tab", text: "Account").click
 
     fill_in id: "user_email", with: "test@mail.com"
-    fill_in(id: "user_permalink", with: test_permalink)
-
-    find("input[name='commit']", match: :first).click
-
-    assert page.has_content? "test@mail.com"
-    assert page.has_content? test_permalink
+    fill_in(id: "user_permalink", with: "test123")
 
     click_on class: "btn btn-primary save-acct-info-btn"
 
-    assert_equal current_path, "/#{test_permalink}"
-
+    assert_equal current_path, "/test123"
+    assert page.has_content? "test@mail.com"
   end
 
   test "user changes password" do

@@ -39,6 +39,20 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
       click_on("Study Hall", match: :first)
       assert_equal current_path, '/studyhall'
     end 
+  end
+
+  test 'should go to sign up page when clicking sign up button' do
+    assert page.has_css? '.navbar-btn'
+    assert page.has_link? 'Sign Up'
+    find_link('Sign Up', match: :first).click
+    assert_equal current_path, '/signup'
+  end
+
+  test 'should go to sign in page when clicking sign in button' do
+    assert page.has_css? '.navbar-btn'
+    assert page.has_link? 'Sign In'
+    find_link('Sign In', match: :first).click
+    assert_equal '/login', current_path
   end 
 
   test "should go to FAQ page when clicking FAQ in footer"  do

@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'capybara-screenshot/minitest'
-require 'selenium-webdriver'
 
 class UserVisitsEvent < ActionDispatch::IntegrationTest
 
@@ -40,32 +39,29 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
   end
 
   test "can join live discussion successfully" do
-    click_on "Join Conversation"
+    click_on "Join Live Conversation"
 
     assert_equal current_path, "/#{@user.permalink}"
   end
 
-  test "can share event and pop up window" do
+  test "can join live show successfully" do
+    click_on "Join Live Show"
 
-    linkedin_img = "//img[@src = 'social-share-button/linkedin.png' and @alt='LinkedIn']"
-    facebook_img = "//img[@src = 'social-share-button/facebook.png' and @alt='Facebook']"
-    twitter_img = "//img[@src = 'social-share-button/twitter.png' and @alt='Twitter']"
+    assert_equal current_path, "/#{@user.permalink}"
+  end
 
-    new_linkedin_sharewindow = window_opened_by { click_link linkedin_img }
-    within_window new_linkedin_sharewindow do
-      assert page.has_content?
-    end
+  test "can share event" do
+    assert page.has_css? "#shareBtn"
 
-    new_facebook_sharewindow = window_opened_by { click_link facebook_img }
-    within_window new_facebook_sharewindow do
-      assert page.has_content?
-    end
+    click_on id: "shareBtn"
 
-    new_twitter_sharewindow = window_opened_by { click_link twitter_img }
-    within_window new_twitter_sharewindow do
-      assert page.has_content?
-    end
-  	
+    linkedin_img = "//img[@src = 'https://static.licdn.com/sc/h/eahiplrwoq61f4uan012ia17i' and @alt='LinkedIn']"
+    facebook_img = "//img[@src = 'https://www.facebook.com/images/fb_icon_325x325.png' and @alt='Facebook']"
+    twitter_img = "//img[@src = 'https://about.twitter.com/etc/designs/about-twitter/public/img/apple-touch-icon-72x72.png' and @alt='Twitter']"
+
+    assert page.has_xpath? linkedin_img
+    assert page.has_xpath? facebook_img
+    assert page.has_xpath? twitter_img
   end
 
   test "can make an rsvp for event" do
@@ -86,4 +82,3 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
   end
 
 end
-

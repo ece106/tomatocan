@@ -111,22 +111,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
       click_on("Post your Own Conversation", match: :first)
       assert_equal current_path, new_event_path
     end 
-  end  
-
-  test "should show event on home page" do
-     assert has_content? @event.name
-     #within("div#calendar.row") do
-      #assert page.has_button?('RSVPsubmit')
-      #click_on(id: "RSVPsubmit")
-    #end
-  end  
-
-  test "should be able to add my own conversation" do
-    within("div#row.learnMore") do
-      click_on("Add Your Conversation", match: :first)
-      assert_equal current_path, new_event_path
-    end 
-  end  
+  end
 
    def sign_in
     visit root_path

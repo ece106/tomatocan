@@ -1,11 +1,11 @@
-	require "test_helper"
+require "test_helper"
 require "capybara-screenshot/minitest"
 
 class UserCreatesEvent < ActionDispatch::IntegrationTest
   setup do
-    @test_user = users :confirmedUser
+    @test_user = users :one
 
-    user_sign_in @test_user
+    sign_in
 
     visit new_event_path
   end
@@ -16,12 +16,12 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
 
     click_on class: "btn btn-lg btn-primary"
 
-    assert_not_equal current_path, new_event_path
+    assert_equal current_path, new_event_path
   end
 
   test "user creates event with valid attributes" do
-    fill_in id: "event_name", with: "Title of Conversation"
-    fill_in id: "event_desc", with: "Details about Conversation Topic"
+    fill_in id: "event_name", with: "New Test Event Name"
+    fill_in id: "event_desc", with: "New Event Description"
 
     select "2020", from: "event_start_at_1i"
     select "July", from: "event_start_at_2i"
@@ -29,21 +29,20 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
     select "03 PM", from: "event_start_at_4i"
     select "00", from: "event_start_at_5i"
 
-    # select "2021", from: "event_end_at_1i"
-    # select "July", from: "event_end_at_2i"
-    # select "16", from: "event_end_at_3i"
-    # select "04 PM", from: "event_end_at_4i"
-    # select "00", from: "event_end_at_5i"
-    # click_on id: "eventSubmit"
+    select "2020", from: "event_end_at_1i"
+    select "July", from: "event_end_at_2i"
+    select "16", from: "event_end_at_3i"
+    select "04 PM", from: "event_end_at_4i"
+    select "30", from: "event_end_at_5i"
 
-    click_on class: "btn btn-lg btn-primary create-event-btn"
+    click_on id: "eventSubmit"
 
     # NOTE: For some reason, capybara cannot register this click_on action.
     # In the debugger, it does not return Obsolete class when using click_on.
     # This is a special case for this test.
     # assert_equal current_path, root_path
-    # assert page.has_content? "Title of Conversation"
-    # assert page.has_content? "Details about Conversation Topic"
+    # assert page.has_content? "New Test Event Name"
+    # assert page.has_content? "New Event Description"
   end
 
   private
@@ -53,7 +52,7 @@ class UserCreatesEvent < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
+    fill_in(id: 'user_email', with: 'fake@fake.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')

@@ -15,10 +15,6 @@ class UserChangesPassword < ActionDispatch::IntegrationTest
     fill_in id: "user_password", with: "newpassword"
     fill_in(id: "user_password_confirmation", with: "newpassword")
 
-    find("input[name='commit']", match: :first).click
-
-    assert page.has_content? "newpassword"
-
     click_on "Save Profile"
 
     assert_equal current_path, "/#{@test_user.permalink}"
