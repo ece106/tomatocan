@@ -1,107 +1,133 @@
-<div class="box" style="background: url( <%= asset_path 'audience.jpg' %> ); background-repeat: no-repeat; background-position: center; background-size: cover; height: 400px; ">
-<p style="padding-left: 80px;">
-  DR. LISA SCHAEFER <br>
-  KEYNOTES, PODCASTS, AND NEWS SEGMENTS : <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link" style="font-size: 30px; color: #ecd7c6;">info@ThinQ.tv</a>
-</p>      
+<div class="container-fluid background-web background-drspeech">
+  <br>
+  <br>
+  <br>
+<h2 class = "text-white">  <strong> DR. LISA SCHAEFER 
+  <br>
+  KEYNOTES, PODCASTS, AND NEWS SEGMENTS :
+  <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link bg-primary text-white">info@ThinQ.tv</a>
+</h2>      
 </div>
-<%= render 'layouts/flash_messages'%>
-<div class="row" >
-  <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12">
-          <div class="col-md-3 col-sm-4" > <br>
-            <%= image_tag("lisaSpeaks.jpg", float: "right", width: "90%", height: "290")%>
-          </div>
-          <div class="col-sm-8 " style=" font-size: 18px; line-height: 1.2em">
-    <h3 class="aboutHeader" style="text-align: center; font-size: 48px">
-      Discover People who make You ThinQ
-    </h3 >
-            <br>ThinQ.tv founder, <%= link_to "Dr. Lisa Schaefer", '/youronlinemom' %>,  earned her Ph.D. in systems engineering at Arizona State University and was a Future Vision innovator at a think tank in Washington, DC. She taught at several universities and was a volunteer Lobby Corps member on Capitol Hill for a women’s organization. Dr. Schaefer is the writer/producer of Budget Justified, a true story about #metoo and other shenanigans at the FAA, and Lisa's 80s Catholic High School Movie, a true comedy about class clown twins versus math girl. She has spoken at many universities, conferences, and cable television shows.
 
+
+<%= render 'layouts/flash_messages'%>
+
+  <div class=" row col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12"> 
+          <div class="col-md-3 col-sm-4" > <br> <!-- for the picture -->
+            <%= image_tag("lisaSpeaks.jpg", float: "right", width: "90%", height: "290")%> <!-- Rails stuffs, cannot change -->
           </div>
-          <div class="col-sm-8 " style="font-size: 18px; line-height: 1.2em; font-style: italic;"> 
-            <br>Invite Lisa to speak on your podcast <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a> 602-888-3089<br><br> 
-          </div>
+
+          <div class=" container col-sm-8"> <!-- for the text -->
+            <h1 class = "text-center text-danger"><b>
+              Discover People who make You ThinQ </b>
+            </h1 >
+          <p class = "lead"> ThinQ.tv founder, <%= link_to "Dr. Lisa Schaefer", '/youronlinemom' %>,  earned her Ph.D. in systems engineering at Arizona State University and was a Future Vision innovator at a think tank in Washington, DC. She taught at several universities and was a volunteer Lobby Corps member on Capitol Hill for a women’s organization. Dr. Schaefer is the writer/producer of Budget Justified, a true story about #metoo and other shenanigans at the FAA, and Lisa's 80s Catholic High School Movie, a true comedy about class clown twins versus math girl. She has spoken at many universities, conferences, and cable television shows.
+            <br>
+            <br>
+            <strong>Invite Lisa to speak on your podcast <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a> 602-888-3089<strong><br><br> 
+          </p>
+          </div>          
   </div>
-</div>
+
+
 <div class="row" >
   <div class="col-lg-10 col-lg-offset-1 col-md-9 col-md-offset-1 col-xs-12">
-    <h3 class="speaking" >
-      <span>Speaking Topics</span>
-    </h3 >
-      Inspired by her years of university professor experience, Dr. Schaefer's talks are very interactive where she asks the audience as many questions as they ask her. An avid learner as well as teacher, she understands that the professor always learns from the students.<br>
+    <h1 class="text-center text-danger"><b>
+      <span>Speaking Topics</span></b>
+    </h1 >
+      <h3>Inspired by her years of university professor experience, Dr. Schaefer's talks are very interactive where she asks the audience as many questions as they ask her. An avid learner as well as teacher, she understands that the professor always learns from the students.</h3><br>
       <hr class="one">
-      <h4 style="display:inline; font-weight: bolder; font-size: 20px; "> Listen To and Learn From Each Other: Discover Your Role and Mission in Contributing to Society </h4><br>
-      Everyone can participate in conversations about different social issues on ThinQ.tv. ThinQ.tv is for grassroots movements to motivate people through small group conversations. What topics are you passionate about? Let's motivate each other to make the world a better place one conversation at a time!<br><br>
+      <h2><b>  Media For Civic Engagement: How You Can Get Out the Vote with Video Chat </b></h2><br>
+      <h3>Instead of the paradigm of an organization inviting people to listen to one person talk on social media, ThinQ.tv is for grassroots movements to motivate people through small group conversations. It’s similar to going to a cocktail party on Zoom. We're discussing about issues important in the 2020 election. Let's talk about how you can make the world a better place one conversation at a time!</h3><br>
       <hr class="one">
-      <h4 style="display:inline; font-weight: bolder; font-size: 20px; "> For Womens Podcasts & News: Empowering Women toward a Sexual Harassment-Free Culture </h4><br>
-      Society teaches that women's role in the family is to be household servant. Women are punished if they question this role, which leaves them out of many positions of leadership and civic engagement. When women participate in society in public and online, they are insulted and demeaned. We can work together to lead a culture where women's contributions are valued and women value themselves.
+      <h2><b> For Womens Podcasts & News:
+      Toward a Sexual Harassment-Free Internet</b> </h2><br>
+      <h3>Live video is becoming more prominent in web platforms and phone apps. We can work together to lead a culture where people don't look the other way when creepiness happens.</h3>
       <br><br>
-    <h3 class="aboutHeader" style="font-size: 32px; text-align: center; " >
-      Where Dr. Lisa Spoke and Listened
-    </h3 >
+
+    <h1 class="text-center text-danger font-weight-bold"><b>
+      Where Dr. Lisa Spread The Word</b>
+    </h1 >
+    <br>
   </div>
 </div>
 <div class="container">
 <div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; ">
+          
+          <div class="col-lg-3 col-md-4 col-sm-4">
             <%= image_tag("ignite.png",  class:'img-responsive', width: "200")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; ">
+
+          <div class="col-lg-3 col-md-4 col-sm-4">
             <%= image_tag("utoronto.png", class:'img-responsive',width: "200")%>
           </div>
 
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; ">
+          <div class="col-lg-3 col-md-4 col-sm-4" >
             <%= image_tag("jiaotong.png", class:'img-responsive',width: "200")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; ">
+          
+          <div class="col-lg-3 col-md-4 col-sm-4">
             <%= image_tag("rubyrails.png" , class:'img-responsive')%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px;">
+          
+          <div class="col-lg-3 col-md-4 col-sm-4">
             <%= image_tag("seedspot.png", class:'img-responsive',width: "200" )%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; padding-top: 20px;">
+          
+          <div class="col-lg-3 col-md-4 col-sm-4">
             <%= image_tag("pureheart.png", class:'img-responsive', width: "250")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; padding-top: 20px;">
+          
+          <div class="col-lg-3 col-md-4 col-sm-4">
             <%= image_tag("sttheresaphx.jpg", class:'img-responsive' ,width: "250")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; ">
+
+          <div class="col-lg-3 col-md-4 col-sm-4">
            <%= image_tag("stmary.png", class:'img-responsive', width: "250")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; ">
+
+          <div class="col-lg-3 col-md-4 col-sm-4" >
             <%= image_tag("marymount.png", class:'img-responsive', width: "350")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; width: 230px; background-color:#77aadd; padding-top: 10px; ">
+
+          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 150px; width: 230px; background-color:#77aadd; padding-top: 10px;">
             <%= image_tag("umary.png", class:'img-responsive', width: "150")%>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; ">
+
+          <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px;">
             <%= image_tag("1mcups.png", class:'img-responsive', width: "200")%>
           </div>
+
           <div class="col-lg-3 col-md-4 col-sm-4" style="height: 200px; width: 280px;">
             <%= image_tag("channel10.jpg", class:'img-responsive', width: "350")%>
           </div>
+
           <div class="col-lg-3 col-md-4 col-sm-4" style="height: 130px; width: 220px; padding-top: 2px; margin-right: 20px;">
             <%= image_tag("iheart.jpg", class:'img-responsive')%>
           </div>
+
           <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; width: 240px; margin-right: 20px;">
             <%= image_tag("kojonam.jpg", class:'img-responsive')%>
           </div>
+
           <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; width: 220px;margin-right: 20px;">
             <%= image_tag("abc.jpg", class:'img-responsive')%>
           </div>
+
           <div class="col-lg-3 col-md-4 col-sm-4" style="height: 170px; width: 240px;margin-right: 20px;">
             <%= image_tag("founder.png", class:'img-responsive')%>
           </div>
 </div><br><br>
 </div>
 <br>
-  <div class="col-lg-7 col-lg-offset-1 col-md-8 col-md-offset-1 col-xs-12 ">
-    <h4 style="text-align: center "> 
+  <div class="row col-lg-7 col-lg-offset-1 col-md-8 col-md-offset-1 col-xs-12 ">
+    <h4 class = "text-center"> 
       And many other universities and technical organizations
     </h4>  
   </div>
 <br><br><br>
-<div class="container" style=" margin-left: 10px; margin-right: 10px; max-width: 920px; margin: auto;">
-<p style=" padding-top: 10px;color : #8C1D40; margin-bottom: 0px;font-size: 32px; font-family: essonnes-headline, Georgia, serif;  ">Invite Dr. Schaefer to Speak </p>
-<hr class="one" style="margin-top: 0px; ">
+<div class="container ml-5 mr-5">
+<h2 class = "text-danger"><strong>Invite Dr. Schaefer to Speak<strong></h2>
+<hr class="one">
 <%= render partial: "layouts/speakingmessage" %>
 </div>
