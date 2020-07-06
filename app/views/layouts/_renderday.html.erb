@@ -16,7 +16,7 @@
 
 
 
-<div class="container" style="padding-top:50px; float: center; width: auto; max-width: 1470px;">
+<div class="container" style="padding-top:20px; float: center; width: auto; max-width: 1470px;">
 <span class="more">
   <% if @events.count != 0 %>
     <table class="table table-hover" id=calendar>
@@ -24,6 +24,8 @@
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
 
             <% if event.start_at.to_date.eql?(@passingdaytodayy ) %>
+
+
 
         <% user = User.find(event.usrid) %>
         <% i += 1 %>
@@ -133,7 +135,12 @@
             </a>&nbsp
             
           </td>
-        </tr>
+                </tr>
+
+                
+
+
+
 
         <% end %>
 
