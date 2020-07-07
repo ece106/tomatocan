@@ -1,6 +1,7 @@
 require 'will_paginate/array'
 
 class ApplicationController < ActionController::Base
+  
   before_action :store_user_location!, if: :storable_location?
   before_action :update_sanitized_params, if: :devise_controller?
 
@@ -27,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if request.host == "thinqtv.herokuapp.com"
+    if request.host == "https://thinq.tv/"
       @user = user_dashboard_path(current_user.permalink)
     else
       stored_location_for(resource_or_scope) || super
@@ -44,7 +45,5 @@ class ApplicationController < ActionController::Base
     @facebook_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   helper_method :facebook_user
-
-
 
 end
