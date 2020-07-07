@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]#:confirmable
+         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]#:confirmable 
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 
@@ -53,6 +53,11 @@ class User < ApplicationRecord
   before_save { |user| user.email = email.downcase }
 
   # Helper methods for Relationships
+
+  def authenticate(email, password)
+    user = User.find_for_authentication(email: email)
+    user.try(:valid_password?, password) ? user : nil
+  end
 
   # Follow a user
   def follow(other_user)
@@ -137,13 +142,14 @@ class User < ApplicationRecord
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
+      elsif data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
       end
     end
   end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      perma = 0
       user.permalink = auth.info.name.delete(' ') + rand.to_s[2..6]
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]

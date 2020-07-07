@@ -1,91 +1,63 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+
 ruby "2.7.0"
 
-gem 'listen'
-gem 'pg'
-
-gem 'mandrill'	
-gem 'devise'
-gem 'fog-aws'   #, '1.6.0'
-gem 'unf' 
-gem 'carrierwave'
-gem 'stripe'
-gem 'oauth2'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'koala'
-gem 'will_paginate-bootstrap'
-gem 'simple_calendar'
-gem 'rack-cors'
-gem 'font-awesome-rails'
-
-gem 'pry'
-gem 'aws-sdk-s3' #aws-s3'
-gem 'aws-sdk'
-#gem 'event-calendar', :require => 'event_calendar'
-
-gem 'rails', '6.0.3'
-gem 'railties', '6.0.3'
-gem  'bootstrap-sass', '~> 3.4.1'
-gem 'autoprefixer-rails'
-#gem 'sprockets'
-gem "will_paginate" 
-# Use ActiveModel has_secure_password
+gem "rails", "~> 6.0"
+gem "listen", "~> 3.2"
+gem "pg", "~> 1.2"
+gem "stripe", "~> 5.22"
+gem "omniauth-google-oauth2", "~> 0.8.0"
+gem 'railties', '~> 6.0'
+gem 'sprockets', '~> 3.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bcrypt-ruby', '~> 3.1.2'
-gem 'jquery-turbolinks'
-gem 'bcrypt'
-gem 'turbolinks'
-gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
-#gem "paperclip", "~> 2.0"
-#gem 'rmagick'
+gem 'uglifier', '>= 1.3.0'
+gem "puma", "~> 4.3"
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+gem "capistrano-bundler", "~> 1.6"
+gem "sass-rails", "~> 5.0"
+gem "ed25519", "~> 1.2"
+gem "bcrypt_pbkdf", "~> 1.0"
+gem "concurrent-ruby", "~> 1.1"
+gem "mandrill", "~> 0.0.4"
+gem "devise", "~> 4.7"
+gem "fog-aws", "~> 3.6"
+gem "unf", "~> 0.1.4"
+gem "carrierwave", "~> 2.1"
+gem "omniauth", "~> 1.9"
+gem "omniauth-facebook", "~> 6.0"
+gem "koala", "~> 3.0"
+gem "will_paginate-bootstrap", "~> 1.0"
+gem "simple_calendar", "~> 2.4"
+gem "rack-cors", "~> 1.1"
+gem "font-awesome-rails", "~> 4.7"
+gem "pry", "~> 0.13.1"
+gem "jquery-turbolinks", "~> 2.1"
+gem "bcrypt", "~> 3.1"
+gem "turbolinks", "~> 5.2"
+gem "geocoder", "~> 1.6"
+gem "autoprefixer-rails", "~> 9.7"
+gem "will_paginate", "~> 3.3"
+gem "jquery-rails", "~> 4.4"
+gem "coffee-rails", "~> 5.0"
+gem "rails_12factor", "~> 0.0.3"
 
 group :test, :development do
   gem 'minitest'
   gem 'simplecov'
   gem 'simplecov-lcov'
-	#gem 'undercover'
   gem 'selenium-webdriver'
-#  gem 'factory_girl_rails'
-#  gem 'mocha', '~> 1.1.0'
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
   gem 'rails-controller-testing'
+  gem 'rails_real_favicon'
 end
-
-group :production do
-     #rake db:create:all
-     #rails s -e production
-     #gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem 'rails_12factor'
-end
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Gems used only for assets and not required
-# in production environments by default.
-#group :assets do
-gem 'sass-rails', '~> 5.0.7'
-  gem 'coffee-rails'
-  gem 'uglifier', '>= 1.3.0'
-#end
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
-  # Pretty printed test output
   gem 'turn', :require => false
-end
-
-group :development do
-  gem 'puma'
-    gem 'rails_real_favicon'
 end
