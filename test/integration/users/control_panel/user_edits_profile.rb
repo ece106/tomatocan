@@ -24,7 +24,7 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
   test "can cancel edit profile page" do
     find(class: "profile-settings-tab", text: "Profile").click
 
-    click_on class: "btn btn-default"
+    first(:id, "cancelProfileButton").click
 
     assert_equal current_path, "/#{@test_user.permalink}"
   end
