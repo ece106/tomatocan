@@ -20,7 +20,6 @@
         <h4 class="text-primary"><i>New to ThinQ.tv?</i>
           <br>Most of the day we have a video chat <i><%= link_to "Study Hall", studyhall_path, class: "text-secondary" %></i>.
           <br>Drop in to ask questions about ThinQ.tv! </h4>
-
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
@@ -47,6 +46,7 @@
             <% end %>
           <% end %>
         <% end %>
+        <br><br>
       </div>
     </div>
     <hr>

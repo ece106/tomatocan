@@ -12,7 +12,7 @@ class Event < ApplicationRecord
     ...URLs are not allowed in event titles. Keep in mind that people will be searching here for actual gatherings
     that they can attend, or to find out when you'll be livestreaming. They will not be searching for sites to
     browse." }
-  validates :desc, format: { without: /http|\.co|\.com|\.org|\.net|\.tv|\.uk|\.ly|\.me|\.biz|\.mobi|\.cn|kickstarter|barnesandnoble|smashwords|itunes|amazon|eventbrite|rsvpify|evite|meetup/i, message: "riptions
+  validates :desc, format: { without: /http|\.co|\.com|\.org|\.net|\.tv|\.uk|\.ly|\.me|\.biz|\.mobi|\.cn|kickstarter|barnesandnoble|smashwords|itunes|amazon|eventbrite|rsvpify|evite|meetup/i, message: "descriptions
     ...URLs are not allowed in event descriptions. Keep in mind that people will be searching here for actual
     gatherings that they can attend, or to find out when you'll be livestreaming. They will not be searching for
     sites to browse. Paste all information attendees need here." }

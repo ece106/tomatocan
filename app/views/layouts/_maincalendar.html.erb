@@ -15,19 +15,26 @@
           <% i += 1 %>  
           <tr>
             <td class=col-xs-2>
-              <% rsvpeople = "Join us!" %>
+              <% rsvpeople = "" %>
               <% rsvpusers = event.users %>
-              <% if rsvpusers.count > 0 %>
-                <% rsvpusers.each do |rsvpuser| %>
-                  <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
-                <% end %>
-              <% end %>
-
-            <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
+            <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
+            <br>
+            <span style="font-size:125%;"id=calendar-time-hour<%=i%>></span>
+          </td>
+            <script>
+              var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+              date.setHours(date.getHours() + parseInt("<%=offset%>")) 
+              var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+              var optionsHour = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+              document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
+              document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
+            </script>
+          <td class=col-xs-2>
+            <%= event.topic %><br>
             <%= link_to user.name, user.permalink, title: rsvpeople %>
             <% if user_signed_in? %>
               <% if event.usrid == current_user.id %>
-                <%= link_to '(Edit Conversation)', edit_event_path(event.id), id: "calendar-host" %>
+                <%= link_to '(Edit)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
             <% end %>
           </td>
@@ -85,7 +92,7 @@
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-              <%= link_to " Join Conversation NOW ", "https://thinqtv.herokuapp.com/" + user.permalink + "?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              <%= link_to " Join " + event.topic, "https://thinqtv.herokuapp.com/" + user.permalink + "?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
               
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
@@ -101,12 +108,6 @@
                   <% end %>
                   <input type="hidden" id="timeZone<%=i%>" name="timeZone">
                   <%= f.hidden_field :event_id, :value => event.id %>
-                  <script>
-                    var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"))
-                    date.setHours(date.getHours() + parseInt("<%=offset%>"))
-                    var optionsTime = { hour: '2-digit', minute: '2-digit'};
-                    document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)
-                  </script>
                   <% if user_signed_in? %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
 
