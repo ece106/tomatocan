@@ -1,4 +1,4 @@
-<!-- Refresh Attendees Tab In The Background (Commented Out Unttil Completely Finished) 
+<!-- Refresh Attendees Tab In The Background (Commented Out Until Completely Finished) 
 <script>
   $(document).ready(function() {
     setInterval(function () {
@@ -7,7 +7,6 @@
   });
 </script>
 -->
-
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, @user.id) %>
 
@@ -75,7 +74,7 @@
         </div>
       </div>
 
-      <!-- List of participants (Commented Out Until Completely Finished)
+      <!-- List of participants (Commented Out Until Completely Finished) 
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
@@ -90,6 +89,12 @@
       <script>
         $('#refresh').click(function(){
             $('#attendee').load(document.URL +  ' #attendee');
+        });
+      </script>
+
+      <script>
+        $(window).on('beforeunload', function() {
+          $.post("/users/unload")
         });
       </script>
       -->
@@ -128,12 +133,7 @@
       </div>
     </div>
   </div>
+
 <% else %>
   <meta http-equiv="refresh" content="0; URL=<%=request.base_url%>/login"/>
 <% end %>
-
-<script>
-  $(window).unload(
-    $.post("/users/unload")
-  )
-</script>
