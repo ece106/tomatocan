@@ -33,9 +33,9 @@
         <% if @displayresearch.present? %> 
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
-              <p style="color:#8E0C3A">We're working on User Research about <%= link_to @namestudy, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></p>  
+              <p style="color:#8E0C3A">We're working on Group Problem Solving for <%= link_to @namestudy, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></p>  
               <p style="color:#8E0C3A"> right NOW!</p><br>
-              <%= link_to " Join User Research Chat", "https://thinqtv.herokuapp.com/" + @hostresearch.permalink + "?chatrm=User%20Research", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px;" %>
+              <%= link_to " Join Group Problem Solving", "https://thinqtv.herokuapp.com/" + @hostresearch.permalink + "?chatrm=Group%20Problem%20Solving", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
