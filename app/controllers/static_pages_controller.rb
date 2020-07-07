@@ -9,8 +9,8 @@ class StaticPagesController < ApplicationController
     @conversations = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
     @conversationsall = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' )
 
-    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
-    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' )
+    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
     currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Conversation' ).first
@@ -18,8 +18,8 @@ class StaticPagesController < ApplicationController
 
     currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Study Hall' ).order('start_at ASC').first
     nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first 
-    curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'User Research' ).order('start_at ASC').first
-    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'User Research' ).order('start_at ASC').first 
+    curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
+    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first 
 
     if currconvo.present?
       @displayconvo = currconvo
@@ -65,15 +65,15 @@ class StaticPagesController < ApplicationController
   def studyhall
     showrecentconvo = Time.now - 10.hours
 
-    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
-    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'User Research' )
+    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
 
     currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Study Hall' ).order('start_at ASC').first
     nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first 
-    curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'User Research' ).order('start_at ASC').first
-    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'User Research' ).order('start_at ASC').first 
+    curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
+    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first 
 
     if currstudy.present?
       @displaystudy = currstudy
