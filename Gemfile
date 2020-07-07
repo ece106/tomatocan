@@ -7,8 +7,8 @@ gem "listen", "~> 3.2"
 gem "pg", "~> 1.2"
 gem "stripe", "~> 5.22"
 gem "omniauth-google-oauth2", "~> 0.8.0"
-gem 'railties', '6.0.3'
-gem 'sprockets', '~>3.0'
+gem 'railties', '~> 6.0'
+gem 'sprockets', '~> 3.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'friendly_id', '~> 5.0.0'
@@ -19,7 +19,7 @@ gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem "capistrano-bundler", "~> 1.6"
-gem "sass-rails", "~> 6.0"
+gem "sass-rails", "~> 5.0"
 gem "ed25519", "~> 1.2"
 gem "bcrypt_pbkdf", "~> 1.0"
 gem "concurrent-ruby", "~> 1.1"
@@ -44,6 +44,7 @@ gem "autoprefixer-rails", "~> 9.7"
 gem "will_paginate", "~> 3.3"
 gem "jquery-rails", "~> 4.4"
 gem "coffee-rails", "~> 5.0"
+gem "rails_12factor", "~> 0.0.3"
 
 group :test, :development do
   gem 'minitest'
