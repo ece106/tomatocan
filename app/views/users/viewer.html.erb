@@ -66,21 +66,24 @@
       </div>
 
       <!-- List of participants -->
-      <div id="attendee" style="padding:5px 0px 0px 0px">
+      <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
             Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
           </div>
-          <%= render 'layouts/attendees' %>
+          <div id="attendee">
+            <%= render 'layouts/attendees' %>
+          </div>
         </div>
       </div>
 
       <script>
-      $(function(){
         $('#refresh').click(function(){
-          $('#attendee').load(document.URL +  ' #attendee');
+          setInterval(function () {
+            alert("Refreshed")
+            $('#attendee').load(document.URL +  ' #attendee');
+          }, 3000);
         });
-      });
       </script>
 
     </div>
