@@ -227,6 +227,10 @@ class UsersController < ApplicationController
     current_user.update({'BlockedUsers': array2})
   end
 
+  def unload
+    current_user.update({'last_viewed'}: 0)
+  end
+  
   private
 
   def updateEmailMsg

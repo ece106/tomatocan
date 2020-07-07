@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   match 'blocked',                  to: 'static_pages#blocked',             via: 'get'
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
-match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
+  match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
   resources :merchandises
   resources :rsvpqs
@@ -82,8 +82,9 @@ match '/merchandises/new' => 'merchandises#new',                          :as =>
   match '/:permalink/dashboard'      => "users#dashboard",      :as => :user_dashboard, via: 'get'
   post '/:permalink/markfulfilled'   => 'users#markfulfilled',  :as => :markfulfilled_user
 
-  post '/users/block'               => "users#block"
-  post '/users/unblock'             => "users#unblock"
+  post '/users/block'                => "users#block"
+  post '/users/unblock'              => "users#unblock"
+  post '/users/leave'                => "users#leave"
 
   # get '/:friendly_id', to: 'groups#show'
 
