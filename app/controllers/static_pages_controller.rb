@@ -90,7 +90,7 @@ class StaticPagesController < ApplicationController
       @namestudy = @displaystudy.name
       @descriptionstudy = @displaystudy.desc
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
-      # @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
+      @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
       @hoststudy = User.find(@displaystudy.usrid)
     end  
     if @displayresearch.present?

@@ -26,7 +26,7 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
   test "user changes password" do
     find(class: "account-settings-tab", text: "Account").click
 
-    click_on class: "btn btn-default change-password-btn"
+    click_on "Change Password"
 
     fill_in id: "user_password", with: "newpassword"
     fill_in(id: "user_password_confirmation", with: "newpassword")
