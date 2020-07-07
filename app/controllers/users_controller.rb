@@ -228,9 +228,9 @@ class UsersController < ApplicationController
   end
 
   def unload
-    current_user.update({'last_viewed'}: 0)
+    current_user.update({'last_viewed': 0})
   end
-  
+
   private
 
   def updateEmailMsg
