@@ -17,7 +17,7 @@
   <%= favicon_link_tag 'starIcon.png' %>
 
   <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag "application" %>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag "https://js.stripe.com/v2/", 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 

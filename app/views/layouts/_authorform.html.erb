@@ -5,24 +5,15 @@ if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_" 
 if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
 if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
 
-<% if request.host == "thinqtv.herokuapp.com" %>
-	<div class="row" id="profileBanner" style="display:none">
-<% else %>
-	<div class="row" id="profileBanner">
-<% end %>
-
+<div class="row" id="profileBanner">
 	<% if @user.bannerpic.present? && @user.bannerpic != '' %>
 		<%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
 	<% else %>
 		<%= image_tag "crowddark.png", height: "300", :id => "userBannerImage" %>
 	<% end %>
-	</div>
+</div>
 
-<% if request.host == "thinqtv.herokuapp.com" %>
-	<div class="row" id="profileHeader" style="display:none">
-<% else %>
-	<div class="row" id="profileHeader">
-<% end %>
+<div class="row" id="profileHeader">
 	<% if @user.profilepic.present? && @user.profilepic != '' %>
 		<div class="col-sm-2">
 			<%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>

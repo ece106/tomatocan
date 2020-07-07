@@ -11,8 +11,9 @@
       <div class="row" id="footer">
         <div class="col-sm-2 col-sm-offset-1">
           <p class="f-header">Site</p>
-          <%= link_to "FAQ", '/faq', :class => "f-link"  %><br>
-          <%= link_to "Terms of Service", '/tos', :class => "f-link" %>
+          <%= link_to "FAQ", '/faq', :class => "f-link"  %> <br>
+          <%= link_to "Terms of Service", "/tos", :class => "f-link" %> <br>
+          <%= link_to "Privacy Policy", "/privacy", :class => "f-link"%>
         </div>
         <br class="visible-xs-block">
         <div class="col-sm-2">
@@ -23,26 +24,32 @@
         <br class="visible-xs-block">
         <div class="col-sm-2">
           <p class="f-header">Share</p>
-          <% domainurl = "http://www.ThinQ.tv" %>
+          <% domainurl = request.base_url %>
           <% desc = "Participate in thought-provoking conversations!"%>
         
           <!-- Share -->
-          <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
           <div class="social-share-button" data-href="<%= domainurl %>">
             <!-- Facebook Share -->
-            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse"
-              onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.thinq.tv%2F&amp;src=sdkpreparse',
+            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url %>%2F&amp;src=sdkpreparse"
+              onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url %>%2F&amp;src=sdkpreparse',
               'newwindow',
               'width=600,height=400,top=100,left=300');
               return false;">
-              <img src="<%= asset_url('social-share-button/facebook.png') %>"></img>
+              <%= image_tag("facebook_icon.png", :style => "width:25px; height:25px;") %>
             </a>
             <!-- Twitter Tweet -->
-            <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Participate%20in%20live%20thought-provoking%20conversations%20or%20Host%20your%20own%20Live%20Video%20office%20hours!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
+            <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Participate%20in%20live%20thought-provoking%20conversations%20or%20Host%20your%20own%20Live%20Video%20office%20hours!&tw_p=tweetbutton&url=<%= request.base_url %>%2F">
+              <%= image_tag("twitter_icon.png", :style => "margin-left: 5px; width:25px; height:25px;") %>
+            </a>
             <!-- LinkedIn Share -->
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;"><img src="<%= asset_url('social-share-button/linkedin.png') %>"/></a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;">
+              <%= image_tag("linkedin_icon.png", :style => "margin-left: 5px; width:25px; height:25px;") %>
+            </a>
             <!-- Email Share -->
-            <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= domainurl %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A"><img src="<%= asset_url('social-share-button/email.png') %>"></a>
+            <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= domainurl %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A">
+              <%= image_tag("email_icon.png", :style => "margin-left: 5px; width:25px; height:25px;") %>
+            </a>
+            
           </div>
         </div>
       <div class="col-sm-3 pull-right" id="copyright">

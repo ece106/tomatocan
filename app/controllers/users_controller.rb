@@ -207,13 +207,39 @@ class UsersController < ApplicationController
     end
   end
 
+  respond_to :js, :json, :html
+
+  def block
+    array = User.find_by_id(params[:to_block]).blockedBy
+    User.find_by_id(params[:to_block]).update({'blockedBy': array << @user.permalink})
+
+    array2 = User.find_by_id(params[:owner]).BlockedUsers
+    User.find_by_id(params[:owner]).update({'BlockedUsers': array2 << User.find_by_id(params[:to_block]).permalink})
+  end
+
+  def unblock
+    array = User.find_by_permalink(params[:to_unblock]).blockedBy
+    array = array - [current_user.permalink]
+    User.find_by_permalink(params[:to_unblock]).update({'blockedBy': array})
+    
+    array2 = current_user.BlockedUsers
+    array2 = array2 - [User.find_by_permalink(params[:to_unblock]).permalink]
+    current_user.update({'BlockedUsers': array2})
+  end
+
+  def unload
+    current_user.update({'last_viewed': 0})
+  end
+
 
   private
 
   def updateEmailMsg
-    unless current_user.email.eql? params[:user][:email]
-      flash[:info] = "A confirmation message for your new email has been sent to: " + params[:user][:email]
-      flash[:info] += " to save changes confirm email first"
+    if params[:user][:email] != nil
+      unless current_user.email.eql? params[:user][:email]
+        flash[:info] = "A confirmation message for your new email has been sent to: " + params[:user][:email]
+        flash[:info] += " to save changes confirm email first"
+      end
     end
   end
 
