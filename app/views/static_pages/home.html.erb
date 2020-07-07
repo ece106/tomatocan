@@ -51,12 +51,10 @@
             </div>
           <% end %>
         <% end %>
-        <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
-            <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
+        <% if !@displaystudy.present? && !@displayresearch.present? %>
               <h2 id="buttonTitle" style="margin-bottom: 30px">
               <%= link_to 'See an example Live Video Conversation Room', "https://thinq.tv/youronlinemom/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
               </h2>
-            <% end %>
         <% end %>
         <br><br>
       </div>
