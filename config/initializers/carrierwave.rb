@@ -14,7 +14,7 @@ if Rails.env.development? || Rails.env.test?
       :aws_access_key_id      => AWS_KEY,
       :aws_secret_access_key  => AWS_SECRET_KEY, 
       :persistent             => false,
-      :region             => 'us-east-1'
+      :region             => 'us-west-1'
     }
     config.permissions = 0777
     config.fog_directory  = AWS_BUCKET
@@ -31,7 +31,7 @@ if Rails.env.production?
       :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],  #DO NOT CHANGE VARIABLE NAME
       :persistent             => false,
 #      :connect_timeout=>60
-      :region             => 'us-east-1'
+      :region             => 'us-west-1'
     }
     config.storage = :fog
     config.permissions = 0777

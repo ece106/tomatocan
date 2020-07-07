@@ -1,14 +1,23 @@
 <script src="https://meet.jit.si/external_api.js"></script>
+<% username = 'thinQer' %>
+<% if user_signed_in? %> 
+    <% username = current_user.name%>
+<% end %>
+
 <script>
 	jQuery(document).ready(function($) {
 		var domain = "meet.jit.si";
 		var options = {
 			roomName: "<%= params[:chatrm] %>",
-			parentNode: document.querySelector('#meet')
+			parentNode: document.querySelector('#meet'),
+            userInfo: {
+                displayName: "<%= username %>"
+            }
 		}
 		var api = new JitsiMeetExternalAPI(domain, options);
 	});
 </script>
+
 <div class="panel panel-primary">
 	<div class="panel-heading">
 	  <%= @user.name %>'s Live Conversation
@@ -17,4 +26,3 @@
 	  <div class="embed-responsive-item" id="meet"></div>
 	</div>
 </div>
-
