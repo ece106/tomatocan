@@ -23,21 +23,22 @@
 
           <div class="row" style="margin-bottom:-20px; padding:0px">
           
-            <!-- Profile Picture -->
-            <div class="col-md-3" style="margin-top:-20px;">
+
+          <!-- Profile Picture -->
+            <div class="col-md-4" style="margin-left:0px; margin-top:-30px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
-                  <%= image_tag(@user.profilepic.url.to_s, :class => "img-circle", :style => "height:120; width:120; margin-top:-15px", :id => "profileInfoImage") %>
-                <% else %> 
-                  <%= image_tag("logoDigitalHollow300.png", :class => "img-circle", :style => "height:120; width:120; margin-top:-15px", :id => "profileInfoImage")%>
+                  <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
+                <% else %>
+                  <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
                 <% end %>
                   <%= f.file_field :profilepic, :style => "padding-top:5px;" %>
                 <p class="help-block">150px &times; 150px is best</p>
               </div>
             </div>
 
-            <!-- Header (Old)
+            <!-- Header (For Now) -->
             <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
@@ -45,8 +46,9 @@
                 <p class="help-block">1500px &times; 300px is best</p>
               </div>
             </div>
-            -->
- 
+          </div>
+
+            <!-- Header (Broken Currently)
             <div class="col-md-9" style="margin-top:-20px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
@@ -64,6 +66,7 @@
               </div>
             </div>
           </div>
+          -->
 
           <!-- Name -->
           <div class="form-group" style="margin-top:0px">
