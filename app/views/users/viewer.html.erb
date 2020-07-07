@@ -80,7 +80,6 @@
       <script>
         $('#refresh').click(function(){
           setInterval(function () {
-            alert("Refreshed")
             $('#attendee').load(document.URL +  ' #attendee');
           }, 3000);
         });
