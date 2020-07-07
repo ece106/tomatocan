@@ -33,20 +33,18 @@
         <% if @displayresearch.present? %> 
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
-              <p style="color:#8E0C3A">We're working on Group Problem Solving for <%= link_to @namestudy, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></p>  
+              <p style="color:#8E0C3A">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></p>  
               <p style="color:#8E0C3A"> right NOW!</p><br>
               <%= link_to " Join Group Problem Solving", "https://thinqtv.herokuapp.com/" + @hostresearch.permalink + "?chatrm=Group%20Problem%20Solving", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
-        <% if @displaystudy.present? && @displayresearch.present? %>
-          <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
+        <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
               <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              <%= link_to 'See an example Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
               </h2>
             <% end %>
-          <% end %>
         <% end %>
         <br><br>
       </div>
