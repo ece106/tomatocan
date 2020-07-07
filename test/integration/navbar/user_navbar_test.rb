@@ -64,16 +64,6 @@ class UserNavbar < ActionDispatch::IntegrationTest
   end
   
   private
-  def sign_in
-    visit root_path
-
-    click_on('Sign In', match: :first)
-
-    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
-    fill_in(id: 'user_password', with: 'user1234')
-
-    click_on(class: 'form-control btn-primary')
-  end
   def teardown
   end
 end
