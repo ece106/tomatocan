@@ -69,14 +69,20 @@
       <div id="attendee" style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
-            Attendees of <%= @user.name %>'s conversation
+            Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
           </div>
           <%= render 'layouts/attendees' %>
         </div>
       </div>
+
       <script>
-      $('#attendee').load(document.URL +  ' #attendee');
+      $(function(){
+        $('#refresh').click(function(){
+          $('#attendee').load(document.URL +  ' #attendee');
+        });
+      });
       </script>
+
     </div>
 
     <div class="col-md-9">
