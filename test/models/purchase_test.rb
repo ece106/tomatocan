@@ -26,7 +26,7 @@ class PurchaseTest < ActiveSupport::TestCase
     @anon_donation_purchase.update_attribute(:merchandise_id, @merchandise_as_donation.id)
 
     #Pruchase no merchandises
-    @purchase_no_merchandise = purchases :donation_no_merchandise
+    @donation_no_merchandise = purchases :donation_no_merchandise
 
     # Card
     @stripe_card_token = create_token
@@ -78,24 +78,23 @@ class PurchaseTest < ActiveSupport::TestCase
   end
 
   test '#default_donation_payment' do
-    @purchase_no_merchandise.setup_default_donation
+    @donation_no_merchandise.setup_default_donation
 
     #anonymous donation
-
-    #stripe_card_token not present calls user_default_donation
-    @purchase_no_merchandise.stripe_card_token = @stripe_card_token.id
-    anonymousCharge = @purchase_no_merchandise.default_donation_payment
+    @donation_no_merchandise.stripe_card_token = @stripe_card_token.id
+    @donation_no_merchandise.email = "stripetestthinqtv2@gmail.com"
+    anonymousCharge = @donation_no_merchandise.default_donation_payment
     assert_not_nil anonymousCharge, 'Anonymous charge should not be nil'
     assert_equal anonymousCharge.status, 'succeeded'
 
-    #stripe_card_token not present calls user_default_donation
-    #Charge to user with a stripe_customer_token
-    @purchase_no_merchandise.stripe_card_token = nil
-    noCardTokenCharge = @purchase_no_merchandise.default_donation_payment
+    #user donation
+    @donation_no_merchandise.stripe_card_token = nil
+    noCardTokenCharge = @donation_no_merchandise.default_donation_payment
     assert_not_nil anonymousCharge, 'Anonymous charge should not be nil'
     assert_equal anonymousCharge.status, 'succeeded'
   end
-  test '#anonymous_merchandise_payment' do
+
+  test '#anonymous_charge' do
     # Setup payment information
     @anon_merch_purchase.setup_payment_information
 
@@ -103,7 +102,7 @@ class PurchaseTest < ActiveSupport::TestCase
     @anon_merch_purchase.stripe_card_token = @stripe_card_token.id
 
     # Create charge
-    charge = @anon_merch_purchase.anonymous_merchandise_payment
+    charge = @anon_merch_purchase.anonymous_charge
 
     # Assert charge
     assert_not_nil charge, 'Stripe Charge object should not be nil.'
