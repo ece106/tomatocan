@@ -227,12 +227,19 @@ class UsersController < ApplicationController
     current_user.update({'BlockedUsers': array2})
   end
 
+  def unload
+    current_user.update({'last_viewed': 0})
+  end
+
+
   private
 
   def updateEmailMsg
-    unless current_user.email.eql? params[:user][:email]
-      flash[:info] = "A confirmation message for your new email has been sent to: " + params[:user][:email]
-      flash[:info] += " to save changes confirm email first"
+    if params[:user][:email] != nil
+      unless current_user.email.eql? params[:user][:email]
+        flash[:info] = "A confirmation message for your new email has been sent to: " + params[:user][:email]
+        flash[:info] += " to save changes confirm email first"
+      end
     end
   end
 
