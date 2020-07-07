@@ -1,3 +1,4 @@
+<!-- Refresh Attendees Tab In The Background (Commented Out Unttil Completely Finished) 
 <script>
   $(document).ready(function() {
     setInterval(function () {
@@ -5,6 +6,7 @@
     }, 2000);
   });
 </script>
+-->
 
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, @user.id) %>
@@ -73,7 +75,8 @@
         </div>
       </div>
 
-      <!-- List of participants -->
+
+      <!-- List of participants (Commented Out Until Completely Finished)
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
@@ -92,6 +95,7 @@
       </script>
 
     </div>
+    -->
 
     <div class="col-md-9">
       <%= render 'layouts/jitsi' %>
