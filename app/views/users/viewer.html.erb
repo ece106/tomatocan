@@ -1,3 +1,11 @@
+<script>
+  $(document).ready(function() {
+    setInterval(function () {
+      $('#attendee').load(document.URL +  ' #attendee');
+    }, 2000);
+  });
+</script>
+
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, @user.id) %>
 
@@ -79,9 +87,7 @@
 
       <script>
         $('#refresh').click(function(){
-          setInterval(function () {
             $('#attendee').load(document.URL +  ' #attendee');
-          }, 3000);
         });
       </script>
 
