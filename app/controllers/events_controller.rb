@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     @rsvpusers = @event.users
     @rsvps     = @event.rsvpqs
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
-    @surl = request.base_url + "/" + @user.permalink
+    @surl = "https://www.think.tv" + "/" + @user.permalink
 
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
