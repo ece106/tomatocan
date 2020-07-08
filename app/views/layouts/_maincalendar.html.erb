@@ -66,7 +66,6 @@
                         <% end %>
                       </ul>
                     </div>
-                  <% end %>
                   <input type="hidden" id="timeZone<%=i%>" name="timeZone">
                   <%= f.hidden_field :event_id, :value => event.id %>
                   <% if user_signed_in? %>
@@ -137,10 +136,6 @@
       </tbody>
     </table>
   <% end %>
-</>
-
-
-
 </div>
 <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
 <script>
