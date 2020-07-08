@@ -105,7 +105,11 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
   test "can start live show" do
     click_on id: "stream-btn"
 
+<<<<<<< HEAD
     assert current_path, "https://thinQtv.herokuapp.com/#{@test_user.permalink}"
+=======
+    assert current_path, "https://thinq.tv/#{@user.permalink}"
+>>>>>>> 8157beefe1148d797e2c3a71d47cc6dd4701ce48
   end
 
   private

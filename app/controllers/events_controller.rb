@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     @rsvpusers = @event.users
     @rsvps     = @event.rsvpqs
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
-    @surl = "http://www.ThinQ.tv/" + @user.permalink
+    @surl = request.base_url + "/" + @user.permalink
 
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
@@ -123,5 +123,5 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :usrid, :user_id)
   end
-  
+    
 end
