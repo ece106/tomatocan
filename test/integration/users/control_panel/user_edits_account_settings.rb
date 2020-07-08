@@ -32,6 +32,9 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
     fill_in(id: "user_password_confirmation", with: "newpassword")
 
     assert_equal current_path, "/#{@test_user.permalink}/changepassword"
+
+    click_on "Save Profile"
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   test "user cancels edits account settings with same attributes" do

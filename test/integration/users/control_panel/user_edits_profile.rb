@@ -29,6 +29,14 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
     assert_equal current_path, "/#{@test_user.permalink}"
   end
 
+  test "can save edit profile page" do
+    find(class: "profile-settings-tab", text: "Profile").click
+
+    first(:id, "saveProfileButton").click
+
+    assert_equal current_path, "/#{@test_user.permalink}"
+  end
+
   private
 
   def sign_in

@@ -30,22 +30,16 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
 
     assert_equal current_path, edit_event_path(@test_event_one)
 
-    page.has_css? "#event_name"
-    page.has_css? "#event_desc"
+    assert page.has_css? "#event_name"
+    assert page.has_css? "#event_desc"
 
-    page.has_css? "#event_start_at_1i"
-    page.has_css? "#event_start_at_2i"
-    page.has_css? "#event_start_at_3i"
-    page.has_css? "#event_start_at_4i"
-    page.has_css? "#event_start_at_5i"
+    assert page.has_css? "#event_start_at_1i"
+    assert page.has_css? "#event_start_at_2i"
+    assert page.has_css? "#event_start_at_3i"
+    assert page.has_css? "#event_start_at_4i"
+    assert page.has_css? "#event_start_at_5i"
 
-    page.has_css? "#event_end_at_1i"
-    page.has_css? "#event_end_at_2i"
-    page.has_css? "#event_end_at_3i"
-    page.has_css? "#event_end_at_4i"
-    page.has_css? "#event_end_at_5i"
-
-    page.has_css? ".update-event-btn"
+    assert page.has_css? ".update-event-btn"
   end
 
   test "upcoming events has the correct count" do
@@ -62,7 +56,6 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
 
     within(class: "past-events-list") do
       assert has_content? @past_event.name
-      # assert has_content? @past_event.start_at.strftime("%A %B %d, %Y, %I:%M %p")
     end
   end
 
@@ -73,10 +66,6 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
       past_events_count = find_all(".past-event-name").to_a.count
       assert_equal past_events_count, 1
     end
-  end
-
-  test "has livestream directions" do
-    page.has_css? ".stream-directions-panel"
   end
 
   test "can set up future live show" do
@@ -100,16 +89,6 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
     page.has_css? "#event_start_end_5i"
 
     page.has_css? "eventSubmit"
-  end
-
-  test "can start live show" do
-    click_on id: "stream-btn"
-
-<<<<<<< HEAD
-    assert current_path, "https://thinQtv.herokuapp.com/#{@test_user.permalink}"
-=======
-    assert current_path, "https://thinq.tv/#{@user.permalink}"
->>>>>>> 8157beefe1148d797e2c3a71d47cc6dd4701ce48
   end
 
   private
