@@ -9,11 +9,11 @@
           </div>
 
 
-  
  <div class = "row mb-1 pb-3 mt-1">
   <div class = "col-lg-4 col-md-12 mt-0 mb-0 p-0">
       <%= image_tag("videoconference.jpg", :style => "min-height: 372px; max-height:auto; width:100%;")%>
     </div>
+
 
 
     <div class= "card col-lg-8 col-md-12 mt-0 mb-0 p-0">
@@ -38,8 +38,9 @@
                     'newwindow',
                     'width=600,height=400,top=100,left=300');
                     return false;">
-                    <img src="<%= asset_url('social-share-button/facebook.png') %>"></img>
+                    <%= image_tag("facebook_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
                   </a>
+
                      <!-- Twitter -->
                   <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections!%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations.&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F"><img src="<%= asset_url('social-share-button/twitter.png') %>"></img></a>
                      <!-- LinkedIn -->
@@ -53,7 +54,6 @@
    
 </div>  
 <br>
-
 
   <div class = "container">
     <div class = "row">
