@@ -14,14 +14,14 @@ class RsvpqsControllerTest < ActionController::TestCase
   end
 
   test "should create rsvpq when signed in" do
-    sign_in users(:one)
+    sign_in users(:confirmedUser)
     assert_difference('Rsvpq.count', 1) do
     post :create, params: { rsvpq: { event_id: @event.id } }
     end
   end
 
   test "should redirect to home_path after successful creation, signed in" do
-  sign_in users(:one)
+  sign_in users(:confirmedUser)
   post :create, params: { rsvpq: { event_id: @event.id } }
   assert_redirected_to home_path
   end
