@@ -7,6 +7,7 @@
   });
 </script>
 -->
+
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, @user.id) %>
 
@@ -133,6 +134,13 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // makes all links open in new tab
+    $(document).ready(function() {
+        $("a").attr("target", "_blank");
+    });
+  </script>
 
 <% else %>
   <meta http-equiv="refresh" content="0; URL=<%=request.base_url%>/login"/>
