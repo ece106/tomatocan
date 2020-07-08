@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-#  before_action :authenticate_user!, except: [:index, :show]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
 
   def index
@@ -32,12 +31,10 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new.json
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end
