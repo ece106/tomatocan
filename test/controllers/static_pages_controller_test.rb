@@ -9,22 +9,12 @@ class StaticPagesControllerTest < ActionController::TestCase
   # end
 
   test 'should_get_aboutus' do
-    get :aboutus
+    get :getinvolved
     assert_response :success
   end
 
   test 'should_get_faq' do
     get :faq
-    assert_response :success
-  end
-
-  test 'should_get_suggestedperks' do
-    get :suggestedperks
-    assert_response :success
-  end
-
-  test 'should_get_tellfriends' do
-    get :tellfriends
     assert_response :success
   end
 
