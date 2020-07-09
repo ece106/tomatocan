@@ -100,13 +100,13 @@
                   <div class="dropdown-item">
                     <span>
                       <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
-                        <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'rsvp-image' %>
+                        <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
                       <% elsif !rsvpuser.profilepic.url.nil? %>
                         <% if rsvpuser.profilepic.url.match(/http/) %>
-                          <%= image_tag rsvpuser.profilepic.url, :class => 'rsvp-image' %>
+                          <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
                         <% end %>
                       <% else %> 
-                        <%= image_tag "logoDigitalHollow300.png", :class => 'rsvp-image' %>
+                        <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
                       <% end %>
                     </span>
                     <%= rsvpuser.name %></div>
