@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-#  before_action :authenticate_user!, except: [:index, :show]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
 
   def index
@@ -17,7 +16,7 @@ class EventsController < ApplicationController
     @rsvpusers = @event.users
     @rsvps     = @event.rsvpqs
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
-    @surl = "http://www.ThinQ.tv/" + @user.permalink
+    @surl = request.base_url + "/" + @user.permalink
 
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
@@ -32,12 +31,10 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new.json
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end

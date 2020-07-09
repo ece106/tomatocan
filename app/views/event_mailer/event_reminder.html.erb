@@ -13,7 +13,7 @@
       Your Conversation is posted on our home page schedule for <%=@date_body_format%> <br>
       <%=@event.desc%><br><br>
       Please invite your friends and colleagues to participate in your conversation by forwarding this message and encouraging them to RSVP here <a href=<%=@event_url%> target="_blank" style="color: #8B0942; text-decoration-line: none;"><%=@event_url%></a>.<br>
-      To be a part of the Conversation, go to <a href="http://ThinQ.tv", target="_blank" style="color: #8B0942; text-decoration-line: none;">ThinQ.tv</a> and click the "Join Conversation" button for the topic on the schedule that you'd like to participate in.  
+      To be a part of the Conversation, go to <a href="<%= request.base_url %>", target="_blank" style="color: #8B0942; text-decoration-line: none;">ThinQ.tv</a> and click the "Join Conversation" button for the topic on the schedule that you'd like to participate in.  
       Please go to that site in advance to make sure your browser is compatible with your webcam. Recent versions Chrome and Firefox work best. Do not use Safari.<br>
 
       If you must participate in our Conversation by phone, download the JITSI app in advance and join the THINQTV chatroom.
@@ -21,7 +21,7 @@
     <div class = "img">
       <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
     </div>
-    <p>Participate in other upcoming LIVE online Conversations too! Check out our <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">schedule</a>.</p>
+    <p>Participate in other upcoming LIVE online Conversations too! Check out our <a href="<%= request.base_url %>/" target="_blank" style="color: #8B0942; text-decoration-line: none;">schedule</a>.</p>
     <br><br>
   </div>  
   
@@ -34,13 +34,13 @@
         </td>
         <td colspan="4">
         <p style = "color:white; font-size: 15px;" class="f-header">Share</p>
-        <% url = "http://www.thinq.tv/" %>
+        <% url = request.base_url %>
         <% desc = "Participate in live online thought-provoking conversations!"%>
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-        <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
+        <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url %>%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
         <!-- Twitter Tweet -->
-        <a href="https://twitter.com/intent/tweet?hashtags=ThinQtv&text=Join%20the%20ThinQ.tv%20coalition%20to%20stop%20online%20sexual%20harassment!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
+        <a href="https://twitter.com/intent/tweet?hashtags=ThinQtv&text=Join%20the%20ThinQ.tv%20coalition%20to%20stop%20online%20sexual%20harassment!&tw_p=tweetbutton&url=<%= request.base_url %>%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
         <!-- LinkedIn Share -->
         <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=ThinQtv&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['linkedin.png'].url%></a>
         <!-- Email Share -->

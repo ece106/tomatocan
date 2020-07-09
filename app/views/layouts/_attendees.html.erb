@@ -1,0 +1,24 @@
+<% users = User.where("last_viewed = ?", @user)%>
+
+<div style="padding:8px 0px 8px 0px; font-size: 15px">
+  <div style="padding:5px 0px 0px 0px">
+    <div class="row" style="padding: 0px 0px 0px 15px">
+      <% users.each do |user| %>
+        <% user = User.find_by_id(user) %>
+        <div class="col-sm-9" style="padding:8px 0px 0px 15px">
+          <% if user.profilepic.present? && user.profilepic != '' %>
+              <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+          <% else %>
+              <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+          <% end %>
+          <a style="padding:0px 0px 0px 5px;" What the hell is this. Use rails code in a rails app. Not html slop. href="<%= request.base_url %>/<%= user.permalink %>"><%= user.name %></a>
+        </div>
+        <% if current_user.permalink == @user.permalink && user.permalink != @user.permalink %>
+          <div class="col-sm-3" style="margin-top:3px">
+              <%= button_to 'Block', action: :block, :to_block => user, :owner => @user %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

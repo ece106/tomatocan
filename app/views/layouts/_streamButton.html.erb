@@ -2,13 +2,7 @@
   <% if user_signed_in? %>
     <% if current_user.id == @user.id %>
       <%= link_to "Browse Schedule of Conversations", root_path, :class => 'btn btn-lg btn-primary' %>
-      <%= link_to "Start Your Live Conversation Now", "https://thinqtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning', :style => "margin-left: 50px;" %>
       <%= link_to 'Schedule Your Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
-    <% else %>
-      <%= link_to "Try a Live Conversation", "https://thinqtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
     <% end %>
-
-  <% else %>
-    <%= link_to "Try a Live Conversation", "https://thinqtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning' %>
   <% end %>
 </div>
