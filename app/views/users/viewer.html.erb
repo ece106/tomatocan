@@ -1,19 +1,9 @@
-<!-- Refresh Attendees Tab In The Background (Commented Out Until Completely Finished) 
-<script>
-  $(document).ready(function() {
-    setInterval(function () {
-      $('#attendee').load(document.URL +  ' #attendee');
-    }, 2000);
-  });
-</script>
--->
-
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, @user.id) %>
 
   <% current_user.blockedBy.each do |blocked| %>
     <% if blocked == @user.permalink %>
-      <meta http-equiv="refresh" content="0; URL=https://thinq.tv/blocked"/>
+      <meta http-equiv="refresh" content="0; URL=/blocked"/>
     <% end %> 
   <% end %>
 
@@ -75,7 +65,7 @@
         </div>
       </div>
 
-      <!-- List of participants (Commented Out Until Completely Finished) 
+
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
@@ -86,19 +76,6 @@
           </div>
         </div>
       </div>
-
-      <script>
-        $('#refresh').click(function(){
-            $('#attendee').load(document.URL +  ' #attendee');
-        });
-      </script>
-
-      <script>
-        $(window).on('beforeunload', function() {
-          $.post("/users/unload")
-        });
-      </script>
-      -->
     </div>
 
     <div class="col-md-9">
@@ -138,10 +115,22 @@
   <script>
     // makes all links open in new tab
     $(document).ready(function() {
-        $("a").attr("target", "_blank");
+      $("a").attr("target", "_blank");
+
+      setInterval(function () {
+        $('#attendee').load(document.URL +  ' #attendee');
+      }, 2000);
+
+      $('#refresh').click(function(){
+        $('#attendee').load(document.URL +  ' #attendee');
+      });
+
+      $(window).on('beforeunload', function() {
+        $.post("/users/unload")
+      });
     });
   </script>
 
 <% else %>
-  <meta http-equiv="refresh" content="0; URL=https://thinq.tv/login"/>
+  <meta http-equiv="refresh" content="0; URL=/login"/>
 <% end %>
