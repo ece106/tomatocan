@@ -28,7 +28,6 @@ gem "mandrill", "~> 0.0.4"
 gem "devise", "~> 4.7"
 gem "fog-aws", "~> 3.6"
 gem "unf", "~> 0.1.4"
-gem "carrierwave", "~> 2.1"
 gem "omniauth", "~> 1.9"
 gem "omniauth-facebook", "~> 6.0"
 gem "koala", "~> 3.0"
@@ -61,3 +60,4 @@ end
 group :test do
   gem 'turn', :require => false
 end
+gem "carrierwave-aws", "~> 1.5"
