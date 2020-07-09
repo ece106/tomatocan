@@ -15,6 +15,7 @@
 <% end %>
 
 <% user_array = user_array.sort_by {|u| u.name} %>
+<% id = 0 %>
 
 <div style="padding:8px 0px 8px 0px; font-size: 15px">
   <div style="padding:5px 0px 0px 0px">
@@ -34,10 +35,18 @@
           <% end %>
         </div>
         <% if current_user.permalink == @user.permalink && user.permalink != @user.permalink %>
-          <div class="col-sm-3 col-xs-offset-1" style="margin-top:3px;">
-              <%= button_to 'Block', action: :block, :to_block => user, :owner => @user %>
+          <div class="col-sm-3" style="margin-top:3px">
+            <button id="block_button<%=id%>" onclick="block()">Block</button>
+            <script>   
+              function block() {
+                if (confirm("Are you sure you want to block <%= user.name %> from your page?")) {
+                  $.post("/users/block", {owner: "<%= @user.id %>", to_block: "<%= user.id %>"})
+                }
+              } 
+            </script>
           </div>
         <% end %>
+        <% id += 1 %>
       <% end %>
     </div>
   </div>
