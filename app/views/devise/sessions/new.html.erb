@@ -1,17 +1,14 @@
-  <% @title=" Community " %>
-
-  <!--Used to display error message when invalid credentials are inputted -->
-
-
   <div class="container">
 
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
 
-        <% if request.referrer.include? "/viewer" %>
-          <div class="alert alert-danger" role="alert" style="text-align:center">
-            You must be signed in to join this Conversation
-          </div>
+        <% if request.referrer != nil %>
+          <% if request.referrer.include? "/viewer" %>
+            <div class="alert alert-danger" role="alert" style="text-align:center">
+              You must be signed in to join this Conversation
+            </div>
+          <% end %>
         <% end %>
 
         <div class="well">
