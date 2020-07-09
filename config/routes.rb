@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   match 'blocked',                  to: 'static_pages#blocked',             via: 'get'
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
-match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
+  match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
   resources :merchandises
   resources :rsvpqs
@@ -66,9 +66,6 @@ match '/merchandises/new' => 'merchandises#new',                          :as =>
       root :to => 'static_pages#home', as: :unauthenticated_root
     end
   end
-
-  match '/youtubers' => "users#youtubers", :as => :youtubers, via: 'get'
-  match '/supportourwork' => "users#supportourwork", :as => :supportourwork, via: 'get'
 
   match '/:permalink'                => "users#show",           :as => :user_profile, via: 'get'
   match '/:permalink/viewer'         => "users#viewer",         :as => :user_viewer, via: 'get'

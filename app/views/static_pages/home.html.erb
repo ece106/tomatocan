@@ -11,34 +11,26 @@
 </div>
   <div class="col-lg-5 col-md-11">
       <div id="home">
-        <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > 
-          Discover People who make you THINQ
+        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" > 
+          Discover a Community that makes you THINQ
         </div>
         <div style="display:inline;" > 
           <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
         </div>
         <div style="font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
-          Video Chat to motivate Civic Participation
+          Video Chat to foster Career Development &<br> Personal growth 
         </div><br><br><br>
 
-    <% if @displayresearch.present? %>
-      <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
-        <div id="eventCurrentdiv">
-          <p style="color:#8E0C3A">We're working on User Research about 
-            <%= link_to @namestudy, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %>
-          </p>
-          <p style="color:#8E0C3A"> right NOW!</p><br>
-          <%= link_to " Join User Research Chat", request.base_url + "/" + @hostresearch.permalink + "/viewer?chatrm=User%20Research", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px;" %>
-        </div>
-      <% end %>
-    <% end %>
+        <h3 style="color:#8E0C3A"><i>New to ThinQ.tv?</i>
+          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %>.
+          <br>Drop in to ask questions about ThinQ.tv! </h3>
 
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
               <p style="color:#8E0C3A">We're having Study Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></p>  
               <p style="color:#8E0C3A"> right NOW!</p><br>
-              <%= link_to " Join Study Hall Chat ", request.base_url + "/" + @hoststudy.permalink + "/viewer?chatrm=Study%20Hall", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px; " %>
+              <%= link_to " Join Study Hall Chat ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px; " %>
             </div>
           <% end %>
         <% end %>
@@ -47,16 +39,20 @@
             <div id="eventCurrentdiv">
               <p style="color:#8E0C3A">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></p>  
               <p style="color:#8E0C3A"> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving", request.base_url + "/" + @hostresearch.permalink + "/viewer?chatrm=Group%20Problem%20Solving", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px;" %>
+              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
-        <% if !@displaystudy.present? && !@displayresearch.present? %>
+        <% if @displaystudy.present? && @displayresearch.present? %>
+          <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
+            <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
+              <h2 id="buttonTitle">
               <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Live Video Conversation Room', "https://thinq.tv/youronlinemom/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
               </h2>
-        <% end %>
-        <br><br>
+            <% end %>
+          <% end %>
+        <% end %>        <br><br>
       </div>
     </div>
 
@@ -65,7 +61,7 @@
     <br>
     <div class="col-lg-3 col-md-6">
       <h2>Conversation Schedule</h2>
-      <h4>Come talk about topics important to you in the 2020 US election!</h4>
+      <h4>Water cooler topics about recent news to motivate Civic Participation!</h4>
       <% if user_signed_in? %>
         <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
       <% end %>

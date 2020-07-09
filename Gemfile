@@ -9,6 +9,7 @@ gem "stripe", "~> 5.22"
 gem "omniauth-google-oauth2", "~> 0.8.0"
 gem 'railties', '~> 6.0'
 gem 'sprockets', '~> 3.0'
+gem "sprockets-rails", "~> 3.2"
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'friendly_id', '~> 5.0.0'
@@ -44,7 +45,6 @@ gem "autoprefixer-rails", "~> 9.7"
 gem "will_paginate", "~> 3.3"
 gem "jquery-rails", "~> 4.4"
 gem "coffee-rails", "~> 5.0"
-gem "rails_12factor", "~> 0.0.3"
 
 group :test, :development do
   gem 'minitest'
