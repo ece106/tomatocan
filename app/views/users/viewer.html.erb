@@ -119,6 +119,11 @@
 
       setInterval(function () {
         $('#attendee').load(document.URL +  ' #attendee');
+        $.post("/users/is_blocked", {}, function(data){
+          if (data["blocked_by"].includes("<%= @user.permalink %>")) {
+            location.reload()
+          }
+        })
       }, 2000);
 
       $('#refresh').click(function(){
@@ -130,7 +135,6 @@
       });
     });
   </script>
-
 <% else %>
   <meta http-equiv="refresh" content="0; URL=/login"/>
 <% end %>

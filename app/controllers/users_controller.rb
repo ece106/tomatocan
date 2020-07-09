@@ -231,6 +231,10 @@ class UsersController < ApplicationController
     current_user.update({'last_viewed': 0})
   end
 
+  def is_blocked
+    render json: {blocked_by: current_user.blockedBy}
+  end
+
   private
 
   def updateEmailMsg

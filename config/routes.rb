@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   post '/users/block'                => "users#block"
   post '/users/unblock'              => "users#unblock"
   post 'users/unload'                => "users#unload"
+  post 'users/is_blocked'            => "users#is_blocked"
 
   # get '/:friendly_id', to: 'groups#show'
 
