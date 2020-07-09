@@ -35,7 +35,7 @@
           <% end %>
         </div>
         <% if current_user.permalink == @user.permalink && user.permalink != @user.permalink %>
-          <div class="col-sm-3" style="margin-top:3px">
+          <div class="col-sm-3 col-sm-offset-1" style="margin-top:3px">
             <button id="block_button<%=id%>" onclick="block()">Block</button>
             <script>   
               function block() {
