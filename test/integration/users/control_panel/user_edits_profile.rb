@@ -3,38 +3,38 @@ require "capybara-screenshot/minitest"
 
 class UserEditsProfile < ActionDispatch::IntegrationTest
   setup do
-    @user = users :one
+    @test_user = users :confirmedUser
 
-    sign_in
+    user_sign_in @test_user
 
-    visit "/#{@user.permalink}/controlpanel"
+    visit "/#{@test_user.permalink}/controlpanel"
   end
 
   test "can edit profile page with correct attributes" do
-    fill_in id: "user_name", with: "Cody Karunas"
-    fill_in id: "user_about", with: "About me description"
-    fill_in id: "user_genre1", with: "Test Category"
-    fill_in id: "user_genre2", with: "Test Category"
-    fill_in id: "user_genre3", with: "Test Category"
 
-    find("input[name='commit']", match: :first).click
+    find(class: "profile-settings-tab", text: "Profile").click
 
-    assert page.has_content? "Cody Karunas"
-    assert page.has_content? "Test Category"
-    assert page.has_content? "Test Category"
-  end
-
-  test "can edit social media with correct attributes" do
-    fill_in id: "user_twitter", with: "test_twitter_handle"
-    fill_in id: "user_youtube1", with: "http://www.youtube.com/watch?v=/frlviTJcVUo"
-    fill_in id: "user_youtube2", with: "http://www.youtube.com/watch?v=/frlviTJcVUo"
-    fill_in id: "user_youtube3", with: "http://www.youtube.com/watch?v=/frlviTJcVUo"
-
-    find(id: "cancelProfileButton", match: :first).click
+    fill_in id: "user_name", with: "Test Name"
+    fill_in id: "user_about", with: "About me"
+    fill_in id: "user_genre1", with: "Test Topic 1"
+    fill_in id: "user_genre2", with: "Test Topic 2"
+    fill_in id: "user_genre3", with: "Test Topic 3"
   end
 
   test "can cancel edit profile page" do
-    find(id: "cancelProfileButton", match: :first).click
+    find(class: "profile-settings-tab", text: "Profile").click
+
+    first(:id, "cancelProfileButton").click
+
+    assert_equal current_path, "/#{@test_user.permalink}"
+  end
+
+  test "can save edit profile page" do
+    find(class: "profile-settings-tab", text: "Profile").click
+
+    first(:id, "saveProfileButton").click
+
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   private
@@ -44,7 +44,7 @@ class UserEditsProfile < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')
