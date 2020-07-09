@@ -1,3 +1,11 @@
+<style>
+.attendeeName{
+    white-space:pre;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+</style>
+
 <% users = User.where("last_viewed = ?", @user)%>
 <% user_array = [] %>
 
@@ -10,18 +18,23 @@
 
 <div style="padding:8px 0px 8px 0px; font-size: 15px">
   <div style="padding:5px 0px 0px 0px">
-    <div class="row" style="padding: 0px 0px 0px 15px">
+    <div class="row" style="padding: 0px 0px 0px 15px;">
       <% user_array.each do |user| %>
-        <div class="col-sm-9" style="padding:8px 0px 0px 15px">
+        <div class="col-sm-8" style="padding:8px 0px 0px 15px">
           <% if user.profilepic.present? && user.profilepic != '' %>
               <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
           <% else %>
               <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
           <% end %>
-          <a style="padding:0px 0px 0px 5px;" href="<%= request.base_url %>/<%= user.permalink %>"><%= user.name %></a>
+          <% if user.name.length >= 40 %>
+            <% name = user.name[0..20] + "..." %> 
+            <a href="<%= request.base_url %>/<%= user.permalink %>"><%= name %></a>
+          <% else %>
+            <a id="attendeeName" href="<%= request.base_url %>/<%= user.permalink %>"><%= user.name %></a>
+          <% end %>
         </div>
         <% if current_user.permalink == @user.permalink && user.permalink != @user.permalink %>
-          <div class="col-sm-3" style="margin-top:3px">
+          <div class="col-sm-3 col-xs-offset-1" style="margin-top:3px;">
               <%= button_to 'Block', action: :block, :to_block => user, :owner => @user %>
           </div>
         <% end %>
@@ -29,3 +42,5 @@
     </div>
   </div>
 </div>
+
+
