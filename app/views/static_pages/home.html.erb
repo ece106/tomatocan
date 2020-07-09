@@ -56,7 +56,7 @@
       </div>
     </div>
 
-<div class="col-lg-7 col-md-12" id="countdown_clock">
+<div class="col-lg-7 col-md-12 col-lg-3 col-md-6 container" id="countdown_clock">
   <div class="main">
     <br>
     <div class="col-lg-3 col-md-6">
@@ -70,11 +70,11 @@
       <%= render 'layouts/countdown_clock' %>
     </div>
   </div>
-  <div class="tabContainer">
+  <div class="tabContainer" style="padding-top: 240px;">
     <div class="buttonContainer">
       <button onclick="showPanel(0,'#f44336')">List View </button>
       <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
-      <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
+      <button onclick="showPanel(2,'#2196f3')">Weekly Calendar </button>
     </div>
     <div class="tabPanel">
       <%= render 'layouts/convocalendar', collection: @conversations %>
@@ -82,6 +82,9 @@
     <div class="tabPanel">
       <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
     </div>
+    <div class="tabPanel">
+      <%= render 'layouts/weeklycalendar', collection: @conversationsall %>
+  </div>
   </div>
 </div>
 

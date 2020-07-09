@@ -9,10 +9,10 @@ if Rails.env.development? || Rails.env.test?
 #    config.root = "#{Rails.root}/tmp"
 #    config.cache_dir = "#{Rails.root}/tmp/images"
     config.storage = :fog
-    config.fog_credentials = { 
+    config.fog_credentials = {
       :provider               => 'AWS',
       :aws_access_key_id      => AWS_KEY,
-      :aws_secret_access_key  => AWS_SECRET_KEY, 
+      :aws_secret_access_key  => AWS_SECRET_KEY,
       :persistent             => false,
       :region             => 'us-west-1'
     }
@@ -22,7 +22,7 @@ if Rails.env.development? || Rails.env.test?
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
   end
 end
-  
+
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {

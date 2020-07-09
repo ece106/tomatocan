@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
     currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Study Hall' ).order('start_at ASC').first
     nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first
     curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
-    extresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
+    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
 
     if currconvo.present?
       @displayconvo = currconvo
