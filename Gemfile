@@ -20,6 +20,7 @@ gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem "capistrano-bundler", "~> 1.6"
+gem "carrierwave-aws", "~> 1.5"
 gem "sass-rails", "~> 5.0"
 gem "ed25519", "~> 1.2"
 gem "bcrypt_pbkdf", "~> 1.0"
@@ -60,4 +61,3 @@ end
 group :test do
   gem 'turn', :require => false
 end
-gem "carrierwave-aws", "~> 1.5"
