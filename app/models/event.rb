@@ -41,7 +41,6 @@ class Event < ApplicationRecord
 
 
   def recurring=(value)
-    puts(value)
     if value != "null"
       super(RecurringSelect.dirty_hash_to_rule(value).to_hash)
     else

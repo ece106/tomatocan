@@ -1,15 +1,15 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @calendar_events, renderer: BootstrapPagination::Rails %>
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 <%i = 0%>
 
 <div class="panel panel-default">
-  <% if @events.count != 0 %>
+  <% if @calendar_events.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
-        <% @events.sort_by{|t| t.start_at}.each do |event| %>
+        <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
 
           <% user = User.find(event.usrid) %>
           <% i += 1 %>  
@@ -61,7 +61,9 @@
               <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= rsvps.count %></span>
             </button>
             <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
-              <% rsvpusers.each do |rsvpuser| %>
+              <% rsvps.each do |rsvp| %>
+              <%if !rsvp.user_id.nil? %>
+                <% rsvpuser = User.find(rsvp.user_id) %>
                 <%= link_to user_profile_path(rsvpuser.permalink) do %>
                   <div class="dropdown-item">
                     <span>
@@ -77,6 +79,7 @@
                     </span>
                     <%= rsvpuser.name %></div>
                 <% end %>
+              <% end %>
               <% end %>
               <% rsvps.each do |rsvp| %>
                 <% unless rsvp.email.blank? %>
@@ -188,7 +191,7 @@
     </table>
   <% end %>
 </div>
-<%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @calendar_events, renderer: BootstrapPagination::Rails %>
 <script>
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()

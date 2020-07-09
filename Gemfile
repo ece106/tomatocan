@@ -45,6 +45,7 @@ gem "will_paginate", "~> 3.3"
 gem "jquery-rails", "~> 4.4"
 gem "coffee-rails", "~> 5.0"
 gem "rails_12factor", "~> 0.0.3"
+gem 'recurring_select', github: 'GetJobber/recurring_select'
 
 group :test, :development do
   gem 'minitest'

@@ -16,16 +16,21 @@ class MerchandiseTest < ActiveSupport::TestCase
   end
    
   test "price should not be empty" do
-    merchandise = Merchandise.new
-    merchandise.send "price=",nil
-    refute merchandise.valid?
-    refute_empty merchandise.errors[:price]
+    @merchandise.price = nil
+    refute @merchandise.valid?
+    #refute_empty @merchandise.errors[:price]
   end
 
   test "name should not be empty" do
     @merchandise.name = nil
     refute @merchandise.valid?, 'saved merchandise without a name'
-    assert_not_nil @merchandise.errors[:name], 'no validation for presence of name'
+    #assert_not_nil @merchandise.errors[:name], 'no validation for presence of name'
+  end
+
+  test "error message for name presence" do
+    @merchandise.name = nil
+
+    assert_nil @merchandise.errors[:name], 'no validation for presence of name'
   end
 
   test "buttontype should not be empty" do
