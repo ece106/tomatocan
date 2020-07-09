@@ -55,11 +55,13 @@ Stripe.api_key = STRIPE_SECRET_KEY
 STRIPE_CONNECT_CLIENT_ID = "superfake"
 FACEBOOK_APP_ID = "numbers"
 FACEBOOK_APP_SECRET = "secret"
+GOOGLE_CLIENT_SECRET = 'fake'
+GOOGLE_CLIENT_ID = 'fake'
 ```
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from users). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/aakeys.rb with your accounts' keys.
 
-*config/database.yml
+* config/database.yml
 
 Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
@@ -102,8 +104,8 @@ config.action_mailer.perform_deliveries = true
 config.action_mailer.smtp_settings = {
   :address => "smtp.gmail.com",
   :port => 587,
-  :user_name => "randomemail@gmail.com",
-  :password => 'fake',
+  :user_name => "thinqtesting@gmail.com",
+  :password => 'testingtesting',
   :authentication => 'plain',
   :enable_starttls_auto => true
 }
@@ -195,10 +197,9 @@ When changes have been made to the http://github.com/ece106/tomatocan master rep
 git pull https://github.com/ece106/tomatocan.git master
 ```
 
-*. Getting your code into tomatocan test branch
+* Getting your code into tomatocan test branch
 
 Once you have made changes to your personal repository you can request to pull your changes into the a test branch. Go to http:/github.com/YOUR-GITHUB-USERNAME/YOUR-TOMATOCAN-REPOSITORY. Click the "New Pull Request" button. After creating a pull request your changes have to be reviewed and then either accepted or denied.
-
 
 ### REQUIREMENTS TO REMAIN IN THE THINQ.TV INTERNSHIP PROGRAM
 
