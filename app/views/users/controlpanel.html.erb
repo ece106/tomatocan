@@ -142,7 +142,7 @@ Conversations
                         <% else %>
                             <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
                         <% end %>
-                        <a style="padding:0px 0px 0px 5px;" href="<%= request.base_url %>/<%= user.permalink %>"><%= user.name %></a>
+                        <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
                       </div>
                       <div class="col-sm-3" style="margin-top:3px">
                         <%= button_to 'Unblock', action: :unblock, :to_unblock => user.permalink %>
