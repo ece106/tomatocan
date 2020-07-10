@@ -48,6 +48,7 @@ match '/merchandises/new' => 'merchandises#new',                          :as =>
     get 'login'  => 'devise/sessions#new',    :as => :new_user_session
     post 'login' => 'devise/sessions#create', :as => :user_session
     delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    delete 'rsvpqs' => 'users/rsvpqs#destroy', :as => :destroy_rsvpqs
     get "signup", :to => 'devise/registrations#new', :as => :new_user_signup
     post "signup", :to => 'devise/registrations#create', :as => :user_signup
     get "password", :to => 'devise/passwords#new', :as => :new_user_password

@@ -68,7 +68,7 @@
               <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
             <% end %>
             <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %>
-            <%= link_to "Delete RSVP", @rsvpqs, :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :method => :delete %><br>
+            <%= link_to "Delete RSVP", destroy_rsvpqs_path(@rsvpqs), :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :method => :delete, data: {confirm: "Delete RSVP?"} %><br>
                 <% end %>
 
         
