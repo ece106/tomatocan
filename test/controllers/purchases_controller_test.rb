@@ -47,14 +47,6 @@ class PurchasesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'user tries to purchase something from himself/herself' do
-    sign_in users(:one)
-    seller = users(:one)
-    merch = merchandises(:one)
-    get :new, params: { pricesold: 25, author_id: seller.id, merchandise: merch }
-    assert_response :success
-  end
-
   test 'Default donation' do
     seller = User.find(@default_donation.author_id)
     post :create, params: { purchase: @default_donation.attributes}
