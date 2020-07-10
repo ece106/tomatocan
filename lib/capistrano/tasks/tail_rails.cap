@@ -1,0 +1,6 @@
+desc "tail rails logs"
+task :tail_rails do
+  on roles(:app) do
+    execute "tail -f /home/deploy/myapp/current/log/production.log"
+  end
+end
