@@ -25,11 +25,11 @@ end
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
+      :region                 => 'us-east-1',
       :provider               => 'AWS',
       :aws_access_key_id      => ENV['AWS_KEY'],  #DO NOT CHANGE VARIABLE NAME
       :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],  #DO NOT CHANGE VARIABLE NAME
-      :persistent             => false,
-      :region             => 'us-east-1'
+      :persistent             => false
     }
     config.storage = :fog
     config.permissions = 0777
