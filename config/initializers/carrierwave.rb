@@ -32,7 +32,7 @@ if Rails.env.production?
     config.aws_credentials = {
       access_key_id:      ENV['AWS_KEY'],       # required
       secret_access_key:  ENV['AWS_SECRET_KEY'],
-      :region => 'us-east-1'
+      region: 'us-east-1'
     }
     
   end
