@@ -29,7 +29,6 @@ if Rails.env.production?
       :aws_access_key_id      => ENV['AWS_KEY'],  #DO NOT CHANGE VARIABLE NAME
       :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],  #DO NOT CHANGE VARIABLE NAME
       :persistent             => false,
-#      :connect_timeout=>60
       :region             => 'us-east-1'
     }
     config.storage = :fog
