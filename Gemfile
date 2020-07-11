@@ -61,3 +61,4 @@ end
 group :test do
   gem 'turn', :require => false
 end
+gem "carrierwave-aws", "~> 1.5"

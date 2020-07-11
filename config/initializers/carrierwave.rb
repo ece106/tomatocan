@@ -1,4 +1,3 @@
-# carrierwave set up
 require 'carrierwave/storage/fog'
 #Excon.defaults[:write_timeout] = 1000
 #  Excon.defaults = Excon.defaults.mere(:write_timeout => 10.minutes.to_i)
@@ -42,4 +41,3 @@ if Rails.env.production?
 #   config.fog_host             = 'https://authorprofile.s3.amazonaws.com'
   end
 end
-
