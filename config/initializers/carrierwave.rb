@@ -25,17 +25,21 @@ end
   
 if Rails.env.production?
   CarrierWave.configure do |config|
-    config.storage    =  :aws                  # required
-    config.aws_bucket =  ENV['AWS_BUCKET']      # required
-    config.aws_acl    =  :public_read
-    
-  
-    config.aws_credentials = {
-      access_key_id:      ENV['AWS_KEY'],       # required
-      secret_access_key:  ENV['AWS_SECRET_KEY'],
-      :region => 'us-east-1'
+    config.fog_credentials = {
+      :provider                 => 'AWS',
+      :aws_access_key_id        => ENV['AWS_KEY'],          # DO NOT CHANGE VARIABLE NAME
+      :aws_secret_access_key    => ENV['AWS_SECRET_KEY'],   # DO NOT CHANGE VARIABLE NAME
+      :persistent               => false,
+#     :connect_timeout          =>  60,
+      :region                   => 'us-east-1'
     }
-    
+
+    config.storage              = :fog
+    config.permissions          = 0777                  
+    config.fog_directory        = ENV['AWS_BUCKET']
+    config.fog_public           = true
+    config.fog_attributes       = {'Cache-Control'=>'max-age=315576000'}
+#   config.fog_host             = 'https://authorprofile.s3.amazonaws.com'
   end
 end
 
