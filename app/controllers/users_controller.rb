@@ -164,8 +164,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    #    @user.latitude = request.location.latitude #geocoder has become piece of junk
-    #    @user.longitude = request.location.longitude
+
     if @user.save
       redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
       UserMailer.with(user: @user).welcome_email.deliver_later
