@@ -14,7 +14,6 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
 
   test "should go to about page when clicking about in header"  do
   	within("div#globalNavbar.collapse.navbar-collapse") do
-<<<<<<< Updated upstream
   		click_on('About Us', match: :first)
   		assert_equal current_path, '/getinvolved'
   	end	
@@ -99,12 +98,9 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
     assert page.has_xpath? facebook_link
     assert page.has_xpath? twitter_link
     assert page.has_xpath? email_link
-  end  
-=======
+  end
   		click_on('About', match: :first)
   		assert_equal current_path, getinvolved_path
   	end	
-  end 
-
->>>>>>> Stashed changes
+  end
 end
