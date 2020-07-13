@@ -54,8 +54,17 @@ tests focused on testing the conent of the user profile.
 
   test "can make an rsvp for event" do
     click_on id: "RSVPsubmit"
+    assert_equal current_path, home_path
   end
 
+  test "can make an rsvp for event with email" do
+    sign_out
+    fill_in(id: 'rsvpq_email', with: 'fake@fake.com')
+    click_on id: "RSVPsubmit"
+    assert_equal current_path, home_path
+  end
+
+  
   private
 
   def sign_in
@@ -69,4 +78,8 @@ tests focused on testing the conent of the user profile.
     click_on(class: 'form-control btn-primary')
   end
 
+  def sign_out
+    click_on('Sign out', match: :first)
+    visit event_path @event
+  end
 end

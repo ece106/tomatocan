@@ -118,7 +118,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :usrid, :user_id)
+    params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :usrid, :user_id, :recurring)
   end
     
 end
