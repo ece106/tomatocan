@@ -18,11 +18,11 @@
           <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
         </div>
         <div style="font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
-          Video Chat to foster Career Development &<br> Personal growth 
+          Crowdsource Activism via Video Chat 
         </div><br><br><br>
 
         <h3 style="color:#8E0C3A"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %>.
+          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %><br> to support Women & Minorities in Tech.
           <br>Drop in to ask questions about ThinQ.tv! </h3>
 
         <% if @displaystudy.present? %>
@@ -61,7 +61,7 @@
     <br>
     <div class="col-lg-3 col-md-6">
       <h2>Conversation Schedule</h2>
-      <h4>Water cooler topics about recent news to motivate Civic Participation!</h4>
+      <h4>Discover topics that motivate you!</h4>
       <% if user_signed_in? %>
         <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
       <% end %>
