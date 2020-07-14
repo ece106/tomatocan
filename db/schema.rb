@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_name"
     t.string "guest2_email"
     t.string "topic"
-    t.text "recurring"
     t.text "attending", default: [], array: true
+    t.text "recurring"
     t.index ["start_at", "topic"], name: "index_events_on_start_at_and_topic", unique: true
   end
 
@@ -221,13 +221,13 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "authentication_token", limit: 30
     t.string "provider"
     t.string "uid"
+    t.text "blockedBy", default: [], array: true
+    t.integer "last_viewed"
+    t.text "BlockedUsers", default: [], array: true
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.text "blockedBy", default: [], array: true
-    t.integer "last_viewed"
-    t.text "BlockedUsers", default: [], array: true
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
