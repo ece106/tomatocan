@@ -69,7 +69,12 @@
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
-            Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
+            <% if @user.name.length >= 30 %>
+            <% name = @user.name[0..15] + "..." %>
+              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
+            <% else %>
+              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
+            <% end %>
           </div>
           <div id="attendee">
             <%= render 'layouts/attendees' %>
