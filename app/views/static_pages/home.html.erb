@@ -24,7 +24,6 @@
         <h3 style="color:#8E0C3A"><i>New to ThinQ.tv?</i>
           <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %><br> to support Women & Minorities in Tech.
           <br>Drop in to ask questions about ThinQ.tv! </h3>
-
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
