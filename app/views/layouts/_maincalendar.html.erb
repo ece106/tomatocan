@@ -11,7 +11,7 @@
       <tbody>
         <% @events.sort_by{|t| t.start_at}.each do |event| %>
           <% user = User.find(event.usrid) %>
-          <% i += 1 %>  
+          <% i += 1 %>
           <tr>
             <td class=col-xs-2>
               <% rsvpeople = "" %>
@@ -21,17 +21,17 @@
                   <% rsvpeople = rsvpeople + rsvpuser.name + ", " %>
                 <% end %>
               <% end %>
-            <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
+            <span style="font-size:90%;" id=list-time-day<%=i%>></span>
             <br>
-            <span style="font-size:125%;"id=calendar-time-hour<%=i%>></span>
+            <span style="font-size:125%;"id=list-time-hour<%=i%>></span>
           </td>
             <script>
               var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
-              date.setHours(date.getHours() + parseInt("<%=offset%>")) 
+              date.setHours(date.getHours() + parseInt("<%=offset%>"))
               var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
               var optionsHour = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
-              document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
-              document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
+              document.getElementById('list-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
+              document.getElementById('list-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
             </script>
           <td class=col-xs-2>
             <%= event.topic %><br>
@@ -45,7 +45,7 @@
           </td>
           <td class=col-xs-3>
             <%= rsvpeople %>
-          </td>  
+          </td>
 
           <td class=col-xs-2>
             <% @rsvp = Rsvpq.new %>
@@ -54,7 +54,7 @@
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
               <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
-              
+
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
                   <% if @rsvp.errors.any? %>
@@ -86,7 +86,7 @@
                   var optionsTime = { hour: '2-digit', minute: '2-digit'};
                   document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)
                 </script>
-                
+
                 <% if user_signed_in? %>
                   <%= f.hidden_field :user_id, :value => current_user.id %>
                   <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit" %>
@@ -129,7 +129,7 @@
               return false;">
               <%= image_tag("linkedin_icon.png", :style => "margin-left: 0px; width:25px; height:25px; border-radius:4px")%>
             </a>&nbsp
-            
+
           </td>
         </tr>
         <% end %>
