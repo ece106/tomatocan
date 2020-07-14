@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby "2.7.0"
 
 gem "rails", "~> 6"
+gem "sprockets", "~> 3"
 gem "listen"
 gem "pg"
 gem "stripe"
