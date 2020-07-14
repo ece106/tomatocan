@@ -78,6 +78,12 @@ class TestUser < ActiveSupport::TestCase
     refute_empty @user.errors[:permalink]
   end
 
+  #validates :permalink, length {maximum: 50}
+  test "permalink must be less than 50 characters" do
+  	@user.permalink = @name_over.call(55)
+  	refute @user.valid?, "permalink is more than 50 characters"
+  end
+
   #  validates_format_of   :email, :with  => Devise.email_regexp,
   test "should have format of email address" do
     @user.email = "email@lisa.org"
@@ -213,6 +219,18 @@ class TestUser < ActiveSupport::TestCase
 
   test "edit_user_password" do
     user = users(:one)
+  end
+
+  test "A user has many purchases" do
+  	refute defined?(@user.purchases) == nil, 'no association between users and purchases'
+  end
+
+  test "A user has many rsvpqs" do
+  	refute defined?(@user.rsvpqs) == nil, 'no association between users and rsvpqs'
+  end
+
+  test "A user has many merchandises" do
+  	refute defined?(@user.merchandises) == nil, 'no association between users and merchandises'
   end
 
 end

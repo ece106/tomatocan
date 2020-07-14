@@ -38,6 +38,7 @@ gem "will_paginate-bootstrap"
 gem "jquery-rails"
 gem "coffee-rails"
 gem 'friendly_id'
+gem 'recurring-select'
 
 group :test, :development do
   gem 'minitest'
