@@ -45,7 +45,9 @@ class UsersController < ApplicationController
     end
     userid = @user.id
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
-    @events = upcomingevents.paginate(page: params[:page], :per_page => 4)
+    @calendar_events = upcomingevents.flat_map{ |e| e.calendar_events(e.start_at)}
+    @calendar_events = @calendar_events.sort_by {|event| event.start_at}
+    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 4)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
