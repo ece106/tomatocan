@@ -1,26 +1,6 @@
-@import "styles/aboutus.scss";
-@import "styles/_faq.scss";
-@import "styles/_fellowship.scss";
-//The above sheets should be combined into 1 _staticpages.scss
-
-//Overrides Bootstrap-defined variables
-@import "base/variables.scss";
-
-//Bootstrap files
-@import "bootstrap";
-@import "font-awesome";
-
-//Global styles
-@import "base/globals.scss";
-@import "base/header.scss";
-@import "base/footer.scss";
-
-//Individual stylesheets loaded here
-@import "styles/home.scss";
-@import "styles/new.scss";
-@import "styles/users.scss";
-@import "styles/panels.scss";
-@import "styles/show.scss";
-
-@import "styles/stripe-modal.scss";
-@import "calendar/styles.scss";
+/*
+*= require_self
+*= require main
+*= require font-awesome
+*= require recurring_select
+*/  
