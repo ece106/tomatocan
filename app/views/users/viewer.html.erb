@@ -45,7 +45,6 @@
         </div>
 
         <% domainurl = "https://thinq.tv/youronlinemom" %>
-        <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
         <div style="margin-left: 17px">
           <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %>" 
             onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %>',
@@ -133,11 +132,13 @@
       }, 2000);
 
       // check if user logged in every 10 seconds
-      // setInterval(function () {
-      //   $.post("/users/signed_in", {}, function(data){
-      //     alert(data)
-      //   })
-      // }, 10000)
+      setInterval(function () {
+        $.post("/users/signed_in", {}, function(data){
+          if (data['signed_in'] == "false") {
+            location.reload()
+          }
+        })
+      }, 10000)
 
       // refresh button for attendees list
       $('#refresh').click(function(){
