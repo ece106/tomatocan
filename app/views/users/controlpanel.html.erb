@@ -127,7 +127,7 @@ Conversations
             <div class="panel-heading" style="margin-bottom:-10px">
               Blocked Users
             </div>
-            <div style="padding:8px 0px 8px 0px; font-size: 15px">
+            <div id="blocked" style="padding:8px 0px 8px 0px; font-size: 15px">
               <div style="padding:5px 0px 0px 0px">
                 <div class="row" style="padding: 0px 0px 0px 15px">
                   <% if current_user.BlockedUsers.empty? %>
@@ -156,5 +156,10 @@ Conversations
         </div>
       </div>
     </div>
+    <script>
+      setInterval(function () {
+        $('#blocked').load(document.URL +  ' #blocked');
+      }, 2000);
+    </script>
   <% end %>
 <% end %>
