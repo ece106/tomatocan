@@ -2,10 +2,12 @@ class Merchandise < ApplicationRecord
   belongs_to :user
   has_many :purchases
 
-  validates :price, presence: true
+  validates :price, presence: true, numericality: true
+
   validates :name, presence: true
-  validates :buttontype, presence: true
-  validates :price, numericality: true
+
+  validates :buttontype, presence: true, inclusion: { in: ["Buy","Donate"]}
+
 
   mount_uploader :itempic, MerchpicUploader
   mount_uploader :audio, AudioUploader
