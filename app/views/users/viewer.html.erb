@@ -113,10 +113,11 @@
   </div>
 
   <script>
-    // makes all links open in new tab
     $(document).ready(function() {
+      // makes all links on viewer page open in new tab
       $("a").attr("target", "_blank");
 
+      // automatically refresh attendees list every 2 seconds
       setInterval(function () {
         $('#attendee').load(document.URL +  ' #attendee');
         $.post("/users/is_blocked", {}, function(data){
@@ -126,10 +127,20 @@
         })
       }, 2000);
 
+      // check if user logged in every 10 seconds
+      // setInterval(function () {
+      //   $.post("/users/signed_in", {}, function(data){
+      //     alert(data)
+      //   })
+      // }, 10000)
+
+      // refresh button for attendees list
       $('#refresh').click(function(){
         $('#attendee').load(document.URL +  ' #attendee');
       });
 
+
+      // remove user from current attendees list
       $(window).on('beforeunload', function() {
         $.post("/users/unload")
       });
