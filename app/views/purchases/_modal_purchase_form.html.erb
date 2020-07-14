@@ -46,7 +46,7 @@
             <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year + 5 }, { name: nil, id: 'card_year' } %>
           </div>
         </div>
-        <div class="modal-footer">
+        <div class="text-center">
           <div>
             <%= form.submit ("Donate $" + sprintf('%.2f', merch.price) + "!"), class: 'purchase-modal-btn' %>
           </div>
