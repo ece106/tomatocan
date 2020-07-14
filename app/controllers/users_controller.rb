@@ -234,6 +234,14 @@ class UsersController < ApplicationController
     render json: {blocked_by: current_user.blockedBy}
   end
 
+  def signed_in?
+    if user_signed_in?
+      return true
+    else
+      return false
+    end
+  end
+
   private
 
   def updateEmailMsg
