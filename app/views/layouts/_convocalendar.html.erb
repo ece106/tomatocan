@@ -47,18 +47,20 @@
               <%= link_to " Join Conversation NOW ", user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
               <% users = User.where("last_viewed = ?", event.usrid) %>
               <% count = users.count %>
+              <div style="margin-left:1.3em">
               <p id="amount">
-              <% if count == 1 %>
-                <%= count %> ThinQer live NOW!</p>
-              <% else %>
-                <%= count %> ThinQers live NOW!</p>
-              <% end %>
+                <% if count == 1 %>
+                  <%= count %> ThinQer live NOW!</p>
+                <% else %>
+                  <%= count %> ThinQers live NOW!</p>
+                <% end %>
+              </div>
               
               <script>
                 $(document).ready(function() {
                   setInterval(function () {
                     $('#amount').load(document.URL +  ' #amount');
-                  }, 20000);
+                  }, 1000);
                 });
               </script>
               
