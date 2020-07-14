@@ -30,7 +30,7 @@ class MerchandiseTest < ActiveSupport::TestCase
   test "error message for name presence" do
     @merchandise.name = nil
 
-    assert_nil @merchandise.errors[:name], 'no validation for presence of name'
+    assert_not @merchandise.save, 'no validation for presence of name'
   end
 
   test "buttontype should not be empty" do
