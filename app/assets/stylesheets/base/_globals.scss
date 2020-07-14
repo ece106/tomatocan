@@ -19,13 +19,6 @@ main {
     flex: 1 !important;
 }
 
-.img-xs{
-  height: 18px;
-  width: 18px;
-  margin-right: 10px;
-}
-
-
 //Styles text-heavy pages like FAQ and ToS. Needs to be moved to their specific CSS because it interferes with navigation styling. 
 /*li {
   margin-bottom: 10px;  
@@ -51,9 +44,4 @@ $overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
 .field_with_errors {
   @extend .control-group !optional;
   @extend .error !optional;
-}
-
-
-.overflow-visible{
-  overflow: visible;
 }

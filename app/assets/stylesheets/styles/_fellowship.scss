@@ -1,163 +1,62 @@
-
-
-.paragraph1 {
-  
-  font-size: 18px; 
-  padding-top: 2px; 
-  line-height: 1.7em;
-}
-
-.paragraph2 {
-  
-  font-size:19px;  
-  line-height: 1.7em;
-  padding-top: 2px;
-
-}
-
-.button1{
-  background-color: #8C1D40; 
-  border-radius: 4px; 
-  padding-top: 4px
-}
-.cardHolder {
-  width: 100%;
-  max-width: 400px;
-  height: 400px;
-  perspective: 1000px;
-}
-.cardFlip {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-}
-
-.cardHolder:hover .cardFlip {
-  transform: rotateY(180deg); 
-}
-/* Position the front and back side */
-.frontSide{
-
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.5rem; 
-  text-align: center;
-  background-color: #8C1D40;
-  color: #fff;
-  height: 444px;
-}
-.backSide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  border-radius: 0.5rem;
-  background-color: #F2EBE4;
-  color: #fff;
-  transform: rotateY(180deg); 
-}
-
-
-.frontSide img {
-  width: 100%;
-  height:325px;
-  border-radius: 0.5rem; 
-}
-.backSide p {
-  color:#333;
-  margin: 1rem;
-  font-size: 18px;
-  line-height: 1.5em;
-}
-
-  .speaking{
-    font-family: sans-serif;
-    margin: 20px auto;
-    text-align: center;
-    font-size: 40px;
-    max-width: 1500px;
+.box
+{
     position: relative;
-    color: #8C1D40;
-    font-weight: bold;
-  }
+}
 
-  .speaking:before {
-    content: "";
-    display:block;
-    width:550px;
-    height: 2px;
-    background: #ecd7c6;
-    position:  absolute;
-    left:0%;
-    top: 50%;
-    z-index: -2;
+.bottom-left 
+{
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
 
-  }
-  .speaking:after {
-    content: "";
-    display:block;
-    width:550px;
-    height: 2px;
-    background: #ecd7c6;
-    position:  absolute;
-    right:0%;
-    top: 50%;
-    z-index: -2;
+.img-squares 
+{
+height: 350px;
+min-width: auto;
+width:100%;
+}
 
-  }
+.background-web
+{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; height: 400px;
+}
 
-  .speaking span {
+.background-team
+{
+  background-image: url(team.jpg);
+}
 
-    background: #fff;
-  }
+.background-drspeech
+{
+  background-image: url(audience.jpg);
+}
 
-  hr.one {
-    border: none;
-    height: 2px;
-    background: #ecd7c6;
-  }
+.text-white
+{
+  color:white;
+}
 
-  .box p {
-    font-family: "essonnes-headline", 'Georgia', serif;
-    padding-top: 80px;
-    font-size: 36px;
-    font-weight: bold;
-    color: white;
-    text-align: left;
-  }
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #E0E0E0;
+}
 
-.rotate, .rotate1, .rotate2{
-   transform:rotate(180deg);
-   transform-origin:center center;
-  }
-  .text {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-    margin-left: 15px;
-    margin-right: 15px;
-    font-size: 18px;
-    font-weight: 400;
+.container-hover {
+  position: relative;
+  width: 50%;
+}
 
-  }
-  .team .container{
-    min-width:auto;
-    max-width: 1300px;
-    height: auto;
-    padding: 10px;
-
-    background: rgba(255,255,255,.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,.5);
-    margin: auto auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    border-radius: 10px;
+.container-hover:hover .overlay {
+  opacity: 1;
 }

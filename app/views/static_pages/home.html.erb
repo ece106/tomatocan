@@ -11,19 +11,24 @@
 </div>
   <div class="col-lg-5 col-md-11">
       <div id="home">
-        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" > 
+
+      
+         <div style="display:inline; font-size: 54px; color:#ffc627;" > 
           Discover a Community that makes you THINQ
         </div>
-        <div style="display:inline;" > 
-          <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
-        </div>
-        <div style="font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
-          Crowdsource Activism via Video Chat 
-        </div><br><br><br>
 
-        <h3 style="color:#8E0C3A"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %><br> to support Women & Minorities in Tech.
-          <br>Drop in to ask questions about ThinQ.tv! </h3>
+        <div class = "text-secondary d-inline"> 
+          <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
+        </div>    
+
+        <h3 style = "color:#ffc627;"><b>
+          Video Chat to foster Career Development & Personal growth</b>
+        </h3><br><br><br>
+
+        <h3 class = "text-primary"><i>New to ThinQ.tv?</i>
+          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %> to support Women & Minorities in Tech.
+        <br>Drop in to ask questions about ThinQ.tv! </h3>
+
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
@@ -33,6 +38,7 @@
             </div>
           <% end %>
         <% end %>
+        
         <% if @displayresearch.present? %> 
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
@@ -60,7 +66,9 @@
     <br>
     <div class="col-lg-3 col-md-6">
       <h2>Conversation Schedule</h2>
+
       <h4>Discover topics that motivate you!</h4>
+
       <% if user_signed_in? %>
         <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
       <% end %>
