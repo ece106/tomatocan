@@ -54,77 +54,88 @@
       <span>We currently have Study Halls for 3 topics:</span> </b>
     </h2>
     <div class="row">
-      <div class="col-md-4">
-        <div class="card-shadow">
-          <div class="inner">
-              <%= image_tag("marketing.jpg" , :style => "height: 331.917px;  min-width: auto; width:100%;")%>
-              <!-- graphic came from https://unsplash.com/photos/wD1LRb9OeEo   -->
-          </div>
-            <div class="card-body">
-              <h3 class = "bg-primary text-center lead"> UX Research <br> </h3>
-              <p class="text lead" >
-              <span id="dots"></span><span id="more" style="display:none; "> 
-                We currently have a group meeting several times per week to work on survey questions related to the ThinQ.tv site. The purpose of the UX Research Study Hall is to: <br>
-                - Be in the video chat viewer for each other incase you want feedback from others with UX career interests. <br>
-                - Form a support group available several hours per day who are there when you want to be around others also improving their UX Survey skills.<br>
-              </span>
-              </p>
 
-          <div class="arrowdown text-center"> 
-            <i class="fa fa-angle-down" id="angle" aria-hidden="true" onclick="read()"></i>
-          </div> 
+      <div class="col-md-4">
+        <div>
+          <div>
+            <%= image_tag("marketing.jpg", :class => "img-squares")%>
+              <!-- marketing: https://unsplash.com/photos/wD1LRb9OeEo   -->
+          </div>          
+            <div>
+             <h4 class = "bg-primary text-center lead"> UX RESEARCH <br> </h4>
             </div>
-        </div>
-      </div>
+          </div>
+              <div class = "text-center">
+                <button class="btn btn-secondary dropdown-toggle" data-toggle="collapse" data-target="#first">
+                        <span class="glyphicon glyphicon glyphicon-menu-down"></span>
+                </button>
+                <div class = "collapse" id = "first">
+                  <p class = "text-left lead">
+                 We currently have a group meeting several times per week to work on survey questions related to the ThinQ.tv site. The purpose of the UX Research Study Hall is to:
+                 <br>
+                  - Be in the video chat viewer for each other incase you want feedback from others with UX career interests.<br>
+                  - Form a support group available several hours per day who are there when you want to be around others also improving their UX Survey skills.
+                  </p>
+                
+                </div> <!-- Collapse content -->
+              
+              </div> <!-- Make center -->
+            
+      </div> <!-- end of first pic-->
+      
 
       <div class="col-md-4">
-        <div class="card-shadow">
-          <div class="inner">
-              <%= image_tag("ruby.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
-              <!-- This image came from https://unsplash.com/photos/yktK2qaiVHI   -->
+        <div>
+          <div>
+              <%= image_tag("ruby.jpg", :class => "img-squares")%>
+              <!-- ruby: https://unsplash.com/photos/yktK2qaiVHI   -->
           </div>
-          <div class="card-body">
-              <h3 class = "bg-primary text-center lead"> RUBY ON RAILS Web Development <br> </h3>
-              <p class="text lead">
-            <span id="dots1"></span><span id="more1" style="display:none;"> 
-              Front and back end developers can co-work or co-hack with each other. The purpose of the Rails Study Hall is to: <br>
-              - Be in the video chat viewer for each other incase you have Rails questions while working on your project. <br>
-              - Form a support group available several hours per day who are there when you want to be around others also improving their Rails skills. <br><br>
-
-              Several of us are working with the existing code base for ThinQ.tv to learn Ruby on Rails. Our repository is at <b><a href="https://github.com/ece106/tomatocan" target="_blank"> https://github.com/ece106/tomatocan </a></b> if you'd like to learn Rails by contributing to ThinQ.tv's code, the first step is to fork & clone the repository. Drop in to Study Hall hours and ask us how to join our Discord channel and find the list of tasks to work on.<br>
-            </span>
-              </p>
-
-            <div class="arrowdown text-center"> 
-              <i class="fa fa-angle-down" id="angle1" aria-hidden="true" onclick="read1()"></i>
-            </div> 
+            <div>
+                  <h4 class = "bg-primary text-center lead"> RUBY ON RAILS Web Development <br> </h4>
+            </div>
           </div>
-        </div>
-      </div>
+              <div class = "text-center">
 
-      <div class="col-md-4">
-        <div class="card-shadow" >
-          <div class="inner">
-              <%= image_tag("uidesign.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
+                <button class="btn btn-secondary dropdown-toggle" data-toggle="collapse" data-target="#second">
+                        <span class="glyphicon glyphicon glyphicon-menu-down"></span>
+                </button>
+                <div class = "collapse" id = "second">
+                  <p class = "text-left lead">
+                  Front and back end developers can co-work or co-hack with each other. The purpose of the Rails Study Hall is to:<br>
+                  - Be in the video chat viewer for each other incase you have Rails questions while working on your project.<br>
+                  - Form a support group available several hours per day who are there when you want to be around others also improving their Rails skills.<br><br>
+                  Several of us are working with the existing code base for ThinQ.tv to learn Ruby on Rails. Our repository is at https://github.com/ece106/tomatocan if you'd like to learn Rails by contributing to ThinQ.tv's code, the first step is to fork & clone the repository. Drop in to Study Hall hours and ask us how to join our Discord channel and find the list of tasks to work on.
+                  </p>
+                </div> <!-- Collapse content -->              
+              </div> <!-- Make center -->
+            
+      </div> <!-- end of second pic-->
+
+      <div class="container col-md-4">
+        <div>
+          <div>
+            <%= image_tag("uidesign.jpg", :class => "img-squares")%>
               <!-- uidesign: https://unsplash.com/photos/WYwT7pXuXvo  -->
           </div>
-          <div class="card-body">
-            <h3 class = "bg-primary text-center lead"> Women Developers <br> </h3>
-              <p class="text lead">
-            <span id="dots2"></span>
-            <span id="more2" style="display:none;"> 
-              ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers Study Hall is to: <br>
-              - Meet other female developers from around the US <br>
-              - Support each other<br>
-              - Bring #metoo issues we all face out in the open without backlash for doing so
-            </span>
-              </p>
-            <div class="arrowdown text-center"> 
-              <i class="fa fa-angle-down" id="angle2" aria-hidden="true" onclick="read2()"></i>
-            </div> 
-          </div>
+            <div>
+                  <h4 class = "bg-primary text-center lead"> Women Developers <br> </h4>
+            </div>
         </div>
-      </div>
+          <div class = "text-center">
+
+                <button class="btn btn-secondary dropdown-toggle" data-toggle="collapse" data-target="#third">
+                        <span class="glyphicon glyphicon glyphicon-menu-down"></span>
+                </button>
+                <div class = "collapse" id = "third">
+                  <p class = "text-left lead">
+                  ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers Study Hall is to: <br>
+                  - Meet other female developers from around the US <br>
+                  - Support each other<br>
+                  - Bring #metoo issues we all face out in the open without backlash for doing so<br>
+                  </p>
+                </div> <!-- Collapse content -->              
+              </div> <!-- Make center -->            
+      </div> <!-- end of third pic-->
 
     <script type="text/javascript">
       showPanel(0,'#f44336');
