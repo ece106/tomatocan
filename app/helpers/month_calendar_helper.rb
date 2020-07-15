@@ -3,6 +3,12 @@ module MonthCalendarHelper
 		Caler.new(self, date, block).table
 	end
 
+  def getWeekDays
+    today = Date.today
+    end_of_week = today + 6.day
+    (today..end_of_week).to_a
+  end
+
 	def weekcaler(date = Date.today, &block)
 	        WeekCaler.new(self, date, block).table
 	end

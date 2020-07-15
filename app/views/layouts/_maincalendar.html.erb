@@ -17,7 +17,7 @@
             <td class=col-xs-2>
               <% rsvpeople = "" %>
               <% rsvpusers = event.users %>
-            <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
+            <span style="font-size:90%;" id=list-time-day<%=i%>></span>
             <br>
             <span style="font-size:125%;"id=list-time-hour<%=i%>></span>
           </td>
@@ -73,7 +73,7 @@
                         <% if rsvpuser.profilepic.url.match(/http/) %>
                           <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
                         <% end %>
-                      <% else %> 
+                      <% else %>
                         <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
                       <% end %>
                     </span>
@@ -89,7 +89,7 @@
               <% end %>
             </div>
             <% end %>
-          </td>  
+          </td>
 
           <td class=col-xs-2>
             <% @rsvp = Rsvpq.new %>
