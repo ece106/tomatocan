@@ -39,11 +39,6 @@
               <% end %>
             <% end %>
           </td>
-          <td class=col-xs-2>
-            <span style="font-size:125%;" id=calendar-time-day<%=i%>></span>
-            <br>
-            <span style="font-size:90%;"id=calendar-time<%=i%>></span>
-          </td>
           <script>
             var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
             date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
