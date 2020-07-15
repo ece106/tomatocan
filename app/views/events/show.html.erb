@@ -62,28 +62,65 @@
             <% end %>
 
             <%= f.hidden_field :event_id, :value => @event.id %>
+
+            <% flag = true %>
+
             <% if user_signed_in? %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
+              <% @rsvps.each do |rsvp| %>
+                <% if rsvp.user_id == current_user.id %>
+                  <% flag = false %>
+                <% end %>
+              <% end %>
             <% else %>
               <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px", placeholder: "Enter email" %>
             <% end %>
-            <%= f.submit "RSVP NOW", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
-            <% end %>
-        
-          <% if user_signed_in? %>
-            <% if @event.usrid == current_user.id %>
-              <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
+
+            <% if flag %>
+              <%= f.submit "RSVP NOW", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
             <% end %>
           <% end %>
-
-          <% if @rsvpusers.count > 0 %>
+        
+            <% if user_signed_in? %>
+              <% if @event.usrid == current_user.id %>
+                <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
+              <% end %>
+          <% end %>
+    
+          <% if @rsvps.count > 0 %>
             <br><br><br><br><br><br><br><br>
-            <b>Who will be there:</b><br>
-            <div>
+            <!-- Default dropleft button -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+              <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
               <% @rsvpusers.each do |rsvpuser| %>
-                <%= link_to rsvpuser.name, user_profile_path(rsvpuser.permalink) %>,
+                <%= link_to user_profile_path(rsvpuser.permalink) do %>
+                  <div class="dropdown-item">
+                    <span>
+                      <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
+                        <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
+                      <% elsif !rsvpuser.profilepic.url.nil? %>
+                        <% if rsvpuser.profilepic.url.match(/http/) %>
+                          <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
+                        <% end %>
+                      <% else %> 
+                        <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
+                      <% end %>
+                    </span>
+                    <%= rsvpuser.name %></div>
+                <% end %>
+              <% end %>
+              <% @rsvps.each do |rsvp| %>
+                <% unless rsvp.email.blank? %>
+                  <% parts = rsvp.email.split('@') %>
+                  <div class="dropdown-item"><%= parts[0] %></div>
+                <% end %>
               <% end %>
             </div>
+          </div>
+
           <% end %>
         </div>
     </div>

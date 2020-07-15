@@ -27,7 +27,12 @@ class RsvpqsController < ApplicationController
       end
       redirect_to home_path
     else
-      flash[:error] = 'Please enter a valid email address'
+      rsvp = Rsvpq.find_by(email: @rsvp.email)
+      if rsvp.nil?
+        flash[:error] = 'Please enter a valid email address'
+      else
+        flash[:error] = 'Entered email already has an rsvp for this event'
+      end
       redirect_back(fallback_location: root_path)
     end
   end
