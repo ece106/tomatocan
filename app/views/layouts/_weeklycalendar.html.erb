@@ -6,51 +6,28 @@
 <% k = 0 %>
 <% l = 0 %>
  <% @passing1 = 0%>
-<br><br>
-
-<h2 id="month" style="color: black; text-align: center;"> <%= Date.today.strftime("%B %Y") %> </h2>
-
-
-
-<div class="container" style="padding-top: 10px; float: center; width: auto; max-width: 1470px; overflow-x: scroll; overflow-y:scroll; ">
-
-<div id="events">
-
-  <%= weekcaler @monthforCalendar do |date| %>
-
-
-  <div class="col-md-9 col-md-offset-1 col-xs-11">
-    <div class="buttonsContainer">
-
-
-      <% passing =date.day - Date.today.day%>
-      <% @passingdaytodayy = Date.today + passing.day %>
-      <button class= "weeklybuttons" onclick= "Panel1(<%=@passing1%>,'#900C3F')" style= "border-radius:8px; float:center; font-family: sans-serif; font-weight:bold;"> <%= date.strftime("%A")%><br><%= date.day %> </button>
-      <%@passing1 = @passing1 + 1%>
-    </div>
+<br>
+<div class="container">
+  <div class="row" style="float:left;">
+    <% getWeekDays.each_with_index do |date, index|%>
+    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn" style="margin-bottom:2px;">
+      <%=date.strftime("%A")%><br><%= date.month%><%= "/" %><%= date.day %>
+    </button>
+    <%end%>
   </div>
-
-
-  <div class="tabsPanel1">
-    <div class="row" id="calendar">
-      <div class="col-md-11 col-xs-12">
-
-        <br><%= render 'layouts/renderday', collection: @passingdaytodayy %>
-      </div>
-    </div>
-  </div>
-
-<% end %>
-
-</div>;
 </div>
-
-
+<% getWeekDays.each do |date|%>
+  <div class="weekDays">
+    <div class="row" id="calendar">
+      <%= render 'layouts/renderday', currentDate: date%>
+    </div>
+  </div>
+<%end%>
 
 <script>
   function Panel1 (panelIndex, colorCode) {
-    var tabButtons=document.querySelectorAll(".container .buttonsContainer button");
-    var tabPanels=document.querySelectorAll(".container .tabsPanel1");
+    var tabButtons=document.querySelectorAll(".weekBtn");
+    var tabPanels=document.querySelectorAll(".weekDays");
     tabButtons.forEach(function(node) {
       node.style.backgroundColor=colorCode;
       node.style.color="#FFFFFF";
@@ -64,10 +41,6 @@
     });
     tabPanels[panelIndex].style.display="block";
     tabPanels[panelIndex].style.backgroundColor="white";
-
-
-
   }
   Panel1(0,'#900C3F');
-
 </script>
