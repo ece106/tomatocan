@@ -19,17 +19,6 @@ main {
     flex: 1 !important;
 }
 
-.img-xs{
-  height: 18px;
-  width: 18px;
-  margin-right: 10px;
-}
-
-//Styles text-heavy pages like FAQ and ToS. Needs to be moved to their specific CSS because it interferes with navigation styling.
-li {
-  margin-bottom: 10px;
-}
-
 .navbar-default {
   background-color: $brand-primary;
 }
@@ -50,10 +39,6 @@ textarea {
 .field_with_errors {
   @extend .control-group !optional;
   @extend .error !optional;
-}
-
-.overflow-visible{
-  overflow: visible;
 }
 
 //new styles for the redesign
