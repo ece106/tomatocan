@@ -47,7 +47,7 @@ end
       @merchandise.get_youtube_id
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else 
-      render action: 'edit'
+      render action: "edit"
     end
   end
 

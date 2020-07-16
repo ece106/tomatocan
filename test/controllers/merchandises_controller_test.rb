@@ -58,13 +58,13 @@ class MerchandisesControllerTest < ActionController::TestCase
 
   test "should redirect successful merchandise creation" do
     sign_in users(:confirmedUser)
-      post :create, params: { merchandise: { name: 'chris', user_id: '1', price: '20', desc: 'test1', buttontype: 'one' }}
+      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
       assert_redirected_to user_profile_path(users(:confirmedUser).permalink)
   end
 
   test "should throw flag after successful merchandise creation" do
     sign_in users(:confirmedUser)
-      post :create, params: { merchandise: { name: 'chris', user_id: '1', price: '1', desc: 'test1', buttontype: 'one' }}
+      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
       assert_equal 'Patron Perk was successfully created.', flash[:notice]
   end
 
@@ -126,7 +126,7 @@ class MerchandisesControllerTest < ActionController::TestCase
 
   test "should throw flag after merchandise updated" do
     sign_in users(:confirmedUser)
-      patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'one' }}
+      patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test1', buttontype: 'Buy' }}
       assert_equal flash[:notice], 'Patron Perk was successfully updated.'
   end
 
@@ -152,5 +152,13 @@ class MerchandisesControllerTest < ActionController::TestCase
     sign_in users(:confirmedUser)
     patch :update, params: {id: @merchandise, merchandise: { name: '', user_id: '', price: '', desc: '', buttontype: ''}}
     assert_template :edit
+  end
+
+  test "should return correct layout id" do
+    sign_in users(:confirmedUser)
+      patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+      assert_template layout:'userpgtemplate'
+      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
+      assert_template layout: 'application'
   end
 end
