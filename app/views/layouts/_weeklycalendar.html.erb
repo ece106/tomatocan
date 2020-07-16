@@ -18,9 +18,7 @@
 </div>
 <% getWeekDays.each do |date|%>
   <div class="weekDays">
-    <div class="row" id="calendar">
-      <%= render 'layouts/renderday', currentDate: date%>
-    </div>
+    <%= render 'layouts/renderday', currentDate: date%>
   </div>
 <%end%>
 
