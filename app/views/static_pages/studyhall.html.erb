@@ -32,7 +32,7 @@
   </div>
   <div class="tabContainer">
     <div class="col-md-10 col-md-offset-1 col-xs-12">
-      <div class="buttonContainer" style="float: center; width: auto; max-width: 1470px; padding-left: 100px; padding-bottom:10px;">
+      <div class="buttonContainer">
         <button onclick="showPanel(0,'#f44336')">List View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
         <button onclick="showPanel(2,'#2196f3')">Weekly Calendar </button>
@@ -49,7 +49,7 @@
        <%= render 'layouts/monthcalendar', collection: @eventsAll %>
     </div>
     <div class="tabPanel">
-      <div class="row" >
+      <div class="row" id="calendar">
         <div class="col-xs-12">
         <%= render 'layouts/weeklycalendar'%>
         </div>
