@@ -11,13 +11,19 @@
   <div class="form-group">
     <h3><%= f.label :buttontype, "*Topic" %></h3>
     <p class="help-block">Will your Conversation be a Study Hall Hour or a Conversation</p>
-    <%= f.select(:topic, ['Study Hall', 'Conversation', 'User Research'], {}) %><p>
+    <%= f.select(:topic, ['Study Hall', 'Conversation', 'Group Problem Solving'], {}) %><p>
   </div>
 
   <div class="form-group">
     <h3><%= f.label :buttontype, "Start Time" %></h3>
     <p class="help-block" id="hb1"></p>
     <%= f.datetime_select :start_at, ampm: true, default: 3.days.from_now, minute_step: 60, start_year: Date.today.year, end_year: Date.today.year + 1 %>
+  </div>
+
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "Repeated" %></h3>
+    <p class="help-block"></p>
+    <%= f.select_recurring :recurring, nil, allow_blank: true %>
   </div>
 
   <div class="form-group">

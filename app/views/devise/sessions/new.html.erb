@@ -1,16 +1,15 @@
-  <% @title=" Community " %>
-
-  <!--Used to display error message when invalid credentials are inputted -->
-
-
   <div class="container">
-
-    <% if request.host == "thinqtv.herokuapp.com" %>
-      You must confirm your sign in to access Stripe
-    <% end %>
 
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
+        <% if request.referrer != nil %>
+          <% if request.referrer.include? "/viewer" %>
+            <div class="alert alert-danger" role="alert" style="text-align:center">
+              You must be signed in to join this Conversation
+            </div>
+          <% end %>
+        <% end %>
+
         <div class="well">
           <div style="text-align:center">
             <h1>Login</h1>
@@ -62,19 +61,23 @@
           <!-- Sign In Button -->
           <%= f.submit "Sign In", :class => "form-control btn-primary" %>
 
-          <br><div style="text-align:center">OR</div><br>
-
-          <!-- Log In With Facebook
-          <div style="text-align:center">
-            <%- resource_class.omniauth_providers.each do |provider| %>
-              <a href="/users/auth/facebook" style="margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 3px; padding: 8px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; text-decoration: none; background-color: #4267B2; color: #fff;">
-                <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" alt="Facebook Logo" style="width:40px; height:36px; margin-left: -10px">
-                <b>Sign In With Facebook</b>
-              </a>
-            <% end -%>
+        <!-- 
+          <div style="text-align:center; padding-bottom:10px">
+            OR
           </div>
--->
 
+          <div style="text-align:center"> 
+            <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
+              <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
+              <b>Sign In With Facebook</b> 
+            </a>
+
+            <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
+              <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
+              <b>Sign In With Google</b> 
+            </a>
+          </div>
+        -->
         <% end %>
         </div>
       </div>

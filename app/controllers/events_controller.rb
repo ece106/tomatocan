@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-#  before_action :authenticate_user!, except: [:index, :show]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
 
   def index
@@ -17,7 +16,7 @@ class EventsController < ApplicationController
     @rsvpusers = @event.users
     @rsvps     = @event.rsvpqs
     @duration  = ((@event.end_at - @event.start_at) / 60).floor
-    @surl = "http://www.ThinQ.tv/" + @user.permalink
+    @surl = "https://www.think.tv" + "/" + @user.permalink
 
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
@@ -32,12 +31,10 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new.json
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end
@@ -53,8 +50,8 @@ class EventsController < ApplicationController
         user = User.find(@event.user_id)
         offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
         reminder_hour = @event.start_at + offset.hours - 1.hours
-        @reminder_date = @event.start_at - 1.days #why is the scope beyond local? Do we use this variable in a view? I doubt it.
-        EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: @reminder_date)
+        reminder_date = @event.start_at - 1.days
+        EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: reminder_date)
         EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
         format.html { redirect_to "/" }
         format.json { render json: @event, status: :created, location: @event }
@@ -121,7 +118,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :usrid, :user_id)
+    params.require(:event).permit(:topic, :name, :start_at, :end_at, :desc, :usrid, :user_id, :recurring)
   end
     
 end

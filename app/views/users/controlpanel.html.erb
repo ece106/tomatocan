@@ -1,102 +1,108 @@
-Conversation<!-- Set layout of panels for a logged-in user. You do not need to check if user logged in or if user == current user in this view. You should check if host is Heroku though. -->
+Conversations
 
 <!-- Nav tabs -->
 <% if user_signed_in? %>
-<% if current_user.id == @user.id %>
-<ul class="nav nav-pills nav-justified" id="dashboardTabs">
-  <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "profile-settings-tab" %></li>
-  <li role="presentation"><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
-  <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
-   <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
-  <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
-</ul>
+  <% if current_user.id == @user.id %>
+  <ul class="nav nav-pills nav-justified" id="dashboardTabs">
+    <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "profile-settings-tab" %></li>
+    <li role="presentation"><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
+    <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
+    <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+    <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
+    <li role="presentation"><%= link_to "Blocked Users", "#blockedTab", "data-toggle" => "tab" %></li>
+  </ul>
 
 
 
-<!-- Tab panes -->
-<div class="tab-content">
-  <div class="tab-pane active" id="profileTab">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-          <h1>Edit Profile</h1>
-        </div>
-      </div>
-      <div class="row">
-        <!-- Make a button to see "view" mode of profile -->
-        <%= render :file => 'users/profileinfo' %>
-      </div>
-    </div>
-  </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
 
-  <div class="tab-pane" id="rewardsTab">
-    <div class="container-fluid">
-      <div class="row">
-        <br><br>
-        <%= render 'layouts/stripealert' %>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <h1>Manage Rewards</h1>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <!--%= render 'layouts/stripealert' %-->
-          <%= render 'layouts/merchsidebar' %>
-        </div>
-        <div class="col-md-6">
-          <%= render 'layouts/createPerk' %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <%= render 'layouts/expiredPerks' %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tab-pane" id="streamingTab">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-4">
-          <h1>Conversations</h1>
-        </div>
-        <div class="fixed-bottom col-md-8" id="shows-button-panel">
-          <%= link_to "Start Your Conversation Now", "https://thinQtv.herokuapp.com/" + @user.permalink, :class => 'btn btn-lg btn-warning', id: "stream-btn" %>
-          <%= link_to 'Set Up Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
-        </div>
-      </div>
-      <br>
-
-      <div class="row">
-          <div class="col-md-6" >
-            <%= render file: 'users/eventlist' %><br>
-            <%= render file: 'users/pastevents' %>
+    <!-- Profile Tab -->
+    <div class="tab-pane active" id="profileTab">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Edit Profile</h1>
           </div>
-          <div class="col-md-4" >
-            <%= render 'layouts/streamDirections' %>
-          </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tab-pane" id="accountTab">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-          <h1>Account Settings</h1>
+        </div>
+        <div class="row">
+          <!-- Make a button to see "view" mode of profile -->
+          <%= render :file => 'users/profileinfo' %>
         </div>
       </div>
-      <div class="row">
-        <%= render :file => 'users/accountinfo' %>
-      </div>
-      <!-- Might want some sort of Stripe Connect panel here-->
     </div>
-  </div>
 
+    <!-- Rewards Tab -->
+    <div class="tab-pane" id="rewardsTab">
+      <div class="container-fluid">
+        <div class="row">
+          <br><br>
+          <%= render 'layouts/stripealert' %>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Manage Rewards</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <!--%= render 'layouts/stripealert' %-->
+            <%= render 'layouts/merchsidebar' %>
+          </div>
+          <div class="col-md-6">
+            <%= render 'layouts/createPerk' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= render 'layouts/expiredPerks' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conversations Tab -->
+    <div class="tab-pane" id="streamingTab">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4">
+            <h1>Conversations</h1>
+          </div>
+          <div class="fixed-bottom col-md-8" id="shows-button-panel">
+            <%= link_to 'Set Up Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-6" >
+              <%= render file: 'users/eventlist' %><br>
+              <%= render file: 'users/pastevents' %>
+            </div>
+            <div class="col-md-4" >
+              <%= render 'layouts/streamDirections' %>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Tab -->
+    <div class="tab-pane" id="accountTab">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Account Settings</h1>
+          </div>
+        </div>
+        <div class="row">
+          <%= render :file => 'users/accountinfo' %>
+        </div>
+        <!-- Might want some sort of Stripe Connect panel here-->
+      </div>
+    </div>
+
+    <!-- Sales Tab -->
     <div class="tab-pane" id="salesTab">
       <div class="container-fluid">
         <div class="row">
@@ -111,5 +117,44 @@ Conversation<!-- Set layout of panels for a logged-in user. You do not need to c
         <%= render :file => 'users/dashboard' %>
       </div>
     </div>
-<% end %>
+
+    <!-- Blocked Users Tab -->
+    <div class="tab-pane" id="blockedTab">
+      <div class="row">
+        <br><br>
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading" style="margin-bottom:-10px">
+              Blocked Users
+            </div>
+            <div style="padding:8px 0px 8px 0px; font-size: 15px">
+              <div style="padding:5px 0px 0px 0px">
+                <div class="row" style="padding: 0px 0px 0px 15px">
+                  <% if current_user.BlockedUsers.empty? %>
+                  <br>
+                    <p style="text-align:center">You have not blocked any users</p>
+                  <% else %>
+                    <% current_user.BlockedUsers.each do |use| %>
+                    <% user = User.find_by_permalink(use) %>
+                      <div class="col-sm-9" style="padding:8px 0px 0px 15px">
+                        <% if user.profilepic.present? && user.profilepic != '' %>
+                            <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+                        <% else %>
+                            <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+                        <% end %>
+                        <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
+                      </div>
+                      <div class="col-sm-3" style="margin-top:3px">
+                        <%= button_to 'Unblock', action: :unblock, :to_unblock => user.permalink %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>

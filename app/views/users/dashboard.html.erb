@@ -1,7 +1,7 @@
 <% @title=" need to paginate results "  %>
 <p class="flash"><%= flash.notice %></p>
  
-<% if request.host == "thinqtv.herokuapp.com" %> 
+<% if request.host == "https://thinq.tv" %> 
   <% if user_signed_in? %>
     <% if @user.id == current_user.id %>
       <% if !current_user.stripeid.present? %>

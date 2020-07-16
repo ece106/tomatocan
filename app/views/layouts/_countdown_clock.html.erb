@@ -1,38 +1,40 @@
 <% if @conversations.count != 0 %><br>
-  <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
-    <div id="eventCurrentdiv">
-      <h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
-      <p> is LIVE right NOW!</p>
-      <%= link_to " Join Conversation ", "https://thinqtv.herokuapp.com/" + @host.permalink + "?chatrm=" + @displayconvo.topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
-      <br>
-      Hosted by: <%= link_to @host.name, @host.permalink %>
-    </div>
-  <% elsif Time.current < Time.parse(@start_time) %>
-    <div id="clockdiv">
-      <div>
-      <span class="days"></span>
-      <div class="smalltext">Days</div>
+  <% if @start_time != nil %>
+    <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
+      <div id="eventCurrentdiv">
+        <h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
+        <p> is LIVE right NOW!</p>
+        <%= link_to " Join Conversation ", @host.permalink + "/viewer" + "?chatrm=" + @displayconvo.topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
+        <br>
+        Hosted by: <%= link_to @host.name, @host.permalink %>
       </div>
-      <div>
-        <span class="hours"></span>
-        <div class="smalltext">Hours</div>
+    <% elsif Time.current < Time.parse(@start_time) %>
+      <div id="clockdiv">
+        <div>
+        <span class="days"></span>
+        <div class="smalltext">Days</div>
+        </div>
+        <div>
+          <span class="hours"></span>
+          <div class="smalltext">Hours</div>
+        </div>
+        <div>
+          <span class="minutes"></span>
+          <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+          <span class="seconds"></span>
+          <div class="smalltext">Seconds</div>
+        </div>
+        <script>
+          initializeClock('clockdiv', '<%= @start_time %>');
+        </script>
+      </div> 
+      <div id="nextEventdiv">
+        <p>Until </p><h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3><p> goes live!</p>
+        <br>
+        Hosted by: <%= link_to @host.name, @host.permalink %>
       </div>
-      <div>
-        <span class="minutes"></span>
-        <div class="smalltext">Minutes</div>
-      </div>
-      <div>
-        <span class="seconds"></span>
-        <div class="smalltext">Seconds</div>
-      </div>
-      <script>
-        initializeClock('clockdiv', '<%= @start_time %>');
-      </script>
-    </div> 
-    <div id="nextEventdiv">
-      <p>Until </p><h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3><p> goes live!</p>
-      <br>
-      Hosted by: <%= link_to @host.name, @host.permalink %>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

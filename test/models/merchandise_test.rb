@@ -16,10 +16,45 @@ class MerchandiseTest < ActiveSupport::TestCase
   end
    
   test "price should not be empty" do
-    merchandise = Merchandise.new
-    merchandise.send "price=",nil
-    refute merchandise.valid?
-    refute_empty merchandise.errors[:price]
+    @merchandise.price = nil
+    refute @merchandise.valid?
+    #refute_empty @merchandise.errors[:price]
+  end
+
+  test "name should not be empty" do
+    @merchandise.name = nil
+    refute @merchandise.valid?, 'saved merchandise without a name'
+    #assert_not_nil @merchandise.errors[:name], 'no validation for presence of name'
+  end
+
+  test "error message for name presence" do
+    @merchandise.name = nil
+
+    assert_not @merchandise.save, 'no validation for presence of name'
+  end
+
+  test "buttontype should not be empty" do
+    @merchandise.buttontype = nil
+    refute @merchandise.valid?, 'saved merchandise without a buttontype'
+    assert_not_nil @merchandise.errors[:buttontype], 'no validation for presence of buttontype'
+  end
+
+  test "buttontype should only be Buy or Donate" do
+    @merchandise.buttontype = "string"
+    refute @merchandise.valid?, 'saved an invalid value for buttontype'
+  end
+
+  test "price should be numerical" do
+    @merchandise.price = "string"
+    refute @merchandise.valid?, 'saved merchandise with a non numerical price'
+  end
+
+  test "user association" do
+    refute defined?(@merchandise.user) == nil, 'saved merchandise with no user'
+  end
+
+  test "purchases association" do
+    refute defined?(@merchandise.purchases) == nil, 'no association between merchandises and purchases'
   end
 
   test "parse youtube for merchandise" do

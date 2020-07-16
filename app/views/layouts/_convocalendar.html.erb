@@ -1,7 +1,7 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
-<%= will_paginate @conversations, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @calendar_events, renderer: BootstrapPagination::Rails %>
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 <%i = 0%>
 
@@ -9,14 +9,14 @@
   <% if @conversations.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
-        <% @conversations.sort_by{|t| t.start_at}.each do |event| %>
+        <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
           <% user = User.find(event.usrid) %>
           <% i += 1 %>  
           <tr>
             <td class=col-xs-3>
 
               <div id = "calendar-event">
-                <%= link_to event.name, event, id: "calendar-event", title: event.desc %>
+                <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
               </div>
             <%= link_to user.name, user.permalink %>
             <% if user_signed_in? %>
@@ -44,7 +44,7 @@
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-              <%= link_to " Join Conversation NOW ", "https://thinqtv.herokuapp.com/" + user.permalink + "?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              <%= link_to " Join Conversation NOW ", user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
               
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
@@ -68,7 +68,16 @@
                   </script>
                   <% if user_signed_in? %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
-                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit" %>
+                    <% flag = true %>
+                    <% event.rsvpqs.each do |rsvp| %>
+                      <% if rsvp.user_id == current_user.id %>
+                        <% flag = false %>
+                      <% end %>
+                    <% end %>
+
+                    <% if flag %>
+                      <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit" %>
+                    <% end %>
                   <% else %>
                     <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
                     <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>

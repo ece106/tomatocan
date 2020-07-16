@@ -3,32 +3,38 @@ require "capybara-screenshot/minitest"
 
 class UserEditsAccountSettings < ActionDispatch::IntegrationTest
   setup do
-    @user = users :one
+    @test_user = users :confirmedUser
 
-    sign_in
+    user_sign_in @test_user
 
-    visit "/#{@user.permalink}/controlpanel"
+    visit "/#{@test_user.permalink}/controlpanel"
   end
 
   test "user edits account settings with valid attributes" do
-    test_permalink = "user123"
 
     find(class: "account-settings-tab", text: "Account").click
 
     fill_in id: "user_email", with: "test@mail.com"
-    fill_in(id: "user_permalink", with: test_permalink)
+    fill_in(id: "user_permalink", with: "test123")
 
-    click_on class: "save-acct-info-btn"
+    click_on class: "btn btn-primary save-acct-info-btn"
 
-    assert_equal current_path, "/#{test_permalink}"
+    assert_equal current_path, "/test123"
+    assert page.has_content? "test@mail.com"
   end
 
-  test "user edits account settings with same attributes" do
+  test "user changes password" do
     find(class: "account-settings-tab", text: "Account").click
 
-    click_on class: "save-acct-info-btn"
+    click_on "Change Password"
 
-    assert_equal current_path, "/#{@user.permalink}"
+    fill_in id: "user_password", with: "newpassword"
+    fill_in(id: "user_password_confirmation", with: "newpassword")
+
+    assert_equal current_path, "/#{@test_user.permalink}/changepassword"
+
+    click_on "Save Profile"
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   test "user cancels edits account settings with same attributes" do
@@ -36,7 +42,15 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on class: "btn btn-default cancel-acct-settings-btn"
 
-    assert_equal current_path, "/#{@user.permalink}"
+    assert_equal current_path, "/#{@test_user.permalink}"
+  end
+
+  test "user saves edits account settings with same attributes" do
+    find(class: "account-settings-tab", text: "Account").click
+
+    click_on class: "btn btn-primary save-acct-info-btn"
+
+    assert_equal current_path, "/#{@test_user.permalink}"
   end
 
   private
@@ -46,7 +60,7 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on('Sign In', match: :first)
 
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')

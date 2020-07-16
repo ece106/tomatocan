@@ -1,0 +1,147 @@
+<!-- Refresh Attendees Tab In The Background (Commented Out Until Completely Finished) 
+<script>
+  $(document).ready(function() {
+    setInterval(function () {
+      $('#attendee').load(document.URL +  ' #attendee');
+    }, 2000);
+  });
+</script>
+-->
+
+<% if user_signed_in? %>
+  <% current_user.update_column(:last_viewed, @user.id) %>
+
+  <% current_user.blockedBy.each do |blocked| %>
+    <% if blocked == @user.permalink %>
+      <meta http-equiv="refresh" content="0; URL=https://thinq.tv/blocked"/>
+    <% end %> 
+  <% end %>
+
+  <!-- Update list of users attending the conversation -->
+  <div class = "container-fluid">
+  <% content_for :head do %>
+    <meta property="og:url"           content="<%= "https://www.thinq.tv" + user_profile_path(@user.permalink) %>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Join <%= @user.permalink %>'s Conversation" />
+    <meta property="og:description"   content="<%= @user.permalink %>'s Conversation is happening right now!" />
+    <% if @user.profilepic.present? %>
+      <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
+    <% else %>
+      <meta property="og:image"       content="https://www.thinq.tv/logoDigitalHollow300.png" />
+    <% end %>
+  <% end %>
+
+  <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
+    <div class="col-md-3">
+      <div style="padding: 0px 0px 5px 0px">
+        <%= render 'layouts/merchsidebar' %>
+      </div>
+
+      <!-- Invite Area -->
+      <div style = "padding: 3px 5px 7px 5px; font-size: 18px; background-color: #F2EBE4">
+        <b>Invite friends to join this conversation</b>
+        <div style = "font-size: 15px; margin-left: 7px">
+          Invite via E-Mail:
+        </div>
+        <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
+          
+        <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+          Invite via SMS:
+        </div>
+        <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
+
+        <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+          Invite via social media: 
+        </div>
+
+        <% domainurl = "https://thinq.tv/youronlinemom" %>
+        <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
+        <div style="margin-left: 17px">
+          <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %>" 
+            onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %>',
+            'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
+              <%= image_tag("facebook_icon.png", :style => "width:25px; height:25px;")%>
+          </a>
+          <a href="https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom"
+            onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom,'
+            'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
+              <%= image_tag("twitter_icon.png", :style => "width:25px; height:25px;") %>
+          </a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+            onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
+            'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
+              <%= image_tag("linkedin_icon.png", :style => "width:25px; height:25px;")%>
+          </a>
+        </div>
+      </div>
+
+      <!-- List of participants (Commented Out Until Completely Finished) 
+      <div style="padding:5px 0px 0px 0px">
+        <div class="panel panel-primary">
+          <div class="panel-heading" style="margin-bottom:-10px">
+            Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
+          </div>
+          <div id="attendee">
+            <%= render 'layouts/attendees' %>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        $('#refresh').click(function(){
+            $('#attendee').load(document.URL +  ' #attendee');
+        });
+      </script>
+
+      <script>
+        $(window).on('beforeunload', function() {
+          $.post("/users/unload")
+        });
+      </script>
+      -->
+    </div>
+
+    <div class="col-md-9">
+      <%= render 'layouts/jitsi' %>
+      <% if @otherconvos.present? %>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Other conversations happening right now
+          </div>
+          <div class = "container">
+            <% @otherconvos.each do |t| %>
+              <%host=User.find(t.usrid)%>
+              <%= link_to t.name, host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
+            <%end%>
+          </div>
+        </div>
+        <div>
+      <%end%>
+      
+      <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 20px; margin-left: -20px">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
+          <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
+            - Reload the page. (Press F5) - or -<br>
+            - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
+            - Turn up the volume on your speakers. - or - <br>
+            - Update Chrome or Firefox to the latest version. - or - <br>
+            - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
+            - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
+            - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // makes all links open in new tab
+    $(document).ready(function() {
+        $("a").attr("target", "_blank");
+    });
+  </script>
+
+<% else %>
+  <meta http-equiv="refresh" content="0; URL=https://thinq.tv/login"/>
+<% end %>
