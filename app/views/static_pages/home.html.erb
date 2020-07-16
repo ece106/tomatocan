@@ -12,23 +12,22 @@
   <div class="col-lg-5 col-md-11">
       <div id="home">
 
-      
+
          <div style="display:inline; font-size: 54px; color:#ffc627;" > 
-          Discover a Community that makes you THINQ
+          Discover a Community that makes you 
         </div>
-
-        <div style="display:inline"> 
-          <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
-        </div>    
-
-        <h2 style = "color:#ffc627;"><b>
-          Crowdsource Activism via Video Chat</b>
+        <div style="display:inline;" > 
+          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
+        </div>
+        <h2 style="color:#ffc627; font-family: 'Arial';" > 
+          Crowdsource Activism via Video Chat 
         </h2><br><br><br>
 
         <h3 class = "text-primary"><i>New to ThinQ.tv?</i>
           <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %> 
           <br>to support Women & Minorities in Tech.
         <br>Drop in to ask questions about ThinQ.tv! </h3>
+
 
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
@@ -54,7 +53,7 @@
             <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
               <h2 id="buttonTitle">
               <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              <%= link_to 'See an example Video Chat Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
               </h2>
             <% end %>
           <% end %>
