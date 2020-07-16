@@ -47,7 +47,7 @@
               <%= link_to " Join Conversation NOW ", user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
               <% users = User.where("last_viewed = ?", event.usrid) %>
               <% count = users.count %>
-              <div style="margin-left:1.3em">
+              <div style="margin-left:1.2em">
               <p id="amount">
                 <% if count == 1 %>
                   <%= count %> ThinQer live NOW!</p>

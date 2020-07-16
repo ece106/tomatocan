@@ -1,20 +1,20 @@
 class BlockController < ApplicationController
     def block
         array = User.find_by_id(params[:to_block]).blockedBy
-        User.find_by_id(params[:to_block]).update({'blockedBy': array << @user.permalink})
+        User.find_by_id(params[:to_block]).update({'blockedBy': array << params[:owner_perma]})
     
         array2 = User.find_by_id(params[:owner]).BlockedUsers
-        User.find_by_id(params[:owner]).update({'BlockedUsers': array2 << User.find_by_id(params[:to_block]).permalink})
+        User.find_by_id(params[:owner]).update({'BlockedUsers': array2 << params[:to_block_perma]})
     end
     
     def unblock
-        array = User.find_by_permalink(params[:to_unblock]).blockedBy
-        array = array - [current_user.permalink]
-        User.find_by_permalink(params[:to_unblock]).update({'blockedBy': array})
+        array = User.find_by_permalink(params[:to_unblock_perma]).blockedBy
+        array = array - [params[:current_user_perma]]
+        User.find_by_permalink(params[:to_unblock_perma]).update({'blockedBy': array})
         
-        array2 = current_user.BlockedUsers
-        array2 = array2 - [User.find_by_permalink(params[:to_unblock]).permalink]
-        current_user.update({'BlockedUsers': array2})
+        array2 = User.find_by_permalink(params[:current_user_perma]).BlockedUsers
+        array2 = array2 - [User.find_by_permalink(params[:to_unblock_perma]).permalink]
+        User.find_by_permalink(params[:current_user_perma]).update({'BlockedUsers': array2})
     end
 
     def unload
