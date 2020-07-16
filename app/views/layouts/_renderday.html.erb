@@ -11,7 +11,7 @@
           <% if event.start_at.to_date.eql?(currentDate) %>
             <% user = User.find(event.usrid) %>
             <tr>
-              <td class=col-xs-3>
+              <td class=col-xs-2>
                 <% rsvpeople = "Join us!" %>
                 <% rsvpusers = event.users %>
                 <% if rsvpusers.count > 0 %>
