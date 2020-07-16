@@ -10,8 +10,8 @@
 <div class="container">
   <div class="row">
     <% getWeekDays.each_with_index do |date, index|%>
-    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn">
-      <%=date.strftime("%A")%>
+    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn" style="margin-bottom:2px;">
+      <%=date.strftime("%A")%><br><%= date.day %>
     </button>
     <%end%>
   </div>
