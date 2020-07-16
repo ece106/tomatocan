@@ -12,10 +12,10 @@
   <div class="col-lg-5 col-md-11">
       <div id="home">
         <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" > 
-          Discover a Community that makes you THINQ
+          Discover a Community that makes you 
         </div>
         <div style="display:inline;" > 
-          <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%><br>
+          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
         </div>
         <div style="font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
           Crowdsource Activism via Video Chat 
@@ -47,7 +47,7 @@
             <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
               <h2 id="buttonTitle">
               <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              <%= link_to 'See an example Video Chat Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
               </h2>
             <% end %>
           <% end %>

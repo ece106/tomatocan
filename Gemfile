@@ -39,12 +39,11 @@ gem "pry", "~> 0.13.1"
 gem "jquery-turbolinks", "~> 2.1"
 gem "bcrypt", "~> 3.1"
 gem "turbolinks", "~> 5.2"
-gem "geocoder", "~> 1.6"
 gem "autoprefixer-rails", "~> 9.7"
 gem "will_paginate", "~> 3.3"
 gem "jquery-rails", "~> 4.4"
 gem "coffee-rails", "~> 5.0"
-gem 'recurring_select'
+gem "recurring_select"
 
 group :test, :development do
   gem 'minitest'
