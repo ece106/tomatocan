@@ -4,7 +4,7 @@
 <% k = 0 %>
 <% l = 0 %>
 <div class="panel panel-default">
-  <% if @events.count != 0 %>
+  <% if @conversationsall.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
         <% @conversationsall.sort_by{|t| t.start_at}.each_with_index do |event, i| %>
