@@ -4,17 +4,17 @@ config.action_mailer.smtp_settings = {
    :address   => "smtp.gmail.com",
    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
    :enable_starttls_auto => true, # detects and uses STARTTLS
-   :user_name => "thinqtv.com@gmail.com",
+   :user_name => ENV['EMAIL'],
    :password  => ENV['GMAIL_PWD'], # SMTP password is any valid API key
    :authentication => 'plain' # Mandrill supports 'plain' or 'login'
 #   :domain => 'www.ThinQ.tv', # your domain to identify your server when connecting
  }
 # Force all access to the app over SSL, use Strict-Transport-Security,
   # and use secure cookies.
-  config.force_ssl = false  #otherwise heroku reroute will say i'm a liar
+  config.force_ssl = true  #otherwise heroku reroute will say i'm a liar
 
   config.action_mailer.default_url_options = {
-    :host => 'http://www.thinq.tv', :protocol => 'http' }
+    :host => 'https://www.thinq.tv', :protocol => 'https' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -36,7 +36,7 @@ config.action_mailer.smtp_settings = {
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -60,7 +60,6 @@ config.action_mailer.smtp_settings = {
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -96,9 +95,9 @@ config.action_mailer.smtp_settings = {
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Do not dump schema after migrations.
