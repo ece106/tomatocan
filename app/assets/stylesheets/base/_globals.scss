@@ -19,23 +19,20 @@ main {
     flex: 1 !important;
 }
 
-<<<<<<< Updated upstream
 .img-xs{
   height: 18px;
   width: 18px;
   margin-right: 10px;
 }
 
-
 //Styles text-heavy pages like FAQ and ToS. Needs to be moved to their specific CSS because it interferes with navigation styling.
 li {
   margin-bottom: 10px;
-=======
-.navbar-default {
-  background-color: $brand-primary;
->>>>>>> Stashed changes
 }
 
+.navbar-default {
+  background-color: $brand-primary;
+}
 
 //Prevents textareas from being resized out of their columns
 textarea {
@@ -55,12 +52,10 @@ textarea {
   @extend .error !optional;
 }
 
-<<<<<<< Updated upstream
-
 .overflow-visible{
   overflow: visible;
 }
-=======
+
 //new styles for the redesign
 h1.new{
   color:$brand-primary;
