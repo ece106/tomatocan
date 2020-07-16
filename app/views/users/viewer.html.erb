@@ -1,5 +1,13 @@
 <% if user_signed_in? %>
-  <% current_user.update_column(:last_viewed, @user.id) %>
+  <% pdtnow = Time.now - 7.hours + 5.minutes %>
+  <% url = request.original_url %>
+  <% currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ? AND topic = ?", pdtnow, pdtnow, @user.id, "Conversation" ).first %>
+  <% currstudyhall = Event.where( "start_at < ? AND end_at > ? AND usrid = ? AND topic = ?", pdtnow, pdtnow, @user.id, "Study Hall" ).first %>
+  <% if url.include? "Study" %> <!-- Will need to be updated as chatrooms change -->
+    <% current_user.update_column(:last_viewed, currstudyhall.id) %>
+  <% else %>
+    <% current_user.update_column(:last_viewed, currconvo.id) %>
+  <% end %>
 
   <% current_user.blockedBy.each do |blocked| %>
     <% if blocked == @user.permalink %>

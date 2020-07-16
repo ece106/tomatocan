@@ -45,7 +45,7 @@
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
               <%= link_to " Join Conversation NOW ", user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
-              <% users = User.where("last_viewed = ?", event.usrid) %>
+              <% users = User.where("last_viewed = ?", event.id) %>
               <% count = users.count %>
               <div style="margin-left:1.2em">
               <p id="amount">

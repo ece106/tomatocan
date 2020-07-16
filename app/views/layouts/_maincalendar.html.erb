@@ -93,6 +93,22 @@
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
               <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              <% users = User.where("last_viewed = ?", event.id) %>
+              <% count = users.count %>
+              <p id="amount">
+                <% if count == 1 %>
+                  <%= count %> ThinQer live NOW!</p>
+                <% else %>
+                  <%= count %> ThinQers live NOW!</p>
+                <% end %>
+              
+              <script>
+                $(document).ready(function() {
+                  setInterval(function () {
+                    $('#amount').load(document.URL +  ' #amount');
+                  }, 10000);
+                });
+              </script>
               
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
