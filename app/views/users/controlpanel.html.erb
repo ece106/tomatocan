@@ -145,7 +145,7 @@ Conversations
                         <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
                       </div>
                       <div class="col-sm-3" style="margin-top:3px">
-                        <%= button_to 'Unblock', action: :unblock, :to_unblock => user.permalink %>
+                        <button id="unblock_button" onclick="unblock('<%=current_user.permalink%>','<%=user.permalink%>')">Unblock</button>
                       </div>
                     <% end %>
                   <% end %>
@@ -160,6 +160,10 @@ Conversations
       setInterval(function () {
         $('#blocked').load(document.URL +  ' #blocked');
       }, 2000);
+
+      function unblock(current_user_permalink, to_unblock_permalink) {
+        $.post("/users/unblock", {current_user_perma: current_user_permalink, to_unblock_perma: to_unblock_permalink})
+      }
     </script>
   <% end %>
 <% end %>
