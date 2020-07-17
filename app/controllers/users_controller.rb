@@ -14,17 +14,6 @@ class UsersController < ApplicationController
     @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
   end
 
-  def youtubers
-    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
-    usersvidorder = userswithyoutube.order('updated_at DESC')
-    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 12)
-  end
-  def supportourwork
-    userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
-    stripeorder = userswstripe.order('updated_at DESC')
-    @stripeusers = stripeorder.paginate(:page => params[:page], :per_page => 24)
-  end
-
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     pdtnow = Time.now - 7.hours + 5.minutes
