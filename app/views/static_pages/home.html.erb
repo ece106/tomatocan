@@ -71,27 +71,23 @@
   </div>
   <div class="tabContainer">
     <div class="buttonContainer">
-      <button onclick="showPanel(0,'#2196f3')">All </button>
-      <button onclick="showPanel(1,'#2196f3')">Study Hall </button>
-      <button onclick="showPanel(2,'#4caf50')">Calendar </button>
-      
+      <button onclick="showPanel(0,'#f44336')">List View </button>
+      <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
+      <button onclick="showPanel(2,'#2196f3')">Weekly View </button>
     </div>
-
     <div class="tabPanel">
-      <%= render 'layouts/weeklycalendarhome'%>
-  </div>
-  <div class="tabPanel">
-      <%= render 'layouts/weeklycalendarstudyhall'%>
+      <%= render 'layouts/convocalendar', collection: @conversations %>
     </div>
     <div class="tabPanel">
       <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
     </div>
-   
-  
+    <div class="tabPanel">
+      <%= render 'layouts/weeklycalendarhome'%>
+  </div>
   </div>
 </div>
 
-<br><br>
+<br><br><br>
 <script type="text/javascript">
   showPanel(0, '#f44336');
 </script>
