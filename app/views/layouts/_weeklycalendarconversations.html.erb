@@ -10,15 +10,15 @@
 </div>
 <br>
 <% getWeekDays.each do |date|%>
-  <div class="weekDays">
-    <%= render 'layouts/renderday', currentDate: date%>
+  <div class="weekDays1">
+    <%= render 'layouts/renderdayhome', currentDate: date%>
   </div>
 <%end%>
 
 <script>
   function Panel1 (panelIndex, colorCode) {
     var tabButtons=document.querySelectorAll(".weekBtn");
-    var tabPanels=document.querySelectorAll(".weekDays");
+    var tabPanels=document.querySelectorAll(".weekDays1");
     tabButtons.forEach(function(node) {
       node.style.backgroundColor=colorCode;
       node.style.color="#FFFFFF";
@@ -33,5 +33,5 @@
     tabPanels[panelIndex].style.display="block";
     tabPanels[panelIndex].style.backgroundColor="white";
   }
-  Panel1(0,'#900C3F');
+  Panel1(2,'#900C3F');
 </script>

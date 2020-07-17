@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <% getWeekDays.each_with_index do |date, index|%>
-    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn">
+    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn" style="margin-bottom:2px;">
       <%=date.strftime("%A")%><br><%= date.month%><%= "/" %><%= date.day %>
     </button>
     <%end%>
@@ -10,7 +10,7 @@
 </div>
 <br>
 <% getWeekDays.each do |date|%>
-  <div class="weekDays">
+  <div class="weekDays0">
     <%= render 'layouts/renderday', currentDate: date%>
   </div>
 <%end%>
@@ -18,7 +18,7 @@
 <script>
   function Panel1 (panelIndex, colorCode) {
     var tabButtons=document.querySelectorAll(".weekBtn");
-    var tabPanels=document.querySelectorAll(".weekDays");
+    var tabPanels=document.querySelectorAll(".weekDays0");
     tabButtons.forEach(function(node) {
       node.style.backgroundColor=colorCode;
       node.style.color="#FFFFFF";
@@ -33,5 +33,5 @@
     tabPanels[panelIndex].style.display="block";
     tabPanels[panelIndex].style.backgroundColor="white";
   }
-  Panel1(0,'#900C3F');
+  Panel1(1,'#900C3F');
 </script>
