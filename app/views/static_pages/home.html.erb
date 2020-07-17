@@ -75,7 +75,7 @@
       <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
     </div>
     <div class="tabPanel">
-      <%= render 'layouts/weeklycalendarhome'%>
+      <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
     </div>
     <div class="tabPanel">
       <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
