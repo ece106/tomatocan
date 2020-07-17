@@ -9,13 +9,6 @@
             <% user = User.find(event.usrid) %>
             <tr>
               <td class=col-xs-3>
-                <% rsvpeople = "Join us!" %>
-                <% rsvpusers = event.users %>
-                <% if rsvpusers.count > 0 %>
-                  <% rsvpusers.each do |rsvpuser| %>
-                    <% rsvpeople = rsvpeople + ", " + rsvpuser.name %>
-                  <% end %>
-                <% end %>
                 <div id = "calendar-event">
                   <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
                 </div>
@@ -26,7 +19,7 @@
                   <% end %>
                 <% end %>
               </td>
-              <td class=col-xs-2>
+              <td class=col-xs-3>
                 <% edt = event.start_at + 3.hours %>
                 <% dayId = "week-day-#{currentDate.strftime('%A')}-#{i}"%>
                 <% timeId = "week-time-#{currentDate.strftime('%A')}-#{i}"%>
@@ -43,9 +36,6 @@
                 document.getElementById('<%=timeId%>').innerHTML = date.toLocaleString(undefined, optionsTime);
               </script>
               <td class=col-xs-3>
-                <%= rsvpeople %>
-              </td>
-              <td class=col-xs-2>
                 <% @rsvp = Rsvpq.new %>
                 <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
                 <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
