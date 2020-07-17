@@ -1,8 +1,8 @@
 <br>
-<div class="container-fluid">
+<div class="container-fluid" >
   <div class="row">
     <% getWeekDays.each_with_index do |date, index|%>
-    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn">
+    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn" style="margin-bottom:2px;">
       <%=date.strftime("%A")%><br><%= date.month%><%= "/" %><%= date.day %>
     </button>
     <%end%>
