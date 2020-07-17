@@ -61,3 +61,18 @@ width:100%;
   opacity: 1;
 }
 
+.speaking { 
+  margin: 20px auto;
+  max-width: 1500px;
+  position: relative;
+  display: flex; 
+  flex-direction: row; 
+  } 
+          
+.speaking:before, 
+.speaking:after { 
+    content: ""; 
+    flex: 1 1; 
+    border-bottom: 2px solid #ecd7c6; 
+    margin: auto; 
+  } 
