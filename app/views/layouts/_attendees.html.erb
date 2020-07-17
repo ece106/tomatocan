@@ -1,4 +1,11 @@
-<% users = User.where("last_viewed = ?", @user)%>
+<% pdtnow = Time.now - 7.hours %>
+<% if request.original_url.include? "Study" %> <!-- Will need to be updated as chatrooms change -->
+  <% event = Event.where( "start_at < ? AND usrid = ? AND topic = ?", pdtnow, @user.id, "Study Hall" ).last %>
+  <% users = User.where("last_viewed = ?", event.id)%>
+<% elsif request.original_url.include? "Conversation" %>
+  <% event = Event.where( "start_at < ? AND usrid = ? AND topic = ?", pdtnow, @user.id, "Conversation" ).last %>
+  <% users = User.where("last_viewed = ?", event.id)%>
+<% end %>
 <% user_array = [] %>
 
 <% users.each do |user| %>
