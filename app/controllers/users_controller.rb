@@ -14,17 +14,6 @@ class UsersController < ApplicationController
     @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
   end
 
-  def youtubers
-    userswithyoutube = User.where("LENGTH(youtube1) < ? AND LENGTH(youtube1) > ?", 20, 4)
-    usersvidorder = userswithyoutube.order('updated_at DESC')
-    @youtubers = usersvidorder.paginate(:page => params[:page], :per_page => 12)
-  end
-  def supportourwork
-    userswstripe = User.where("LENGTH(stripeid) > ? AND LENGTH(youtube1) > ?", 10, 7)
-    stripeorder = userswstripe.order('updated_at DESC')
-    @stripeusers = stripeorder.paginate(:page => params[:page], :per_page => 24)
-  end
-
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     pdtnow = Time.now - 7.hours + 5.minutes
@@ -45,7 +34,9 @@ class UsersController < ApplicationController
     end
     userid = @user.id
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
-    @events = upcomingevents.paginate(page: params[:page], :per_page => 4)
+    @calendar_events = upcomingevents.flat_map{ |e| e.calendar_events(e.start_at)}
+    @calendar_events = @calendar_events.sort_by {|event| event.start_at}
+    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 4)
     respond_to do |format|
       format.html  #show.html.erb
       format.json { render json: @user }
@@ -230,7 +221,6 @@ class UsersController < ApplicationController
   def unload
     current_user.update({'last_viewed': 0})
   end
-
 
   private
 
