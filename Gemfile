@@ -10,7 +10,7 @@ gem "omniauth-google-oauth2", "~> 0.8.0"
 gem 'railties', '~> 6.0'
 gem 'sprockets', '~> 3.0'
 gem "sprockets-rails", "~> 3.2"
-gem 'bootstrap-sass', '~> 3.4.1'
+#gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'friendly_id', '~> 5.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -31,7 +31,8 @@ gem "unf", "~> 0.1.4"
 gem "omniauth", "~> 1.9"
 gem "omniauth-facebook", "~> 6.0"
 gem "koala", "~> 3.0"
-gem "will_paginate-bootstrap", "~> 1.0"
+#gem "will_paginate-bootstrap", "~> 1.0"
+gem 'will_paginate-bootstrap4'
 gem "simple_calendar", "~> 2.4"
 gem "rack-cors", "~> 1.1"
 gem "font-awesome-rails", "~> 4.7"
@@ -42,6 +43,8 @@ gem "turbolinks", "~> 5.2"
 gem "autoprefixer-rails", "~> 9.7"
 gem "will_paginate", "~> 3.3"
 gem "jquery-rails", "~> 4.4"
+gem 'bootstrap', '~> 4.5.0'
+gem 'popper_js', '~> 1.16.0'
 gem "coffee-rails", "~> 5.0"
 gem "recurring_select"
 
