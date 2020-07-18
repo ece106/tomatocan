@@ -6,11 +6,20 @@ class StaticPagesController < ApplicationController
 
   def home
     showrecentconvo = Time.now - 10.hours
-    @conversations = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' ).order('start_at ASC').paginate(page: params[:page], :per_page => 6)
+    @conversations = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' )
     @conversationsall = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' )
 
     @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
     @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
+
+    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC')
+    @calendar_events = @conversations.flat_map{ |e| e.calendar_events(e.start_at)}
+    @calendar_events = @calendar_events.sort_by {|event| event.start_at}
+    @calendar_events_all = @calendar_events
+    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 9)
+
+    @eventsAll = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC')
+
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
     currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Conversation' ).first
@@ -65,8 +74,13 @@ class StaticPagesController < ApplicationController
   def studyhall
     showrecentconvo = Time.now - 10.hours
 
-    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
     @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
+    @calendar_events = @events.flat_map{ |e| e.calendar_events(e.start_at)}
+    @calendar_events = @calendar_events.sort_by {|event| event.start_at}
+    @calendar_events_all = @calendar_events
+    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 9)
+
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
 

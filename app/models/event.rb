@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+
+  serialize :recurring, Hash
+
   has_many :rsvpqs
   has_many :users, through: :rsvpqs
   validates :start_at, uniqueness: { scope: :topic, message: "Can't have simultaneous Conversations/Study Halls" }
@@ -34,6 +37,37 @@ class Event < ApplicationRecord
     end
   end
 =end
+
+
+
+  def recurring=(value)
+    if value != "null"
+      super(RecurringSelect.dirty_hash_to_rule(value).to_hash)
+    else
+      super(nil)
+    end
+  end
+
+  def rule
+    IceCube::Rule.from_hash recurring
+  end
+
+  def schedule(start)
+    schedule = IceCube::Schedule.new(start)
+    schedule.add_recurrence_rule(rule)
+    schedule
+  end
+
+  def calendar_events(start)
+    if recurring.empty?
+      [self]
+    else
+      end_date = start.end_of_month.end_of_week
+      schedule(start_at).occurrences(end_date).map do |date|
+        Event.new(id: id, name: name, start_at: date, usrid: user_id, desc: desc, end_at: end_at, topic: topic)
+      end
+    end
+  end
 
   def as_json(*)
     super.except.tap do |hash|

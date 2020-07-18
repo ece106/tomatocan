@@ -2,6 +2,7 @@ require 'test_helper'
 
 class RsvpqTest < ActiveSupport::TestCase
 
+
   setup do
     @rsvpqT = Rsvpq.find(1)
   end

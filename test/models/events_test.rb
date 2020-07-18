@@ -5,6 +5,8 @@ class EventTest < ActiveSupport::TestCase
     #Basic data setup
     @eventT = Event.first
     @eventT2 = Event.find(3)
+    @eventT3 = events(:non_recurring_event)
+    @eventT4 = events(:recurring_event)
     @invalidFormat = ["http", ".co", ".com", ".net", ".tv", ".uk", ".ly", ".me",
       ".biz", ".mobi", ".cn", "kickstarter", "barnesandnoble", "smashwords",
       "itunes", "amazon", "eventbrite", "rsvpify", "evite", "meetup"]
@@ -15,9 +17,21 @@ class EventTest < ActiveSupport::TestCase
     @eventT.user_id = events(:one).user_id  #Ensuring user_id is present
     assert @eventT.save, "Event not saved with present user_id"
 
-    #userid absent
+    #user_id absent
     @eventT.user_id = nil
     assert_not @eventT.save, "Event saved with absent user_id"
+  end
+
+  test "generating a non recurring event" do
+    events = @eventT3.calendar_events(@eventT3.start_at)
+    flag = events.count == 1
+    assert_equal(true, flag, failure_message = "Non-recurring event generated multiple instances")
+  end
+
+  test "generating recurring events" do
+    events = @eventT4.calendar_events(@eventT4.start_at)
+    flag = events[0].name.eql?(events[1].name)
+    assert_equal(true, flag, failure_message = "Recurring events did not generate multiple instances")
   end
 
   test "validate presence of name" do

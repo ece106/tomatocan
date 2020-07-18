@@ -120,7 +120,7 @@ class TestUser < ActiveSupport::TestCase
     assert @user.valid?, "Permalink at the limit should be valid"
     assert_empty @user.errors[:permalink]
   end
-  
+
   #  validates_format_of   :email, :with  => Devise.email_regexp,
   test "should have format of email address" do
     @user.email = "email@lisa.org"
@@ -203,4 +203,5 @@ class TestUser < ActiveSupport::TestCase
       refute_nil @user.totalinfo
     end
   end
+
 end

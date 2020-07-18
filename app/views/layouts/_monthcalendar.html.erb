@@ -12,7 +12,7 @@
 <%= caler Date.today do |date| %>
 <%= date.day %>
 <% count = 0 %>
-  <% @eventsAll.each do |event| %>
+  <% @calendar_events_all.each do |event| %>
       <% if event.start_at.to_date.eql?(date.to_date) %>
           <% count+=1 %>
           <% k += 1 %>
@@ -41,7 +41,7 @@
         <% end %>
   <% end %>
   <span class="more" style="display: none;">
-  <% @eventsAll.each do |event| %>
+  <% @calendar_events_all.each do |event| %>
       <% if event.start_at.to_date.eql?(date.to_date) %>
           <% l += 1 %>
         <% else %>

@@ -33,11 +33,29 @@ past_event:
   desc: "past desc"
   start_at: "2019-12-11 11:02:57"
   end_at: "2019-12-11 11:02:57"
-  
+
 confirmedUser_event:
   id: 6
   user_id: 6
   name: "confirmedUser_event"
   desc: "confirmedUser desc"
-  start_at: "2020-12-11 11:02:57"
-  end_at: "2020-12-11 11:02:57"
+  start_at: "2021-12-11 11:00:00"
+  end_at: "2021-12-11 11:00:00"
+
+recurring_event:
+  id: 7
+  user_id: 6
+  name: "recurring_event"
+  desc: "recurring_desc"
+  start_at: "2020-12-11 11:00:00"
+  end_at: "2020-12-11 11:00:00"
+  recurring: "---\n:validations: {}\n:rule_type: IceCube::DailyRule\n:interval: 1\n"
+
+non_recurring_event:
+  id: 8
+  user_id: 6
+  name: "non_recurring_event"
+  desc: "non_recurring_desc"
+  start_at: "2020-12-11 12:00:00"
+  end_at: "2020-12-11 12:00:00"
+  recurring: ""
