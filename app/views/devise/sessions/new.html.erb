@@ -1,7 +1,7 @@
   <div class="container">
 
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-3">
+    <div class="row justify-content-center pt-3">
+      <div class="col-lg-6 bg-light border">
         <% if request.referrer != nil %>
           <% if request.referrer.include? "/viewer" %>
             <div class="alert alert-danger" role="alert" style="text-align:center">
@@ -22,7 +22,7 @@
           <!-- Email Box -->
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-addon" style="font-size:20px">
+              <div class="input-group-addon pr-3 pt-2" style="font-size:20px">
                 &#9993
               </div>
               <%= f.email_field :email, placeholder: "Email", :autofocus => true, :class => "form-control" %>
@@ -33,7 +33,7 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-lock" style="font-size:20px"></i>
+                <i class="fa fa-lock pr-3 pt-2" style="font-size:20px"></i>
               </div>
               <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
             </div>

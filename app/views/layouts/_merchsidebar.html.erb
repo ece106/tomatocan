@@ -1,5 +1,5 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
+<div class="card">
+  <div class="bg-primary text-white card-header">
     <% if user_signed_in? %>
       <% if current_user.id == @user.id %>
         Current Rewards
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="panel-body" id="merchSidebar">
+<div class="card-body" id="merchSidebar">
   <% if @sidebarmerchandise.present? %>
     <% @sidebarmerchandise.each do |merch| %>
       <div class="media">
