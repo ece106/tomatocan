@@ -40,21 +40,40 @@ class EventTest < ActiveSupport::TestCase
     assert_not @eventT.save, "Event saved with absent start_at"
   end
 
+  test "validate uniqueness of start_at based on topic" do
+    #assert 2 different user_id can't have the same start_at on 1 topic"
+    @eventT.start_at = events(:three).start_at
+    @eventT.topic = "Conversations"
+    @eventT.save!
+
+    @eventT2.start_at = events(:confirmedUser_event).start_at
+    @eventT2.topic = "Conversations"
+    refute @eventT2.valid?, "Start_at must be unique on 1 topic"
+    assert @eventT2.errors.messages[:start_at]
+
+    #assert 2 different user_id can have the same start_at on different topic"
+    @eventT2.topic = "Study Halls"
+    assert @eventT2.valid?, "2 start_ats on different topics is acceptable"
+  end
+
   test "name without url" do
     evalFormat do |format|
       @eventT.name = events(:one).name + format
+      assert @eventT.errors.messages[:name]
     end
   end
 
   test "desc without url" do
     evalFormat do |format|
       @eventT.desc = events(:four).desc + format
+      assert @eventT.errors.messages[:desc]
     end
   end
 
   test "address without url" do
     evalFormat do |format|
       @eventT.address = "Testing Address"+ format
+      assert @eventT.errors.messages[:address]
     end
   end
 
@@ -71,23 +90,5 @@ class EventTest < ActiveSupport::TestCase
     end
     assert_not isInvalid, errorMsg
   end
-
-  test "endat_greaterthan_startat" do
-    #end_at greater than start_at
-    @eventT.end_at = Time.now
-    @eventT.start_at = @eventT.end_at - 2.hours
-    assert @eventT.save, "Not accepting events with end_at > start_at"
-
-    @eventT.start_at = Time.now
-    @eventT.end_at = @eventT.start_at - 2.hours
-    assert_not @eventT.save, "Accepting events with start_at > end_at"
-  end
-
-  test "rsvpqs association" do
-    assert @eventT2.rsvpqs.count > 0, "event is not associated to rsvpqs"
-  end
-
-  test "users association" do
-    assert @eventT2.users.count > 0, "rsvpqs is not associated to users"
-  end
+  
 end

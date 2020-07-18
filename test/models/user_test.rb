@@ -56,7 +56,7 @@ class TestUser < ActiveSupport::TestCase
     refute_empty user.errors[:password]
   end
 
-  test "password and password_confirmation must match when create and update user" do
+  test "password and password_confirmation must match when create user" do
     # assert wrong password confirmation
     user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hooooooo", email: "m@example.com", permalink: "qwerty")
     refute_empty user.errors[:password_confirmation]
@@ -65,8 +65,11 @@ class TestUser < ActiveSupport::TestCase
     user.password_confirmation = "hoohaahh"
     assert user.valid?
     assert_empty user.errors[:password_confirmation]
+  end
 
+  test "password and password_confirmation must match when update user" do
     # assert password confirmation when update user
+    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com", permalink: "qwerty")
     user.password = "anotherpass"
     refute user.valid?
     assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
@@ -145,24 +148,6 @@ class TestUser < ActiveSupport::TestCase
     assert_equal 'dummydummy@example.com', user.email
   end
 
-  # after_initialize :assign_defaults_on_new_user, if: -> {new_record?}
-  test "default values are assigned to user" do
-    user = User.create(name: 'Dummydummy', password:'Dummydummy', password_confirmation: "Dummydummy", email: "Dummydummy@example.com", permalink: "qwerty")
-    assert_equal 'storyteller', user.author
-
-    user = users(:one)
-    assert_equal 'author', user.author
-  end
-
-  test "calc test" do
-    assert_nil @user.totalinfo
-    @user.calcdashboard
-    [:soldtitle,:soldprice,:authorcut,:purchaseid,:soldwhen,:whobought,:address,:fulfilstat,:egoods].each do |field|
-      refute_empty(field)
-      refute_nil @user.totalinfo
-    end
-  end
-
   test "name must be less than 50" do
     user = User.new( name: @name_over.call(55),email:"email@email.com",permalink:"permalink",password:"password")
     refute user.valid?
@@ -201,4 +186,21 @@ class TestUser < ActiveSupport::TestCase
     refute user_a.following?(user_b)
   end
 
+   # after_initialize :assign_defaults_on_new_user, if: -> {new_record?}
+  test "default values are assigned to user" do
+    user = User.create(name: 'Dummydummy', password:'Dummydummy', password_confirmation: "Dummydummy", email: "Dummydummy@example.com", permalink: "qwerty")
+    assert_equal 'storyteller', user.author
+
+    user = users(:one)
+    assert_equal 'author', user.author
+  end
+
+  test "calc test" do
+    assert_nil @user.totalinfo
+    @user.calcdashboard
+    [:soldtitle,:soldprice,:authorcut,:purchaseid,:soldwhen,:whobought,:address,:fulfilstat,:egoods].each do |field|
+      refute_empty(field)
+      refute_nil @user.totalinfo
+    end
+  end
 end

@@ -42,5 +42,5 @@ class Event < ApplicationRecord
       hash["username"] = @user.name
     end
   end
-
+  
 end

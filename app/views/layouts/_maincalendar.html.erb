@@ -38,7 +38,7 @@
             <%= link_to user.name, user.permalink, title: rsvpeople %>
 
             <% if user_signed_in? %>
-              <% if event.usrid == current_user.id %>
+              <% if event.user_id == current_user.id %>
                 <%= link_to '(Edit)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
             <% end %>
