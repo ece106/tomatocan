@@ -4,8 +4,11 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
+//= require jquery3
+//= require popper
+//= require bootstrap
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
+
 //= require recurring_select
 //= require_tree .

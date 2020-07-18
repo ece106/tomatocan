@@ -51,11 +51,11 @@
             <% rsvps = event.rsvpqs %>
              <% rsvpusers = event.users %>
             <% if rsvps.count > 0 %>
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" id="dropdownMenuButton">
               <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= rsvps.count %></span>
             </button>
-            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown" aria-labelledby="dropdownMenuButton">
               <% rsvps.each do |rsvp| %>
               <%if !rsvp.user_id.nil? %>
                 <% rsvpuser = User.find(rsvp.user_id) %>

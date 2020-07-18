@@ -90,11 +90,11 @@
           <% if @rsvps.count > 0 %>
             <br><br><br><br><br><br><br><br>
             <!-- Default dropleft button -->
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" id="dropdownMenuButton">
               <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
             </button>
-            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown" aria-labelledby="dropdownMenuButton">
               <% @rsvpusers.each do |rsvpuser| %>
                 <%= link_to user_profile_path(rsvpuser.permalink) do %>
                   <div class="dropdown-item">
