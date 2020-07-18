@@ -5,12 +5,12 @@
 
 //Overrides Bootstrap-defined variables
 @import "base/variables.scss";
-
+$primary: #8C1D40;
 //Bootstrap files
-@import "bootstrap-sprockets";
+//@import "bootstrap-sprockets";
+
 @import "bootstrap";
 @import "font-awesome";
-
 //Global styles
 @import "base/globals.scss";
 @import "base/header.scss";

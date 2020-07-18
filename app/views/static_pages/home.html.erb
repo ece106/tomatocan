@@ -9,6 +9,7 @@
     </div>
   <% end %>
 </div>
+<div class ="row">
   <div class="col-lg-5 col-md-11">
       <div id="home" style= "height: 100vh" >
         <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
@@ -58,6 +59,7 @@
 <div class="col-lg-7 col-md-12" id="countdown_clock">
   <div class="main row">
     <br>
+    <div class = "row">
     <div class="col-lg-3 col-md-6">
       <h2>Conversation Schedule</h2>
       <h4>Discover topics that motivate you!</h4>
@@ -68,6 +70,7 @@
     <div class="col-lg-3 col-md-6">
       <%= render 'layouts/countdown_clock' %>
     </div>
+  </div>
   </div>
   <div class="tabContainer">
     <div class="buttonContainer">
@@ -85,6 +88,7 @@
       <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
     </div>
   </div>
+</div>
 </div>
 
 <br><br><br>
