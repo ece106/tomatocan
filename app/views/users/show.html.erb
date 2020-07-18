@@ -43,6 +43,9 @@
       <% if @calendar_events.present? %>
         <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
       <% end %>
+      <% if @currentRSVP.present? %>
+      <%= render 'layouts/currentRSVP', collection: @currentRSVP %><br>
+      <%end %>
     </div>
   </div>
 </div>

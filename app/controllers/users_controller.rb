@@ -32,11 +32,19 @@ class UsersController < ApplicationController
         end
       end
     end
+    currtime = Time.now
+    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
+    @rsvpevents = rsvps.where( "start_at > ?", currtime )
+    @currentRSVP = rsvps.where( "start_at > ? AND usrid = ?", currtime, @user.id)
     userid = @user.id
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
     @calendar_events = upcomingevents.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
     @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 4)
+    @currentRSVP = rsvps.flat_map{ |t| t.calendar_events(t.start_at)}
+    @currentRSVP = @currentRSVP.sort_by{|event| event.start_at}
+    @currentRSVP = @currentRSVP.paginate(page: params[:page], :per_page => 4)
+
     respond_to do |format|
       format.html  #show.html.erb
       format.json { render json: @user }
@@ -99,6 +107,7 @@ class UsersController < ApplicationController
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @rsvpevents = rsvps.where( "start_at > ?", currtime )
+    @currentRSVP = rsvps.where( "start_at > ? AND usrid = ?", currtime, @user.id)
     @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
     respond_to do |format|
       format.html

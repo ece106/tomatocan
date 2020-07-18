@@ -53,6 +53,13 @@ class RsvpqsController < ApplicationController
     end
   end
 
+  def destroy
+
+    @rsvp=current_user.Rsvpq.find(params[:id])
+    @rsvp.destroy
+    redirect_to home_path, flash[:notice] => "Your RSVP has been Deleted!"
+  end
+
   private
 
 
