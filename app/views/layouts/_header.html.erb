@@ -1,4 +1,5 @@
 <header>
+<<<<<<< HEAD
   <style>
 body {
   background-color: #F0F0F0;
@@ -47,4 +48,55 @@ body {
         <% end %>
       </ul>
   </nav>
+=======
+  <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
+  <%= link_to image_tag("starIcon.png", class: "navbar-brand", title: "ThinQ.tv", id: "navbarLogo"), root_path %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/getinvolved">About Us</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="/drschaeferspeaking">Have us on your Podcast</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="/jointheteam">Join the Team</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="/studyhall">Study Hall</a>
+      </li>
+    </ul>
+	<ul class="nav navbar-nav navbar-right">
+				<% if user_signed_in? %>
+					<li class="dropdown mt-2">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get %></li>
+							<li><%= link_to "Control Panel", user_controlpanel_url(current_user.permalink), method: :get %></li>
+						</ul>
+					</li>
+					<li>
+						<p class="navbar-btn">
+							<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %>
+						</p>
+					</li>
+				<% else %>
+                  <li>
+					<p class="navbar-btn">
+            		  <%= link_to "Sign Up", '/signup', class: "btn btn-primary" %>
+					  <%= link_to 'Sign In', "/login", class: "btn btn-default" %>
+					</p>
+				  </li>
+				<% end %>
+			</ul>
+  </div>
+</nav>
+>>>>>>> migrate to bootstrap 4
 </header>
