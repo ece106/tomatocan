@@ -11,46 +11,54 @@ class RsvpqsControllerTest < ActionController::TestCase
 
   test "should create rsvpq when signed in" do
     sign_in users(:confirmedUser)
+    request.headers['referer'] = home_path
     assert_difference('Rsvpq.count', 1) do
-    post :create, params: { rsvpq: { event_id: @event.id } }
+    post :create, params: { rsvpq: { event_id: 3 } }
     end
   end
 
   test "should redirect to home_path after successful creation, signed in" do
   sign_in users(:confirmedUser)
-  post :create, params: { rsvpq: { event_id: @event.id } }
+  request.headers['referer'] = home_path
+  post :create, params: { rsvpq: { event_id: 3 } }
   assert_redirected_to home_path
   end
 
   test "should display FLASH message for successful creation, signed in" do
     sign_in users(:confirmedUser)
-    post :create, params: { rsvpq: { event_id: @event.id } }
+    request.headers['referer'] = home_path
+    post :create, params: { rsvpq: { event_id: 3 } }
     assert_equal 'Rsvp was successfully created.', flash[:success]
   end  
 
   test "should send reminder email when signed in" do
     sign_in users(:confirmedUser)
-    post :create, params: { rsvpq: { event_id: @event.id } }
+    request.headers['referer'] = home_path
+    post :create, params: { rsvpq: { event_id: 3 } }
     assert_enqueued_emails 1
   end
 
   test "should create rsvpq with email" do
-   assert_difference('Rsvpq.count', 1) do
-     post :create, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
-     end
+    assert_difference('Rsvpq.count', 1) do
+      request.headers['referer'] = home_path
+      post :create, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
+    end
   end
 
   test "should redirect to home_path after successful creation, valid email" do
+    request.headers['referer'] = home_path
     post :create, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
     assert_redirected_to home_path
   end
 
   test "should display FLASH message for successful creation, valid email" do
+    request.headers['referer'] = home_path
     post :create, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
     assert_equal 'Rsvp was successfully created.', flash[:success]
   end  
 
   test "should send reminder email if email valid" do
+    request.headers['referer'] = home_path
     post :create, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
     assert_enqueued_emails 1
   end

@@ -8,18 +8,6 @@ class UsersControllerTest < ActionController::TestCase
     # sign_in @user
   end
 
-  test "should verify user name" do
-    sign_in @user
-    user = User.find_by_permalink(@user.permalink)
-    assert_equal(user.name, "userconfirmed")
-  end
-
-  test "should verify email" do
-    sign_in @user
-    user = User.find_by_permalink(@user.permalink)
-    assert_equal(user.email, "thinqtesting@gmail.com")
-  end
-
   test "should verify user twitter" do
     sign_in @user
     patch :update, params:{ id: @user.id, user: {twitter: 'MyTwitter'}}
@@ -36,31 +24,21 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should verify update genre1" do
     sign_in @user
-    patch :update, params:{ id: @user.id, user: {genre1: 'Reading'}}
+    patch :update, params:{ id: @user.id, user: {genre1: 'Reading', genre2: 'Writing', genre3: 'Programming'}}
     user = User.find_by_permalink(@user.permalink)
     assert_equal("Reading", user.genre1)
-  end
-
-  test "should verify update genre2" do
-    sign_in @user
-    patch :update, params:{ id: @user.id, user: {genre2: 'Writing'}}
-    user = User.find_by_permalink(@user.permalink)
     assert_equal("Writing", user.genre2)
-  end
-
-  test "should verify update genre3" do
-    sign_in @user
-    patch :update, params:{ id: @user.id, user: {genre3: 'Programming'}}
-    user = User.find_by_permalink(@user.permalink)
     assert_equal("Programming", user.genre3)
   end
 
   test "should get users show" do
+    sign_in @user
     get :show, params: {permalink: 'userconfirmed'}
     assert_response :success
   end
 
   test "should get users eventlist user logged in" do
+    sign_in @user
     get :eventlist, params: {permalink: 'userconfirmed'}
     assert_response :success
   end
