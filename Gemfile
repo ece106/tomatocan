@@ -11,8 +11,6 @@ gem 'railties', '~> 6.0'
 gem 'sprockets', '~> 3.0'
 gem "sprockets-rails", "~> 3.2"
 #gem 'bootstrap-sass', '~> 3.4.1'
-gem 'bootstrap', '~> 4.5.0'
-gem 'popper_js', '~> 1.16.0'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'friendly_id', '~> 5.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -45,6 +43,8 @@ gem "turbolinks", "~> 5.2"
 gem "autoprefixer-rails", "~> 9.7"
 gem "will_paginate", "~> 3.3"
 gem "jquery-rails", "~> 4.4"
+gem 'bootstrap', '~> 4.5.0'
+gem 'popper_js', '~> 1.16.0'
 gem "coffee-rails", "~> 5.0"
 gem "recurring_select"
 
