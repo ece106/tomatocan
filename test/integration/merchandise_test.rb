@@ -10,7 +10,7 @@ class MerchandisesTest < ActionDispatch::IntegrationTest
     fill_in(id: 'user_email', with: 'fake@fake.com')
     fill_in(id: 'user_password', with: 'user1234')
     click_on(class: 'form-control btn-primary')
-    @user = users(:one)
+    @user = users(:confirmedUser)
 end
     test 'Should create reward from controlpanel rewards page' do
         # signUpUser()

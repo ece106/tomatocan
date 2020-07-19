@@ -154,11 +154,20 @@ class MerchandisesControllerTest < ActionController::TestCase
     assert_template :edit
   end
 
+  test "should check for changes in database when update" do
+  	sign_in users(:confirmedUser)
+	  assert_difference('Merchandise.count', 1) do
+        post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
+	    patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test2', buttontype: 'Buy' }}
+      end
+  end
+
   test "should return correct layout id" do
     sign_in users(:confirmedUser)
-      patch :update, params: {id: @merchandise, merchandise: { name: 'chris', user_id: 1, price: 20, desc: 'test', buttontype: 'Buy' }}
+      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}    
+      patch :update, params: {id: @merchandise, merchandise: {name: '', user_id: '1', price: '1', desc: 'test', buttontype: 'Buy'}}
       assert_template layout:'userpgtemplate'
-      post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}
+      post :create, params: { merchandise: { price: '20', user_id: '1', desc: 'test1', buttontype: 'one' }}
       assert_template layout: 'application'
   end
 end

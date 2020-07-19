@@ -47,7 +47,7 @@ end
       @merchandise.get_youtube_id
       redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
     else 
-      render action: "edit"
+      render :edit
     end
   end
 
@@ -74,7 +74,7 @@ end
 
     def resolve_layout
       case action_name
-      when "show", "edit"
+      when "show", "update"
         'userpgtemplate'
       else
         'application'
