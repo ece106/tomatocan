@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
   match 'tos',                      to: 'static_pages#tos',                 via: 'get'
   match 'livestream',               to: 'static_pages#livestream',          via: 'get'
-  match 'ux',                       to: 'static_pages#chat',                via: 'get'
+  match 'chat',                     to: 'static_pages#chat',                via: 'get'
   match 'vieweronhost',             to: 'static_pages#vieweronhost',        via: 'get'
   match 'jointheteam',              to: 'static_pages#jointheteam',         via: 'get'
   match 'bystanderguidelines',      to: 'static_pages#bystanderguidelines', via: 'get'
