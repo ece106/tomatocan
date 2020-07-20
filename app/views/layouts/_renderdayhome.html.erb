@@ -1,11 +1,13 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
+<%eventCount = 0%>
 <div class="panel panel-default">
   <% if @calendar_events_all.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
         <% @calendar_events_all.sort_by{|t| t.start_at}.each_with_index do |event, i| %>
           <% if event.start_at.to_date.eql?(currentDate) %>
+            <%eventCount += 1%>
             <% user = User.find(event.usrid) %>
             <tr>
               <td class=col-xs-3>
@@ -110,6 +112,13 @@
             </tr>
           <% end %>
         <% end %>
+        <% if eventCount == 0 %>
+          <tr>
+            <td>
+              <h4>There are no conversations on <%=currentDate.strftime('%A').downcase%>. Check another day!</h4>
+            </td>
+          </tr>
+        <%end%>
       </tbody>
     </table>
   <% end %>
