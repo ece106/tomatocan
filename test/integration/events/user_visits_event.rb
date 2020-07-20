@@ -42,18 +42,18 @@ tests focused on testing the conent of the user profile.
 
   test "should see the correct start date" do
 		
-	assert_selector '#calendar-time-day1', text: ""#@event.start_at.strftime("%a, %B %d")
+	assert_selector '#calendar-time-day', text: ""#@event.start_at.strftime("%a, %B %d")
 	
   end
 
   test "should see the correct start at timezones" do
 	
-	assert_selector '#calendar-time1', text: ""#(@event.start_at.strftime("%I:%M %p"))
+	assert_selector '#calendar-time-hour', text: ""#(@event.start_at.strftime("%I:%M %p"))
 	
   end
 
   test "can make an rsvp for event" do
-    click_on id: "RSVPsubmit"
+    first(:id, "RSVPsubmit").click
     assert_equal current_path, home_path
   end
 
@@ -64,6 +64,25 @@ tests focused on testing the conent of the user profile.
     assert_equal current_path, home_path
   end
 
+  test "should see the images of share buttons" do
+    linkedin_img = "//div[2]/table/tbody/tr/td[5]/a[3]/img"
+    facebook_img = "//div[2]/table/tbody/tr/td[5]/a[1]/img"
+    twitter_img = "//div[2]/table/tbody/tr/td[5]/a[2]/img"
+
+    assert page.has_xpath? linkedin_img
+    assert page.has_xpath? facebook_img
+    assert page.has_xpath? twitter_img
+  end
+
+  test "should see the links when clicking the share buttons" do
+    linkedin_link = "//div[2]/table/tbody/tr/td[5]/a[3]"
+    facebook_link = "//div[2]/table/tbody/tr/td[5]/a[3]"
+    twitter_link = "//div[2]/table/tbody/tr/td[5]/a[3]"
+
+    assert page.has_xpath? linkedin_link
+    assert page.has_xpath? facebook_link
+    assert page.has_xpath? twitter_link
+  end
   
   private
 
