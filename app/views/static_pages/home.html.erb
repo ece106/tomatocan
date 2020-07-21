@@ -56,7 +56,7 @@
     </div>
 
 <div class="col-lg-7 col-md-12" id="countdown_clock">
-  <div class="main">
+  <div class="main row">
     <br>
     <div class="col-lg-3 col-md-6">
       <h2>Conversation Schedule</h2>
@@ -71,8 +71,12 @@
   </div>
   <div class="tabContainer">
     <div class="buttonContainer">
-      <button onclick="showPanel(0,'#2196f3')">Daily View </button>
-      <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
+      <button onclick="showPanel(0,'#4caf50')">List View</button>
+      <button onclick="showPanel(1,'#4caf50')">Daily View</button>
+      <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
+    </div>
+    <div class="tabPanel">
+      <%= render 'layouts/convocalendar', collection: @conversations %>
     </div>
     <div class="tabPanel">
       <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
