@@ -5,7 +5,7 @@
 <% j = 0 %>
 <% k = 0 %>
 <% l = 0 %>
-<div class="container" style="padding-top: 50px; float: center; width: auto; max-width: 1470px;">
+<div class="container-fluid">
 <div id="events">
   <h2 id="month" style="color: black;"> <%= Date.today.strftime("%B %Y") %> </h2>
   <!-- the caler is a method defined in app/helpers/month_calendar_helper.rb -->
@@ -19,12 +19,12 @@
         <% else %>
           <% k = 0 %>
       <% end %>
-        <% if k <=2 %> 
+        <% if k <=2 %>
          <% if event.start_at.to_date.eql?(date.to_date) %>
             <% user = User.find(event.usrid) %>
-            <% i += 1 %>  
+            <% i += 1 %>
             <ul>
-            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc%></li>
             By: <%= link_to user.name, user.permalink %>
             <br>
             <% edt = event.start_at + 3.hours %>
@@ -35,7 +35,7 @@
             var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
             var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
             document.getElementById('month-calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
-          </script>          
+          </script>
             </ul>
           <% end %>
         <% end %>
@@ -47,12 +47,12 @@
         <% else %>
           <% l = 0 %>
       <% end %>
-        <% if l > 2 %> 
+        <% if l > 2 %>
          <% if event.start_at.to_date.eql?(date.to_date) %>
             <ul>
             <% user = User.find(event.usrid) %>
-            <% i += 1 %>  
-            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            <% i += 1 %>
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc%></li>
             By: <%= link_to user.name, user.permalink %>
             <br>
             <% edt = event.start_at + 3.hours %>
@@ -63,7 +63,7 @@
             var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
             var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
             document.getElementById('month-calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
-          </script>   
+          </script>
             </ul>
           <% end %>
         <% end %>
@@ -71,8 +71,8 @@
    <br>
   </span>
   <% if count > 2 %>
-    <button class="expand" >More Conversations</button> 
-  <% end %>      
+    <button class="expand" >More Conversations</button>
+  <% end %>
 <% end %>
 </div>
 </div>
@@ -92,7 +92,3 @@ $(document).ready(function(){
 });
 
   </script>
-
-
-
-

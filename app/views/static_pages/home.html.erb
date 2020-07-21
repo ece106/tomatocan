@@ -10,35 +10,35 @@
   <% end %>
 </div>
   <div class="col-lg-5 col-md-11">
-      <div id="home">
-        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" > 
-          Discover a Community that makes you 
+      <div id="home" style= "height: 100vh" >
+        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
+          Discover Activism that makes you
         </div>
-        <div style="display:inline;" > 
+        <div style="display:inline;" >
           <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
         </div>
-        <div style="font-size: 30px; color:#ffc627; font-family: 'Arial';" > 
-          Crowdsource Activism via Video Chat 
+        <div style="font-size: 30px; color:#fff; font-family: 'Arial';" >
+          Crowdsource Activism via Video Chat
         </div><br><br><br>
 
-        <h3 style="color:#8E0C3A"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627; text-shadow: 1px 1px 1px #8E0C3A" %><br> to support Women & Minorities in Tech.
-          <br>Drop in to ask questions about ThinQ.tv! </h3>
+        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px"><i>New to ThinQ.tv?</i>
+          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627" %> to support Women & Minorities in Tech. Everyone is welcome.
+          <br><br>Drop in to ask questions about ThinQ.tv! </h3>
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <p style="color:#8E0C3A">We're having Study Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></p>  
-              <p style="color:#8E0C3A"> right NOW!</p><br>
-              <%= link_to " Join Study Hall Chat ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px; " %>
+              <p style="color:#fff">We're having Study Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "color: #ffc627" %></p>
+              <p style="color:#fff"> right NOW!</p><br>
+              <%= link_to " Join Study Hall Chat ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
             </div>
           <% end %>
         <% end %>
-        <% if @displayresearch.present? %> 
+        <% if @displayresearch.present? %>
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
-              <p style="color:#8E0C3A">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></p>  
-              <p style="color:#8E0C3A"> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-radius: 5px;" %>
+              <p style="color:#fff">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "color: #ffc627" %></p>
+              <p style="color:#fff"> right NOW!</p><br>
+              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -47,7 +47,7 @@
             <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
               <h2 id="buttonTitle">
               <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Video Chat Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              <%= link_to 'See an example Video Chat Room', "/youronlinemom/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
               </h2>
             <% end %>
           <% end %>
@@ -71,12 +71,11 @@
   </div>
   <div class="tabContainer">
     <div class="buttonContainer">
-      <button onclick="showPanel(0,'#f44336')">List View </button>
+      <button onclick="showPanel(0,'#2196f3')">Daily View </button>
       <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
-      <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
     </div>
     <div class="tabPanel">
-      <%= render 'layouts/convocalendar', collection: @conversations %>
+      <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
     </div>
     <div class="tabPanel">
       <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>

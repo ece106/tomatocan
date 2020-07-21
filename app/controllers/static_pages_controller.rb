@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
 
     @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
     @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
-
+    @monthforCalendar = Date.today
     @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC')
     @calendar_events = @conversations.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
@@ -23,26 +23,26 @@ class StaticPagesController < ApplicationController
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
     currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Conversation' ).first
-    nextconvo = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Conversation' ).order('start_at ASC').first 
+    nextconvo = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Conversation' ).order('start_at ASC').first
 
     currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Study Hall' ).order('start_at ASC').first
-    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first 
+    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first
     curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
-    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first 
+    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
 
     if currconvo.present?
       @displayconvo = currconvo
-    else 
+    else
       @displayconvo = nextconvo
     end
     if currstudy.present?
       @displaystudy = currstudy
-    else 
+    else
       @displaystudy = nextstudy
     end
     if curresearch.present?
       @displayresearch = curresearch
-    else 
+    else
       @displayresearch = nextresearch
     end
 
@@ -52,20 +52,20 @@ class StaticPagesController < ApplicationController
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
       @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
       @host = User.find(@displayconvo.usrid)
-    end  
+    end
     if @displaystudy.present?
       @namestudy = @displaystudy.name
       @descriptionstudy = @displaystudy.desc
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
       @hoststudy = User.find(@displaystudy.usrid)
-    end  
+    end
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
       @hostresearch = User.find(@displayresearch.usrid)
-    end  
-        
+    end
+
     if user_signed_in?
       @user = User.find(current_user.id)
     end
@@ -76,6 +76,7 @@ class StaticPagesController < ApplicationController
 
     @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
     @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
+    @monthforCalendar = Date.today
     @calendar_events = @events.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
     @calendar_events_all = @calendar_events
@@ -85,18 +86,18 @@ class StaticPagesController < ApplicationController
     pdtnext = Time.now - 8.hours
 
     currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Study Hall' ).order('start_at ASC').first
-    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first 
+    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first
     curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
-    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first 
+    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
 
     if currstudy.present?
       @displaystudy = currstudy
-    else 
+    else
       @displaystudy = nextstudy
     end
     if curresearch.present?
       @displayresearch = curresearch
-    else 
+    else
       @displayresearch = nextresearch
     end
 
@@ -106,13 +107,13 @@ class StaticPagesController < ApplicationController
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
       @hoststudy = User.find(@displaystudy.usrid)
-    end  
+    end
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
       @hostresearch = User.find(@displayresearch.usrid)
-    end  
-        
+    end
+
     if user_signed_in?
       @user = User.find(current_user.id)
     end
