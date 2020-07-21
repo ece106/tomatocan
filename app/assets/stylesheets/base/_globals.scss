@@ -1,7 +1,7 @@
 /* This file defines sitewide styles. Place page-specific styles in their own stylesheet. */
 
 
-// Not really sure what this is for.
+
 html {
     width: 100%;
     overflow-y: scroll;
@@ -18,6 +18,16 @@ body {
 main {
     flex: 1 !important;
 }
+.overflow-visible{
+  overflow: visible;
+}
+x
+.img-xs{
+  height: 18px;
+  width: 18px;
+  margin-right: 10px;
+}
+
 
 .navbar-default {
   background-color: $brand-primary;
