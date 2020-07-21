@@ -21,9 +21,9 @@
           Crowdsource Activism via Video Chat
         </div><br><br><br>
 
-        <h3 style="color:#fff"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627" %><br> to support Women & Minorities in Tech.
-          <br>Drop in to ask questions about ThinQ.tv! </h3>
+        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px"><i>New to ThinQ.tv?</i>
+          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627" %> to support Women & Minorities in Tech. Everyone is welcome.
+          <br><br>Drop in to ask questions about ThinQ.tv! </h3>
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
