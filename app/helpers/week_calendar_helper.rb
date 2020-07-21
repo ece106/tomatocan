@@ -1,7 +1,7 @@
 module WeekCalendarHelper
   def getWeekDays
-    today = Date.today
+    today = Time.now - 10.hour
     end_of_week = today + 6.day
-    (today..end_of_week).to_a
+    (today.to_date..end_of_week.to_date).to_a
   end
 end
