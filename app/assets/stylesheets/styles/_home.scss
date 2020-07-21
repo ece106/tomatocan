@@ -5,7 +5,8 @@ html, body {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden;     
+    overflow-x: hidden;
+    padding-top: 30px;   
 }
 @media (min-width: 767px) {
     .herocaption {
@@ -39,8 +40,8 @@ html, body {
     background-image: linear-gradient(rgba(51,51,51,0.6),rgba(51,51,51,0.6));
 }
 #heroTitle1 {
-    font-size: 60px; 
-    color: #FFC627; 
+    font-size: 60px;
+    color: #FFC627;
     font-family: Helvetica, sans-serif;
     margin-top: 90px;
 }
@@ -48,7 +49,7 @@ html, body {
     font-size: 40px;
 }
 #heroTitle3 {
-    color: white; 
+    color: white;
     padding: 10px;
     background-color: rgba(153,0,51,0.6);
     text-align: center;
@@ -59,7 +60,7 @@ html, body {
     font-size: 25px;
 }
 .topic_link {
-    color: #FFC627; 
+    color: #FFC627;
     font-weight: bold;
 }
 #buttonTitle {
@@ -81,16 +82,16 @@ html, body {
     background-size: cover;
     background-repeat: repeat-x;
     position: relative;
-    width: 100vw; 
+    width: 100vw;
     margin-right: -15px;
     margin-left: -20px;
     margin-bottom: 0px;
 }
 #countdown_clock h2 {
-    font-weight: bolder; 
-    margin-bottom: 20px; 
-    font-size: 40px; 
-    color: #8C1D40; 
+    font-weight: bolder;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #8C1D40;
     font-family: Oswald, sans-serif;
 }
 #countdown_clock {
@@ -103,13 +104,13 @@ html, body {
     padding: 0px;
 }
 .col-md-5 h3 {
-    font-weight: bolder; 
-    font-size: 30px; 
+    font-weight: bolder;
+    font-size: 30px;
     color: #8C1D40;
     text-align: center;
 }
 .col-md-5 p {
-    text-align: justify; 
+    text-align: justify;
     font-size: 20px;
     padding-left: 20px;
 
@@ -121,8 +122,8 @@ html, body {
 }
 #rewards h2, #connect h2 {
     font-size: 30px;
-    background-color: #8C1D40; 
-    color: white; 
+    background-color: #8C1D40;
+    color: white;
     padding: 15px;
 }
 #rewards p, #connect p {
@@ -222,14 +223,14 @@ html, body {
 }
 #info1 h2, #info2 h2 {
     background-color: rgba(153,0,51,0.9);
-    color: white; 
-    text-align: center; 
-    padding: 5px; 
+    color: white;
+    text-align: center;
+    padding: 5px;
     font-size: 30px;
     border-radius: 8px;
 }
 #info1 p, #info2 p {
-    text-align: justify; 
+    text-align: justify;
     font-size: 20px;
     color: black;
 }
@@ -307,56 +308,56 @@ html, body {
 }
 
 .row {
-    padding-left: 50px; 
-    padding-right: 50px; 
+    padding-left: 50px;
+    padding-right: 50px;
   }
   .aboutHeader {
     font-weight: bold;
   }
   .livestreamInfo {
-    border: 3px solid #8C1D40; 
-    margin-left: 50px; 
+    border: 3px solid #8C1D40;
+    margin-left: 50px;
     padding: 10px;
     display: table;
   }
   .livestreamInfo h3 {
-    color:#8C1D40; 
+    color:#8C1D40;
     float:left;
     font-weight: bold;
   }
   .livestreamInfo h4 {
-    line-height: 1.5em; 
-    padding-left: 40px; 
+    line-height: 1.5em;
+    padding-left: 40px;
     clear:left;
   }
   .col-md-4 {
     padding: 10px 30px;
   }
   .col-md-4 h4 {
-    line-height: 1.5em; 
-    margin-left: -15px; 
-    background-color: #8C1D40; 
-    color:white; 
-    text-align: center; 
+    line-height: 1.5em;
+    margin-left: -15px;
+    background-color: #8C1D40;
+    color:white;
+    text-align: center;
     border-radius: 10px;
   }
   @media only screen and (max-width: 570px) {
     .row {
-      padding-left: 20px; 
-      padding-right: 20px; 
+      padding-left: 20px;
+      padding-right: 20px;
     }
     .livestreamInfo {
-      border: 3px solid #8C1D40; 
-      margin-left: 20px; 
+      border: 3px solid #8C1D40;
+      margin-left: 20px;
       padding: 5px;
     }
     .livestreamInfo h3 {
-      color:#8C1D40; 
+      color:#8C1D40;
       float:left;
       font-size: 25px;
     }
     .livestreamInfo h4 {
-      padding-left: 10px; 
+      padding-left: 10px;
       clear:left;
     }
     .col-md-4 {
