@@ -87,12 +87,14 @@
                   <%= link_to " Join " + event.topic, user_viewer_path(user.permalink, chatrm: event.topic , event: event.id), class: "btn btn-primary btn-sm fa fa-video-camera" %>
                   <% users = User.where("last_viewed = ?", event.id) %>
                   <% count = users.count %>
-                  <p id="amount" style="margin-left:-.4em">
-                    <% if count == 1 %>
-                      <%= count %> ThinQer live NOW!</p>
-                    <% else %>
-                      <%= count %> ThinQers live NOW!</p>
-                    <% end %>
+                  <div style="margin-left:-.4em">
+                    <p id="amount">
+                      <% if count == 1 %>
+                        <%= count %> ThinQer live NOW!</p>
+                      <% else %>
+                        <%= count %> ThinQers live NOW!</p>
+                      <% end %>
+                  </div>
                   
                   <script>
                     $(document).ready(function() {
