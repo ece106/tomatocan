@@ -1,24 +1,38 @@
 class BlockController < ApplicationController
     def block
-        array = User.find_by_id(params[:to_block]).blockedBy
-<<<<<<< HEAD
-        User.find_by_id(params[:to_block]).update({'blockedBy': array << User.find_by_id(params[:owner]).permalink})
-=======
-        User.find_by_id(params[:to_block]).update({'blockedBy': array << params[:owner_perma]})
->>>>>>> d72ae1afe73147c91e822432b93b278de33fa358
-    
-        array2 = User.find_by_id(params[:owner]).BlockedUsers
-        User.find_by_id(params[:owner]).update({'BlockedUsers': array2 << params[:to_block_perma]})
+        # get owner of convo and person to block
+        to_block = User.find_by_id(params[:to_block])
+        owner = User.find_by_id(params[:owner])
+
+        # get blockedBy array
+        array = to_block.blockedBy
+
+        # add owner of convo to blockedBy array
+        to_block.update({'blockedBy': array << owner.permalink})
+        
+        # update owner blockedUsers array
+        array2 = owner.BlockedUsers
+        owner.update({'BlockedUsers': array2 << to_block.permalink})
     end
     
     def unblock
-        array = User.find_by_permalink(params[:to_unblock_perma]).blockedBy
-        array = array - [params[:current_user_perma]]
-        User.find_by_permalink(params[:to_unblock_perma]).update({'blockedBy': array})
+        # get to_unblock user and current_user
+        to_unblock = User.find_by_id(params[:to_unblock_id])
+        current_user = User.find_by_id(params[:current_user_id])
+
+        # get blocked by array
+        array = to_unblock.blockedBy
+
+        # remove current_user from blockedBy array
+        array = array - [current_user.permalink]
+        to_unblock.update({'blockedBy': array})
         
-        array2 = User.find_by_permalink(params[:current_user_perma]).BlockedUsers
-        array2 = array2 - [User.find_by_permalink(params[:to_unblock_perma]).permalink]
-        User.find_by_permalink(params[:current_user_perma]).update({'BlockedUsers': array2})
+        # get blockedUsers array
+        array = current_user.BlockedUsers
+
+        # remove to_unblock from blockedUsers array
+        array = array - [to_unblock.permalink]
+        current_user.update({'BlockedUsers': array})
     end
 
     def unload
