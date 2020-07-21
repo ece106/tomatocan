@@ -3,7 +3,7 @@
 <%eventCount = 0%>
 <div class="panel panel-default">
   <% if @calendar_events_all.count != 0 %>
-    <table class="table table-hover" id=calendar>
+    <table class="table table-hover border-top border-left border-right" id=calendar>
       <tbody>
         <% @calendar_events_all.sort_by{|t| t.start_at}.each_with_index do |event, i| %>
           <% if event.start_at.to_date.eql?(currentDate) %>
