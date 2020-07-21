@@ -3,37 +3,60 @@
   <div class="home-video-wrapper">
     <%= video_tag('WelcomeToThinQtv.mp4', controls: 'false', autoplay: 'true', loop: 'true', muted: 'true', playsinline: 'true', class: "home_video")%>
 
-    <div class="row">
-      <div class="herocaption col-xs-12 " id="home">
-        <div class="alert">
-          <% flash.each do |key, value| %>
-            <div class="<%= flash_class(key) %>">
-              <%= value %>
+<div class="alert">
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+      <%= value %>
+    </div>
+  <% end %>
+</div>
+  <div class="col-lg-5 col-md-11">
+      <div id="home" style= "height: 100vh" >
+        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
+          Discover Activism that makes you
+        </div>
+        <div style="display:inline;" >
+          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
+        </div>
+        <div style="font-size: 30px; color:#fff; font-family: 'Arial';" >
+          Crowdsource Activism via Video Chat
+        </div><br><br><br>
+
+        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px"><i>New to ThinQ.tv?</i>
+          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627" %> to support Women & Minorities in Tech. Everyone is welcome.
+          <br><br>Drop in to ask questions about ThinQ.tv! </h3>
+        <% if @displaystudy.present? %>
+          <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
+            <div id="eventCurrentdiv">
+              <p style="color:#fff">We're having Study Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "color: #ffc627" %></p>
+              <p style="color:#fff"> right NOW!</p><br>
+              <%= link_to " Join Study Hall Chat ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
             </div>
           <% end %>
-        </div>
-
-        <div style="display:inline; font-size: 60px; color:#ffc627; font-family: 'Arial';" > Conversations to make you THINQ</div>
-        <div style="display:inline;" > <%= image_tag("logoGold60.png", style: "margin-bottom: 20px")%></div>
-        <div style="font-size: 40px; color:#ffc627; font-family: 'Arial';" >
-          <br><%= link_to "Grassroots Movements via Video Chat to keep you Well-Informed", getinvolved_path, class: "topic_link", title: "Like a cocktail party on Zoom" %>
-        </div>
-            
-        <% if @displayconvo.present? %>
-          <% if (Time.current > Time.parse(@start_time)) && (Time.current < Time.parse(@end_time)) %>
+        <% end %>
+        <% if @displayresearch.present? %>
+          <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
-              <h3>Conversation <%= link_to @name, event_path(@displayconvo.id), title: @description, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
-              <p> is happening right NOW!</p><br>
-              <%= link_to " Join Conversation ", "https://thinqtv.herokuapp.com/" + @host.permalink, class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 50px; border-radius: 5px;" %><br>
-              Hosted by: <%= link_to @host.name, @host.permalink, style: "font-size: 40px; text-shadow: 1px 1px 1px #fff" %>
+              <p style="color:#fff">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "color: #ffc627" %></p>
+              <p style="color:#fff"> right NOW!</p><br>
+              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px;" %>
             </div>
           <% else %>
             <h2 id="buttonTitle">
             <%= link_to 'See an example Live Video Conversation Room', "https://thinqtv.herokuapp.com/youronlinemom", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam - make sure to use Chrome or Firefox" %>
             </h2>
           <% end %>
-        <% end %><br><br>
-        <%= link_to "Get Out the Vote!", "/signup", class: "btn btn-lg btn-primary", style: "border-radius: 5px; font-size: 25px", title: "Sign up to host live video Conversations" %><br><br>
+        <% end %>
+        <% if @displaystudy.present? && @displayresearch.present? %>
+          <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
+            <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
+              <h2 id="buttonTitle">
+              <h2 id="buttonTitle" style="margin-bottom: 30px">
+              <%= link_to 'See an example Video Chat Room', "/youronlinemom/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              </h2>
+            <% end %>
+          <% end %>
+        <% end %>        <br><br>
       </div>
     </div>
   </div>
@@ -55,14 +78,13 @@
       <%= render 'layouts/countdown_clock' %>
     </div>
   </div>
-  <div class="row" id="calendar">
-    <div class="col-md-9 col-md-offset-1 col-xs-11">
-      <%= render 'layouts/maincalendar', collection: @events %>
-    </div>     
-  </div>
-  <div class="row" id="purpose">
-    <div class="col-md-3 col-md-offset-1", style="margin-top: 40px">
-      <%= image_tag("logoDigitalHollow300.png", :class => "hidden-xs", :style => "display: block; margin-left: auto;  margin-right: auto;")%>
+  <div class="tabContainer">
+    <div class="buttonContainer">
+      <button onclick="showPanel(0,'#2196f3')">Daily View </button>
+      <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
+    </div>
+    <div class="tabPanel">
+      <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
     </div>
     <div class="col-md-5 col-md-offset-1 col-xs-12">
       <h3>Our Purpose</h3><br>

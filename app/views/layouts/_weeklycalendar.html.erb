@@ -1,0 +1,32 @@
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <% getWeekDays.each_with_index do |date, index|%>
+    <button onclick="Panel1(<%=index%>,'#900C3F')" class="btn btn-primary weekBtn">
+      <%=date.strftime("%A")%><br><%= date.month%><%= "/" %><%= date.day %>
+    </button>
+    <%end%>
+  </div>
+</div>
+<br>
+<% getWeekDays.each do |date|%>
+  <div class="weekDays">
+    <%= render eventPartial, currentDate: date%>
+  </div>
+<%end%>
+
+<script>
+  function Panel1 (panelIndex) {
+    var tabButtons=document.querySelectorAll(".weekBtn");
+    var tabPanels=document.querySelectorAll(".weekDays");
+    tabButtons.forEach(function(node) {
+      node.style.width="120px";
+    });
+
+    tabPanels.forEach(function(node) {
+      node.style.display="none";
+    });
+    tabPanels[panelIndex].style.display="block";
+  }
+  Panel1(0);
+</script>
