@@ -2,13 +2,14 @@
   <div class="container">
     <div class="row"  >
       <div class="col-lg-6 col-md-6">
-        <h3 class="aboutHeader" style="text-align: center;" > What is STUDY HALL </h3> 
+        <h3 class="aboutHeader" style="text-align: center;" > STUDY HALL: Coworking where we’re socially distanced but not alone </h3>
         <h4 style = "line-height: 1.5em" >
-          - In support of Women & Minorities in Tech: Mentor, Network, Improve Skills <br> 
-          - Hang out in video chat with other people learning topics you're interested in - we're currently working on Web Development topics related to building ThinQ.tv, a Woman Owned Tech Startup <br>
-          - Peers and possibly mentors are there while you're working incase you have questions or need someone to bounce ideas, pair program <br>
-          - Or work quietly in the chat room to be there for each other when that Aha moment happens
-         </h4>          
+          - Support Women & Minorities in Tech: Mentor, Network, Improve Skills <br>
+          - Hang out in video chat with other people learning topics you're interested in. We're currently working on open source tech related to building ThinQ.tv, a Woman Owned Tech Startup <br>
+          - Peers and possibly mentors are there while you're working incase you have questions or need someone to bounce ideas, pair program, get feedback on your designs <br>
+          - No agenda. Drop in any time; we'll greet you when you arrive. 
+          Feel free to work quietly in the chat room to be there for each other when that Aha moment happens
+         </h4>
       </div>
       <div class="col-md-6 col-xs-12" style=" margin-top:0px; margin-bottom: 0px; padding: 10px; ">
         <div class="row" id="countdown_clock">
@@ -31,23 +32,23 @@
     </div>
   </div>
   <div class="tabContainer">
-    <div class="col-md-10 col-md-offset-1 col-xs-12"> 
+    <div class="col-md-10 col-md-offset-1 col-xs-12">
       <div class="buttonContainer">
-        <button onclick="showPanel(0,'#f44336')">List View </button>
+        <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
-        <!-- <button onclick="showPanel(2,'#2196f3')">Weekly View</button> -->
       </div>
     </div>
     <div class="tabPanel">
-      <div class="row" id="calendar"> 
-        <div class="col-xs-12"> 
-          <%= render 'layouts/maincalendar', collection: @events %> 
-        </div>   
-      </div> 
+      <div class="row" id="calendar">
+        <div class="col-xs-12">
+        <%= render 'layouts/weeklycalendar',  eventPartial: "layouts/renderday"%>
+        </div>
+      </div>
     </div>
     <div class="tabPanel" >
        <%= render 'layouts/monthcalendar', collection: @eventsAll %>
-    </div> 
+    </div>
+
   </div>
 
     <h3 class="speaking" style="font-size: 32px; font-family: essonnes-headline, Georgia, serif;" >
@@ -63,16 +64,16 @@
             <div class="card-body">
               <h4> UX Research <br> </h4>
               <p class="text" >
-              <span id="dots"></span><span id="more" style="display:none; "> 
+              <span id="dots"></span><span id="more" style="display:none; ">
                 We currently have a group meeting several times per week to work on survey questions related to the ThinQ.tv site. The purpose of the UX Research Study Hall is to: <br>
                 - Be in the video chat viewer for each other incase you want feedback from others with UX career interests. <br>
                 - Form a support group available several hours per day who are there when you want to be around others also improving their UX Survey skills.<br>
               </span>
               </p>
 
-          <div class="arrowdown" style="text-align: center;"> 
+          <div class="arrowdown" style="text-align: center;">
             <i class="fa fa-angle-down" id="angle" aria-hidden="true" onclick="read()"></i>
-          </div> 
+          </div>
             </div>
         </div>
       </div>
@@ -86,7 +87,7 @@
           <div class="card-body">
               <h4> RUBY ON RAILS Web Development <br> </h4>
               <p class="text">
-            <span id="dots1"></span><span id="more1" style="display:none;"> 
+            <span id="dots1"></span><span id="more1" style="display:none;">
               Front and back end developers can co-work or co-hack with each other. The purpose of the Rails Study Hall is to: <br>
               - Be in the video chat viewer for each other incase you have Rails questions while working on your project. <br>
               - Form a support group available several hours per day who are there when you want to be around others also improving their Rails skills. <br><br>
@@ -95,9 +96,9 @@
             </span>
               </p>
 
-            <div class="arrowdown" style="text-align: center;"> 
+            <div class="arrowdown" style="text-align: center;">
               <i class="fa fa-angle-down" id="angle1" aria-hidden="true" onclick="read1()"></i>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -112,16 +113,16 @@
             <h4> Women Developers <br> </h4>
               <p class="text">
             <span id="dots2"></span>
-            <span id="more2" style="display:none;"> 
+            <span id="more2" style="display:none;">
               ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers Study Hall is to: <br>
               - Meet other female developers from around the US <br>
               - Support each other<br>
               - Bring #metoo issues we all face out in the open without backlash for doing so
             </span>
               </p>
-            <div class="arrowdown" style="text-align: center;"> 
+            <div class="arrowdown" style="text-align: center;">
               <i class="fa fa-angle-down" id="angle2" aria-hidden="true" onclick="read2()"></i>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
