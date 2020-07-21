@@ -41,8 +41,8 @@ class UsersController < ApplicationController
     @calendar_events = upcomingevents.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
     @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 4)
-    @currentRSVP = rsvps.flat_map{ |t| t.calendar_events(t.start_at)}
-    @currentRSVP = @currentRSVP.sort_by{|event| event.start_at}
+    @currentRSVP = upcomingevents+rsvps.flat_map{ |e| e.calendar_events(e.start_at)}
+    @currentRSVP = @currentRSVP.sort_by {|event| event.start_at}
     @currentRSVP = @currentRSVP.paginate(page: params[:page], :per_page => 12)
 
     respond_to do |format|
