@@ -145,7 +145,7 @@ Conversations
                         <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
                       </div>
                       <div class="col-sm-3" style="margin-top:3px">
-                        <button id="unblock_button" onclick="unblock('<%=current_user.permalink%>','<%=user.permalink%>')">Unblock</button>
+                        <button id="unblock_button" onclick="unblock('<%=current_user.id%>','<%=user.id%>')">Unblock</button>
                       </div>
                     <% end %>
                   <% end %>
