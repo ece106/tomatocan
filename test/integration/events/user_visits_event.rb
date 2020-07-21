@@ -5,7 +5,7 @@ class UserVisitsEvent < ActionDispatch::IntegrationTest
 
   setup do
     @user  = users :confirmedUser
-    @event = events :confirmedUser_event
+    @event = events :one
     #@rsvpq = rsvpqs :confirmedUser
 
     sign_in
@@ -31,7 +31,7 @@ tests focused on testing the conent of the user profile.
 
   test "should see the correct event title" do
 	
-	assert_selector '#calendar-event', text: @event.name
+	assert_selector class: 'col-xs-2', text: @event.name
   end
 
   test "should see the correct event host" do
@@ -42,19 +42,19 @@ tests focused on testing the conent of the user profile.
 
   test "should see the correct start date" do
 		
-	assert_selector '#calendar-time-day', text: ""#@event.start_at.strftime("%a, %B %d")
+	assert_selector style: "padding: 3px 0px 3px 0px", text: @event.start_at.strftime("%A, %B %d")
 	
   end
 
   test "should see the correct start at timezones" do
 	
-	assert_selector '#calendar-time-hour', text: ""#(@event.start_at.strftime("%I:%M %p"))
+	assert_selector style: "margin-left: 5px", text: @event.start_at.strftime("%I:%M %p")
 	
   end
 
   test "can make an rsvp for event" do
     first(:id, "RSVPsubmit").click
-    assert_equal current_path, home_path
+    assert_equal current_path, "/#{@user.permalink}"
   end
 
   test "can make an rsvp for event with email" do
