@@ -27,7 +27,7 @@
         </div>
         <% if current_user.permalink == @user.permalink && user.permalink != @user.permalink %>
           <div class="col-sm-3 col-sm-offset-1" style="margin-top:3px">
-            <button id="block_button" style="margin-left:-1em" onclick="block('<%=user.name%>','<%=@user.id%>','<%=@user.permalink%>','<%=user.id%>','<%=user.permalink%>')">Block</button>
+            <button id="block_button" style="margin-left:-1em" onclick="block('<%=user.name%>','<%=@user.id%>','<%=user.id%>')">Block</button>
           </div>
         <% end %>
       <% end %>
@@ -36,9 +36,9 @@
 </div>
 
 <script>
-  function block(name, owner_id, owner_permalink, block_id, block_permalink) {
+  function block(name, owner_id, block_id) {
     if (confirm("Are you sure you want to block " + name + " from your page?")) {
-      $.post("/users/block", {owner: owner_id, owner_perma: owner_permalink, to_block: block_id, to_block_perma: block_permalink})
+      $.post("/users/block", {owner: owner_id, to_block: block_id})
     }
   }
 </script>
