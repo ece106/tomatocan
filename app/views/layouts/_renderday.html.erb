@@ -3,7 +3,7 @@
 <%eventCount = 0%>
 <div class="panel panel-default">
   <% if @calendar_events_all.count != 0 %>
-    <table class="table table-hover" id=calendar>
+    <table class="table table-hover border-top border-left border-right" id=calendar>
       <tbody>
         <% @calendar_events_all.sort_by{|t| t.start_at}.each_with_index do |event, i| %>
           <% if event.start_at.to_date.eql?(currentDate) %>
@@ -178,7 +178,7 @@
         <% if eventCount == 0 %>
           <tr>
             <td>
-              <h4>There are no Study Hall hours on <%=currentDate.strftime('%A') %>. Try the following day!</h4>
+              <h4 class="border-top-0">There are no Study Hall hours on <%=currentDate.strftime('%A') %>. Try the following day!</h4>
             </td>
           </tr>
         <%end%>
