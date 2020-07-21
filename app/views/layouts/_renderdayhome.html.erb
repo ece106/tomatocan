@@ -43,7 +43,7 @@
                 <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
                 <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-                  <%= link_to " Join Conversation NOW ", "https://thinQtv.herokuapp.com/" + user.permalink, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+                  <%= link_to " Join Conversation NOW ", user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
 
                 <% else %>
                     <%= form_for(@rsvp) do |f| %>
