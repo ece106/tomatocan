@@ -161,8 +161,8 @@ Conversations
         $('#blocked').load(document.URL +  ' #blocked');
       }, 2000);
 
-      function unblock(current_user_permalink, to_unblock_permalink) {
-        $.post("/users/unblock", {current_user_perma: current_user_permalink, to_unblock_perma: to_unblock_permalink})
+      function unblock(current_user_id, to_unblock_id) {
+        $.post("/users/unblock", {current_user_id: current_user_id, to_unblock_id: to_unblock_id})
       }
     </script>
   <% end %>
