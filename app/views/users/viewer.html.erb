@@ -1,12 +1,6 @@
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, params[:event]) %>
 
-  <% current_user.blockedBy.each do |blocked| %>
-    <% if blocked == @user.permalink %>
-      <meta http-equiv="refresh" content="0; URL=/blocked"/>
-    <% end %> 
-  <% end %>
-
   <!-- Update list of users attending the conversation -->
   <div class = "container-fluid">
   <% content_for :head do %>
@@ -117,11 +111,18 @@
   </div>
 
   <script>
+    // check if blocked
+    $.post("/users/is_blocked", {}, function(data){
+      if (data["blocked_by"].includes("<%= @user.permalink %>")) {
+        window.location.replace("/blocked")
+      }
+    })
+
     $(document).ready(function() {
       // makes all links on viewer page open in new tab
       $("a").attr("target", "_blank");
 
-      // automatically refresh attendees list every 2 seconds
+      // automatically refresh attendees list every 2 seconds and check if user is blocked
       setInterval(function () {
         $('#attendee').load(document.URL +  ' #attendee');
         $.post("/users/is_blocked", {}, function(data){
@@ -144,7 +145,6 @@
       $('#refresh').click(function(){
         $('#attendee').load(document.URL +  ' #attendee');
       });
-
 
       // remove user from current attendees list
       $(window).on('beforeunload', function() {
