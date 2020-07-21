@@ -24,7 +24,7 @@
             <% user = User.find(event.usrid) %>
             <% i += 1 %>
             <ul>
-            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc%></li>
             By: <%= link_to user.name, user.permalink %>
             <br>
             <% edt = event.start_at + 3.hours %>
@@ -52,7 +52,7 @@
             <ul>
             <% user = User.find(event.usrid) %>
             <% i += 1 %>
-            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event, title: event.desc%></li>
+            <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc%></li>
             By: <%= link_to user.name, user.permalink %>
             <br>
             <% edt = event.start_at + 3.hours %>
