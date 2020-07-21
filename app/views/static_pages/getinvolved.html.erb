@@ -1,107 +1,132 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="row" style="background-color: white; padding-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5); ">
-  <h3 class="aboutHeader" style = "text-align: center; font-size: 30px;">
-    ELECTION 2020<BR>
-    Can't go to a fundraising party in person?<br>
-    Drop in for Conversations on ThinQ.tv! 
-  </h3>
-</div>
-
-  <div class="row" style="margin-bottom: 20px; padding-bottom: 20px; margin-top: 20px; ">
-    <div class="col-lg-4 col-md-12" style=" margin-top:0px; margin-bottom: 0px; padding: 0px; ">
-          <%= image_tag("videoconference.jpg", :style => "min-height: 372px; max-height:auto; width:100%;")%>
-      </div>
-
-    <div class="col-lg-8 col-md-12" style=" min-height: 372px;  max-height: auto; margin-top: 0px; box-shadow: 0 5px 15px rgba(0,0,0,.5);">
-        <h3 style=" padding-top: 5px; padding-bottom: 2px; margin-bottom: 5px; color: #8C1D40; font-weight: bold;"> WHAT IS THINQ.TV:</h3>
-        <p class= "paragraph1" >
-          - A platform where people can join intellectual video chat online. It’s similar to going to a Cocktail Party on Zoom. Drop in to a conversation on the home page schedule & discover interesting conversations to motivate each other to get involved with the 2020 election! <br>
-          - ThinQ.tv is for people who like to keep themselved well-informed to have conversations about current events - politics, science, social justice.
-        </p><br>
-
-        <!-- <div class="col-lg-8 col-md-12" style=" width:100%; padding-bottom: 20px; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.5);"> -->
-        <h3 style="margin-top: 10px; margin-bottom: 5px; color:#8C1D40; font-weight: bold;"> HELP US MOTIVATE OTHERS TO GET OUT THE VOTE:</h3>
-       <p class= "paragraph2" >
-
-      * Invite friends & family to conversations when you'll be there so you can participate together. <br>
-      - <button class="button1" ><a href="mailto:?&subject=Join%20me%20for%20conversations%20about%202020%20elections%20on%20ThinQ.tv!&body=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http%3A%2F%2Fwww.ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations." alt="Email" target="_blank" style="color: white">E-Mail &#9993</a></button> <br>
-      - Spread the word about <span style="font-weight: bold; ">THINQ.TV </span> via 
-                     <% domainurl = "https://thinq.tv" %>
-                <% desc = "Participate in Conversations about the 2020 election!"%>
-              
-                <!-- Share -->
-                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-                
-                  <!-- Facebook Share -->
-                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse"
-                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse',
-                    'newwindow',
-                    'width=600,height=400,top=100,left=300');
-                    return false;">
-                    <%= image_tag("facebook_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
-                  </a>
-                  <!-- Twitter Tweet -->
-                  <a href="https://twitter.com/intent/tweet?hashtags=ThinQTV&text=Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections!%20Go%20to%20http%3A%2F%2Fwww.ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations.&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F">
-                    <%= image_tag("twitter_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
-                  </a>
-                  <!-- LinkedIn Share -->
-                  <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= domainurl %>&title=ThinQTV&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;">
-                    <%= image_tag("linkedin_icon.png", :style => "margin-left: -4px; width:25px; height:25px; border-radius:4px")%>
-                  </a>
-                <!-- </div> -->
-        </p>
-        <!-- </div> -->
-      </div>
+<!-- top row of content-->
+<div class="row ">
+  <div class="col-lg-8 col-md-8 col-small-12">
+    <!-- main column-->
+<div class ="row text-center">
+    <%= image_tag("logoMg.png", :style => "max-height:50%; width:50%; padding-top:50px;padding-bottom:20px;")%>
+    </div>
+    <div class="col-lg-6 col-md-6 col-small-12">
+      <%= image_tag("videopic.jpg", :style => "max-height:auto; width:100%;")%>
+    </div>
+    <div class="col-lg-6 col-md-6 col-small-12">
+      <!-- main content-->
+      <h2 class="new">Join in Activism for causes you believe in via Video Chat
+      </h2>
+      <p>
+        ThinQ.TV is a free platform where people don't just "preach to the choir", but motivate others through many small group Conversations. By participating in these video chats, people can brainstorm ways to advance a cause and change the world one Conversation at a time.<br><br>
+        Passionate about Women-Owned or Minority-Owned Tech? Drop in to Study Hall to mentor, learn, and collaborate on open source projects. Meet potential colleagues!
+      </p>
+    </div>
+    <!-- closing main content -->
   </div>
 
-<div class="container">
-<div class="row" >
-  <div class="col-lg-6 col-md-12 col-sm-12" style="margin-bottom: 60px;">
-    <div class="cardHolder">
-      <div class="cardFlip">
-        <div class="frontSide">
-          <%= image_tag("activities.jpg")%>
-          <h3 style = " padding-top: 10px; font-weight: bold; color:white">Ideas for what to talk about: </h3>
-        </div>
-      <div class="backSide">
-          <p>
-           - Current events <br><br>
-           - Social Justice <br><br>
-           - Environmental issues <br><br>
-           - TED talks <br><br>
-           - John Oliver, Hasan Minhaj, or Seth Meyers shows <br><br>
-          </p>
-        </div>
-      </div>
+  <!--side column -->
+  <div class="col-lg-4 col-md-4">
+    <h1 class="new">
+      Our Mission
+    </h1>
+    <h2 class="new">Discover People Who Make you ThinQ</h2>
+    <p>
+      Discover conversations with fellow activists about topics important to you. Change the world one Conversation at a time.
+    </p>
+  </div>
+</div>
+<!-- closing top section-->
+
+<! -- why thinQ.tv section -->
+<div class="row mb-0 pb-0 mt-3 pt-3">
+  <h1 class="new">
+    Why ThinQ.tv?
+  </h1>
+  <div class="row align-items-end">
+    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
+      <%= image_tag("knowledge_icon.png", :style => "height:auto; max-width:27.5%;")%>
+    </div>
+    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
+      <!--<br> this is a short icon, so Im adding a break to fix the spacing -->
+      <%= image_tag("discovery_icon.png", :style => "height:auto; max-width:27.5%;")%>
+    </div>
+    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
+      <!--t <br> <br> his is a really short icon, so Im adding 2 breaks to fix the spacing. Theres probably a more elegant way to do this -->
+      <%= image_tag("collaboration_icon.png", :style => "height:auto; max-width:27.5%;")%>
+    </div>
+    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
+      <%= image_tag("schedule_icon.png", :style => "height:auto; max-width:27.5%;")%>
     </div>
   </div>
-  <div class="col-lg-6 col-md-12 col-sm-12">
-    <div class="cardHolder">
-      <div class="cardFlip">
-        <div class="frontSide" >
-          <%= image_tag("question.jpg")%>
-          <h3 style = "padding-top: 10px; font-weight: bold; color:white">Questions? </h3>
-        </div>
-      <div class="backSide">
-          <p>
-            - Drop in to any of the Study Hall hours listed on the <%= link_to 'ThinQ.tv Study Hall schedule', studyhall_path %> so we can meet you. <br><br>
-          </p>
-        </div>
-      </div>
+  <div class="row mt-0 pt-0">
+    <div class="col-lg-3 col-md-3 col-small-6">
+      <h2 class="new">
+        Activism
+      </h2>
+      <p>
+        Gather momentum for causes you believe in.
+      </p>
+    </div>
+    <div class="col-lg-3 col-md-3 col-small-6">
+      <h2 class="new">
+        Discovery
+      </h2>
+      <p>
+        Passionate people who have interesting ideas to share & collaborate on
+      </p>
+    </div>
+    <div class="col-lg-3 col-md-3 col-small-6">
+      <h2 class="new">
+         Dialogue
+      </h2>
+      <p>
+        Share ideas and get feedback <i>with</i> others instead of talking <i>at</i> them
+      </p>
+    </div>
+    <div class="col-lg-3 col-md-3 col-small-6">
+      <h2 class="new">
+        Schedule
+      </h2>
+      <p>
+        Don’t wait to be invited! Look at our Conversation and Study Hall schedules to join in at any time!
+      </p>
     </div>
   </div>
 </div>
-</div>
+<!-- closing why section -->
 
- <script>
-   $(document).ready(function(){
-        $('.arrow').click(function(){
-     $('.location-content').toggleClass('current');
-         $('.location-icon').toggleClass('current');
-     $('#angle').toggleClass('rotate');
+<! -- our story section -->
+<div class="row mb-1 pb-3 mt-1 mx-5 px-5">
+  <h1 class="new">
+    Our Story
+  </h1>
+  <div class="col-lg-8 col-md-8 col-sm-12">
+    <p>
+	"Being woman engineer is an act of activism," according to Dr. Schaefer. "Just showing up in spite of the harassment and the assumption that I don't belong here is an act of defiance. If my face goes away, so does my voice. Which leaves a vacuum of leadership for the upcoming generation of women who will follow." <br><br>
+
+Back when ThinQ.tv Founder, Dr. Lisa Schaefer, lived in Washington, DC, she attended a meeting where Biz Stone spoke. All she could thinQ of during the entire meeting was, "I can come up with something better."<br>
+
+      Years earlier, Dr. Schaefer had a vision for multi-location book party and discovered live-streaming in its early days. "This changes everything," she thought. Anyone with a computer, webcam, and internet connection can communicate with anyone with anyone else who has an internet connection.<br><br>
+
+      Dr. Schaefer developed her own web platform, embedded video chat, and experimented with talk show formats. Most were awful. People wanted to talk at the internet without listening to others in a dialogue. However the impromptu conversations that followed were worth coming back for.<br><br>
+
+      In July 2019 Dr. Schaefer decided to call the platform ThinQ.tv. She researched video chat apps marketed to teens and young adults and was appalled by the inappropriate and sexual behavior; she wanted to create a platform where this behavior was unacceptable and intellectual conversations were celebrated. When COVID19 hit, more people gathered on ThinQ.tv to talk about substantive topics. Dr. Schaefer gathered outreach & tech students to host conversations every evening about Women in Tech, Black Lives Matter, and national news.<br><br>
+
+      Since we were geographically dispersed & working from home, Dr. Schaefer asks interns to work in chatrooms on ThinQ.tv. It has become our office and Study Hall has evolved. As a women-founded tech company, the purpose of ThinQ.tv's Study Hall is to share ideas and collaborate which consequently helps women and minorities in tech.<br><br>
+
+    </p>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-12">
+    <%= image_tag("lisaSpeaks.jpg", :style => "max-height:auto; width:65%;")%>
+  </div>
+</div>
+<!--closing our story section -->
+
+<script>
+  $(document).ready(function () {
+    $('.arrow').click(function () {
+      $('.location-content').toggleClass('current');
+      $('.location-icon').toggleClass('current');
+      $('#angle').toggleClass('rotate');
     });
-        
-   });
 
-  </script>
+  });
+</script>
