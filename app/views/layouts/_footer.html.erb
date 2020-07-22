@@ -10,23 +10,25 @@
     <div  class="container-fluid">
       <div class="row" id="footer">
         <div class="col-sm-2 col-sm-offset-1">
-          <p class="f-header">Site</p>
+          <p class="f-header">SITE</p>
           <%= link_to "FAQ", '/faq', :class => "f-link"  %> <br>
+          <%= link_to "Invite Us To Speak", "/drschaeferspeaking", :class => "f-link"%> <br>
           <%= link_to "Terms of Service", "/tos", :class => "f-link" %> <br>
-          <%= link_to "Privacy Policy", "/privacy", :class => "f-link"%>
+          <%= link_to "Privacy Policy", "/privacy", :class => "f-link"%><br><br>
         </div>
         <br class="visible-xs-block">
         <div class="col-sm-2">
-          <p class="f-header">Contact</p>
+          <p class="f-header">CONTACT</p>
           <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a><br>
-          602-888-3089
+          <a class="f-link">602-888-3089</a><br>
+
         </div>
         <br class="visible-xs-block">
         <div class="col-sm-2">
-          <p class="f-header">Share</p>
+          <p class="f-header">SHARE</p>
           <% domainurl = "https://thinq.tv" %>
           <% desc = "Participate in thought-provoking conversations!"%>
-        
+
           <!-- Share -->
           <div class="social-share-button" data-href="<%= domainurl %>">
             <!-- Facebook Share -->
@@ -49,11 +51,11 @@
             <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= domainurl %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A">
               <%= image_tag("email_icon.png", :style => "margin-left: 5px; width:25px; height:25px;") %>
             </a>
-            
+
           </div>
         </div>
       <div class="col-sm-3 pull-right" id="copyright">
-        <small>&copy; 2020 RoleModel Enterprises, LLC</small>
+        <small>&copy; 2020 RoleModel Enterprises, LLC</small><br><br>
       </div>
     </div>
   </div>
