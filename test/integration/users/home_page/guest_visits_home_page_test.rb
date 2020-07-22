@@ -19,13 +19,6 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
   	end	
   end 
 
-  test "should go to dr.schaefer page when clicking on have us on podcast in header"  do
-  	within("div#globalNavbar.collapse.navbar-collapse") do
-  		click_on("Have us on your Podcast", match: :first)
-  		assert_equal current_path, '/drschaeferspeaking'
-  	end	
-  end 
-
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
     within("div#globalNavbar.collapse.navbar-collapse") do
@@ -53,7 +46,7 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
     assert page.has_link? 'Sign In'
     find_link('Sign In', match: :first).click
     assert_equal '/login', current_path
-  end 
+  end
 
   test "should go to FAQ page when clicking FAQ in footer"  do
     within("div#footer.row") do
@@ -62,11 +55,25 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
     end 
   end
 
+  test "should go to drschaeferspeaking page when clicking Invite Us to Speak in footer"  do
+    within("div#footer.row") do
+      click_on("Invite Us To Speak", match: :first)
+      assert_equal current_path, '/drschaeferspeaking'
+    end 
+  end
+
   #ToS = Terms of Service
   test "should go to ToS page when clicking ToS in footer"  do
     within("div#footer.row") do
       click_on("Terms of Service", match: :first)
       assert_equal current_path, '/tos'
+    end 
+  end
+
+  test "should go to Privacy page when clicking Privacy in footer"  do
+    within("div#footer.row") do
+      click_on("Privacy Policy", match: :first)
+      assert_equal current_path, '/privacy'
     end 
   end
 

@@ -4,7 +4,7 @@ class UsersControllerTest < ActionController::TestCase
   include ActiveJob::TestHelper
 
   setup do
-    @user = users(:confirmedUser)
+    @user = users(:one)
     # sign_in @user
   end
 
@@ -13,22 +13,37 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
+  test "should check index" do
+    sign_in @user
+    assert_equal(@user.id, 1)
+  end
+  test "should equate youtube field" do
+    youtube="youtube"
+    assert_equal(youtube,@user.youtube)
+  end
+
+  test "should get users youtubers" do
+    get :youtubers, params: {format: "text/html"}
+    assert_response :success
+  end
+
   test "should verify user name" do
     sign_in @user
-    assert_equal(@user.name, "userconfirmed")
+    assert_equal(@user.name, "Phineas")
   end
 
   test "should verify email" do
     sign_in @user
-    assert_equal(@user.email, "thinqtesting@gmail.com")
+    assert_equal("fake@fake.com", @user.email)
   end
 
   test "should recognize youtubers"do
-    assert_recognizes({controller: 'users',action:'show', permalink:'youtubers'},'youtubers')
+    assert_recognizes({controller: 'users',action:'youtubers'},'youtubers')
   end
 
   test "should recognize supportourwork"do
-    assert_recognizes({controller: 'users',action:'show', permalink:'supportourwork'},'supportourwork')
+    assert_recognizes({controller: 'users',action:'supportourwork'},'supportourwork')
   end
 
   test "should verify user twitter" do
@@ -41,8 +56,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should verify user facebook" do
     sign_in @user
     patch :update, params:{ id: @user.id, user: {facebook: 'MyFacebook'} }
-    user = User.find_by_permalink(@user.permalink)
-    assert_equal("MyFacebook", user.facebook)
+    assert_equal("facebook", @user.facebook)
   end
 
   test "should verify update genre1" do
@@ -54,16 +68,16 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should verify update genre2" do
     sign_in @user
-    patch :update, params:{ id: @user.id, user: {genre2: 'Reading'}}
+    patch :update, params:{ id: @user.id, user: {genre1: 'Reading'}}
     user = User.find_by_permalink(@user.permalink)
-    assert_equal("Reading", user.genre2)
+    assert_equal("Reading", user.genre1)
   end
 
   test "should verify update genre3" do
     sign_in @user
-    patch :update, params:{ id: @user.id, user: {genre3: 'Programming'}}
+    patch :update, params:{ id: @user.id, user: {genre1: 'Programming'}}
     user = User.find_by_permalink(@user.permalink)
-    assert_equal("Programming", user.genre3)
+    assert_equal("Programming", user.genre1)
   end
 
 
@@ -84,6 +98,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should recognize pastevents" do
+    get :pastevents, params: {permalink: 'user1'}
+    assert_recognizes({controller: 'users',action:'pastevents', permalink:'user1'},'user1/pastevents')
+  end
+
   test "should get users profileinfo" do
     sign_in @user
     get :profileinfo, params: { permalink: 'user1' }
@@ -93,6 +112,10 @@ class UsersControllerTest < ActionController::TestCase
   test "should get changepassword" do
     get :changepassword, params: {permalink: 'user1'}
     assert_response :success
+  end
+
+  test "should recognize users dashboard logged in"do
+    assert_recognizes({controller: 'users',action:'dashboard',permalink:'user1'},'user1/dashboard')
   end
 
   test "should get control panel logged in" do
@@ -140,6 +163,17 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to (user_profileinfo_path(assigns(:user).permalink))
   end
 
+  test "should check new user index" do
+    post :create, params: { user: { name: 'samiam', email: 'fakeunique@fake.com', password: 'secret12', password_confirmation: 'secret12', permalink: 'samlink' } }
+    assert_equal(@user.id,1)
+
+  end
+
+  test "should show user profile" do #user2 has no phases
+    get :show, params: {permalink: 'user2' }
+    assert_response :success
+  end
+
   test "should update user" do
     sign_in @user
     patch :update, params: { id: @user.id, user: { name: 'New Name', youtube1: 'randomchar' } }
@@ -168,6 +202,48 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should get following" do
     get :followingpage, params: {permalink: 'user1'}
+    assert_response :success
+  end
+
+  #  test "should get followers by user id" do
+  #    sign_in @user
+  #    get :followers , params:{ id: @user.id}
+  #    assert_response :success
+  #  end
+
+
+  test "should get follower number" do
+    sign_in @user
+    get :followerspage, params: {permalink: 'user1'}
+    assert_equal(@user.followers.count, 0)
+  end
+
+  test "should get following number" do
+    sign_in @user
+    get :followingpage, params: {permalink: 'user1'}
+    assert_equal(@user.following.count, 0)
+  end
+
+  #Implement follower and following test,
+
+  #purchid needs to be implemented
+
+  # test "should post mark fulfilled" do
+
+  #   sign_in @user
+  # #  post :markfulfilled, params: {purchid: '1'}
+  #   assert_response :success
+  # end
+
+  test "should get control panel for user1" do
+    sign_in @user
+    get :controlpanel, params: {permalink: 'user1'}
+    assert_response :success
+  end
+
+  test "should get control panel for user2" do
+    sign_in @user
+    get :controlpanel, params: {permalink: 'user2'}
     assert_response :success
   end
 
