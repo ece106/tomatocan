@@ -2,7 +2,7 @@
   <% current_user.update_column(:last_viewed, 0) %>
 <% end %>
 
-<div class="alert pt-5">
+<div class="alert alert-dismissible fade show" role="alert">
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key) %>">
       <%= value %>
@@ -57,17 +57,16 @@
     </div>
 
 <div class="col-lg-7 col-md-12" id="countdown_clock">
-  <div class="main row">
-    <br>
-    <div class = "row">
-    <div class="col-lg-3 col-md-6">
-      <h2>Conversation Schedule</h2>
+  <div class="main row px-2">
+    <div class = "row justify-content-center px-0">
+    <div class="col-lg-4 col-md-6 pr-5 ml-0 pl-0">
+      <h2 class="text-center">Conversation Schedule</h2>
       <h4>Discover topics that motivate you!</h4>
       <% if user_signed_in? %>
         <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
       <% end %>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-5 col-md-6 pl-4 pr-0">
       <%= render 'layouts/countdown_clock' %>
     </div>
   </div>

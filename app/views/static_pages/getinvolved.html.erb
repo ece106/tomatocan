@@ -1,39 +1,38 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- top row of content-->
+<div class="container-fluid">
 <div class="row ">
-  <div class="col-lg-8 col-md-8 col-small-12">
+  <div class="col-lg-12 col-md-12 col-small-12">
     <!-- main column-->
 <div class ="row text-center">
-    <%= image_tag("logoMg.png", :style => "max-height:50%; width:50%; padding-top:50px;padding-bottom:20px;")%>
+    <%= image_tag("logoMg.png", class:'img-responsive ',width: "420", height: "120")%>
     </div>
-    <div class="col-lg-6 col-md-6 col-small-12">
-      <%= image_tag("videopic.jpg", :style => "max-height:auto; width:100%;")%>
-    </div>
-    <div class="col-lg-6 col-md-6 col-small-12">
+    <div class="col-lg-12 col-md-12 col-small-12">
+    <div class="row">
+    <div class="col-lg-4 col-md-5 col-small-6">
+      <%= image_tag("videopic.jpg", float: "left", class:'img-responsive img-thumbnail', width: "350", height: "250")%>
+      </div>
       <!-- main content-->
+      <div class="col-lg-4 col-md-4 col-small-3 pl-5">
       <h2 class="new">Join in Activism for causes you believe in via Video Chat
       </h2>
       <p>
         ThinQ.TV is a free platform where people don't just "preach to the choir", but motivate others through many small group Conversations. By participating in these video chats, people can brainstorm ways to advance a cause and change the world one Conversation at a time.<br><br>
         Passionate about Women-Owned or Minority-Owned Tech? Drop in to Study Hall to mentor, learn, and collaborate on open source projects. Meet potential colleagues!
       </p>
-    </div>
-    <!-- closing main content -->
-  </div>
-
-  <!--side column -->
-  <div class="col-lg-4 col-md-4">
-    <h1 class="new">
+      </div>
+      <div class="col-lg-4 col-md-3 col-small-3">
+        <h1 class="new">
       Our Mission
     </h1>
     <h2 class="new">Discover People Who Make you ThinQ</h2>
     <p>
       Discover conversations with fellow activists about topics important to you. Change the world one Conversation at a time.
     </p>
-  </div>
-</div>
-<!-- closing top section-->
+      </div>
+      </div>
+    </div>
 
 <! -- why thinQ.tv section -->
 <div class="row mb-0 pb-0 mt-3 pt-3">
@@ -93,12 +92,12 @@
 </div>
 <!-- closing why section -->
 
-<! -- our story section -->
-<div class="row mb-1 pb-3 mt-1 mx-5 px-5">
+<div class="container">
+<div class="row">
+<div class="col-lg-8 col-md-8 col-sm-12">
   <h1 class="new">
     Our Story
   </h1>
-  <div class="col-lg-8 col-md-8 col-sm-12">
     <p>
 	"Being woman engineer is an act of activism," according to Dr. Schaefer. "Just showing up in spite of the harassment and the assumption that I don't belong here is an act of defiance. If my face goes away, so does my voice. Which leaves a vacuum of leadership for the upcoming generation of women who will follow." <br><br>
 
@@ -114,9 +113,11 @@ Back when ThinQ.tv Founder, Dr. Lisa Schaefer, lived in Washington, DC, she atte
 
     </p>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-12">
-    <%= image_tag("lisaSpeaks.jpg", :style => "max-height:auto; width:65%;")%>
+  <div class="col-lg-4 col-md-4 col-sm-12 pt-5 mt-5 pb-0">
+   <%= image_tag("lisaSpeaks.jpg", float: "right", :class=> "img-responsive img-thumbnail", alt: "A picture of Dr. Lisa Schaefer")%>
   </div>
+  </div>
+</div>
 </div>
 <!--closing our story section -->
 
