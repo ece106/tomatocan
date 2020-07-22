@@ -84,14 +84,14 @@ class MerchandiseTest < ActiveSupport::TestCase
 
   test "parse youtube for merchandise" do
     youtubeT = "http://youtube.com/watch?v=/frlviTJc"
-    regex = /(?:youtu.be\/|youtube.com\/watch\?v=|\/(?=p\/))([\w\/\-]+)/
+    regex = /(?:youtu.be/|youtube.com/watch?v=|/(?=p/))([\w/-]+)/
     @merchandise.youtube = youtubeT
     @merchandise.get_youtube_id
     refute_equal(youtubeT, @merchandise.youtube)
     assert_equal youtubeT.match(regex)[1], @merchandise.youtube, "Youtube field contains unknown id"
   end
 
-  test 'get_filename_and_data valid' do
+  test 'get_filename_and_data validation' do
     filename_and_data_all = @all_merchandises.each { |x| x.get_filename_and_data }
     filename_and_data_test = @all_merchandises.each { |p| p[@merchandise_attachments.each{ |x| x }] }
     assert_equal filename_and_data_test , filename_and_data_all.each { |q| q }

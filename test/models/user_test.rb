@@ -204,4 +204,34 @@ class TestUser < ActiveSupport::TestCase
     end
   end
 
+   test "user retrieved from database if auth existed" do
+    auth = OmniAuth::AuthHash.new({provider: "facebook", uid: "98765", info: {name:"HieuPhung", email:"example@mail.com"}})
+    # assert no changes in database
+    assert_no_difference('User.count') do
+      User.from_omniauth(auth)
+    end
+
+    # assert user retrieved from database
+    User.from_omniauth(auth)
+    user = User.find_by uid: "98765"
+    assert_equal user.name, "userconfirmed"
+    assert_equal user.email, "thinqtesting@gmail.com"
+  end
+
+  test "user created if auth did not exist" do
+    auth = OmniAuth::AuthHash.new({provider: "facebook", uid: "12345", info: {name:"Reagan", email:"awesome96@email.com", permalink:"reagan12", password:"awesomepass", image:'nicejpg'} })
+    # assert changes in database
+    assert_difference('User.count', 1) do
+      user = User.from_omniauth(auth)  
+    end
+
+    # assert user created in database
+    User.from_omniauth(auth)
+    user = User.find_by name:"Reagan"
+    assert_equal user.provider, "facebook"
+    assert_equal user.uid, "12345"
+    assert_equal user.email, "awesome96@email.com"
+    # assert_equal user.profilepic, 'nicejpg' Cant test this now because a real image needs to be uploaded
+  end
+
 end

@@ -22,7 +22,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal("MyFacebook", user.facebook)
   end
 
-  test "should verify update genre1" do
+  test "should verify update genre" do
     sign_in @user
     patch :update, params:{ id: @user.id, user: {genre1: 'Reading', genre2: 'Writing', genre3: 'Programming'}}
     user = User.find_by_permalink(@user.permalink)
@@ -218,4 +218,19 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should return correct layout id" do
+    sign_in @user
+  # index, youtubers and supportourwork is obsolete, unable to test stripe_callback at the moment
+
+  # profileinfo, changepassword
+    get :profileinfo, params: { permalink: 'userconfirmed' }
+    assert_template layout: "layouts/editinfotemplate"
+
+  # other pages
+    get :eventlist, params: {permalink: 'userconfirmed'}
+    assert_template layout: "layouts/userpgtemplate"
+
+    get :followerspage, params: {permalink: 'userconfirmed', page: 1}
+    assert_template layout: "layouts/userpgtemplate"
+  end
 end
