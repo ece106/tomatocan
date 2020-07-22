@@ -18,10 +18,8 @@ body {
 main {
     flex: 1 !important;
 }
-.overflow-visible{
-  overflow: visible;
-}
-x
+
+
 .img-xs{
   height: 18px;
   width: 18px;
@@ -33,10 +31,16 @@ x
   background-color: $brand-primary;
 }
 
+.overflow-visible{
+  overflow: visible;
+}
+
 //Prevents textareas from being resized out of their columns
 textarea {
   resize: vertical;
 }
+
+$overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
 
 #error_explanation {
   color: #f00;
