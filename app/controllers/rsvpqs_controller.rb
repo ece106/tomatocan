@@ -25,7 +25,7 @@ class RsvpqsController < ApplicationController
       else
         RsvpMailer.with(email: @email, event: @event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: @reminder_date)
       end
-      redirect_back(fallback_location: request)
+      redirect_back(fallback_location: home_path)
     else
       rsvp = Rsvpq.find_by(email: @rsvp.email)
       if rsvp.nil?
