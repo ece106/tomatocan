@@ -17,12 +17,13 @@ Rails.application.routes.draw do
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
   match 'home',                     to: 'static_pages#home',                via: 'get'
+  match 'a',                      to: 'static_pages#aboutus',                 via: 'get'
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
   match 'tos',                      to: 'static_pages#tos',                 via: 'get'
   match 'livestream',               to: 'static_pages#livestream',          via: 'get'
-  match 'ux',                       to: 'static_pages#chat',                via: 'get'
+  match 'chat',                     to: 'static_pages#chat',                via: 'get'
   match 'vieweronhost',             to: 'static_pages#vieweronhost',        via: 'get'
   match 'jointheteam',              to: 'static_pages#jointheteam',         via: 'get'
   match 'bystanderguidelines',      to: 'static_pages#bystanderguidelines', via: 'get'
