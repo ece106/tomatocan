@@ -17,14 +17,7 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
   		click_on('About Us', match: :first)
   		assert_equal current_path, '/getinvolved'
   	end	
-  end 
-
-  test "should go to dr.schaefer page when clicking on have us on podcast in header"  do
-  	within("div#globalNavbar.collapse.navbar-collapse") do
-  		click_on("Have us on your Podcast", match: :first)
-  		assert_equal current_path, '/drschaeferspeaking'
-  	end	
-  end 
+  end
 
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
@@ -99,8 +92,4 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
     assert page.has_xpath? twitter_link
     assert page.has_xpath? email_link
   end
-  		click_on('About', match: :first)
-  		assert_equal current_path, getinvolved_path
-  	end	
   end
-end

@@ -20,21 +20,14 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
       click_on('About Us', match: :first)
       assert_equal current_path, '/getinvolved'
     end 
-  end 
-
-  test "should go to dr.schaefer page when clicking on have us on podcast in header"  do
-    within("div#globalNavbar.collapse.navbar-collapse") do
-      click_on("Have us on your Podcast", match: :first)
-      assert_equal current_path, '/drschaeferspeaking'
-    end 
-  end 
+  end
 
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
     within("div#globalNavbar.collapse.navbar-collapse") do
       click_on("Join the Team", match: :first)
       assert_equal current_path, '/jointheteam'
-    end 
+    end
   end 
 
   test "should go to study hall page when clicking study hall in header"  do
@@ -104,14 +97,35 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   test "should be able to sign out correctly" do
   	click_on("Sign out", match: :first)
   	assert_equal current_path, root_path
-  end	
+  end
 
    test "should be able to host a live conversation" do
     within("div#countdown_clock") do
       click_on("Post your Own Conversation", match: :first)
       assert_equal current_path, new_event_path
     end 
+   end
+
+  test "list view button exists and shows list table" do
+    within(".buttonContainer") do
+      click_on("List View", match: :first)
+      end
+      assert has_table?("table.calendar.table.table-hover")
   end
+
+  test "daily view button exists and shows daily buttons" do
+    within(".buttonContainer") do
+      click_on("Daily View", match: :first)
+      page.has_button?(".weekBtn")
+       page.has_text?('Monday', between: 1..1)
+       page.has_text?('Tuesday', between: 1..1)
+       page.has_text?('Wednesday', between: 1..1)
+       page.has_text?('Thursday', between: 1..1)
+       page.has_text?('Friday', between: 1..1)
+       page.has_text?('Saturday', between: 1..1)
+       page.has_text?('Sunday', between: 1..1)
+    end
+    end
 
    def sign_in
     visit root_path
@@ -122,5 +136,6 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     fill_in(id: 'user_password', with: 'user1234')
 
     click_on(class: 'form-control btn-primary')
+   end
   end
-end
+
