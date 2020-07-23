@@ -10,19 +10,19 @@
   <% end %>
 </div>
 <div class ="row">
-  <div class="col-lg-5 ">
+  <div class="col-lg-5 bg-secondary ">
       <div id="home">
-        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
+        <h1 class="text-center" style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
           Discover Activism that makes you
-        </div>
-        <div style="display:inline;" >
+        </h1>
+        <div class="text-center" style="display:inline;" >
           <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
         </div>
-        <div style="font-size: 30px; color:#fff; font-family: 'Arial';" >
+        <div class="text-center" style="font-size: 30px; color:#fff; font-family: 'Arial';" >
           Crowdsource Activism via Video Chat
         </div><br><br><br>
 
-        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px"><i>New to ThinQ.tv?</i>
+        <h3 class="text-center" style="color:#fff; margin-right: 20px; margin-left: 20px"><i>New to ThinQ.tv?</i>
           <br>Most of the day we have a video chat <%= link_to "Activism Hall", studyhall_path, style: "color: #ffc627" %> to support Women & Minorities in Tech. Everyone is welcome.
           <br><br>Drop in to ask questions about ThinQ.tv! </h3>
         <% if @displaystudy.present? %>
