@@ -9,7 +9,7 @@ class BlockController < ApplicationController
         array2 = owner.BlockedUsers
 
         # check if user has already been blocked
-        if !array2.includes? to_block.permalink
+        unless array2.include? (to_block.permalink)
             to_block.update({'blockedBy': array << owner.permalink})        # add owner of convo to blockedBy array
             owner.update({'BlockedUsers': array2 << to_block.permalink})    # add user to be blocked to owner's BlockedUsers array
         end
