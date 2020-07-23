@@ -5,20 +5,22 @@ This file overrides values defined in default Bootstrap. Only changed variables 
 //== Colors
 
 $brand-primary:         #8C1D40; //ASU Maroon
-$brand-secondary:       #FFC627; //ASU Gold
+$brand-secondary:       #FFB704; //ASU Gold
+$brand-gray:            #DADADA; // light grey
+$brand-white:           #F0F0F0;
+$brand-black:           #222222;
 
 //== Scaffolding
-//
 $link-hover-decoration: underline !default;
 
 
 //== Typography
-//
 //## Font, line-height, and color for body text, headings, and more.
 
 @import url("https://use.typekit.net/fxy5ytx.css");
 
 $font-family-sans-serif:  "neuzerit-grotesk", Avenir, Helvetica, Arial, sans-serif;
+
 
 //== Style
 $border-radius-base:        0px !default;
