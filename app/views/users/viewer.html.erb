@@ -62,11 +62,11 @@
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
-            <% if @user.name.length >= 30 %>
+            <% if @user.name.length >= 16 %>
             <% name = @user.name[0..15] + "..." %>
-              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
+              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
             <% else %>
-              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
+              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
             <% end %>
           </div>
           <div id="attendee">
@@ -130,7 +130,7 @@
             location.reload()
           }
         })
-      }, 2000);
+      }, 200000);
 
       // check if user logged in every 10 seconds
       setInterval(function () {

@@ -1,18 +1,18 @@
 class BlockController < ApplicationController
     def block
-        # get owner of convo and person to block
+        # get person to block and owner of convo
         to_block = User.find_by_id(params[:to_block])
         owner = User.find_by_id(params[:owner])
 
-        # get blockedBy array
+        # get blockedBy array and BlockedUsers array
         array = to_block.blockedBy
-
-        # add owner of convo to blockedBy array
-        to_block.update({'blockedBy': array << owner.permalink})
-        
-        # update owner blockedUsers array
         array2 = owner.BlockedUsers
-        owner.update({'BlockedUsers': array2 << to_block.permalink})
+
+        # check if user has already been blocked
+        if !array2.includes? to_block.permalink
+            to_block.update({'blockedBy': array << owner.permalink})        # add owner of convo to blockedBy array
+            owner.update({'BlockedUsers': array2 << to_block.permalink})    # add user to be blocked to owner's BlockedUsers array
+        end
     end
     
     def unblock
