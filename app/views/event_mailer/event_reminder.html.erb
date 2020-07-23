@@ -3,25 +3,25 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat&display=swap' rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-  <title>Conversation Reminder</title>
+  <title><%=@event.topic%> Reminder</title>
 </head>
 <body style="font-family: 'Montserrat', sans-serif;">
   <div style="font-size: 12pt; margin: 10px auto 10px auto; text-align: left; width : 60%; padding: 1%;" >
-    <h1 style="font-size: 30px; color: #8B0942; font-style: bold;" align="center" > Thank you for hosting a conversation about <%=@event.name%> on ThinQ.tv!</h1>
+    <h1 style="font-size: 30px; color: #8C1D40; font-style: bold;" align="center" > Thank you for hosting a <%=@event.topic%> about <%=@event.name%> on ThinQ.tv!</h1>
     <br>
     <p> Hello <%= @user.name %>, <br>
-      Your Conversation is posted on our home page schedule for <%=@date_body_format%> <br>
+      Your <%=@event.topic%> is posted on our home page schedule for <%=@date_body_format%> <br>
       <%=@event.desc%><br><br>
-      Please invite your friends and colleagues to participate in your conversation by forwarding this message and encouraging them to RSVP here <a href=<%=@event_url%> target="_blank" style="color: #8B0942; text-decoration-line: none;"><%=@event_url%></a>.<br>
-      To be a part of the Conversation, go to <a href="https://thinq.tv", target="_blank" style="color: #8B0942; text-decoration-line: none;">ThinQ.tv</a> and click the "Join Conversation" button for the topic on the schedule that you'd like to participate in.  
-      Please go to that site in advance to make sure your browser is compatible with your webcam. Recent versions Chrome and Firefox work best. Do not use Safari.<br>
+      Please invite your friends and colleagues to participate in your <%=@event.topic%> by forwarding this message and encouraging them to RSVP at <a href="https://thinq.tv", target="_blank" style="color: #8C1D40; text-decoration-line: none;">ThinQ.tv</a>ThinQ.tv</a>.<br>
+      To be a part of the <%=@event.topic%>, go to <a href="https://thinq.tv", target="_blank" style="color: #8C1D40; text-decoration-line: none;">ThinQ.tv</a> and click the "Join <%=@event.topic%>" button for the topic on the schedule that you'd like to participate in.  
+      Please go to that site in advance to make sure your browser is compatible with your webcam. <br>
 
-      If you must participate in our Conversation by phone, download the JITSI app in advance and join the THINQTV chatroom.
+      If you must participate in our <%=@event.topic%> by phone, download the JITSI app in advance and join the CONVERSATION chatroom.
     </p>
     <div class = "img">
       <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
     </div>
-    <p>Participate in other upcoming LIVE online Conversations too! Check out our <a href="http://www.thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">schedule</a>.</p>
+    <p>Participate in other upcoming video chat Conversations too! Check out our <a href="https://thinq.tv/" target="_blank" style="color: #8B0942; text-decoration-line: none;">schedule</a>.</p>
     <br><br>
   </div>  
   
@@ -34,17 +34,17 @@
         </td>
         <td colspan="4">
         <p style = "color:white; font-size: 15px;" class="f-header">Share</p>
-        <% url = "http://www.thinq.tv/" %>
-        <% desc = "Participate in live online thought-provoking conversations!"%>
+        <% url = "https://thinq.tv/" %>
+        <% desc = "Discover Activism that makes you ThinQ!"%>
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
         <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
         <!-- Twitter Tweet -->
-        <a href="https://twitter.com/intent/tweet?hashtags=ThinQtv&text=Join%20the%20ThinQ.tv%20coalition%20to%20stop%20online%20sexual%20harassment!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
+        <a href="https://twitter.com/intent/tweet?hashtags=ThinQtv&text=JDiscover%20Activism%20that%20makes%20you%20ThinQ!&tw_p=tweetbutton&url=https%3A%2F%2FThinQ.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
         <!-- LinkedIn Share -->
         <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=ThinQtv&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['linkedin.png'].url%></a>
         <!-- Email Share -->
-        <a href="mailto:?subject=Join the ThinQ.tv coalition to stop online sexual harassment!&amp;body=You are invited to participate in the conversations at ThinQ.tv <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0A", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['email.png'].url%></a>
+        <a href="mailto:?subject=Discover Activism that makes you ThinQ!&amp;body=You are invited to participate in the conversations at ThinQ.tv <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0A", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['email.png'].url%></a>
       </div>
       <br>
       </td>
