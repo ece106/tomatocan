@@ -2,7 +2,7 @@
   <% current_user.update_column(:last_viewed, 0) %>
 <% end %>
 
-<div class="alert alert-dismissible fade show" role="alert">
+<div class="alert alert-dismissible fade show pt-5" role="alert">
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key) %>">
       <%= value %>
