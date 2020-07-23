@@ -9,8 +9,8 @@ class StaticPagesController < ApplicationController
     @conversations = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' )
     @conversationsall = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' )
 
-    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
-    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
+    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Activism Hall', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
+    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Activism Hall', 'Group Problem Solving' )
     @monthforCalendar = Date.today
     @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC')
     @calendar_events = @conversations.flat_map{ |e| e.calendar_events(e.start_at)}
@@ -25,8 +25,8 @@ class StaticPagesController < ApplicationController
     currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Conversation' ).first
     nextconvo = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Conversation' ).order('start_at ASC').first
 
-    currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Study Hall' ).order('start_at ASC').first
-    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first
+    currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Activism Hall' ).order('start_at ASC').first
+    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Activism Hall' ).order('start_at ASC').first
     curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
     nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
 
@@ -74,8 +74,8 @@ class StaticPagesController < ApplicationController
   def studyhall
     showrecentconvo = Time.now - 10.hours
 
-    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
-    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Study Hall', 'Group Problem Solving' )
+    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Activism Hall', 'Group Problem Solving' )
+    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'Activism Hall', 'Group Problem Solving' )
     @monthforCalendar = Date.today
     @calendar_events = @events.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
@@ -85,8 +85,8 @@ class StaticPagesController < ApplicationController
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
 
-    currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Study Hall' ).order('start_at ASC').first
-    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Study Hall' ).order('start_at ASC').first
+    currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Activism Hall' ).order('start_at ASC').first
+    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Activism Hall' ).order('start_at ASC').first
     curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
     nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
 
