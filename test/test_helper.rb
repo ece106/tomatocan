@@ -136,15 +136,6 @@ class ActiveSupport::TestCase
     end
   end
 
-  def create_conversation_event
-    visit root_path
-    within("div#countdown_clock")
-    click_on("Post your Own Conversation")
-      fill_in id: 'event_name', with: "Random Test Event"
-    click_on("Post Conversation")
-  end
-  #need to correct event table issue first
-
   private
 
   # Returns true inside an integration test.

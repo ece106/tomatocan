@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
     @calendar_events = upcomingevents+rsvps.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
-    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 12)
+    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html  #show.html.erb
