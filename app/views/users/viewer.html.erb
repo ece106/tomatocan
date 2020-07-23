@@ -113,7 +113,7 @@
   <script>
     // check if blocked
     $.post("/users/is_blocked", {}, function(data){
-      if (data["blocked_by"].includes("<%= @user.permalink %>")) {
+      if (data.includes("<%= @user.permalink %>")) {
         window.location.replace("/blocked")
       }
     })
@@ -135,7 +135,7 @@
       // check if user logged in every 10 seconds
       setInterval(function () {
         $.post("/users/signed_in", {}, function(data){
-          if (data['signed_in'] == "false") {
+          if (data == "false") {
             location.reload()
           }
         })
