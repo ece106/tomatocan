@@ -40,8 +40,8 @@
       <%= render 'layouts/merchsidebar' %>
     </div>
     <div class="col-md-8">
-      <% if @currentRSVP.present? %>
-        <%= render 'layouts/currentRSVP', collection: @currentRSVP %><br>
+      <% if @calendar_events.present? %>
+        <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
       <% end %>
     </div>
   </div>
