@@ -126,7 +126,7 @@
       setInterval(function () {
         $('#attendee').load(document.URL +  ' #attendee');
         $.post("/users/is_blocked", {}, function(data){
-          if (data["blocked_by"].includes("<%= @user.permalink %>")) {
+          if (data.includes("<%= @user.permalink %>")) {
             location.reload()
           }
         })
