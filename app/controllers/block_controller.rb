@@ -40,14 +40,19 @@ class BlockController < ApplicationController
     end
 
     def is_blocked
-        render json: {blocked_by: current_user.blockedBy}
+        render plain: current_user.blockedBy, content_type: 'text/plain'
     end
 
     def signed_in?
         if user_signed_in?
-            render json: {signed_in: 'true'}
+            render plain: "true", content_type: 'text/plain'
         else
-            render json: {signed_in: 'false'}
+            render plain: "false", content_type: 'text/plain'
         end
+        
+    end
+
+    def last_viewed
+        User.find_by_id(params[:user])
     end
 end
