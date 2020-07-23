@@ -109,6 +109,9 @@
   </div>
 
   <script>
+    // save current user id
+    var currID = "<%= current_user.id %>"
+
     //check if user is blocked every 2 seconds
     function isBlocked() {
       $.post("/users/is_blocked", null, function(data) {
@@ -122,8 +125,10 @@
     // check if user is signed in every 30 seconds
     function signedIn() {
       $.post("/users/signed_in", null, function(data) {
-        if (data == "false")
+        if (data == "false") {
+          $.post("/users/unload", {currentUser: currID})
           location.reload()
+        }
       })
       setTimeout(signedIn, 30000);
     }
@@ -140,7 +145,7 @@
     
     // remove user from current attendees list
     $(window).on('beforeunload', function() {
-      $.post("/users/unload")
+      $.post("/users/unload", {currentUser: "<%=current_user.id%>"})
     });
 
     // makes all links on viewer page open in new tab

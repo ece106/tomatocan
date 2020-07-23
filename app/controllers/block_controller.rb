@@ -36,6 +36,7 @@ class BlockController < ApplicationController
     end
 
     def unload
+        current_user = User.find_by_id(params[:currentUser])
         current_user.update({'last_viewed': 0})
     end
 
