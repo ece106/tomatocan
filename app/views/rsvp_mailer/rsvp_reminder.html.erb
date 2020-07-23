@@ -13,19 +13,19 @@
         <%= image_tag attachments['logoDigitalHollow300.png'].url, size: "100x94"%>
       </td>
     </table>
-    <h1 style="font-size: 25px; color: #8B0942; font-style: bold;" align="center">
+    <h1 style="font-size: 25px; color: #8C1D40; font-style: bold;" align="center">
       <i><%=@event.name%></i> is happening at <%=@time%> ThinQ.tv!<br>
     </h1>
     <br>
     <p> <%if @user.nil? %><%else%><%=@user.name%>,<%end%><br>
-      Thank you for RSVPing for <i><%=@event.name%></i> on ThinQ.tv hosted by <%=@event_owner%> today at <%=@time%>!<br>
+      Thank you for RSVPing for <i><%=@event.name%></i> on ThinQ.tv hosted by <%=@event_owner%>!<br>
       <table align="center">
         <td align="center">
           <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 18px; text-decoration: none; background-color: #8C1D40; color: #fff;"
             href=<%=@user_url%> 
             target="_blank"
             rel="noopener noreferrer">
-            🎥Join Fellowship Hour
+            🎥Join Conversation
           </a>
         </td>
       </table>

@@ -15,7 +15,7 @@ module MonthCalendarHelper
 			end
 		end
 
-		def header 
+		def header
 			content_tag :tr do
 				HEADER.map { |day| content_tag :th, day }.join.html_safe
 			end
@@ -38,7 +38,7 @@ module MonthCalendarHelper
 			classes << "today" if day == Date.today
 			classes << "notmonth" if day.month != date.month
 			classes.empty? ? nil : classes.join(" ")
-		end 
+		end
 
 
 		def weeks

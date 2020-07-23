@@ -95,6 +95,7 @@ class MerchandiseTest < ActiveSupport::TestCase
     filename_and_data_all = @all_merchandises.each { |x| x.get_filename_and_data }
     @merchandise_attachments.each do |x|   
       assert_equal @all_merchandises.each { |p| p[x] }, filename_and_data_all.each { |q| q[x] }
+    end
   end
  
 end

@@ -1,33 +1,39 @@
 footer {
     position: relative;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     margin: 0;
     margin-top: 50px;
     text-align: left;
-    color: #F8F9FA;
-    background-color: $gray-darker;
+    background-color:$brand-primary;
+    font-family: Helvetica;
+    font-size: 12px;
+
 }
-#footer {
-    position: relative;
-    box-shadow: 0 50vh 0 50vh $gray-darker;
-}
+
 #copyright {
     position: absolute;
     bottom: 0;
     right: 0;
 }
-footer p.f-header {
-    font-size: .85em;
-    margin: 0;
-    padding: 0;
 
+
+footer a.f-link{
+    color: $brand-gray ; //light grey
+    &:hover{
+        text-decoration: none;
+    }
 }
 
-footer a.f-link {
-    color: $brand-secondary;
-    &:hover {
-        text-decoration: none;
-        color: darken($brand-secondary, 20%);
-    }
+footer p.f-header{
+  color: $brand-secondary;
+  font-size: 14px;
+}
+
+footer div.col-sm-3{
+  font-size: 14px;
+}
+
+footer small{
+  color:$brand-secondary;
 }
