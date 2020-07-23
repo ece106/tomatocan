@@ -1,5 +1,5 @@
-<footer class = "bg-primary">
-    <script>(function(d, s, id) {
+<footer class="page-footer font-small bg-primary pb-1">
+<script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
@@ -7,35 +7,63 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <div  class="container-fluid">
-      <div class="row" id="footer">
-        <div class="col-sm-2 col-sm-offset-1">
-          <p class="f-header">SITE</p>
-          <%= link_to "FAQ", '/faq', :class => "f-link"  %> <br>
-          <%= link_to "Invite Us To Speak", "/drschaeferspeaking", :class => "f-link"%> <br>
-          <%= link_to "Terms of Service", "/tos", :class => "f-link" %> <br>
-          <%= link_to "Privacy Policy", "/privacy", :class => "f-link"%><br><br>
-        </div>
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase text-warning">site</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a class="text-white" href="/faq">FAQ</a>
+          </li>
+          <li>
+            <a class="text-white" href="/drschaeferspeaking">Invite Us To Speak</a>
+          </li>
+          <li>
+            <a class="text-white" href="/tos">Terms of Service</a>
+          </li>
+          <li>
+            <a class="text-white" href="/privacy">Privacy Policy</a>
+          </li>
+        </ul>
+
+      </div>
       <!-- Grid column -->
 
       <!-- Grid column -->
-      <br class="visible-xs-block">
-        <div class="col-sm-2">
-          <p class="f-header">CONTACT</p>
-          <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a><br>
-          <a class="f-link">602-888-3089</a><br>
+      <div class="col-md-3 mb-md-0 mb-3">
 
-        </div>
+        <!-- Links -->
+        <h5 class="text-uppercase text-warning">contact</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link text-white">info@ThinQ.tv</a><br>
+          </li>
+          <li>
+            <a class="f-link text-white text-center">602-888-3089</a><br>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
 
       <!-- Grid column -->
-      <br class="visible-xs-block">
-        <div class="col-sm-2">
-          <p class="f-header">SHARE</p>
-          <% domainurl = "https://thinq.tv" %>
-          <% desc = "Participate in thought-provoking conversations!"%>
+      <div class="col-md-6 mt-md-0 mt-3">
 
-          <!-- Share -->
-          <div class="social-share-button" data-href="<%= domainurl %>">
+        <!-- Content -->
+        <h5 class="text-uppercase text-warning">share</h5>
+        <div class="social-share-button" data-href="<%= domainurl %>">
            
             <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse"
               onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse',
@@ -58,12 +86,17 @@
             </a>
 
           </div>
-        </div>
-      <div class="col-sm-3 pull-right" id="copyright">
-        <small>&copy; 2020 RoleModel Enterprises, LLC</small><br><br>
+
       </div>
+      <!-- Grid column -->
 
+
+    
     </div>
-
+    <!-- Grid row -->
+    <p class="text-right text-warning" >&copy; 2020 RoleModel Enterprises, LLC</p>
   </div>
+  <!-- Footer Links -->
+
 </footer>
+<!-- Footer -->
