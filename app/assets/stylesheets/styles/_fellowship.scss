@@ -57,6 +57,92 @@ width:100%;
   width: 50%;
 }
 
+<<<<<<< HEAD
 .container-hover:hover .overlay {
   opacity: 1;
 }
+=======
+  .speaking{
+    font-family: sans-serif;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 40px;
+    max-width: 1500px;
+    position: relative;
+    color: #8C1D40;
+    font-weight: bold;
+  }
+
+  .speaking:before {
+    content: "";
+    display:block;
+    width:550px;
+    height: 2px;
+    background: #ecd7c6;
+    position:  absolute;
+    left:0%;
+    top: 50%;
+    z-index: -2;
+
+  }
+  .speaking:after {
+    content: "";
+    display:block;
+    width:550px;
+    height: 2px;
+    background: #ecd7c6;
+    position:  absolute;
+    right:0%;
+    top: 50%;
+    z-index: -2;
+
+  }
+
+  .speaking span {
+
+    background: #fff;
+  }
+
+  hr.one {
+    border: none;
+    height: 2px;
+    background: #ecd7c6;
+  }
+
+  .box p {
+    font-family: "essonnes-headline", 'Georgia', serif;
+    padding-top: 80px;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+  }
+
+.rotate, .rotate1, .rotate2{
+   transform:rotate(180deg);
+   transform-origin:center center;
+  }
+  .text {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 18px;
+    font-weight: 400;
+
+  }
+  .team .container{
+    min-width:auto;
+    max-width: 1400px;
+    height: auto;
+    padding: 10px;
+
+    background: rgba(255,255,255,.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    margin: auto auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 10px;
+}
+>>>>>>> 7a736d7a48bdc9827d95d850d38581b7d8a75a97
