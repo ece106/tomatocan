@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
   match 'home',                     to: 'static_pages#home',                via: 'get'
-  match 'a',                      to: 'static_pages#aboutus',                 via: 'get'
+  match 'a',                        to: 'static_pages#aboutus',                 via: 'get'
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
@@ -85,6 +85,7 @@ Rails.application.routes.draw do
   post '/users/unload'               => "block#unload"
   post '/users/is_blocked'           => "block#is_blocked"
   post '/users/signed_in'            => "block#signed_in?"
+  get  '/conversations/livecounter'  => "block#liveCount"
 
   # get '/:friendly_id', to: 'groups#show'
 

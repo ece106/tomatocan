@@ -52,7 +52,7 @@ class BlockController < ApplicationController
         
     end
 
-    def last_viewed
-        User.find_by_id(params[:user])
+    def liveCount
+        render :json => {:success => true, :html => (render_to_string partial: "layouts/live_count")}
     end
 end

@@ -1,0 +1,11 @@
+<% users = User.where("last_viewed = ?", params["id"]) %>
+<% count = users.count %>
+<div style="text-align:center">
+    <p id="amount">
+        <% if count == 1 %>
+        <%= count %> ThinQer live NOW!
+        <% else %>
+        <%= count %> ThinQers live NOW!
+        <% end %>
+    </p>
+</div>
