@@ -52,6 +52,10 @@ class BlockController < ApplicationController
         
     end
 
+    def loadAttendees
+        render :json => {:success => true, :html => (render_to_string partial: "layouts/attendees")}
+    end
+
     def liveCount
         render :json => {:success => true, :html => (render_to_string partial: "layouts/live_count")}
     end

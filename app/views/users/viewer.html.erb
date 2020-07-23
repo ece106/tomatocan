@@ -69,9 +69,7 @@
               Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
             <% end %>
           </div>
-          <div id="attendee">
-            <%= render 'layouts/attendees' %>
-          </div>
+          <div id="attendees"></div>
         </div>
       </div>
     </div>
@@ -111,46 +109,50 @@
   </div>
 
   <script>
-    // check if blocked
-    $.post("/users/is_blocked", {}, function(data){
-      if (data.includes("<%= @user.permalink %>")) {
-        window.location.replace("/blocked")
-      }
-    })
+    //check if user is blocked every 2 seconds
+    function isBlocked() {
+      $.post("/users/is_blocked", null, function(data) {
+        if (data.includes("<%= @user.permalink %>")) {
+          window.location.replace("/blocked")
+        }
+      })
+      setTimeout(isBlocked, 3000);
+    }
 
-    $(document).ready(function() {
-      // makes all links on viewer page open in new tab
-      $("a").attr("target", "_blank");
+    // check if user is signed in every 30 seconds
+    function signedIn() {
+      $.post("/users/signed_in", null, function(data) {
+        if (data == "false")
+          location.reload()
+      })
+      setTimeout(signedIn, 3000);
+    }
 
-      // automatically refresh attendees list every 2 seconds and check if user is blocked
-      setInterval(function () {
-        $('#attendee').load(document.URL +  ' #attendee');
-        $.post("/users/is_blocked", {}, function(data){
-          if (data.includes("<%= @user.permalink %>")) {
-            location.reload()
-          }
-        })
-      }, 2000);
-
-      // check if user logged in every 10 seconds
-      setInterval(function () {
-        $.post("/users/signed_in", {}, function(data){
-          if (data == "false") {
-            location.reload()
-          }
-        })
-      }, 10000)
-
-      // refresh button for attendees list
-      $('#refresh').click(function(){
-        $('#attendee').load(document.URL +  ' #attendee');
-      });
-
-      // remove user from current attendees list
-      $(window).on('beforeunload', function() {
-        $.post("/users/unload")
-      });
+    // load attendees list
+    function loadAttendees(){
+      const urlParams = new URLSearchParams(window.location.search);
+      $.get("/conversations/attendees", {event: urlParams.get('event'), currentUser: "<%= current_user.id %>", owner: "<%= @user.id %>"}, function(data) {
+        if (data.success == true)
+          $('#attendees').html(data.html)
+      })
+      setTimeout(loadAttendees, 3000);
+    }
+    
+    // remove user from current attendees list
+    $(window).on('beforeunload', function() {
+      $.post("/users/unload")
     });
+
+    // makes all links on viewer page open in new tab
+    $(document).ready(() => {
+      $("a").attr("target", "_blank");
+    });
+
+
+    // run all functions
+    isBlocked()
+    signedIn()
+    loadAttendees()
   </script>
 <% else %>
   <meta http-equiv="refresh" content="0; URL=/login"/>
