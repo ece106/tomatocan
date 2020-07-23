@@ -47,12 +47,13 @@
               <%= link_to " Join Conversation NOW ", user_viewer_path(user.permalink, chatrm: @displayconvo.topic , event: event.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin:0 auto"%>
               <div id="live<%=i%>"></div>
               <script>
-                setInterval(function () {
+                (function liveCount() {
                   $.get("/conversations/livecounter", {id: "<%=event.id%>"}, function(data) {
                     if (data.success == true)
                       $('#live<%=i%>').html(data.html)
                   })
-                }, 8000);
+                  setTimeout(liveCount, 8000);
+                })();
               </script>
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
