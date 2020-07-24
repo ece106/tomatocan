@@ -32,15 +32,15 @@ class UsersController < ApplicationController
         end
       end
     end
-    currtime = Time.now
-    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?) and start_at > ?', @user.id, currtime )
-    @rsvpevents = rsvps.where( "start_at > ?", currtime )
+
+    rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?) and start_at > ?', @user.id, pdtnow )
+    @rsvpevents = rsvps.where( "start_at > ?", pdtnow)
 
     userid = @user.id
     upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
     @calendar_events = upcomingevents+rsvps.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
-    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 10)
+    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 6)
 
     respond_to do |format|
       format.html  #show.html.erb
@@ -100,18 +100,17 @@ class UsersController < ApplicationController
     @salebyperktype = @user.salebyperktype
     @totalinfo = @user.totalinfo
     @purchasesinfo = @user.purchasesinfo
-
-    currtime = Time.now
+    pdtnow = Time.now - 7.hours + 5.minutes
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @rsvpevents = rsvps.where( "start_at > ?", currtime )
-    @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
+    @rsvpevents = rsvps.where( "start_at > ?", pdtnow )
+    @events = Event.where( "start_at > ? AND usrid = ?", pdtnow, @user.id )
     respond_to do |format|
       format.html
       format.json { render json: @user }
     end
-    @pastevents = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
+    @pastevents = Event.where( "start_at < ? AND usrid = ?", pdtnow, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
-    @pastrsvps = rsvps.where( "start_at < ?", currtime )
+    @pastrsvps = rsvps.where( "start_at < ?", pdtnow )
     respond_to do |format|
       format.html
       format.json { render json: @user }

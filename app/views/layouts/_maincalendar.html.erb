@@ -9,6 +9,7 @@
   <% if @calendar_events.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
+
       <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
 
         <% user = User.find(event.usrid) %>
@@ -21,6 +22,7 @@
             <br>
             <span style="font-size:125%;"id=calendar-time-hour<%=i%>></span>
           </td>
+
           <script>
               var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
               date.setHours(date.getHours() + parseInt("<%=offset%>"))
