@@ -65,11 +65,11 @@ GEM
       backports
       capybara (~> 3.12, < 4)
       websocket-driver (>= 0.6.5)
-    autoprefixer-rails (9.8.4)
+    autoprefixer-rails (9.8.5)
       execjs
     aws-eventstream (1.1.0)
-    aws-partitions (1.340.0)
-    aws-sdk-core (3.103.0)
+    aws-partitions (1.343.0)
+    aws-sdk-core (3.104.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -77,8 +77,8 @@ GEM
     aws-sdk-kms (1.36.0)
       aws-sdk-core (~> 3, >= 3.99.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.74.0)
-      aws-sdk-core (~> 3, >= 3.102.1)
+    aws-sdk-s3 (1.75.0)
+      aws-sdk-core (~> 3, >= 3.104.1)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.1)
@@ -101,10 +101,10 @@ GEM
       capistrano (~> 3.1)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
-    capistrano-rails (1.5.0)
+    capistrano-rails (1.6.1)
       capistrano (~> 3.1)
-      capistrano-bundler (~> 1.1)
-    capistrano-rbenv (2.1.6)
+      capistrano-bundler (>= 1.1, < 3)
+    capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
     capybara (3.33.0)
@@ -437,7 +437,7 @@ DEPENDENCIES
   will_paginate-bootstrap (~> 1.0)
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.1.4
