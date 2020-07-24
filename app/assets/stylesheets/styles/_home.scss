@@ -4,9 +4,19 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0px;
-    padding: 0px;
     overflow-x: hidden;
-    padding-top: 0px;   
+    padding-top: 1px;
+}
+p{
+  display: inline;
+  font-size: 30px;
+  color: $brand-white;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 46px;
+  padding-left: 40px;
 }
 .banner {
     margin-left: -20px;
@@ -19,12 +29,26 @@ html, body {
     color: #FFC627;
     font-weight: bold;
 }
+
+.logo-img{
+  padding-left:150px;
+}
+
+.subtitle{
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  padding-left: 80px;
+}
+
 #buttonTitle {
     padding-top: 30px;
 }
 #home {
     background-color: #8C1D40;
-    text-align: center;
+    text-align: left;
     z-index: 0;
     font-weight: bolder;
     margin: auto;
@@ -251,6 +275,7 @@ html, body {
 .row {
     padding-left: 50px;
     padding-right: 50px;
+
   }
   .aboutHeader {
     font-weight: bold;
@@ -304,4 +329,4 @@ html, body {
     .col-md-4 {
       padding: 5px 20px;
     }
-}
+  }
