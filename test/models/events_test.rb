@@ -56,7 +56,7 @@ class EventTest < ActiveSupport::TestCase
 
   test "validate uniqueness of start_at based on topic" do
     #assert 2 different user_id can't have the same start_at on 1 topic"
-    @eventT.start_at = events(:three).start_at
+    @eventT.start_at = "2021-12-11 11:00:00"
     @eventT.topic = "Conversations"
     @eventT.save!
 
@@ -66,7 +66,7 @@ class EventTest < ActiveSupport::TestCase
     assert @eventT2.errors.messages[:start_at]
 
     #assert 2 different user_id can have the same start_at on different topic"
-    @eventT2.topic = "Study Halls"
+    @eventT2.topic = "Activism Halls"
     assert @eventT2.valid?, "2 start_ats on different topics is acceptable"
   end
 
@@ -81,13 +81,6 @@ class EventTest < ActiveSupport::TestCase
     evalFormat do |format|
       @eventT.desc = events(:four).desc + format
       assert @eventT.errors.messages[:desc]
-    end
-  end
-
-  test "address without url" do
-    evalFormat do |format|
-      @eventT.address = "Testing Address"+ format
-      assert @eventT.errors.messages[:address]
     end
   end
 

@@ -19,13 +19,6 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
   	end	
   end 
 
-  test "should go to dr.schaefer page when clicking on have us on podcast in header"  do
-  	within("div#globalNavbar.collapse.navbar-collapse") do
-  		click_on("Have us on your Podcast", match: :first)
-  		assert_equal current_path, '/drschaeferspeaking'
-  	end	
-  end 
-
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
     within("div#globalNavbar.collapse.navbar-collapse") do
@@ -36,7 +29,7 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
 
   test "should go to study hall page when clicking study hall in header"  do
     within("div#globalNavbar.collapse.navbar-collapse") do
-      click_on("Study Hall", match: :first)
+      click_on("Activism Hall", match: :first)
       assert_equal current_path, '/studyhall'
     end 
   end

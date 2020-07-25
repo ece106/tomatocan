@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   has_many :rsvpqs
   has_many :users, through: :rsvpqs
 
-  validates :start_at, uniqueness: { scope: :topic, message: "Can't have simultaneous Conversations/Study Halls" }
+  validates :start_at, uniqueness: { scope: :topic, message: "Can't have simultaneous Conversations/Activism Halls" }
   validates :user_id, presence: true
 
   validates :name, presence: true
