@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
   <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
       <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
+        <div class="col-xs-10">
           <% if Rails.env.development? || Rails.env.test? %>
             <div class="alert alert-danger alert-dismissible fade in clearfix" id="stripeAlert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -147,7 +147,7 @@
 
     </div>
 
-    <div class="col-md-4 col-md-offset-6 affix perkField" id="suggestedPerks">
+    <div class="col-md-4 affix perkField" id="suggestedPerks">
         <h4>Need help? Try one of our suggested Rewards!</h4>
         <div class="list-group">
             <%= link_to "Tickets to your local event", "#", :class => "list-group-item", :id => 'suggestionA', :onclick => "suggest1()" %>
