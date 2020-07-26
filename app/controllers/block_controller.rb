@@ -13,8 +13,11 @@ class BlockController < ApplicationController
             to_block.update({'blockedBy': array << owner.permalink})        # add owner of convo to blockedBy array
             owner.update({'BlockedUsers': array2 << to_block.permalink})    # add user to be blocked to owner's BlockedUsers array
         end
+        
+        # return 200 ok
+        head :ok
     end
-    
+
     def unblock
         # get to_unblock user and current_user
         to_unblock = User.find_by_id(params[:to_unblock_id])
@@ -33,11 +36,20 @@ class BlockController < ApplicationController
         # remove to_unblock from blockedUsers array
         array = array - [to_unblock.permalink]
         current_user.update({'BlockedUsers': array})
+
+        # return 200 ok
+        head :ok
     end
 
     def unload
+        # gets the current user
         current_user = User.find_by_id(params[:currentUser])
+
+        # set last_viewed column of user to 0
         current_user.update({'last_viewed': 0})
+        
+        # return 200 ok
+        head :ok
     end
 
     def is_blocked
@@ -45,19 +57,21 @@ class BlockController < ApplicationController
     end
 
     def signed_in?
+        # if user signed in return true else return false
         if user_signed_in?
-            render plain: "true", content_type: 'text/plain'
+            render :json => {:success => true}
         else
-            render plain: "false", content_type: 'text/plain'
-        end
-        
+            render :json => {:success => false}
+        end        
     end
 
     def loadAttendees
+        # return attendees layout
         render :json => {:success => true, :html => (render_to_string partial: "layouts/attendees")}
     end
 
     def liveCount
+        # return live_count layout
         render :json => {:success => true, :html => (render_to_string partial: "layouts/live_count")}
     end
 end
