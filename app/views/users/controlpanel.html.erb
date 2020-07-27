@@ -27,7 +27,7 @@ Conversations
         </div>
         <div class="row">
           <!-- Make a button to see "view" mode of profile -->
-          <%= render :file => 'users/profileinfo' %>
+          <%= render :template => 'users/profileinfo' %>
         </div>
       </div>
     </div>
@@ -77,8 +77,8 @@ Conversations
 
         <div class="row">
             <div class="col-md-6" >
-              <%= render file: 'users/eventlist' %><br>
-              <%= render file: 'users/pastevents' %>
+              <%= render template: 'users/eventlist' %><br>
+              <%= render template: 'users/pastevents' %>
             </div>
             <div class="col-md-4" >
               <%= render 'layouts/streamDirections' %>
@@ -96,7 +96,7 @@ Conversations
           </div>
         </div>
         <div class="row">
-          <%= render :file => 'users/accountinfo' %>
+          <%= render :template => 'users/accountinfo' %>
         </div>
         <!-- Might want some sort of Stripe Connect panel here-->
       </div>
@@ -114,7 +114,7 @@ Conversations
             <h1>Reward Sales</h1>
           </div>
         </div>
-        <%= render :file => 'users/dashboard' %>
+        <%= render :template => 'users/dashboard' %>
       </div>
     </div>
 
