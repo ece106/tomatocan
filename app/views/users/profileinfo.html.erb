@@ -10,21 +10,20 @@
     <div style="height:70px;"></div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-7" style="margin-left:-50px; padding-top:20px">
+  <div class="row ">
+    <div class="col-lg-12">
       <%= form_for @user, :html => {:multipart => true} do |f| %>
-      <div class="panel panel-primary">
-        <div class="panel-heading">
+      <div class="card">
+        <h5 class="card-header bg-primary text-white">
           About
-        </div>
-        <div class="panel-body">
+        </h5>
+        <div class="card-body">
 
-          <div class="row" style="margin-bottom:-20px; padding:0px">
+          <div class="row" >
           
 
           <!-- Profile Picture -->
-            <div class="col-md-4" style="margin-left:0px; margin-top:-30px;">
+            <div class="col-md-5" >
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
@@ -38,7 +37,7 @@
             </div>
 
             <!-- Header (For Now) -->
-            <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
+            <div class="col-md-5">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <%= f.file_field :bannerpic, :style => "padding-top:0px;" %>
@@ -93,8 +92,8 @@
 
           <!-- Cancel and Save Buttons -->
           <div class="btn-group btn-group-lg" id="editProfileButton">
-            <%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
-            <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+            <%= link_to 'Cancel', user_profile_path, :class => "btn btn-secondary"%>
+            <%= f.submit "Save Changes", :class => "btn btn-primary" %>
           </div>
 
         </div>

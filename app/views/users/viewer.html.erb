@@ -86,13 +86,11 @@
           </div>
         </div>
       </div>
-
       <script>
         $('#refresh').click(function(){
             $('#attendee').load(document.URL +  ' #attendee');
         });
       </script>
-
       <script>
         $(window).on('beforeunload', function() {
           $.post("/users/unload")
