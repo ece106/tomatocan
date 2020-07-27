@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
+
 	setup do
     	visit root_path
 	end

@@ -32,7 +32,7 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
 
   test "should go to study hall page when clicking study hall in header"  do
     within("div#globalNavbar.collapse.navbar-collapse") do
-      click_on("Study Hall", match: :first)
+      click_on("Activism Hall", match: :first)
       assert_equal current_path, '/studyhall'
     end 
   end 
@@ -106,12 +106,6 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     end 
    end
 
-  test "list view button exists and shows list table" do
-    within(".buttonContainer") do
-      click_on("List View", match: :first)
-      end
-      assert has_table?("table.calendar.table.table-hover")
-  end
 
   test "daily view button exists and shows daily buttons" do
     within(".buttonContainer") do
