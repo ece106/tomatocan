@@ -24,9 +24,9 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 		</div>
 	<% end %>
 	<div class="col-sm-8">
-		<h1 id="profileName"><%= @user.name %></h1>
+		<h1 class="text-warning"id="profileName"><%= @user.name %></h1>
 		<% if @user.genre1.blank? == false %>
-			<span id="profileDescription"> <%= @user.genre1 %>
+			<span class="text-warning" id="profileDescription"> <%= @user.genre1 %>
 				<% if @user.genre2.blank? == false %>
 				, <%= @user.genre2 %>
 				<% end %>
