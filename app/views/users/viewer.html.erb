@@ -125,7 +125,7 @@
     // check if user is signed in every 30 seconds
     function signedIn() {
       $.post("/users/signed_in", null, function(data) {
-        if (data == "false") {
+        if (data.success == false) {
           $.post("/users/unload", {currentUser: currID})
           location.reload()
         }
@@ -145,7 +145,7 @@
     
     // remove user from current attendees list
     $(window).on('beforeunload', function() {
-      $.post("/users/unload", {currentUser: "<%=current_user.id%>"})
+      $.post("/users/unload", {currentUser: currID})
     });
 
     // makes all links on viewer page open in new tab
