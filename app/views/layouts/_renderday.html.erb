@@ -87,13 +87,15 @@
                   <%= link_to " Join " + event.topic, user_viewer_path(user.permalink, chatrm: event.topic , event: event.id), class: "btn btn-primary btn-sm fa fa-video-camera" %>
                   <div id="live<%=eventCount%>"></div>
                   <script>
-                    (function liveCount() {
+                    function liveCount() {
                       $.get("/conversations/livecounter", {id: "<%=event.id%>"}, function(data) {
                         if (data.success == true)
                           $('#live<%=eventCount%>').html(data.html)
                       })
                       setTimeout(liveCount, 8000);
-                    })();
+                    }
+                    
+                    liveCount()
                   </script>
                 <% else %>
                     <%= form_for(@rsvp) do |f| %>
