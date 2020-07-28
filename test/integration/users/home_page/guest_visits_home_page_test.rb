@@ -27,7 +27,7 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
     end 
   end 
 
-  test "should go to study hall page when clicking study hall in header"  do
+  test "should go to Activism Hall page when clicking Activism Hall in header"  do
     within("div#globalNavbar.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/studyhall']").click
       assert_equal current_path, '/studyhall'

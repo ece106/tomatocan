@@ -110,7 +110,7 @@
           </div>
           <div class = "container">
             <% @otherconvos.each do |t| %>
-              <%host=User.find(t.usrid)%>
+              <%host=User.find(t.user_id)%>
               <%= link_to t.name, host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
             <%end%>
           </div>
