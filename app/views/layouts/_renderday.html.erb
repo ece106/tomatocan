@@ -8,7 +8,7 @@
         <% @calendar_events_all.sort_by{|t| t.start_at}.each_with_index do |event, i| %>
           <% if event.start_at.to_date.eql?(currentDate) %>
             <%eventCount += 1%>
-            <% user = User.find(event.usrid) %>
+            <% user = User.find(event.user_id) %>
             <tr>
               <td class=col-xs-2>
                 <% rsvpeople = "" %>
@@ -34,7 +34,7 @@
                 <%= link_to user.name, user.permalink, title: rsvpeople %>
 
                 <% if user_signed_in? %>
-                  <% if event.usrid == current_user.id %>
+                  <% if event.user_id == current_user.id %>
                     <%= link_to '(Edit)', edit_event_path(event.id), id: "calendar-host" %>
                   <% end %>
                 <% end %>

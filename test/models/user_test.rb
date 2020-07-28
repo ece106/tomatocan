@@ -27,14 +27,51 @@ class TestUser < ActiveSupport::TestCase
   end
 
   test "userfields_must_not_be_empty" do
-    user = User.new(name: nil,email:nil,permalink:nil,password:nil )
+    user = User.new(name: nil,email:nil,permalink:nil,password:nil)
     refute user.valid?
     [:name,:email,:permalink,:password].each do |field|
       refute_empty user.errors[field] end
   end
 
-  test "password and password_confirmation must match" do
+  test "name must not be empty" do
+    @user.name = nil
+    refute @user.valid?, 'Saved user without a name'
+    refute_empty @user.errors[:name]
+  end
+
+  test "permalink must not be empty" do
+    @user.permalink = nil
+    refute @user.valid?, 'Saved user without a permalink'
+    refute_empty @user.errors[:permalink]
+  end
+
+  test "email must not be empty" do
+    @user.email = nil
+    refute @user.valid?, 'Saved user without an email'
+    refute_empty @user.errors[:email]
+  end
+
+  test "password must not be empty" do
+    user = User.create(name: 'Dummydummy', password:nil, password_confirmation: "Dummydummy", email: "Dummydummy@example.com", permalink: "qwerty")
+    refute_empty user.errors[:password]
+  end
+
+  test "password and password_confirmation must match when create user" do
+    # assert wrong password confirmation
     user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hooooooo", email: "m@example.com", permalink: "qwerty")
+    refute_empty user.errors[:password_confirmation]
+
+    # assert correct password confirmation
+    user.password_confirmation = "hoohaahh"
+    assert user.valid?
+    assert_empty user.errors[:password_confirmation]
+  end
+
+  test "password and password_confirmation must match when update user" do
+    # assert password confirmation when update user
+    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com", permalink: "qwerty")
+    user.password = "anotherpass"
+    refute user.valid?
     assert user.errors[:password_confirmation].any?, "password_confirmation matches password"
   end
 
@@ -45,19 +82,12 @@ class TestUser < ActiveSupport::TestCase
     refute_empty @user.errors[:password]
   end
 
-  test "password can be empty and password_confirmation doesnt matter" do
-    @user.password = nil
-    @user.password_confirmation = "hihihi"
-    assert_empty @user.errors[:password]
-  end
-
   #validates :email, presence: true, uniqueness: { case_sensitive: false }
   test "email of new user should be unique" do
     user1 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh",
                         email: "mo@example.com", permalink: "qwerty")
     user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh",
                         email: "mo@example.com", permalink: "qwat")
-    refute_empty user2.errors[:email] #refute user2.valid not needed for this
     assert user2.errors[:email].any?, "email unique" # refute user.valid not needed for .any
   end
 
@@ -73,15 +103,22 @@ class TestUser < ActiveSupport::TestCase
 
   #validates :permalink, format:     { with: /\A[\w+]+\z/ }
   test "permalink must be alphanumeric" do
-    @user.permalink = "whatthe@#&!"
+    @user.permalink = "example.com/c.php?g=724398&p=5173143!"
     refute @user.valid?, "permalink alphanumeric"
     refute_empty @user.errors[:permalink]
   end
 
-  #validates :permalink, length {maximum: 50}
-  test "permalink must be less than 50 characters" do
-  	@user.permalink = @name_over.call(55)
-  	refute @user.valid?, "permalink is more than 50 characters"
+  # validates:length: { maximum: 20 }
+  test "permalink should be under 20 chars" do
+    #assert permalink over 20 chars
+    @user.permalink = "b" * 25
+    refute @user.valid?, "Permalink is over 20 characters"
+    refute_empty @user.errors[:permalink]
+
+    #assert permalink at the limit
+    @user.permalink = "b" * 20
+    assert @user.valid?, "Permalink at the limit should be valid"
+    assert_empty @user.errors[:permalink]
   end
 
   #  validates_format_of   :email, :with  => Devise.email_regexp,
@@ -95,70 +132,33 @@ class TestUser < ActiveSupport::TestCase
     refute_empty user2.errors[:email]
   end
 
-  #validates :videodesc1, length: { maximum: 255 }
-
-  test "videodesc_must_be_less_than255char" do
-    [:videodesc1, :videodesc2, :videodesc3 ].each do |field|
-      user = User.new("#{field}": @rand_Az.call(266))
-      refute user.valid?
-      assert_equal ["is too long (maximum is 255 characters)"], user.errors[field]
-    end
-  end
-
-  #validates :permalink, format: { with: /\A[\w+]+\z/ }
+  #before_save { |user| user.permalink = permalink.downcase }
 
   test "make all permalinks lowercase" do
-    @user.permalink = "LisaLisa"
-    @user.save
-    assert_match(/[a-z0-9]/, @user.permalink)
+    user = User.new(name: 'Dummydummy', password:'Dummydummy', password_confirmation: 'Dummydummy', email: "Dummydummy@example.com", permalink: "ExAmplELink")
+    user.save
+    assert_equal 'examplelink', user.permalink
   end
 
   #before_save { |user| user.email = email.downcase }
 
   test "make all emails lowercase" do
-    @user.email = "you@CrowdPublish.TV"
-    @user.save
-    assert_match(/[a-z0-9]+@+[a-z0-9]+\.+[a-z]/, @user.email)
+    user = User.new(name: 'Dummydummy', password:'Dummydummy', password_confirmation: 'Dummydummy', email: "DUMMYDummy@ExAmplE.Com", permalink: "qwerty")
+    user.save
+    assert_equal 'dummydummy@example.com', user.email
   end
 
-  test "parse youtube" do
-    @user.youtube1 = "http://youtube.com/watch?v=/frlviTJc"
-    @user.genre1 = "yaaah"
-    @user.permalink = "LisaLisa"
-    @user.get_youtube_id
-    refute_equal("http://youtube.com/watch?v=/frlviTJc", @user.youtube1)  #why refute?
-  end
-
-  test "get_youtube_id_test" do
-    target = "/id12345"
-    compare = "http://youtube.com/watch?v="+ target
-    @user.youtube1 = compare
-    @user.youtube2 = compare
-    @user.youtube3 = compare
-    @user.get_youtube_id
-    assert_equal target, @user.youtube1
-    assert_equal target, @user.youtube2
-    assert_equal target, @user.youtube3
-  end
-
-  test "calc test" do
-    assert_nil @user.totalinfo
-    @user.calcdashboard
-    [:soldtitle,:soldprice,:authorcut,:purchaseid,:soldwhen,:whobought,:address,:fulfilstat,:egoods].each do |field|
-      refute_empty(field)
-      refute_nil @user.totalinfo
-    end
-  end
-
-  test "user must have a password" do
-    user_no_password = User.new(name: nil,email:nil,permalink:nil)
-    refute user_no_password.valid?
-  end
   test "name must be less than 50" do
     user = User.new( name: @name_over.call(55),email:"email@email.com",permalink:"permalink",password:"password")
     refute user.valid?
     assert_equal ["is too long (maximum is 50 characters)"], user.errors[:name]
+
+    #assert name at the limit
+    user.name = @name_over.call(50)
+    assert user.valid?, "Name at the limit should be valid"
+    assert_empty user.errors[:name]
   end
+
   test "mark_fulfilled_test" do
     purchase = purchases(:one)
     @user.mark_fulfilled(purchase.id)
@@ -176,6 +176,7 @@ class TestUser < ActiveSupport::TestCase
     new_password = SecureRandom.alphanumeric(8)
     user = User.new(password:password)
     user.password = new_password
+    user.password_confirmation = user.password
     assert user.password_changed?
   end
 
@@ -185,52 +186,52 @@ class TestUser < ActiveSupport::TestCase
     refute user_a.following?(user_b)
   end
 
-  # redundant tests
+   # after_initialize :assign_defaults_on_new_user, if: -> {new_record?}
+  test "default values are assigned to user" do
+    user = User.create(name: 'Dummydummy', password:'Dummydummy', password_confirmation: "Dummydummy", email: "Dummydummy@example.com", permalink: "qwerty")
+    assert_equal 'storyteller', user.author
 
-  test "redundant_test_name_and_permalink_must_not_be_empty" do
-    user = User.create(password: "hoohaahh", password_confirmation: "hoohaahh", email: "m@example.com")
-    refute_empty user.errors[:name]
-    refute_empty user.errors[:permalink]
-  end
-
-  test "redundant_test_new_user_must_have_reqd_variables" do
-    user = User.new
-    user.permalink = "Dummydummy"
-    user.name = "Dummydummy"
-    user.email = "ee@ujk.com"
-    user.password = "Dummydummy"
-    user.password_confirmation = "Dummydummy"
-#    refute user.valid? # email errors are empty if email is bad and this line not here
-    assert_empty user.errors[:email]
-  end
-
-  test "redundant_test_create_user_must_have_reqd_variables" do
-    user = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh", email: "unique@example.com", permalink: "qwerty")
-    assert_empty user.errors[:email]
-#    refute user.errors[:email].any?, "email unique"
-#    assert user.errors.any?
-  end
-
-  test "redundant_test_email_still_must_not_be_empty" do
-    @user.send "email=", nil
-    refute @user.valid?
-    refute_empty @user.errors[:email]
-  end
-
-  test "edit_user_password" do
     user = users(:one)
+    assert_equal 'author', user.author
   end
 
-  test "A user has many purchases" do
-  	refute defined?(@user.purchases) == nil, 'no association between users and purchases'
+  test "calc test" do
+    assert_nil @user.totalinfo
+    @user.calcdashboard
+    [:soldtitle,:soldprice,:authorcut,:purchaseid,:soldwhen,:whobought,:address,:fulfilstat,:egoods].each do |field|
+      refute_empty(field)
+      refute_nil @user.totalinfo
+    end
   end
 
-  test "A user has many rsvpqs" do
-  	refute defined?(@user.rsvpqs) == nil, 'no association between users and rsvpqs'
+   test "user retrieved from database if auth existed" do
+    auth = OmniAuth::AuthHash.new({provider: "facebook", uid: "98765", info: {name:"HieuPhung", email:"example@mail.com"}})
+    # assert no changes in database
+    assert_no_difference('User.count') do
+      User.from_omniauth(auth)
+    end
+
+    # assert user retrieved from database
+    User.from_omniauth(auth)
+    user = User.find_by uid: "98765"
+    assert_equal user.name, "userconfirmed"
+    assert_equal user.email, "thinqtesting@gmail.com"
   end
 
-  test "A user has many merchandises" do
-  	refute defined?(@user.merchandises) == nil, 'no association between users and merchandises'
+  test "user created if auth did not exist" do
+    auth = OmniAuth::AuthHash.new({provider: "facebook", uid: "12345", info: {name:"Reagan", email:"awesome96@email.com", permalink:"reagan12", password:"awesomepass", image:'nicejpg'} })
+    # assert changes in database
+    assert_difference('User.count', 1) do
+      user = User.from_omniauth(auth)  
+    end
+
+    # assert user created in database
+    User.from_omniauth(auth)
+    user = User.find_by name:"Reagan"
+    assert_equal user.provider, "facebook"
+    assert_equal user.uid, "12345"
+    assert_equal user.email, "awesome96@email.com"
+    # assert_equal user.profilepic, 'nicejpg' Cant test this now because a real image needs to be uploaded
   end
 
 end

@@ -19,14 +19,11 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'About Us'
     find_link('About Us', match: :first).click
     assert_equal '/getinvolved', current_path
-    assert page.has_link? 'Have us on your Podcast'
-    find_link('Have us on your Podcast', match: :first).click
-    assert_equal '/drschaeferspeaking', current_path
     assert page.has_link? 'Join the Team'
     find_link('Join the Team', match: :first).click
     assert_equal '/jointheteam', current_path
-    assert page.has_link? 'Study Hall'
-    find_link('Study Hall', match: :first).click
+    assert page.has_link? 'Activism Hall'
+    find_link('Activism Hall', match: :first).click
     assert_equal '/studyhall', current_path
     assert page.has_link? 'FAQ'
     find_link('FAQ', match: :first).click
