@@ -61,10 +61,11 @@
 }
 
 
-  #events .caler {
-
-    border-collapse: collapse;
-    width: 100%; }
+#events .caler {
+  text-align: left;
+  border-collapse: collapse;
+  width: 100%;
+}
 
 /*    td, th {
       font-family: "Lucida Grande", arial, helvetica, sans-serif;
@@ -91,7 +92,7 @@
       background: #FFF;
       color: #020202;
       height: 150px;
-      
+
       vertical-align: top;
       font-size: 16px;
       overflow: hidden;
@@ -107,7 +108,8 @@
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
-    
+    display: inline-block;
+
     a {
       text-decoration: none;
       padding: 0 10px;
@@ -211,10 +213,10 @@
 
 .expand{
   background: none;
-  padding: 0; 
-  border: none; 
-  font-family: arial, sans-serif; 
-  color: #069; 
-  text-decoration: underline; 
-  cursor: pointer; 
+  padding: 0;
+  border: none;
+  font-family: arial, sans-serif;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
 }

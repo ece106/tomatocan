@@ -71,6 +71,24 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def monthCalendar
+    @monthNum = params[:monthNum].to_i
+    #TODO: Check time is not an issue
+    #TODO: Check correct conversations are retrived
+    unless @monthNum.month == 0
+      @selectedMonth = (Time.now - 10.hour).beginning_of_month + @monthNum.month
+    else
+      @selectedMonth = (Time.now - 10.hour).to_date
+    end
+    conversations = Event.where( "start_at BETWEEN ? AND ? AND topic = ?", @selectedMonth, @selectedMonth.end_of_month , 'Conversation' ).order('start_at ASC')
+    @selectedMonth = @selectedMonth.to_date
+    @calendar_events_all = conversations.flat_map{ |e| e.calendar_events(e.start_at)}
+    @calendar_events_all = @calendar_events_all.sort_by {|event| event.start_at}
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def studyhall
     showrecentconvo = Time.now - 10.hours
 
