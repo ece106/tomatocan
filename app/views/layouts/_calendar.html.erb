@@ -23,7 +23,7 @@
           <%events.select{|event| event.start_at.to_date.eql? (day)}.each_with_index do |event|%>
             <%id = "m-c-#{day.strftime("%F")}-#{count}"%>
             <%if count == 2 %>
-              <span class="more" style="display: none;">
+              <span id="" class="more" style="display: none;">
             <%end%>
             <ul>
               <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc%></li>
@@ -44,7 +44,7 @@
           <%end%>
           <%if count > 2 %>
             </span>
-            <button class="expand" >More Conversations</button>
+            <button class="expand" onclick="displayMore(this)">More Conversations</button>
           <%end%>
         </td>
       <%end%>

@@ -6,17 +6,15 @@
   </div>
 </div>
 <script>
-  $(document).ready(function(){
-     $(".expand").click(function(){
-        $(this).prev().toggle();
-        $(this).siblings('.dots').toggle();
-        $(this).find('.total').show();
-        if($(this).text()=='More Conversations'){
-    $(this).text('Less Conversations');
-        }
-        else{
-    $(this).text('More Conversations');
-        }
-     });
-  });
+  function displayMore(button){
+    console.log("Switching")
+    $(button).prev().toggle();
+    $(button).siblings('.dots').toggle();
+    $(button).find('.total').show();
+    if($(button).text()=='More Conversations'){
+      $(button).text('Less Conversations');
+    } else {
+      $(button).text('More Conversations');
+    }
+  }
 </script>
