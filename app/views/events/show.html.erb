@@ -27,7 +27,7 @@
     <!-- CONVERSATION NAME & HOST -->
     <div class="col-md-5">
       <div style ="margin-left: 30px">
-        <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+        <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
           <br><br><br><br>
           <div id="eventCurrentdiv" >
               <h3>We're talking about <%= @displayconvo.name %></h3>  
@@ -82,7 +82,7 @@
           <% end %>
         
             <% if user_signed_in? %>
-              <% if @event.usrid == current_user.id %>
+              <% if @event.user_id == current_user.id %>
                 <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
               <% end %>
           <% end %>

@@ -15,7 +15,7 @@
     
     <%= render 'layouts/authorform' %>
     
-    <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+    <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
       <div id="eventCurrentdiv" style="text-align: center;">
         <h3>We're talking about <%= @displayconvo.name %></h3>  
         <p> right NOW!   </p> 
