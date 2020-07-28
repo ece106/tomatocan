@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <% current_user.update_column(:last_viewed, params[:event]) %>
+  <% current_user.update_column(:last_viewed, current_user.last_viewed << params[:event]) %>
 
   <!-- Update list of users attending the conversation -->
   <div class = "container-fluid">
@@ -111,6 +111,7 @@
   <script>
     // save current user id
     var currID = "<%= current_user.id %>"
+    const urlParams = new URLSearchParams(window.location.search);
 
     //check if user is blocked every 2 seconds
     function isBlocked() {
@@ -145,7 +146,7 @@
     
     // remove user from current attendees list
     $(window).on('beforeunload', function() {
-      $.post("/users/unload", {currentUser: currID})
+      $.post("/users/unload", {currentUser: currID, event: urlParams.get('event')})
     });
 
     // makes all links on viewer page open in new tab

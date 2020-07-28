@@ -44,9 +44,11 @@ class BlockController < ApplicationController
     def unload
         # gets the current user
         current_user = User.find_by_id(params[:currentUser])
+        array = current_user.last_viewed
 
-        # set last_viewed column of user to 0
-        current_user.update({'last_viewed': 0})
+        # remove the current event from user's last_viewed array
+        array = array - [params[:event]]
+        current_user.update({'last_viewed': array})
         
         # return 200 ok
         head :ok
