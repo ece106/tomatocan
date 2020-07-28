@@ -23,6 +23,7 @@
               <% if event.user_id == current_user.id %>
                 <%= link_to '(Edit Conversation)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
+            <% end %>
             </td>
             <td class=col-xs-3>
               <span style="font-size:125%;" id=convocalendar-time-day<%=i%>></span>
