@@ -10,7 +10,7 @@ Conversations
     <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
     <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
     <li role="presentation"><%= link_to "Blocked Users", "#blockedTab", "data-toggle" => "tab" %></li>
-    <li role="presentation"><%= link_to "Stats For Nerds", "#statsTab", "data-toggle" => "tab" %></li>
+    <!-- Stats Feature Pending <li role="presentation"><%= link_to "Stats For Nerds", "#statsTab", "data-toggle" => "tab" %></li> -->
   </ul>
 
   <!-- Tab panes -->
@@ -154,10 +154,12 @@ Conversations
       </div>
     </div>
 
-    <!-- Stats Page -->
+    <!-- Stats Page 
     <div class="tab-pane" id="statsTab">
-      <h1>¡Hola Señor!</h1> 
+      Stats Coming Soon! 
     </div>
+    -->
+    
     <script>
       function unblock(current_user_id, to_unblock_id) {
         $.post("/users/unblock", {current_user_id: current_user_id, to_unblock_id: to_unblock_id}, function() {
