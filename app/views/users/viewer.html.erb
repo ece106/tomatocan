@@ -114,9 +114,18 @@
     // get url params
     const urlParams = new URLSearchParams(window.location.search);
 
+
+    // stats collection
+    var stats = {
+      event_id: urlParams.get('event'),
+      join_time: Date.now(),
+      leave_time: 0,
+      total_time: 0
+    }
+
     //check if user is blocked every 2 seconds
     function isBlocked() {
-      $.post("/users/is_blocked", null, function(data) {
+      $.post("/users/is_blocked", null, (data) => {
         if (data.includes("<%= @user.permalink %>")) {
           window.location.replace("/blocked")
         }
@@ -126,7 +135,7 @@
 
     // check if user is signed in every 30 seconds
     function signedIn() {
-      $.post("/users/signed_in", null, function(data) {
+      $.post("/users/signed_in", null, (data) => {
         if (data.success == false) {
           $.post("/users/unload", {currentUser: currID})
           location.reload()
@@ -137,16 +146,27 @@
 
     // load attendees list
     function loadAttendees(){
-      $.get("/conversations/attendees", {event: urlParams.get('event'), currentUser: "<%= current_user.id %>", owner: "<%= @user.id %>"}, function(data) {
+      $.get("/conversations/attendees", {event: urlParams.get('event'), currentUser: "<%= current_user.id %>", owner: "<%= @user.id %>"}, (data) => {
         if (data.success == true)
           $('#attendees').html(data.html)
       })
       setTimeout(loadAttendees, 3000);
     }
     
-    // remove user from current attendees list
-    $(window).on('beforeunload', function() {
+    // unload actions
+    $(window).on('beforeunload', (event) => {
+      // remove user from attendees list
       $.post("/users/unload", {currentUser: currID, event: urlParams.get('event')})
+
+      // set leave time on stats
+      stats.leave_time = Date.now()
+
+      // total time logic
+
+      stats.total_time = stats.total_time + stats.leave_time - stats.join_time
+
+      // post stats to the server
+      $.post("/conversations/upload_stats", {user: currID, stats: stats})
     });
 
     // makes all links on viewer page open in new tab
