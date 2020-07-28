@@ -111,6 +111,7 @@
   <script>
     // save current user id
     var currID = "<%= current_user.id %>"
+    // get url params
     const urlParams = new URLSearchParams(window.location.search);
 
     //check if user is blocked every 2 seconds
@@ -136,7 +137,6 @@
 
     // load attendees list
     function loadAttendees(){
-      const urlParams = new URLSearchParams(window.location.search);
       $.get("/conversations/attendees", {event: urlParams.get('event'), currentUser: "<%= current_user.id %>", owner: "<%= @user.id %>"}, function(data) {
         if (data.success == true)
           $('#attendees').html(data.html)
