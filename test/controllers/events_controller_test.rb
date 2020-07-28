@@ -8,14 +8,13 @@ class EventsControllerTest < ActionController::TestCase
     @rsvpq = rsvpqs(:one)
   end
 
-  #event.usrid==1
+  #event.user_id==1
   #event.id==980190962
 
     #index
     test "#index should return all events with start at greater than current time" do
-        @event1 = Event.create(:usrid => 2, :name => 'Dark Water', :start_at => "2020-02-11 11:02:57")
+        @event1 = Event.create(:user_id => 2, :name => 'Dark Water', :start_at => "2020-02-11 11:02:57")
         sample_event = Event.where( "start_at > ?", Time.now )
-        assert_equal(@event1.usrid, sample_event[2].usrid)
         assert_equal(@event1.user_id, sample_event[2].user_id)
     end
     
@@ -32,15 +31,15 @@ class EventsControllerTest < ActionController::TestCase
         get :show, params: {id: @event.id}
         assert_response :success
         
-        assert_not_nil(@event.usrid, msg = nil)
+        assert_not_nil(@event.user_id, msg = nil)
     end
 
     test "#show should find correct user" do
         get :show, params: {id: @event.id}
         assert_response :success
        
-        user = User.find(@event.usrid)
-        assert_equal user.id, @event.usrid
+        user = User.find(@event.user_id)
+        assert_equal user.id, @event.user_id
     end
 
     test "#show should initalize new rsvp" do
@@ -101,39 +100,39 @@ class EventsControllerTest < ActionController::TestCase
     test "#create should create events" do
         sign_in users(:one)
          assert_difference('Event.count', 1) do
-             post :create, params: { event: {start_at: "2010-02-11 11:02:57", end_at: "2010-02-12 11:02:57", usrid: '1', name: 'Phineas' } }
+             post :create, params: { event: {start_at: "2010-02-11 11:02:57", end_at: "2010-02-12 11:02:57", user_id: '1', name: 'Phineas' } }
          end
     end
 
     test "#create should redirect if events are created and saved" do
         sign_in users(:one)
-        post :create, params: { event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas'  } }
+        post :create, params: { event: {start_at: "2010-02-11 11:02:57", user_id: '1', name: 'Phineas'  } }
            assert_redirected_to '/'
     end
 
     test "#create should verify if event was created" do
       sign_in users(:one)
-      post :create, params: { event: { start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas'  } }
+      post :create, params: { event: { start_at: "2010-02-11 11:02:57", user_id: '1', name: 'Phineas'  } }
         assert_empty @event.errors.messages
     end
 
     #update
     test "#update should redirect after updating" do
         sign_in users(:one)
-        patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57",  usrid: '1', name: 'Phineas'  }}
+        patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57",  user_id: '1', name: 'Phineas'  }}
         assert_redirected_to event_path(@event.id)
     end
     
     test "#update should verify event update" do
         sign_in users(:one)
-        #patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57", usrid: '1', name: 'Phineas' }}
-        patch :update, params: {id: '1', event: { start_at: "2010-03-11 11:03:57", end_at: "2010-02-11 11:02:57", usrid: '1', name: 'asdfas'}}
+        #patch :update, params: {id: @event.id, event: {start_at: "2010-02-11 11:02:57", user_id: '1', name: 'Phineas' }}
+        patch :update, params: {id: '1', event: { start_at: "2010-03-11 11:03:57", end_at: "2010-02-11 11:02:57", user_id: '1', name: 'asdfas'}}
         assert_empty @event.errors.messages
     end
 
   test 'create should send a reminder functional test' do
     sign_in @user
-    post :create , params: {event: {start_at: Time.now + 2.days, usrid: @user.id, name: @user.name}}
+    post :create , params: {event: {start_at: Time.now + 2.days, user_id: @user.id, name: @user.name}}
     assert_enqueued_jobs(1)
   end
 end
