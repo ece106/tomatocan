@@ -47,7 +47,7 @@ class BlockController < ApplicationController
         array = current_user.last_viewed
 
         # remove the current event from user's last_viewed array
-        array = array - [params[:event]]
+        array = array - [params[:event].to_i]
         current_user.update({'last_viewed': array})
         
         # return 200 ok
