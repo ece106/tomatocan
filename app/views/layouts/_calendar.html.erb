@@ -28,7 +28,7 @@
             <%end%>
             <ul>
               <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%></li>
-              <% user = User.find(event.usrid) %>
+              <% user = User.find(event.user_id) %>
               By: <%= link_to user.name, user.permalink, class: dayClass %>
               <br>
               <% edt = event.start_at + 3.hours %>
