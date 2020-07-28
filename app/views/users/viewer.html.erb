@@ -114,15 +114,6 @@
     // get url params
     const urlParams = new URLSearchParams(window.location.search);
 
-
-    // stats collection
-    var stats = {
-      event_id: urlParams.get('event'),
-      join_time: Date.now(),
-      leave_time: 0,
-      total_time: 0
-    }
-
     //check if user is blocked every 2 seconds
     function isBlocked() {
       $.post("/users/is_blocked", null, (data) => {
@@ -157,16 +148,6 @@
     $(window).on('beforeunload', (event) => {
       // remove user from attendees list
       $.post("/users/unload", {currentUser: currID, event: urlParams.get('event')})
-
-      // set leave time on stats
-      stats.leave_time = Date.now()
-
-      // total time logic
-
-      stats.total_time = stats.total_time + stats.leave_time - stats.join_time
-
-      // post stats to the server
-      $.post("/conversations/upload_stats", {user: currID, stats: stats})
     });
 
     // makes all links on viewer page open in new tab

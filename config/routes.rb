@@ -87,8 +87,6 @@ Rails.application.routes.draw do
   post '/users/signed_in'            => "block#signed_in?"
   get  '/conversations/livecounter'  => "block#liveCount"
   get  '/conversations/attendees'    => "block#loadAttendees"
-  post '/conversations/upload_stats' => "stats#upload_stats"
-  get '/conversations/get_stats'    => "stats#upload_stats"
 
   # get '/:friendly_id', to: 'groups#show'
 
