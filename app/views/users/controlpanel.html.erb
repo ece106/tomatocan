@@ -10,6 +10,7 @@ Conversations
     <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
     <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
     <li role="presentation"><%= link_to "Blocked Users", "#blockedTab", "data-toggle" => "tab" %></li>
+    <li role="presentation"><%= link_to "Stats For Nerds", "#statsTab", "data-toggle" => "tab" %></li>
   </ul>
 
   <!-- Tab panes -->
@@ -151,6 +152,11 @@ Conversations
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Stats Page -->
+    <div class="tab-pane" id="statsTab">
+      <h1>¡Hola Señor!</h1> 
     </div>
     <script>
       function unblock(current_user_id, to_unblock_id) {
