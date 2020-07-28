@@ -9,9 +9,10 @@
   <% if @calendar_events.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
+
         <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
 
-          <% user = User.find(event.usrid) %>
+          <% user = User.find(event.user_id) %>
           <% i += 1 %>  
           <tr>
             <td class=col-xs-2>
@@ -34,7 +35,7 @@
             <%= link_to user.name, user.permalink, title: rsvpeople %>
 
             <% if user_signed_in? %>
-              <% if event.usrid == current_user.id %>
+              <% if event.user_id == current_user.id %>
                 <%= link_to '(Edit)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
             <% end %>
