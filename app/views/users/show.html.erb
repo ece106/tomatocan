@@ -15,11 +15,11 @@
     
     <%= render 'layouts/authorform' %>
     
-    <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+    <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
       <div id="eventCurrentdiv" style="text-align: center;">
         <h3>We're talking about <%= @displayconvo.name %></h3>  
         <p> right NOW!   </p> 
-        <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
+        <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
         <br>
       </div>
   <% else %>

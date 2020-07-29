@@ -14,7 +14,6 @@ class Api::V1::EventsController < Api::V1::BaseApiController
         end
         @event = current_user.events.build(event_params)
         @event.update_attribute(:user_id, current_user.id)
-        @event.update_attribute(:usrid, current_user.id)
         if @event.save
             render :json=> {:success=>true, :token=>current_user.authentication_token}
         else
@@ -26,7 +25,7 @@ class Api::V1::EventsController < Api::V1::BaseApiController
         if current_user.nil?
             render :json=> {:success=>false}, :status=>401
             return
-        elsif Event.find_by_id(params[:id]).nil? or Event.find_by_id(params[:id]).usrid != current_user.id
+        elsif Event.find_by_id(params[:id]).nil? or Event.find_by_id(params[:id]).user_id != current_user.id
             render :json=> {:success=>false}, :status=>422
             return
         end
@@ -39,7 +38,7 @@ class Api::V1::EventsController < Api::V1::BaseApiController
         if @event.nil?
             render :json=> {:success=>false}, status=>422
             return
-        elsif current_user.nil? or current_user.id != @event.usrid
+        elsif current_user.nil? or current_user.id != @event.user_id
             render :json=> {:success=>false}, :status=>401
             return
         end
@@ -52,6 +51,6 @@ class Api::V1::EventsController < Api::V1::BaseApiController
       end
 
     def event_params
-        params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :usrid, :user_id, :group1id, :group2id, :group3id )
+        params.require(:event).permit(:address, :name, :start_at, :end_at, :desc, :latitude, :longitude, :user_id, :group1id, :group2id, :group3id )
     end
 end

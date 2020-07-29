@@ -21,8 +21,8 @@
       <% end %>
         <% if k <=2 %>
          <% if event.start_at.to_date.eql?(date.to_date) %>
-            <% user = User.find(event.usrid) %>
-            <% i += 1 %>
+            <% user = User.find(event.user_id) %>
+            <% i += 1 %>  
             <ul>
             <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc%></li>
             By: <%= link_to user.name, user.permalink %>
@@ -50,9 +50,11 @@
         <% if l > 2 %>
          <% if event.start_at.to_date.eql?(date.to_date) %>
             <ul>
-            <% user = User.find(event.usrid) %>
+
+            <% user = User.find(event.user_id) %>
             <% i += 1 %>
             <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc%></li>
+
             By: <%= link_to user.name, user.permalink %>
             <br>
             <% edt = event.start_at + 3.hours %>
