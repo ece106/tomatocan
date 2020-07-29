@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
     pdtnow = Time.now - 7.hours + 5.minutes
     id = @user.id
-    currconvo = Event.where( "start_at < ? AND end_at > ? AND usrid = ?", pdtnow, pdtnow, id ).first
+    currconvo = Event.where( "start_at < ? AND end_at > ? AND user_id = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?
       @displayconvo = currconvo
     end
@@ -33,10 +33,12 @@ class UsersController < ApplicationController
       end
     end
     userid = @user.id
-    upcomingevents = Event.where("start_at > ? AND usrid = ?", Time.now - 10.hours , userid).order('start_at ASC')
+
+    upcomingevents = Event.where("start_at > ? AND user_id = ?", Time.now - 10.hours , userid).order('start_at ASC')
     @calendar_events = upcomingevents.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
     @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 4)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -99,12 +101,12 @@ class UsersController < ApplicationController
     currtime = Time.now
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @rsvpevents = rsvps.where( "start_at > ?", currtime )
-    @events = Event.where( "start_at > ? AND usrid = ?", currtime, @user.id )
+    @events = Event.where( "start_at > ? AND user_id = ?", currtime, @user.id )
     respond_to do |format|
       format.html
       format.json { render json: @user }
     end
-    @pastevents = Event.where( "start_at < ? AND usrid = ?", currtime, @user.id )
+    @pastevents = Event.where( "start_at < ? AND user_id = ?", currtime, @user.id )
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?)', @user.id)
     @pastrsvps = rsvps.where( "start_at < ?", currtime )
     respond_to do |format|

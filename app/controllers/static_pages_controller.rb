@@ -51,21 +51,23 @@ class StaticPagesController < ApplicationController
       @description = @displayconvo.desc
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
       @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
-      @host = User.find(@displayconvo.usrid)
-    end
+      @host = User.find(@displayconvo.user_id)
+    end  
+
     if @displaystudy.present?
       @namestudy = @displaystudy.name
       @descriptionstudy = @displaystudy.desc
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
-      @hoststudy = User.find(@displaystudy.usrid)
-    end
+      @hoststudy = User.find(@displaystudy.user_id)
+    end  
+
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
-      @hostresearch = User.find(@displayresearch.usrid)
-    end
-
+      @hostresearch = User.find(@displayresearch.user_id)
+    end  
+        
     if user_signed_in?
       @user = User.find(current_user.id)
     end
@@ -106,14 +108,15 @@ class StaticPagesController < ApplicationController
       @descriptionstudy = @displaystudy.desc
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
-      @hoststudy = User.find(@displaystudy.usrid)
-    end
+      @hoststudy = User.find(@displaystudy.user_id)
+    end  
+    
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
-      @hostresearch = User.find(@displayresearch.usrid)
-    end
-
+      @hostresearch = User.find(@displayresearch.user_id)
+    end  
+        
     if user_signed_in?
       @user = User.find(current_user.id)
     end

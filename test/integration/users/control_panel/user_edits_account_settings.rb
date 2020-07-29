@@ -24,6 +24,9 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
   end
 
   test "user changes password" do
+
+    old_password = @test_user.encrypted_password
+
     find(class: "account-settings-tab", text: "Account").click
 
     click_on "Change Password"
@@ -35,6 +38,9 @@ class UserEditsAccountSettings < ActionDispatch::IntegrationTest
 
     click_on "Save Profile"
     assert_equal current_path, "/#{@test_user.permalink}"
+
+    @test_user.reload
+    assert_not_equal(@test_user.encrypted_password, old_password)
   end
 
   test "user cancels edits account settings with same attributes" do
