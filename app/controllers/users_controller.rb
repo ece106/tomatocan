@@ -157,8 +157,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    #    @user.latitude = request.location.latitude #geocoder has become piece of junk
-    #    @user.longitude = request.location.longitude
+
     if @user.save
       redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
       UserMailer.with(user: @user).welcome_email.deliver_later
@@ -201,28 +200,6 @@ class UsersController < ApplicationController
   end
 
   respond_to :js, :json, :html
-
-  def block
-    array = User.find_by_id(params[:to_block]).blockedBy
-    User.find_by_id(params[:to_block]).update({'blockedBy': array << @user.permalink})
-
-    array2 = User.find_by_id(params[:owner]).BlockedUsers
-    User.find_by_id(params[:owner]).update({'BlockedUsers': array2 << User.find_by_id(params[:to_block]).permalink})
-  end
-
-  def unblock
-    array = User.find_by_permalink(params[:to_unblock]).blockedBy
-    array = array - [current_user.permalink]
-    User.find_by_permalink(params[:to_unblock]).update({'blockedBy': array})
-    
-    array2 = current_user.BlockedUsers
-    array2 = array2 - [User.find_by_permalink(params[:to_unblock]).permalink]
-    current_user.update({'BlockedUsers': array2})
-  end
-
-  def unload
-    current_user.update({'last_viewed': 0})
-  end
 
   private
 

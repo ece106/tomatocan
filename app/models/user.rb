@@ -27,11 +27,6 @@ class User < ApplicationRecord
   mount_uploader :profilepic, ProfilepicUploader
   mount_uploader :bannerpic, BannerpicUploader
 
-#  geocoded_by :address  #geocoder has become a piece of junk
-#  reverse_geocoded_by :latitude, :longitude
-#  after_validation :geocode, :if => :address_changed?
-#  after_validation :reverse_geocode #, :if => :latitude_changed?
-
   # Other default devise modules available are:
   # :token_authenticatable, :confirmable, :lockable, :timeoutable, :validatable and :omniauthable
   scope :updated_at, -> { where(order: 'DESC') }
@@ -140,9 +135,9 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["raw_info"]
         user.email = data["email"] if user.email.blank?
-      elsif data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
+      elsif data = session["devise.google_data"] && session["devise.google_data"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end
     end
