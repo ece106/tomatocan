@@ -28,7 +28,7 @@
                 </button>
                <div class="dropdown-menu">
                  <%events.select{|event| event.start_at.to_date.eql? (day)}.each_with_index do |event, i|%>
-                   <%id = "m-c-#{day.strftime("%F")}-#{i}"%>
+                   <%id = "sm-calendar-#{day.strftime("%F")}-#{i}"%>
                    <ul>
                      <li style="color: #8C1D40; font-size: 16px; font-weight: bold;">
                        <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
@@ -57,7 +57,7 @@
             <%= day.day %>
             <%count = 0%>
             <%events.select{|event| event.start_at.to_date.eql? (day)}.each do |event|%>
-              <%id = "m-c-#{day.strftime("%F")}-#{count}"%>
+              <%id = "lg-calendar-#{day.strftime("%F")}-#{count}"%>
               <%if count == 2 %>
                 <span id="" class="more" style="display: none;">
               <%end%>
