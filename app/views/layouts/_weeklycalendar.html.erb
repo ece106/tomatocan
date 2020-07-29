@@ -10,7 +10,7 @@
 </div>
 <br>
 <% getWeekDays.each do |date|%>
-  <div class="weekDays">
+  <div class="weekDays border-left border-right border-top">
     <%= render eventPartial, currentDate: date%>
   </div>
 <%end%>

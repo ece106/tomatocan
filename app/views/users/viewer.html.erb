@@ -15,7 +15,7 @@
     <% end %>
   <% end %>
 
-  <div class="row pt-5 mt-5 pl-1 ml-1">
+  <div class="row pt-4 mt-4 pl-1 ml-1">
     <div class="col-md-3">
       <div style="padding: 0px 0px 5px 0px">
         <%= render 'layouts/merchsidebar' %>
@@ -61,7 +61,7 @@
 
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
-          <div class="panel-heading" style="margin-bottom:-10px">
+          <div class="panel-heading panel-primary" style="margin-bottom:-10px">
             <% if @user.name.length >= 17 %>
             <% name = @user.name[0..15] + "..." %>
               Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
