@@ -47,7 +47,7 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
     
     within(id: "event-list-table") do
       upcoming_events_count = find_all(".event-name").to_a.count
-      assert_equal upcoming_events_count, 1
+      assert_equal upcoming_events_count, 3
     end
   end
 
