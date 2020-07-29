@@ -12,7 +12,7 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
   		end	
   	end
 
-  test "should go to about page when clicking about in header"  do
+  test "should go to about page when clicking about us in header"  do
   	within("div#globalNavbar.collapse.navbar-collapse") do
   		first(:xpath, "//a[@href='/getinvolved']").click
   		assert_equal current_path, '/getinvolved'
