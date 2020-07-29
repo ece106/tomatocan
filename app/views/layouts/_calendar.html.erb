@@ -22,7 +22,7 @@
           <div class="smEvents">
             <% if events.any?{|event| event.start_at.to_date.eql? (day)}%>
               <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                   <%= day.day %>
                   <span class="caret"></span>
                 </button>
@@ -30,7 +30,7 @@
                  <%events.select{|event| event.start_at.to_date.eql? (day)}.each_with_index do |event, i|%>
                    <%id = "sm-calendar-#{day.strftime("%F")}-#{i}"%>
                    <ul>
-                     <li style="font-size: 16px; font-weight: bold;">
+                     <li>
                        <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
                        <% user = User.find(event.user_id) %>
                        <br>
@@ -61,10 +61,10 @@
             <%events.select{|event| event.start_at.to_date.eql? (day)}.each do |event|%>
               <%id = "lg-calendar-#{day.strftime("%F")}-#{count}"%>
               <%if count == 2 %>
-                <span id="" class="more" style="display: none;">
+                <span class="more" style="display: none;">
               <%end%>
               <ul>
-                <li style="font-size: 16px; font-weight: bold;">
+                <li style="word-wrap: break-word;">
                   <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
                   <% user = User.find(event.user_id) %>
                   <br>
