@@ -23,7 +23,7 @@
           
 
           <!-- Profile Picture -->
-            <div class="col-md-5" >
+            <div class="col-md-6" >
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
@@ -38,7 +38,7 @@
             </div>
 
             <!-- Header -->
-            <div class="col-md-9" style="margin-top:-20px;">
+            <div class="col-md-6">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <% if @user.bannerpic.present? && @user.bannerpic != '' %>
