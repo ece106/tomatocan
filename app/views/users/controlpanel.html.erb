@@ -122,11 +122,11 @@
     <div class="tab-pane" id="blockedTab">
       <div class="row justify-content-center">
         <br><br>
-        <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
+        <div class="col-md-4">
+           <div class="card">
+            <h3 class="card-header bg-primary text-white">
               Blocked Users
-            </div>
+            </h3>
             <div id="blocked" style="padding:0px 18px 8px 0px; font-size: 15px">
               <% if current_user.BlockedUsers.empty? %>
                 <br><p style="text-align:center">You have not blocked any users</p>
