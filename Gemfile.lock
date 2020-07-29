@@ -364,6 +364,8 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.0)
+    will_paginate-bootstrap (1.0.2)
+      will_paginate (>= 3.0.3)
     will_paginate-bootstrap4 (0.2.2)
       will_paginate (~> 3.0, >= 3.0.0)
     xpath (3.2.0)
@@ -378,7 +380,7 @@ DEPENDENCIES
   autoprefixer-rails
   bcrypt
   bcrypt_pbkdf
-  bootstrap-sass
+  bootstrap (~> 4.5.0)
   capistrano
   capistrano-bundler
   capistrano-passenger
@@ -402,6 +404,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   pg
+  popper_js (~> 1.16.0)
   pry
   puma
   rack-cors
@@ -422,6 +425,7 @@ DEPENDENCIES
   unf
   will_paginate
   will_paginate-bootstrap
+  will_paginate-bootstrap4
 
 RUBY VERSION
    ruby 2.7.0p0

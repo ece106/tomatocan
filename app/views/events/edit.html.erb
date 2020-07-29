@@ -12,7 +12,7 @@
         </ul>
       </div>
     <% end %>
-    <div class="row">
+    <div class="row pt-5">
       <%= form_for @event do |f| %>
         <%= render "events/form_edit", f: f, event: @event %>
         <%= f.submit "Save", class: "btn btn-lg btn-primary update-event-btn" %>
