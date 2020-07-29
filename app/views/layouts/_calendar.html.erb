@@ -18,35 +18,73 @@
     <tr style="padding: 0px;">
       <%week.each do |day|%>
         <%dayClass = day == Date.today ? "today" : (day.month != baseDate.month ? "notmonth" : "") %>
-        <td class = "<%= dayClass%>">
-          <%= day.day %>
-          <%count = 0%>
-          <%events.select{|event| event.start_at.to_date.eql? (day)}.each_with_index do |event|%>
-            <%id = "m-c-#{day.strftime("%F")}-#{count}"%>
-            <%if count == 2 %>
-              <span id="" class="more" style="display: none;">
+        <td class = "<%= dayClass%> overflow-visible">
+          <div class="smEvents">
+            <% if events.any?{|event| event.start_at.to_date.eql? (day)}%>
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  <%= day.day %>
+                  <span class="caret"></span>
+                </button>
+               <div class="dropdown-menu">
+                 <%events.select{|event| event.start_at.to_date.eql? (day)}.each_with_index do |event, i|%>
+                   <%id = "m-c-#{day.strftime("%F")}-#{i}"%>
+                   <ul>
+                     <li style="color: #8C1D40; font-size: 16px; font-weight: bold;">
+                       <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
+                     </li>
+                     <% user = User.find(event.user_id) %>
+                     By: <%= link_to user.name, user.permalink, class: dayClass %>
+                     <br>
+                     <% edt = event.start_at + 3.hours %>
+                     <span style="font-size:90%;" id="time-<%=id%>"</span>
+                     <script>
+                       var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+                       date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+                       var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+                       var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short'};
+                       document.getElementById('time-<%=id%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+                     </script>
+                   </ul>
+                <%end%>
+               </div>
+             </div>
+            <%else%>
+              <%= day.day %>
             <%end%>
-            <ul>
-              <li style="color: #8C1D40; font-size: 16px; font-weight: bold;"><%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%></li>
-              <% user = User.find(event.user_id) %>
-              By: <%= link_to user.name, user.permalink, class: dayClass %>
-              <br>
-              <% edt = event.start_at + 3.hours %>
-              <span style="font-size:90%;" id="time-<%=id%>"</span>
-              <script>
-                var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
-                date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
-                var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
-                var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short'};
-                document.getElementById('time-<%=id%>').innerHTML = date.toLocaleString(undefined, optionsTime);
-              </script>
-            </ul>
-            <%count += 1%>
-          <%end%>
-          <%if count > 2 %>
-            </span>
-            <button class="expand" onclick="monthMoreEvents(this)">More Conversations</button>
-          <%end%>
+          </div>
+          <div class="lgEvents">
+            <%= day.day %>
+            <%count = 0%>
+            <%events.select{|event| event.start_at.to_date.eql? (day)}.each do |event|%>
+              <%id = "m-c-#{day.strftime("%F")}-#{count}"%>
+              <%if count == 2 %>
+                <span id="" class="more" style="display: none;">
+              <%end%>
+              <ul>
+                <li style="color: #8C1D40; font-size: 16px; font-weight: bold;">
+                  <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
+                </li>
+                <% user = User.find(event.user_id) %>
+                By: <%= link_to user.name, user.permalink, class: dayClass %>
+                <br>
+                <% edt = event.start_at + 3.hours %>
+                <span style="font-size:90%;" id="time-<%=id%>"</span>
+                <script>
+                  var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+                  date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+                  var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+                  var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short'};
+                  document.getElementById('time-<%=id%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+                </script>
+              </ul>
+              <%count += 1%>
+            <%end%>
+            <%if count > 2 %>
+              </span>
+              <button class="expand" onclick="monthMoreEvents(this)">More Conversations</button>
+            <%end%>
+          </div>
         </td>
       <%end%>
     </tr>

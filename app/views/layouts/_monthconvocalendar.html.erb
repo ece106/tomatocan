@@ -6,6 +6,22 @@
   </div>
 </div>
 <script>
+  function adjustCalendar(currentWidth){
+    console.log("Running " + currentWidth);
+    if(currentWidth > 995){
+      console.log("Greater than 1015");
+      $(".lgEvents").show();
+      $(".smEvents").hide();
+    } else {
+      $(".lgEvents").hide();
+      $(".smEvents").show();
+    }
+  }
+
+  $(window).resize(function(){
+    adjustCalendar($(".caler").width());
+  });
+
   function monthMoreEvents(button){
     $(button).prev().toggle();
     $(button).siblings('.dots').toggle();
