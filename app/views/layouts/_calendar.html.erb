@@ -30,14 +30,16 @@
                  <%events.select{|event| event.start_at.to_date.eql? (day)}.each_with_index do |event, i|%>
                    <%id = "sm-calendar-#{day.strftime("%F")}-#{i}"%>
                    <ul>
-                     <li style="color: #8C1D40; font-size: 16px; font-weight: bold;">
+                     <li style="font-size: 16px; font-weight: bold;">
                        <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
+                       <% user = User.find(event.user_id) %>
+                       <br>
+                       By: <%= link_to user.name, user.permalink, class: dayClass %>
+                       <br>
+                       <% edt = event.start_at + 3.hours %>
+                       <span style="font-size:90%;" id="time-<%=id%>"</span>
                      </li>
-                     <% user = User.find(event.user_id) %>
-                     By: <%= link_to user.name, user.permalink, class: dayClass %>
-                     <br>
-                     <% edt = event.start_at + 3.hours %>
-                     <span style="font-size:90%;" id="time-<%=id%>"</span>
+
                      <script>
                        var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
                        date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
@@ -62,14 +64,15 @@
                 <span id="" class="more" style="display: none;">
               <%end%>
               <ul>
-                <li style="color: #8C1D40; font-size: 16px; font-weight: bold;">
+                <li style="font-size: 16px; font-weight: bold;">
                   <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
+                  <% user = User.find(event.user_id) %>
+                  <br>
+                  By: <%= link_to user.name, user.permalink, class: dayClass %>
+                  <br>
+                  <% edt = event.start_at + 3.hours %>
+                  <span style="font-size:90%;" id="time-<%=id%>"</span>
                 </li>
-                <% user = User.find(event.user_id) %>
-                By: <%= link_to user.name, user.permalink, class: dayClass %>
-                <br>
-                <% edt = event.start_at + 3.hours %>
-                <span style="font-size:90%;" id="time-<%=id%>"</span>
                 <script>
                   var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
                   date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time

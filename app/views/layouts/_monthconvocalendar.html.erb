@@ -7,30 +7,28 @@
 <script>
   function adjustCalendar(currentWidth){
     if(currentWidth > 995){
-      console.log("Greater than 1015");
       $(".lgEvents").show();
       $(".smEvents").hide();
       $(".caler").css("width", "100%");
-      $(".caler > td").each(function(){
-        this.css("height", "150px");});
+      $(".caler td").each(function(){
+        console.log("Changing height");
+        $(this).css("height", "150px");});
     } else {
-      console.log("Less than 1015");
       $(".lgEvents").hide();
       $(".smEvents").show();
-      $(".caler").css("width", "315px");
+      $(".caler").css("width", "560px");
       $(".caler").css("margin", "auto");
-      $(".caler > tr > td").each(function(){
-        console.log("Changing height");
-        this.css("height", "45px");});
+      $(".caler td").each(function(){
+        $(this).css("height", "45px");});
     }
   }
 
   $(document).ready(function(){
-    adjustCalendar($(".tabPanel").width());
+    adjustCalendar($(".tabContainer").width());
   });
 
   $(window).resize(function(){
-    adjustCalendar($(".caler").width());
+    adjustCalendar($(".tabContainer").width());
   });
 
   function monthMoreEvents(button){

@@ -1,2 +1,2 @@
 $("#events").html("<%= escape_javascript(render partial: 'layouts/calendar', locals: {baseDate: @selectedMonth, events: @calendar_events_all, monthNum: @monthNum})%>");
-adjustCalendar($(".caler").width());
+adjustCalendar($(".tabContainer").width());
