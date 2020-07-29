@@ -1,21 +1,5 @@
-<!-- Refresh Attendees Tab In The Background (Commented Out Until Completely Finished) 
-<script>
-  $(document).ready(function() {
-    setInterval(function () {
-      $('#attendee').load(document.URL +  ' #attendee');
-    }, 2000);
-  });
-</script>
--->
-
 <% if user_signed_in? %>
-  <% current_user.update_column(:last_viewed, @user.id) %>
-
-  <% current_user.blockedBy.each do |blocked| %>
-    <% if blocked == @user.permalink %>
-      <meta http-equiv="refresh" content="0; URL=https://thinq.tv/blocked"/>
-    <% end %> 
-  <% end %>
+  <% current_user.update_column(:last_viewed, current_user.last_viewed << params[:event]) %>
 
   <!-- Update list of users attending the conversation -->
   <div class = "container-fluid">
@@ -55,7 +39,6 @@
         </div>
 
         <% domainurl = "https://thinq.tv/youronlinemom" %>
-        <!--THIS IS A RUBY APPLICATION!!! Please figure out how to code popup boxes in Ruby, not html. Images should be ASSETS, not urls to remote images we do not control-->
         <div style="margin-left: 17px">
           <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %>" 
             onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %>',
@@ -75,30 +58,20 @@
         </div>
       </div>
 
-      <!-- List of participants (Commented Out Until Completely Finished) 
+
       <div style="padding:5px 0px 0px 0px">
         <div class="panel panel-primary">
           <div class="panel-heading" style="margin-bottom:-10px">
-            Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black">&#8634</button>
+            <% if @user.name.length >= 17 %>
+            <% name = @user.name[0..15] + "..." %>
+              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
+            <% else %>
+              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
+            <% end %>
           </div>
-          <div id="attendee">
-            <%= render 'layouts/attendees' %>
-          </div>
+          <div id="attendees"></div>
         </div>
       </div>
-
-      <script>
-        $('#refresh').click(function(){
-            $('#attendee').load(document.URL +  ' #attendee');
-        });
-      </script>
-
-      <script>
-        $(window).on('beforeunload', function() {
-          $.post("/users/unload")
-        });
-      </script>
-      -->
     </div>
 
     <div class="col-md-9">
@@ -110,7 +83,7 @@
           </div>
           <div class = "container">
             <% @otherconvos.each do |t| %>
-              <%host=User.find(t.usrid)%>
+              <%host=User.find(t.user_id)%>
               <%= link_to t.name, host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
             <%end%>
           </div>
@@ -135,13 +108,59 @@
     </div>
   </div>
 
-  <script>
-    // makes all links open in new tab
-    $(document).ready(function() {
-        $("a").attr("target", "_blank");
-    });
-  </script>
+  <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
+    // save current user id
+    var currID = "<%= current_user.id %>"
+    // get url params
+    const urlParams = new URLSearchParams(window.location.search);
 
+    //check if user is blocked every 300 seconds
+    function isBlocked() {
+      $.post("/users/is_blocked", null, (data) => {
+        if (data.includes("<%= @user.permalink %>")) {
+          window.location.replace("/blocked")
+        }
+      })
+      setTimeout(isBlocked, 300000);
+    }
+
+    // check if user is signed in every 30 seconds
+    function signedIn() {
+      $.post("/users/signed_in", null, (data) => {
+        if (data.success == false) {
+          $.post("/users/unload", {currentUser: currID})
+          location.reload()
+        }
+      })
+      setTimeout(signedIn, 300000);
+    }
+
+    // load attendees list
+    function loadAttendees(){
+      $.get("/conversations/attendees", {event: urlParams.get('event'), currentUser: "<%= current_user.id %>", owner: "<%= @user.id %>"}, (data) => {
+        if (data.success == true)
+          $('#attendees').html(data.html)
+      })
+      setTimeout(loadAttendees, 300000);
+    }
+    
+    // unload actions
+    $(window).on('beforeunload', (event) => {
+      // remove user from attendees list
+      $.post("/users/unload", {currentUser: currID, event: urlParams.get('event')})
+    });
+
+    // makes all links on viewer page open in new tab
+    $(document).ready(() => {
+      $("a").attr("target", "_blank");
+    });
+
+
+    // run all functions
+    isBlocked()
+    signedIn()
+    loadAttendees()
+  </script>
 <% else %>
-  <meta http-equiv="refresh" content="0; URL=https://thinq.tv/login"/>
+  <meta http-equiv="refresh" content="0; URL=/login"/>
 <% end %>

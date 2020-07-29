@@ -6,13 +6,17 @@
     body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
     div.dialog {
       width: 25em;
-      padding: 0 4em;
+      padding: 0 3em;
       margin: 4em auto 0 auto;
       border: 1px solid #ccc;
       border-right-color: #999;
       border-bottom-color: #999;
+      background-color: white; 
+      padding-bottom: 10px; 
+      box-shadow: 0 5px 15px rgba(0,0,0,.5);
     }
     h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    hr { border: 1px solid black; margin-top: 7px; margin-bottom: 7px }
   </style>
 </head>
 
@@ -20,8 +24,9 @@
   <!-- This file lives in public/500.html -->
   <div class="dialog">
     <h1>The page you were looking for doesn't exist or you are trying to enter improper data.</h1>
+    <hr>
     <p>You may have mistyped the address or the page may have moved. If you think there is a glitch on this site, please send a message to info@ThinQ.tv describing what you were attempting to do, your files, your data, etc. </p>
-
+    <hr>
     <a href="https://www.thinq.tv" target="_blank"> Back to ThinQ.tv</a>
 </p>
   </div>

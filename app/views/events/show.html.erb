@@ -21,18 +21,20 @@
     <div class="col-md-3" style="text-align:center; padding: 10px 5px 10px 10px;">
       <% if @user.profilepic.present? && @user.profilepic != '' %>
         <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
+      <% else %>
+        <%= image_tag "logoDigitalHollow300.png", :height => "300", :width => "300" %> <br>
       <% end %><br><br>  
     </div>
 
     <!-- CONVERSATION NAME & HOST -->
     <div class="col-md-5">
       <div style ="margin-left: 30px">
-        <% if @displayconvo.present? && @displayconvo.usrid == @user.id %>
+        <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
           <br><br><br><br>
           <div id="eventCurrentdiv" >
               <h3>We're talking about <%= @displayconvo.name %></h3>  
               <p> right NOW!   </p> 
-              <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary btn-lg fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
+              <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @event.topic , event: @event.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
               <br>
           </div>
         <% else %>
@@ -82,7 +84,7 @@
           <% end %>
         
             <% if user_signed_in? %>
-              <% if @event.usrid == current_user.id %>
+              <% if @event.user_id == current_user.id %>
                 <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
               <% end %>
           <% end %>
@@ -209,7 +211,12 @@
           <div style = "font-size: 14px; font-style: italic">
             On Desktop: <br>
             <div style = "margin-left: 5px">
-              Go to <%= link_to "ThinQ.tv", root_path %> and click the <%= link_to " Join Conversation", user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), :class => 'btn btn-sm btn-primary fa fa-video-camera' %> button. <br>
+              <% pdtnow = Time.now - 7.hours %>
+              <% if  @event.start_at < pdtnow && @event.end_at > pdtnow %>
+                Go to <%= link_to "ThinQ.tv", root_path %> and click the <%= link_to " Join Conversation", user_viewer_path(@user.permalink, chatrm: @event.topic, event: @event.id ), :class => 'btn btn-sm btn-primary fa fa-video-camera' %> button. <br>
+              <% else %>
+                When live, go to <%= link_to "ThinQ.tv", root_path %> and click the <button class="btn btn-sm btn-primary fa fa-video-camera"> Join Conversation </button> button!
+              <% end %>
             </div>
             On Mobile:
             <div style = "margin-left: 5px">

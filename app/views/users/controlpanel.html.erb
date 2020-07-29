@@ -10,9 +10,8 @@ Conversations
     <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
     <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
     <li role="presentation"><%= link_to "Blocked Users", "#blockedTab", "data-toggle" => "tab" %></li>
+    <!-- Stats Feature Pending <li role="presentation"><%= link_to "Stats For Nerds", "#statsTab", "data-toggle" => "tab" %></li> -->
   </ul>
-
-
 
   <!-- Tab panes -->
   <div class="tab-content">
@@ -124,37 +123,49 @@ Conversations
         <br><br>
         <div class="col-md-4 col-md-offset-4">
           <div class="panel panel-primary">
-            <div class="panel-heading" style="margin-bottom:-10px">
+            <div class="panel-heading">
               Blocked Users
             </div>
-            <div style="padding:8px 0px 8px 0px; font-size: 15px">
-              <div style="padding:5px 0px 0px 0px">
-                <div class="row" style="padding: 0px 0px 0px 15px">
-                  <% if current_user.BlockedUsers.empty? %>
-                  <br>
-                    <p style="text-align:center">You have not blocked any users</p>
-                  <% else %>
-                    <% current_user.BlockedUsers.each do |use| %>
-                    <% user = User.find_by_permalink(use) %>
-                      <div class="col-sm-9" style="padding:8px 0px 0px 15px">
-                        <% if user.profilepic.present? && user.profilepic != '' %>
-                            <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
-                        <% else %>
-                            <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
-                        <% end %>
-                        <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
-                      </div>
-                      <div class="col-sm-3" style="margin-top:3px">
-                        <%= button_to 'Unblock', action: :unblock, :to_unblock => user.permalink %>
-                      </div>
+            <div id="blocked" style="padding:0px 18px 8px 0px; font-size: 15px">
+              <% if current_user.BlockedUsers.empty? %>
+                <br><p style="text-align:center">You have not blocked any users</p>
+              <% else %>
+                <% current_user.BlockedUsers.each do |use| %>
+                <% user = User.find_by_permalink(use) %>
+                  <div style="padding:8px 0px 0px 15px">
+                    <% if user.profilepic.present? && user.profilepic != '' %>
+                        <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+                    <% else %>
+                        <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
                     <% end %>
-                  <% end %>
-                </div>
-              </div>
+                    <% if user.name.length >= 15 %>
+                      <% name = user.name[0..14] + "..." %>
+                      <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= name %></a>
+                    <% else %>
+                      <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
+                    <% end %>
+                    <button id="unblock_button" style="float:right; margin-top:-3px" onclick="unblock('<%=current_user.id%>','<%=user.id%>')">Unblock</button>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Stats Page 
+    <div class="tab-pane" id="statsTab">
+      Stats Coming Soon! 
+    </div>
+    -->
+    
+    <script>
+      function unblock(current_user_id, to_unblock_id) {
+        $.post("/users/unblock", {current_user_id: current_user_id, to_unblock_id: to_unblock_id}, function() {
+          $('#blocked').load(document.URL +  ' #blocked');
+        })
+      }
+    </script>
   <% end %>
 <% end %>

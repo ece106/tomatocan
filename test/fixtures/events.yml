@@ -1,7 +1,6 @@
 one:
   id: 1
   user_id: 1
-  usrid: 1
   name: "Phineas"
   start_at: "2020-02-11 11:02:57"
   end_at: "2020-02-11 11:02:57"
@@ -9,13 +8,11 @@ one:
 two:
   id: 2
   user_id: 2
-  usrid: 2
   name: eventTwo
 
 three:
   id: 3
   user_id: 1
-  usrid: 1
   name: "Test Event Name"
   desc: "Test Event Description"
   start_at: "2020-12-11 11:02:57"
@@ -24,7 +21,6 @@ three:
 four:
   id: 4
   user_id: 1
-  usrid: 1
   name: "Another Test Event Name"
   desc: "Another Test Event Description"
   start_at: "2020-12-11 11:02:57"
@@ -33,25 +29,14 @@ four:
 past_event:
   id: 5
   user_id: 5
-  usrid: 6
   name: "past_event"
   desc: "past desc"
   start_at: "2019-12-11 11:02:57"
   end_at: "2019-12-11 11:02:57"
-  
-confirmedUser_event:
-  id: 6
-  user_id: 6
-  usrid: 6
-  name: "confirmedUser_event"
-  desc: "confirmedUser desc"
-  start_at: "2020-12-11 11:02:57"
-  end_at: "2020-12-11 11:02:57"
 
 confirmedUser_event:
   id: 6
   user_id: 6
-  usrid: 6
   name: "confirmedUser_event"
   desc: "confirmedUser desc"
   start_at: "2021-12-11 11:00:00"
@@ -60,7 +45,6 @@ confirmedUser_event:
 recurring_event:
   id: 7
   user_id: 6
-  usrid: 6
   name: "recurring_event"
   desc: "recurring_desc"
   start_at: "2020-12-11 11:00:00"
@@ -70,7 +54,6 @@ recurring_event:
 non_recurring_event:
   id: 8
   user_id: 6
-  usrid: 6
   name: "non_recurring_event"
   desc: "non_recurring_desc"
   start_at: "2020-12-11 12:00:00"
