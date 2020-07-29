@@ -12,7 +12,7 @@
          </h4>
       </div>
       <div class="col-lg-5 col-md-6 col-xs-12" style=" margin-top:0px; margin-bottom: 0px; padding: 10px; ">
-        <div class="row" id="countdown_clock">
+        <div class="row justify-content-center" id="countdown_clock">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
       </div>
@@ -25,14 +25,14 @@
     <div class="col-xs-12">
       <h1 class = "new">Drop-In Schedule</h1>
     </div>
-    <div class="col-md-3 col-xs-12">
+    <div class="col-md-4 col-xs-12">
           <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-md-8 col-md-offset-1 col-xs-12">
-      <div class="buttonContainer"><br>
+    <div class="col-md-8 col-md-offset-1 col-xs-12 ">
+      <div class="buttonContainer text-center"><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
       </div>

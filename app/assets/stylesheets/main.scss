@@ -1,16 +1,15 @@
-
-//@import "styles/_faq.scss";
+@import "styles/_faq.scss";
 @import "styles/_fellowship.scss";
 //The above sheets should be combined into 1 _staticpages.scss
 
 //Overrides Bootstrap-defined variables
 @import "base/variables.scss";
-
+$primary: #8C1D40;
 //Bootstrap files
-@import "bootstrap-sprockets";
+//@import "bootstrap-sprockets";
+
 @import "bootstrap";
 @import "font-awesome";
-
 //Global styles
 @import "base/globals.scss";
 @import "base/header.scss";
