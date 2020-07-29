@@ -5,7 +5,7 @@
 
       <div class="row col-lg-7 col-md-6">
         <h3 class="text-center text-primary"><b> ACTIVISM HALL: Coworking where we’re socially distanced but not alone</b></h3>
-        <p class="h4">
+        <p class="h4 pl-3 ml-3">
           - Hang out in video chat with other people committing activism. Drop in & find out who is here! <br>
           - Peers and possibly mentors are there while you're working. Bounce ideas, pair program, get feedback on your designs or activism plans. <br>
           - No agenda. Drop in any time; we'll greet you when you arrive. 
@@ -22,18 +22,18 @@
 
   </div>
 </div>
-
+<br>
 
 <div class="tabContainer col-lg-12 pt-3 mt-3 pl-3 ml-3"> 
-      <h1 class = "text-primary"><strong>Activism Hall Schedule</strong></h1> 
+      <h1 class = "text-left text-primary"><strong>Activism Hall Schedule</strong></h1> 
       <div class = "row col-lg-12">
-    <div class="col-lg-5 col-md-6 col-xs-12">
+    <div class="col-lg-3 col-md-6 col-xs-12 text-left">
           <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Activism Hall Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in Activism Hall sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-lg-10 col-md-8 col-xs-12 text-center">
+    <div class="pl-5 ml-5 text-center">
       <div class="buttonContainer"><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
@@ -41,9 +41,9 @@
     </div>    
     </div>
 
-   <div class = "container col-lg-11">  
-    <div class="tabPanel">      
-        <div class="col-lg-12 col-xs-12">
+   <div class = "container col-lg-11 ">  
+    <div class="tabPanel ">      
+        <div class="col-lg-12 col-xs-12 pl-5 ml-5">
         <%= render 'layouts/weeklycalendar',  eventPartial: "layouts/renderday"%>
         </div>
       </div>   
