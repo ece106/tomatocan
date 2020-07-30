@@ -1,4 +1,5 @@
 <% if @events.count != 0 %>
+  <% if @start_timestudy != nil %>
   <% if (Time.current > Time.find_zone("UTC").parse(@start_timestudy) ) && (Time.current < Time.find_zone("UTC").parse(@start_timestudy) + 1.hour) %> 
     <div id="eventCurrentdiv">
         <% if @displaystudy.present? %>
@@ -46,5 +47,6 @@
       <br>
       Hosted by: <%= link_to @hoststudy.name, @hoststudy.permalink %>
     </div>
+  <% end %>
   <% end %>
 <% end %>
