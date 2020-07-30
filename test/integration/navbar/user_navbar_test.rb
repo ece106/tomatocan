@@ -22,7 +22,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Join the Team'
     first(:xpath, "//a[@href='/jointheteam']").click
     assert_equal '/jointheteam', current_path
-    assert page.has_link? 'Activism Hall'
+    assert page.has_link? 'Drop In Anytime'
     first(:xpath, "//a[@href='/studyhall']").click
     assert_equal '/studyhall', current_path
     assert page.has_link? 'FAQ'
