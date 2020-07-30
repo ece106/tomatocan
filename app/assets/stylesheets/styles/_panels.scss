@@ -60,12 +60,6 @@
 }
 
 
-#events .caler {
-  text-align: left;
-  border-collapse: collapse;
-  width: 100%;
-}
-
 /*    td, th {
       font-family: "Lucida Grande", arial, helvetica, sans-serif;
       font-size: 10px;
@@ -100,6 +94,12 @@
   .notmonth { color: #CCC; }
   .today { background-color: #D7F2FF; }
 
+  #events .caler {
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
   #events #month {
     margin: 0;
     padding: 10px 0px;
@@ -118,6 +118,7 @@
 
   #events ul li{
     list-style-type: none;
+    min-width: 100px;
     max-width: 150px;
     word-wrap: break-word;
   }
