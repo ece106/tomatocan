@@ -15,7 +15,7 @@
 
 <!-- TOP HALF -->
 
-<div class="row" style="padding-top:80px; padding-bottom:80px;">
+<div class="row" style="padding-top:80px;">
   <h1 class="text-center" style="font-size: 50px"> Come Join the Conversation </h1>
   <h2 class="text-center" style="font-size: 30px; line-height: 10%;"><b> <%= @event.name %>! </b></h2>
   <h6 class="text-center" style="line-height: 3;";>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </h6>
@@ -29,7 +29,7 @@
   <div class="container" style="width: 1400px; padding-top:15px; padding-bottom:20px;">
 
     <!-- PROFILE PICTURE -->
-    <div style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
+    <div class="img-fluid" style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
       <% if @user.profilepic.present? && @user.profilepic != '' %>
         <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
       <% end %><br><br>  
@@ -37,69 +37,79 @@
 
     <!-- CONVERSATION NAME & HOST -->
     <div style="margin-top: 25px; margin-left: 50px; background-color: #8C1D40">
+      <div class="aboutHeader row" style="font-size: 30px; margin-left: 200px;">  
+        <div class="col-lg-3" style="margin-top: 20px">
+    
+          <!-- WHEN -->
+          <p class="text-left" style="color: white;"> 
+            <b>
+              <% edt = @event.start_at + 3.hours %>
+              <%= @event.start_at.strftime("%A, %B %d") %> <br>
+              <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
+            </b>
+            <br> <%= @duration %> minutes <br> 
+          </p>
+          <br>
+          <br>
+          
+          <!-- JOIN BUTTON -->
+          <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
+          <% start_time = @event.start_at.strftime("%B %d %Y") + ' ' + @event.start_at.strftime("%T") %>
+          <% end_time = @event.end_at.strftime("%B %d %Y") + ' ' + @event.end_at.strftime("%T") %>
+          <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
+            <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary btn-lg", style: "color: #FFB704; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 12px" %>
+          <% end %>
 
-    <div class="aboutHeader row" style="font-size: 30px; margin-left: 200px;">  
-  <div class="col-lg-3" style="margin-top: 20px">
-   
-  <!-- WHEN -->
-  <p class="text-left" style="color: white;"> 
-    <b>
-      <% edt = @event.start_at + 3.hours %>
-      <%= @event.start_at.strftime("%A, %B %d") %> <br>
-      <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
-    </b>
-    <br> <%= @duration %> minutes <br> 
-  </p>
-  </div>
+        </div>
 
-  <!-- RSVP -->
-  <div class="col-lg-9" style="margin-top: 20px">
-      <div style="margin-top:0px; text-align:right">
-        <form class="new_rsvpq" id="new_rsvpq" action="/rsvpqs" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="fUh8zuIXS7oL7m4hlgmWd/yiPeT+oEZFAEQmnOHQELrlUkBFKV/FcUzC3q40FdBYe6Xhh05ejoAa3nwMr4vaPg==">
-          <input value="3" type="hidden" name="rsvpq[event_id]" id="rsvpq_event_id">
-          <br><input style="border: 1px solid grey; border-radius: 0px; font-weight: lighter; font-size: 20px;" placeholder="Enter your email" type="text" name="rsvpq[email]" id="rsvpq_email">
-           <input type="submit" name="commit" value="RSVP NOW" style="color: black; background-color: #FFB704; font-size: 15px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" id="RSVPsubmit" data-disable-with="RSVP NOW"><br> 
-        </form>      
-      
-        <br>
+        <!-- RSVP -->
+        <div class="col-lg-9 col-md-7 col-sm-5 col-xs-2" style="margin-top: 20px">
+            <div style="margin-top:0px; text-align:right">
+              <form class="new_rsvpq" id="new_rsvpq" action="/rsvpqs" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="fUh8zuIXS7oL7m4hlgmWd/yiPeT+oEZFAEQmnOHQELrlUkBFKV/FcUzC3q40FdBYe6Xhh05ejoAa3nwMr4vaPg==">
+                <input value="3" type="hidden" name="rsvpq[event_id]" id="rsvpq_event_id">
+                <br><input style="border: 1px solid grey; border-radius: 0px; font-weight: lighter; font-size: 17px;" placeholder="Enter your email" type="text" name="rsvpq[email]" id="rsvpq_email">
+                <input type="submit" name="commit" value="RSVP NOW" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" id="RSVPsubmit" data-disable-with="RSVP NOW"><br> 
+              </form>
+            </div>      
+            
+            <br>
 
-   <!-- EVENT DESCRIPTION -->
-  <div style = "padding: 3px 0px 3px 0px">
-    <div style="padding: 5px 5px 5px 5px; color: white; font-size: 20px; background-color: #8C1D40;">
-    <% if @event.desc.present? %>
-      <%= @event.desc.gsub(/\n/, '<br>').html_safe %> <br>
-    <% end %>
-    </div>
-  </div>
-  <br>
-    <!-- Default dropleft button -->
-          <div style="float: right;" class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" style="color: black; background-color: #FFB704; font-size: 15px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" data-toggle="dropdown" aria-haspopup="true">
-              <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
-                  <div class="dropdown-item">leilafrazier.sc.137369195</div>
-                  <div class="dropdown-item">kimclark291</div>
-                  <div class="dropdown-item">notbyfaithaloneinc</div>
-                  <div class="dropdown-item">stevensmaria69</div>
-                  <div class="dropdown-item">scndlf</div>
-                  <div class="dropdown-item">morenomrosalba</div>
-                  <div class="dropdown-item">gccobb</div>
-                  <div class="dropdown-item">vicki_bangs</div>
-                  <div class="dropdown-item">carolenjs</div>
-                  <div class="dropdown-item">brentmager</div>
+          <!-- EVENT DESCRIPTION -->
+          <div style = "padding: 3px 0px 3px 0px; text-align: right;">
+            <div style="padding: 5px 5px 5px 5px; color: white; font-size: 20px; background-color: #8C1D40;">
+              <% if @event.desc.present? %>
+                <%= @event.desc.gsub(/\n/, '<br>').html_safe %> <br>
+              <% end %>
             </div>
           </div>
-        <br><br>
-        </div>
-    </div>
 
-<br>
-         
+          <br>
 
-    
-  </div>
-</div>
+
+            <!-- Default dropleft button -->
+                  <div style="float: right;" class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" data-toggle="dropdown" aria-haspopup="true">
+                      <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+                          <div class="dropdown-item">leilafrazier.sc.137369195</div>
+                          <div class="dropdown-item">kimclark291</div>
+                          <div class="dropdown-item">notbyfaithaloneinc</div>
+                          <div class="dropdown-item">stevensmaria69</div>
+                          <div class="dropdown-item">scndlf</div>
+                          <div class="dropdown-item">morenomrosalba</div>
+                          <div class="dropdown-item">gccobb</div>
+                          <div class="dropdown-item">vicki_bangs</div>
+                          <div class="dropdown-item">carolenjs</div>
+                          <div class="dropdown-item">brentmager</div>
+                    </div>
+                  </div>
+
+              <br><br>
+         </div>
+     </div>
+     <br>
+ </div>
 
 
 # <div id="event-page-layout" style="width: 100%; margin: auto; background-color: #F2EBE4;">
