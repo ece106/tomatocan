@@ -3,8 +3,8 @@
 
 <h2 id="month" style="color: black; width: 380px;"> <%= baseDate.strftime("%B %Y") %> </h2>
 <div style="display: inline-block;">
-  <%=link_to "<", "/monthCalendar?monthNum=#{monthNum - 1}&type=0", class: "btn btn-primary btn-sm #{prevMDisabled}", remote: true%>
-  <%=link_to ">", "/monthCalendar?monthNum=#{monthNum + 1}&type=0", class: "btn btn-primary btn-sm", remote: true%>
+  <%=link_to "<", "/monthCalendar?monthNum=#{monthNum - 1}&type=#{type}", class: "btn btn-primary btn-sm #{prevMDisabled}", remote: true%>
+  <%=link_to ">", "/monthCalendar?monthNum=#{monthNum + 1}&type=#{type}", class: "btn btn-primary btn-sm", remote: true%>
 </div>
 <div style="overflow-x: scroll;">
   <table class="caler">

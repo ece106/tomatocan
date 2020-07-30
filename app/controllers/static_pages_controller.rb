@@ -52,7 +52,7 @@ class StaticPagesController < ApplicationController
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
       @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
       @host = User.find(@displayconvo.user_id)
-    end  
+    end
 
     if @displaystudy.present?
       @namestudy = @displaystudy.name
@@ -60,14 +60,14 @@ class StaticPagesController < ApplicationController
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
       @hoststudy = User.find(@displaystudy.user_id)
-    end  
+    end
 
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
       @hostresearch = User.find(@displayresearch.user_id)
-    end  
-        
+    end
+
     if user_signed_in?
       @user = User.find(current_user.id)
     end
@@ -75,6 +75,7 @@ class StaticPagesController < ApplicationController
 
   def monthCalendar
     @monthNum = params[:monthNum].to_i
+    @type = params[:type].to_i
     #TODO: Check time is not an issue
     #TODO: Check correct conversations are retrived
     currentTime = Time.now - 10.hour
@@ -84,9 +85,14 @@ class StaticPagesController < ApplicationController
       @selectedMonth = currentTime.to_date
     end
     #Current style of recurrent events causes issues when performing queries.
-    #All months will have to be retrived and individually selected
+    #All months will have to be retrived and individually selected.
     #6 days added and substracted to display events in the gray areas of the calendar
-    conversations = Event.where( "start_at > ? AND topic = ?", currentTime, 'Conversation' ).order('start_at ASC')
+    if @type == 0
+      conversations = Event.where( "start_at > ? AND topic = ?", currentTime, 'Conversation' ).order('start_at ASC')
+    else
+      conversation = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", currentTime, 'Activism Hall', 'Group Problem Solving').order('start_at ASC')
+    end
+    
     @selectedMonth = @selectedMonth.to_date
     @calendar_events_all = conversations.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events_all = @calendar_events_all.select do |event|
@@ -134,14 +140,14 @@ class StaticPagesController < ApplicationController
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
       @hoststudy = User.find(@displaystudy.user_id)
-    end  
-    
+    end
+
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
       @hostresearch = User.find(@displayresearch.user_id)
-    end  
-        
+    end
+
     if user_signed_in?
       @user = User.find(current_user.id)
     end

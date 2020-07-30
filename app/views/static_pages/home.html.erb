@@ -78,7 +78,10 @@
       <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
     </div>
     <div class="tabPanel">
-      <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
+      <div id="events">
+        <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+           events: @calendar_events_all, monthNum: 0, type: 0}%>
+      </div>
     </div>
   </div>
 </div>
