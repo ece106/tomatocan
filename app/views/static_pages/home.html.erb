@@ -1,5 +1,10 @@
-<% if user_signed_in? %>
-  <% current_user.update_column(:last_viewed, 0) %><% end %>
+<div class="alert">
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+      <%= value %>
+    </div>
+  <% end %>
+</div>
 
   <div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: #8C1D40">
     <div class="alert" style="background-color: #8C1D40"></div>
@@ -44,12 +49,12 @@
       <!--study hall and conversation section -->
       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
         <!--conversations column-->
-        <div class="col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12" style = "height:195px">
           <%= render 'layouts/countdown_clock' %>
         </div>
         <br>
         <br>
-        <%= image_tag("twoguys.jpg", style: "margin-bottom: 30px; border-radius: 112px;")%>
+        <%= image_tag("convo_photo.png", style: "margin-bottom: 30px; border-radius: 112px; width: 75%;")%>
         <h2 class="new text-center">Conversations
         </h2>
         <p>Join conversations hosted by grassroots activists to have
@@ -61,24 +66,11 @@
 
       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 justify-content-center pb-3 mb-3">
         <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-        <% if @displaystudy.present?%>
-          <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
-            <div id="eventCurrentdiv">
-              <br>
-              <p>We're having a Drop-In Session for
-                <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "color: #ffc627" %></p>
-              <p>
-                right NOW!</p><br>
-              <%= link_to " Join the Drop-In Session ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
-            
-              </div>
-            <% else %>
-              <br><h2 class = "new"> There's no one in a Drop-In Session At the Moment <br>Check back later to Join a Drop-In Session<br><br> </h2>
-          <% end %>
-        <% end %>
-        <br>
-        
-        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px;")%>
+        <div class="col-lg-12 col-md-12" style = "height:195px">
+          <%= render 'layouts/countdown_clockstudy' %>
+        </div>
+
+        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:75%;")%>
         <h2 class="new text-center">
           Drop-In Hours
         </h2>
@@ -123,6 +115,6 @@
       </div>
 
       <br><br><br>
-      <script type="text/javascript">
-        showPanel(0, '#f44336');
-      </script>
+<script type="text/javascript">
+  showPanel(0, '#f44336');
+</script>
