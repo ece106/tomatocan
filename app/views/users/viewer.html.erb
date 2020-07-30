@@ -108,20 +108,20 @@
     </div>
   </div>
 
-  <script>
+  <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
     // save current user id
     var currID = "<%= current_user.id %>"
     // get url params
     const urlParams = new URLSearchParams(window.location.search);
 
-    //check if user is blocked every 2 seconds
+    //check if user is blocked every 300 seconds
     function isBlocked() {
       $.post("/users/is_blocked", null, (data) => {
         if (data.includes("<%= @user.permalink %>")) {
           window.location.replace("/blocked")
         }
       })
-      setTimeout(isBlocked, 3000);
+      setTimeout(isBlocked, 300000);
     }
 
     // check if user is signed in every 30 seconds
@@ -132,7 +132,7 @@
           location.reload()
         }
       })
-      setTimeout(signedIn, 30000);
+      setTimeout(signedIn, 300000);
     }
 
     // load attendees list
@@ -141,7 +141,7 @@
         if (data.success == true)
           $('#attendees').html(data.html)
       })
-      setTimeout(loadAttendees, 3000);
+      setTimeout(loadAttendees, 300000);
     }
     
     // unload actions
