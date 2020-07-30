@@ -102,10 +102,11 @@
 
   #events #month {
     margin: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 0px;
     text-align: center;
     display: inline-block;
+    color: black;
+    width: 380px;
   }
 
 
@@ -117,6 +118,7 @@
 
   #events ul li{
     list-style-type: none;
+    max-width: 150px;
     word-wrap: break-word;
   }
 
