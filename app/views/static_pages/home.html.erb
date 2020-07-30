@@ -65,22 +65,22 @@
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
               <br>
-              <p>We're having Activism Hall for
+              <p>We're having a Drop-In Session for
                 <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "color: #ffc627" %></p>
               <p>
                 right NOW!</p><br>
-              <%= link_to " Join Activism Hall Chat ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
+              <%= link_to " Join the Drop-In Session ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
             
               </div>
             <% else %>
-              <br><h2 class = "new"> There's no one in the Activism Hall At the Moment <br>Check back later to Join the Activism Hall <br><br> </h2>
+              <br><h2 class = "new"> There's no one in a Drop-In Session At the Moment <br>Check back later to Join a Drop-In Session<br><br> </h2>
           <% end %>
         <% end %>
         <br>
         
         <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px;")%>
         <h2 class="new text-center">
-          Activism Hall
+          Drop-In Hours
         </h2>
         <p>
           Discover other activists working on similar causes. Drop in to
