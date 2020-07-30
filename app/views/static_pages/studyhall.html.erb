@@ -1,17 +1,19 @@
 
+
 <div class="team pt-3 mt-3">
   <div class="container border shadow">
     <div class="row" >
 
       <div class="row col-lg-7 col-md-6">
-        <h3 class="text-center text-primary"><b> ACTIVISM HALL: Coworking where we’re socially distanced but not alone</b></h3>
+        <h3 class="text-center text-primary"><b> DROP-IN HOURS: Coworking where we’re socially distanced but not alone</b></h3>
         <p class="h4 pl-3 ml-3">
-          - Hang out in video chat with other people committing activism. Drop in & find out who is here! <br>
-          - Peers and possibly mentors are there while you're working. Bounce ideas, pair program, get feedback on your designs or activism plans. <br>
+        - Hang out in video chat with other people conducting activism. Drop in & find out who is here! <br>
+          - Exchange ideas, get feedback on your designs or activism plans. <br>
           - No agenda. Drop in any time; we'll greet you when you arrive. 
           Feel free to work quietly in the chat room to be there for each other when that Aha moment happens.<br>
-          - ThinQ.tv is a Woman-Owned tech startup. We are particularly supportive of women & minorities in tech.
+          - ThinQ.tv is a Woman-Owned tech startup. We are supportive of women & minorities in tech and usually have software engineers and designers in our Drop-In Hours.
          </p>
+
       </div>
       <div class="col-lg-5 col-md-6 col-xs-12">
         <div class="row" id="countdown_clock">
@@ -24,13 +26,15 @@
 </div>
 <br>
 
+
 <div class="tabContainer col-lg-12 pt-3 mt-3 pl-3 ml-3"> 
-      <h1 class = "text-left text-primary"><strong>Activism Hall Schedule</strong></h1> 
+      <h1 class = "text-left text-primary"><strong>Drop-In Schedule</strong></h1> 
       <div class = "row col-lg-12">
     <div class="col-lg-3 col-md-6 col-xs-12 text-left">
+
           <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
-            <%= link_to 'Post Activism Hall Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in Activism Hall sessions or invite people to ask questions about your area of expertise" %>
+            <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
     <div class="pl-5 ml-5 text-center">
