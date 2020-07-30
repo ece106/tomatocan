@@ -1,12 +1,11 @@
 <% if @events.count != 0 %>
+  <% if @start_timestudy != nil %>
   <% if (Time.current > Time.find_zone("UTC").parse(@start_timestudy) ) && (Time.current < Time.find_zone("UTC").parse(@start_timestudy) + 1.hour) %> 
     <div id="eventCurrentdiv">
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <h3>We're having Activism Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
-              <p> right NOW!</p><br>
-              <%= link_to " Join Activism Hall NOW ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic , event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
+              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic , event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -48,5 +47,6 @@
       <br>
       Hosted by: <%= link_to @hoststudy.name, @hoststudy.permalink %>
     </div>
+  <% end %>
   <% end %>
 <% end %>
