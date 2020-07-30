@@ -53,7 +53,7 @@ class StaticPagesController < ApplicationController
       @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
       @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
       @host = User.find(@displayconvo.user_id)
-    end  
+    end
 
     if @displaystudy.present?
       @namestudy = @displaystudy.name
@@ -61,16 +61,43 @@ class StaticPagesController < ApplicationController
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
       @hoststudy = User.find(@displaystudy.user_id)
-    end  
+    end
 
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
       @hostresearch = User.find(@displayresearch.user_id)
-    end  
-        
+    end
+
     if user_signed_in?
       @user = User.find(current_user.id)
+    end
+  end
+
+  def monthCalendar
+    @monthNum = params[:monthNum].to_i
+    @type = params[:type].to_i
+    currentTime = Time.now - 10.hour
+
+    unless @monthNum.month == 0
+      @selectedMonth = currentTime.beginning_of_month + @monthNum.month
+    else
+      @selectedMonth = currentTime.to_date
+    end
+    if @type == 0
+      conversations = Event.where( "start_at > ? AND topic = ?", currentTime, 'Conversation' ).order('start_at ASC')
+    else
+      conversations = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", currentTime, 'DropIn', 'Group Problem Solving' ).order('start_at ASC')
+    end
+
+    @selectedMonth = @selectedMonth.to_date
+    @calendar_events_all = conversations.flat_map{ |e| e.calendar_events(e.start_at)}
+    @calendar_events_all = @calendar_events_all.select do |event|
+       event.start_at >= @selectedMonth.beginning_of_week and event.start_at <= @selectedMonth.end_of_month.end_of_week
+    end
+    @calendar_events_all = @calendar_events_all.sort_by {|event| event.start_at}
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -110,14 +137,14 @@ class StaticPagesController < ApplicationController
       @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
       @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
       @hoststudy = User.find(@displaystudy.user_id)
-    end  
-    
+    end
+
     if @displayresearch.present?
       @nameresearch = @displayresearch.name
       @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
       @hostresearch = User.find(@displayresearch.user_id)
-    end  
-        
+    end
+
     if user_signed_in?
       @user = User.find(current_user.id)
     end
