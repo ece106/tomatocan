@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   <div class="row" style="background-color: #8C1D40">
     <div class="alert" style="background-color: #8C1D40"></div>
     <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
@@ -60,10 +61,75 @@
       <!--end of conversations column-->
 
       <div class="middleContainer">
+=======
+<% if user_signed_in? %>
+  <% current_user.update_column(:last_viewed, 0) %><% end %>
+
+  <div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: #8C1D40">
+    <div class="alert" style="background-color: #8C1D40"></div>
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+      <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+          <%= value %>
+        </div>
+      <% end %>
+      <h1 style="color: white">
+        Discover Activism that makes you
+        <div>
+          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 10px")%><br>
+        </h1>
+        <h2 style="color: white">
+          Crowdsource Activism via Video Chat
+        </h2>
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <%= image_tag("header-image.png", style: "width:80%")%>
+      </div>
+
+    </div>
+    <!-- end of top section-->
+
+    <div class="row">
+      <h1 class="new">
+        New to ThinQ.tv?
+      </h1>
+      <h3 class="Subtitle">
+        Most of the day we have a video chat
+        <%= link_to "Activism Hall", studyhall_path, style: "color: #ffc627" %>
+        to support Women & Minorities in Tech.
+        <br>
+        Everyone is welcome. Drop in to ask questions about ThinQ.tv!
+      </h3>
+      <br><br>
+    </div>
+    <!-- end of new to thinQ section-->
+
+    <div class="row">
+      <!--study hall and conversation section -->
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <!--conversations column-->
+        <div class="col-lg-12 col-md-12">
+          <%= render 'layouts/countdown_clock' %>
+        </div>
+        <br>
+        <br>
+        <%= image_tag("twoguys.jpg", style: "margin-bottom: 30px; border-radius: 112px;")%>
+        <h2 class="new text-center">Conversations
+        </h2>
+        <p>Join conversations hosted by grassroots activists to have
+          <br>
+          scheduled small group conversations about activism!
+        </p>
+      </div>
+      <!--end of conversations column-->
+
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 justify-content-center pb-3 mb-3">
+>>>>>>> e66ae75ccb088d7723ff52e5e73af4200f39c178
         <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
         <% if @displaystudy.present?%>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
+<<<<<<< HEAD
               <p style="color:#fff">We're having Activism Hall for
                 <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "color: #ffc627" %></p>
               <p style="color:#fff">
@@ -79,31 +145,65 @@
         <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px;")%>
         <h2 class="Subtitle">
           <b>Activism Hall</b>
+=======
+              <br>
+              <p>We're having Activism Hall for
+                <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "color: #ffc627" %></p>
+              <p>
+                right NOW!</p><br>
+              <%= link_to " Join Activism Hall Chat ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
+            
+              </div>
+            <% else %>
+              <br><h2 class = "new"> There's no one in the Activism Hall At the Moment <br>Check back later to Join the Activism Hall <br><br> </h2>
+          <% end %>
+        <% end %>
+        <br>
+        
+        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px;")%>
+        <h2 class="new text-center">
+          Activism Hall
+>>>>>>> e66ae75ccb088d7723ff52e5e73af4200f39c178
         </h2>
         <p>
           Discover other activists working on similar causes. Drop in to
           <br>
           video chat throughout the day to meet us & collaborate!
         </p>
+<<<<<<< HEAD
       </div>
       <!--end of study hall column-->
 
+=======
+        <br><br><br>
+      </div>
+      <!--end of activism hall column-->
+
+      <div class="main row">
+>>>>>>> e66ae75ccb088d7723ff52e5e73af4200f39c178
       <div class="bottomContainer" id="countdown_clock">
         <!-- col-lg-7 col-md-12 -->
         <div class="main row">
           <br>
           <div class="convo-container">
             <!-- col-lg-3 col-md-6 -->
+<<<<<<< HEAD
             <h2>Conversation Schedule</h2>
             <h4>Discover topics that motivate you!</h4>
+=======
+            <h1 class = "new">Conversation Schedule</h1>
+>>>>>>> e66ae75ccb088d7723ff52e5e73af4200f39c178
             <% if user_signed_in? %>
               <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
             <% end %>
           </div>
+<<<<<<< HEAD
           <div class="clock-container">
             <!-- col-lg-3 col-md-6 -->
             <%= render 'layouts/countdown_clock' %>
           </div>
+=======
+>>>>>>> e66ae75ccb088d7723ff52e5e73af4200f39c178
         </div>
         <div class="tabContainer">
           <div class="buttonContainer">

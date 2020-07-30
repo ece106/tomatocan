@@ -22,37 +22,27 @@
 
           <div class="row" style="margin-bottom:-20px; padding:0px">
           
-
-          <!-- Profile Picture -->
-            <div class="col-md-4" style="margin-left:0px; margin-top:-30px;">
+            <!-- Profile Picture -->
+            <div class="col-md-3" style="margin-left:0px; margin-top:-20px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
-                  <%= image_tag @user.profilepic.url.to_s, :height => "150" %>
+                  <%= image_tag(@user.profilepic.url.to_s, :class => "img-circle", :height => "150", :width => "150", :id => "profileInfoImage") %>
                 <% else %>
-                  <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
+                  <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150", :id => "profileInfoImage" %> <br>
                 <% end %>
-                  <%= f.file_field :profilepic, :style => "padding-top:5px;" %>
+                  <br><br>
+                  <%= f.file_field :profilepic %>
                 <p class="help-block">150px &times; 150px is best</p>
               </div>
             </div>
 
-            <!-- Header (For Now) -->
-            <div class="col-md-8" style="margin-top:-20px; margin-left:-45px;">
-              <div class="form-group">
-                <h3><%=f.label :name, "Banner Image" %></h3>
-                <%= f.file_field :bannerpic, :style => "padding-top:0px;" %>
-                <p class="help-block">1500px &times; 300px is best</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- Header (Broken Currently)
+            <!-- Header -->
             <div class="col-md-9" style="margin-top:-20px;">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <% if @user.bannerpic.present? && @user.bannerpic != '' %>
-                  <div id="profileInfoBanner" style="margin-top:20px">
+                  <div id="profileInfoBanner">
                     <%= image_tag(@user.bannerpic.url.to_s, :style => "height:150px; margin-top:-15px", :id => "userBannerImage")%> <br>
                   </div>
                 <% else %>
@@ -65,7 +55,7 @@
               </div>
             </div>
           </div>
-          -->
+          
 
           <!-- Name -->
           <div class="form-group" style="margin-top:0px">
