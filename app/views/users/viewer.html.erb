@@ -39,6 +39,7 @@
         </div>
 
         <% domainurl = "https://thinq.tv/youronlinemom" %>
+        <% eventUrl = "https://thinq.tv/#{request.original_fullpath}"%>
         <div style="margin-left: 17px">
           <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
             twitterLink: "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("Come join the conversation on #{eventUrl}")}",
