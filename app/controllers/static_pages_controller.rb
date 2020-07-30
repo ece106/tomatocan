@@ -84,9 +84,6 @@ class StaticPagesController < ApplicationController
     else
       @selectedMonth = currentTime.to_date
     end
-    #Current style of recurrent events causes issues when performing queries.
-    #All months have to be retrived and individually selected.
-    #6 days added and substracted to display events in the gray areas of the calendar
     if @type == 0
       conversations = Event.where( "start_at > ? AND topic = ?", currentTime, 'Conversation' ).order('start_at ASC')
     else
