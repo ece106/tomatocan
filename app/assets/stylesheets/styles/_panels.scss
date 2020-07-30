@@ -97,14 +97,8 @@
       overflow: hidden;
     }
 
-    .notmonth { color: #CCC; }
-    .today { background-color: #D7F2FF; }
-
-  /*}*/
-
-  .smEvents, .lgEvents{
-    max-width: 130px;
-  }
+  .notmonth { color: #CCC; }
+  .today { background-color: #D7F2FF; }
 
   #events #month {
     margin: 0;
@@ -123,6 +117,7 @@
 
   #events ul li{
     list-style-type: none;
+    word-wrap: break-word;
   }
 
 .title {

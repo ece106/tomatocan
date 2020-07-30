@@ -21,8 +21,8 @@
       <tr style="padding: 0px;">
         <%week.each do |day|%>
           <%dayClass = day == Date.today ? "today" : (day.month != baseDate.month ? "notmonth" : "") %>
-          <td class = "<%= dayClass%> overflow-visible">
-            <div class="lgEvents">
+          <td class = "<%= dayClass%>">
+            <div>
               <%= day.day %>
               <%count = 0%>
               <%events.select{|event| event.start_at.to_date.eql? (day)}.each do |event|%>
@@ -31,7 +31,7 @@
                   <span class="more" style="display: none;">
                 <%end%>
                 <ul>
-                  <li style="word-wrap: break-word;">
+                  <li>
                     <%= link_to event.name, event_path(event.id), title: event.desc, class: dayClass%>
                     <% user = User.find(event.user_id) %>
                     <br>

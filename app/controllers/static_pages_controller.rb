@@ -77,23 +77,22 @@ class StaticPagesController < ApplicationController
   def monthCalendar
     @monthNum = params[:monthNum].to_i
     @type = params[:type].to_i
-    #TODO: Check time is not an issue
-    #TODO: Check correct conversations are retrived
     currentTime = Time.now - 10.hour
+
     unless @monthNum.month == 0
       @selectedMonth = currentTime.beginning_of_month + @monthNum.month
     else
       @selectedMonth = currentTime.to_date
     end
     #Current style of recurrent events causes issues when performing queries.
-    #All months will have to be retrived and individually selected.
+    #All months have to be retrived and individually selected.
     #6 days added and substracted to display events in the gray areas of the calendar
     if @type == 0
       conversations = Event.where( "start_at > ? AND topic = ?", currentTime, 'Conversation' ).order('start_at ASC')
     else
-      conversation = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", currentTime, 'Activism Hall', 'Group Problem Solving').order('start_at ASC')
+      conversations = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", currentTime, 'DropIn', 'Group Problem Solving' ).order('start_at ASC')
     end
-    
+
     @selectedMonth = @selectedMonth.to_date
     @calendar_events_all = conversations.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events_all = @calendar_events_all.select do |event|
