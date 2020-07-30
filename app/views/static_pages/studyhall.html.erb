@@ -27,19 +27,19 @@
       <h1 class = "new">Drop-In Schedule</h1>
     </div>
     
-    <div class="col-md-4 col-sm-12 pl-5 pr-5">
+    <div class="col-md-4 col-sm-12 pt-4">
          
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
     <% else %>
-    <div class="col-md-8 col-sm-12">
-      <h1 class = "new text-center">Activism Hall Schedule</h1>
+    <div class="col-md-8 col-sm-12 pl-5 ml-3">
+      <h1 class = "new ">Activism Hall Schedule</h1>
     </div>
     <% end %>
-    <div class="col-md-8 col-sm-12 ">
-      <div class="buttonContainer text-center"><br>
+    <div class="col-md-8 col-sm-12 ml-n4">
+      <div class="buttonContainer "><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
       </div>
