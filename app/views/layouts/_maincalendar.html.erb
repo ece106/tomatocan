@@ -62,7 +62,7 @@
             <% if rsvps.count > 0 %>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
-                  <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= rsvps.count %></span>
+                  <span class="caret"></span>  <span><%= rsvps.count %></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
                   <% rsvps.each do |rsvp| %>
@@ -92,6 +92,7 @@
                     <% end %>
                   <% end %>
                 </div>
+              </div>
             <% end %>
           </td>
 
