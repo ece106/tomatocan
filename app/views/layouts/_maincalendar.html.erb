@@ -9,9 +9,10 @@
   <% if @calendar_events.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
+
         <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
 
-          <% user = User.find(event.usrid) %>
+          <% user = User.find(event.user_id) %>
           <% i += 1 %>  
           <tr>
             <td class=col-xs-2>
@@ -34,7 +35,7 @@
             <%= link_to user.name, user.permalink, title: rsvpeople %>
 
             <% if user_signed_in? %>
-              <% if event.usrid == current_user.id %>
+              <% if event.user_id == current_user.id %>
                 <%= link_to '(Edit)', edit_event_path(event.id), id: "calendar-host" %>
               <% end %>
             <% end %>
@@ -92,7 +93,19 @@
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
             <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-              <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              <%= link_to " Join " + event.topic, user_viewer_path(user.permalink, chatrm: event.topic, event: event.id), class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              <div id="live<%=i%>"></div>
+              <script>
+                function liveCount() {
+                  $.get("/conversations/livecounter", {id: "<%=event.id%>"}, function(data) {
+                    if (data.success == true)
+                      $('#live<%=i%>').html(data.html)
+                  })
+                  setTimeout(liveCount, 8000);
+                }
+                
+                liveCount()
+              </script>
               
             <% else %>
                 <%= form_for(@rsvp) do |f| %>
@@ -118,7 +131,7 @@
                     <% end %>
 
                     <% if flag %>
-                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit"  %>
+                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit"  %>
                     <% end %>
                   <% else %>
                     <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
@@ -138,7 +151,7 @@
                 
                 <% if user_signed_in? %>
                   <%= f.hidden_field :user_id, :value => current_user.id %>
-                  <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit" %>
+                  <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
                 <% else %>
                   <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
                   <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
@@ -159,7 +172,7 @@
               'width=600,height=400,top=100,left=300');
               return false;">
               <%= image_tag("facebook_icon.png", :style => "margin-left: 0px; width:25px; height:25px; border-radius:4px")%>
-            </a>&nbsp
+          </a>&nbsp
 
               <!-- Twitter Share -->
               <a href="https://twitter.com/intent/tweet?text=Join <%= user.name %>'s' Conversation to talk about: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: <%= request.base_url %><%= user.permalink %>%20Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations."

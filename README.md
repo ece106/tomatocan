@@ -211,7 +211,7 @@ We'll allow most appropriately-skilled college students the opportunity to earn 
 - Contribute enough to justify a pull request every 3 weeks.
 - Share conversations on your social media accounts every week: LinkedIn, Twitter, Facebook, Instagram. Tag Thinq.TV's account on the post to prove that the Conversation was shared.
 - Invite parents and friends to participate on live conversations - and prove it by their appearance.
-- Keep your hours updated on the Study Hall Schedule. Otherwise we'll assume you will not be fulfilling your 10 hours/week.
+- Keep your hours updated on the Drop-In Schedule. Otherwise we'll assume you will not be fulfilling your 10 hours/week.
 
 Add the following columns to your Goals & Accomplishments sheet:
 - Conversations attended

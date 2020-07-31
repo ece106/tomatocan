@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style = "margin-top: 50px">
   <%= render 'layouts/flash_messages' %>
   <div class="row">
     <div class="col-lg-6 col-lg-offset-3" style="padding:20px 0px 0px 0px">
@@ -59,18 +59,15 @@
 
           <!-- Sign up button and TOS -->
           <div class="row">
-            <div class="col-md-8" style="margin-left:-50px">
+            <div class="col-md-8" >
               <small>By clicking 'Sign Up', you agree to the <br> ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
             </div>
-            <div class="col-md-5" >
+            <div class="col-md-4" >
               <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
             </div>
           </div>
 
-          <!--
-          <div style="text-align:center; padding-bottom:10px">
-            OR
-          </div>
+          <hr style="border: 1px solid grey;">
           
           <div style="text-align:center"> 
             <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
@@ -84,7 +81,6 @@
               <b>Sign Up With Google</b> 
             </a>
           </div>
-          -->
 
         <% end %>
       </div>

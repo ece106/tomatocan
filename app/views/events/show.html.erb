@@ -32,10 +32,13 @@
     <div class="img-fluid" style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
       <% if @user.profilepic.present? && @user.profilepic != '' %>
         <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
+      <% else %>
+        <%= image_tag "logoDigitalHollow300.png", :height => "300", :width => "300" %> <br>
       <% end %><br><br>  
     </div>
 
     <!-- CONVERSATION NAME & HOST -->
+<<<<<<< HEAD
     <div style="margin-top: 25px; margin-left: 50px; background-color: #8C1D40">
       <div class="aboutHeader row" style="font-size: 30px; margin-left: 200px;">  
         <div class="col-lg-3" style="margin-top: 20px">
@@ -59,9 +62,31 @@
           <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
             <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary btn-lg", style: "color: #FFB704; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 12px" %>
           <% end %>
+=======
+    <div class="col-md-5">
+      <div style ="margin-left: 30px">
+        <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
+          <br><br><br><br>
+          <div id="eventCurrentdiv" >
+              <h3>We're talking about <%= @displayconvo.name %></h3>  
+              <p> right NOW!   </p> 
+              <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @event.topic , event: @event.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
+              <br>
+          </div>
+        <% else %>
+          <br><br><br><br><br><br><br><br><br><br><br>
+          <div class="aboutHeader" style = "font-size: 30px; margin-left: 25px">  
+            <b><%= @event.name %></b>
+          </div>
+        <% end %>
+        <b>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </b><br>
+      </div>
+    </div>
+>>>>>>> 0c3dcb6783910577f8c80e15fcce48043b562c4c
 
         </div>
 
+<<<<<<< HEAD
         <!-- RSVP -->
         <div class="col-lg-9 col-md-7 col-sm-5 col-xs-2" style="margin-top: 20px">
             <div style="margin-top:0px; text-align:right">
@@ -79,6 +104,49 @@
             <div style="padding: 5px 5px 5px 5px; color: white; font-size: 20px; background-color: #8C1D40;">
               <% if @event.desc.present? %>
                 <%= @event.desc.gsub(/\n/, '<br>').html_safe %> <br>
+=======
+            <% if flag %>
+              <%= f.submit "RSVP NOW", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px", :id => "RSVPsubmit" %><br>
+            <% end %>
+          <% end %>
+        
+            <% if user_signed_in? %>
+              <% if @event.user_id == current_user.id %>
+                <%= link_to "Edit Conversation", edit_event_path(@event)%><br><br>
+              <% end %>
+          <% end %>
+    
+          <% if @rsvps.count > 0 %>
+            <br><br><br><br><br><br><br><br>
+            <!-- Default dropleft button -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+              <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+              <% @rsvpusers.each do |rsvpuser| %>
+                <%= link_to user_profile_path(rsvpuser.permalink) do %>
+                  <div class="dropdown-item">
+                    <span>
+                      <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
+                        <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
+                      <% elsif !rsvpuser.profilepic.url.nil? %>
+                        <% if rsvpuser.profilepic.url.match(/http/) %>
+                          <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
+                        <% end %>
+                      <% else %> 
+                        <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
+                      <% end %>
+                    </span>
+                    <%= rsvpuser.name %></div>
+                <% end %>
+              <% end %>
+              <% @rsvps.each do |rsvp| %>
+                <% unless rsvp.email.blank? %>
+                  <% parts = rsvp.email.split('@') %>
+                  <div class="dropdown-item"><%= parts[0] %></div>
+                <% end %>
+>>>>>>> 0c3dcb6783910577f8c80e15fcce48043b562c4c
               <% end %>
             </div>
           </div>
@@ -307,7 +375,16 @@
           <div style = "font-size: 14px; font-style: italic">
             On Desktop: <br>
             <div style = "margin-left: 5px">
+<<<<<<< HEAD
               Go to <%= link_to "ThinQ.tv", root_path %> and click the <%= link_to " Join Conversation", user_viewer_path(@user.permalink, chatrm: "Study Hall" ), :class => 'btn btn-sm btn-primary fa fa-video-camera' %> button. <br>
+=======
+              <% pdtnow = Time.now - 7.hours %>
+              <% if  @event.start_at < pdtnow && @event.end_at > pdtnow %>
+                Go to <%= link_to "ThinQ.tv", root_path %> and click the <%= link_to " Join Conversation", user_viewer_path(@user.permalink, chatrm: @event.topic, event: @event.id ), :class => 'btn btn-sm btn-primary fa fa-video-camera' %> button. <br>
+              <% else %>
+                When live, go to <%= link_to "ThinQ.tv", root_path %> and click the <button class="btn btn-sm btn-primary fa fa-video-camera"> Join Conversation </button> button!
+              <% end %>
+>>>>>>> 0c3dcb6783910577f8c80e15fcce48043b562c4c
             </div>
             On Mobile:
             <div style = "margin-left: 5px">

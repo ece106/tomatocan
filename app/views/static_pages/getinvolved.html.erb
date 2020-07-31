@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- top row of content-->
-<div class="row ">
-    <div class="col-lg-6 col-md-6 col-small-12"><br>
+<div class="row" >
+    <div class="col-lg-6 col-md-6 col-small-12">
       <%= image_tag("videopic.jpg", :style => "max-height:auto; width:100%;")%>
     </div>
   <div class="col-lg-6 col-md-6 col-small-12">
       <!-- main content-->
       <h1 class="new">Join in Activism for causes you believe in via Video Chat
       </h1>
-      <p>
+      <p class = "black">
         ThinQ.TV is a free platform where people don't just "preach to the choir", but motivate others through small group Conversations. Grassroots movements can empower their members to initiate conversations among each other to brainstorm ways to advance causes they believe in and gather more people who want to make a difference.<br><br>
-        Passionate about Women or Minorities in Tech? Drop in to <%= link_to "Activism Hall", studyhall_path %> to mentor, learn, and collaborate on open source projects. Meet potential colleagues!
+        <%= link_to "Drop In", studyhall_path %> to mentor, learn, and collaborate. Meet fellow activists!
       </p>
     <h1 class="new">Our Mission</h1>
-    <p>
+    <p class = "black">
       Empower you to discover conversations with fellow activists about topics important to you. Change the world one Conversation at a time.
     </p>
   </div>
@@ -22,61 +22,59 @@
 <!-- closing top section-->
 
 <! -- why thinQ.tv section -->
-<div class="row mb-0 pb-0 mt-3 pt-3">
-      <!--THIS CANNOT BE A ROW -->
-      <!--FIX SO WE DO NOT HAVE INLINE CSS & SO THE WHITE FOND MATCHES THE MAROON H1 -->
-      <!--THIS CANNOT BE A ROW -->
-      <!--USE SMALL PHOTOS RATHER THAN UNIDENTIFIABLE BLOBS -->
-  <h1 class="white" style = "background-color: #8C1D40; margin-bottom: -10px; margin-top: 20px; margin-right: -15px;"><br>
+<div class="row mb-0 pb-0 mt-3 pt-3" style = "background-color: #8C1D40">
+  <h1 class="white">
     Why ThinQ.tv?
   </h1>
-  <div class="row align-items-end" style = "background-color: #8C1D40">
-    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
-      <%= image_tag("knowledge_icon.png", :style => "height:10px; max-width:27.5%;")%>
-    </div>
-    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
-      <!--<br> this is a short icon, so Im adding a break to fix the spacing -->
-      <%= image_tag("discovery_icon.png", :style => "height:auto; max-width:27.5%;")%>
-    </div>
-    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
-      <%= image_tag("collaboration_icon.png", :style => "height:auto; max-width:27.5%;")%>
-    </div>
-    <div class="col-lg-3 col-md-3 col-small-6 align-self-end">
-      <%= image_tag("schedule_icon.png", :style => "height:auto; max-width:27.5%;")%>
-    </div>
+  <div class="row align-items-end" >
+    
   </div>
-  <div class="row mt-0 pt-0" style = "background-color: #8C1D40">
-    <div class="col-lg-3 col-md-3 col-small-6">
+  <div class="row mt-0 pt-0 row-cols-sm-2" >
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="row align-self-end">
+        <%= image_tag("activism_icon.png", :style => "height:auto; max-width:50%;")%>
+      </div>
       <h2 class="new">
         Activism
       </h2>
-      <!--DO WE HAVE A P FONT THAT IS WHITE?????? -->
-      <p style = "color: #fff" >
+      <p class = "white" >
         Movements can empower their people to organize and motivate people for the movement. Don't wait for the leadership to call you together - initiate a <%= link_to "Conversation", new_event_path, style: "color: #FFC627;" %> yourself!<br><br>
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-small-6">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row align-self-end">
+        <%= image_tag("discovery_icon.png", :style => "height:auto; max-width:50%;")%>
+      </div>
       <h2 class="new">
         Discovery
       </h2>
-      <p style = "color: #fff">
+      <p class = "white">
         Meet passionate people who have interesting ideas to share & collaborate on.
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-small-6">
+    <div class="clearfix visible-sm">
+        <!-- clearfix sm cols every 2 -->
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row align-self-end">
+        <%= image_tag("dialogue_icon.png", :style => "height:auto; max-width:50%;")%>
+      </div>
       <h2 class="new">
          Dialogue
       </h2>
-      <p style = "color: #fff">
+      <p class = "white">
         Share ideas and get feedback <i>with</i> others instead of talking <i>at</i> them.
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-small-6">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row align-self-end">
+        <%= image_tag("schedule_icon.png", :style => "height:auto; max-width:50%;")%>
+      </div>
       <h2 class="new">
-        Schedule
+      Schedule
       </h2>
-      <p style = "color: #fff">
-        Don’t wait for local organization leadership to invite you to meet. Meet virtually with motivated people from around the world at any time! Look at our <%= link_to "Conversation", root_path, style: "color: #FFC627;" %> and <%= link_to "Activism Hall", studyhall_path, style: "color: #FFC627;" %> schedules.<br><br>
+      <p class = "white">
+        Don’t wait for local organization leadership to invite you to meet. Meet virtually with motivated people from around the world at any time! Look at our <%= link_to "Conversation", root_path, style: "color: #FFC627;" %> and <%= link_to "Drop-In", studyhall_path, style: "color: #FFC627;" %> schedules.<br><br>
       </p>
     </div>
   </div>
@@ -89,7 +87,7 @@
     Our Story
   </h1>
   <div class="col-lg-8 col-md-8 col-sm-12">
-    <p>
+    <p class = "black">
       Back when ThinQ.tv Founder & Software Engineer, Dr. Lisa Schaefer, lived in Washington, DC, she attended a meeting where Biz Stone, the founder of Twitter, spoke. All she could thinQ of during the entire meeting was, "I can come up with something better."<br><br>
 
       Years earlier, Dr. Schaefer had a vision for multi-location book party and discovered live-streaming in its early days. "This changes everything," she thought. Anyone with a computer, webcam, and internet connection can communicate with anyone with anyone else who has an internet connection.<br><br>
@@ -98,9 +96,9 @@
 
       In July 2019 Dr. Schaefer decided to call the platform ThinQ.tv. She researched video chat apps marketed to teens and young adults and was appalled by the inappropriate and sexual behavior; she wanted to create a platform where this behavior was unacceptable and intellectual conversations were celebrated. When COVID19 hit, more people gathered on ThinQ.tv to talk about substantive topics. Dr. Schaefer gathered college students interested in outreach & tech to host conversations every evening about Women in Tech, Black Lives Matter, and national news.<br><br>
 
-      Since everyone was geographically dispersed & working from home, Dr. Schaefer asked the students to work in chatrooms on ThinQ.tv. It became our office and Activism Hall evolved. As a women-founded tech company, the purpose of ThinQ.tv's Activism Hall is to share ideas and collaborate toward boosting women and minorities in tech while improving our leadership and tech skills.<br><br>
+      Since everyone was geographically dispersed & working from home, Dr. Schaefer asked the students to work in chatrooms on ThinQ.tv. It became our office and now we have people in our chatrooms 10 - 14 hours per day. Drop In to share ideas and collaborate on activism.<br><br>
 
-      "Being woman engineer is an act of activism," according to Dr. Schaefer. "Just showing up in spite of the harassment and the assumption that I don't belong here is an act of defiance. If my face goes away, so does my voice. Which leaves a vacuum of leadership for the upcoming generation of women who will follow." <br><br>
+      Dr. Schaefer's brand of activism is Engineering While Female. "Just showing up in spite of the harassment and the assumption that I don't belong here is an act of defiance. If my face goes away, so does my voice. Which leaves a vacuum of leadership for the upcoming generation of women who will follow." <br><br>
 
     </p>
   </div>

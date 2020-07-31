@@ -4,7 +4,7 @@
       <div id="eventCurrentdiv">
         <h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
         <p> is LIVE right NOW!</p>
-        <%= link_to " Join Conversation ", @host.permalink + "/viewer" + "?chatrm=" + @displayconvo.topic, class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px"  %>
+        <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
         <br>
         Hosted by: <%= link_to @host.name, @host.permalink %>
       </div>

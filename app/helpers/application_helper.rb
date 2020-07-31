@@ -1,6 +1,6 @@
 module ApplicationHelper
   def retrieve_host event 
-    event.user_id.nil? ? User.find(event.usrid) : User.find(event.user_id)
+    event.user_id.nil? ? User.find(event.user_id) : User.find(event.user_id)
   end
 
   def render_profile_image(user)

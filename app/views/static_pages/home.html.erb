@@ -1,7 +1,3 @@
-<% if user_signed_in? %>
-  <% current_user.update_column(:last_viewed, 0) %>
-<% end %>
-
 <div class="alert">
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key) %>">
@@ -21,15 +17,13 @@
           Crowdsource Activism via Video Chat
         </div><br><br><br>
 
-        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Activism Hall", studyhall_path, style: "color: #ffc627" %> to support Women & Minorities in Tech. Everyone is welcome.
-          <br><br>Drop in to ask questions about ThinQ.tv! </h3>
+        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px; line-height: 1.2em"><i>New to ThinQ.tv?</i>
+          <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv! 
+        </h3>
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <p style="color:#fff">We're having Activism Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "color: #ffc627" %></p>
-              <p style="color:#fff"> right NOW!</p><br>
-              <%= link_to " Join Activism Hall Chat ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
+              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic, event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
             </div>
           <% end %>
         <% end %>
@@ -38,7 +32,7 @@
             <div id="eventCurrentdiv">
               <p style="color:#fff">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "color: #ffc627" %></p>
               <p style="color:#fff"> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px;" %>
+              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic, event: @displayresearch.id ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
