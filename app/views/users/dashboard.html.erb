@@ -123,13 +123,13 @@
 
     <% else %>
 
-      <div class="row">
-        <div class="col-md-6">
+     <div class="row justify-content-center">
+        <div class="col-md-7">
           <div class="card">
             <div class="card-header bg-primary text-white">
-              <span class="glyphicon glyphicon-exclamation-sign"></span> Sales Coming Soon
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Sales Coming Soon
             </div>
-            <div class="card-body">
+            <div class="card-body border-primary">
               Sales figures will be displayed on this page after you connect to Stripe.
             </div>
           </div>
@@ -139,4 +139,3 @@
   <% end %>
 <% end %>
 
-<%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently n
