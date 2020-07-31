@@ -1,17 +1,17 @@
 <div class="row">
-  <%= f.hidden_field :usrid, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <input type="hidden" id="timeZone" name="timeZone">
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "*Title of Conversation" %></h3>
-    <p class="help-block">Will your Conversation have a topic? Do you have an area of expertise?</p>
+    <h3><%= f.label :buttontype, "*Title of Event" %></h3>
+    <p class="help-block">Will your event have a topic? Do you have an area of expertise?</p>
     <%= f.text_field :name, size: 80 %><p>
   </div>
 
   <div class="form-group">
     <h3><%= f.label :buttontype, "*Topic" %></h3>
-    <p class="help-block">Will your Conversation be a Activism Hall Hour or a Conversation</p>
-    <%= f.select(:topic, ['Activism Hall', 'Conversation', 'Group Problem Solving'], {}) %><p>
+    <p class="help-block">Will your event be a Drop-In Hour or a Conversation</p>
+    <%= f.select(:topic, ['DropIn', 'Conversation', 'Group Problem Solving'], {}) %><p>
   </div>
 
   <div class="form-group">
@@ -27,7 +27,7 @@
   </div>
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "Details about Conversation Topic" %></h3>
+    <h3><%= f.label :buttontype, "Details about Topic" %></h3>
     <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
     <%= f.text_area :desc, cols: 82, rows: 7 %><p>
   </div>

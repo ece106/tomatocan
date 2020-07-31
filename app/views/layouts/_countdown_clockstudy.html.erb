@@ -1,12 +1,11 @@
 <% if @events.count != 0 %>
+  <% if @start_timestudy != nil %>
   <% if (Time.current > Time.find_zone("UTC").parse(@start_timestudy) ) && (Time.current < Time.find_zone("UTC").parse(@start_timestudy) + 1.hour) %> 
     <div id="eventCurrentdiv">
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <h3>We're having Activism Hall for <%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy, style: "text-shadow: 1px 1px 1px #fff" %></h3>  
-              <p> right NOW!</p><br>
-              <%= link_to " Join Activism Hall NOW ", @hoststudy.permalink + "/viewer?chatrm=Activism%20Hall", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
+              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic , event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -15,7 +14,7 @@
             <div id="eventCurrentdiv">
               <h3>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></h3>  
               <p> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving NOW ", @hostresearch.permalink + "/viewer?chatrm=Group%20Problem%20Solving", class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
+              <%= link_to " Join Group Problem Solving NOW ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -48,5 +47,6 @@
       <br>
       Hosted by: <%= link_to @hoststudy.name, @hoststudy.permalink %>
     </div>
+  <% end %>
   <% end %>
 <% end %>

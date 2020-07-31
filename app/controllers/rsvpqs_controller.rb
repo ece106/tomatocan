@@ -16,14 +16,14 @@ class RsvpqsController < ApplicationController
 
     if @rsvp.save
       flash[:success] = 'Rsvp was successfully created.'
-      @event = Event.find(params[:rsvpq][:event_id])
+      event = Event.find(params[:rsvpq][:event_id])
       offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
-      @reminder_date = @event.start_at + offset.hours - 1.hours #why is the scope Instance instead of local??? Where else is this needed?
-      @email = params[:rsvpq][:email] #why is the scope Instance instead of local??? Where else is this needed?
+      reminder_date = event.start_at + offset.hours - 1.hours #why is the scope Instance instead of local??? Where else is this needed?
+      email = params[:rsvpq][:email] #why is the scope Instance instead of local??? Where else is this needed?
       if current_user
-        RsvpMailer.with(user: current_user, event: @event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: @reminder_date)
+        RsvpMailer.with(user: current_user, event: event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: reminder_date)
       else
-        RsvpMailer.with(email: @email, event: @event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: @reminder_date)
+        RsvpMailer.with(email: email, event: event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: reminder_date)
       end
       redirect_back(fallback_location: request)
     else

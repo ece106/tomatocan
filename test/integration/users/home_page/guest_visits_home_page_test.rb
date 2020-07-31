@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
-
 	setup do
     	visit root_path
 	end
@@ -18,7 +17,7 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
   		click_on('About Us', match: :first)
   		assert_equal current_path, '/getinvolved'
   	end	
-  end
+  end 
 
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
@@ -28,9 +27,9 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
     end 
   end 
 
-  test "should go to study hall page when clicking study hall in header"  do
+  test "should go to Activism Hall page when clicking Activism Hall in header"  do
     within("div#globalNavbar.collapse.navbar-collapse") do
-      click_on("Study Hall", match: :first)
+      click_on("Activism Hall", match: :first)
       assert_equal current_path, '/studyhall'
     end 
   end
@@ -93,4 +92,4 @@ class GuestVisitsHomePageTest < ActionDispatch::IntegrationTest
     assert page.has_xpath? twitter_link
     assert page.has_xpath? email_link
   end
-  end
+end
