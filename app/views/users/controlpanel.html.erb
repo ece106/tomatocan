@@ -1,17 +1,19 @@
+
 <!-- Nav tabs -->
 <% if user_signed_in? %>
   <% if current_user.id == @user.id %>
-
-  <ul class="nav nav-pills nav-justified" id="dashboardTabs">
-    <li role="presentation" class="active"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "profile-settings-tab" %></li>
-    <li role="presentation"><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
-    <li role="presentation"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
-    <li role="presentation"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
-    <li role="presentation"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
-    <li role="presentation"><%= link_to "Blocked Users", "#blockedTab", "data-toggle" => "tab" %></li>
-    <!-- Stats Feature Pending <li role="presentation"><%= link_to "Stats For Nerds", "#statsTab", "data-toggle" => "tab" %></li> -->
-  </ul>
-
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <div class="navbar-collapse" id="navbarNav">
+    <ul class=" nav navbar-nav nav-pills nav-justified pt-5 container-fluid">
+    <li role="presentation" class="active px-5 font-weight-bold ml-5"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "profile-settings-tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold "><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold "><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold "><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold"><%= link_to "Blocked Users", "#blockedTab", "data-toggle" => "tab" %></li>
+    </ul>
+  </div>
+</nav>
   <!-- Tab panes -->
   <div class="tab-content">
 
@@ -20,7 +22,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-12">
-            <h1>Edit Profile</h1>
+            <h1 class = "pl-5 pt-3">Edit Profile</h1>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -64,7 +66,7 @@
     <div class="tab-pane" id="streamingTab">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 pt-4">
             <h1>Conversations</h1>
           </div>
           <div class="col-md-8" id="shows-button-panel">
@@ -120,13 +122,11 @@
     <div class="tab-pane" id="blockedTab">
       <div class="row justify-content-center">
         <br><br>
-
-
-        <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
+        <div class="col-md-4">
+           <div class="card">
+            <h3 class="card-header bg-primary text-white">
               Blocked Users
-            </div>
+            </h3>
             <div id="blocked" style="padding:0px 18px 8px 0px; font-size: 15px">
               <% if current_user.BlockedUsers.empty? %>
                 <br><p style="text-align:center">You have not blocked any users</p>
@@ -144,7 +144,6 @@
                       <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= name %></a>
                     <% else %>
                       <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
-
                     <% end %>
                     <button id="unblock_button" style="float:right; margin-top:-3px" onclick="unblock('<%=current_user.id%>','<%=user.id%>')">Unblock</button>
                   </div>

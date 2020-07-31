@@ -10,10 +10,10 @@
     <div style="height:70px;"></div>
   <% end %>
 
-  <div class="row ">
+  <div class="container ">
     <div class="col-lg-12">
       <%= form_for @user, :html => {:multipart => true} do |f| %>
-      <div class="card">
+      <div class="card border-primary">
         <h5 class="card-header bg-primary text-white">
           About
         </h5>
@@ -22,6 +22,8 @@
           <div class="row" >
           
 
+          <!-- Profile Picture -->
+            <div class="col-md-6" >
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
@@ -35,18 +37,17 @@
               </div>
             </div>
 
-
-
-            <div class="col-md-9" style="margin-top:-20px;">
+            <!-- Header -->
+            <div class="col-md-6">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <% if @user.bannerpic.present? && @user.bannerpic != '' %>
                   <div id="profileInfoBanner">
-                    <%= image_tag(@user.bannerpic.url.to_s, :style => "height:150px; margin-top:-15px", :id => "userBannerImage")%> <br>
+                    <%= image_tag(@user.bannerpic.url.to_s, :class => "img-responsive w-75", :style => "height:150px; margin-top:-15px", :id => "userBannerImage")%> <br>
                   </div>
                 <% else %>
                   <div id="profileInfoBanner" style="margin-top:20px;">
-                    <%= image_tag("crowddark.png", :class => "img-responsive", :style => "height:130px; margin-top:-13px", :id => "userBannerImage")%> <br>
+                    <%= image_tag("crowddark.png", :class => "img-responsive w-75", :style => "height:130px; margin-top:-13px", :id => "userBannerImage")%> <br>
                   </div>
                 <% end %>
                 <%= f.file_field :bannerpic, :style => "padding-top:23px;" %>

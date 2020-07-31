@@ -15,7 +15,13 @@
 
 <!-- TOP HALF -->
 <div id="event-page-layout" style="width: 100%; margin: auto; background-color: #F2EBE4;">
-  <div class="row" style = "padding-top:15px; padding-bottom:20px;">
+  <div class="alert mt-3">
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+      <%= value %>
+    </div>
+  <% end %>
+</div>
 
     <!-- PROFILE PICTURE -->
     <div class="col-md-3" style="text-align:center; padding: 10px 5px 10px 10px;">

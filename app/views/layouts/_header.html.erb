@@ -72,15 +72,15 @@ body {
   <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li class="dropdown mt-2 pr-3">
-            <a href="#" class="dropdown-toggle text-warning" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get %></li>
-              <li><%= link_to "Control Panel", user_controlpanel_url(current_user.permalink), method: :get %></li>
+            <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret text-white"></span></a>
+            <ul class="dropdown-menu text-left pl-3">
+              <li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get, :class => "text-dark" %></li>
+              <li><%= link_to "Control Panel", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-dark"%></li>
             </ul>
           </li>
           <li>
             <p class="navbar-btn">
-              <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-light border" %>
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-primary border-warning text-warning" %>
             </p>
           </li>
         <% else %>
