@@ -25,9 +25,9 @@
           <td class=col-xs-2>
             <% rsvpeople = "" %>
             <% rsvpusers = event.users %>
-            <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
+            <span style="font-size:80%;" id=calendar-time-day<%=i%>></span>
             <br>
-            <span style="font-size:100%;"id=calendar-time-hour<%=i%>></span>
+            <span style="font-size:105%;"id=calendar-time-hour<%=i%>></span>
           </td>
 
           <script>
@@ -38,6 +38,7 @@
               document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
               document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
           </script>
+
           <td class=col-xs-2>
             <%= event.topic %><br>
             <%= link_to user.name, user.permalink, title: rsvpeople %>
