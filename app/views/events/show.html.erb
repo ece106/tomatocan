@@ -59,28 +59,57 @@
           <% start_time = @event.start_at.strftime("%B %d %Y") + ' ' + @event.start_at.strftime("%T") %>
           <% end_time = @event.end_at.strftime("%B %d %Y") + ' ' + @event.end_at.strftime("%T") %>
           <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-            <%= link_to " Join ", user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary btn-lg", style: "color: #FFB704; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 20px" %>
+            <%= link_to " Join " + @displayconvo.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary btn-lg", style: "color: #FFB704; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 15px; border-color: #FFB704" %>
           <% end %>
 
         </div>
 
         <!-- RSVP -->
         <div class="col-lg-9 col-md-7 col-sm-5 col-xs-2" style="margin-top: 20px">
-            <div style="margin-top:0px; text-align:right">
-              <form class="new_rsvpq" id="new_rsvpq" action="/rsvpqs" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="fUh8zuIXS7oL7m4hlgmWd/yiPeT+oEZFAEQmnOHQELrlUkBFKV/FcUzC3q40FdBYe6Xhh05ejoAa3nwMr4vaPg==">
-                <input value="3" type="hidden" name="rsvpq[event_id]" id="rsvpq_event_id">
-                <br><input style="border: 1px solid grey; border-radius: 0px; font-weight: lighter; font-size: 17px;" placeholder="Enter your email" type="text" name="rsvpq[email]" id="rsvpq_email">
-                <input type="submit" name="commit" value="RSVP NOW" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" id="RSVPsubmit" data-disable-with="RSVP NOW"><br> 
-              </form>
-            </div>
+            <% @title="ThinQ.tv" %>
+              <div style="margin-top:0px; text-align:right">
+                <%= form_for(@rsvp) do |f| %>
+                  <% if @rsvp.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                      <ul>
+                        <% @rsvp.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+      
+                  <%= f.hidden_field :event_id, :value => @event.id %>
+      
+                  <% flag = true %>
+      
+                  <% if user_signed_in? %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <% @rsvps.each do |rsvp| %>
+                      <% if rsvp.user_id == current_user.id %>
+                        <% flag = false %>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px; font-weight: lighter; font-size: 17px;", placeholder: "Enter email" %>
+                  <% end %>
+      
+                  <% if flag %>
+                  
+                    <%= f.submit "RSVP NOW", :style => "color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;", :id => "RSVPsubmit" %><br>
+                    
+                  <% end %>
+                <% end %>
+              
+                  <% if user_signed_in? %>
+                    <% if @event.user_id == current_user.id %>
+                      <%= link_to "Edit Conversation", edit_event_path(@event), class: "btn btn-primary btn-lg", style: "border-color: #FFB704; color: #FFB704; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 12px" %><br><br>
+                    <% end %>
+                <% end %>
+              
             
-            <% if user_signed_in? %>
-              <% if @event.user_id == current_user.id %>
-                <%= link_to "Edit Conversation", edit_event_path(@event)%>
-              <% end %>
-          <% end %>
             
-            <br>
 
           <!-- EVENT DESCRIPTION -->
           <div style = "padding: 3px 0px 3px 0px; text-align: right;">
@@ -95,24 +124,50 @@
 
 
             <!-- Default dropleft button -->
-                  <div style="float: right;" class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" data-toggle="dropdown" aria-haspopup="true">
-                      <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
-                          <div class="dropdown-item">leilafrazier.sc.137369195</div>
-                          <div class="dropdown-item">kimclark291</div>
-                          <div class="dropdown-item">notbyfaithaloneinc</div>
-                          <div class="dropdown-item">stevensmaria69</div>
-                          <div class="dropdown-item">scndlf</div>
-                          <div class="dropdown-item">morenomrosalba</div>
-                          <div class="dropdown-item">gccobb</div>
-                          <div class="dropdown-item">vicki_bangs</div>
-                          <div class="dropdown-item">carolenjs</div>
-                          <div class="dropdown-item">brentmager</div>
-                    </div>
+           
+            
+          
+              <% if @rsvps.count > 0 %>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" >
+                    <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+                    <% @rsvpusers.each do |rsvpuser| %>
+                      <%= link_to user_profile_path(rsvpuser.permalink) do %>
+                        <div class="dropdown-item">
+                          <span>
+                            <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
+                              <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
+                            <% elsif !rsvpuser.profilepic.url.nil? %>
+                              <% if rsvpuser.profilepic.url.match(/http/) %>
+                                <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
+                              <% end %>
+                            <% else %> 
+                              <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
+                            <% end %>
+                          </span>
+                          <%= rsvpuser.name %></div>
+                      <% end %>
+                    <% end %>
+                    <% @rsvps.each do |rsvp| %>
+                      <% unless rsvp.email.blank? %>
+                        <% parts = rsvp.email.split('@') %>
+                        <div class="dropdown-item"><%= parts[0] %></div>
+                      <% end %>
+                    <% end %>
                   </div>
-
+                </div>
+      
+              <% end %>
+              
+          </div>
+        </div>
+        <br>
+      </div>
+      
+                  
+           
               <br><br>
          </div>
      </div>
