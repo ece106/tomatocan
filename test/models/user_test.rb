@@ -235,14 +235,8 @@ class TestUser < ActiveSupport::TestCase
   end
 
   test "users are returned in descending order" do
-    user1 = users(:one)
-    travel_to Time.zone.local(2021, 11, 24, 01, 04, 44) do
-    	user2 = User.create(name: 'samiam', password: "hoohaahh", password_confirmation: "hoohaahh",
-                        email: "mo@example.com", permalink: "qwerty")
-    	assert_not_nil user1
-    	assert_not_nil user2
-    	assert_operator user1.updated_at, :<, user2.updated_at
-    end
+    expected = {"order"=>"DESC"}
+  	assert_equal  expected, User.updated_at.where_values_hash
   end
 
 end
