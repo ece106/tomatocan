@@ -6,7 +6,7 @@
         <h4 style = "line-height: 1.5em" >
           - Hang out in video chat with other people conducting activism. Drop in & find out who is here! <br>
           - Exchange ideas, get feedback on your designs or activism plans. <br>
-          - No agenda. Drop in any time; we'll greet you when you arrive. 
+          - No agenda. Drop in any time; we'll greet you when you arrive.
           Feel free to work quietly in the chat room to be there for each other when that Aha moment happens.<br>
           - ThinQ.tv is a Woman-Owned tech startup. We are supportive of women & minorities in tech and usually have software engineers and designers in our Drop-In Hours.
          </h4>
@@ -45,7 +45,12 @@
       </div>
     </div>
     <div class="tabPanel" >
-       <%= render 'layouts/monthcalendar', collection: @eventsAll %>
+      <div class="container">
+       <div id="events">
+         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+            events: @eventsAll, monthNum: 0, type: 1}%>
+       </div>
+     </div>
     </div>
   </div>
 </div>

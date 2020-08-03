@@ -28,33 +28,22 @@
           Invite via E-Mail:
         </div>
         <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
-          
+
         <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
           Invite via SMS:
         </div>
         <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
 
         <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
-          Invite via social media: 
+          Invite via social media:
         </div>
 
         <% domainurl = "https://thinq.tv/youronlinemom" %>
+        <% eventUrl = "https://thinq.tv/#{request.original_fullpath}"%>
         <div style="margin-left: 17px">
-          <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %>" 
-            onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %>',
-            'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
-              <%= image_tag("facebook_icon.png", :style => "width:25px; height:25px;")%>
-          </a>
-          <a href="https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom"
-            onclick="window.open('https://twitter.com/intent/tweet?text=Come%20join%20the%20conversation%20on%20thinQ.tv%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom,'
-            'newwindow', 'width=600,height=400,top=80,left=300'); return false;">
-              <%= image_tag("twitter_icon.png", :style => "width:25px; height:25px;") %>
-          </a>
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
-            onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
-            'newwindow', 'width=600,height=400,top=100,left=300'); return false;">
-              <%= image_tag("linkedin_icon.png", :style => "width:25px; height:25px;")%>
-          </a>
+          <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
+            twitterLink: "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("Come join the conversation on #{eventUrl}")}",
+            linkedInLink: "https://www.linkedin.com/shareArticle?mini=true&url=#{ERB::Util.url_encode(eventUrl)}"%>
         </div>
       </div>
 
@@ -90,7 +79,7 @@
         </div>
         <div>
       <%end%>
-      
+
       <div class="container">
         <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 20px; margin-left: -20px">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
           <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
@@ -143,7 +132,7 @@
       })
       setTimeout(loadAttendees, 300000);
     }
-    
+
     // unload actions
     $(window).on('beforeunload', (event) => {
       // remove user from attendees list
