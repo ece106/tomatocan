@@ -70,7 +70,7 @@
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
 
-        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:75%;")%>
+        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:75%;align:middle;")%>
         <h2 class="new text-center">
           Drop-In Hours
         </h2>
@@ -109,7 +109,9 @@
             <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
           </div>
           <div class="tabPanel">
-            <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
+            <div id="events">
+        <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+           events: @calendar_events_all, monthNum: 0, type: 0}%>
           </div>
         </div>
       </div>
