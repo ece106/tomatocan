@@ -15,10 +15,10 @@
 
 <!-- TOP HALF -->
 
-<div class="row" style="padding-top:20px;">
-  <h1 class="text-center" style="font-size: 50px"> Come Join the Conversation </h1>
-  <h2 class="text-center" style="font-size: 30px; line-height: 10%;"><b> <%= @event.name %>! </b></h2>
-  <h6 class="text-center" style="line-height: 3;";>Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </h6>
+<div class="row" style="padding-top:20px; font-family: Helvetica Neue;">
+  <h1 class="text-center" style="font-size: 41px;"> Come Join the Conversation </h1>
+  <h2 class="text-center" style="font-size: 24px; line-height: 10%;"><b> <%= @event.name %>! </b></h2>
+  <p class="text-center" style="line-height: 2; font-size: 18px;";> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
 </div>
 
 
@@ -51,7 +51,7 @@
         <div class="col-lg-3" style="margin-top: 20px">
     
           <!-- WHEN -->
-          <p class="text-left" style="color: white;"> 
+          <p class="text-left" style="font-family: Helvetica Neue; font-size: 18px; color: white;"> 
             <b>
               <% edt = @event.start_at + 3.hours %>
               <%= @event.start_at.strftime("%A, %B %d") %> <br>
@@ -121,7 +121,7 @@
 
           <!-- EVENT DESCRIPTION -->
           <div style = "padding: 3px 0px 3px 0px; text-align: right;">
-            <div style="padding: 5px 5px 5px 5px; color: white; font-size: 20px; background-color: #8C1D40;">
+            <div style="padding: 5px 5px 5px 5px; color: white; font-size: 18px; background-color: #8C1D40;">
               <% if @event.desc.present? %>
                 <%= @event.desc.gsub(/\n/, '<br>').html_safe %> <br>
               <% end %>
@@ -137,7 +137,7 @@
           
               <% if @rsvps.count > 0 %>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;" >
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704; font-family: Helvetica Neue;" >
                     <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
