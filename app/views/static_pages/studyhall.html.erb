@@ -33,7 +33,7 @@
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-10 col-sm-12">
       <div class="buttonContainer text-center"><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
@@ -49,7 +49,7 @@
     <div class="tabPanel" >
       <div class="container">
        <div id="events">
-         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 5.hour).to_date,
             events: @eventsAll, monthNum: 0, type: 1}%>
        </div>
      </div>
