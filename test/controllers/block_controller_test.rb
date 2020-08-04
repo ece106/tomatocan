@@ -38,9 +38,11 @@ class BlockControllerTest < ActionController::TestCase
     assert_equal blockedUsers.count, 1
   end
 
-  test 'BlockedUsers_array_has_correct_count_after_block' do
+  test 'arrays_have_correct_count_after_block' do
      blockedUsers = User.find_by_id(@user.id).BlockedUsers
+     blockedBy = User.find_by_id(@blocked_user.id).blockedBy
      assert_equal blockedUsers.count, 1
+     assert_equal blockedBy.count, 1
   end
 
   #unblock
@@ -62,12 +64,19 @@ class BlockControllerTest < ActionController::TestCase
     assert_not_includes blockedBy, @user.permalink
   end
 
+  test 'arrays_have_correct_count_after_unblock' do
+    post :unblock, params: {to_unblock_id: @blocked_user.id, current_user_id: @user.id}
+    blockedUsers = User.find_by_id(@user.id).BlockedUsers
+    blockedBy = User.find_by_id(@blocked_user.id).blockedBy
+    assert_equal blockedUsers.count, 0
+    assert_equal blockedBy.count, 0
+  end
+
   #unload
   test 'unload_removes_current_event_from_last_viewed' do
     post :unload, params: {currentUser: @blocked_user.id, event: @event}
     last_viewed = User.find_by_id(@blocked_user.id).last_viewed
     assert_not_includes last_viewed, @event 
-
   end
 
 
@@ -76,7 +85,7 @@ class BlockControllerTest < ActionController::TestCase
   #loadAttendees
   #liveCount
 
-  # Not sure how to approach these last four since there aren't
+  # Not sure how to approach these last four methods since there aren't
   # any parameters passed to them -- should these go in integration
   # testing instead, since they seem to depend on the view?
 
