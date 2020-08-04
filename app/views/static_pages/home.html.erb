@@ -18,7 +18,7 @@
         </div><br><br><br>
 
         <h3 style="color:#fff; margin-right: 20px; margin-left: 20px; line-height: 1.2em"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv! 
+          <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv!
         </h3>
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
@@ -76,7 +76,10 @@
       <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
     </div>
     <div class="tabPanel">
-      <%= render 'layouts/monthconvocalendar', collection: @conversationsall %>
+      <div id="events">
+        <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+           events: @calendar_events_all, monthNum: 0, type: 0}%>
+      </div>
     </div>
   </div>
 </div>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
   match 'home',                     to: 'static_pages#home',                via: 'get'
+  get 'monthCalendar',              to: 'static_pages#monthCalendar', :as => :update_month_calendar
   match 'a',                        to: 'static_pages#aboutus',                 via: 'get'
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
