@@ -35,8 +35,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name,  presence: true, length: { maximum: 50 }
   validates :permalink, presence: true, length: { maximum: 20, message: "must be less than 20 characters" },
-                        format:     { with: /\A[\w+]+\z/ },
-                        uniqueness: { case_sensitive: false }
+                        format:     { with: /\A[\w+]+\z/ , message: "should be alphanumeric"},
+                        uniqueness: { case_sensitive: false, message: "is not available"}
   validates_presence_of :password, :on=>:create
   validates_confirmation_of :password, :on=>:create
   validates_confirmation_of :password, on: :update, if: :password_changed?
