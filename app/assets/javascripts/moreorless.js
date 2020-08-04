@@ -13,7 +13,7 @@
     });
     tabPanels[panelIndex].style.display="block";
     tabPanels[panelIndex].style.backgroundColor="white";
-  } 
+  }
 
   function showPanel2 (panelIndex, colorCode) {
     var tabButtons2=document.querySelectorAll(".tabContainer2 .buttonContainer button");
@@ -30,7 +30,7 @@
     });
     tabPanels2[panelIndex].style.display="block";
     tabPanels2[panelIndex].style.backgroundColor="white";
-  } 
+  }
 
 
         var i=0;
@@ -46,8 +46,8 @@
         else{
           document.getElementById("more").style.display ="none";
           document.getElementById("dots").style.display ="inline";
-          $('#angle').toggleClass('rotate'); 
-          i=0;          
+          $('#angle').toggleClass('rotate');
+          i=0;
         }
       }
       function read1(){
@@ -61,7 +61,7 @@
           document.getElementById("more1").style.display ="none";
           document.getElementById("dots1").style.display ="inline";
           $('#angle1').toggleClass('rotate1');
-          k=0;          
+          k=0;
         }
       }
       function read2(){
@@ -75,11 +75,20 @@
           document.getElementById("more2").style.display ="none";
           document.getElementById("dots2").style.display ="inline";
           $('#angle2').toggleClass('rotate2');
-          j=0;          
+          j=0;
         }
       }
       read();
       read1();
       read2();
 
-
+function monthMoreEvents(button){
+  $(button).prev().toggle();
+  $(button).siblings('.dots').toggle();
+  $(button).find('.total').show();
+  if($(button).text()=='More Conversations'){
+    $(button).text('Less Conversations');
+  } else {
+    $(button).text('More Conversations');
+  }
+}

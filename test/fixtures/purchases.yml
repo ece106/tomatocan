@@ -2,7 +2,7 @@
 
 one:
   author_id: 1
-  user_id: 1
+  user_id: 2
   group_id: 1
   merchandise: two
   stripe_customer_token: MyString
@@ -23,35 +23,17 @@ merchandise_purchase:
   user_id: 4
   merchandise_id: 1
   author_id:
-  book_id:
-  stripe_customer_token:
-  plan_id:
-  stripe_card_token:
-  bookfiletype:
   pricesold:
   authorcut:
-  paid:
-  group_id:
-  groupcut:
   shipaddress: "First time customer buying with pdf!"
   fulfillstatus:
-  email:
 
 # FK user_id to user id 4 (buyer)
 anonymous_merchandise_purchase:
   user_id: 4
   merchandise_id: 1
   author_id:
-  book_id:
-  stripe_customer_token:
-  plan_id:
-  stripe_card_token:
-  bookfiletype:
-  pricesold:
   authorcut:
-  paid:
-  group_id:
-  groupcut:
   shipaddress: "Anonymous buying with pdf!"
   fulfillstatus:
   email: testdonation@mail.com
@@ -61,35 +43,22 @@ donation_purchase:
   user_id: 5
   merchandise_id: 1
   author_id:
-  book_id:
-  stripe_customer_token:
-  plan_id:
-  stripe_card_token:
-  bookfiletype:
   pricesold:
-  authorcut:
-  paid:
-  group_id:
-  groupcut:
   shipaddress: "First time customer buying with pdf!"
-  fulfillstatus:
-  email:
 
 # FK user_id to user id 5 (donator)
 anon_donation_purchase:
   user_id: 5
   merchandise_id: 1
   author_id:
-  book_id:
-  stripe_customer_token:
-  plan_id:
-  stripe_card_token:
-  bookfiletype:
   pricesold:
-  authorcut:
-  paid:
-  group_id:
-  groupcut:
   shipaddress: "anon donating"
   fulfillstatus:
   email: testdonation@mail.com
+
+donation_no_merchandise:
+  user_id: 5
+  author_id: 3
+  pricesold: 10
+  authorcut: 2
+  shipaddress: "I live here"
