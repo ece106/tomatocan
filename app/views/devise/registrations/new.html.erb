@@ -1,7 +1,7 @@
-<div class="container" style = "margin-top: 50px">
+<div class="container pt-5">
   <%= render 'layouts/flash_messages' %>
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3" style="padding:20px 0px 0px 0px">
+  <div class="row justify-content-center ">
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
       <div class="well">
         <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
         <div style="text-align:center">
@@ -15,7 +15,7 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-user" style="font-size:20px"></i>
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
               </div>
               <%= f.text_field :name, placeholder: "Name: Enter your name or the name of your organization" ,:autofocus => true, :class => "form-control" %>
             </div>
@@ -24,7 +24,7 @@
           <!-- Email Box -->
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-addon" style="font-size:20px">
+              <div class="input-group-addon pr-3 pt-2" style="font-size:20px">
                 &#9993
               </div>
               <%= f.email_field :email, placeholder:"Email", :class => "form-control" %>
@@ -34,7 +34,7 @@
           <!-- Username Box -->
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-addon">
+              <div class="input-group-addon pr-2 pt-2">
                 ThinQ.tv/
               </div>
               <%= f.text_field :permalink, placeholder: "Username: Less than 20 alphanumeric characters only", maxlength: 20, :class => "form-control" %>
@@ -44,14 +44,14 @@
           <!-- Password Boxes -->
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-addon">
+              <div class="input-group-addon pr-3 pt-2">
                 <i class="fa fa-lock" style="font-size:20px"></i>
               </div>
               <%= f.password_field :password, placeholder:"Enter password (Minimum 8 characters)", :class => "form-control" %>
             </div>
             <div class="input-group" style="padding:15px 0px 0px 0px">
               <div class="input-group-addon">
-                <i class="fa fa-lock" style="font-size:20px"></i>
+                <i class="fa fa-lock pr-3 pt-2" style="font-size:20px"></i>
               </div>
               <%= f.password_field :password_confirmation, placeholder:"Confirm password", :class => "form-control" %>
             </div>
@@ -75,7 +75,6 @@
               <b>Sign Up With Facebook</b> 
             </a>
             <b>  <b>
-
             <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
               <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
               <b>Sign Up With Google</b> 
