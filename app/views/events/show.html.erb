@@ -29,13 +29,21 @@
   <div class="container" style="width: 1400px; padding-top:15px; padding-bottom:20px;">
 
     <!-- PROFILE PICTURE -->
-    <div class="img-fluid" style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
-      <% if @user.profilepic.present? && @user.profilepic != '' %>
+    <% if @user.profilepic.present? && @user.profilepic != '' %>
+      <div class="img-fluid" style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
         <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
-      <% else %>
-        <%= image_tag "logoDigitalHollow300.png", :height => "300", :width => "300" %> <br>
-      <% end %><br><br>  
-    </div>
+      </div>
+    <% end %>
+
+    <% if !@user.profilepic.present? || @user.profilepic == '' %>
+      <div class="img-fluid" style="background-color: #fff; left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
+        <img height="300" width="300" src="https://www.beautycolorcode.com/ffffff-400x400.png"> 
+      </div>
+
+      <div class="img-fluid" style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 4;">
+        <%= image_tag "logoDigitalHollow300.png", height: "300", width: "300" %> <br>
+      </div>
+    <% end %>
 
     <!-- CONVERSATION NAME & HOST -->
     <div style="margin-top: 25px; margin-left: 50px; background-color: #8C1D40">
