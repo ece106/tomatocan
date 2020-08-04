@@ -258,10 +258,13 @@ class UsersController < ApplicationController
       end
     end
     if @user.errors.messages[:permalink].present?
-      msg += ("Permalink " + @user.errors.messages[:permalink][0] + "\n")
+      msg += ("User name " + @user.errors.messages[:permalink][0] + "\n")
     end
     if @user.errors.messages[:password].present?
       msg += ("Password " + @user.errors.messages[:password][0] + "\n")
+    end
+    if @user.errors.messages[:password_confirmation].present?
+      msg += ("Password confirmation " + @user.errors.messages[:password_confirmation][0] + "\n")
     end
 
     return msg

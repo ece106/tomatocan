@@ -16,9 +16,10 @@ one:
   author: author
   about: MyText
   twitter: MyTwitter
-  stripeid: acct_1FJnd1AoBciSI7MG
+  stripeid: acct_1H0YzoAlogCn5OBe
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
   remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
 
 two:
   id: 2
@@ -36,6 +37,8 @@ two:
   about: MyText2
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %>
   remember_token: MyString2
+  confirmed_at: 2020-06-15 19:57:29.51622
+  stripeid: acct_1H0vyKAvnEuc14O3
 
 seller:
   id: 3
@@ -53,9 +56,10 @@ seller:
   author: author
   about: MyText
   twitter: MyTwitter
-  stripeid: acct_1FJnd1AoBciSI7MG
+  stripeid: acct_1H0YzoAlogCn5OBe
   encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
   remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
 
 buyer:
   id: 4
@@ -75,6 +79,7 @@ buyer:
   twitter: MyTwitter
   encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
   remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
 
 donator:
   id: 5
@@ -94,6 +99,7 @@ donator:
   twitter: MyTwitter
   encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
   remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
 
 confirmedUser:
   id: 6
