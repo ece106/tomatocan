@@ -17,9 +17,9 @@ class Purchase < ApplicationRecord
     begin
       # Check for a defaut donation
       if self.merchandise_id.nil?
-        setup_default_donation 
-        default_donation_payment
-      else 
+        setup_default_donation
+        is_anonymous? ? anonymous_charge : user_donation
+      else
         setup_payment_information
         merchandise_buy_or_donate? ? merchandise_payment : donation_payment
       end
@@ -30,29 +30,15 @@ class Purchase < ApplicationRecord
   end
 
   def merchandise_payment
-    purchase_anonymous? ? anonymous_merchandise_payment : user_merchandise_payment
+    is_anonymous? ? anonymous_charge : user_merchandise_payment
   end
 
   def donation_payment
-    purchase_anonymous? ? anonymous_donation : user_donation
+    is_anonymous? ? anonymous_charge : user_donation
   end
 
-  def default_donation_payment
-    # self.author_id.nil? ? user_default_donation : anonymous_default_donation
-    self.stripe_card_token.present? ? anonymous_default_donation : user_default_donation
-  end
-
-  def anonymous_default_donation
+  def anonymous_charge
     PaymentGateway.create_anonymous_charge(self)
-  end
-
-  def user_default_donation
-    # PaymentGateway.create_anonymous_charge(self)
-    donator            = User.find(self.user_id)
-    returning_customer = PaymentGateway.retrieve_customer(donator.stripe_customer_token)
-    self.token         = PaymentGateway.create_token(self, returning_customer)
-
-    PaymentGateway.create_charge(self)
   end
 
   def setup_default_donation
@@ -77,16 +63,6 @@ class Purchase < ApplicationRecord
     self.amount                = calculate_amount(self.pricesold)
     self.application_fee_amount       = calculate_application_fee_amount(self.amount)
     self.currency              = CURRENCY
-  end
-
-  # Creates the stripe charge object for an anonymous purchase with a merchandise.
-  def anonymous_merchandise_payment
-    PaymentGateway.create_anonymous_charge(self)
-  end
-
-  # Creates the stripe charge object for an anonymous donation purchase.
-  def anonymous_donation
-    PaymentGateway.create_anonymous_charge(self)
   end
 
   # Checks if the user is anonymous or returning buyer.
@@ -152,7 +128,7 @@ class Purchase < ApplicationRecord
     card
   end
 
-  def purchase_anonymous?
+  def is_anonymous?
     self.email.present? ? true : false
   end
 
