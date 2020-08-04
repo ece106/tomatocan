@@ -32,7 +32,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'purchase-btn'
-    assert_current_path "/#{@user_one.permalink}"
+    assert_current_path "/purchases"
   end
   
   test 'non user makes a merchandise purchase with attachments' do
