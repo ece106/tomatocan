@@ -33,33 +33,6 @@ width:100%;
   background-image: url(audience.jpg);
 }
 
-.text-white
-{
-  color:white;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #E0E0E0;
-}
-
-.container-hover {
-  position: relative;
-  width: 50%;
-}
-
-.container-hover:hover .overlay {
-  opacity: 1;
-}
-
 .speaking { 
   margin: 20px auto;
   max-width: 1500px;

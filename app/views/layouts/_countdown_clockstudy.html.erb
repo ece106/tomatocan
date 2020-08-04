@@ -23,20 +23,20 @@
   <% elsif Time.current < Time.parse(@start_timestudy) %>
     <div id="clockdivstudy">
       <div>
-      <span class="daystudy"></span>
-      <div class="smalltext">Days</div>
+      <span class="daystudy h1"></span>
+      <div class="h6 text-warning "><strong>Days</strong></div>
       </div>
       <div>
-        <span class="hourstudy"></span>
-        <div class="smalltext">Hours</div>
+        <span class="hourstudy h1"></span>
+        <div class="h6 text-warning" ><strong>Hours</strong></div>
       </div>
       <div>
-        <span class="minutestudy"></span>
-        <div class="smalltext">Minutes</div>
+        <span class="minutestudy h1"></span>
+        <div class="h6 text-warning "><strong>Minutes</strong></div>
       </div>
       <div>
-        <span class="secondstudy"></span>
-        <div class="smalltext">Seconds</div>
+        <span class="secondstudy h1"></span>
+        <div class="h6 text-warning"><strong>Seconds</strong></div>
       </div>
       <script>
         initializeClockstudy('clockdivstudy', '<%= @start_timestudy %>');

@@ -11,20 +11,20 @@
     <% elsif Time.current < Time.parse(@start_time) %>
       <div id="clockdiv">
         <div>
-        <span class="days"></span>
-        <div class="smalltext">Days</div>
+        <span class="days h1"></span>
+        <div class=" h6 text-warning"><strong>Days</strong></div>
         </div>
         <div>
-          <span class="hours"></span>
-          <div class="smalltext">Hours</div>
+          <span class="hours h1"></span>
+          <div class="h6 text-warning"><strong>Hours</strong></div>
         </div>
         <div>
-          <span class="minutes"></span>
-          <div class="smalltext">Minutes</div>
+          <span class="minutes h1"></span>
+          <div class="h6 text-warning"><strong>Minutes</strong></div>
         </div>
         <div>
-          <span class="seconds"></span>
-          <div class="smalltext">Seconds</div>
+          <span class="seconds h1"></span>
+          <div class="h6 text-warning"><strong>Seconds</strong></div>
         </div>
         <script>
           initializeClock('clockdiv', '<%= @start_time %>');

@@ -123,12 +123,7 @@ html, body {
     display: inline-block;
     padding-top: 0px;
 }
-.days, .hours, .minutes, .seconds{
-    font-size: 40px;
-}
-.daystudy, .hourstudy, .minutestudy, .secondstudy{
-    font-size: 40px;
-}
+
 .smalltext{
     color: $brand-secondary;
     font-size: 16px;
@@ -176,20 +171,7 @@ html, body {
     color: black;
 }
 @media only screen and (max-width: 800px){
-    #heroTitle1 {
-        font-size: 45px;
-        margin-top: 60px;
-    }
-    #heroTitle2 {
-        font-size: 30px;
-    }
-    #heroTitle3 {
-        font-size: 20px;
-    }
-    #heroTitle4 {
-        padding-top: 0px;
-        font-size: 20px;
-    }
+   
     .topic_link {
         font-size: 20px;
     }
@@ -201,20 +183,7 @@ html, body {
     }
 }
 @media only screen and (max-width: 500px){
-    #heroTitle1 {
-        font-size: 35px;
-        margin-top: 40px;
-    }
-    #heroTitle2 {
-        font-size: 25px;
-    }
-    #heroTitle3 {
-        font-size: 15px;
-    }
-    #heroTitle4 {
-        padding-top: 0px;
-        font-size: 15px;
-    }
+
     #calendar {
         padding-left: 20px;
         padding-right: 0px;
