@@ -5,12 +5,15 @@ class BlockControllerTest < ActionController::TestCase
   setup do 
     @user = users :one
     @blocked_user = users :two
+    @event = events :one
+    array = @blocked_user.last_viewed
+    array.push(@event)
+    @blocked_user.update({'last_viewed': array})
     post :block, params: {to_block: @blocked_user.id, owner: @user.id}
   end
 
   #block
   test 'blockedBy_not_empty' do
-    #post :block, params: {to_block: @blocked_user.id, owner: @user.id}
     assert_not_empty User.find_by_id(@blocked_user.id).blockedBy
   end
 
@@ -60,13 +63,21 @@ class BlockControllerTest < ActionController::TestCase
   end
 
   #unload
-  
+  test 'unload_removes_current_event_from_last_viewed' do
+    post :unload, params: {currentUser: @blocked_user.id, event: @event}
+    last_viewed = User.find_by_id(@blocked_user.id).last_viewed
+    assert_not_includes last_viewed, @event 
+
+  end
 
 
-
-  #is_blocked
-
-
-
+  #is_blocked 
   #signedin?
+  #loadAttendees
+  #liveCount
+
+  # Not sure how to approach these last four since there aren't
+  # any parameters passed to them -- should these go in integration
+  # testing instead, since they seem to depend on the view?
+
 end
