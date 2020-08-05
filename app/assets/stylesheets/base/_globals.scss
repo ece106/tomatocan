@@ -4,14 +4,15 @@
 
 html {
     width: 100%;
-    height: 100%;
-    
+    overflow-y: scroll;
 }
 
 //Wrapper for footer alignment
 body {
-  display: flex !important;
-  flex-direction: column !important;
+    display: flex !important;
+    min-height: 100vh !important;
+    flex-direction: column !important;
+  overscroll-behavior: none !important;
 }
 //Wrapper for footer alignment
 main {
@@ -83,6 +84,16 @@ h2.new{
   font-weight: bold;
   font-size: 24px;
   line-height: 24px;
+  text-align: left;
+}
+
+p{
+  color:$brand-black;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
 }
 
 p.black{
