@@ -8,8 +8,8 @@
   <% end %>
 </div>
 
-<div class = "row">
-  <div class="col-lg-5 col-md-11 pt-2">
+<div class = "row pl-4">
+  <div class="col-lg-5 col-md-11 pt-4">
       <div id="home" style= "height: 100vh" >
         <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
           Discover Activism that makes you
@@ -20,21 +20,13 @@
         <h3 class = "text-white text-center"><b>
           Crowdsource Activism via Video Chat</b>
         </h3><br><br><br>
-
-        <h3 class = "text-white">
-          <i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Study Hall", studyhall_path, style: "color: #ffc627" %><br> to support Women & Minorities in Tech.
-          <br>Drop in to ask questions about ThinQ.tv! </h3>
-
-
-
-        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px; line-height: 1.2em"><i>New to ThinQ.tv?</i>
+        <h4 style="color:#fff; margin-right: 20px; margin-left: 20px; line-height: 1.2em"><i>New to ThinQ.tv?</i>
           <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv!
-        </h3>
+        </h4>
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic, event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
+              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic, event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px;  font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
 
             </div>
           <% end %>
@@ -44,7 +36,7 @@
             <div id="eventCurrentdiv">
               <p style="color:#fff">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "color: #ffc627" %></p>
               <p style="color:#fff"> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic, event: @displayresearch.id ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px;" %>
+              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic, event: @displayresearch.id ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -52,8 +44,8 @@
           <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
               <h2 id="buttonTitle">
-              <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Video Chat Room', "/youronlinemom/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              <h2 id="buttonTitle">
+              <%= link_to 'See an example Video Chat Room', "/youronlinemom/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", title: "Check your webcam" %>
               </h2>
             </h2>
             <% end %>
@@ -63,7 +55,7 @@
     </div>
     
 
-<div class="col-lg-7 col-md-12 pt-3 mt-3 pl-0 " id="countdown_clock">
+<div class="col-lg-7 col-md-12 pt-4 pl-0 " id="countdown_clock">
   <div class="container px-2">
     <div class = "row border border-right">
     <div class="col-lg-7 col-md-6 ">
@@ -102,7 +94,6 @@
   </div>
 </div>
 </div>
-
 
 <script type="text/javascript">
   showPanel(0, '#f44336');

@@ -33,23 +33,7 @@ width:100%;
   background-image: url(audience.jpg);
 }
 
-.speaking { 
-  margin: 20px auto;
-  max-width: 1500px;
-  position: relative;
-  display: flex; 
-  flex-direction: row; 
-  } 
-          
-.speaking:before, 
-.speaking:after { 
-    content: ""; 
-    flex: 1 1; 
-    border-bottom: 2px solid #ecd7c6; 
-    margin: auto; 
-  }
-
-  .team .container{
+.team .container{
     min-width:auto;
     max-width: 1400px;
     height: auto;

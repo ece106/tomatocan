@@ -69,7 +69,7 @@ body {
         <a class="nav-link text-white" href="/studyhall">Drop in Anytime</a>
       </li>
     </ul>
-  <ul class="nav navbar-nav navbar-right">
+  <ul class="nav navbar-nav navbar-right ml-4">
         <% if user_signed_in? %>
           <li class="dropdown mt-2 pr-3">
             <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret text-white"></span></a>
@@ -86,9 +86,10 @@ body {
         <% else %>
                   <li>
           <p class="navbar-btn">
-                  <%= link_to "Sign Up", '/signup', class: "btn btn-primary border" %>
-            <%= link_to 'Sign In', "/login", class: "btn btn-light border" %>
+                  <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
+            <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
           </p>
+
           </li>
         <% end %>
       </ul>
