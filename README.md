@@ -178,7 +178,7 @@ To commit your current files:
 git commit -a -m "Useful Comment of Your Changes/Additions"
 ```
 
-Push comitted changes to your repository:
+Push committed changes to your repository:
 
 ```
 git push origin master
@@ -233,20 +233,20 @@ For minitest methods https://guides.rubyonrails.org/testing.html
 For Capybara integration tests https://devhints.io/capybara
 
 
-### PROFESSIONAL WORKPLACE RULES 
+### PROFESSIONAL WORKPLACE RULES
 
-- ThinQ.tv is not your toy app for your professor to give you a smiley face. ThinQ.tv is a business. No employer wants you to build a toy app homework assignment. 
-- If you do not believe in your employer's mission, you won't do well. Therefore everything you do must be toward getting more actively involved users/paying customers. 
+- ThinQ.tv is not your toy app for your professor to give you a smiley face. ThinQ.tv is a business. No employer wants you to build a toy app homework assignment.
+- If you do not believe in your employer's mission, you won't do well. Therefore everything you do must be toward getting more actively involved users/paying customers.
 - Exercise good judgement. Changing colors does not bring in users. Adding pictures does not bring in users. Clarifying information does. Do not add confusing distractions to the site.
 - If you do not make a pull request every 2 or 3 weeks, you are using your time extremely poorly in your own corner with your own toy app.
 - NEVER delete your .gitignore
-- NEVER push secret keys to the internet. People get fired for this! 
+- NEVER push secret keys to the internet. People get fired for this!
 - ALWAYS ALWAYS ALWAYS ALWAYS ALWAYS look over your github pushes to make sure you didn't break everything with typos or merge errors.
 - NEVER make a pull request that has broken stuff you're leaving for everyone else to clean up. This is not a homework assignement. There is no partial credit for software that does not work. I am not going to pass you to get you out of my hair.
-- NEVER leave technical debt messy confusing code for everyone else to clean up. 
+- NEVER leave technical debt messy confusing code for everyone else to clean up.
 - NEVER use the same database for test and development. You will lose ALL your data in your development database. This was mentioned already, but people still keep doing it.
-- Never put spaces in filenames. Do you ever put spaces in your variable names? No. 
- 
+- Never put spaces in filenames. Do you ever put spaces in your variable names? No.
+
 
 
 
