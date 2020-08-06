@@ -1,11 +1,11 @@
 <div class="panel panel-primary">
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 
-  <div class="panel-heading">
+  <h2 class="panel-heading">
     Your Upcoming Conversations
-  </div>
+  </h2>
   <% if @events.present? %>
-    <table class="table" id="event-list-table">
+    <table class="table table-responsive" id="event-list-table">
       <tr>
         <th>Conversation </th>
         <th>Time</th>
