@@ -26,29 +26,29 @@
 
 
 <div id="event-page-layout">
-  <div style="margin:auto; width: 1400px;">
+  <div class="mx-auto" style="width: 1400px;">
 
     <!-- PROFILE PICTURE -->
     <% if @user.profilepic.present? && @user.profilepic != '' %>
-      <div class="img-fluid" style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
+      <div class="img-fluid" style="height: 0px; z-index: 2;">
         <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
       </div>
     <% end %>
 
     <% if !@user.profilepic.present? || @user.profilepic == '' %>
-      <div class="img-fluid" style="background-color: #fff; left: 75px; top: 0px; width: 300px; height: 0px; z-index: 2;">
+      <div class="img-fluid" style="height: 0px; z-index: 2;">
         <img height="300" width="300" src="https://www.beautycolorcode.com/ffffff-400x400.png"> 
       </div>
 
-      <div class="img-fluid" style="left: 75px; top: 0px; width: 300px; height: 0px; z-index: 4;">
+      <div class="img-fluid" style="height: 0px; z-index: 4;">
         <%= image_tag "logoDigitalHollow300.png", height: "300", width: "300" %> <br>
       </div>
     <% end %>
 
     <!-- CONVERSATION NAME & HOST -->
-    <div style="margin-top: 25px; margin-left: 50px; background-color: #8C1D40">
-      <div class="aboutHeader row" style="font-size: 30px; margin-left: 220px;">  
-        <div class="col-lg-3" style="margin-top: 20px">
+    <div class="mt-3 ml-4" style="background-color: #8C1D40">
+      <div class="aboutHeader row" style="font-size: 30px; margin-left: 250px;">  
+        <div class="mt-4 col-lg-3">
     
           <!-- WHEN -->
           <p class="white text-left"> 
@@ -73,9 +73,9 @@
         </div>
 
         <!-- RSVP -->
-        <div class="col-lg-9 col-md-7 col-sm-5 col-xs-2" style="margin-top: 20px">
+        <div class="mt-4 col-lg-9 col-md-7 col-sm-5 col-xs-2">
             <% @title="ThinQ.tv" %>
-              <div style="margin-top:0px; text-align:right">
+              <div class="text-right mt-0">
                 <%= form_for(@rsvp) do |f| %>
                   <% if @rsvp.errors.any? %>
                     <div id="error_explanation">
@@ -118,10 +118,10 @@
             
 
           <!-- EVENT DESCRIPTION -->
-          <div style = "padding: 3px 0px 3px 0px; text-align: right;">
-            <div style="padding: 5px 5px 5px 5px; color: white; font-size: 18px; background-color: #8C1D40;">
+          <div class="pt-1 pb-1 pl-0 pr-0">
+            <div class="p2">
               <% if @event.desc.present? %>
-                <%= @event.desc.gsub(/\n/, '<br>').html_safe %> <br>
+                <p class="text-left white"> <%= @event.desc.gsub(/\n/, '<br>').html_safe %> </p> 
               <% end %>
             </div>
           </div>
