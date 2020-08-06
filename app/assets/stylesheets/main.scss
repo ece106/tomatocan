@@ -12,16 +12,16 @@ $primary: #8C1D40;
 
 @import "font-awesome";
 //Global styles
-@import "base/globals.scss";
-@import "base/header.scss";
+@import "base/_globals.scss";
+@import "base/_header.scss";
 @import "base/footer.scss";
 
 //Individual stylesheets loaded here
-@import "styles/home.scss";
-@import "styles/new.scss";
+@import "styles/_home.scss";
+@import "styles/_new.scss";
 @import "styles/users.scss";
-@import "styles/panels.scss";
-@import "styles/show.scss";
+@import "styles/_panels.scss";
+@import "styles/_show.scss";
 
 @import "styles/stripe-modal.scss";
 @import "calendar/styles.scss";

@@ -21,9 +21,10 @@
         <a class="nav-link text-white" href="/studyhall">Drop in Anytime</a>
       </li>
     </ul>
-  <ul class="nav navbar-nav navbar-right ml-4">
+
+  <ul class="nav navbar-nav navbar-right ">
         <% if user_signed_in? %>
-          <li class="dropdown mt-2 pr-3">
+          <li class="dropdown pt-2 mt-2 pr-3">
             <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret text-white"></span></a>
             <ul class="dropdown-menu text-left pl-3">
               <li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get, :class => "text-dark" %></li>
@@ -31,17 +32,16 @@
             </ul>
           </li>
           <li>
-            <p class="navbar-btn">
+            <p class="navbar-btn pt-1">
               <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-primary border-warning text-warning" %>
             </p>
           </li>
         <% else %>
                   <li>
-          <p class="navbar-btn">
+          <p class="navbar-btn pt-1">
                   <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
             <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
           </p>
-
           </li>
         <% end %>
       </ul>
