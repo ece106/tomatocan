@@ -31,7 +31,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Terms of Service'
     first(:xpath, "//a[@href='/tos']").click
     assert_equal '/tos', current_path
-    click_on class: 'btn btn-default', match: :first
+    click_on class: 'btn btn-primary border-warning text-warning', match: :first
 
     assert '/', current_path
   end
@@ -43,7 +43,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'View Profile'
     find_link('View Profile',match: :first).click
     assert_equal "/#{@test_user.permalink}", current_path
-    click_on class: 'btn btn-default', match: :first
+    click_on class: 'btn btn-primary border-warning text-warning', match: :first
 
     assert '/', current_path
   end
@@ -55,7 +55,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Control Panel'
     find_link('Control Panel',match: :first).click
     assert_equal "/#{@test_user.permalink}/controlpanel", current_path
-    click_on class: 'btn btn-default', match: :first
+    click_on class: 'btn btn-primary border-warning text-warning', match: :first
 
     assert '/', current_path
   end

@@ -34,7 +34,7 @@ class ActionDispatch::IntegrationTest
   def user_sign_in  user
    visit root_path
    within ('.navbar-btn') do
-    click_on class: 'btn btn-default'
+    click_on class: 'btn btn-primary border-warning text-warning'
   end
   fill_in id: 'user_email',    with:  "#{user.email}"
   fill_in id: 'user_password', with:  "user1234"
@@ -52,7 +52,7 @@ class ActionDispatch::IntegrationTest
   def user_sign_up user
     visit root_path
     within ('.navbar-btn') do
-      click_on class: 'btn btn-primary'
+      click_on class: 'btn btn-primary border'
     end
       fill_in id: 'user_name', with: "#{user[:name]}"
       fill_in id: 'user_email',    with:  "#{user[:email]}"

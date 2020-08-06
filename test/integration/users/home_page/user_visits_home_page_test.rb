@@ -9,14 +9,14 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end
 
   test "should go to home after clicking on home" do
-      within("div#globalNavbar.collapse.navbar-collapse") do
+      within("div#navbarSupportedContent.collapse.navbar-collapse") do
         first(:xpath, "//a[@href='/']").click
         assert_equal current_path, root_path
       end 
     end
 
   test "should go to about page when clicking about in header"  do
-    within("div#globalNavbar.collapse.navbar-collapse") do
+    within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/getinvolved']").click
       assert_equal current_path, '/getinvolved'
     end 
@@ -24,14 +24,14 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
 
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
-    within("div#globalNavbar.collapse.navbar-collapse") do
+    within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/jointheteam']").click
       assert_equal current_path, '/jointheteam'
     end 
   end 
 
   test "should go to Activism Hall page when clicking Activism Hall in header"  do
-    within("div#globalNavbar.collapse.navbar-collapse") do
+    within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/studyhall']").click
       assert_equal current_path, '/studyhall'
     end 

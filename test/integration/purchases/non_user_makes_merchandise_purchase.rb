@@ -26,13 +26,12 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
 
   test 'non user makes merchandise purchase with new card no attachment' do
     @visit_new_purchase.call @merchandise.id
-    assert_current_path "/abc"
     assert page.has_css? '#purchase_email'
     fill_in id: 'purchase_email', with: "onetimeemail@email.com"
-    # card_information_entry
+    card_information_entry
     assert page.has_button? 'Purchase'
     click_on id: 'purchase-btn'
-    assert_current_path "/abc"
+    assert_current_path "/purchases"
   end
   
   test 'non user makes a merchandise purchase with attachments' do
@@ -41,6 +40,7 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'Purchase'
+    assert_current_path "/abc"
     #assert that the merchandise is sendindd
   end
 
