@@ -1,18 +1,17 @@
-<div class="alert mt-3">
+<div class="alert">
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key) %>">
       <%= value %>
     </div>
   <% end %>
 </div>
-<div class ="row">
-  <div class="col-lg-5 col-md-11">
-      <div id="home" >
-        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
-          Discover Activism that makes you
-        </div>
-        <div style="display:inline;" >
-          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
+
+  <div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: $brand-primary>
+    <div class="alert" style="background-color: #8C1D40"></div>
+    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+      <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+          <%= value %>
         </div>
       <% end %>
       <h1 style="color: white">
@@ -22,37 +21,10 @@
         </h1>
         <h2 style="color: white">
           Crowdsource Activism via Video Chat
-        </div><br><br><br>
-
-        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px; line-height: 1.2em"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv!
-        </h3>
-        <% if @displaystudy.present? %>
-          <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
-            <div id="eventCurrentdiv">
-              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic, event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
-            </div>
-          <% end %>
-        <% end %>
-        <% if @displayresearch.present? %>
-          <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
-            <div id="eventCurrentdiv">
-              <p style="color:#fff">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "color: #ffc627" %></p>
-              <p style="color:#fff"> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic, event: @displayresearch.id ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 42px; border-color:#ffc627; border-radius: 5px;" %>
-            </div>
-          <% end %>
-        <% end %>
-        <% if @displaystudy.present? && @displayresearch.present? %>
-          <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
-            <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
-              <h2 id="buttonTitle">
-              <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Video Chat Room', "/youronlinemom/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
-              </h2>
-            <% end %>
-          <% end %>
-        <% end %>        <br><br>
+        </h2>
+      </div>
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <%= image_tag("header-image.png", style: "width:80%")%>
       </div>
 
     </div>
@@ -77,7 +49,7 @@
       <!--study hall and conversation section -->
       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
         <!--conversations column-->
-        <div class="col-lg-12 col-md-12" style = "height:250px">
+        <div class="col-lg-12 col-md-12" style = "height:195px">
           <%= render 'layouts/countdown_clock' %>
         </div>
         <br>
@@ -94,11 +66,11 @@
 
       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 justify-content-center pb-3 mb-3">
         <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-        <div class="col-lg-12 col-md-12" id = "countdown_clock" style = "height:250px">
+        <div class="col-lg-12 col-md-12" style = "height:195px">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
 
-        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:75%;align:middle;")%>
+        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:75%;")%>
         <h2 class="new text-center">
           Drop-In Hours
         </h2>
@@ -111,8 +83,10 @@
       </div>
       <!--end of activism hall column-->
 
-        
-        <div>
+      <div class="main row">
+      <div class="bottomContainer" id="countdown_clock">
+        <!-- col-lg-7 col-md-12 -->
+        <div class="main row">
           <br>
           <div class="convo-container">
             <!-- col-lg-3 col-md-6 -->
@@ -128,21 +102,17 @@
             <button onclick="showPanel(1,'#4caf50')">Daily View</button>
             <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
           </div>
-         <div class="tabPanel">
+          <div class="tabPanel">
             <%= render 'layouts/convocalendar', collection: @conversations %>
           </div>
           <div class="tabPanel">
             <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
-          </div> 
+          </div>
           <div class="tabPanel">
-            <div id="events">
-        <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
-           events: @calendar_events_all, monthNum: 0, type: 0}%>
+            <%= render 'layouts/convocalendar', collection: @conversationsall %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
 
       <br><br><br>
 <script type="text/javascript">
