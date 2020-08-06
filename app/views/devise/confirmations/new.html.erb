@@ -1,13 +1,13 @@
 <div class="container">
   <%= render "layouts/formated_error_messages" %>
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
+  <div class="row justify-content-center pt-5">
+    <div class="col-xl-8 bg-light border">
       <div class="well">
         <%= form_for(resource, :as => resource_name, :url => confirmation_path, :html => { :method => :post }) do |f| %>
-        <h2>Resend confirmation instructions</h2>
+        <h1 class="text-center">Resend confirmation instructions</h1>
         <div class="form-group">
           <div class="input-group">
-            <div class="input-group-addon" style="font-size:20px">
+            <div class="input-group-addon pr-3 pt-2" style="font-size:20px">
               &#9993
             </div>
             <%= f.email_field :email, placeholder: "Email", :autofocus => true, :class => "form-control" %>
@@ -16,6 +16,6 @@
         <div><%= f.submit "Resend", :class => "form-control btn-primary"  %></div>
       </div>
     </div>
-  </div
+  </div>
 </div>
 <% end %>

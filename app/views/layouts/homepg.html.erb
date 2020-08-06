@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body class="pt-5">
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=2402037363343589&autoLogAppEvents=1"></script>
 
@@ -56,9 +56,6 @@
 
         <%= render 'layouts/footer' %>
 
-    <% #= devise_error_messages! %>
-    <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-    <% end %>
+    
 </body>
 </html>
