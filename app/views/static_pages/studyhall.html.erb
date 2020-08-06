@@ -1,7 +1,8 @@
+<div class=conatiner-fluid">
 <div class="team">
   <div class="container">
     <div class="row"  >
-      <div class="col-lg-7 c0l-md-6">
+      <div class="col-lg-7 col-md-6">
         <h3 class="aboutHeader" style="text-align: center; color:#8C1D40" > DROP-IN HOURS: Coworking where we’re socially distanced but not alone </h3>
         <h4 style = "line-height: 1.5em" >
           - Hang out in video chat with other people conducting activism. Drop in & find out who is here! <br>
@@ -11,8 +12,8 @@
           - ThinQ.tv is a Woman-Owned tech startup. We are supportive of women & minorities in tech and usually have software engineers and designers in our Drop-In Hours.
          </h4>
       </div>
-      <div class="col-lg-5 col-md-6 col-xs-12" style=" margin-top:0px; margin-bottom: 0px; padding: 10px; ">
-        <div class="row" id="countdown_clock">
+      <div class="col-lg-5 col-md-6 col-sm-12" style=" margin-top:0px; margin-bottom: 0px; padding: 10px; ">
+        <div class="row justify-content-center" id="countdown_clock">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
       </div>
@@ -21,25 +22,26 @@
 </div>
 
 <div class="tabContainer">
-  <div class="row">
-    <div class="col-xs-12">
+  <div class="row justify-content-center">
+    <div class="col-sm-12">
       <h1 class = "new">Drop-In Schedule</h1>
     </div>
-    <div class="col-md-3 col-xs-12">
-          <% if user_signed_in? %>
+    
+    <div class="col-md-12 col-sm-12">
+         <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-md-8 col-md-offset-1 col-xs-12">
-      <div class="buttonContainer"><br>
+    <div class="col-md-10 col-sm-12">
+      <div class="buttonContainer text-center"><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
       </div>
     </div>
-    <div class="tabPanel" style="text-align: center">
+    <div class="tabPanel text-center w-100">
       <div class="row" id="calendar">
-        <div class="col-xs-12">
+        <div class="col-sm-12">
         <%= render 'layouts/weeklycalendar',  eventPartial: "layouts/renderday"%>
         </div>
       </div>
@@ -47,7 +49,7 @@
     <div class="tabPanel" >
       <div class="container">
        <div id="events">
-         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 5.hour).to_date,
             events: @eventsAll, monthNum: 0, type: 1}%>
        </div>
      </div>
@@ -110,7 +112,7 @@
       <div class="col-md-4">
         <div class="card-shadow" >
           <div class="inner">
-              <%= image_tag("uidesign.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
+              <%= image_tag("Women_Developers_Photo_Edited.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
               <!-- uidesign: https://unsplash.com/photos/WYwT7pXuXvo  -->
           </div>
           <div class="card-body">
@@ -129,6 +131,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
 
     <script type="text/javascript">

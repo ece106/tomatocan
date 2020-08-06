@@ -1,8 +1,3 @@
-<% flash.each do |key, value| %>
-  <div class="<%= flash_class(key) %>">
-    <%= value %>
-  </div>
-<% end %>
 
 <!-- Meta Tags for Facebook -->
 <% content_for :head do %>
@@ -15,22 +10,31 @@
 
 <!-- TOP HALF -->
 <div id="event-page-layout" style="width: 100%; margin: auto; background-color: #F2EBE4;">
+  <div class="alert mt-3">
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+      <%= value %>
+    </div>
+  <% end %>
+</div>
   <div class="row" style = "padding-top:15px; padding-bottom:20px;">
 
     <!-- PROFILE PICTURE -->
-    <div class="col-md-3" style="text-align:center; padding: 10px 5px 10px 10px;">
+    <div class="col-md-3 d-flex align-self-end" style="text-align:center; padding: 10px 5px 10px 10px;">
+    <div class="d-flex align-self-end justify-content-center">
       <% if @user.profilepic.present? && @user.profilepic != '' %>
-        <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
+        <%= image_tag @user.profilepic.url.to_s, :class => "w-50 h-50 mt-5 pt-5"%>
       <% else %>
-        <%= image_tag "logoDigitalHollow300.png", :height => "300", :width => "300" %> <br>
+        <%= image_tag "logoDigitalHollow300.png", :class => "w-50 h-50 mt-5 pt-5"%> <br>
       <% end %><br><br>  
+      </div>
     </div>
 
     <!-- CONVERSATION NAME & HOST -->
     <div class="col-md-5">
       <div style ="margin-left: 30px">
         <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
-          <br><br><br><br>
+          <br><br><br><br><br><br><br>
           <div id="eventCurrentdiv" >
               <h3>We're talking about <%= @displayconvo.name %></h3>  
               <p> right NOW!   </p> 
@@ -38,8 +42,8 @@
               <br>
           </div>
         <% else %>
-          <br><br><br><br><br><br><br><br><br><br><br>
-          <div class="aboutHeader" style = "font-size: 30px; margin-left: 25px">  
+          <br><br><br><br><br><br><br><br><br><br>
+          <div class="aboutHeader" style = "font-size: 30px;">  
             <b><%= @event.name %></b>
           </div>
         <% end %>
