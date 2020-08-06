@@ -1,7 +1,7 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 <%eventCount = 0%>
-<div class="panel panel-default">
+<div class="panel panel-default border-right border-left border-top table-responsive">
   <% if @calendar_events_all.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
