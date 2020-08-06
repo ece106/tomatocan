@@ -49,7 +49,7 @@
       <!--study hall and conversation section -->
       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
         <!--conversations column-->
-        <div class="col-lg-12 col-md-12" style = "height:195px">
+        <div class="col-lg-12 col-md-12" style = "height:250px">
           <%= render 'layouts/countdown_clock' %>
         </div>
         <br>
@@ -66,7 +66,7 @@
 
       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 justify-content-center pb-3 mb-3">
         <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-        <div class="col-lg-12 col-md-12" style = "height:195px">
+        <div class="col-lg-12 col-md-12" id = "countdown_clock" style = "height:250px">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
 
@@ -83,10 +83,8 @@
       </div>
       <!--end of activism hall column-->
 
-      <div class="main row">
-      <div class="bottomContainer" id="countdown_clock">
-        <!-- col-lg-7 col-md-12 -->
-        <div class="main row">
+        
+        <div>
           <br>
           <div class="convo-container">
             <!-- col-lg-3 col-md-6 -->
@@ -102,19 +100,18 @@
             <button onclick="showPanel(1,'#4caf50')">Daily View</button>
             <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
           </div>
-          <div class="tabPanel">
+         <div class="tabPanel">
             <%= render 'layouts/convocalendar', collection: @conversations %>
           </div>
           <div class="tabPanel">
             <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
-          </div>
+          </div> 
           <div class="tabPanel">
             <div id="events">
         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
            events: @calendar_events_all, monthNum: 0, type: 0}%>
           </div>
-        </div>
-      </div>
+      
 
       <br><br><br>
 <script type="text/javascript">
