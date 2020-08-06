@@ -10,20 +10,20 @@
     <div style="height:70px;"></div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-7" style="margin-left:-50px; padding-top:20px">
+  <div class="row ">
+    <div class="col-lg-12">
       <%= form_for @user, :html => {:multipart => true} do |f| %>
-      <div class="panel panel-primary">
-        <div class="panel-heading">
+      <div class="card">
+        <h5 class="card-header bg-primary text-white">
           About
-        </div>
-        <div class="panel-body">
+        </h5>
+        <div class="card-body">
 
-          <div class="row" style="margin-bottom:-20px; padding:0px">
+          <div class="row" >
           
-            <!-- Profile Picture -->
-            <div class="col-md-3" style="margin-left:0px; margin-top:-20px;">
+
+          <!-- Profile Picture -->
+            <div class="col-md-6" >
               <div class="form-group">
                 <h3><%=f.label :name, "Profile Image" %></h3>
                 <% if @user.profilepic.present? && @user.profilepic != '' %>
@@ -31,26 +31,26 @@
                 <% else %>
                   <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150", :id => "profileInfoImage" %> <br>
                 <% end %>
-                  <br><br>
-                  <%= f.file_field :profilepic %>
+                <br>
+                  <%= f.file_field :profilepic, :class => "pt-2" %>
                 <p class="help-block">150px &times; 150px is best</p>
               </div>
             </div>
 
             <!-- Header -->
-            <div class="col-md-9" style="margin-top:-20px;">
+            <div class="col-md-6">
               <div class="form-group">
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <% if @user.bannerpic.present? && @user.bannerpic != '' %>
                   <div id="profileInfoBanner">
-                    <%= image_tag(@user.bannerpic.url.to_s, :style => "height:150px; margin-top:-15px", :id => "userBannerImage")%> <br>
+                    <%= image_tag(@user.bannerpic.url.to_s, :class => "img-responsive w-75", :height => "150", :id => "userBannerImage")%> <br>
                   </div>
                 <% else %>
                   <div id="profileInfoBanner" style="margin-top:20px;">
-                    <%= image_tag("crowddark.png", :class => "img-responsive", :style => "height:130px; margin-top:-13px", :id => "userBannerImage")%> <br>
+                    <%= image_tag("crowddark.png", :class => "img-responsive w-75", :height => "150", :id => "userBannerImage")%> <br>
                   </div>
                 <% end %>
-                <%= f.file_field :bannerpic, :style => "padding-top:23px;" %>
+                <%= f.file_field :bannerpic, :class => "pt-4" %>
                 <p class="help-block">1500px &times; 300px is best</p>
               </div>
             </div>
@@ -83,8 +83,8 @@
 
           <!-- Cancel and Save Buttons -->
           <div class="btn-group btn-group-lg" id="editProfileButton">
-            <%= link_to 'Cancel', user_profile_path, :class => "btn btn-default", :id => "cancelProfileButton" %>
-            <%= f.submit "Save Changes", :class => "btn btn-primary", :id => "saveProfileButton" %>
+            <%= link_to 'Cancel', user_profile_path, :class => "btn btn-secondary"%>
+            <%= f.submit "Save Changes", :class => "btn btn-primary" %>
           </div>
 
         </div>
