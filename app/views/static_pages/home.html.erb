@@ -17,7 +17,7 @@
       <h1 style="color: white">
         Discover Activism that makes you
         <div>
-          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 10px")%><br>
+          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 10px")%><br> </div>
         </h1>
         <h2 style="color: white">
           Crowdsource Activism via Video Chat
@@ -45,11 +45,11 @@
     </div>
     <!-- end of new to thinQ section-->
 
-    <div class="row" id="countdown_clock">
+    <div class="row">
       <!--study hall and conversation section -->
-      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12" >
+      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
         <!--conversations column-->
-        <div class="col-lg-12 col-md-12"  style = "height:195px">
+        <div class="col-lg-12 col-md-12" style = "height:195px">
           <%= render 'layouts/countdown_clock' %>
         </div>
         <br>
@@ -61,6 +61,7 @@
           <br>
           scheduled small group conversations about activism!
         </p>
+      </div>
       </div>
       <!--end of conversations column-->
 
@@ -82,11 +83,9 @@
         <br><br><br>
       </div>
       <!--end of activism hall column-->
+      </div>
 
-      <div class="main row">
-      <div class="bottomContainer" id="countdown_clock">
-        <!-- col-lg-7 col-md-12 -->
-        <div class="main row">
+        <div>
           <br>
           <div class="convo-container">
             <!-- col-lg-3 col-md-6 -->
@@ -102,7 +101,7 @@
             <button onclick="showPanel(1,'#4caf50')">Daily View</button>
             <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
           </div>
-          <div class="tabPanel">
+         <div class="tabPanel">
             <%= render 'layouts/convocalendar', collection: @conversations %>
           </div>
           <div class="tabPanel">
