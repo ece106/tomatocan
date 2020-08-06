@@ -45,7 +45,7 @@ class ActionDispatch::IntegrationTest
     fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
     fill_in id: 'card_number',          with: "#{@card_number}"
     fill_in id: 'card_code',            with: "#{@cvc}"
-    select 'August',                    from: 'card_month'
+    select '8 - August',                from: 'card_month'
     select '2024',                      from: 'card_year'
   end
 

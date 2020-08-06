@@ -59,7 +59,16 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     user_sign_in @user_two
     @default_prices.each do |price| 
       @visit_default_donation.call @purchase.author_id, price
-      card_information_entry
+      # assert page.has_css? '#card_number'
+      # fill_in id: 'card_number', with: "4242424242424242"
+      # assert page.has_css? '#card_code'
+      # fill_in id: 'card_code', with: "132"
+      # assert page.has_css? '#card_month'
+      # find('#card_month').find(:xpath, 'option[3]').select_option
+      # assert page.has_css? '#card_year'
+      # find('#card_year').find(:xpath, 'option[5]').select_option
+      @card_css.each { |x| assert page.has_css? x }
+      card_information_entry 
       assert page.has_button? 'Donate'
       click_on 'Donate' 
       assert_current_path "/#{ @user_one.permalink }"
@@ -73,7 +82,6 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @user_two.update_attribute :stripe_customer_token, token.id
     @default_prices.each do |price| 
       @visit_default_donation.call @purchase.author_id, price
-      card_information_entry
       assert page.has_button? 'Donate now'
       find(:button, 'Donate now', match: :first).click
       assert_current_path "/#{ @user_one.permalink }"
