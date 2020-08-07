@@ -39,14 +39,15 @@
 
     <div class="row">
       <!--study hall and conversation section -->
-      <div class="col-sm">
+
+      <div class="col-sm-4">
         <!--conversations column-->
-        <div class="col-sm" style = "height:195px">
+        <div class="col-lg-12 col-md-12" style = "height:195px">
           <%= render 'layouts/countdown_clock' %>
         </div>
         <br>
         <br>
-        <%= image_tag("convo_photo.png", style: "margin-bottom: 30px; border-radius: 112px; width: 30%;")%>
+        <%= image_tag("convo_photo.png", style: "margin-bottom: 30px; border-radius: 112px; width: 75%;")%>
         <h2 class="new text-center">Conversations
         </h2>
         <p>Join conversations hosted by grassroots activists to have
@@ -57,13 +58,13 @@
       </div>
       <!--end of conversations column-->
 
-      <div class="col-sm">
+      <div class="col-sm-4">
         <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-        <div class="col-sm" id = "countdown_clock" style = "height:195px">
+        <div class="col-lg-12 col-md-12" id = "countdown_clock" style = "height:195px">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
 
-        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:30%;align:middle;")%>
+        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:75%;align:middle;")%>
         <h2 class="new text-center">
           Drop-In Hours
         </h2>
@@ -105,7 +106,8 @@
           </div>
         </div>
       </div>
-      
+
+      <br><br><br>
 <script type="text/javascript">
   showPanel(0, '#f44336');
 </script>
