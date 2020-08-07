@@ -138,8 +138,6 @@
                   <% end %>
                 <% end %>
 
-                <input type="hidden" id="timeZone<%=i%>" name="timeZone">
-                <%= f.hidden_field :event_id, :value => event.id %>
 
                 <script>
                     var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"))
