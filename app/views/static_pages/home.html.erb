@@ -1,36 +1,28 @@
-<div class="alert">
-  <% flash.each do |key, value| %>
-    <div class="<%= flash_class(key) %>">
-      <%= value %>
-    </div>
-  <% end %>
-</div>
-
-  <div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: $brand-primary>
+  <div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: #8C1D40">
     <div class="alert" style="background-color: #8C1D40"></div>
-    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <div class="col-sm">
       <% flash.each do |key, value| %>
         <div class="<%= flash_class(key) %>">
           <%= value %>
         </div>
       <% end %>
-      <h1 style="color: white">
+      <h1 class="white">
         Discover Activism that makes you
         <div>
-          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 10px")%><br>
+          <%= image_tag("GoldThinQ60.png", style: "padding-left: 150px;")%><br> </div>
         </h1>
-        <h2 style="color: white">
+        <h2 class="new" style="color:white">
           Crowdsource Activism via Video Chat
         </h2>
       </div>
-      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-        <%= image_tag("header-image.png", style: "width:80%")%>
+      <div class="col-sm">
+        <%= image_tag("header-image.png", style: "width:80%; padding-top:10px; padding-bottom:10px;")%>
       </div>
 
     </div>
     <!-- end of top section-->
 
-    <div class="row">
+    <div class="col-sm">
       <h1 class="new">
         New to ThinQ.tv?
       </h1>
@@ -45,11 +37,12 @@
     </div>
     <!-- end of new to thinQ section-->
 
-    <div class="row" id="countdown_clock">
+    <div class="row">
       <!--study hall and conversation section -->
-      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12" >
+
+      <div class="col-sm-4">
         <!--conversations column-->
-        <div class="col-lg-12 col-md-12"  style = "height:195px">
+        <div class="col-lg-12 col-md-12" style = "height:195px">
           <%= render 'layouts/countdown_clock' %>
         </div>
         <br>
@@ -62,9 +55,10 @@
           scheduled small group conversations about activism!
         </p>
       </div>
+      </div>
       <!--end of conversations column-->
 
-      <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 justify-content-center pb-3 mb-3">
+      <div class="col-sm-4">
         <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
         <div class="col-lg-12 col-md-12" id = "countdown_clock" style = "height:195px">
           <%= render 'layouts/countdown_clockstudy' %>
@@ -83,12 +77,9 @@
       </div>
       <!--end of activism hall column-->
 
-      <div class="main row">
-      <div class="bottomContainer" id="countdown_clock">
-        <!-- col-lg-7 col-md-12 -->
-        <div class="main row">
+        <div>
           <br>
-          <div class="convo-container">
+          <div class="convo-container" style="text-align:center">
             <!-- col-lg-3 col-md-6 -->
             <h1 class = "new">Conversation Schedule</h1>
             <% if user_signed_in? %>
@@ -96,13 +87,13 @@
             <% end %>
           </div>
         </div>
-        <div class="tabContainer">
+        <div class="tabContainer" style="text-align:center">
           <div class="buttonContainer">
             <button onclick="showPanel(0,'#4caf50')">List View</button>
             <button onclick="showPanel(1,'#4caf50')">Daily View</button>
             <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
           </div>
-          <div class="tabPanel">
+         <div class="tabPanel">
             <%= render 'layouts/convocalendar', collection: @conversations %>
           </div>
           <div class="tabPanel">
