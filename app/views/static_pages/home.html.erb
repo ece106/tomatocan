@@ -1,12 +1,13 @@
-<div class="alert">
+<div class="alert mt-3">
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key) %>">
       <%= value %>
     </div>
   <% end %>
 </div>
+<div class ="row">
   <div class="col-lg-5 col-md-11">
-      <div id="home" style= "height: 100vh" >
+      <div id="home" >
         <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
           Discover Activism that makes you
         </div>
@@ -32,7 +33,7 @@
             <div id="eventCurrentdiv">
               <p style="color:#fff">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "color: #ffc627" %></p>
               <p style="color:#fff"> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic, event: @displayresearch.id ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px;" %>
+              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic, event: @displayresearch.id ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 42px; border-color:#ffc627; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -82,6 +83,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <br><br><br>

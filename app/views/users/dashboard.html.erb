@@ -18,9 +18,9 @@
 		<% if @user.stripeid.present? %>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Your Sales</div>
-						<div class="panel-body">
+					<div class="card">
+						<div class="card-header text-white bg-primary">Your Sales</div>
+						<div class="card-body">
 						<% if @totalinfo.present? %>
 							<p>List of all sales - CHECK OFTEN. YOUR FANS MAY BE EXPECTING ITEMS FROM YOU</p>
 							<table class="table">
@@ -63,9 +63,9 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">Monthly Income</div>
-						<div class="panel-body">
+					<div class="card ">
+						<div class="card-header bg-primary text-white">Monthly Income</div>
+						<div class="card-body">
 							<table class="table">
 								<tr>
 									<td>Month</td>
@@ -124,12 +124,12 @@
 		<% else %>
 
       <div class="row">
-        <div class="col-md-6 col-md-offset-2">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
               <span class="glyphicon glyphicon-exclamation-sign"></span> Sales Coming Soon
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               Sales figures will be displayed on this page after you connect to Stripe.
             </div>
           </div>

@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<div class="container-fluid pt-4 px-0">
 <!-- top row of content-->
 <div class="row" >
-    <div class="col-lg-6 col-md-6 col-small-12">
-      <%= image_tag("videopic.jpg", :style => "max-height:auto; width:100%;")%>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
+    <div class="float-right">
+       <%= image_tag("videopic.jpg", class:"img-responsive w-100")%>
+       </div>
     </div>
-  <div class="col-lg-6 col-md-6 col-small-12">
+  <div class=" col-xl-6 col-lg-6 col-md-6 col-sm-12">
       <!-- main content-->
       <h1 class="new">Join in Activism for causes you believe in via Video Chat
       </h1>
@@ -22,72 +24,67 @@
 <!-- closing top section-->
 
 <! -- why thinQ.tv section -->
-<div class="row mb-0 pb-0 mt-3 pt-3" style = "background-color: #8C1D40">
-  <h1 class="white">
+<div class="container-fluid mb-n1 pb-n1 pt-2">
+<div class="row  bg-primary pb-4">
+      <!--THIS CANNOT BE A ROW -->
+      <!--FIX SO WE DO NOT HAVE INLINE CSS & SO THE WHITE FOND MATCHES THE MAROON H1 -->
+      <!--THIS CANNOT BE A ROW -->
+      <!--USE SMALL PHOTOS RATHER THAN UNIDENTIFIABLE BLOBS -->
+  <h1 class="text-white pb-3" ><br>
     Why ThinQ.tv?
   </h1>
-  <div class="row align-items-end" >
-    
-  </div>
-  <div class="row mt-0 pt-0 row-cols-sm-2" >
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-    <div class="row align-self-end">
-        <%= image_tag("activism_icon.png", :style => "height:auto; max-width:50%;")%>
-      </div>
+  <div class="row align-items-end">
+    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end">
+      <%= image_tag("activism_icon.png", class:"h-auto w-25")%>
       <h2 class="new">
         Activism
       </h2>
-      <p class = "white" >
+      <!--DO WE HAVE A P FONT THAT IS WHITE?????? -->
+      <p class="text-white mt-0 mb-n1">
         Movements can empower their people to organize and motivate people for the movement. Don't wait for the leadership to call you together - initiate a <%= link_to "Conversation", new_event_path, style: "color: #FFC627;" %> yourself!<br><br>
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <div class="row align-self-end">
-        <%= image_tag("discovery_icon.png", :style => "height:auto; max-width:50%;")%>
-      </div>
-      <h2 class="new">
+    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end pb-3 pt-5">
+      <!--<br> this is a short icon, so Im adding a break to fix the spacing -->
+      <%= image_tag("discovery_icon.png", class:"h-auto w-25")%>
+      <h2 class="new pb-0">
         Discovery
       </h2>
-      <p class = "white">
+      <p class="text-white pb-5 mt-0 ">
         Meet passionate people who have interesting ideas to share & collaborate on.
       </p>
     </div>
-    <div class="clearfix visible-sm">
-        <!-- clearfix sm cols every 2 -->
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <div class="row align-self-end">
-        <%= image_tag("dialogue_icon.png", :style => "height:auto; max-width:50%;")%>
-      </div>
-      <h2 class="new">
+    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end pb-5">
+      <%= image_tag("dialogue_icon.png", class:"h-auto w-25")%>
+      <h2 class="new pb-0">
          Dialogue
       </h2>
-      <p class = "white">
+      <p class="text-white pb-5 mt-0 mb-1">
         Share ideas and get feedback <i>with</i> others instead of talking <i>at</i> them.
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-      <div class="row align-self-end">
-        <%= image_tag("schedule_icon.png", :style => "height:auto; max-width:50%;")%>
-      </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end">
+      <%= image_tag("schedule_icon.png", class:"h-auto w-25")%>
       <h2 class="new">
-      Schedule
+        Schedule
       </h2>
-      <p class = "white">
+      <p class="text-white mt-0 mb-n1">
         Don’t wait for local organization leadership to invite you to meet. Meet virtually with motivated people from around the world at any time! Look at our <%= link_to "Conversation", root_path, style: "color: #FFC627;" %> and <%= link_to "Drop-In", studyhall_path, style: "color: #FFC627;" %> schedules.<br><br>
       </p>
     </div>
   </div>
 </div>
+</div>
 <!-- closing why section -->
 
 <! -- our story section -->
-<div class="row mb-1 pb-3 mt-1 mx-5 px-5">
-  <h1 class="new">
+<div class="container-fluid pt-2 mt-2">
+<div class="row">
+<div class="col-lg-8 col-md-8 col-sm-12">
+  <h1 class="new text-primary">
     Our Story
   </h1>
-  <div class="col-lg-8 col-md-8 col-sm-12">
-    <p class = "black">
+    <p>
       Back when ThinQ.tv Founder & Software Engineer, Dr. Lisa Schaefer, lived in Washington, DC, she attended a meeting where Biz Stone, the founder of Twitter, spoke. All she could thinQ of during the entire meeting was, "I can come up with something better."<br><br>
 
       Years earlier, Dr. Schaefer had a vision for multi-location book party and discovered live-streaming in its early days. "This changes everything," she thought. Anyone with a computer, webcam, and internet connection can communicate with anyone with anyone else who has an internet connection.<br><br>
@@ -102,8 +99,9 @@
 
     </p>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-12">
-    <%= image_tag("lisaSpeaks.jpg", :style => "max-height:auto; width:65%;")%>
+  <div class="col-lg-4 col-md-4 col-sm-12 pt-5 mt-5 pb-0">
+   <%= image_tag("lisaSpeaks.jpg", float: "right", :class=> "img-responsive img-thumbnail", alt: "A picture of Dr. Lisa Schaefer")%>
+  </div>
   </div>
 </div>
 <!--closing our story section -->

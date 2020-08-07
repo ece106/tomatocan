@@ -1,7 +1,7 @@
-  <div class="container">
+<div class="container">
 
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-3">
+    <div class="row justify-content-center pt-5">
+      <div class="col-lg-6 bg-light border">
         <% if request.referrer != nil %>
           <% if request.referrer.include? "/viewer" %>
             <div class="alert alert-danger" role="alert" style="text-align:center">
@@ -22,7 +22,7 @@
           <!-- Email Box -->
           <div class="form-group">
             <div class="input-group">
-              <div class="input-group-addon" style="font-size:20px">
+              <div class="input-group-addon pr-3 pt-2" style="font-size:20px">
                 &#9993
               </div>
               <%= f.email_field :email, placeholder: "Email", :autofocus => true, :class => "form-control" %>
@@ -33,7 +33,7 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-lock" style="font-size:20px"></i>
+                <i class="fa fa-lock pr-3 pt-2" style="font-size:20px"></i>
               </div>
               <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
             </div>
@@ -64,13 +64,11 @@
           <div class="row" style="text-align:center; padding-bottom:10px">
             <hr style="border: 1px solid grey;">
           </div>
-
           <div style="text-align:center"> 
             <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
               <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
               <b>Sign In With Facebook</b> 
             </a>
-
             <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
               <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
               <b>Sign In With Google</b> 
