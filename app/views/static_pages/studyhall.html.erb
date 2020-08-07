@@ -18,8 +18,7 @@
       </div>
 
       <div class="col-lg-5 col-md-6 col-xs-12 pl-5">
-        <div class="row pl-5 ml-5" id="countdown_clock">
-
+        <div class="row pl-5 ml-5 text-center" id="countdown_clock">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
       </div>
@@ -28,14 +27,12 @@
   </div>
 </div>
 <br>
-
+<br>
 
 <div class="tabContainer col-lg-12 pt-3 mt-3 pl-3 ml-3"> 
       <h1 class = "text-left text-primary"><strong>Drop-In Schedule</strong></h1> 
-      <div class = "row col-lg-12">
-    <div class="col-lg-3 col-md-6 col-xs-12 text-left">
-
-
+      <div class = "row col-lg-12 pr-5 mr-5">
+    <div class="col-lg-3 col-md-6 col-xs-12 text-left pr-5 mr-5">
           <% if user_signed_in? %>
 
             <br>Don't see your desired hour on the schedule yet? <br>
@@ -43,8 +40,8 @@
           <% end %>
     </div>
 
-    <div class="pl-5 ml-5 text-center">
-      <div class="buttonContainer"><br>
+    <div class="col-lg-5 pl-5 ml-5 mr-5 pr-5">
+      <div class="buttonContainer text-center justify-content-center"><br>
 
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
@@ -53,8 +50,8 @@
     </div>
 
 
-   <div class = "container col-lg-11 ">  
-    <div class="tabPanel ">      
+   <div class = "container-fluid mr-5 pr-5 ">  
+    <div class="tabPanel text-left">      
         <div class="col-lg-12 col-xs-12 pl-5 ml-5">
 
         <%= render 'layouts/weeklycalendar',  eventPartial: "layouts/renderday"%>
@@ -74,7 +71,7 @@
 
 <br>
 
-    <h3 class="speaking text-center text-primary" > <b>
+    <h3 class="text-center text-primary" > <b>
       <span>We currently have Activism Halls for 3 topics:</span></b>
     </h3 >
     <div class="row">
