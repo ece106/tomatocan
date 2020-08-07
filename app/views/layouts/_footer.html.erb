@@ -7,23 +7,27 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+
     <div  class="container-fluid pl-5 ml-3">
       <div class="row pl-5 ml-5" id="footer">
         <div class="col-sm-2 col-sm-offset-1">
+
           <p class="f-header">SITE</p>
           <%= link_to "FAQ", '/faq', :class => "f-link"  %> <br>
           <%= link_to "Invite Us To Speak", "/drschaeferspeaking", :class => "f-link"%> <br>
           <%= link_to "Terms of Service", "/tos", :class => "f-link" %> <br>
           <%= link_to "Privacy Policy", "/privacy", :class => "f-link"%><br>
         </div>
+
         <br class="visible-xs-block">
         <div class="col-lg-2 col-sm-2">
+     
           <p class="f-header">CONTACT</p>
           <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a><br>
           <a class="f-link">602-888-3089</a><br>
 
         </div>
-        <br class="visible-xs-block">
+        <br class="visible-lg-block">
         <div class="col-sm-2">
           <p class="col-lg-6 f-header">SHARE</p>
           <% domainurl = "https://thinq.tv" %>
@@ -54,9 +58,11 @@
 
           </div>
         </div>
-      <div class="col-sm-3 pull-right" id="copyright">
+        <div class="col-sm-6">
+      <div class="pull-right" id="copyright">
         <small>&copy; 2020 RoleModel Enterprises, LLC</small><br><br>
       </div>
+       </div>
     </div>
   </div>
 </footer>

@@ -1,8 +1,10 @@
-F<div class="card border-primary">
+
+<div class="card border-primary">
+
 	<div class="card-header bg-primary text-white">
 		Past Rewards
 	</div>
-	<div class="panel-body">
+	<div class="card-body">
 		<!--Pull in any merch whose expiration date is before current date-->
       <% if @expiredmerchandise.present? %>
  		<% @expiredmerchandise.each do |merch| %>
@@ -28,7 +30,5 @@ F<div class="card border-primary">
 </div>
 
 <!-- Notes:
-
 At some point, users may want to reuse expired Rewards. Since we save all Rewards past their date anyway, we can let them change their expiration from here to place them back in the merchsidebar panel.
-
 -->

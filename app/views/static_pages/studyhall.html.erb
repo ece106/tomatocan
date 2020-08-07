@@ -8,6 +8,7 @@
         <h3 class="text-center text-primary"><b> DROP-IN HOURS: Coworking where we’re socially distanced but not alone</b></h3>
         <p class="h4 pl-3 ml-3">
         - Hang out in video chat with other people conducting activism. Drop in & find out who is here! <br>
+
           - Exchange ideas, get feedback on your designs or activism plans. <br>
           - No agenda. Drop in any time; we'll greet you when you arrive.
           Feel free to work quietly in the chat room to be there for each other when that Aha moment happens.<br>
@@ -15,8 +16,10 @@
          </p>
 
       </div>
+
       <div class="col-lg-5 col-md-6 col-xs-12 pl-5">
         <div class="row pl-5 ml-5" id="countdown_clock">
+
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
       </div>
@@ -32,22 +35,28 @@
       <div class = "row col-lg-12">
     <div class="col-lg-3 col-md-6 col-xs-12 text-left">
 
+
           <% if user_signed_in? %>
+
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
+
     <div class="pl-5 ml-5 text-center">
       <div class="buttonContainer"><br>
+
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
       </div>
     </div>    
     </div>
 
+
    <div class = "container col-lg-11 ">  
     <div class="tabPanel ">      
         <div class="col-lg-12 col-xs-12 pl-5 ml-5">
+
         <%= render 'layouts/weeklycalendar',  eventPartial: "layouts/renderday"%>
         </div>
       </div>  
@@ -55,7 +64,7 @@
     <div class="tabPanel" >
       <div class="container-fluid">
        <div id="events">
-         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+         <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 5.hour).to_date,
             events: @eventsAll, monthNum: 0, type: 1}%>
        </div>
      </div>
@@ -118,7 +127,7 @@
       <div class="col-md-4">
         <div class="card-shadow" >
           <div class="inner">
-              <%= image_tag("uidesign.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
+              <%= image_tag("Women_Developers_Photo_Edited.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
               <!-- uidesign: https://unsplash.com/photos/WYwT7pXuXvo  -->
           </div>
           <div class="card-body">
@@ -135,6 +144,7 @@
               </div>
           </div>
         </div>
+      </div>
       </div>
 
     <script type="text/javascript">

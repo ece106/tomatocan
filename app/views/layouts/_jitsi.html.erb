@@ -17,11 +17,10 @@
 		var api = new JitsiMeetExternalAPI(domain, options);
 	});
 </script>
-
-<div class="panel">
-	<div class="bg-primary text-white card-header">
+<div class="card">
+	<h5 class="card-header bg-primary text-white">
 	  <%= @user.name %>'s Live Conversation
-	</div>
+	</h5>
 	<div class="panel-body embed-responsive embed-responsive-16by9">
 	  <div class="embed-responsive-item" id="meet"></div>
 	</div>

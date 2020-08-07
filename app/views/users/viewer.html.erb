@@ -48,9 +48,11 @@
       </div>
 
 
+
       <div class = "border-left border-right border-bottom border-primary pb-1">
         <div class="panel panel-primary">
           <div class=" bg-primary text-white card-header pb-2">        
+
             <% if @user.name.length >= 17 %>
             <% name = @user.name[0..15] + "..." %>
               Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>

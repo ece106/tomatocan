@@ -10,10 +10,12 @@
     <div style="height:70px;"></div>
   <% end %>
 
+
   <div class="container ">
     <div class="col-lg-12">
       <%= form_for @user, :html => {:multipart => true} do |f| %>
       <div class="card border-primary">
+
         <h5 class="card-header bg-primary text-white">
           About
         </h5>
@@ -31,8 +33,8 @@
                 <% else %>
                   <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150", :id => "profileInfoImage" %> <br>
                 <% end %>
-                  <br><br>
-                  <%= f.file_field :profilepic %>
+                <br>
+                  <%= f.file_field :profilepic, :class => "pt-2" %>
                 <p class="help-block">150px &times; 150px is best</p>
               </div>
             </div>
@@ -43,14 +45,16 @@
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <% if @user.bannerpic.present? && @user.bannerpic != '' %>
                   <div id="profileInfoBanner">
+
                     <%= image_tag(@user.bannerpic.url.to_s, :class => "img-responsive w-75", :style => "height:150px; margin-top:-15px", :id => "userBannerImage")%> <br>
                   </div>
                 <% else %>
                   <div id="profileInfoBanner" style="margin-top:20px;">
                     <%= image_tag("crowddark.png", :class => "img-responsive w-75", :style => "height:130px; margin-top:-13px", :id => "userBannerImage")%> <br>
+
                   </div>
                 <% end %>
-                <%= f.file_field :bannerpic, :style => "padding-top:23px;" %>
+                <%= f.file_field :bannerpic, :class => "pt-4" %>
                 <p class="help-block">1500px &times; 300px is best</p>
               </div>
             </div>
