@@ -29,20 +29,17 @@
 
 </head>
 
-<body>
+<body class="pt-5">
 
     <%= render 'layouts/header' %>
 
-    <main id="absoluteWrapper">
+    <main id="absoluteWrapper ">
       <%= yield %>
     </main>
 
     <%= render 'layouts/footer' %>
 
-    <% #= devise_error_messages! %>
-    <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-    <% end %>
+    
 
 </body>
 </html>
