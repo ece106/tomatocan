@@ -15,16 +15,14 @@ $baseFontFamily: Arial,Helvetica !default;
 $primary: #8C1D40;
 @import "bootstrap";
 
-
-
 @import "font-awesome";
 //Global styles
 @import "base/_globals.scss";
 @import "base/_header.scss";
 @import "base/footer.scss";
-
+@import "styles/_faq.scss";
 //Individual stylesheets loaded here
-
+@import "styles/_fellowship.scss";
 @import "styles/new.scss";
 
 @import "styles/users.scss";

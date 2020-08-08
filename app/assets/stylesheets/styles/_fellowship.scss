@@ -1,11 +1,35 @@
-.box
-{
+  .speaking{
+    font-family: sans-serif;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 40px;
+    max-width: 1500px;
     position: relative;
-}
+    color: #8C1D40;
+    font-weight: bold;
+  }
 
-.team .container{
-    min-width:auto;
-    max-width: 1400px;
-    height: auto;
-    padding: 10px;
-}
+  .speaking:before {
+    content: "";
+    display:block;
+    width:200px;
+    height: 2px;
+    background: #ecd7c6;
+    position:  absolute;
+    left:0%;
+    top: 50%;
+    z-index: -2;
+
+  }
+  .speaking:after {
+    content: "";
+    display:block;
+    width:550px;
+    height: 2px;
+    background: #ecd7c6;
+    position:  absolute;
+    right:0%;
+    top: 50%;
+    z-index: -2;
+
+  }
