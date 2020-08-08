@@ -40,14 +40,12 @@
     <div class="row">
       <!--study hall and conversation section -->
 
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <!--conversations column-->
-        <div class="col-lg-12 col-md-12" style = "height:195px">
+        <div class="col-lg-12 col-md-12" style = "height:210px">
           <%= render 'layouts/countdown_clock' %>
         </div>
-        <br>
-        <br>
-        <%= image_tag("convo_photo.png", style: "margin-bottom: 30px; border-radius: 112px; width: 75%;")%>
+        <%= image_tag("convo_photo.png", class:"mx-auto d-block", style: "margin-bottom: 30px; border-radius: 112px; width: 75%;")%>
         <h2 class="new text-center">Conversations
         </h2>
         <p>Join conversations hosted by grassroots activists to have
@@ -55,16 +53,16 @@
           scheduled small group conversations about activism!
         </p>
       </div>
-      </div>
+      
       <!--end of conversations column-->
 
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-        <div class="col-lg-12 col-md-12" id = "countdown_clock" style = "height:195px">
+        <div class="col-lg-12 col-md-12" style = "height:210px">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
 
-        <%= image_tag("activism_hall.jpg", style: "margin-bottom: 30px; border-radius:112px; width:75%;")%>
+        <%= image_tag("activism_hall.jpg", class:"mx-auto d-block", style: "margin-bottom: 30px; border-radius:112px; width:75%;")%>
         <h2 class="new text-center">
           Drop-In Hours
         </h2>
@@ -76,6 +74,7 @@
         <br><br><br>
       </div>
       <!--end of activism hall column-->
+      </div>
 
         <div>
           <br>
