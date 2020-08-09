@@ -47,8 +47,8 @@
 
     <!-- CONVERSATION NAME & HOST -->
     <div class="mt-3 ml-4" style="background-color: #8C1D40">
-      <div class="aboutHeader row" style="font-size: 30px; margin-left: 250px;">  
-        <div class="mt-4 col-lg-3">
+      <div class="aboutHeader row" style="margin-left: 250px;">  
+        <div class="mt-4 col-lg-3 col-sm-2">
     
           <!-- WHEN -->
           <p class="white text-left"> 
@@ -73,7 +73,7 @@
         </div>
 
         <!-- RSVP -->
-        <div class="mt-4 col-lg-9 col-md-7 col-sm-5 col-xs-2">
+        <div class="mt-4 col-lg-9 col-md-5 col-sm-3 col-xs-2">
             <% @title="ThinQ.tv" %>
               <div class="text-right mt-0">
                 <%= form_for(@rsvp) do |f| %>
@@ -100,25 +100,25 @@
                       <% end %>
                     <% end %>
                   <% else %>
-                    <br><%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px; font-weight: lighter; font-size: 17px;", placeholder: "Enter email" %>
+                    <br><%= f.text_field :email, :style => "font-size: 17px;", placeholder: "Enter email" %>
                   <% end %>
       
                   <% if flag %>
                   
-                    <%= f.submit "RSVP NOW", :style => "color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704;", :id => "RSVPsubmit" %><br>
+                    <%= f.submit "RSVP NOW", :class => "btn-sm pt-1 pb-1 pl-5 pr-5", :style => "background-color: #FFB704; border-color: #FFB704;", :id => "RSVPsubmit" %><br>
                     
                   <% end %>
                 <% end %>
               
                   <% if user_signed_in? %>
                     <% if @event.user_id == current_user.id %>
-                      <%= link_to "Edit Conversation", edit_event_path(@event), class: "btn btn-primary btn-lg", style: "border-color: #FFB704; color: #FFB704; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 12px" %><br><br>
+                      <%= link_to "Edit Conversation", edit_event_path(@event), class: "btn btn-primary btn-sm mt-3 mb-3", style: "border-color: #FFB704; color: #FFB704; border-radius: 5px; " %><br>
                     <% end %>
                 <% end %>
             
 
           <!-- EVENT DESCRIPTION -->
-          <div class="pt-1 pb-1 pl-0 pr-0">
+          <div class="pt-5 pb-5 pl-0 pr-0">
             <div class="p2">
               <% if @event.desc.present? %>
                 <p class="text-left white"> <%= @event.desc.gsub(/\n/, '<br>').html_safe %> </p> 
@@ -135,7 +135,7 @@
           
               <% if @rsvps.count > 0 %>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="color: black; background-color: #FFB704; font-size: 12px; padding: 5px 60px; height: font-weight: lighter; border-radius:0px; border-color:#FFB704; font-family: Helvetica Neue;" >
+                  <button type="button" class="btn btn-primary dropdown-toggle btn-sm pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true" style="color: black; background-color: #FFB704; border-color:#FFB704;" >
                     <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
@@ -182,17 +182,17 @@
 
 
  <!-- BOTTOM HALF -->
- <div class="row" style="padding-left: 60px; font-family: Helvetica Neue;">
+ <div class="row pl-5 py-3">
 
    <! Left Column -->
    <div class="col-md-8 col-sm-6">
-     <div> <h2 style="font-size: 24px;"> <b> To Join the <%= @event.topic %>: </b></h2></div>
+     <div> <h2 class="new text-dark"> <b> To Join the <%= @event.topic %>: </b></h2></div>
      <br>
      <div class="col-md-12">
        <div> <p> <strong> Desktop: </strong> </p></div>
        <div> 
          <p> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
-         click <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary fa fa-video-camera", style: "border-color: #FFB704; color: #FFB704; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 12px" %>
+         click <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary fa fa-video-camera mt-2 mb-2" %>
          </small> </p>
        </div>
        <div> <p> <strong>Mobile: </strong> </p> </div>
@@ -201,11 +201,11 @@
    </div>
 
     <! Right Column -->
-     <div class="col-md-4 col-sm-6" style="padding-left: 15px;">
+     <div class="col-md-4 col-sm-6 pl-3">
        <div> 
         <p > <strong> Invite your fellow activists </strong> </p>
        </div>
-       <div class="row" style="display: flex; padding-left: 0;">
+       <div class="row pl-0">
          <div class="col-md-2">
            <%= link_to "mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20"+ @event.name + "%20at%20" + @surl + "%20on%20" + 
            + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20PDT%20/%20" + edt.strftime("%I:%M %p") + "%20EDT.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
