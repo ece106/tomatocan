@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.6.3"
+ruby "2.7.0"
 
 gem "rails", "~> 6"
 gem "sprockets", "~> 3"
@@ -8,6 +8,7 @@ gem "listen"
 gem "pg"
 gem "stripe"
 gem "omniauth-google-oauth2"
+gem 'bootstrap-sass'
 gem 'uglifier'
 gem "puma"
 gem 'capistrano'
