@@ -9,7 +9,7 @@ require 'capybara/minitest'
 require 'selenium-webdriver'
 require 'simplecov'
 require './test/test_helper'
-
+require 'selenium/webdriver'
 #Simple cov used to generate a coverage report
 SimpleCov.start 'rails' do
   add_filter '/bin/'
@@ -18,13 +18,23 @@ SimpleCov.start 'rails' do
   add_filter '/test/' # for minitest
 end
 
+
+
 class ActionDispatch::IntegrationTest
+
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
   # Make `assert_*` methods behave like Minitest assertions
   include Capybara::Minitest::Assertions
   fixtures :all
   Capybara::Screenshot.autosave_on_failure = false
+
+  #this is for visual webdriver comment out if you dont have chrome and selenium-webdriver installed
+  #Capybara.register_driver :chrome do |app|
+  #Capybara::Selenium::Driver.new(app, browser: :chrome)
+  #end
+  #this goes with selenium webdriver comment out if you dont have chrome and the driver downloaded
+  #Capybara.current_driver = :chrome
 
   setup do
     @card_number           = "4242424242424242"
