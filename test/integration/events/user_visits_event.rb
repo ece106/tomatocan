@@ -54,21 +54,23 @@ tests focused on testing the conent of the user profile.
   end
 
   test "can make an rsvp for event" do
-    first(:id, "RSVPsubmit").click
+    first(:id, "new_rsvpq").click
     assert_equal current_path, "/#{@user.permalink}"
   end
 
-  test "can make an rsvp for event with email" do
-    sign_out
-    first(:id, "rsvpq_email").fill_in with: 'fake@fake.com'
-    first(:id, "RSVPsubmit").click
-    assert_equal current_path, "/#{@user.permalink}"
-  end
+  #don't have this rsvp for events with email from user's profile page anymore
+
+  # test "can make an rsvp for event with email" do
+  #   sign_out
+  #   first(:id, "rsvpq_email").fill_in with: 'fake@fake.com'
+  #   first(:id, "new_rsvpq").click
+  #   assert_equal current_path, "/#{@user.permalink}"
+  # end
 
   test "should see the images of share buttons" do
-    linkedin_img = "//div[2]/table/tbody/tr/td[5]/a[3]/img"
-    facebook_img = "//div[2]/table/tbody/tr/td[5]/a[1]/img"
-    twitter_img = "//div[2]/table/tbody/tr/td[5]/a[2]/img"
+    linkedin_img = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[3]/img"
+    facebook_img = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[1]/img"
+    twitter_img = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[2]/img"
 
     assert page.has_xpath? linkedin_img
     assert page.has_xpath? facebook_img
@@ -76,9 +78,9 @@ tests focused on testing the conent of the user profile.
   end
 
   test "should see the links when clicking the share buttons" do
-    linkedin_link = "//div[2]/table/tbody/tr/td[5]/a[3]"
-    facebook_link = "//div[2]/table/tbody/tr/td[5]/a[3]"
-    twitter_link = "//div[2]/table/tbody/tr/td[5]/a[3]"
+    linkedin_link = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[3]"
+    facebook_link = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[1]"
+    twitter_link = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[2]"
 
     assert page.has_xpath? linkedin_link
     assert page.has_xpath? facebook_link
