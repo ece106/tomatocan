@@ -8,7 +8,6 @@ gem "listen"
 gem "pg"
 gem "stripe"
 gem "omniauth-google-oauth2"
-gem 'bootstrap-sass'
 gem 'uglifier'
 gem "puma"
 gem 'capistrano'
