@@ -37,6 +37,7 @@ class RsvpqsController < ApplicationController
     end
   end
 
+
   def update
     if @rsvp.update(rsvpq_params)
       flash[:notice] = 'Rsvp was successfully updated.'
@@ -46,11 +47,14 @@ class RsvpqsController < ApplicationController
     end
   end
 
+
   private
+
 
   def set_rsvp
     @rsvp = Rsvpq.find(params[:id])
   end
+
 
   def rsvpq_params
     params.require(:rsvpq).permit(:event_id, :user_id, :guests, :email)
