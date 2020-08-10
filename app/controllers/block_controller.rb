@@ -13,7 +13,7 @@ class BlockController < ApplicationController
             to_block.update({'blockedBy': array << owner.permalink})        # add owner of convo to blockedBy array
             owner.update({'BlockedUsers': array2 << to_block.permalink})    # add user to be blocked to owner's BlockedUsers array
         end
-        
+
         # return 200 ok
         head :ok
     end
@@ -29,7 +29,7 @@ class BlockController < ApplicationController
         # remove current_user from blockedBy array
         array = array - [current_user.permalink]
         to_unblock.update({'blockedBy': array})
-        
+
         # get blockedUsers array
         array = current_user.BlockedUsers
 
@@ -49,7 +49,11 @@ class BlockController < ApplicationController
         array = current_user.last_viewed
         array = array - [params[:event].to_i]
         current_user.update({'last_viewed': array})
-        
+
+        attendance_log = Attendance.find_by(user_id: params[:currentUser], event_id: params[:event], time_out: nil)
+        attendance_log.time_out = Time.now - 7.hours
+        attendance_log.save
+
         # return 200 ok
         head :ok
     end
@@ -64,7 +68,7 @@ class BlockController < ApplicationController
             render :json => {:success => true}
         else
             render :json => {:success => false}
-        end        
+        end
     end
 
     def loadAttendees
