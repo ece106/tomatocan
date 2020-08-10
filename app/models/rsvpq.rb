@@ -6,7 +6,5 @@ class Rsvpq < ApplicationRecord
 	validates_format_of   :email, with: Devise.email_regexp, allow_blank: true
 	
 	validates :user_id, uniqueness: { scope: [:event_id, :email] }
-
 	validates :email, presence: {unless: :user_id? }
-
 end
