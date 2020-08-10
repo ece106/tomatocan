@@ -16,7 +16,7 @@
 <!-- TOP HALF -->
 
 <div>
-  <h1 class="new text-center text-dark"> Come Join the Conversation </h1>
+  <h1 class="new text-center text-dark"> Come Join the <%= @event.topic.upcase %> </h1>
   <p class="text-center event-name"><b> <%= @event.name %>! </b></p>
   <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
 </div>
@@ -39,8 +39,8 @@
               <% edt = @event.start_at + 3.hours %>
               <%= @event.start_at.strftime("%A, %B %d") %> <br>
               <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
+              <br> <%= @duration %> minutes <br> 
             </b>
-            <br> <%= @duration %> minutes <br> 
           </p>
           <br>
 
@@ -51,11 +51,11 @@
           
           <% if !@user.profilepic.present? || @user.profilepic == '' %>
             <div class="img-fluid" style="height: 0px; z-index: 3;">
-              <img height="270" width="270" src="https://www.beautycolorcode.com/ffffff-400x400.png"> 
+              <img height="250" width="250" src="https://www.beautycolorcode.com/ffffff-400x400.png"> 
             </div>
 
             <div class="img-fluid" style="height: 0px; z-index: 4;">
-              <%= image_tag "logoDigitalHollow300.png", height: "270", width: "270" %> <br>
+              <%= image_tag "logoDigitalHollow300.png", height: "250", width: "250" %> <br>
             </div>
           <% end %>
           <br>
@@ -65,7 +65,7 @@
           <% start_time = @event.start_at.strftime("%B %d %Y") + ' ' + @event.start_at.strftime("%T") %>
           <% end_time = @event.end_at.strftime("%B %d %Y") + ' ' + @event.end_at.strftime("%T") %>
           <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-            <%= link_to " Join " + @displayconvo.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary btn-sm mt-2 mb-2", style: "color: #FFB704; border-color: #FFB704" %>
+            <%= link_to " Join " + @displayconvo.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @displayconvo.topic ), class: "btn btn-primary border-warning text-warning btn-sm mt-2 mb-2" %>
           <% end %>
 
         </div>
@@ -98,19 +98,19 @@
                       <% end %>
                     <% end %>
                   <% else %>
-                    <br><%= f.text_field :email, :style => "font-size: 17px;", placeholder: "Enter email" %>
+                    <br><%= f.text_field :email, placeholder: "Enter email" %>
                   <% end %>
       
                   <% if flag %>
                   
-                    <%= f.submit "RSVP NOW", :class => "btn-sm pt-1 pb-1 pl-5 pr-5", :style => "background-color: #FFB704; border-color: #FFB704;", :id => "RSVPsubmit" %><br>
+                    <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %><br>
                     
                   <% end %>
                 <% end %>
               
                   <% if user_signed_in? %>
                     <% if @event.user_id == current_user.id %>
-                      <%= link_to "Edit Conversation", edit_event_path(@event), class: "btn btn-primary btn-sm mt-3 mb-3", style: "border-color: #FFB704; color: #FFB704; border-radius: 5px; " %><br>
+                      <%= link_to "Edit Conversation", edit_event_path(@event), class: "btn btn-primary btn-sm border-warning text-warning mt-3 mb-3" %><br>
                     <% end %>
                 <% end %>
             
@@ -124,12 +124,13 @@
             </div>
           </div>
 
+        
           <br>
           <br>
           <br>
           <br>
           <br>
-          
+          <br>
 
 
             <!-- Default dropleft button -->
@@ -138,7 +139,7 @@
           
               <% if @rsvps.count > 0 %>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle btn-sm pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true" style="color: black; background-color: #FFB704; border-color:#FFB704;" >
+                  <button type="button" class="btn btn-primary dropdown-toggle btn-sm border-warning text-body bg-warning pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true" >
                     <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
                   </button>
                   <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
@@ -195,7 +196,7 @@
        <div> <p> <strong> Desktop: </strong> </p></div>
        <div> 
          <p> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
-         click <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary fa fa-video-camera mt-2 mb-2" %>
+         click <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary border-warning text-warning fa fa-video-camera mt-2 mb-2" %>
          </small> </p>
        </div>
        <div> <p> <strong>Mobile: </strong> </p> </div>
