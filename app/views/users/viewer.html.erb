@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, current_user.last_viewed << params[:event]) %>
+  <% Attendance.new(:user_id => current_user.id, :event_id => params[:event], :time_in => (Time.now - 7.hours)).save %>
 
   <!-- Update list of users attending the conversation -->
   <div class = "container-fluid">
@@ -27,18 +28,18 @@
         <div style = "font-size: 15px; margin-left: 7px">
           Invite via E-Mail:
         </div>
-        <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
+        <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/codingwhilefemale" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
 
         <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
           Invite via SMS:
         </div>
-        <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/youronlinemom" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
+        <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/codingwhilefemale" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
 
         <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
           Invite via social media:
         </div>
 
-        <% domainurl = "https://thinq.tv/youronlinemom" %>
+        <% domainurl = "https://thinq.tv/codingwhilefemale" %>
         <% eventUrl = "https://thinq.tv/#{request.original_fullpath}"%>
         <div style="margin-left: 17px">
           <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
