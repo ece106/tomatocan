@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, current_user.last_viewed << params[:event]) %>
+  <% Attendance.new(:user_id => current_user.id, :event_id => params[:event], :time_in => (Time.now - 7.hours)).save %>
 
   <!-- Update list of users attending the conversation -->
   <div class = "container-fluid">
