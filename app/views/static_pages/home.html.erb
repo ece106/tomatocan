@@ -28,7 +28,7 @@
     </h1>
     <h3 class="Subtitle">
       Most of the day we have a video chat
-      <%= link_to "Activism Hall", studyhall_path, style: "color: #ffc627" %>
+      <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %>
       to support Women & Minorities in Tech.
       <br>
       Everyone is welcome. Drop in to ask questions about ThinQ.tv!
@@ -99,12 +99,13 @@
           <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
         </div>
         <div class="tabPanel">
-          <%= render 'layouts/convocalendar', collection: @conversationsall %>
+        <div id="events">
+          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+             events: @calendar_events_all, monthNum: 0, type: 0}%>
         </div>
       </div>
-    </div>
-
-    <br><br><br>
+      </div>
+<br><br>
 <script type="text/javascript">
 showPanel(0, '#f44336');
 </script>
