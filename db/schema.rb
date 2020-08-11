@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_name"
     t.string "guest2_email"
     t.string "topic"
-    t.text "attending", default: [], array: true
     t.text "recurring"
     t.index ["start_at", "topic"], name: "index_events_on_start_at_and_topic", unique: true
   end
