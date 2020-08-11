@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 201309200000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "attendances", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "time_in"
+    t.datetime "time_out"
+  end
+
   create_table "books", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "blurb"
