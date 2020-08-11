@@ -60,9 +60,14 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @default_prices.each do |price| 
       @visit_default_donation.call @purchase.author_id, price
       @card_css.each { |x| assert page.has_css? x }
-      card_information_entry 
+      fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
+      fill_in id: 'card_number',          with: "1234"
+      fill_in id: 'card_code',            with: "123"
+      select '8 - August',                from: 'card_month'
+      select '2024',                      from: 'card_year'
       assert page.has_button? 'Donate'
       click_on 'Donate'
+      assert_current_path new_purchase_path  author_id: @purchase.author_id, pricesold: price
       # issue with the testing card, should redirect to seller's page 
       # assert_current_path "/purchases"
       @user_two.update_attribute :stripe_customer_token, ""
