@@ -49,8 +49,12 @@ class BlockController < ApplicationController
         array = current_user.last_viewed
         array = array - [params[:event].to_i]
         current_user.update({'last_viewed': array})
+        if params[:event] == nil || params[:event] == ""
+          attendance_log = Attendance.find_by(user_id: params[:currentUser], time_out: nil)
+        else  
+          attendance_log = Attendance.find_by(user_id: params[:currentUser], event_id: params[:event], time_out: nil)
+        end
 
-        attendance_log = Attendance.find_by(user_id: params[:currentUser], event_id: params[:event], time_out: nil)
         attendance_log.time_out = Time.now - 7.hours
         attendance_log.save
 
