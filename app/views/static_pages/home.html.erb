@@ -11,18 +11,18 @@
   <div class="col-lg-5 col-md-11">
       <div id="home" style= "height: 50vh" >
 
-        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
-          Discover Activism that makes you
+        <div class = "text-center pl-3 h1 d-inline display-4 text-warning"><strong>
+          Discover Activism that makes you</strong>
         </div>
-        <div style="display:inline;" >
+        <div class = "d-inline" >
           <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
         </div>
         <h3 class = "text-white text-center"><b>
           Crowdsource Activism via Video Chat</b>
         </h3><br><br><br>
-        <h4 style="color:#fff; margin-right: 20px; margin-left: 20px; line-height: 1.2em"><i>New to ThinQ.tv?</i>
+        <h3 class = "text-white pr-3 pl-3"><i>New to ThinQ.tv?</i>
           <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv!
-        </h4>
+        </h3>
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
