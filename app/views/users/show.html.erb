@@ -36,10 +36,10 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <%= render 'layouts/merchsidebar' %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <% if @calendar_events.present? %>
         <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
       <% end %>
