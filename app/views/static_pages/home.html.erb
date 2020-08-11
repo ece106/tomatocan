@@ -9,7 +9,7 @@
 
 <div class = "row pl-4">
   <div class="col-lg-5 col-md-11">
-      <div id="home" style= "height: 50vh" >
+      <div id="home">
 
         <div class = "text-center pl-3 h1 d-inline display-4 text-warning"><strong>
           Discover Activism that makes you</strong>
@@ -23,6 +23,7 @@
         <h3 class = "text-white pr-3 pl-3"><i>New to ThinQ.tv?</i>
           <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv!
         </h3>
+
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
@@ -48,7 +49,7 @@
               <h2 id="buttonTitle">
 
               <h2 id="buttonTitle">
-              <%= link_to 'See an example Video Chat Room', "/codingwhilefemale/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
+              <%= link_to 'See an example Video Chat Room', "/codingwhilefemale/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary border-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
 
               </h2>
             </h2>
@@ -70,7 +71,7 @@
         <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
       <% end %>
     </div>
-    <div class="col-lg-5 col-md-6 pt-2 mt-2 pl-4 pr-0 ">
+    <div class="col-lg-5 col-md-6 pt-2 mt-2 pl-1 pr-5 ">
       <%= render 'layouts/countdown_clock' %>
     </div>
   </div>
