@@ -1,12 +1,12 @@
 <div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: #8C1D40">
   <div class="alert" style="background-color: #8C1D40"></div>
-  <div class="col-sm">
+  <div>
     <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>">
         <%= value %>
       </div>
     <% end %>
-    <h1 class="white">
+    <h1 class="white mt-5">
       Discover Activism that makes you
       <div>
         <%= image_tag("GoldThinQ60.png", style: "padding-left: 150px;")%><br> </div>
@@ -14,41 +14,39 @@
       <h2 class="new" style="color:white">
         Crowdsource Activism via Video Chat
       </h2>
-    </div>
-    <div class="col-sm">
+      </div>
+    <div class="col">
       <%= image_tag("header-image.png", style: "width:80%; padding-top:10px; padding-bottom:10px;")%>
     </div>
-
   </div>
   <!-- end of top section-->
 
-  <div class="col-sm">
+  <div class="p-5 m-5 mb-3 pb-3">
     <h1 class="new">
       New to ThinQ.tv?
     </h1>
     <h3 class="Subtitle">
       Most of the day we have a video chat
-      <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %>
+      <u><%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %></u>
       to support Women & Minorities in Tech.
       <br>
       Everyone is welcome. Drop in to ask questions about ThinQ.tv!
     </h3>
-    <br><br>
   </div>
   <!-- end of new to thinQ section-->
 
-  <div class="row">
+  <div class="row pt-0 mt-0">
     <!--study hall and conversation section -->
 
-    <div class="col-sm-6">
+    <div class="col-lg-6 col-md-12 pb-5">
       <!--conversations column-->
       <div class="col-lg-12 col-md-12" style = "height:210px">
         <%= render 'layouts/countdown_clock' %>
       </div>
-      <%= image_tag("convo_photo.png", class:"mx-auto d-block", style: "margin-bottom: 30px; border-radius: 112px; width: 75%;")%>
+      <%= image_tag("convo_photo.png", class:"mx-auto d-block", style: "margin-bottom: 30px; padding-top:20px; border-radius: 112px; width: 75%;")%>
       <h2 class="new text-center">Conversations
       </h2>
-      <p>Join conversations hosted by grassroots activists to have
+      <p class = "text-center">Join conversations hosted by grassroots activists to have
         <br>
         scheduled small group conversations about activism!
       </p>
@@ -56,17 +54,17 @@
 
     <!--end of conversations column-->
 
-    <div class="col-sm-6">
+    <div class="col-lg-6 col-md-12 pb-5">
       <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
       <div class="col-lg-12 col-md-12" style = "height:210px">
         <%= render 'layouts/countdown_clockstudy' %>
       </div>
 
-      <%= image_tag("activism_hall.jpg", class:"mx-auto d-block", style: "margin-bottom: 30px; border-radius:112px; width:75%;")%>
+      <%= image_tag("activism_hall.jpg", class:"mx-auto d-block", style: "margin-bottom: 30px; padding-top:20px; border-radius:112px; width:75%;")%>
       <h2 class="new text-center">
         Drop-In Hours
       </h2>
-      <p>
+      <p class = "text-center">
         Discover other activists working on similar causes. Drop in to
         <br>
         video chat throughout the day to meet us & collaborate!
