@@ -49,8 +49,12 @@ class BlockController < ApplicationController
         array = current_user.last_viewed
         array = array - [params[:event].to_i]
         current_user.update({'last_viewed': array})
+        if params[:event] == nil || params[:event] == ""
+          attendance_log = Attendance.find_by(user_id: params[:currentUser], time_out: nil)
+        else  
+          attendance_log = Attendance.find_by(user_id: params[:currentUser], event_id: params[:event], time_out: nil)
+        end
 
-        attendance_log = Attendance.find_by(user_id: params[:currentUser], event_id: params[:event], time_out: nil)
         attendance_log.time_out = Time.now - 7.hours
         attendance_log.save
 
@@ -81,3 +85,6 @@ class BlockController < ApplicationController
         render :json => {:success => true, :html => (render_to_string partial: "layouts/live_count")}
     end
 end
+
+When Dr. Lisa Schaefer was a federal contractor, an FAA employee locked her in a conference room and masturbated. The next day, in spite of (or because of?) her advanced education and her attempts to develop “perfect airspace” solutions, she was fired. So rather than go back to another FAA contractor position, she used her talents to produce Budget Justified, a movie, web series, and video-short reenacting what she witnessed in FAA and contractor offices. 
+Dr. Schaefer is now the founder of ThinQ.tv, a new video chat platform for activism. After producing Budget Justified, she taught herself web development and created the platform herself. She now uses it not only to promote Coding While Female, but to mentor women and minorities in tech....
