@@ -9,46 +9,60 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   end
 
   test "should go to home after clicking on home" do
-      within("div#globalNavbar.collapse.navbar-collapse") do
-        click_on('Home', match: :first)
+      within("div#navbarSupportedContent.collapse.navbar-collapse") do
+        first(:xpath, "//a[@href='/']").click
         assert_equal current_path, root_path
       end 
     end
 
   test "should go to about page when clicking about in header"  do
-    within("div#globalNavbar.collapse.navbar-collapse") do
-      click_on('About Us', match: :first)
+    within("div#navbarSupportedContent.collapse.navbar-collapse") do
+      first(:xpath, "//a[@href='/getinvolved']").click
       assert_equal current_path, '/getinvolved'
     end 
   end 
 
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
-    within("div#globalNavbar.collapse.navbar-collapse") do
-      click_on("Join the Team", match: :first)
+    within("div#navbarSupportedContent.collapse.navbar-collapse") do
+      first(:xpath, "//a[@href='/jointheteam']").click
       assert_equal current_path, '/jointheteam'
     end 
   end 
 
   test "should go to Activism Hall page when clicking Activism Hall in header"  do
-    within("div#globalNavbar.collapse.navbar-collapse") do
-      click_on("Activism Hall", match: :first)
+    within("div#navbarSupportedContent.collapse.navbar-collapse") do
+      first(:xpath, "//a[@href='/studyhall']").click
       assert_equal current_path, '/studyhall'
     end 
-  end 
+  end
 
   test "should go to FAQ page when clicking FAQ in footer"  do
     within("div#footer.row") do
-      click_on("FAQ", match: :first)
+      first(:xpath, "//a[@href='/faq']").click
       assert_equal current_path, '/faq'
+    end 
+  end
+
+  test "should go to drschaeferspeaking page when clicking Invite Us to Speak in footer"  do
+    within("div#footer.row") do
+      first(:xpath, "//a[@href='/drschaeferspeaking']").click
+      assert_equal current_path, '/drschaeferspeaking'
     end 
   end
 
   #ToS = Terms of Service
   test "should go to ToS page when clicking ToS in footer"  do
     within("div#footer.row") do
-      click_on("Terms of Service", match: :first)
+      first(:xpath, "//a[@href='/tos']").click
       assert_equal current_path, '/tos'
+    end 
+  end
+
+  test "should go to Privacy page when clicking Privacy in footer"  do
+    within("div#footer.row") do
+      first(:xpath, "//a[@href='/privacy']").click
+      assert_equal current_path, '/privacy'
     end 
   end
 

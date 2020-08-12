@@ -29,10 +29,11 @@ tests focused on testing the conent of the user profile.
     page.status_code == 400
   end
 
-  test "should see the correct event title" do
+  #there are no event titles in the "/#{@user.permalink}" page
+ #  test "should see the correct event title" do
 	
-	assert_selector '#calendar-event', text: @event.name
-  end
+	# assert_selector "#calendar-event", text: @event.name
+ #  end
 
   test "should see the correct event host" do
     
@@ -42,28 +43,49 @@ tests focused on testing the conent of the user profile.
 
   test "should see the correct start date" do
 		
-	assert_selector '#calendar-time-day1', text: ""#@event.start_at.strftime("%a, %B %d")
+	assert_selector "#calendar-time-day1", text: "" #@event.start_at.strftime("%A, %B %d")
 	
   end
 
   test "should see the correct start at timezones" do
 	
-	assert_selector '#calendar-time1', text: ""#(@event.start_at.strftime("%I:%M %p"))
+	assert_selector "#calendar-time-hour1", text: "" #@event.start_at.strftime("%I:%M %p")
 	
   end
 
   test "can make an rsvp for event" do
-    click_on id: "RSVPsubmit"
-    assert_equal current_path, home_path
+    first(:id, "new_rsvpq").click
+    assert_equal current_path, "/#{@user.permalink}"
   end
 
-  test "can make an rsvp for event with email" do
-    sign_out
-    fill_in(id: 'rsvpq_email', with: 'fake@fake.com')
-    click_on id: "RSVPsubmit"
-    assert_equal current_path, home_path
+  #don't have this rsvp for events with email from user's profile page anymore
+
+  # test "can make an rsvp for event with email" do
+  #   sign_out
+  #   first(:id, "rsvpq_email").fill_in with: 'fake@fake.com'
+  #   first(:id, "new_rsvpq").click
+  #   assert_equal current_path, "/#{@user.permalink}"
+  # end
+
+  test "should see the images of share buttons" do
+    linkedin_img = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[3]/img"
+    facebook_img = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[1]/img"
+    twitter_img = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[2]/img"
+
+    assert page.has_xpath? linkedin_img
+    assert page.has_xpath? facebook_img
+    assert page.has_xpath? twitter_img
   end
 
+  test "should see the links when clicking the share buttons" do
+    linkedin_link = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[3]"
+    facebook_link = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[1]"
+    twitter_link = "//main/div/div[4]/div[2]/div[2]/table/tbody/tr/td[6]/a[2]"
+
+    assert page.has_xpath? linkedin_link
+    assert page.has_xpath? facebook_link
+    assert page.has_xpath? twitter_link
+  end
   
   private
 
@@ -80,6 +102,6 @@ tests focused on testing the conent of the user profile.
 
   def sign_out
     click_on('Sign out', match: :first)
-    visit event_path @event
+    visit "/#{@user.permalink}"
   end
 end

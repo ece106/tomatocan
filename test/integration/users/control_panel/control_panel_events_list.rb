@@ -4,7 +4,7 @@ require "capybara-screenshot/minitest"
 class ControlPanelEventsList < ActionDispatch::IntegrationTest
   setup do
     @test_user      = users :confirmedUser
-    @test_event_one = events :confirmedUser_event
+    @test_event_one = events :recurring_event
     @past_event     = events :past_event
 
     sign_in
@@ -47,7 +47,7 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
     
     within(id: "event-list-table") do
       upcoming_events_count = find_all(".event-name").to_a.count
-      assert_equal upcoming_events_count, 1
+      assert_equal upcoming_events_count, 3
     end
   end
 
