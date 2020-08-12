@@ -44,7 +44,7 @@ class ActionDispatch::IntegrationTest
   def user_sign_in  user
    visit root_path
    within ('.navbar-btn') do
-    click_on class: 'btn btn-primary border-warning'
+    click_on class: 'btn btn-primary border-warning text-warning'
   end
   fill_in id: 'user_email',    with:  "#{user.email}"
   fill_in id: 'user_password', with:  "user1234"
@@ -55,7 +55,7 @@ class ActionDispatch::IntegrationTest
     fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
     fill_in id: 'card_number',          with: "#{@card_number}"
     fill_in id: 'card_code',            with: "#{@cvc}"
-    select 'August',                    from: 'card_month'
+    select '8 - August',                from: 'card_month'
     select '2024',                      from: 'card_year'
   end
 
