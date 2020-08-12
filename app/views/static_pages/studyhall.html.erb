@@ -49,14 +49,14 @@
     </div>
      <div class="tabPanel text-center w-100">
       <div class="container-fluid " id="calendar">
-        <div class="col-sm-12 mr-5 pr-5">
+        <div class="col-sm-12">
         <%= render 'layouts/weeklycalendar',  eventPartial: "layouts/renderday"%>
         </div>
       </div>
     </div>
       
     <div class="tabPanel" >
-      <div class="container-fluid pl-5 mr-5">
+      <div class="container-fluid mr-5 pr-5">
        <div id="events">
          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 5.hour).to_date,
             events: @eventsAll, monthNum: 0, type: 1}%>
