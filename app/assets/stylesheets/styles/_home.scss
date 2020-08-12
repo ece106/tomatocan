@@ -15,45 +15,6 @@ html, body {
     position: sticky;
     top:30px;
 }
-.home_video {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    object-fit: cover;
-    top: 0px;
-    left: 0px;
-    z-index: -2;
-    display: block;
-}
-.home-video-wrapper {
-    height: 107vh;
-    width: 100vw;
-    top: 50px;
-    margin: auto;
-    margin-right: 5px;
-    display: flex;
-    background-image: linear-gradient(rgba(51,51,51,0.6),rgba(51,51,51,0.6));
-}
-#heroTitle1 {
-    font-size: 60px;
-    color: #FFC627;
-    font-family: Helvetica, sans-serif;
-    margin-top: 90px;
-}
-#heroTitle2 {
-    font-size: 40px;
-}
-#heroTitle3 {
-    color: white;
-    padding: 10px;
-    background-color: rgba(153,0,51,0.6);
-    text-align: center;
-    display: inline-block;
-}
-#heroTitle4{
-    padding-top: 20px;
-    font-size: 25px;
-}
 .topic_link {
     color: #FFC627;
     font-weight: bold;
@@ -62,7 +23,7 @@ html, body {
     padding-top: 30px;
 }
 #home {
-    background-color: #AFB8BB;
+    background-color: #8C1D40;
     text-align: center;
     z-index: 0;
     font-weight: bolder;
@@ -73,9 +34,11 @@ html, body {
     left: 0;
 }
 .main {
+    background-color: white;
     background-size: cover;
     background-repeat: repeat-x;
     position: relative;
+    width: 100vw;
     margin-right: -15px;
     margin-left: -20px;
     margin-bottom: 0px;
@@ -92,21 +55,6 @@ html, body {
 }
 #purpose {
     margin-right: 130px;
-}
-.col-md-5 {
-    padding: 0px;
-}
-.col-md-5 h3 {
-    font-weight: bolder;
-    font-size: 30px;
-    color: #8C1D40;
-    text-align: center;
-}
-.col-md-5 p {
-    text-align: justify;
-    font-size: 20px;
-    padding-left: 20px;
-
 }
 
 #rewards, #connect {
@@ -159,7 +107,6 @@ html, body {
 #clockdivstudy{
     color: #fff;
     display: inline-block;
-    height: 80px;
     text-align: center;
     vertical-align: middle;
 }
@@ -167,8 +114,8 @@ html, body {
     background: #8C1D40;
     border-radius: 10px;
     display: inline-block;
-    height: 35px;
-    width: 60px;
+    height: 60px;
+    width: 70px;
 }
 #clockdivstudy div > span{
     display: inline-block;
