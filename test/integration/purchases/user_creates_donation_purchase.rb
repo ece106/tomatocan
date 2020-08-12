@@ -61,6 +61,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
       @visit_default_donation.call @purchase.author_id, price
       @card_css.each { |x| assert page.has_css? x }
       fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
+      #invalid value of card info
       fill_in id: 'card_number',          with: "1234"
       fill_in id: 'card_code',            with: "123"
       select '8 - August',                from: 'card_month'
