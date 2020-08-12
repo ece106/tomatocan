@@ -9,6 +9,7 @@ class BlockControllerTest < ActionController::TestCase
     array = @blocked_user.last_viewed
     array.push(@event)
     @blocked_user.update({'last_viewed': array})
+    Attendance.new(:user_id => @blocked_user.id, :event_id => @event.id, :time_in => (Time.now - 7.hours)).save
     post :block, params: {to_block: @blocked_user.id, owner: @user.id}
   end
 
