@@ -1,4 +1,5 @@
 <div class="container-fluid" >
+
     <!-- Meta Tags for Facebook Share -->
     <% content_for :head do %>
       <meta property="og:url"           content="<%= "https://www.thinq.tv" + user_profile_path(@user.permalink) %>" />
@@ -22,7 +23,7 @@
         <br>
       </div>
   <% else %>
-    <div class="pt-2 pb-4 pl-2">
+    <div class="row" style="padding-top:15px;padding-bottom:30px;">
       <%= render 'layouts/streamButton' %>
     </div>
   <% end %>
@@ -40,17 +41,8 @@
     </div>
     <div class="col-md-9">
       <% if @calendar_events.present? %>
-        <%= render 'layouts/maincalendar', collection: @calendar_events %>
-        <br>
+        <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
       <% end %>
     </div>
   </div>
 </div>
-
-<script>
-      function unblock(current_user_id, to_unblock_id) {
-        $.post("/users/unblock", {current_user_id: current_user_id, to_unblock_id: to_unblock_id}, function() {
-          $('#blocked').load(document.URL +  ' #blocked');
-        })
-      }
-    </script>
