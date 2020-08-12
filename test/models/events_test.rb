@@ -84,6 +84,14 @@ class EventTest < ActiveSupport::TestCase
     end
   end
 
+  test "endat numericality" do
+    @eventT.start_at = "2021-12-11 11:00:00"
+    @eventT.end_at =   @eventT.start_at + 3.hour
+    assert @eventT.errors.messages[:end_at]
+    @eventT.end_at =   "abc"
+    assert @eventT.errors.messages[:end_at]
+  end 
+
   def evalFormat
     errorMsg = "Event saved with invalid format: "
     isInvalid = false
