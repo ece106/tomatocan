@@ -234,4 +234,9 @@ class TestUser < ActiveSupport::TestCase
     # assert_equal user.profilepic, 'nicejpg' Cant test this now because a real image needs to be uploaded
   end
 
+  test "users are returned in descending order" do
+    expected = {"order"=>"DESC"}
+  	assert_equal  expected, User.updated_at.where_values_hash
+  end
+
 end
