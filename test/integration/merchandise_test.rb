@@ -7,15 +7,14 @@ class MerchandisesTest < ActionDispatch::IntegrationTest
     setup do
     visit ('/')
     click_on('Sign In', match: :first)
-    fill_in(id: 'user_email', with: 'fake@fake.com')
+    fill_in(id: 'user_email', with: 'thinqtesting@gmail.com')
     fill_in(id: 'user_password', with: 'user1234')
+
     click_on(class: 'form-control btn-primary')
-    @user = users(:one)
+    @user = users(:confirmedUser)
 end
     test 'Should create reward from controlpanel rewards page' do
-        # signUpUser()
-        # signInUser()
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
@@ -33,7 +32,7 @@ end
       assert_text('Tickets to My Show')
     end
     test 'Should render current donate reward from profileinfo page' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
@@ -65,7 +64,7 @@ end
         assert_text('errors prohibited this Reward from being saved:')
     end
     test 'Should_render_reward_description' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
@@ -77,56 +76,56 @@ end
         assert_text('This is a lovely description. WOW!')
     end
     test 'Should_show_type_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
         assert page.has_field?('merchandise_buttontype')
     end
     test 'Should_show_title_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
         assert page.has_field?('merchandise_name')
     end
     test 'Should_show_price_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
         assert page.has_field?('merchandise_price')
     end
     test 'Should_show_description_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
         assert page.has_field?('merchandise_desc')
     end
     test 'Should_show_image_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
         assert page.has_field?('merchandise_itempic')
     end
     test 'Should_show_youtube_URL_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
         assert page.has_field?('merchandise_youtube')
     end
     test 'Should_show_year_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
         assert page.has_field?('merchandise_deadline_1i')
     end
     test 'Should_show_day_field_when_creating_new_reward' do
-        click_on(text: 'Phineas',:match => :first)
+        click_on(text: 'userconfirmed',:match => :first)
         click_on(text: 'Control Panel')
         click_on(text: 'Rewards')
         click_on('Create Reward')
