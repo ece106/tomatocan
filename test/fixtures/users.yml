@@ -106,6 +106,7 @@ confirmedUser:
   name: userconfirmed
   email: thinqtesting@gmail.com
   permalink: userconfirmed
+  stripeid: acct_1H0YzoAlogCn5OBe
   encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
   remember_token: MyString
   confirmation_token: fVQxEs5s9vC2VawpbZam
