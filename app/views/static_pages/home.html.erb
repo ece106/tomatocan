@@ -1,92 +1,111 @@
-<div class="alert mt-3">
-  <% flash.each do |key, value| %>
-    <div class="<%= flash_class(key) %>">
-      <%= value %>
-    </div>
-  <% end %>
-</div>
-<div class ="row">
-  <div class="col-lg-5 col-md-11">
-      <div id="home" >
-        <div style="display:inline; font-size: 54px; color:#ffc627; font-family: 'Arial';" >
-          Discover Activism that makes you
-        </div>
-        <div style="display:inline;" >
-          <%= image_tag("GoldThinQ60.png", style: "margin-bottom: 30px")%><br>
-        </div>
-        <div style="font-size: 30px; color:#fff; font-family: 'Arial';" >
-          Crowdsource Activism via Video Chat
-        </div><br><br><br>
-
-        <h3 style="color:#fff; margin-right: 20px; margin-left: 20px; line-height: 1.2em"><i>New to ThinQ.tv?</i>
-          <br>Most of the day we have a video chat <%= link_to "Drop-In", studyhall_path, style: "color: #ffc627" %> Hours so you can meet Activists and ask questions about ThinQ.tv!
-        </h3>
-        <% if @displaystudy.present? %>
-          <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
-            <div id="eventCurrentdiv">
-              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic, event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 45px; border-color:#ffc627; border-radius: 5px; " %>
-            </div>
-          <% end %>
-        <% end %>
-        <% if @displayresearch.present? %>
-          <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
-            <div id="eventCurrentdiv">
-              <p style="color:#fff">We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "color: #ffc627" %></p>
-              <p style="color:#fff"> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic, event: @displayresearch.id ), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 42px; border-color:#ffc627; border-radius: 5px;" %>
-            </div>
-          <% end %>
-        <% end %>
-        <% if @displaystudy.present? && @displayresearch.present? %>
-          <% if !(Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
-            <% if !(Time.current > Time.parse(@start_timestudy)) && (Time.current < (Time.parse(@start_timestudy) + 1.hour)) %>
-              <h2 id="buttonTitle">
-              <h2 id="buttonTitle" style="margin-bottom: 30px">
-              <%= link_to 'See an example Video Chat Room', "/codingwhilefemale/viewer?chatrm=Conversation", class: "btn btn-lg btn-primary", style: "border-radius: 5px;", title: "Check your webcam" %>
-              </h2>
-            <% end %>
-          <% end %>
-        <% end %>        <br><br>
+<div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: #8C1D40">
+  <div class="alert" style="background-color: #8C1D40"></div>
+  <div>
+    <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+        <%= value %>
       </div>
+    <% end %>
+    <h1 class="white mt-5">
+      Discover Activism that makes you
+      <div>
+        <%= image_tag("GoldThinQ60.png", style: "padding-left: 150px;")%><br> </div>
+      </h1>
+      <h2 class="new text-center" style="color:white">
+        Crowdsource Activism via Video Chat
+      </h2>
+      </div>
+    <div class="col">
+      <%= image_tag("HomeBanner.png", style: "width:80%; padding-top:40px; padding-bottom:80px; padding-left: 50px;")%>
     </div>
+  </div>
+  <!-- end of top section-->
 
-<div class="col-lg-7 col-md-12" id="countdown_clock">
-  <div class="main row">
+  <div>
     <br>
-    <div class="col-lg-3 col-md-6">
-      <h2>Conversation Schedule</h2>
-      <h4>Discover topics that motivate you!</h4>
-      <% if user_signed_in? %>
-        <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
-      <% end %>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <%= render 'layouts/countdown_clock' %>
-    </div>
+    <br>
+    <h2 class="new text-center">
+      New to ThinQ.tv?
+    </h2>
+    <p class="black text-center">
+      Most of the day we have a video chat
+      <u><%= link_to "Drop-In", studyhall_path, style: "color: #FFB704" %></u>
+      to support Women & Minorities in Tech.
+      <br>
+      Everyone is welcome. Drop in to ask questions about ThinQ.tv!
+    </p>
   </div>
-  <div class="tabContainer">
-    <div class="buttonContainer">
-      <button onclick="showPanel(0,'#4caf50')">List View</button>
-      <button onclick="showPanel(1,'#4caf50')">Daily View</button>
-      <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
-    </div>
-    <div class="tabPanel">
-      <%= render 'layouts/convocalendar', collection: @conversations %>
-    </div>
-    <div class="tabPanel">
-      <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
-    </div>
-    <div class="tabPanel">
-      <div id="events">
-        <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
-           events: @calendar_events_all, monthNum: 0, type: 0}%>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+  <!-- end of new to thinQ section-->
 
-<br><br><br>
+  <div class="row pt-0 mt-0">
+    <!--study hall and conversation section -->
+
+    <div class="col-lg-6 col-md-12 pb-5">
+      <!--conversations column-->
+      <div class="col-lg-12 col-md-12" style = "height:210px">
+        <%= render 'layouts/countdown_clock' %>
+      </div>
+      <%= image_tag("convo_photo.png", class:"mx-auto d-block", style: "margin-bottom: 30px; padding-top:20px; border-radius: 112px; width: 75%;")%>
+      <h2 class="new text-center">Conversations
+      </h2>
+      <p class = "text-center">Join conversations hosted by grassroots activists to have
+        <br>
+        scheduled small group conversations about activism!
+      </p>
+    </div>
+
+    <!--end of conversations column-->
+
+    <div class="col-lg-6 col-md-12 pb-5">
+      <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
+      <div class="col-lg-12 col-md-12" style = "height:210px">
+        <%= render 'layouts/countdown_clockstudy' %>
+      </div>
+
+      <%= image_tag("activism_hall.jpg", class:"mx-auto d-block", style: "margin-bottom: 30px; padding-top:20px; border-radius:112px; width:75%;")%>
+      <h2 class="new text-center">
+        Drop-In Hours
+      </h2>
+      <p class = "text-center">
+        Discover other activists working on similar causes. Drop in to
+        <br>
+        video chat throughout the day to meet us & collaborate!
+      </p>
+      <br><br><br>
+    </div>
+    <!--end of activism hall column-->
+    </div>
+
+      <div>
+        <br>
+        <div class="convo-container" style="text-align:center">
+          <!-- col-lg-3 col-md-6 -->
+          <h1 class = "new">Conversation Schedule</h1>
+          <% if user_signed_in? %>
+            <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tabContainer" style="text-align:center">
+        <div class="buttonContainer">
+          <button onclick="showPanel(0,'#4caf50')">List View</button>
+          <button onclick="showPanel(1,'#4caf50')">Daily View</button>
+          <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
+        </div>
+       <div class="tabPanel">
+          <%= render 'layouts/convocalendar', collection: @conversations %>
+        </div>
+        <div class="tabPanel">
+          <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
+        </div>
+        <div class="tabPanel">
+        <div id="events">
+          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+             events: @calendar_events_all, monthNum: 0, type: 0}%>
+        </div>
+      </div>
+      </div>
+<br><br>
 <script type="text/javascript">
-  showPanel(0, '#f44336');
+showPanel(0, '#f44336');
 </script>

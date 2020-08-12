@@ -12,16 +12,16 @@
         <% if @displayresearch.present? %> 
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
-              <h3>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %></h3>  
-              <p> right NOW!</p><br>
+              <p>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %>
+              right NOW!</p><br>
               <%= link_to " Join Group Problem Solving NOW ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
-      <br>
     </div>
   <% elsif Time.current < Time.parse(@start_timestudy) %>
     <div id="clockdivstudy">
+    <br>
       <div>
       <span class="daystudy"></span>
       <div class="smalltext">Days</div>
