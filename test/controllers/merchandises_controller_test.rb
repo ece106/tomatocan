@@ -166,7 +166,7 @@ class MerchandisesControllerTest < ActionController::TestCase
     sign_in users(:confirmedUser)
       post :create, params: { merchandise: { name: 'chris', user_id: 1, price: '20', desc: 'test', buttontype: 'Buy' }}    
       patch :update, params: {id: @merchandise, merchandise: {name: '', user_id: '1', price: '1', desc: 'test', buttontype: 'Buy'}}
-      assert_template layout:'userpgtemplate'
+      assert_template layout:'application'
       post :create, params: { merchandise: { price: '20', user_id: '1', desc: 'test1', buttontype: 'one' }}
       assert_template layout: 'application'
   end
