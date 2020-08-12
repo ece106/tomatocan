@@ -30,22 +30,23 @@
 <br>
 
 <div class="tabContainer">
-  <div class="row justify-content-center">
+  <div class="justify-content-center">
     <div class="col-sm-12">
       <h1 class = "text-left text-primary pl-4 ml-1"><b>Drop-In Schedule</b></h1>
     </div>
     
-    <div class="col-md-12 col-sm-12 text-left pl-5">
+    <div class="col-md-8 col-sm-12 text-left">
          <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-md-10 col-sm-12">
+    <div class="col-md-11 col-sm-12 pl-5 ml-2 justify-content-center">
       <div class="buttonContainer text-center"><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
       </div>
+
     </div>
      <div class="tabPanel text-center w-100">
       <div class="container-fluid " id="calendar">
