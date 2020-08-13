@@ -42,8 +42,8 @@
         initializeClockstudy('clockdivstudy', '<%= @start_timestudy %>');
       </script>
     </div>
-    <br> 
-    <div id="nextEventdiv">
+    <br>
+    <div class = "mt-1" id="nextEventdiv">
       <p>Until </p><h3><%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy %></h3><p> chat room opens!</p>
       <br>
       Hosted by: <%= link_to @hoststudy.name, @hoststudy.permalink %>
