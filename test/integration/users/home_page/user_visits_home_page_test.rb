@@ -12,43 +12,43 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
       within("div#navbarSupportedContent.collapse.navbar-collapse") do
         first(:xpath, "//a[@href='/']").click
         assert_equal current_path, root_path
-      end 
+      end
     end
 
   test "should go to about page when clicking about in header"  do
     within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/getinvolved']").click
       assert_equal current_path, '/getinvolved'
-    end 
-  end 
+    end
+  end
 
   #jtt = join the team
   test "should go to jtt page when clicking on jtt in header"  do
     within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/jointheteam']").click
       assert_equal current_path, '/jointheteam'
-    end 
-  end 
+    end
+  end
 
   test "should go to Activism Hall page when clicking Activism Hall in header"  do
     within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/studyhall']").click
       assert_equal current_path, '/studyhall'
-    end 
+    end
   end
 
   test "should go to FAQ page when clicking FAQ in footer"  do
     within("div#footer.row") do
       first(:xpath, "//a[@href='/faq']").click
       assert_equal current_path, '/faq'
-    end 
+    end
   end
 
   test "should go to drschaeferspeaking page when clicking Invite Us to Speak in footer"  do
     within("div#footer.row") do
       first(:xpath, "//a[@href='/drschaeferspeaking']").click
       assert_equal current_path, '/drschaeferspeaking'
-    end 
+    end
   end
 
   #ToS = Terms of Service
@@ -56,14 +56,14 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     within("div#footer.row") do
       first(:xpath, "//a[@href='/tos']").click
       assert_equal current_path, '/tos'
-    end 
+    end
   end
 
   test "should go to Privacy page when clicking Privacy in footer"  do
     within("div#footer.row") do
       first(:xpath, "//a[@href='/privacy']").click
       assert_equal current_path, '/privacy'
-    end 
+    end
   end
 
   test "should have a link for emailing website in footer" do
@@ -111,13 +111,11 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
   test "should be able to sign out correctly" do
   	click_on("Sign out", match: :first)
   	assert_equal current_path, root_path
-  end	
+  end
 
    test "should be able to host a live conversation" do
-    within("div#countdown_clock") do
-      click_on("Post your Own Conversation", match: :first)
-      assert_equal current_path, new_event_path
-    end 
+    click_on("Post your Own Conversation", match: :first)
+    assert_equal current_path, new_event_path
   end
 
    def sign_in
