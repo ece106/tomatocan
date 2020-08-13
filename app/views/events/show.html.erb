@@ -15,7 +15,7 @@
   
   <!-- TOP HALF -->
   
-  <div>
+  <div class="pb-3">
       <h1 class="new text-center text-dark"> Come Join the <%= @event.topic.upcase %> </h1>
       <p class="text-center event-name"><b> <%= @event.name %>! </b></p>
       <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
@@ -170,63 +170,62 @@
   
   
   <!-- BOTTOM HALF -->
-  <div class="row pl-5 py-3">
-  
-      <! Left Column -->
-          <div class="col-md-8 col-sm-6">
-              <div>
-                  <h2 class="new text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
-              </div>
-              <div class="col-md-12">
-                  <div>
-                      <p> <strong> Desktop: </strong> </p>
-                  </div>
-                  <div>
-                      <p> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
-                              click <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary border-warning text-warning fa fa-video-camera mt-2 mb-2" %>
-                          </small> </p>
-                  </div>
-                  <div>
-                      <p> <strong>Mobile: </strong> </p>
-                  </div>
-                  <div>
-                      <p> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom
-                  </div> </small> </p>
-              </div>
-          </div>
-  
-          <! Right Column -->
-              <div class="col-md-4 col-sm-6 pl-3">
-                  <div>
-                    <p> <strong> Invite your fellow activists </strong> </p>
-                  </div>
-                  <div class="row pl-0 d-flex d-sm-flex">
-                      <div class="col-md-1">
-                        <%= link_to "mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20"+ @event.name + "%20at%20" + @surl + "%20on%20" + 
-                        + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20PDT%20/%20" + edt.strftime("%I:%M %p") + "%20EDT.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
-                        target: :_blank do %>
-                          <%= image_tag "email_icon.png", height: "25", width: "25"%>
-                        <% end %>
-                      </div>
-                      <div class="col-md-1">
-                        <%= link_to "https://www.linkedin.com/shareArticle?mini=true&url="+@surl, target: :_blank do %>
-                          <%= image_tag "linkedin_icon.png", height: "25", width: "25"%>
-                        <% end %>
-                      </div>
-                      <div class="col-md-1">
-                        <%= link_to "https://twitter.com/intent/tweet?text=Join " + @user.name + " for interesting conversation: " +
-                        @event.name + " on " + @event.start_at.strftime("%B %d, %I:%M %p") + " PDT at " + @surl, target: :_blank do %>
-                          <%= image_tag "twitter_icon.png", height: "25", width: "25"%>
-                        <% end %>
-                      </div>
-                      <div class="col-md-1">
-                        <%= link_to "http://www.facebook.com/sharer.php?u=" + @surl, target: :_blank do %>
-                          <%= image_tag "facebook_icon.png", height: "25", width: "25"%>
-                        <% end %>
-                      </div>
-                  </div>
+<div class="row pl-5 py-3">
+    <! Left Column -->
+        <div class="col-md-8 col-sm-6 pt-4">
+            <div>
+                <h2 class="new text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
+            </div>
+            <div class="col-md-12">
+                <div>
+                   <strong> Desktop: </strong>
                 </div>
-          </div>
+                <div>
+                  <p class="mb-0 mt-0"> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
+                    click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %> 
+                  </p>
+                </div>
+                <div>
+                   <strong>Mobile: </strong>
+                </div>
+                <div>
+                    <p class="mb-0 mt-0"> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom </small> </p>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <! Right Column -->
+            <div class="col-md-4 col-sm-6 pl-3 pt-4">
+                <div>
+                   <strong> Invite your fellow activists </strong> 
+                </div>
+                <div class="row pl-8 d-flex d-sm-flex">
+                    <div class="col-md-1">
+                      <%= link_to "mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20"+ @event.name + "%20at%20" + @surl + "%20on%20" + 
+                      + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20PDT%20/%20" + edt.strftime("%I:%M %p") + "%20EDT.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
+                      target: :_blank do %>
+                        <%= image_tag "email_icon.png", height: "25", width: "25"%>
+                      <% end %>
+                    </div>
+                    <div class="col-md-1">
+                      <%= link_to "https://www.linkedin.com/shareArticle?mini=true&url="+@surl, target: :_blank do %>
+                        <%= image_tag "linkedin_icon.png", height: "25", width: "25"%>
+                      <% end %>
+                    </div>
+                    <div class="col-md-1">
+                      <%= link_to "https://twitter.com/intent/tweet?text=Join " + @user.name + " for interesting conversation: " +
+                      @event.name + " on " + @event.start_at.strftime("%B %d, %I:%M %p") + " PDT at " + @surl, target: :_blank do %>
+                        <%= image_tag "twitter_icon.png", height: "25", width: "25"%>
+                      <% end %>
+                    </div>
+                    <div class="col-md-1">
+                      <%= link_to "http://www.facebook.com/sharer.php?u=" + @surl, target: :_blank do %>
+                        <%= image_tag "facebook_icon.png", height: "25", width: "25"%>
+                      <% end %>
+                    </div>
+                </div>
+              </div>
+        </div>
+      </div>
   </div>
+</div>
