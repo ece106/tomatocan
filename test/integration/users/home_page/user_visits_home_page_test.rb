@@ -30,10 +30,22 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "should go to Activism Hall page when clicking Activism Hall in header"  do
+  test "should go to DropIn Hours page when clicking Drop In Anytime in header"  do
     within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/studyhall']").click
       assert_equal current_path, '/studyhall'
+    end
+  end
+
+  test "should go to DropIn Hours page when clicking Drop-In link in New to ThinQ.tv? paragraph" do
+    click_on("Drop-In")
+    assert_equal current_path, '/studyhall'
+  end
+
+  test "should go to next event page when clicking the name of the next event under the clock" do
+    within("div#nextEventdiv") do
+      first(:xpath, "//a[@href='/events/']").click
+      assert_equal current_path, '/events/'
     end
   end
 

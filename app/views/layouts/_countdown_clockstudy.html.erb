@@ -1,6 +1,6 @@
 <% if @events.count != 0 %>
   <% if @start_timestudy != nil %>
-  <% if (Time.current > Time.find_zone("UTC").parse(@start_timestudy) ) && (Time.current < Time.find_zone("UTC").parse(@start_timestudy) + 1.hour) %> 
+  <% if (Time.current > Time.find_zone("UTC").parse(@start_timestudy) ) && (Time.current < Time.find_zone("UTC").parse(@start_timestudy) + 1.hour) %>
     <div id="eventCurrentdiv">
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
@@ -9,7 +9,7 @@
             </div>
           <% end %>
         <% end %>
-        <% if @displayresearch.present? %> 
+        <% if @displayresearch.present? %>
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div id="eventCurrentdiv">
               <p>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %>
@@ -41,7 +41,7 @@
       <script>
         initializeClockstudy('clockdivstudy', '<%= @start_timestudy %>');
       </script>
-    </div> 
+    </div>
     <div id="nextEventdiv">
       <p>Until </p><h3><%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy %></h3><p> chat room opens!</p>
       <br>
