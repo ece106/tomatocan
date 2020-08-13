@@ -2,8 +2,8 @@ require 'test_helper'
 class EventsControllerTest < ActionController::TestCase
      include ActiveJob::TestHelper
   setup do
-    @event = events(:one)
-    @user = users(:one)
+    @event = events(:confirmedUser_event)
+    @user = users(:confirmedUser)
     @user_two = users(:two)
     @rsvpq = rsvpqs(:one)
   end
@@ -13,7 +13,7 @@ class EventsControllerTest < ActionController::TestCase
 
     #index
     test "#index should return all events with start at greater than current time" do
-        @event1 = Event.create(:user_id => 2, :name => 'Dark Water', :start_at => "2020-02-11 11:02:57")
+        @event1 = Event.create(:user_id => 6, :name => 'Dark Water', :start_at => "2020-02-11 11:02:57")
         sample_event = Event.where( "start_at > ?", Time.now )
         assert_equal(@event1.user_id, sample_event[2].user_id)
     end
@@ -105,8 +105,8 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     test "#create should redirect if events are created and saved" do
-        sign_in users(:one)
-        post :create, params: { event: {start_at: "2010-02-11 11:02:57", user_id: '1', name: 'Phineas'  } }
+        sign_in users(:confirmedUser)
+        post :create, params: { event: {start_at: "2021-12-11 11:00:00", user_id: '6', name: 'confirmedUser_event'  } }
            assert_redirected_to '/'
     end
 
