@@ -7,32 +7,29 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
   Capybara::Screenshot.autosave_on_failure = false
 
   setup do
-    @purchase                    = purchases(:one)
-    @user_one                    = users(:one)
-    @card_number                 = "4242424242424242"
-    @cvc                         = "123"
-    @merchandise                 = merchandises(:one)
+    @test_user = users :confirmedUser
+    @merchandise = merchandises(:one_empty_attachments)
     @merchandise_with_attachment = merchandises(:one_with_attachment)
     @visit_new_purchase          = lambda { |merchandise_id| visit new_purchase_path merchandise_id: merchandise_id }
-
+    visit "/#{@test_user.permalink}"
   end
 
-  #test 'non user enters in wrong information card declined' do
-    #@visit_new_purchase.call @merchandise.id
-    #assert page.has_css? '#purchase_email'
-    #fill_in id: 'purchase_email',   with: "onetimeemail@email.com"
-    #click_on 'Purchase'
-    #assert @purchase.errors.any?
-  #end
 
   test 'non user makes merchandise purchase with new card no attachment' do
-    @visit_new_purchase.call @merchandise.id
+    first(class: 'btn btn-warning').click
     assert page.has_css? '#purchase_email'
-    fill_in id: 'purchase_email', with: "onetimeemail@email.com"
-    card_information_entry
-    assert page.has_button? 'Purchase'
-    click_on 'purchase-btn'
-    assert_current_path "/#{@user_one.permalink}"
+    fill_in id: 'purchase_email', with: "test@gmail.com"
+    assert page.has_css? '#card_number'
+    fill_in id: 'card_number',          with: "4242424242424242"
+    assert page.has_css? '#card_code'
+    fill_in id: 'card_code',            with: "123"
+    assert page.has_css? '#card_month'
+    select '1 - January',                from: 'card_month'
+    assert page.has_css? '#card_year'
+    select '2020',                      from: 'card_year'
+    click_on 'Purchase'
+    # issue with the testing card, should redirect to seller's page
+    assert_current_path "/purchases"
   end
   
   test 'non user makes a merchandise purchase with attachments' do
@@ -41,7 +38,6 @@ class NonUserMakesMerchandisePurchase < ActionDispatch::IntegrationTest
     card_information_entry
     assert page.has_button? 'Purchase'
     click_on 'Purchase'
-    #assert that the merchandise is sendindd
+    assert_current_path "/purchases"
   end
-
 end
