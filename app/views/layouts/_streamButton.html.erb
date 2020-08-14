@@ -1,4 +1,4 @@
-<div class="col-xs-12" style="text-align:center">
+<div class="col-xs-12 pl-4 text-center">
   <% if user_signed_in? %>
     <% if current_user.id == @user.id %>
       <%= link_to "Browse Schedule of Conversations", root_path, :class => 'btn btn-lg btn-primary' %>

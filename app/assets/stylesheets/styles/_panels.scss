@@ -22,10 +22,6 @@
   font-weight: 600;
 }
 
-.tooltip-inner {
-    font-size: 14px;
-  }
-
 #calendar-host {
   display: block;
   font-size: 1.50rem;
@@ -107,28 +103,11 @@
     width: 380px;
   }
 
-
-  #events ul {
-    font-size: 16px;
-    padding-left: 15px;
-    font-weight: bold;
-  }
-
-  #events ul li{
-    list-style-type: none;
-    width: 150px;
-    word-wrap: break-word;
-  }
-
-.title {
-  font-family: sans-serif;
-  color: #dc2d5e;
-  /*text-align: center;*/
-}
-
 .tabContainer{
   width: 100%;
   height: auto;
+  text-align: center
+
 }
 .tabContainer2{
   width: 100%;
@@ -139,6 +118,7 @@
   height: 15%;
   /*text-align: center;*/
   padding-left: 70px;
+  text-align: center
 }
 
 .tabContainer2 .buttonContainer {

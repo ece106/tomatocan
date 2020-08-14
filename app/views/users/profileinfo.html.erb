@@ -1,19 +1,21 @@
 <!--This partial contains two panels unlike the other panel partials because I don't think they'll ever be seperated, but I want them split to save vertical space.-->
 
 
+
 <% @title=" edit user profile "  %>
+ <div class = "container-fluid">
+              <%= render 'layouts/flash_messages' %>  
+              <% if current_page?("/"+current_user.name.downcase+"/profileinfo") %>
+                <!-- Applies the necessary padding when the page is rendered alone.-->
+              <% end %>
+                 <h1 class = "pl-5 pt-2">Edit Profile</h1>
+            </div>
 
-  <%= render 'layouts/flash_messages' %>
-
-  <% if current_page?("/"+current_user.name.downcase+"/profileinfo") %>
-    <!-- Applies the necessary padding when the page is rendered alone.-->
-    <div style="height:70px;"></div>
-  <% end %>
-
-  <div class="row ">
+  <div class="container ">
     <div class="col-lg-12">
       <%= form_for @user, :html => {:multipart => true} do |f| %>
-      <div class="card">
+      <div class="card border-primary">
+
         <h5 class="card-header bg-primary text-white">
           About
         </h5>
@@ -33,7 +35,7 @@
                 <% end %>
                 <br>
                   <%= f.file_field :profilepic, :class => "pt-2" %>
-                <p class="help-block">150px &times; 150px is best</p>
+                <p class="help-block">150px &times;</p>
               </div>
             </div>
 
@@ -43,11 +45,13 @@
                 <h3><%=f.label :name, "Banner Image" %></h3>
                 <% if @user.bannerpic.present? && @user.bannerpic != '' %>
                   <div id="profileInfoBanner">
-                    <%= image_tag(@user.bannerpic.url.to_s, :class => "img-responsive w-75", :height => "150", :id => "userBannerImage")%> <br>
+
+                    <%= image_tag(@user.bannerpic.url.to_s, :class => "img-responsive w-75", :style => "height:150px; margin-top:-15px", :id => "userBannerImage")%> <br>
                   </div>
                 <% else %>
                   <div id="profileInfoBanner" style="margin-top:20px;">
-                    <%= image_tag("crowddark.png", :class => "img-responsive w-75", :height => "150", :id => "userBannerImage")%> <br>
+                    <%= image_tag("crowddark.png", :class => "img-responsive w-75", :style => "height:130px; margin-top:-13px", :id => "userBannerImage")%> <br>
+
                   </div>
                 <% end %>
                 <%= f.file_field :bannerpic, :class => "pt-4" %>
