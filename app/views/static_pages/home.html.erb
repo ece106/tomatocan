@@ -80,15 +80,15 @@
       <div>   
         <div class="convo-container text-center" style="background-color: #8C1D40">
           <!-- col-lg-3 col-md-6 -->
-          <h1 class = "text-primary"><strong>Conversation Schedule</strong></h1>
+          <h1 class = "white">Conversation Schedule</h1>
           <% if user_signed_in? %>
             <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
         </div>
       </div>
 
-      <div class="tabContainer text-center pr-2">
-        <div class="buttonContainer pr-3">
+      <div class="tabContainer text-center pr-2" style="background-color: #8C1D40" >
+        <div class="buttonContainer pr-3" >
           <button onclick="showPanel(0,'#4caf50')">List View</button>
           <button onclick="showPanel(1,'#4caf50')">Daily View</button>
           <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
