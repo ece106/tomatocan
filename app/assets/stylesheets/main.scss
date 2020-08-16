@@ -10,14 +10,12 @@ $baseFontFamily: Arial,Helvetica !default;
 //Bootstrap files
 //@import "bootstrap-sprockets";
 
-@import "bootstrap";
-
 @import "font-awesome";
 //Global styles
-@import "base/globals.scss";
 @import "base/header.scss";
 @import "base/footer.scss";
-//Individual stylesheets loaded here
+@import "base/globals.scss";
+//Individual stylesheets loaded heree
 @import "styles/new.scss";
 
 @import "styles/users.scss";
@@ -26,3 +24,4 @@ $baseFontFamily: Arial,Helvetica !default;
 
 @import "styles/stripe-modal.scss";
 @import "calendar/styles.scss";
+@import "bootstrap";
