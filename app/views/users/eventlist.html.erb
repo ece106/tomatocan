@@ -1,20 +1,22 @@
 <div class="panel panel-primary">
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 
-  <h2 class="panel-heading">
+
+  <h2 class="panel-heading pl-3">
     Your Upcoming Conversations
   </h2>
   <% if @events.present? %>
-    <table class="table table-responsive" id="event-list-table">
-      <tr>
-        <th>Conversation </th>
-        <th>Time</th>
+    <table class="table" id="event-list-table">
+      <tr lass="table">
+        <th class = "text-white">Conversation </th>
+        <th class = "text-white">Time</th>
+
         <th></th>
       </tr>
       <% i = 0%>
       <% @events.sort_by{|t| t.start_at}.each do |event| %>
         <% i += 1%>
-        <tr style="text-align:left;">
+        <tr class = "text-left ">
           <td><%= link_to event.name, event, class: "event-name" %></td>
           <td id="t<%=i%>"><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %></td>
           <script>

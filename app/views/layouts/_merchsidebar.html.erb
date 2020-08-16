@@ -17,29 +17,31 @@
     <% @sidebarmerchandise.each do |merch| %>
       <div class="media">
         <div class="pull-left">
-			  	<% if merch.itempic.present? %>
-				  	<%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
-				  <% else %>
-					  <%= image_tag "starIcon.png", class: "media-object", id: "perkImage" %>
-  				<% end %>
-	  		</div>
-        <div class="media-body pl-5">
+
+          <% if merch.itempic.present? %>
+            <%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
+          <% else %>
+            <%= image_tag "starIcon.png", class: "media-object", id: "perkImage" %>
+          <% end %>
+        </div>
+        <div class="media-body pl-3">
+
           <div style = "font-size: 20px">
-				  	<%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %>
-				  </div>
+            <%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %>
+          </div>
 
           <% if merch.desc.present? %>
             <% if merch.desc.length > 150 %>
               <div>
-			    			<%= truncate(merch.desc, length: 150) %>
-				    		<%= link_to 'more', '', class: "read-more-#{merch.id}" %>
-					    	<script>
-						    	$('.read-more-<%= merch.id %>').on('click', function(e)
+                <%= truncate(merch.desc, length: 150) %>
+                <%= link_to 'more', '', class: "read-more-#{merch.id}" %>
+                <script>
+                  $('.read-more-<%= merch.id %>').on('click', function(e)
                     { e.preventDefault()
-  							      $(this).parent().html('<%= escape_javascript merch.desc %>')
-										})
-					  	  </script>
-						  </div>
+                      $(this).parent().html('<%= escape_javascript merch.desc %>')
+                    })
+                </script>
+              </div>
             <% else %>
               <%= merch.desc %>
             <% end %>
@@ -79,13 +81,13 @@
           <% end %>
 
         </div>
-			</div>
-  		<hr>
+      </div>
+      <hr>
 
       <% end #foreach sidebar merch %>
     <% else %>
-		<!--This is where the Default Donate button are displayed-->
-		<!--To add or modify Default Donation buttons and prices, it should be done through the code below only-->
+    <!--This is where the Default Donate button are displayed-->
+    <!--To add or modify Default Donation buttons and prices, it should be done through the code below only-->
         <% if @user.stripeid.present? || @user.id == 1337 || @user.id == 1345 %>
             <% btnTxt = ("Donate $" + sprintf('%.2f',25) + "!") %>
             <%= link_to btnTxt, new_purchase_path(:pricesold => 25.0, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
@@ -98,7 +100,7 @@
         <% else %>
           <%= @user.name %> has not made sales or donations available yet.
         <% end %>
-  	<% end %>
+    <% end %>
 </div>
 
 <!-- Notes:

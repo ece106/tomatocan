@@ -15,8 +15,8 @@
       <meta property="og:image"       content="https://www.thinq.tv/logoDigitalHollow300.png" />
     <% end %>
   <% end %>
-
-  <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
+</div>
+  <div class="row pt-4 mt-4 pl-3">
     <div class="col-md-3">
       <div style="padding: 0px 0px 5px 0px">
         <%= render 'layouts/merchsidebar' %>
@@ -49,12 +49,14 @@
       </div>
 
 
-      <div style="padding:5px 0px 0px 0px">
-        <div class="card">
-          <div class="card-header bg-primary text-white" style="margin-bottom:-10px">
+
+      <div class = "border-left border-right border-bottom border-primary pb-1">
+        <div class="panel panel-primary">
+          <div class=" bg-primary text-white card-header pb-2">        
+
             <% if @user.name.length >= 17 %>
             <% name = @user.name[0..15] + "..." %>
-              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
+              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>
             <% else %>
               Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
             <% end %>
@@ -62,6 +64,7 @@
           <div id="attendees"></div>
         </div>
       </div>
+
     </div>
 
     <div class="col-md-9">
@@ -152,5 +155,6 @@
     loadAttendees()
   </script>
 <% else %>
-  <meta http-equiv="refresh" content="0; URL=/login"/>
+
+  <meta http-equiv="refresh" content="0; URL=https://thinq.tv/login"/>
 <% end %>

@@ -9,18 +9,18 @@
 <% end %>
 
 <!-- TOP HALF -->
-<div id="event-page-layout" style="width: 100%; margin: auto; background-color: #F2EBE4;">
-  <div class="alert mt-3">
+<div id="event-page-layout" style="background-color: #F2EBE4;">
+  <div >
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key) %>">
       <%= value %>
     </div>
   <% end %>
 </div>
-  <div class="row" style = "padding-top:15px; padding-bottom:20px;">
+  <div class="row pb-1">
 
     <!-- PROFILE PICTURE -->
-    <div class="col-md-3 d-flex align-self-end" style="text-align:center; padding: 10px 5px 10px 10px;">
+    <div class="col-md-3 d-flex align-self-end text-center">
     <div class="d-flex align-self-end justify-content-center">
       <% if @user.profilepic.present? && @user.profilepic != '' %>
         <%= image_tag @user.profilepic.url.to_s, :class => "w-50 h-50 mt-5 pt-5"%>
@@ -32,7 +32,7 @@
 
     <!-- CONVERSATION NAME & HOST -->
     <div class="col-md-5">
-      <div style ="margin-left: 30px">
+      <div class = "pl-3">
         <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
           <br><br><br><br><br><br><br>
           <div id="eventCurrentdiv" >
@@ -52,7 +52,7 @@
     </div>
 
     <!-- RSVP & EDIT BUTTONS -->
-    <div class="col-md-4" style="padding: 10px 5px 10px 10px;">
+    <div class="col-md-4 pt-5 pr-4">
       <% @title="ThinQ.tv" %>
         <div style="margin-top:0px; text-align:right">
           <%= form_for(@rsvp) do |f| %>
@@ -142,13 +142,13 @@
 
       <! Quick Summary Box -->
       <div style = "padding: 3px 0px 3px 0px">
-        <div style="padding: 5px 5px 5px 5px; font-style: italic; font-size: 18px; background-color: #F2EBE4;">
+        <div class = "h5 pl-3"style="font-style: italic; background-color: #F2EBE4;">
           Join me for a LIVE video Conversation: <b> <%= @event.name %>! </b> <br>
         </div>
       </div>
 
       <!-- When Box -->
-      <div style="padding: 3px 0px 3px 0px">
+      <div class = "pl-3">
         <b> When: </b>
         <div style = "margin-left: 5px">
           <% edt = @event.start_at + 3.hours %>

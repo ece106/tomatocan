@@ -1,33 +1,35 @@
-<div class="row mr-0 ml-0 pl-0 pr-0" style="background-color: #8C1D40">
-  <div class="alert" style="background-color: #8C1D40"></div>
+
+<div class="row col-sm-12 bg-primary mt-2 pl-5">
+  <div class="alert"></div>
   <div>
     <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>">
         <%= value %>
       </div>
     <% end %>
-    <h1 class="white mt-5">
-      Discover Activism that makes you
-      <div>
-        <%= image_tag("GoldThinQ60.png", style: "padding-left: 150px;")%><br> </div>
+    <h1 class="text-white mt-5 pl-5"><strong>
+      Discover Activism that makes you</strong>
+      <div class = "text-center">
+        <%= image_tag("GoldThinQ60.png")%>
+         </div>
       </h1>
-      <h2 class="new text-center" style="color:white">
+      <h2 class="text-center text-white">
         Crowdsource Activism via Video Chat
       </h2>
+
       </div>
-    <div class="col">
-      <%= image_tag("HomeBanner.png", style: "width:80%; padding-top:40px; padding-bottom:80px; padding-left: 50px;")%>
+    <div class="col-lg-6 pt-3 pb-4 pl-5 ml-3">
+      <%= image_tag("HomeBanner.png", style: "width:100%;")%>
     </div>
+
   </div>
   <!-- end of top section-->
-
-  <div>
-    <br>
-    <br>
-    <h2 class="new text-center">
-      New to ThinQ.tv?
-    </h2>
-    <p class="black text-center">
+  <div class = "pt-4 mt-2 pb-1">
+    
+    <h1 class="text-primary text-center"><strong>
+      New to ThinQ.tv?</strong>
+    </h1>
+    <p class="lead text-center">
       Most of the day we have a video chat
       <u><%= link_to "Drop-In", studyhall_path, style: "color: #FFB704" %></u>
       to support Women & Minorities in Tech.
@@ -35,70 +37,70 @@
       Everyone is welcome. Drop in to ask questions about ThinQ.tv!
     </p>
   </div>
+
   <!-- end of new to thinQ section-->
 
-  <div class="row pt-0 mt-0">
+  <div class="row">
     <!--study hall and conversation section -->
 
-    <div class="col-lg-6 col-md-12 pb-5">
+    <div class="col-lg-6 col-md-12 col-sm-12 pt-2">
       <!--conversations column-->
-      <div class="col-lg-12 col-md-12" style = "height:210px">
+      <div class="col-lg-12 col-md-12 text-center" style = "height:auto">
         <%= render 'layouts/countdown_clock' %>
       </div>
-      <%= image_tag("convo_photo.png", class:"mx-auto d-block", style: "margin-bottom: 30px; padding-top:20px; border-radius: 112px; width: 75%;")%>
-      <h2 class="new text-center">Conversations
+      <%= image_tag("convo_photo.png", class:"mx-auto d-block pb-3", style: "border-radius: 112px; width: 75%;")%>
+      <h2 class="text-warning text-center"><strong>Conversations</strong>
       </h2>
       <p class = "text-center">Join conversations hosted by grassroots activists to have
         <br>
         scheduled small group conversations about activism!
       </p>
+
     </div>
 
     <!--end of conversations column-->
 
-    <div class="col-lg-6 col-md-12 pb-5">
+    <div class="col-lg-6 col-md-12 col-sm-12 pb-5 pt-3 mt-3 ">
       <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-      <div class="col-lg-12 col-md-12" style = "height:210px">
+      <div class="col-lg-12 col-md-12 col-sm-7 text-center" style = "height: auto">
         <%= render 'layouts/countdown_clockstudy' %>
       </div>
-
-      <%= image_tag("activism_hall.jpg", class:"mx-auto d-block", style: "margin-bottom: 30px; padding-top:20px; border-radius:112px; width:75%;")%>
-      <h2 class="new text-center">
-        Drop-In Hours
+      <%= image_tag("activism_hall.jpg", class:" mx-auto d-block  pb-3", style: "border-radius:112px; width:75%;")%>
+      <h2 class="text-warning text-center pl-5"><strong>
+        Drop-In Hours</strong>
       </h2>
       <p class = "text-center">
         Discover other activists working on similar causes. Drop in to
         <br>
         video chat throughout the day to meet us & collaborate!
-      </p>
-      <br><br><br>
+      </p>     
     </div>
     <!--end of activism hall column-->
     </div>
-
-      <div>
-        <br>
-        <div class="convo-container" style="text-align:center">
+      <div>   
+        <div class="convo-container text-center" style="background-color: #8C1D40">
           <!-- col-lg-3 col-md-6 -->
-          <h1 class = "new">Conversation Schedule</h1>
+          <h1 class = "white">Conversation Schedule</h1>
           <% if user_signed_in? %>
             <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
         </div>
       </div>
-      <div class="tabContainer" style="text-align:center">
-        <div class="buttonContainer">
+
+      <div class="tabContainer text-center pr-2" style="background-color: #8C1D40" >
+        <div class="buttonContainer pr-3" >
           <button onclick="showPanel(0,'#4caf50')">List View</button>
           <button onclick="showPanel(1,'#4caf50')">Daily View</button>
           <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
         </div>
-       <div class="tabPanel">
+        
+        <div class="tabPanel">
           <%= render 'layouts/convocalendar', collection: @conversations %>
         </div>
-        <div class="tabPanel">
+        <div class="tabPanel container-fluid">
           <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
         </div>
-        <div class="tabPanel">
+        <div class="tabPanel container-fluid">
         <div id="events">
           <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
              events: @calendar_events_all, monthNum: 0, type: 0}%>
@@ -106,6 +108,7 @@
       </div>
       </div>
 <br><br>
+
 <script type="text/javascript">
 showPanel(0, '#f44336');
 </script>
