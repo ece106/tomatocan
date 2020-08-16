@@ -21,15 +21,9 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Join the Team'
     first(:xpath, "//a[@href='/jointheteam']").click
     assert_equal '/jointheteam', current_path
-    assert page.has_link? 'Drop In Anytime'
+    assert page.has_link? 'Drop in Anytime'
     first(:xpath, "//a[@href='/studyhall']").click
     assert_equal '/studyhall', current_path
-    assert page.has_link? 'FAQ'
-    first(:xpath, "//a[@href='/faq']").click
-    assert_equal '/faq', current_path
-    assert page.has_link? 'Terms of Service'
-    first(:xpath, "//a[@href='/tos']").click
-    assert_equal '/tos', current_path
   end
 
   test 'sign up' do
