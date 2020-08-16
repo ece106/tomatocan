@@ -1,64 +1,81 @@
 <div class="box" style="background: url( <%= asset_path 'audience.jpg' %> ); background-repeat: no-repeat; background-position: center; background-size: cover; height: 400px; margin-top: -20px">
-<h1 class = "white"><br><br>
+<h2 class = "text-white pt-5"><br><br><b>
   DR. LISA SCHAEFER <br>
-  KEYNOTES, PODCASTS, AND NEWS SEGMENTS : <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link" style="font-size: 30px; color: #ecd7c6;">info@ThinQ.tv</a>
-</p>
+
+  KEYNOTES, PODCASTS, AND NEWS SEGMENTS : <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link h2 text-white">info@ThinQ.tv</a></b>
+</h2>      
+
 </div>
 <%= render 'layouts/flash_messages'%>
 <div class="container-fluid">
-<div class="row" >
-  <div class="col-lg-4 col-md-4 col-sm-4"> <br>
+
+<div class="row pl-2 ml-2" >
+
+        <div class="col-lg-3 col-md-4 col-sm-4"> <br>
             <%= image_tag("lisaSpeaks.jpg", float: "right", :class=> "img-responsive img-thumbnail", alt: "A picture of Dr. Lisa Schaefer")%>
           </div>
-         <div class="col-sm-7 pt-5">
-            <h1 class="text-primary text-center"><strong>
+
+          <div class="col-lg-7 col-sm-7 pt-4 mt-2">
+            <h1 class="text-primary"><strong>
               Discover Activists who make You ThinQ </strong>
             </h1>
             <br>
-            <h4>
-             ThinQ.tv founder, <%= link_to "Dr. Lisa Schaefer", '/codingwhilefemale' %>,  earned her Ph.D. in systems engineering at Arizona State University and was a Future Vision innovator at a think tank in Washington, DC. She taught at several universities and was a volunteer Lobby Corps member on Capitol Hill for a women’s organization. Dr. Schaefer is the writer/producer of Budget Justified, a true story about #metoo and other shenanigans at the FAA, and Lisa's 80s Catholic High School Movie, a true comedy about class clown twins versus math girl. She has spoken at many universities, conferences, and cable television shows.
-            </h4>
-            <h4 class="pt-4">
-            <em>Invite Lisa to speak on your podcast <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a> 602-888-3089<br><br>
+
+            <p class = "h5 text-left">
+             ThinQ.tv founder, <%= link_to "Dr. Lisa Schaefer", '/youronlinemom' %>,  earned her Ph.D. in systems engineering at Arizona State University and was a Future Vision innovator at a think tank in Washington, DC. She taught at several universities and was a volunteer Lobby Corps member on Capitol Hill for a women’s organization. Dr. Schaefer is the writer/producer of Budget Justified, a true story about #metoo and other shenanigans at the FAA, and Lisa's 80s Catholic High School Movie, a true comedy about class clown twins versus math girl. She has spoken at many universities, conferences, and cable television shows.
+            </p>
+            <h4 class="pt-2">
+            <em>Invite Lisa to speak on your podcast <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a> 602-888-3089<br><br> 
+
             </em>
             </h4>
           </div>
-</div><br>
+
+</div>
 <div class="row bg-primary justify-content-center">
   <div class="col-lg-10 col-md-9 col-sm-12">
-    <h1 class="white " >
+    <h1 class="text-white pt-3 " >
       <span>Speaking Topics</span>
     </h1 >
-    <h3 class=" text-white"style="font-weight: bolder;">
-      <br>Change the World One Conversation at a Time: Discover how You Are an Activist
+
+    <h3 class=" text-white"> 
+      <strong>Change the World One Conversation at a Time: Discover how You Are an Activist </strong>
     </h3>
     <p  class=" text-white">
       Everyone can participate in conversations about different social issues on ThinQ.tv. ThinQ.tv is for grassroots movements to motivate people through small group conversations. What topics are you passionate about? What are you already doing in your daily life to make the world a better place? Whom do you share your passions with? Let's motivate each other to change the world!
-    </p> <br>
+    </p> 
       <hr class="one">
     <h3 class=" text-white" style="font-weight: bolder;  "> Coding While Female: Women-Founded Tech as a Means of Activism
     </h3>
     <p class=" text-white">
+
       Society teaches that women's gender role is to be household servant. Women are punished if they question this role, which leaves them out of many positions of leadership. When women participate in society in public and online, they are insulted, harassed, and their lives are threatened. Just having the guts to continue showing your face is an act of activism. As a woman engineer, Dr. Lisa Schaefer was assaulted then fired, so instead of crawling back to another abusive employer, she founded ThinQ.tv. What has held you back from reaching for goals? We can work together to lead a culture where women's contributions are valued and women value themselves.
 
-    <p>  <br><br>
+    <p><br>
+
   </div>
 </div>
-  <div class="container text-center pt-5">
+
+<br><br><br>
+<div class="container text-center">
+
 <h1 class="text-primary" ><strong>
       Where Dr. Lisa Spread The Word
     </strong></h1 ><br>
     <div class="row" >
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >
+
             <%= image_tag("sharifah.jpg",  width: "100", height: "95",class:'img-responsive')%>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <%= image_tag("bleed.png", width: "120", height: "60",class:'img-responsive')%>
+
           </div>
 
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" >
             <%= image_tag("jiaotong.png", width: "100", height: "100",class:'img-responsive')%>
           </div>
+
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <%= image_tag("newsmax.jpg" , height: "100" , width: "100",class:'img-responsive')%>
           </div>
@@ -133,9 +150,11 @@
 
   </div>
 <br><br><br>
-<div class="container" style=" margin-left: 10px; margin-right: 10px; max-width: 920px; margin: auto;">
-<h1 class="new">Invite Dr. Schaefer to Speak </h1>
-<hr class="one" style="margin-top: 0px; ">
+
+<div class="container">
+<h2 class="text-primary text-left " ><strong>Invite Dr. Schaefer to Speak </strong></h2>
+<hr class="one" >
+
 <%= render partial: "layouts/speakingmessage" %>
 </div>
 </div>

@@ -1,11 +1,14 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
-<%= will_paginate @calendar_events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+
+<%= will_paginate @calendar_events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>>
+
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 <%i = 0%>
 
 <div class="panel panel-default border-right border-left border-top">
+
   <% if @calendar_events.count != 0 %>
     <table class="table table-hover" id=calendar>
       <tbody>
@@ -15,14 +18,14 @@
         <% i += 1 %>
         <tr>
 
-          <td class=col-xs-2>
+          <td class=col-sm-2>
 
             <div id = "calendar-event">
               <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
             </div>
 
 
-          <td class="col-xs-2" style="min-width: 125px;">
+          <td class="col-sm-2" style="min-width: 125px;">
             <% rsvpeople = "" %>
             <% rsvpusers = event.users %>
             <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
@@ -39,9 +42,9 @@
               document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
           </script>
 
-          <td class=col-xs-2>
+          <td class=col-sm-2>
             <%= event.topic %><br>
-            <%= link_to user.name, user.permalink, title: rsvpeople%>
+            <%= link_to user.name, user.permalink %>
 
             <% if user_signed_in? %>
               <% if event.user_id == current_user.id %>
@@ -58,10 +61,11 @@
               document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
           </script>
 
-          <td class="col-xs-2 overflow-visible">
+          <td class="col-sm-2 overflow-visible">
             <% rsvps = event.rsvpqs %>
             <% rsvpusers = event.users %>
             <% if rsvps.count > 0 %>
+
               <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
                   <span class="caret"></span> &nbsp; <%= rsvps.count %> Attending &nbsp; <span></span>
@@ -72,6 +76,7 @@
                       <% rsvpuser = User.find(rsvp.user_id) %>
                       <%= link_to user_profile_path(rsvpuser.permalink) do %>
                         <div class="dropdown-item">
+
                     <span>
                       <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
                         <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
@@ -100,7 +105,7 @@
 
 
 
-          <td class=col-xs-2>
+          <td class=col-sm-2>
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
@@ -157,7 +162,7 @@
 
 
           <!-- Share Buttons -->
-          <td class=col-xs-2>
+          <td class=col-sm-2>
             <% domainurl = "http://www.thinq.tv/"%>
 
             <!-- Facebook Share -->
@@ -197,8 +202,10 @@
 </>
 </div>
 
+
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
