@@ -15,6 +15,11 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
       end
     end
 
+  test "should go to home after clicking on logo in top left" do
+    find("img[src*='/assets/yellow brain-0ef2bfbda1490e1f56a4b158dddc0cbfdfd21a4f7235049ffbb3f68b59f145ad.png']").click
+    assert_equal current_path, root_path
+  end
+
   test "should go to about page when clicking about in header"  do
     within("div#navbarSupportedContent.collapse.navbar-collapse") do
       first(:xpath, "//a[@href='/getinvolved']").click
@@ -42,12 +47,14 @@ class UserVisitsHomePageTest < ActionDispatch::IntegrationTest
     assert_equal current_path, '/studyhall'
   end
 
-  test "should go to next event page when clicking the name of the next event under the clock" do
-    within("div#nextEventdiv") do
-      first(:xpath, "//a[@href='/events/']").click
-      assert_equal current_path, '/events/'
-    end
-  end
+  ##
+  # test "should go to next event page when clicking next event name under the countdown clock" do
+  #  within("div#nextEventdiv.mt-1") do
+  #    first(:xpath, "//a[@href='/events/']").click
+  #    assert_equal current_path, '/events/'
+  #  end
+  # end
+  ##
 
   test "should go to FAQ page when clicking FAQ in footer"  do
     within("div#footer.row") do
