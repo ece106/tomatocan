@@ -44,11 +44,11 @@ class ActionDispatch::IntegrationTest
   def user_sign_in  user
    visit root_path
    within ('.navbar-btn') do
-    click_on class: 'btn btn-primary border-warning text-warning'
+    click_on class: 'btn btn-primary border border-warning'
   end
   fill_in id: 'user_email',    with:  "#{user.email}"
   fill_in id: 'user_password', with:  "user1234"
-  click_on class: 'form-control btn-primary'  
+  click_on class: 'form-control btn-primary'
   end
 
   def card_information_entry
@@ -62,7 +62,7 @@ class ActionDispatch::IntegrationTest
   def user_sign_up user
     visit root_path
     within ('.navbar-btn') do
-      click_on class: 'btn btn-primary border'
+      click_on class: 'btn btn-primary border border-light'
     end
       fill_in id: 'user_name', with: "#{user[:name]}"
       fill_in id: 'user_email',    with:  "#{user[:email]}"
