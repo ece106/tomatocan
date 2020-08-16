@@ -18,14 +18,14 @@
         <% i += 1 %>
         <tr>
 
-          <td class=col-xs-2>
+          <td class=col-sm-2>
 
             <div id = "calendar-event">
               <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
             </div>
 
 
-          <td class="col-xs-2" style="min-width: 125px;">
+          <td class="col-sm-2" style="min-width: 125px;">
             <% rsvpeople = "" %>
             <% rsvpusers = event.users %>
             <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
@@ -42,9 +42,9 @@
               document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
           </script>
 
-          <td class=col-xs-2>
+          <td class=col-sm-2>
             <%= event.topic %><br>
-            <%= link_to user.name, user.permalink, title: rsvpeople%>
+            <%= link_to user.name, user.permalink %>
 
             <% if user_signed_in? %>
               <% if event.user_id == current_user.id %>
@@ -61,7 +61,7 @@
               document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
           </script>
 
-          <td class="col-xs-2 overflow-visible">
+          <td class="col-sm-2 overflow-visible">
             <% rsvps = event.rsvpqs %>
             <% rsvpusers = event.users %>
             <% if rsvps.count > 0 %>
@@ -105,7 +105,7 @@
 
 
 
-          <td class=col-xs-2>
+          <td class=col-sm-2>
             <% @rsvp = Rsvpq.new %>
             <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
             <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
@@ -162,7 +162,7 @@
 
 
           <!-- Share Buttons -->
-          <td class=col-xs-2>
+          <td class=col-sm-2>
             <% domainurl = "http://www.thinq.tv/"%>
 
             <!-- Facebook Share -->
