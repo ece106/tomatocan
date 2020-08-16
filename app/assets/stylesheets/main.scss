@@ -1,10 +1,10 @@
-@import "styles/faq.scss";
-@import "styles/fellowship.scss";
-@import "styles/home.scss";
+@import "styles/faq";
+@import "styles/fellowship";
+@import "styles/home";
 //All files should be combined into 3 or 4 _x.scss 
 
 //Overrides Bootstrap-defined variables
-@import "base/variables.scss";
+@import "base/variables";
 $primary: #8C1D40;
 $baseFontFamily: Arial,Helvetica !default;
 //Bootstrap files
@@ -12,16 +12,16 @@ $baseFontFamily: Arial,Helvetica !default;
 
 @import "font-awesome";
 //Global styles
-@import "base/header.scss";
-@import "base/footer.scss";
-@import "base/globals.scss";
-//Individual stylesheets loaded heree
-@import "styles/new.scss";
+@import "base/header";
+@import "base/footer";
+@import "base/globals";
+//Individual stylesheets loaded here
+@import "styles/new";
 
-@import "styles/users.scss";
-@import "styles/panels.scss";
-@import "styles/show.scss";
+@import "styles/users";
+@import "styles/panels";
+@import "styles/show";
 
-@import "styles/stripe-modal.scss";
-@import "calendar/styles.scss";
+@import "styles/stripe-modal";
+@import "calendar/styles";
 @import "bootstrap";
