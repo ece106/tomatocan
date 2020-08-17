@@ -7,7 +7,7 @@
       <% if !current_user.stripeid.present? %>
         <script type="text/javascript">
           window.location.href= "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_6Ws78QidiUJpM70FWAELSMoUDYE37QA9&scope=read_write"
-		    </script>
+        </script>
       <% end %>
     <% end %>
   <% end %>
@@ -15,67 +15,68 @@
 <% elsif user_signed_in? %>
   <% if @user.id == current_user.id %>
 <!-- if @user.stripesignup.present?-->
-		<% if @user.stripeid.present? %>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="card">
-						<div class="card-header text-white bg-primary">Your Sales</div>
-						<div class="card-body">
-						<% if @totalinfo.present? %>
-							<p>List of all sales - CHECK OFTEN. YOUR FANS MAY BE EXPECTING ITEMS FROM YOU</p>
-							<table class="table">
-								<tr>
-									<td>Title</td>
-									<td>Author's Share</td>
-									<td>Sales Date</td>
-									<td>Customer Name</td>
-									<td>Shipping Address</td>
-									<td>Shipped/ Fulfilled?</td>
-								</tr>
-							<% @totalinfo.each do |item| %>
-								<tr>
-									<td><%= item[:soldtitle] %></td>
-									<!--<td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>-->
-									<td> <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>
-									<td> <%= item[:soldwhen] %></td>
-									<td> <%= item[:whobought] %></td>
-									<td> <%= item[:address] %></td>
-									<td>
-									<!--When a purchase is a donation-->
-									<% if item[:soldtitle] == "Donation"%>
-										<%= "Received" %>
-									<% else %>
-										<% if item[:fulfillstat] != "sent" && item[:egoods].empty? %>
-											<%= button_to [:markfulfilled, @user] do %>
-											<strong>Mark as Sent </strong>
-											<%= hidden_field_tag :purchid, item[:purchaseid] %>
-										<% end %>
-										<% else %>
-											<%= item[:fulfillstat] %>
-										<% end %>
-									<% end %>
-									</td>
-								</tr>
-							<% end %>
-							</table>
-						<% end %>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="card ">
-						<div class="card-header bg-primary text-white">Monthly Income</div>
-						<div class="card-body">
-							<table class="table">
-								<tr>
-									<td>Month</td>
-									<td>Total Earned (USD)</td> 
-								</tr>
-								<% @incomeinfo.each do |book| %>
-								<tr>
-									<td><%= book[:month] %></td>
-									<td style='text-align:right'> <%= number_with_precision(book[:monthtotal], :precision => 2) %></td>
-								</tr>
+    <% if @user.stripeid.present? %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header text-white bg-primary">Your Sales</div>
+            <div class="card-body">
+            <% if @totalinfo.present? %>
+              <p>List of all sales - CHECK OFTEN. YOUR FANS MAY BE EXPECTING ITEMS FROM YOU</p>
+              <table class="table">
+                <tr>
+                  <td>Title</td>
+                  <td>Author's Share</td>
+                  <td>Sales Date</td>
+                  <td>Customer Name</td>
+                  <td>Shipping Address</td>
+                  <td>Shipped/ Fulfilled?</td>
+                </tr>
+              <% @totalinfo.each do |item| %>
+                <tr>
+                  <td><%= item[:soldtitle] %></td>
+                  <!--<td style='text-align:right' > <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>-->
+                  <td> <%= number_with_precision(item[:authorcut], :precision => 2) %> </td>
+                  <td> <%= item[:soldwhen] %></td>
+                  <td> <%= item[:whobought] %></td>
+                  <td> <%= item[:address] %></td>
+                  <td>
+                  <!--When a purchase is a donation-->
+                  <% if item[:soldtitle] == "Donation"%>
+                    <%= "Received" %>
+                  <% else %>
+                    <% if item[:fulfillstat] != "sent" && item[:egoods].empty? %>
+                      <%= button_to [:markfulfilled, @user] do %>
+                      <strong>Mark as Sent </strong>
+                      <%= hidden_field_tag :purchid, item[:purchaseid] %>
+                    <% end %>
+                    <% else %>
+                      <%= item[:fulfillstat] %>
+                    <% end %>
+                  <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              </table>
+            <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card ">
+            <div class="card-header bg-primary text-white">Monthly Income</div>
+            <div class="card-body">
+              <table class="table">
+                <tr>
+                  <td>Month</td>
+                  <td>Total Earned (USD)</td> 
+                </tr>
+                <% @incomeinfo.each do |book| %>
+                <tr>
+                  <td><%= book[:month] %></td>
+                  <td style='text-align:right'> <%= number_with_precision(book[:monthtotal], :precision => 2) %></td>
+                </tr>
+
               <% @totalinfo.each do |item| %>
                 <tr>
                   <td><%= item[:soldtitle] %></td>
@@ -114,22 +115,24 @@
                     <td><%= book[:month] %></td>
                     <td style='text-align:right'> <%= number_with_precision(book[:monthtotal], :precision => 2) %></td>
                   </tr>
-								<% end %>
+                <% end %>
               </table>
             </div>
           </div>
         </div>
       </div>
 
-		<% else %>
+    <% else %>
 
-      <div class="row">
-        <div class="col-md-6">
+
+     <div class="row justify-content-center">
+        <div class="col-md-7">
           <div class="card">
             <div class="card-header bg-primary text-white">
-              <span class="glyphicon glyphicon-exclamation-sign"></span> Sales Coming Soon
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Sales Coming Soon
             </div>
-            <div class="card-body">
+            <div class="card-body border-primary">
+
               Sales figures will be displayed on this page after you connect to Stripe.
             </div>
           </div>
@@ -139,4 +142,3 @@
   <% end %>
 <% end %>
 
-<%# form_for @user, :url => { :action => "updatebankaccount" } do |f| #what if user changed email address - that ability is currently not enabled in edit profile %>

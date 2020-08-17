@@ -1,48 +1,49 @@
 <% if @events.count != 0 %>
   <% if @start_timestudy != nil %>
-  <% if (Time.current > Time.find_zone("UTC").parse(@start_timestudy) ) && (Time.current < Time.find_zone("UTC").parse(@start_timestudy) + 1.hour) %> 
+  <% if (Time.current > Time.find_zone("UTC").parse(@start_timestudy) ) && (Time.current < Time.find_zone("UTC").parse(@start_timestudy) + 1.hour) %>
     <div id="eventCurrentdiv">
         <% if @displaystudy.present? %>
           <% if (Time.current > Time.parse(@start_timestudy)) && (Time.current < Time.parse(@end_timestudy)) %>
             <div id="eventCurrentdiv">
-              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic , event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
+              <%= link_to " Drop In Now ", user_viewer_path(@hoststudy.permalink, chatrm: @displaystudy.topic , event: @displaystudy.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
-        <% if @displayresearch.present? %> 
+        <% if @displayresearch.present? %>
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
-            <div id="eventCurrentdiv">
-              <p>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff" %>
-              right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving NOW ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; font-size: 30px; border-radius: 5px;" %>
+            <div class = "col-sm-12" id="eventCurrentdiv">
+              <h3>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff " %></h3>
+              <p> right NOW!</p><br>
+              <%= link_to " Join Group Problem Solving NOW ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera mt-1", style: "position: relative; font-size: 30px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
+      <br>
     </div>
   <% elsif Time.current < Time.parse(@start_timestudy) %>
-    <div id="clockdivstudy">
-    <br>
+    <div class = "pb-1" id="clockdivstudy">
       <div>
-      <span class="daystudy"></span>
-      <div class="smalltext">Days</div>
+      <span class="daystudy h1"></span>
+      <div class="h6 text-warning "><strong>Days</strong></div>
       </div>
       <div>
-        <span class="hourstudy"></span>
-        <div class="smalltext">Hours</div>
+        <span class="hourstudy h1"></span>
+        <div class="h6 text-warning" ><strong>Hours</strong></div>
       </div>
       <div>
-        <span class="minutestudy"></span>
-        <div class="smalltext">Minutes</div>
+        <span class="minutestudy h1"></span>
+        <div class="h6 text-warning "><strong>Minutes</strong></div>
       </div>
       <div>
-        <span class="secondstudy"></span>
-        <div class="smalltext">Seconds</div>
+        <span class="secondstudy h1"></span>
+        <div class="h6 text-warning"><strong>Seconds</strong></div>
       </div>
       <script>
         initializeClockstudy('clockdivstudy', '<%= @start_timestudy %>');
       </script>
-    </div> 
-    <div id="nextEventdiv">
+    </div>
+    <br>
+    <div class = "mt-1" id="nextEventdiv">
       <p>Until </p><h3><%= link_to @namestudy, event_path(@displaystudy.id), title: @descriptionstudy %></h3><p> chat room opens!</p>
       <br>
       Hosted by: <%= link_to @hoststudy.name, @hoststudy.permalink %>

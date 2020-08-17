@@ -1,3 +1,4 @@
+
 <div class="col">
   <%= f.hidden_field :user_id, value: current_user.id %>
   <input type="hidden" id="timeZone" name="timeZone">
@@ -21,12 +22,6 @@
   </div>
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "Repeated" %></h3>
-    <p class="help-block"></p>
-    <%= f.select_recurring :recurring, nil, allow_blank: true %>
-  </div>
-
-  <div class="form-group">
     <h3><%= f.label :buttontype, "Details about Topic" %></h3>
     <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
     <%= f.text_area :desc, cols: 82, rows: 7 %><p>
@@ -35,7 +30,7 @@
 
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 
-<script>   
+<script>   //JAVASCRIPT DOES _NOT_!!! BELONG IN ERB!!!!! GET THIS CRAP OUT OF MY CODE
   function getTimezoneName() {
       const today = new Date();
       const short = today.toLocaleDateString(undefined);

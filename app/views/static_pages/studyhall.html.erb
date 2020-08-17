@@ -1,53 +1,61 @@
-<div class=conatiner-fluid">
-<div class="team">
-  <div class="container">
-    <div class="row"  >
-      <div class="col-lg-7 col-md-6">
-        <h3 class="aboutHeader" style="text-align: center; color:#8C1D40" > DROP-IN HOURS: Coworking where we’re socially distanced but not alone </h3>
-        <h4 style = "line-height: 1.5em" >
-          - Hang out in video chat with other people conducting activism. Drop in & find out who is here! <br>
-          - Exchange ideas, get feedback on your designs or activism plans. <br>
-          - No agenda. Drop in any time; we'll greet you when you arrive.
-          Feel free to work quietly in the chat room to be there for each other when that Aha moment happens.<br>
-          - ThinQ.tv is a Woman-Owned tech startup. We are supportive of women & minorities in tech and usually have software engineers and designers in our Drop-In Hours.
-         </h4>
+
+
+<div class="team pt-3 mt-3">
+  <div class="container border shadow">
+    <div class="row" >
+
+      <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 pt-3">
+        <h3 class="text-center text-primary"><b> DROP-IN HOURS: Co-working where we’re socially distanced but not alone</b></h3>
+        <p >
+          ThinQ.tv is a <b >Woman-Owned tech startup</b>. Coding While Female is our activism. We support women & minority engineers, designers, & startups in our video chat Drop-In Hours. Drop In & meet us! We'll greet you when you arrive.<br>
+          - <b>No agenda:</b> Drop in on your own schedule.<br>
+          - <b>Exchange ideas:</b> Get feedback on your designs, code, startup ideas, or activism plans. <br>
+          - <b>Meet other women & minorities in tech:</b> Your support community is here throughout the day available to chat!
+         </p>
+
       </div>
-      <div class="col-lg-5 col-md-6 col-sm-12" style=" margin-top:0px; margin-bottom: 0px; padding: 10px; ">
-        <div class="row justify-content-center" id="countdown_clock">
+
+      <div class="col-lg-5 col-md-12 col-xs-12 pt-3 pl-4">
+        <div class="pt-1 text-center" id="countdown_clock">
           <%= render 'layouts/countdown_clockstudy' %>
         </div>
       </div>
     </div>
+
   </div>
 </div>
+<br>
+<br>
 
 <div class="tabContainer">
-  <div class="row justify-content-center">
+  <div class="justify-content-center">
     <div class="col-sm-12">
-      <h1 class = "new">Drop-In Schedule</h1>
+      <h1 class = "text-left text-primary pl-4 ml-1"><b>Drop-In Schedule</b></h1>
     </div>
     
-    <div class="col-md-12 col-sm-12">
+    <div class="col-md-8 col-sm-12 text-left pl-2">
          <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
-    <div class="col-md-10 col-sm-12">
-      <div class="buttonContainer text-center"><br>
+    <div class="col-md-12 col-sm-12 col-xs-10 pl-0 ml-2 justify-content-center pr-1">
+      <div class="buttonContainer text-center pr-5"><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
         <button onclick="showPanel(1,'#4caf50')">Monthly View </button>
       </div>
+
     </div>
-    <div class="tabPanel text-center w-100">
-      <div class="row" id="calendar">
+     <div class="tabPanel text-center w-100">
+      <div class="container-fluid " id="calendar">
         <div class="col-sm-12">
         <%= render 'layouts/weeklycalendar',  eventPartial: "layouts/renderday"%>
         </div>
       </div>
     </div>
+      
     <div class="tabPanel" >
-      <div class="container">
+      <div class="container-fluid mr-5 pr-5">
        <div id="events">
          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 5.hour).to_date,
             events: @eventsAll, monthNum: 0, type: 1}%>
@@ -57,81 +65,81 @@
   </div>
 </div>
 
-    <h1 class = "new" style = "text-align: center">
-      We currently have Drop-In Hours for 3 topics:
-    </h1 >
-    <div class="row" style="padding-left: 90px; padding-right: 30px;">
+<br>
+  
+    <h2 class="text-center text-primary" > <strong>
+      We currently have Drop-In hours for 3 topics:</strong>
+    </h2>
+
+    <br>
+    <div class="row">
       <div class="col-md-4">
-        <div class="card-shadow">
-          <div class="inner">
-              <%= image_tag("marketing.jpg" , :style => "height: 331.917px;  min-width: auto; width:100%;")%>
+        <div class="container pl-5">
+          <div>
+              <%= image_tag("marketing.jpg" , :style => "height: 280px;  min-width: auto; width:90%;")%>
               <!-- graphic came from https://unsplash.com/photos/wD1LRb9OeEo   -->
           </div>
-            <div class="card-body">
-              <h4> UX Research <br> </h4>
-              <p class="text" >
-              <span id="dots"></span><span id="more" style="display:none; ">
-                We currently have a group meeting several times per week to work on survey questions related to the ThinQ.tv site. The purpose of the UX Research drop-in hours is to: <br>
+            <div class="card-body mr-5 pr-5">
+              <h4> <a class="btn btn-primary btn-lg btn-block text-center" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
+            UX Research <br> 
+              </a></h4>
+              <div class="collapse" id="collapseTwo">
+                <div>
+               We currently have a group meeting several times per week to work on survey questions related to the ThinQ.tv site. The purpose of the UX Research drop-in hours is to:<br>
                 - Be in the video chat viewer for each other incase you want feedback from others with UX career interests. <br>
                 - Form a support group available several hours per day who are there when you want to be around others also improving their UX Survey skills.<br>
-              </span>
-              </p>
-
-          <div class="arrowdown" style="text-align: center;">
-            <i class="fa fa-angle-down" id="angle" aria-hidden="true" onclick="read()"></i>
-          </div>
+                </div>
+              </div> 
             </div>
         </div>
       </div>
+    
 
-      <div class="col-md-4">
-        <div class="card-shadow">
-          <div class="inner">
-              <%= image_tag("ruby.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
+      <div class="col-md-4 ">
+        <div class="container">
+          <div>
+              <%= image_tag("ruby.jpg", :style => "height: 280px;  min-width: auto; width:90%;")%>
               <!-- This image came from https://unsplash.com/photos/yktK2qaiVHI   -->
           </div>
-          <div class="card-body">
-              <h4> RUBY ON RAILS Web Development <br> </h4>
-              <p class="text">
-            <span id="dots1"></span><span id="more1" style="display:none;">
-              Front and back end developers can co-work or co-hack with each other. The purpose of the Rails Activism Hall is to: <br>
+          <div class="card-body mr-5 pr-5">
+              <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
+             RUBY ON RAILS Web Development <br> 
+              </a>
+            </h4>
+              <div class="collapse" id="collapseOne">
+                <div>
+                  Front and back end developers can co-work or co-hack with each other. The purpose of the Rails Activism Hall is to: <br>
               - Be in the video chat viewer for each other incase you have Rails questions while working on your project. <br>
               - Form a support group available several hours per day who are there when you want to be around others also improving their Rails skills. <br><br>
 
               Several of us are working with the existing code base for ThinQ.tv to learn Ruby on Rails. Our repository is at <b><a href="https://github.com/ece106/tomatocan" target="_blank"> https://github.com/ece106/tomatocan </a></b> if you'd like to learn Rails by contributing to ThinQ.tv's code, the first step is to fork & clone the repository. Drop in to Activism Hall hours and ask us how to join our Discord channel and find the list of tasks to work on.<br>
-            </span>
-              </p>
-
-            <div class="arrowdown" style="text-align: center;">
-              <i class="fa fa-angle-down" id="angle1" aria-hidden="true" onclick="read1()"></i>
-            </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <div class="card-shadow" >
-          <div class="inner">
-              <%= image_tag("Women_Developers_Photo_Edited.jpg", :style => "height: 331.917px;  min-width: auto; width:100%;")%>
+      <div class="col-md-4 pl-4">
+        <div class="container" >
+          <div>
+              <%= image_tag("Women_Developers_Photo_Edited.jpg", :style => "height: 280px;  min-width: auto; width:90%;")%>
               <!-- uidesign: https://unsplash.com/photos/WYwT7pXuXvo  -->
           </div>
-          <div class="card-body">
-            <h4> Women Developers <br> </h4>
-              <p class="text">
-            <span id="dots2"></span>
-            <span id="more2" style="display:none;">
-              ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers Activism Hall is to: <br>
+          <div class="card-body mr-5 pr-5">
+            <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">
+             WOMAN DEVELOPERS <br> 
+              </a></h4>
+              <div class="collapse" id="collapseThree">
+                <div>
+                 ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers Activism Hall is to: <br>
               - Meet other female developers from around the US <br>
               - Support each other<br>
               - Bring #metoo issues we all face out in the open without backlash for doing so
-            </span>
-              </p>
-            <div class="arrowdown" style="text-align: center;">
-              <i class="fa fa-angle-down" id="angle2" aria-hidden="true" onclick="read2()"></i>
-            </div>
+                </div>
+              </div>
           </div>
         </div>
-      </div>
+      </div>      
       </div>
 
     <script type="text/javascript">

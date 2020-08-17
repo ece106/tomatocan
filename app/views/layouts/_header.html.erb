@@ -7,42 +7,44 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/" data-toggle="tooltip" data-placement="bottom" title="Invite friends to join thought-provoking Conversations on ThinQ.tv">Home</a>
+      <li class="nav-item" style="margin-right: 20px">
+
+        <a class="nav-link text-white" href="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/getinvolved" data-toggle="tooltip" data-placement="bottom" title="Get your networks talking about the issues!">About Us</a>
+      <li class="nav-item" style="margin-right: 20px">
+        <a class="nav-link text-white" href="/getinvolved">About Us</a>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link text-white" href="/jointheteam" data-toggle="tooltip" data-placement="bottom" title="Work with us">Join the Team</a>
+      <li class="nav-item" style="margin-right: 20px">
+        <a class="nav-link text-white" href="/jointheteam">Join the Team</a>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link text-white" href="/studyhall "data-toggle="tooltip" data-placement="bottom" title="Co-work/hack with us">Drop In Anytime</a>
+      <li class="nav-item" style="margin-right: 20px">
+        <a class="nav-link text-white" href="/studyhall">Drop in Anytime</a>
       </li>
     </ul>
-	<ul class="nav navbar-nav navbar-right">
-				<% if user_signed_in? %>
-					<li class="dropdown mt-2 pr-3">
-						<a href="#" class="dropdown-toggle text-warning" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get %></li>
-							<li><%= link_to "Control Panel", user_controlpanel_url(current_user.permalink), method: :get %></li>
-						</ul>
-					</li>
-					<li>
-						<p class="navbar-btn">
-							<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-primary border-warning text-warning" %>
-						</p>
-					</li>
-				<% else %>
+
+    <ul class="nav navbar-nav navbar-right ">
+        <% if user_signed_in? %>
+          <li class= "dropdown pt-1 pr-1">
+            <a href="#" class="btn btn-primary dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret text-white"></span></a>
+            <ul class="dropdown-menu text-left pl-3">
+              <li><%= link_to "View Profile", user_profile_url(current_user.permalink), method: :get, :class => "text-dark" %></li>
+              <li><%= link_to "Control Panel", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-dark"%></li>
+            </ul>
+          </li>
+          <li>
+            <p class="navbar-btn pt-1">
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-primary border-warning text-warning" %>
+            </p>
+          </li>
+        <% else %>
                   <li>
-					<p class="navbar-btn ">
-            		  <%= link_to "Sign Up", '/signup', class: "btn btn-primary border" %>
-					  <%= link_to 'Sign In', "/login", class: "btn btn-primary border-warning text-warning" %>
-					</p>
-				  </li>
-				<% end %>
-			</ul>
+          <p class="navbar-btn pt-1">
+                  <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
+            <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
+          </p>
+          </li>
+        <% end %>
+      </ul>
   </div>
 </nav>
 </header>

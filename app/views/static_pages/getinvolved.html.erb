@@ -1,21 +1,17 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="container-fluid pt-4 px-0">
 <!-- top row of content-->
-<div class="row" >
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ">
-    <div class="float-right">
-       <%= image_tag("videopic.jpg", class:"img-responsive w-100")%>
-       </div>
+<div class="row pt-3 mt-2 pb-1 pl-3 ml-3" >
+    <div class="col-lg-5 col-md-12 col-sm-12 pl-4">
+      <%= image_tag("videopic.jpg", :style => "max-height:auto; width:100%;")%>
     </div>
-  <div class=" col-xl-6 col-lg-6 col-md-6 col-sm-12">
+  <div class="col-lg-6 col-md-6 col-sm-12">
       <!-- main content-->
-      <h1 class="new">Join in Activism for causes you believe in via Video Chat
+      <h1 class="maroon">Join in Activism for causes you believe in via Video Chat
       </h1>
-      <p class = "black">
+      <p class = "lead pr-2 mr-1">
         ThinQ.TV is a free platform where people don't just "preach to the choir", but motivate others through small group Conversations. Grassroots movements can empower their members to initiate conversations among each other to brainstorm ways to advance causes they believe in and gather more people who want to make a difference.<br><br>
         <%= link_to "Drop In", studyhall_path %> to mentor, learn, and collaborate. Meet fellow activists!
       </p>
-    <h1 class="new">Our Mission</h1>
+    <h1 class="maroon">Our Mission</h1>
     <p class = "black">
       Empower you to discover conversations with fellow activists about topics important to you. Change the world one Conversation at a time.
     </p>
@@ -23,53 +19,64 @@
 </div>
 <!-- closing top section-->
 
-<! -- why thinQ.tv section -->
-<div class="container-fluid mb-n1 pb-n1 pt-2">
-<div class="row  bg-primary pb-4">
-      <!--THIS CANNOT BE A ROW -->
-      <!--FIX SO WE DO NOT HAVE INLINE CSS & SO THE WHITE FOND MATCHES THE MAROON H1 -->
-      <!--THIS CANNOT BE A ROW -->
-      <!--USE SMALL PHOTOS RATHER THAN UNIDENTIFIABLE BLOBS -->
-  <h1 class="white" ><br>
+
+<!-- why thinQ.tv section -->
+<div class="row mb-1 pb-1 pl-5 bg-primary">
+  <h1 class="white">
     Why ThinQ.tv?
   </h1>
-  <div class="row align-items-end">
-    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end">
-      <%= image_tag("activism_icon.png", class:"h-auto w-25")%>
-      <h2 class="new">
-        Activism
-      </h2>
-      <!--DO WE HAVE A P FONT THAT IS WHITE?????? -->
-      <p class="text-white mt-0 mb-n1">
+  <div class="row align-items-end" >
+    
+  </div>
+  <div class="row mt-0 pt-0 row cols-sm-2" >
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="row align-self-end pl-3 ml-4">
+        <%= image_tag("activism_icon.png", :style => "height:auto; max-width:46%;")%>
+      </div>
+      <h3 class="text-warning""><strong>
+        Activism</strong>
+      </h3>
+      <p class = "text-white lead">
         Movements can empower their people to organize and motivate people for the movement. Don't wait for the leadership to call you together - initiate a <%= link_to "Conversation", new_event_path, style: "color: #FFC627;" %> yourself!<br><br>
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end pb-3 pt-5">
-      <!--<br> this is a short icon, so Im adding a break to fix the spacing -->
-      <%= image_tag("discovery_icon.png", class:"h-auto w-25")%>
-      <h2 class="new pb-0">
-        Discovery
-      </h2>
-      <p class="text-white pb-5 mt-0 ">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row align-self-end pl-5 pb-2">
+        <%= image_tag("discovery_icon.png", :style => "height:auto; max-width:40%;")%>
+      </div>
+      <h3 class="text-warning pt-2 mt-1 "><strong>
+        Discovery</strong>
+      </h3>
+      <p class = "text-white ml-0 lead">
         Meet passionate people who have interesting ideas to share & collaborate on.
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end pb-5">
-      <%= image_tag("dialogue_icon.png", class:"h-auto w-25")%>
-      <h2 class="new pb-0">
-         Dialogue
-      </h2>
-      <p class="text-white pb-5 mt-0 mb-1">
+    <div class="clearfix visible-sm">
+        <!-- clearfix sm cols every 2 -->
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row pl-3 ml-4 pb-3 mb-2">
+        <%= image_tag("dialogue_icon.png", :style => "height:auto; max-width:37%;")%>
+      </div>
+      <h3 class="text-warning pt-2 mt-1"><strong>
+         Dialogue</strong>
+      </h3>
+      <p class = "text-white lead">
         Share ideas and get feedback <i>with</i> others instead of talking <i>at</i> them.
       </p>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 align-self-end">
-      <%= image_tag("schedule_icon.png", class:"h-auto w-25")%>
-      <h2 class="new">
-        Schedule
-      </h2>
-      <p class="text-white mt-0 mb-n1">
-        Don’t wait for local organization leadership to invite you to meet. Meet virtually with motivated people from around the world at any time! Look at our <%= link_to "Conversation", root_path, style: "color: #FFC627;" %> and <%= link_to "Drop-In", studyhall_path, style: "color: #FFC627;" %> schedules.<br><br>
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row align-self-end pl-3 ml-4 pb-4 mb-1">
+        <%= image_tag("schedule_icon.png", :style => "height:auto; max-width:36%;")%>
+      </div>
+      <h3 class="text-warning pt-2 mt-1"><strong>
+      Schedule</strong>
+      </h3>
+      <p class = "text-white mr-5 lead">
+        Don’t wait for local organization leadership to invite you to meet. Meet virtually with motivated people from around the world at any time! Look at our <%= link_to "Conversation", root_path, style: "color: #FFC627;" %> and <%= link_to "Drop-In", studyhall_path, style: "color: #FFC627;" %> schedules.
+
       </p>
     </div>
   </div>
@@ -77,14 +84,17 @@
 </div>
 <!-- closing why section -->
 
-<! -- our story section -->
-<div class="container-fluid pt-2 mt-2">
+
+<!-- our story section -->
+
+<div class="container-fluid pt-1 mt-1">
+
 <div class="row">
-<div class="col-lg-8 col-md-8 col-sm-12">
-  <h1 class="new text-primary">
+<div class="col-lg-8 col-md-8 col-sm-12 pt-3 pl-5">
+  <h1 class="maroon">
     Our Story
   </h1>
-    <p class="black">
+    <p class = "h6">
       Back when ThinQ.tv Founder & Software Engineer, Dr. Lisa Schaefer, lived in Washington, DC, she attended a meeting where Biz Stone, the founder of Twitter, spoke. All she could thinQ of during the entire meeting was, "I can come up with something better."<br><br>
 
       Years earlier, Dr. Schaefer had a vision for multi-location book party and discovered live-streaming in its early days. "This changes everything," she thought. Anyone with a computer, webcam, and internet connection can communicate with anyone with anyone else who has an internet connection.<br><br>
@@ -95,13 +105,15 @@
 
       Since everyone was geographically dispersed & working from home, Dr. Schaefer asked the students to work in chatrooms on ThinQ.tv. It became our office and now we have people in our chatrooms 10 - 14 hours per day. Drop In to share ideas and collaborate on activism.<br><br>
 
-      Dr. Schaefer's brand of activism is Engineering While Female. "Just showing up in spite of the harassment and the assumption that I don't belong here is an act of defiance. If my face goes away, so does my voice. Which leaves a vacuum of leadership for the upcoming generation of women who will follow." <br><br>
+      Dr. Schaefer's brand of activism is Coding While Female. "Just showing up in spite of the harassment and the assumption that I don't belong here is an act of defiance. If my face goes away, so does my voice. Which leaves a vacuum of leadership for the upcoming generation of women who will follow." <br><br>
 
     </p>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-12 pt-5 mt-5 pb-0">
+
+  <div class="col-lg-4 col-md-4 col-sm-12 pt-5 mt-2 pb-0">
    <%= image_tag("aboutus.png", float: "right", :class=> "img-responsive img-thumbnail")%><br>
-   Some of our staff playing internet trivia on ThinQ.tv
+   <p class = "text-lead text-center">Some of our staff playing internet trivia on ThinQ.tv</p>
+
   </div>
   </div>
 </div>

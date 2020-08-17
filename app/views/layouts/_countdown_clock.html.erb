@@ -2,8 +2,8 @@
   <% if @start_time != nil %>
     <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
       <div id="eventCurrentdiv">
-        <h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>  
-        <p> is LIVE right NOW!</p>
+        <h3 class = "pt-1"><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>
+        <p> is LIVE right NOW!</p><br>
         <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
         <br>
         Hosted by: <%= link_to @host.name, @host.permalink %>
@@ -11,20 +11,20 @@
     <% elsif Time.current < Time.parse(@start_time) %>
       <div id="clockdiv">
         <div>
-        <span class="days"></span>
-        <div class="smalltext">Days</div>
+        <span class="days h1"></span>
+        <div class=" h6 text-warning"><strong>Days</strong></div>
         </div>
         <div>
-          <span class="hours"></span>
-          <div class="smalltext">Hours</div>
+          <span class="hours h1"></span>
+          <div class="h6 text-warning"><strong>Hours</strong></div>
         </div>
         <div>
-          <span class="minutes"></span>
-          <div class="smalltext">Minutes</div>
+          <span class="minutes h1"></span>
+          <div class="h6 text-warning"><strong>Minutes</strong></div>
         </div>
         <div>
-          <span class="seconds"></span>
-          <div class="smalltext">Seconds</div>
+          <span class="seconds h1"></span>
+          <div class="h6 text-warning"><strong>Seconds</strong></div>
         </div>
         <script>
           initializeClock('clockdiv', '<%= @start_time %>');

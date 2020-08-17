@@ -9,15 +9,15 @@ class PurchasesHelperTest < ActionView::TestCase
   end
 
   def user_sign_in  user
-    visit root_path 
-    click_on 'Sign In' 
+    visit root_path
+    click_on 'Sign In'
     fill_in id: 'user_email',    with:  "#{user.email}"
     fill_in id: 'user_password', with:  "#{user.password}"
     binding.pry
     click_on class: 'form-control btn-primary'
   end
 
-  def card_information_entry 
+  def card_information_entry
     fill_in id: 'purchase_shipaddress', with: "#{SecureRandom.alphanumeric(10)}"
     fill_in id: 'card_number',          with: "#{@card_number}"
     fill_in id: 'card_code',            with: "#{@cvc}"

@@ -1,113 +1,68 @@
-/* This file defines sitewide styles. Place page-specific styles in their own stylesheet. */
 
 html {
-  width: 100%;
-  overflow-y: scroll;
+    width: 100%;
+    overflow-y: scroll;
 }
 
 //Wrapper for footer alignment
 body {
-  display: flex !important;
-  min-height: 100vh !important;
-  flex-direction: column !important;
-overscroll-behavior: none !important;
+    display: flex !important;
+    min-height: 100vh !important;
+    flex-direction: column !important;
+  overscroll-behavior: none !important;
 }
 //Wrapper for footer alignment
 main {
-  flex: 1 !important;
+    flex: 1 !important;
 }
-
 
 .img-xs{
-height: 18px;
-width: 18px;
-margin-right: 10px;
+  height: 18px;
+  width: 18px;
+  margin-right: 10px;
 }
 
-
 .navbar-default {
-background-color: $brand-primary;
+  background-color: $brand-primary;
 }
 
 .overflow-visible{
-overflow: visible;
+  overflow: visible;
 }
 
 //Prevents textareas from being resized out of their columns
-textarea {
-resize: vertical;
-}
+
 
 $overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
 
 #error_explanation {
-color: #f00;
-ul {
-  list-style: none;
-  margin: 0 0 18px 0;
-}
-}
-
-.field_with_errors {
-@extend .control-group !optional;
-@extend .error !optional;
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
 }
 
-//new styles for the redesign
-h1.new{
-color:$brand-primary;
-font-family: Helvetica;
-font-style: normal;
-font-weight: bold;
-font-size: 36px;
-line-height: 41px;
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-padding-top: 50px;
-}
 h1.white{
-color: #fff;
-font-family: Helvetica;
-font-style: normal;
-font-weight: bold;
-font-size: 36px;
-line-height: 41px;
-text-shadow: 0px 4px 4px #000;
-padding-top: 30px;
+  color: #fff;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 41px;
+  text-shadow: 0px 4px 4px #000;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
-h2.new{
-color:$brand-secondary;
-font-family: Helvetica;
-font-style: normal;
-font-weight: bold;
-font-size: 24px;
-line-height: 24px;
-text-align: left;
-}
-
-p{
-color:$brand-black;
-font-family: Helvetica;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 21px;
-}
-
-p.black{
-color:$brand-black;
-font-family: Helvetica;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 21px;
-}
-
-p.white{
-color:#fff;
-font-family: Helvetica;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 21px;
+h1.maroon{
+  color: #8C1D40;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 41px;
+  text-shadow: 1px 2px 3px #555;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }

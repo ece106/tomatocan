@@ -3,12 +3,13 @@
 <% if user_signed_in? %>
   <% if current_user.id == @user.id %>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-  <div class="navbar-collapse justify-content-center" id="navbarNav">
-    <ul class=" nav navbar-nav nav-pills nav-justified pt-4">
-    <li role="presentation" class="active px-5 font-weight-bold"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "profile-settings-tab" %></li>
-    <li role="presentation" class="px-5 font-weight-bold"><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
-    <li role="presentation" class="px-5 font-weight-bold"><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
-    <li role="presentation" class="px-5 font-weight-bold"><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+  <div class="navbar-collapse" id="navbarNav">
+    <ul class=" nav navbar-nav nav-pills nav-justified  container-fluid">
+    <li role="presentation" class="active px-5 font-weight-bold ml-5"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "row profile-settings-tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold "><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold "><%= link_to "Rewards", "#rewardsTab", "data-toggle" => "tab" %></li>
+    <li role="presentation" class="px-5 font-weight-bold "><%= link_to "Sales", "#salesTab", "data-toggle" => "tab" %></li>
+
     <li role="presentation" class="px-5 font-weight-bold"><%= link_to "Account", "#accountTab", "data-toggle" => "tab", class: "account-settings-tab" %></li>
     <li role="presentation" class="px-5 font-weight-bold"><%= link_to "Blocked Users", "#blockedTab", "data-toggle" => "tab" %></li>
     </ul>
@@ -21,8 +22,10 @@
     <div class="tab-pane active" id="profileTab">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-12">
-            <h1>Edit Profile</h1>
+          <div class="col-xs-12">
+
+        
+
           </div>
         </div>
         <div class="row justify-content-center">
@@ -66,7 +69,7 @@
     <div class="tab-pane" id="streamingTab">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 pt-3">
             <h1>Conversations</h1>
           </div>
           <div class="col-md-8" id="shows-button-panel">
@@ -92,7 +95,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-12">
-            <h1>Account Settings</h1>
+            <h1 class = "pl-4 pt-3">Account Settings</h1>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -106,21 +109,20 @@
     <div class="tab-pane" id="salesTab">
       <div class="container-fluid">
         <div class="row justify-content-center">
-          <br><br>
+
           <%= render 'layouts/stripealert' %>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h1>Reward Sales</h1>
+        </div>       
+          <div class="col-xs-12">
+            <h1 class "pl-5 pt-3">Reward Sales</h1>
           </div>
-        </div>
+        
         <%= render :file => 'users/dashboard' %>
       </div>
     </div>
 
     <!-- Blocked Users Tab -->
     <div class="tab-pane" id="blockedTab">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center pt-3">
         <br><br>
         <div class="col-md-4">
            <div class="card">
