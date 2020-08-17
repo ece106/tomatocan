@@ -23,7 +23,7 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 			<%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "profileImage", style: "background-color:white" %>
 		</div>
 	<% end %>
-	<div class="col-sm-8 text-left">
+	<div class="col-sm-8 text-left text-warning pt-4">
 		<h1  id="profileName"><%= @user.name %></h1>
 		<% if @user.genre1.blank? == false %>
 			<span  id="profileDescription"> <%= @user.genre1 %>

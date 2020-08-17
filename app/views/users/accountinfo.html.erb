@@ -1,11 +1,13 @@
-<div class="col-md-6">
+<div class="col-lg-8 col-md-6">
 <%= form_for @user, :html => {:multipart => true} do |f| %>
 
-<div class="card ">
+
+<div class="card border-primary">
 <h3 class="card-header bg-primary text-white">
 	Account
 </h3>
-<div class="card-body">
+<div class="card-body ">
+
 	<div class="form-group">
 		<h3><%=f.label :name, "Email" %></h3>
 		<p class="help-block">Change your email address.</p>
@@ -30,8 +32,8 @@
 		<h3>Connect to Stripe</h3>
 		<p class-->
 	<div class="btn-group btn-group-lg" id="editProfileButton">
-		<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-secondary cancel-acct-settings-btn" %>
-		<%= f.submit "Save Changes", :class => "btn btn-primary save-acct-info-btn"%>
+		<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-secondary cancel-acct-settings-btn", :id => "cancelProfileButton" %>
+		<%= f.submit "Save Changes", :class => "btn btn-primary save-acct-info-btn", :id => "saveProfileButton"%>
 	</div>
 </div>
 </div>

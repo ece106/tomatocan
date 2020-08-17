@@ -1,55 +1,56 @@
-<div class="box" style="background: url( <%= asset_path 'team.jpg' %> ); background-repeat: no-repeat; background-position: center center; background-size: cover; min-height: 450px; max-height: auto; text-align: center; margin: auto; padding:0;">
+<div class="box" style="background: url( <%= asset_path 'team.jpg' %> ); background-repeat: no-repeat; background-position: center center; background-size: cover; min-height: 450px; max-height: auto; padding-top:320px">
   <!-- team: https://unsplash.com/photos/QckxruozjRg -->
-  <h1 class="bottom-left text-white"><strong>Become a ThinQ.tv Team Member!</strong></h1>
+ 
+  <h1 class="pl-3 pt-5 text-white"><strong>Become a ThinQ.tv Team Member!</strong></h1>
 </div>
- <div class="team">    
-<div class="container">
-    <div class="row " >
-    <div class="col-xl-12">
-        <h1 class="new text-center"><strong> Experience What We're Doing: ATTEND A VIDEO CHAT </strong></h1>
-      </div>
+
+ <div class="container pt-4 mt-4 pb-3 mb-3 col-lg-10 col-md-8 col-sm-6 border shadow-lg">
+    <div class="col-lg-12" >
+        <h2 class = "text-center text-primary"><strong> Experience What We're Doing: ATTEND A VIDEO CHAT </strong></h2>
+    </div>
+    <div class = "row">
+
       <div class="col-lg-6 col-md-6">
-        <h4 style="line-height:1.3em;">
-          - Go to the <%= link_to 'ThinQ.tv', root_path %> home page to see the schedule and Join a Conversation or <%= link_to "Drop-In", studyhall_path %> session. <br><br>
+
+        <h4>
+         - Go to the <%= link_to 'ThinQ.tv', root_path %> home page to see the schedule and Join a Conversation or <%= link_to "Drop-In", studyhall_path %> session. <br><br>
           - To access a Conversation or Drop-In session by phone, download the JITSI Meet app in advance and join the CONVERSATION or DROPIN chatroom when prompted in the app.<br><br>
           - You may send a resume to info@ThinQ.tv. Preference will be given to those who first attend Conversations or Drop-In sessions.
         </h4>          
+
       </div>
       <div class="col-lg-6 col-md-6">
-        <h4 style="line-height:1.3em;">
-          <strong>Remote team members</strong> will be required to work while their ThinQ.tv video viewer is open, on a schedule of their choosing.<br> - You will have daily access to the Scottsdale based team via ThinQ.tv video chat and Discord. <br><br>
-          <strong>Interns</strong> are required to work a minimum of 10 hours per week and are eligible receive course credit if they clear it through their university department.
+        <h4>
+          <b>Remote team members</b> will be required to work while their ThinQ.tv video viewer is open, on a schedule of their choosing.<br> - You will have daily access to the Scottsdale based team via ThinQ.tv video chat and Discord. <br><br>
+          <b>Interns</b> are required to work a minimum of 10 hours per week and are eligible receive course credit if they clear it through their university department.
         </h4>
       </div>
-      </div>
-</div>
+
+    </div>
+
 </div>
 
-    <h1 class=" text-center new">
-      <strong><span>We have 3 types of roles:</span></strong>
-    </h1 >
-
+<br>
+    <h2 class="text-primary text-center">
+     <span> <strong> We have 3 types of roles: </strong> </span>
+    </h2 >
+<br>
     <div class="row">
-       <div class="col-md-4">
-        <div>
-          <div>
-            <%= image_tag("marketing.jpg", :class => "img-squares")%>
-              <!-- marketing: https://unsplash.com/photos/wD1LRb9OeEo   -->
-          </div>          
-            <div>
-             <h4 class = "bg-primary text-center lead"> LEADERSHIP, OUTREACH, & MARKETING <br> </h4>
-            </div>
-          </div>
-              <div class = "text-center">
 
-                <button class="btn dropdown-toggle" data-toggle="collapse" data-target="#first">
-                        <span class="glyphicon glyphicon glyphicon-menu-down"></span>
-                </button>
-              </div> <!-- DO NOT EVER center PARAGRAPHS -->
-            
-                <div class = "collapse" id = "first">
-                  <p class = "lead ">
-                  This is the most important role at ThinQ.tv. It is your opportunity to be on the ground floor of a movement to create the future of participatory thought-provoking entertainment.<br><br>
+      <div class="col-md-4 pr-0 pl-5">
+        <div class="container-fluid">
+          <div>
+              <%= image_tag("marketing.jpg" , :style => "height: 280px;  min-width: auto; width:90%;")%>
+              <!-- marketing: https://unsplash.com/photos/wD1LRb9OeEo   -->
+          </div>
+
+            <div class="card-body pr-5 pl-1">
+              <h4><a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
+              LEADERSHIP, OUTREACH, & MARKETING <br></a></h4>
+              <div class="collapse" id="collapseOne">
+                <div>
+                 This is the most important role at ThinQ.tv. It is your opportunity to be on the ground floor of a movement to create the future of participatory thought-provoking entertainment.<br><br>
+
       
                   Seeking engaging self-starters to host video chat conversations about current events. Successful candidate(s) will gain leadership and community-building skills while moderating exciting live conversations within the context of celebrity news critic shows, such as those hosted by John Oliver, Stephen Colbert, and Hasan Minhaj. It's like going to a cocktail party on Zoom, but you don't have to wait to be invited to discover fascinating conversations with smart people.<br><br>
                   <span><b>Learning Outcomes:</b></span>
@@ -69,33 +70,27 @@
                     <br><br>
                     - Demonstrated an ability to accomplish goals through previous academic, volunteer, or work experience<br>
                     - Excellent conversational and writing skills<br>
-                  </p>
-            </span>
-                </div> <!-- Collapse content -->
-              
-      </div> <!-- end of first pic-->
-     
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
 
-      <div class="col-md-4">
-        <div>
+      <div class="col-md-4 pr-0 pl-5">
+        <div class="container-fluid">
           <div>
-              <%= image_tag("ruby.jpg", :class => "img-squares")%>
+              <%= image_tag("ruby.jpg", :style => "height: 280px;  min-width: auto; width:90%;")%>
               <!-- ruby: https://unsplash.com/photos/yktK2qaiVHI   -->
           </div>
-            <div>
-                  <h4 class = "bg-primary text-center lead"> RUBY ON RAILS DEVELOPERS <br> </h4>
-            </div>
-          </div>
-              <div class = "text-center">
 
-                <button class="btn  dropdown-toggle " data-toggle="collapse" data-target="#second">
-                        <span class="glyphicon glyphicon glyphicon-menu-down"></span>
-                </button>
-              </div> <!-- Make center -->
-            
-                <div class = "collapse" id = "second">
-                  <p class = "lead ">
-                  Seeking open source developers who are passionate about creating and participating in a video chat platform for intellectual conversations. This position will only be offered to the most highly motivated and qualified candidates (MS in Computer Science or other significant experience in MVC architecture or object-oriented software engineering). <br><br>
+            <div class="card-body pr-5 pl-1">
+                  <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              RUBY ON RAILS DEVELOPERS <br> 
+              </a></h4>
+              <div class="collapse" id="collapseExample">
+                <div>
+                Seeking open source developers who are passionate about creating and participating in a video chat platform for intellectual conversations. This position will only be offered to the most highly motivated and qualified candidates (MS in Computer Science or other significant experience in MVC architecture or object-oriented software engineering). <br><br>
+
                     Interns will learn Ruby on Rails by working with the existing code base for ThinQ.tv. This is your opportunity to be a part of a developers bootcamp taught by a highly educated, experienced software engineer - free of charge.<br><br>
                     If you do not have sufficient object-oriented experience, you are encouraged to apply for our UX/UI (front end Ruby on Rails) position. <br><br>
                 <span><b>Learning Outcomes:</b></span><br><br>
@@ -109,30 +104,26 @@
                 <span><b>Qualifications:</b></span><br><br>
                   - Minimum: Demonstrated an ability to accomplish goals through previous academic, volunteer, or work experience. Significant experience in an object-oriented language.<br>
                   - Preferred: Familiarity with Ruby, JavaScript, HTML, CSS, SQL.<br><br>
-                  </span>
-                </p>
-                </div> <!-- Collapse content -->
-              
-      </div> <!-- end of second pic-->
-
-      <div class="container col-md-4">
-        <div>
-          <div>
-            <%= image_tag("uidesign.jpg", :class => "img-squares")%>
-              <!-- uidesign: https://unsplash.com/photos/WYwT7pXuXvo  -->
-          </div>
-            <div>
-                  <h4 class = "bg-primary text-center lead"> UX/UI DESIGNERS <br> </h4>
+                </div>
+              </div> 
             </div>
         </div>
-          <div class = "text-center">
-                <button class="btn  dropdown-toggle" data-toggle="collapse" data-target="#third">
-                        <span class="glyphicon glyphicon glyphicon-menu-down"></span>
-                </button>
-              </div> <!-- Make center -->
-                <div class = "collapse" id = "third">
-                  <p class = "lead ">
-                  Seeking interns, open source developers, and designers who are passionate about designing and participating in a video chat platform for intellectual conversations. <br><br>
+      </div>
+
+      <div class="col-md-4 pr-0 pl-5">
+        <div class="container-fluid" >
+          <div>
+              <%= image_tag("uidesign.jpg", :style => "height: 280px;  min-width: auto; width:90%;")%>
+              <!-- uidesign: https://unsplash.com/photos/WYwT7pXuXvo  -->
+          </div>
+            <div class="card-body pr-5 pl-1">
+                  <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
+             UX/UI DESIGNERS <br> 
+              </a></h4>
+              <div class="collapse" id="collapseTwo">
+                <div>
+                Seeking interns, open source developers, and designers who are passionate about designing and participating in a video chat platform for intellectual conversations. <br><br>
+
                   Interns: This is your opportunity to work and learn alongside a developers bootcamp. You will gain tech startup experience in user outreach and integrating html/CSS into Ruby on Rails.<br><br>
               <span><b>Learning Outcomes:</b></span><br><br>
                 - User experience surveys and observation<br>
@@ -142,15 +133,14 @@
                 - Participate in live online conversations at least twice per week<br>
                 - For those who will be writing front end code in addition to contributing designs, you will be expected to install the Ruby on Rails environment on your machine. Go to <b><a href="https://github.com/ece106/tomatocan" target="_blank"></b> https://github.com/ece106/tomatocan </a>for instructions.<br>
                 - Solicit feedback from potential platform users to understand their perceptions of the site<br>
-                - Improve site usage and design based on user feedback<br><br>
+                - Improve site usage and design based on user feedback<br><br></b>
               <span><b>Qualifications:</b></span><br><br>
                 - Minimum: Demonstrated an ability to accomplish goals through previous academic, volunteer, or work experience.<br>
                 - Preferred: Familiarity with JavaScript, HTML, CSS, graphics software.<br><br><br><br><br>
-
-            </span>
-          </b>
-        </p>
-                </div> <!-- Collapse content -->
-            
-      </div> <!-- end of second pic-->
+              </div>
+              </div>
+            </div>
       </div>
+    </div>
+  </div>
+

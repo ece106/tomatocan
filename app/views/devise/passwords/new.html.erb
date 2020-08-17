@@ -1,7 +1,9 @@
+
 <div class="container">
 <div class="row justify-content-center pt-5">
 <div class="col-lg-6 bg-light border">
 <h1 class="text-center">Forgot your password?</h1>
+
 
 <%= form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :post }) do |f| %>
 
@@ -20,6 +22,8 @@ If the message is not in your spam folder, please email info@ThinQ.tv and let us
 <br><br>
 
 <%= render "devise/shared/links" %>
+
 </div>
 </div>
+
 </div>
