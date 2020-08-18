@@ -1,14 +1,14 @@
-<div class="container">
-
 <p id="notice"><%= notice %></p>
 
-<!--TOP HALF-->
 
+
+<!--TOP HALF-->
 <div class="text-center">
   <h1 class="new"><%= @merchandise.name %> </h1>
-  <h2 class="mt-3 new text-center text-dark"> Last Day to Purchase: <%= @merchandise.deadline %> </h2><br>
+  <% deadline = @merchandise.deadline.month.to_s + "/" + @merchandise.deadline.day.to_s + "/" +  @merchandise.deadline.year.to_s%>
+  <h2 class="mt-3 new text-center text-dark"> Last Day to Purchase: <%= deadline %> </h2><br>
   <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
-    <%= image_tag(@merchandise.itempic.url.to_s, height: '600px') %><br>
+    <%= image_tag(@merchandise.itempic.url.to_s, height: '500') %><br>
   <% end %><br>
   <% if @user.stripeid.present? || @user.id == 143  %>
       <!--Download perk file-->
@@ -30,20 +30,62 @@
         <%= @user.name %> has not made this item available yet. Please check back later to purchase. <%= @merchandise.name %>.
     <% end %>
 </div>
+</div>
 
-  
+
+
+<!--BOTTOM HALF-->
+<br>
+<div class="row px-4 ml-3 mr-3" id="home">
+  <div class="col-lg-9 col-mg-8 col-sm-12 com-xs-12 text-white text-left font-weight-normal">
+    <br>
+    <% if @merchandise.desc.present? %>
+      <p class="white"><strong> Reward Description </strong>
+      <%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %> </p>
+    <% end %>
     
+    <% if @merchandise.audio.present? || @merchandise.merchepub.present? || @merchandise.merchmobi.present? || @merchandise.merchpdf.present? || @merchandise.graphic.present? || @merchandise.video.present? %>
+    <p class="white"> <strong> Attached Files: </strong>
+    <% end %>
+    <% if @merchandise.graphic.present?%>
+      <%= @merchandise.graphic_url.split("/")[5]%>
+    <% end %>
+    <% if @merchandise.audio.present?%>
+      <%= @merchandise.audio_url.split("/")[5]%>
+    <% end %>
+    <% if @merchandise.video.present?%>
+      <%= @merchandise.video_url.split("/")[5]%>
+    <% end %>
+    <% if @merchandise.merchpdf.present?%>
+      <%= @merchandise.merchpdf_url.split("/")[5]%>
+    <% end %>
+    <% if @merchandise.merchepub.present?%>
+      <%= @merchandise.merchepub_url.split("/")[5]%>
+    <% end %>
+    <% if @merchandise.merchmobi.present?%>
+      <%= @merchandise.merchmobi_url.split("/")[5]%>
+    <% end %>
+    <% if @merchandise.itempic.present?%>
+      <%= @merchandise.itempic_url.split("/")[5]%>
+    <% end %> </p>
+    <br> <br>
+  </div>
+</div>
 
-<div class="goals">
-  <% if @merchandise.desc.present? %> 
-    <br><%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %><br>
-  <% end %> 
-      <% if @merchandise.youtube? %>
-        <% if @merchandise.youtube.match(/[0-9A-Za-z]/) && @merchandise.youtube.length < 20 %>
-          <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @merchandise.youtube %>" frameborder="0" allowfullscreen></iframe>
-        <% end %>
+<div class="row px-4 pt-3" id="youtube-row">
+  <div class="col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
+    <% if @merchandise.graphic.present?%>
+        <%= image_tag @merchandise.graphic_url, height: "400", width: "800" %>
       <% end %>
-</div>
-<br><br><br><br><br><br><br><br>
+  </div>
 </div>
 
+<div class="row px-4 pt-3" id="youtube-row">
+  <div class="col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
+    <% if @merchandise.youtube? %>
+      <% if @merchandise.youtube.match(/[0-9A-Za-z]/) && @merchandise.youtube.length < 20 %>
+        <iframe width="420" height="315" src="//www.youtube.com/embed/<%= @merchandise.youtube %>" frameborder="0" allowfullscreen></iframe>
+      <% end %>
+    <% end %>
+  </div>
+</div>
