@@ -28,12 +28,14 @@
           5% of purchase will go to <b><%= groupsupported.name %></b><br><br>
         <% end %>
 
-        If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent <br><br>
-        If purchasing an Reward such as a posting on Facebook or a Tweet, enter your Facebook URL or Twitter handle.<br><br>
-        If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info.<br><br>
-        You may leave this box blank if you are making a donation or purchasing a download.<br><br>
-        Instructions to seller for sending item:
-        <%= f.text_area :shipaddress, cols: 50, rows: 3 %><p>
+        <h2 class="new text-dark"> Thank you for purchasing using Thinq!</h2><br>
+        <p>If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent</p>
+        <%= f.text_area :shipaddress, cols: 50, rows: 2 %><br><br>
+        <p>If purchasing an Reward such as a posting on Facebook or a Tweet, enter your Facebook URL or Twitter handle</p>
+        <%= f.text_area :shipaddress, cols: 50, rows: 2 %><br><br>
+        <p>If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info
+        (You may leave this box blank if you are making a donation or purchasing a download) </p><br>
+        <%= f.text_area :shipaddress, cols: 50, rows: 2 %><br><br>
       </div>
 
       <% if user_signed_in? %>
@@ -64,12 +66,12 @@
           </a>
 
           <div class="last4">
-            You are using default card ending *<%= @last4 %>, Expiration <%= @expmonth %>-<%= @expyear %><br>
+            <p>You are using default card ending *<%= @last4 %>, Expiration <%= @expmonth %>-<%= @expyear %> </p><br>
           </div>
           <div class="buyexistingcard" onclick="return existingcard();">
           <%if(params[:merchandise_id].present?)%>
             <% merch = Merchandise.find(params[:merchandise_id]) %>
-            $<%= merch.price %>0
+            <p><strong>Price: $<%= merch.price %>0 </strong> </p>
             <%= f.submit "Buy now" %>
           <%else%>
             <%= f.submit "Donate now" %>
@@ -81,14 +83,13 @@
           </a><br><br><br><br>
 
         <% else %>
-          <p>
-            <%= label_tag :card_number, "Credit Card Number" %>
+            <p> <%= label_tag :card_number, "Credit Card Number" %> </p>
             <%= text_field_tag :card_number, nil, name: nil %><br><br>
   
-            <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+            <p> <%= label_tag :card_code, "Security Code on Card (CVV)" %> </p>
             <%= text_field_tag :card_code, nil, name: nil %><br><br>
 
-            <%= label_tag :card_month, "Card Expiration" %>
+            <p> <%= label_tag :card_month, "Card Expiration" %> </p>
             <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
             <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
           </p>
@@ -100,19 +101,19 @@
 
         <% end %>
       <% else %>
-        <p><%= label_tag :card_number, "Credit Card Number" %>
+        <p> <%= label_tag :card_number, "Credit Card Number" %> </p>
         <%= text_field_tag :card_number, nil, name: nil %><p>
  
-        <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-        <%= text_field_tag :card_code, nil, name: nil %><p>
+        <p><%= label_tag :card_code, "Security Code on Card (CVV)" %> </p>
+        <%= text_field_tag :card_code, nil, name: nil %>
 
-        <%= label_tag :card_month, "Card Expiration" %>
+        <p> <%= label_tag :card_month, "Card Expiration" %> </p>
         <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
         <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
         <%if(params[:merchandise_id].present?)%>
-            <%= f.submit "Purchase", id: 'purchase-btn' %><br><br>
+            <%= f.submit "Purchase" %><br><br>
         <%else%>
-          <%= f.submit "Donate", id: 'donation-btn' %>
+          <%= f.submit "Donate" %>
         <%end%>
       <% end %>
 
@@ -129,3 +130,4 @@
 		carduse = "existingcustomer";
 	}  
 </script>
+
