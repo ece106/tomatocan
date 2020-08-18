@@ -10,8 +10,8 @@ class UserNavbar < ActionDispatch::IntegrationTest
 
     visit new_event_path
   end
-  
-  test 'navitem buttons and logout' do
+
+  test 'navitem buttons and sign out' do
     assert page.has_css? '.nav-item'
     assert page.has_link? 'Home'
     first(:xpath, "//a[@href='/']").click
@@ -22,20 +22,15 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Join the Team'
     first(:xpath, "//a[@href='/jointheteam']").click
     assert_equal '/jointheteam', current_path
-    assert page.has_link? 'Drop In Anytime'
+    assert page.has_link? 'Drop in Anytime'
     first(:xpath, "//a[@href='/studyhall']").click
     assert_equal '/studyhall', current_path
-    assert page.has_link? 'FAQ'
-    first(:xpath, "//a[@href='/faq']").click
-    assert_equal '/faq', current_path
-    assert page.has_link? 'Terms of Service'
-    first(:xpath, "//a[@href='/tos']").click
-    assert_equal '/tos', current_path
-    click_on class: 'btn btn-primary border-warning text-warning', match: :first
 
+    #sign out
+    click_on class: 'btn btn-primary border-warning text-warning', match: :first
     assert '/', current_path
   end
-  
+
   test 'view profile page and logout' do
     # assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
@@ -47,7 +42,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
 
     assert '/', current_path
   end
-  
+
   test 'view control panel page and logout' do
     # assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
@@ -59,7 +54,7 @@ class UserNavbar < ActionDispatch::IntegrationTest
 
     assert '/', current_path
   end
-  
+
   private
   def teardown
   end
