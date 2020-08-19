@@ -4,9 +4,9 @@
 
 <!--TOP HALF-->
 <div class="text-center">
-  <h1 class="new"><%= @merchandise.name %> </h1>
+  <h1 class="maroon text-dark mt-5 pb-2"><%= @merchandise.name %> </h1>
   <% deadline = Date.parse(@merchandise.deadline.to_s)%>
-  <h2 class="mt-3 new text-center text-dark"> Last Day to Purchase: <%= deadline.strftime('%B/%d/%Y') %> </h2><br>
+  <p class="mt-3 text-center text-dark"> <strong> Last Day to Purchase: <%= deadline.strftime('%B/%d/%Y') %> </strong></p><br>
   <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
     <%= image_tag(@merchandise.itempic.url.to_s, height: '450') %><br>
   <% end %><br>
@@ -17,7 +17,7 @@
       <%end%>
 
       <% if @merchandise.price.present? %>
-        <br><h2 class="text-center text-dark"> Price: $<%= sprintf('%.2f', @merchandise.price) %> USD </h2>
+        <br><h1 class="pt-0 maroon text-center text-dark"> <small> Price: $<%= sprintf('%.2f', @merchandise.price) %> USD </small></h1>
       <% end %>
       
       <%if @merchandise.buttontype == 'Donate'%>
