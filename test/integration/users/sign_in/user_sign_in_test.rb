@@ -9,7 +9,7 @@ class UserSignInTest < ActionDispatch::IntegrationTest
   end
 
   test "error message did not display" do
-    assert page.has_css?('div#flash_alert', text: 'Invalid email or password', visible: true)
+    assert page.has_css?('.alert', text: 'Invalid email or password', visible: true)
     end
 
   #message represents what case is if test fails

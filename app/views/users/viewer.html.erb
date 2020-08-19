@@ -15,8 +15,8 @@
       <meta property="og:image"       content="https://www.thinq.tv/logoDigitalHollow300.png" />
     <% end %>
   <% end %>
-
-  <div class="row" style="padding-top:45px; margin-left:-60px; margin-right:-60px;">
+</div>
+  <div class="row pt-4 mt-4 pl-3">
     <div class="col-md-3">
       <div style="padding: 0px 0px 5px 0px">
         <%= render 'layouts/merchsidebar' %>
@@ -28,18 +28,18 @@
         <div style = "font-size: 15px; margin-left: 7px">
           Invite via E-Mail:
         </div>
-        <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/codingwhilefemale" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
+        <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
 
         <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
           Invite via SMS:
         </div>
-        <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/codingwhilefemale" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
+        <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
 
         <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
           Invite via social media:
         </div>
 
-        <% domainurl = "https://thinq.tv/codingwhilefemale" %>
+        <% domainurl = "https://thinq.tv/womantechfounder" %>
         <% eventUrl = "https://thinq.tv/#{request.original_fullpath}"%>
         <div style="margin-left: 17px">
           <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
@@ -49,12 +49,14 @@
       </div>
 
 
-      <div style="padding:5px 0px 0px 0px">
-        <div class="card">
-          <div class="card-header bg-primary text-white" style="margin-bottom:-10px">
+
+      <div class = "border-left border-right border-bottom border-primary pb-1">
+        <div class="panel panel-primary">
+          <div class=" bg-primary text-white card-header pb-2">        
+
             <% if @user.name.length >= 17 %>
             <% name = @user.name[0..15] + "..." %>
-              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
+              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>
             <% else %>
               Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
             <% end %>
@@ -62,6 +64,7 @@
           <div id="attendees"></div>
         </div>
       </div>
+
     </div>
 
     <div class="col-md-9">
@@ -152,5 +155,6 @@
     loadAttendees()
   </script>
 <% else %>
-  <meta http-equiv="refresh" content="0; URL=/login"/>
+
+  <meta http-equiv="refresh" content="0; URL=https://thinq.tv/login"/>
 <% end %>

@@ -12,7 +12,7 @@ class PurchasesControllerTest < ActionController::TestCase
     @purchaser = users(:two) # user 2 is the customer
     @seller = users(:one)
     @token = Stripe::Token.create(card: { number: '4242424242424242',
-                                          exp_month: 8, exp_year: 2050,
+                                          exp_month: 8, exp_year: 2025,
                                           cvc: 132})
     @purchases.stripe_customer_token = @purchaser.stripe_customer_token
     @purchases.stripe_card_token = @token.id

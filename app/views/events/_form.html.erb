@@ -7,7 +7,7 @@
     <p class="help-block">Will your event have a detailed topic? Do you have an area of expertise?</p>
     <%= f.text_field :name, size: 80 %><p>
   </div>
-
+<br>
   <div class="form-group">
     <h3><%= f.label :buttontype, "*Topic" %></h3>
     <p class="help-block">Will your event be a Drop-In Hour or a Conversation</p>
@@ -21,19 +21,13 @@
   </div>
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "Repeated" %></h3>
-    <p class="help-block"></p>
-    <%= f.select_recurring :recurring, nil, allow_blank: true %>
-  </div>
-
-  <div class="form-group">
     <h3><%= f.label :buttontype, "Details about Topic" %></h3>
     <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
     <%= f.text_area :desc, cols: 82, rows: 7 %><p>
   </div>
 </div>
 
-<script>   
+<script>   //JAVASCRIPT DOES _NOT_!!! BELONG IN ERB!!!!!
   function getTimezoneName() {
       const today = new Date();
       const short = today.toLocaleDateString(undefined);

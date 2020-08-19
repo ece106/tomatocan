@@ -1,3 +1,4 @@
+ 
 <div class="panel panel-primary">
   <h2 class="panel-heading">Your Past Conversations
   </h2>
@@ -6,8 +7,8 @@
 <% if @pastevents.present? %>
   <table class="past-events-list">
     <tr>
-    <th>Conversation </th>
-    <th>Time</th>
+    <th class = "text-white">Conversation </th>
+    <th class = "text-white">Time</th>
     <tr>
   <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
   <% i += 1%>

@@ -10,32 +10,27 @@ class UserNavbar < ActionDispatch::IntegrationTest
 
     visit new_event_path
   end
-  
-  test 'navitem buttons and logout' do
+
+  test 'navitem buttons and sign out' do
     assert page.has_css? '.nav-item'
     assert page.has_link? 'Home'
-    find_link('Home', match: :first).click
+    first(:xpath, "//a[@href='/']").click
     assert_equal '/', current_path
     assert page.has_link? 'About Us'
     find_link('About Us', match: :first).click
-    assert_equal '/getinvolved', current_path
+    first(:xpath, "//a[@href='/getinvolved']").click
     assert page.has_link? 'Join the Team'
-    find_link('Join the Team', match: :first).click
+    first(:xpath, "//a[@href='/jointheteam']").click
     assert_equal '/jointheteam', current_path
-    assert page.has_link? 'Activism Hall'
-    find_link('Activism Hall', match: :first).click
+    assert page.has_link? 'Drop in Anytime'
+    first(:xpath, "//a[@href='/studyhall']").click
     assert_equal '/studyhall', current_path
-    assert page.has_link? 'FAQ'
-    find_link('FAQ', match: :first).click
-    assert_equal '/faq', current_path
-    assert page.has_link? 'Terms of Service'
-    find_link('Terms of Service', match: :first).click
-    assert_equal '/tos', current_path
-    click_on class: 'btn btn-default', match: :first
 
+    #sign out
+    click_on class: 'btn btn-primary border-warning text-warning', match: :first
     assert '/', current_path
   end
-  
+
   test 'view profile page and logout' do
     # assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
@@ -43,11 +38,11 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'View Profile'
     find_link('View Profile',match: :first).click
     assert_equal "/#{@test_user.permalink}", current_path
-    click_on class: 'btn btn-default', match: :first
+    click_on class: 'btn btn-primary border-warning text-warning', match: :first
 
     assert '/', current_path
   end
-  
+
   test 'view control panel page and logout' do
     # assert text, "#{@user.name}"
     assert page.has_css? '.dropdown'
@@ -55,11 +50,11 @@ class UserNavbar < ActionDispatch::IntegrationTest
     assert page.has_link? 'Control Panel'
     find_link('Control Panel',match: :first).click
     assert_equal "/#{@test_user.permalink}/controlpanel", current_path
-    click_on class: 'btn btn-default', match: :first
+    click_on class: 'btn btn-primary border-warning text-warning', match: :first
 
     assert '/', current_path
   end
-  
+
   private
   def teardown
   end
