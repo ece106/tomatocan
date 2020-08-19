@@ -81,12 +81,24 @@ class BlockControllerTest < ActionController::TestCase
   end
 
 
-  #is_blocked 
+  #is_blocked
+  test 'is_blocked_response_is_permalink_of_user_who_blocked_currentuser' do
+    sign_in @blocked_user
+    post :is_blocked
+    assert_equal(response.body, "[\""+@user.permalink+"\"]")
+  end
+     
   #signedin?
+  test 'signedin_returns_true_if_signed_in' do
+    sign_in @blocked_user
+    post :signed_in?
+    assert_equal(response.body, "{\"success\":true}")
+  end
+
   #loadAttendees
   #liveCount
 
-  # Not sure how to approach these last four methods since there aren't
+  # Not sure how to approach these last two methods since there aren't
   # any parameters passed to them -- should these go in integration
   # testing instead, since they seem to depend on the view?
 
