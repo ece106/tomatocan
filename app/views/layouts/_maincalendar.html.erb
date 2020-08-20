@@ -18,8 +18,8 @@
         <% i += 1 %>
         <tr>
 
-          <td class=col-sm-2>
-
+          <td class="col-sm-2 text-center">
+                                                                
             <div id = "calendar-event">
               <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
             </div>
@@ -67,7 +67,7 @@
             <% if rsvps.count > 0 %>
 
               <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+                <button type="button" class="btn btn-lg text-primary dropdown-toggle" style="border-color: #8d1d40" data-toggle="dropdown" aria-haspopup="true" >
                   <span class="caret"></span> &nbsp; <%= rsvps.count %> Attending &nbsp; <span></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
