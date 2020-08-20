@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
   <% if current_user.id == @user.id %>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-  <div class="navbar-collapse" id="navbarNav">
+  <div class="navbar-collapse" id="navbarNav" style="padding-top: 50px">
     <ul class=" nav navbar-nav nav-pills nav-justified  container-fluid">
     <li role="presentation" class="active px-5 font-weight-bold ml-5"><%= link_to  "Profile", "#profileTab", "data-toggle" => "tab", class: "row profile-settings-tab" %></li>
     <li role="presentation" class="px-5 font-weight-bold "><%= link_to "Conversations", "#streamingTab", "data-toggle" => "tab", class: "events-tab" %></li>
