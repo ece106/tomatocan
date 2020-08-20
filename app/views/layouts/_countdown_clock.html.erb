@@ -31,7 +31,8 @@
         </script>
       </div>
       <div id="nextEventdiv">
-        <p>Until </p><h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3><p> goes live!</p>
+      <br>
+        <h3>Until <%= link_to @name, event_path(@displayconvo.id), title: @description %> goes live! </h3>
         <br>
         Hosted by: <%= link_to @host.name, @host.permalink %>
       </div>
