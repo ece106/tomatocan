@@ -24,7 +24,18 @@
       </div>
   <% else %>
     <div class="row pt-2 pb-3">
-      <%= render 'layouts/streamButton' %>
+        <div class="col-sm-4">
+            <%= render 'layouts/streamButton' %>
+        </div>
+        <div class="col-sm-8">
+            <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
+            <%= render 'layouts/merchsidebar' %>
+
+            <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Conversation Attending" %> </h1>
+            <% if @calendar_events.present? %>
+            <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+            <% end %>
+        </div>
     </div>
   <% end %>
 
@@ -36,13 +47,9 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-3">
-      <%= render 'layouts/merchsidebar' %>
-    </div>
+    
     <div class="col-md-9">
-      <% if @calendar_events.present? %>
-        <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
-      <% end %>
+        
     </div>
   </div>
 </div>
