@@ -15,7 +15,7 @@
       Women & Minorities in STEM
     </h2>
   </div>
-  
+
   <div class="col-lg-6 pt-5 pb-5 pl-5 ml-3 mb-5 mt-5 pr-2">
     <%= image_tag("HomeBanner.png", style: "width:100%;")%>
   </div>
@@ -23,7 +23,7 @@
 </div>
   <!-- end of top section-->
   <div class = "pt-4 mt-2 pb-1">
-    
+
     <h2 class="text-primary text-center"><strong>
       Want feedback on your tech or designs? <br>
       Need an online study group or career advice? </strong>
@@ -72,12 +72,12 @@
         Discover other activists working on similar causes. Drop in to
         <br>
         video chat throughout the day to meet us & collaborate!
-      </p>     
+      </p>
+
     </div>
 </div>
     <!--end of drop in column-->
-    </div>
-      <div>   
+      <div>
         <div class="convo-container text-center" style="background-color: #8C1D40">
           <!-- col-lg-3 col-md-6 -->
           <h1 class = "white">Conversation Schedule</h1>
@@ -93,7 +93,7 @@
           <button onclick="showPanel(1,'#4caf50')">Daily View</button>
           <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
         </div>
-        
+
         <div class="tabPanel">
           <%= render 'layouts/convocalendar', collection: @conversations %>
         </div>

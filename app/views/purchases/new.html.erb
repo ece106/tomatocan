@@ -1,7 +1,6 @@
 <div class="row">
   <div class="col-md-9 col-md-offset-3 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left">
-
-<br> 
+<br>
     <%= form_for @purchase do |f| %>
       <% if user_signed_in? %>
         <%= f.hidden_field :user_id, value: current_user.id %>
@@ -17,7 +16,7 @@
       <%= f.hidden_field :merchandise_id, value: params[:merchandise_id] %>
       <% if @purchase.errors.any? %>
         <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
-        <% @purchase.errors.full_messages.each do |msg| %> 
+        <% @purchase.errors.full_messages.each do |msg| %>
           <%= msg %>
         <% end %>
       <% end %>
@@ -27,26 +26,46 @@
           <% groupsupported = Group.find(params[:group_id]) %>
           5% of purchase will go to <b><%= groupsupported.name %></b><br><br>
         <% end %>
-
-        If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent <br><br>
+        <br>
+        <br>
+      <p>
+        <!-- If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent <br><br>
         If purchasing an Reward such as a posting on Facebook or a Tweet, enter your Facebook URL or Twitter handle.<br><br>
         If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info.<br><br>
-        You may leave this box blank if you are making a donation or purchasing a download.<br><br>
-        Instructions to seller for sending item:
-        <%= f.text_area :shipaddress, cols: 50, rows: 3 %><p>
+        You may leave this box blank if you are making a donation or purchasing a download.<br><br> -->
       </div>
 
       <% if user_signed_in? %>
         <% if current_user.stripe_customer_token.present? %>
             <div class="cardinfo" >
+
+              <%= label_tag :name, "Name" %> <br>
+              <%= text_field_tag :name%>
+              <br><br>
+
+              <%= label_tag :name, "Address" %> <br>
+              <%= text_field_tag :mailing_address%><br><br>
+
+              <%= label_tag :name, "City" %> <br>
+              <%= text_field_tag :city%> <br>
+
+              <%= label_tag :name, "Zip Code" %> <br>
+              <%= text_field_tag :zip_code%> <br>
+
+              <%= label_tag :name, "State" %> <br>
+              <%= text_field_tag :state%> <br><br>
+
+              <%= label_tag :name, "Email" %> <br>
+              <%= text_field_tag :email%><br><br>
+
               <%= label_tag :card_number, "Credit Card Number" %>
-              <%= text_field_tag :card_number, nil, name: nil %><br><br>
-  
+              <%= text_field_tag :card_number, nil, name:nil %><br><br>
+
               <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-              <%# = text_field_tag :card_code, nil, name: nil %><br><br>
+              <%# = text_field_tag :card_code, nil, name: nil %><br>
               <%= text_field_tag :card_code %><br><br>
 
-              <%= label_tag :card_month, "Card Expiration" %>
+              <%= label_tag :card_month, "Card Expiration" %> <br>
               <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
               <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
             </div>
@@ -84,7 +103,7 @@
           <p>
             <%= label_tag :card_number, "Credit Card Number" %>
             <%= text_field_tag :card_number, nil, name: nil %><br><br>
-  
+
             <%= label_tag :card_code, "Security Code on Card (CVV)" %>
             <%= text_field_tag :card_code, nil, name: nil %><br><br>
 
@@ -102,7 +121,7 @@
       <% else %>
         <p><%= label_tag :card_number, "Credit Card Number" %>
         <%= text_field_tag :card_number, nil, name: nil %><p>
- 
+
         <%= label_tag :card_code, "Security Code on Card (CVV)" %>
         <%= text_field_tag :card_code, nil, name: nil %><p>
 
@@ -127,5 +146,5 @@
 	var carduse = 'global variable card';
 	function existingcard () {
 		carduse = "existingcustomer";
-	}  
+	}
 </script>
