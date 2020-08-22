@@ -168,7 +168,9 @@ class UsersController < ApplicationController
       UserMailer.with(user: @user).welcome_email.deliver_later
     else
       if !verify_recaptcha(model: @user)
-        redirect_to new_user_signup_path, danger: "Please click the captcha box"
+        redirect_to new_user_signup_path, danger: "Please click the captcha box when signing up."
+      else
+        redirect_to new_user_signup_path, danger: "Cannot save signing up information."
       end
       #redirect_to new_user_signup_path
       @user.errors.clear
