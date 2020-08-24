@@ -28,15 +28,15 @@
           5% of purchase will go to <b><%= groupsupported.name %></b><br><br>
         <% end %>
 
-        <h2 class="new text-dark"> <strong> Thank you for purchasing using Thinq! </strong></h2><br>
+        <h1 class="maroon"> <strong> Complete Purchase </strong></h1><br>
+
         <h4>Instructions for Recieving Reward</h4>
-        <p>If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent</p>
-        <%= f.text_area :shipaddress, cols: 50, rows: 2 %><br><br>
-        <p>If purchasing an Reward such as a posting on Facebook or a Tweet, enter your Facebook URL or Twitter handle</p>
-        <%= f.text_area :shipaddress, cols: 50, rows: 2 %><br><br>
-        <p>If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info
+        <p>If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent
+        <br><br>
+        If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info
         (You may leave this box blank if you are making a donation or purchasing a download) </p>
-        <%= f.text_area :shipaddress, cols: 50, rows: 2 %><br><br>
+        <%= f.text_area :shipaddress, cols: 100, rows: 4 %><br><br>
+
       </div>
       <br>
       <h4>Payment Information</h4>
@@ -140,5 +140,11 @@
 		carduse = "existingcustomer";
 	}  
 </script>
+
+
+
+
+
+
 
 
