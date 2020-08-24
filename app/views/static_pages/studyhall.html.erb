@@ -18,6 +18,15 @@
       <div class="col-lg-5 col-md-12 col-xs-12 pt-3 pl-4">
         <div class="pt-1 text-center" id="countdown_clock">
           <%= render 'layouts/countdown_clockstudy' %>
+          <% if @displayresearch.present? %>
+          <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
+            <div class = "col-sm-12" id="eventCurrentdiv">
+              <h3>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff " %></h3>
+              <p> right NOW!</p><br>
+              <%= link_to " Join Group Problem Solving NOW ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera mt-1", style: "position: relative; font-size: 30px; border-radius: 5px;" %>
+            </div>
+          <% end %>
+        <% end %>
         </div>
       </div>
     </div>
