@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   layout :resolve_layout
 
+  require 'recaptcha.rb'
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
   before_action :authenticate_user!, only: [:update, :dashboard, :controlpanel ]
-
+  
   #before_action :correct_user, only: [:dashboard, :user_id]
   #before_action :correct_user, only: [:controlpanel]
   #Where did this method go?
@@ -162,14 +163,17 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    if @user.save
-      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-      UserMailer.with(user: @user).welcome_email.deliver_later
+    @recaptcha_passed = verify_recaptcha(model: @user)
+    if @recaptcha_passed
+      if @user.save
+        redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+        UserMailer.with(user: @user).welcome_email.deliver_later
+      else 
+        redirect_to new_user_signup_path, danger:  signup_error_message
+        @user.errors.clear
+      end
     else
-       redirect_to new_user_signup_path, danger: signup_error_message
-      #redirect_to new_user_signup_path
-      @user.errors.clear
+        redirect_to new_user_signup_path, danger: "Please check the captcha box!"
     end
   end
 
