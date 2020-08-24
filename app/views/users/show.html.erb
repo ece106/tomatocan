@@ -27,7 +27,24 @@
         <div class="col-sm-4">
             <%= render 'layouts/streamButton' %>
 
-            <h1 class=" pt-4 text-center" id="profileAbout"> <%= "Connect" %> </h1>
+            <h1 class=" pt-5 text-center" id="profileAbout"> <%= "Connect" %> </h1>
+            <div class=" pt-4 text-center" id="merchImage">
+                <% domainurl = "http://www.thinq.tv/"%>
+                <a onclick="window.open('https://www.facebook.com/thinQtv/');">
+                    <%= image_tag("social-share-button/facebook.png")%>
+
+                </a>&nbsp
+
+                <a onclick="window.open('https://twitter.com/ThinqTV');">
+                    <%= image_tag("social-share-button/twitter.png")%>
+
+                </a>&nbsp
+
+                <a onclick="window.open('https://www.linkedin.com/company/thinqtv/');">
+                    <%= image_tag("social-share-button/linkedin.png")%>
+
+                </a>&nbsp
+            </div>
 
         </div>
         <div class="col-sm-8">
