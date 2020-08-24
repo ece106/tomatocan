@@ -1,15 +1,15 @@
 <% if @conversations.count != 0 %><br>
   <% if @start_time != nil %>
     <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
-      <div id="eventCurrentdiv">
-        <h3 class = "pt-1"><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3>
-        <p> is LIVE right NOW!</p><br>
+      <div id="eventCurrentdiv align-items-end " style ="align-text:bottom">
+        <h3 class = "pt-5" ><%= link_to @name, event_path(@displayconvo.id), title: @description %>
+         is LIVE right NOW!</h3>
         <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 40px" %>
         <br>
         Hosted by: <%= link_to @host.name, @host.permalink %>
       </div>
     <% elsif Time.current < Time.parse(@start_time) %>
-      <div id="clockdiv">
+      <div id="clockdiv" class ="justfy-items-end pt-5 pb-0">
         <div>
         <span class="days h1"></span>
         <div class=" h6 text-warning"><strong>Days</strong></div>
@@ -29,9 +29,10 @@
         <script>
           initializeClock('clockdiv', '<%= @start_time %>');
         </script>
-      </div><br> <br>
+      </div>
       <div id="nextEventdiv">
-        <p>Until </p><h3><%= link_to @name, event_path(@displayconvo.id), title: @description %></h3><p> goes live!</p>
+      <br>
+        <h3>Until <%= link_to @name, event_path(@displayconvo.id), title: @description %> goes live! </h3>
         <br>
         Hosted by: <%= link_to @host.name, @host.permalink %>
       </div>

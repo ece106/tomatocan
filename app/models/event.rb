@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   has_many :rsvpqs
   has_many :users, through: :rsvpqs
 
-  validates :start_at, uniqueness: { scope: :topic, message: "Can't have simultaneous Conversations/Activism Halls" }
+  validates :start_at, uniqueness: { scope: :topic, message: "can't be the same as another event" }
   validates :user_id, presence: true
 
   validates :name, presence: true
@@ -16,7 +16,9 @@ class Event < ApplicationRecord
   validates :desc, format: { without: /http|\.co|\.com|\.org|\.net|\.tv|\.uk|\.ly|\.me|\.biz|\.mobi|\.cn|kickstarter|barnesandnoble|smashwords|itunes|amazon|eventbrite|rsvpify|evite|meetup/i, message: "descriptions
     ...URLs are not allowed in event descriptions. Keep in mind that people will be searching here for ThinQtv Conversations. They will not be searching for
     sites to browse. Paste all information attendees need here." }
-
+  
+  validates :name,  presence: true, length: { maximum: 70, message: "Event name exceeds the 70 character maximum. Utilize the description box if necessary" }
+  
   scope :recent,   -> { order(:start_at, :desc) }
   scope :upcoming, -> { where('start_at > ?', Time.now) }
 
