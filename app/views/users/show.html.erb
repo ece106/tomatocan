@@ -31,8 +31,18 @@
 
         </div>
         <div class="col-sm-8">
-            <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
-            <%= render 'layouts/merchsidebar' %>
+            <% if current_user.id == @user.id %>
+                <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
+                    <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Current Rewards" %> </h1>
+                    <%= link_to "Sign up for Stripe", user_controlpanel_url(current_user.permalink), method: :get, :class => "btn btn-warning text-white", :id=> "stripeButton" %>
+                <% else %>
+                    <%= render 'layouts/merchsidebar' %>
+                <% end %>
+
+            <% else %>
+                <%= render 'layouts/merchsidebar' %>
+            <% end %>
+            <br />
 
             <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Conversation Attending" %> </h1>
             <% if @calendar_events.present? %>

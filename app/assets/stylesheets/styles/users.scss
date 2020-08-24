@@ -59,7 +59,7 @@
 
 //Merch Sidebar style
 #merchSidebar {
-    max-height: 75vh;
+    max-height: 70vh;
     overflow-y: scroll;
 }
 
@@ -87,13 +87,21 @@
 
 //Perk display
 #perkImage {
-	height: 100px;
-	width: 100px;
+	height: 110px;
+	width: 110px;
 	object-fit: cover;
 }
-
+#buyButton {
+	font-size: 1.5em;
+	padding: 20px;
+	width: 60%;
+}
+#stripeButton {
+	font-size: 2.5em;
+	padding: 40px;
+	width: 100%;
+}
 //Edit user profile tab
-
 .form-control {
 	//adds space to the bottom of fields because they're too squished
 	margin-bottom: .5rem;
