@@ -1,228 +1,213 @@
 <% flash.each do |key, value| %>
-  <div class="<%= flash_class(key) %>">
-      <%= value %>
-  </div>
-  <% end %>
-  
-  <!-- Meta Tags for Facebook -->
-  <% content_for :head do %>
-  <meta property="og:url" content="<%= "https://www.thinq.tv" + event_path(@event) %>" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="<%= @event.name %>" />
-  <meta property="og:description" content="<%= @event.desc %>" />
-  <meta property="og:image" content="<%= @user.profilepic.url.to_s %>" />
-  <% end %>
-  
-  <!-- TOP HALF -->
-  
-  <div class="pt-5 pb-3">
-      <h1 class="maroon text-center text-dark pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
-      <p class="text-center event-name mb-2"><b> <%= @event.name %>! </b></p>
-      <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
-  </div>
-  
-  
-  
-  
-  
-  <div class="px-4" id="event-page-layout">
-  
-  
-      <!-- CONVERSATION NAME & HOST -->
-      <div id="home" class="mt-3">
-          <div class="aboutHeader row">
-              <div class="mt-4 ml-md-4 ml-ml-4 col-lg-4 col-md-5 col-sm-6 col-xs-4">
-                  <!-- WHEN -->
-                  <p class="text-white text-left">
-                      <b>
-                          <% edt = @event.start_at + 3.hours %>
-                          <%= @event.start_at.strftime("%A, %B %d") %> <br>
-                          <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
-                          <br> <%= @duration %> minutes <br>
-                      </b>
-                  </p>
-  
-                  <!-- PROFILE PICTURE -->
-                  <div class="text-sm-center text-md-left text-lg-left">
-                      <% if @user.profilepic.present? && @user.profilepic != '' %>
-                      <%= image_tag @user.profilepic.url.to_s, height: "300", width: "300" %>
-  
-                      <% else %>
-                      <%= image_tag "yellow brain.png", height: "250", width: "250" %>
-                      <% end %>
-                      <br>
-                      <!-- JOIN BUTTON -->
-                      <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
-                      <% start_time = @event.start_at.strftime("%B %d %Y") + ' ' + @event.start_at.strftime("%T") %>
-                      <% end_time = @event.end_at.strftime("%B %d %Y") + ' ' + @event.end_at.strftime("%T") %>
-                      <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-                      <%= link_to " Join " + @event.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-primary border-warning text-warning btn-md mt-2 mb-2" %>
-                      <% end %>
-                  </div>
-  
-              </div>
-  
-              <!-- RSVP -->
-              <div class="mt-4 col-lg-7 col-md-6 col-sm-5 col-xs-5">
-                  <% @title="ThinQ.tv" %>
-                  <div class="text-right mt-0">
-                      <%= form_for(@rsvp) do |f| %>
-                      <% if @rsvp.errors.any? %>
-                      <div id="error_explanation">
-                          <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-                          <ul>
-                              <% @rsvp.errors.full_messages.each do |msg| %>
-                              <li><%= msg %></li>
-                              <% end %>
-                          </ul>
-                      </div>
-                      <% end %>
-  
-                      <%= f.hidden_field :event_id, :value => @event.id %>
-  
-                      <% flag = true %>
-  
-                      <% if user_signed_in? %>
-                      <%= f.hidden_field :user_id, :value => current_user.id %>
-                      <% @rsvps.each do |rsvp| %>
-                      <% if rsvp.user_id == current_user.id %>
-                      <% flag = false %>
-                      <% end %>
-                      <% end %>
-                      <% else %>
-                      <%= f.text_field :email, placeholder: "Enter email" %>
-                      <% end %>
-  
-                      <% if flag %>
-                        <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
-                      <% end %>
-                      <% end %>
-  
-                      <% if user_signed_in? %>
-                      <% if @event.user_id == current_user.id %>
-                      <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn btn-primary btn-sm border-warning text-warning mt-3 mb-3" %>
-                      <% end %>
-                      <% end %>
-  
-  
-                      <!-- EVENT DESCRIPTION -->
-                      <div class="pt-5 pb-5 pl-0 pr-0">
-                          <div class="p2">
-                              <% if @event.desc.present? %>
-                              <p class="text-left text-white"> <%= @event.desc.gsub(/\n/, '<br>').html_safe %> </p>
-                              <% end %>
-                          </div>
-                      </div>
-  
-  
-                      <br>
-                      <br>
-                      
-                      
-  
-                      <!-- Default dropleft button -->
-  
-  
-  
-                      <% if @rsvps.count > 0 %>
-                      <div class="btn-group">
-                          <button type="button" class="btn btn-primary dropdown-toggle btn-sm border-warning text-body bg-warning pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true">
-                              <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
-                          </button>
-                          <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
-                              <% @rsvpusers.each do |rsvpuser| %>
-                              <%= link_to user_profile_path(rsvpuser.permalink) do %>
-                              <div class="dropdown-item">
-                                  <span>
-                                      <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
-                                      <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
-                                      <% elsif !rsvpuser.profilepic.url.nil? %>
-                                      <% if rsvpuser.profilepic.url.match(/http/) %>
-                                      <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
-                                      <% end %>
-                                      <% else %>
-                                      <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
-                                      <% end %>
-                                  </span>
-                                  <%= rsvpuser.name %></div>
-                              <% end %>
-                              <% end %>
-                              <% @rsvps.each do |rsvp| %>
-                              <% unless rsvp.email.blank? %>
-                              <% parts = rsvp.email.split('@') %>
-                              <div class="dropdown-item"><%= parts[0] %></div>
-                              <% end %>
-                              <% end %>
-                          </div>
-                      </div>
-  
-                      <% end %>
-  
-                  </div>
-              </div>
-          </div><br>
-      </div>
-  </div>
-  </div>
-  
-  
-  <!-- BOTTOM HALF -->
-  <div class="row pl-5 py-3">
-      <! Left Column -->
-          <div class="col-md-8 col-sm-6 pt-4">
-              <div>
-                  <h2 class="new text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
-              </div>
-              <div class="col-md-12">
-                  <div>
-                     <strong> Desktop: </strong>
-                  </div>
-                  <div>
+<div class="<%= flash_class(key) %>">
+    <%= value %>
+</div>
+<% end %>
+
+<!-- Meta Tags for Facebook -->
+<% content_for :head do %>
+<meta property="og:url" content="<%= "https://www.thinq.tv" + event_path(@event) %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<%= @event.name %>" />
+<meta property="og:description" content="<%= @event.desc %>" />
+<meta property="og:image" content="<%= @user.profilepic.url.to_s %>" />
+<% end %>
+
+<!-- TOP HALF -->
+
+<div class="pt-5 pb-3">
+    <h1 class="maroon text-center text-dark pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
+    <p class="text-center event-name mb-2"><b> <%= @event.name %>! </b></p>
+    <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
+</div>
+
+
+
+
+
+<div class="px-4" id="event-page-layout">
+
+
+    <!-- CONVERSATION NAME & HOST -->
+    <div id="home" class="mt-3">
+        <div class="aboutHeader row">
+            <div class="mt-4 ml-md-4 ml-sm-4 ml-xs-0 col-lg-4 col-md-5 col-sm-6 col-xs-4">
+                <!-- WHEN -->
+                <p class="text-white text-left">
+                    <b>
+                        <% edt = @event.start_at + 3.hours %>
+                        <%= @event.start_at.strftime("%A, %B %d") %> <br>
+                        <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
+                        <br> <%= @duration %> minutes <br>
+                    </b>
+                </p>
+
+                <!-- PROFILE PICTURE -->
+                <div class="text-sm-center text-md-left text-lg-left">
+                    <% if @user.profilepic.present? && @user.profilepic != '' %>
+                    <%= image_tag @user.profilepic.url.to_s, height: "300"%>
+
+                    <% else %>
+                    <%= image_tag "yellow brain.png", height: "250"%>
+                    <% end %>
+                    <br>
+                    <!-- JOIN BUTTON -->
+                    <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
+                    <% start_time = @event.start_at.strftime("%B %d %Y") + ' ' + @event.start_at.strftime("%T") %>
+                    <% end_time = @event.end_at.strftime("%B %d %Y") + ' ' + @event.end_at.strftime("%T") %>
+                    <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
+                    <%= link_to " Join " + @event.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-primary border-warning text-warning btn-md mt-2 mb-2" %>
+                    <% end %>
+                </div>
+
+            </div>
+
+            <!-- RSVP -->
+            <div class="mt-4 col-lg-7 col-md-6 col-sm-5 col-xs-5">
+                <% @title="ThinQ.tv" %>
+                <div class="text-right mt-0">
+                    <%= form_for(@rsvp) do |f| %>
+                    <% if @rsvp.errors.any? %>
+                    <div id="error_explanation">
+                        <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                        <ul>
+                            <% @rsvp.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                    <% end %>
+
+                    <%= f.hidden_field :event_id, :value => @event.id %>
+
+                    <% flag = true %>
+                    <% if user_signed_in? %>
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                        <% @rsvps.each do |rsvp| %>
+                        <% if rsvp.user_id == current_user.id %>
+                            <% flag = false %>
+                        <% end %>
+                    <% end %>
+                    <% else %>
+                    <%= f.text_field :email, placeholder: "Enter email" %>
+                    <% end %>
+
+                        <% if flag %>
+                            <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
+                        <% end %>
+                    <% end %>
+                    <% if user_signed_in? %>
+                        <% if @event.user_id == current_user.id %>
+                            <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn btn-primary btn-sm border-warning text-warning mt-3 mb-3" %>
+                        <% end %>
+                    <% end %>
+                    <!-- EVENT DESCRIPTION -->
+                    <div class="pt-5 pb-5 pl-0 pr-0">
+                        <div class="p2">
+                            <% if @event.desc.present? %>
+                            <p class="text-left text-white"> <%= @event.desc.gsub(/\n/, '<br>').html_safe %> </p>
+                            <% end %>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <!-- Default dropleft button -->
+                    <% if @rsvps.count > 0 %>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm border-warning text-body bg-warning pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true">
+                            <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+                            <% @rsvpusers.each do |rsvpuser| %>
+                            <%= link_to user_profile_path(rsvpuser.permalink) do %>
+                            <div class="dropdown-item">
+                                <span>
+                                    <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
+                                    <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
+                                    <% elsif !rsvpuser.profilepic.url.nil? %>
+                                    <% if rsvpuser.profilepic.url.match(/http/) %>
+                                    <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
+                                    <% end %>
+                                    <% else %>
+                                    <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
+                                    <% end %>
+                                </span>
+                                <%= rsvpuser.name %></div>
+                            <% end %>
+                            <% end %>
+                            <% @rsvps.each do |rsvp| %>
+                            <% unless rsvp.email.blank? %>
+                            <% parts = rsvp.email.split('@') %>
+                            <div class="dropdown-item"><%= parts[0] %></div>
+                            <% end %>
+                            <% end %>
+                        </div>
+                    </div>
+
+                    <% end %>
+
+                </div>
+            </div>
+        </div><br>
+    </div>
+</div>
+</div>
+
+
+<!-- BOTTOM HALF -->
+<div class="row pl-5 py-3">
+    <! Left Column -->
+        <div class="col-md-8 col-sm-6 pt-4">
+            <div>
+                <h2 class="new text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
+            </div>
+            <div class="col-md-12">
+                <div>
+                    <strong> Desktop: </strong>
+                </div>
+                <div>
                     <p class="mb-0 mt-0"> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
-                      click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %> 
+                            click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %>
                     </p>
-                  </div>
-                  <div>
-                     <strong>Mobile: </strong>
-                  </div>
-                  <div>
-                      <p class="mb-0 mt-0"> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom </small> </p>
-                  </div>
-              </div>
-          </div>
-  
-          <! Right Column -->
-              <div class="col-md-4 col-sm-6 pl-3 pt-4">
-                  <div>
-                     <strong> Invite your fellow activists </strong> 
-                  </div>
-                  <div class="row pl-8 d-flex d-sm-flex">
-                      <div class="col-md-1">
+                </div>
+                <div>
+                    <strong>Mobile: </strong>
+                </div>
+                <div>
+                    <p class="mb-0 mt-0"> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom </small> </p>
+                </div>
+            </div>
+        </div>
+
+        <! Right Column -->
+            <div class="col-md-4 col-sm-6 pt-4">
+                <div>
+                    <strong> Invite your fellow activists </strong>
+                </div>
+                <div class="row ">
+                    <div class="col-md-1 d-flex">
                         <%= link_to "mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20"+ @event.name + "%20at%20" + @surl + "%20on%20" + 
                         + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20PDT%20/%20" + edt.strftime("%I:%M %p") + "%20EDT.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
                         target: :_blank do %>
-                          <%= image_tag "email_icon.png", height: "25", width: "25"%>
+                        <%= image_tag "email_icon.png", height: "25", width: "25"%>
                         <% end %>
-                      </div>
-                      <div class="col-md-1">
+
                         <%= link_to "https://www.linkedin.com/shareArticle?mini=true&url="+@surl, target: :_blank do %>
-                          <%= image_tag "linkedin_icon.png", height: "25", width: "25"%>
+                            <%= image_tag "linkedin_icon.png", height: "25", width: "25"%>
                         <% end %>
-                      </div>
-                      <div class="col-md-1">
+
                         <%= link_to "https://twitter.com/intent/tweet?text=Join " + @user.name + " for interesting conversation: " +
                         @event.name + " on " + @event.start_at.strftime("%B %d, %I:%M %p") + " PDT at " + @surl, target: :_blank do %>
-                          <%= image_tag "twitter_icon.png", height: "25", width: "25"%>
+                            <%= image_tag "twitter_icon.png", height: "25", width: "25"%>
                         <% end %>
-                      </div>
-                      <div class="col-md-1">
+
                         <%= link_to "http://www.facebook.com/sharer.php?u=" + @surl, target: :_blank do %>
-                          <%= image_tag "facebook_icon.png", height: "25", width: "25"%>
+                            <%= image_tag "facebook_icon.png", height: "25", width: "25"%>
                         <% end %>
-                      </div>
-                  </div>
+                    </div>
                 </div>
-          </div>
-        </div>
-    </div>
-  </div>
+            </div>
+</div>
+</div>
+</div>
+</div>
