@@ -29571,3 +29571,329 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 1264ms (Views: 1200.0ms | ActiveRecord: 46.5ms | Allocations: 88635)
 
 
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/Tawa/Desktop/tomatocan/config/environment.rb:7)
+Started GET "/test1" for ::1 at 2020-08-24 14:36:09 -0700
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"test1"}
+  [1m[36mUser Load (30.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "test1"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (12.3ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Load (0.8ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-24' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-24' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-24' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mEvent Load (18.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-24 14:41:09.856256' AND end_at > '2020-08-24 14:41:09.856256' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-24 14:41:09.856256' AND end_at > '2020-08-24 14:41:09.856256')[0m
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-08-24 14:41:09.856256')[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-08-24 11:36:09.894041' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 1072.8ms | Allocations: 362032)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered layouts/_streamButton.html.erb (Duration: 6.2ms | Allocations: 749)
+  Rendered layouts/_merchsidebar.html.erb (Duration: 9.2ms | Allocations: 2817)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mRsvpq Load (0.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE Rsvpq Load (0.0ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mRsvpq Load (0.2ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_maincalendar.html.erb (Duration: 88.4ms | Allocations: 21101)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 1190.6ms | Allocations: 389937)
+  Rendered application/_favicon.html.erb (Duration: 9.1ms | Allocations: 3493)
+  Rendered layouts/_header.html.erb (Duration: 3.3ms | Allocations: 1140)
+  Rendered layouts/_footer.html.erb (Duration: 7.2ms | Allocations: 2721)
+Completed 200 OK in 1736ms (Views: 1381.4ms | ActiveRecord: 116.6ms | Allocations: 538096)
+
+
+Started GET "/test2" for ::1 at 2020-08-24 14:36:28 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"authenticity_token"=>"bcjYZRnqjAicL4sYcbMbwK8WYTMKUWm/PTB2ypubP5PSt4dySw2wVDye2XKOJlDqUvEd6eQ+7e3qm7fD+RGj9Q==", "permalink"=>"test2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "test2"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 2], ["LIMIT", 1]]
+  [1m[36mMerchandise Load (0.4ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-24' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 2]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-24' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 2]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-24 14:41:28.139999' AND end_at > '2020-08-24 14:41:28.139999' AND user_id = 2) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-24 14:41:28.139999' AND end_at > '2020-08-24 14:41:28.139999')[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 2) and start_at > '2020-08-24 14:41:28.139999')[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-08-24 11:36:28.142947' AND user_id = 2) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 6.8ms | Allocations: 1438)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered layouts/_streamButton.html.erb (Duration: 2.8ms | Allocations: 468)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mRsvpq Load (0.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mRsvpq Load (0.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_maincalendar.html.erb (Duration: 24.6ms | Allocations: 5259)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 46.4ms | Allocations: 8753)
+  Rendered application/_favicon.html.erb (Duration: 12.2ms | Allocations: 3296)
+  Rendered layouts/_header.html.erb (Duration: 2.0ms | Allocations: 799)
+  Rendered layouts/_footer.html.erb (Duration: 8.2ms | Allocations: 2296)
+Completed 200 OK in 204ms (Views: 187.3ms | ActiveRecord: 7.4ms | Allocations: 82443)
+
+
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/Tawa/Desktop/tomatocan/config/environment.rb:7)
+Started GET "/test1" for ::1 at 2020-08-25 14:18:54 -0700
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"test1"}
+  [1m[36mUser Load (30.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "test1"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (12.3ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Load (1.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mEvent Load (17.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 14:23:54.729056' AND end_at > '2020-08-25 14:23:54.729056' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 14:23:54.729056' AND end_at > '2020-08-25 14:23:54.729056')[0m
+  [1m[36mEvent Load (3.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-08-25 14:23:54.729056')[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-08-25 11:18:54.775705' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 2081.8ms | Allocations: 345202)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_streamButton.html.erb (Duration: 19.6ms | Allocations: 750)
+  Rendered layouts/_merchsidebar.html.erb (Duration: 21.4ms | Allocations: 3001)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mRsvpq Load (0.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE Rsvpq Load (0.0ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mRsvpq Load (0.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_maincalendar.html.erb (Duration: 132.0ms | Allocations: 20588)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 2278.0ms | Allocations: 372786)
+  Rendered application/_favicon.html.erb (Duration: 17.2ms | Allocations: 3501)
+  Rendered layouts/_header.html.erb (Duration: 5.5ms | Allocations: 1140)
+  Rendered layouts/_footer.html.erb (Duration: 20.9ms | Allocations: 2722)
+Completed 200 OK in 3316ms (Views: 2823.1ms | ActiveRecord: 133.3ms | Allocations: 521714)
+
+
+Started GET "/test1/controlpanel" for ::1 at 2020-08-25 14:19:15 -0700
+Processing by UsersController#controlpanel as HTML
+  Parameters: {"authenticity_token"=>"dv1fVznna+5yPyxvv7AVsZSIi7DDPb4/GZhH4oVCy2CidgOqh1JzPsM/ndVZJy1vMknTjROglP0HjTvWQ2dL7w==", "permalink"=>"test1"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "test1"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Load (0.5ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPurchase Load (7.0ms)[0m  [1m[34mSELECT "purchases".* FROM "purchases" WHERE (purchases.author_id = 1) ORDER BY created_at DESC[0m
+  [1m[36mCACHE Merchandise Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  Rendering users/controlpanel.html.erb within layouts/userpgtemplate
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_102200 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:33)
+  Rendering users/profileinfo.html.erb
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.2ms | Allocations: 169)
+  Rendered users/profileinfo.html.erb (Duration: 22.7ms | Allocations: 4353)
+  Rendered layouts/_stripealert.html.erb (Duration: 12.0ms | Allocations: 325)
+  Rendered layouts/_merchsidebar.html.erb (Duration: 13.1ms | Allocations: 1723)
+  Rendered layouts/_createPerk.html.erb (Duration: 1.6ms | Allocations: 164)
+  [1m[36mMerchandise Load (1.9ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline < '2020-08-25') ORDER BY deadline ASC[0m  [["user_id", 1]]
+  Rendered layouts/_expiredPerks.html.erb (Duration: 5.2ms | Allocations: 441)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_102200 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:83)
+  Rendering users/eventlist.html.erb
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-08-25 21:19:15.413040' AND user_id = 1)[0m
+  Rendered users/eventlist.html.erb (Duration: 5.4ms | Allocations: 802)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_102200 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:84)
+  Rendering users/pastevents.html.erb
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 21:19:15.413040' AND user_id = 1)[0m
+  Rendered users/pastevents.html.erb (Duration: 4.9ms | Allocations: 670)
+  Rendered layouts/_streamDirections.html.erb (Duration: 1.8ms | Allocations: 205)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_102200 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:102)
+  Rendering users/accountinfo.html.erb
+  Rendered users/accountinfo.html.erb (Duration: 4.2ms | Allocations: 889)
+  Rendered layouts/_stripealert.html.erb (Duration: 0.1ms | Allocations: 19)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_102200 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:119)
+  Rendering users/dashboard.html.erb
+  Rendered users/dashboard.html.erb (Duration: 3.4ms | Allocations: 1144)
+  Rendered users/controlpanel.html.erb within layouts/userpgtemplate (Duration: 90.4ms | Allocations: 14749)
+  Rendered application/_favicon.html.erb (Duration: 12.8ms | Allocations: 3296)
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 803)
+  Rendered layouts/_footer.html.erb (Duration: 8.6ms | Allocations: 2296)
+Completed 200 OK in 309ms (Views: 266.0ms | ActiveRecord: 17.2ms | Allocations: 91511)
+
+
+Started GET "/test1" for ::1 at 2020-08-25 14:37:18 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"test1"}
+  [1m[36mUser Load (10.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "test1"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (3.6ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Load (1.3ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (5.1ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mEvent Load (2.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 14:42:19.276723' AND end_at > '2020-08-25 14:42:19.276723' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 14:42:19.276723' AND end_at > '2020-08-25 14:42:19.276723')[0m
+  [1m[36mEvent Load (2.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-08-25 14:42:19.276723')[0m
+  [1m[36mEvent Load (6.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-08-25 11:37:19.289846' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 290.3ms | Allocations: 1434)
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_streamButton.html.erb (Duration: 15.5ms | Allocations: 470)
+  Rendered layouts/_merchsidebar.html.erb (Duration: 21.6ms | Allocations: 1720)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (10.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mRsvpq Load (0.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE Rsvpq Load (0.0ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mRsvpq Load (0.6ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_maincalendar.html.erb (Duration: 91.0ms | Allocations: 9468)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 450.4ms | Allocations: 14679)
+  Rendered application/_favicon.html.erb (Duration: 23.6ms | Allocations: 3296)
+  Rendered layouts/_header.html.erb (Duration: 5.5ms | Allocations: 799)
+  Rendered layouts/_footer.html.erb (Duration: 16.7ms | Allocations: 2296)
+Completed 200 OK in 1158ms (Views: 970.8ms | ActiveRecord: 57.6ms | Allocations: 88914)
+
+
+Started GET "/test1" for ::1 at 2020-08-25 15:06:07 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"authenticity_token"=>"hf1XMaV9hmrOQO99SkgssZItHeaVQuQcW1OFXEyGY4ZRdgvMG8ieun9AXses3xRvNOxF20Xfzt5FRvloiqPjCQ==", "permalink"=>"test1"}
+  [1m[36mUser Load (8.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "test1"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Load (0.7ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mEvent Load (2.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 15:11:07.572344' AND end_at > '2020-08-25 15:11:07.572344' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 15:11:07.572344' AND end_at > '2020-08-25 15:11:07.572344')[0m
+  [1m[36mEvent Load (1.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-08-25 15:11:07.572344')[0m
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-08-25 12:06:07.578458' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 9.8ms | Allocations: 1981)
+  Rendered layouts/_streamButton.html.erb (Duration: 1.9ms | Allocations: 245)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_merchsidebar.html.erb (Duration: 10.9ms | Allocations: 2912)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 6]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mRsvpq Load (0.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE Rsvpq Load (0.0ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 7]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mRsvpq Load (0.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 8]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_maincalendar.html.erb (Duration: 37.6ms | Allocations: 11485)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 78.9ms | Allocations: 19974)
+  Rendered application/_favicon.html.erb (Duration: 18.6ms | Allocations: 3483)
+  Rendered layouts/_header.html.erb (Duration: 5.2ms | Allocations: 1114)
+  Rendered layouts/_footer.html.erb (Duration: 11.7ms | Allocations: 2694)
+Completed 200 OK in 328ms (Views: 278.8ms | ActiveRecord: 20.3ms | Allocations: 96443)
+
+
+Started GET "/test1/controlpanel" for ::1 at 2020-08-25 15:16:44 -0700
+Processing by UsersController#controlpanel as HTML
+  Parameters: {"authenticity_token"=>"Z96b7YYuK6iOyljHXWPFRcGWthM9CKSTUn0BAHI2ZNKzVccQOJszeD/K6X279P2bZ1fuLu2VjlFMaH00tBPkXQ==", "permalink"=>"test1"}
+  [1m[36mUser Load (24.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "test1"], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Load (0.6ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mCACHE Merchandise Load (0.0ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline >= '2020-08-25' OR deadline IS NULL) ORDER BY "merchandises"."deadline" ASC[0m  [["user_id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPurchase Load (1.8ms)[0m  [1m[34mSELECT "purchases".* FROM "purchases" WHERE (purchases.author_id = 1) ORDER BY created_at DESC[0m
+  [1m[36mCACHE Merchandise Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  Rendering users/controlpanel.html.erb within layouts/userpgtemplate
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_103140 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:33)
+  Rendering users/profileinfo.html.erb
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.4ms | Allocations: 164)
+  Rendered users/profileinfo.html.erb (Duration: 17.6ms | Allocations: 3751)
+  Rendered layouts/_stripealert.html.erb (Duration: 1.6ms | Allocations: 316)
+  Rendered layouts/_merchsidebar.html.erb (Duration: 6.5ms | Allocations: 1723)
+  Rendered layouts/_createPerk.html.erb (Duration: 1.3ms | Allocations: 158)
+  [1m[36mMerchandise Load (0.4ms)[0m  [1m[34mSELECT "merchandises".* FROM "merchandises" WHERE "merchandises"."user_id" = $1 AND (deadline < '2020-08-25') ORDER BY deadline ASC[0m  [["user_id", 1]]
+  Rendered layouts/_expiredPerks.html.erb (Duration: 2.2ms | Allocations: 432)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_103140 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:83)
+  Rendering users/eventlist.html.erb
+  [1m[36mEvent Load (18.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-08-25 22:16:44.091368' AND user_id = 1)[0m
+  Rendered users/eventlist.html.erb (Duration: 21.0ms | Allocations: 739)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_103140 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:84)
+  Rendering users/pastevents.html.erb
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-08-25 22:16:44.091368' AND user_id = 1)[0m
+  Rendered users/pastevents.html.erb (Duration: 5.8ms | Allocations: 659)
+  Rendered layouts/_streamDirections.html.erb (Duration: 1.3ms | Allocations: 196)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_103140 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:102)
+  Rendering users/accountinfo.html.erb
+  Rendered users/accountinfo.html.erb (Duration: 3.6ms | Allocations: 866)
+  Rendered layouts/_stripealert.html.erb (Duration: 0.1ms | Allocations: 19)
+DEPRECATION WARNING: render file: should be given the absolute path to a file (called from _app_views_users_controlpanel_html_erb__2906391923733727273_103140 at /Users/Tawa/Desktop/tomatocan/app/views/users/controlpanel.html.erb:119)
+  Rendering users/dashboard.html.erb
+  Rendered users/dashboard.html.erb (Duration: 3.6ms | Allocations: 1113)
+  Rendered users/controlpanel.html.erb within layouts/userpgtemplate (Duration: 83.0ms | Allocations: 13903)
+  Rendered application/_favicon.html.erb (Duration: 11.8ms | Allocations: 3297)
+  Rendered layouts/_header.html.erb (Duration: 3.4ms | Allocations: 803)
+  Rendered layouts/_footer.html.erb (Duration: 11.0ms | Allocations: 2296)
+Completed 200 OK in 305ms (Views: 243.6ms | ActiveRecord: 48.1ms | Allocations: 88682)
+
+
