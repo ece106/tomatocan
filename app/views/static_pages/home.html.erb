@@ -1,10 +1,11 @@
 <div class="row bg-primary mt-2 pl-5">
-    <% flash.each do |key, value| %>
-      <div class="<%= flash_class(key) %>">
+
+  <div class="col-lg-5 pt-3 pb-4 pl-5 ml-3">
+  <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>" style = "height:50px">
         <%= value %>
       </div>
     <% end %>
-  <div class="col-lg-5 pt-3 pb-4 pl-5 ml-3">
     <h1 class="text-center text-white mt-5 pl-5 pt-5">
       <strong>STEMinism to make you</strong>
         <%= image_tag("GoldThinQ60.png")%>
@@ -50,9 +51,7 @@
       <%= image_tag("convo_photo.png", class:"mx-auto d-block pb-3", style: "border-radius: 112px; width: 50%;")%>
       <h2 class="text-warning text-center"><strong>Conversations</strong>
       </h2>
-      <p class = "text-center">Join conversations hosted by grassroots activists to have
-        <br>
-        scheduled small group conversations about activism!
+      <p class = "text-center">Join conversations to better understand what affects minorities and women in STEM <br> through hearing personal experiences.
       </p>
 
     </div>
@@ -69,14 +68,12 @@
         Drop-In Hours</strong>
       </h2>
       <p class = "text-center">
-        Discover other activists working on similar causes. Drop in to
-        <br>
-        video chat throughout the day to meet us & collaborate!
+        Join a community of developers and designers to network <br> while collaborating and critiquing each others projects. All expertise levels welcome!
       </p>
-
     </div>
 </div>
     <!--end of drop in column-->
+</div>
       <div>
         <div class="convo-container text-center" style="background-color: #8C1D40">
           <!-- col-lg-3 col-md-6 -->
@@ -106,7 +103,7 @@
              events: @calendar_events_all, monthNum: 0, type: 0}%>
         </div>
       </div>
-      </div>
+    </div>
 <br><br>
 
 <script type="text/javascript">
