@@ -15,7 +15,7 @@
     
     <%= render 'layouts/authorform' %>
 
-    <hr style= "width: 44%; height: 1px; border-width: 0; color: maroon; background-color: maroon; text-align: center" >
+    <hr style= "width: 44%; height: 1px; border-width:0; color: #8C1D40; background-color:#8C1D40; text-align: center" >
     
     <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
       <div id="eventCurrentdiv" style="text-align: center;">
@@ -29,8 +29,9 @@
         <div class="col-sm-4">
             <%= render 'layouts/streamButton' %>
 
-            <h1 class=" pt-5 text-center maroon" id="profileAbout"> <%= "Connect" %> </h1>
-            <div class=" pt-4 text-center" id="merchImage">
+            <h1 class=" col-sm-1 pt-5 maroon text-center" id="profileAbout" style=" margin-left: 95px"> <%= "Connect" %> </h1>
+           
+            <div class=" col-sm-1 pt-3" id="merchImage" style=" margin-left: 95px">
                 <% domainurl = "http://www.thinq.tv/"%>
                 <a onclick="window.open('https://www.facebook.com/thinQtv/');">
                     <%= image_tag("social-share-button/facebook.png")%>
