@@ -2,13 +2,13 @@
   
     <% if user_signed_in? %>
       <% if current_user.id == @user.id %>
-         <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Current Rewards" %> </h1>
+         <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Current Rewards" %> </h1>
         
       <% else %>
-        <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
+        <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
       <% end %>
     <% else %>
-      <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
+      <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
     <% end %>
   
 </div>
@@ -18,17 +18,23 @@
     <% @sidebarmerchandise.each do |merch| %>
 
     <div class="media">
-        <div class="pull-left">
-
-            <% if merch.itempic.present? %>
-            <%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
+        <div class="media-body pl-3">
+            <% if (merch.buttontype) == 'Donate' %>
+            <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
             <% else %>
-            <%= image_tag "starIcon.png", class: "media-object", id: "perkImage" %>
+            <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
             <% end %>
-        </div>
-        <div class="media-body pl-4">
 
-            <div style="font-size: 30px">
+            <% if @user.stripeid.present? || @user.id == 143 %>
+            <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning text-white", :target => "_blank", :id=> "buyButton" %>
+            <% else %>
+            <br> * <%= @user.name %> cannot accept funds yet.
+            <% end %>
+
+        </div>
+        <div class="media-body pl-1 " style="text-align:left;">
+
+            <div style="font-size: 30px; font-family: Helvetica;">
                 <%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %>
             </div>
 
@@ -68,20 +74,7 @@
             </b>
             <% end %>
         </div>
-        <div class="media-body pl-3 text-center">
-            <% if (merch.buttontype) == 'Donate' %>
-            <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
-            <% else %>
-            <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
-            <% end %>
-
-            <% if @user.stripeid.present? || @user.id == 143 %>
-            <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning text-white", :target => "_blank", :id=> "buyButton" %>
-            <% else %>
-            <br> * <%= @user.name %> cannot accept funds yet.
-            <% end %>
-
-        </div>
+        
     </div>
       <hr>
 

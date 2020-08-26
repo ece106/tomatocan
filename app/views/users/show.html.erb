@@ -14,6 +14,8 @@
     <% end %>
     
     <%= render 'layouts/authorform' %>
+
+    <hr style= "width: 44%; height: 1px; border-width: 0; color: maroon; background-color: maroon; text-align: center" >
     
     <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
       <div id="eventCurrentdiv" style="text-align: center;">
@@ -27,7 +29,7 @@
         <div class="col-sm-4">
             <%= render 'layouts/streamButton' %>
 
-            <h1 class=" pt-5 text-center" id="profileAbout"> <%= "Connect" %> </h1>
+            <h1 class=" pt-5 text-center maroon" id="profileAbout"> <%= "Connect" %> </h1>
             <div class=" pt-4 text-center" id="merchImage">
                 <% domainurl = "http://www.thinq.tv/"%>
                 <a onclick="window.open('https://www.facebook.com/thinQtv/');">
@@ -61,7 +63,7 @@
             <% end %>
             <br />
 
-            <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Conversation Attending" %> </h1>
+            <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Conversations Attending" %> </h1>
             <% if @calendar_events.present? %>
             <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
             <% end %>
