@@ -1,15 +1,15 @@
 <div>
 
 
-    <h1 class="col-sm-1 pt-3 maroon text-center" id="profileAbout" style=" margin-left: 110px"> <%= "About" %> </h1>
+    <h1 class="col-sm-7 pt-3 maroon text-center" id="profileAbout" style=" margin-left: 45px"> <%= "About" %> </h1>
     <h6 class="col-sm-7 pt-3" id="profileAboutDescription" style="margin-left: 60px"> <%= @user.about %> </h6>
 
     <div class="col-sm-4 col-sm-2 pt-4 text-center">
-        <%= link_to "Browse Conversation Schedule", root_path, :class => "btn btn-lg text-primary", :style => "margin-left: 70px; border-color: #8d1d40; font-family: Helvetica;" %>
+        <%= link_to "Browse Conversation Schedule", root_path, :class => "btn btn-lg ", :style => "margin-left: 70px; border-color: #8d1d40; color: #FFB704; font-family: Helvetica;" %>
     </div>
     <div class="col-sm-4 col-sm-2 pt-4 text-center">
-        <%= link_to 'Schedule a Conversation', new_event_path, :class => "btn btn-lg text-primary", :style => "margin-left: 70px; border-color: #8d1d40; font-family: Helvetica;" %>
+        <%= link_to 'Schedule a Conversation', new_event_path, :class => "btn btn-lg ", :style => "margin-left: 70px; border-color: #8d1d40; color: #FFB704; font-family: Helvetica;" %>
     </div>
-
+        
 
 </div>
