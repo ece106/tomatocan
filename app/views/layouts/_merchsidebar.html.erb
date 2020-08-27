@@ -1,14 +1,14 @@
-<div class="col-sm-12">
+<div class="col-sm-12 pt-5">
   
     <% if user_signed_in? %>
       <% if current_user.id == @user.id %>
-         <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Current Rewards" %> </h1>
+         <h1 class=" text-center maroon" id="profileAbout"> <%= "Current Rewards" %> </h1>
         
       <% else %>
-        <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
+        <h1 class="text-center maroon" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
       <% end %>
     <% else %>
-      <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
+      <h1 class="text-center maroon" id="profileAbout"> <%= "Support" %> <%= @user.name %> </h1>
     <% end %>
   
 </div>

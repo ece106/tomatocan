@@ -15,7 +15,7 @@
 #profileHeader {
 	text-align: center;
 	margin-top: -210px;
-	margin-bottom: 35px;
+	margin-bottom: 0px;
 }
 #profileImage {
 	border: 1px solid $brand-primary;
@@ -29,14 +29,12 @@
 	//color: $brand-secondary;
 	font-size: 3.0em;
 	font-weight: 700;
-	text-shadow: 0 0 0px rgba(0,0,0,0)
 }
 #profileDescription {
 	color: #f0ad4e;
 	font-family: Helvetica;
 	font-size: 2.0em;
-	font-weight: 400;
-	text-shadow: 0 0 0px rgba(0,0,0,0)
+	
 }
 #profileAbout {
 	color: #8d1d40;
@@ -47,8 +45,8 @@
 #profileAboutDescription {
 	display: block;
 	width: 100%;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 45px;
+	padding-right: 40px;
 }
 
 //Merch Sidebar styling

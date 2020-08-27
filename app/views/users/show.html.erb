@@ -29,9 +29,9 @@
         <div class="col-10 col-md-4 col-sm-12">
             <%= render 'layouts/streamButton' %>
 
-            <h1 class="pt-3 maroon text-center" id="profileAbout" style=" margin-left: 0px"> <%= "Connect" %> </h1>
+            <h1 class="pt-5 maroon text-center" id="profileAbout"> <%= "Connect" %> </h1>
            
-            <div class="pt-3" id="merchImage" style=" margin-left: 0px">
+            <div class="pt-1 text-center" id="merchImage">
                 <% domainurl = "http://www.thinq.tv/"%>
                 <a onclick="window.open('https://www.facebook.com/thinQtv/');">
                     <%= image_tag("social-share-button/facebook.png")%>
@@ -53,7 +53,7 @@
         <div class="col-12 col-md-8 col-sm-12">
             <% if current_user.id == @user.id %>
                 <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
-                    <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Current Rewards" %> </h1>
+                    <h1 class=" pt-5 text-center maroon " id="profileAbout"> <%= "Current Rewards" %> </h1>
                     <%= link_to "Sign up for Stripe", user_controlpanel_url(current_user.permalink), method: :get, :class => "btn btn-warning text-white", :id=> "stripeButton" %>
                 <% else %>
                     <%= render 'layouts/merchsidebar' %>
