@@ -1,6 +1,7 @@
 <% if user_signed_in? %>
-  <% current_user.update_column(:last_viewed, current_user.last_viewed << params[:event]) %>
-  <% Attendance.new(:user_id => current_user.id, :event_id => params[:event], :time_in => (Time.now - 7.hours)).save %>
+  <% current_user.update_column(:last_viewed, params[:id]) %>
+  <% attendrecord = Attendance.new(:user_id => current_user.id, :time_in => (Time.now - 7.hours)) %>
+  <% attendrecord.save %>
 
   <!-- Update list of users attending the conversation -->
   <div class = "container-fluid">
@@ -39,8 +40,7 @@
           Invite via social media:
         </div>
 
-        <% domainurl = "https://thinq.tv/womantechfounder" %>
-        <% eventUrl = "https://thinq.tv/#{request.original_fullpath}"%>
+        <% eventUrl = "https://thinq.tv/#{request.original_fullpath}" #wtf is req.origfullpath %>
         <div style="margin-left: 17px">
           <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
             twitterLink: "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("Come join the conversation on #{eventUrl}")}",
@@ -48,37 +48,29 @@
         </div>
       </div>
 
-
-
+      <% if current_user.id == @user.id %>
       <div class = "border-left border-right border-bottom border-primary pb-1">
         <div class="panel panel-primary">
           <div class=" bg-primary text-white card-header pb-2">        
-
-            <% if @user.name.length >= 17 %>
-            <% name = @user.name[0..15] + "..." %>
-              Attendees of <%= name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>
-            <% else %>
-              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:-3px">&#8634</button>
-            <% end %>
+              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>
           </div>
           <div id="attendees"></div>
         </div>
       </div>
-
+      <%end%>
     </div>
 
     <div class="col-md-9">
       <%= render 'layouts/jitsi' %>
-      <% if @otherconvos.present? %>
+      <% if !@otherconvos.empty? %>
         <div class="panel panel-primary">
           <div class="panel-heading">
             Other conversations happening right now
           </div>
           <div class = "container">
             <% @otherconvos.each do |t| %>
-              <%host=User.find(t.user_id)%>
-              <%= link_to t.name, host.permalink, class: "btn btn-lg", style: "border-radius: 5px;" %>
-            <%end%>
+              <%= link_to t.name, user_profile_path, class: "btn btn-info", style: "background-color: #8C1D40; border-radius: 5px;" %>
+            <%end%><br><br>
           </div>
         </div>
         <div>
@@ -104,6 +96,8 @@
   <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
     // save current user id
     var currID = "<%= current_user.id %>"
+    var attendrec = "<%= attendrecord.id %>"
+
     // get url params
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -121,7 +115,7 @@
     function signedIn() {
       $.post("/users/signed_in", null, (data) => {
         if (data.success == false) {
-          $.post("/users/unload", {currentUser: currID})
+          $.post("/users/unload", {currentUser: currID}) //blockcontroller inherits from actioncontroller should know what current_user is. this is dumb
           location.reload()
         }
       })
@@ -140,7 +134,7 @@
     // unload actions
     $(window).on('beforeunload', (event) => {
       // remove user from attendees list
-      $.post("/users/unload", {currentUser: currID, event: urlParams.get('event')})
+      $.post("/users/unload", {attendid: attendrec, event: urlParams.get('event')})
     });
 
     // makes all links on viewer page open in new tab
