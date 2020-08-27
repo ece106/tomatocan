@@ -12,7 +12,6 @@
       <strong>STEMinism to make you</strong>
         <%= image_tag("GoldThinQ60.png")%>
     </h1>
-    <br>
     <h2 class="text-center text-white">
       Video Chat community throughout the day for
       Women & Minorities in STEM
@@ -20,8 +19,22 @@
 
     <div class=" text-center">
       <a id="home-scroll" href="#conversations"><u>Check Out the Converstaion Schedule</u></a>
-    </div>
 
+    <% if @conversations.count != 0 %><br>
+      <% if @start_time != nil %>
+        <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
+          <div id="eventCurrentdiv align-items-end " style ="align-text:bottom">
+            <p class = "text-white text-center" >
+              <br><%= @name %> is LIVE right NOW!<br>
+              <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 28px; background-color:#FFB704; border-color: #FFB704" %>
+              <br>
+              Hosted by: <%= @host.name %>
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+</div>
   </div>
 
   <div class="col-lg-6 py-5 my-5 mx-3">
@@ -48,7 +61,7 @@
 
   <!-- end of new to thinQ section-->
 
-<div class="row">
+<div class="row" style="margin-bottom: 70px">
     <!--study hall and conversation section -->
 
     <div class="col-lg-6 col-md-12 col-sm-12 pt-2">
@@ -61,7 +74,6 @@
       </h2>
       <p class = "text-center">Join conversations to better understand what affects minorities and women in STEM <br> through hearing personal experiences.
       </p>
-
     </div>
 
     <!--end of conversations column-->

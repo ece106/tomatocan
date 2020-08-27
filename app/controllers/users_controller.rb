@@ -175,7 +175,7 @@ class UsersController < ApplicationController
 
   # PUT /users/1.json
   def update
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       bypass_sign_in @user
       updateEmailMsg
       redirect_to user_profile_path(current_user.permalink)
