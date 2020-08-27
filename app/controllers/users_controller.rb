@@ -14,15 +14,9 @@ class UsersController < ApplicationController
     @users =   userswithpicorder.paginate(:page => params[:page], :per_page => 32)
   end
 
-  def show
-    # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
+  def viewer
+    @users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:event]])
     pdtnow = Time.now - 7.hours + 5.minutes
-    id = @user.id
-    currconvo = Event.where( "start_at < ? AND end_at > ? AND user_id = ?", pdtnow, pdtnow, id ).first
-    if currconvo.present?
-      @displayconvo = currconvo
-    end
-
     currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
     @otherconvos = []
     if currconvos.present?
@@ -32,7 +26,16 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
 
+  def show
+    # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
+    pdtnow = Time.now - 7.hours + 5.minutes
+    id = @user.id
+    currconvo = Event.where( "start_at < ? AND end_at > ? AND user_id = ?", pdtnow, pdtnow, id ).first
+    if currconvo.present?
+      @displayconvo = currconvo
+    end
 
     rsvps = Event.where('id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = ?) and start_at > ?', @user.id, pdtnow )
     @rsvpevents = rsvps.where( "start_at > ?", pdtnow)
@@ -175,7 +178,7 @@ class UsersController < ApplicationController
 
   # PUT /users/1.json
   def update
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       bypass_sign_in @user
       updateEmailMsg
       redirect_to user_profile_path(current_user.permalink)
@@ -222,7 +225,7 @@ class UsersController < ApplicationController
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
                                  :twitter, :title, :profilepic, :remember_me,
                                  :facebook, :youtube1, :youtube2,
-                                 :youtube3, :updating_password,
+                                 :youtube3, :updating_password, :attendid,
                                  :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
   end
 
