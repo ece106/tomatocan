@@ -26,12 +26,12 @@
       </div>
   <% else %>
     <div class="row pt-2 pb-3">
-        <div class="col-sm-4">
+        <div class="col-10 col-md-4 col-sm-12">
             <%= render 'layouts/streamButton' %>
 
-            <h1 class=" col-sm-7 pt-3 maroon text-center" id="profileAbout" style=" margin-left: 45px"> <%= "Connect" %> </h1>
+            <h1 class="pt-3 maroon text-center" id="profileAbout" style=" margin-left: 0px"> <%= "Connect" %> </h1>
            
-            <div class=" col-sm-1 pt-3" id="merchImage" style=" margin-left: 95px">
+            <div class="pt-3" id="merchImage" style=" margin-left: 0px">
                 <% domainurl = "http://www.thinq.tv/"%>
                 <a onclick="window.open('https://www.facebook.com/thinQtv/');">
                     <%= image_tag("social-share-button/facebook.png")%>
@@ -50,7 +50,7 @@
             </div>
 
         </div>
-        <div class="col-sm-8">
+        <div class="col-12 col-md-8 col-sm-12">
             <% if current_user.id == @user.id %>
                 <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
                     <h1 class=" pt-3 text-center" id="profileAbout"> <%= "Current Rewards" %> </h1>
