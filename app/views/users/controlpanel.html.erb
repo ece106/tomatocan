@@ -30,7 +30,7 @@
         </div>
         <div class="row justify-content-center">
           <!-- Make a button to see "view" mode of profile -->
-          <%= render :file => 'users/profileinfo' %>
+          <%= render :template => 'users/profileinfo' %>
         </div>
       </div>
     </div>
@@ -80,8 +80,8 @@
 
         <div class="row">
             <div class="col-md-6" >
-              <%= render file: 'users/eventlist' %><br>
-              <%= render file: 'users/pastevents' %>
+              <%= render template: 'users/eventlist' %><br>
+              <%= render template: 'users/pastevents' %>
             </div>
             <div class="col-md-4" >
               <%= render 'layouts/streamDirections' %>
@@ -99,7 +99,7 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <%= render :file => 'users/accountinfo' %>
+          <%= render :template => 'users/accountinfo' %>
         </div>
         <!-- Might want some sort of Stripe Connect panel here-->
       </div>
@@ -115,8 +115,7 @@
           <div class="col-xs-12">
             <h1 class "pl-5 pt-3">Reward Sales</h1>
           </div>
-        
-        <%= render :file => 'users/dashboard' %>
+        <%= render :template => 'users/dashboard' %>
       </div>
     </div>
 

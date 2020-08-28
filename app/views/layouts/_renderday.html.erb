@@ -86,7 +86,7 @@
                 <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
                   <%= link_to " Join " + event.topic, user_viewer_path(user.permalink, chatrm: event.topic , event: event.id), class: "btn btn-primary btn-sm fa fa-video-camera" %>
                   <div id="live<%=eventCount%>"></div>
-                  <script>
+                  <script> this fcn is useless and disabled. It counts by eventid instead of chatrm. last_viewed should be a string not an integer. We could change the database to make it a string however we may eventually count by eventid. This fcn is not importante enough to bother at this time.
                     function liveCount() {
                       $.get("/conversations/livecounter", {id: "<%=event.id%>"}, function(data) {
                         if (data.success == true)
