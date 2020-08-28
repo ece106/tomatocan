@@ -3,23 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
 
 ul {
-  list-style-type: circle;
-}
-
-ul {
     list-style-type: none;
-    padding-left: 0px;
 
     .inner {
         margin-left: 35px;
         margin-right: 35px;
-        /*padding-left: 1em;*/
         overflow: hidden;
         display: none;
-
-        &.show {
-          /*display: block;*/
-        }
     } 
 }
 
