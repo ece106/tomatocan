@@ -9,7 +9,7 @@
         <p >
           ThinQ.tv is a <b >Woman-Owned tech startup</b>. Coding While Female is our activism. We support women & minority engineers, designers, & startups in our video chat Drop-In Hours. Drop In & meet us! We'll greet you when you arrive.<br>
           - <b>No agenda:</b> Drop in on your own schedule.<br>
-          - <b>Exchange ideas:</b> Get feedback on your designs, code, resume, job search, or startup ideas. <br>
+          - <b>Exchange ideas:</b> Get feedback on your designs, code, startup ideas, or activism plans. <br>
           - <b>Meet other women & minorities in tech:</b> Your support community is here throughout the day available to chat!
          </p>
 
@@ -39,15 +39,16 @@
 <div class="tabContainer">
   <div class="justify-content-center">
     <div class="col-sm-12">
-      <h1 class = "text-left text-primary pl-4 ml-1"><b>Drop-In Schedule</b></h1>
+      <h1 class = "text-center text-primary pl-4 ml-1"><b>Drop-In Schedule</b></h1>
     </div>
     
-    <div class="col-md-8 col-sm-12 text-left pl-2">
+    <div>
          <% if user_signed_in? %>
             <br>Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
     </div>
+    <br>
     <div class="col-md-12 col-sm-12 col-xs-10 pl-0 ml-2 justify-content-center pr-1">
       <div class="buttonContainer text-center pr-5"><br>
         <button onclick="showPanel(0,'#2196f3')">Daily View </button>
@@ -117,12 +118,11 @@
             </h4>
               <div class="collapse" id="collapseOne">
                 <div>
-                  Front and back end developers can co-work or co-hack with each other. The purpose of the Rails drop-in hours are to: <br>
+                Front and back end developers can co-work or co-hack with each other. The purpose of the Rails drop-in hours are to:  <br>
               - Be in the video chat viewer for each other incase you have Rails questions while working on your project. <br>
               - Form a support group available several hours per day who are there when you want to be around others also improving their Rails skills. <br><br>
 
-              Several of us are working with the existing code base for ThinQ.tv to learn Ruby on Rails. Our repository is at <b><%= link_to "github", "https://github.com/ece106/tomatocan", target: "_blank" %>
-                if you'd like to learn Rails by contributing to ThinQ.tv's code, the first step is to fork & clone the repository. Drop in to Drop-In hours and ask us how to join our Discord channel and find the list of tasks to work on.<br>
+              Several of us are working with the existing code base for ThinQ.tv to learn Ruby on Rails. Our repository is at <b><a href="https://github.com/ece106/tomatocan" target="_blank"> github </a></b> if you'd like to learn Rails by contributing to ThinQ.tv's code, the first step is to fork & clone the repository. Come to Drop-In hours and ask us how to join our Discord channel and find the list of tasks to work on.<br>
                 </div>
               </div>
           </div>
@@ -141,7 +141,7 @@
               </a></h4>
               <div class="collapse" id="collapseThree">
                 <div>
-                 ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers drop-in hours to: <br>
+                ThinQ.tv's founder, Lisa Schaefer, earned all 3 of her engineering degrees at Arizona State University. The purpose of our Women Developers drop-in hours to: <br>
               - Meet other female developers from around the US <br>
               - Support each other<br>
               - Bring #metoo issues we all face out in the open without backlash for doing so
