@@ -4,7 +4,8 @@ require "capybara-screenshot/minitest"
 class ControlPanelEventsList < ActionDispatch::IntegrationTest
   setup do
     @test_user      = users :confirmedUser
-    @test_event_one = events :recurring_event
+    @test_event_one = events :confirmedUser_event
+    @test_event_two = events :recurring_event
     @past_event     = events :past_event
 
     sign_in
@@ -28,7 +29,7 @@ class ControlPanelEventsList < ActionDispatch::IntegrationTest
       click_on "Edit", match: :first
     end
 
-    assert_equal current_path, edit_event_path(@test_event_one)
+    assert_equal current_path, edit_event_path(@test_event_two)
 
     assert page.has_css? "#event_name"
     assert page.has_css? "#event_desc"
