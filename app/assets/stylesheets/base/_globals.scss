@@ -1,4 +1,298 @@
 
+//FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ 
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
+
+ul {
+  list-style-type: circle;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+
+    .inner {
+        margin-left: 35px;
+        margin-right: 35px;
+        /*padding-left: 1em;*/
+        overflow: hidden;
+        display: none;
+
+        &.show {
+          /*display: block;*/
+        }
+    } 
+}
+
+ul li a.toggle {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 10px;
+    background-color: #e0d2c3;
+    text-decoration: none;
+    box-shadow: 1px 1px #880f42;
+    border: 1px solid #880f42;
+    background: none;
+    padding: 10px 10px;
+    font-size: 12pt;
+    cursor: pointer;
+    color: #880f42;
+    padding: 0.75em;
+    border-radius: 0.15em;
+    transition: color 1s ease;
+    list-style: none;
+   }
+
+ul li a.toggle:before {
+       top: 0;
+       border-radius: 0 0 0 0;
+       content: "";
+       position: absolute;
+       left: 0;
+       width: 100%;
+       height: 0%;
+       background: #880f42;
+       z-index: -1;
+       transition: 1s;
+   }
+
+ul li a.toggle:hover::before{
+   height: 100%;
+}
+
+ul li a.toggle:hover {
+    background-size: 100%;
+    color: #fff;
+    transition: color 1s ease;
+   /*background: rgba(0, 0, 0, 0.9);*/  
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.toggle:after {
+  content: '\▾';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+//HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME 
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet');
+
+html, body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    padding-top: 0px;   
+}
+
+
+#buttonTitle {
+    padding-top: 30px;
+}
+#home {
+    background-color: #8C1D40;
+    text-align: center;
+    z-index: 0;
+    font-weight: bolder;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#countdown_clock h2 {
+    font-weight: bolder;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #8C1D40;
+    font-family: Oswald, sans-serif;
+}
+#countdown_clock {
+    text-align: center;
+}
+#purpose {
+    margin-right: 130px;
+}
+
+#rewards, #connect {
+    clear: both;
+    padding: 0px 80px;
+}
+#rewards h2, #connect h2 {
+    font-size: 30px;
+    background-color: #8C1D40;
+    color: white;
+    padding: 15px;
+}
+#rewards p, #connect p {
+    font-size: 20px;
+    text-align: left;
+}
+
+#clockdiv{
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+#clockdiv > div{
+    background: #8C1D40;
+    border-radius: 10px;
+    display: inline-block;
+    height: 80px;
+    width: 70px;
+}
+#clockdiv div > span{
+    display: inline-block;
+    padding-top: 0px;
+}
+#clockdivstudy{
+    color: #fff;
+    display: inline-block;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+#clockdivstudy > div{
+    background: #8C1D40;
+    border-radius: 10px;
+    display: inline-block;
+    height: 80px;
+    width: 70px;
+}
+#clockdivstudy div > span{
+    display: inline-block;
+    padding: 0px;
+}
+
+#nextEventdiv, #eventCurrentdiv{
+    padding: 5px;
+}
+#nextEventdiv h3, #eventCurrentdiv h3{
+    display: inline;
+}
+#nextEventdiv p, #eventCurrentdiv p{
+    display: inline;
+    font-size: 20px;
+}
+#calendar {
+    padding-left: 5vw;
+}
+/* line 124, app/assets/stylesheets/styles/_home.scss */
+
+@media only screen and (max-width: 800px){
+   
+    .topic_link {
+        font-size: 20px;
+    }
+    #buttonTitle {
+        padding-top: 5px;
+    }
+    #purpose {
+        margin-right: 10px;
+    }
+}
+@media only screen and (max-width: 500px){
+
+    #calendar {
+        padding-left: 20px;
+        padding-right: 0px;
+    }
+    .topic_link {
+        font-size: 15px;
+    }
+    #buttonTitle {
+        padding-top: 2px;
+    }
+    #rewards, #connect {
+        padding-top: 20px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .col-md-4 {
+        padding-left: 50px;
+    }
+    .col-md-5 h3 {
+        padding-left: 80px;
+    }
+    .col-md-5 p {
+        padding-left: 40px;
+        padding-right: 10px;
+    }
+    .col-md-8 {
+        padding-left: 40px;
+    }
+    .enter_email {
+        width: 120px;
+    }
+}
+
+  @media only screen and (max-width: 570px) {
+    .row {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .livestreamInfo {
+      border: 3px solid #8C1D40;
+      margin-left: 20px;
+      padding: 5px;
+    }
+    .livestreamInfo h3 {
+      color:#8C1D40;
+      float:left;
+      font-size: 25px;
+    }
+    .livestreamInfo h4 {
+      padding-left: 10px;
+      clear:left;
+    }
+    .col-md-4 {
+      padding: 5px 20px;
+    }
+}
+
+//VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES 
+//== Colors
+
+$brand-primary:         #8C1D40; //ASU Maroon
+$brand-secondary:       #FFB704; //ASU Gold
+$brand-gray:            #DADADA; // light grey
+$brand-white:           #F0F0F0;
+$brand-black:           #222222;
+
+//== Scaffolding
+$link-hover-decoration: underline !default;
+
+
+//== Typography
+//## Font, line-height, and color for body text, headings, and more.
+
+@import url("https://use.typekit.net/fxy5ytx.css");
+
+$font-family-sans-serif:  "neuzerit-grotesk", Avenir, Helvetica, Arial, sans-serif;
+
+
+//== Style
+$border-radius-base:        0px !default;
+$border-radius-large:       0px !default;
+$border-radius-small:       0px !default;
+
+//== Navbar
+//
+//##
+
+$navbar-margin-bottom: 0px !default;
+
+//GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS 
+
 html {
     width: 100%;
     overflow-y: scroll;
@@ -73,4 +367,546 @@ h2.subheader {
   font-weight: bold;
   font-size: 24px;
   line-height: 41px;
+}
+
+//FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER 
+footer {
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 0;
+  margin-top: 50px;
+  text-align: left;
+  background-color:$brand-primary;
+  font-family: Helvetica;
+  font-size: 12px;
+
+}
+
+#copyright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
+footer a.f-link{
+  color: $brand-gray ; //light grey
+  &:hover{
+      text-decoration: none;
+  }
+}
+
+footer p.f-header{
+color: $brand-secondary;
+font-size: 14px;
+}
+
+footer div.col-sm-3{
+font-size: 14px;
+}
+
+footer small{
+color:$brand-secondary;
+}
+
+//HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER 
+.navbar-btn {
+  // bottom padding
+  margin-right: 25px;
+
+  .landing-sign-up-btn {
+    width: 100px;
+  }
+
+  .landing-sign-in-btn {
+    width: 100px;
+  }
+  // signup colors
+
+  .btn-primary {
+    color: $brand-gray;
+    background-color: $brand-primary;;
+    border-color:#771936;
+    font: "Helvetica"
+  }
+  // signin colors
+
+  .btn-default {
+    color: $brand-secondary;
+    background-color: $brand-primary;
+    border-color: $brand-secondary;
+    font: "Helvetica"
+  }
+}
+//logo padding and size
+.navbar-brand {
+  padding: 4px 4px 4px 15px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $brand-gray;
+  font-family: "Helvetica";
+
+}
+//is this used anywhere
+#absoluteWrapper {
+  padding-top: 30px;
+}
+//when hovering over logo make it slightly bigger
+#navbarLogo {
+  &:hover {
+    transform: scale(1.15) rotate(-12deg);
+  }
+}
+
+//SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD 
+div {
+  &.field, &.actions {
+    margin-bottom: 0px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+}
+
+label {
+    display: block;
+}
+
+//STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES 
+.cal-nav-action {
+  a {
+    font-size: 18px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.event-calendar-pill {
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFF;
+  background-color: #8C1D40;
+  border-radius: 5px;
+  padding: 1px 5px 1px 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  &:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.14), 0 6px 8px rgba(0,0,0,0.24);
+  }
+}
+
+
+
+//NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW 
+//This stylesheet is for the Create Perk form.
+
+#suggestedPerks {
+  margin-top: 20px;
+}
+
+#perkSubmit {
+  margin-top: 40px;
+}
+#eventSubmit {  
+  margin-top: 40px;   
+}
+#stripeAlertText {
+  line-height: 33px;
+}
+
+#priceField {
+  width: 30%;
+}
+@media only screen and (max-width: 992px) {
+  #suggestedPerks {
+      position: inherit;
+      clear: both;
+      float: left;
+  }
+  #priceField {
+      width: 60%;
+  }
+}
+
+//PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS 
+/* This stylesheet is for panels found in views/layouts and for users/controlpanel */
+
+/* _maincalendar */
+
+#calendar td {
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid #dfdada;
+  height: 0px;
+  font-size: 14px;
+  vertical-align: middle !important;
+}
+
+#shows-button-panel{
+  padding-top: 25px;
+}
+
+#calendar-event {
+  display: block;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+#calendar-host {
+  display: block;
+  font-size: 1.50rem;
+}
+
+#calendar-time {
+  display: block;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+#social-button {
+  display: inline-block;
+  padding: 4px;
+}
+#social-button-in {
+  display: inline-block;
+  padding-left: 4px;
+}
+
+/* CSS for users/controlpanel */
+#streamDirections{
+  float: right;
+  bottom: 60%;
+}
+
+#controlpanel-events {
+    margin-top: 60px;
+    right: 15.5%;
+}
+
+/*    td, th {
+      font-family: "Lucida Grande", arial, helvetica, sans-serif;
+      font-size: 10px;
+      padding: 6px;
+      border: 1px solid #999;
+    }*/
+
+     th {
+      font-family: "Lucida Grande", arial, helvetica, sans-serif;
+      font-size: 12px;
+      padding: 6px;
+      border: 1px solid #999;
+      background: #8C1D40;
+      text-align: center;
+      width: 14.2857142857143%;
+    }
+
+     td{
+      font-family: "Lucida Grande", arial, helvetica, sans-serif;
+      font-size: 10px;
+      padding: 6px;
+      border: 1px solid #999;
+      background: #FFF;
+      color: #020202;
+      height: 150px;
+
+      vertical-align: top;
+      font-size: 16px;
+      overflow: hidden;
+    }
+
+  .notmonth { color: #CCC; }
+  .today { background-color: #D7F2FF; }
+
+  #events .caler {
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #events #month {
+    margin: 0;
+    padding: 10px 0px;
+    text-align: center;
+    display: inline-block;
+    color: black;
+    width: 380px;
+  }
+
+.tabContainer{
+  width: 100%;
+  height: auto;
+  text-align: center
+
+}
+.tabContainer2{
+  width: 100%;
+  height: auto;
+}
+
+.tabContainer .buttonContainer {
+  height: 15%;
+  /*text-align: center;*/
+  padding-left: 70px;
+  text-align: center;
+  border-color: #FFC627;
+  border-width: 1px;
+}
+
+.tabContainer2 .buttonContainer {
+  height: 15%;
+  /*text-align: center;*/
+  padding-left: 70px;
+}
+
+.tabContainer .buttonContainer button{
+  width: 200px;
+  float: center;
+  cursor: pointer;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #8C1D40;
+  color: white;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.tabContainer2 .buttonContainer button{
+  width: 200px;
+  height: 100%;
+  float: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #8C1D40;
+  color: white;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.tabContainer .buttonContainer button:hover{
+  background-color: #d7d4d4;
+  color: black;
+}
+
+.tabContainer .tabPanel{
+  height: auto;
+  background-color: gray;
+  color: white;
+  /*text-align: center;*/
+  padding-top: 10px;
+  /*padding-bottom: 10px;*/
+  box-sizing: border-box;
+  font-family: sans-serif;
+  /*font-size: 22px;*/
+  display: none;
+}
+
+ #calendar-time {
+  display: block;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.expand{
+  background: none;
+  padding: 0;
+  border: none;
+  font-family: arial, sans-serif;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+//SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW 
+#discussionRSVPs {
+  margin-left: 65%;
+}
+
+.rsvp-dropdown{
+min-width: 260px;
+font-size: 18px;
+height: auto;
+  max-height: 400px;
+  overflow-x: hidden;
+padding: 0;
+
+.dropdown-item{
+  padding: 8px 15px;
+
+  &:hover{
+    background-color: #f1f2f6;
+  }
+}
+}
+
+//STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL 
+.donation-title {
+  text-align: center;
+  font-weight: 600;
+}
+
+.new-purchase-modal-wrapper {
+  font-size: 18px;
+  margin: 0 auto;
+  max-width: 450px;
+  padding-top: 80px;
+
+  .modal-content {
+    border-radius: 10px;
+    border-color: #fff;
+  }
+
+  .modal-footer {
+    text-align: center;
+  }
+}
+
+.new-purchase-modal {
+  margin: 0 auto;
+  max-width: 350px;
+
+  .form-control {
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .form-wrapper {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .purchase-modal-btn {
+    padding: 10px;
+    width: 150px;
+    height: 35px;
+  }
+}
+
+//USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS USERS 
+//This stylesheet for userpgtemplate.html.erb includes _merchsidebar.html.erb partial and _authorform.html.erb partial
+
+//Page header "authorform"
+
+//Page header
+#profileBanner {
+	height: 300px;
+	margin-bottom: 40px;
+}
+#profileBanner img {
+	object-fit: cover;
+	min-width: 100%;
+	max-width: 100%;
+}
+#profileHeader {
+	text-align: center;
+	margin-top: -210px;
+	margin-bottom: 35px;
+}
+#profileImage {
+	border: 6px solid white;
+	height: 150px;
+	width: 150px;
+	//centers and crops images
+	object-fit: cover;
+}
+#profileName {
+	text-transform: capitalize;
+	//color: $brand-secondary;
+	font-weight: 600;
+	text-shadow: 0 0 4px rgba(0,0,0,.8)
+}
+#profileDescription {
+	//color: $brand-secondary;
+	font-size: 1.5em;
+	text-shadow: 0 0 2px rgba(0,0,0,.8)
+}
+
+//Merch Sidebar styling
+#merchImage {
+    max-width: 100%;
+}
+#merchDescription {
+    max-width: 100%;
+}
+
+//Merch Sidebar style
+#merchSidebar {
+    max-height: 75vh;
+    overflow-y: scroll;
+}
+
+//Edit Profile style
+#cancelProfileButton {
+    display: block;
+    width: 20%;
+    font-size: .8em;
+    padding: 14.5px 16px;
+}
+#saveProfileButton {
+    display: block;
+    width: 80%;
+}
+#editProfileButton {
+    display: block;
+    width: 100%;
+}
+
+//dashboardBox style
+#dashboardTabs {
+	font-weight: 800;
+	//background-color: $brand-secondary;
+}
+
+//Perk display
+#perkImage {
+	height: 100px;
+	width: 100px;
+	object-fit: cover;
+}
+
+//Edit user profile tab
+
+.form-control {
+	//adds space to the bottom of fields because they're too squished
+	margin-bottom: .5rem;
+}
+#currentImage {
+	float: right;
 }
