@@ -20,18 +20,22 @@ class Merchandise < ApplicationRecord
   def get_filename_and_data
     filename_and_data = {}
     self.attributes.each do  |name, value|
-      case name
-      when 'audio'
+      if name == 'audio' and value != nil
         filename_and_data = {filename: value, data: audio}
-      when 'graphic'
+      end
+      if name == 'graphic' and value != nil
         filename_and_data = {filename: value, data: graphic}
-      when 'video'
+      end
+      if name == 'video' and value != nil
         filename_and_data = {filename: value, data: video}
-      when 'merchpdf'
+      end
+      if name == 'merchpdf' and value != nil
         filename_and_data = {filename: value, data: merchpdf}    
-      when 'merchmobi'
+      end
+      if name == 'merchmobi' and value != nil
         filename_and_data = {filename: value, data: merchmobi}
-      when 'merchepub'
+      end
+      if name == 'merchepub' and value != nil
         filename_and_data = {filename: value, data: merchepub}
       end
     end
