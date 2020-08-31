@@ -56,7 +56,6 @@ ul li a.toggle:hover {
     background-size: 100%;
     color: #fff;
     transition: color 1s ease;
-   /*background: rgba(0, 0, 0, 0.9);*/  
 }
 
 a {
@@ -122,38 +121,7 @@ html, body {
     height: 80px;
     width: 70px;
 }
-#clockdivstudy div > span{
-    display: inline-block;
-    padding: 0px;
-}
 
-#nextEventdiv, #eventCurrentdiv{
-    padding: 5px;
-}
-#nextEventdiv h3, #eventCurrentdiv h3{
-    display: inline;
-}
-#nextEventdiv p, #eventCurrentdiv p{
-    display: inline;
-    font-size: 20px;
-}
-#calendar {
-    padding-left: 5vw;
-}
-/* line 124, app/assets/stylesheets/styles/_home.scss */
-
-@media only screen and (max-width: 800px){
-   
-    .topic_link {
-        font-size: 20px;
-    }
-    #buttonTitle {
-        padding-top: 5px;
-    }
-    #purpose {
-        margin-right: 10px;
-    }
-}
 @media only screen and (max-width: 500px){
 
     #calendar {
@@ -246,24 +214,6 @@ $border-radius-small:       0px !default;
 $navbar-margin-bottom: 0px !default;
 
 //GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS 
-
-html {
-    width: 100%;
-    overflow-y: scroll;
-}
-
-//Wrapper for footer alignment
-body {
-    display: flex !important;
-    min-height: 100vh !important;
-    flex-direction: column !important;
-  overscroll-behavior: none !important;
-}
-//Wrapper for footer alignment
-main {
-    flex: 1 !important;
-}
-
 .img-xs{
   height: 18px;
   width: 18px;
@@ -369,6 +319,7 @@ color:$brand-secondary;
   // bottom padding
   margin-right: 25px;
 
+
   .landing-sign-up-btn {
     width: 100px;
   }
@@ -403,10 +354,7 @@ color:$brand-secondary;
   font-family: "Helvetica";
 
 }
-//is this used anywhere
-#absoluteWrapper {
-  padding-top: 30px;
-}
+
 //when hovering over logo make it slightly bigger
 #navbarLogo {
   &:hover {
