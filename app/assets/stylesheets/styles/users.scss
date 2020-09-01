@@ -26,27 +26,15 @@
 }
 #profileName {
 	text-transform: capitalize;
-	//color: $brand-secondary;
 	font-size: 3.0em;
 	font-weight: 700;
+	padding: 2px;
 }
 #profileDescription {
 	color: #f0ad4e;
 	font-family: Helvetica;
 	font-size: 2.0em;
 	
-}
-#profileAbout {
-	color: #8d1d40;
-	font-size: 2.0em;
-	padding: 2px;
-	
-}
-#profileAboutDescription {
-	display: block;
-	width: 100%;
-	padding-left: 45px;
-	padding-right: 40px;
 }
 
 //Merch Sidebar styling
@@ -90,14 +78,6 @@
 	height: 110px;
 	width: 110px;
 	object-fit: cover;
-}
-#buyButton {
-	font-size: 1.5em;
-	padding: 18px;
-	width: 100%;
-	width: 220px;
-	
-	font-family: Helvetica;
 }
 
 //Edit user profile tab
