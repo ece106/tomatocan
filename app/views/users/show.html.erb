@@ -54,7 +54,19 @@
             <% if current_user.id == @user.id %>
                 <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
                     <h1 class=" pt-5 text-center maroon " id="profileAbout"> <%= "Current Rewards" %> </h1>
-                    <%= link_to "Sign up for Stripe", user_controlpanel_url(current_user.permalink), method: :get, :class => "btn btn-warning text-white", :id=> "stripeButton" %>
+
+                    <div class="media pt-2">
+                        <div class="mr-3">
+                            <span class="btn btn-warning" id="buyButton">
+                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank" class="text-white" style="font-family: Helvetica;">Connect to Stripe <%= image_tag("social-share-button/stripe.png")%></a>
+                            </span>
+                        </div>
+                        <div class="media-body" style="font-family: Helvetica;">
+                            <p class="pt-2" style="font-family: Helvetica;">We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> to allow users to seamlessly collect and process payments. <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> connects to your bank account to directly deposit any financial support you obtain from fellow Thinqers. It only takes a few minutes to create an account. You will be making sales and receiving donations in no time.</p>
+                            <br />
+                        </div>
+                    </div>
+
                 <% else %>
                     <%= render 'layouts/merchsidebar' %>
                 <% end %>
@@ -62,7 +74,7 @@
             <% else %>
                 <%= render 'layouts/merchsidebar' %>
             <% end %>
-            <br />
+
 
             <h1 class=" pt-3 text-center maroon" id="profileAbout"> <%= "Conversations Attending" %> </h1>
             <% if @calendar_events.present? %>
