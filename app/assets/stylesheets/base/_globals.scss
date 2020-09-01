@@ -1,5 +1,217 @@
 
-//FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ FAQ 
+//VARIABLES.SCSS: This is where we redefine the bootstrap default settings to better represent ThinqTV
+$brand-primary:         #8C1D40; //ASU Maroon
+$brand-secondary:       #FFB704; //ASU Gold
+$brand-gray:            #DADADA; // light grey
+$brand-white:           #F0F0F0;
+$brand-black:           #222222;
+
+$link-hover-decoration: underline !default;
+
+@import url("https://use.typekit.net/fxy5ytx.css");
+
+$font-family-sans-serif:  "neuzerit-grotesk", Avenir, Helvetica, Arial, sans-serif;
+
+
+$border-radius-base:        0px !default;
+$border-radius-large:       0px !default;
+$border-radius-small:       0px !default;
+
+$navbar-margin-bottom: 0px !default;
+
+
+//GLOBALS.SCSS: The following css can be found throughout the site
+.img-xs{
+  height: 18px;
+  width: 18px;
+  margin-right: 10px;
+}
+
+.navbar-default {
+  background-color: $brand-primary;
+}
+
+.overflow-visible{
+  overflow: visible;
+}
+
+//Prevents textareas from being resized out of their columns
+$overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+//FONTS
+h1.white{
+  color: #fff;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 41px;
+  text-shadow: 0px 4px 4px #000;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+h1.maroon{
+  color: #8C1D40;
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 41px;
+  text-shadow: 1px 2px 3px #555;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+h2 {
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 41px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+
+//FOOTER.SCSS: This is all the css used for the footer
+footer {
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 0;
+  margin-top: 50px;
+  text-align: left;
+  background-color:$brand-primary;
+  font-family: Helvetica;
+  font-size: 12px;
+
+}
+
+#copyright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
+footer a.f-link{
+  color: $brand-gray ; 
+  &:hover{
+      text-decoration: none;
+  }
+}
+
+footer p.f-header{
+color: $brand-secondary;
+font-size: 14px;
+}
+
+footer div.col-sm-3{
+font-size: 14px;
+}
+
+footer small{
+color:$brand-secondary;
+}
+
+
+//HEADER.SCSS: This is all the css used for the header/navbar
+.navbar-btn {
+  margin-right: 25px;
+
+
+  .landing-sign-up-btn {
+    width: 100px;
+  }
+
+  .landing-sign-in-btn {
+    width: 100px;
+  }
+
+  .btn-primary {
+    color: $brand-gray;
+    background-color: $brand-primary;;
+    border-color:#771936;
+    font: "Helvetica"
+  }
+
+  .btn-default {
+    color: $brand-secondary;
+    background-color: $brand-primary;
+    border-color: $brand-secondary;
+    font: "Helvetica"
+  }
+}
+.navbar-brand {
+  padding: 4px 4px 4px 15px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $brand-gray;
+  font-family: "Helvetica";
+
+}
+
+//when hovering over logo make it slightly bigger
+#navbarLogo {
+  &:hover {
+    transform: scale(1.15) rotate(-12deg);
+  }
+}
+
+
+//SCAFFHOLD.SCSS: Contains css for errors within the site
+div {
+  &.field, &.actions {
+    margin-bottom: 0px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+}
+
+label {
+    display: block;
+}
+
+//FAQ.SCSS: This is all the css specific to the FAQ page
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
 
 ul {
@@ -58,10 +270,6 @@ ul li a.toggle:hover {
     transition: color 1s ease;
 }
 
-a {
-    text-decoration: none !important;
-}
-
 .toggle:after {
   content: '\▾';
   color: white;
@@ -70,7 +278,7 @@ a {
   margin-left: 5px;
 }
 
-//HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME 
+//HOME.SCSS: This is all the css specific to the HOME page
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet');
 
 html, body {
@@ -181,257 +389,7 @@ html, body {
     }
 }
 
-//VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES 
-//== Colors
-
-$brand-primary:         #8C1D40; //ASU Maroon
-$brand-secondary:       #FFB704; //ASU Gold
-$brand-gray:            #DADADA; // light grey
-$brand-white:           #F0F0F0;
-$brand-black:           #222222;
-
-//== Scaffolding
-$link-hover-decoration: underline !default;
-
-
-//== Typography
-//## Font, line-height, and color for body text, headings, and more.
-
-@import url("https://use.typekit.net/fxy5ytx.css");
-
-$font-family-sans-serif:  "neuzerit-grotesk", Avenir, Helvetica, Arial, sans-serif;
-
-
-//== Style
-$border-radius-base:        0px !default;
-$border-radius-large:       0px !default;
-$border-radius-small:       0px !default;
-
-//== Navbar
-//
-//##
-
-$navbar-margin-bottom: 0px !default;
-
-//GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS GLOBALS 
-.img-xs{
-  height: 18px;
-  width: 18px;
-  margin-right: 10px;
-}
-
-.navbar-default {
-  background-color: $brand-primary;
-}
-
-.overflow-visible{
-  overflow: visible;
-}
-
-//Prevents textareas from being resized out of their columns
-
-
-$overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
-
-#error_explanation {
-  color: #f00;
-  ul {
-    list-style: none;
-    margin: 0 0 18px 0;
-  }
-}
-
-h1.white{
-  color: #fff;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 41px;
-  text-shadow: 0px 4px 4px #000;
-  padding-top: 30px;
-  padding-bottom: 20px;
-}
-
-h1.maroon{
-  color: #8C1D40;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  line-height: 41px;
-  text-shadow: 1px 2px 3px #555;
-  padding-top: 30px;
-  padding-bottom: 20px;
-}
-
-h2.subheader {
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 41px;
-}
-
-//FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER 
-footer {
-  position: relative;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin: 0;
-  margin-top: 50px;
-  text-align: left;
-  background-color:$brand-primary;
-  font-family: Helvetica;
-  font-size: 12px;
-
-}
-
-#copyright {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-
-footer a.f-link{
-  color: $brand-gray ; //light grey
-  &:hover{
-      text-decoration: none;
-  }
-}
-
-footer p.f-header{
-color: $brand-secondary;
-font-size: 14px;
-}
-
-footer div.col-sm-3{
-font-size: 14px;
-}
-
-footer small{
-color:$brand-secondary;
-}
-
-//HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER 
-.navbar-btn {
-  // bottom padding
-  margin-right: 25px;
-
-
-  .landing-sign-up-btn {
-    width: 100px;
-  }
-
-  .landing-sign-in-btn {
-    width: 100px;
-  }
-  // signup colors
-
-  .btn-primary {
-    color: $brand-gray;
-    background-color: $brand-primary;;
-    border-color:#771936;
-    font: "Helvetica"
-  }
-  // signin colors
-
-  .btn-default {
-    color: $brand-secondary;
-    background-color: $brand-primary;
-    border-color: $brand-secondary;
-    font: "Helvetica"
-  }
-}
-//logo padding and size
-.navbar-brand {
-  padding: 4px 4px 4px 15px;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: $brand-gray;
-  font-family: "Helvetica";
-
-}
-
-//when hovering over logo make it slightly bigger
-#navbarLogo {
-  &:hover {
-    transform: scale(1.15) rotate(-12deg);
-  }
-}
-
-//SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD SCAFFHOLD 
-div {
-  &.field, &.actions {
-    margin-bottom: 0px;
-  }
-}
-
-#notice {
-  color: green;
-}
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
-#error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
-}
-
-label {
-    display: block;
-}
-
-//STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES STYLES 
-.cal-nav-action {
-  a {
-    font-size: 18px;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.event-calendar-pill {
-  font-size: 12px;
-  font-weight: 600;
-  color: #FFF;
-  background-color: #8C1D40;
-  border-radius: 5px;
-  padding: 1px 5px 1px 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-
-  &:hover {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.14), 0 6px 8px rgba(0,0,0,0.24);
-  }
-}
-
-
-
-//NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW NEW 
-//This stylesheet is for the Create Perk form.
+//NEW.SCSS: This stylesheet is for the Create Perk form.
 
 #suggestedPerks {
   margin-top: 20px;
