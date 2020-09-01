@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.7.0"
+ruby "2.6.3"
 
 gem "rails", "~> 6"
 gem "sprockets", "~> 3"
@@ -42,6 +42,7 @@ gem 'will_paginate-bootstrap4'
 gem 'bootstrap', '~> 4.5.0'
 gem 'popper_js', '~> 1.16.0'
 gem 'recurring_select'
+gem 'recaptcha', require: "recaptcha/rails"
 
 group :test, :development do
   gem 'minitest'
@@ -58,3 +59,4 @@ end
 group :test do
   gem 'turn', :require => false
 end
+
