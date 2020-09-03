@@ -25,7 +25,7 @@ class UserSignInTest < ActionDispatch::IntegrationTest
       fill_in id: 'user_password_confirmation', with: "12345678"
 
       click_on class: 'form-control btn-primary'
-      assert page.has_text? "Cannot save signing up information."
+      assert page.has_text? "Email can't be blank"
       assert_equal current_path, '/signup'
   end
 

@@ -2,7 +2,7 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
 
-<%= will_paginate @calendar_events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>>
+<%= will_paginate @calendar_events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 <%i = 0%>
@@ -18,9 +18,9 @@
         <% i += 1 %>
         <tr>
 
-          <td class=col-sm-2>
-
-            <div id = "calendar-event">
+          <td class="col-sm-4 text-center">
+                                                                
+            <div id="calendar-event">
               <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
             </div>
 
@@ -67,7 +67,7 @@
             <% if rsvps.count > 0 %>
 
               <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+                <button type="button" class="btn btn-lg text-primary dropdown-toggle" style="border-color: #8d1d40" data-toggle="dropdown" aria-haspopup="true" >
                   <span class="caret"></span> &nbsp; <%= rsvps.count %> Attending &nbsp; <span></span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
@@ -137,7 +137,7 @@
                     <% end %>
 
                     <% if flag %>
-                      <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit"  %>
+                      <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 10px", :id => "RSVPsubmit"  %>
                     <% end %>
                   <% else %>
                   <% end %>
@@ -153,7 +153,7 @@
                 <% if user_signed_in? %>
                   <% if @user.id != current_user.id %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
-                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 95px", :id => "RSVPsubmit" %>
+                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 10px", :id => "RSVPsubmit" %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -208,4 +208,3 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
-
