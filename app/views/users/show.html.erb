@@ -64,15 +64,10 @@
                             <br />
                         </div>
                     </div>
-
-                <% else %>
-                  <%= render 'layouts/merchsidebar' %>
                 <% end %>
-
-          <% else %>
-            <%= render 'layouts/merchsidebar' %>
           <% end %>
         <% end %>
+        <%= render 'layouts/merchsidebar' %>
 
         <h1 class=" pt-3 text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Conversations Attending" %> </h1>
         <% if @calendar_events.present? %>
