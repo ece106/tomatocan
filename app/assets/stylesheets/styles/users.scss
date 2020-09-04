@@ -15,25 +15,26 @@
 #profileHeader {
 	text-align: center;
 	margin-top: -210px;
-	margin-bottom: 35px;
+	margin-bottom: 0px;
 }
 #profileImage {
-	border: 6px solid white;
-	height: 150px;
-	width: 150px;
+	border: 1px solid $brand-primary;
+	height: 200px;
+	width: 200px;
 	//centers and crops images
 	object-fit: cover;
 }
 #profileName {
 	text-transform: capitalize;
-	//color: $brand-secondary;
-	font-weight: 600;
-	text-shadow: 0 0 4px rgba(0,0,0,.8)
+	font-size: 3.0em;
+	font-weight: 700;
+	padding: 2px;
 }
 #profileDescription {
-	//color: $brand-secondary;
-	font-size: 1.5em;
-	text-shadow: 0 0 2px rgba(0,0,0,.8)
+	color: #f0ad4e;
+	font-family: Helvetica;
+	font-size: 2.0em;
+	
 }
 
 //Merch Sidebar styling
@@ -46,7 +47,7 @@
 
 //Merch Sidebar style
 #merchSidebar {
-    max-height: 75vh;
+    max-height: 70vh;
     overflow-y: scroll;
 }
 
@@ -74,13 +75,12 @@
 
 //Perk display
 #perkImage {
-	height: 100px;
-	width: 100px;
+	height: 110px;
+	width: 110px;
 	object-fit: cover;
 }
 
 //Edit user profile tab
-
 .form-control {
 	//adds space to the bottom of fields because they're too squished
 	margin-bottom: .5rem;
