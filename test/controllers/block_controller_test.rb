@@ -49,7 +49,7 @@ class BlockControllerTest < ActionController::TestCase
   #unblock
   test 'unblocked_user_removed_from_BlockedUsers_array' do
     blockedUsers = User.find_by_id(@user.id).BlockedUsers
-    assert_includes blockedUsers, @blocked_user[:permalink]
+    assert_includes blockedUsers, @blocked_user.permalink
     
     post :unblock, params: {to_unblock_id: @blocked_user.id, current_user_id: @user.id}
     blockedUsers = User.find_by_id(@user.id).BlockedUsers

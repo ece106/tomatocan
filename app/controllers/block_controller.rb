@@ -19,7 +19,6 @@ class BlockController < ApplicationController
     end
 
     def unblock
-        current_user = User.find_by_id(params[:current_user_id])
         # get to_unblock user and current_user
         to_unblock = User.find_by_id(params[:to_unblock_id])
 
@@ -27,7 +26,7 @@ class BlockController < ApplicationController
         array = to_unblock.blockedBy
 
         # remove current_user from blockedBy array
-        array = array.delete(current_user[:permalink])
+        array = array - [current_user.permalink]
         to_unblock.update({'blockedBy': array})
 
         # get blockedUsers array
@@ -43,9 +42,9 @@ class BlockController < ApplicationController
 
     def unload
         # remove the current event from user's last_viewed array
-        attendance_log = Attendance.find_by_id(params[:currentUser])
-        #attendance_log.time_out = Time.now - 7.hours
-        #attendance_log.save
+        attendance_log = Attendance.find(params[:attendid])
+        attendance_log.time_out = Time.now - 7.hours
+        attendance_log.save
 
         # return 200 ok Why do we do this?
         head :ok
