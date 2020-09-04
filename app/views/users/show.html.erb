@@ -51,7 +51,8 @@
 
         </div>
         <div class="col-12 col-md-8 col-sm-12">
-            <% if current_user.id == @user.id %>
+             <% if current_user.nil? %>
+             <% elsif current_user.id == @user.id %>
                 <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
                     <h1 class=" pt-5 text-center maroon " id="profileName" style="font-size: 2.0em"> <%= "Current Rewards" %> </h1>
 
