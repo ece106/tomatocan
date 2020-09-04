@@ -1,20 +1,24 @@
 <div class="row bg-primary mt-2 pl-5">
-    
+
   <div class="col-lg-5 pt-3 pb-4 pl-5 ml-3">
   <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>" style = "height:50px">
         <%= value %>
       </div>
     <% end %>
-    <h1 class="text-center text-white mt-5 pl-5 pt-5">
+    <br>
+    <br>
+    <h1 class="text-center text-white py-5 mx-3">
       <strong>STEMinism to make you</strong>
         <%= image_tag("GoldThinQ60.png")%>
     </h1>
-    <br>
     <h2 class="text-center text-white">
-      Video Chat community throughout the day for 
+      Video Chat community throughout the day for
       Women & Minorities in STEM
     </h2>
+
+    <div class=" text-center">
+      <a id="home-scroll" href="#conversations"><u>Check Out the Converstaion Schedule</u></a>
 
     <% if @conversations.count != 0 %><br>
       <% if @start_time != nil %>
@@ -22,25 +26,25 @@
           <div id="eventCurrentdiv align-items-end " style ="align-text:bottom">
             <p class = "text-white text-center" >
               <br><%= @name %> is LIVE right NOW!<br>
-              <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 40px; border-color: #FFC627" %>
+              <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 28px; background-color:#FFB704; border-color: #FFB704" %>
               <br>
               Hosted by: <%= @host.name %>
-            </p>  
+            </p>
           </div>
         <% end %>
       <% end %>
     <% end %>
-
+</div>
   </div>
-  
-  <div class="col-lg-6 pt-5 pb-5 pl-5 ml-3 mb-5 mt-5 pr-2">
+
+  <div class="col-lg-6 py-5 my-5 mx-3">
     <%= image_tag("HomeBanner.png", style: "width:100%;")%>
   </div>
 
 </div>
   <!-- end of top section-->
   <div class = "pt-4 mt-2 pb-1">
-    
+
     <h2 class="text-primary text-center"><strong>
       Want feedback on your tech or designs? <br>
       Need an online study group or career advice? </strong>
@@ -52,6 +56,7 @@
       <%= link_to "Drop-In", studyhall_path, style: "color: #FFB704" %> to meet us! <br>
       <%= link_to "Become a Drop-In peer volunteer or mentor", new_event_path, style: "color: #FFB704" %>
     </p>
+
   </div>
 
   <!-- end of new to thinQ section-->
@@ -84,13 +89,12 @@
       </h2>
       <p class = "text-center">
         Join a community of developers and designers to network <br> while collaborating and critiquing each others projects. All expertise levels welcome!
-      </p>     
+      </p>
     </div>
 </div>
     <!--end of drop in column-->
 </div>
-
-      <div>   
+      <div>
         <div class="convo-container text-center" style="background-color: #8C1D40">
           <!-- col-lg-3 col-md-6 -->
           <h1 class = "white">Mentor Hours</h1>
@@ -106,7 +110,7 @@
           <button onclick="showPanel(1,'#4caf50')">Daily View</button>
           <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
         </div>
-        
+
         <div class="tabPanel">
           <%= render 'layouts/convocalendar', collection: @conversations %>
         </div>
