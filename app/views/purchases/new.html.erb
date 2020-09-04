@@ -1,5 +1,6 @@
 <div class="ml-5 mt-4 row">
   <div class="col-md-9 col-md-offset-3 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left">
+
 <br>
     <%= form_for @purchase do |f| %>
       <% if user_signed_in? %>
@@ -26,15 +27,6 @@
           <% groupsupported = Group.find(params[:group_id]) %>
           5% of purchase will go to <b><%= groupsupported.name %></b><br><br>
         <% end %>
-<<<<<<< HEAD
-        <br>
-        <br>
-      <p>
-        <!-- If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent <br><br>
-        If purchasing an Reward such as a posting on Facebook or a Tweet, enter your Facebook URL or Twitter handle.<br><br>
-        If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info.<br><br>
-        You may leave this box blank if you are making a donation or purchasing a download.<br><br> -->
-=======
 
         <h1 class="maroon"> <strong> Complete Purchase </strong></h1><br>
 
@@ -45,7 +37,6 @@
         (You may leave this box blank if you are making a donation or purchasing a download) </p>
         <%= f.text_area :shipaddress, cols: 100, rows: 4 %><br><br>
 
->>>>>>> d48c2487c35bcfa2a63887763d54bd1441a6ea7e
       </div>
       <br>
       <h4>Payment Information</h4>
@@ -54,36 +45,16 @@
       <% if user_signed_in? %>
         <% if current_user.stripe_customer_token.present? %>
             <div class="cardinfo" >
-
-              <%= label_tag :name, "Name" %> <br>
-              <%= text_field_tag :name%>
-              <br><br>
-
-              <%= label_tag :name, "Address" %> <br>
-              <%= text_field_tag :mailing_address%><br><br>
-
-              <%= label_tag :name, "City" %> <br>
-              <%= text_field_tag :city%> <br>
-
-              <%= label_tag :name, "Zip Code" %> <br>
-              <%= text_field_tag :zip_code%> <br>
-
-              <%= label_tag :name, "State" %> <br>
-              <%= text_field_tag :state%> <br><br>
-
-              <%= label_tag :name, "Email" %> <br>
-              <%= text_field_tag :email%><br><br>
-
               <%= label_tag :card_number, "Credit Card Number" %>
-              <%= text_field_tag :card_number, nil, name:nil %><br><br>
+              <%= text_field_tag :card_number, nil, name: nil %><br><br>
 
-              <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-              <%# = text_field_tag :card_code, nil, name: nil %><br>
-              <%= text_field_tag :card_code %><br><br>
-
-              <%= label_tag :card_month, "Card Expiration" %> <br>
+              <%= label_tag :card_month, "Card Expiration" %>
               <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
               <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
+
+              <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+              <%= text_field_tag :card_code%><br><br>
+              
             </div>
           <div class="buynewcard">
             <%if(params[:merchandise_id].present?)%>
@@ -99,7 +70,7 @@
               <%= f.submit "Donate now" %>
             <%end%>
           </div>
-          
+
           <br>
           <br>
 
@@ -122,25 +93,15 @@
           <br><br><br><br>
 
         <% else %>
-<<<<<<< HEAD
-          <p>
-            <%= label_tag :card_number, "Credit Card Number" %>
-            <%= text_field_tag :card_number, nil, name: nil %><br><br>
-
-            <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-            <%= text_field_tag :card_code, nil, name: nil %><br><br>
-=======
-            <p> <%= label_tag :card_number, "Credit Card Number" %> 
+            <p> <%= label_tag :card_number, "Credit Card Number" %>
             <%= text_field_tag :card_number, nil, name: nil %></p><br><br>
-  
-            <p> <%= label_tag :card_code, "Security Code on Card (CVV)" %> 
+
+            <p> <%= label_tag :card_code, "Security Code on Card (CVV)" %>
             <%= text_field_tag :card_code, nil, name: nil %></p><br><br>
->>>>>>> d48c2487c35bcfa2a63887763d54bd1441a6ea7e
 
             <p> <%= label_tag :card_month, "Card Expiration" %> </p>
             <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
             <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
-          </p>
           <%if(params[:merchandise_id].present?)%>
               <%= f.submit "Purchase" %><br><br>
           <%else%>
@@ -151,15 +112,9 @@
       <% else %>
         <p> <%= label_tag :card_number, "Credit Card Number" %> </p>
         <%= text_field_tag :card_number, nil, name: nil %><p>
-<<<<<<< HEAD
 
-        <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-        <%= text_field_tag :card_code, nil, name: nil %><p>
-=======
- 
         <p><%= label_tag :card_code, "Security Code on Card (CVV)" %> </p>
         <%= text_field_tag :card_code, nil, name: nil %>
->>>>>>> d48c2487c35bcfa2a63887763d54bd1441a6ea7e
 
         <p> <%= label_tag :card_month, "Card Expiration" %> </p>
         <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
@@ -170,7 +125,7 @@
           <%= f.submit "Donate" %>
         <%end%>
       <% end %>
-      
+
       <div id="stripe_error">
         <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
       </div>
@@ -184,11 +139,3 @@
 		carduse = "existingcustomer";
 	}
 </script>
-
-
-
-
-
-
-
-
