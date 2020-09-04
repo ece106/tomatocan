@@ -166,7 +166,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @recaptcha_checked = verify_recaptcha(model: @user)
-
     if @recaptcha_checked 
       if @user.save
       redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
