@@ -79,6 +79,24 @@ h2 {
   line-height: 41px;
 }
 
+p.black {
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  color: black;
+}
+
+p.white {
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  color: white;
+}
+
 //FOOTER.SCSS: This is all the css used for the footer
 footer {
   position: relative;
@@ -374,8 +392,7 @@ html, body {
   }
 }
 
-//PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS PANELS 
-/* This stylesheet is for panels found in views/layouts and for users/controlpanel */
+//PANELS: This stylesheet is for panels found in views/layouts and for users/controlpanel 
 
 /* _maincalendar */
 
@@ -388,7 +405,7 @@ html, body {
   vertical-align: middle !important;
 }
 
-#shows-button-panel{
+#shows-button-panel {
   padding-top: 25px;
 }
 
@@ -403,108 +420,70 @@ html, body {
   font-size: 1.50rem;
 }
 
-#calendar-time {
-  display: block;
-  font-size: 1.25rem;
-  text-align: center;
-}
-
-#social-button {
-  display: inline-block;
-  padding: 4px;
-}
-#social-button-in {
-  display: inline-block;
-  padding-left: 4px;
-}
-
 /* CSS for users/controlpanel */
-#streamDirections{
-  float: right;
-  bottom: 60%;
-}
-
 #controlpanel-events {
-    margin-top: 60px;
-    right: 15.5%;
+  margin-top: 60px;
+  right: 15.5%;
 }
 
-/*    td, th {
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
-      padding: 6px;
-      border: 1px solid #999;
-    }*/
+th {
+  font-family: "Lucida Grande", arial, helvetica, sans-serif;
+  font-size: 12px;
+  padding: 6px;
+  border: 1px solid #999;
+  background: #8C1D40;
+  text-align: center;
+  width: 14.2857142857143%;
+}
 
-     th {
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 12px;
-      padding: 6px;
-      border: 1px solid #999;
-      background: #8C1D40;
-      text-align: center;
-      width: 14.2857142857143%;
-    }
+td {
+  font-family: "Lucida Grande", arial, helvetica, sans-serif;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+  background: #FFF;
+  color: #020202;
+  height: 150px;
+  vertical-align: top;
+  font-size: 16px;
+  overflow: hidden;
+}
 
-     td{
-      font-family: "Lucida Grande", arial, helvetica, sans-serif;
-      font-size: 10px;
-      padding: 6px;
-      border: 1px solid #999;
-      background: #FFF;
-      color: #020202;
-      height: 150px;
+/* This stylesheet is used for the calendar in home page and drop-in page */
+.today {
+  background-color: #D7F2FF;
+}
 
-      vertical-align: top;
-      font-size: 16px;
-      overflow: hidden;
-    }
+#events .caler {
+  text-align: left;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-  .notmonth { color: #CCC; }
-  .today { background-color: #D7F2FF; }
+#events #month {
+  margin: 0;
+  padding: 10px 0px;
+  text-align: center;
+  display: inline-block;
+  color: black;
+  width: 380px;
+}
 
-  #events .caler {
-    text-align: left;
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  #events #month {
-    margin: 0;
-    padding: 10px 0px;
-    text-align: center;
-    display: inline-block;
-    color: black;
-    width: 380px;
-  }
-
-.tabContainer{
+.tabContainer {
   width: 100%;
   height: auto;
   text-align: center
-
-}
-.tabContainer2{
-  width: 100%;
-  height: auto;
 }
 
 .tabContainer .buttonContainer {
   height: 15%;
-  /*text-align: center;*/
   padding-left: 70px;
   text-align: center;
   border-color: #FFC627;
   border-width: 1px;
 }
 
-.tabContainer2 .buttonContainer {
-  height: 15%;
-  /*text-align: center;*/
-  padding-left: 70px;
-}
-
-.tabContainer .buttonContainer button{
+.tabContainer .buttonContainer button {
   width: 200px;
   float: center;
   cursor: pointer;
@@ -518,48 +497,22 @@ html, body {
   margin-top: 5px;
 }
 
-.tabContainer2 .buttonContainer button{
-  width: 200px;
-  height: 100%;
-  float: center;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px;
-  font-family: sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #8C1D40;
-  color: white;
-  border-radius: 8px;
-  margin-top: 5px;
-}
-
-.tabContainer .buttonContainer button:hover{
+.tabContainer .buttonContainer button:hover {
   background-color: #d7d4d4;
   color: black;
 }
 
-.tabContainer .tabPanel{
+.tabContainer .tabPanel {
   height: auto;
   background-color: gray;
   color: white;
-  /*text-align: center;*/
   padding-top: 10px;
-  /*padding-bottom: 10px;*/
   box-sizing: border-box;
   font-family: sans-serif;
-  /*font-size: 22px;*/
   display: none;
 }
 
- #calendar-time {
-  display: block;
-  font-size: 1.25rem;
-  text-align: center;
-}
-
-.expand{
+.expand {
   background: none;
   padding: 0;
   border: none;
@@ -569,26 +522,22 @@ html, body {
   cursor: pointer;
 }
 
-//SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW 
-#discussionRSVPs {
-  margin-left: 65%;
-}
-
-.rsvp-dropdown{
-min-width: 260px;
-font-size: 18px;
-height: auto;
+//EVENTS PAGE: Event show page stylesheet
+.rsvp-dropdown {
+  min-width: 260px;
+  font-size: 18px;
+  height: auto;
   max-height: 400px;
   overflow-x: hidden;
-padding: 0;
+  padding: 0;
 
-.dropdown-item{
-  padding: 8px 15px;
+  .dropdown-item {
+    padding: 8px 15px;
 
-  &:hover{
-    background-color: #f1f2f6;
+    &:hover {
+      background-color: #f1f2f6;
+    }
   }
-}
 }
 
 //STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL STRIPE MODEL 
@@ -638,93 +587,57 @@ padding: 0;
 //This stylesheet for userpgtemplate.html.erb includes _merchsidebar.html.erb partial and _authorform.html.erb partial
 
 //Page header "authorform"
-
-//Page header
 #profileBanner {
-	height: 300px;
-	margin-bottom: 40px;
-}
-#profileBanner img {
-	object-fit: cover;
-	min-width: 100%;
-	max-width: 100%;
-}
-#profileHeader {
-	text-align: center;
-	margin-top: -210px;
-	margin-bottom: 35px;
-}
-#profileImage {
-	border: 6px solid white;
-	height: 150px;
-	width: 150px;
-	//centers and crops images
-	object-fit: cover;
-}
-#profileName {
-	text-transform: capitalize;
-	//color: $brand-secondary;
-	font-weight: 600;
-	text-shadow: 0 0 4px rgba(0,0,0,.8)
-}
-#profileDescription {
-	//color: $brand-secondary;
-	font-size: 1.5em;
-	text-shadow: 0 0 2px rgba(0,0,0,.8)
+  height: 300px;
+  margin-bottom: 40px;
 }
 
-//Merch Sidebar styling
-#merchImage {
-    max-width: 100%;
+#profileBanner img {
+  object-fit: cover;
+  min-width: 100%;
+  max-width: 100%;
 }
-#merchDescription {
-    max-width: 100%;
+
+#profileHeader {
+  text-align: center;
+  margin-top: -210px;
+  margin-bottom: 35px;
+}
+
+#profileImage {
+  border: 6px solid white;
+  height: 150px;
+  width: 150px;
+  //centers and crops images
+  object-fit: cover;
+}
+
+#profileName {
+  text-transform: capitalize;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(0, 0, 0, .8)
 }
 
 //Merch Sidebar style
 #merchSidebar {
-    max-height: 75vh;
-    overflow-y: scroll;
-}
-
-//Edit Profile style
-#cancelProfileButton {
-    display: block;
-    width: 20%;
-    font-size: .8em;
-    padding: 14.5px 16px;
-}
-#saveProfileButton {
-    display: block;
-    width: 80%;
-}
-#editProfileButton {
-    display: block;
-    width: 100%;
-}
-
-//dashboardBox style
-#dashboardTabs {
-	font-weight: 800;
-	//background-color: $brand-secondary;
+  max-height: 75vh;
+  overflow-y: scroll;
 }
 
 //Perk display
 #perkImage {
-	height: 100px;
-	width: 100px;
-	object-fit: cover;
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
 }
 
 //Edit user profile tab
-
 .form-control {
-	//adds space to the bottom of fields because they're too squished
-	margin-bottom: .5rem;
+  //adds space to the bottom of fields because they're too squished
+  margin-bottom: .5rem;
 }
-#currentImage {
-	float: right;
-}
+
+//MAIN.SCSS: General settings to import bootstrap and change some more default settings
 
 //Overrides Bootstrap-defined variables
 $primary: #8C1D40;
