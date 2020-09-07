@@ -78,7 +78,12 @@
           <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
         
         <% else %>
-          <% if current_user.id == @user.id %>
+          <% if current_user.nil? %>
+            <div class="text-center" style="font-family: Helvetica;">
+                <%= @user.name %> <%= " has no conversations scheduled." %>
+            </div>
+
+          <% elsif current_user.id == @user.id %>
             <div class="text-center" style="font-family: Helvetica;">
                 <%= "You have no conversations scheduled."%>
             </div>
