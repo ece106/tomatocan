@@ -79,12 +79,12 @@
         
         <% else %>
           <% if current_user.id == @user.id %>
-            <div class="pl-3 text-center" style="font-family: Helvetica;">
-                <%= "You have no conversations."%>
+            <div class="text-center" style="font-family: Helvetica;">
+                <%= "You have no conversations scheduled."%>
             </div>
           <% else %>
-            <div class="pl-3 text-center" style="font-family: Helvetica;">
-                <%= @user.name %> <%= " has no conversations." %>
+            <div class="text-center" style="font-family: Helvetica;">
+                <%= @user.name %> <%= " has no conversations scheduled." %>
             </div>
           <% end %>
         <% end %>

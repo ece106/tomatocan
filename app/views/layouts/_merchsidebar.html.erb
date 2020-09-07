@@ -13,9 +13,9 @@
   
 </div>
 
-<div class="card-body  pl-1" id="merchSidebar">
+<div class="pl-1" id="merchSidebar">
   <% if !@user.stripeid.present? && @user.id != 143 %>
-    <div class="pl-3 text-center" style="font-family: Helvetica;">
+    <div class="text-center" style="font-family: Helvetica;">
         <%= @user.name %> has not made sales or donations available yet.
     </div>
   <% end %>
