@@ -9,24 +9,25 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 	<% if @user.bannerpic.present? && @user.bannerpic != '' %>
 		<%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
 	<% else %>
-		<%= image_tag "crowddark.png", height: "300", :id => "userBannerImage" %>
+		<%= image_tag "profile_banner.png", height: "300", :id => "userBannerImage" %>
 	<% end %>
 </div>
 
 <div class="row" id="profileHeader">
 	<% if @user.profilepic.present? && @user.profilepic != '' %>
-		<div class="col-sm-2">
+		<div class="col-sm-12">
 			<%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
 		</div>
 	<% else %>
-		<div class="col-sm-2">
+		<div class="col-sm-12">
 			<%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "profileImage", style: "background-color:white" %>
 		</div>
 	<% end %>
-	<div class="col-sm-8 text-left text-warning pt-4">
-		<h1  id="profileName"><%= @user.name %></h1>
+	<div class="col-sm-12 text-primary pt-6">
+		<h1 class="maroon" id="profileName maroon"><%= @user.name %></h1>
 		<% if @user.genre1.blank? == false %>
-			<span  id="profileDescription"> <%= @user.genre1 %>
+
+			<span id="profileDescription"> <%= @user.genre1 %>
 				<% if @user.genre2.blank? == false %>
 				, <%= @user.genre2 %>
 				<% end %>

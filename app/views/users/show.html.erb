@@ -1,30 +1,79 @@
 <div class="container-fluid" >
 
-    <!-- Meta Tags for Facebook Share -->
-    <% content_for :head do %>
-      <meta property="og:url"           content="<%= "https://www.thinq.tv" + user_profile_path(@user.permalink) %>" />
-      <meta property="og:type"          content="website" />
-      <meta property="og:title"         content="View <%= @user.name %>'s profile on ThinQ.tv" />
-      <meta property="og:description"   content="Connect with <%= @user.permalink %> in talking about <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %>" />
-      <% if @user.profilepic.present? %>
-        <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
-      <% else %>
-        <meta property="og:image"       content="https://www.thinq.tv/logoDigitalHollow300.png" />
-      <% end %>
+  <!-- Meta Tags for Facebook Share -->
+  <% content_for :head do %>
+    <meta property="og:url"           content="<%= "https://www.thinq.tv" + user_profile_path(@user.permalink) %>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="View <%= @user.name %>'s profile on ThinQ.tv" />
+    <meta property="og:description"   content="Connect with <%= @user.permalink %> in talking about <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %>" />
+    <% if @user.profilepic.present? %>
+      <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
+    <% else %>
+      <meta property="og:image"       content="https://www.thinq.tv/logoDigitalHollow300.png" />
     <% end %>
+  <% end %>
     
-    <%= render 'layouts/authorform' %>
+  <%= render 'layouts/authorform' %>
+
+  <hr style= "width: 44%; height: 1px; border-width:0; color: #8C1D40; background-color:#8C1D40; text-align: center" >
     
-    <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
-      <div id="eventCurrentdiv" style="text-align: center;">
-        <h3>We're talking about <%= @displayconvo.name %></h3>  
+  <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
+    <div id="eventCurrentdiv" style="text-align: center;">
+      <h3>We're talking about <%= @displayconvo.name %></h3>  
         <p> right NOW!   </p> 
         <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-primary btn-lg", style: "margin-top: 10px; margin-bottom: 10px; border-radius: 5px; font-size: 30px" %>
-        <br>
-      </div>
+      <br>
+    </div>
   <% else %>
     <div class="row pt-2 pb-3">
-      <%= render 'layouts/streamButton' %>
+      <div class="col-10 col-md-4 col-sm-12">
+        <%= render 'layouts/streamButton' %>
+
+        <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "Connect" %> </h1>
+         
+        <div class="pt-1 text-center" id="merchImage">
+          <% domainurl = "http://www.thinq.tv/"%>
+          <a onclick="window.open('https://www.facebook.com/thinQtv/');">
+            <%= image_tag("social-share-button/facebook.png")%>
+          </a>&nbsp
+
+          <a onclick="window.open('https://twitter.com/ThinqTV');">
+            <%= image_tag("social-share-button/twitter.png")%>
+          </a>&nbsp
+
+          <a onclick="window.open('https://www.linkedin.com/company/thinqtv/');">
+            <%= image_tag("social-share-button/linkedin.png")%>
+          </a>&nbsp
+        </div>
+      </div>
+      <div class="col-12 col-md-8 col-sm-12">
+        <% if current_user.nil? %>
+        <% else %>
+          <% if current_user.id == @user.id %>
+                <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
+                    <h1 class=" pt-5 text-center maroon " id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
+
+                    <div class="media pt-2">
+                        <div class="mr-3">
+                            <span class="btn btn-warning" style="font-size: 1.5em; padding: 18px; width: 100%; width: 220px; font-family: Helvetica;">
+                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPECONNECTCLIENTID %>&scope=read_write" target="_blank" class="text-white" style="font-family: Helvetica;">Connect to Stripe <%= image_tag("social-share-button/stripe.png")%></a>
+                            </span>
+                        </div>
+                        <div class="media-body" style="font-family: Helvetica;">
+                            <p class="pt-2" style="font-family: Helvetica;">We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> to allow users to seamlessly collect and process payments. <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> connects to your bank account to directly deposit any financial support you obtain from fellow ThinQers. It only takes a few minutes to create an account. You will be making sales and receiving donations in no time.</p>
+                            <br />
+                        </div>
+                    </div>
+                <% end %>
+          <% end %>
+        <% end %>
+        <%= render 'layouts/merchsidebar' %>
+
+        <h1 class=" pt-3 text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Conversations Attending" %> </h1>
+        <% if @calendar_events.present? %>
+          <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+        <% end %>
+      </div>
     </div>
   <% end %>
 
@@ -35,14 +84,4 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-3">
-      <%= render 'layouts/merchsidebar' %>
-    </div>
-    <div class="col-md-9">
-      <% if @calendar_events.present? %>
-        <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
-      <% end %>
-    </div>
-  </div>
 </div>
