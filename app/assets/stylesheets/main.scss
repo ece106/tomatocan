@@ -1,27 +1,44 @@
-
 //VARIABLES.SCSS: This is where we redefine the bootstrap default settings to better represent ThinqTV
-$brand-primary:         #8C1D40; //ASU Maroon
-$brand-secondary:       #FFB704; //ASU Gold
-$brand-gray:            #DADADA; // light grey
-$brand-white:           #F0F0F0;
-$brand-black:           #222222;
+$brand-primary: #8C1D40; //ASU Maroon
+$brand-secondary: #FFB704; //ASU Gold
+$brand-gray: #DADADA; // light grey
+$brand-white: #F0F0F0;
+$brand-black: #222222;
 
 $link-hover-decoration: underline !default;
 
 @import url("https://use.typekit.net/fxy5ytx.css");
 
-$font-family-sans-serif:  "neuzerit-grotesk", Avenir, Helvetica, Arial, sans-serif;
+$font-family-sans-serif: Helvetica,
+Arial;
 
 
-$border-radius-base:        0px !default;
-$border-radius-large:       0px !default;
-$border-radius-small:       0px !default;
-
+$border-radius-base: 0px !default;
+$border-radius-large: 0px !default;
+$border-radius-small: 0px !default;
 $navbar-margin-bottom: 0px !default;
 
 
 //GLOBALS.SCSS: The following css can be found throughout the site
-.img-xs{
+
+main {
+  flex: 1 !important;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  padding-top: 0px;
+  display: flex !important;
+  min-height: 100vh !important;
+  flex-direction: column !important;
+  overscroll-behavior: none !important;
+}
+
+.img-xs {
   height: 18px;
   width: 18px;
   margin-right: 10px;
@@ -31,15 +48,16 @@ $navbar-margin-bottom: 0px !default;
   background-color: $brand-primary;
 }
 
-.overflow-visible{
+.overflow-visible {
   overflow: visible;
 }
 
 //Prevents textareas from being resized out of their columns
-$overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
+$overlaid-text: 0 0 4px rgba(0, 0, 0, .8) !important;
 
 #error_explanation {
   color: #f00;
+
   ul {
     list-style: none;
     margin: 0 0 18px 0;
@@ -47,7 +65,7 @@ $overlaid-text: 0 0 4px rgba(0,0,0,.8) !important;
 }
 
 //FONTS
-h1.white{
+h1.white {
   color: #fff;
   font-family: Helvetica;
   font-style: normal;
@@ -59,7 +77,7 @@ h1.white{
   padding-bottom: 20px;
 }
 
-h1.maroon{
+h1.maroon {
   color: #8C1D40;
   font-family: Helvetica;
   font-style: normal;
@@ -105,10 +123,9 @@ footer {
   margin: 0;
   margin-top: 50px;
   text-align: left;
-  background-color:$brand-primary;
+  background-color: $brand-primary;
   font-family: Helvetica;
   font-size: 12px;
-
 }
 
 #copyright {
@@ -118,24 +135,25 @@ footer {
 }
 
 
-footer a.f-link{
-  color: $brand-gray ; 
-  &:hover{
-      text-decoration: none;
+footer a.f-link {
+  color: $brand-gray;
+
+  &:hover {
+    text-decoration: none;
   }
 }
 
-footer p.f-header{
-color: $brand-secondary;
-font-size: 14px;
+footer p.f-header {
+  color: $brand-secondary;
+  font-size: 14px;
 }
 
-footer div.col-sm-3{
-font-size: 14px;
+footer div.col-sm-3 {
+  font-size: 14px;
 }
 
-footer small{
-color:$brand-secondary;
+footer small {
+  color: $brand-secondary;
 }
 
 
@@ -154,8 +172,9 @@ color:$brand-secondary;
 
   .btn-primary {
     color: $brand-gray;
-    background-color: $brand-primary;;
-    border-color:#771936;
+    background-color: $brand-primary;
+    ;
+    border-color: #771936;
     font: "Helvetica"
   }
 
@@ -166,11 +185,12 @@ color:$brand-secondary;
     font: "Helvetica"
   }
 }
+
 .navbar-brand {
   padding: 4px 4px 4px 15px;
 }
 
-.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav>li>a {
   color: $brand-gray;
   font-family: "Helvetica";
 
@@ -188,59 +208,59 @@ color:$brand-secondary;
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 
-    .inner {
-        margin-left: 35px;
-        margin-right: 35px;
-        overflow: hidden;
-        display: none;
-    } 
+  .inner {
+    margin-left: 35px;
+    margin-right: 35px;
+    overflow: hidden;
+    display: none;
+  }
 }
 
 ul li a.toggle {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
-    display: block;
-    margin-bottom: 10px;
-    background-color: #e0d2c3;
-    text-decoration: none;
-    box-shadow: 1px 1px #880f42;
-    border: 1px solid #880f42;
-    background: none;
-    padding: 10px 10px;
-    font-size: 12pt;
-    cursor: pointer;
-    color: #880f42;
-    padding: 0.75em;
-    border-radius: 0.15em;
-    transition: color 1s ease;
-    list-style: none;
-   }
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 10px;
+  background-color: #e0d2c3;
+  text-decoration: none;
+  box-shadow: 1px 1px #880f42;
+  border: 1px solid #880f42;
+  background: none;
+  padding: 10px 10px;
+  font-size: 12pt;
+  cursor: pointer;
+  color: #880f42;
+  padding: 0.75em;
+  border-radius: 0.15em;
+  transition: color 1s ease;
+  list-style: none;
+}
 
 ul li a.toggle:before {
-       top: 0;
-       border-radius: 0 0 0 0;
-       content: "";
-       position: absolute;
-       left: 0;
-       width: 100%;
-       height: 0%;
-       background: #880f42;
-       z-index: -1;
-       transition: 1s;
-   }
+  top: 0;
+  border-radius: 0 0 0 0;
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: #880f42;
+  z-index: -1;
+  transition: 1s;
+}
 
-ul li a.toggle:hover::before{
-   height: 100%;
+ul li a.toggle:hover::before {
+  height: 100%;
 }
 
 ul li a.toggle:hover {
-    background-size: 100%;
-    color: #fff;
-    transition: color 1s ease;
+  background-size: 100%;
+  color: #fff;
+  transition: color 1s ease;
 }
 
 .toggle:after {
@@ -254,141 +274,116 @@ ul li a.toggle:hover {
 //HOME.SCSS: This is all the css specific to the HOME page
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet');
 
-html, body {
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
-    padding-top: 0px;   
-}
-
 #countdown_clock h2 {
-    font-weight: bolder;
-    margin-bottom: 20px;
-    font-size: 40px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: #8C1D40;
+  font-family: Oswald, sans-serif;
+  text-align: center;
+}
+
+#clockdiv {
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#clockdiv>div {
+  background: #8C1D40;
+  border-radius: 10px;
+  display: inline-block;
+  height: 80px;
+  width: 70px;
+}
+
+#clockdiv div>span {
+  display: inline-block;
+  padding-top: 0px;
+}
+
+#clockdivstudy {
+  color: #fff;
+  display: inline-block;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#clockdivstudy>div {
+  background: #8C1D40;
+  border-radius: 10px;
+  display: inline-block;
+  height: 80px;
+  width: 70px;
+}
+
+@media only screen and (max-width: 500px) {
+
+  #calendar {
+    padding-left: 20px;
+    padding-right: 0px;
+  }
+
+  .topic_link {
+    font-size: 15px;
+  }
+
+  #buttonTitle {
+    padding-top: 2px;
+  }
+
+  #rewards,
+  #connect {
+    padding-top: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .enter_email {
+    width: 120px;
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  .row {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .livestreamInfo {
+    border: 3px solid #8C1D40;
+    margin-left: 20px;
+    padding: 5px;
+  }
+
+  .livestreamInfo h3 {
     color: #8C1D40;
-    font-family: Oswald, sans-serif;
-    text-align: center;
+    float: left;
+    font-size: 25px;
+  }
+
+  .livestreamInfo h4 {
+    padding-left: 10px;
+    clear: left;
+  }
 }
 
-#clockdiv{
-    color: #fff;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-}
-#clockdiv > div{
-    background: #8C1D40;
-    border-radius: 10px;
-    display: inline-block;
-    height: 80px;
-    width: 70px;
-}
-#clockdiv div > span{
-    display: inline-block;
-    padding-top: 0px;
-}
-#clockdivstudy{
-    color: #fff;
-    display: inline-block;
-    height: 100px;
-    text-align: center;
-    vertical-align: middle;
-}
-#clockdivstudy > div{
-    background: #8C1D40;
-    border-radius: 10px;
-    display: inline-block;
-    height: 80px;
-    width: 70px;
-}
-
-@media only screen and (max-width: 500px){
-
-    #calendar {
-        padding-left: 20px;
-        padding-right: 0px;
-    }
-    .topic_link {
-        font-size: 15px;
-    }
-    #buttonTitle {
-        padding-top: 2px;
-    }
-    #rewards, #connect {
-        padding-top: 20px;
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-    .col-md-4 {
-        padding-left: 50px;
-    }
-    .col-md-5 h3 {
-        padding-left: 80px;
-    }
-    .col-md-5 p {
-        padding-left: 40px;
-        padding-right: 10px;
-    }
-    .col-md-8 {
-        padding-left: 40px;
-    }
-    .enter_email {
-        width: 120px;
-    }
-}
-
-  @media only screen and (max-width: 570px) {
-    .row {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    .livestreamInfo {
-      border: 3px solid #8C1D40;
-      margin-left: 20px;
-      padding: 5px;
-    }
-    .livestreamInfo h3 {
-      color:#8C1D40;
-      float:left;
-      font-size: 25px;
-    }
-    .livestreamInfo h4 {
-      padding-left: 10px;
-      clear:left;
-    }
-    .col-md-4 {
-      padding: 5px 20px;
-    }
-}
-
-//NEW.SCSS: This stylesheet is for the Create Perk form.
-
+//This stylesheet is for the Create Perk form.
 #suggestedPerks {
   margin-top: 20px;
 }
 
-#perkSubmit {
-  margin-top: 40px;
-}
-#eventSubmit {  
-  margin-top: 40px;   
-}
-#stripeAlertText {
-  line-height: 33px;
-}
-
-#priceField {
-  width: 30%;
-}
 @media only screen and (max-width: 992px) {
   #suggestedPerks {
-      position: inherit;
-      clear: both;
-      float: left;
+    position: inherit;
+    clear: both;
+    float: left;
   }
+
   #priceField {
-      width: 60%;
+    width: 60%;
   }
 }
 
