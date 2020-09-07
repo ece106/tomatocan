@@ -1,8 +1,15 @@
-<div class="col-xs-12 pl-4 text-center">
-  <% if user_signed_in? %>
-    <% if current_user.id == @user.id %>
-      <%= link_to "Browse Schedule of Conversations", root_path, :class => 'btn btn-lg btn-primary' %>
-      <%= link_to 'Schedule Your Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;" %>
-    <% end %>
-  <% end %>
+<div>
+
+
+    <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em" > <%= "About" %> </h1>
+    <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.about %> </h6>
+
+    <div class="pt-5 text-center">
+        <%= link_to "Browse Conversation Schedule", root_path, :class => "btn btn-lg ", :style => "margin-left: 0px; border-color: #8d1d40; color: #8d1d40; font-family: Helvetica;" %>
+    </div>
+    <div class="pt-4 text-center">
+        <%= link_to 'Schedule a Conversation', new_event_path, :class => "btn btn-lg ", :style => "margin-left: 0px; border-color: #8d1d40; color: #8d1d40; font-family: Helvetica;" %>
+    </div>
+        
+
 </div>

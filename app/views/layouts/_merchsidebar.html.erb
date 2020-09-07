@@ -1,87 +1,81 @@
-<div class="card">
-  <div class="bg-primary text-white card-header">
+<div class="col-sm-12 pt-5">
+  
     <% if user_signed_in? %>
       <% if current_user.id == @user.id %>
-        Current Rewards
+         <h1 class=" text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
+        
       <% else %>
-        Support our work!
+        <h1 class="text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
       <% end %>
     <% else %>
-      Support our work!
+      <h1 class="text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
     <% end %>
-  </div>
+  
 </div>
 
-<div class="card-body" id="merchSidebar">
+<div class="card-body  pl-1" id="merchSidebar">
+  <% if !@user.stripeid.present? && @user.id != 143 %>
+    <%= @user.name %> cannot accept funds yet.
+  <% end %>
   <% if @sidebarmerchandise.present? %>
     <% @sidebarmerchandise.each do |merch| %>
-      <div class="media">
-        <div class="pull-left">
 
-          <% if merch.itempic.present? %>
-            <%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
-          <% else %>
-            <%= image_tag "starIcon.png", class: "media-object", id: "perkImage" %>
+    <div class="media">
+      <div class="mr-3">
+        <% if (merch.buttontype) == 'Donate' %>
+          <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
+        <% else %>
+          <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <% if current_user.id == @user.id %>
+            <!--Links to seperate edit Reward page-->
+            <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning text-white", :target => "_blank", :style=> "font-size: 1.5em; padding: 18px; width: 100%; width: 220px; font-family: Helvetica;" %>
+
           <% end %>
-        </div>
-        <div class="media-body pl-3">
+        <% end %>
+        <% if @user.stripeid.present? || @user.id == 143 %>
+          <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning text-white", :target => "_blank", :style=> "font-size: 1.5em; padding: 18px; width: 100%; width: 220px; font-family: Helvetica;" %>
+        <% end %>
+      </div>
+        <div class="media-body" style="font-family: Helvetica;">
 
-          <div style = "font-size: 20px">
-            <%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %>
-          </div>
+            <div style="font-size: 30px;">
+                <%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %>
+            </div>
 
-          <% if merch.desc.present? %>
+            <% if merch.desc.present? %>
             <% if merch.desc.length > 150 %>
-              <div>
+            <div>
                 <%= truncate(merch.desc, length: 150) %>
                 <%= link_to 'more', '', class: "read-more-#{merch.id}" %>
-                <script>
-                  $('.read-more-<%= merch.id %>').on('click', function(e)
-                    { e.preventDefault()
-                      $(this).parent().html('<%= escape_javascript merch.desc %>')
-                    })
-                </script>
-              </div>
+                <script>$('.read-more-<%= merch.id %>').on('click', function (e) {
+                        e.preventDefault()
+                        $(this).parent().html('<%= escape_javascript merch.desc %>')
+                    })</script>
+            </div>
             <% else %>
-              <%= merch.desc %>
+            <%= merch.desc %>
             <% end %>
-          <% end %>
-          <br>
-
-          <% if user_signed_in? %>
-            <% if current_user.id == @user.id %>
-            <!--Links to seperate edit Reward page-->
-              <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning" %><br>
             <% end %>
-          <% end %>
+         
 
             <!-- TODO: Switch to below button when edit Reward form can be shown as a modal-->
             <!--%= button_tag "Edit Reward", class: "btn btn-primary pull-right", "data-toggle" => "modal", "data-target" => "#myModal" %-->
-
-          <% if merch.deadline != nil %>
-              <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
-              <br><b>
-              <% if daysaway == 0 %>
+            <% if merch.deadline != nil %>
+            <% daysaway = (merch.deadline.to_date - Date.today.to_date).to_i %>
+            <b>
+                <% if daysaway == 0 %>
                 <td>Last day available!</td>
-              <% elsif (daysaway <= 7 ) %>
+                <% elsif (daysaway <= 7 ) %>
                 <td>Only <%= ActionController::Base.helpers.pluralize(daysaway.to_s, 'day') %> left until it's gone!</td>
-              <% end %></b>
-          <% end %>
-
-          <% if (merch.buttontype) == 'Donate' %>
-              <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
-          <% else %>
-              <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
-          <% end %>
-
-          <% if @user.stripeid.present? || @user.id == 143 %>
-              <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning ", :target => "_blank" %>
-          <% else %>
-              <br> * <%= @user.name %> cannot accept funds yet
-          <% end %>
-
+                <% end %>
+            </b>
+            <% end %>
         </div>
-      </div>
+        
+    </div>
       <hr>
 
       <% end #foreach sidebar merch %>
@@ -97,8 +91,12 @@
             <br /><br />
             <% btnTxt = ("Donate $" + sprintf('%.2f',100) + "!") %>
             <%= link_to btnTxt, new_purchase_path(:pricesold => 100, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :target => "_blank" %>
+    <!--I dont know what this upper part of for, I cant seem to get to it on the website-->
         <% else %>
-          <%= @user.name %> has not made sales or donations available yet.
+                  <div class="pl-3 text-center">
+
+                      <%= @user.name %> has not made sales or donations available yet.
+                  </div>
         <% end %>
     <% end %>
 </div>
