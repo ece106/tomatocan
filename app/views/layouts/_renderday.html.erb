@@ -145,6 +145,7 @@
                     <% else %>
                       <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
                       <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
+                      <div ><%= recaptcha_tags :style => "transform:scale(0.75);transform-origin:0 0; margin-top:10px; margin-bottom:-20px" %></div>
                     <% end %>
                   <% end %>
                 <% end %>
