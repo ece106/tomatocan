@@ -97,24 +97,6 @@ h2 {
   line-height: 41px;
 }
 
-p.black {
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 26px;
-  color: black;
-}
-
-p.white {
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 26px;
-  color: white;
-}
-
 //FOOTER.SCSS: This is all the css used for the footer
 footer {
   position: relative;
@@ -161,15 +143,6 @@ footer small {
 .navbar-btn {
   margin-right: 25px;
 
-
-  .landing-sign-up-btn {
-    width: 100px;
-  }
-
-  .landing-sign-in-btn {
-    width: 100px;
-  }
-
   .btn-primary {
     color: $brand-gray;
     background-color: $brand-primary;
@@ -186,23 +159,12 @@ footer small {
   }
 }
 
-.navbar-brand {
-  padding: 4px 4px 4px 15px;
-}
-
-.navbar-default .navbar-nav>li>a {
-  color: $brand-gray;
-  font-family: "Helvetica";
-
-}
-
 //when hovering over logo make it slightly bigger
 #navbarLogo {
   &:hover {
     transform: scale(1.15) rotate(-12deg);
   }
 }
-
 
 //FAQ.SCSS: This is all the css specific to the FAQ page
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
@@ -274,15 +236,6 @@ ul li a.toggle:hover {
 //HOME.SCSS: This is all the css specific to the HOME page
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet');
 
-#countdown_clock h2 {
-  font-weight: bolder;
-  margin-bottom: 20px;
-  font-size: 40px;
-  color: #8C1D40;
-  font-family: Oswald, sans-serif;
-  text-align: center;
-}
-
 #clockdiv {
   color: #fff;
   display: inline-block;
@@ -325,17 +278,8 @@ ul li a.toggle:hover {
     padding-left: 20px;
     padding-right: 0px;
   }
-
-  .topic_link {
-    font-size: 15px;
-  }
-
-  #buttonTitle {
-    padding-top: 2px;
-  }
-
-  #rewards,
-  #connect {
+  
+  #rewards, #connect {
     padding-top: 20px;
     padding-left: 25px;
     padding-right: 25px;
@@ -387,7 +331,8 @@ ul li a.toggle:hover {
   }
 }
 
-//PANELS: This stylesheet is for panels found in views/layouts and for users/controlpanel 
+
+//PANELS.SCSS: This stylesheet is for panels found in views/layouts and for users/controlpanel 
 
 /* _maincalendar */
 
@@ -517,7 +462,7 @@ td {
   cursor: pointer;
 }
 
-//EVENTS PAGE: Event show page stylesheet
+//SHOW.SCSS: Event show page stylesheet
 .rsvp-dropdown {
   min-width: 260px;
   font-size: 18px;
@@ -535,50 +480,7 @@ td {
   }
 }
 
-//STRIPE MODEL: Contains Modal CSS for the purchase page
-.donation-title {
-  text-align: center;
-  font-weight: 600;
-}
-
-.new-purchase-modal-wrapper {
-  font-size: 18px;
-  margin: 0 auto;
-  max-width: 450px;
-  padding-top: 80px;
-
-  .modal-content {
-    border-radius: 10px;
-    border-color: #fff;
-  }
-
-  .modal-footer {
-    text-align: center;
-  }
-}
-
-.new-purchase-modal {
-  margin: 0 auto;
-  max-width: 350px;
-
-  .form-control {
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .form-wrapper {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-
-  .purchase-modal-btn {
-    padding: 10px;
-    width: 150px;
-    height: 35px;
-  }
-}
-
-//USERS: Contains the CSS for the User's profile page
+//USERS.SCSS: Contains the CSS for the User's profile page
 
 //Page header "authorform"
 #profileBanner {
