@@ -87,6 +87,7 @@
                   <% else %>
                     <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
                     <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
+                    <div align="center"><br><%= recaptcha_tags :style => "transform:scale(0.85);transform-origin:5 0" %></div>
                   <% end %>
                 <% end %>
             <% end %>

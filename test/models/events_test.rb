@@ -57,16 +57,16 @@ class EventTest < ActiveSupport::TestCase
   test "validate uniqueness of start_at based on topic" do
     #assert 2 different user_id can't have the same start_at on 1 topic"
     @eventT.start_at = "2021-12-11 11:00:00"
-    @eventT.topic = "Conversations"
+    @eventT.topic = "Conversation"
     @eventT.save!
 
-    @eventT2.start_at = events(:confirmedUser_event).start_at
-    @eventT2.topic = "Conversations"
-    refute @eventT2.valid?, "Start_at must be unique on 1 topic"
+    @eventT2.start_at = "2021-12-11 11:00:00"
+    @eventT2.topic = "Conversation"
+    refute @eventT2.valid?, "Start at Can't have simultaneous Conversations/Activism Halls"
     assert @eventT2.errors.messages[:start_at]
 
     #assert 2 different user_id can have the same start_at on different topic"
-    @eventT2.topic = "Activism Halls"
+    @eventT2.topic = "DropIn"
     assert @eventT2.valid?, "2 start_ats on different topics is acceptable"
   end
 
