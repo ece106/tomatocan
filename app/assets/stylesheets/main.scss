@@ -9,8 +9,7 @@ $link-hover-decoration: underline !default;
 
 @import url("https://use.typekit.net/fxy5ytx.css");
 
-$font-family-sans-serif: Helvetica,
-Arial;
+$font-family-sans-serif: Helvetica;
 
 
 $border-radius-base: 0px !default;
@@ -366,8 +365,8 @@ ul li a.toggle:hover {
   right: 15.5%;
 }
 
+/* This stylesheet is used for the calendar in home page and drop-in page */
 th {
-  font-family: "Lucida Grande", arial, helvetica, sans-serif;
   font-size: 12px;
   padding: 6px;
   border: 1px solid #999;
@@ -377,7 +376,6 @@ th {
 }
 
 td {
-  font-family: "Lucida Grande", arial, helvetica, sans-serif;
   font-size: 10px;
   padding: 6px;
   border: 1px solid #999;
@@ -389,7 +387,6 @@ td {
   overflow: hidden;
 }
 
-/* This stylesheet is used for the calendar in home page and drop-in page */
 .today {
   background-color: #D7F2FF;
 }
@@ -400,44 +397,18 @@ td {
   width: 100%;
 }
 
-#events #month {
-  margin: 0;
-  padding: 10px 0px;
-  text-align: center;
-  display: inline-block;
-  color: black;
-  width: 380px;
-}
-
-.tabContainer {
-  width: 100%;
-  height: auto;
-  text-align: center
-}
-
-.tabContainer .buttonContainer {
-  height: 15%;
-  padding-left: 70px;
-  text-align: center;
-  border-color: #FFC627;
-  border-width: 1px;
-}
-
-.tabContainer .buttonContainer button {
+.buttonContainer button {
   width: 200px;
   float: center;
   cursor: pointer;
   padding: 10px;
   font-family: sans-serif;
-  font-size: 18px;
   font-weight: bold;
   background-color: #8C1D40;
   color: white;
-  border-radius: 5px;
-  margin-top: 5px;
 }
 
-.tabContainer .buttonContainer button:hover {
+.buttonContainer button:hover {
   background-color: #d7d4d4;
   color: black;
 }
@@ -484,60 +455,44 @@ td {
 
 //Page header "authorform"
 #profileBanner {
-  height: 300px;
-  margin-bottom: 40px;
+	height: 300px;
+	margin-bottom: 40px;
 }
-
 #profileBanner img {
-  object-fit: cover;
-  min-width: 100%;
-  max-width: 100%;
+	object-fit: cover;
+	min-width: 100%;
+	max-width: 100%;
 }
-
 #profileHeader {
-  text-align: center;
-  margin-top: -210px;
-  margin-bottom: 35px;
+	text-align: center;
+	margin-top: -210px;
+	margin-bottom: 0px;
 }
-
 #profileImage {
-  border: 6px solid white;
-  height: 150px;
-  width: 150px;
-  //centers and crops images
-  object-fit: cover;
+	border: 1px solid $brand-primary;
+	height: 200px;
+	width: 200px;
+	//centers and crops images
+	object-fit: cover;
 }
-
 #profileName {
-  text-transform: capitalize;
-  font-weight: 600;
-  text-shadow: 0 0 4px rgba(0, 0, 0, .8)
-}
-
-//Merch Sidebar style
-#merchSidebar {
-  max-height: 75vh;
-  overflow-y: scroll;
-}
-
-//Perk display
-#perkImage {
-  height: 100px;
-  width: 100px;
-  object-fit: cover;
+	text-transform: capitalize;
+	font-size: 3.0em;
+	font-weight: 700;
+	padding: 2px;
 }
 
 //Edit user profile tab
 .form-control {
-  //adds space to the bottom of fields because they're too squished
-  margin-bottom: .5rem;
+	//adds space to the bottom of fields because they're too squished
+	margin-bottom: .5rem;
 }
 
 //MAIN.SCSS: General settings to import bootstrap and change some more default settings
 
 //Overrides Bootstrap-defined variables
 $primary: #8C1D40;
-$baseFontFamily: Arial,Helvetica !default;
+$baseFontFamily: Helvetica !default;
 //Bootstrap files
 //@import "bootstrap-sprockets";
 
