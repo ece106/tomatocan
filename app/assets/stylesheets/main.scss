@@ -166,8 +166,6 @@ footer small {
 }
 
 //FAQ.SCSS: This is all the css specific to the FAQ page
-@import url('https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
-
 ul {
   list-style-type: none;
 
@@ -233,7 +231,6 @@ ul li a.toggle:hover {
 }
 
 //HOME.SCSS: This is all the css specific to the HOME page
-@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet');
 
 #clockdiv {
   color: #fff;
@@ -270,66 +267,6 @@ ul li a.toggle:hover {
   height: 80px;
   width: 70px;
 }
-
-@media only screen and (max-width: 500px) {
-
-  #calendar {
-    padding-left: 20px;
-    padding-right: 0px;
-  }
-  
-  #rewards, #connect {
-    padding-top: 20px;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-
-  .enter_email {
-    width: 120px;
-  }
-}
-
-@media only screen and (max-width: 570px) {
-  .row {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .livestreamInfo {
-    border: 3px solid #8C1D40;
-    margin-left: 20px;
-    padding: 5px;
-  }
-
-  .livestreamInfo h3 {
-    color: #8C1D40;
-    float: left;
-    font-size: 25px;
-  }
-
-  .livestreamInfo h4 {
-    padding-left: 10px;
-    clear: left;
-  }
-}
-
-//This stylesheet is for the Create Perk form.
-#suggestedPerks {
-  margin-top: 20px;
-}
-
-@media only screen and (max-width: 992px) {
-  #suggestedPerks {
-    position: inherit;
-    clear: both;
-    float: left;
-  }
-
-  #priceField {
-    width: 60%;
-  }
-}
-
 
 //PANELS.SCSS: This stylesheet is for panels found in views/layouts and for users/controlpanel 
 
@@ -421,16 +358,6 @@ td {
   box-sizing: border-box;
   font-family: sans-serif;
   display: none;
-}
-
-.expand {
-  background: none;
-  padding: 0;
-  border: none;
-  font-family: arial, sans-serif;
-  color: #069;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 //SHOW.SCSS: Event show page stylesheet
