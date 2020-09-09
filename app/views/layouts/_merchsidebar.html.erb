@@ -16,7 +16,7 @@
 <div class="pl-1" id="merchSidebar">
   <% if !@user.stripeid.present? && @user.id != 143 %>
     <div class="text-center" style="font-family: Helvetica;">
-        <%= @user.name %> has not made sales or donations available yet.
+        <%= @user.name %> is not selling merchandise or acception donations yet.
     </div>
   <% end %>
   <% if @sidebarmerchandise.present? %>
@@ -97,23 +97,16 @@
         <% if @user.stripeid.present? || @user.id == 1337 || @user.id == 1345 %>
 
             <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
-
-                <%= image_tag "logoDigitalHollow300.png", class: "media-object", id: "perkImage", :style => "height: 70px; width: 70px;" %>
-
                 <% btnTxt = ("Donate $" + sprintf('%.2f',25) + "!") %>
                 <%= link_to btnTxt, new_purchase_path(:pricesold => 25.0, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
                 <br /><br />
             </div>
-            <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
-                <%= image_tag "logoDigitalHollow300.png", class: "media-object", id: "perkImage", :style => "height: 70px; width: 70px;" %>
-
+            <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">  
                 <% btnTxt = ("Donate $" + sprintf('%.2f',50) + "!") %>
                 <%= link_to btnTxt, new_purchase_path(:pricesold => 50, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
                 <br /><br />
             </div>
             <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
-                <%= image_tag "logoDigitalHollow300.png", class: "media-object", id: "perkImage", :style => "height: 70px; width: 70px;" %>
-
                 <% btnTxt = ("Donate $" + sprintf('%.2f',100) + "!") %>
                 <%= link_to btnTxt, new_purchase_path(:pricesold => 100, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
             </div>
