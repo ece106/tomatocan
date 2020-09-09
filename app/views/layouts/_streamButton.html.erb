@@ -1,15 +1,9 @@
 <div>
-     <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "About" %> </h1>
-
-     <% if @user.about.present? %>
+    <% if @user.about.present? %>
+        <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "About" %> </h1>
         <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.about %> </h6>
-     <% else %>
-        <h6 class="pt-1 text-center" style="padding-left: 45px; padding-right: 40px;"> <%= "In the control pannel you are able to add a brief summary about yourself." %> </h6>
-     <% end %>
-     
-
-       
-
+    <% end %>
+    
     <div class="pt-5 text-center">
         <%= link_to "Browse Conversation Schedule", root_path, :class => "btn btn-lg ", :style => "border-color: #8d1d40; color: #8d1d40; font-family: Helvetica;" %>
     </div>
