@@ -55,7 +55,7 @@
             <% if user_signed_in? %>
                 <% if current_user.id == @user.id %>
                 <!--Links to seperate edit Reward page-->
-                <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning text-black", :target => "_blank", :style=> "font-size: 1.0em; padding: 5px; width: 100%; width: 120px; font-family: Helvetica;" %>
+                <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning text-black", :target => "_blank" %>
 
                 <% end %>
 
@@ -83,7 +83,7 @@
             <% end %>
 
             <% if @user.stripeid.present? || @user.id == 143 %>
-                <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning text-black", :target => "_blank", :style=> "font-size: 1.4em; padding: 17px; width: 100%; width: 130px; font-family: Helvetica; " %>
+                <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning text-black", :target => "_blank", :style=> "font-size: 1.4em; padding: 17px; width: 130px;" %>
             <% end %>
         </div>
 
