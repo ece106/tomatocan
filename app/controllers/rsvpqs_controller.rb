@@ -8,31 +8,39 @@ class RsvpqsController < ApplicationController
   end
 
   def create
+    checked_captcha = true
     if current_user
       @rsvp = current_user.rsvpqs.build(rsvpq_params)
     else
       @rsvp = Rsvpq.new(rsvpq_params)
+      checked_captcha = verify_recaptcha(model: @user)
     end
 
-    if @rsvp.save
-      flash[:success] = 'Rsvp was successfully created.'
-      event = Event.find(params[:rsvpq][:event_id])
-      offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
-      reminder_date = event.start_at + offset.hours - 1.hours #why is the scope Instance instead of local??? Where else is this needed?
-      email = params[:rsvpq][:email] #why is the scope Instance instead of local??? Where else is this needed?
-      if current_user
-        RsvpMailer.with(user: current_user, event: event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: reminder_date)
+    if checked_captcha
+      if @rsvp.save
+        flash[:success] = 'Rsvp was successfully created.'
+        event = Event.find(params[:rsvpq][:event_id])
+        offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
+        reminder_date = event.start_at + offset.hours - 1.hours #why is the scope Instance instead of local??? Where else is this needed?
+        email = params[:rsvpq][:email] #why is the scope Instance instead of local??? Where else is this needed?
+        if current_user
+          RsvpMailer.with(user: current_user, event: event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: reminder_date)
+        else
+          RsvpMailer.with(email: email, event: event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: reminder_date)
+        end
+        redirect_back(fallback_location: request)
       else
-        RsvpMailer.with(email: email, event: event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: reminder_date)
+        rsvp = Rsvpq.find_by(email: @rsvp.email)
+        if rsvp.nil?
+          flash[:error] = 'Please enter a valid email address'
+        else
+          flash[:error] = 'Entered email already has an rsvp for this event'
+        end
+        redirect_back(fallback_location: root_path)
       end
-      redirect_back(fallback_location: request)
     else
-      rsvp = Rsvpq.find_by(email: @rsvp.email)
-      if rsvp.nil?
-        flash[:error] = 'Please enter a valid email address'
-      else
-        flash[:error] = 'Entered email already has an rsvp for this event'
-      end
+      flash.delete(:recaptcha_error)
+      flash[:error] = 'Please check the captcha box!'
       redirect_back(fallback_location: root_path)
     end
   end
