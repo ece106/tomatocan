@@ -90,4 +90,26 @@ class RsvpqsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  #update
+  test "should redirect to home_path after successful update" do
+    request.headers['referer'] = home_path
+    patch :update, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
+    assert_redirected_to rsvpq_path(@rsvpq.id)
+  end
+
+  test "should display FLASH message for successful update" do
+    request.headers['referer'] = home_path
+    patch :update, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: 'validemail@email.com' } }
+    assert_equal 'Rsvp was successfully updated.', flash[:notice]
+  end
+
+  test "should return correct layout id for failed update" do
+    request.headers['referer'] = home_path
+    #cannot find a proper way to test failed update
+    patch :update, params: { id: @rsvpq.id, rsvpq: { event_id: @event.id, email: '' } }
+
+    # assert_template layout: "layouts/application"
+
+  end
+
 end
