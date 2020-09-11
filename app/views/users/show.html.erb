@@ -18,45 +18,28 @@
     <hr style="width: 44%; height: 1px; border-width:0; color: #8C1D40; background-color:#8C1D40; text-align: center">
 
     <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
-    
             <% if current_user.nil? %>
                 <div class="alert alert-warning fade show" role="alert" style="text-align: center;">
-                <h3>
-                    We're talking about <%= @displayconvo.name %>  right NOW!
-                    <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
-                </h3>
+                    <h3>
+                        We're talking about <%= @displayconvo.name %>  right NOW!
+                        <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+                    </h3>
                 </div>
             <% elsif current_user.id != @user.id %>
                 <div class="alert alert-warning fade show" role="alert" style="text-align: center;">
-                <h3>
-                    We're talking about <%= @displayconvo.name %>  right NOW!
-                    <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
-                </h3>
-            <% end %>
+                    <h3>
+                        We're talking about <%= @displayconvo.name %>  right NOW!
+                        <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+                    </h3>
                 </div>
-
+            <% end %>
+                
     <% end %>
 
     <div class="row pb-3">
         <div class="col-10 col-md-4 col-sm-12">
             <%= render 'layouts/streamButton' %>
 
-            <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "Connect" %> </h1>
-
-            <div class="pt-1 text-center" id="merchImage">
-                <% domainurl = "http://www.thinq.tv/"%>
-                <a onclick="window.open('https://www.facebook.com/thinQtv/');">
-                    <%= image_tag("social-share-button/facebook.png")%>
-                </a>&nbsp
-
-                <a onclick="window.open('https://twitter.com/ThinqTV');">
-                    <%= image_tag("social-share-button/twitter.png")%>
-                </a>&nbsp
-
-                <a onclick="window.open('https://www.linkedin.com/company/thinqtv/');">
-                    <%= image_tag("social-share-button/linkedin.png")%>
-                </a>&nbsp
-            </div>
         </div>
         <div class="col-12 col-md-8 col-sm-12">
             <% if current_user.nil? %>
