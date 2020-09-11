@@ -17,7 +17,27 @@
 
     <hr style="width: 44%; height: 1px; border-width:0; color: #8C1D40; background-color:#8C1D40; text-align: center">
 
-    <div class="row pt-2 pb-3">
+    <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
+    
+            <% if current_user.nil? %>
+                <div class="alert alert-warning fade show" role="alert" style="text-align: center;">
+                <h3>
+                    We're talking about <%= @displayconvo.name %>  right NOW!
+                    <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+                </h3>
+                </div>
+            <% elsif current_user.id != @user.id %>
+                <div class="alert alert-warning fade show" role="alert" style="text-align: center;">
+                <h3>
+                    We're talking about <%= @displayconvo.name %>  right NOW!
+                    <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+                </h3>
+            <% end %>
+                </div>
+
+    <% end %>
+
+    <div class="row pb-3">
         <div class="col-10 col-md-4 col-sm-12">
             <%= render 'layouts/streamButton' %>
 
