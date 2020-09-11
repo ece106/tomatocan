@@ -60,50 +60,50 @@
         </div>
         <div class="col-12 col-md-8 col-sm-12">
             <% if current_user.nil? %>
-            <%= render 'layouts/merchsidebar' %>
-            <% else %>
-            <% if current_user.id == @user.id %>
-            <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
-            <h1 class=" pt-5 text-center maroon " id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
+                <%= render 'layouts/merchsidebar' %>
+             <% else %>
+                    <% if current_user.id == @user.id %>
+                        <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
+                            <h1 class=" pt-5 text-center maroon " id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
 
-            <div class="media pt-2">
-                <div class="mr-3">
-                    <span class="btn btn-warning" style="font-size: 1.5em; padding: 15px; width: 100%; width: 150px; font-family: Helvetica;">
-                        <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPECONNECTCLIENTID %>&scope=read_write" target="_blank" class="text-black" style="font-family: Helvetica; color: black">Connect to Stripe <%= image_tag("social-share-button/stripe.png")%></a>
-                    </span>
-                </div>
-                <div class="media-body" style="font-family: Helvetica;">
-                    <p class="pt-1" style="font-family: Helvetica;">We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> to allow users to seamlessly collect and process payments. <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> connects to your bank account to directly deposit any financial support you obtain from fellow ThinQers. It only takes a few minutes to create an account. You will be making sales and receiving donations in no time.</p>
-                    <br />
-                </div>
-            </div>
-            <% else %>
-            <%= render 'layouts/merchsidebar' %>
-            <% end %>
-            <% else %>
-            <%= render 'layouts/merchsidebar' %>
-            <% end %>
+                            <div class="media pt-2">
+                                <div class="mr-3">
+                                    <span class="btn btn-warning" style="font-size: 1.5em; padding: 15px; width: 100%; width: 150px; font-family: Helvetica;">
+                                        <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPECONNECTCLIENTID %>&scope=read_write" target="_blank" class="text-black" style="font-family: Helvetica; color: black">Connect to Stripe <%= image_tag("social-share-button/stripe.png")%></a>
+                                    </span>
+                                </div>
+                                <div class="media-body" style="font-family: Helvetica; padding-right: 10px;">
+                                    <p class="pt-1" style="font-family: Helvetica;">We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> to allow users to seamlessly collect and process payments. <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> connects to your bank account to directly deposit any financial support you obtain from fellow ThinQers. It only takes a few minutes to create an account. You will be making sales and receiving donations in no time.</p>
+                                    <br />
+                                </div>
+                            </div>
+                        <% else %>
+                            <%= render 'layouts/merchsidebar' %>
+                        <% end %>
+                    <% else %>
+                        <%= render 'layouts/merchsidebar' %>
+                    <% end %>
             <% end %>
 
             <h1 class=" pt-3 text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Conversations Attending" %> </h1>
             <% if @calendar_events.present? %>
-            <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+                <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
 
             <% else %>
-            <% if current_user.nil? %>
-            <div class="text-center" style="font-family: Helvetica;">
-                <%= @user.name %> <%= " has no conversations scheduled." %>
-            </div>
+                 <% if current_user.nil? %>
+                    <div class="text-center" style="font-family: Helvetica;">
+                        <%= @user.name %> <%= " has no conversations scheduled." %>
+                    </div>
 
-            <% elsif current_user.id == @user.id %>
-            <div class="text-center" style="font-family: Helvetica;">
-                <%= "You have no conversations scheduled."%>
-            </div>
-            <% else %>
-            <div class="text-center" style="font-family: Helvetica;">
-                <%= @user.name %> <%= " has no conversations scheduled." %>
-            </div>
-            <% end %>
+                 <% elsif current_user.id == @user.id %>
+                        <div class="text-center" style="font-family: Helvetica;">
+                            <%= "You have no conversations scheduled."%>
+                        </div>
+                 <% else %>
+                    <div class="text-center" style="font-family: Helvetica;">
+                        <%= @user.name %> <%= " has no conversations scheduled." %>
+                    </div>
+                 <% end %>
             <% end %>
         </div>
     </div>
