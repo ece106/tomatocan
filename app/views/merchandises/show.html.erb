@@ -4,9 +4,10 @@
 
 <!--TOP HALF-->
 <div class="text-center">
-    <h1 class="maroon text-dark mt-2 pb-2"><%= @merchandise.name %> </h1>
+    <h1 class="maroon mt-2 pb-2"><%= @merchandise.name %> </h1>
     <% deadline = Date.parse(@merchandise.deadline.to_s)%>
-    <p class="mt-3 text-center text-dark"> <strong> Last Day to Purchase: <%= deadline.strftime('%B/%d/%Y') %> </strong></p>
+    <h2 class="mt-3 text-center text-dark"><small>Last Day to Purchase: <%= deadline.strftime('%B/%d/%Y') %></small></h2>
+    <br>
     <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
     <%= image_tag(@merchandise.itempic.url.to_s, height: '400') %>
     <% end %><br>
@@ -15,7 +16,7 @@
 
     <% if @merchandise.price.present? %>
     <br>
-    <h1 class="pt-0 maroon text-center text-dark"> <small> Price: $<%= sprintf('%.2f', @merchandise.price) %> USD </small></h1>
+    <h2 class="pt-0 maroon text-center text-dark"> <small><strong> Price: $<%= sprintf('%.2f', @merchandise.price) %> USD </strong></small></h2>
     <% end %>
 
     <%if @merchandise.buttontype == 'Donate'%>
@@ -31,17 +32,16 @@
 
 <!--BOTTOM HALF-->
 <br>
-<div class="row px-4 ml-lg-5 mr-lg-5" id="home">
-    <div class="col-lg-9 col-mg-8 col-sm-12 com-xs-12 text-white text-left font-weight-normal">
-        <br>
+<div class="bg-primary row px-4 ml-lg-5 mr-lg-5">
+    <div class="py-4 col-lg-9 col-mg-8 col-sm-12 com-xs-12 text-white text-left font-weight-normal">
         <% if @merchandise.desc.present? %>
-        <p class="white"><strong> Reward Description </strong>
-            <%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %> </p>
+        <h2 class="white"><small><strong> Reward Description </strong><small></h2>
+            <p><%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %> </p>
         <% end %>
 
         <% if @merchandise.audio.present? || @merchandise.merchepub.present? || @merchandise.merchmobi.present? || @merchandise.merchpdf.present? || @merchandise.graphic.present? || @merchandise.video.present? %>
-        <p class="white"> <strong> Attached Files: </strong>
-            <br>
+        <h2 class="white"> <small><strong> Attached Files </strong><small></h2>
+        <p>
             <% end %>
             <% if @merchandise.graphic.present?%>
             <%= @merchandise.graphic_url.split("/")[5]%>
@@ -69,6 +69,8 @@
             <% end %> </p>
     </div>
 </div>
+
+<br>
 
 <% if @merchandise.youtube? %>
     <% if @merchandise.youtube.match(/[0-9A-Za-z]/) && @merchandise.youtube.length < 20 %>
