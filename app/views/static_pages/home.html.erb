@@ -6,15 +6,24 @@
         <%= value %>
       </div>
     <% end %>
+<<<<<<< HEAD
     <br>
     <br>
     <h1 class="text-center text-white py-5 mx-3">
       <strong>STEMinism to make you</strong>
+=======
+    <h1 class="text-center text-white mt-5 pl-5 pt-5">
+      <strong>Powerful Women RoleModels in STEM who make you</strong>
+>>>>>>> 6577f0678219565287bf04c93919b5dcbd85829d
         <%= image_tag("GoldThinQ60.png")%>
     </h1>
     <h2 class="text-center text-white">
+<<<<<<< HEAD
       Video Chat community throughout the day for
       Women & Minorities in STEM
+=======
+      Video Chat community throughout the day to help you find your first STEM job!
+>>>>>>> 6577f0678219565287bf04c93919b5dcbd85829d
     </h2>
 
     <div class=" text-center">
@@ -26,7 +35,11 @@
           <div id="eventCurrentdiv align-items-end " style ="align-text:bottom">
             <p class = "text-white text-center" >
               <br><%= @name %> is LIVE right NOW!<br>
+<<<<<<< HEAD
               <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 28px; background-color:#FFB704; border-color: #FFB704" %>
+=======
+              <%= link_to " Join Mentor Hour ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 40px; border-color: #FFC627" %>
+>>>>>>> 6577f0678219565287bf04c93919b5dcbd85829d
               <br>
               Hosted by: <%= @host.name %>
             </p>
@@ -42,6 +55,7 @@
   </div>
 
 </div>
+<<<<<<< HEAD
   <!-- end of top section-->
   <div class = "pt-4 mt-2 pb-1">
 
@@ -60,6 +74,8 @@
   </div>
 
   <!-- end of new to thinQ section-->
+=======
+>>>>>>> 6577f0678219565287bf04c93919b5dcbd85829d
 
 <div class="row" style="margin-bottom: 70px">
     <!--study hall and conversation section -->
@@ -69,11 +85,11 @@
       <div class="col-lg-12 col-md-12 mx-auto d-block text-center" style = "min-height:42%; justify-content:flex-end">
         <%= render 'layouts/countdown_clock' %>
       </div>
-      <%= image_tag("convo_photo.png", class:"mx-auto d-block pb-3", style: "border-radius: 112px; width: 50%;")%>
-      <h2 class="text-warning text-center"><strong>Conversations</strong>
+      <h2 class="text-warning text-center"><strong>Mentor Hours</strong>
       </h2>
-      <p class = "text-center">Join conversations to better understand what affects minorities and women in STEM <br> through hearing personal experiences.
+      <p class = "text-center">Join video chats where experienced women and minorities empower the next generation of STEM professionals. <br>Ask for advice and find out how to get your first tech job!
       </p>
+      <%= image_tag("convo_photo.png", class:"mx-auto d-block pb-3", style: "border-radius: 112px; width: 50%;")%>
     </div>
 
     <!--end of conversations column-->
@@ -83,13 +99,18 @@
       <div class="col-lg-12 col-md-12 col-sm-7 mx-auto d-block text-center" style = "min-height:42%; justify-content:flex-end">
         <%= render 'layouts/countdown_clockstudy' %>
       </div>
-      <%= image_tag("activism_hall.jpg", class:" mx-auto d-block  pb-3", style: "border-radius:112px; width:50%;")%>
       <h2 class="text-warning text-center pl-5"><strong>
         Drop-In Hours</strong>
       </h2>
       <p class = "text-center">
+<<<<<<< HEAD
         Join a community of developers and designers to network <br> while collaborating and critiquing each others projects. All expertise levels welcome!
       </p>
+=======
+        Join a community of student developers and designers to network and get peer feedback. <br> Please drop in and interrupt us to find out what we're up to!
+      </p>     
+      <%= image_tag("activism_hall.jpg", class:" mx-auto d-block  pb-3", style: "border-radius:112px; width:50%;")%>
+>>>>>>> 6577f0678219565287bf04c93919b5dcbd85829d
     </div>
 </div>
     <!--end of drop in column-->
@@ -99,7 +120,7 @@
           <!-- col-lg-3 col-md-6 -->
           <h1 class = "white">Mentor Hours</h1>
           <% if user_signed_in? %>
-            <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
+            <%= link_to 'Host a Mentor Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
         </div>
       </div>
