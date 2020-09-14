@@ -16,8 +16,8 @@
 <!-- TOP HALF -->
 
 <div class="pt-5 pb-3">
-    <h1 class="maroon text-center text-dark pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
-    <p class="text-center event-name mb-2"><b> <%= @event.name %>! </b></p>
+    <h1 class="maroon text-center pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
+    <h2 class="text-center mb-2"><%= @event.name %>! </h2>
     <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
 </div>
 
@@ -29,7 +29,7 @@
 
 
     <!-- CONVERSATION NAME & HOST -->
-    <div id="home" class="mt-3">
+    <div class="bg-primary mt-3">
         <div class="aboutHeader row">
             <div class="mt-4 ml-md-4 ml-sm-4 ml-xs-0 col-lg-4 col-md-5 col-sm-6 col-xs-4">
                 <!-- WHEN -->
@@ -159,7 +159,7 @@
     <! Left Column -->
         <div class="col-md-8 col-sm-6 pt-4">
             <div>
-                <h2 class="new text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
+                <h2 class="text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
             </div>
             <div class="col-md-12">
                 <div>
@@ -182,7 +182,7 @@
         <! Right Column -->
             <div class="col-md-4 col-sm-6 pt-4">
                 <div>
-                    <strong> Invite your fellow activists </strong>
+                    <h2><small>Invite your fellow activists </small></h2>
                 </div>
                 <div class="row ">
                     <div class="col-md-1 d-flex">

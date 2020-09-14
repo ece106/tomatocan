@@ -48,9 +48,9 @@
     
     <div>
          <% if user_signed_in? %>
-            <br>Don't see your desired hour on the schedule yet? <br>
+            <br><p class="text-center">Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
-          <% end %>
+          <% end %></p>
     </div>
     <br>
     <div class="col-md-12 col-sm-12 col-xs-10 pl-0 ml-2 justify-content-center pr-1">
