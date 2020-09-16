@@ -14,20 +14,13 @@
 <% end %>
 
 <!-- TOP HALF -->
-
 <div class="pt-5 pb-3">
-    <h1 class="maroon text-center pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
-    <h2 class="text-center mb-2"><%= @event.name %>! </h2>
-    <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
+  <h1 class="maroon text-center pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
+  <h2 class="text-center mb-2"><%= @event.name %>! </h2>
+  <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
 </div>
 
-
-
-
-
 <div class="px-4" id="event-page-layout">
-
-
     <!-- CONVERSATION NAME & HOST -->
     <div class="bg-primary mt-3">
         <div class="aboutHeader row">
@@ -59,7 +52,6 @@
                     <%= link_to " Join " + @event.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-primary border-warning text-warning btn-md mt-2 mb-2" %>
                     <% end %>
                 </div>
-
             </div>
 
             <!-- RSVP -->
@@ -143,16 +135,13 @@
                             <% end %>
                         </div>
                     </div>
-
                     <% end %>
-
                 </div>
             </div>
         </div><br>
     </div>
 </div>
 </div>
-
 
 <!-- BOTTOM HALF -->
 <div class="row pl-5 py-3">
@@ -166,23 +155,23 @@
                     <strong> Desktop: </strong>
                 </div>
                 <div>
-                    <p class="mb-0 mt-0"> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
-                            click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %>
-                    </p>
+                  <p class="mb-0 mt-0"> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
+                    click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %>
+                  </p>
                 </div>
                 <div>
                     <strong>Mobile: </strong>
                 </div>
                 <div>
-                    <p class="mb-0 mt-0"> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom </small> </p>
+                  <p class="mb-0 mt-0"> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom </small> </p>
                 </div>
             </div>
         </div>
 
-        <! Right Column -->
+        <!-- Right Column -->
             <div class="col-md-4 col-sm-6 pt-4">
                 <div>
-                    <h2><small>Invite your fellow activists </small></h2>
+                  <h2><small>Invite Students in Tech </small></h2>
                 </div>
                 <div class="row ">
                     <div class="col-md-1 d-flex">
