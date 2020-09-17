@@ -69,12 +69,6 @@ module Api
       end
     end
 
-    post '/oauth/google' do
-      uri = URI("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=#{params[:id_token]}")
-      res = NET::HTTP.get(uri)
-      puts(res)
-    end
-
     post '/register' do
       user = User.new(params[:user])
 

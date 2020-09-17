@@ -99,14 +99,4 @@ Rails.application.routes.draw do
       get 'buy'
     end
   end
-
-  #namespace :api do
-  #  devise_for :users
-  #  resources :users
-  #  resources :sessions
-  #  resources :events
-  #end
-
-  
-
 end
