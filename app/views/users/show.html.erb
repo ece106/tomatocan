@@ -35,11 +35,23 @@
             <% end %>
                 
     <% end %>
+    <% if current_user.nil? %>
+    <% else %>
+        <% if current_user.id == @user.id %>
+            <% if !@user.about.present? %>
+                <div class="alert alert-primary fade show" role="alert" style="text-align: center;">
+                    <h3>
+                        Your profile is weak, There is information needed
+                        <%= link_to "click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-dark"%>
+                    </h3>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
 
     <div class="row pb-3">
         <div class="col-10 col-md-4 col-sm-12">
             <%= render 'layouts/streamButton' %>
-
         </div>
         <div class="col-12 col-md-8 col-sm-12">
             <% if current_user.nil? %>
