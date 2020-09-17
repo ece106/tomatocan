@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Api::UsersApi, at: "/"
+
   resources :relationships
 
   resources :users do
@@ -98,13 +100,13 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api do
-    namespace :v1 do
-      devise_for :users
-      resources :users
-      resources :sessions
-      resources :events
-    end
-  end
+  #namespace :api do
+  #  devise_for :users
+  #  resources :users
+  #  resources :sessions
+  #  resources :events
+  #end
+
+  
 
 end
