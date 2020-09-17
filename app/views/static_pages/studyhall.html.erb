@@ -26,8 +26,8 @@
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div class = "col-sm-12" id="eventCurrentdiv">
               <h3>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff " %></h3>
-              <p> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving NOW ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera mt-1", style: "position: relative; font-size: 30px; border-radius: 5px;" %>
+              <p> right now!</p><br>
+              <%= link_to " Join Group Problem Solving Now ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera mt-1", style: "position: relative; font-size: 24px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -45,7 +45,7 @@
     <div class="col-sm-12">
       <h1 class = "text-center text-primary pl-4 ml-1"><b>Drop-In Schedule</b></h1>
     </div>
-    
+
     <div>
          <% if user_signed_in? %>
             <br><p class="text-center">Don't see your desired hour on the schedule yet? <br>
@@ -67,7 +67,7 @@
         </div>
       </div>
     </div>
-      
+
     <div class="tabPanel" >
       <div class="container-fluid mr-5 pr-5">
        <div id="events">
@@ -80,7 +80,7 @@
 </div>
 
 <br>
-  
+
     <h2 class="text-center text-primary" > <strong>
       We currently have Drop-In hours for 3 topics:</strong>
     </h2>
@@ -95,7 +95,7 @@
           </div>
             <div class="card-body mr-5 pr-5">
               <h4> <a class="btn btn-primary btn-lg btn-block text-center" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
-            User Experience <br> 
+            User Experience <br>
               </a></h4>
               <div class="collapse" id="collapseTwo">
                 <div>
@@ -103,7 +103,7 @@
                 - Be in the video chat viewer for each other incase you want feedback from others with UX career interests. <br>
                 - Form a support group available several hours per day who are there when you want to be around others also improving their User experience skills.<br>
                 </div>
-              </div> 
+              </div>
             </div>
         </div>
       </div>
@@ -116,7 +116,7 @@
           </div>
           <div class="card-body mr-5 pr-5">
             <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
-             RUBY ON RAILS Web Development <br> 
+             RUBY ON RAILS Web Development <br>
               </a>
             </h4>
               <div class="collapse" id="collapseOne">
@@ -140,7 +140,7 @@
           </div>
           <div class="card-body mr-5 pr-5">
             <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">
-             WOMAN DEVELOPERS <br> 
+             WOMAN DEVELOPERS <br>
               </a></h4>
               <div class="collapse" id="collapseThree">
                 <div>
@@ -151,7 +151,7 @@
               </div>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
 
     <script type="text/javascript">

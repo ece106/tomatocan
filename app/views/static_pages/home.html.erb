@@ -1,19 +1,22 @@
 <div class="row bg-primary mt-2 pl-5">
-    
+
   <div class="col-lg-5 pt-3 pb-4 pl-5 ml-3">
   <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>" style = "height:50px">
         <%= value %>
       </div>
     <% end %>
+
     <h1 class="text-center text-white mt-5 pl-5 pt-5">
       <strong>Powerful Women RoleModels in STEM who make you</strong>
         <%= image_tag("GoldThinQ60.png")%>
     </h1>
-    <br>
     <h2 class="text-center text-white">
       Video Chat community throughout the day to help you find your first STEM job!
     </h2>
+
+    <div class=" text-center">
+      <a id="home-scroll" href="#conversations"><u>Check Out the Converstaion Schedule</u></a>
 
     <% if @conversations.count != 0 %><br>
       <% if @start_time != nil %>
@@ -24,15 +27,15 @@
               <%= link_to " Join Mentor Hour ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 40px; border-color: #FFC627" %>
               <br>
               Hosted by: <%= @host.name %>
-            </p>  
+            </p>
           </div>
         <% end %>
       <% end %>
     <% end %>
-
+</div>
   </div>
-  
-  <div class="col-lg-6 pt-5 pb-5 pl-5 ml-3 mb-5 mt-5 pr-2">
+
+  <div class="col-lg-6 py-5 my-5 mx-3">
     <%= image_tag("HomeBanner.png", style: "width:100%;")%>
   </div>
 
@@ -67,12 +70,12 @@
         Join a community of student developers and designers to network and get peer feedback. <br> Please drop in and interrupt us to find out what we're up to!
       </p>     
       <%= image_tag("activism_hall.jpg", class:" mx-auto d-block  pb-3", style: "border-radius:112px; width:50%;")%>
+
     </div>
 </div>
     <!--end of drop in column-->
 </div>
-
-      <div>   
+      <div>
         <div class="convo-container text-center" style="background-color: #8C1D40">
           <!-- col-lg-3 col-md-6 -->
           <h1 class = "white">Mentor Hours</h1>
@@ -88,7 +91,7 @@
           <button onclick="showPanel(1,'#4caf50')">Daily View</button>
           <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
         </div>
-        
+
         <div class="tabPanel">
           <%= render 'layouts/convocalendar', collection: @conversations %>
         </div>
