@@ -97,7 +97,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   def stripe_token_create user
     card_token = Stripe::Token.create( { card: { number: "#{@card_number}",
                                          exp_month: '8',
-                                         exp_year: '2020',
+                                         exp_year: '2024',
                                          cvc: '123' } } ) 
     Stripe::Customer.create(source: card_token,
                             description: 'test',
