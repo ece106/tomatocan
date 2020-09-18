@@ -227,7 +227,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-                                 :twitter, :title, :profilepic, :remember_me,
+                                 :twitter, :title, :profilepic, :remember_me, :resume,
                                  :facebook, :youtube1, :youtube2,
                                  :youtube3, :updating_password, :attendid,
                                  :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
