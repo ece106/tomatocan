@@ -1,4 +1,4 @@
-class RsvpMailer < ApplicationMailer
+https://thinq.tv/womantechfounder/viewerclass RsvpMailer < ApplicationMailer
 
     before_action do
         @event = params[:event]
@@ -30,7 +30,7 @@ class RsvpMailer < ApplicationMailer
 
     def set_url
         @event_url = event_url(host:'ThinQ.tv', id: @event.id)
-        @user_url = "https://thinq.tv" + "/" + User.find(@event.user_id).permalink + "/viewer"
+        @user_url = "https://thinq.tv" + "/" + User.find(@event.user_id).permalink + "/viewer?chatrm=" + @event.topic 
         @share_url = "https://thinq.tv"
     end
 

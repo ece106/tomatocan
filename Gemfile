@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.6.3"
+ruby "2.7.0"
 
 gem "rails", "~> 6"
 gem "sprockets", "~> 3"
@@ -44,6 +44,9 @@ gem 'popper_js', '~> 1.16.0'
 gem 'recurring_select'
 gem 'recaptcha', require: "recaptcha/rails"
 gem 'activity_notification'
+#gem "grape"
+#gem 'grape-active_model_serializers'
+#gem 'jwt'
 
 group :test, :development do
   gem 'minitest'

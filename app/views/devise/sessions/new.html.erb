@@ -13,70 +13,72 @@
         <% end %>
 
         <div class="well">
-          <div style="text-align:center">
-            <h1>Login</h1>
-            <p>Not a member? <%= link_to "Sign up", new_user_signup_path %></p>
-            <p>Didn't receive confirmation email? <%= link_to "Resend", new_user_confirmation_path %></p>
-          </div>
-          <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
-          <!--Used to display error message when invalid credentials are inputted -->
-          <%= render "layouts/flash_messages"%>
-          <!-- Email Box -->
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon pr-3 pt-2" style="font-size:20px">
-                &#9993
-              </div>
-              <%= f.email_field :email, placeholder: "Email", :autofocus => true, :class => "form-control" %>
+            <div style="text-align:center">
+                <h1>Login</h1>
+                <p>Not a member? <%= link_to "Sign up", new_user_signup_path %></p>
+                <p>Didn't receive confirmation email? <%= link_to "Resend", new_user_confirmation_path %></p>
             </div>
-          </div>
-
-          <!-- Password Box -->
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-lock pr-3 pt-2" style="font-size:20px"></i>
-              </div>
-              <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
+            <%= form_for(resource, :as => resource_name, :url => user_session_path) do |f| %>
+            <!--Used to display error message when invalid credentials are inputted -->
+            <%= render "layouts/flash_messages"%>
+            <!-- Email Box -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon pr-3 pt-2" style="font-size:20px">
+                        &#9993
+                    </div>
+                    <%= f.email_field :email, placeholder: "Email", :autofocus => true, :class => "form-control" %>
+                </div>
             </div>
-          </div>
 
-          <!-- Forgot Password Link -->
-          <div style="text-align:right; margin-top:-10px; margin-bottom:-10px">
-            <%= link_to "Forgot your password?", new_user_password_path %>
-          </div>
+            <!-- Password Box -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-lock pr-3 pt-2" style="font-size:20px"></i>
+                    </div>
+                    <%= f.password_field :password, placeholder: "Password", :class => "form-control" %>
+                </div>
+            </div>
 
-          <!-- Remember Me Button -->
-          <% if devise_mapping.rememberable? -%>
+            <!-- Forgot Password Link -->
+            <div style="text-align:right; margin-top:-10px; margin-bottom:-10px">
+                <%= link_to "Forgot your password?", new_user_password_path %>
+            </div>
+
+            <!-- Remember Me Button -->
+            <% if devise_mapping.rememberable? -%>
             <div class="checkbox">
-              <label>
-                <p><%= f.check_box :remember_me, :type => "checkbox" %> Remember me?</p>
-              </label>
+                <label>
+                    <p><%= f.check_box :remember_me, :type => "checkbox" %> Remember me?</p>
+                </label>
             </div>
-          <% end -%>
+            <% end -%>
 
-          <!-- Agree to ToS Prompt -->
-          <div style="text-align:center; margin-top:-15px; margin-bottom:-10px">
-            <small>By clicking 'Sign In,' you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
-          </div>
+            <!-- Agree to ToS Prompt -->
+            <div style="text-align:center; margin-top:-15px; margin-bottom:-10px">
+                <small>By clicking 'Sign In,' you agree to the ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+            </div>
 
-          <!-- Sign In Button -->
-          <%= f.submit "Sign In", :class => "form-control btn-primary" %>
+            <!-- Sign In Button -->
+            <%= f.submit "Sign In", :class => "form-control btn-primary" %>
 
-          <div class="row" style="text-align:center; padding-bottom:10px">
-            <hr style="border: 1px solid grey;">
-          </div>
-          <div style="text-align:center"> 
-            <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
-              <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
-              <b>Sign In With Facebook</b> 
-            </a>
-            <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
-              <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
-              <b>Sign In With Google</b> 
-            </a>
-          </div>
-        <% end %>
+
+            <div class="row" style="text-align:center; padding-bottom:10px">
+                <hr style="border: 1px solid grey;">
+            </div>
+
+            <div style="text-align:center">
+                <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
+                    <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
+                    <b>Sign In With Facebook</b>
+                </a>
+                <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
+                    <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
+                    <b>Sign In With Google</b>
+                </a>
+            </div>
+            <% end %>
         </div>
       </div>
     </div>
