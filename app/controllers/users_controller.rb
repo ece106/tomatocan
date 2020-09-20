@@ -166,19 +166,19 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @recaptcha_checked = verify_recaptcha(model: @user)
-    if @recaptcha_checked 
+    #@recaptcha_checked = verify_recaptcha(model: @user)
+    #if @recaptcha_checked 
       if @user.save
-      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-      UserMailer.with(user: @user).welcome_email.deliver_later
+        redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+        UserMailer.with(user: @user).welcome_email.deliver_later
       else
         redirect_to new_user_signup_path, danger: signup_error_message
         @user.errors.clear
       end
-    else 
-      redirect_to new_user_signup_path, danger: signup_error_message + "Please check the captcha box!"
-      @user.errors.clear
-    end
+    #else 
+    #  redirect_to new_user_signup_path, danger: signup_error_message + "Please check the captcha box!"
+    #  @user.errors.clear
+    #end
   end
 
   # PUT /users/1.json
