@@ -169,8 +169,11 @@ class UsersController < ApplicationController
     #@recaptcha_checked = verify_recaptcha(model: @user)
     #if @recaptcha_checked 
       if @user.save
-        redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-        UserMailer.with(user: @user).welcome_email.deliver_later
+        sign_in @user
+        redirect_to user_profileinfo_path(current_user.permalink) 
+        #email confirmation not really helpful, more of an annoyance. Seems to be broken on new heroku
+        #redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+        #UserMailer.with(user: @user).welcome_email.deliver_later
       else
         redirect_to new_user_signup_path, danger: signup_error_message
         @user.errors.clear
