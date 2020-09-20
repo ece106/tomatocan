@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   end
 
   def viewer
-    @users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:event]])
-    @count = users.count
+    @users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:event]]) #This unhelpful array has been disabled. Should be an integer
+    @count = @users.count
     pdtnow = Time.now - 7.hours + 5.minutes
     currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
     @otherconvos = []
