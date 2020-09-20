@@ -38,11 +38,11 @@ class RsvpqsController < ApplicationController
         end
         redirect_back(fallback_location: root_path)
       end
-    else
-      flash.delete(:recaptcha_error)
-      flash[:error] = 'Please check the captcha box!'
-      redirect_back(fallback_location: root_path)
-    end
+    #else
+    #  flash.delete(:recaptcha_error)
+    #  flash[:error] = 'Please check the captcha box!'
+    #  redirect_back(fallback_location: root_path)
+    #end
  # end
 
 
