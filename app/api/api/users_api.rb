@@ -31,7 +31,7 @@ module Api
           token = auth_header.split(' ')[1]
           begin
             if Rails.env.production?
-              JWT.decode(token, ENV['JWT_SECRET'], true, { algorithm: 'HS256' })
+              #JWT.decode(token, ENV['JWT_SECRET'], true, { algorithm: 'HS256' })
             else
               JWT.decode(token, JWT_SECRET, true, { algorithm: 'HS256' })
             end
