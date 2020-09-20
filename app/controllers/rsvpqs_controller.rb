@@ -43,7 +43,7 @@ class RsvpqsController < ApplicationController
     #  flash[:error] = 'Please check the captcha box!'
     #  redirect_back(fallback_location: root_path)
     #end
- # end
+  end
 
 
   def update
