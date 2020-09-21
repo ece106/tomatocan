@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   end
 
   def viewer
-    @users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:event]])
+    @users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:event]]) #This unhelpful array has been disabled. Should be an integer
+    @count = @users.count
     pdtnow = Time.now - 7.hours + 5.minutes
     currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
     @otherconvos = []
@@ -165,19 +166,22 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @recaptcha_checked = verify_recaptcha(model: @user)
-    if @recaptcha_checked 
+    #@recaptcha_checked = verify_recaptcha(model: @user)
+    #if @recaptcha_checked 
       if @user.save
-      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-      UserMailer.with(user: @user).welcome_email.deliver_later
+        sign_in @user
+        redirect_to user_profileinfo_path(current_user.permalink) 
+        #email confirmation not really helpful, more of an annoyance. Seems to be broken on new heroku
+        #redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+        #UserMailer.with(user: @user).welcome_email.deliver_later
       else
         redirect_to new_user_signup_path, danger: signup_error_message
         @user.errors.clear
       end
-    else 
-      redirect_to new_user_signup_path, danger: signup_error_message + "Please check the captcha box!"
-      @user.errors.clear
-    end
+    #else 
+    #  redirect_to new_user_signup_path, danger: signup_error_message + "Please check the captcha box!"
+    #  @user.errors.clear
+    #end
   end
 
   # PUT /users/1.json
