@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Api::UsersApi, at: "/"
+#  mount Api::UsersApi, at: "/"
 
   resources :relationships
 

@@ -5,7 +5,7 @@
     <meta property="og:url" content="<%= " https: //www.thinq.tv" + user_profile_path(@user.permalink) %>" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="View <%= @user.name %>'s profile on ThinQ.tv" />
-    <meta property="og:description" content="Connect with <%= @user.permalink %> in talking about <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %>" />
+    <meta property="og:description" content="Mentorship with <%= @user.permalink %> on <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %> through small group conversations" />
     <% if @user.profilepic.present? %>
     <meta property="og:image" content="<%= @user.profilepic.url.to_s %>" />
     <% else %>
