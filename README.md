@@ -1,3 +1,24 @@
+BRANCH MANAGEMENT SYSTEM:
+
+  Master will be the one constant branch
+  
+  When editing the code, do not edit directly on Master
+    
+    Instead, create a new branch based on Master
+    
+    This branch will go by the following naming scheme:
+    
+       "first_and_last_initials_brief_description_of_changes_date"
+       
+       For example:
+          
+          jl_invitation_logistics_09-14
+           *Note the underscore to separate words
+
+
+
+ORIGINAL README CONTENT:
+
 The intention of this repository is to be used as a project for developers of all skill levels to improve their skills by contributing code and by assisting junior developers with their code contributions. The founder encourages women entrepreneurs to be the primary mentors, mentees, and leaders in this project and advocates for women's voices to be heard and heeded in the software development community.
 
 RoleModel Enterprises, LLC, owns the copyright to all code, design, and graphics contributed to this repository. Contributors grant copyright of any code, design, and graphics they contribute to this repository to RoleModel Enterprises, LLC. Contributors may reuse their code contributions and the knowledge gained from working on this project, provided it meets the following criteria:
