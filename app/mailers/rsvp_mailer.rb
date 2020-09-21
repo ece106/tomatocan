@@ -1,4 +1,4 @@
-https://thinq.tv/womantechfounder/viewerclass RsvpMailer < ApplicationMailer
+class RsvpMailer < ApplicationMailer
 
     before_action do
         @event = params[:event]
