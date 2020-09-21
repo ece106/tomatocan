@@ -1,0 +1,113 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: user1 product
+  user_id: 1
+  price: 1.5
+  desc: desc of user1 product
+  itempic: picture of user1 product
+  buttontype: Buy
+two:
+  name: Donate $1.50!
+  user_id: 2
+  price: 1.5
+  desc: MyText
+  itempic: MyString
+  merchmobi: Test.mobi
+  buttontype: Donate
+three:
+  name: MyString
+  user_id: 3
+  price: 1.5
+  desc: MyText
+  itempic: MyString
+  graphic: Test.jpg
+  buttontype: Buy
+four:
+  name: MyString
+  user_id: 4
+  price: 1.5
+  desc: MyText
+  itempic: MyString
+  video: Test.mp4
+  buttontype: Donate
+five:
+  name: MyString
+  user_id: 5
+  price: 1.5
+  desc: MyText
+  itempic: MyString
+  merchepub: Test.epub
+  buttontype: Buy
+six:
+  name: MyString
+  user_id: 6
+  price: 1.5
+  desc: MyText
+  itempic: MyString
+  audio: Test.mp3
+  buttontype: Buy
+seven:
+  name: donateTest!
+  user_id: 1
+  price: 2
+  desc: Donation
+  itempic: donate.jpg
+  buttontype: Donate
+
+# FK goes to user_id 3 (seller)
+merchandise_with_attachment:
+  user_id: 3
+  name: Test Donation
+  price: 7.0
+  desc: "Test merchandise description."
+  itempic:
+  goal:
+  youtube:
+  audio:
+  video:
+  graphic:
+  merchepub:
+  merchmobi:
+  merchpdf: rails5.pdf
+  expiration:
+  buttontype: "Buy"
+
+# FK goes to user_id 3 (seller)
+merchandise_as_donation:
+  user_id: 3
+  name: Test Donation
+  price: 7.0
+  desc:
+  itempic:
+  goal:
+  youtube:
+  audio:
+  video:
+  graphic:
+  merchepub:
+  merchmobi:
+  merchpdf:
+  expiration:
+  buttontype: "Donate"
+  
+one_empty_attachments:
+  name: user1 product
+  user_id: 1
+  price: 1.5
+  desc: desc of user1 product
+  itempic: picture of user1 product
+  merchpdf: 
+  price: 2
+  desc: Donation
+  itempic: donate.jpg
+  buttontype: Donate
+
+one_with_attachment:
+  name: user1 product
+  user_id: 1
+  price: 1.5
+  desc: desc of user1 product
+  itempic: picture of user1 product
+  merchpdf: user1.pdf
+  buttontype: Buy

@@ -1,0 +1,63 @@
+<div class="col">
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <input type="hidden" id="timeZone" name="timeZone">
+
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "*Title of Event" %></h3>
+    <p class="help-block">Will your event have a detailed topic? Do you have an area of expertise?</p>
+    <%= f.text_field :name, size: 80 %><p>
+  </div>
+<br>
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "*Topic" %></h3>
+    <p class="help-block">Will your event be a Drop-In Hour or a Conversation</p>
+    <%= f.select(:topic, ['DropIn', 'Conversation', 'Group Problem Solving'], {}) %><p>
+  </div>
+
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "Start Time" %></h3>
+    <p class="help-block" id="hb1"></p>
+    <%= f.datetime_select :start_at, ampm: true, default: 3.days.from_now, minute_step: 60, start_year: Date.today.year, end_year: Date.today.year + 1 %>
+  </div>
+
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "Details about Topic" %></h3>
+    <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
+    <%= f.text_area :desc, cols: 82, rows: 7 %><p>
+  </div>
+</div>
+
+<script>   //JAVASCRIPT DOES _NOT_!!! BELONG IN ERB!!!!!
+  function getTimezoneName() {
+      const today = new Date();
+      const short = today.toLocaleDateString(undefined);
+      const full = today.toLocaleDateString(undefined, {
+          timeZoneName: 'long'
+      });
+
+      // Trying to remove date from the string in a locale-agnostic way
+      const shortIndex = full.indexOf(short);
+      if (shortIndex >= 0) {
+          const trimmed = full.substring(0, shortIndex) + full.substring(shortIndex + short.length);
+
+          // by this time `trimmed` should be the timezone's name with some punctuation -
+          // trim it from both sides
+          return trimmed.replace(/^[\s,.\-:;]+|[\s,.\-:;]+$/g, '');
+
+      } else {
+          // in some magic case when short representation of date is not present in the long one, just return the long one as a fallback, since it should contain the timezone's name
+          return full;
+      }
+  }
+
+  var offset = -1 * (new Date().getTimezoneOffset() / 60)
+  if (offset < 0) {
+      offset = "-" + ("0" + (-1 * offset)).slice(-2) + ":00"
+  } else {
+      offset = "+" + ("0" + offset).slice(-2) + ":00"
+  }
+  
+  document.getElementById("timeZone").value = offset
+  document.getElementById("hb1").innerHTML = getTimezoneName()
+  document.getElementById("hb2").innerHTML = getTimezoneName()
+</script>

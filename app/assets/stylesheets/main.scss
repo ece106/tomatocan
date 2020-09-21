@@ -1,0 +1,27 @@
+@import "styles/faq";
+@import "styles/fellowship";
+@import "styles/home";
+//All files should be combined into 3 or 4 _x.scss 
+
+//Overrides Bootstrap-defined variables
+@import "base/variables";
+$primary: #8C1D40;
+$baseFontFamily: Arial,Helvetica !default;
+//Bootstrap files
+//@import "bootstrap-sprockets";
+
+@import "font-awesome";
+//Global styles
+@import "base/header";
+@import "base/footer";
+@import "base/globals";
+//Individual stylesheets loaded here
+@import "styles/new";
+
+@import "styles/users";
+@import "styles/panels";
+@import "styles/show";
+
+@import "styles/stripe-modal";
+@import "calendar/styles";
+@import "bootstrap";

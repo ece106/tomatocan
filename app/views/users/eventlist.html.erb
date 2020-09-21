@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+<% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
+
+
+  <h2 class="panel-heading pl-3">
+    Your Upcoming Conversations
+  </h2>
+  <% if @events.present? %>
+    <table class="table" id="event-list-table">
+      <tr lass="table">
+        <th class = "text-white">Conversation </th>
+        <th class = "text-white">Time</th>
+
+        <th></th>
+      </tr>
+      <% i = 0%>
+      <% @events.sort_by{|t| t.start_at}.each do |event| %>
+        <% i += 1%>
+        <tr class = "text-left ">
+          <td><%= link_to event.name, event, class: "event-name" %></td>
+          <td id="t<%=i%>"><%= event.start_at.strftime("%A %B %d, %Y at %I:%M %p") %></td>
+          <script>
+            var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+            date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+            var options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'long', year: 'numeric' };
+            document.getElementById('t<%=i%>').innerHTML = date.toLocaleString(undefined, options);
+          </script>
+          <td><%= link_to "Edit", edit_event_path(event) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

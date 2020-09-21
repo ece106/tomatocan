@@ -1,0 +1,2 @@
+module RsvpqsHelper
+end

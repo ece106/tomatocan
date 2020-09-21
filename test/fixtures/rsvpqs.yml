@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  user: one
+  guests: 1
+
+two:
+  event: one
+  user: one
+  guests: 1
+
+valid_rsvpq_one:
+  id: 1
+  event_id: 6
+  user_id: 6
+  guests: 1
+
+valid_rsvpq_two:
+  id: 2
+  event_id: 3
+  user_id: 2  

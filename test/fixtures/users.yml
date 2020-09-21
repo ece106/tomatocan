@@ -1,0 +1,126 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  name: Phineas
+  email: fake@fake.com
+  permalink: user1
+  twitter: twitter
+  facebook: facebook
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  stripeid: acct_1H0YzoAlogCn5OBe
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
+  remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
+
+two:
+  id: 2
+  name: name2
+  email: dontchangethisemail@orthisfixture.entry
+  permalink: user2
+  twitter: MyString2
+  facebook: MyString2
+  youtube: MyString2
+  genre1: MyString2
+  genre2: MyString2
+  genre3: MyString2
+  profilepic: MyString2
+  author: reader
+  about: MyText2
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %>
+  remember_token: MyString2
+  confirmed_at: 2020-06-15 19:57:29.51622
+  stripeid: acct_1H0vyKAvnEuc14O3
+
+seller:
+  id: 3
+  name: Test Seller
+  email: seller@mail.com
+  permalink: test_buyer1
+  twitter: twitter
+  facebook: facebook
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  stripeid: acct_1H0YzoAlogCn5OBe
+  encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
+  remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
+
+buyer:
+  id: 4
+  name: Test Buyer
+  email: buyer@mail.com
+  permalink: buyer1
+  twitter: twitter
+  facebook: facebook
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
+  remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
+
+donator:
+  id: 5
+  name: Test Donator
+  email: donator@mail.com
+  permalink: donator1
+  twitter: twitter
+  facebook: facebook
+  youtube: youtube
+  genre1: first_genre1
+  genre2: second_genre1
+  genre3: third_genre1
+  profilepic: hello.jpg
+  youtube1: /frlveggg
+  author: author
+  about: MyText
+  twitter: MyTwitter
+  encrypted_password: <%= User.new.send(:password_digest, "secret123") %> # min password size is 8
+  remember_token: MyString
+  confirmed_at: 2020-06-15 19:57:29.51622
+
+confirmedUser:
+  id: 6
+  name: userconfirmed
+  email: thinqtesting@gmail.com
+  permalink: userconfirmed
+  stripeid: acct_1H0YzoAlogCn5OBe
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
+  remember_token: MyString
+  confirmation_token: fVQxEs5s9vC2VawpbZam
+  confirmed_at: 2020-06-15 19:57:29.51622
+  confirmation_sent_at: 2020-06-15 19:56:37.3012
+  provider: "facebook"
+  uid: "98765"
+
+unconfirmedUser:
+  id: 7
+  name: unconfirmed
+  permalink: unconfirmed
+  email: unconfirmed@gmail.com
+  encrypted_password: <%= User.new.send(:password_digest, "user1234") %> # min password size is 8
+  confirmation_token: fVQxEs5s9vC2VawpbZbb
+  confirmation_sent_at: 2020-06-15 19:56:37.3012
+  unconfirmed_email: newunconfirmedemail@gmail.com

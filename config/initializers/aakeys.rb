@@ -1,0 +1,15 @@
+DEVISE_SECRET_KEY = 'fake'
+AWS_KEY = 'morefake'
+AWS_SECRET_KEY = 'pretend'
+AWS_BUCKET = 'yourawsbucketname'
+STRIPE_SECRET_KEY = "madeup"
+STRIPE_PUBLIC_KEY = "allfake"
+GMAIL_PWD = "superfake"
+Stripe.api_key = STRIPE_SECRET_KEY
+STRIPE_CONNECT_CLIENT_ID = "superfake"
+FACEBOOK_APP_ID = "numbers"
+FACEBOOK_APP_SECRET = "secret"
+GOOGLE_CLIENT_SECRET = 'fake'
+GOOGLE_CLIENT_ID = 'fake'
+RECAPTCHA_PUBLIC_KEY="6LelOMoZAAAAAHf06wrU_7HuY7PLUOcLtW188gno"
+RECAPTCHA_PRIVATE_KEY="6LelOMoZAAAAAEyfkaZP0-uyir839k_q-in4X6r-"

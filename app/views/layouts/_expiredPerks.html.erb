@@ -1,0 +1,34 @@
+
+<div class="card border-primary">
+
+	<div class="card-header bg-primary text-white">
+		Past Rewards
+	</div>
+	<div class="card-body">
+		<!--Pull in any merch whose expiration date is before current date-->
+      <% if @expiredmerchandise.present? %>
+ 		<% @expiredmerchandise.each do |merch| %>
+ 		  <div class ="row">
+			<div class="pull-left">
+			  <% if merch.itempic.present? %>
+				<%= image_tag merch.itempic.url.to_s, class: "media-object", id: "perkImage" %>
+			  <% else %>
+			    <% "put a spacer in here" %>
+			  <% end %>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">
+					<%= link_to(merch.name, merchandise_path(merch.id, :groupid => params[:groupid]) ) %> <!-- Why is there a groupid here? Merchandise doesnt even have a groupid!!!!?? -->
+				</h4>
+              <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "btn btn-warning pull-right" %>
+        	</div>
+          </div><br>
+		<% end %>
+      <% end %>
+
+	</div>
+</div>
+
+<!-- Notes:
+At some point, users may want to reuse expired Rewards. Since we save all Rewards past their date anyway, we can let them change their expiration from here to place them back in the merchsidebar panel.
+-->

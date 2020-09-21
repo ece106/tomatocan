@@ -1,0 +1,98 @@
+<div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+        <%= form_for(resource, :as => resource_name, :url => user_registration_path) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Sign Up</b>
+          </div>
+          <p>Already a member? <%= link_to 'Sign in', "/login" %>!</p>
+        </div>
+          
+          <!-- Name Box -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :name, placeholder: "Name: Enter your name or the name of your organization" ,:autofocus => true, :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Email Box -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon pr-3 pt-2" style="font-size:20px">
+                &#9993
+              </div>
+              <%= f.email_field :email, placeholder:"Email", :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Username Box -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon pr-2 pt-2">
+                ThinQ.tv/
+              </div>
+              <%= f.text_field :permalink, placeholder: "Username: Less than 20 alphanumeric characters only", maxlength: 20, :class => "form-control" %>
+            </div>
+          </div>
+
+          <!-- Password Boxes -->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon pr-3 pt-2">
+                <i class="fa fa-lock" style="font-size:20px"></i>
+              </div>
+              <%= f.password_field :password, placeholder:"Enter password (Minimum 8 characters)", :class => "form-control" %>
+            </div>
+            <div class="input-group" style="padding:15px 0px 0px 0px">
+              <div class="input-group-addon">
+                <i class="fa fa-lock pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.password_field :password_confirmation, placeholder:"Confirm password", :class => "form-control" %>
+            </div>
+          </div>
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-8" >
+              <small>By clicking 'Sign Up', you agree to the <br> ThinQ.tv <%= link_to("Terms of Service", tos_path, :target => "_blank") %>.</small><br><br>
+            </div>
+            <div class="col-md-4" >
+              <%= f.submit "Sign Up", :class => "form-control btn-primary" %>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+          
+          <div style="text-align:center"> 
+            <a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
+              <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
+              <b>Sign Up With Facebook</b> 
+            </a>
+            <b>  <b>
+            <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
+              <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
+              <b>Sign Up With Google</b> 
+            </a>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

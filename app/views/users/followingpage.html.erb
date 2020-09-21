@@ -1,0 +1,33 @@
+<head>
+<title> <% "Support " + @user.name + "'s Projects" %> </title>
+</head>
+
+<% @title="Get Sneak Preview access to " + @user.name + " stories here!" %>
+
+<div id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="page-content" >
+      <div class="container-flex" style="margin-top:-30px; ">
+
+<% if @user.following.count > 0 %>
+  <% @user.following.each do |tmpFollowing| %>
+
+    <div class="col-md-3 col-sm-4 col-xs-6" >
+      <div class="row" style="vertical-align:top; horizontal-align:center; height:250px; width:170px; overflow:hidden;" >
+        <% if tmpFollowing.profilepic.present? %>
+          <%= link_to(image_tag(tmpFollowing.profilepic.url.to_s, :height => "170",  :title => tmpFollowing.name ),user_profile_path(tmpFollowing.permalink)) %>
+        <% end %>
+      <br><%= link_to tmpFollowing.name, user_profile_path(tmpFollowing.permalink) %>
+      <br><br>
+      </div>
+    </div>
+  <% end %>
+
+<% else  %>
+      <div><h1>You Are Not Following Anyone</h1></div>
+<% end %>
+
+    </div>
+  </div>
+</div>
+</div>

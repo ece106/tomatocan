@@ -1,0 +1,46 @@
+<div class="col-lg-8 col-md-6">
+<%= form_for @user, :html => {:multipart => true} do |f| %>
+
+
+<div class="card border-primary">
+<h3 class="card-header bg-primary text-white">
+	Account
+</h3>
+<div class="card-body ">
+
+	<div class="form-group">
+		<h3><%=f.label :name, "Email" %></h3>
+		<p class="help-block">Change your email address.</p>
+		<%= f.text_field :email, :type => "email", :class => "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<h3><%=f.label :name, "Password" %></h3>
+		<%= link_to "Change Password", user_changepassword_path(@user.permalink), :method => :get, :class => "btn btn-secondary"%>
+	</div>
+
+	<div class="form-group">
+		<h3><%=f.label :name, "Custom URL" %></h3>
+		<p class="help-block">For a limited time, you will be allowed to change your custom URL handle. Alphanumeric characters only. URL handle must be less than 20 characters.</p>
+		<div class="input-group">
+			<div class="input-group-addon pt-2">ThinQ.tv/</div>
+			<%= f.text_field :permalink, placeholder: "yourcustomurl", maxlength: 20, :class => "form-control" %>
+		</div>
+	</div>
+	<!--Future build for connect to Stripe button-->
+	<!--div class="form group">
+		<h3>Connect to Stripe</h3>
+		<p class-->
+	<div class="btn-group btn-group-lg" id="editProfileButton">
+		<%= link_to 'Cancel', "/" + current_user.permalink, :class => "btn btn-secondary cancel-acct-settings-btn", :id => "cancelProfileButton" %>
+		<%= f.submit "Save Changes", :class => "btn btn-primary save-acct-info-btn", :id => "saveProfileButton"%>
+	</div>
+</div>
+</div>
+
+<% end %>
+</div>
+
+<!-- Notes:
+Test to ensure form posts correctly
+-->

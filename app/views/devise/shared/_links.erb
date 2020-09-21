@@ -1,0 +1,32 @@
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Sign in", new_user_session_path %><br />
+<% end -%>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "Sign up", new_user_signup_path %><br />
+<% end -%>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+  <br><%= link_to "Forgot your password?", new_user_password_path %><br /><br />
+<% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path %><br />
+<% end -%>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path %><br />
+<% end -%>
+
+<%- if devise_mapping.omniauthable? %>
+
+<a href="/users/auth/facebook" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; margin-right: 6px; font-family: Helvetica, Arial, sans-serif; font-size: 15px;background-color: rgb(52,121,235); color: #fff;">
+              <%= image_tag("facebook_square_icon.png", :style => "width:30px; height:30px; margin-left: -5px") %>
+              <b>Sign In With Facebook</b> 
+
+</a>
+  <a href="/users/auth/google_oauth2" style="border: 1px solid transparent; border-radius: 3px; padding: 7px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; background-color: #db3236; color: #fff;">
+              <%= image_tag("Google-G-Logo.png", :style => "width:20px; height:20px; margin-left: 0px; margin-top: -3px; margin-right: 3px") %>
+              <b>Sign In With Google</b> 
+            </a>
+<% end -%>

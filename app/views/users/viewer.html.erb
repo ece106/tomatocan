@@ -1,0 +1,155 @@
+<% if user_signed_in? %>
+  <% current_user.update_column(:last_viewed, params[:id]) %>
+  <% attendrecord = Attendance.new(:user_id => current_user.id, :time_in => (Time.now - 7.hours)) %>
+  <% attendrecord.save %>
+
+  <!-- Update list of users attending the conversation -->
+  <div class = "container-fluid">
+  <% content_for :head do %>
+    <meta property="og:url"           content="<%= "https://www.thinq.tv" + user_profile_path(@user.permalink) %>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Join <%= @user.permalink %>'s Conversation" />
+    <meta property="og:description"   content="<%= @user.permalink %>'s Conversation is happening right now!" />
+    <% if @user.profilepic.present? %>
+      <meta property="og:image"       content="<%= @user.profilepic.url.to_s %>" />
+    <% else %>
+      <meta property="og:image"       content="https://www.thinq.tv/logoDigitalHollow300.png" />
+    <% end %>
+  <% end %>
+</div>
+  <div class="row pt-4 mt-4 pl-3">
+    <div class="col-md-3">
+      <div style="padding: 0px 0px 5px 0px">
+        <%= render 'layouts/merchsidebar' %>
+      </div>
+
+      <!-- Invite Area -->
+      <div style = "padding: 3px 5px 7px 5px; font-size: 18px; background-color: #F2EBE4">
+        <b>Invite friends to join this conversation</b>
+        <div style = "font-size: 15px; margin-left: 7px">
+          Invite via E-Mail:
+        </div>
+        <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
+
+        <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+          Invite via SMS:
+        </div>
+        <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
+
+        <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+          Invite via social media:
+        </div>
+
+        <% eventUrl = "https://thinq.tv/#{request.original_fullpath}" #wtf is req.origfullpath %>
+        <div style="margin-left: 17px">
+          <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
+            twitterLink: "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("Come join the conversation on #{eventUrl}")}",
+            linkedInLink: "https://www.linkedin.com/shareArticle?mini=true&url=#{ERB::Util.url_encode(eventUrl)}"%>
+        </div>
+      </div>
+
+      <% if current_user.id == @user.id %>
+      <div class = "border-left border-right border-bottom border-primary pb-1">
+        <div class="panel panel-primary">
+          <div class=" bg-primary text-white card-header pb-2">        
+              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>
+          </div>
+          <div id="attendees"></div>
+        </div>
+      </div>
+      <%end%>
+    </div>
+
+    <div class="col-md-9">
+      <%= render 'layouts/jitsi' %>
+      <% if !@otherconvos.empty? %>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Other conversations happening right now
+          </div>
+          <div class = "container">
+            <% @otherconvos.each do |t| %>
+              <%= link_to t.name, user_profile_path, class: "btn btn-info", style: "background-color: #8C1D40; border-radius: 5px;" %>
+            <%end%><br><br>
+          </div>
+        </div>
+        <div>
+      <%end%>
+
+      <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 20px; margin-left: -20px">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
+          <div id="demo" class="collapse" style="font-size: 13px; padding-left: 5px">
+            - Reload the page. (Press F5) - or -<br>
+            - If you have slow wifi, turn off your camera. (Click on the camera icon above) - or -<br>
+            - Turn up the volume on your speakers. - or - <br>
+            - Update Chrome or Firefox to the latest version. - or - <br>
+            - Download the JITSI Meet app onto your phone and join the THINQTV chatroom on the app. - or -<br>
+            - Call in on your phone: 1.512.402.2718 PIN: 968 707 817# (For audio only)<br>
+            - You may also type in the chat - click on the Open/Close Chat icon next to the hand above.<br>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
+    // save current user id
+    var currID = "<%= current_user.id %>"
+    var attendrec = "<%= attendrecord.id %>"
+
+    // get url params
+    const urlParams = new URLSearchParams(window.location.search);
+
+    //check if user is blocked every 300 seconds
+    function isBlocked() {
+      $.post("/users/is_blocked", null, (data) => {
+        if (data.includes("<%= @user.permalink %>")) {
+          window.location.replace("/blocked")
+        }
+      })
+      setTimeout(isBlocked, 300000);
+    }
+
+    // check if user is signed in every 30 seconds
+    function signedIn() {
+      $.post("/users/signed_in", null, (data) => {
+        if (data.success == false) {
+          $.post("/users/unload", {currentUser: currID}) //blockcontroller inherits from actioncontroller should know what current_user is. this is dumb
+          location.reload()
+        }
+      })
+      setTimeout(signedIn, 300000);
+    }
+
+    // load attendees list
+    function loadAttendees(){
+      $.get("/conversations/attendees", {event: urlParams.get('event'), currentUser: "<%= current_user.id %>", owner: "<%= @user.id %>"}, (data) => {
+        if (data.success == true)
+          $('#attendees').html(data.html)
+      })
+      setTimeout(loadAttendees, 300000);
+    }
+
+    // unload actions
+    $(window).on('beforeunload', (event) => {
+      // remove user from attendees list
+      $.post("/users/unload", {attendid: attendrec, event: urlParams.get('event')})
+    });
+
+    // makes all links on viewer page open in new tab
+    $(document).ready(() => {
+      $("a").attr("target", "_blank");
+    	
+    });
+
+
+    // run all functions
+    isBlocked()
+    signedIn()
+    loadAttendees()
+  </script>
+<% else %>
+
+  <meta http-equiv="refresh" content="0; URL=https://thinq.tv/login"/>
+<% end %>

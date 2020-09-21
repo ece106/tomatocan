@@ -1,0 +1,168 @@
+<div class="container pt-5">
+
+<% if user_signed_in? %>
+  <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <% if Rails.env.development? || Rails.env.test? %>
+            <div class="alert alert-danger alert-dismissible fade in clearfix" id="stripeAlert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <span class="clearfix">
+                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Rewards!</span>
+                <span class="pull-right">
+                  <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPE_CONNECT_CLIENT_ID %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
+                </span>
+              </span>
+            </div>
+          <% else %>
+            <div class="alert alert-danger alert-dismissible fade in clearfix" id="stripeAlert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <span class="clearfix">
+                <span id="stripeAlertText">You must <strong><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank">connect to Stripe</a></strong> to sell Rewards!</span>
+                <span class="pull-right">
+                  <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write" target="_blank"><%= image_tag("stripebutton.png")%></a>
+                </span>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+<% end %>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Create a Reward</h1>
+        <p>Offer your fans a Reward they can purchase on your page or during your live conversations. Don't worry, you can edit these details later!<br><br><i>All items offered for sale through ThinQ.tv are meant to be immediately available or fulfilled within a week.</i></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offet-2">
+
+        <%= form_for(@merchandise) do |f| %>
+        <% if @merchandise.errors.any? %>
+        <div id="error_explanation">
+            <h3><%= pluralize(@merchandise.errors.count, "error") %> prohibited this Reward from being saved:</h3>
+            <ul> <% @merchandise.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+        <% end %>
+
+        <div class="form-group">
+            <h3><%= f.label :buttontype, "*Type" %></h3>
+            <p class="help-block">The <i>Buy</i> option allows a viewer to purchase a Reward.<br>The <i>Donate</i> option allows a viewer to make a donation to your work.</p>
+            <%= f.select :buttontype, [['Buy','Buy'],['Donate','Donate']], autofocus: true %>
+        </div>
+
+        <div class="form-group">
+            <h3><%= f.label :name, "*Title" %></h3>
+            <p class="help-block">Choose a descriptive name for this Reward or donation.</p>
+            <%= f.text_field :name, :class => "form-control", autofocus: true, id: "merchandise_name" %>
+        </div>
+
+        <div class="form-group">
+            <h3><%= f.label :price, "*Price" %></h3>
+            <p class="help-block">Enter the cost of this Reward.</p>
+            <div class="input-group" id="priceField">
+                <div class="input-group-addon">$</div>
+                <%= f.text_field :price, :class => "form-control" %>
+                <div class="input-group-addon">.00</div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <h3><%= f.label :desc, "Description" %></h3>
+            <p class="help-block">Describe this Reward or donation.</p>
+
+            <%= f.text_area :desc, :rows => "5", :class => "form-control" %>
+        </div>
+
+        <div class="form-group">
+            <h3><%= f.label :itempic, "Image" %></h3>
+            <p class="help-block">Upload an image of the Reward or donation (JPEG, GIF, or PNG).</p>
+            <%= f.file_field :itempic, :class => "form-control"%>
+        </div>
+
+        <div class="form-group perkField">
+            <h3><%= f.label :youtube, "YouTube Video" %></h3>
+            <p class="help-block">If you have a YouTube video about your Reward, paste the URL below.</p>
+            <%= f.text_field :youtube, :class => "form-control"  %>
+        </div>
+
+        <div class="form-group perkField">
+            <h3><%= f.label :filetype, "File" %></h3>
+            <p class="help-block">If you're offering a downloadable Reward, select the file's format.</p>
+            <!--Not ruby generated because it doesn't interact with the database.-->
+            <select id="perkFiletype", class="form-control">
+                <option value="blank">Select a filetype...</option>
+                <option value="audio">Audio (podcast, song, etc.)</option>
+                <option value="ebook">eBook (Kindle, Nook, etc.)</option>
+                <option value="ebook">Document (screenplay, book chapter, etc.)</option>
+                <option value="graphic">Graphic (photo, digital painting, etc.)</option>
+                <option value="video">Video</option>
+            </select>
+            <h3 class="uploadLabel" style="display:none"><label>Upload File</label></h3>
+            <div class="audioField">
+                <p class="help-block">.mp3, .wav, .m4a</p>
+                <%= f.file_field :audio, :class => "form-control" %>
+            </div>
+            <div class="ebookField">
+                <p class="help-block">.epub</p>
+                <%= f.file_field :merchepub, :class => "form-control" %>
+            </div>
+            <div class="ebookField">
+                <p class="help-block">.mobi</p>
+                <%= f.file_field :merchmobi, :class => "form-control" %>
+            </div>
+            <div class="documentField eBookField">
+                <p class="help-block">.pdf</p>
+                <%= f.file_field :merchpdf, :class => "form-control"%>
+            </div>
+            <div class="graphicField documentField">
+                <p class="help-block">.jpg, .jpeg, .gif, .png, .tif</p>
+                <%= f.file_field :graphic, :class => "form-control" %>
+            </div>
+            <div class="videoField">
+                <p class="help-block">.avi, .mp4</p>
+                <%= f.file_field :video, :class => "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h3><%= f.label :deadline, "*Purchase deadline" %></h3>
+            <p class="help-block">Choose the last day fans can purchase this Reward.</p>
+            <%= f.date_select :deadline, :class => "form-control", selected: Date.today + 2.months, :start_year => Date.today.year, :end_year => Date.today.year + 1, required: true %>
+        </div>
+
+        <%= f.submit "Create Reward", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
+        <% end %>
+
+    </div>
+
+    <div class="col-lg-5 col-md-4 col-md-offset-6 affix perkField pl-5 ml-5" id="suggestedPerks">
+        <h4>Need help? Try one of our suggested Rewards!</h4>
+        <div class="list-group">
+            <%= link_to "Tickets to your local event", "#", :class => "list-group-item", :id => 'suggestionA', :onclick => "suggest1()" %>
+            <%= link_to "Post to your fan's Facebook page", "#", :class => "list-group-item", :id => 'suggestionB', :onclick => "suggest2()" %>
+            <%= link_to "@mention your fan on Twitter", "#", :class => "list-group-item", :id => 'suggestionC', :onclick => "suggest3()" %>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<%# <script>
+  const stage = Jcrop.attach('target');
+stage.listen('crop.move',function(widget,e){
+  const pos = widget.pos;
+  console.log(pos.x,pos.y,pos.w,pos.h);
+});
+</script> %>

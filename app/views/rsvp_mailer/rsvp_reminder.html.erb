@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Conversation Reminder</title>
+</head>
+
+<body style="font-family: 'Montserrat', sans-serif;">
+  <div style="font-size: 12pt; margin: 10px auto 10px auto; text-align: left; width : 60%; padding: 1%;">
+    <table align="center">
+      <td align="center">
+        <%= image_tag attachments['logoDigitalHollow300.png'].url, size: "100x94"%>
+      </td>
+    </table>
+    <h1 style="font-size: 25px; color: #8C1D40; font-style: bold;" align="center">
+      <i><%=@event.name%></i> is happening at <%=@time%> ThinQ.tv!<br>
+    </h1>
+    <br>
+    <p> <%if @user.nil? %><%else%><%=@user.name%>,<%end%><br>
+      Thank you for RSVPing for <i><%=@event.name%></i> on ThinQ.tv hosted by <%=@event_owner%>!<br>
+      <table align="center">
+        <td align="center">
+          <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 18px; text-decoration: none; background-color: #8C1D40; color: #fff;"
+            href=<%=@user_url%> 
+            target="_blank"
+            rel="noopener noreferrer">
+            🎥Join Conversation
+          </a>
+        </td>
+      </table>
+      Don't keep this social-intellectual opportunity to yourself - Invite friends and colleagues!
+
+      <table align="center">
+        <td align="center">
+          <!-- Facebook share -->
+          <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
+            href="https://www.facebook.com/share.php?u=<%=@user_url%>&quote=<%=URI::encode(@share_message)%>"
+            target="_blank"
+            rel="noopener noreferrer">
+            <%= image_tag attachments['facebook.png'].url %> Facebook
+          </a>
+          <!-- Twitter share -->
+          <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
+            href="https://twitter.com/intent/tweet?url=<%=@user_url%>&text=<%=URI::encode(@share_message)%>"
+            target="_blank"
+            rel="noopener noreferrer">
+            <%= image_tag attachments['twitter.png'].url %> Twitter
+          </a>
+          <!-- Linkedin share -->
+          <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
+            href="https://linkedin.com/shareArticle?mini=true&url=<%=@user_url%>" 
+            target="_blank"
+            rel="noopener noreferrer">
+            <%= image_tag attachments['linkedin.png'].url %> Linkedin
+          </a>
+          <!-- Email share -->
+          <a style="display: inline-block; margin-top: 8px; margin-bottom: 10px; border: 1px solid transparent; border-radius: 5px; padding: 8px; font-size: 15px; text-decoration: none; background-color: #8C1D40; color: #fff;"
+            href="mailto:?subject=<%=URI::encode(@share_email_subject)%>&body=<%=ERB::Util.url_encode(@share_email_content)%>"
+            target="_blank">
+            <%= image_tag attachments['email.png'].url %> Email
+          </a>
+        </td>
+      </table>
+    </p>
+  </div>
+
+  <div style="background-color: #8B0942; margin: 10px auto 10px auto; padding: .5%; ">
+    <h1 style="color:white; font-size: 40px;" align=center>See You Soon!</h1>
+    <table align="center" width="100%" style="width: 60%; border: 0px; text-align: center; margin: auto; padding: 0; border-spacing: 0px; border-color: none;border-collapse: collapse;">
+      <tr>
+        <td colspan="4">
+        <p style="color:white; font-size: 15px;">Contact us<br><a href="mailto:info@thinq.tv" alt="Email"
+            target="_blank"
+            style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;">info@ThinQ.tv</a><br>Washington DC: 703-495-3185<br> Scottsdale: 602-888-3089</p>
+        </td>
+        <td colspan="4">
+        <p style="color:white; font-size: 15px;">Headquarters<br>ASU Venture Devils Suite 1951<br>1475 N.Scottsdale Rd,<br>Scottsdale, AZ 85257</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p style="color: #8B0941">ref id: <%=('a'..'z').to_a.shuffle[0,8].join%></p>
+        </td>
+      </tr>
+    </table>
+</body>
+
+</html>

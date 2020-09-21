@@ -1,0 +1,9 @@
+<% users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:id]]) %>
+<% count = users.count %>
+<p style="font-size:15px">
+  <% if count == 1 %>
+    <%= count %> ThinQer live NOW!
+  <% else %>
+    <%= count %> ThinQers live NOW!
+  <% end %>
+</p>

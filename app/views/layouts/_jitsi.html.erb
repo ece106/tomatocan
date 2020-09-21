@@ -1,0 +1,27 @@
+<script src="https://meet.jit.si/external_api.js"></script>
+<% username = 'thinQer' %>
+<% if user_signed_in? %> 
+    <% username = current_user.name%>
+<% end %>
+
+<script>
+	jQuery(document).ready(function($) {
+		var domain = "meet.jit.si";
+		var options = {
+			roomName: "<%= params[:chatrm] %>",
+			parentNode: document.querySelector('#meet'),
+            userInfo: {
+                displayName: "<%= username %>"
+            }
+		}
+		var api = new JitsiMeetExternalAPI(domain, options);
+	});
+</script>
+<div class="card">
+	<h5 class="card-header bg-primary text-white">
+	  <%= @user.name %>'s Live Conversation
+	</h5>
+	<div class="panel-body embed-responsive embed-responsive-16by9">
+	  <div class="embed-responsive-item" id="meet"></div>
+	</div>
+</div>

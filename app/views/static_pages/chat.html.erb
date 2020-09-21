@@ -1,0 +1,26 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="ThinQ.tv" content="Conversations to make you ThinQ and take action: thought-provoking conversations to feed your brain">
+<title>ThinQtv - Conversations to make you ThinQ</title>
+</head>
+
+<div class="row">
+
+  <script src="https://meet.jit.si/external_api.js">  </script>
+  <script>
+    jQuery(document).ready(function($) {
+      var domain = "meet.jit.si";
+      var options = {
+        roomName: "thinqtv/ux",
+        width: 1300,
+        height: 900,
+        parentNode: document.querySelector('#meet')
+      }
+      var api = new JitsiMeetExternalAPI(domain, options);
+    });
+  </script>
+
+  <div id = "meet">
+  </div>
+
+</div>

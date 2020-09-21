@@ -1,0 +1,46 @@
+<title> ThinQ TV - <%= @user.name %>'s site</title>
+
+<% @descname = @user.name.gsub(/ +/, '-')
+if @user.genre1 ; @genreone = @user.genre1.gsub(/ +/, '-') else @genreone = "_"  end
+if @user.genre2 ; @genretwo = "," + @user.genre2.gsub(/ +/, '-') else @genretwo = "_" end
+if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genrethree = "_" end %>
+
+<div class="row" id="profileBanner">
+	<% if @user.bannerpic.present? && @user.bannerpic != '' %>
+		<%= image_tag @user.bannerpic.url.to_s, height: "300", :id => "userBannerImage"%>
+	<% else %>
+		<%= image_tag "profile_banner.png", height: "300", :id => "userBannerImage" %>
+	<% end %>
+</div>
+
+<div class="row" id="profileHeader">
+	<% if @user.profilepic.present? && @user.profilepic != '' %>
+		<div class="col-sm-12">
+			<%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage" %>
+		</div>
+	<% else %>
+		<div class="col-sm-12">
+			<%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "profileImage", style: "background-color:white" %>
+		</div>
+	<% end %>
+	<div class="col-sm-12 text-primary pt-6">
+		<h1 class="maroon" id="profileName maroon"><%= @user.name %></h1>
+		<% if @user.genre1.blank? == false %>
+
+			<span id="profileDescription"> <%= @user.genre1 %>
+				<% if @user.genre2.blank? == false %>
+				, <%= @user.genre2 %>
+				<% end %>
+				<% if @user.genre3.blank? == false %>
+				, <%= @user.genre3 %>
+				<% end %>
+				</span>
+		<% end %>
+	</div>
+</div>
+
+
+<!--This is what shows up in Facebook when you past a link to this page into a comment-->
+<% content_for :forusers do %>
+<meta name="description" content="<%= "Ask_" + @descname + "_questions_about:" + @genreone + @genretwo + @genrethree %>">
+<% end %>

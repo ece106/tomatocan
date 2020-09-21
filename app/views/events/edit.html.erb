@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+<% if current_user.id == @event.user_id %>
+<div class="container" >
+  <div class="row" >
+    <% if @event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+        <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row pt-5">
+      <%= form_for @event do |f| %>
+        <%= render "events/form_edit", f: f, event: @event %>
+        <%= f.submit "Save", class: "btn btn-lg btn-primary update-event-btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>

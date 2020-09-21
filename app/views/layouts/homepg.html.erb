@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta tags for share buttons-->
+    <meta property="og:url"           content="http://www.thinq.tv" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="STEMinism to make you THINQ" />
+    <meta property="og:description"   content="STEMinism to make you THINQ: Mentor women & minorities in STEM through small group video conversations." />
+    <meta property="og:image"         content="http://www.thinq.tv/logoDigitalHollow300.png" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= render 'application/favicon' %>
+
+
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag "application", media: 'all', 'data-turbolinks-track': 'reload'  %>
+    <%= javascript_include_tag "https://js.stripe.com/v2/", 'application', 'data-turbolinks-track' => true %>
+    <link rel="shortcut icon" type="favicon.ico" href='<%= image_tag "starIcon.png", width: "100%" %>'>
+
+
+    <%= csrf_meta_tags %>
+
+    <% if Rails.env.development? || Rails.env.test? %>
+        <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+    <% else %>
+        <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
+    <% end %>
+
+  <% if content_for? :forusers %>
+    <%= yield :forusers %>
+  <% end %>
+
+</head>
+
+<body class="pt-5">
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=2402037363343589&autoLogAppEvents=1"></script>
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+        <%= render 'layouts/header' %>
+
+        <main id="homeWrapper">
+            <%= yield %>
+        </main>
+
+        <%= render 'layouts/footer' %>
+
+    
+</body>
+</html>

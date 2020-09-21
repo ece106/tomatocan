@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<link href='https://fonts.googleapis.com/css?family=Montserrat&display=swap' rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <title>Donation Received</title>
+</head>
+<body style="font-family: 'Montserrat', sans-serif; text-align: center;">
+  <br>
+  <div class = "header">
+    <h2>ThinQ.tv</h2>
+  </div>
+  <br>      
+  <div style="font-size: 18pt; margin: 10px auto 10px auto; text-align: left; width : 60%; padding: 1%;" >
+    <h1 style="font-size: 40px; color: #8B0942; font-style: bold;" align="center" >You have received a donation on ThinQ.tv!</h1>
+    <br>
+    <p> <%=@seller.name %>,<br><br>
+
+    You have received a donation of $<%=@purchase.pricesold%>. Go to <a href="https://thinq.tv" target="_blank" style="color: #8B0942; text-decoration-line: none;">ThinQ.tv</a> to review your dashboard.<br><br>
+    
+    Best, <br>
+    ThinQ.tv
+    </p>
+    <div class = "img">
+        <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
+      </div>
+      <br> 
+    </div>  
+   <div style="background-color: #8B0942; margin: 10px auto 10px auto; padding: .5%; ">
+    <table align="center" width="100%" style="width: 60%; border: 0px; text-align: center; margin: auto; padding: 0; border-spacing: 0px; border-color: none;border-collapse: collapse;">
+        <td colspan="4"><p style = "color:white; font-size: 15px;">Contact us<br><a href="mailto:info@thinq.tv" alt="Email" target="_blank" style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;">info@ThinQ.tv</a><br>Washington DC: 703-495-3185<br> Scottsdale: 602-888-3089</p>
+        </td>
+        <td colspan="4"><p style = "color:white; font-size: 15px;">Headquarters<br>ASU Venture Devils Suite 1951<br>1475 N.Scottsdale Rd,<br>Scottsdale, AZ 85257</p>
+        </td>
+        <td colspan="4">
+        <p style = "color:white; font-size: 15px;" class="f-header">Share</p>
+        <% url = "https://thinq.tv/" %>
+        <% desc = "Join the ThinQ.tv coalition to stop online sexual harassment!"%>
+        <!-- Facebook Share -->
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
+        <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
+        <!-- Twitter Tweet -->
+        <a href="https://twitter.com/intent/tweet?hashtags=ThinQtv&text=Join%20the%20ThinQ.tv%20coalition%20to%20stop%20online%20sexual%20harassment!&tw_p=tweetbutton&url=http%3A%2F%2Fwww.ThinQ.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
+        <!-- LinkedIn Share -->
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=ThinQtv&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['linkedin.png'].url%></a>
+        <!-- Email Share -->
+        <a href="mailto:?subject=Join the ThinQ.tv coalition to stop online sexual harassment!&amp;body=You are invited to participate in the conversations at ThinQ.tv <%= url %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0A", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['email.png'].url%></a>
+  </div>
+  <br>
+      </td>
+</table>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<div style="height: 40px;"></div>
+<div class="container">
+	
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+	<div class="col-md-12">
+		<h1>Edit Reward: <%=@merchandise.name %></h1>
+		<p>Make changes to a Reward you've created, including changing its associate file, price, and purchase deadline date.</p>
+	</div>
+</div>
+	
+<div class="row">
+	<% if @merchandise.user_id == current_user.id %>
+		<%= form_for(@merchandise) do |f| %>
+  		<% if @merchandise.errors.any? %>
+    		<div id="error_explanation">
+				<h2><%= pluralize(@merchandise.errors.count, "error") %> prohibited this reward from being saved:</h2>
+				<ul>
+					<% @merchandise.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+      			</ul>
+			</div>
+  		<% end %>
+</div>
+		
+<div class="row">
+	<div class="col-md-6 col-md-offet-2">
+			
+		<div class="form-group">
+			<h3><%= f.label :buttontype, "*Reward Type" %></h3>
+			<p class="help-block">The<i>Buy</i> Reward option will allow a viewer to give you money in exchange for a download or reward. The <i>Donate</i> option will not require you to offer anything in return for a purchase.</p>
+			<%= f.select :buttontype, [['Buy','Buy'],['Donate','Donate']], autofocus: true %>
+		</div>
+
+		<div class="form-group">
+			<h3><%= f.label :name, "*Title" %></h3>
+			<p class="help-block">Change the title of this Reward.</p>
+			<%= f.text_field :name, :class => "form-control", autofocus: true %>
+		</div>
+
+		<div class="form-group">
+			<h3><%= f.label :price, "*Price" %></h3>
+			<p class="help-block">Change the cost of this Reward.</p>
+			<div class="input-group" id="priceField">
+				<div class="input-group-addon">$</div>
+				<%= f.text_field :price, :class => "form-control" %>
+				<div class="input-group-addon">.00</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h3><%= f.label :desc, "Description" %></h3>
+			<p class="help-block">Change the description of this Reward.</p>
+
+			<%= f.text_area :desc, :rows => "5", :class => "form-control" %>
+		</div>
+
+		<div class="form-group perkField">
+			<h3><%= f.label :itempic, "Image" %></h3>
+			<p class="help-block">Add or change the image of this Reward.</p>
+			<%= f.file_field :itempic, :class => "form-control" %>
+		</div>
+
+		<div class="form-group perkField">
+			<h3><%= f.label :youtube, "YouTube Video" %></h3>
+			<p class="help-block">If you have a YouTube video about your Reward, paste the URL below.</p>
+			<%= f.text_field :youtube, :class => "form-control"  %>
+		</div>
+
+		<div class="form-group perkField">
+			<h3><%= f.label :filetype, "File" %></h3>
+			<p class="help-block">Upload a file or change the file associated with this Reward.</p>
+			<!--Not ruby generated because it doesn't interact with the database.-->
+			<select id="perkFiletype", class="form-control">
+				<option value="blank">Select a filetype...</option>
+				<option value="audio">Audio (podcast, song, etc.)</option>
+				<option value="ebook">eBook (Kindle, Nook, etc.)</option>
+				<option value="ebook">Document (screenplay, book chapter, etc.)</option>
+				<option value="graphic">Graphic (photo, digital painting, etc.)</option>
+				<option value="video">Video</option>
+			</select>
+			<h3 class="uploadLabel" style="display:none"><label>Upload File</label></h3>
+			<div class="audioField">
+				<p class="help-block">.mp3, .wav, .m4a</p>
+				<%= f.file_field :audio, :class => "form-control" %>
+			</div>
+			<div class="ebookField">
+				<p class="help-block">.epub</p>
+				<%= f.file_field :merchepub, :class => "form-control" %>
+			</div>
+			<div class="ebookField">
+				<p class="help-block">.mobi</p>
+				<%= f.file_field :merchmobi, :class => "form-control" %>
+			</div>
+			<div class="documentField eBookField">
+				<p class="help-block">.pdf</p>
+				<%= f.file_field :merchpdf, :class => "form-control" %>
+			</div>
+			<div class="graphicField documentField">
+				<p class="help-block">.jpg, .jpeg, .gif, .png, .tif</p>
+				<%= f.file_field :graphic, :class => "form-control" %>
+			</div>
+			<div class="videoField">
+				<p class="help-block">.avi, .mp4</p>
+				<%= f.file_field :video, :class => "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h3><%= f.label :deadline, "*Deadline Date" %></h3>
+			<p class="help-block">Change the last date that fans can purchase this Reward on.</p>
+			<%= f.date_select :deadline, :class => "form-control", :start_year => Date.today.year, :end_year => Date.today.year + 1 %>
+		</div>
+
+		<%= f.submit "Save Reward", :class => "btn btn-lg btn-primary", :id => "perkSubmit" %>
+	</div>
+		<% end %>
+		<% end %>
+	</div>
+</div>
+

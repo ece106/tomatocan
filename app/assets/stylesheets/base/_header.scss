@@ -1,0 +1,69 @@
+// fixes somes spacing issues with buttons
+
+.navbar-btn {
+  // bottom padding
+  margin-right: 25px;
+
+  .landing-sign-up-btn {
+    width: 100px;
+  }
+
+  .landing-sign-in-btn {
+    width: 100px;
+  }
+  // signup colors
+
+  .btn-primary {
+    color: $brand-gray;
+    background-color: $brand-primary;;
+    border-color:#771936;
+    font: "Helvetica"
+  }
+  // signin colors
+
+  .btn-default {
+    color: $brand-secondary;
+    background-color: $brand-primary;
+    border-color: $brand-secondary;
+    font: "Helvetica"
+  }
+}
+//logo padding and size
+.navbar-brand {
+  padding: 4px 4px 4px 15px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $brand-gray;
+  font-family: "Helvetica";
+
+}
+//is this used anywhere
+#absoluteWrapper {
+  padding-top: 30px;
+}
+//when hovering over logo make it slightly bigger
+#navbarLogo {
+  &:hover {
+    transform: scale(1.15) rotate(-12deg);
+  }
+}
+/*
+when this block was deleted - it did not change anything
+
+@media (max-width: 768px) {
+	.navbar .navbar-nav .navbar-btn{
+		float: none;
+		vertical-align: top;
+	}
+
+	.navbar-btn {
+		float: center;
+		text-align: center;
+	}
+
+	.navbar .navbar-collapse {
+		text-align: center;
+	}
+}
+*/
