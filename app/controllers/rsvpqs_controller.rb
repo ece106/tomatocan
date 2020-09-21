@@ -8,15 +8,15 @@ class RsvpqsController < ApplicationController
   end
 
   def create
-    checked_captcha = true
+    #checked_captcha = true
     if current_user
       @rsvp = current_user.rsvpqs.build(rsvpq_params)
     else
       @rsvp = Rsvpq.new(rsvpq_params)
-      checked_captcha = verify_recaptcha(model: @user)
+      #checked_captcha = verify_recaptcha(model: @user)
     end
 
-    if checked_captcha
+#    if checked_captcha
       if @rsvp.save
         flash[:success] = 'Rsvp was successfully created.'
         event = Event.find(params[:rsvpq][:event_id])
@@ -38,11 +38,11 @@ class RsvpqsController < ApplicationController
         end
         redirect_back(fallback_location: root_path)
       end
-    else
-      flash.delete(:recaptcha_error)
-      flash[:error] = 'Please check the captcha box!'
-      redirect_back(fallback_location: root_path)
-    end
+    #else
+    #  flash.delete(:recaptcha_error)
+    #  flash[:error] = 'Please check the captcha box!'
+    #  redirect_back(fallback_location: root_path)
+    #end
   end
 
 
