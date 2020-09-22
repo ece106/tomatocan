@@ -17,11 +17,11 @@
                 <div class="form-group">
                     <h2><small><b><%=f.label :name, "Profile Image" %></b></small></h2>
                     <% if @user.profilepic.present? && @user.profilepic != '' %>
-                    <%= image_tag(@user.profilepic.url.to_s, :class => "img-circle", :height => "150", :width => "150") %>
+                        <%= image_tag(@user.profilepic.url.to_s, :class => "img-responsive", :height => "150", :width => "150") %>
                     <% else %>
-                    <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
+                        <%= image_tag "logoDigitalHollow300.png", :height => "150", :width => "150" %> <br>
                     <% end %>
-
+                    <br />
                     <%= f.file_field :profilepic, :class => "pt-4" %>
                     <p class="help-block"><small>150px * 150px is best</small></p>
                 </div>
@@ -32,10 +32,11 @@
                 <div class="form-group">
                     <h2><small><b><%=f.label :name, "Banner Image" %></b></small></h2>
                     <% if @user.bannerpic.present? && @user.bannerpic != '' %>
-                    <%= image_tag(@user.bannerpic.url.to_s, :class => "img-responsive w-75", :style => "height:150px;")%> <br>
+                        <%= image_tag(@user.bannerpic.url.to_s, :class => "img-responsive w-75", :style => "height:150px;")%> <br>
                     <% else %>
-                    <%= image_tag("profile_banner.png", :class => "img-responsive w-75", :style => "height:150px;")%> <br>
+                        <%= image_tag("profile_banner.png", :class => "img-responsive w-75", :style => "height:150px;")%> <br>
                     <% end %>
+                    
                     <%= f.file_field :bannerpic, :class => "pt-4" %>
                     <p class="help-block"><small>1500px * 300px is best</small></p>
                 </div>
@@ -56,7 +57,7 @@
             <div>
                 <h2><small><b><%=f.label :name, "About you" %></b></small></h2>
             </div>
-            <%= f.text_area :about,maxlength: 1000, placeholder: 'Tell us a little about yourself and your aspirations', :class => "form-control",  :style=> "background: #DCDCDC" %>
+            <%= f.text_area :about, placeholder: 'Tell us a little about yourself and your aspirations', :class => "form-control",  :style=> "background: #DCDCDC" %>
         </div>
 
         <!-- Three Topics -->
@@ -67,18 +68,24 @@
             <%= f.text_field :genre2, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
             <%= f.text_field :genre3, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
 
+
+            <div class="form-group">
+                <%= f.select :genre1, options_for_select([["Current Position", ""], "Mentor", "Student", "Actively Hiring", "Early Career", "Other"]) %>
+            </div>
+
+            <% if @user.genre1 == "Other" %>
+            <%= f.text_field :genre1, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Current Position" %>
+            <% end %>
+
         </div>
         <div class="form-group pt-3">
             <h2><small><b><%=f.label :name, "Resume/CV" %></b></small></h2>
+            <%= f.file_field :resume, :class => "pt-1" %>
+            <br />
             <% if @user.resume.present? && @user.resume != '' %>
-                <%= image_tag(@user.resume.url.to_s, :height => "300", :width => "150") %>
-                <!--<%= link_to "Download Resume", @user.resume.attachment_url %>-->
-            <% else %>
-                <%= image_tag "logoDigitalHollow300.png", :height => "300", :width => "150" %> <br>
+                <%= link_to 'View PDF', @user.resume.url.to_s, :target => "_blank"%>   
             <% end %>
-
-            <%= f.file_field :resume, :class => "pt-4" %>
-            <p class="help-block"><small>Upload PDF</small></p>
+         
         </div>
         <br />
 

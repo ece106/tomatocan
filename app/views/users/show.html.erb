@@ -41,7 +41,7 @@
                 <div class="alert alert-primary fade show" role="alert" style="text-align: center;">
                     <h3>
                         Your profile needs more work,
-                        <%= link_to " click here ", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-dark"%>
+                        <%= link_to " click here ", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
                         to finish setting it up
                     </h3>
                 </div>
@@ -51,6 +51,7 @@
 
     <div class="row pb-3">
         <div class="col-10 col-md-4 col-sm-12">
+            <%= render 'layouts/streamButton' %>
             <% if current_user.nil? %>
                 <%= render 'layouts/merchsidebar' %>
              <% else %>
@@ -76,13 +77,12 @@
                         <%= render 'layouts/merchsidebar' %>
                     <% end %>
             <% end %>
-            <%= render 'layouts/streamButton' %>
 
         </div>
         <div class="col-12 col-md-8 col-sm-12">
 
             <% if @user.about.present? %>
-                <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "About" %> </h1>
+                <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "About Me" %> </h1>
                 <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.about %> </h6>
             <% end %>
 

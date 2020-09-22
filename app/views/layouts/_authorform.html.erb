@@ -27,16 +27,19 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 		<h1 class="maroon pt-3" id="profileName"><%= @user.name %></h1>
 		<% if @user.genre1.blank? == false %>
 
-			<span style="font-size: 35px; font-family: helvetica; color: #FFB704" > <%= @user.genre1 %>
-				<% if @user.genre2.blank? == false %>
-				, <%= @user.genre2 %>
-				<% end %>
-				<% if @user.genre3.blank? == false %>
-				, <%= @user.genre3 %>
-				<% end %>
-				</span>
+			<span style="font-size: 35px; font-family: helvetica; color: #FFB704" >
+				<%= @user.genre1 %>	
+			</span>
 		<% end %>
+		<br />
+		<span style="font-size: 25px; font-family: helvetica">
+			<% if @user.resume.present? && @user.resume != '' %>
+				<%= link_to 'View my Resume', @user.resume.url.to_s, :target => "_blank"%>   
+			<% end %>
+		</span>
 	</div>
+	
+	
 </div>
 
 
