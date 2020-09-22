@@ -10,7 +10,7 @@ config.action_mailer.smtp_settings = {
 #   :domain => 'www.ThinQ.tv', # your domain to identify your server when connecting
  }
 
-  #heroku is having trouble with this in free tier - may need to change after trying cloudflare
+  #heroku is having trouble with this in free tier - need to change after signing up for ssl
   config.force_ssl = false #true  
   config.action_mailer.default_url_options = {
     :host => 'https://www.thinq.tv', :protocol => 'https' }
