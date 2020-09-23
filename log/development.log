@@ -3698,3 +3698,99 @@ Processing by StaticPagesController#home as HTML
 Completed 200 OK in 127ms (Views: 108.7ms | ActiveRecord: 6.8ms | Allocations: 78487)
 
 
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8394216929634577125)[0m
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8394216929634577125)[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/" for ::1 at 2020-09-21 11:07:21 -0700
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (4.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-09-21 08:07:21.955737' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-09-21 11:07:21.975287' AND start_at > '2020-09-21 10:07:21.975309' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-09-21 11:07:21.975287' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-09-21 11:07:21.975287' AND start_at > '2020-09-21 10:07:21.975309' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-09-21 11:07:21.975287' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-09-21 11:07:21.975287' AND start_at > '2020-09-21 10:07:21.975309' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-09-21 11:07:21.975287' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-09-21 08:07:21.955737' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-09-21 08:07:21.955737' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 2.3ms | Allocations: 411)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-09-21 08:07:21.955737')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 2.5ms | Allocations: 449)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-09-21 08:07:21.955737' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 6.5ms | Allocations: 3575)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 3.3ms | Allocations: 1492)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 7.2ms | Allocations: 2586)
+  Rendered layouts/_calendar.html.erb (Duration: 2.9ms | Allocations: 1039)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 583.4ms | Allocations: 356394)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3521)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 1051)
+  Rendered layouts/_footer.html.erb (Duration: 2.9ms | Allocations: 2721)
+Completed 200 OK in 837ms (Views: 775.5ms | ActiveRecord: 22.2ms | Allocations: 443188)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-09-21 11:07:24 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
