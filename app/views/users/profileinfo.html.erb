@@ -68,17 +68,18 @@
             <%= f.text_field :genre2, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
             <%= f.text_field :genre3, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
 
-
+        </div>
+        <div class="form-group pt-3">
+            <h2><small><b><%=f.label :name, "Current position" %></b></small></h2>
             <div class="dropdown pt-1 pr-1">
-                <%= f.select( :genre1, [["Current Position ", ""], "Mentor", "Student", "Actively Hiring", "Early Career", "Other"], {}, {:class=>"btn btn-primary dropdown-toggle text-white" }) %>
-            </div>
-            <div class="pt-3 pr-1">
-                <% if @user.genre1 == "Other" %>
-                <%= f.text_field :genre1, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Current Position" %>
-                <% end %>
-            </div>
+                <%= f.select(:genre1, [["Please Select", ""], "Mentor", "Student", "Actively Hiring", "Early Career", "Other"], {}, {:class=>"btn btn-primary dropdown-toggle text-white", :style=> "padding: 10px"}) %>
 
-           
+            </div>
+            <p class="pt-3">If you are not in any of these positions:</p>
+
+            <div class=" pr-1">
+                <%= f.text_field :genre2, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Current Position" %>
+            </div>
 
         </div>
         <div class="form-group pt-3">
