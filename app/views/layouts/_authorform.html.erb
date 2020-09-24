@@ -34,12 +34,11 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 					<%= @user.genre2 %>
 				</span>
 			<% end %>
-			
-		
+
 		<br />
 		<% if @user.resume.present? && @user.resume != '' %>
-			<span style="font-size: 25px; font-family: helvetica; padding: 0px">
-				<%= link_to 'View my Resume', @user.resume.url.to_s, :target => "_blank"%>
+			<span style="font-size: 25px; font-family: helvetica">
+				<%= link_to 'View my Resume', @user.resume.url.to_s, :style=>"color: #000000", :target => "_blank"%>
 			</span>
 		<% end %>
 		
