@@ -156,6 +156,8 @@ class StaticPagesController < ApplicationController
   end
   def jointheteam
   end
+  def sendinvite
+  end 
   def drschaeferspeaking
     @message = Message.new
   end
