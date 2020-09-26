@@ -89,13 +89,6 @@ class User < ApplicationRecord
     purchase.save
   end
 
-  # # update user's reputation score
-  # def update_reputation_score(value)
-  #   # user = User.find(userid)
-  #   user.update(:reputation_score, :reputation_score+10)
-  # end
-
-
   def calcdashboard # Poll users for desired metrics
     self.monthperkinfo = []
     self.incomeinfo = []
