@@ -8,7 +8,7 @@ class RsvpqsController < ApplicationController
   end
 
   def create
-    #checked_captcha = true
+    #checked_captcha = true # put captcha back in after implementing ssl
     if current_user
       @rsvp = current_user.rsvpqs.build(rsvpq_params)
     else

@@ -48,6 +48,7 @@ class EventsController < ApplicationController
       if @event.save
         @event.update_attribute(:user_id, params[:event][:user_id])
         user = User.find(@event.user_id)
+        # user.update_attribute(:reputation_score, )
         offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600
         reminder_hour = @event.start_at + offset.hours - 1.hours
         reminder_date = @event.start_at - 1.days
