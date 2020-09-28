@@ -1,19 +1,20 @@
-<div class="mt-5 ml-5 px-2">
+<% if @sidebarmerchandise.present? %>
+<div class="mb-4">
     <div class="container pb-4 border shadow">
         <div class="pt-3">
             <% if @sidebarmerchandise.present? %>
-            <% if user_signed_in? %>
-            <% if current_user.id == @user.id %>
-            <h1 class=" text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
+                <% if user_signed_in? %>
+                    <% if current_user.id == @user.id %>
+                    <h1 class=" text-center" id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
 
-            <% else %>
-            <h1 class="text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
-            <% end %>
+                    <% else %>
+                    <h1 class="text-center" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
+                    <% end %>
 
-            <% else %>
+                <% else %>
 
-            <h1 class="text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
-            <% end %>
+                <h1 class="text-center" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
+                <% end %>
             <% end %>
 
         </div>
@@ -27,9 +28,9 @@
                 <div class="mr-3" style=" padding-right: 2px;">
 
                     <% if merch.itempic.present? %>
-                    <%= image_tag merch.itempic.url.to_s, class: "media-object", style: "height:70px; width:70px;"%>
+                        <%= image_tag merch.itempic.url.to_s, class: "media-object", style: "height:70px; width:70px;"%>
                     <% else %>
-                    <%= image_tag "logoDigitalHollow300.png", class: "media-object", style: "height:70px; width:70px;" %>
+                        <%= image_tag "logoDigitalHollow300.png", class: "media-object", style: "height:70px; width:70px;" %>
                     <% end %>
                 </div>
 
@@ -94,28 +95,29 @@
             <% else %>
             <!--This is where the Default Donate button are displayed-->
             <!--To add or modify Default Donation buttons and prices, it should be done through the code below only-->
-            <% if @user.stripeid.present? || @user.id == 1337 || @user.id == 1345 %>
+                <% if @user.stripeid.present? || @user.id == 1337 || @user.id == 1345 %>
 
-            <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
-                <% btnTxt = ("Donate $" + sprintf('%.2f',25) + "!") %>
-                <%= link_to btnTxt, new_purchase_path(:pricesold => 25.0, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
-                <br /><br />
-            </div>
-            <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
-                <% btnTxt = ("Donate $" + sprintf('%.2f',50) + "!") %>
-                <%= link_to btnTxt, new_purchase_path(:pricesold => 50, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
-                <br /><br />
-            </div>
-            <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
-                <% btnTxt = ("Donate $" + sprintf('%.2f',100) + "!") %>
-                <%= link_to btnTxt, new_purchase_path(:pricesold => 100, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
-            </div>
-            <% else %>
-            <% end %>
+                <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
+                    <% btnTxt = ("Donate $" + sprintf('%.2f',25) + "!") %>
+                    <%= link_to btnTxt, new_purchase_path(:pricesold => 25.0, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
+                    <br /><br />
+                </div>
+                <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
+                    <% btnTxt = ("Donate $" + sprintf('%.2f',50) + "!") %>
+                    <%= link_to btnTxt, new_purchase_path(:pricesold => 50, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
+                    <br /><br />
+                </div>
+                <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
+                    <% btnTxt = ("Donate $" + sprintf('%.2f',100) + "!") %>
+                    <%= link_to btnTxt, new_purchase_path(:pricesold => 100, :author_id => @user.id), method: :get, :class => "btn btn-warning btn-lg", :style=> "width: 200px", :target => "_blank" %>
+                </div>
+                <% else %>
+                <% end %>
             <% end %>
         </div>
     </div>
 </div>
+<% end %>
     <!-- Notes:
     The Edit button should give the Edit Reward modal each Reward's individual ID.
     Lisa's Notes: What does this even mean???

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
 
     <!-- Meta Tags for Facebook Share -->
     <% content_for :head do %>
@@ -14,7 +14,7 @@
     <% end %>
 
     
-        <div class="container mt-5 pb-3 border shadow">
+        <div class="container mt-5 mb-4 pb-3 border shadow">
             <%= render 'layouts/authorform' %>
         </div>
     
@@ -22,7 +22,7 @@
     <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
            
             <% if current_user.nil? %>
-                <div class="container px-0 py-0 border shadow">
+                <div class="container px-0 py-0 mb-4 border shadow">
                     <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center;">
                         <h3>
                             We're talking about <%= @displayconvo.name %>  right NOW!
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             <% elsif current_user.id != @user.id %>
-                <div class="container px-0 py-0 border shadow">
+                <div class="container px-0 py-0 mb-4 border shadow">
                     <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center;">
                         <h3>
                             We're talking about <%= @displayconvo.name %>  right NOW!
@@ -45,8 +45,8 @@
     <% if user_signed_in? %>
         <% if current_user.id == @user.id %>
             <% if !@user.about.present? || !@user.genre1.present? %>
-                <div class="container pt-3 mt-5 border shadow">
-                    <div class="alert alert-primary fade show" role="alert" style="text-align: center;">
+                <div class="container px-0 py-0 mb-4 border shadow">
+                    <div class="alert alert-primary fade show my-0 pt-3" role="alert" style="text-align: center;">
                         <h3>
                             Your profile needs more work,
                             <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
@@ -58,22 +58,20 @@
         <% end %>
     <% end %>
 
-    <div class="row pb-3">
+    <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-12">
-            <div class="ml-5 px-2">
-                <div class="container pb-5 mt-5 border shadow">
-                    <%= render 'layouts/streamButton' %>
-                </div>
+            
+            <div class="container pb-5 mb-4 border shadow">
+                <%= render 'layouts/streamButton' %>
             </div>
-
             <% if current_user.nil? %>
                 <%= render 'layouts/merchsidebar' %>
              <% else %>
                     <% if current_user.id == @user.id %>
                         <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
-                            <div class="mt-5 ml-5 px-2">
+                            <div class="mb-4">
                                 <div class="container border shadow">
-                                    <h1 class=" pt-3 text-center maroon " id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
+                                    <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
 
                                     <div class="media pt-2">
                                         <div class="mr-3">
@@ -100,38 +98,34 @@
         <div class="col-lg-7 col-md-7 col-sm-12">
 
             <% if @user.about.present? %>
-                <div class=" mr-5 px-2">
-                    <div class="container pb-4 my-5 border shadow">
-                        <h1 class="pt-3 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "About Me" %> </h1>
-                        <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.about %> </h6>
-                    </div>
+                <div class="container pb-4 mb-4 border shadow">
+                    <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em"> <%= "About Me" %> </h1>
+                    <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.about %> </h6>
                 </div>
             <% end %>
+            <div class="container mb-4 border shadow">
+                <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em"> <%= "Conversations Attending" %> </h1>
+                <% if @calendar_events.present? %>
+                    <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
 
-            <div class=" mr-5 px-2">
-                <div class="container my-5 border shadow">
-                    <h1 class=" pt-3 text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Conversations Attending" %> </h1>
-                    <% if @calendar_events.present? %>
-                        <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+                <% else %>
+                        <% if current_user.nil? %>
+                        <div class="text-center pb-4" style="font-family: Helvetica;">
+                            <%= @user.name %> <%= " has no conversations scheduled." %>
+                        </div>
 
-                    <% else %>
-                         <% if current_user.nil? %>
+                        <% elsif current_user.id == @user.id %>
                             <div class="text-center pb-4" style="font-family: Helvetica;">
-                                <%= @user.name %> <%= " has no conversations scheduled." %>
+                                <%= "You have no conversations scheduled."%>
                             </div>
-
-                         <% elsif current_user.id == @user.id %>
-                                <div class="text-center pb-4" style="font-family: Helvetica;">
-                                    <%= "You have no conversations scheduled."%>
-                                </div>
-                         <% else %>
-                            <div class="text-center pb-4" style="font-family: Helvetica;">
-                                <%= @user.name %> <%= " has no conversations scheduled." %>
-                            </div>
-                         <% end %>
-                    <% end %>
-                </div>
+                        <% else %>
+                        <div class="text-center pb-4" style="font-family: Helvetica;">
+                            <%= @user.name %> <%= " has no conversations scheduled." %>
+                        </div>
+                        <% end %>
+                <% end %>
             </div>
+            
         </div>
     </div>
 
