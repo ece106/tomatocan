@@ -63,10 +63,8 @@
         <!-- Three Topics -->
         <div class="form-group pt-3">
             <h2><small><b><%=f.label :name, "What Skills or Interest best define you?" %></b></small></h2>
-            <p>You may add up to three:</p>
-            <%= f.text_field :genre1, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
-            <%= f.text_field :genre2, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
-            <%= f.text_field :genre3, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
+            <p>Add as many as you wish with ", " in between:</p>
+            <%= f.text_field :genre3, maxlength: 1000, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Inrerest/Skill" %>
 
         </div>
         <div class="form-group pt-3">

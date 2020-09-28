@@ -5,15 +5,15 @@
             <% if @sidebarmerchandise.present? %>
                 <% if user_signed_in? %>
                     <% if current_user.id == @user.id %>
-                    <h1 class=" text-center" id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
+                    <h1 class=" text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Donations & Rewards" %> </h1>
 
                     <% else %>
-                    <h1 class="text-center" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
+                    <h1 class="text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Support" %> <%= @user.name %> </h1>
                     <% end %>
 
                 <% else %>
 
-                <h1 class="text-center" id="profileName" style="font-size: 2.0em"> <%= "Support" %> <%= @user.name %> </h1>
+                <h1 class="text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Support" %> <%= @user.name %> </h1>
                 <% end %>
             <% end %>
 
