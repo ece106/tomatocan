@@ -48,6 +48,7 @@ class EventsController < ApplicationController
       if @event.save
         @event.update_attribute(:user_id, params[:event][:user_id])
         user = User.find(@event.user_id)
+        # update reputation score based on topic of event
         if @event.topic == "Conversation"
           User.update(user.id, reputation_score: user.reputation_score + 20)
         else
