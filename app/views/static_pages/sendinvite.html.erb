@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Example</title>
-    </head>
-    <body>
-        <p>This is an example of a simple HTML page with one paragraph.</p>
-    </body>
-</html>
+<div class="row bg-primary mt-2 pl-5">
+    
+  <div class="col-lg-5 pt-3 pb-4 pl-5 ml-3">
+  <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>" style = "height:50px">
+        <%= value %>
+      </div>
+    <% end %>
+    <h1 class="text-center text-white mt-5 pl-5 pt-5">
+      <strong>Text a Friend to Improve Your Reputation Score!</strong>
+    </h1>
+    <br>
+    <input type= tel>
+        enter their phone number here
+    </input>
+  </div>
+  
