@@ -8,8 +8,12 @@ class PurchasesController < ApplicationController
       id        = loot.user_id
       @user     = User.find(id)
     end
+    filename_and_data = loot.get_filename_and_data
+    filename = filename_and_data[:filename]
+    data = filename_and_data[:data]
+    #send_data_to_buyer data,filename
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { send_data_to_buyer data, filename } # show.html.erb
       format.json { render json: @purchase }
     end
   end
@@ -76,11 +80,8 @@ class PurchasesController < ApplicationController
           filename = filename_and_data[:filename]
           data = filename_and_data[:data]
           #send_data_to_buyer data, filename
-          redirect_later data.url, "Downloading file"
-          respond_to do |format|
-            format.html { redirect_to user_profile_path(@seller.permalink) }
-            format.pdf { send_data_to_buyer data, filename and return }
-          end
+          redirect_later purchase_path(@purchase), "Downloading file"
+          redirect_to user_profile_path(@seller.permalink)
           #redirect_later user_profile_path(@seller.permalink), "Downloading file"
           #send_data_to_buyer data, filename and return
           #redirect_to user_profile_path(@seller.permalink) 
