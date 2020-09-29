@@ -94,7 +94,7 @@
                                 <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
                             to add the final touches</b></p>
                             <div class="progress" style="height: 20px;">
-                                <div class="progress-bar" role="progressbar" style="width: 60%;  background-image: linear-gradient(to right, #FFF, #00F);" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                                <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
                             </div>
                         <% end %>
                         <% if progress==80 %>
@@ -105,14 +105,15 @@
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
                             </div>
                         <% end %>
+                         <% if progress==100 %>
+                            <p><b> Congradulations! Your profile is all done!</b></p>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
                 <% end %>
-
-                <% if progress==100 %>
-                    
-                <% end %>
-            
         <% end %>
     <% end %>
 
@@ -125,7 +126,7 @@
              <% if @user.genre3.present? %>
                 <div class="container pb-4 mb-4 border shadow">
                     <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Skills & Interests" %> </h1>
-                    <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.genre3 %> </h6>
+                    <h6 class="pt-1" style="padding-left: 35px; padding-right: 30px;"> <%= @user.genre3 %> </h6>
                 </div>
             <% end %>
             <% if current_user.nil? %>
@@ -164,7 +165,7 @@
             <% if @user.about.present? %>
                 <div class="container pb-4 mb-4 border shadow">
                     <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "About Me" %> </h1>
-                    <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.about %> </h6>
+                    <h6 class="pt-1" style="padding-left: 35px; padding-right: 30px;"> <%= @user.about %> </h6>
                 </div>
             <% end %>
            
