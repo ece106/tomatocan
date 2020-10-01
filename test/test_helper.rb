@@ -117,10 +117,9 @@ class ActiveSupport::TestCase
   FileUtils.cp_r carrierwave_template.join('merchandise'), carrierwave_root
 
   at_exit do
-    #puts "Removing carrierwave test directories:"
     Dir.glob(carrierwave_root.join('*')).each do |dir|
-      puts "   #{dir}"
-      #FileUtils.remove_entry(dir) -- @TODO - figure out why this executes before the tests run
+      #puts "   #{dir}"
+      FileUtils.remove_entry(dir) #@TODO - figure out why this executes before the tests run
     end
   end
 

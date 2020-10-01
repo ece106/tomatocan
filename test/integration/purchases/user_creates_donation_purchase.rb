@@ -99,8 +99,8 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     #assert_equal(page.response_headers["Content-Type"], 'video/mp4')
     #visit @user_one.permalink #WORKAROUND
     assert_current_path "/#{ @user_one.permalink }"
+    assert_text(:all, %r(/purchases/[0-9]*/download))
     sleep 6
-    assert_current_path "/#{ @purchase }"  
   end
 
   def teardown 
