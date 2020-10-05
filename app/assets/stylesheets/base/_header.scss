@@ -48,6 +48,7 @@
     transform: scale(1.15) rotate(-12deg);
   }
 }
+//modal to darken site in background
 .modal-bg{
   position: fixed;
   width: 100%;
@@ -61,12 +62,12 @@
   visibility: hidden;
   opacity: 0;
 }
-
+//settings to make modal parts visible
 .bg-active{
   visibility: visible;
   opacity: 1;
 }
-
+//modal that contains fields and buttons
 .modal{
   background-color: white;
   width: 30%;
