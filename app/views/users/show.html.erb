@@ -168,6 +168,10 @@
                     <h6 class="pt-1" style="padding-left: 35px; padding-right: 30px;"> <%= @user.about %> </h6>
                 </div>
             <% end %>
+
+            <div class="container mb-4 px-0 border shadow">
+                <%= image_tag("user_profile_content_photo.jpg", :style => "height:90px; object-fit: cover; object-position: 0px -4px; width:633px; ")%>
+            </div>
            
             <div class="container mb-4 border shadow">
                 <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Conversations Attending" %> </h1>
