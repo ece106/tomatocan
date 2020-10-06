@@ -1,47 +1,29 @@
-<div class="row bg-primary mt-2 pl-5">
+<div class="row mt-2" id = "heroImage">
 
-  <div class="col-lg-5 pt-3 pb-4 pl-5 ml-3">
-  <% flash.each do |key, value| %>
+  <div class="col-lg-5 pt-3 pb-4 pl-1 ml-3">
+    <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>" style = "height:50px">
         <%= value %>
       </div>
     <% end %>
 
-    <h1 class="text-center text-white mt-5 pl-5 pt-5">
+    <h1 class="text-center maroon mt-5 pl-2 pt-5" style="font-size: 50px">
       <strong>Conversations to Make you </strong>
         <%= image_tag("GoldThinQ60.png")%>
     </h1>
-    <h2 class="text-center text-white">
-      Thought-Provoking Video Chat community throughout the day!
+    <h2 class="text-center" style="color:#8C1D40">
+      <br><br>Thought-Provoking Video Chat community throughout the day!<br><br><br><br>
     </h2>
 
-    <div class=" text-center">
-      <a id="home-scroll" href="#conversations"><u>Check Out the Conversation Schedule</u></a>
-
-    <% if @conversations.count != 0 %><br>
-      <% if @start_time != nil %>
-        <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
-          <div id="eventCurrentdiv align-items-end " style ="align-text:bottom">
-            <p class = "text-white text-center" >
-              <br><%= @name %> is LIVE right NOW!<br>
-              <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 40px; border-color: #FFC627" %>
-              <br>
-              Hosted by: <%= @host.name %>
-            </p>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
-</div>
+    <div class=" text-center" style="height: 100px">
+    </div>
   </div>
 
   <div class="col-lg-6 py-5 my-5 mx-3">
-    <%= image_tag("HomeBanner.png", style: "width:100%;")%>
   </div>
-
 </div>
 
-<div class="row" style="margin-bottom: 70px">
+<div class="row" style="margin-bottom: 30px">
     <!--study hall and conversation section -->
 
     <div class="col-lg-6 col-md-12 col-sm-12 pt-2">
