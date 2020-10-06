@@ -81,6 +81,109 @@ module Api
       end
     end
 
+    resource :oauth do
+      post '/facebook' do
+        if Rails.env.production?
+          app_id = ENV['FACEBOOK_APP_ID']
+          app_secret = ENV['FACEBOOK_APP_SECRET']
+        else
+          app_id = FACEBOOK_APP_ID
+          app_secret = FACEBOOK_APP_SECRET
+        end
+        uri = URI.parse("https://graph.facebook.com/debug_token?input_token=#{params[:access_token]}&access_token=#{app_id}|#{app_secret}")
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Get.new(uri.request_uri)
+        response = http.request(request)
+        
+        res = JSON.parse(response.body)
+        data = res["data"]
+        if data["is_valid"] && data["app_id"] == app_id
+          uri = URI.parse("https://graph.facebook.com/#{params["user_id"]}?fields=email&access_token=#{params[:access_token]}")
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+          request = Net::HTTP::Get.new(uri.request_uri)
+          response = http.request(request)
+          res = JSON.parse(response.body)
+          if res["email"]
+            @user = User.find_by(email: res["email"])
+            if @user
+              status 200
+              { "token": encode_token({ user_id: @user.id }) }
+            else
+              name = res["email"].split('@')[0]
+              if name.length > 15
+                name = name[0..14]
+              end
+              @user = User.new()
+              @user.permalink = name + rand.to_s[2..6]
+              @user.email = res["email"]
+              @user.password = Devise.friendly_token[0, 20]
+              @user.name = name
+              if @user.save
+                status 200
+                { "token": encode_token({ user_id: @user.id }) }
+              else
+                status 400
+                { "errors": @user.errors }
+              end
+            end
+          end
+        else
+          status 400
+        end
+      end
+
+      post '/google' do
+        if Rails.env.production?
+          app_id = ENV['GOOGLE_CLIENT_ID']
+          app_secret = ENV['GOOGLE_CLIENT_SECRET']
+        else
+          app_id = GOOGLE_CLIENT_ID
+          app_secret = GOOGLE_CLIENT_SECRET
+        end
+        uri = URI.parse("https://oauth2.googleapis.com/tokeninfo?id_token=#{params["id_token"]}")
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        req = Net::HTTP::Get.new(uri.request_uri)
+        res = http.request(req)
+        res = JSON.parse(res.body)
+        puts(res)
+        if res["aud"] == app_id && res["email"]
+          @user = User.find_by(email: res["email"])
+          if @user
+            status 200
+            { "token": encode_token({ user_id: @user.id }) }
+          else
+            name = res["email"].split('@')[0]
+            if name.length > 15
+              name = name[0..14]
+            end
+            @user = User.new()
+            @user.permalink = name + rand.to_s[2..6]
+            @user.email = res["email"]
+            @user.password = Devise.friendly_token[0, 20]
+            @user.name = name
+            if @user.save
+              status 200
+              { "token": encode_token({ user_id: @user.id }) }
+            else
+              status 400
+              { "errors": @user.errors }
+            end
+          end
+        else
+          status 400
+        end
+      end
+    end
+
     resource :users do
 
       route_param :target_permalink, type: String do
