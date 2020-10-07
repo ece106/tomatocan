@@ -1,32 +1,30 @@
 <div class="container mb-4 py-3 border shadow">
-    <div class="media">
-        
-        <div>
+    <div class="text-center">
+
+        <div class="text-center">
             <% if @user.profilepic.present? && @user.profilepic != '' %>
-                <%= image_tag @user.profilepic.url.to_s, :class => "img-circle", :id => "profileImage", :style=> "height: 100px; width: 100px;" %>
+            <%= image_tag @user.profilepic.url.to_s, :class => "rounded-circle", :id => "profileImage", :style=> "height: 150px; width: 150px;" %>
             <% else %>
-                <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "profileImage", :style=> "background-color:white" %>
+            <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "profileImage", :style=> "background-color:white" %>
             <% end %>
         </div>
-        <div class="pl-2">
+        <br>
+        <div>
             <h1 class="maroon" id="profileName" style="font-size:2.0em"><%= @user.name %></h1>
 
             <% if @user.genre1.blank? == false && @user.genre1 != 'Other'%>
-            <span style="font-size: 20px; font-family: helvetica; color: #FFB704">
-                <%= @user.genre1 %>
+            <span style="font-size: 20px; font-family: helvetica;">
+                <b> <%= @user.genre1 %></b>
             </span>
             <% elsif @user.genre2.blank? == false %>
-            <span style="font-size: 20px; font-family: helvetica; color: #FFB704">
-                <%= @user.genre2 %>
+            <span style="font-size: 20px; font-family: helvetica">
+                <b> <%= @user.genre2 %></b>
             </span>
             <% end %>
         </div>
-        <br />
     </div>
-    <h4 class="pt-3">
-        <%= link_to "View My Profile", user_profile_url(@user.permalink), method: :get, :class => "text-dark", :target => "_blank"%>
+    <br>
+    <h4 class="text-center">
+        <%= link_to "View My Profile", user_profile_url(@user.permalink), method: :get, :class => "btn btn-md text-dark bg-warning", :target => "_blank"%>
     </h4>
-        
-    
 </div>
-
