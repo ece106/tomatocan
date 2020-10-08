@@ -19,7 +19,7 @@ class ResumepdfUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    %w(pdf)
+    %w(pdf doc docx)
   end
 
 

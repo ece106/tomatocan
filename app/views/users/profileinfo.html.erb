@@ -82,12 +82,14 @@
         </div>
         <div class="form-group pt-3">
             <h2><small><b><%=f.label :name, "Resume/CV" %></b></small></h2>
-            <%= f.file_field :resume, :class => "pt-1" %>
-            <br />
             <% if @user.resume.present? && @user.resume != '' %>
-                <%= link_to 'View PDF', @user.resume.url.to_s, :target => "_blank"%>   
+            <%= link_to 'View Uploaded File', @user.resume.url.to_s, :target => "_blank"%>
             <% end %>
-         
+            <br />
+            <%= f.file_field :resume, :class => "pt-1" %>
+
+            <p class="help-block"><small>Upload pdf, doc or docx</small></p>
+
         </div>
         <br />
 
