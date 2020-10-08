@@ -63,6 +63,14 @@ $overlaid-text: 0 0 4px rgba(0, 0, 0, .8) !important;
   }
 }
 
+#heroImage {
+    background-image: image-url('heroImage.png');
+    background-color: transparent;
+    background-size: cover;
+    background-position: center top;
+//    padding-bottom: 50px;
+}
+
 //FONTS
 h1.white {
   color: #fff;
