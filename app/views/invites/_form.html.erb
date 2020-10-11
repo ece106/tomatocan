@@ -23,12 +23,22 @@
 
   <div class="field">
     <%= form.label :relationship %>
-    <%= form.number_field :relationship %>
+    <%= form.text_field :relationship %>
   </div>
 
   <div class="field">
     <%= form.label :preferred_name %>
     <%= form.text_field :preferred_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sender_id %>
+    <%= form.number_field :sender_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :custom_message %>
+    <%= form.text_area :custom_message %>
   </div>
 
   <div class="actions">

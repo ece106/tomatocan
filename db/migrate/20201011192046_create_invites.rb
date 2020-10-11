@@ -3,8 +3,10 @@ class CreateInvites < ActiveRecord::Migration[6.0]
     create_table :invites do |t|
       t.string :phone_number
       t.string :country_code
-      t.integer :relationship
+      t.string :relationship
       t.string :preferred_name
+      t.integer :sender_id
+      t.text :custom_message
 
       t.timestamps
     end

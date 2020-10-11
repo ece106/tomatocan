@@ -15,9 +15,11 @@ class InvitesTest < ApplicationSystemTestCase
     click_on "New Invite"
 
     fill_in "Country code", with: @invite.country_code
+    fill_in "Custom message", with: @invite.custom_message
     fill_in "Phone number", with: @invite.phone_number
     fill_in "Preferred name", with: @invite.preferred_name
     fill_in "Relationship", with: @invite.relationship
+    fill_in "Sender", with: @invite.sender_id
     click_on "Create Invite"
 
     assert_text "Invite was successfully created"
@@ -29,9 +31,11 @@ class InvitesTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Country code", with: @invite.country_code
+    fill_in "Custom message", with: @invite.custom_message
     fill_in "Phone number", with: @invite.phone_number
     fill_in "Preferred name", with: @invite.preferred_name
     fill_in "Relationship", with: @invite.relationship
+    fill_in "Sender", with: @invite.sender_id
     click_on "Update Invite"
 
     assert_text "Invite was successfully updated"

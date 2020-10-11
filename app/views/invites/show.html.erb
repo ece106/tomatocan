@@ -20,5 +20,15 @@
   <%= @invite.preferred_name %>
 </p>
 
+<p>
+  <strong>Sender:</strong>
+  <%= @invite.sender_id %>
+</p>
+
+<p>
+  <strong>Custom message:</strong>
+  <%= @invite.custom_message %>
+</p>
+
 <%= link_to 'Edit', edit_invite_path(@invite) %> |
 <%= link_to 'Back', invites_path %>

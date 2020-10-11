@@ -21,7 +21,13 @@ class InvitesController < ApplicationController
 
   # POST /invites
   def create
+      if current_user == nil
+        redirect_to new_invite_form_path, danger: invite_error_message + "You must be signed in!"
+      else
+
+      invite_params["sender_id"] = current_user.id
       @invite = Invite.new(invite_params)
+
   
         if verify_recaptcha(model: @invite) && @invite.save
           account_sid = ENV['TWILIO_ACCOUNT_SID']
@@ -58,6 +64,7 @@ class InvitesController < ApplicationController
         else
           redirect_to new_invite_form_path, danger: invite_error_message + "Please check the captcha box!"
         end
+      end
     end
 
   # DELETE /invites/1
@@ -101,6 +108,7 @@ class InvitesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invite_params
-      params.require(:invite).permit(:phone_number, :country_code, :relationship, :preferred_name)
+      params.require(:invite).permit(:phone_number, :country_code, :relationship, :preferred_name, :sender_id)
     end
 end
+

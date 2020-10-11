@@ -113,8 +113,10 @@ ActiveRecord::Schema.define(version: 201309200000000) do
   create_table "invites", force: :cascade do |t|
     t.string "phone_number"
     t.string "country_code"
-    t.integer "relationship"
+    t.string "relationship"
     t.string "preferred_name"
+    t.integer "sender_id"
+    t.text "custom_message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

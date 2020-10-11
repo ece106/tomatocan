@@ -12,7 +12,6 @@
           </div>
           <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
         </div>
-          
           <!-- Phone Number Box -->
           <div class="form-group">
             <div style="text-align:center">
@@ -24,6 +23,9 @@
               </div>
               <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
             </div>
+          </div>
+          <div>
+          <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
           </div>
 
           <!-- Country Code Box -->
@@ -87,4 +89,5 @@
     </div>
   </div>
 </div>
+
 

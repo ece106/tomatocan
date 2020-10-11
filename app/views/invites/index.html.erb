@@ -9,6 +9,8 @@
       <th>Country code</th>
       <th>Relationship</th>
       <th>Preferred name</th>
+      <th>Sender</th>
+      <th>Custom message</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +22,8 @@
         <td><%= invite.country_code %></td>
         <td><%= invite.relationship %></td>
         <td><%= invite.preferred_name %></td>
+        <td><%= invite.sender_id %></td>
+        <td><%= invite.custom_message %></td>
         <td><%= link_to 'Show', invite %></td>
         <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
         <td><%= link_to 'Destroy', invite, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -17,7 +17,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create invite" do
     assert_difference('Invite.count') do
-      post invites_url, params: { invite: { country_code: @invite.country_code, phone_number: @invite.phone_number, preferred_name: @invite.preferred_name, relationship: @invite.relationship } }
+      post invites_url, params: { invite: { country_code: @invite.country_code, custom_message: @invite.custom_message, phone_number: @invite.phone_number, preferred_name: @invite.preferred_name, relationship: @invite.relationship, sender_id: @invite.sender_id } }
     end
 
     assert_redirected_to invite_url(Invite.last)
@@ -34,7 +34,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update invite" do
-    patch invite_url(@invite), params: { invite: { country_code: @invite.country_code, phone_number: @invite.phone_number, preferred_name: @invite.preferred_name, relationship: @invite.relationship } }
+    patch invite_url(@invite), params: { invite: { country_code: @invite.country_code, custom_message: @invite.custom_message, phone_number: @invite.phone_number, preferred_name: @invite.preferred_name, relationship: @invite.relationship, sender_id: @invite.sender_id } }
     assert_redirected_to invite_url(@invite)
   end
 
