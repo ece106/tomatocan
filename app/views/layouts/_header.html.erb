@@ -24,6 +24,11 @@
 
         <ul class="nav navbar-nav navbar-right ">
           <% if user_signed_in? %>
+            <li>
+              <p class="navbar-btn pt-1">
+                <%= link_to "Invite New Users! Get Points!", '/invite', class: "btn btn-primary border border-light" %>
+              </p>
+            </li>
             <li class= "dropdown pt-1 pr-1">
               <a href="#" class="btn btn-primary dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret text-white"></span></a>
               <ul class="dropdown-menu text-left pl-3">
@@ -39,7 +44,7 @@
           <% else %>
             <li>
               <p class="navbar-btn pt-1">
-                <button class="inv-btn">Invite</button>
+                <%= link_to "Invite New Users! Get Points!", '/invite', class: "btn btn-primary border border-light" %>
                 <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
                 <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
               </p>

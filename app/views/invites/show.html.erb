@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @invite.phone_number %>
+</p>
+
+<p>
+  <strong>Country code:</strong>
+  <%= @invite.country_code %>
+</p>
+
+<p>
+  <strong>Relationship:</strong>
+  <%= @invite.relationship %>
+</p>
+
+<p>
+  <strong>Preferred name:</strong>
+  <%= @invite.preferred_name %>
+</p>
+
+<%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back', invites_path %>

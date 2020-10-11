@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invites
   resources :relationships
 
   resources :users do
@@ -35,6 +36,10 @@ Rails.application.routes.draw do
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
   match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
+
+  match 'invite', to: 'invites#new', via: 'get'
+  get "invite", :to => 'invites#new', :as => :new_invite_form
+  get "home", :to => 'static_pages#home', :as => :new_invite_success
 
   resources :merchandises
   resources :rsvpqs
@@ -106,5 +111,8 @@ Rails.application.routes.draw do
       resources :events
     end
   end
+
+  # request to send text:
+  post '/ajax/sendText' => 'invites#ajax_sendText'
 
 end

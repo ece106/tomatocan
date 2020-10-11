@@ -1,0 +1,90 @@
+<div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+       <%= form_for(@invite) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Invite Somebody!</b>
+          </div>
+          <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+        </div>
+          
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please use the following format: <i> 555-123-4567 </i> </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+            </div>
+          </div>
+
+          <!-- Country Code Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please select the recipient's country code</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Name Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is this person's preferred name?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Relationship Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is your relationship with this person?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-4" >
+                <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

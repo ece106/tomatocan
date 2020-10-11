@@ -42,7 +42,9 @@ gem 'will_paginate-bootstrap4'
 gem 'bootstrap', '~> 4.5.0'
 gem 'popper_js', '~> 1.16.0'
 gem 'recurring_select'
+gem 'twilio-ruby'
 gem 'recaptcha', require: "recaptcha/rails"
+gem 'iso_country_codes'
 
 group :test, :development do
   gem 'minitest'
