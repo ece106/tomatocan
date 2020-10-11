@@ -14983,3 +14983,384 @@ Processing by InvitesController#new as HTML
 Completed 200 OK in 97ms (Views: 95.7ms | ActiveRecord: 0.6ms | Allocations: 80066)
 
 
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8394216929634577125)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8394216929634577125)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/invite" for ::1 at 2020-10-11 10:05:54 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.9ms | Allocations: 175)
+  Rendered invites/new.html.erb within layouts/application (Duration: 11.1ms | Allocations: 6591)
+  Rendered application/_favicon.html.erb (Duration: 2945.2ms | Allocations: 510450)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 69.2ms | Allocations: 27029)
+  Rendered layouts/_footer.html.erb (Duration: 4.9ms | Allocations: 2723)
+Completed 200 OK in 3280ms (Views: 3246.6ms | ActiveRecord: 12.8ms | Allocations: 635611)
+
+
+Started POST "/invites" for ::1 at 2020-10-11 10:06:20 -0700
+Processing by InvitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LJOd8CUs24cyKDIb0JaAs8iD88XmZD6e+ID4CWmngKQi0hWOMG791xkicKn3+wzRutCm1xy4CayakYU3wI0pHQ==", "invite"=>{"phone_number"=>"917-574-0753", "country_code"=>"US", "preferred_name"=>"blam", "relationship"=>"Friends"}, "g-recaptcha-response"=>"03AGdBq25-Er6lKGRra4fZ2dc5WIrlbOvh7POQFHDYflnbnXqoLHd1gMhAVdtVklb1djcfN5aMuC7EZyamnwGFbxOuVZ9QEFIHpsk57bTkIi1_Fp9v7BtPPWVxkyf9uhi468HgTTcBuhbG9_wOhda1fL7tw9JoqQPdsaciOvllRSz4FrrdZf9m0Ypan_r0op1Qp_50zrL-4eUs33oH-QyaQpVHcjZdfiCfIVMBa51QIXzQvuWqARK4nV4_wvrC5Yq59l78X9bwCgKrReLMXSt0w-oJmSI1q4xAOPaRPt4C_MPZGjiCrCyNV_JoO84x9tJRnjHyxTUyzQ5AlPeno58CEv4nt_aQ3vh3sZT7ZuMdu3ciJgfYrN1Lwh8_iqKl696OgLEewqo5-WB10ENTvLRQT7cIrP2PhuAF0logJm7Rv36Zk_bv7ybrSVSVhz-9pUtrHNo00DuFCDPU", "commit"=>"Send Invite!"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvite Create (1.6ms)[0m  [1m[32mINSERT INTO "invites" ("phone_number", "country_code", "relationship", "preferred_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["phone_number", "917-574-0753"], ["country_code", "US"], ["relationship", 0], ["preferred_name", "blam"], ["created_at", "2020-10-11 17:06:20.477790"], ["updated_at", "2020-10-11 17:06:20.477790"]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/home
+Completed 302 Found in 956ms (ActiveRecord: 6.3ms | Allocations: 11152)
+
+
+Started GET "/home" for ::1 at 2020-10-11 10:06:21 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 07:06:21.228830' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:06:21.244475' AND start_at > '2020-10-11 09:06:21.244495' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 10:06:21.244475' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:06:21.244475' AND start_at > '2020-10-11 09:06:21.244495' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 10:06:21.244475' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:06:21.244475' AND start_at > '2020-10-11 09:06:21.244495' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 10:06:21.244475' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:06:21.228830' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:06:21.228830' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.1ms | Allocations: 403)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:06:21.228830')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 1.6ms | Allocations: 449)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:06:21.228830' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 6.0ms | Allocations: 3571)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.0ms | Allocations: 1492)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 7.4ms | Allocations: 2584)
+  Rendered layouts/_calendar.html.erb (Duration: 1.5ms | Allocations: 1039)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 28.3ms | Allocations: 12557)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 830)
+  Rendered layouts/_footer.html.erb (Duration: 3.9ms | Allocations: 2296)
+Completed 200 OK in 146ms (Views: 113.2ms | ActiveRecord: 15.8ms | Allocations: 93366)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-10-11 10:06:21 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/invite" for ::1 at 2020-10-11 10:23:21 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.0ms | Allocations: 175)
+  Rendered invites/new.html.erb within layouts/application (Duration: 12.4ms | Allocations: 6591)
+  Rendered application/_favicon.html.erb (Duration: 475.3ms | Allocations: 347571)
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 76.5ms | Allocations: 27011)
+  Rendered layouts/_footer.html.erb (Duration: 11.5ms | Allocations: 2723)
+Completed 200 OK in 763ms (Views: 723.2ms | ActiveRecord: 17.7ms | Allocations: 463694)
+
+
+Started POST "/invites" for ::1 at 2020-10-11 10:23:51 -0700
+Processing by InvitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MLTXHcE+w6PSQKA9PMdPA2kxX91Z4o5ws+XOZmHrEZM+9V9j1Hzl8/lK4o8bqsNhG2IKz6M+uULR9LNYyMG4Kg==", "invite"=>{"phone_number"=>"917-574-0753", "country_code"=>"US", "preferred_name"=>"blam", "relationship"=>"Friends"}, "g-recaptcha-response"=>"03AGdBq26UFs2cYU40kuQGTaw5ZktrthAEreUOB9Zl3Kp-GOxSJjGzWem7DNwgmpgjcvwBMvbZ2A3lJpEN1nK4ZE6toug93jE1IJ57GEOXgA84LsVrxKp6AD3rpCUjJLHRohWcYf97iDP8WI51rs49u4hymDEvt1ArqtjYZTUAT8WK-PQtoF6gbQjElIougj9btAWiDZtLLa_GitF1OHF5d5LGzznZ60PUqlAgUd7kBf1BfAARHIaKdS-YwMXyWKIvo6IWb8ubRrDfaWKpwUe8oPW7pE5UMwWSS6uRZD1lLiwjzsnSXuFt5ZSqK6MlwgY8S-y6Fq1mD62AXelZW682h4mME6kW1watSS_YGnizWZhfmX6V2ZRNOa7mu5xLzIRkXZrycTXehuj3gZpy40-sHmz2kh8DuG2yEWKSSmjtYwC22Tb0ootZsbOgb0JRPl2IaeP171jPW2nZ", "commit"=>"Send Invite!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvite Create (1.7ms)[0m  [1m[32mINSERT INTO "invites" ("phone_number", "country_code", "relationship", "preferred_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["phone_number", "917-574-0753"], ["country_code", "US"], ["relationship", 0], ["preferred_name", "blam"], ["created_at", "2020-10-11 17:23:51.937188"], ["updated_at", "2020-10-11 17:23:51.937188"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 551ms (ActiveRecord: 4.3ms | Allocations: 11075)
+
+
+  
+Twilio::REST::RestError ([HTTP 404] 20404 : Unable to create record
+The requested resource /2010-04-01/Accounts//Messages.json was not found
+https://www.twilio.com/docs/errors/20404
+
+):
+  
+app/controllers/invites_controller.rb:51:in `create'
+Started GET "/favicon.ico" for ::1 at 2020-10-11 10:23:52 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:28:52.738719' AND end_at > '2020-10-11 10:28:52.738719' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-11 10:28:52.738719')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 07:23:52.752535' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 70ms (ActiveRecord: 13.8ms | Allocations: 19358)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/invite" for ::1 at 2020-10-11 10:25:54 -0700
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 175)
+  Rendered invites/new.html.erb within layouts/application (Duration: 8.6ms | Allocations: 6591)
+  Rendered application/_favicon.html.erb (Duration: 287.6ms | Allocations: 347571)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 64.1ms | Allocations: 27011)
+  Rendered layouts/_footer.html.erb (Duration: 11.4ms | Allocations: 2723)
+Completed 200 OK in 504ms (Views: 471.5ms | ActiveRecord: 14.3ms | Allocations: 463695)
+
+
+Started POST "/invites" for ::1 at 2020-10-11 10:26:18 -0700
+Processing by InvitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"16qJAYkhJZszPdYpmISFXXsEqKBasS9pKVYMfEtz5zPZ6wF/nGMDyxg3lJu/6Qk/CVf9sqBtGFtLR3FC4llOig==", "invite"=>{"phone_number"=>"917-574-0753", "country_code"=>"US", "preferred_name"=>"blam", "relationship"=>"Friends"}, "g-recaptcha-response"=>"03AGdBq24k2KPhiMpat7KYgxstM8u3eUIaGiGwkEGpNz-3IH661mOpift8UO_wzkmE7v6R4rBZqe-VdAw8L4SdK55YNZH5xx5Zn8901zlENd0Vx7ZVtYK8mr8OysgIKTHk89NNUWAg-YPdRAFogarO4XBeBYzCsM8vXGm06OPNyubTvCJturNFKRmGwuP1JJtmyqVM1wfOXgvS9aafzMNe7gbrE3EcEYA5-PLnzy0wr1O2-36iYaDCMVI6IZAwr5QbibfP2jzsu-CCBjk7clhWS9LXpMk8Nzh5_3GjvgAlzh3WUw66YpcI6pHtNRMyrB2hDlfq15lNhzT5HPn7A0QJk_Gwsl8h0RJCosSvVlrFXxfE9xQurD9jqnVFK4oCEz-5pakGlQ4YgtJvQB5sG-SA-p5GVfQYdN3gE4WMkQTYAbh26jVs5MRCI5Plg73F5QwGx492pQB0oNhT", "commit"=>"Send Invite!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvite Create (1.2ms)[0m  [1m[32mINSERT INTO "invites" ("phone_number", "country_code", "relationship", "preferred_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["phone_number", "917-574-0753"], ["country_code", "US"], ["relationship", 0], ["preferred_name", "blam"], ["created_at", "2020-10-11 17:26:18.524049"], ["updated_at", "2020-10-11 17:26:18.524049"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 513ms (ActiveRecord: 7.9ms | Allocations: 10754)
+
+
+  
+Twilio::REST::RestError ([HTTP 404] 20404 : Unable to create record
+The requested resource /2010-04-01/Accounts/sus/Messages.json was not found
+https://www.twilio.com/docs/errors/20404
+
+):
+  
+app/controllers/invites_controller.rb:53:in `create'
+Started GET "/favicon.ico" for ::1 at 2020-10-11 10:26:19 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:31:19.347964' AND end_at > '2020-10-11 10:31:19.347964' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-11 10:31:19.347964')[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 07:26:19.363528' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 72ms (ActiveRecord: 12.0ms | Allocations: 19360)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8394216929634577125)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8394216929634577125)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started POST "/invites" for ::1 at 2020-10-11 10:33:58 -0700
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InvitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"16qJAYkhJZszPdYpmISFXXsEqKBasS9pKVYMfEtz5zPZ6wF/nGMDyxg3lJu/6Qk/CVf9sqBtGFtLR3FC4llOig==", "invite"=>{"phone_number"=>"917-574-0753", "country_code"=>"US", "preferred_name"=>"blam", "relationship"=>"Friends"}, "g-recaptcha-response"=>"03AGdBq24k2KPhiMpat7KYgxstM8u3eUIaGiGwkEGpNz-3IH661mOpift8UO_wzkmE7v6R4rBZqe-VdAw8L4SdK55YNZH5xx5Zn8901zlENd0Vx7ZVtYK8mr8OysgIKTHk89NNUWAg-YPdRAFogarO4XBeBYzCsM8vXGm06OPNyubTvCJturNFKRmGwuP1JJtmyqVM1wfOXgvS9aafzMNe7gbrE3EcEYA5-PLnzy0wr1O2-36iYaDCMVI6IZAwr5QbibfP2jzsu-CCBjk7clhWS9LXpMk8Nzh5_3GjvgAlzh3WUw66YpcI6pHtNRMyrB2hDlfq15lNhzT5HPn7A0QJk_Gwsl8h0RJCosSvVlrFXxfE9xQurD9jqnVFK4oCEz-5pakGlQ4YgtJvQB5sG-SA-p5GVfQYdN3gE4WMkQTYAbh26jVs5MRCI5Plg73F5QwGx492pQB0oNhT", "commit"=>"Send Invite!"}
+Redirected to http://localhost:3000/invite
+Completed 302 Found in 160ms (ActiveRecord: 5.5ms | Allocations: 17070)
+
+
+Started GET "/invite" for ::1 at 2020-10-11 10:33:58 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.7ms | Allocations: 647)
+  Rendered invites/new.html.erb within layouts/application (Duration: 11.9ms | Allocations: 8041)
+  Rendered application/_favicon.html.erb (Duration: 329.5ms | Allocations: 348850)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 54.2ms | Allocations: 27010)
+  Rendered layouts/_footer.html.erb (Duration: 7.6ms | Allocations: 2723)
+Completed 200 OK in 569ms (Views: 557.2ms | ActiveRecord: 6.4ms | Allocations: 462448)
+
+
+Started POST "/invites" for ::1 at 2020-10-11 10:34:22 -0700
+Processing by InvitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Bq60/wKoe+Obbs5ZQDkIZi5QvWewB+H4d677P3MvwmwI7zyBF+pds7BkjOtnVIQEXAPodUrb1soVv4YB2gVr1Q==", "invite"=>{"phone_number"=>"917-574-0753", "country_code"=>"US", "preferred_name"=>"blam", "relationship"=>"Friends"}, "g-recaptcha-response"=>"03AGdBq27yF6_zYIExLQACQb3GoRpbde7UyT_jjzyneCH7FMvxzmWLKDyfXynkPTziyakI9FDWv-N3KOSeFidixeryIonSOrEt9GuFmY5DBFEjLr9Bb8yxKpkZBG87uDc0d_At2fKS-qOclmvyivHoOeUV9AYgZDRLplQoUrvlqFXqtAYmENR7AsWH8GuOUT0sSH1kZksx4qhJe-raln5S9PSSEtd_1TgY3DajEFUUZaqGFItCiKK7c4Y3Q-UKdFyBp2vx6rHYIGET5xso3vWmDnBAmfyvwsmUL9MuAc3_YzE-azfeUVSe1zv5wEY77CdNx9WmgDH5-BR11ckigh4GCRinwKOdqA3ccD3OIQ3tHSOOnrL_wxmJRuUmeq4aDX19gWGSTRAZKc-8cYalEBKY8nX8V0iJksGrMi8LdbU1ND8naLbaYXG2JCq9srsEVNU8zk05e2BPpS2r", "commit"=>"Send Invite!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvite Create (3.6ms)[0m  [1m[32mINSERT INTO "invites" ("phone_number", "country_code", "relationship", "preferred_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["phone_number", "917-574-0753"], ["country_code", "US"], ["relationship", 0], ["preferred_name", "blam"], ["created_at", "2020-10-11 17:34:23.000601"], ["updated_at", "2020-10-11 17:34:23.000601"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/home
+Completed 302 Found in 677ms (ActiveRecord: 6.9ms | Allocations: 11141)
+
+
+Started GET "/home" for ::1 at 2020-10-11 10:34:23 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 07:34:23.592675' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:34:23.623875' AND start_at > '2020-10-11 09:34:23.623896' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 10:34:23.623875' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:34:23.623875' AND start_at > '2020-10-11 09:34:23.623896' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 10:34:23.623875' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-11 10:34:23.623875' AND start_at > '2020-10-11 09:34:23.623896' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-11 10:34:23.623875' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:34:23.592675' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:34:23.592675' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.9ms | Allocations: 403)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:34:23.592675')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 1.9ms | Allocations: 449)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-11 07:34:23.592675' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 6.8ms | Allocations: 3571)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.1ms | Allocations: 1492)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 9.6ms | Allocations: 2584)
+  Rendered layouts/_calendar.html.erb (Duration: 2.4ms | Allocations: 1039)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 35.9ms | Allocations: 12556)
+  Rendered application/_favicon.html.erb (Duration: 7.8ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 830)
+  Rendered layouts/_footer.html.erb (Duration: 4.4ms | Allocations: 2296)
+Completed 200 OK in 214ms (Views: 160.8ms | ActiveRecord: 19.4ms | Allocations: 93147)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-10-11 10:34:24 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/invite" for ::1 at 2020-10-11 10:35:09 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered invites/new.html.erb within layouts/application (Duration: 5.0ms | Allocations: 5382)
+  Rendered application/_favicon.html.erb (Duration: 6.0ms | Allocations: 3511)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.3ms | Allocations: 1203)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2296)
+Completed 200 OK in 99ms (Views: 97.0ms | ActiveRecord: 0.7ms | Allocations: 79341)
+
+

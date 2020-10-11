@@ -24,8 +24,8 @@ class InvitesController < ApplicationController
       @invite = Invite.new(invite_params)
   
         if verify_recaptcha(model: @invite) && @invite.save
-          account_sid = "AC40d4b5f21aef08a190398e6383f76a41"
-          auth_token = "c36b559ca5d28821328513b5438c48fb"
+          account_sid = ENV['TWILIO_ACCOUNT_SID']
+          auth_token = ENV['TWILIO_ACCOUNT_TOKEN']
   
           countryAb = invite_params["country_code"]
           countryCode = IsoCountryCodes.find(countryAb).calling
