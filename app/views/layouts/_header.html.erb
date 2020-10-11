@@ -39,7 +39,7 @@
           <% else %>
             <li>
               <p class="navbar-btn pt-1">
-                <button class="inv-btn">Invite</button>
+                 <p><a class="btn-primary border border-light" href="#popup1">Click Me</a></p>
                 <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
                 <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
               </p>
@@ -51,14 +51,12 @@
   </header>
 </div>
 
-<!--modal HTML-->
-<div class="modal-bg">
-  <div class="modal">
-    <h2>Invite Your Friends!!</h2>
-    <label for="name">Name: </label>
-    <input type="text" name="name">
-    <label for="email">Email: </label>
-    <input type="email" name="email">
-    <button>Send</button>
-  </div>
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Info box</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			<p>This is done totally without JavaScript. Just HTML and CSS.</p>
+		</div>
+	</div>
 </div>
