@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.integer "event_id"
     t.datetime "time_in"
     t.datetime "time_out"
+    t.integer "duration_in_minutes"
   end
 
   create_table "books", id: :serial, force: :cascade do |t|
