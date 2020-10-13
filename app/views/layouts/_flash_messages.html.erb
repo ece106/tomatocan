@@ -1,5 +1,6 @@
+<br />
 <% flash.each do |name, msg| %>
-	<div class='alert alert-<%= format(name) %>' role='alert'>
-		<%= simple_format msg.gsub(/\n/, '<br>') %>
-	</div>
+<div class='alert alert-<%= format(name) %>' role='alert'>
+	<%= "File uploaded is not in the required format!" %>
+</div>
 <% end %>
