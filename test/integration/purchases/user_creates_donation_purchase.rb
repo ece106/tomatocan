@@ -96,11 +96,8 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     assert page.has_css? '.last4'
     assert page.has_button? 'Buy now'
     find(:button, 'Buy now', match: :first).click
-    #assert_equal(page.response_headers["Content-Type"], 'video/mp4')
-    #visit @user_one.permalink #WORKAROUND
     assert_current_path "/#{ @user_one.permalink }"
     assert_text(:all, %r(/purchases/[0-9]*/download))
-    sleep 6
   end
 
   def teardown 
