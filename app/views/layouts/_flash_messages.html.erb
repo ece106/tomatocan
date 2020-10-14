@@ -1,6 +1,10 @@
 <br />
 <% flash.each do |name, msg| %>
 <div class='alert alert-<%= format(name) %>' role='alert'>
-	<%= "File uploaded is not in the required format!" %>
+
+	<%= "-Image must be in one of the following formats: .jpg, .png or .tif!" %>
+	<br />
+	<%= "-Resume must be in one of the following formats: .pdf, .doc or .docx!" %>
+
 </div>
 <% end %>
