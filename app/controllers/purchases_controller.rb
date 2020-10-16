@@ -91,10 +91,9 @@ class PurchasesController < ApplicationController
           filename_and_data = @merchandise.get_filename_and_data
           filename = filename_and_data[:filename]
           data = filename_and_data[:data]
-          #send_data_to_buyer data, filename
           redirect_later purchase_download_path(@purchase), "Downloading file"
           redirect_to user_profile_path(@seller.permalink)
-          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
+          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name + ". Your download (if applicable) will start in 5 seconds."
           PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
           PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
         when false

@@ -16,6 +16,13 @@
     <%= render 'layouts/authorform' %>
 
     <hr style="width: 44%; height: 1px; border-width:0; color: #8C1D40; background-color:#8C1D40; text-align: center">
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %> alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= value %>
+    </div>
+    <% end %>
+
 
     <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
             <% if current_user.nil? %>
@@ -90,12 +97,5 @@
             <% end %>
         </div>
     </div>
-
-    <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %> alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= value %>
-    </div>
-    <% end %>
 
 </div>
