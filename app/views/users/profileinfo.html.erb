@@ -1,9 +1,13 @@
 <!--This partial contains two panels unlike the other panel partials because I don't think they'll ever be seperated, but I want them split to save vertical space.-->
 
 
-<div class="container-fluid">
-    <%= render 'layouts/flash_messages' %>
-</div>
+<% if flash.present? %>
+    <div class="alert alert-danger" role="alert">
+        <% flash.each do |key, value| %>
+            <%= value %>
+        <% end %>
+    </div>
+<% end %>
 
 <div class="col-lg-12 px-5 my-5">
     <%= form_for @user, :html => {:multipart => true} do |f| %>

@@ -1,10 +1,6 @@
 <br />
 <% flash.each do |name, msg| %>
 <div class='alert alert-<%= format(name) %>' role='alert'>
-
-	<%= "-Image must be in one of the following formats: .jpg, .png or .tif!" %>
-	<br />
-	<%= "-Resume must be in one of the following formats: .pdf, .doc or .docx!" %>
-
+	<%= simple_format msg.gsub(/\n/, '<br>') %>
 </div>
 <% end %>

@@ -59,7 +59,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
+      errors = ["- Resume must be in one of the following formats: .pdf, .doc, .docx ","- Images must be in one of the following formats: .jpg, .png, .tif"]
+      flash[:error] = errors.join("<br/>").html_safe 
     end
+
   end
   def changepassword
     respond_to do |format|
