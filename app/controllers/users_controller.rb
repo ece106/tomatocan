@@ -232,14 +232,13 @@ class UsersController < ApplicationController
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
                                  :twitter, :title, :profilepic, :remember_me,
-                                 :facebook, :youtube1, :youtube2,
-                                 :youtube3, :updating_password, :attendid,
-                                 :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
+                                 :facebook, :updating_password, :attendid,
+                                 :purchid, :bannerpic, :on_password_reset, :stripesignup )
   end
 
   def resolve_layout
     case action_name
-    when "index", "youtubers", "supportourwork", "stripe_callback"
+    when "index", "stripe_callback"
       'application'
     when "profileinfo", "changepassword"
       'editinfotemplate'
