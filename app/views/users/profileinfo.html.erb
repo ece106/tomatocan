@@ -61,7 +61,7 @@
             <div>
                 <h2><small><b><%=f.label :name, "About you" %></b></small></h2>
             </div>
-            <%= f.text_area :about, placeholder: 'Tell us a little about yourself and your aspirations', :class => "form-control",  :style=> "background: #DCDCDC" %>
+            <%= f.text_area :about, cols: 82, rows: 4, placeholder: 'Tell us a little about yourself and your aspirations', :class => "form-control",  :style=> "background: #DCDCDC" %>
         </div>
 
         <!-- Three Topics -->
@@ -72,12 +72,12 @@
 
         </div>
         <div class="form-group pt-3">
-            <h2><small><b><%=f.label :name, "Current position" %></b></small></h2>
+            <h2><small><b><%=f.label :name, "Role in Growing Female Confidence" %></b></small></h2>
             <div class="dropdown pt-1 pr-1">
-                <%= f.select(:genre1, [["Please Select", ""], "Mentor", "Student", "Actively Hiring", "Early Career", "Other"], {}, {:class=>"btn btn-primary dropdown-toggle text-white", :style=> "padding: 10px"}) %>
+                <%= f.select(:genre1, [["Please Select", ""], "Parent", "Mentor", "College Student", "High School Student", "Woman's Organization Member", "Woman in Tech", "Other"], {}, {:class=>"btn btn-primary dropdown-toggle text-white", :style=> "padding: 10px"}) %>
 
             </div>
-            <p class="pt-3">If you are not in any of these positions:</p>
+            <p class="pt-3">If "Other":</p>
 
             <div class=" pr-1">
                 <%= f.text_field :genre2, maxlength: 30, :class => "form-control", :style=> "background: #DCDCDC", placeholder: "Current Position" %>
