@@ -234,16 +234,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-<<<<<<< HEAD
                                  :twitter, :title, :profilepic, :remember_me, :resume,
-                                 :facebook, :youtube1, :youtube2,
-                                 :youtube3, :updating_password, :attendid,
-                                 :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
-=======
-                                 :twitter, :title, :profilepic, :remember_me,
                                  :facebook, :updating_password, :attendid,
                                  :purchid, :bannerpic, :on_password_reset, :stripesignup )
->>>>>>> b6e260bb8c1291a33421f9327ddbbc63a6457982
+
   end
 
   def resolve_layout
