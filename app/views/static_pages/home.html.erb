@@ -13,14 +13,15 @@
     <% end %>
 
     <h1 class="text-center maroon mt-5 pl-2 pt-5" style="font-size: 50px">
-      <strong>Powerful Women in STEM who inspire you to </strong>
+      <strong>Women who inspire you to </strong>
         <%= image_tag("thinqMaroon.png", style: "height: 80px; margin-top: 10px") %>
     </h1>
     <h2 class="text-center" style="color:#8C1D40">
-      <br><br>Find your ideal tech job via video chat job fairs<br><br><br><br>
+      <br><br>A network of women growing the next generation into Confident Young Women that discover & support each other via video chat. Schedule a conversation with your network!<br><br><br>
     </h2>
 
-    <div class=" text-center" style="height: 100px">
+    <div class=" text-center" >
+        <%= render 'layouts/countdown_clock' %>
     </div>
   </div>
 
@@ -28,38 +29,6 @@
   </div>
 </div>
 
-<div class="row" style="margin-bottom: 30px">
-    <!--study hall and conversation section -->
-
-    <div class="col-lg-6 col-md-12 col-sm-12 pt-2">
-      <!--conversations column-->
-      <div class="col-lg-12 col-md-12 mx-auto d-block text-center" style = "min-height:42%; justify-content:flex-end">
-        <%= render 'layouts/countdown_clock' %>
-      </div>
-      <h2 class="text-warning text-center"><strong>Conversations</strong>
-      </h2>
-      <p class = "text-center">Join video chats where experienced women who are hiring empower the next generation of STEM professionals. <br>Ask for advice and find out how to get your first tech job!
-      </p>
-      <%= image_tag("convo_photo.png", class:"mx-auto d-block pb-3", style: "border-radius: 112px; width: 50%;")%>
-    </div>
-
-    <!--end of conversations column-->
-
-    <div class="col-lg-6 col-md-12 col-sm-12 pb-5 pt-3 mt-3 ">
-      <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-      <div class="col-lg-12 col-md-12 col-sm-7 mx-auto d-block text-center" style = "min-height:42%; justify-content:flex-end">
-        <%= render 'layouts/countdown_clockstudy' %>
-      </div>
-      <h2 class="text-warning text-center pl-5"><strong>
-        Drop-In Hours</strong>
-      </h2>
-      <p class = "text-center">
-        Join a community of student developers and designers to network and get peer feedback. <br> Please drop in and interrupt us to find out what we're up to!
-      </p>     
-      <%= image_tag("activism_hall.jpg", class:" mx-auto d-block  pb-3", style: "border-radius:112px; width:50%;")%>
-
-    </div>
-</div>
     <!--end of drop in column-->
 </div>
       <div>
