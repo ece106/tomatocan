@@ -59,7 +59,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
+      errors = ["- Resume must be in one of the following formats: .pdf, .doc, .docx ","- Images must be in one of the following formats: .jpg, .png, .tif"]
+      flash[:error] = errors.join("<br/>").html_safe 
     end
+
   end
   def changepassword
     respond_to do |format|
@@ -231,9 +234,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-                                 :twitter, :title, :profilepic, :remember_me,
+                                 :twitter, :title, :profilepic, :remember_me, :resume,
                                  :facebook, :updating_password, :attendid,
                                  :purchid, :bannerpic, :on_password_reset, :stripesignup )
+
   end
 
   def resolve_layout
