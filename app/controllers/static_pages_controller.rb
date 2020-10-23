@@ -22,8 +22,8 @@ class StaticPagesController < ApplicationController
 
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
-    currconvo = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Conversation' ).first
-    nextconvo = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Conversation' ).order('start_at ASC').first
+    currconvo = Event.where( "start_at < ? AND start_at > ?", pdtnow, pdtnext ).first
+    nextconvo = Event.where( "start_at > ? ", pdtnow ).order('start_at ASC').first
 
     currstudy = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'DropIn' ).order('start_at ASC').first
     nextstudy = Event.where( "start_at > ? AND topic = ?", pdtnow, 'DropIn' ).order('start_at ASC').first
