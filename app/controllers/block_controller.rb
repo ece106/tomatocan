@@ -46,8 +46,8 @@ class BlockController < ApplicationController
         attendance_log.time_out = Time.now - 7.hours
         attendance_log.save
 
-        # update the attendance duration_in_minutes column
-        Attendance.update(attendance_log.id, duration_in_minutes: (((attendance_log.time_out - attendance_log.time_in)/60).to_i))
+        # # update the attendance duration_in_minutes column
+        # Attendance.update(attendance_log.id, duration_in_minutes: (((attendance_log.time_out - attendance_log.time_in)/60).to_i))
 
         # return 200 ok Why do we do this?
         head :ok

@@ -135,10 +135,18 @@
     }
 
     // unload actions
-    $(window).on('beforeunload', (event) => {
-      // remove user from attendees list
-      $.post("/users/unload", {attendid: attendrec, event: urlParams.get('event')})
-    });
+    window.onbeforeunload = function(event) {
+      if (!navigator.sendBeacon) return;
+        var url = "/users/unload";
+        // FormData
+        const data = new FormData();
+        data.append("attendid", attendrec);
+        data.append("event", urlParams.get('event'));
+        // Send the beacon
+        var status = navigator.sendBeacon(url, data);
+        // Log the data and result
+        console.log("sendBeacon: URL = ", url, "; data = ", data, "; status = ", status);
+    };
 
     // makes all links on viewer page open in new tab
     $(document).ready(() => {
