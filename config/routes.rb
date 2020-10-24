@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get "invite", :to => 'invites#new', :as => :new_invite_form
   get "home", :to => 'static_pages#home', :as => :new_invite_success
 
+  match 'embed', to: 'static_pages#embed', via: 'get'
+
   resources :merchandises
   resources :rsvpqs
   resources :purchases

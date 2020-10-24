@@ -42,15 +42,15 @@ class InvitesController < ApplicationController
 
           case invite_params["relationship"]
           when "Friends"
-            messageBody = "ThinQ.tv Invite from " + current_user.name + "!: Hey, " + invite_params["preferred_name"] + ", come check out https://thinq.tv/signup/" + current_user.id.to_s + " and get tips from industry pros!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + "!: Hey, " + invite_params["preferred_name"] + ", come check out https://thinq.tv/signup/" + current_user.id.to_s + " and get tips from industry pros!"
           when "Family"
-            messageBody = "ThinQ.tv Invite from " + current_user.name + ": " + invite_params["preferred_name"] + ", come check out https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and host good conversations!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": " + invite_params["preferred_name"] + ", come check out https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and host good conversations!"
           when "Coworkers"
-            messageBody = "ThinQ.tv Invite from " + current_user.name + ": Hi " + invite_params["preferred_name"] + "," + " based on your work experience and ties, " + current_user.name + " has invited you to join ThinQ. Sign up at https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and share your own knowledge in hosted thoughtful conversations."
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": Hi " + invite_params["preferred_name"] + "," + " based on your work experience and ties, " + current_user.name + " has invited you to join ThinQ. Sign up at https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and share your own knowledge in hosted thoughtful conversations."
           when "General Acquaintances"
-            messageBody = "ThinQ.tv Invite from " + current_user.name + ": Hi " + invite_params["preferred_name"] + "," + current_user.name + " has invited you to join ThinQ. Sign up at https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": Hi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
           else
-            messageBody = "ThinQ.tv Invite from " + current_user.name + ": Hi " + invite_params["preferred_name"] + "," + current_user.name + " has invited you to join ThinQ. Sign up at https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": Hi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
           end
   
           @client = Twilio::REST::Client.new(account_sid, auth_token)
