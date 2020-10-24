@@ -144,8 +144,6 @@
         data.append("event", urlParams.get('event'));
         // Send the beacon
         var status = navigator.sendBeacon(url, data);
-        // Log the data and result
-        console.log("sendBeacon: URL = ", url, "; data = ", data, "; status = ", status);
     };
 
     // makes all links on viewer page open in new tab

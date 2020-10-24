@@ -19,7 +19,6 @@ namespace :update do
       attended.each do |attendance_record|
         attendance_record.time_out = event.end_at
         attendance_record.save
-        Attendance.update(attendance_record.id, duration_in_minutes: (((attendance_record.time_out - attendance_record.time_in)/60).to_i))
       end
       puts "Attendance table times fixed"
     else
@@ -64,13 +63,17 @@ namespace :update do
       # find general attendances of converation (not host attendances) grouped by user_id
       attended = Attendance.where( "event_id = ? AND user_id != ?", event.id, event.user_id )
                             .group("user_id")
-                            .sum("duration_in_minutes")
+                            .sum("time_out - time_in")
+                            # .sum((("time_out - time_in")/60).to_i)
       puts "Record of attendance duration by user ids"
       puts attended
       attended.each do |key, attendance_duration|
         puts key
+        puts attendance_duration
+        puts Time.parse(attendance_duration).min.to_i
+        # puts (attendance_duration/60).to_i > 30
         user = User.find_by( "id = ?", key )
-        if attendance_duration > 30 
+        if Time.parse(attendance_duration).min.to_i > 30
           # increase user reputation score by 10 if they stayed in the conversation by more than 30 minutes
           puts "This user stayed for longer than 30 minutes"
           User.update(key, reputation_score: user.reputation_score + 10)
