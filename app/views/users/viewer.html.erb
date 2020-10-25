@@ -136,20 +136,29 @@
 
     // unload actions
     window.onbeforeunload = function(event) {
-      if (!navigator.sendBeacon) return;
+      // FormData containing attendid and event information
+      const data = new FormData();
+      data.append("attendid", attendrec);
+      data.append("event", urlParams.get('event'));
+      
+      // use fetch API if sendBeacon does not work
+      if (!navigator.sendBeacon) {
+        fetch('/siteAnalytics', {
+          method: 'POST',
+          body: data,
+          keepalive: true
+        });
+      }
+      // using beacon API to send a post request
+      else { 
         var url = "/users/unload";
-        // FormData
-        const data = new FormData();
-        data.append("attendid", attendrec);
-        data.append("event", urlParams.get('event'));
-        // Send the beacon
         var status = navigator.sendBeacon(url, data);
+      }
     };
 
     // makes all links on viewer page open in new tab
     $(document).ready(() => {
       $("a").attr("target", "_blank");
-    	
     });
 
 
