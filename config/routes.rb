@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   match 'invite', to: 'invites#new', via: 'get'
   get "invite", :to => 'invites#new', :as => :new_invite_form
   get "home", :to => 'static_pages#home', :as => :new_invite_success
+  match 'invite_error', to: 'invites#error', via: 'get'
 
   resources :merchandises
   resources :rsvpqs

@@ -19222,3 +19222,2351 @@ puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
 puma (4.3.5) lib/puma/server.rb:472:in `process_client'
 puma (4.3.5) lib/puma/server.rb:328:in `block in run'
 puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/" for ::1 at 2020-10-25 22:48:22 -0700
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 19:48:22.538159' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 22:48:22.553360' AND start_at > '2020-10-25 21:48:22.553377' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 22:48:22.553360' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 22:48:22.553360' AND start_at > '2020-10-25 21:48:22.553377' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 22:48:22.553360' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 22:48:22.553360' AND start_at > '2020-10-25 21:48:22.553377' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 22:48:22.553360' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 19:48:22.538159' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 19:48:22.538159' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.6ms | Allocations: 409)
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 19:48:22.538159')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 3.7ms | Allocations: 449)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 19:48:22.538159' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 5.8ms | Allocations: 3575)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.7ms | Allocations: 1492)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 5.3ms | Allocations: 2586)
+  Rendered layouts/_calendar.html.erb (Duration: 1.8ms | Allocations: 1039)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 493.8ms | Allocations: 356628)
+  Rendered application/_favicon.html.erb (Duration: 6.1ms | Allocations: 3533)
+  Rendered layouts/_header.html.erb (Duration: 2.6ms | Allocations: 1122)
+  Rendered layouts/_footer.html.erb (Duration: 5.6ms | Allocations: 2721)
+Completed 200 OK in 714ms (Views: 670.0ms | ActiveRecord: 15.1ms | Allocations: 444730)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 22:48:24 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.0ms | Allocations: 168)
+  Rendered invites/new.html.erb within layouts/application (Duration: 17.7ms | Allocations: 6583)
+  Rendered application/_favicon.html.erb (Duration: 16.5ms | Allocations: 3514)
+  Rendered layouts/_header.html.erb (Duration: 3.2ms | Allocations: 728)
+  Rendered layouts/_footer.html.erb (Duration: 7.3ms | Allocations: 2288)
+Completed 200 OK in 226ms (Views: 206.1ms | ActiveRecord: 6.0ms | Allocations: 86649)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 22:50:35 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.9ms | Allocations: 164)
+  Rendered invites/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 464)
+  Rendered application/_favicon.html.erb (Duration: 8.8ms | Allocations: 3682)
+  Rendered layouts/_header.html.erb (Duration: 3.9ms | Allocations: 1147)
+  Rendered layouts/_footer.html.erb (Duration: 6.6ms | Allocations: 2694)
+Completed 200 OK in 96ms (Views: 93.8ms | ActiveRecord: 0.0ms | Allocations: 76665)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 22:50:59 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 164)
+  Rendered invites/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 468)
+  Rendered application/_favicon.html.erb (Duration: 8.2ms | Allocations: 3680)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 1147)
+  Rendered layouts/_footer.html.erb (Duration: 3.3ms | Allocations: 2694)
+Completed 200 OK in 98ms (Views: 97.1ms | ActiveRecord: 0.0ms | Allocations: 76659)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 22:58:02 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered invites/new.html.erb within layouts/application (Duration: 10.6ms | Allocations: 1693)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms | Allocations: 3198)
+
+
+  
+ActionView::Template::Error (Missing partial layouts/_invite with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee]}. Searched in:
+  * "/Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/app/views"
+  * "/Users/jameslordenderlaing/.rvm/gems/ruby-2.7.0/gems/simple_calendar-2.4.1/app/views"
+  * "/Users/jameslordenderlaing/.rvm/gems/ruby-2.7.0/gems/devise-4.7.2/app/views"
+  * "/Users/jameslordenderlaing/.rvm/gems/ruby-2.7.0/gems/actiontext-6.0.3.2/app/views"
+  * "/Users/jameslordenderlaing/.rvm/gems/ruby-2.7.0/gems/actionmailbox-6.0.3.2/app/views"
+):
+     6:     <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+     7:     <%=  
+     8:       if current_user == nil
+     9:         render partial: 'layouts/invite'
+    10:       end
+    11:     %>
+    12:       
+  
+app/views/invites/new.html.erb:9
+Started GET "/favicon.ico" for ::1 at 2020-10-25 22:58:02 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 12.4ms | Allocations: 4255)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/invite" for ::1 at 2020-10-25 22:58:44 -0700
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 175)
+  Rendered invites/new.html.erb within layouts/application (Duration: 14.5ms | Allocations: 6799)
+  Rendered application/_favicon.html.erb (Duration: 306.0ms | Allocations: 347570)
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 1129)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 2723)
+Completed 200 OK in 467ms (Views: 441.3ms | ActiveRecord: 5.3ms | Allocations: 439142)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 22:59:49 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered invites/new.html.erb within layouts/application (Duration: 2.9ms | Allocations: 958)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms | Allocations: 2458)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+      <%= if current_user != nil %>
+       <%= form_for(@invite) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Invite Somebody!</b>
+          </div>
+          <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+        </div>
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please use the following format: <i> 555-123-4567 </i> </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+            </div>
+          </div>
+          <div>
+          <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+          </div>
+
+          <!-- Country Code Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please select the recipient's country code</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Name Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is this person's preferred name?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Relationship Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is your relationship with this person?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-4" >
+                <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+):
+1:    <div class="container pt-4 mt-4">
+2:      <%= render 'layouts/flash_messages' %>
+3:      <div class="row justify-content-center pt-3">
+4:    
+5:    
+6:        <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+7:          <div class="well">
+8:          <%= if current_user != nil %>
+9:           <%= form_for(@invite) do |f| %>
+10:            <div style="text-align:center">
+11:              <div style="font-size:35px">
+12:                <b>Invite Somebody!</b>
+13:              </div>
+14:              <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+15:            </div>
+16:              <!-- Phone Number Box -->
+17:              <div class="form-group">
+18:                <div style="text-align:center">
+19:                <p> Please use the following format: <i> 555-123-4567 </i> </p>
+20:                </div>
+21:                <div class="input-group">
+22:                  <div class="input-group-addon">
+23:                    <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+24:                  </div>
+25:                  <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+26:                </div>
+27:              </div>
+28:              <div>
+29:              <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+30:              </div>
+31:    
+32:              <!-- Country Code Box -->
+33:              <div class="form-group">
+34:                <div style="text-align:center">
+35:                <p> Please select the recipient's country code</p>
+36:                </div>
+37:                <div class="input-group">
+38:                  <div class="input-group-addon">
+39:                    <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+40:                  </div>
+41:                  <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+42:                </div>
+43:              </div>
+44:    
+45:            <!-- Name Box -->
+46:              <div class="form-group">
+47:                <div style="text-align:center">
+48:                <p> What is this person's preferred name?</p>
+49:                </div>
+50:                <div class="input-group">
+51:                  <div class="input-group-addon">
+52:                    <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+53:                  </div>
+54:                  <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+55:                </div>
+56:              </div>
+57:    
+58:            <!-- Relationship Box -->
+59:              <div class="form-group">
+60:                <div style="text-align:center">
+61:                <p> What is your relationship with this person?</p>
+62:                </div>
+63:                <div class="input-group">
+64:                  <div class="input-group-addon">
+65:                    <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+66:                  </div>
+67:                    <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+68:                </div>
+69:              </div>
+70:    
+71:              <!-- Captcha checkbox -->
+72:              <div class = "text-center">
+73:                <div class="row">
+74:                  <div class="col-sm-1"></div>
+75:                  <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+76:                  <div class="col-sm-1"></div>
+77:                </div>
+78:              </div>
+79:    
+80:              <!-- Sign up button and TOS -->
+81:              <div class="row">
+82:                <div class="col-md-4" >
+83:                    <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+84:                </div>
+85:              </div>
+86:    
+87:              <hr style="border: 1px solid grey;">
+88:            <% end %>
+89:            <% end %>
+90:          </div>
+91:        </div>
+92:      </div>
+93:    </div>
+  
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 22:59:50 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 8.4ms | Allocations: 4280)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/invite" for ::1 at 2020-10-25 23:00:40 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered invites/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 504)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 2006)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+      <%= if true %>
+       <%= form_for(@invite) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Invite Somebody!</b>
+          </div>
+          <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+        </div>
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please use the following format: <i> 555-123-4567 </i> </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+            </div>
+          </div>
+          <div>
+          <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+          </div>
+
+          <!-- Country Code Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please select the recipient's country code</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Name Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is this person's preferred name?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Relationship Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is your relationship with this person?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-4" >
+                <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+):
+1:    <div class="container pt-4 mt-4">
+2:      <%= render 'layouts/flash_messages' %>
+3:      <div class="row justify-content-center pt-3">
+4:    
+5:    
+6:        <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+7:          <div class="well">
+8:          <%= if true %>
+9:           <%= form_for(@invite) do |f| %>
+10:            <div style="text-align:center">
+11:              <div style="font-size:35px">
+12:                <b>Invite Somebody!</b>
+13:              </div>
+14:              <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+15:            </div>
+16:              <!-- Phone Number Box -->
+17:              <div class="form-group">
+18:                <div style="text-align:center">
+19:                <p> Please use the following format: <i> 555-123-4567 </i> </p>
+20:                </div>
+21:                <div class="input-group">
+22:                  <div class="input-group-addon">
+23:                    <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+24:                  </div>
+25:                  <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+26:                </div>
+27:              </div>
+28:              <div>
+29:              <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+30:              </div>
+31:    
+32:              <!-- Country Code Box -->
+33:              <div class="form-group">
+34:                <div style="text-align:center">
+35:                <p> Please select the recipient's country code</p>
+36:                </div>
+37:                <div class="input-group">
+38:                  <div class="input-group-addon">
+39:                    <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+40:                  </div>
+41:                  <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+42:                </div>
+43:              </div>
+44:    
+45:            <!-- Name Box -->
+46:              <div class="form-group">
+47:                <div style="text-align:center">
+48:                <p> What is this person's preferred name?</p>
+49:                </div>
+50:                <div class="input-group">
+51:                  <div class="input-group-addon">
+52:                    <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+53:                  </div>
+54:                  <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+55:                </div>
+56:              </div>
+57:    
+58:            <!-- Relationship Box -->
+59:              <div class="form-group">
+60:                <div style="text-align:center">
+61:                <p> What is your relationship with this person?</p>
+62:                </div>
+63:                <div class="input-group">
+64:                  <div class="input-group-addon">
+65:                    <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+66:                  </div>
+67:                    <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+68:                </div>
+69:              </div>
+70:    
+71:              <!-- Captcha checkbox -->
+72:              <div class = "text-center">
+73:                <div class="row">
+74:                  <div class="col-sm-1"></div>
+75:                  <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+76:                  <div class="col-sm-1"></div>
+77:                </div>
+78:              </div>
+79:    
+80:              <!-- Sign up button and TOS -->
+81:              <div class="row">
+82:                <div class="col-md-4" >
+83:                    <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+84:                </div>
+85:              </div>
+86:    
+87:              <hr style="border: 1px solid grey;">
+88:            <% end %>
+89:            <% end %>
+90:          </div>
+91:        </div>
+92:      </div>
+93:    </div>
+  
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:00:41 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.6ms | Allocations: 1168)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/invite" for ::1 at 2020-10-25 23:01:30 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 164)
+  Rendered invites/new.html.erb within layouts/application (Duration: 8.0ms | Allocations: 6138)
+  Rendered application/_favicon.html.erb (Duration: 5.2ms | Allocations: 3698)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 1092)
+  Rendered layouts/_footer.html.erb (Duration: 4.3ms | Allocations: 2694)
+Completed 200 OK in 94ms (Views: 92.6ms | ActiveRecord: 0.0ms | Allocations: 82321)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 23:02:17 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered invites/new.html.erb within layouts/application (Duration: 5.9ms | Allocations: 6143)
+  Rendered application/_favicon.html.erb (Duration: 4.1ms | Allocations: 3699)
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 1120)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 2694)
+Completed 200 OK in 84ms (Views: 82.9ms | ActiveRecord: 0.0ms | Allocations: 82255)
+
+
+Started GET "/embed" for ::1 at 2020-10-25 23:02:19 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"embed"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "embed"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.5ms | Allocations: 1358)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:02:19 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.8ms | Allocations: 1130)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/" for ::1 at 2020-10-25 23:02:48 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:02:48.044821' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:02:48.061405' AND start_at > '2020-10-25 22:02:48.061428' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:02:48.061405' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:02:48.061405' AND start_at > '2020-10-25 22:02:48.061428' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:02:48.061405' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:02:48.061405' AND start_at > '2020-10-25 22:02:48.061428' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:02:48.061405' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:02:48.044821' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:02:48.044821' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 2.4ms | Allocations: 403)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:02:48.044821')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 2.1ms | Allocations: 448)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:02:48.044821' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 5.4ms | Allocations: 3573)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 3.8ms | Allocations: 1492)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 7.8ms | Allocations: 2584)
+  Rendered layouts/_calendar.html.erb (Duration: 3.3ms | Allocations: 1039)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 34.7ms | Allocations: 12545)
+  Rendered application/_favicon.html.erb (Duration: 5.4ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 755)
+  Rendered layouts/_footer.html.erb (Duration: 3.1ms | Allocations: 2296)
+Completed 200 OK in 155ms (Views: 118.2ms | ActiveRecord: 16.0ms | Allocations: 92476)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-10-25 23:02:48 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/embed" for ::1 at 2020-10-25 23:02:49 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"embed"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "embed"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.7ms | Allocations: 1191)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:02:49 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.5ms | Allocations: 1129)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/embed" for ::1 at 2020-10-25 23:03:36 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"embed"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "embed"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.6ms | Allocations: 1188)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:03:37 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.5ms | Allocations: 1128)
+
+
+  
+NoMethodError (undefined method `merchandises' for nil:NilClass):
+  
+app/controllers/users_controller.rb:250:in `set_user'
+Started GET "/" for ::1 at 2020-10-25 23:03:59 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:03:59.541273' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:03:59.543726' AND start_at > '2020-10-25 22:03:59.543743' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:03:59.543726' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:03:59.543726' AND start_at > '2020-10-25 22:03:59.543743' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:03:59.543726' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:03:59.543726' AND start_at > '2020-10-25 22:03:59.543743' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:03:59.543726' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:03:59.541273' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:03:59.541273' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.0ms | Allocations: 394)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:03:59.541273')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 2.0ms | Allocations: 438)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:03:59.541273' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 2.3ms | Allocations: 1532)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 1.8ms | Allocations: 1435)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 3.9ms | Allocations: 2511)
+  Rendered layouts/_calendar.html.erb (Duration: 1.4ms | Allocations: 997)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 19.8ms | Allocations: 10270)
+  Rendered application/_favicon.html.erb (Duration: 6.4ms | Allocations: 3523)
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 1119)
+  Rendered layouts/_footer.html.erb (Duration: 4.6ms | Allocations: 2695)
+Completed 200 OK in 126ms (Views: 112.7ms | ActiveRecord: 4.9ms | Allocations: 87820)
+
+
+Started GET "/faq" for ::1 at 2020-10-25 23:04:00 -0700
+Processing by StaticPagesController#faq as HTML
+  Rendering static_pages/faq.html.erb within layouts/application
+  Rendered static_pages/faq.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1170)
+  Rendered application/_favicon.html.erb (Duration: 8.8ms | Allocations: 3318)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 796)
+  Rendered layouts/_footer.html.erb (Duration: 4.1ms | Allocations: 2288)
+Completed 200 OK in 97ms (Views: 96.2ms | ActiveRecord: 0.0ms | Allocations: 74660)
+
+
+Started GET "/faq" for ::1 at 2020-10-25 23:06:05 -0700
+Processing by StaticPagesController#faq as HTML
+  Rendering static_pages/faq.html.erb within layouts/application
+  Rendered static_pages/faq.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1167)
+  Rendered application/_favicon.html.erb (Duration: 4.2ms | Allocations: 3524)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 1172)
+  Rendered layouts/_footer.html.erb (Duration: 2.9ms | Allocations: 2694)
+Completed 200 OK in 73ms (Views: 69.3ms | ActiveRecord: 0.0ms | Allocations: 77639)
+
+
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/" for ::1 at 2020-10-25 23:06:24 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:06:24.315903' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:06:24.329512' AND start_at > '2020-10-25 22:06:24.329530' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:06:24.329512' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:06:24.329512' AND start_at > '2020-10-25 22:06:24.329530' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:06:24.329512' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:06:24.329512' AND start_at > '2020-10-25 22:06:24.329530' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:06:24.329512' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:06:24.315903' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:06:24.315903' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 0.9ms | Allocations: 409)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:06:24.315903')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 1.8ms | Allocations: 449)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:06:24.315903' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 5.7ms | Allocations: 3575)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.9ms | Allocations: 1492)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 6.3ms | Allocations: 2586)
+  Rendered layouts/_calendar.html.erb (Duration: 2.0ms | Allocations: 1039)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 342.6ms | Allocations: 356627)
+  Rendered application/_favicon.html.erb (Duration: 6.3ms | Allocations: 3533)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 1150)
+  Rendered layouts/_footer.html.erb (Duration: 4.1ms | Allocations: 2721)
+Completed 200 OK in 530ms (Views: 488.5ms | ActiveRecord: 12.5ms | Allocations: 444761)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:06:25 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 168)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.2ms | Allocations: 477)
+  Rendered application/_favicon.html.erb (Duration: 15.8ms | Allocations: 3514)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 806)
+  Rendered layouts/_footer.html.erb (Duration: 7.5ms | Allocations: 2288)
+Completed 200 OK in 198ms (Views: 196.3ms | ActiveRecord: 0.0ms | Allocations: 75094)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:07:13 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.6ms | Allocations: 467)
+  Rendered application/_favicon.html.erb (Duration: 12.9ms | Allocations: 3682)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 1174)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2694)
+Completed 200 OK in 108ms (Views: 106.7ms | ActiveRecord: 0.0ms | Allocations: 76556)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:07:26 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 2.1ms | Allocations: 468)
+  Rendered application/_favicon.html.erb (Duration: 5.0ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 2.2ms | Allocations: 1174)
+  Rendered layouts/_footer.html.erb (Duration: 4.6ms | Allocations: 2694)
+Completed 200 OK in 101ms (Views: 99.1ms | ActiveRecord: 0.0ms | Allocations: 76641)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:07:48 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.6ms | Allocations: 514)
+  Rendered application/_favicon.html.erb (Duration: 6.9ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 1.9ms | Allocations: 1174)
+  Rendered layouts/_footer.html.erb (Duration: 3.0ms | Allocations: 2694)
+Completed 200 OK in 99ms (Views: 97.6ms | ActiveRecord: 0.0ms | Allocations: 76722)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:08:00 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.6ms | Allocations: 514)
+  Rendered application/_favicon.html.erb (Duration: 4.8ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 1172)
+  Rendered layouts/_footer.html.erb (Duration: 4.2ms | Allocations: 2700)
+Completed 200 OK in 90ms (Views: 88.4ms | ActiveRecord: 0.0ms | Allocations: 76627)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:08:35 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.4ms | Allocations: 513)
+  Rendered application/_favicon.html.erb (Duration: 4.8ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 1.8ms | Allocations: 1172)
+  Rendered layouts/_footer.html.erb (Duration: 3.7ms | Allocations: 2694)
+Completed 200 OK in 94ms (Views: 93.2ms | ActiveRecord: 0.0ms | Allocations: 76696)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:08:46 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.2ms | Allocations: 518)
+  Rendered application/_favicon.html.erb (Duration: 4.9ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 1172)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2694)
+Completed 200 OK in 69ms (Views: 68.0ms | ActiveRecord: 0.0ms | Allocations: 76736)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:08:59 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.7ms | Allocations: 515)
+  Rendered application/_favicon.html.erb (Duration: 6.7ms | Allocations: 3698)
+  Rendered layouts/_header.html.erb (Duration: 2.4ms | Allocations: 1172)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 2694)
+Completed 200 OK in 78ms (Views: 76.8ms | ActiveRecord: 0.0ms | Allocations: 76767)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:09:11 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.8ms | Allocations: 515)
+  Rendered application/_favicon.html.erb (Duration: 8.0ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 1172)
+  Rendered layouts/_footer.html.erb (Duration: 3.0ms | Allocations: 2694)
+Completed 200 OK in 87ms (Views: 85.4ms | ActiveRecord: 0.0ms | Allocations: 76706)
+
+
+Started GET "/signup" for ::1 at 2020-10-25 23:09:18 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 10.9ms | Allocations: 2795)
+  Rendered application/_favicon.html.erb (Duration: 3.8ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 770)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2296)
+Completed 200 OK in 119ms (Views: 72.3ms | ActiveRecord: 9.9ms | Allocations: 102806)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:09:20 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered invites/error.html.erb within layouts/application (Duration: 0.5ms | Allocations: 105)
+  Rendered application/_favicon.html.erb (Duration: 5.7ms | Allocations: 3491)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 806)
+  Rendered layouts/_footer.html.erb (Duration: 2.4ms | Allocations: 2296)
+Completed 200 OK in 90ms (Views: 88.5ms | ActiveRecord: 0.0ms | Allocations: 73603)
+
+
+Started GET "/signup" for ::1 at 2020-10-25 23:09:31 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.0ms | Allocations: 18)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2017)
+  Rendered application/_favicon.html.erb (Duration: 4.5ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 765)
+  Rendered layouts/_footer.html.erb (Duration: 2.3ms | Allocations: 2289)
+Completed 200 OK in 87ms (Views: 85.7ms | ActiveRecord: 0.0ms | Allocations: 75297)
+
+
+Started POST "/users" for ::1 at 2020-10-25 23:09:53 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MiaNTPeAlqkaNpsG1lGry0sjy14oxCouwNPOyfpKrTLSuF8UjmCmIl+a+GallIdQ6ztYRCHJ0fqaQTUcfk+3hg==", "user"=>{"name"=>"Jam Blam", "email"=>"jblamo0ze@gmail.com", "permalink"=>"blam", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "g-recaptcha-response"=>"03AGdBq26uxrYVLJ__znjP7Xx_JdNOCDnuCj6SpsM7cWlzhp4jjK85gkmzlgxRC3p2cewYXKo-xqaq5sxaqMsainpYEuwqbdcgC5aelZACJKBj8_3Ztsjby-o_D8R9tSTptLa_MlD5XcCIyNP7NLkX05quGhaVkq_Nyr_Zokyi_KVniRW74emFtlxJ-Ank-e3hGnrqRdacV9OUW781lKWxPcv0EJt22QH_5VBRHBryFUGHXfoKIXfgUFbNcY6lgZV4WIv5IQF8rgr2df-Wdf79haRmh8qrS66EZlA4KE1IQzcbZnJz7nYWOsWLGfWKVm-hCg5ea-4ghcRRarm8VFgGSJZIV9IohPbRNkvNCQ_U2UNiDj_0z5PneCIP9Go5JBJydXAYbpvtHnmNyqqkZPNi-SI2N4i6A22tBOp3LkTbvL8owDdxXiEX4MM", "commit"=>"Sign Up"}
+  [1m[35m (1.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."permalink") = LOWER($1) LIMIT $2[0m  [["permalink", "blam"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+Redirected to http://localhost:3000/signup
+Completed 302 Found in 283ms (ActiveRecord: 15.1ms | Allocations: 14511)
+
+
+Started GET "/signup" for ::1 at 2020-10-25 23:09:53 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.6ms | Allocations: 281)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 5.3ms | Allocations: 2275)
+  Rendered application/_favicon.html.erb (Duration: 4.9ms | Allocations: 3317)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 765)
+  Rendered layouts/_footer.html.erb (Duration: 2.2ms | Allocations: 2288)
+Completed 200 OK in 74ms (Views: 72.8ms | ActiveRecord: 0.0ms | Allocations: 75348)
+
+
+Started GET "/login" for ::1 at 2020-10-25 23:10:03 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 8.1ms | Allocations: 2697)
+  Rendered application/_favicon.html.erb (Duration: 6.6ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 770)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2296)
+Completed 200 OK in 92ms (Views: 91.0ms | ActiveRecord: 0.0ms | Allocations: 77094)
+
+
+Started POST "/login" for ::1 at 2020-10-25 23:10:17 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TZGasGBPoeEPI5BYp/9yQ9HmwAAkeGRKrh6ALSMG6sytD0joGa+RakqP8zjUOl7Ycf5TGi11n570jHv4pwPweA==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 72ms (ActiveRecord: 0.8ms | Allocations: 1195)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TZGasGBPoeEPI5BYp/9yQ9HmwAAkeGRKrh6ALSMG6sytD0joGa+RakqP8zjUOl7Ycf5TGi11n570jHv4pwPweA==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 141)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 2049)
+  Rendered application/_favicon.html.erb (Duration: 4.1ms | Allocations: 3317)
+  Rendered layouts/_header.html.erb (Duration: 0.7ms | Allocations: 724)
+  Rendered layouts/_footer.html.erb (Duration: 2.1ms | Allocations: 2296)
+Completed 200 OK in 127ms (Views: 71.5ms | ActiveRecord: 0.0ms | Allocations: 75295)
+
+
+Started POST "/login" for ::1 at 2020-10-25 23:10:36 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GpMac7a9PV+r9kK3J75A5En09JwSgAHzsPG60FHC2Gb6Dcgrz10N1O5aIddUe2x/6exnhhuN+ifqY0EF1cfC0g==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (9.3ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["current_sign_in_at", "2020-10-26 06:10:36.152097"], ["last_sign_in_at", "2020-10-12 22:24:04.075390"], ["sign_in_count", 5], ["updated_at", "2020-10-26 06:10:36.152689"], ["id", 1]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/invite_error
+Completed 302 Found in 92ms (ActiveRecord: 11.9ms | Allocations: 4673)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:10:36 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 149)
+  Rendered invites/error.html.erb within layouts/application (Duration: 0.6ms | Allocations: 235)
+  Rendered application/_favicon.html.erb (Duration: 4.3ms | Allocations: 3510)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.8ms | Allocations: 1215)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2288)
+Completed 200 OK in 76ms (Views: 74.9ms | ActiveRecord: 0.5ms | Allocations: 74051)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 23:10:46 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 12.3ms | Allocations: 6425)
+  Rendered application/_favicon.html.erb (Duration: 4.1ms | Allocations: 3491)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 823)
+  Rendered layouts/_footer.html.erb (Duration: 2.0ms | Allocations: 2289)
+Completed 200 OK in 95ms (Views: 75.2ms | ActiveRecord: 5.7ms | Allocations: 85106)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 23:12:28 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 6.3ms | Allocations: 164)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 13.1ms | Allocations: 6450)
+  Rendered application/_favicon.html.erb (Duration: 5.9ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 13.2ms | Allocations: 1194)
+  Rendered layouts/_footer.html.erb (Duration: 4.1ms | Allocations: 2698)
+Completed 200 OK in 112ms (Views: 110.3ms | ActiveRecord: 0.4ms | Allocations: 82785)
+
+
+Started DELETE "/signout" for ::1 at 2020-10-25 23:12:30 -0700
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"cXqLm+HErSxh14yz5sZGzH7yGfzhWNN5Gsm1e14c15EZaEoegkXrS8+ybeODpK4UHiZvZnKuWntn82CCmsnIeQ=="}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 14ms (ActiveRecord: 2.6ms | Allocations: 2154)
+
+
+Started GET "/" for ::1 at 2020-10-25 23:12:30 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:12:30.120105' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:12:30.123698' AND start_at > '2020-10-25 22:12:30.123716' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:12:30.123698' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:12:30.123698' AND start_at > '2020-10-25 22:12:30.123716' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:12:30.123698' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:12:30.123698' AND start_at > '2020-10-25 22:12:30.123716' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:12:30.123698' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:12:30.120105' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:12:30.120105' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.4ms | Allocations: 394)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:12:30.120105')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 1.9ms | Allocations: 438)
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:12:30.120105' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 4.0ms | Allocations: 1532)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.4ms | Allocations: 1435)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.3ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 6.4ms | Allocations: 2511)
+  Rendered layouts/_calendar.html.erb (Duration: 1.9ms | Allocations: 997)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 27.5ms | Allocations: 10296)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 756)
+  Rendered layouts/_footer.html.erb (Duration: 3.4ms | Allocations: 2296)
+Completed 200 OK in 130ms (Views: 116.2ms | ActiveRecord: 6.5ms | Allocations: 86537)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-10-25 23:12:30 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/invite_error" for ::1 at 2020-10-25 23:12:31 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.5ms | Allocations: 318)
+  Rendered application/_favicon.html.erb (Duration: 5.4ms | Allocations: 3511)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 760)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2288)
+Completed 200 OK in 83ms (Views: 81.2ms | ActiveRecord: 0.0ms | Allocations: 73818)
+
+
+Started GET "/login" for ::1 at 2020-10-25 23:12:35 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.7ms | Allocations: 2423)
+  Rendered application/_favicon.html.erb (Duration: 4.1ms | Allocations: 3317)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 768)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2288)
+Completed 200 OK in 80ms (Views: 78.0ms | ActiveRecord: 0.0ms | Allocations: 76743)
+
+
+Started POST "/login" for ::1 at 2020-10-25 23:12:54 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TtTXZ27ITpfx/0y2xsZBFVWJ4ghWDHlFih5n+RYGlM7D1SUqiAqSNkl2z2tKj2sxE8YAVA7NwzDjZE120j2xNQ==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["current_sign_in_at", "2020-10-26 06:12:54.211113"], ["last_sign_in_at", "2020-10-26 06:10:36.152097"], ["sign_in_count", 6], ["updated_at", "2020-10-26 06:12:54.211717"], ["id", 1]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/invite_error
+Completed 302 Found in 89ms (ActiveRecord: 7.4ms | Allocations: 3564)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:12:54 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 147)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 21.2ms | Allocations: 7107)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.5ms | Allocations: 7661)
+
+
+  
+ActionView::Template::Error (undefined method `redirect_to' for #<#<Class:0x00007f94aa85c898>:0x00007f94a853a2e8>):
+    3:   <div class="row justify-content-center pt-3">
+    4: 
+    5:     <%= if current_user != nil 
+    6:             redirect_to '/invite'
+    7:         end
+    8:     %>
+    9:     <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+  
+app/views/invites/error.html.erb:6
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:12:54 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:17:54.762428' AND end_at > '2020-10-25 23:17:54.762428' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (5.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:17:54.762428')[0m
+  [1m[36mEvent Load (2.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:12:54.765311' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 80ms (ActiveRecord: 16.2ms | Allocations: 15748)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:12:54 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:17:54.928484' AND end_at > '2020-10-25 23:17:54.928484' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:17:54.928484')[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:12:54.929749' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 9ms (ActiveRecord: 2.9ms | Allocations: 2022)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/invite" for ::1 at 2020-10-25 23:17:00 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered invites/new.html.erb within layouts/application (Duration: 1.6ms | Allocations: 479)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 1993)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+       <%= if current_user != nil form_for(@invite) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Invite Somebody!</b>
+          </div>
+          <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+        </div>
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please use the following format: <i> 555-123-4567 </i> </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+            </div>
+          </div>
+          <div>
+          <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+          </div>
+
+          <!-- Country Code Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please select the recipient's country code</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Name Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is this person's preferred name?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Relationship Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is your relationship with this person?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-4" >
+                <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+        <% end 
+          end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+):
+1:    <div class="container pt-4 mt-4">
+2:      <%= render 'layouts/flash_messages' %>
+3:      <div class="row justify-content-center pt-3">
+4:    
+5:    
+6:        <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+7:          <div class="well">
+8:           <%= if current_user != nil form_for(@invite) do |f| %>
+9:            <div style="text-align:center">
+10:              <div style="font-size:35px">
+11:                <b>Invite Somebody!</b>
+12:              </div>
+13:              <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+14:            </div>
+15:              <!-- Phone Number Box -->
+16:              <div class="form-group">
+17:                <div style="text-align:center">
+18:                <p> Please use the following format: <i> 555-123-4567 </i> </p>
+19:                </div>
+20:                <div class="input-group">
+21:                  <div class="input-group-addon">
+22:                    <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+23:                  </div>
+24:                  <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+25:                </div>
+26:              </div>
+27:              <div>
+28:              <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+29:              </div>
+30:    
+31:              <!-- Country Code Box -->
+32:              <div class="form-group">
+33:                <div style="text-align:center">
+34:                <p> Please select the recipient's country code</p>
+35:                </div>
+36:                <div class="input-group">
+37:                  <div class="input-group-addon">
+38:                    <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+39:                  </div>
+40:                  <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+41:                </div>
+42:              </div>
+43:    
+44:            <!-- Name Box -->
+45:              <div class="form-group">
+46:                <div style="text-align:center">
+47:                <p> What is this person's preferred name?</p>
+48:                </div>
+49:                <div class="input-group">
+50:                  <div class="input-group-addon">
+51:                    <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+52:                  </div>
+53:                  <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+54:                </div>
+55:              </div>
+56:    
+57:            <!-- Relationship Box -->
+58:              <div class="form-group">
+59:                <div style="text-align:center">
+60:                <p> What is your relationship with this person?</p>
+61:                </div>
+62:                <div class="input-group">
+63:                  <div class="input-group-addon">
+64:                    <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+65:                  </div>
+66:                    <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+67:                </div>
+68:              </div>
+69:    
+70:              <!-- Captcha checkbox -->
+71:              <div class = "text-center">
+72:                <div class="row">
+73:                  <div class="col-sm-1"></div>
+74:                  <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+75:                  <div class="col-sm-1"></div>
+76:                </div>
+77:              </div>
+78:    
+79:              <!-- Sign up button and TOS -->
+80:              <div class="row">
+81:                <div class="col-md-4" >
+82:                    <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+83:                </div>
+84:              </div>
+85:    
+86:              <hr style="border: 1px solid grey;">
+87:            <% end 
+88:              end %>
+89:          </div>
+90:        </div>
+91:      </div>
+92:    </div>
+  
+app/views/invites/new.html.erb:8: syntax error, unexpected local variable or method, expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting end-of-input
+app/views/invites/new.html.erb:8: syntax error, unexpected local variable or method, expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting end-of-input
+app/views/invites/new.html.erb:8: syntax error, unexpected local variable or method, expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting end-of-input
+app/views/invites/new.html.erb:8: syntax error, unexpected local variable or method, expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting end-of-input
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:17:01 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:22:01.415384' AND end_at > '2020-10-25 23:22:01.415384' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:22:01.415384')[0m
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:17:01.418663' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 16ms (ActiveRecord: 6.2ms | Allocations: 2023)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/invite" for ::1 at 2020-10-25 23:18:03 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered invites/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 492)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 2006)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+       <%=form_for(@invite) do |f| %>
+       <%=if current_user != nil%>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Invite Somebody!</b>
+          </div>
+          <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+        </div>
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please use the following format: <i> 555-123-4567 </i> </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+            </div>
+          </div>
+          <div>
+          <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+          </div>
+
+          <!-- Country Code Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please select the recipient's country code</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Name Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is this person's preferred name?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Relationship Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is your relationship with this person?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-4" >
+                <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+        <% end 
+          end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+):
+1:    <div class="container pt-4 mt-4">
+2:      <%= render 'layouts/flash_messages' %>
+3:      <div class="row justify-content-center pt-3">
+4:    
+5:    
+6:        <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+7:          <div class="well">
+8:           <%=form_for(@invite) do |f| %>
+9:           <%=if current_user != nil%>
+10:            <div style="text-align:center">
+11:              <div style="font-size:35px">
+12:                <b>Invite Somebody!</b>
+13:              </div>
+14:              <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+15:            </div>
+16:              <!-- Phone Number Box -->
+17:              <div class="form-group">
+18:                <div style="text-align:center">
+19:                <p> Please use the following format: <i> 555-123-4567 </i> </p>
+20:                </div>
+21:                <div class="input-group">
+22:                  <div class="input-group-addon">
+23:                    <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+24:                  </div>
+25:                  <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+26:                </div>
+27:              </div>
+28:              <div>
+29:              <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+30:              </div>
+31:    
+32:              <!-- Country Code Box -->
+33:              <div class="form-group">
+34:                <div style="text-align:center">
+35:                <p> Please select the recipient's country code</p>
+36:                </div>
+37:                <div class="input-group">
+38:                  <div class="input-group-addon">
+39:                    <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+40:                  </div>
+41:                  <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+42:                </div>
+43:              </div>
+44:    
+45:            <!-- Name Box -->
+46:              <div class="form-group">
+47:                <div style="text-align:center">
+48:                <p> What is this person's preferred name?</p>
+49:                </div>
+50:                <div class="input-group">
+51:                  <div class="input-group-addon">
+52:                    <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+53:                  </div>
+54:                  <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+55:                </div>
+56:              </div>
+57:    
+58:            <!-- Relationship Box -->
+59:              <div class="form-group">
+60:                <div style="text-align:center">
+61:                <p> What is your relationship with this person?</p>
+62:                </div>
+63:                <div class="input-group">
+64:                  <div class="input-group-addon">
+65:                    <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+66:                  </div>
+67:                    <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+68:                </div>
+69:              </div>
+70:    
+71:              <!-- Captcha checkbox -->
+72:              <div class = "text-center">
+73:                <div class="row">
+74:                  <div class="col-sm-1"></div>
+75:                  <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+76:                  <div class="col-sm-1"></div>
+77:                </div>
+78:              </div>
+79:    
+80:              <!-- Sign up button and TOS -->
+81:              <div class="row">
+82:                <div class="col-md-4" >
+83:                    <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+84:                </div>
+85:              </div>
+86:    
+87:              <hr style="border: 1px solid grey;">
+88:            <% end 
+89:              end %>
+90:          </div>
+91:        </div>
+92:      </div>
+93:    </div>
+  
+app/views/invites/new.html.erb:9: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:9: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:9: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:9: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:18:04 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:23:04.210735' AND end_at > '2020-10-25 23:23:04.210735' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:23:04.210735')[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:18:04.212745' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 12ms (ActiveRecord: 4.4ms | Allocations: 2023)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/invite" for ::1 at 2020-10-25 23:18:27 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered invites/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 493)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 2007)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+      <%=if current_user != nil%>
+       <%=form_for(@invite) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Invite Somebody!</b>
+          </div>
+          <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+        </div>
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please use the following format: <i> 555-123-4567 </i> </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+            </div>
+          </div>
+          <div>
+          <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+          </div>
+
+          <!-- Country Code Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please select the recipient's country code</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Name Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is this person's preferred name?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Relationship Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is your relationship with this person?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-4" >
+                <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+        <% end 
+          end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+):
+1:    <div class="container pt-4 mt-4">
+2:      <%= render 'layouts/flash_messages' %>
+3:      <div class="row justify-content-center pt-3">
+4:    
+5:    
+6:        <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+7:          <div class="well">
+8:          <%=if current_user != nil%>
+9:           <%=form_for(@invite) do |f| %>
+10:            <div style="text-align:center">
+11:              <div style="font-size:35px">
+12:                <b>Invite Somebody!</b>
+13:              </div>
+14:              <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+15:            </div>
+16:              <!-- Phone Number Box -->
+17:              <div class="form-group">
+18:                <div style="text-align:center">
+19:                <p> Please use the following format: <i> 555-123-4567 </i> </p>
+20:                </div>
+21:                <div class="input-group">
+22:                  <div class="input-group-addon">
+23:                    <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+24:                  </div>
+25:                  <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+26:                </div>
+27:              </div>
+28:              <div>
+29:              <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+30:              </div>
+31:    
+32:              <!-- Country Code Box -->
+33:              <div class="form-group">
+34:                <div style="text-align:center">
+35:                <p> Please select the recipient's country code</p>
+36:                </div>
+37:                <div class="input-group">
+38:                  <div class="input-group-addon">
+39:                    <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+40:                  </div>
+41:                  <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+42:                </div>
+43:              </div>
+44:    
+45:            <!-- Name Box -->
+46:              <div class="form-group">
+47:                <div style="text-align:center">
+48:                <p> What is this person's preferred name?</p>
+49:                </div>
+50:                <div class="input-group">
+51:                  <div class="input-group-addon">
+52:                    <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+53:                  </div>
+54:                  <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+55:                </div>
+56:              </div>
+57:    
+58:            <!-- Relationship Box -->
+59:              <div class="form-group">
+60:                <div style="text-align:center">
+61:                <p> What is your relationship with this person?</p>
+62:                </div>
+63:                <div class="input-group">
+64:                  <div class="input-group-addon">
+65:                    <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+66:                  </div>
+67:                    <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+68:                </div>
+69:              </div>
+70:    
+71:              <!-- Captcha checkbox -->
+72:              <div class = "text-center">
+73:                <div class="row">
+74:                  <div class="col-sm-1"></div>
+75:                  <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+76:                  <div class="col-sm-1"></div>
+77:                </div>
+78:              </div>
+79:    
+80:              <!-- Sign up button and TOS -->
+81:              <div class="row">
+82:                <div class="col-md-4" >
+83:                    <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+84:                </div>
+85:              </div>
+86:    
+87:              <hr style="border: 1px solid grey;">
+88:            <% end 
+89:              end %>
+90:          </div>
+91:        </div>
+92:      </div>
+93:    </div>
+  
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:8: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:89: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:98: syntax error, unexpected `end', expecting ')'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:18:28 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:23:28.551690' AND end_at > '2020-10-25 23:23:28.551690' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:23:28.551690')[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:18:28.555163' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 15ms (ActiveRecord: 6.0ms | Allocations: 2021)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/invite" for ::1 at 2020-10-25 23:18:53 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered invites/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 493)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 2007)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
+
+      <%=if current_user != nil%>
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+       <%=form_for(@invite) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Invite Somebody!</b>
+          </div>
+          <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+        </div>
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please use the following format: <i> 555-123-4567 </i> </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+            </div>
+          </div>
+          <div>
+          <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+          </div>
+
+          <!-- Country Code Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Please select the recipient's country code</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Name Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is this person's preferred name?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Relationship Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What is your relationship with this person?</p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+          <!-- Captcha checkbox -->
+          <div class = "text-center">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+
+          <!-- Sign up button and TOS -->
+          <div class="row">
+            <div class="col-md-4" >
+                <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+        <% end 
+          end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+):
+1:    <div class="container pt-4 mt-4">
+2:      <%= render 'layouts/flash_messages' %>
+3:      <div class="row justify-content-center pt-3">
+4:    
+5:          <%=if current_user != nil%>
+6:        <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+7:          <div class="well">
+8:           <%=form_for(@invite) do |f| %>
+9:            <div style="text-align:center">
+10:              <div style="font-size:35px">
+11:                <b>Invite Somebody!</b>
+12:              </div>
+13:              <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
+14:            </div>
+15:              <!-- Phone Number Box -->
+16:              <div class="form-group">
+17:                <div style="text-align:center">
+18:                <p> Please use the following format: <i> 555-123-4567 </i> </p>
+19:                </div>
+20:                <div class="input-group">
+21:                  <div class="input-group-addon">
+22:                    <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
+23:                  </div>
+24:                  <%= f.text_field :phone_number, placeholder: "Number: Enter the phone number of the guy/gal you want to invite!" ,:autofocus => true, :class => "form-control", :pattern=>"[0-9]{3}-[0-9]{3}-[0-9]{4}", :required => true%>
+25:                </div>
+26:              </div>
+27:              <div>
+28:              <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %>
+29:              </div>
+30:    
+31:              <!-- Country Code Box -->
+32:              <div class="form-group">
+33:                <div style="text-align:center">
+34:                <p> Please select the recipient's country code</p>
+35:                </div>
+36:                <div class="input-group">
+37:                  <div class="input-group-addon">
+38:                    <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
+39:                  </div>
+40:                  <%= f.select :country_code, options_for_select(IsoCountryCodes.for_select, f.object.country_code || 'US'), :autofocus => true, :class => "form-control", :required => true%>
+41:                </div>
+42:              </div>
+43:    
+44:            <!-- Name Box -->
+45:              <div class="form-group">
+46:                <div style="text-align:center">
+47:                <p> What is this person's preferred name?</p>
+48:                </div>
+49:                <div class="input-group">
+50:                  <div class="input-group-addon">
+51:                    <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
+52:                  </div>
+53:                  <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
+54:                </div>
+55:              </div>
+56:    
+57:            <!-- Relationship Box -->
+58:              <div class="form-group">
+59:                <div style="text-align:center">
+60:                <p> What is your relationship with this person?</p>
+61:                </div>
+62:                <div class="input-group">
+63:                  <div class="input-group-addon">
+64:                    <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+65:                  </div>
+66:                    <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+67:                </div>
+68:              </div>
+69:    
+70:              <!-- Captcha checkbox -->
+71:              <div class = "text-center">
+72:                <div class="row">
+73:                  <div class="col-sm-1"></div>
+74:                  <div class="col-sm-10"><%= recaptcha_tags %><br></div>
+75:                  <div class="col-sm-1"></div>
+76:                </div>
+77:              </div>
+78:    
+79:              <!-- Sign up button and TOS -->
+80:              <div class="row">
+81:                <div class="col-md-4" >
+82:                    <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
+83:                </div>
+84:              </div>
+85:    
+86:              <hr style="border: 1px solid grey;">
+87:            <% end 
+88:              end %>
+89:          </div>
+90:        </div>
+91:      </div>
+92:    </div>
+  
+app/views/invites/new.html.erb:5: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:5: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:5: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:5: syntax error, unexpected ')', expecting `then' or ';' or '\n'
+app/views/invites/new.html.erb:88: syntax error, unexpected `end', expecting ')'
+app/views/invites/new.html.erb:97: syntax error, unexpected `end', expecting ')'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:18:54 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:23:54.332477' AND end_at > '2020-10-25 23:23:54.332477' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:23:54.332477')[0m
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:18:54.335865' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 17ms (ActiveRecord: 7.1ms | Allocations: 2022)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/invite" for ::1 at 2020-10-25 23:19:13 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 6.4ms | Allocations: 293)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 13.1ms | Allocations: 6581)
+  Rendered application/_favicon.html.erb (Duration: 6.2ms | Allocations: 3698)
+  Rendered layouts/_header.html.erb (Duration: 2.0ms | Allocations: 1194)
+  Rendered layouts/_footer.html.erb (Duration: 3.0ms | Allocations: 2694)
+Completed 200 OK in 106ms (Views: 103.4ms | ActiveRecord: 0.3ms | Allocations: 82912)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 23:20:23 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 164)
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 11.0ms | Allocations: 6658)
+  Rendered application/_favicon.html.erb (Duration: 7.4ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 2.0ms | Allocations: 1194)
+  Rendered layouts/_footer.html.erb (Duration: 3.8ms | Allocations: 2694)
+Completed 200 OK in 112ms (Views: 109.3ms | ActiveRecord: 1.7ms | Allocations: 82907)
+
+
+Started DELETE "/signout" for ::1 at 2020-10-25 23:20:26 -0700
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"g9KNrH+8bzXBkDUqWGVj+jMNLUcDZrxOJQUGRh+6MdPvSIg0mjFtqidsVPPqG1yJUarO1Wkcuq2/l6bcs5+9ug=="}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 2.5ms | Allocations: 1828)
+
+
+Started GET "/" for ::1 at 2020-10-25 23:20:26 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:20:26.216012' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:20:26.219336' AND start_at > '2020-10-25 22:20:26.219353' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:20:26.219336' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:20:26.219336' AND start_at > '2020-10-25 22:20:26.219353' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:20:26.219336' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:20:26.219336' AND start_at > '2020-10-25 22:20:26.219353' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 23:20:26.219336' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:20:26.216012' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:20:26.216012' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.6ms | Allocations: 394)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:20:26.216012')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 1.8ms | Allocations: 438)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-25 20:20:26.216012' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 2.8ms | Allocations: 1532)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 3.4ms | Allocations: 1435)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 7.8ms | Allocations: 2511)
+  Rendered layouts/_calendar.html.erb (Duration: 2.0ms | Allocations: 997)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 26.8ms | Allocations: 10298)
+  Rendered application/_favicon.html.erb (Duration: 4.4ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 755)
+  Rendered layouts/_footer.html.erb (Duration: 4.3ms | Allocations: 2296)
+Completed 200 OK in 127ms (Views: 114.5ms | ActiveRecord: 6.2ms | Allocations: 86513)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-10-25 23:20:26 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/invite_error" for ::1 at 2020-10-25 23:20:27 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.3ms | Allocations: 318)
+  Rendered application/_favicon.html.erb (Duration: 7.7ms | Allocations: 3511)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 760)
+  Rendered layouts/_footer.html.erb (Duration: 2.2ms | Allocations: 2288)
+Completed 200 OK in 84ms (Views: 82.9ms | ActiveRecord: 0.0ms | Allocations: 73843)
+
+
+Started GET "/login" for ::1 at 2020-10-25 23:20:29 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 11.1ms | Allocations: 2423)
+  Rendered application/_favicon.html.erb (Duration: 5.4ms | Allocations: 3317)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 768)
+  Rendered layouts/_footer.html.erb (Duration: 2.1ms | Allocations: 2288)
+Completed 200 OK in 93ms (Views: 91.0ms | ActiveRecord: 0.0ms | Allocations: 76728)
+
+
+Started POST "/login" for ::1 at 2020-10-25 23:20:47 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vQktB90KhZSGZmve06rYiL8bcYGMqe9cdYG0kjvjvW3eRqMZtgQ2sRViNjGitLiuuIVuqq37axV4i47/Sfkulg==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 71ms (ActiveRecord: 0.6ms | Allocations: 844)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vQktB90KhZSGZmve06rYiL8bcYGMqe9cdYG0kjvjvW3eRqMZtgQ2sRViNjGitLiuuIVuqq37axV4i47/Sfkulg==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 139)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 2044)
+  Rendered application/_favicon.html.erb (Duration: 3.9ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 724)
+  Rendered layouts/_footer.html.erb (Duration: 2.3ms | Allocations: 2296)
+Completed 200 OK in 135ms (Views: 76.1ms | ActiveRecord: 0.0ms | Allocations: 75379)
+
+
+Started POST "/login" for ::1 at 2020-10-25 23:20:55 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iOSE/s8j2a2w7v6Rr7+vYD/FV4KxhHOq1/2rzjocr+DrqwrgpC1qiCPqo37eoc9GOFtIqZDW9+Pa95GjSAY8Gw==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["current_sign_in_at", "2020-10-26 06:20:55.551398"], ["last_sign_in_at", "2020-10-26 06:12:54.211113"], ["sign_in_count", 7], ["updated_at", "2020-10-26 06:20:55.551807"], ["id", 1]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/invite_error
+Completed 302 Found in 84ms (ActiveRecord: 5.0ms | Allocations: 3564)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-25 23:20:55 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 147)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 17.1ms | Allocations: 9602)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.5ms | Allocations: 10151)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `window' for #<#<Class:0x00007f948b8d9ba0>:0x00007f94aac4f270>):
+    3:   <div class="row justify-content-center pt-3">
+    4: 
+    5:     <%= if current_user != nil 
+    6:              window.location.href="/invite"
+    7:         end
+    8:     %>
+    9:     <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+  
+app/views/invites/error.html.erb:6
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:20:55 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:25:55.941143' AND end_at > '2020-10-25 23:25:55.941143' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (2.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:25:55.941143')[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:20:55.944251' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 15ms (ActiveRecord: 5.7ms | Allocations: 2024)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/favicon.ico" for ::1 at 2020-10-25 23:20:56 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-25 23:25:56.134449' AND end_at > '2020-10-25 23:25:56.134449' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-10-25 23:25:56.134449')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-25 20:20:56.135741' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 9ms (ActiveRecord: 3.2ms | Allocations: 1999)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/invite_error" for ::1 at 2020-10-25 23:21:52 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.0ms | Allocations: 293)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 5.6ms | Allocations: 1050)
+  Rendered application/_favicon.html.erb (Duration: 5.3ms | Allocations: 3698)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 1203)
+  Rendered layouts/_footer.html.erb (Duration: 3.1ms | Allocations: 2694)
+Completed 200 OK in 85ms (Views: 83.2ms | ActiveRecord: 1.2ms | Allocations: 77350)
+
+
+Started GET "/invite" for ::1 at 2020-10-25 23:21:53 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 8.5ms | Allocations: 6171)
+  Rendered application/_favicon.html.erb (Duration: 4.6ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 825)
+  Rendered layouts/_footer.html.erb (Duration: 3.9ms | Allocations: 2296)
+Completed 200 OK in 85ms (Views: 82.5ms | ActiveRecord: 0.7ms | Allocations: 79771)
+
+
