@@ -1,40 +1,30 @@
-<div>
+<div style="height: 100%">
   <%= render 'layouts/flash_messages' %>
-  <div class="row justify-content-center" style="background-color: #8C1D40; width:100%">
-  <div class="col-lg-5 pt-1 pb-1 pl-1 ml-1" style="background-color: #8C1D40; width:100%">
-        <h1 class="text-center text-white mt-1 pl-1 pt-5">
-                <%= image_tag("GoldThinQ60.png")%>
-        </h1>
-
-    </div>
-    <div class="col-lg-6 pt-2 pb-1 pl-1 ml-1 mb-1 mt-3 pr-1">
-         <h2 class="text-center text-white">
+  <div class="row justify-content-center" style="background-color: #8C1D40;">
+    <div class="col-lg-6 pt-1 pb-1 pl-1 ml-1 mb-1 mt-1 pr-1">
+         <h6 class="text-center text-white">
             Video Chat community throughout the day for 
             Women & Minorities in STEM
-        </h2>
+        </h6>
     </div>
   </div>
 
-  <div class="row justify-content-center bg-light border p-3">
-          <div id="events" class="col-lg-3 row-lg-1">
-          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
-             events: @calendar_events_all, monthNum: 0, type: 0}%>
-        </div>
+  <div style="height: 1000px">
     <script src="https://meet.jit.si/external_api.js">  </script>
     <script>
       jQuery(document).ready(function($) {
         var domain = "meet.jit.si";
         var options = {
           roomName: "thinqtv/embed",
-          width: 1300,
-          height: 900,
+          width: "100%",
+          height: "100%",
           parentNode: document.querySelector('#meet')
         }
         var api = new JitsiMeetExternalAPI(domain, options);
       });
     </script>
 
-    <div id = "meet" class="col-lg-9">>
+    <div id = "meet" style="width: 100%; height:47.5%">
     </div>
   </div>
 
