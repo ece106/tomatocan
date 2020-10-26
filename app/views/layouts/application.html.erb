@@ -30,14 +30,17 @@
 </head>
 
 <body class="pt-5">
-
-    <%= render 'layouts/header' %>
+<%= if params[:action] != 'calendar_view'
+    render 'layouts/header' 
+    end %>
 
     <main id="absoluteWrapper ">
       <%= yield %>
     </main>
 
-    <%= render 'layouts/footer' %>
+    <%= if params[:action] != 'calendar_view'
+    render 'layouts/footer' 
+    end %>
 
     
 

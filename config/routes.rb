@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get "home", :to => 'static_pages#home', :as => :new_invite_success
 
   match 'embed', to: 'static_pages#embed', via: 'get'
+  match 'calendar_view', to: 'static_pages#calendar_view', via: 'get' 
 
   resources :merchandises
   resources :rsvpqs

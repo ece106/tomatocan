@@ -1,0 +1,10 @@
+<div>
+<div id="events">
+          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+             events: @calendar_events_all, monthNum: 0, type: 0}%>
+             <%=  puts "HERE!!!!!"  %>
+             <%= puts params[:action] %>
+    </div>
+</div>
+
+
