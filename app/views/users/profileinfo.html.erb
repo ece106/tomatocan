@@ -5,6 +5,7 @@
     <div class="alert alert-danger" role="alert">
         <% flash.each do |key, value| %>
             <%= value %>
+            <% flash.clear %>
         <% end %>
     </div>
 <% end %>
