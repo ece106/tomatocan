@@ -143,7 +143,7 @@
       
       // use fetch API if sendBeacon does not work
       if (!navigator.sendBeacon) {
-        fetch('/siteAnalytics', {
+        fetch('/users/unload', {
           method: 'POST',
           body: data,
           keepalive: true
