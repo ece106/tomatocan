@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div style="height: 1000px">
+  <div style="height: 500px">
     <script src="https://meet.jit.si/external_api.js">  </script>
     <script>
       jQuery(document).ready(function($) {
@@ -24,9 +24,15 @@
       });
     </script>
 
-    <div id = "meet" style="width: 100%; height:47.5%">
+    <div id = "meet" style="width: 100%; height:100%">
     </div>
   </div>
+  <div id="events">
+          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+             events: @calendar_events_all, monthNum: 0, type: 0}%>
+             <%=  puts "HERE!!!!!"  %>
+             <%= puts params[:action] %>
+    </div>
 
 
 </div>
