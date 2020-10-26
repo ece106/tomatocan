@@ -21856,3 +21856,344 @@ Processing by StaticPagesController#home as HTML
 Completed 200 OK in 99ms (Views: 84.5ms | ActiveRecord: 5.6ms | Allocations: 79494)
 
 
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/" for ::1 at 2020-10-26 09:41:41 -0700
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 06:41:41.490625' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:41:41.506904' AND start_at > '2020-10-26 08:41:41.506924' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:41:41.506904' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:41:41.506904' AND start_at > '2020-10-26 08:41:41.506924' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:41:41.506904' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:41:41.506904' AND start_at > '2020-10-26 08:41:41.506924' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:41:41.506904' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:41:41.490625' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:41:41.490625' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.0ms | Allocations: 409)
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:41:41.490625')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 2.7ms | Allocations: 449)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:41:41.490625' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 6.2ms | Allocations: 3575)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.1ms | Allocations: 1492)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 5.2ms | Allocations: 2586)
+  Rendered layouts/_calendar.html.erb (Duration: 1.5ms | Allocations: 1039)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 346.4ms | Allocations: 356627)
+  Rendered application/_favicon.html.erb (Duration: 9.1ms | Allocations: 3533)
+  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 1150)
+  Rendered layouts/_footer.html.erb (Duration: 5.3ms | Allocations: 2721)
+Completed 200 OK in 562ms (Views: 518.1ms | ActiveRecord: 15.3ms | Allocations: 444761)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-10-26 09:41:43 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/invite_error" for ::1 at 2020-10-26 09:41:44 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 168)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.7ms | Allocations: 627)
+  Rendered application/_favicon.html.erb (Duration: 3.9ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 765)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2296)
+Completed 200 OK in 69ms (Views: 67.1ms | ActiveRecord: 0.0ms | Allocations: 75433)
+
+
+Started GET "/login" for ::1 at 2020-10-26 09:42:47 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 8.4ms | Allocations: 2855)
+  Rendered application/_favicon.html.erb (Duration: 7.1ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 770)
+  Rendered layouts/_footer.html.erb (Duration: 2.4ms | Allocations: 2296)
+Completed 200 OK in 166ms (Views: 100.2ms | ActiveRecord: 8.4ms | Allocations: 102826)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-26 09:43:32 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 1.7ms | Allocations: 655)
+  Rendered application/_favicon.html.erb (Duration: 7.9ms | Allocations: 3690)
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 1126)
+  Rendered layouts/_footer.html.erb (Duration: 3.9ms | Allocations: 2686)
+Completed 200 OK in 105ms (Views: 103.1ms | ActiveRecord: 0.0ms | Allocations: 76486)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-26 09:43:50 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 2.7ms | Allocations: 654)
+  Rendered application/_favicon.html.erb (Duration: 8.0ms | Allocations: 3678)
+  Rendered layouts/_header.html.erb (Duration: 2.9ms | Allocations: 1126)
+  Rendered layouts/_footer.html.erb (Duration: 3.7ms | Allocations: 2687)
+Completed 200 OK in 98ms (Views: 96.6ms | ActiveRecord: 0.0ms | Allocations: 76557)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-26 09:44:03 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered invites/error.html.erb within layouts/application (Duration: 2.1ms | Allocations: 659)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 1.8ms | Allocations: 1128)
+  Rendered layouts/_footer.html.erb (Duration: 3.5ms | Allocations: 2694)
+Completed 200 OK in 91ms (Views: 88.7ms | ActiveRecord: 0.0ms | Allocations: 76783)
+
+
+Started GET "/login" for ::1 at 2020-10-26 09:44:06 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4.4ms | Allocations: 2425)
+  Rendered application/_favicon.html.erb (Duration: 5.0ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 770)
+  Rendered layouts/_footer.html.erb (Duration: 2.9ms | Allocations: 2296)
+Completed 200 OK in 91ms (Views: 88.6ms | ActiveRecord: 0.0ms | Allocations: 77086)
+
+
+Started GET "/signup" for ::1 at 2020-10-26 09:44:08 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 6.9ms | Allocations: 2493)
+  Rendered application/_favicon.html.erb (Duration: 6.3ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 770)
+  Rendered layouts/_footer.html.erb (Duration: 5.0ms | Allocations: 2296)
+Completed 200 OK in 115ms (Views: 113.8ms | ActiveRecord: 0.0ms | Allocations: 76695)
+
+
+Started GET "/login" for ::1 at 2020-10-26 09:44:14 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1933)
+  Rendered application/_favicon.html.erb (Duration: 4.4ms | Allocations: 3317)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 770)
+  Rendered layouts/_footer.html.erb (Duration: 3.3ms | Allocations: 2296)
+Completed 200 OK in 99ms (Views: 97.1ms | ActiveRecord: 0.0ms | Allocations: 75302)
+
+
+Started POST "/login" for ::1 at 2020-10-26 09:44:27 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SYWLKc1HMwMqJ3nxDTC9OSLX0AeBHqheFXfKAGpe/myDxCorq1nsbOvUa36zVZT2rZKXPcuJJZ4lblRcL3v1Bw==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (1.1ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["current_sign_in_at", "2020-10-26 16:44:27.894250"], ["last_sign_in_at", "2020-10-26 16:40:31.508747"], ["sign_in_count", 10], ["updated_at", "2020-10-26 16:44:27.895190"], ["id", 1]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/invite_error
+Completed 302 Found in 97ms (ActiveRecord: 10.4ms | Allocations: 9128)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-26 09:44:27 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 147)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 3.6ms | Allocations: 634)
+  Rendered application/_favicon.html.erb (Duration: 3.9ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 838)
+  Rendered layouts/_footer.html.erb (Duration: 2.1ms | Allocations: 2288)
+Completed 200 OK in 76ms (Views: 74.3ms | ActiveRecord: 0.6ms | Allocations: 74032)
+
+
+Started GET "/invite" for ::1 at 2020-10-26 09:44:28 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 10.2ms | Allocations: 6471)
+  Rendered application/_favicon.html.erb (Duration: 7.8ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 825)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2296)
+Completed 200 OK in 116ms (Views: 92.3ms | ActiveRecord: 9.2ms | Allocations: 85599)
+
+
+Started GET "/invite_error" for ::1 at 2020-10-26 09:44:34 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 3.6ms | Allocations: 510)
+  Rendered application/_favicon.html.erb (Duration: 10.7ms | Allocations: 3511)
+  Rendered layouts/_header.html.erb (Duration: 2.0ms | Allocations: 829)
+  Rendered layouts/_footer.html.erb (Duration: 4.5ms | Allocations: 2296)
+Completed 200 OK in 126ms (Views: 122.7ms | ActiveRecord: 1.0ms | Allocations: 73978)
+
+
+Started GET "/invite" for ::1 at 2020-10-26 09:44:34 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 7.4ms | Allocations: 5798)
+  Rendered application/_favicon.html.erb (Duration: 7.9ms | Allocations: 3491)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 820)
+  Rendered layouts/_footer.html.erb (Duration: 2.2ms | Allocations: 2296)
+Completed 200 OK in 104ms (Views: 101.8ms | ActiveRecord: 0.7ms | Allocations: 79357)
+
+
+Started DELETE "/signout" for ::1 at 2020-10-26 09:44:39 -0700
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"NYG6y3W0/HA0RAhHSVC9XTnPz3PO+LanLaD86ypgLKaqcY6BGLW/p1mUxLu6lgljab2X5xYqkcpjUHyJVIpInw=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms | Allocations: 1938)
+
+
+Started GET "/" for ::1 at 2020-10-26 09:44:39 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 06:44:39.673170' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:44:39.675250' AND start_at > '2020-10-26 08:44:39.675264' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:44:39.675250' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:44:39.675250' AND start_at > '2020-10-26 08:44:39.675264' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:44:39.675250' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:44:39.675250' AND start_at > '2020-10-26 08:44:39.675264' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:44:39.675250' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:39.673170' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:39.673170' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 1.2ms | Allocations: 394)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:39.673170')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 1.6ms | Allocations: 438)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:39.673170' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 4.1ms | Allocations: 1532)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.0ms | Allocations: 1435)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 5.0ms | Allocations: 2511)
+  Rendered layouts/_calendar.html.erb (Duration: 1.4ms | Allocations: 997)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 26.5ms | Allocations: 10291)
+  Rendered application/_favicon.html.erb (Duration: 5.3ms | Allocations: 3336)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 753)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2288)
+Completed 200 OK in 117ms (Views: 105.1ms | ActiveRecord: 5.4ms | Allocations: 86317)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-10-26 09:44:41 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/invite_error" for ::1 at 2020-10-26 09:44:41 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.0ms | Allocations: 18)
+  Rendered invites/error.html.erb within layouts/application (Duration: 0.9ms | Allocations: 248)
+  Rendered application/_favicon.html.erb (Duration: 5.4ms | Allocations: 3511)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 3.8ms | Allocations: 2296)
+Completed 200 OK in 74ms (Views: 73.5ms | ActiveRecord: 0.0ms | Allocations: 74062)
+
+
+Started GET "/" for ::1 at 2020-10-26 09:44:44 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 06:44:44.581875' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:44:44.584294' AND start_at > '2020-10-26 08:44:44.584313' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:44:44.584294' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:44:44.584294' AND start_at > '2020-10-26 08:44:44.584313' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:44:44.584294' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-10-26 09:44:44.584294' AND start_at > '2020-10-26 08:44:44.584313' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-10-26 09:44:44.584294' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:44.581875' AND topic = 'Conversation')[0m
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:44.581875' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 0.4ms | Allocations: 104)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:44.581875')[0m
+  Rendered layouts/_countdown_clockstudy.html.erb (Duration: 0.7ms | Allocations: 123)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-10-26 06:44:44.581875' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 0.8ms | Allocations: 117)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 13)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 1.5ms | Allocations: 693)
+  Rendered layouts/_calendar.html.erb (Duration: 0.5ms | Allocations: 366)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 9.5ms | Allocations: 4435)
+  Rendered application/_favicon.html.erb (Duration: 5.3ms | Allocations: 3317)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 748)
+  Rendered layouts/_footer.html.erb (Duration: 4.3ms | Allocations: 2296)
+Completed 200 OK in 111ms (Views: 98.8ms | ActiveRecord: 4.6ms | Allocations: 79736)
+
+
