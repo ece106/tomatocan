@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
 
     <!-- Meta Tags for Facebook Share -->
     <% content_for :head do %>
@@ -13,51 +13,145 @@
     <% end %>
     <% end %>
 
-    <%= render 'layouts/authorform' %>
-
-    <hr style="width: 44%; height: 1px; border-width:0; color: #8C1D40; background-color:#8C1D40; text-align: center">
+    
+        <div class="container mt-5 mb-4 pb-3 border shadow">
+            <%= render 'layouts/authorform' %>
+        </div>
+    
 
     <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
+           
             <% if current_user.nil? %>
-                <div class="alert alert-warning fade show" role="alert" style="text-align: center;">
-                    <h3>
-                        We're talking about <%= @displayconvo.name %>  right NOW!
-                        <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
-                    </h3>
+                <div class="container px-0 py-0 mb-4 border shadow">
+                    <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center; border-radius: 0">
+                        <h3>
+                            We're talking about <%= @displayconvo.name %>  right NOW!
+                            <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+                        </h3>
+                    </div>
                 </div>
             <% elsif current_user.id != @user.id %>
-                <div class="alert alert-warning fade show" role="alert" style="text-align: center;">
-                    <h3>
-                        We're talking about <%= @displayconvo.name %>  right NOW!
-                        <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
-                    </h3>
+                <div class="container px-0 py-0 mb-4 border shadow">
+                    <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center; border-radius: 0">
+                        <h3>
+                            We're talking about <%= @displayconvo.name %>  right NOW!
+                            <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+                        </h3>
+                    </div>
                 </div>
             <% end %>
-                
+     
+    <% end %>
+    <% if user_signed_in? %>
+        <% if current_user.id == @user.id %>
+            <% progress = 0 %>    
+
+                <% if @user.about.present? %>
+                    <% progress += 20 %>
+                <% end %>
+                <% if @user.profilepic.present? %>
+                    <% progress += 20 %>
+                <% end %>
+                <% if (@user.genre1.present? || @user.genre2.present?) %>
+                    <% progress += 20 %>
+                <% end %>
+                <% if @user.bannerpic.present? %>
+                    <% progress += 20 %>
+                <% end %>
+                <% if @user.genre3.present?  %>
+                    <% progress += 20 %>
+                <% end %>
+                <% if progress < 100 %>
+                <div class="container px-0 py-0 mb-4 border shadow">
+                    <div class="alert alert-primary fade show my-0 py-3" role="alert" style="text-align:center; border-radius: 0">
+                        <% if progress==0 %>
+                            <p><b> Welcome!
+                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
+                            to fill out your profile</b></p>
+
+                            <div class="progress" style="height: 20px">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                            </div>
+                        <% end %>
+                        <% if progress==20 %>
+                            <p><b> Your profile still needs work,
+                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
+                            to set it up</b></p>
+                            <div class="progress" style="height: 20px">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                            </div>
+                        <% end %>
+                        <% if progress==40 %>
+                             <p><b> Your profile still needs work,
+                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
+                            to set it up</b></p>
+                            <div class="progress" style="height: 20px">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                            </div>
+                        <% end %>
+                        <% if progress==60 %>
+                            <p><b> Your profile is almost done,
+                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
+                            to add the final touches</b></p>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                            </div>
+                        <% end %>
+                        <% if progress==80 %>
+                            <p><b> Your profile is almost done,
+                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
+                            to add the final touches</b></p>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                            </div>
+                        <% end %>
+                         <% if progress==100 %>
+                            <p><b> Congradulations! Your profile is all done!</b></p>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+                <% end %>
+        <% end %>
     <% end %>
 
-    <div class="row pb-3">
-        <div class="col-10 col-md-4 col-sm-12">
-            <%= render 'layouts/streamButton' %>
-
-        </div>
-        <div class="col-12 col-md-8 col-sm-12">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12">
+            
+            <div class="container pb-5 mb-4 border shadow">
+                <%= render 'layouts/streamButton' %>
+            </div>
+             <% if @user.genre3.present? %>
+                <div class="container pb-4 mb-4 border shadow">
+                    <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Skills & Interests" %> </h1>
+                    <h6 class="pt-1" style="padding-left: 35px; padding-right: 30px;"> <%= @user.genre3 %> </h6>
+                </div>
+            <% end %>
             <% if current_user.nil? %>
                 <%= render 'layouts/merchsidebar' %>
              <% else %>
                     <% if current_user.id == @user.id %>
                         <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
-                            <h1 class=" pt-5 text-center maroon " id="profileName" style="font-size: 2.0em"> <%= "Donations & Rewards" %> </h1>
+                            <div class="mb-4">
+                                <div class="container border shadow">
+                                    <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Donations & Rewards" %> </h1>
 
-                            <div class="media pt-2">
-                                <div class="mr-3">
-                                    <span class="btn btn-warning" style="font-size: 1.5em; padding: 15px; width: 100%; width: 150px; font-family: Helvetica;">
-                                        <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPECONNECTCLIENTID %>&scope=read_write" target="_blank" class="text-black" style="font-family: Helvetica; color: black">Connect to Stripe <%= image_tag("social-share-button/stripe.png")%></a>
-                                    </span>
-                                </div>
-                                <div class="media-body" style="font-family: Helvetica; padding-right: 10px;">
-                                    <p class="pt-1" style="font-family: Helvetica;">We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> to allow users to seamlessly collect and process payments. <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a> connects to your bank account to directly deposit any financial support you obtain from fellow ThinQers. It only takes a few minutes to create an account. You will be making sales and receiving donations in no time.</p>
-                                    <br />
+                                    <div class="media pt-2">
+                                        <div class="mr-3">
+                                            <span class="btn btn-warning" style="font-size: 1.0em; padding: 10px; width: 100px; font-family: Helvetica;">
+                                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPECONNECTCLIENTID %>&scope=read_write" target="_blank" class="text-black" style="font-family: Helvetica; color: black">Connect to Stripe <%= image_tag("social-share-button/stripe.png")%></a>
+                                            </span>
+                                        </div>
+                                        <div class="media-body" style="font-family: Helvetica; padding-right: 10px;">
+                                            <p class="pt-1" style="font-family: Helvetica;">If you would like to receive donations or sell downloads on ThinQ.tv, you need to sign up for Stripe. We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
+                                            to allow users to seamlessly collect and process payments. Stripe is used by thousands of ecommerce sites such as Target, UNICEF, Amazon and Uber.<a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
+                                            connects to your bank account to directly deposit any financial support you obtain from fellow ThinQers. It only takes a few minutes to create an account.
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         <% else %>
@@ -68,26 +162,43 @@
                     <% end %>
             <% end %>
 
-            <h1 class=" pt-3 text-center maroon" id="profileName" style="font-size: 2.0em"> <%= "Conversations Attending" %> </h1>
-            <% if @calendar_events.present? %>
-                <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12">
 
-            <% else %>
-                 <% if current_user.nil? %>
-                    <div class="text-center" style="font-family: Helvetica;">
-                        <%= @user.name %> <%= " has no conversations scheduled." %>
-                    </div>
-
-                 <% elsif current_user.id == @user.id %>
-                        <div class="text-center" style="font-family: Helvetica;">
-                            <%= "You have no conversations scheduled."%>
-                        </div>
-                 <% else %>
-                    <div class="text-center" style="font-family: Helvetica;">
-                        <%= @user.name %> <%= " has no conversations scheduled." %>
-                    </div>
-                 <% end %>
+            <% if @user.about.present? %>
+                <div class="container pb-4 mb-4 border shadow">
+                    <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "About Me" %> </h1>
+                    <h6 class="pt-1" style="padding-left: 35px; padding-right: 30px;"> <%= @user.about %> </h6>
+                </div>
             <% end %>
+
+            <div class="container mb-4 px-0 mx-0 border shadow">
+                <%= image_tag("user_profile_content_photo.jpg", :style => "max-width:100%; max-height:100%;")%>
+            </div>
+           
+            <div class="container mb-4 border shadow">
+                <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Conversations Attending" %> </h1>
+                <% if @calendar_events.present? %>
+                    <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+
+                <% else %>
+                        <% if current_user.nil? %>
+                        <div class="text-center pb-4" style="font-family: Helvetica;">
+                            <%= @user.name %> <%= " has no conversations scheduled." %>
+                        </div>
+
+                        <% elsif current_user.id == @user.id %>
+                            <div class="text-center pb-4" style="font-family: Helvetica;">
+                                <%= "You have no conversations scheduled."%>
+                            </div>
+                        <% else %>
+                        <div class="text-center pb-4" style="font-family: Helvetica;">
+                            <%= @user.name %> <%= " has no conversations scheduled." %>
+                        </div>
+                        <% end %>
+                <% end %>
+            </div>
+            
         </div>
     </div>
 
