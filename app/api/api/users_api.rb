@@ -4,7 +4,6 @@ module Api
   class UsersApi < Grape::API
     version 'v1', using: :path
     format :json
-    formatter :json, Grape::Formatter::ActiveModelSerializers
     prefix :api
 
     helpers do
@@ -57,27 +56,44 @@ module Api
           obj.reject! { |key, value| value.nil? }
         end
       end
+
+      def user_info
+        { "name": @user.name, "permalink": @user.permalink, "profilepic": @user.profilepic, "about": @user.about,
+          "genre1": @user.genre1, "genre2": @user.genre2, "genre3": @user.genre3, "bannerpic": @user.bannerpic }
+      end
+      def event_info(event)
+        user = User.find_by(id: event.user_id)
+        { "name": event.name, "start_at": event.start_at, "end_at": event.end_at, "topic": event.topic,
+          "permalink": user.permalink, "username": user.name }
+      end
+      def events_info(events)
+        info = []
+        events.each do |event|
+          info << event_info(event)
+        end
+        info
+      end
     end
 
     post '/login' do
       @user = User.find_by(email: params[:email])
       if @user && @user.authenticate(params[:email], params[:password])
         status 200
-        { "token": encode_token({ user_id: @user.id }) }
+        { "token": encode_token({ user_id: @user.id }), "user": user_info}
       else
         status 401
       end
     end
 
     post '/register' do
-      user = User.new(params[:user])
+      @user = User.new(params[:user])
 
-      if user.save
+      if @user.save
         status 201
-        { "token": encode_token({ user_id: user.id }) }
+        { "token": encode_token({ user_id: @user.id }), "user": user_info}
       else
         status 409
-        { "errors": user.errors }
+        { "errors": @user.errors }
       end
     end
 
@@ -113,25 +129,29 @@ module Api
             @user = User.find_by(email: res["email"])
             if @user
               status 200
-              { "token": encode_token({ user_id: @user.id }) }
+              { "token": encode_token({ user_id: @user.id }), "user": user_info }
             else
               name = res["email"].split('@')[0]
               if name.length > 15
                 name = name[0..14]
               end
               @user = User.new()
-              @user.permalink = name + rand.to_s[2..6]
+              @user.permalink = (name + rand.to_s[2..6])
+              @user.permalink = @user.permalink.gsub(/[^0-9a-z]/i, '')
               @user.email = res["email"]
               @user.password = Devise.friendly_token[0, 20]
               @user.name = name
               if @user.save
                 status 200
-                { "token": encode_token({ user_id: @user.id }) }
+                { "token": encode_token({ user_id: @user.id }), "user": user_info }
               else
                 status 400
                 { "errors": @user.errors }
               end
             end
+          else
+            status 400
+            { "errors": "email field is inaccessible." }
           end
         else
           status 400
@@ -159,7 +179,7 @@ module Api
           @user = User.find_by(email: res["email"])
           if @user
             status 200
-            { "token": encode_token({ user_id: @user.id }) }
+            { "token": encode_token({ user_id: @user.id }), "user": user_info }
           else
             name = res["email"].split('@')[0]
             if name.length > 15
@@ -172,7 +192,7 @@ module Api
             @user.name = name
             if @user.save
               status 200
-              { "token": encode_token({ user_id: @user.id }) }
+              { "token": encode_token({ user_id: @user.id }), "user": user_info }
             else
               status 400
               { "errors": @user.errors }
@@ -191,7 +211,7 @@ module Api
         get '/' do
           @user = User.find_by(permalink: params[:target_permalink])
           if @user
-            @user
+            user_info
           else
             status 404
           end
@@ -228,7 +248,7 @@ module Api
     resource :events do
       desc 'Get all upcoming events.'
       get '/' do
-        Event.where('end_at > ?', Time.now - 7.hours)
+        events_info(Event.where('end_at > ?', Time.now - 7.hours))
       end
       
       desc 'Create a new event.'

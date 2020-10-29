@@ -404,7 +404,7 @@ td {
 	margin-bottom: 0px;
 }
 #profileImage {
-	border: 1px solid $brand-primary;
+	border: 1px solid;
 	height: 200px;
 	width: 200px;
 	//centers and crops images
@@ -414,7 +414,7 @@ td {
 	text-transform: capitalize;
 	font-size: 3.0em;
 	font-weight: 700;
-	padding: 2px;
+	padding: 0px;
 }
 #hollowMaroonButton {
     border-color: #8d1d40;
@@ -422,7 +422,7 @@ td {
     font-family: Helvetica;
 }
 #merchSidebar {
-    max-height: 70vh;
+    max-height: 50vh;
     overflow-y: scroll;
 
 }
