@@ -10,6 +10,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     @purchase               = purchases(:one)
     @user_one               = users(:one)
     @donation_merch         = merchandises(:seven)
+    @donation_video         = merchandises(:four)
     @user_two               = users(:two)
     @visit_new_donation     = lambda { |donation_id| visit new_purchase_path  merchandise_id: donation_id }
     @visit_default_donation = lambda { |author_id, price| visit new_purchase_path  author_id: author_id, pricesold: price }
@@ -87,6 +88,18 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'user purchases a video' do
+    user_sign_in @user_two
+    token = stripe_token_create @user_two
+    @user_two.update_attribute :stripe_customer_token, token.id
+    @visit_new_donation.call @donation_video.id
+    assert page.has_css? '.last4'
+    assert page.has_button? 'Buy now'
+    find(:button, 'Buy now', match: :first).click
+    assert_current_path "/#{ @user_one.permalink }"
+    assert_text(:all, %r(/purchases/[0-9]*/download))
+  end
+
   def teardown 
     @user_two.update_attribute :stripe_customer_token, ""
     click_on class: 'btn btn-primary border-warning text-warning'
@@ -97,7 +110,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
   def stripe_token_create user
     card_token = Stripe::Token.create( { card: { number: "#{@card_number}",
                                          exp_month: '8',
-                                         exp_year: '2020',
+                                         exp_year: '2024',
                                          cvc: '123' } } ) 
     Stripe::Customer.create(source: card_token,
                             description: 'test',

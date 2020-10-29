@@ -99,4 +99,7 @@ Rails.application.routes.draw do
       get 'buy'
     end
   end
+
+  # download path for purchase attachemnts
+  match '/purchases/:id/download' => 'purchases#download', :as => 'purchase_download',  via: 'get'
 end

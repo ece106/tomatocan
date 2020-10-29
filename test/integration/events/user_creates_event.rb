@@ -40,11 +40,10 @@ time_zone_test = "-07:00"
 	find(:xpath, "//*[@id='timeZone']", visible: false).set time_zone_test #sets the timezone manually
 
     click_on id: 'eventSubmit', match: :first
-    assert_equal current_path, root_path
 
-    visit '/userconfirmed'
+	#"calendar-time-day2"
+    assert_equal current_path, event_path(Event.find_by_name('Valid Event Name'))
 
-    
     assert page.has_content? "Valid Event Name"
 	assert page.has_content? "userconfirmed"
 	assert page.has_content? "December 31"

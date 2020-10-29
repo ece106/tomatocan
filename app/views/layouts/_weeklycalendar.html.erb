@@ -17,6 +17,12 @@
 <%end%>
 
 <script>
+  var savedPanel;
+  if (localStorage.getItem("panelKey") == null) {
+    savedPanel = 0;
+  } else {
+    savedPanel = localStorage.getItem("panelKey");
+  }
   function Panel1 (panelIndex) {
     var tabButtons=document.querySelectorAll(".weekBtn");
     var tabPanels=document.querySelectorAll(".weekDays");
@@ -25,6 +31,8 @@
       node.style.display="none";
     });
     tabPanels[panelIndex].style.display="block";
+    savedPanel = panelIndex;
+    localStorage.setItem("panelKey", savedPanel);
   }
-  Panel1(0);
+  Panel1(savedPanel);
 </script>

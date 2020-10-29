@@ -46,4 +46,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :facebook_user
 
+  def redirect_later(url, msg, delay = 5)
+    flash[:redirect_later] = {
+      url: url,
+      delay: delay,
+      msg: msg,
+    }
+  end
+
 end

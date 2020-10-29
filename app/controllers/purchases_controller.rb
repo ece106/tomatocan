@@ -14,6 +14,22 @@ class PurchasesController < ApplicationController
     end
   end
 
+  def download
+    @purchase = Purchase.find(params[:id])
+    if !@purchase.merchandise_id.nil?
+        loot = Merchandise.find(@purchase.merchandise_id)
+        @itemname = loot.name
+        id = loot.user_id
+        @user = User.find(id)
+    end
+    filename_and_data = loot.get_filename_and_data
+    filename = filename_and_data[:filename]
+    data = filename_and_data[:data]
+    respond_to do |format|
+      format.html { send_data_to_buyer data, filename }
+    end
+  end
+
   def new
     if(params[:pricesold].present?) # Donation being made
       @purchase = Purchase.new
@@ -75,9 +91,9 @@ class PurchasesController < ApplicationController
           filename_and_data = @merchandise.get_filename_and_data
           filename = filename_and_data[:filename]
           data = filename_and_data[:data]
-          send_data_to_buyer data, filename and return
-          redirect_to user_profile_path(@seller.permalink) 
-          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
+          redirect_later purchase_download_path(@purchase), "Downloading file"
+          redirect_to user_profile_path(@seller.permalink)
+          flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name + ". Your download of " + filename + " will start in 5 seconds."
           PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
           PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
         when false

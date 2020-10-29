@@ -47,7 +47,7 @@ end
         visit "/#{@user.permalink}"
         click_on('Control Panel')
         click_on('Rewards')
-        click_on(class: 'btn btn-lg btn-warning', match: :first)
+        click_on('Create Reward')
         fill_in(id: 'merchandise_name', with: 'Shoe')
         fill_in(id: 'merchandise_price', with: '5')
         fill_in(id: 'merchandise_desc', with: 'this is a description')
@@ -59,7 +59,7 @@ end
         click_on 'Control Panel'
         click_on 'Rewards'
         #purchase deadline is currently 2019 July 24
-        click_on(class: 'btn btn-lg btn-warning', match: :first)
+        click_on('Create Reward')
         click_on(class: 'btn btn-lg btn-primary')
         assert_text('errors prohibited this Reward from being saved:')
     end

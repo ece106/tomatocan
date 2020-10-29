@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <div class="tabContainer text-center pr-2" style="background-color: #8C1D40" >
+      <div class="tabContainer text-center" style="background-color: #8C1D40" >
         <div class="buttonContainer pr-3" >
           <button onclick="showPanel(0,'#4caf50')">List View</button>
           <button onclick="showPanel(1,'#4caf50')">Daily View</button>
@@ -63,5 +63,9 @@
 <br><br>
 
 <script type="text/javascript">
-showPanel(0, '#f44336');
+if (localStorage.getItem("listPanel") == null) {
+    showPanel(0, '#f44336');
+} else {
+    showPanel(localStorage.getItem("listPanel"), '#f44336');
+}
 </script>

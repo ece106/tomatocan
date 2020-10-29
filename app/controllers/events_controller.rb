@@ -53,7 +53,7 @@ class EventsController < ApplicationController
         reminder_date = @event.start_at - 1.days
         EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until: reminder_date)
         EventMailer.with(user: user , event: @event).event_reminder.deliver_later(wait_until:  reminder_hour)
-        format.html { redirect_to "/" }
+        format.html { redirect_to @event }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }

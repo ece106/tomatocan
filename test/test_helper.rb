@@ -114,12 +114,12 @@ class ActiveSupport::TestCase
   # And copy carrierwave template in
   #puts "Copying\n  #{carrierwave_template.join('uploads').to_s} to\n  #{carrierwave_root.to_s}"
   FileUtils.cp_r carrierwave_template.join('uploads'), carrierwave_root
+  FileUtils.cp_r carrierwave_template.join('merchandise'), carrierwave_root
 
   at_exit do
-    #puts "Removing carrierwave test directories:"
     Dir.glob(carrierwave_root.join('*')).each do |dir|
       #puts "   #{dir}"
-      FileUtils.remove_entry(dir)
+      FileUtils.remove_entry(dir) #@TODO - figure out why this executes before the tests run
     end
   end
 

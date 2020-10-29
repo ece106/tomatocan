@@ -28,7 +28,7 @@ class RsvpqsController < ApplicationController
         else
           RsvpMailer.with(email: email, event: event, timeZone: params[:timeZone]).rsvp_reminder.deliver_later(wait_until: reminder_date)
         end
-        redirect_back(fallback_location: request)
+        #redirect_back(fallback_location: request)
       else
         rsvp = Rsvpq.find_by(email: @rsvp.email)
         if rsvp.nil?
@@ -36,7 +36,15 @@ class RsvpqsController < ApplicationController
         else
           flash[:error] = 'Entered email already has an rsvp for this event'
         end
-        redirect_back(fallback_location: root_path)
+        #redirect_back(fallback_location: root_path)
+      end
+      #redirect_back(fallback_location: request)
+      if request == "/"
+        format.html { redirect_to "/" }
+      elsif request == "/studyhall"
+        format.html { redirect_to "/studyhall" }
+      else
+        redirect_back(fallback_location: request)
       end
     #else
     #  flash.delete(:recaptcha_error)
