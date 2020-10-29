@@ -37,6 +37,46 @@
                 document.getElementById('<%=dayId%>').innerHTML = date.toLocaleString(undefined, optionsDay);
                 document.getElementById('<%=timeId%>').innerHTML = date.toLocaleString(undefined, optionsTime);
               </script>
+
+              <td class="col-xs-3 overflow-visible">
+                <% rsvps = event.rsvpqs %>
+                 <% rsvpusers = event.users %>
+                <% if rsvps.count > 0 %>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" >
+                  <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= rsvps.count %></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+                  <% rsvps.each do |rsvp| %>
+                  <%if !rsvp.user_id.nil? %>
+                    <% rsvpuser = User.find(rsvp.user_id) %>
+                    <%= link_to user_profile_path(rsvpuser.permalink) do %>
+                      <div class="dropdown-item">
+                        <span>
+                          <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
+                            <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
+                          <% elsif !rsvpuser.profilepic.url.nil? %>
+                            <% if rsvpuser.profilepic.url.match(/http/) %>
+                              <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
+                            <% end %>
+                          <% else %>
+                            <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
+                          <% end %>
+                        </span>
+                        <%= rsvpuser.name %></div>
+                    <% end %>
+                  <% end %>
+                  <% end %>
+                  <% rsvps.each do |rsvp| %>
+                    <% unless rsvp.email.blank? %>
+                      <% parts = rsvp.email.split('@') %>
+                      <div class="dropdown-item"><%= parts[0] %></div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <% end %>
+              </td>
+
               <td class=col-xs-3>
                 <% @rsvp = Rsvpq.new %>
                 <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>

@@ -52,7 +52,7 @@ module ApplicationHelper
 
     url = flash[:redirect_later]["url"]
     delay = flash[:redirect_later]["delay"]
-    #flash.now[:notice] = flash[:redirect_later]["msg"] % [delay]
+    flash.now[:notice] = flash[:redirect_later]["msg"] % [delay]
 
     flash.delete(:redirect_later)
 
