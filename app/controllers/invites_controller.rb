@@ -1,6 +1,8 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: [:show, :edit, :update, :destroy]
 
+  @@globalNum = 0;
+
   # GET /invites
   def index
     @invites = Invite.all
@@ -17,6 +19,15 @@ class InvitesController < ApplicationController
 
   # GET /invites/1/edit
   def edit
+    @editNumber = @@globalNum
+    # respond_to do |format|
+    #   format.html { redirect_to "sms:#{@@globalNum}&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for..."} #, flash[:success] = "holder updated")
+    #   format.js
+    # end
+
+
+    # redirect_to "sms:#{@@globalNum}&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for..."
+
   end
 
   # POST /invites
@@ -37,6 +48,7 @@ class InvitesController < ApplicationController
           countryCode = IsoCountryCodes.find(countryAb).calling
           phoneNum = invite_params["phone_number"]
           completeNum = countryCode + phoneNum
+          @@globalNum = completeNum
 
           messageBody = ""
 
@@ -52,15 +64,20 @@ class InvitesController < ApplicationController
           else
             messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": Hi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at https://thinq.tv/signup/" + current_user.id.to_s + " to get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
           end
+
+          # format.html do
+          #   redirect_to "sms:+19175740753&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for...", notice: "PO already has RR with RR ID: void RR first.".html_safe
+          # end
+          redirect_to new_invite_confirm_path, success: invite_error_message + "Your invite has been crafted!"
   
-          @client = Twilio::REST::Client.new(account_sid, auth_token)
-          @client.messages.create(
-                  to: completeNum,
-                  from: "+16026930976",
-                  body: messageBody
-              )
-          result = ""
-          redirect_to new_invite_success_path, success: invite_error_message + "Your invite has been sent!"
+          # @client = Twilio::REST::Client.new(account_sid, auth_token)
+          # @client.messages.create(
+          #         to: completeNum,
+          #         from: "+16026930976",
+          #         body: messageBody
+          #     )
+          # result = ""
+          # redirect_to new_invite_success_path, success: invite_error_message + "Your invite has been sent!"
         else
           redirect_to new_invite_form_path, danger: invite_error_message + "Please check the captcha box!"
         end

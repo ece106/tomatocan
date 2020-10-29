@@ -1,6 +1,23 @@
-<h1>Editing Invite</h1>
+<div>
+<div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
 
-<%= render 'form', invite: @invite %>
+    <div class="col-lg-6 bg-light border p-3 justify-content-center" style="padding:20px 0px 0px 0px">
+      <div class="well justify-content-center">
+              <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Click below to send your invite!</b>
+            
+          </div>
+          <p><b>Get points for it!</b></p>
+        </div>
+        <%= @editNumber.class %>
+  <a href="sms:<%=@editNumber%>&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for..." class="form-control btn-primary" >Click to send your message through a messaging app</a>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
 
-<%= link_to 'Show', @invite %> |
-<%= link_to 'Back', invites_path %>
+

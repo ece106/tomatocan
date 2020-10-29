@@ -39,6 +39,9 @@ Rails.application.routes.draw do
 
   match 'invite', to: 'invites#new', via: 'get'
   get "invite", :to => 'invites#new', :as => :new_invite_form
+  match "invites/1/edit", to: 'invites#edit', via: 'get'
+  get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
+
   get "home", :to => 'static_pages#home', :as => :new_invite_success
 
   match 'embed', to: 'static_pages#embed', via: 'get'
