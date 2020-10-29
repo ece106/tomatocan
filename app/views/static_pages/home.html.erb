@@ -63,5 +63,9 @@
 <br><br>
 
 <script type="text/javascript">
-showPanel(0, '#f44336');
+if (localStorage.getItem("listPanel") == null) {
+    showPanel(0, '#f44336');
+} else {
+    showPanel(localStorage.getItem("listPanel"), '#f44336');
+}
 </script>

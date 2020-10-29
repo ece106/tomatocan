@@ -13,6 +13,7 @@
     });
     tabPanels[panelIndex].style.display="block";
     tabPanels[panelIndex].style.backgroundColor="white";
+    localStorage.setItem("listPanel", panelIndex);
   }
 
   function showPanel2 (panelIndex, colorCode) {
