@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actioncable (6.0.3.3)
       actionpack (= 6.0.3.3)
@@ -304,8 +304,6 @@ GEM
       rack (>= 0.4)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-mini-profiler (2.1.0)
-      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.3.3)
@@ -462,7 +460,6 @@ DEPENDENCIES
   pry
   puma
   rack-cors
-  rack-mini-profiler
   rails (~> 6)
   rails-controller-testing
   rails_real_favicon

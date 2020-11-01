@@ -11,7 +11,10 @@
       <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
           <% user = User.find(event.user_id) %>
           <div class = "col-3" style="text-align: left; padding-left: 50px">
-            <%= link_to event.name, event_path(event.id), class: "h4", style: "font-weight:700", title: event.desc %><br>
+            <%= link_to event.topic, event_path(event.id), class: "h4", style: "font-weight:700", title: event.desc %><br>
+            <div style= "color:black" >
+              <%= event.name %><br>
+            </div>
             <%= link_to user.name, user.permalink %>
             <% if user_signed_in? %>
               <% if event.user_id == current_user.id %>

@@ -6,7 +6,8 @@ class StaticPagesController < ApplicationController
 
   def home
     showrecentconvo = Time.now - 10.hours
-    @conversations = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' )
+    @conversations = Event.where( "start_at > ?", showrecentconvo )
+
     @conversationsall = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' ) #is this used?
 
     @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'DropIn', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
