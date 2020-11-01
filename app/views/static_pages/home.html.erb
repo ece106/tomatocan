@@ -13,16 +13,19 @@
       </div>
     <% end %>
 
-    <h1 class="text-center maroon mt-5 pl-2 pt-5" style="font-size: 50px">
-      <strong>Women who inspire you to </strong>
-        <%= image_tag("thinqMaroon.png", style: "height: 80px; margin-top: 10px") %>
-    </h1>
-    <h2 class="text-center" style="color:#8C1D40">
-      <br><br>A network of women growing the next generation into Young Women who are confident in STEM subjects. Discover & support each other via video chat; Schedule a conversation with your network!<br><br><br>
-    </h2>
+    <div style="background-color: rgba(255, 255, 255, 0.5); border-radius: 10%">
+      <h1 class="text-center maroon mt-5 pl-2 pt-5" style="font-size: 50px">
+        <strong>Women who inspire you to </strong>
+          <%= image_tag("thinqMaroon.png", style: "height: 80px; margin-top: 10px") %>
+      </h1>
+    
+      <h2 class="text-center" style="color:#8C1D40">
+        <br><br>A network of women growing the next generation into Young Women who are confident in STEM subjects. Discover & support each other via video chat; Schedule a conversation with your network!<br><br><br>
+      </h2>
 
-    <div class=" text-center" >
-        <%= render 'layouts/countdown_clock' %>
+      <div class=" text-center" >
+          <%= render 'layouts/countdown_clock' %>
+      </div>
     </div>
   </div>
 
