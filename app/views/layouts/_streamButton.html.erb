@@ -1,14 +1,10 @@
-<div>
-    <% if @user.about.present? %>
-        <h1 class="pt-5 maroon text-center" id="profileName" style="font-size: 2.0em"> <%= "About" %> </h1>
-        <h6 class="pt-1" style="padding-left: 45px; padding-right: 40px;"> <%= @user.about %> </h6>
-    <% end %>
-    
-        <div class="pt-5 text-center">
-            <%= link_to "Browse Conversation Schedule", root_path, :class => "btn btn-lg ", :id => "hollowMaroonButton" %>
-        </div>
+<div class ="pt-5">
+
+    <div class="pt-0 text-center">
+        <%= link_to "Browse Conversation Schedule", root_path, :class => "btn btn-lg ", :id => "hollowMaroonButton" %>
+    </div>
     <div class="pt-4 text-center">
-        <%= link_to 'Schedule a Conversation', new_event_path, :class => "btn btn-lg ", :id=>"hollowMaroonButton" %>
+        <%= link_to 'Schedule a Conversation', new_event_path, :class=>"btn btn-primary btn-lg" %>
     </div>
 
         
