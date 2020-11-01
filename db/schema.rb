@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_name"
     t.string "guest2_email"
     t.string "topic"
-    t.text "attending", default: [], array: true
     t.text "recurring"
     t.index ["start_at", "topic"], name: "index_events_on_start_at_and_topic", unique: true
   end
@@ -142,6 +141,17 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "purchases", id: :serial, force: :cascade do |t|
     t.integer "author_id"
     t.integer "book_id"
@@ -191,6 +201,24 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "email"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "target_type", null: false
+    t.bigint "target_id", null: false
+    t.string "key", null: false
+    t.boolean "subscribing", default: true, null: false
+    t.boolean "subscribing_to_email", default: true, null: false
+    t.datetime "subscribed_at"
+    t.datetime "unsubscribed_at"
+    t.datetime "subscribed_to_email_at"
+    t.datetime "unsubscribed_to_email_at"
+    t.text "optional_targets"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["key"], name: "index_subscriptions_on_key"
+    t.index ["target_type", "target_id", "key"], name: "index_subscriptions_on_target_type_and_target_id_and_key", unique: true
+    t.index ["target_type", "target_id"], name: "index_subscriptions_on_target_type_and_target_id"
+  end
+
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -236,6 +264,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.text "BlockedUsers", default: [], array: true
     t.integer "last_viewed", default: [], array: true
     t.string "resume"
+    t.integer "reputation_score", default: 0
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true

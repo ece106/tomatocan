@@ -46,6 +46,8 @@ gem 'recaptcha', require: "recaptcha/rails"
 gem "grape"
 gem 'grape-active_model_serializers'
 gem 'jwt'
+gem 'rack-mini-profiler'
+gem 'whenever', require: false
 
 group :test, :development do
   gem 'minitest'

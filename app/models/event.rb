@@ -74,5 +74,13 @@ class Event < ApplicationRecord
       hash["username"] = @user.name
     end
   end
+
+  # class method that checks if there is a conversation that ended within 2 minutes of the current time
+  def self.conversation_ended
+    # converting to utc timezone because end_at column in events table is in this timezone
+    currTime = (Time.now.in_time_zone.utc) - 7.hours 
+    convo = Event.find_by( "end_at < ? AND end_at > ? AND topic = ?", currTime, currTime - 2.minutes, "Conversation" )
+    return convo
+  end
   
 end

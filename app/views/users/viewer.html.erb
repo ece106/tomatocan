@@ -1,6 +1,9 @@
+<!-- link to attendances.js file that tracks conversation attendance -->
+<%# <%= javascript_include_tag 'attendances.js' %> %>
+
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, params[:id]) %>
-  <% attendrecord = Attendance.new(:user_id => current_user.id, :time_in => (Time.now - 7.hours)) %>
+  <% attendrecord = Attendance.new(:user_id => current_user.id, :event_id => params[:event], :time_in => (Time.now - 7.hours)) %>
   <% attendrecord.save %>
 
   <!-- Update list of users attending the conversation -->
@@ -95,7 +98,7 @@
     </div>
   </div>
 
-  <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
+   <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
     // save current user id
     var currID = "<%= current_user.id %>"
     var attendrec = "<%= attendrecord.id %>"
@@ -103,7 +106,7 @@
     // get url params
     const urlParams = new URLSearchParams(window.location.search);
 
-    //check if user is blocked every 300 seconds
+    // check if user is blocked every 300 seconds
     function isBlocked() {
       $.post("/users/is_blocked", null, (data) => {
         if (data.includes("<%= @user.permalink %>")) {
@@ -134,15 +137,30 @@
     }
 
     // unload actions
-    $(window).on('beforeunload', (event) => {
-      // remove user from attendees list
-      $.post("/users/unload", {attendid: attendrec, event: urlParams.get('event')})
-    });
+    window.onbeforeunload = function(event) {
+      // FormData containing attendid and event information
+      const data = new FormData();
+      data.append("attendid", attendrec);
+      data.append("event", urlParams.get('event'));
+      
+      // use fetch API if sendBeacon does not work
+      if (!navigator.sendBeacon) {
+        fetch('/users/unload', {
+          method: 'POST',
+          body: data,
+          keepalive: true
+        });
+      }
+      // using beacon API to send a post request
+      else { 
+        var url = "/users/unload";
+        var status = navigator.sendBeacon(url, data);
+      }
+    };
 
     // makes all links on viewer page open in new tab
     $(document).ready(() => {
       $("a").attr("target", "_blank");
-    	
     });
 
 
@@ -150,5 +168,5 @@
     isBlocked()
     signedIn()
     loadAttendees()
-  </script>
+  </script> 
 <% end %>
