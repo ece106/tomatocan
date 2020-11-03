@@ -8,66 +8,32 @@ class StaticPagesController < ApplicationController
     showrecentconvo = Time.now - 10.hours
     @conversations = Event.where( "start_at > ?", showrecentconvo )
 
-    @conversationsall = Event.where( "start_at > ? AND topic = ?", showrecentconvo, 'Conversation' ) #is this used?
-
-    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'DropIn', 'Group Problem Solving' ).order('start_at ASC').paginate(page: params[:page], :per_page => 9)
-    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'DropIn', 'Group Problem Solving' )
     @monthforCalendar = Date.today
-    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC') #why do we have 2 @events
+    @events = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC') 
     @calendar_events = @conversations.flat_map{ |e| e.calendar_events(e.start_at)}
     @calendar_events = @calendar_events.sort_by {|event| event.start_at}
     @calendar_events_all = @calendar_events
     @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 9)
 
-    @eventsAll = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC') #why do we have 2 @eventsAll
+    @eventsAll = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC') 
 
     pdtnow = Time.now - 7.hours
     pdtnext = Time.now - 8.hours
     currconvo = Event.where( "start_at < ? AND start_at > ?", pdtnow, pdtnext ).first
     nextconvo = Event.where( "start_at > ? ", pdtnow ).order('start_at ASC').first
 
-    currstudy = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'DropIn' ).order('start_at ASC').first
-    nextstudy = Event.where( "start_at > ? AND topic = ?", pdtnow, 'DropIn' ).order('start_at ASC').first
-    curresearch = Event.where( "start_at < ? AND start_at > ? AND topic = ?", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
-    nextresearch = Event.where( "start_at > ? AND topic = ?", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
-
     if currconvo.present?
       @displayconvo = currconvo
     else
       @displayconvo = nextconvo
     end
-    if currstudy.present?
-      @displaystudy = currstudy
-    else
-      @displaystudy = nextstudy
-    end
-
-    if curresearch.present?
-      @displayresearch = curresearch
-    else
-      @displayresearch = nextresearch
-    end
 
     if @displayconvo.present?
       @name = @displayconvo.name
       @description = @displayconvo.desc
-      @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
-      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
+      @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PST"
+      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PST"
       @host = User.find(@displayconvo.user_id)
-    end
-
-    if @displaystudy.present?
-      @namestudy = @displaystudy.name
-      @descriptionstudy = @displaystudy.desc
-      @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
-      @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
-      @hoststudy = User.find(@displaystudy.user_id)
-    end
-
-    if @displayresearch.present?
-      @nameresearch = @displayresearch.name
-      @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
-      @hostresearch = User.find(@displayresearch.user_id)
     end
 
     if user_signed_in?
@@ -152,6 +118,8 @@ class StaticPagesController < ApplicationController
   end
 
   def faq
+  end
+  def privacy_policy
   end
   def getinvolved
   end
