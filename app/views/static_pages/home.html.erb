@@ -19,11 +19,13 @@
           <%= image_tag("thinqMaroon.png", style: "height: 80px; margin-top: 10px") %>
       </h1>
     
-      <h2 class="text-center" style="color:#8C1D40">
-        <br><br>A network of women growing the next generation into Young Women who are confident in STEM subjects. Discover & support each other via video chat; Schedule a conversation with your network!<br><br><br>
+      <h3 style="color:#8C1D40; padding-left: 0.5em; padding-right:0.5em">
+        - A network of adults growing the next generation of women to be confident in STEM subjects
+        <br><br> - Discover & support each other via video chat
+        <br><br> - Free to anyone supportive of women in STEM to schedule conversations & meetings!<br><br><br>
       </h2>
 
-      <div class=" text-center" >
+      <div class="text-center" >
           <%= render 'layouts/countdown_clock' %>
       </div>
     </div>
@@ -36,7 +38,9 @@
       <div>
         <div class="convo-container text-center" style="background-color: #8C1D40">
           <!-- col-lg-3 col-md-6 -->
-          <h1 class = "white">Conversations</h1>
+          <h1 class = "white">Drop in to these Conversations</h1>
+          <h2 style="color:#FFF"> Everyone is welcome!</h2>
+
           <% if user_signed_in? %>
             <%= link_to 'Host a Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
           <% end %>
