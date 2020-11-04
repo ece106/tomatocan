@@ -30,7 +30,7 @@
                     <b>
                         <% edt = @event.start_at + 3.hours %>
                         <%= @event.start_at.strftime("%A, %B %d") %> <br>
-                        <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
+                        <%= @event.start_at.strftime("%I:%M %p")%> Pacific Time / <%= edt.strftime("%I:%M %p") %> Eastern Time
                         <br> <%= @duration %> minutes <br>
                     </b>
                 </p>
@@ -176,7 +176,7 @@
                 <div class="row ">
                     <div class="col-md-1 d-flex">
                         <%= link_to "mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20"+ @event.name + "%20at%20" + @surl + "%20on%20" + 
-                        + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20PDT%20/%20" + edt.strftime("%I:%M %p") + "%20EDT.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
+                        + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20Pacific%20/%20" + edt.strftime("%I:%M %p") + "%20Eastern.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
                         target: :_blank do %>
                         <%= image_tag "email_icon.png", height: "25", width: "25"%>
                         <% end %>
@@ -186,7 +186,7 @@
                         <% end %>
 
                         <%= link_to "https://twitter.com/intent/tweet?text=Join " + @user.name + " for interesting conversation: " +
-                        @event.name + " on " + @event.start_at.strftime("%B %d, %I:%M %p") + " PDT at " + @surl, target: :_blank do %>
+                        @event.name + " on " + @event.start_at.strftime("%B %d, %I:%M %p") + " Pacific Time at " + @surl, target: :_blank do %>
                             <%= image_tag "twitter_icon.png", height: "25", width: "25"%>
                         <% end %>
 
