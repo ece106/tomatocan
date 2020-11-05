@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
 
   get "home", :to => 'static_pages#home', :as => :new_invite_success
+  match 'invite_error', to: 'invites#error', via: 'get'
 
   match 'embed', to: 'static_pages#embed', via: 'get'
   match 'calendar_view', to: 'static_pages#calendar_view', via: 'get' 

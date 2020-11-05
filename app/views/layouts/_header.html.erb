@@ -44,7 +44,7 @@
           <% else %>
             <li>
               <p class="navbar-btn pt-1">
-                <%= link_to "Invite New Users! Get Points!", '/invite', class: "btn btn-primary border border-light" %>
+                <%= link_to "Invite New Users! Get Points!", current_user == nil ? '/invite_error' : '/invite', class: "btn btn-primary border border-light" %>
                 <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
                 <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
               </p>
