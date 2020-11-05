@@ -16,6 +16,16 @@ BRANCH MANAGEMENT SYSTEM:
            *Note the underscore to separate words
 
 
+ADDITIONAL DEV DIRECTIONS:
+
+  Add the following file into config -> initializers, and title it: sms.rb. It only has these two lines in it:
+  
+    ENV['TWILIO_ACCOUNT_SID'] = askjamesforthesid
+    ENV['TWILIO_ACCOUNT_TOKEN'] = askjamesfortheaccounttoken
+
+  
+  Ask James for the key values
+
 
 ORIGINAL README CONTENT:
 
