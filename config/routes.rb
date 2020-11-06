@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   match 'embed', to: 'static_pages#embed', via: 'get'
   match 'calendar_view', to: 'static_pages#calendar_view', via: 'get' 
 
+  # match 'embed_help', to: 'static_pages#embedhelp', via: 'get'
+
   resources :merchandises
   resources :rsvpqs
   resources :purchases

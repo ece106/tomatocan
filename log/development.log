@@ -27993,3 +27993,415 @@ Processing by StaticPagesController#embed as HTML
 Completed 200 OK in 225ms (Views: 202.8ms | ActiveRecord: 7.9ms | Allocations: 78814)
 
 
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/embed_help" for ::1 at 2020-11-06 13:51:31 -0700
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant EmbedController):
+  
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:834:in `call'
+recurring_select (2.1.0) app/middleware/recurring_select_middleware.rb:24:in `call'
+omniauth (1.9.1) lib/omniauth/strategy.rb:192:in `call!'
+omniauth (1.9.1) lib/omniauth/strategy.rb:169:in `call'
+omniauth (1.9.1) lib/omniauth/strategy.rb:192:in `call!'
+omniauth (1.9.1) lib/omniauth/strategy.rb:169:in `call'
+warden (1.2.8) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.8) lib/warden/manager.rb:34:in `catch'
+warden (1.2.8) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/cookies.rb:648:in `call'
+activerecord (6.0.3.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2020-11-06 13:51:31 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-06 13:56:32.063110' AND end_at > '2020-11-06 13:56:32.063110' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-06 13:56:32.063110')[0m
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-06 10:51:32.080063' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 147ms (ActiveRecord: 25.2ms | Allocations: 46105)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/embed_help" for ::1 at 2020-11-06 13:53:31 -0700
+  
+ActionController::RoutingError (uninitialized constant EmbedController):
+  
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:92:in `rescue in controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:88:in `controller_class_for'
+actionpack (6.0.3.2) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:834:in `call'
+recurring_select (2.1.0) app/middleware/recurring_select_middleware.rb:24:in `call'
+omniauth (1.9.1) lib/omniauth/strategy.rb:192:in `call!'
+omniauth (1.9.1) lib/omniauth/strategy.rb:169:in `call'
+omniauth (1.9.1) lib/omniauth/strategy.rb:192:in `call!'
+omniauth (1.9.1) lib/omniauth/strategy.rb:169:in `call'
+warden (1.2.8) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.8) lib/warden/manager.rb:34:in `catch'
+warden (1.2.8) lib/warden/manager.rb:34:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/cookies.rb:648:in `call'
+activerecord (6.0.3.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.2) lib/rails/railtie.rb:190:in `method_missing'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2020-11-06 13:53:32 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-06 13:58:32.219904' AND end_at > '2020-11-06 13:58:32.219904' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-06 13:58:32.219904')[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-06 10:53:32.232639' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 95ms (ActiveRecord: 20.8ms | Allocations: 39517)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started GET "/embed_help" for ::1 at 2020-11-06 13:59:13 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 175)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.6ms | Allocations: 490)
+  Rendered application/_favicon.html.erb (Duration: 449.1ms | Allocations: 347638)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 64.9ms | Allocations: 24911)
+  Rendered layouts/_footer.html.erb (Duration: 5.3ms | Allocations: 2724)
+Completed 200 OK in 688ms (Views: 678.1ms | ActiveRecord: 6.5ms | Allocations: 449453)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:00:30 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.7ms | Allocations: 472)
+  Rendered application/_favicon.html.erb (Duration: 5.4ms | Allocations: 3698)
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 8.6ms | Allocations: 1811)
+  Rendered layouts/_footer.html.erb (Duration: 5.8ms | Allocations: 2694)
+Completed 200 OK in 90ms (Views: 86.6ms | ActiveRecord: 2.3ms | Allocations: 76820)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:01:11 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.6ms | Allocations: 474)
+  Rendered application/_favicon.html.erb (Duration: 6.9ms | Allocations: 3698)
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 8.5ms | Allocations: 1857)
+  Rendered layouts/_footer.html.erb (Duration: 5.7ms | Allocations: 2694)
+Completed 200 OK in 92ms (Views: 88.5ms | ActiveRecord: 2.1ms | Allocations: 76868)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:01:33 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.7ms | Allocations: 473)
+  Rendered application/_favicon.html.erb (Duration: 7.4ms | Allocations: 3698)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 5.2ms | Allocations: 1847)
+  Rendered layouts/_footer.html.erb (Duration: 3.4ms | Allocations: 2694)
+Completed 200 OK in 96ms (Views: 92.4ms | ActiveRecord: 1.4ms | Allocations: 76853)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:01:50 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.6ms | Allocations: 473)
+  Rendered application/_favicon.html.erb (Duration: 6.0ms | Allocations: 3698)
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.6ms | Allocations: 1644)
+  Rendered layouts/_footer.html.erb (Duration: 5.1ms | Allocations: 2694)
+Completed 200 OK in 89ms (Views: 85.6ms | ActiveRecord: 0.8ms | Allocations: 76650)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:02:24 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.5ms | Allocations: 473)
+  Rendered application/_favicon.html.erb (Duration: 6.9ms | Allocations: 3697)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.8ms | Allocations: 1642)
+  Rendered layouts/_footer.html.erb (Duration: 3.1ms | Allocations: 2694)
+Completed 200 OK in 86ms (Views: 84.3ms | ActiveRecord: 0.5ms | Allocations: 76646)
+
+
+Started GET "/embedhelp" for ::1 at 2020-11-06 14:02:30 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"embedhelp"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "embedhelp"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-06 14:07:30.208314' AND end_at > '2020-11-06 14:07:30.208314' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-06 14:07:30.208314')[0m
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-06 11:02:30.224369' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 3.1ms | Allocations: 2004)
+  Rendered layouts/_streamButton.html.erb (Duration: 0.6ms | Allocations: 253)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 9.3ms | Allocations: 5338)
+  Rendered application/_favicon.html.erb (Duration: 3.8ms | Allocations: 3296)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 847)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2296)
+Completed 200 OK in 137ms (Views: 81.1ms | ActiveRecord: 18.7ms | Allocations: 94162)
+
+
+Started GET "/embedhelp" for ::1 at 2020-11-06 14:02:39 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"embedhelp"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "embedhelp"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-06 14:07:39.086064' AND end_at > '2020-11-06 14:07:39.086064' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-06 14:07:39.086064')[0m
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-06 11:02:39.087932' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 3.3ms | Allocations: 1969)
+  Rendered layouts/_streamButton.html.erb (Duration: 0.5ms | Allocations: 240)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 10.3ms | Allocations: 5206)
+  Rendered application/_favicon.html.erb (Duration: 4.9ms | Allocations: 3464)
+  Rendered layouts/_header.html.erb (Duration: 1.9ms | Allocations: 1255)
+  Rendered layouts/_footer.html.erb (Duration: 4.4ms | Allocations: 2686)
+Completed 200 OK in 112ms (Views: 101.4ms | ActiveRecord: 3.5ms | Allocations: 81451)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:02:41 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 2.1ms | Allocations: 468)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3491)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 1232)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2296)
+Completed 200 OK in 91ms (Views: 88.3ms | ActiveRecord: 0.5ms | Allocations: 75191)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:02:50 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 2.2ms | Allocations: 471)
+  Rendered application/_favicon.html.erb (Duration: 8.8ms | Allocations: 3698)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.5ms | Allocations: 1640)
+  Rendered layouts/_footer.html.erb (Duration: 4.5ms | Allocations: 2686)
+Completed 200 OK in 91ms (Views: 88.6ms | ActiveRecord: 0.5ms | Allocations: 76354)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:02:54 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 0.3ms | Allocations: 82)
+  Rendered application/_favicon.html.erb (Duration: 4.6ms | Allocations: 3510)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.3ms | Allocations: 1231)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2296)
+Completed 200 OK in 84ms (Views: 82.4ms | ActiveRecord: 0.3ms | Allocations: 74031)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:10:01 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.3ms | Allocations: 474)
+  Rendered application/_favicon.html.erb (Duration: 5.4ms | Allocations: 3679)
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 5.7ms | Allocations: 1844)
+  Rendered layouts/_footer.html.erb (Duration: 5.2ms | Allocations: 2686)
+Completed 200 OK in 96ms (Views: 93.4ms | ActiveRecord: 1.6ms | Allocations: 76538)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:14:56 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.8ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 2.6ms | Allocations: 479)
+  Rendered application/_favicon.html.erb (Duration: 6.7ms | Allocations: 3698)
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 7.4ms | Allocations: 1846)
+  Rendered layouts/_footer.html.erb (Duration: 5.0ms | Allocations: 2694)
+Completed 200 OK in 99ms (Views: 95.2ms | ActiveRecord: 2.0ms | Allocations: 76800)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:15:46 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 2.3ms | Allocations: 482)
+  Rendered application/_favicon.html.erb (Duration: 6.1ms | Allocations: 3697)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.3ms | Allocations: 1644)
+  Rendered layouts/_footer.html.erb (Duration: 3.2ms | Allocations: 2695)
+Completed 200 OK in 104ms (Views: 101.2ms | ActiveRecord: 0.7ms | Allocations: 76664)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:16:57 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.6ms | Allocations: 485)
+  Rendered application/_favicon.html.erb (Duration: 5.1ms | Allocations: 3697)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.1ms | Allocations: 1646)
+  Rendered layouts/_footer.html.erb (Duration: 3.2ms | Allocations: 2694)
+Completed 200 OK in 98ms (Views: 95.6ms | ActiveRecord: 0.5ms | Allocations: 76716)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:18:24 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.8ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 2.1ms | Allocations: 488)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3698)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.1ms | Allocations: 1642)
+  Rendered layouts/_footer.html.erb (Duration: 7.2ms | Allocations: 2694)
+Completed 200 OK in 110ms (Views: 108.1ms | ActiveRecord: 0.6ms | Allocations: 76718)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:24:14 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.2ms | Allocations: 489)
+  Rendered application/_favicon.html.erb (Duration: 7.1ms | Allocations: 3698)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.5ms | Allocations: 1848)
+  Rendered layouts/_footer.html.erb (Duration: 2.9ms | Allocations: 2694)
+Completed 200 OK in 87ms (Views: 84.5ms | ActiveRecord: 1.2ms | Allocations: 76923)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:24:45 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.9ms | Allocations: 500)
+  Rendered application/_favicon.html.erb (Duration: 5.9ms | Allocations: 3697)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 5.3ms | Allocations: 1847)
+  Rendered layouts/_footer.html.erb (Duration: 5.2ms | Allocations: 2694)
+Completed 200 OK in 92ms (Views: 88.3ms | ActiveRecord: 1.4ms | Allocations: 76907)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-06 14:25:12 -0700
+Processing by StaticPagesController#embedhelp as HTML
+  Rendering static_pages/embedhelp.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 164)
+  Rendered static_pages/embedhelp.html.erb within layouts/application (Duration: 1.6ms | Allocations: 499)
+  Rendered application/_favicon.html.erb (Duration: 5.3ms | Allocations: 3698)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 5.4ms | Allocations: 1847)
+  Rendered layouts/_footer.html.erb (Duration: 5.8ms | Allocations: 2694)
+Completed 200 OK in 86ms (Views: 81.8ms | ActiveRecord: 1.5ms | Allocations: 76897)
+
+
