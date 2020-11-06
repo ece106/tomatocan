@@ -31461,3 +31461,80 @@ Processing by InvitesController#edit as HTML
 Completed 200 OK in 93ms (Views: 89.5ms | ActiveRecord: 1.6ms | Allocations: 74285)
 
 
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/invites/1/edit" for ::1 at 2020-11-05 17:49:59 -0700
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InvitesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvite Load (0.5ms)[0m  [1m[34mSELECT "invites".* FROM "invites" WHERE "invites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering invites/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 175)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/edit.html.erb within layouts/application (Duration: 51.4ms | Allocations: 26040)
+  Rendered application/_favicon.html.erb (Duration: 329.0ms | Allocations: 347640)
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 1260)
+  Rendered layouts/_footer.html.erb (Duration: 3.5ms | Allocations: 2723)
+Completed 200 OK in 568ms (Views: 528.0ms | ActiveRecord: 16.0ms | Allocations: 459382)
+
+
+Started GET "/invite_error" for ::1 at 2020-11-05 17:50:00 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 7.2ms | Allocations: 895)
+  Rendered application/_favicon.html.erb (Duration: 7.9ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 837)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2296)
+Completed 200 OK in 83ms (Views: 78.2ms | ActiveRecord: 2.3ms | Allocations: 74449)
+
+
+Started GET "/invite" for ::1 at 2020-11-05 17:50:00 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 9.9ms | Allocations: 6650)
+  Rendered application/_favicon.html.erb (Duration: 4.6ms | Allocations: 3491)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 825)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2296)
+Completed 200 OK in 90ms (Views: 87.6ms | ActiveRecord: 0.7ms | Allocations: 79948)
+
+
+Started POST "/invites" for ::1 at 2020-11-05 17:50:09 -0700
+Processing by InvitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"M5FNW7wSWVpk7gdPzcC/G9tIXroP5chS1zgf4jefbyUXUZv3iR1OwWAV9aE94aAYHZngKabdFdDXzbk1u04ZkQ==", "invite"=>{"phone_number"=>"917-574-0753", "sender_id"=>"1", "country_code"=>"US", "preferred_name"=>"blam", "relationship"=>"Friends"}, "g-recaptcha-response"=>"03AGdBq24QHHe-18Gv_YaGrqCHIlA5Q2axzx8de2tWnbuS8VJQcYt6VMxYGxdXWU0jwZy3B68CwL4gVDgIPgdhtMG8sxOXvjLy-rxskMH6YrxWYSQz3DRI3wIU-sm8zxB1eq0OKP9dzbr0x70nGfwLR9gye9pOgQn6dEAdRiXSYD-21aO9GDsaRVn6krJN7xWncr0j8y_4kWrNoLIcX328mciIx6Mfoe02O1jmJMwGauLQ0JsaSxebaBfmcXjy3mcajzBmLTyXKFnSOW-ZBbbZdRl5rsIfs5p5Ady2Y-B_DKSmFPiY5oxwj6OqjGg950hbdnzZSfbo51Y6wH02r0UeO0HhFYzqMsR9MVn_is8KjnqWMVKQODfEKX36wV-y8zZNsyW0902Sre_wiQYvxsR_iz-okt3Qh8liFs3GvNl2DADdd8-OP1xTuYx21f92JfF9MSVamIqseFQQ", "commit"=>"Send Invite!"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvite Create (0.8ms)[0m  [1m[32mINSERT INTO "invites" ("phone_number", "country_code", "relationship", "preferred_name", "sender_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["phone_number", "917-574-0753"], ["country_code", "US"], ["relationship", "Friends"], ["preferred_name", "blam"], ["sender_id", 1], ["created_at", "2020-11-06 00:50:09.986743"], ["updated_at", "2020-11-06 00:50:09.986743"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/invites/1/edit
+Completed 302 Found in 139ms (ActiveRecord: 3.7ms | Allocations: 8732)
+
+
+Started GET "/invites/1/edit" for ::1 at 2020-11-05 17:50:10 -0700
+Processing by InvitesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvite Load (0.7ms)[0m  [1m[34mSELECT "invites".* FROM "invites" WHERE "invites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering invites/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.2ms | Allocations: 168)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/edit.html.erb within layouts/application (Duration: 4.4ms | Allocations: 612)
+  Rendered application/_favicon.html.erb (Duration: 6.6ms | Allocations: 3491)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 829)
+  Rendered layouts/_footer.html.erb (Duration: 3.1ms | Allocations: 2296)
+Completed 200 OK in 107ms (Views: 102.6ms | ActiveRecord: 1.6ms | Allocations: 74318)
+
+

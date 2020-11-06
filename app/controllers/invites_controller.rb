@@ -43,8 +43,6 @@ class InvitesController < ApplicationController
 
   
         if verify_recaptcha(model: @invite) && @invite.save
-          account_sid = ENV['TWILIO_ACCOUNT_SID']
-          auth_token = ENV['TWILIO_ACCOUNT_TOKEN']
   
           countryAb = invite_params["country_code"]
           countryCode = IsoCountryCodes.find(countryAb).calling
@@ -68,19 +66,9 @@ class InvitesController < ApplicationController
           end
 
           @@globalMessage = messageBody
-          # format.html do
-          #   redirect_to "sms:+19175740753&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for...", notice: "PO already has RR with RR ID: void RR first.".html_safe
-          # end
+
           redirect_to new_invite_confirm_path, success: invite_error_message + "Your invite has been crafted!"
   
-          # @client = Twilio::REST::Client.new(account_sid, auth_token)
-          # @client.messages.create(
-          #         to: completeNum,
-          #         from: "+16026930976",
-          #         body: messageBody
-          #     )
-          # result = ""
-          # redirect_to new_invite_success_path, success: invite_error_message + "Your invite has been sent!"
         else
           redirect_to new_invite_form_path, danger: invite_error_message + "Please check the captcha box!"
         end
