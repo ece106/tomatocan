@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   validates :user_id, presence: true
 
   validates :start_at, presence: true
+  validates :end_at, presence: true
   validates :name, format: { without: /http|\.co|\.com|\.org|\.net|\.tv|\.uk|\.ly|\.me|\.biz|\.mobi|\.cn|kickstarter|barnesandnoble|smashwords|itunes|amazon|eventbrite|rsvpify|evite|meetup/i, message: "s
     ...URLs are not allowed in event titles. Keep in mind that people will be searching here for ThinQtv Conversations. They will not be searching for sites to
     browse." }
