@@ -37,19 +37,19 @@
 
 <div>
   <div class="convo-container text-center" style="background-color: #8C1D40">
+    <div class="pt-2" id="button">
+      <h1 class="white pt-1">Schedule your own Conversation</h1>
+      <%= link_to 'Host a Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
+    </div>
+
     <!-- col-lg-3 col-md-6 -->
     <h1 class="white">Drop in to these Conversations</h1>
     <h2 class="mb-0 pb-2" style="color:#FFF"> Everyone is welcome!</h2>
-
-    <% if user_signed_in? %>
-      <div id="button">
-      <%= link_to 'Host a Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
-    <% end %>
   </div>
 </div>
 
 <div class="tabContainer text-center pl-2 pr-2 pb-2" style="background-color: #8C1D40" >
-  <div class="buttonContainer pr-3" >
+  <div class="buttonContainer mx-auto pb-1" >
     <button onclick="showPanel(0,'#4caf50')">List View</button>
     <button onclick="showPanel(1,'#4caf50')">Daily View</button>
     <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
