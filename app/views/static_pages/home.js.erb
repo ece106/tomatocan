@@ -1,2 +1,2 @@
-<%# gets the HTML from the _convocalendar.html.erb partial, uses escape_javascript to make it safe for putting into a JavaScript string, then replaces the contents of the listView div on the home page with the partial’s output%>
-$("#listView").html("<%= escape_javascript(render("layouts/convocalendar")) %>");
+<%# gets the HTML from _convocalendar.html.erb, uses escape_javascript to make it safe for putting into a JavaScript string, then replaces the contents of the listView div on the home page with the partial’s output%>
+$(".listView").html("<%= escape_javascript(render("layouts/convocalendar")) %>");

@@ -177,24 +177,25 @@
             </div>
            
             <div class="container mb-4 border shadow">
-                <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Conversations Attending" %> </h1>
+                <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Conversations Attending" %> </h1>
                 <% if @calendar_events.present? %>
-                    <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+                    <div class="listView">
+                        <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
+                    </div>
 
                 <% else %>
                         <% if current_user.nil? %>
-                        <div class="text-center pb-4" style="font-family: Helvetica;">
-                            <%= @user.name %> <%= " has no conversations scheduled." %>
-                        </div>
-
+                            <div class="text-center pb-4" style="font-family: Helvetica;">
+                                <%= @user.name %> <%= " has no conversations scheduled." %>
+                            </div>
                         <% elsif current_user.id == @user.id %>
                             <div class="text-center pb-4" style="font-family: Helvetica;">
                                 <%= "You have no conversations scheduled."%>
                             </div>
                         <% else %>
-                        <div class="text-center pb-4" style="font-family: Helvetica;">
-                            <%= @user.name %> <%= " has no conversations scheduled." %>
-                        </div>
+                            <div class="text-center pb-4" style="font-family: Helvetica;">
+                                <%= @user.name %> <%= " has no conversations scheduled." %>
+                            </div>
                         <% end %>
                 <% end %>
             </div>
