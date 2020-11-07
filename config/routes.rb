@@ -43,6 +43,11 @@ Rails.application.routes.draw do
   match "invites/1/edit", to: 'invites#edit', via: 'get'
   get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
 
+  match 'embed_help', to: 'embed_links#new', via: 'get'
+  get "embed_help", :to => 'embed_links#new', :as => :new_embed_link_form
+  match 'embed_help/1/confirm', :to => 'embed_links#edit', via: 'get'
+  get 'embed_help/1/confirm', :to => 'embed_links#edit', :as => :new_embed_link_confirm
+
   as :user do
   match 'signup/:refer_id', to: 'devise/registrations#new', via: 'get'
   end

@@ -1,5 +1,120 @@
-<h1>New Embed Link</h1>
+<div>
+<div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <div class="row justify-content-center pt-3">
 
-<%= render 'form', embed_link: @embed_link %>
+    <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
+      <div class="well">
+       <%= form_for(@embed_link) do |f| %>
+        <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Generate Your Code!</b>
+          </div>
+          <p><b>Want to embed a ThinQ.tv hosted conversation on your site? You're in luck! Fill out this form to your specifications for embedding us on any page of your site.</b></p>
+          <p>You'll only need to paste in the one line of HTML code we give you!<p>
+        </div>
+          <!-- Phone Number Box -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Would you like a border around your embedded page? </p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-window-maximize pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+             <%= label :border_true, 'Yes' %>
+              <%= f.radio_button :border, true, :checked => true, :class => "form-control"%>
+            <%= label :border_false, 'No' %>
+              <%= f.radio_button :border, false, :class => "form-control"%>
+            </div>
+          </div>
+          <div>
+          <%# <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %> 
+          </div>
 
-<%= link_to 'Back', embed_links_path %>
+        <!-- Color Selection -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> What color would you like your border to be?<b> Ignore if you selected no border.</b></p>
+            <p><i>Hint: You can change the input type from RGB to Hex or HSL</i></p>
+            </div>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-paint-brush pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.color_field :border_color, value:"#f6b73c", :class => "form-control"%>
+            </div>
+          </div>
+          <div>
+          <%# <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %> 
+          </div>
+
+        <!-- Border Size -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> How thick would you like your border to be?<b> Ignore if you selected no border.</b></p>
+
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-minus pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :border_size, ['Thin', 'Medium', 'Especially Wide'], :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+            </div>
+          </div>
+
+        <!-- Overall Size -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> How much space would you like your embedded ThinQ page to take up on your site's page?</p>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-expand pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :size, ['A small portion of the screen', 'A decent portion of the screen', 'A large portion of the screen'], :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+            </div>
+          </div>
+
+        <!-- Screen Positioning -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Where on your page would you like to embed ThinQ.tv?</p>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-object-group pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :location, ['The lower left corner', 'The upper left corner', 'The upper right corner', 'The lower right corner', 'Custom (it goes wherever you put it in your HTML file)'], :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+            </div>
+          </div>
+
+        <!-- Special Position -->
+          <div class="form-group">
+            <div style="text-align:center">
+            <p> Do you want users to be able to scroll past this embedded page? Or would you like it to stick to an absolute screen position?</p>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-sticky-note pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+              <%= f.select :special_position, ['I want users to be able to scroll past the embedded page', 'I want the embedded page to have an absolute screen position'], :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+            </div>
+          </div>
+
+        <div class="row">
+            <div class="col-md-5" >
+                <%= f.submit "Generate your code!", :class => "form-control btn-primary"%>
+            </div>
+          </div>
+
+          <hr style="border: 1px solid grey;">
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
