@@ -13,7 +13,7 @@
           <p><b>Want to embed a ThinQ.tv hosted conversation on your site? You're in luck! Fill out this form to your specifications for embedding us on any page of your site.</b></p>
           <p>You'll only need to paste in the one line of HTML code we give you!<p>
         </div>
-          <!-- Phone Number Box -->
+          <!-- Border Box -->
           <div class="form-group">
             <div style="text-align:center">
             <p> Would you like a border around your embedded page? </p>
@@ -22,14 +22,15 @@
               <div class="input-group-addon">
                 <i class="fa fa-window-maximize pr-3 pt-2" style="font-size:20px"></i>
               </div>
-             <%= label :border_true, 'Yes' %>
-              <%= f.radio_button :border, true, :checked => true, :class => "form-control"%>
-            <%= label :border_false, 'No' %>
-              <%= f.radio_button :border, false, :class => "form-control"%>
+              <div class="form-control">
+<%= radio_button_tag(:border, true) %>
+<%= label_tag(:border_true, "Yes") %>
+<%= radio_button_tag(:border, false) %>
+<%= label_tag(:border_false, "No") %>
+</div>
             </div>
           </div>
           <div>
-          <%# <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %> 
           </div>
 
         <!-- Color Selection -->

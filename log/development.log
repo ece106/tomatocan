@@ -36143,3 +36143,989 @@ Processing by StaticPagesController#embed as HTML
 Completed 200 OK in 219ms (Views: 191.4ms | ActiveRecord: 13.0ms | Allocations: 80057)
 
 
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/embed_link" for ::1 at 2020-11-07 14:06:04 -0700
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 175)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 23.3ms | Allocations: 6576)
+  Rendered application/_favicon.html.erb (Duration: 335.5ms | Allocations: 347867)
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 83.1ms | Allocations: 27670)
+  Rendered layouts/_footer.html.erb (Duration: 11.9ms | Allocations: 2722)
+Completed 200 OK in 621ms (Views: 582.5ms | ActiveRecord: 17.4ms | Allocations: 466785)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:06:07 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5Aujyuxy+4rHU48gpRSor0poeTPfleMapLogxlWv2ZRwfMmHLQro4KhyBkLcuPf7FTUN4NGFoaVpGI3vYNdWvQ==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.7ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:06:07.058733"], ["updated_at", "2020-11-07 21:06:07.058733"]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 10ms (ActiveRecord: 4.7ms | Allocations: 1508)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:06:07 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.9ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.0ms | Allocations: 168)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 2.3ms | Allocations: 336)
+  Rendered application/_favicon.html.erb (Duration: 5.8ms | Allocations: 3510)
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 7.4ms | Allocations: 1382)
+  Rendered layouts/_footer.html.erb (Duration: 4.9ms | Allocations: 2296)
+Completed 200 OK in 111ms (Views: 104.7ms | ActiveRecord: 3.0ms | Allocations: 75728)
+
+
+Started GET "/invite_error" for ::1 at 2020-11-07 14:06:45 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 4.4ms | Allocations: 699)
+  Rendered application/_favicon.html.erb (Duration: 7.5ms | Allocations: 3491)
+  Rendered layouts/_header.html.erb (Duration: 1.9ms | Allocations: 860)
+  Rendered layouts/_footer.html.erb (Duration: 4.5ms | Allocations: 2296)
+Completed 200 OK in 103ms (Views: 100.6ms | ActiveRecord: 0.8ms | Allocations: 75644)
+
+
+Started GET "/invite" for ::1 at 2020-11-07 14:06:45 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 8.9ms | Allocations: 6368)
+  Rendered application/_favicon.html.erb (Duration: 4.4ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 845)
+  Rendered layouts/_footer.html.erb (Duration: 2.2ms | Allocations: 2295)
+Completed 200 OK in 111ms (Views: 89.7ms | ActiveRecord: 8.8ms | Allocations: 86375)
+
+
+Started GET "/embed" for ::1 at 2020-11-07 14:06:46 -0700
+Processing by StaticPagesController#embed as HTML
+  [1m[36mEvent Load (2.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 11:06:46.064783' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:06:46.082829' AND start_at > '2020-11-07 13:06:46.082856' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:06:46.082829' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:06:46.082829' AND start_at > '2020-11-07 13:06:46.082856' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:06:46.082829' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:06:46.082829' AND start_at > '2020-11-07 13:06:46.082856' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:06:46.082829' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/embed.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-07 11:06:46.064783' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 11.5ms | Allocations: 3611)
+  Rendered static_pages/embed.html.erb within layouts/application (Duration: 13.9ms | Allocations: 4047)
+  Rendered application/_favicon.html.erb (Duration: 7.9ms | Allocations: 3505)
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 859)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2288)
+Completed 200 OK in 201ms (Views: 151.1ms | ActiveRecord: 22.2ms | Allocations: 85004)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-07 14:24:26 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"embed_help"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "embed_help"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:29:26.197725' AND end_at > '2020-11-07 14:29:26.197725' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-07 14:29:26.197725')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 11:24:26.199695' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 4.3ms | Allocations: 2006)
+  Rendered layouts/_streamButton.html.erb (Duration: 1.4ms | Allocations: 253)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 14.0ms | Allocations: 5333)
+  Rendered application/_favicon.html.erb (Duration: 4.6ms | Allocations: 3282)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 845)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2288)
+Completed 200 OK in 163ms (Views: 94.3ms | ActiveRecord: 9.1ms | Allocations: 95372)
+
+
+Started GET "/embed_help" for ::1 at 2020-11-07 14:24:43 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"permalink"=>"embed_help"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "embed_help"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:29:43.848843' AND end_at > '2020-11-07 14:29:43.848843' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-07 14:29:43.848843')[0m
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 11:24:43.850653' AND user_id = 1) ORDER BY start_at ASC[0m
+  Rendering users/show.html.erb within layouts/userpgtemplate
+  Rendered layouts/_authorform.html.erb (Duration: 2.7ms | Allocations: 1970)
+  Rendered layouts/_streamButton.html.erb (Duration: 0.7ms | Allocations: 240)
+  Rendered users/show.html.erb within layouts/userpgtemplate (Duration: 10.7ms | Allocations: 5208)
+  Rendered application/_favicon.html.erb (Duration: 4.6ms | Allocations: 3488)
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 1257)
+  Rendered layouts/_footer.html.erb (Duration: 2.9ms | Allocations: 2694)
+Completed 200 OK in 120ms (Views: 107.7ms | ActiveRecord: 4.0ms | Allocations: 82730)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-07 14:24:45 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1857)
+  Rendered application/_favicon.html.erb (Duration: 10.2ms | Allocations: 3511)
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 7.1ms | Allocations: 1435)
+  Rendered layouts/_footer.html.erb (Duration: 3.3ms | Allocations: 2296)
+Completed 200 OK in 102ms (Views: 98.8ms | ActiveRecord: 2.0ms | Allocations: 78356)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:25:38 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lAdYmQ1naFfT8C5ikCPgm91mybeJu+AWy+KJ8vo68pwAcDLUzB97PbzRpwDpj7/Pgju9ZIeroqkGQCTbz0J9tQ==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.7ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:25:38.568294"], ["updated_at", "2020-11-07 21:25:38.568294"]]
+  [1m[35m (7.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 14ms (ActiveRecord: 9.7ms | Allocations: 1305)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:25:38 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 152)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.3ms | Allocations: 319)
+  Rendered application/_favicon.html.erb (Duration: 5.1ms | Allocations: 3510)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.6ms | Allocations: 1232)
+  Rendered layouts/_footer.html.erb (Duration: 4.4ms | Allocations: 2288)
+Completed 200 OK in 86ms (Views: 81.7ms | ActiveRecord: 1.5ms | Allocations: 75213)
+
+
+DEPRECATION WARNING: Initialization autoloaded the constants RecurringSelectHelper and RecurringSelectMiddleware.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload RecurringSelectHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+`config.autoloader` is set to `classic`. These autoloaded constants would have been unloaded if `config.autoloader` had been set to `:zeitwerk`.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/config/environment.rb:7)
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:29:31 -0700
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 175)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 2.2ms | Allocations: 688)
+  Rendered application/_favicon.html.erb (Duration: 340.8ms | Allocations: 347872)
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 66.6ms | Allocations: 27260)
+  Rendered layouts/_footer.html.erb (Duration: 14.5ms | Allocations: 2723)
+Completed 200 OK in 583ms (Views: 542.1ms | ActiveRecord: 15.3ms | Allocations: 461275)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-07 14:29:32 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.2ms | Allocations: 18)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 37.0ms | Allocations: 6071)
+  Rendered application/_favicon.html.erb (Duration: 7.5ms | Allocations: 3510)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 1221)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2296)
+Completed 200 OK in 197ms (Views: 194.8ms | ActiveRecord: 0.6ms | Allocations: 80826)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:30:00 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+g0NLiTCuX6sYiruqTs6EJke8QFNKQwky4L2gRvahSRuemdj5bqqFMNDo4zQl2VExkOF0kM5TpsGIFuoLqIKDQ==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.8ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:30:00.274159"], ["updated_at", "2020-11-07 21:30:00.274159"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms | Allocations: 1475)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:30:00 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.1ms | Allocations: 314)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 2.0ms | Allocations: 654)
+  Rendered application/_favicon.html.erb (Duration: 7.2ms | Allocations: 3701)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.8ms | Allocations: 1642)
+  Rendered layouts/_footer.html.erb (Duration: 4.9ms | Allocations: 2686)
+Completed 200 OK in 89ms (Views: 85.6ms | ActiveRecord: 1.1ms | Allocations: 78507)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:30:07 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.6ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.5ms | Allocations: 501)
+  Rendered application/_favicon.html.erb (Duration: 6.0ms | Allocations: 3682)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.2ms | Allocations: 1643)
+  Rendered layouts/_footer.html.erb (Duration: 3.6ms | Allocations: 2686)
+Completed 200 OK in 87ms (Views: 83.3ms | ActiveRecord: 1.2ms | Allocations: 78174)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:32:00 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+g0NLiTCuX6sYiruqTs6EJke8QFNKQwky4L2gRvahSRuemdj5bqqFMNDo4zQl2VExkOF0kM5TpsGIFuoLqIKDQ==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.4ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:32:00.577428"], ["updated_at", "2020-11-07 21:32:00.577428"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 6ms (ActiveRecord: 2.0ms | Allocations: 1285)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:32:00 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 298)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.7ms | Allocations: 648)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3697)
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.1ms | Allocations: 1644)
+  Rendered layouts/_footer.html.erb (Duration: 3.4ms | Allocations: 2694)
+Completed 200 OK in 101ms (Views: 98.0ms | ActiveRecord: 1.2ms | Allocations: 78388)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:32:55 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+g0NLiTCuX6sYiruqTs6EJke8QFNKQwky4L2gRvahSRuemdj5bqqFMNDo4zQl2VExkOF0kM5TpsGIFuoLqIKDQ==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.4ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:32:55.994410"], ["updated_at", "2020-11-07 21:32:55.994410"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 6ms (ActiveRecord: 1.0ms | Allocations: 1291)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:32:56 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.8ms | Allocations: 298)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 2.5ms | Allocations: 650)
+  Rendered application/_favicon.html.erb (Duration: 6.0ms | Allocations: 3697)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.7ms | Allocations: 1644)
+  Rendered layouts/_footer.html.erb (Duration: 3.7ms | Allocations: 2687)
+Completed 200 OK in 99ms (Views: 95.7ms | ActiveRecord: 1.1ms | Allocations: 78382)
+
+
+Started GET "/invite" for ::1 at 2020-11-07 14:36:10 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 59.5ms | Allocations: 30275)
+  Rendered application/_favicon.html.erb (Duration: 4.6ms | Allocations: 3698)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 1265)
+  Rendered layouts/_footer.html.erb (Duration: 3.0ms | Allocations: 2694)
+Completed 200 OK in 168ms (Views: 137.7ms | ActiveRecord: 13.2ms | Allocations: 113960)
+
+
+Started GET "/embed" for ::1 at 2020-11-07 14:36:11 -0700
+Processing by StaticPagesController#embed as HTML
+  [1m[36mEvent Load (2.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 11:36:11.857309' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:36:11.881121' AND start_at > '2020-11-07 13:36:11.881143' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:36:11.881121' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:36:11.881121' AND start_at > '2020-11-07 13:36:11.881143' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:36:11.881121' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:36:11.881121' AND start_at > '2020-11-07 13:36:11.881143' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:36:11.881121' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/embed.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.2ms | Allocations: 18)
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-07 11:36:11.857309' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 16.2ms | Allocations: 3632)
+  Rendered static_pages/embed.html.erb within layouts/application (Duration: 20.2ms | Allocations: 4072)
+  Rendered application/_favicon.html.erb (Duration: 12.9ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 2.3ms | Allocations: 861)
+  Rendered layouts/_footer.html.erb (Duration: 6.0ms | Allocations: 2296)
+Completed 200 OK in 253ms (Views: 179.7ms | ActiveRecord: 35.5ms | Allocations: 85757)
+
+
+Started GET "/invite" for ::1 at 2020-11-07 14:40:29 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.3ms | Allocations: 164)
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 23.6ms | Allocations: 6711)
+  Rendered application/_favicon.html.erb (Duration: 9.6ms | Allocations: 3697)
+  Rendered layouts/_header.html.erb (Duration: 2.3ms | Allocations: 1260)
+  Rendered layouts/_footer.html.erb (Duration: 4.4ms | Allocations: 2694)
+Completed 200 OK in 137ms (Views: 127.2ms | ActiveRecord: 2.3ms | Allocations: 83975)
+
+
+Started GET "/embed" for ::1 at 2020-11-07 14:40:29 -0700
+Processing by StaticPagesController#embed as HTML
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 11:40:29.981763' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:40:29.985751' AND start_at > '2020-11-07 13:40:29.985776' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:40:29.985751' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:40:29.985751' AND start_at > '2020-11-07 13:40:29.985776' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:40:29.985751' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:40:29.985751' AND start_at > '2020-11-07 13:40:29.985776' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 14:40:29.985751' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/embed.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-07 11:40:29.981763' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 6.1ms | Allocations: 1551)
+  Rendered static_pages/embed.html.erb within layouts/application (Duration: 8.9ms | Allocations: 1982)
+  Rendered application/_favicon.html.erb (Duration: 8.1ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 1.9ms | Allocations: 860)
+  Rendered layouts/_footer.html.erb (Duration: 5.5ms | Allocations: 2296)
+Completed 200 OK in 213ms (Views: 187.7ms | ActiveRecord: 9.7ms | Allocations: 79645)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-07 14:48:00 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 164)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1951)
+  Rendered application/_favicon.html.erb (Duration: 6.1ms | Allocations: 3698)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 41.2ms | Allocations: 24604)
+  Rendered layouts/_footer.html.erb (Duration: 6.1ms | Allocations: 2694)
+Completed 200 OK in 154ms (Views: 132.9ms | ActiveRecord: 8.6ms | Allocations: 108780)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:48:02 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.2ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:48:02.530245"], ["updated_at", "2020-11-07 21:48:02.530245"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 9ms (ActiveRecord: 4.0ms | Allocations: 1393)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:48:02 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.5ms | Allocations: 745)
+
+
+  
+TypeError (no implicit conversion of Integer into String):
+  
+app/controllers/embed_links_controller.rb:37:in `+'
+app/controllers/embed_links_controller.rb:37:in `edit'
+Started GET "/favicon.ico" for ::1 at 2020-11-07 14:48:02 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 14:53:02.935389' AND end_at > '2020-11-07 14:53:02.935389' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-07 14:53:02.935389')[0m
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 11:48:02.942095' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 71ms (ActiveRecord: 8.0ms | Allocations: 18510)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started POST "/embed_links" for ::1 at 2020-11-07 14:49:25 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.8ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:49:25.389315"], ["updated_at", "2020-11-07 21:49:25.389315"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 30ms (ActiveRecord: 16.0ms | Allocations: 7683)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:49:25 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 150)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.4ms | Allocations: 385)
+  Rendered application/_favicon.html.erb (Duration: 4.4ms | Allocations: 3511)
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 67.4ms | Allocations: 25222)
+  Rendered layouts/_footer.html.erb (Duration: 17.6ms | Allocations: 2296)
+Completed 200 OK in 162ms (Views: 148.3ms | ActiveRecord: 10.5ms | Allocations: 99957)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:50:33 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.4ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:50:33.608168"], ["updated_at", "2020-11-07 21:50:33.608168"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 28ms (ActiveRecord: 9.3ms | Allocations: 7509)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:50:33 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 150)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.8ms | Allocations: 216)
+  Rendered application/_favicon.html.erb (Duration: 6.3ms | Allocations: 3511)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 85.1ms | Allocations: 24857)
+  Rendered layouts/_footer.html.erb (Duration: 3.7ms | Allocations: 2296)
+Completed 200 OK in 184ms (Views: 170.5ms | ActiveRecord: 11.6ms | Allocations: 99297)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:51:08 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.5ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:51:08.173902"], ["updated_at", "2020-11-07 21:51:08.173902"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 7ms (ActiveRecord: 2.8ms | Allocations: 1348)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:51:08 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 148)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.7ms | Allocations: 214)
+  Rendered application/_favicon.html.erb (Duration: 4.8ms | Allocations: 3510)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.8ms | Allocations: 1224)
+  Rendered layouts/_footer.html.erb (Duration: 4.6ms | Allocations: 2296)
+Completed 200 OK in 86ms (Views: 82.9ms | ActiveRecord: 1.1ms | Allocations: 75252)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:51:16 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"true", "border_color"=>"#5d0909", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.3ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#5d0909"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 21:51:16.670145"], ["updated_at", "2020-11-07 21:51:16.670145"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 10ms (ActiveRecord: 6.4ms | Allocations: 1346)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:51:16 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.3ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 5.7ms | Allocations: 3491)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.2ms | Allocations: 1225)
+  Rendered layouts/_footer.html.erb (Duration: 2.4ms | Allocations: 2296)
+Completed 200 OK in 78ms (Views: 76.0ms | ActiveRecord: 0.7ms | Allocations: 75139)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 14:51:47 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"true", "border_color"=>"#5d0909", "border_size"=>"Medium", "size"=>"A large portion of the screen", "location"=>"The upper right corner", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.6ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#5d0909"], ["border_size", "Medium"], ["size", "A large portion of the screen"], ["location", "The upper right corner"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 21:51:47.375290"], ["updated_at", "2020-11-07 21:51:47.375290"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 7ms (ActiveRecord: 2.8ms | Allocations: 1347)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 14:51:47 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.8ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 6.0ms | Allocations: 3511)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.6ms | Allocations: 1224)
+  Rendered layouts/_footer.html.erb (Duration: 4.1ms | Allocations: 2296)
+Completed 200 OK in 90ms (Views: 88.0ms | ActiveRecord: 1.0ms | Allocations: 75303)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:19:16 -0700
+  
+SyntaxError (/Users/jameslordenderlaing/Documents/GitHub/tomatocanDev/app/controllers/embed_links_controller.rb:166: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/embed_links_controller.rb:166: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/embed_links_controller.rb:166: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/favicon.ico" for ::1 at 2020-11-07 15:19:17 -0700
+Processing by UsersController#show as 
+  Parameters: {"permalink"=>"favicon"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."permalink" = $1 LIMIT $2[0m  [["permalink", "favicon"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMerchandise Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "merchandises" WHERE "merchandises"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 15:24:17.267692' AND end_at > '2020-11-07 15:24:17.267692' AND user_id = 1) ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (id IN (SELECT event_id FROM rsvpqs WHERE rsvpqs.user_id = 1) and start_at > '2020-11-07 15:24:17.267692')[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 12:19:17.283438' AND user_id = 1) ORDER BY start_at ASC[0m
+Completed 406 Not Acceptable in 119ms (ActiveRecord: 17.3ms | Allocations: 39456)
+
+
+  
+ActionController::UnknownFormat (ActionController::UnknownFormat):
+  
+app/controllers/users_controller.rb:50:in `show'
+Started POST "/embed_links" for ::1 at 2020-11-07 15:19:31 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.8ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:19:31.455585"], ["updated_at", "2020-11-07 22:19:31.455585"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 28ms (ActiveRecord: 8.5ms | Allocations: 7602)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:19:31 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 150)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 216)
+  Rendered application/_favicon.html.erb (Duration: 5.9ms | Allocations: 3511)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 44.6ms | Allocations: 24945)
+  Rendered layouts/_footer.html.erb (Duration: 4.1ms | Allocations: 2296)
+Completed 200 OK in 130ms (Views: 122.7ms | ActiveRecord: 5.7ms | Allocations: 99380)
+
+
+Started GET "/invite" for ::1 at 2020-11-07 15:20:23 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.7ms | Allocations: 164)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 9.2ms | Allocations: 6559)
+  Rendered application/_favicon.html.erb (Duration: 5.9ms | Allocations: 3678)
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 1263)
+  Rendered layouts/_footer.html.erb (Duration: 5.2ms | Allocations: 2694)
+Completed 200 OK in 120ms (Views: 100.0ms | ActiveRecord: 7.2ms | Allocations: 88963)
+
+
+Started GET "/embed" for ::1 at 2020-11-07 15:20:24 -0700
+Processing by StaticPagesController#embed as HTML
+  [1m[36mEvent Load (2.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 12:20:24.527557' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 15:20:24.545612' AND start_at > '2020-11-07 14:20:24.545646' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 15:20:24.545612' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 15:20:24.545612' AND start_at > '2020-11-07 14:20:24.545646' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 15:20:24.545612' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-07 15:20:24.545612' AND start_at > '2020-11-07 14:20:24.545646' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-07 15:20:24.545612' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering static_pages/embed.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.2ms | Allocations: 18)
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-07 12:20:24.527557' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 10.2ms | Allocations: 1572)
+  Rendered static_pages/embed.html.erb within layouts/application (Duration: 12.5ms | Allocations: 2003)
+  Rendered application/_favicon.html.erb (Duration: 10.5ms | Allocations: 3510)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 861)
+  Rendered layouts/_footer.html.erb (Duration: 3.8ms | Allocations: 2296)
+Completed 200 OK in 242ms (Views: 192.0ms | ActiveRecord: 26.8ms | Allocations: 83396)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:21:21 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Especially Wide", "size"=>"A large portion of the screen", "location"=>"The upper right corner", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.0ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Especially Wide"], ["size", "A large portion of the screen"], ["location", "The upper right corner"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 22:21:21.043124"], ["updated_at", "2020-11-07 22:21:21.043124"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 6ms (ActiveRecord: 2.2ms | Allocations: 1347)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:21:21 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.6ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 150)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.3ms | Allocations: 383)
+  Rendered application/_favicon.html.erb (Duration: 5.0ms | Allocations: 3511)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.5ms | Allocations: 1234)
+  Rendered layouts/_footer.html.erb (Duration: 2.3ms | Allocations: 2296)
+Completed 200 OK in 88ms (Views: 83.1ms | ActiveRecord: 1.1ms | Allocations: 76232)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:21:35 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4zTVocGikTfv+509Rb9UiRp8kHXxvgfRMYdqN4BgfzV3Q7/sANqCXYDaFF88EwvdRSHkpv+uRW78JccetRjwHA==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Especially Wide", "size"=>"A large portion of the screen", "location"=>"The upper right corner", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.5ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Especially Wide"], ["size", "A large portion of the screen"], ["location", "The upper right corner"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 22:21:35.536683"], ["updated_at", "2020-11-07 22:21:35.536683"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 5ms (ActiveRecord: 1.2ms | Allocations: 1347)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:21:35 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.3ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.5ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 5.6ms | Allocations: 3492)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 1222)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2288)
+Completed 200 OK in 84ms (Views: 81.5ms | ActiveRecord: 0.9ms | Allocations: 75021)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-07 15:22:09 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 18)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 8.3ms | Allocations: 1659)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3491)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.3ms | Allocations: 1221)
+  Rendered layouts/_footer.html.erb (Duration: 2.2ms | Allocations: 2296)
+Completed 200 OK in 92ms (Views: 88.9ms | ActiveRecord: 0.5ms | Allocations: 76585)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:22:13 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"true", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.3ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", true], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:22:13.923542"], ["updated_at", "2020-11-07 22:22:13.923542"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 12ms (ActiveRecord: 7.5ms | Allocations: 1345)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:22:13 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 147)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.7ms | Allocations: 213)
+  Rendered application/_favicon.html.erb (Duration: 4.7ms | Allocations: 3510)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 5.1ms | Allocations: 1224)
+  Rendered layouts/_footer.html.erb (Duration: 4.5ms | Allocations: 2296)
+Completed 200 OK in 87ms (Views: 83.9ms | ActiveRecord: 1.4ms | Allocations: 75269)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:23:01 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.6ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:23:01.984207"], ["updated_at", "2020-11-07 22:23:01.984207"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 25ms (ActiveRecord: 10.5ms | Allocations: 7658)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:23:01 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 151)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.5ms | Allocations: 217)
+  Rendered application/_favicon.html.erb (Duration: 3.6ms | Allocations: 3511)
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 66.7ms | Allocations: 25222)
+  Rendered layouts/_footer.html.erb (Duration: 2.2ms | Allocations: 2296)
+Completed 200 OK in 140ms (Views: 127.3ms | ActiveRecord: 10.9ms | Allocations: 99765)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:23:25 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.3ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:23:25.729483"], ["updated_at", "2020-11-07 22:23:25.729483"]]
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 28ms (ActiveRecord: 12.9ms | Allocations: 7525)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:23:25 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.8ms | Allocations: 150)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.0ms | Allocations: 216)
+  Rendered application/_favicon.html.erb (Duration: 6.4ms | Allocations: 3511)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 50.3ms | Allocations: 24857)
+  Rendered layouts/_footer.html.erb (Duration: 2.3ms | Allocations: 2296)
+Completed 200 OK in 133ms (Views: 124.8ms | ActiveRecord: 6.4ms | Allocations: 99259)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:23:56 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.0ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:23:56.338956"], ["updated_at", "2020-11-07 22:23:56.338956"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 11ms (ActiveRecord: 7.1ms | Allocations: 1346)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:23:56 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 5.6ms | Allocations: 3491)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 1224)
+  Rendered layouts/_footer.html.erb (Duration: 3.9ms | Allocations: 2296)
+Completed 200 OK in 97ms (Views: 94.0ms | ActiveRecord: 0.9ms | Allocations: 75233)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:26:00 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.4ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:26:00.474753"], ["updated_at", "2020-11-07 22:26:00.474753"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 26ms (ActiveRecord: 9.5ms | Allocations: 7528)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:26:00 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 152)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 218)
+  Rendered application/_favicon.html.erb (Duration: 5.6ms | Allocations: 3511)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 117.3ms | Allocations: 24857)
+  Rendered layouts/_footer.html.erb (Duration: 4.2ms | Allocations: 2296)
+Completed 200 OK in 213ms (Views: 201.3ms | ActiveRecord: 9.6ms | Allocations: 99268)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:26:15 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.4ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 22:26:15.424016"], ["updated_at", "2020-11-07 22:26:15.424016"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 7ms (ActiveRecord: 0.9ms | Allocations: 1346)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:26:15 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 13.5ms | Allocations: 3491)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.2ms | Allocations: 1224)
+  Rendered layouts/_footer.html.erb (Duration: 5.3ms | Allocations: 2296)
+Completed 200 OK in 169ms (Views: 164.3ms | ActiveRecord: 0.9ms | Allocations: 75113)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:27:55 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"Custom (it goes wherever you put it in your HTML file)", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.6ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "Custom (it goes wherever you put it in your HTML file)"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 22:27:55.961902"], ["updated_at", "2020-11-07 22:27:55.961902"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 21ms (ActiveRecord: 6.1ms | Allocations: 7526)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:27:55 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.3ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 150)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 216)
+  Rendered application/_favicon.html.erb (Duration: 7.1ms | Allocations: 3511)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 47.7ms | Allocations: 24855)
+  Rendered layouts/_footer.html.erb (Duration: 7.6ms | Allocations: 2296)
+Completed 200 OK in 168ms (Views: 159.9ms | ActiveRecord: 6.9ms | Allocations: 99091)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:28:29 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower right corner", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.3ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower right corner"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 22:28:29.713707"], ["updated_at", "2020-11-07 22:28:29.713707"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 5ms (ActiveRecord: 1.2ms | Allocations: 1346)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:28:29 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.2ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 8.3ms | Allocations: 3491)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 1224)
+  Rendered layouts/_footer.html.erb (Duration: 4.4ms | Allocations: 2296)
+Completed 200 OK in 112ms (Views: 109.6ms | ActiveRecord: 0.6ms | Allocations: 75016)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:28:46 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower right corner", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.5ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower right corner"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 22:28:46.239940"], ["updated_at", "2020-11-07 22:28:46.239940"]]
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 10ms (ActiveRecord: 6.4ms | Allocations: 1347)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:28:46 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.3ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.8ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 6.0ms | Allocations: 3510)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.1ms | Allocations: 1224)
+  Rendered layouts/_footer.html.erb (Duration: 3.3ms | Allocations: 2296)
+Completed 200 OK in 89ms (Views: 87.0ms | ActiveRecord: 0.8ms | Allocations: 75303)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:29:16 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OUHLgouaLpljfrM9/WdH6Z/hXU6CKB/hr3ngl3pDkgetNqHPSuI98wxfOl+Eyxi9wLwpnYw4XV5i202+TzsdLg==", "embed_link"=>{"border"=>"false", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower right corner", "special_position"=>"I want the embedded page to have an absolute screen position"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.6ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", false], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower right corner"], ["special_position", "I want the embedded page to have an absolute screen position"], ["created_at", "2020-11-07 22:29:16.585119"], ["updated_at", "2020-11-07 22:29:16.585119"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms | Allocations: 1346)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:29:16 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.4ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.8ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 7.6ms | Allocations: 3491)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.7ms | Allocations: 1222)
+  Rendered layouts/_footer.html.erb (Duration: 4.6ms | Allocations: 2288)
+Completed 200 OK in 91ms (Views: 89.0ms | ActiveRecord: 0.7ms | Allocations: 74920)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-07 15:32:49 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 1.0ms | Allocations: 164)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 6.6ms | Allocations: 1759)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3697)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 5.9ms | Allocations: 1632)
+  Rendered layouts/_footer.html.erb (Duration: 6.6ms | Allocations: 2694)
+Completed 200 OK in 123ms (Views: 120.5ms | ActiveRecord: 0.5ms | Allocations: 79268)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-07 15:33:44 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1670)
+  Rendered application/_favicon.html.erb (Duration: 4.9ms | Allocations: 3697)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.5ms | Allocations: 1634)
+  Rendered layouts/_footer.html.erb (Duration: 4.1ms | Allocations: 2694)
+Completed 200 OK in 97ms (Views: 95.1ms | ActiveRecord: 0.6ms | Allocations: 79184)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:33:54 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kf7NP0HH76UWCnCoYqVGrld0DbJuU7ihiimI+BiY4LwFiadygL/8z3kr+cobCRn6CCl5YWBD+h5HiyXRLeBvlQ==", "border"=>"false", "embed_link"=>{"border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.6ms)[0m  [1m[32mINSERT INTO "embed_links" ("border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:33:54.125343"], ["updated_at", "2020-11-07 22:33:54.125343"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 8ms (ActiveRecord: 2.8ms | Allocations: 1324)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:33:54 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.5ms | Allocations: 150)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.3ms | Allocations: 383)
+  Rendered application/_favicon.html.erb (Duration: 5.7ms | Allocations: 3510)
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 5.3ms | Allocations: 1382)
+  Rendered layouts/_footer.html.erb (Duration: 2.9ms | Allocations: 2297)
+Completed 200 OK in 100ms (Views: 94.6ms | ActiveRecord: 2.8ms | Allocations: 75777)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-07 15:34:25 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kf7NP0HH76UWCnCoYqVGrld0DbJuU7ihiimI+BiY4LwFiadygL/8z3kr+cobCRn6CCl5YWBD+h5HiyXRLeBvlQ==", "border"=>"true", "embed_link"=>{"border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (0.5ms)[0m  [1m[32mINSERT INTO "embed_links" ("border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-07 22:34:25.756966"], ["updated_at", "2020-11-07 22:34:25.756966"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 11ms (ActiveRecord: 6.7ms | Allocations: 1304)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-07 15:34:25 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.5ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 146)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.8ms | Allocations: 212)
+  Rendered application/_favicon.html.erb (Duration: 7.0ms | Allocations: 3511)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 1222)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 2288)
+Completed 200 OK in 84ms (Views: 81.5ms | ActiveRecord: 1.0ms | Allocations: 75247)
+
+

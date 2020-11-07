@@ -3,10 +3,11 @@ class EmbedLinksController < ApplicationController
 
   @@tempBorder = false
   @@tempBorderColor = " "
+  @@tempBorderWidth = " "
   @@tempWidth = " "
   @@tempHeight = " "
-  @@tempBottom = 0
-  @@tempRight = 0
+  @@tempBottom = -2
+  @@tempRight = -2
   @@tempPosition = " "
 
   # GET /embed_links
@@ -25,7 +26,34 @@ class EmbedLinksController < ApplicationController
 
   # GET /embed_links/1/edit
   def edit
+    @editBorder = @@tempBorder
+    @editBorderColor = @@tempBorderColor
+    @editWidth = @@tempWidth 
+    @editHeight = @@tempHeight 
+    @editBottom = @@tempBottom 
+    @editRight = @@tempRight 
+    @editPosition = @@tempPosition 
+    @editBorderWidth = @@tempBorderWidth
+    @fullCode = "err"
+
+    @firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + @editHeight + " " + "width=" + @editWidth
     
+    @secondPartPosition = " style = \"position: " + @editPosition
+    if @editBottom == -1
+      @secondPartPosition = " style = \"position: static"
+    end
+    
+    @thirdPartAlignment = "; z-index:99; bottom: " + @editBottom.to_s + "; right: " + @editRight.to_s
+    if @editBottom == -1
+      @thirdPartAlignment = "; z-index:99"
+    end
+
+    @fourthPartBorder = "; border: " + @editBorderWidth + " solid " + @editBorderColor  + "\"></iframe>"
+    if !@editBorder
+      @fourthPartBorder = "; \"></iframe>"
+    end
+
+    @fullCode = @firstPartBasic + @secondPartPosition + @thirdPartAlignment + @fourthPartBorder
   end
 
   # POST /embed_links
@@ -81,12 +109,23 @@ class EmbedLinksController < ApplicationController
 
       newSpecial = "";
       case embed_link_params["special_position"]
-      when "I want users to be able to scroll past the embed page"
+      when "I want users to be able to scroll past the embedded page"
         newSpecial = "absolute"
       else
         newSpecial = "fixed"
       end
       @@tempPosition = newSpecial  
+
+      newBorderWidth = "";
+      case embed_link_params["border_size"]
+      when "Thin"
+        newBorderWidth = "1px"
+      when "Medium"
+        newBorderWidth = "5px"
+      else
+        newBorderWidth = "10px"
+      end
+      @@tempBorderWidth = newBorderWidth
 
       # redirect_to @embed_link, notice: 'Embed link was successfully created.'
       redirect_to new_embed_link_confirm_path, success: embed_error_message + "Your code has been crafted!"
