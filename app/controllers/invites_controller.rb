@@ -22,13 +22,6 @@ class InvitesController < ApplicationController
   def edit
     @editNumber = @@globalNum
     @editMessage = @@globalMessage
-    # respond_to do |format|
-    #   format.html { redirect_to "sms:#{@@globalNum}&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for..."} #, flash[:success] = "holder updated")
-    #   format.js
-    # end
-
-
-    # redirect_to "sms:#{@@globalNum}&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for..."
 
   end
 
@@ -85,27 +78,6 @@ class InvitesController < ApplicationController
     msg = ""
     return msg
   end
-
-  # Messages Sent:
-  # def invite_friend(name)
-  #   msg = name + " Friend msg"
-  #   return msg
-  # end
-
-  # def invite_family_member
-  #   msg = "Fam msg"
-  #   return msg
-  # end
-
-  # def invite_coworker
-  #   msg = "work msg"
-  #   return msg
-  # end
-
-  # def invite_acquaintance
-  #   msg = "gen msg"
-  #   return msg
-  # end
 
 
   private

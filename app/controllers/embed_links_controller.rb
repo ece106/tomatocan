@@ -1,7 +1,7 @@
 class EmbedLinksController < ApplicationController
   before_action :set_embed_link, only: [:show, :edit, :update, :destroy]
 
-  @@tempBorder = false
+  @@tempBorder = " "
   @@tempBorderColor = " "
   @@tempBorderWidth = " "
   @@tempWidth = " "
@@ -36,24 +36,25 @@ class EmbedLinksController < ApplicationController
     @editBorderWidth = @@tempBorderWidth
     @fullCode = "err"
 
-    @firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + @editHeight + " " + "width=" + @editWidth
+    firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + @editHeight + " " + "width=" + @editWidth
     
-    @secondPartPosition = " style = \"position: " + @editPosition
+    secondPartPosition = " style = \"position: " + @editPosition
     if @editBottom == -1
-      @secondPartPosition = " style = \"position: static"
+      secondPartPosition = " style = \"position: static"
     end
     
-    @thirdPartAlignment = "; z-index:99; bottom: " + @editBottom.to_s + "; right: " + @editRight.to_s
+    thirdPartAlignment = "; z-index:99; bottom: " + @editBottom.to_s + "; right: " + @editRight.to_s
     if @editBottom == -1
-      @thirdPartAlignment = "; z-index:99"
+      thirdPartAlignment = "; z-index:99"
     end
 
-    @fourthPartBorder = "; border: " + @editBorderWidth + " solid " + @editBorderColor  + "\"></iframe>"
-    if !@editBorder
-      @fourthPartBorder = "; \"></iframe>"
+    if @editBorder == "No"
+      fourthPartBorder = "; \"></iframe>"
+    else
+      fourthPartBorder = "; border: " + @editBorderWidth + " solid " + @editBorderColor  + "\"></iframe>"
     end
 
-    @fullCode = @firstPartBasic + @secondPartPosition + @thirdPartAlignment + @fourthPartBorder
+    @fullCode = firstPartBasic + secondPartPosition + thirdPartAlignment + fourthPartBorder
   end
 
   # POST /embed_links
@@ -165,3 +166,4 @@ class EmbedLinksController < ApplicationController
       params.require(:embed_link).permit(:border, :border_color, :border_size, :size, :location, :special_position)
     end
 end
+

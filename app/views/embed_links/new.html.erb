@@ -22,12 +22,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-window-maximize pr-3 pt-2" style="font-size:20px"></i>
               </div>
-              <div class="form-control">
-<%= radio_button_tag(:border, true) %>
-<%= label_tag(:border_true, "Yes") %>
-<%= radio_button_tag(:border, false) %>
-<%= label_tag(:border_false, "No") %>
-</div>
+                <%= f.select :border, ['Yes', 'No'], :autofocus => true, :class => "form-control", :required => true%>
             </div>
           </div>
           <div>
@@ -47,7 +42,6 @@
             </div>
           </div>
           <div>
-          <%# <%= f.hidden_field :sender_id, :value => current_user == nil ? -1 : current_user.id %> 
           </div>
 
         <!-- Border Size -->
@@ -117,5 +111,6 @@
   </div>
 </div>
 </div>
+
 
 

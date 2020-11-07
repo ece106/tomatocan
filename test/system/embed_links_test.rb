@@ -14,7 +14,7 @@ class EmbedLinksTest < ApplicationSystemTestCase
     visit embed_links_url
     click_on "New Embed Link"
 
-    check "Border" if @embed_link.border
+    fill_in "Border", with: @embed_link.border
     fill_in "Border color", with: @embed_link.border_color
     fill_in "Border size", with: @embed_link.border_size
     fill_in "Location", with: @embed_link.location
@@ -30,7 +30,7 @@ class EmbedLinksTest < ApplicationSystemTestCase
     visit embed_links_url
     click_on "Edit", match: :first
 
-    check "Border" if @embed_link.border
+    fill_in "Border", with: @embed_link.border
     fill_in "Border color", with: @embed_link.border_color
     fill_in "Border size", with: @embed_link.border_size
     fill_in "Location", with: @embed_link.location

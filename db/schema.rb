@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
   end
 
   create_table "embed_links", force: :cascade do |t|
-    t.boolean "border"
+    t.string "border"
     t.string "border_color"
     t.string "border_size"
     t.string "size"
