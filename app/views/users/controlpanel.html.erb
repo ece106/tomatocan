@@ -68,24 +68,28 @@
     <!-- Conversations Tab -->
     <div class="tab-pane" id="streamingTab">
       <div class="container-fluid">
+        <!-- Row 1: Page Title-->
         <div class="row">
           <div class="col-md-4 pt-3">
             <h1>Conversations</h1>
           </div>
-          <div class="col-md-8" id="shows-button-panel">
-            <%= link_to 'Set Up Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
+        </div>
+
+        <!-- Row 2: StreamDirections -->
+        <div class="row mb-4">
+          <div class="mx-auto">
+            <%= render 'layouts/streamDirections' %>
           </div>
         </div>
-        <br>
 
+        <!-- Row 3: Upcoming and Past Conversations -->
         <div class="row">
-            <div class="col-md-6" >
-              <%= render template: 'users/eventlist' %><br>
-              <%= render template: 'users/pastevents' %>
-            </div>
-            <div class="col-md-4" >
-              <%= render 'layouts/streamDirections' %>
-            </div>
+          <div class="col-md-6" >
+            <%= render template: 'users/eventlist' %><br>
+          </div>
+          <div class="col-md-6" >
+            <%= render template: 'users/pastevents' %>
+          </div>
         </div>
       </div>
     </div>

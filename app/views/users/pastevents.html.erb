@@ -1,31 +1,33 @@
  
 <div class="panel panel-primary">
-  <h2 class="panel-heading">Your Past Conversations
-  </h2>
+  <h2 class="panel-heading">Your Past Conversations</h2>
+
   <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
   <% i = 0 %>
-<% if @pastevents.present? %>
-  <table class="past-events-list">
-    <tr>
-    <th class = "text-white">Conversation </th>
-    <th class = "text-white">Time</th>
-    <tr>
-  <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
-  <% i += 1%>
-  <tr>
-    <td><%= link_to event.name, event, class: "past-event-name" %><br><br></td>
-    <td id="tp<%= i %>"><br><br></td>
-    <script>
-      var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
-      date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
-      var options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'long', year: 'numeric' };
-      document.getElementById('tp<%=i%>').innerHTML = date.toLocaleString(undefined, options);
-    </script>
-  <tr>
-  <% end %>
-  </table>
-  <% else %>
-  <%= @user.name %> hasn't posted any past fellowhip hours
-<% end %>
 
+  <% if @pastevents.present? %>
+    <table class="past-events-list">
+      <tr class="table">
+        <th class = "text-white">Conversation </th>
+        <th class = "text-white">Time</th>
+      </tr>
+
+      <% @pastevents.sort_by{|t| t.start_at}.each do |event| %>
+        <% i += 1%>
+
+        <tr>
+          <td><%= link_to event.name, event, class: "past-event-name" %><br><br></td>
+          <td id="tp<%= i %>"><br><br></td>
+          <script>
+            var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+            date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+            var options = { weekday: 'short', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'long', year: 'numeric' };
+            document.getElementById('tp<%=i%>').innerHTML = date.toLocaleString(undefined, options);
+          </script>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <%= @user.name %> hasn't posted any past fellowhip hours
+  <% end %>
 </div>
