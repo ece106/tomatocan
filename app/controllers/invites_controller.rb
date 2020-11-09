@@ -18,6 +18,15 @@ class InvitesController < ApplicationController
     @invite = Invite.new
   end
 
+  def invite_received
+    # create cookie
+    cookies[:referer_id] = {
+    value: params[:referer_id],
+    expires: 1.month.from_now}
+    # trigger redirect
+    redirect_to "/"
+    end
+
   # GET /invites/1/edit
   def edit
     @editNumber = @@globalNum
@@ -54,15 +63,15 @@ class InvitesController < ApplicationController
 
           case invite_params["relationship"]
           when "Friends"
-            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + "!: %0D%0AHey, " + invite_params["preferred_name"] + ", come check out%0D%0A %0D%0Ahttps://thinq.tv/signup/?referer=" + current_user.id.to_s + "%0D%0A%0D%0Aand get tips from industry pros!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + "!: %0D%0AHey, " + invite_params["preferred_name"] + ", come check out%0D%0A %0D%0Ahttps://thinq.tv/invite/" + current_user.id.to_s + "%0D%0A%0D%0Aand get tips from industry pros!"
           when "Family"
-            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0A" + invite_params["preferred_name"] + ", come check out %0D%0A%0D%0Ahttps://thinq.tv/signup/?referer=" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and host good conversations!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0A" + invite_params["preferred_name"] + ", come check out %0D%0A%0D%0Ahttps://thinq.tv/invite/" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and host good conversations!"
           when "Coworkers"
-            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + "," + " based on your work experience and ties, " + current_user.name + " has invited you to join ThinQ. %0D%0A%0D%0ASign up at https://thinq.tv/signup/?referer=" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations."
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + "," + " based on your work experience and ties, " + current_user.name + " has invited you to join ThinQ. %0D%0A%0D%0ASign up at https://thinq.tv/invite/" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations."
           when "General Acquaintances"
-            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at %0D%0A%0D%0Ahttps://thinq.tv/signup/?referer=" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at %0D%0A%0D%0Ahttps://thinq.tv/invite/" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
           else
-            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at %0D%0A%0D%0Ahttps://thinq.tv/signup/?referer=" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
+            messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at %0D%0A%0D%0Ahttps://thinq.tv/invite/" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
           end
 
           @@globalMessage = messageBody
