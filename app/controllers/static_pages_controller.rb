@@ -17,10 +17,14 @@ class StaticPagesController < ApplicationController
 
     @eventsAll = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC') 
 
-    pdtnow = Time.now - 7.hours
-    pdtnext = Time.now - 8.hours
-    currconvo = Event.where( "start_at < ? AND start_at > ?", pdtnow, pdtnext ).first
-    nextconvo = Event.where( "start_at > ? ", pdtnow ).order('start_at ASC').first
+    pstnow = Time.now - 8.hours
+    pstnext = Time.now - 9.hours
+    currconvo = Event.where( "start_at < ? AND start_at > ?", pstnow, pstnext ).first
+    nextconvo = Event.where( "start_at > ? ", pstnow ).order('start_at ASC').first
+#    pdtnow = Time.now - 7.hours
+#    pdtnext = Time.now - 8.hours
+#    currconvo = Event.where( "start_at < ? AND start_at > ?", pdtnow, pdtnext ).first
+#    nextconvo = Event.where( "start_at > ? ", pdtnow ).order('start_at ASC').first
 
     if currconvo.present?
       @displayconvo = currconvo
