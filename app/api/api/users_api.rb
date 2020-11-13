@@ -209,6 +209,18 @@ module Api
     end
 
     resource :users do
+      desc 'Return information about the authenticated user.'
+      get '/' do
+        if logged_in?
+          response = user_info
+          response['email'] = @user.email
+          puts('user is logged in.')
+          status 200
+          response
+        else
+          status 401
+        end
+      end
 
       desc 'Get rsvps for authenticated user.'
       get '/rsvps' do
