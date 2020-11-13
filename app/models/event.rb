@@ -5,7 +5,8 @@ class Event < ApplicationRecord
   has_many :rsvpqs
   has_many :users, through: :rsvpqs
 
-  validates :start_at, uniqueness: { scope: :topic, message: "can't be the same as another event" }
+  validates :start_at, uniqueness: true
+#  validates :start_at, uniqueness: { scope: :topic, message: "can't be the same as another event" }
   validates :user_id, presence: true
 
   validates :start_at, presence: true
