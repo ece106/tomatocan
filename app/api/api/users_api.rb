@@ -285,15 +285,18 @@ module Api
       
       desc 'Create a new event.'
       params do
-        optional :name, type: String
-        optional :start_at, type: DateTime
-        optional :end_at, type: DateTime
+        requires :name, type: String
+        requires :start_at, type: String
         optional :desc, type: String
         optional :topic, type: String
       end
       post '/' do
         if logged_in?
           @event = current_user.events.build(declared(params, include_missing: false))
+          if @event.start_at
+            @event.end_at = @event.start_at + 1.hours
+          end
+          @event.topic = "Conversation"
           @event.update(user_id: current_user.id)
           if @event.save
             status 201
