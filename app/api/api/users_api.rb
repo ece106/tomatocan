@@ -58,13 +58,17 @@ module Api
       end
 
       def user_info
-        { "name": @user.name, "permalink": @user.permalink, "profilepic": @user.profilepic, "about": @user.about,
-          "genre1": @user.genre1, "genre2": @user.genre2, "genre3": @user.genre3, "bannerpic": @user.bannerpic }
+        { "name": @user.name, "permalink": @user.permalink, "profilepic": @user.profilepic.url, "about": @user.about,
+          "genre1": @user.genre1, "genre2": @user.genre2, "genre3": @user.genre3, "bannerpic": @user.bannerpic.url }
       end
       def event_info(event)
         user = User.find_by(id: event.user_id)
-        { "name": event.name, "start_at": event.start_at, "end_at": event.end_at, "topic": event.topic,
-          "permalink": user.permalink, "username": user.name }
+        info = { "name": event.name, "start_at": event.start_at, "end_at": event.end_at, "topic": event.topic,
+          "permalink": user.permalink, "username": user.name, "id": event.id, "chatroom": event.chatroom }
+        if event.users
+          info[:users] = event.users.pluck(:permalink)
+        end
+        info
       end
       def events_info(events)
         info = []
@@ -205,6 +209,33 @@ module Api
     end
 
     resource :users do
+      desc 'Return information about the authenticated user.'
+      get '/' do
+        if logged_in?
+          response = user_info
+          response['email'] = @user.email
+          puts('user is logged in.')
+          status 200
+          response
+        else
+          status 401
+        end
+      end
+
+      desc 'Get rsvps for authenticated user.'
+      get '/rsvps' do
+        if logged_in?
+          rsvps = @user.rsvpqs
+          events = []
+          rsvps.each do |rsvp|
+            events << Event.find_by(id: rsvp.event_id)
+          end
+          status 200
+          events_info(events)
+        else
+          status 401
+        end
+      end
 
       route_param :target_permalink, type: String do
         desc 'Return information about the user with the given permalink.'
@@ -227,13 +258,14 @@ module Api
           optional :genre1, type: String
           optional :genre2, type: String
           optional :genre3, type: String
-          optional :profilepic, type: String
-          optional :bannerpic, type: String
+          optional :profilepic, type: File
+          optional :bannerpic, type: File
         end
         put '/' do
-          if logged_in? && current_user.permalink == params[:target_permalink] && current_user.valid_password?(params[:current_password])
+          if logged_in? && current_user.permalink == params[:target_permalink]
             if current_user.update(declared(params, include_missing: false).except(:target_permalink))
               status 200
+              user_info
             else
               status 409
               { "errors": current_user.errors.messages }
@@ -253,18 +285,22 @@ module Api
       
       desc 'Create a new event.'
       params do
-        optional :name, type: String
-        optional :start_at, type: DateTime
-        optional :end_at, type: DateTime
+        requires :name, type: String
+        requires :start_at, type: String
         optional :desc, type: String
         optional :topic, type: String
       end
       post '/' do
         if logged_in?
           @event = current_user.events.build(declared(params, include_missing: false))
+          if @event.start_at
+            @event.end_at = @event.start_at + 1.hours
+          end
+          @event.topic = "Conversation"
           @event.update(user_id: current_user.id)
           if @event.save
             status 201
+            {}
           else
             status 409
             { 'errors': @event.errors }
@@ -295,6 +331,7 @@ module Api
               if @event.user_id == current_user.id
                 if @event.update(declared(params, include_missing: false).except(:target_event_id))
                   status 200
+                  {}
                 else
                   status 409
                   { 'errors': @event.errors.messages }
@@ -318,8 +355,47 @@ module Api
               if @event.user_id == current_user.id
                 @event.destroy
                 status 200
+                {}
               else
                 status 401
+              end
+            else
+              status 404
+            end
+          else
+            status 401
+          end
+        end
+
+        desc 'Rsvp the authenticated user to the specified event'
+        params do
+          requires :action, type: String
+        end
+        post '/rsvp' do
+          if logged_in?
+            @event = Event.find_by(id: params[:target_event_id])
+            if @event
+              if params[:action] == 'add'
+                @rsvp = current_user.rsvpqs.build({
+                  "event": @event
+                })
+                if @rsvp.save
+                  status 201
+                  {}
+                else
+                  status 400
+                  { "errors": @rsvp.errors }
+                end
+              elsif params[:action] == 'remove'
+                @rsvp = current_user.rsvpqs.find_by(user: current_user)
+                if @rsvp && @rsvp.destroy
+                  status 201
+                  {}
+                else
+                  status 400
+                end
+              else
+                status 400
               end
             else
               status 404
