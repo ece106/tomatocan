@@ -210,6 +210,21 @@ module Api
 
     resource :users do
 
+      desc 'Get rsvps for authenticated user.'
+      get '/rsvps' do
+        if logged_in?
+          rsvps = @user.rsvpqs
+          events = []
+          rsvps.each do |rsvp|
+            events << Event.find_by(id: rsvp.event_id)
+          end
+          status 200
+          events_info(events)
+        else
+          status 401
+        end
+      end
+
       route_param :target_permalink, type: String do
         desc 'Return information about the user with the given permalink.'
         get '/' do
@@ -324,6 +339,37 @@ module Api
                 status 200
               else
                 status 401
+              end
+
+        desc 'Rsvp the authenticated user to the specified event'
+        params do
+          requires :action, type: String
+        end
+        post '/rsvp' do
+          if logged_in?
+            @event = Event.find_by(id: params[:target_event_id])
+            if @event
+              if params[:action] == 'add'
+                @rsvp = current_user.rsvpqs.build({
+                  "event": @event
+                })
+                if @rsvp.save
+                  status 201
+                  {}
+                else
+                  status 400
+                  { "errors": @rsvp.errors }
+                end
+              elsif params[:action] == 'remove'
+                @rsvp = current_user.rsvpqs.find_by(user: current_user)
+                if @rsvp && @rsvp.destroy
+                  status 201
+                  {}
+                else
+                  status 400
+                end
+              else
+                status 400
               end
             else
               status 404
