@@ -67,7 +67,7 @@ module Api
           "permalink": user.permalink, "username": user.name, "id": event.id, "chatroom": event.chatroom }
         if event.users
           info[:users] = event.users.pluck(:permalink)
-      end
+        end
         info
       end
       def events_info(events)
@@ -362,9 +362,9 @@ module Api
             else
               status 404
             end
-              else
-                status 401
-              end
+          else
+            status 401
+          end
         end
 
         desc 'Rsvp the authenticated user to the specified event'
