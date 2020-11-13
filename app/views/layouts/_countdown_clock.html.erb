@@ -33,7 +33,7 @@
       <div id="nextEventdiv">
       <br>
         <h3>Until <%= link_to @name, event_path(@displayconvo.id), title: @description %> goes live! </h3>
-        <br>
+        
         Hosted by: <%= link_to @host.name, @host.permalink %>
       </div>
     <% end %>
