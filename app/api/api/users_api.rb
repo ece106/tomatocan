@@ -246,13 +246,14 @@ module Api
           optional :genre1, type: String
           optional :genre2, type: String
           optional :genre3, type: String
-          optional :profilepic, type: String
-          optional :bannerpic, type: String
+          optional :profilepic, type: File
+          optional :bannerpic, type: File
         end
         put '/' do
-          if logged_in? && current_user.permalink == params[:target_permalink] && current_user.valid_password?(params[:current_password])
+          if logged_in? && current_user.permalink == params[:target_permalink]
             if current_user.update(declared(params, include_missing: false).except(:target_permalink))
               status 200
+              user_info
             else
               status 409
               { "errors": current_user.errors.messages }
@@ -284,6 +285,7 @@ module Api
           @event.update(user_id: current_user.id)
           if @event.save
             status 201
+            {}
           else
             status 409
             { 'errors': @event.errors }
@@ -314,6 +316,7 @@ module Api
               if @event.user_id == current_user.id
                 if @event.update(declared(params, include_missing: false).except(:target_event_id))
                   status 200
+                  {}
                 else
                   status 409
                   { 'errors': @event.errors.messages }
@@ -337,9 +340,17 @@ module Api
               if @event.user_id == current_user.id
                 @event.destroy
                 status 200
+                {}
               else
                 status 401
               end
+            else
+              status 404
+            end
+              else
+                status 401
+              end
+        end
 
         desc 'Rsvp the authenticated user to the specified event'
         params do
