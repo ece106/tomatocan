@@ -58,13 +58,17 @@ module Api
       end
 
       def user_info
-        { "name": @user.name, "permalink": @user.permalink, "profilepic": @user.profilepic, "about": @user.about,
-          "genre1": @user.genre1, "genre2": @user.genre2, "genre3": @user.genre3, "bannerpic": @user.bannerpic }
+        { "name": @user.name, "permalink": @user.permalink, "profilepic": @user.profilepic.url, "about": @user.about,
+          "genre1": @user.genre1, "genre2": @user.genre2, "genre3": @user.genre3, "bannerpic": @user.bannerpic.url }
       end
       def event_info(event)
         user = User.find_by(id: event.user_id)
-        { "name": event.name, "start_at": event.start_at, "end_at": event.end_at, "topic": event.topic,
-          "permalink": user.permalink, "username": user.name }
+        info = { "name": event.name, "start_at": event.start_at, "end_at": event.end_at, "topic": event.topic,
+          "permalink": user.permalink, "username": user.name, "id": event.id, "chatroom": event.chatroom }
+        if event.users
+          info[:users] = event.users.pluck(:permalink)
+      end
+        info
       end
       def events_info(events)
         info = []
