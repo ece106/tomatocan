@@ -171,10 +171,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     # @recaptcha_checked = verify_recaptcha(model: @user)
+    referId = cookies[:refer_id]
 
-    unless cookies[:referer_id].nil? then
-      ref_user = User.find(cookies[:referer_id])
-      User.update(ref_user.id, reputation_score: ref_user.reputation_score + 10)
+    unless referId.nil? then
+      if User.find(referId)
+        ref_user = User.find(cookies[:referer_id])
+        User.update(ref_user.id, reputation_score: ref_user.reputation_score + 10)
+      end
       cookies.delete :referer_id
     end
 
