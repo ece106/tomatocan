@@ -31,21 +31,23 @@ time_zone_test = "-07:00"
 
 	#NOTE when new years are added and old ones deleted these tests might error or fail.
 	#Date selected for test July 2, 2020
-	find('#event_start_at_1i').find(:xpath, 'option[2]').select_option # Selects year
+	find('#event_start_at_1i').find(:xpath, 'option[1]').select_option # Selects year
 	find('#event_start_at_2i').find(:xpath, 'option[12]').select_option # selects month
 	find('#event_start_at_3i').find(:xpath, 'option[31]').select_option # selects day
-	find('#event_start_at_4i').find(:xpath, 'option[14]').select_option # selects hour
+	find('#event_start_at_4i').find(:xpath, 'option[11]').select_option # selects hour
 	find('#event_start_at_5i').find(:xpath, 'option[1]').select_option # selects minute
 
 	find(:xpath, "//*[@id='timeZone']", visible: false).set time_zone_test #sets the timezone manually
 
     click_on id: 'eventSubmit', match: :first
-
-	#"calendar-time-day2"
     assert_equal current_path, root_path
+
+    visit '/userconfirmed'
+
+    
     assert page.has_content? "Valid Event Name"
 	assert page.has_content? "userconfirmed"
-	assert page.has_content? "July 2"
+	assert page.has_content? "December 31"
 
   end
 

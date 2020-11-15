@@ -16,7 +16,7 @@
       To be a part of the <%=@event.topic%>, go to <a href="https://thinq.tv", target="_blank" style="color: #8C1D40; text-decoration-line: none;">ThinQ.tv</a> and click the "Join <%=@event.topic%>" button for the topic on the schedule that you'd like to participate in.  
       Please go to that site in advance to make sure your browser is compatible with your webcam. <br>
 
-      If you must participate in our <%=@event.topic%> by phone, download the JITSI app in advance and join the CONVERSATION chatroom.
+      If you must participate in our <%=@event.topic%> by phone, download the JITSI app in advance and join the '<%=@event.topic%>' chatroom.
     </p>
     <div class = "img">
       <%= image_tag attachments['starIcon.png'].url, size: "50x50"%>
@@ -35,12 +35,12 @@
         <td colspan="4">
         <p style = "color:white; font-size: 15px;" class="f-header">Share</p>
         <% url = "https://thinq.tv/" %>
-        <% desc = "Discover Activism that makes you ThinQ!"%>
+        <% desc = "Powerful Women in STEM who make you ThinQ!"%>
         <!-- Facebook Share -->
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
         <div class="social-share-button"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.ThinQ.tv%2F&amp;src=sdkpreparse", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['facebook.png'].url%></a>
         <!-- Twitter Tweet -->
-        <a href="https://twitter.com/intent/tweet?hashtags=ThinQtv&text=JDiscover%20Activism%20that%20makes%20you%20ThinQ!&tw_p=tweetbutton&url=https%3A%2F%2FThinQ.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
+        <a href="https://twitter.com/intent/tweet?hashtags=ThinQtv&text=Powerful%20Women%20in%20STEM%20who%20make%20you%20ThinQ!&tw_p=tweetbutton&url=https%3A%2F%2FThinQ.tv%2F", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['twitter.png'].url%></a>
         <!-- LinkedIn Share -->
         <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= url %>&title=ThinQtv&summary=<%= desc %>" onclick="window.open(this.href, 'mywin',); return false;", style="color: #FFC627; text-decoration-line: none; text-decoration-color: #FFC627;"><%=image_tag attachments['linkedin.png'].url%></a>
         <!-- Email Share -->

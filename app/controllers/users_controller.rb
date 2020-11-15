@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   layout :resolve_layout
 
   before_action :set_user, except: [:new, :index, :supportourwork, :youtubers, :create, :stripe_callback ]
-  before_action :authenticate_user!, only: [:update, :dashboard, :controlpanel ]
+  before_action :authenticate_user!, only: [:update, :dashboard, :controlpanel, :viewer ]
 
   #before_action :correct_user, only: [:dashboard, :user_id]
   #before_action :correct_user, only: [:controlpanel]
@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   end
 
   def viewer
-    @users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:event]])
+    @users = User.where('last_viewed @> ARRAY[?]::integer[]', [params[:event]]) #This unhelpful array has been disabled. Should be an integer
+    @count = @users.count
     pdtnow = Time.now - 7.hours + 5.minutes
     currconvos = Event.where("start_at < ? AND end_at > ?", pdtnow, pdtnow)
     @otherconvos = []
@@ -50,6 +51,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html #show.html.erb
       format.json { render json: @user }
+      format.js {render layout: false}
     end
   end
 
@@ -58,7 +60,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # profileinfo.html.erb
       format.json { render json: @user }
+      errors = ["- Resume must be in one of the following formats: .pdf, .doc, .docx ","- Images must be in one of the following formats: .jpg, .png, .tif"]
+      flash[:error] = errors.join("<br/>").html_safe 
     end
+
   end
   def changepassword
     respond_to do |format|
@@ -236,15 +241,15 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:permalink, :name, :email, :password,
                                  :about, :author, :password_confirmation, :genre1, :genre2, :genre3,
-                                 :twitter, :title, :profilepic, :remember_me,
-                                 :facebook, :youtube1, :youtube2,
-                                 :youtube3, :updating_password, :attendid,
-                                 :agreeid, :purchid, :bannerpic, :on_password_reset, :stripesignup )
+                                 :twitter, :title, :profilepic, :remember_me, :resume,
+                                 :facebook, :updating_password, :attendid,
+                                 :purchid, :bannerpic, :on_password_reset, :stripesignup )
+
   end
 
   def resolve_layout
     case action_name
-    when "index", "youtubers", "supportourwork", "stripe_callback"
+    when "index", "stripe_callback"
       'application'
     when "profileinfo", "changepassword"
       'editinfotemplate'

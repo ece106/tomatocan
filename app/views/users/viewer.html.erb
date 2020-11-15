@@ -1,6 +1,9 @@
+<!-- link to attendances.js file that tracks conversation attendance -->
+<%# <%= javascript_include_tag 'attendances.js' %> %>
+
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, params[:id]) %>
-  <% attendrecord = Attendance.new(:user_id => current_user.id, :time_in => (Time.now - 7.hours)) %>
+  <% attendrecord = Attendance.new(:user_id => current_user.id, :event_id => params[:event], :time_in => (Time.now - 7.hours)) %>
   <% attendrecord.save %>
 
   <!-- Update list of users attending the conversation -->
@@ -20,52 +23,58 @@
   <div class="row pt-4 mt-4 pl-3">
     <div class="col-md-3">
       <div style="padding: 0px 0px 5px 0px">
-        <%= render 'layouts/merchsidebar' %>
+        <%= render 'layouts/viewersidebar' %>
       </div>
 
       <!-- Invite Area -->
-      <div style = "padding: 3px 5px 7px 5px; font-size: 18px; background-color: #F2EBE4">
-        <b>Invite friends to join this conversation</b>
-        <div style = "font-size: 15px; margin-left: 7px">
-          Invite via E-Mail:
-        </div>
-        <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
+      <div class="container mb-4 pt-3 pb-0 px-0 border shadow">
+          <div class="px-3" style = "font-size: 18px;">
+            <b>Invite friends to join this conversation</b>
+            <div style = "font-size: 15px; margin-left: 7px">
+              Invite via E-Mail:
+            </div>
+            <a href="mailto:? &subject=Come%20join%20this%20conversation%20on%20thinQ.tv! &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 3px 3px 5px; border-radius: 3px">E-Mail 📧</a>
 
-        <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
-          Invite via SMS:
-        </div>
-        <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
+            <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+              Invite via SMS:
+            </div>
+            <a href="sms: &body=Come%20join%20me%20in%20this%20conversation%20at%20http%3A%2F%2Fwww.ThinQ.tv/womantechfounder" style="font-size: 15px; color: white; margin-left: 17px; background-color: #8C1D40; padding: 3px 0px 3px 5px; border-radius: 3px">SMS 📱</a>
 
-        <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
-          Invite via social media:
-        </div>
+            <div style = "font-size: 15px; margin-left: 7px; padding-top: 5px">
+              Invite via social media:
+            </div>
 
-        <% eventUrl = "https://thinq.tv/#{request.original_fullpath}" #wtf is req.origfullpath %>
-        <div style="margin-left: 17px">
-          <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
-            twitterLink: "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("Come join the conversation on #{eventUrl}")}",
-            linkedInLink: "https://www.linkedin.com/shareArticle?mini=true&url=#{ERB::Util.url_encode(eventUrl)}"%>
-        </div>
-      </div>
-
-      <% if current_user.id == @user.id %>
-      <div class = "border-left border-right border-bottom border-primary pb-1">
-        <div class="panel panel-primary">
-          <div class=" bg-primary text-white card-header pb-2">        
-              Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>
+            <% eventUrl = "https://thinq.tv/#{request.original_fullpath}" #wtf is req.origfullpath %>
+            <div style="margin-left: 17px">
+              <%= render "layouts/share_buttons.erb", facebookLink: "http://www.facebook.com/sharer.php?u=#{eventUrl}",
+                twitterLink: "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("Come join the conversation on #{eventUrl}")}",
+                linkedInLink: "https://www.linkedin.com/shareArticle?mini=true&url=#{ERB::Util.url_encode(eventUrl)}"%>
+            </div>
           </div>
-          <div id="attendees"></div>
-        </div>
+
+          <% if current_user.id == @user.id %>
+          <div class = "pt-2">
+            <div class="panel panel-primary">
+              <div class=" bg-primary text-white card-header pb-2" style="font-size: 18px">        
+                  Attendees of <%= @user.name %>'s conversation <button id="refresh" style="color:black; float:right; margin-top:3px">&#8634</button>
+              </div>
+              <div id="attendees"></div>
+            </div>
+          </div>
+          <%end%>
       </div>
-      <%end%>
     </div>
 
     <div class="col-md-9">
+      <div class = "text-center">
+          Join our conversation & introduce yourself!<br>
+      </div>    
       <%= render 'layouts/jitsi' %>
+      <!--
       <% if !@otherconvos.empty? %>
         <div class="panel panel-primary">
           <div class="panel-heading">
-            Other conversations happening right now
+            Other conversations happening right now:
           </div>
           <div class = "container">
             <% @otherconvos.each do |t| %>
@@ -75,6 +84,7 @@
         </div>
         <div>
       <%end%>
+      -->
 
       <div class="container">
         <a href="#demo" class="btn btn-info" data-toggle="collapse" style="background-color: #8C1D40; font-size: 20px; margin-left: -20px">If you're not seeing or hearing the Live Conversation in the viewer above &#9660 </a>
@@ -93,7 +103,7 @@
     </div>
   </div>
 
-  <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
+   <script> // JAVASCRIPT DOES NOT BELONG IN ERB FILES, IT BELONGS IN JS FILES
     // save current user id
     var currID = "<%= current_user.id %>"
     var attendrec = "<%= attendrecord.id %>"
@@ -101,7 +111,7 @@
     // get url params
     const urlParams = new URLSearchParams(window.location.search);
 
-    //check if user is blocked every 300 seconds
+    // check if user is blocked every 300 seconds
     function isBlocked() {
       $.post("/users/is_blocked", null, (data) => {
         if (data.includes("<%= @user.permalink %>")) {
@@ -132,15 +142,30 @@
     }
 
     // unload actions
-    $(window).on('beforeunload', (event) => {
-      // remove user from attendees list
-      $.post("/users/unload", {attendid: attendrec, event: urlParams.get('event')})
-    });
+    window.onbeforeunload = function(event) {
+      // FormData containing attendid and event information
+      const data = new FormData();
+      data.append("attendid", attendrec);
+      data.append("event", urlParams.get('event'));
+      
+      // use fetch API if sendBeacon does not work
+      if (!navigator.sendBeacon) {
+        fetch('/users/unload', {
+          method: 'POST',
+          body: data,
+          keepalive: true
+        });
+      }
+      // using beacon API to send a post request
+      else { 
+        var url = "/users/unload";
+        var status = navigator.sendBeacon(url, data);
+      }
+    };
 
     // makes all links on viewer page open in new tab
     $(document).ready(() => {
       $("a").attr("target", "_blank");
-    	
     });
 
 
@@ -148,8 +173,5 @@
     isBlocked()
     signedIn()
     loadAttendees()
-  </script>
-<% else %>
-
-  <meta http-equiv="refresh" content="0; URL=https://thinq.tv/login"/>
+  </script> 
 <% end %>

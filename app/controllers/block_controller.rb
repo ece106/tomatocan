@@ -45,7 +45,7 @@ class BlockController < ApplicationController
         attendance_log = Attendance.find(params[:attendid])
         attendance_log.time_out = Time.now - 7.hours
         attendance_log.save
-
+        
         # return 200 ok Why do we do this?
         head :ok
     end

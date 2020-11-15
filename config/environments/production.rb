@@ -9,10 +9,9 @@ config.action_mailer.smtp_settings = {
    :authentication => 'plain' # Mandrill supports 'plain' or 'login'
 #   :domain => 'www.ThinQ.tv', # your domain to identify your server when connecting
  }
-# Force all access to the app over SSL, use Strict-Transport-Security,
-  # and use secure cookies.
-  config.force_ssl = true  #otherwise heroku reroute will say i'm a liar
 
+  #heroku is having trouble with this in free tier - need to change after signing up for ssl
+  config.force_ssl = false #true  
   config.action_mailer.default_url_options = {
     :host => 'https://www.thinq.tv', :protocol => 'https' }
 

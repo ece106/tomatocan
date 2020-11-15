@@ -14,22 +14,15 @@
 <% end %>
 
 <!-- TOP HALF -->
-
 <div class="pt-5 pb-3">
-    <h1 class="maroon text-center text-dark pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
-    <p class="text-center event-name mb-2"><b> <%= @event.name %>! </b></p>
-    <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
+  <h1 class="maroon text-center pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
+  <h2 class="text-center mb-2"><%= @event.name %>! </h2>
+  <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
 </div>
 
-
-
-
-
 <div class="px-4" id="event-page-layout">
-
-
     <!-- CONVERSATION NAME & HOST -->
-    <div id="home" class="mt-3">
+    <div class="bg-primary mt-3">
         <div class="aboutHeader row">
             <div class="mt-4 ml-md-4 ml-sm-4 ml-xs-0 col-lg-4 col-md-5 col-sm-6 col-xs-4">
                 <!-- WHEN -->
@@ -37,7 +30,7 @@
                     <b>
                         <% edt = @event.start_at + 3.hours %>
                         <%= @event.start_at.strftime("%A, %B %d") %> <br>
-                        <%= @event.start_at.strftime("%I:%M %p")%> PDT / <%= edt.strftime("%I:%M %p") %> EDT
+                        <%= @event.start_at.strftime("%I:%M %p")%> Pacific Time / <%= edt.strftime("%I:%M %p") %> Eastern Time
                         <br> <%= @duration %> minutes <br>
                     </b>
                 </p>
@@ -59,7 +52,6 @@
                     <%= link_to " Join " + @event.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-primary border-warning text-warning btn-md mt-2 mb-2" %>
                     <% end %>
                 </div>
-
             </div>
 
             <!-- RSVP -->
@@ -143,9 +135,7 @@
                             <% end %>
                         </div>
                     </div>
-
                     <% end %>
-
                 </div>
             </div>
         </div><br>
@@ -153,41 +143,40 @@
 </div>
 </div>
 
-
 <!-- BOTTOM HALF -->
 <div class="row pl-5 py-3">
     <! Left Column -->
         <div class="col-md-8 col-sm-6 pt-4">
             <div>
-                <h2 class="new text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
+                <h2 class="text-dark"> <b> To Join the <%= @event.topic %>: </b></h2>
             </div>
             <div class="col-md-12">
                 <div>
                     <strong> Desktop: </strong>
                 </div>
                 <div>
-                    <p class="mb-0 mt-0"> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
-                            click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: "Activism Hall" ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %>
-                    </p>
+                  <p class="mb-0 mt-0"> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
+                    click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %>
+                  </p>
                 </div>
                 <div>
                     <strong>Mobile: </strong>
                 </div>
                 <div>
-                    <p class="mb-0 mt-0"> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom </small> </p>
+                  <p class="mb-0 mt-0"> <small> Download the JITSI meet app and join the <%= @event.topic.upcase %> chatroom </small> </p>
                 </div>
             </div>
         </div>
 
-        <! Right Column -->
+        <!-- Right Column -->
             <div class="col-md-4 col-sm-6 pt-4">
                 <div>
-                    <strong> Invite your fellow activists </strong>
+                  <h2><small>Invite Students in Tech </small></h2>
                 </div>
                 <div class="row ">
                     <div class="col-md-1 d-flex">
                         <%= link_to "mailto:?&subject=Join%20me%20at%20ThinQ.tv!&body=Come%20join%20me%20for%20a%20live%20video%20Conversation%20"+ @event.name + "%20at%20" + @surl + "%20on%20" + 
-                        + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20PDT%20/%20" + edt.strftime("%I:%M %p") + "%20EDT.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
+                        + @event.start_at.strftime("%A, %B %d") + "%20" + @event.start_at.strftime("%I:%M %p")+ "%20Pacific%20/%20" + edt.strftime("%I:%M %p") + "%20Eastern.%20The%20Conversation%20will%20be%20about%20" + @event.desc, 
                         target: :_blank do %>
                         <%= image_tag "email_icon.png", height: "25", width: "25"%>
                         <% end %>
@@ -197,7 +186,7 @@
                         <% end %>
 
                         <%= link_to "https://twitter.com/intent/tweet?text=Join " + @user.name + " for interesting conversation: " +
-                        @event.name + " on " + @event.start_at.strftime("%B %d, %I:%M %p") + " PDT at " + @surl, target: :_blank do %>
+                        @event.name + " on " + @event.start_at.strftime("%B %d, %I:%M %p") + " Pacific Time at " + @surl, target: :_blank do %>
                             <%= image_tag "twitter_icon.png", height: "25", width: "25"%>
                         <% end %>
 

@@ -63,7 +63,7 @@ For tests that use hidden fields you should set them manually.
     click_on class: "btn btn-lg btn-primary update-event-btn", match: :first
 	
     assert page.has_css? "#error_explanation"
-	assert page.has_content? "Desc descriptions ...URLs are not allowed in event descriptions. Keep in mind that people will be searching here for actual gatherings that they can attend, or to find out when you'll be livestreaming. They will not be searching for sites to browse. Paste all information attendees need here."
+	assert page.has_content? "Desc descriptions ...URLs are not allowed in event descriptions. Keep in mind that people will be searching here for ThinQtv Conversations. They will not be searching for sites to browse. Paste all information attendees need here."
   end
 
   test "Update time" do

@@ -90,6 +90,7 @@ GOOGLE_CLIENT_SECRET = 'fake'
 GOOGLE_CLIENT_ID = 'fake'
 RECAPTCHA_PUBLIC_KEY="garbage"
 RECAPTCHA_PRIVATE_KEY="notreal"
+JWT_SECRET="ssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
 ```
 
 Of course, with the fake keys, you will not be able to use AWS (upload files to user profiles), Devise (logins), or Stripe (purchase items from users). If you have your own AWS, Devise, or Stripe accounts, you may replace the keys in config/initializers/aakeys.rb with your accounts' keys.
