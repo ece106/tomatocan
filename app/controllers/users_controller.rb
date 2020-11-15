@@ -170,7 +170,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @recaptcha_checked = verify_recaptcha(model: @user)
+    # @recaptcha_checked = verify_recaptcha(model: @user)
 
     unless cookies[:referer_id].nil? then
       ref_user = User.find(cookies[:referer_id])
@@ -178,18 +178,11 @@ class UsersController < ApplicationController
       cookies.delete :referer_id
     end
 
-    if @recaptcha_checked 
-      # CHECKING FOR REFER ID:
-
-      if @user.save
-        redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-        UserMailer.with(user: @user).welcome_email.deliver_later
-      else
-        redirect_to new_user_signup_path, danger: signup_error_message
-        @user.errors.clear
-      end
-    else 
-      redirect_to new_user_signup_path, danger: signup_error_message + "Please check the captcha box!"
+    if @user.save
+      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+      UserMailer.with(user: @user).welcome_email.deliver_later
+    else
+      redirect_to new_user_signup_path, danger: signup_error_message
       @user.errors.clear
     end
   end
