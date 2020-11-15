@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :embed_links
   resources :invites
   resources :relationships
 
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   match 'studyhall',                to: 'static_pages#studyhall',           via: 'get'
   match 'blocked',                  to: 'static_pages#blocked',             via: 'get'
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
+  # match 'embed_tutorial',                    to: 'static_pages#embed',               via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
   match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
@@ -41,12 +43,24 @@ Rails.application.routes.draw do
   get "invite", :to => 'invites#new', :as => :new_invite_form
   match "invites/1/edit", to: 'invites#edit', via: 'get'
   get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
+  get '/invite/:referer_id',        to: 'invites#invite_received'
+
+  match 'embed_link', to: 'embed_links#new', via: 'get'
+  get "embed_link", :to => 'embed_links#new', :as => :new_embed_link_form
+  match 'embed_links/1/edit', :to => 'embed_links#edit', via: 'get'
+  get 'embed_links/1/edit', :to => 'embed_links#edit', :as => :new_embed_link_confirm
+
+  as :user do
+  match 'signup/:refer_id', to: 'devise/registrations#new', via: 'get'
+  end
 
   get "home", :to => 'static_pages#home', :as => :new_invite_success
   match 'invite_error', to: 'invites#error', via: 'get'
 
   match 'embed', to: 'static_pages#embed', via: 'get'
   match 'calendar_view', to: 'static_pages#calendar_view', via: 'get' 
+
+  # match 'embed_help', to: 'static_pages#embedhelp', via: 'get'
 
   resources :merchandises
   resources :rsvpqs

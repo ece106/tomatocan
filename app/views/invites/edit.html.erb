@@ -2,6 +2,16 @@
 <div class="container pt-4 mt-4">
   <%= render 'layouts/flash_messages' %>
   <div class="row justify-content-center pt-3">
+     <% if current_user == nil  %>
+        <script type="text/javascript">
+          window.location.href="/invite_error"
+        </script>
+      <% end %>
+       <% if @editMessage == "blank"  %>
+        <script type="text/javascript">
+          window.location.href="/invite_error"
+        </script>
+      <% end %>
 
     <div class="col-lg-6 bg-light border p-3 justify-content-center" style="padding:20px 0px 0px 0px">
       <div class="well justify-content-center">
@@ -12,8 +22,7 @@
           </div>
           <p><b>Get points for it!</b></p>
         </div>
-        <%= @editNumber.class %>
-  <a href="sms:<%=@editNumber%>&amp;body= I%27d%20like%20to%20set%20up%20an%20appointment%20for..." class="form-control btn-primary" >Click to send your message through a messaging app</a>
+  <a href="sms:<%=@editNumber%>&amp;body= <%=@editMessage%>" class="form-control btn-primary" >Click to send your message through a messaging app</a>
     </div>
     </div>
   </div>
