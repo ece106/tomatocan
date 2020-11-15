@@ -35575,3 +35575,295 @@ Completed 200 OK in 86ms (Views: 83.9ms | ActiveRecord: 0.9ms | Allocations: 749
 >>>>>>> JL_centralizingWork_11/14
 
 
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8394216929634577125)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8394216929634577125)[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/invite_error" for ::1 at 2020-11-14 21:28:16 -0700
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.6ms | Allocations: 183)
+  Rendered invites/error.html.erb within layouts/application (Duration: 5.9ms | Allocations: 918)
+  Rendered application/_favicon.html.erb (Duration: 475.4ms | Allocations: 356929)
+  Rendered layouts/_header.html.erb (Duration: 2.0ms | Allocations: 1235)
+  Rendered layouts/_footer.html.erb (Duration: 4.4ms | Allocations: 2752)
+Completed 200 OK in 624ms (Views: 616.9ms | ActiveRecord: 0.0ms | Allocations: 437638)
+
+
+Started GET "/" for ::1 at 2020-11-14 21:28:21 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (2.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-14 18:28:21.557353' AND topic = 'Conversation')[0m
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-14 21:28:21.583391' AND start_at > '2020-11-14 20:28:21.583414' AND topic = 'Conversation') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-14 21:28:21.583391' AND topic = 'Conversation') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-14 21:28:21.583391' AND start_at > '2020-11-14 20:28:21.583414' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-14 21:28:21.583391' AND topic = 'DropIn') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-14 21:28:21.583391' AND start_at > '2020-11-14 20:28:21.583414' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-14 21:28:21.583391' AND topic = 'Group Problem Solving') ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-14 18:28:21.557353' AND topic = 'Conversation')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 4.9ms | Allocations: 653)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-14 18:28:21.557353' AND topic = 'Conversation')[0m
+  Rendered layouts/_convocalendar.html.erb (Duration: 10.1ms | Allocations: 5302)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.1ms | Allocations: 1517)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 6.0ms | Allocations: 2847)
+  Rendered layouts/_calendar.html.erb (Duration: 2.0ms | Allocations: 1040)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 27.9ms | Allocations: 12054)
+  Rendered application/_favicon.html.erb (Duration: 4.5ms | Allocations: 3351)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 759)
+  Rendered layouts/_footer.html.erb (Duration: 2.8ms | Allocations: 2325)
+Completed 200 OK in 150ms (Views: 100.8ms | ActiveRecord: 25.1ms | Allocations: 94466)
+
+
+Started GET "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E" for ::1 at 2020-11-14 21:28:22 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/%3Cimg%20width=%22100%%22%20src=%22/assets/starIcon-30742baeb0b3c59e8d69dfc1df346a2b6c1382398e66dc79e23e460939076246.png%22%20/%3E"):
+  
+actionpack (6.0.3.3) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.3) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.3) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+rack-mini-profiler (2.1.0) lib/mini_profiler/profiler.rb:357:in `call'
+railties (6.0.3.3) lib/rails/engine.rb:527:in `call'
+railties (6.0.3.3) lib/rails/railtie.rb:190:in `public_send'
+railties (6.0.3.3) lib/rails/railtie.rb:190:in `method_missing'
+puma (5.0.0) lib/puma/configuration.rb:238:in `call'
+puma (5.0.0) lib/puma/server.rb:620:in `handle_request'
+puma (5.0.0) lib/puma/server.rb:377:in `process_client'
+puma (5.0.0) lib/puma/server.rb:231:in `block in run'
+puma (5.0.0) lib/puma/thread_pool.rb:141:in `block in spawn_thread'
+Started GET "/invite" for ::1 at 2020-11-14 21:28:23 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered invites/new.html.erb within layouts/application (Duration: 8.0ms | Allocations: 6260)
+  Rendered application/_favicon.html.erb (Duration: 11.6ms | Allocations: 3527)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 755)
+  Rendered layouts/_footer.html.erb (Duration: 2.5ms | Allocations: 2325)
+Completed 200 OK in 109ms (Views: 88.6ms | ActiveRecord: 5.2ms | Allocations: 86384)
+
+
+Started GET "/invite_error" for ::1 at 2020-11-14 21:28:24 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered invites/error.html.erb within layouts/application (Duration: 0.7ms | Allocations: 225)
+  Rendered application/_favicon.html.erb (Duration: 7.4ms | Allocations: 3520)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 762)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2326)
+Completed 200 OK in 97ms (Views: 96.1ms | ActiveRecord: 0.0ms | Allocations: 74123)
+
+
+Started GET "/login" for ::1 at 2020-11-14 21:28:25 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 10.1ms | Allocations: 2886)
+  Rendered application/_favicon.html.erb (Duration: 4.0ms | Allocations: 3351)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 773)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2325)
+Completed 200 OK in 140ms (Views: 84.3ms | ActiveRecord: 9.0ms | Allocations: 104795)
+
+
+Started POST "/login" for ::1 at 2020-11-14 21:28:32 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1iZwNpjpYqTsSslavU8Nbw+Nr7qS97HZmlYW6M/8uUxs0dcCK2V9IhCQiczo1AOlW43kJet/cT57I9FtgrnfiQ==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 84ms (ActiveRecord: 2.9ms | Allocations: 3564)
+
+
+Started GET "/login" for ::1 at 2020-11-14 21:28:32 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 154)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.3ms | Allocations: 2112)
+  Rendered application/_favicon.html.erb (Duration: 4.2ms | Allocations: 3351)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 771)
+  Rendered layouts/_footer.html.erb (Duration: 3.2ms | Allocations: 2325)
+Completed 200 OK in 98ms (Views: 96.8ms | ActiveRecord: 0.0ms | Allocations: 76391)
+
+
+Started POST "/login" for ::1 at 2020-11-14 21:28:42 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eLWQHBjRc2ZOR70W+/RhusRPL+JzhrVoEV6UK9I0a3zCQjcoq11s4LKd/YCub29wkE9kfQoOdY/wK1Oun3ENuQ==", "user"=>{"email"=>"jlordend@asu.edu", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jlordend@asu.edu"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 5ms (ActiveRecord: 1.2ms | Allocations: 909)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eLWQHBjRc2ZOR70W+/RhusRPL+JzhrVoEV6UK9I0a3zCQjcoq11s4LKd/YCub29wkE9kfQoOdY/wK1Oun3ENuQ==", "user"=>{"email"=>"jlordend@asu.edu", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 136)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 6.6ms | Allocations: 2100)
+  Rendered application/_favicon.html.erb (Duration: 8.8ms | Allocations: 3351)
+  Rendered layouts/_header.html.erb (Duration: 1.3ms | Allocations: 745)
+  Rendered layouts/_footer.html.erb (Duration: 3.2ms | Allocations: 2325)
+Completed 200 OK in 206ms (Views: 139.8ms | ActiveRecord: 0.0ms | Allocations: 76124)
+
+
+Started POST "/login" for ::1 at 2020-11-14 21:29:22 -0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7TqeEdpcvSl7Uo3z4zSkd0mo2p03yCZ8dI9TCTfg70hXzTkladCir4eIzWW2r6q9HaiRAk5A5puV+pSMeqWJjQ==", "user"=>{"email"=>"jblamo0ze@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "jblamo0ze@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "current_sign_in_ip" = $3, "last_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["current_sign_in_at", "2020-11-15 04:29:22.718042"], ["last_sign_in_at", "2020-11-15 04:29:22.718042"], ["current_sign_in_ip", "::1"], ["last_sign_in_ip", "::1"], ["sign_in_count", 1], ["updated_at", "2020-11-15 04:29:22.718467"], ["id", 3]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/invite_error
+Completed 302 Found in 86ms (ActiveRecord: 7.4ms | Allocations: 4711)
+
+
+Started GET "/invite_error" for ::1 at 2020-11-14 21:29:22 -0700
+Processing by InvitesController#error as HTML
+  Rendering invites/error.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 150)
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered invites/error.html.erb within layouts/application (Duration: 4.2ms | Allocations: 854)
+  Rendered application/_favicon.html.erb (Duration: 5.7ms | Allocations: 3526)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 870)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2325)
+Completed 200 OK in 88ms (Views: 85.5ms | ActiveRecord: 1.6ms | Allocations: 75002)
+
+
+Started GET "/invite" for ::1 at 2020-11-14 21:29:22 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 7.4ms | Allocations: 6020)
+  Rendered application/_favicon.html.erb (Duration: 4.3ms | Allocations: 3526)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 849)
+  Rendered layouts/_footer.html.erb (Duration: 3.0ms | Allocations: 2325)
+Completed 200 OK in 81ms (Views: 78.4ms | ActiveRecord: 1.7ms | Allocations: 80400)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-14 21:29:25 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1556)
+  Rendered application/_favicon.html.erb (Duration: 5.4ms | Allocations: 3525)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.0ms | Allocations: 1425)
+  Rendered layouts/_footer.html.erb (Duration: 2.1ms | Allocations: 2325)
+Completed 200 OK in 114ms (Views: 91.7ms | ActiveRecord: 9.0ms | Allocations: 82964)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-14 21:29:27 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YxdE7bctKw0gMzo+NwFNUHVXdDXIKDmzWf6DYCdx7ov50MkpA5a53GXyEyXwRkYaEzR4VPeIGgsnX39n4/TPcg==", "embed_link"=>{"border"=>"Yes", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (7.7ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", "Yes"], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-15 04:29:27.014275"], ["updated_at", "2020-11-15 04:29:27.014275"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 14ms (ActiveRecord: 9.8ms | Allocations: 1855)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-14 21:29:27 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (1.0ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 153)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 1.4ms | Allocations: 423)
+  Rendered application/_favicon.html.erb (Duration: 4.5ms | Allocations: 3526)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 4.0ms | Allocations: 1436)
+  Rendered layouts/_footer.html.erb (Duration: 3.3ms | Allocations: 2317)
+Completed 200 OK in 84ms (Views: 78.9ms | ActiveRecord: 2.3ms | Allocations: 75710)
+
+
+Started GET "/embed_link" for ::1 at 2020-11-14 21:29:28 -0700
+Processing by EmbedLinksController#new as HTML
+  Rendering embed_links/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered embed_links/new.html.erb within layouts/application (Duration: 1.9ms | Allocations: 929)
+  Rendered application/_favicon.html.erb (Duration: 4.5ms | Allocations: 3506)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.2ms | Allocations: 1417)
+  Rendered layouts/_footer.html.erb (Duration: 3.3ms | Allocations: 2317)
+Completed 200 OK in 81ms (Views: 78.7ms | ActiveRecord: 1.3ms | Allocations: 75675)
+
+
+Started POST "/embed_links" for ::1 at 2020-11-14 21:29:30 -0700
+Processing by EmbedLinksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VyhrhvZsKFadEEnLNY6S56Wtb6QUr3tQeB7ROMUx0NrN7+ZCQte6h9jRYNDyyZmtw85jxSsPWOgGvy0/AbTxIw==", "embed_link"=>{"border"=>"No", "border_color"=>"#f6b73c", "border_size"=>"Thin", "size"=>"A small portion of the screen", "location"=>"The lower left corner", "special_position"=>"I want users to be able to scroll past the embedded page"}, "commit"=>"Generate your code!"}
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mEmbedLink Create (1.1ms)[0m  [1m[32mINSERT INTO "embed_links" ("border", "border_color", "border_size", "size", "location", "special_position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["border", "No"], ["border_color", "#f6b73c"], ["border_size", "Thin"], ["size", "A small portion of the screen"], ["location", "The lower left corner"], ["special_position", "I want users to be able to scroll past the embedded page"], ["created_at", "2020-11-15 04:29:30.909158"], ["updated_at", "2020-11-15 04:29:30.909158"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/embed_links/1/edit
+Completed 302 Found in 7ms (ActiveRecord: 3.3ms | Allocations: 1775)
+
+
+Started GET "/embed_links/1/edit" for ::1 at 2020-11-14 21:29:30 -0700
+Processing by EmbedLinksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmbedLink Load (0.9ms)[0m  [1m[34mSELECT "embed_links".* FROM "embed_links" WHERE "embed_links"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering embed_links/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.4ms | Allocations: 147)
+  Rendered embed_links/edit.html.erb within layouts/application (Duration: 0.6ms | Allocations: 247)
+  Rendered application/_favicon.html.erb (Duration: 7.2ms | Allocations: 3506)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (Duration: 3.5ms | Allocations: 1428)
+  Rendered layouts/_footer.html.erb (Duration: 2.7ms | Allocations: 2325)
+Completed 200 OK in 85ms (Views: 81.7ms | ActiveRecord: 2.2ms | Allocations: 75051)
+
+
+Started GET "/invite" for ::1 at 2020-11-14 21:29:32 -0700
+Processing by InvitesController#new as HTML
+  Rendering invites/new.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered invites/new.html.erb within layouts/application (Duration: 7.0ms | Allocations: 6027)
+  Rendered application/_favicon.html.erb (Duration: 5.6ms | Allocations: 3525)
+  Rendered layouts/_header.html.erb (Duration: 1.1ms | Allocations: 854)
+  Rendered layouts/_footer.html.erb (Duration: 2.6ms | Allocations: 2325)
+Completed 200 OK in 100ms (Views: 97.3ms | ActiveRecord: 1.4ms | Allocations: 80336)
+
+
+Started POST "/invites" for ::1 at 2020-11-14 21:29:37 -0700
+Processing by InvitesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jABnyQFPmXnSl/tHC/03u4Ipls5cO4MhcCiafGgLgmoWx+oNtfQLqJdW0lzMujzx5Eqar2OboJkOiWZ7rI6jkw==", "invite"=>{"phone_number"=>"917-574-0753", "sender_id"=>"3", "country_code"=>"US", "preferred_name"=>"blam", "relationship"=>"Friends"}, "g-recaptcha-response"=>"03AGdBq24lYlRojI5gF1UzcU6TMZBy_A0ErGyjZEjR5TJ3ooTspnKS46PVhClUTj9S3NeBEYT6Prl1F25yTFmkchtmWmgJcnFFxfcoaIhydu280j_UJNT9G9ItdqBaaLoxsGNCit8hrfIuoJkBeXAUCef0XrsNv9AJOAZ3dfM4rEZ61dY6Wvo_OeKY6E4dPiVacKBsEAmwTDAclSI5F2N8BXVd90CRYGm3zWYxFus4xoTKt4tU3Y_0clTSQXJvwksaoC8qg7q8RxHcis53NngkWtedl-KeocczeSQ6sk17UU6S2NIYNujQfrpDC9DtNO8IXLYfigxZ8vDoigUpV7PgFTwp6o6UV7gSSvRulCg3dGgk5-d0R3lyS0pDjBTU6Y5lybUhPJ7bMakBlMKcKyUgOajskvk_dA9Y5p1gEf70U5OXMdh4XuG08CKYoC8xaOv7OGsBujWWtkuJ", "commit"=>"Send Invite!"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInvite Create (1.7ms)[0m  [1m[32mINSERT INTO "invites" ("phone_number", "country_code", "relationship", "preferred_name", "sender_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["phone_number", "917-574-0753"], ["country_code", "US"], ["relationship", "Friends"], ["preferred_name", "blam"], ["sender_id", 3], ["created_at", "2020-11-15 04:29:37.841701"], ["updated_at", "2020-11-15 04:29:37.841701"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/invites/1/edit
+Completed 302 Found in 156ms (ActiveRecord: 4.9ms | Allocations: 9466)
+
+
+Started GET "/invites/1/edit" for ::1 at 2020-11-14 21:29:37 -0700
+Processing by InvitesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvite Load (1.0ms)[0m  [1m[34mSELECT "invites".* FROM "invites" WHERE "invites"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering invites/edit.html.erb within layouts/application
+  Rendered layouts/_flash_messages.html.erb (Duration: 0.3ms | Allocations: 148)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered invites/edit.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1024)
+  Rendered application/_favicon.html.erb (Duration: 3.4ms | Allocations: 3525)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 865)
+  Rendered layouts/_footer.html.erb (Duration: 2.0ms | Allocations: 2317)
+Completed 200 OK in 66ms (Views: 61.4ms | ActiveRecord: 2.0ms | Allocations: 75707)
+
+
