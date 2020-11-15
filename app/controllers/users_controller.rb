@@ -167,17 +167,18 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @recaptcha_checked = verify_recaptcha(model: @user)
 
+    unless cookies[:referer_id].nil? then
+      ref_user = User.find(cookies[:referer_id])
+      User.update(ref_user.id, reputation_score: ref_user.reputation_score + 10)
+      cookies.delete :referer_id
+    end
+
     if @recaptcha_checked 
       # CHECKING FOR REFER ID:
-      # if cgi.cookies().key?("referer_id") then
-      #   ref_user = User.find(cookies[:referer_id])
-        
-      #   User.update(ref_user.id, reputation_score: ref_user.reputation_score + 10)
-      #   cookies.delete :referer_id
-      # end
+
       if @user.save
-      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-      UserMailer.with(user: @user).welcome_email.deliver_later
+        redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+        UserMailer.with(user: @user).welcome_email.deliver_later
       else
         redirect_to new_user_signup_path, danger: signup_error_message
         @user.errors.clear
