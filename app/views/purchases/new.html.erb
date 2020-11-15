@@ -1,7 +1,7 @@
 <div class="ml-5 mt-4 row">
   <div class="col-md-9 col-md-offset-3 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2" style="text-align:left">
 
-<br> 
+<br>
     <%= form_for @purchase do |f| %>
       <% if user_signed_in? %>
         <%= f.hidden_field :user_id, value: current_user.id %>
@@ -17,7 +17,7 @@
       <%= f.hidden_field :merchandise_id, value: params[:merchandise_id] %>
       <% if @purchase.errors.any? %>
         <%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved.
-        <% @purchase.errors.full_messages.each do |msg| %> 
+        <% @purchase.errors.full_messages.each do |msg| %>
           <%= msg %>
         <% end %>
       <% end %>
@@ -30,7 +30,7 @@
 
         <h1 class="maroon"> <strong> Complete Purchase </strong></h1><br>
 
-        <h4>Instructions for Recieving Reward</h4>
+        <h4>Instructions for Receiving Reward</h4>
         <p>If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent
         <br><br>
         If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info
@@ -47,14 +47,14 @@
             <div class="cardinfo" >
               <%= label_tag :card_number, "Credit Card Number" %>
               <%= text_field_tag :card_number, nil, name: nil %><br><br>
-  
-              <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-              <%# = text_field_tag :card_code, nil, name: nil %><br><br>
-              <%= text_field_tag :card_code %><br><br>
 
               <%= label_tag :card_month, "Card Expiration" %>
               <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
               <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
+
+              <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+              <%= text_field_tag :card_code%><br><br>
+              
             </div>
           <div class="buynewcard">
             <%if(params[:merchandise_id].present?)%>
@@ -70,7 +70,6 @@
               <%= f.submit "Donate now" %>
             <%end%>
           </div>
-          
           <br>
           <br>
 
@@ -93,16 +92,15 @@
           <br><br><br><br>
 
         <% else %>
-            <p> <%= label_tag :card_number, "Credit Card Number" %> 
+            <p> <%= label_tag :card_number, "Credit Card Number" %>
             <%= text_field_tag :card_number, nil, name: nil %></p><br><br>
-  
-            <p> <%= label_tag :card_code, "Security Code on Card (CVV)" %> 
+
+            <p> <%= label_tag :card_code, "Security Code on Card (CVV)" %>
             <%= text_field_tag :card_code, nil, name: nil %></p><br><br>
 
             <p> <%= label_tag :card_month, "Card Expiration" %> </p>
             <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
             <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+5}, {name: nil, id: "card_year"} %> <br><br>
-          </p>
           <%if(params[:merchandise_id].present?)%>
               <%= f.submit "Purchase" %><br><br>
           <%else%>
@@ -113,7 +111,6 @@
       <% else %>
         <p> <%= label_tag :card_number, "Credit Card Number" %> </p>
         <%= text_field_tag :card_number, nil, name: nil %><p>
- 
         <p><%= label_tag :card_code, "Security Code on Card (CVV)" %> </p>
         <%= text_field_tag :card_code, nil, name: nil %>
 
@@ -138,13 +135,5 @@
 	var carduse = 'global variable card';
 	function existingcard () {
 		carduse = "existingcustomer";
-	}  
+	}
 </script>
-
-
-
-
-
-
-
-

@@ -1,3 +1,6 @@
+<!-- links to pagination.js file-->
+<%= javascript_include_tag "pagination"%>
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
@@ -6,200 +9,198 @@
 
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 <%i = 0%>
+<div class="tabContainer pt-2">
+    <div class="panel panel-default border-right border-left border-top">
 
-<div class="panel panel-default border-right border-left border-top">
+      <% if @calendar_events.count != 0 %>
+        <table class="table table-hover" id="calendar" style="width:100%">
+          <tbody>
 
-  <% if @calendar_events.count != 0 %>
-    <table class="table table-hover" id=calendar>
-      <tbody>
+          <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
+            <% user = User.find(event.user_id) %>
+            <% i += 1 %>
+            <tr>
 
-      <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
-        <% user = User.find(event.user_id) %>
-        <% i += 1 %>
-        <tr>
-
-          <td class="col-sm-4 text-center">
+              <td class="col-sm-4 text-center">
                                                                 
-            <div id="calendar-event">
-              <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
-            </div>
-
-
-          <td class="col-sm-2" style="min-width: 125px;">
-            <% rsvpeople = "" %>
-            <% rsvpusers = event.users %>
-            <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
-            <br>
-            <span style="font-size:100%;"id=calendar-time-hour<%=i%>></span>
-          </td>
-
-          <script>
-              var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
-              date.setHours(date.getHours() + parseInt("<%=offset%>"))
-              var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
-              var optionsHour = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
-              document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
-              document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
-          </script>
-
-          <td class=col-sm-2>
-            <%= event.topic %><br>
-            <%= link_to user.name, user.permalink %>
-
-            <% if user_signed_in? %>
-              <% if event.user_id == current_user.id %>
-                <%= link_to '(Edit)', edit_event_path(event.id), id: "calendar-host" %>
-              <% end %>
-            <% end %>
-          </td>
-          <script>
-              var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
-              date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
-              var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
-              var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
-              document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
-              document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
-          </script>
-
-          <td class="col-sm-2 overflow-visible">
-            <% rsvps = event.rsvpqs %>
-            <% rsvpusers = event.users %>
-            <% if rsvps.count > 0 %>
-
-              <div class="btn-group">
-                <button type="button" class="btn btn-lg text-primary dropdown-toggle" style="border-color: #8d1d40" data-toggle="dropdown" aria-haspopup="true" >
-                  <span class="caret"></span> &nbsp; <%= rsvps.count %> Attending &nbsp; <span></span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
-                  <% rsvps.each do |rsvp| %>
-                    <%if !rsvp.user_id.nil? %>
-                      <% rsvpuser = User.find(rsvp.user_id) %>
-                      <%= link_to user_profile_path(rsvpuser.permalink) do %>
-                        <div class="dropdown-item">
-
-                    <span>
-                      <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
-                        <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
-                      <% elsif !rsvpuser.profilepic.url.nil? %>
-                        <% if rsvpuser.profilepic.url.match(/http/) %>
-                          <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
-                        <% end %>
-                      <% else %>
-                        <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
-                      <% end %>
-                    </span>
-                          <%= rsvpuser.name %></div>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                  <% rsvps.each do |rsvp| %>
-                    <% unless rsvp.email.blank? %>
-                      <% parts = rsvp.email.split('@') %>
-                      <div class="dropdown-item"><%= parts[0] %></div>
-                    <% end %>
-                  <% end %>
+                <div id="calendar-event" style="text-align: left; font-size: 23px">
+                  <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
                 </div>
-              </div>
-            <% end %>
-          </td>
 
 
+              <td class="col-sm-2" style="min-width: 125px;">
+                <% rsvpeople = "" %>
+                <% rsvpusers = event.users %>
+                <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
+                <br>
+                <span style="font-size:100%;"id=calendar-time-hour<%=i%>></span>
+              </td>
 
-          <td class=col-sm-2>
-            <% @rsvp = Rsvpq.new %>
-            <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
-            <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
+              <script>
+                  var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+                  date.setHours(date.getHours() + parseInt("<%=offset%>"))
+                  var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+                  var optionsHour = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+                  document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
+                  document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
+              </script>
 
-            <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-              <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary btn-sm fa fa-video-camera" %>
+              <td class=col-sm-2>
+                <%= event.topic %><br>
+                <%= link_to user.name, user.permalink %>
 
-            <% else %>
-              <%= form_for(@rsvp) do |f| %>
-                <% if @rsvp.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-                    <ul>
-                      <% @rsvp.errors.full_messages.each do |msg| %>
-                        <li><%= msg %></li>
+                <% if user_signed_in? %>
+                  <% if event.user_id == current_user.id %>
+                    <%= link_to '(Edit)', edit_event_path(event.id), id: "calendar-host" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <script>
+                  var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
+                  date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
+                  var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
+                  var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
+                  document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
+                  document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+              </script>
+
+              <td class="col-sm-2 overflow-visible">
+                <% rsvps = event.rsvpqs %>
+                <% rsvpusers = event.users %>
+                <% if rsvps.count > 0 %>
+
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-lg text-primary dropdown-toggle" style="border-color: #8d1d40" data-toggle="dropdown" aria-haspopup="true" >
+                      <span class="caret"></span> &nbsp; <%= rsvps.count %> Attending &nbsp; <span></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
+                      <% rsvps.each do |rsvp| %>
+                        <%if !rsvp.user_id.nil? %>
+                          <% rsvpuser = User.find(rsvp.user_id) %>
+                          <%= link_to user_profile_path(rsvpuser.permalink) do %>
+                            <div class="dropdown-item">
+
+                        <span>
+                          <% if rsvpuser.profilepic.present? && rsvpuser.profilepic != '' %>
+                            <%= image_tag rsvpuser.profilepic.url.to_s, :class => 'img-xs' %>
+                          <% elsif !rsvpuser.profilepic.url.nil? %>
+                            <% if rsvpuser.profilepic.url.match(/http/) %>
+                              <%= image_tag rsvpuser.profilepic.url, :class => 'img-xs' %>
+                            <% end %>
+                          <% else %>
+                            <%= image_tag "logoDigitalHollow300.png", :class => 'img-xs' %>
+                          <% end %>
+                        </span>
+                              <%= rsvpuser.name %></div>
+                          <% end %>
+                        <% end %>
                       <% end %>
-                    </ul>
+                      <% rsvps.each do |rsvp| %>
+                        <% unless rsvp.email.blank? %>
+                          <% parts = rsvp.email.split('@') %>
+                          <div class="dropdown-item"><%= parts[0] %></div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </td>
+
+
+
+              <td class=col-sm-2>
+                  <% @rsvp = Rsvpq.new %>
+                  <% start_time = event.start_at.strftime("%B %d %Y") + ' ' + event.start_at.strftime("%T") %>
+                  <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
+
+                  <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
+                  <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary text-white fa fa-video-camera", style: "padding: 2px 20px; margin-left: 10px"%>
+
+                  <% else %>
+                  <%= form_for(@rsvp) do |f| %>
+                  <% if @rsvp.errors.any? %>
+                  <div id="error_explanation">
+                      <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                      <ul>
+                          <% @rsvp.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                          <% end %>
+                      </ul>
                   </div>
                   <input type="hidden" id="timeZone<%=i%>" name="timeZone">
                   <%= f.hidden_field :event_id, :value => event.id %>
                   <% if user_signed_in? %>
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
 
-                    <% flag = true %>
-                    <% event.rsvpqs.each do |rsvp| %>
-                      <% if rsvp.user_id == current_user.id %>
-                        <% flag = false %>
-                      <% end %>
-                    <% end %>
-
-                    <% if flag %>
-                      <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 10px", :id => "RSVPsubmit"  %>
-                    <% end %>
-                  <% else %>
+                  <% flag = true %>
+                  <% event.rsvpqs.each do |rsvp| %>
+                  <% if rsvp.user_id == current_user.id %>
+                  <% flag = false %>
                   <% end %>
-                <% end %>
+                  <% end %>
+
+                  <% if flag %>
+                  <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px" %>
+                  <% end %>
+
+                  <% end %>
+                  <% end %>
 
 
-                <script>
-                    var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"))
-                    date.setHours(date.getHours() + parseInt("<%=offset%>"))
-                    var optionsTime = { hour: '2-digit', minute: '2-digit'};
-                    document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)
-                </script>
-                <% if user_signed_in? %>
+                  <script>var date = new Date(Date.parse("<%= event.start_at.strftime(" % FT % T %: z") %>"))
+                      date.setHours(date.getHours() + parseInt("<%=offset%>"))
+                      var optionsTime = { hour: '2-digit', minute: '2-digit' };
+                      document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)</script>
+                  <% if user_signed_in? %>
                   <% if @user.id != current_user.id %>
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
-                    <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px; margin-left: 10px", :id => "RSVPsubmit" %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                  <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px"%>
                   <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          </td>
+                  <% end %>
+                  <% end %>
+                  <% end %>
+              </td>
 
 
-          <!-- Share Buttons -->
-          <td class=col-sm-2>
-            <% domainurl = "http://www.thinq.tv/"%>
+              <!-- Share Buttons -->
+              <td class=col-sm-2>
+                <% domainurl = "http://www.thinq.tv/"%>
 
-            <!-- Facebook Share -->
-            <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"
-               onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>',
-                   'newwindow',
-                   'width=600,height=400,top=100,left=300');
-                   return false;">
-              <%= image_tag("social-share-button/facebook.png")%>
+                <!-- Facebook Share -->
+                <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"
+                   onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>',
+                       'newwindow',
+                       'width=600,height=400,top=100,left=300');
+                       return false;">
+                  <%= image_tag("social-share-button/facebook.png")%>
 
-            </a>&nbsp
+                </a>&nbsp
 
-            <!-- Twitter Share -->
-            <a href="https://twitter.com/intent/tweet?text=Join <%= user.name %>'s' Conversation to talk about: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>%20Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations."
-               onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= user.name %> Conversation: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>,
-                   'newwindow',
-                       'width=600,height=400,top=80,left=300');
-                   return false;">
-              <%= image_tag("social-share-button/twitter.png")%>
-            </a>&nbsp
+                <!-- Twitter Share -->
+                <a href="https://twitter.com/intent/tweet?text=Join <%= user.name %>'s' Conversation to talk about: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>%20Every%20afternoon%20and%20evening%20ThinQ.tv%20has%20meaningful%20live%20video%20chat%20conversations%20to%20get%20you%20motivated%20for%20the%202020%20elections.%20Go%20to%20http://ThinQ.tv%20and%20browse%20the%20schedule%20of%20Conversations."
+                   onclick="window.open('https://twitter.com/intent/tweet?text=Join <%= user.name %> Conversation: <%= event.name + "," %> <%= event.start_at.strftime("%B %d, %I:%M %p")%> PDT: http://www.thinq.tv/<%= user.permalink %>,
+                       'newwindow',
+                           'width=600,height=400,top=80,left=300');
+                       return false;">
+                  <%= image_tag("social-share-button/twitter.png")%>
+                </a>&nbsp
 
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
-               onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
-                   'newwindow',
-                   'width=600,height=400,top=100,left=300');
-                   return false;">
-              <%= image_tag("social-share-button/linkedin.png")%>
-            </a>&nbsp
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>"
+                   onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<%= @surl %>',
+                       'newwindow',
+                       'width=600,height=400,top=100,left=300');
+                       return false;">
+                  <%= image_tag("social-share-button/linkedin.png")%>
+                </a>&nbsp
 
-          </td>
-        </tr>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
       <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</>
+    </div>
 </div>
 
 
@@ -208,4 +209,3 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
-

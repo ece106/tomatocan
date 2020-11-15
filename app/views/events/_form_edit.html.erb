@@ -1,19 +1,27 @@
 
 <div class="col">
   <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :topic, value: "Conversation" %>
   <input type="hidden" id="timeZone" name="timeZone">
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "*Title of Event" %></h3>
-    <p class="help-block">Will your event have a topic? Do you have an area of expertise?</p>
-    <%= f.text_field :name, size: 80 %><p>
+    <h3><%= f.label :buttontype, "Title of Conversation" %></h3>
+    <p class="help-block"><i>Enter a few words about what you expect will be discussed &/or the name of the organization committing to being in the chatroom during the time slot:</i></p>
+    <%= f.text_field :name, size: 82 %><p>
+  </div>
+  <div class="form-group">
+    <h3><%= f.label :buttontype, "*Type of Conversation" %></h3>
+    <p class="help-block">Which category most closely reflects the type of conversation you intend </p>
+    <%= f.select(:topic, ['Early Career Support Group', 'Job Fair/Networking', 'Parents of STEM girls', 'Mentor Office Hour', 'STEM student hangout'], {}) %><p>
   </div>
 
+<!-- Should make a dropdown for title above: Early Career Support Group, Job Fair, Parents of STEM girls, 
   <div class="form-group">
     <h3><%= f.label :buttontype, "*Topic" %></h3>
     <p class="help-block">Will your event be a Drop-In Hour or a Conversation</p>
     <%= f.select(:topic, ['DropIn', 'Conversation', 'Group Problem Solving'], {}) %><p>
   </div>
+-->
 
   <div class="form-group">
     <h3><%= f.label :buttontype, "Start Time" %></h3>
@@ -22,8 +30,8 @@
   </div>
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "Details about Topic" %></h3>
-    <p class="help-block"><i>NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
+    <h3><%= f.label :buttontype, "Details about Conversation" %></h3>
+    <p class="help-block"><i>Your goal for the conversation, a little about your background. NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
     <%= f.text_area :desc, cols: 82, rows: 7 %><p>
   </div>
 </div>

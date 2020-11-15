@@ -1,13 +1,19 @@
 <div class="team pt-3 mt-3">
   <div class="container border shadow">
-    <div class="row" >
+    <br>
+    <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>" style = "height:50px">
+          <%= value %>
+        </div>
+     <% end %>
 
+    <div class="row" >
       <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 pt-3">
         <h3 class="text-center text-primary"><b> DROP-IN HOURS: Co-working where we’re socially distanced but not alone</b></h3>
         <p >
-          ThinQ.tv is a <b >Woman-Owned tech startup</b>. Coding While Female is our activism. We support women & minority engineers, designers, & startups in our video chat Drop-In Hours. Drop In & meet us! We'll greet you when you arrive.<br>
-          - <b>No agenda:</b> Drop in on your own schedule.<br>
-          - <b>Exchange ideas:</b> Get feedback on your designs, code, startup ideas, or activism plans. <br>
+          ThinQ.tv is a <b >Woman-Owned tech startup</b>. We support early career women & minorities in tech in our video chat Drop-In Hours. Drop In & interrupt us! <br>
+          - <b>No agenda:</b> Drop in on your own schedule and ask whatever is on your mind.<br>
+          - <b>Exchange ideas:</b> Get peer feedback on your designs, code, homework, tutorials. <br>
           - <b>Meet other women & minorities in tech:</b> Your support community is here throughout the day available to chat!
          </p>
 
@@ -20,8 +26,8 @@
           <% if (Time.current > Time.parse(@start_timeresearch)) && (Time.current < (Time.parse(@start_timeresearch) + 1.hour)) %>
             <div class = "col-sm-12" id="eventCurrentdiv">
               <h3>We're working on Group Problem Solving for <%= link_to @nameresearch, event_path(@displayresearch.id), style: "text-shadow: 1px 1px 1px #fff " %></h3>
-              <p> right NOW!</p><br>
-              <%= link_to " Join Group Problem Solving NOW ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera mt-1", style: "position: relative; font-size: 30px; border-radius: 5px;" %>
+              <p> right now!</p><br>
+              <%= link_to " Join Group Problem Solving Now ", user_viewer_path(@hostresearch.permalink, chatrm: @displayresearch.topic , event: @displayresearch.id), class: "btn btn-primary btn-sm fa fa-video-camera mt-1", style: "position: relative; font-size: 24px; border-radius: 5px;" %>
             </div>
           <% end %>
         <% end %>
@@ -39,12 +45,12 @@
     <div class="col-sm-12">
       <h1 class = "text-center text-primary pl-4 ml-1"><b>Drop-In Schedule</b></h1>
     </div>
-    
+
     <div>
          <% if user_signed_in? %>
-            <br>Don't see your desired hour on the schedule yet? <br>
+            <br><p class="text-center">Don't see your desired hour on the schedule yet? <br>
             <%= link_to 'Post Drop-In Hour', new_event_path, class: "btn btn-warning", title: "Host drop-in sessions or invite people to ask questions about your area of expertise" %>
-          <% end %>
+          <% end %></p>
     </div>
     <br>
     <div class="col-md-12 col-sm-12 col-xs-10 pl-0 ml-2 justify-content-center pr-1">
@@ -61,7 +67,6 @@
         </div>
       </div>
     </div>
-      
     <div class="tabPanel" >
       <div class="container-fluid mr-5 pr-5">
        <div id="events">
@@ -74,7 +79,6 @@
 </div>
 
 <br>
-  
     <h2 class="text-center text-primary" > <strong>
       We currently have Drop-In hours for 3 topics:</strong>
     </h2>
@@ -89,7 +93,7 @@
           </div>
             <div class="card-body mr-5 pr-5">
               <h4> <a class="btn btn-primary btn-lg btn-block text-center" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
-            User Experience <br> 
+            User Experience <br>
               </a></h4>
               <div class="collapse" id="collapseTwo">
                 <div>
@@ -97,7 +101,7 @@
                 - Be in the video chat viewer for each other incase you want feedback from others with UX career interests. <br>
                 - Form a support group available several hours per day who are there when you want to be around others also improving their User experience skills.<br>
                 </div>
-              </div> 
+              </div>
             </div>
         </div>
       </div>
@@ -110,7 +114,7 @@
           </div>
           <div class="card-body mr-5 pr-5">
             <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
-             RUBY ON RAILS Web Development <br> 
+             RUBY ON RAILS Web Development <br>
               </a>
             </h4>
               <div class="collapse" id="collapseOne">
@@ -134,7 +138,7 @@
           </div>
           <div class="card-body mr-5 pr-5">
             <h4> <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">
-             WOMAN DEVELOPERS <br> 
+             WOMAN DEVELOPERS <br>
               </a></h4>
               <div class="collapse" id="collapseThree">
                 <div>
@@ -145,7 +149,7 @@
               </div>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
 
     <script type="text/javascript">

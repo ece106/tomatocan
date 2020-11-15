@@ -22,10 +22,8 @@
     <div class="tab-pane active" id="profileTab">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-xs-12">
-
-        
-
+          <div class="col-md-4 pt-3">
+            <h1>Profile Information</h1>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -38,28 +36,31 @@
     <!-- Rewards Tab -->
     <div class="tab-pane" id="rewardsTab">
       <div class="container-fluid">
-        <div class="row justify-content-center">
-          <br><br>
-          <%= render 'layouts/stripealert' %>
-        </div>
+        <!-- Row 1: Page Title-->
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-md-4 pt-3">
             <h1>Manage Rewards</h1>
           </div>
         </div>
 
+        <!-- Row 2: Stripe Alert-->
+        <div class="row justify-content-center">
+          <br><br>
+          <%= render 'layouts/stripealert' %>
+        </div>
+
+        <!-- Row 3: Merchside Bar and Create/Expired Perks Layouts-->
         <div class="row">
           <div class="col-md-6">
-            <!--%= render 'layouts/stripealert' %-->
             <%= render 'layouts/merchsidebar' %>
           </div>
           <div class="col-md-6">
-            <%= render 'layouts/createPerk' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 pt-3">
-            <%= render 'layouts/expiredPerks' %>
+            <div class="mb-2">
+              <%= render 'layouts/createPerk' %>
+            </div>
+            <div class="mt-2">
+              <%= render 'layouts/expiredPerks' %>
+            </div>
           </div>
         </div>
       </div>
@@ -68,24 +69,28 @@
     <!-- Conversations Tab -->
     <div class="tab-pane" id="streamingTab">
       <div class="container-fluid">
+        <!-- Row 1: Page Title-->
         <div class="row">
           <div class="col-md-4 pt-3">
             <h1>Conversations</h1>
           </div>
-          <div class="col-md-8" id="shows-button-panel">
-            <%= link_to 'Set Up Conversation', new_event_path, :class => "btn btn-lg btn-primary", :style => "margin-left: 50px;"  %>
+        </div>
+
+        <!-- Row 2: StreamDirections -->
+        <div class="row mb-4">
+          <div class="mx-auto">
+            <%= render 'layouts/streamDirections' %>
           </div>
         </div>
-        <br>
 
+        <!-- Row 3: Upcoming and Past Conversations -->
         <div class="row">
-            <div class="col-md-6" >
-              <%= render template: 'users/eventlist' %><br>
-              <%= render template: 'users/pastevents' %>
-            </div>
-            <div class="col-md-4" >
-              <%= render 'layouts/streamDirections' %>
-            </div>
+          <div class="col-md-6" >
+            <%= render template: 'users/eventlist' %><br>
+          </div>
+          <div class="col-md-6" >
+            <%= render template: 'users/pastevents' %>
+          </div>
         </div>
       </div>
     </div>
@@ -94,8 +99,8 @@
     <div class="tab-pane" id="accountTab">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-xs-12">
-            <h1 class = "pl-4 pt-3">Account Settings</h1>
+          <div class="col-md-4 pt-3">
+            <h1>Account Settings</h1>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -107,49 +112,56 @@
 
     <!-- Sales Tab -->
     <div class="tab-pane" id="salesTab">
-      <div class="container-fluid">
-        <div class="row justify-content-center">
-
-          <%= render 'layouts/stripealert' %>
-        </div>       
-          <div class="col-xs-12">
-            <h1 class "pl-5 pt-3">Reward Sales</h1>
+      <div class="container-fluid">   
+        <div class="row"> 
+          <div class="col-md-4 pt-3">
+            <h1>Reward Sales</h1>
           </div>
+        </div>
+        <div class="row justify-content-center">
+          <%= render 'layouts/stripealert' %>
+        </div>   
         <%= render :template => 'users/dashboard' %>
       </div>
     </div>
 
     <!-- Blocked Users Tab -->
     <div class="tab-pane" id="blockedTab">
-      <div class="row justify-content-center pt-3">
-        <br><br>
-        <div class="col-md-4">
-           <div class="card">
-            <h3 class="card-header bg-primary text-white">
-              Blocked Users
-            </h3>
-            <div id="blocked" style="padding:0px 18px 8px 0px; font-size: 15px">
-              <% if current_user.BlockedUsers.empty? %>
-                <br><p style="text-align:center">You have not blocked any users</p>
-              <% else %>
-                <% current_user.BlockedUsers.each do |use| %>
-                <% user = User.find_by_permalink(use) %>
-                  <div style="padding:8px 0px 0px 15px">
-                    <% if user.profilepic.present? && user.profilepic != '' %>
-                        <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
-                    <% else %>
-                        <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
-                    <% end %>
-                    <% if user.name.length >= 15 %>
-                      <% name = user.name[0..14] + "..." %>
-                      <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= name %></a>
-                    <% else %>
-                      <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
-                    <% end %>
-                    <button id="unblock_button" style="float:right; margin-top:-3px" onclick="unblock('<%=current_user.id%>','<%=user.id%>')">Unblock</button>
-                  </div>
+      <div class="container-fluid">
+        <div class="row"> 
+          <div class="col-md-4 pt-3">
+            <h1>Blocked Users</h1>
+          </div>
+        </div>
+        <div class="row justify-content-center pt-3">
+          <div class="col-md-4">
+            <div class="card">
+              <h3 class="card-header bg-primary text-white">
+                Blocked
+              </h3>
+              <div id="blocked" style="padding:0px 18px 8px 0px; font-size: 15px">
+                <% if current_user.BlockedUsers.empty? %>
+                  <br><p style="text-align:center">You have not blocked any users</p>
+                <% else %>
+                  <% current_user.BlockedUsers.each do |use| %>
+                  <% user = User.find_by_permalink(use) %>
+                    <div style="padding:8px 0px 0px 15px">
+                      <% if user.profilepic.present? && user.profilepic != '' %>
+                          <%= image_tag user.profilepic.url.to_s, :class => "img-circle", :id => "image", style: "line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+                      <% else %>
+                          <%= image_tag "logoDigitalHollow300.png", :class => "img-circle", :id => "image", style: "background-color:white; line-height: 1.7; height: 1.7em; line-width: 1.7; width: 1.7em; margin-top: -5px" %>
+                      <% end %>
+                      <% if user.name.length >= 15 %>
+                        <% name = user.name[0..14] + "..." %>
+                        <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= name %></a>
+                      <% else %>
+                        <a style="padding:0px 0px 0px 5px;" href="https://thinq.tv/<%= user.permalink %>"><%= user.name %></a>
+                      <% end %>
+                      <button id="unblock_button" style="float:right; margin-top:-3px" onclick="unblock('<%=current_user.id%>','<%=user.id%>')">Unblock</button>
+                    </div>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
           </div>
         </div>

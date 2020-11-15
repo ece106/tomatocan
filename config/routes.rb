@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :embed_links
   resources :invites
+  mount Api::UsersApi, at: "/"
   resources :relationships
 
   resources :users do

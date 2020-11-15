@@ -1,127 +1,75 @@
-<div class="row bg-primary mt-2 pl-5">
-    
-  <div class="col-lg-5 pt-3 pb-4 pl-5 ml-3">
-  <% flash.each do |key, value| %>
+<div class="row mt-2" id = "heroImage">
+  <!-- DO NOT DELETE Where the home page images came from:
+       https://unsplash.com/photos/IL4WL6bf-h4
+       https://unsplash.com/photos/RIt88XBR3G0
+       https://unsplash.com/photos/rrI02QQ9GSQ 
+       https://unsplash.com/photos/SJvDxw0azqw 
+  -->  
+
+  <div class="col-lg-5 pt-3 pb-4 ml-2 mr-2">
+    <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>" style = "height:50px">
         <%= value %>
       </div>
     <% end %>
-    <h1 class="text-center text-white mt-5 pl-5 pt-5">
-      <strong>STEMinism to make you</strong>
-        <%= image_tag("GoldThinQ60.png")%>
-    </h1>
-    <br>
-    <h2 class="text-center text-white">
-      Video Chat community throughout the day for 
-      Women & Minorities in STEM
-    </h2>
 
-    <% if @conversations.count != 0 %><br>
-      <% if @start_time != nil %>
-        <% if (Time.current > Time.find_zone("UTC").parse(@start_time) ) && (Time.current < Time.find_zone("UTC").parse(@start_time) + 1.hour) %>
-          <div id="eventCurrentdiv align-items-end " style ="align-text:bottom">
-            <p class = "text-white text-center" >
-              <br><%= @name %> is LIVE right NOW!<br>
-              <%= link_to " Join Conversation ", user_viewer_path(@host.permalink, chatrm: @displayconvo.topic , event: @displayconvo.id), class: "btn btn-primary btn-sm fa fa-video-camera", style: "margin-bottom: 10px; border-radius: 5px; font-size: 40px; border-color: #FFC627" %>
-              <br>
-              Hosted by: <%= @host.name %>
-            </p>  
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
-
-  </div>
-  
-  <div class="col-lg-6 pt-5 pb-5 pl-5 ml-3 mb-5 mt-5 pr-2">
-    <%= image_tag("HomeBanner.png", style: "width:100%;")%>
-  </div>
-
-</div>
-  <!-- end of top section-->
-  <div class = "pt-4 mt-2 pb-1">
+    <div style="background-color: rgba(255, 255, 255, 0.5); border-radius: 10%">
+      <h1 class="text-center maroon mt-5 pl-2 pt-5" style="font-size: 50px">
+        <strong>Women who inspire you to </strong>
+        <%= image_tag("thinqMaroon.png", style: "height: 80px; margin-top: 10px") %>
+      </h1>
     
-    <h2 class="text-primary text-center"><strong>
-      Want feedback on your tech or designs? <br>
-      Need an online study group or career advice? </strong>
-    </h2>
-    <p class="lead text-center">
-      Most of the day we have a video chat Drop-In
-      hours to support Women & Minorities in Tech.
-      <br>
-      <%= link_to "Drop-In", studyhall_path, style: "color: #FFB704" %> to meet us! <br>
-      <%= link_to "Become a Drop-In peer volunteer or mentor", new_event_path, style: "color: #FFB704" %>
-    </p>
+      <h3 class="pl-2 pr-2" style="color:#8C1D40">
+        - A network of adults growing the next generation of women to be confident in STEM subjects
+        <br><br> - Discover & support each other via video chat
+        <br><br> - Free to anyone supportive of women in STEM to schedule conversations & meetings!
+      </h3>
+
+      <div class="text-center">
+          <%= render 'layouts/countdown_clock' %>
+      </div>
+    </div>
   </div>
 
-  <!-- end of new to thinQ section-->
-
-<div class="row" style="margin-bottom: 70px">
-    <!--study hall and conversation section -->
-
-    <div class="col-lg-6 col-md-12 col-sm-12 pt-2">
-      <!--conversations column-->
-      <div class="col-lg-12 col-md-12 mx-auto d-block text-center" style = "min-height:42%; justify-content:flex-end">
-        <%= render 'layouts/countdown_clock' %>
-      </div>
-      <%= image_tag("convo_photo.png", class:"mx-auto d-block pb-3", style: "border-radius: 112px; width: 50%;")%>
-      <h2 class="text-warning text-center"><strong>Conversations</strong>
-      </h2>
-      <p class = "text-center">Join conversations to better understand what affects minorities and women in STEM <br> through hearing personal experiences.
-      </p>
-    </div>
-
-    <!--end of conversations column-->
-
-    <div class="col-lg-6 col-md-12 col-sm-12 pb-5 pt-3 mt-3 ">
-      <!--study hall column; col-md-6 col-lg-6 col-sm-12 col-xs-12-->
-      <div class="col-lg-12 col-md-12 col-sm-7 mx-auto d-block text-center" style = "min-height:42%; justify-content:flex-end">
-        <%= render 'layouts/countdown_clockstudy' %>
-      </div>
-      <%= image_tag("activism_hall.jpg", class:" mx-auto d-block  pb-3", style: "border-radius:112px; width:50%;")%>
-      <h2 class="text-warning text-center pl-5"><strong>
-        Drop-In Hours</strong>
-      </h2>
-      <p class = "text-center">
-        Join a community of developers and designers to network <br> while collaborating and critiquing each others projects. All expertise levels welcome!
-      </p>     
-    </div>
-</div>
-    <!--end of drop in column-->
+  <div class="col-lg-6 py-5 my-5 mx-3"></div>
 </div>
 
-      <div>   
-        <div class="convo-container text-center" style="background-color: #8C1D40">
-          <!-- col-lg-3 col-md-6 -->
-          <h1 class = "white">Conversation Schedule</h1>
-          <% if user_signed_in? %>
-            <%= link_to 'Post your Own Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="tabContainer text-center pr-2" style="background-color: #8C1D40" >
-        <div class="buttonContainer pr-3" >
-          <button onclick="showPanel(0,'#4caf50')">List View</button>
-          <button onclick="showPanel(1,'#4caf50')">Daily View</button>
-          <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
-        </div>
-        
-        <div class="tabPanel">
-          <%= render 'layouts/convocalendar', collection: @conversations %>
-        </div>
-        <div class="tabPanel container-fluid">
-          <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
-        </div>
-        <div class="tabPanel container-fluid">
-        <div id="events">
-          <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
-             events: @calendar_events_all, monthNum: 0, type: 0}%>
-        </div>
+<div>
+  <div class="convo-container text-center" style="background-color: #8C1D40">
+    <div class="pt-2" id="button">
+      <h1 class="white pt-1">Schedule your own Conversation</h1>
+      <div id="schedulestart" >
+        <%= link_to 'Host a Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
       </div>
     </div>
-<br><br>
+
+    <!-- col-lg-3 col-md-6 -->
+    <h1 class="white">Drop in to these Conversations</h1>
+    <h2 class="mb-0 pb-2" style="color:#FFF"> Everyone is welcome!</h2>
+  </div>
+</div>
+
+<div class="tabContainer text-center pl-2 pr-2 pb-2" style="background-color: #8C1D40" >
+  <div class="buttonContainer mx-auto pb-1" >
+    <button onclick="showPanel(0,'#4caf50')">List View</button>
+    <button onclick="showPanel(1,'#4caf50')">Daily View</button>
+    <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
+  </div>
+
+  <div class="listView tabPanel">
+    <%= render 'layouts/convocalendar', collection: @conversations %>
+  </div>
+  <div class="tabPanel container-fluid">
+    <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
+  </div>
+  <div class="tabPanel container-fluid">
+    <div id="events">
+      <%= render partial: "layouts/calendar", locals: {baseDate: (Time.now - 10.hour).to_date,
+          events: @calendar_events_all, monthNum: 0, type: 0}%>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
-showPanel(0, '#f44336');
+  showPanel(0, '#f44336');
 </script>
