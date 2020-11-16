@@ -36,16 +36,15 @@
 
 <div>
   <div class="convo-container text-center" style="background-color: #8C1D40">
-    <div class="pt-2" id="button">
-      <h1 class="white pt-1">Schedule your own Conversation</h1>
-      <div id="schedulestart" >
-        <%= link_to 'Host a Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
-      </div>
-    </div>
+    <div id="scheduleStart"></div>
 
     <!-- col-lg-3 col-md-6 -->
     <h1 class="white">Drop in to these Conversations</h1>
     <h2 class="mb-0 pb-2" style="color:#FFF"> Everyone is welcome!</h2>
+    <div class="pt-2 pb-2" id="button">
+      <%= link_to 'Host a Conversation', new_event_path, class: "btn btn-warning", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
+    </div>
+    
   </div>
 </div>
 

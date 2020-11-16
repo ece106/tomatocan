@@ -37449,3 +37449,204 @@ Processing by StaticPagesController#monthCalendar as JS
 Completed 200 OK in 34ms (Views: 23.0ms | ActiveRecord: 5.0ms | Allocations: 5492)
 
 
+Started GET "/" for ::1 at 2020-11-15 22:10:48 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-15 19:10:48.908346')[0m
+  [1m[36mEvent Load (2.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-15 21:10:48.912404' AND start_at > '2020-11-15 20:10:48.912420') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (4.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-15 21:10:48.912404' ) ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-15 19:10:48.908346')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 3.7ms | Allocations: 743)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-15 19:10:48.908346')[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 95]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (2.6ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 96]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (0.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 97]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (0.9ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 98]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.2ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 99]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.0ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 100]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 101]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 102]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (3.5ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 103]]
+  Rendered layouts/_convocalendar.html.erb (Duration: 65.7ms | Allocations: 19590)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 3.2ms | Allocations: 1487)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.3ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendered layouts/_renderdayhome.html.erb (Duration: 36.4ms | Allocations: 12866)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 45.2ms | Allocations: 15759)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendered layouts/_calendar.html.erb (Duration: 15.5ms | Allocations: 3073)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 137.9ms | Allocations: 41323)
+  Rendered application/_favicon.html.erb (Duration: 5.1ms | Allocations: 3509)
+  Rendered layouts/_header.html.erb (Duration: 2.4ms | Allocations: 1280)
+  Rendered layouts/_footer.html.erb (Duration: 11.9ms | Allocations: 2717)
+Completed 200 OK in 270ms (Views: 223.5ms | ActiveRecord: 29.7ms | Allocations: 119561)
+
+
+Started GET "/" for ::1 at 2020-11-15 22:11:43 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-15 19:11:43.361374')[0m
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-15 21:11:43.364734' AND start_at > '2020-11-15 20:11:43.364752') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (2.5ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-15 21:11:43.364734' ) ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-15 19:11:43.361374')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 3.0ms | Allocations: 743)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-15 19:11:43.361374')[0m
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.0ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 95]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 96]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 97]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.0ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 98]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.1ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 99]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (0.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 100]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (0.9ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 101]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.4ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 102]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (0.8ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 103]]
+  Rendered layouts/_convocalendar.html.erb (Duration: 61.4ms | Allocations: 19600)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.5ms | Allocations: 1487)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.3ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendered layouts/_renderdayhome.html.erb (Duration: 29.2ms | Allocations: 12866)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.3ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.1ms | Allocations: 34)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 41.8ms | Allocations: 15760)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendered layouts/_calendar.html.erb (Duration: 16.1ms | Allocations: 3072)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 128.7ms | Allocations: 41327)
+  Rendered application/_favicon.html.erb (Duration: 4.7ms | Allocations: 3528)
+  Rendered layouts/_header.html.erb (Duration: 2.9ms | Allocations: 1277)
+  Rendered layouts/_footer.html.erb (Duration: 4.9ms | Allocations: 2717)
+Completed 200 OK in 236ms (Views: 193.0ms | ActiveRecord: 20.3ms | Allocations: 119646)
+
+
+Started GET "/" for ::1 at 2020-11-15 22:11:53 -0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-15 19:11:53.679987')[0m
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at < '2020-11-15 21:11:53.684346' AND start_at > '2020-11-15 20:11:53.684364') ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mEvent Load (2.4ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE (start_at > '2020-11-15 21:11:53.684346' ) ORDER BY start_at ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendering static_pages/home.html.erb within layouts/homepg
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-15 19:11:53.679987')[0m
+  Rendered layouts/_countdown_clock.html.erb (Duration: 3.1ms | Allocations: 743)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "events" WHERE (start_at > '2020-11-15 19:11:53.679987')[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.6ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 95]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (0.9ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 96]]
+  [1m[36mCACHE User Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.7ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 97]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.7ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 98]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (0.9ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 99]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 100]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.4ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 101]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.5ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 102]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRsvpq Load (1.3ms)[0m  [1m[34mSELECT "rsvpqs".* FROM "rsvpqs" WHERE "rsvpqs"."event_id" = $1[0m  [["event_id", 103]]
+  Rendered layouts/_convocalendar.html.erb (Duration: 84.8ms | Allocations: 19600)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 2.1ms | Allocations: 1487)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendered layouts/_renderdayhome.html.erb (Duration: 47.5ms | Allocations: 12868)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_renderdayhome.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered layouts/_weeklycalendar.html.erb (Duration: 55.6ms | Allocations: 15762)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  Rendered layouts/_calendar.html.erb (Duration: 15.1ms | Allocations: 3073)
+  Rendered static_pages/home.html.erb within layouts/homepg (Duration: 166.5ms | Allocations: 41324)
+  Rendered application/_favicon.html.erb (Duration: 6.8ms | Allocations: 3509)
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 1280)
+  Rendered layouts/_footer.html.erb (Duration: 5.4ms | Allocations: 2717)
+Completed 200 OK in 287ms (Views: 244.9ms | ActiveRecord: 22.9ms | Allocations: 119576)
+
+
