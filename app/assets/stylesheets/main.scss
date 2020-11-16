@@ -304,6 +304,34 @@ ul li a.toggle:hover {
   font-size: 1.0rem;
 }
 
+/* _convocalendar */
+
+@media only screen and (max-width: 500px){
+  #convoCal div {
+    all: unset;
+  }
+
+  .eventInfo {
+    padding-left: 0 !important;
+    text-align: center !important;
+  }
+
+  .eventInfo * {
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  .shareButtons {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .shareButtons a {
+    margin: auto;
+  }
+
+} 
+
 /* CSS for users/controlpanel */
 #controlpanel-events {
   margin-top: 60px;

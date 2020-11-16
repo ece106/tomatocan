@@ -1,5 +1,5 @@
 <!-- links to pagination.js file-->
-<%= javascript_include_tag "pagination"%>
+<%= javascript_include_tag "pagination" %>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
@@ -18,15 +18,14 @@
 
           <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
             <% user = User.find(event.user_id) %>
-            <% i += 1 %>
+
             <tr>
 
-              <td class="col-sm-4 text-center">
-                                                                
+              <td class="col-sm-4 text-center">                                               
                 <div id="calendar-event" style="text-align: left; font-size: 23px">
                   <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
                 </div>
-
+              </td>
 
               <td class="col-sm-2" style="min-width: 125px;">
                 <% rsvpeople = "" %>
@@ -36,14 +35,15 @@
                 <span style="font-size:100%;"id=calendar-time-hour<%=i%>></span>
               </td>
 
-              <script>
+              <!-- The following commented out section seems to be a repeat of what lines 58-66 is trying to do. -->
+              <!--<script>
                   var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
                   date.setHours(date.getHours() + parseInt("<%=offset%>"))
                   var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
                   var optionsHour = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
                   document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
                   document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
-              </script>
+              </script>-->
 
               <td class=col-sm-2>
                 <%= event.topic %><br>
@@ -59,9 +59,9 @@
                   var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
                   date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
                   var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
-                  var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
+                  var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long' };
                   document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
-                  document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
+                  document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
               </script>
 
               <td class="col-sm-2 overflow-visible">
@@ -147,10 +147,12 @@
                   <% end %>
 
 
-                  <script>var date = new Date(Date.parse("<%= event.start_at.strftime(" % FT % T %: z") %>"))
+                  <script>
+                      var date = new Date(Date.parse("<%= event.start_at.strftime(" % FT % T %: z") %>"))
                       date.setHours(date.getHours() + parseInt("<%=offset%>"))
                       var optionsTime = { hour: '2-digit', minute: '2-digit' };
-                      document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)</script>
+                      document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)
+                  </script>
                   <% if user_signed_in? %>
                   <% if @user.id != current_user.id %>
                   <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -196,6 +198,7 @@
 
               </td>
             </tr>
+            <% i += 1 %>
           <% end %>
           </tbody>
         </table>
