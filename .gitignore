@@ -10,14 +10,7 @@ coverage/.resultset.json
 coverage/.last_run.json
 
 # Ignore temporary files
-Procfile
-tmp/
-.idea
-.ruby-version
-.byebug_history
-.sass-cache/
-.DS_Store
-.bundle
+tmp/*
 
 # Ignore user configurations
 config/application.yml
@@ -29,3 +22,6 @@ config/environments/development.rb
 config/deploy
 config/deploy.rb
 Capfile
+
+# Ignore log
+log/development.log
