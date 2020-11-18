@@ -46,17 +46,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "bkvideodesc2"
   end
 
-  create_table "embed_links", force: :cascade do |t|
-    t.string "border"
-    t.string "border_color"
-    t.string "border_size"
-    t.string "size"
-    t.string "location"
-    t.string "special_position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "events", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "start_at"

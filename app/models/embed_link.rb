@@ -1,2 +1,0 @@
-class EmbedLink < ApplicationRecord
-end

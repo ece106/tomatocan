@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :embed_links
+  resources :embed_codes
   resources :invites
   mount Api::UsersApi, at: "/"
   resources :relationships
@@ -46,10 +46,10 @@ Rails.application.routes.draw do
   get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
   get '/invite/:referer_id',        to: 'invites#invite_received'
 
-  match 'embed_link', to: 'embed_links#new', via: 'get'
-  get "embed_link", :to => 'embed_links#new', :as => :new_embed_link_form
-  match 'embed_links/1/edit', :to => 'embed_links#edit', via: 'get'
-  get 'embed_links/1/edit', :to => 'embed_links#edit', :as => :new_embed_link_confirm
+  match 'embed_code', to: 'embed_codes#new', via: 'get'
+  get "embed_code", :to => 'embed_codes#new', :as => :new_embed_code_form
+  match 'embed_codes/1/edit', :to => 'embed_codes#edit', via: 'get'
+  get 'embed_codes/1/edit', :to => 'embed_codes#edit', :as => :new_embed_code_confirm
 
   as :user do
   match 'signup/:refer_id', to: 'devise/registrations#new', via: 'get'
