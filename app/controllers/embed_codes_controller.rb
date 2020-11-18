@@ -1,5 +1,4 @@
-class EmbedLinksController < ApplicationController
-  before_action :set_embed_link, only: [:show, :edit, :update, :destroy]
+class EmbedCodesController < ApplicationController
 
   @@tempBorder = " "
   @@tempBorderColor = " "
@@ -10,21 +9,12 @@ class EmbedLinksController < ApplicationController
   @@tempRight = -2
   @@tempPosition = " "
 
-  # GET /embed_links
-  def index
-    @embed_links = EmbedLink.all
-  end
-
-  # GET /embed_links/1
-  def show
-  end
-
-  # GET /embed_links/new
+  # GET /embed_codes/new
   def new
-    @embed_link = EmbedLink.new
+    @embed_code = EmbedCode.new
   end
 
-  # GET /embed_links/1/edit
+  # GET /embed_codes/1/edit
   def edit
     @editBorder = @@tempBorder
     @editBorderColor = @@tempBorderColor
@@ -57,15 +47,12 @@ class EmbedLinksController < ApplicationController
     @fullCode = firstPartBasic + secondPartPosition + thirdPartAlignment + fourthPartBorder
   end
 
-  # POST /embed_links
+  # POST /embed_codes
   def create
-    @embed_link = EmbedLink.new(embed_link_params)
-
-    if @embed_link.save
 
       newHeight = ""
       newWidth = ""
-      case embed_link_params["size"]
+      case embed_code_params["size"]
       when "A small portion of the screen"
         newHeight = "200px"
         newWidth = "400px"
@@ -83,12 +70,12 @@ class EmbedLinksController < ApplicationController
       @@tempHeight = newHeight
       @@tempWidth = newWidth
 
-      @@tempBorder = embed_link_params["border"]
-      @@tempBorderColor = embed_link_params["border_color"]
+      @@tempBorder = embed_code_params["border"]
+      @@tempBorderColor = embed_code_params["border_color"]
 
       newBottom = 0
       newRight = 1
-      case embed_link_params["location"]
+      case embed_code_params["location"]
       when "The lower left corner"
         newBottom = 0
         newRight = 1
@@ -109,7 +96,7 @@ class EmbedLinksController < ApplicationController
       @@tempRight = newRight
 
       newSpecial = "";
-      case embed_link_params["special_position"]
+      case embed_code_params["special_position"]
       when "I want users to be able to scroll past the embedded page"
         newSpecial = "absolute"
       else
@@ -118,7 +105,7 @@ class EmbedLinksController < ApplicationController
       @@tempPosition = newSpecial  
 
       newBorderWidth = "";
-      case embed_link_params["border_size"]
+      case embed_code_params["border_size"]
       when "Thin"
         newBorderWidth = "1px"
       when "Medium"
@@ -128,26 +115,8 @@ class EmbedLinksController < ApplicationController
       end
       @@tempBorderWidth = newBorderWidth
 
-      # redirect_to @embed_link, notice: 'Embed link was successfully created.'
-      redirect_to new_embed_link_confirm_path, success: embed_error_message + "Your code has been crafted!"
-    else
-      render :new
-    end
-  end
 
-  # PATCH/PUT /embed_links/1
-  def update
-    if @embed_link.update(embed_link_params)
-      redirect_to @embed_link, notice: 'Embed link was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /embed_links/1
-  def destroy
-    @embed_link.destroy
-    redirect_to embed_links_url, notice: 'Embed link was successfully destroyed.'
+      redirect_to new_embed_code_confirm_path, success: embed_error_message + "Your code has been crafted!"
   end
 
   def embed_error_message
@@ -156,14 +125,9 @@ class EmbedLinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_embed_link
-      @embed_link = EmbedLink.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
-    def embed_link_params
-      params.require(:embed_link).permit(:border, :border_color, :border_size, :size, :location, :special_position)
+    def embed_code_params
+      params.require(:embed_code).permit(:border, :border_color, :border_size, :size, :location, :special_position)
     end
 end
 

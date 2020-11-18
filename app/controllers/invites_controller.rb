@@ -1,18 +1,8 @@
 class InvitesController < ApplicationController
-  before_action :set_invite, only: [:show, :edit, :update, :destroy]
 
   @@globalNum = 0
   @@globalMessage = "blank"
-
-  # GET /invites
-  def index
-    @invites = Invite.all
-  end
-
-  # GET /invites/1
-  def show
-  end
-
+  
   # GET /invites/new
   def new
     @invite = Invite.new
@@ -41,10 +31,9 @@ class InvitesController < ApplicationController
       else
 
       invite_params["sender_id"] = current_user.id
-      @invite = Invite.new(invite_params)
 
   
-        if verify_recaptcha(model: @invite) && @invite.save
+        if verify_recaptcha(model: @invite)
   
           countryAb = invite_params["country_code"]
           countryCode = IsoCountryCodes.find(countryAb).calling
@@ -77,12 +66,6 @@ class InvitesController < ApplicationController
       end
     end
 
-  # DELETE /invites/1
-  def destroy
-    @invite.destroy
-    redirect_to invites_url, notice: 'Invite was successfully destroyed.'
-  end
-
   def invite_error_message
     msg = ""
     return msg
@@ -90,11 +73,6 @@ class InvitesController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invite
-      @invite = Invite.find(params[:id])
-    end
-
     # Only allow a trusted parameter "white list" through.
     def invite_params
       params.require(:invite).permit(:phone_number, :country_code, :relationship, :preferred_name, :sender_id)
