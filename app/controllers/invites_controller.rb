@@ -2,48 +2,48 @@ class InvitesController < ApplicationController
 
   @@globalNum = 0
   @@globalMessage = "blank"
-  
-  # GET /invites/new
+
+  # GET /invites/new  
   def new
     @invite = Invite.new
   end
 
+  # GET /invite/:referer_id
   def invite_received
     # create cookie
     cookies[:referer_id] = {
-    value: params[:referer_id],
-    expires: 1.month.from_now}
+      value: params[:referer_id],
+      expires: 1.month.from_now
+    }
     # trigger redirect
-    redirect_to "/"
-    end
-
-  # GET /invites/1/edit
-  def edit
-    @editNumber = @@globalNum
-    @editMessage = @@globalMessage
-
+    redirect_to home_path
   end
 
   # POST /invites
   def create
+<<<<<<< HEAD
       if current_user == nil
         redirect_to new_invite_form_path, danger: "You must be signed in!"
       else
+=======
+    if current_user == nil
+      redirect_to new_invite_path, danger: invite_error_message + "You must be signed in!"
+    else
+>>>>>>> f0faf63a5c6646cfafa30e02537841aa8806b700
 
       invite_params["sender_id"] = current_user.id
 
-  
-        if verify_recaptcha(model: @invite)
-  
-          countryAb = invite_params["country_code"]
-          countryCode = IsoCountryCodes.find(countryAb).calling
-          phoneNum = invite_params["phone_number"]
-          completeNum = countryCode + phoneNum
-          @@globalNum = completeNum
+      if verify_recaptcha(model: @invite)
 
-          messageBody = ""
+        countryAb = invite_params["country_code"]
+        countryCode = IsoCountryCodes.find(countryAb).calling
+        phoneNum = invite_params["phone_number"]
+        completeNum = countryCode + phoneNum
+        @@globalNum = completeNum
 
-          case invite_params["relationship"]
+        messageBody = ""
+
+        case invite_params["relationship"]
           when "Friends"
             messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + "!: %0D%0AHey, " + invite_params["preferred_name"] + ", come check out%0D%0A %0D%0Ahttps://thinq.tv/invite/" + current_user.id.to_s + "%0D%0A%0D%0Aand get tips from industry pros!"
           when "Family"
@@ -54,17 +54,33 @@ class InvitesController < ApplicationController
             messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at %0D%0A%0D%0Ahttps://thinq.tv/invite/" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
           else
             messageBody = "ThinQ.tv Invite from " + current_user.name.titleize + ": %0D%0AHi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at %0D%0A%0D%0Ahttps://thinq.tv/invite/" + current_user.id.to_s + " %0D%0A%0D%0Ato get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
-          end
+        end
 
-          @@globalMessage = messageBody
+        @@globalMessage = messageBody
 
+<<<<<<< HEAD
           redirect_to new_invite_confirm_path, success: "Your invite has been crafted!"
   
         else
           redirect_to new_invite_form_path, danger: "Please check the captcha box!"
         end
+=======
+        redirect_to new_invite_confirm_path, success: invite_error_message + "Your invite has been crafted!"
+  
+      else
+        redirect_to new_invite_path, danger: invite_error_message + "Please check the captcha box!"
+>>>>>>> f0faf63a5c6646cfafa30e02537841aa8806b700
       end
     end
+  end
+
+  def confirm
+    @editNumber = @@globalNum
+    @editMessage = @@globalMessage
+  end
+
+  def edit
+  end
 
 
   private

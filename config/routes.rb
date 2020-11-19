@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :embed_codes
-  resources :invites
   mount Api::UsersApi, at: "/"
+
   resources :relationships
 
   resources :users do
@@ -20,8 +19,10 @@ Rails.application.routes.draw do
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
   match 'home',                     to: 'static_pages#home',                via: 'get'
-  get 'monthCalendar',              to: 'static_pages#monthCalendar', :as => :update_month_calendar
-  match 'a',                        to: 'static_pages#aboutus',                 via: 'get'
+  get 'monthCalendar',              to: 'static_pages#monthCalendar',       :as => :update_month_calendar
+  match 'calendar_view',            to: 'static_pages#calendar_view',       via: 'get' 
+#  match 'a',                        to: 'static_pages#aboutus',             via: 'get'
+# The above line seems to be deprecated. I will remove it before merging with master.
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
@@ -36,32 +37,27 @@ Rails.application.routes.draw do
   match 'studyhall',                to: 'static_pages#studyhall',           via: 'get'
   match 'blocked',                  to: 'static_pages#blocked',             via: 'get'
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
-  # match 'embed_tutorial',                    to: 'static_pages#embed',               via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
   match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
-  match 'invite', to: 'invites#new', via: 'get'
-  get "invite", :to => 'invites#new', :as => :new_invite_form
-  match "invites/1/edit", to: 'invites#edit', via: 'get'
-  get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
-  get '/invite/:referer_id',        to: 'invites#invite_received'
-
-  match 'embed_code', to: 'embed_codes#new', via: 'get'
-  get "embed_code", :to => 'embed_codes#new', :as => :new_embed_code_form
-  match 'embed_codes/1/edit', :to => 'embed_codes#edit', via: 'get'
-  get 'embed_codes/1/edit', :to => 'embed_codes#edit', :as => :new_embed_code_confirm
-
-  as :user do
-  match 'signup/:refer_id', to: 'devise/registrations#new', via: 'get'
-  end
-
-  get "home", :to => 'static_pages#home', :as => :new_invite_success
-  match 'invite_error', to: 'invites#error', via: 'get'
+  resources :invites
+#  get "invite", :to => 'invites#new', :as => :new_invite_form
+# The line above is redundant. Calls to it have been removed and these comments will be removed before pushing to master.
+  get "invite/confirm",         to: 'invites#confirm', :as => :new_invite_confirm
+  get '/invite/:referer_id',    to: 'invites#invite_received'
+  # The request below currently immediately redirects to '/invite'
+  get 'invite_error',           to: 'invites#error'
 
   match 'embed', to: 'static_pages#embed', via: 'get'
-  match 'calendar_view', to: 'static_pages#calendar_view', via: 'get' 
+  resources :embed_codes
+#  get "embed_code", :to => 'embed_codes#new', :as => :new_embed_code_form
+# The line above is redundant. Use new_embed_code_path instead. These comments will be removed shortly.
+  get 'embed_code',    to: 'embed_codes#show', :as => :new_embed_code_confirm
+# The line above has been renamed to specify the right resourceful method.
 
-  # match 'embed_help', to: 'static_pages#embedhelp', via: 'get'
+#  get "home", :to => 'static_pages#home', :as => :new_invite_success
+#  The line above is redundant. Use home_path instead.
+#  I find no references to new_invite_success_path anywhere in this branch. These comments will be removed shortly.
 
   resources :merchandises
   resources :rsvpqs
