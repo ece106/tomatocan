@@ -49,8 +49,10 @@ Rails.application.routes.draw do
 
   match 'embed', to: 'static_pages#embed', via: 'get'
   resources :embed_codes
-  get "embed_code", :to => 'embed_codes#new', :as => :new_embed_code_form
-  get 'embed_codes/1/edit', :to => 'embed_codes#edit', :as => :new_embed_code_confirm
+#  get "embed_code", :to => 'embed_codes#new', :as => :new_embed_code_form
+# The line above is redundant. Use new_embed_code_path instead. These comments will be removed shortly.
+  get 'embed_code',    to: 'embed_codes#show', :as => :new_embed_code_confirm
+# The line above has been renamed to specify the right resourceful method.
 
 #  get "home", :to => 'static_pages#home', :as => :new_invite_success
 #  The line above is redundant. Use home_path instead.

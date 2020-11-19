@@ -14,8 +14,8 @@ class EmbedCodesController < ApplicationController
     @embed_code = EmbedCode.new
   end
 
-  # GET /embed_codes/1/edit
-  def edit
+  # GET /embed_code
+  def show
     @editBorder = @@tempBorder
     @editBorderColor = @@tempBorderColor
     @editWidth = @@tempWidth 
@@ -115,8 +115,10 @@ class EmbedCodesController < ApplicationController
       end
       @@tempBorderWidth = newBorderWidth
 
-
       redirect_to new_embed_code_confirm_path, success: embed_error_message + "Your code has been crafted!"
+  end
+
+  def edit
   end
 
   def embed_error_message
@@ -130,4 +132,3 @@ class EmbedCodesController < ApplicationController
       params.require(:embed_code).permit(:border, :border_color, :border_size, :size, :location, :special_position)
     end
 end
-
