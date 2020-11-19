@@ -1,5 +1,6 @@
 db/*.sqlite3
 log/*.log
+log/development.log
 public/user/
 public/uploads/
 public/merchandise/
@@ -22,6 +23,3 @@ config/environments/development.rb
 config/deploy
 config/deploy.rb
 Capfile
-
-# Ignore log
-log/development.log
