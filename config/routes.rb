@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   match 'home',                     to: 'static_pages#home',                via: 'get'
   get 'monthCalendar',              to: 'static_pages#monthCalendar',       :as => :update_month_calendar
   match 'calendar_view',            to: 'static_pages#calendar_view',       via: 'get' 
-  match 'a',                        to: 'static_pages#aboutus',             via: 'get'
+#  match 'a',                        to: 'static_pages#aboutus',             via: 'get'
+# The above line seems to be deprecated. I will remove it before merging with master.
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
