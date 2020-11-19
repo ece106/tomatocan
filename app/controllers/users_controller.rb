@@ -51,7 +51,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html #show.html.erb
       format.json { render json: @user }
-      format.js {render layout: false}
     end
   end
 
@@ -182,8 +181,8 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-      UserMailer.with(user: @user).welcome_email.deliver_later
+      sign_in @user
+      redirect_to user_profileinfo_path(current_user.permalink) 
     else
       redirect_to new_user_signup_path, danger: signup_error_message
       @user.errors.clear
