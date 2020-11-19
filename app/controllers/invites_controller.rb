@@ -27,7 +27,7 @@ class InvitesController < ApplicationController
   # POST /invites
   def create
       if current_user == nil
-        redirect_to new_invite_form_path, danger: invite_error_message + "You must be signed in!"
+        redirect_to new_invite_form_path, danger: "You must be signed in!"
       else
 
       invite_params["sender_id"] = current_user.id
@@ -58,18 +58,13 @@ class InvitesController < ApplicationController
 
           @@globalMessage = messageBody
 
-          redirect_to new_invite_confirm_path, success: invite_error_message + "Your invite has been crafted!"
+          redirect_to new_invite_confirm_path, success: "Your invite has been crafted!"
   
         else
-          redirect_to new_invite_form_path, danger: invite_error_message + "Please check the captcha box!"
+          redirect_to new_invite_form_path, danger: "Please check the captcha box!"
         end
       end
     end
-
-  def invite_error_message
-    msg = ""
-    return msg
-  end
 
 
   private

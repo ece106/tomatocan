@@ -29,9 +29,6 @@ class EmbedCodesController < ApplicationController
     firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + @editHeight + " " + "width=" + @editWidth
     
     secondPartPosition = " style = \"position: " + @editPosition
-    if @editBottom == -1
-      secondPartPosition = " style = \"position: static"
-    end
     
     thirdPartAlignment = "; z-index:99; bottom: " + @editBottom.to_s + "; right: " + @editRight.to_s
     if @editBottom == -1

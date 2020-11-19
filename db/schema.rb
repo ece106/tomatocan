@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_email"
     t.string "topic"
     t.text "recurring"
+    t.string "chatroom", default: "thinqtv"
     t.index ["start_at", "topic"], name: "index_events_on_start_at_and_topic", unique: true
   end
 
@@ -108,17 +109,6 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "stripe_customer_token"
     t.datetime "stripesignup"
     t.index ["slug"], name: "index_groups_on_slug", unique: true
-  end
-
-  create_table "invites", force: :cascade do |t|
-    t.string "phone_number"
-    t.string "country_code"
-    t.string "relationship"
-    t.string "preferred_name"
-    t.integer "sender_id"
-    t.text "custom_message"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "merchandises", id: :serial, force: :cascade do |t|
