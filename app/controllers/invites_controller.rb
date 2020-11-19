@@ -2,8 +2,8 @@ class InvitesController < ApplicationController
 
   @@globalNum = 0
   @@globalMessage = "blank"
-  
-  # GET /invites/new
+
+  # GET /invites/new  
   def new
     @invite = Invite.new
   end
@@ -16,20 +16,13 @@ class InvitesController < ApplicationController
       expires: 1.month.from_now
     }
     # trigger redirect
-    redirect_to "/"
-    end
-
-  # GET /invites/1/edit
-  def edit
-    @editNumber = @@globalNum
-    @editMessage = @@globalMessage
-
+    redirect_to home_path
   end
 
   # POST /invites
   def create
     if current_user == nil
-      redirect_to new_invite_form_path, danger: invite_error_message + "You must be signed in!"
+      redirect_to new_invite_path, danger: invite_error_message + "You must be signed in!"
     else
 
       invite_params["sender_id"] = current_user.id
@@ -62,9 +55,17 @@ class InvitesController < ApplicationController
         redirect_to new_invite_confirm_path, success: invite_error_message + "Your invite has been crafted!"
   
       else
-        redirect_to new_invite_form_path, danger: invite_error_message + "Please check the captcha box!"
+        redirect_to new_invite_path, danger: invite_error_message + "Please check the captcha box!"
       end
     end
+  end
+
+  def confirm
+    @editNumber = @@globalNum
+    @editMessage = @@globalMessage
+  end
+
+  def edit
   end
 
   def invite_error_message

@@ -26,7 +26,7 @@
           <% if user_signed_in? %>
             <li>
               <p class="navbar-btn pt-1">
-                <%= link_to "Invite New Users! Get Points!", '/invite', class: "btn btn-primary border border-light" %>
+                <%= link_to "Invite New Users! Earn Reputation!", new_invite_path, class: "btn btn-primary border border-light" %>
               </p>
             </li>
             <li class= "dropdown pt-1 pr-1">
@@ -44,7 +44,7 @@
           <% else %>
             <li>
               <p class="navbar-btn pt-1">
-                <%= link_to "Invite New Users! Get Points!", '/invite', class: "btn btn-primary border border-light" %>
+                <%= link_to "Invite New Users! Earn Reputation!", new_invite_path, class: "btn btn-primary border border-light" %>
                 <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
                 <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
               </p>

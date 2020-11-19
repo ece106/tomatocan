@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
   match 'home',                     to: 'static_pages#home',                via: 'get'
-  get 'monthCalendar',              to: 'static_pages#monthCalendar', :as => :update_month_calendar
-  match 'calendar_view',            to: 'static_pages#calendar_view', via: 'get' 
-  match 'a',                        to: 'static_pages#aboutus',                 via: 'get'
+  get 'monthCalendar',              to: 'static_pages#monthCalendar',       :as => :update_month_calendar
+  match 'calendar_view',            to: 'static_pages#calendar_view',       via: 'get' 
+  match 'a',                        to: 'static_pages#aboutus',             via: 'get'
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
@@ -40,8 +40,9 @@ Rails.application.routes.draw do
   match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
   resources :invites
-  get "invite", :to => 'invites#new', :as => :new_invite_form
-  get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
+#  get "invite", :to => 'invites#new', :as => :new_invite_form
+# The line above is redundant. Calls to it have been removed and these comments will be removed before pushing to master.
+  get "invite/confirm",         to: 'invites#confirm', :as => :new_invite_confirm
   get '/invite/:referer_id',    to: 'invites#invite_received'
   # The request below currently immediately redirects to '/invite'
   get 'invite_error',           to: 'invites#error'
@@ -51,7 +52,9 @@ Rails.application.routes.draw do
   get "embed_code", :to => 'embed_codes#new', :as => :new_embed_code_form
   get 'embed_codes/1/edit', :to => 'embed_codes#edit', :as => :new_embed_code_confirm
 
-  get "home", :to => 'static_pages#home', :as => :new_invite_success
+#  get "home", :to => 'static_pages#home', :as => :new_invite_success
+#  The line above is redundant. Use home_path instead.
+#  I find no references to new_invite_success_path anywhere in this branch. These comments will be removed shortly.
 
   resources :merchandises
   resources :rsvpqs
