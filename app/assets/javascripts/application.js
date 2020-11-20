@@ -13,3 +13,4 @@
 //= require recurring_select
 //= require_tree .
 //= stub 'pagination'
+//= stub 'monthlyCalendar'

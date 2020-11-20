@@ -1,3 +1,6 @@
+<!-- links to monthlyCalendar.js file-->
+<%= javascript_include_tag "monthlyCalendar" %>
+
 <% prevMDisabled = "disabled" if  (Time.now - 5.hour).to_date.beginning_of_month.eql? baseDate.beginning_of_month%>
 <% offset = -1 * Time.now.in_time_zone("Pacific Time (US & Canada)").gmt_offset/3600%>
 
@@ -9,21 +12,43 @@
 <div style="overflow-x: scroll;">
   <table class="caler">
     <tr class="sticky-top">
-      <th>Sunday</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
+      <th>
+        <span class="hideWhenSmall">Sunday</span>
+        <span class="showWhenSmall">Sun</span>
+      </th>
+      <th>
+        <span class="hideWhenSmall">Monday</span>
+        <span class="showWhenSmall">Mon</span>
+      </th>
+      <th>
+        <span class="hideWhenSmall">Tuesday</span>
+        <span class="showWhenSmall">Tue</span>
+      </th>
+      <th>
+        <span class="hideWhenSmall">Wednesday</span>
+        <span class="showWhenSmall">Wed</span>
+      </th>
+      <th>
+        <span class="hideWhenSmall">Thursday</span>
+        <span class="showWhenSmall">Thu</span>
+      </th>
+      <th>
+        <span class="hideWhenSmall">Friday</span>
+        <span class="showWhenSmall">Fri</span>
+      </th>
+      <th>
+        <span class="hideWhenSmall">Saturday</span>
+        <span class="showWhenSmall">Sat</span>
+      </th>
     </tr>
     <% getWeeks(baseDate).each do |week| %>
       <tr style="padding: 0px;">
         <%week.each do |day|%>
           <%dayClass = day == Date.today ? "today" : (day.month != baseDate.month ? "notmonth" : "") %>
-          <td class = "<%= dayClass%>">
+          <td class = "days <%= dayClass%>">
             <div>
               <%= day.day %>
+              <div id='popup'><!--<%= day.day %>'>-->
               <%count = 0%>
               <%events.select{|event| event.start_at.to_date.eql? (day)}.each do |event|%>
                 <%id = "lg-calendar-#{day.strftime("%F")}-#{count}"%>
@@ -57,6 +82,7 @@
                 </span>
                 <button class="expand" onclick="monthMoreEvents(this)">More Conversations</button>
               <%end%>
+              </div>
             </div>
           </td>
         <%end%>

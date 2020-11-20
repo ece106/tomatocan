@@ -306,7 +306,7 @@ ul li a.toggle:hover {
 
 /* _convocalendar */
 
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 800px){
   #convoCal div {
     all: unset;
   }
@@ -339,8 +339,12 @@ ul li a.toggle:hover {
 }
 
 /* This stylesheet is used for the calendar in home page and drop-in page */
+// tr {
+//   width: 100%;
+// }
+
 th {
-  font-size: 12px;
+  font-size: 1em;
   padding: 6px;
   border: 1px solid #999;
   background: #8C1D40;
@@ -368,6 +372,7 @@ td {
   text-align: left;
   border-collapse: collapse;
   width: 100%;
+  height: 20%;
 }
 
 .buttonContainer button {
@@ -394,6 +399,20 @@ td {
   box-sizing: border-box;
   font-family: sans-serif;
   display: none;
+}
+
+th .showWhenSmall {
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  th .hideWhenSmall {
+    display: none;
+  }
+  
+  th .showWhenSmall{
+    display: inline;
+  }
 }
 
 //SHOW.SCSS: Event show page stylesheet
