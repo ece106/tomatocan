@@ -339,10 +339,6 @@ ul li a.toggle:hover {
 }
 
 /* This stylesheet is used for the calendar in home page and drop-in page */
-// tr {
-//   width: 100%;
-// }
-
 th {
   font-size: 1em;
   padding: 6px;
@@ -373,6 +369,7 @@ td {
   border-collapse: collapse;
   width: 100%;
   height: 20%;
+  table-layout: fixed;
 }
 
 .buttonContainer button {
@@ -401,18 +398,64 @@ td {
   display: none;
 }
 
-th .showWhenSmall {
+.showWhenSmall {
   display: none;
 }
 
 @media only screen and (max-width: 750px) {
-  th .hideWhenSmall {
+  .hideWhenSmall {
     display: none;
   }
   
-  th .showWhenSmall{
+  span.showWhenSmall{
     display: inline;
   }
+
+  div.numConversations.showWhenSmall {
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden
+  }
+
+  /* The Modal (background) */
+  .modalShown {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modalContent {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 }
 
 //SHOW.SCSS: Event show page stylesheet
