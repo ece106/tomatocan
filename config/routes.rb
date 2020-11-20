@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   match 'home',                     to: 'static_pages#home',                via: 'get'
   get 'monthCalendar',              to: 'static_pages#monthCalendar',       :as => :update_month_calendar
   match 'calendar_view',            to: 'static_pages#calendar_view',       via: 'get' 
-#  match 'a',                        to: 'static_pages#aboutus',             via: 'get'
-# The above line seems to be deprecated. I will remove it before merging with master.
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
@@ -41,8 +39,6 @@ Rails.application.routes.draw do
   match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
   resources :invites
-#  get "invite", :to => 'invites#new', :as => :new_invite_form
-# The line above is redundant. Calls to it have been removed and these comments will be removed before pushing to master.
   get "invite/confirm",         to: 'invites#confirm', :as => :new_invite_confirm
   get '/invite/:referer_id',    to: 'invites#invite_received'
   # The request below currently immediately redirects to '/invite'
@@ -50,14 +46,7 @@ Rails.application.routes.draw do
 
   match 'embed', to: 'static_pages#embed', via: 'get'
   resources :embed_codes
-#  get "embed_code", :to => 'embed_codes#new', :as => :new_embed_code_form
-# The line above is redundant. Use new_embed_code_path instead. These comments will be removed shortly.
   get 'embed_code',    to: 'embed_codes#show', :as => :new_embed_code_confirm
-# The line above has been renamed to specify the right resourceful method.
-
-#  get "home", :to => 'static_pages#home', :as => :new_invite_success
-#  The line above is redundant. Use home_path instead.
-#  I find no references to new_invite_success_path anywhere in this branch. These comments will be removed shortly.
 
   resources :merchandises
   resources :rsvpqs
