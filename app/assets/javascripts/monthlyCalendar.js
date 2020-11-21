@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $('.days').click(function() { 
         if ($( window ).width() < 750) {
             // Get the modal for the current day

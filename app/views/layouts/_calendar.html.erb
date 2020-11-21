@@ -83,11 +83,14 @@
                   <button class="expand" onclick="monthMoreEvents(this)">More Conversations</button>
                 <%end%>
               </div>
-              <!-- only show the modal and number of conversations for days that have conversations -->
+
+              <!-- Only show the modal and number of conversations for days that have conversations -->
               <% if count > 0 %>
+                <!-- The number of conversations for this day -->
                 <div class="numConversations showWhenSmall">
                   <a class="maroon"><%= count %> Conversations</a>
                 </div>
+                <!-- A modal listing the conversations for this day -->
                 <div id="modal<%= day.day %>" class="modalShown showWhenSmall">
                   <div class="modalContent">
                     <span class="close">&times;</span>
