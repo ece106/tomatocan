@@ -1,0 +1,26 @@
+<div>
+<div class="container pt-4 mt-4">
+  <%= render 'layouts/flash_messages' %>
+  <% if @editBottom == -2  %>
+  <script type="text/javascript">
+    window.location.href="/embed_code"
+  </script>
+    <% end %>
+  <div class="row justify-content-center pt-3">
+    <div class="col-lg-6 bg-light border p-3 justify-content-center" style="padding:20px 0px 0px 0px">
+      <div class="well justify-content-center">
+              <div style="text-align:center">
+          <div style="font-size:35px">
+            <b>Here is your code!</b>
+            
+          </div>
+          <p><b>Just copy and paste it into the HTML file corresponding to the page you want to embed ThinQ.tv on.</b></p>
+          <code>
+          <%=@fullCode%>
+          </code>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>

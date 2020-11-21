@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :embed_links
-  resources :invites
   mount Api::UsersApi, at: "/"
+
   resources :relationships
 
   resources :users do
@@ -20,10 +19,10 @@ Rails.application.routes.draw do
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
   match 'home',                     to: 'static_pages#home',                via: 'get'
-  get 'monthCalendar',              to: 'static_pages#monthCalendar', :as => :update_month_calendar
-  match 'a',                        to: 'static_pages#aboutus',                 via: 'get'
+  get 'monthCalendar',              to: 'static_pages#monthCalendar',       :as => :update_month_calendar
+  match 'calendar_view',            to: 'static_pages#calendar_view',       via: 'get'
+  match 'aboutus',                  to: 'static_pages#aboutus',             via: 'get' 
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
-  match 'getinvolved',              to: 'static_pages#getinvolved',         via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
   match 'tos',                      to: 'static_pages#tos',                 via: 'get'
   match 'livestream',               to: 'static_pages#livestream',          via: 'get'
@@ -32,36 +31,21 @@ Rails.application.routes.draw do
   match 'jointheteam',              to: 'static_pages#jointheteam',         via: 'get'
   match 'bystanderguidelines',      to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',       to: 'static_pages#drschaeferspeaking',  via: 'get'
-  match 'seniorliving',             to: 'static_pages#seniorliving',        via: 'get'
   match 'studyhall',                to: 'static_pages#studyhall',           via: 'get'
   match 'blocked',                  to: 'static_pages#blocked',             via: 'get'
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
-  # match 'embed_tutorial',                    to: 'static_pages#embed',               via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
   match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
 
-  match 'invite', to: 'invites#new', via: 'get'
-  get "invite", :to => 'invites#new', :as => :new_invite_form
-  match "invites/1/edit", to: 'invites#edit', via: 'get'
-  get "invites/1/edit", :to => 'invites#edit', :as => :new_invite_confirm
-  get '/invite/:referer_id',        to: 'invites#invite_received'
-
-  match 'embed_link', to: 'embed_links#new', via: 'get'
-  get "embed_link", :to => 'embed_links#new', :as => :new_embed_link_form
-  match 'embed_links/1/edit', :to => 'embed_links#edit', via: 'get'
-  get 'embed_links/1/edit', :to => 'embed_links#edit', :as => :new_embed_link_confirm
-
-  as :user do
-  match 'signup/:refer_id', to: 'devise/registrations#new', via: 'get'
-  end
-
-  get "home", :to => 'static_pages#home', :as => :new_invite_success
-  match 'invite_error', to: 'invites#error', via: 'get'
+  resources :invites
+  get "invite/confirm",         to: 'invites#confirm', :as => :new_invite_confirm
+  get '/invite/:referer_id',    to: 'invites#invite_received'
+  # The request below currently immediately redirects to '/invite'
+  get 'invite_error',           to: 'invites#error'
 
   match 'embed', to: 'static_pages#embed', via: 'get'
-  match 'calendar_view', to: 'static_pages#calendar_view', via: 'get' 
-
-  # match 'embed_help', to: 'static_pages#embedhelp', via: 'get'
+  resources :embed_codes
+  get 'embed_code',    to: 'embed_codes#show', :as => :new_embed_code_confirm
 
   resources :merchandises
   resources :rsvpqs

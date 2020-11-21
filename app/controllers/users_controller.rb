@@ -171,19 +171,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     # @recaptcha_checked = verify_recaptcha(model: @user)
-    referId = cookies[:refer_id]
-
-    unless referId.nil? then
-      if User.find(referId)
-        ref_user = User.find(cookies[:referer_id])
-        User.update(ref_user.id, reputation_score: ref_user.reputation_score + 10)
-      end
-      cookies.delete :referer_id
-    end
 
     if @user.save
-      redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-      UserMailer.with(user: @user).welcome_email.deliver_later
+      sign_in @user
+      redirect_to user_profileinfo_path(current_user.permalink)
+      #email confirmation not really helpful, more of an annoyance. Seems to be broken on new heroku
+      #redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+      #UserMailer.with(user: @user).welcome_email.deliver_later
+
+      # Checks for cookie and increases reputation score of the user who invited them if applicable.
+      referer_id = cookies[:referer_id]
+      unless referer_id.nil? then
+        ref_user = User.find_by_id(referer_id)
+        if ref_user
+          User.update(ref_user.id, reputation_score: ref_user.reputation_score + 10)
+        end
+        cookies.delete :referer_id
+      end
     else
       redirect_to new_user_signup_path, danger: signup_error_message
       @user.errors.clear

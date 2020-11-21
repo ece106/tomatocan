@@ -1,12 +1,12 @@
-class Invite
+class EmbedCode
 
     include ActiveModel::Validations
     include ActiveModel::Conversion
     extend ActiveModel::Naming
   
-    attr_accessor :phone_number, :country_code, :relationship, :preferred_name, :sender_id
+    attr_accessor :border, :border_color, :border_size, :size, :location, :special_position
   
-    validates :phone_number, :presence => true
+    validates :location, :presence => true
   
     def initialize(attributes = {})
       attributes.each do |name, value|

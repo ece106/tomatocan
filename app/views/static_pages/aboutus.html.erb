@@ -1,0 +1,124 @@
+<!-- top row of content-->
+<div class="row pt-3 pl-3" >
+    <div class="col-lg-5 col-md-5 col-sm-12"><br>
+      <%= image_tag("videopic.jpg", :style => "max-height:auto; width:100%;")%>
+    </div>
+  <div class="col-lg-6 col-md-6 col-sm-12">
+      <!-- main content-->
+      <h1 class="maroon" id="appTitle1">Help build a community where Women in STEM can discover other supportive women throughout the day
+      </h1>
+
+      <p class = "lead pr-2 mr-1" id="appContent1">
+        ThinQ.TV is a free video chat platform where women in STEM majors and professions can drop in or host any kind of conversations they wish for the purpose of being there for each other. No need for permission, every woman is welcome to drop in to any of the conversations scheduled on the <%= link_to "home page", "/" %> to say hi! College students, parents of girls interested in STEM subjects, teachers, and STEMinists at any point of their career can stop by throughout the day for live peer advice and networking via video conversations.<br><br>
+        Need a place to bring your colleagues or classmates for when you just need to take a break and have someone to talk to? <%= link_to "Post a Conversation", new_event_path %> and invite friends! <br>
+      </p>
+    <h1 class="maroon" id="appTitle2">Our Mission</h1>
+    <p class = "black" id="appContent2">
+      To empower you to grow a community where women in STEM are thought leaders who help you grow your skills and your network. Change your world one Conversation at a time.
+    </p>
+
+  </div>
+</div>
+<!-- closing top section-->
+
+
+<!-- why thinQ.tv section -->
+<div class="row bg-primary" style="padding-left: 50px; padding-right: 50px">
+  <h1 class="white">
+    Why ThinQ.tv?
+  </h1>
+  <div class="row" >
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+      <div class="row pl-3">
+        <%= image_tag("discovery_icon.png", :style => "height: 130px")%>
+      </div>
+      <h3 class="text-warning pt-2 mt-1 "><strong>
+        Discover other STEM women</strong>
+      </h3>
+
+      <p class = "text-white lead">
+        All women are welcome to drop in to any conversation posted on our home page <%= link_to "schedule", root_path, style: "color: #FFC627;" %>. No need to wait to be invited. Come introduce yourself!
+      </p>
+    </div>
+    <div class="clearfix visible-sm">
+        <!-- clearfix sm cols every 2 -->
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row pl-3">
+        <%= image_tag("dialogue_icon.png", :style => "height: 130px")%>
+      </div>
+      <h3 class="text-warning pt-2 mt-1"><strong>
+         Dialogue</strong>
+      </h3>
+
+      <p class = "text-white lead">
+        Share experiences and advice <i>with</i> others instead of talking <i>at</i> them. Initiate a video <%= link_to "conversation", new_event_path, style: "color: #FFC627;" %> yourself!
+
+      </p>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row pl-3">
+        <%= image_tag("schedule_icon.png", :style => "height: 130px")%>
+      </div>
+      <h3 class="text-warning pt-2 mt-1"><strong>
+      Schedule</strong>
+      </h3>
+
+      <p class = "text-white lead">
+        Meet virtually with women in STEM and those who are supportive of them at your convenience! Check our <%= link_to "schedule", root_path, style: "color: #FFC627;" %>. 
+
+      </p>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="row pl-3">
+        <%= image_tag("activism_icon.png", :style => "height: 130px")%>
+      </div>
+      <h3 class="text-warning pt-2 mt-1"><strong>
+        Activism</strong>
+      </h3>
+      <p class = "text-white lead">
+        Being a woman in engineering or tech requires moxie. Our contributions are often overlooked or marginalized. Let each other know how you're pushing past the fray. At ThinQ.tv, we've got your back!
+
+      </p>
+      <br />
+    </div>
+  </div>
+</div>
+
+<!-- closing why section -->
+
+
+<!-- our story section -->
+
+<div class="container-fluid pt-1 mt-1">
+
+<div class="row">
+<div class="col-lg-8 col-md-8 col-sm-12 pt-3 pl-5">
+  <h1 class="maroon" id="appTitle3">
+    Our Story
+  </h1>
+    <p class = "black" id="appContent3>
+      Back when ThinQ.tv Founder & Software Engineer, Dr. Lisa Schaefer, lived in Washington, DC, she attended a meeting where Biz Stone, the founder of Twitter, spoke. All she could thinQ of during the entire meeting was, "I can come up with something better."<br><br>
+
+      Years earlier, Dr. Schaefer had a vision for multi-location book party with hundreds of intellectual conversations to drop in to and discovered live-streaming in its early days. "This changes everything," she thought. Anyone with a computer, webcam, and internet connection can communicate with anyone with anyone else who has an internet connection.<br><br>
+
+      Dr. Schaefer developed her own web platform, embedded video chat, and experimented with talk show formats. Most were awful. People wanted to talk at the internet without listening to others in a dialogue. However the thought-provoking conversations that followed were worth coming back for.
+
+      When COVID19 hit, college students gathered on ThinQ.tv to talk about substantive topics such as feminism and Black Lives Matter, while learning web development with Dr. Schaefer as their mentor. She asked the students to work in chatrooms on ThinQ.tv to be there for each other. Anyone is welcome to drop in to any conversation to find out what we're up to - come to share ideas, collaborate on learning, and create tech. <br><br>
+
+      Dr. Schaefer's passion for activism is Coding While Female, which combines the interests - feminism & tech mentoring - of the students that joined ThinQ.tv this summer. All women are encouraged to bring their friends and colleagues to ThinQ.tv at any time to chat and network with each other.
+      <br><br>
+
+    </p>
+  </div>
+
+  <div class="col-lg-4 col-md-4 col-sm-12 pt-5 mt-2 pb-0">
+   <%= image_tag("aboutus.png", float: "right", :class=> "img-responsive img-thumbnail")%><br>
+   <p class = "text-lead text-center">Some of our staff gather to observe the dynamics of our first Mentor Hour on ThinQ.tv</p>
+
+  </div>
+  </div>
+</div>
