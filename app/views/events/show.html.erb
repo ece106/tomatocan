@@ -56,34 +56,43 @@
 
             <!-- RSVP -->
             <div class="mt-4 col-lg-7 col-md-6 col-sm-5 col-xs-5">
+                <% host = false %>
+                <% if user_signed_in? %>
+                    <% if @event.user_id == current_user.id %>
+                        <% host = true %>
+                    <% end %>
+                <% end %>
                 <% @title="ThinQ.tv" %>
                 <div class="text-right mt-0">
                     <%= form_for(@rsvp) do |f| %>
-                    <% if @rsvp.errors.any? %>
-                    <div id="error_explanation">
-                        <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-                        <ul>
-                            <% @rsvp.errors.full_messages.each do |msg| %>
-                            <li><%= msg %></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                    <% end %>
-
-                    <%= f.hidden_field :event_id, :value => @event.id %>
-
-                    <% flag = true %>
-                    <% if user_signed_in? %>
-                        <%= f.hidden_field :user_id, :value => current_user.id %>
-                        <% @rsvps.each do |rsvp| %>
-                        <% if rsvp.user_id == current_user.id %>
-                            <% flag = false %>
+                        <% if @rsvp.errors.any? %>
+                            <div id="error_explanation">
+                                <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                                <ul>
+                                    <% @rsvp.errors.full_messages.each do |msg| %>
+                                        <li><%= msg %></li>
+                                    <% end %>
+                            </ul>
+                            </div>
                         <% end %>
-                    <% end %>
-                    <% else %>
-                    <%= f.text_field :email, placeholder: "Enter email" %>
-                    <% end %>
 
+                        <%= f.hidden_field :event_id, :value => @event.id %>
+
+                        <% flag = false %>
+                        <% if user_signed_in? %>
+                            <%= f.hidden_field :user_id, :value => current_user.id %>
+                            <% if !host %>
+                                <% flag = true %>
+                                <% @rsvps.each do |rsvp| %>
+                                    <% if rsvp.user_id == current_user.id %>
+                                        <% flag = false %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <% flag = true %>
+                            <%= f.text_field :email, placeholder: "Enter email" %>
+                        <% end %>
                         <% if flag %>
                             <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
                         <% end %>

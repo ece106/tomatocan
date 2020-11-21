@@ -61,8 +61,10 @@
               </script>
             <% else %>
                 <% host = false %>
-                <% if event.user_id == current_user.id %>
-                  <% host = true %>
+                <% if user_signed_in? %>
+                  <% if event.user_id == current_user.id %>
+                    <% host = true %>
+                  <% end %>
                 <% end %>
                 <%= form_for(@rsvp) do |f| %>
                   <% if @rsvp.errors.any? %>
