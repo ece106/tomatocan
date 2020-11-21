@@ -1,6 +1,3 @@
-<!-- link to attendances.js file that tracks conversation attendance -->
-<%# <%= javascript_include_tag 'attendances.js' %> %>
-
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, params[:id]) %>
   <% attendrecord = Attendance.new(:user_id => current_user.id, :event_id => params[:event], :time_in => (Time.now - 7.hours)) %>
