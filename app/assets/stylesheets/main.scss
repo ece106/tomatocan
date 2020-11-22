@@ -480,6 +480,41 @@ td {
 
 }
 
+//NEW.SCSS: Event new page stylesheet
+@media only screen and (max-width: 800px) {
+  #pageHeader {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  #pageHeader h1{
+    text-align: center;
+  }
+}
+
+//_FORM.SCSS: Event form section on create conversation page styleshoot
+@media only screen and (max-width: 800px) {
+  #eventForm {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  input#event_name {
+    width: 100%;
+  }
+
+  textarea#event_desc {
+    width: 100%;
+  }
+
+  input#eventSubmit {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
 //SHOW.SCSS: Event show page stylesheet
 .rsvp-dropdown {
   min-width: 260px;
