@@ -146,7 +146,7 @@ footer small {
 }
 
 /* Styles for footer for screens/windows smaller than 600px */
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   div.container-fluid {
     all: unset;
   }
@@ -495,6 +495,40 @@ td {
     &:hover {
       background-color: #f1f2f6;
     }
+  }
+}
+
+/* Styles for the event show.html.erb on smaller width devices */
+@media only screen and (max-width: 600px) {
+  #eventPageTop {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  #timeInfo {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  #profilePic img {
+    display: block;
+    margin: auto;
+  }
+
+  #eventPageRsvp {
+    text-align: center !important;
+    margin: 0 auto;
+  }
+
+  #eventDesc div p {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  #dropLeftButton {
+    width: 100%; 
+    padding-left: 3em;
+    padding-right: 3em;
   }
 }
 
