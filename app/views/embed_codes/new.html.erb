@@ -1,6 +1,6 @@
-<div>
 <div class="container pt-4 mt-4">
   <%= render 'layouts/flash_messages' %>
+  <%= javascript_include_tag "embed_codes_form", :defer => "defer" %>
   <div class="row justify-content-center pt-3">
 
     <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
@@ -13,6 +13,7 @@
           <p><b>Want to embed a ThinQ.tv hosted conversation on your site? You're in luck! Fill out this form to your specifications for embedding us on any page of your site.</b></p>
           <p>You'll only need to paste in the one line of HTML code we give you!<p>
         </div>
+
           <!-- Border Box -->
           <div class="form-group">
             <div style="text-align:center">
@@ -22,16 +23,14 @@
               <div class="input-group-addon">
                 <i class="fa fa-window-maximize pr-3 pt-2" style="font-size:20px"></i>
               </div>
-                <%= f.select :border, ['Yes', 'No'], :autofocus => true, :class => "form-control", :required => true%>
+                <%= f.select :border, ['Yes', 'No'], :autofocus => true, :class => "form-control", :required => true %>
             </div>
-          </div>
-          <div>
           </div>
 
         <!-- Color Selection -->
-          <div class="form-group">
+          <div class="form-group" id="color">
             <div style="text-align:center">
-            <p> What color would you like your border to be?<b> Ignore if you selected no border.</b></p>
+            <p> What color would you like your border to be?</p>
             <p><i>Hint: You can change the input type from RGB to Hex or HSL</i></p>
             </div>
             <div class="input-group">
@@ -45,7 +44,7 @@
           </div>
 
         <!-- Border Size -->
-          <div class="form-group">
+          <div class="form-group" id="width">
             <div style="text-align:center">
             <p> How thick would you like your border to be?<b> Ignore if you selected no border.</b></p>
 
@@ -71,28 +70,28 @@
             </div>
           </div>
 
-        <!-- Screen Positioning -->
+        <!-- Widget Positioning -->
           <div class="form-group">
+            <div style="text-align:center">
+              <p>This embedded page should appear:</p>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-sticky-note pr-3 pt-2" style="font-size:20px"></i>
+                </div>
+                <%= f.select :position, ['according to where it is placed in the HTML file', 'in a corner of the page', "in a corner of the user's screen"], :autofocus => true, :class => "form-control", :required => true %>
+              </div>
+            </div>
+          </div>
+
+        <!-- Widget Location -->
+          <div class="form-group" id="location">
             <div style="text-align:center">
             <p> Where on your page would you like to embed ThinQ.tv?</p>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-object-group pr-3 pt-2" style="font-size:20px"></i>
               </div>
-              <%= f.select :location, ['The lower left corner', 'The upper left corner', 'The upper right corner', 'The lower right corner', 'Custom (it goes wherever you put it in your HTML file)'], :autofocus => true, :class => "form-control", :required => true%>
-            </div>
-            </div>
-          </div>
-
-        <!-- Special Position -->
-          <div class="form-group">
-            <div style="text-align:center">
-            <p> Do you want users to be able to scroll past this embedded page? Or would you like it to stick to an absolute screen position?</p>
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-sticky-note pr-3 pt-2" style="font-size:20px"></i>
-              </div>
-              <%= f.select :special_position, ['I want users to be able to scroll past the embedded page', 'I want the embedded page to stick to its screen position'], :autofocus => true, :class => "form-control", :required => true%>
+              <%= f.select :location, ['The lower left corner', 'The upper left corner', 'The upper right corner', 'The lower right corner'], :autofocus => true, :class => "form-control", :required => true%>
             </div>
             </div>
           </div>
@@ -109,5 +108,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>

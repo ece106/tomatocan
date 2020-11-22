@@ -4,7 +4,7 @@ class EmbedCode
     include ActiveModel::Conversion
     extend ActiveModel::Naming
   
-    attr_accessor :border, :border_color, :border_size, :size, :location, :special_position
+    attr_accessor :border, :border_color, :border_size, :size, :location, :position
   
     validates :location, :presence => true
   

@@ -27,12 +27,12 @@ class EmbedCodesController < ApplicationController
     @fullCode = "err"
 
     firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + @editHeight + " " + "width=" + @editWidth
-    
+
     secondPartPosition = " style = \"position: " + @editPosition
-    
-    thirdPartAlignment = "; z-index:99; bottom: " + @editBottom.to_s + "; right: " + @editRight.to_s
-    if @editBottom == -1
-      thirdPartAlignment = "; z-index:99"
+
+    thirdPartAlignment = ""
+    unless @editPosition == "default" then
+      thirdPartAlignment = "; z-index:99; bottom: " + @editBottom.to_s + "; right: " + @editRight.to_s
     end
 
     if @editBorder == "No"
@@ -70,36 +70,42 @@ class EmbedCodesController < ApplicationController
       @@tempBorder = embed_code_params["border"]
       @@tempBorderColor = embed_code_params["border_color"]
 
+      newPosition = "";
+      case embed_code_params["position"]
+        when "according to where it is placed in the HTML file"
+          newPosition = "default"
+        when "in a corner of the page"
+          newPosition = "absolute"
+        when "in a corner of the user's screen"
+          newPosition = "fixed"
+        else
+          raise "Error: Position option \"" + embed_code_params["position"] + "\" not expected by the controller."
+      end
+      @@tempPosition = newPosition
+
       newBottom = 0
       newRight = 1
-      case embed_code_params["location"]
-      when "The lower left corner"
-        newBottom = 0
-        newRight = 1
-      when "The upper left corner"
-        newBottom = 1
-        newRight = 1
-      when "The upper right corner"
-        newBottom = 1
-        newRight = 0
-      when "The lower right corner"
-        newBottom = 0
-        newRight = 0
-      else
-        newBottom = -1
-        newRight = -1
+      unless newPosition == "default" then
+        case embed_code_params["location"]
+        when "The lower left corner"
+          newBottom = 0
+          newRight = 1
+        when "The upper left corner"
+          newBottom = 1
+          newRight = 1
+        when "The upper right corner"
+          newBottom = 1
+          newRight = 0
+        when "The lower right corner"
+          newBottom = 0
+          newRight = 0
+        else
+          newBottom = -1
+          newRight = -1
+        end
       end
       @@tempBottom = newBottom
       @@tempRight = newRight
-
-      newSpecial = "";
-      case embed_code_params["special_position"]
-      when "I want users to be able to scroll past the embedded page"
-        newSpecial = "absolute"
-      else
-        newSpecial = "fixed"
-      end
-      @@tempPosition = newSpecial  
 
       newBorderWidth = "";
       case embed_code_params["border_size"]
@@ -107,25 +113,20 @@ class EmbedCodesController < ApplicationController
         newBorderWidth = "1px"
       when "Medium"
         newBorderWidth = "5px"
-      else
+      else # "Especially Wide"
         newBorderWidth = "10px"
       end
       @@tempBorderWidth = newBorderWidth
 
-      redirect_to new_embed_code_confirm_path, success: embed_error_message + "Your code has been crafted!"
+      redirect_to new_embed_code_confirm_path, success: "Your code has been crafted!"
   end
 
   def edit
   end
 
-  def embed_error_message
-    msg = ""
-    return msg
-  end
-
   private
     # Only allow a trusted parameter "white list" through.
     def embed_code_params
-      params.require(:embed_code).permit(:border, :border_color, :border_size, :size, :location, :special_position)
+      params.require(:embed_code).permit(:border, :border_color, :border_size, :size, :location, :position)
     end
 end
