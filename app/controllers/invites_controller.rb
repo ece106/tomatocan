@@ -30,8 +30,8 @@ class InvitesController < ApplicationController
       invite_params["sender_id"] = current_user.id
 
       if verify_recaptcha(model: @invite)
-        @@globalNum = get_phone_number
-        @@globalMessage = get_message
+        @@globalNum = get_phone_number(invite_params["phone_number"], invite_params["country_code"])
+        @@globalMessage = get_message(invite_params["relationship"], invite_params["interest"])
 
         redirect_to new_invite_confirm_path, success: "Your invite has been crafted!"
       else
@@ -48,10 +48,10 @@ class InvitesController < ApplicationController
   def edit
   end
 
-  def get_phone_number
-    countryAb = invite_params["country_code"]
+  def get_phone_number(phone_number, country_code)
+    countryAb = country_code
     countryCode = IsoCountryCodes.find(countryAb).calling
-    phoneNum = invite_params["phone_number"]
+    phoneNum = phone_number
     return countryCode + phoneNum
   end
 
@@ -75,12 +75,12 @@ class InvitesController < ApplicationController
     return -1
   end
 
-  def get_message
+  def get_message( relationship, interest )
     # All messages begin with the standard line below.
     messageBody = "ThinQ.tv invite from " + current_user.name.titleize + ":\n"
-    relation = enumerate_relationship(invite_params["relationship"])
+    relation = enumerate_relationship(relationship)
 
-    case invite_params["interest"]
+    case interest
       when "Career Advice"
         if relation < 2 then
           messageBody += "Looking for advice on navigating your STEM career? Try attending one of our live mentors' consultation hours at ThinQ.tv for free!\n" + get_invite_url
@@ -106,13 +106,13 @@ class InvitesController < ApplicationController
       else # "(Decline to Specify)"
         case relation
           when 0 # Family
-            messageBody += invite_params["preferred_name"] + ", come check out \n" + get_invite_url + "\nto get tips from industry pros, and host good conversations!"
+            messageBody += "Come check out \n" + get_invite_url + "\nto get tips from industry pros, and host good conversations!"
           when 1 # Friends
-            messageBody += "Hey "+ invite_params["preferred_name"] + ", come check out\n" + get_invite_url + "\nand get tips from industry pros!"
+            messageBody += "Come check out\n" + get_invite_url + "\nand get tips from industry pros!"
           when 2 # General Acquaintances
-            messageBody += "Hi " + invite_params["preferred_name"] + ", " + current_user.name.titleize + " has invited you to join ThinQ. Sign up at \n" + get_invite_url + "\nto get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
+            messageBody += current_user.name.titleize + " has invited you to join ThinQ. Sign up at \n" + get_invite_url + "\nto get tips from industry pros, and share your own knowledge in hosted thoughtful conversations!"
           when 3 # Coworkers
-            messageBody += "Hi " + invite_params["preferred_name"] + ", based on your work experience and ties, " + current_user.name + " has invited you to join ThinQ.tv!\nSign up at " + get_invite_url + "\nto get tips from industry pros, and share your own knowledge in hosted thoughtful conversations."
+            messageBody += "Based on your work experience and ties, " + current_user.name + " has invited you to join ThinQ.tv!\nSign up at " + get_invite_url + "\nto get tips from industry pros, and share your own knowledge in hosted thoughtful conversations."
           else
             # Site users should never see this. I'm storing the alternate suggestion for the generic message here.
             messageBody += "Change your world one conversation at a time with ThinQ.tv!\n" + get_invite_url
@@ -124,7 +124,7 @@ class InvitesController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def invite_params
-      params.require(:invite).permit(:phone_number, :country_code, :relationship, :interest, :preferred_name, :sender_id)
+      params.require(:invite).permit(:phone_number, :country_code, :relationship, :interest, :sender_id)
     end
 
 end
