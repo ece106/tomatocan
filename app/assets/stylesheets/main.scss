@@ -145,6 +145,19 @@ footer small {
   color: $brand-secondary;
 }
 
+/* Styles for footer for screens/windows smaller than 600px */
+@media screen and (max-width: 600px) {
+  div.container-fluid {
+    all: unset;
+  }
+
+  #copyright {
+    all: unset;
+    float: right;
+    padding-right: 2.5em !important;
+    padding-top: 2em;
+  }
+}
 
 //HEADER.SCSS: This is all the css used for the header/navbar
 .navbar-btn {

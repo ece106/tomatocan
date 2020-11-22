@@ -56,6 +56,7 @@
 
             <!-- RSVP -->
             <div class="mt-4 col-lg-7 col-md-6 col-sm-5 col-xs-5">
+                <!-- Checks if the current user is the host of the conversation-->
                 <% host = false %>
                 <% if user_signed_in? %>
                     <% if @event.user_id == current_user.id %>
@@ -93,6 +94,8 @@
                             <% flag = true %>
                             <%= f.text_field :email, placeholder: "Enter email" %>
                         <% end %>
+                         
+                        <!-- Only show the RSVP button if the user is not the host or if the user hasn't already RSVP'd to this conversation -->
                         <% if flag %>
                             <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
                         <% end %>
