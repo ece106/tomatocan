@@ -74,13 +74,13 @@
         <!-- Widget Positioning -->
           <div class="form-group">
             <div style="text-align:center">
-            <p> Do you want users to be able to scroll past this embedded page? Or would you like it to stick to an absolute screen position?</p>
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-sticky-note pr-3 pt-2" style="font-size:20px"></i>
+              <p>This embedded page should appear:</p>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-sticky-note pr-3 pt-2" style="font-size:20px"></i>
+                </div>
+                <%= f.select :position, ['according to where it is placed in the HTML file', 'in a corner of the page', "in a corner of the user's screen"], :autofocus => true, :class => "form-control", :required => true%>
               </div>
-              <%= f.select :special_position, ['I want users to be able to scroll past the embedded page', 'I want the embedded page to stick to its screen position'], :autofocus => true, :class => "form-control", :required => true%>
-            </div>
             </div>
           </div>
 
@@ -92,7 +92,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-object-group pr-3 pt-2" style="font-size:20px"></i>
               </div>
-              <%= f.select :location, ['The lower left corner', 'The upper left corner', 'The upper right corner', 'The lower right corner', 'Custom (it goes wherever you put it in your HTML file)'], :autofocus => true, :class => "form-control", :required => true%>
+              <%= f.select :location, ['The lower left corner', 'The upper left corner', 'The upper right corner', 'The lower right corner'], :autofocus => true, :class => "form-control", :required => true%>
             </div>
             </div>
           </div>
