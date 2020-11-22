@@ -22,11 +22,13 @@
             <%= link_to user.name, user.permalink %>
             <% if user_signed_in? %>
               <% if event.user_id == current_user.id %>
-                <br><%= link_to '(Edit Conversation)', edit_event_path(event.id) %>
+                <div>
+                  <%= link_to '(Edit Conversation)', edit_event_path(event.id) %>
+                </div>
               <% end %>
             <% end %>
           </div>
-          <div class = "col-3" style="color:#000" >
+          <div class="timeAndDate col-3" style="color:#000" >
             <span style="font-size:125%;" id=convocalendar-time-day<%=i%>></span>
             <br>
             <span style="font-size:90%;" id=convocalendar-time<%=i%>></span>
@@ -108,9 +110,6 @@
                     <div align="center"><br><%= recaptcha_tags :style => "transform:scale(0.85);transform-origin:5 0" %></div>
                     -->
                   <% end %>
-                <% end %>
-                <% if host %>
-                  <p style="color:black;">You are the host of this upcoming conversation.</p>
                 <% end %>
             <% end %>
           </div>

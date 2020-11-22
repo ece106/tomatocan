@@ -321,29 +321,30 @@ ul li a.toggle:hover {
 
 /* Styles for the list view on the home page for smaller width devices */
 @media only screen and (max-width: 800px){
-  #convoCal div {
-    all: unset;
-  }
-
-  .eventInfo {
-    padding-left: 0 !important;
-    text-align: center !important;
-  }
-
-  .eventInfo * {
+  #convoCal div.row {
     display: flex;
     flex-flow: column wrap;
   }
 
-  .shareButtons {
-    display: flex;
-    flex-flow: row nowrap;
+  #convoCal div.col-3 {
+    max-width: 100% !important;
+    text-align: center !important;
   }
 
-  .shareButtons a {
-    margin: auto;
+  div.eventInfo {
+    padding-left: 1.25em !important;
+    padding-right: 1.25em !important;
+    // margin: auto;
+    // word-wrap: normal;
   }
 
+  div.timeAndDate {
+    padding: 1em 1.25em;
+  }
+
+  .new_rsvpq {
+    padding-bottom: 1em;
+  }
 } 
 
 /* CSS for users/controlpanel */
@@ -418,6 +419,10 @@ td {
 
 /* Styles for the calendar view on the home page for smaller width devices */
 @media only screen and (max-width: 800px) {
+  div.modalContent h2 {
+    font-size: 1.75em;
+  }
+
   td {
     height: 10vh;
   }
@@ -428,6 +433,7 @@ td {
   
   span.showWhenSmall{
     display: inline;
+    color: white;
   }
 
   div.numConversations.showWhenSmall {
