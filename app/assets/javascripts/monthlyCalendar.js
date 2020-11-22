@@ -6,7 +6,6 @@ $(document).ready(function(){
 
             // Get the <span> element that closes the modal
             var closeButton = $(this).find("span[class*='close']")[0]
-            console.log(closeButton)
 
             // Show the modal
             $(currModal).show();
@@ -20,8 +19,7 @@ $(document).ready(function(){
 
             // When the user resizes the window to a larger size and the modal was showing, close the modal
             $( window ).resize(function() {
-                console.log($(currModal).attr("display"))
-                if ($(currModal).attr("display") != "none") {
+                if (($(currModal).attr("display") != "none") && ($( window ).width() > 750)) {
                     $(currModal).hide();
                 }
             });

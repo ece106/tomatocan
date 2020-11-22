@@ -14,3 +14,4 @@
 //= require_tree .
 //= stub 'pagination'
 //= stub 'monthlyCalendar'
+//= stub 'newEvent'

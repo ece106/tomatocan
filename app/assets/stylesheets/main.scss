@@ -493,6 +493,25 @@ td {
 }
 
 //_FORM.SCSS: Event form section on create conversation page styleshoot
+#topicDesc {
+  border-radius: 1em;
+  width: 100%;
+  margin-top: 2.5%;
+  background-color: #8C1D40;
+  overflow: hidden;
+}
+#topicDesc img {
+  padding: 1em;
+}
+
+#topicDesc p {
+  margin-bottom: 0;
+  height: 100%;
+  padding: 1em 1em 1em 0;
+  // vertical-align: middle;
+  float: right;
+}
+
 @media only screen and (max-width: 800px) {
   #eventForm {
     width: 100%;
@@ -502,6 +521,12 @@ td {
 
   input#event_name {
     width: 100%;
+  }
+
+  #topicDesc p {
+    max-width: 75%;
+    display: inline-block;
+    float: right;
   }
 
   textarea#event_desc {
