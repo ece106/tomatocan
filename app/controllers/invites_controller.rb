@@ -5,6 +5,9 @@ class InvitesController < ApplicationController
 
   # GET /invites/new  
   def new
+    if current_user.nil?
+      redirect_to "/invite_error"
+    end
     @invite = Invite.new
   end
 

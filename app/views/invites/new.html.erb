@@ -2,11 +2,6 @@
 <div class="container pt-4 mt-4">
   <%= render 'layouts/flash_messages' %>
   <div class="row justify-content-center pt-3">
-      <% if current_user == nil  %>
-        <script type="text/javascript">
-          window.location.href="/invite_error"
-        </script>
-      <% end %>
 
     <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
       <div class="well">
