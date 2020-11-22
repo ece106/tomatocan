@@ -13,12 +13,16 @@ class InvitesController < ApplicationController
 
   # GET /invite/:referer_id
   def invite_received
-    # create cookie
-    cookies[:referer_id] = {
-      value: params[:referer_id],
-      expires: 1.month.from_now
-    }
-    # trigger redirect
+    id = params[:referer_id]
+    # The if statement checks for valid integer in String format.
+    if id.to_i.to_s == id
+      # create cookie
+      cookies[:referer_id] = {
+        value: id,
+        expires: 1.month.from_now
+      }
+    end
+    # redirect to homepage
     redirect_to home_path
   end
 
