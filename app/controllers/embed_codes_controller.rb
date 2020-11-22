@@ -70,6 +70,15 @@ class EmbedCodesController < ApplicationController
       @@tempBorder = embed_code_params["border"]
       @@tempBorderColor = embed_code_params["border_color"]
 
+      newSpecial = "";
+      case embed_code_params["special_position"]
+      when "I want users to be able to scroll past the embedded page"
+        newSpecial = "absolute"
+      else
+        newSpecial = "fixed"
+      end
+      @@tempPosition = newSpecial
+
       newBottom = 0
       newRight = 1
       case embed_code_params["location"]
@@ -91,15 +100,6 @@ class EmbedCodesController < ApplicationController
       end
       @@tempBottom = newBottom
       @@tempRight = newRight
-
-      newSpecial = "";
-      case embed_code_params["special_position"]
-      when "I want users to be able to scroll past the embedded page"
-        newSpecial = "absolute"
-      else
-        newSpecial = "fixed"
-      end
-      @@tempPosition = newSpecial  
 
       newBorderWidth = "";
       case embed_code_params["border_size"]
