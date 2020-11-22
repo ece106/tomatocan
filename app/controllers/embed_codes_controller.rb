@@ -27,7 +27,7 @@ class EmbedCodesController < ApplicationController
     @fullCode = "err"
 
     firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + @editHeight + " " + "width=" + @editWidth
-    
+
     secondPartPosition = " style = \"position: " + @editPosition
 
     thirdPartAlignment = ""
@@ -118,15 +118,10 @@ class EmbedCodesController < ApplicationController
       end
       @@tempBorderWidth = newBorderWidth
 
-      redirect_to new_embed_code_confirm_path, success: embed_error_message + "Your code has been crafted!"
+      redirect_to new_embed_code_confirm_path, success: "Your code has been crafted!"
   end
 
   def edit
-  end
-
-  def embed_error_message
-    msg = ""
-    return msg
   end
 
   private
