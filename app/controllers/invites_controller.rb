@@ -1,8 +1,5 @@
 class InvitesController < ApplicationController
 
-  @@globalNum = 0
-  @@globalMessage = "blank"
-
   # GET /invites/new  
   def new
     if current_user.nil?
@@ -34,8 +31,8 @@ class InvitesController < ApplicationController
       invite_params["sender_id"] = current_user.id
 
       if verify_recaptcha(model: @invite)
-        @@globalNum = get_phone_number(invite_params["phone_number"], invite_params["country_code"])
-        @@globalMessage = get_message(invite_params["relationship"], invite_params["interest"])
+        session[:invite_phone_number] = get_phone_number(invite_params["phone_number"], invite_params["country_code"])
+        session[:invite_message] = get_message(invite_params["relationship"], invite_params["interest"])
 
         redirect_to new_invite_confirm_path, success: "Your invite has been crafted!"
       else
@@ -45,8 +42,8 @@ class InvitesController < ApplicationController
   end
 
   def confirm
-    @editNumber = @@globalNum
-    @editMessage = @@globalMessage
+    @editNumber = session[:invite_phone_number]
+    @editMessage = session[:invite_message]
   end
 
   def edit
