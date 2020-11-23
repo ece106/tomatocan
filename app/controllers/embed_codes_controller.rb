@@ -55,7 +55,7 @@ class EmbedCodesController < ApplicationController
         session[:embed_position] = "default"
       when "in a corner of the page"
         session[:embed_position] = "absolute"
-      when "in a corner of the user's screen"
+      when "in a corner of the user's window"
         session[:embed_position] = "fixed"
       else
         session[:embed_position] = "default"
