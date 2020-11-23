@@ -17,9 +17,6 @@
           <li class="nav-item" style="margin-right: 20px">
             <a class="nav-link text-white" href="/jointheteam">Join the Team</a>
           </li>
-          <li class="nav-item" style="margin-right: 20px">
-            <a class="nav-link text-white" href="/studyhall">Drop in Anytime</a>
-          </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right ">
@@ -44,7 +41,6 @@
           <% else %>
             <li>
               <p class="navbar-btn pt-1">
-                <%= link_to "Invite New Users! Earn Reputation!", new_invite_path, class: "btn btn-primary border border-light" %>
                 <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
                 <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
               </p>
