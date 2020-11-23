@@ -48,7 +48,7 @@ class EmbedCodesController < ApplicationController
         session[:embed_borderWidth] = "10px"
     end
 
-    case embed_code_params["position"]
+    case embed_code_params["position"].downcase
       when "according to where it is placed in the HTML file"
         session[:embed_position] = "default"
       when "in a corner of the page"
