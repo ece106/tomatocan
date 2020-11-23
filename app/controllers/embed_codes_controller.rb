@@ -56,7 +56,7 @@ class EmbedCodesController < ApplicationController
       when "in a corner of the user's screen"
         session[:embed_position] = "fixed"
       else
-        raise "Error: Position option \"" + embed_code_params["position"] + "\" not expected by the controller."
+        session[:embed_position] = "default"
     end
 
     unless session[:embed_position] == "default" then
