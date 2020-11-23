@@ -2,11 +2,6 @@
 <div class="container pt-4 mt-4">
   <%= render 'layouts/flash_messages' %>
   <div class="row justify-content-center pt-3">
-      <% if current_user == nil  %>
-        <script type="text/javascript">
-          window.location.href="/invite_error"
-        </script>
-      <% end %>
 
     <div class="col-lg-6 bg-light border p-3" style="padding:20px 0px 0px 0px">
       <div class="well">
@@ -17,11 +12,10 @@
           </div>
           <p><b>Know somebody who would like the site? Want perks for spreading the word (including first dibs on the time of industry pros)? Invite people!</b></p>
         </div>
+
           <!-- Phone Number Box -->
           <div class="form-group">
-            <div style="text-align:center">
-            <p> Please use the following format: <i> 555-123-4567 </i> </p>
-            </div>
+            <p style="text-align:center"> Please use the following format: <i> 555-123-4567 </i> </p>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-mobile pr-3 pt-2" style="font-size:20px"></i>
@@ -35,9 +29,7 @@
 
           <!-- Country Code Box -->
           <div class="form-group">
-            <div style="text-align:center">
-            <p> Please select the recipient's country code</p>
-            </div>
+            <p style="text-align:center"> Please select the recipient's country code</p>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-globe pr-3 pt-2" style="font-size:20px"></i>
@@ -46,29 +38,25 @@
             </div>
           </div>
 
-        <!-- Name Box -->
-          <div class="form-group">
-            <div style="text-align:center">
-            <p> What is this person's preferred name?</p>
-            </div>
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-user pr-3 pt-2" style="font-size:20px"></i>
-              </div>
-              <%= f.text_field :preferred_name, placeholder: "Whatever name you address him/her with" ,:autofocus => true, :class => "form-control", :required => true%>
-            </div>
-          </div>
-
         <!-- Relationship Box -->
           <div class="form-group">
-            <div style="text-align:center">
-            <p> What is your relationship with this person?</p>
-            </div>
+            <p style="text-align:center"> What is your relationship with this person?</p>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
               </div>
-                <%= f.select :relationship, options_for_select(["Friends", "Family", "Coworkers", "General Acquaintances"], 1), :autofocus => true, :class => "form-control", :required => true%>
+                <%= f.select :relationship, options_for_select(["Friends", "Family", "General Acquaintances", "Coworkers"], 1), :autofocus => true, :class => "form-control", :required => true%>
+            </div>
+          </div>
+
+        <!-- Interest Box -->
+          <div class="form-group">
+            <p style="text-align:center"> What aspect of ThinQ.tv do you think they'd be most interested in?</p>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-users pr-3 pt-2" style="font-size:20px"></i>
+              </div>
+                <%= f.select :interest, options_for_select(["(Decline to Specify)", "Career Advice", "Finding STEM Employers", "Finding Employment at ThinQ", "STEMinism", "Inclusivity in STEM"], 1), :autofocus => true, :class => "form-control", :required => true%>
             </div>
           </div>
 
@@ -81,7 +69,7 @@
             </div>
           </div>
 
-          <!-- Sign up button and TOS -->
+          <!-- Submit button -->
           <div class="row">
             <div class="col-md-4" >
                 <%= f.submit "Send Invite!", :class => "form-control btn-primary"%>
@@ -95,5 +83,3 @@
   </div>
 </div>
 </div>
-
-
