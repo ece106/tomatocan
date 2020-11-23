@@ -584,8 +584,11 @@ td {
 
   #dropLeftButton {
     width: 100%; 
-    padding-left: 3em;
-    padding-right: 3em;
+  }
+
+  #dropLeftButton button {
+    max-width: 90%;
+    margin: auto;
   }
 }
 
