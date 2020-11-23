@@ -104,7 +104,7 @@ class InvitesController < ApplicationController
         messageBody += "Connect with a video chat community of powerful women role models in STEM who inspire you to ThinQ!%0D%0A" + get_invite_url
       when "Inclusivity in STEM"
         messageBody += "ThinQ.tv, a community building a better future for women and minorities in STEM. Join today for free!%0D%0A" + get_invite_url
-      else # "(Decline to Specify)"
+      else # "I'm unsure"
         case relation
           when 0 # Family
             messageBody += "Come check out %0D%0A" + get_invite_url + "%0D%0Ato get tips from industry pros, and host good conversations!"
