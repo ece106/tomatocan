@@ -17,5 +17,5 @@ class EmbedCode
     def persisted?
       false
     end
-  
-  end
+
+end

@@ -40,12 +40,12 @@ Rails.application.routes.draw do
   resources :invites
   get "invite/confirm",         to: 'invites#confirm', :as => :new_invite_confirm
   get '/invite/:referer_id',    to: 'invites#invite_received'
-  # The request below currently immediately redirects to '/invite'
   get 'invite_error',           to: 'invites#error'
 
   match 'embed', to: 'static_pages#embed', via: 'get'
   resources :embed_codes
-  get 'embed_code',    to: 'embed_codes#show', :as => :new_embed_code_confirm
+  get 'embed_code',       to: 'embed_codes#show', :as => :new_embed_code_confirm
+  get 'embed_tutorial',   to: 'static_pages#embed_tutorial'
 
   resources :merchandises
   resources :rsvpqs

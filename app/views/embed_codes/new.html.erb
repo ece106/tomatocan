@@ -86,7 +86,7 @@
         <!-- Widget Location -->
           <div class="form-group" id="location">
             <div style="text-align:center">
-            <p> Where on your page would you like to embed ThinQ.tv?</p>
+            <p>Which corner should it appear in?</p>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-object-group pr-3 pt-2" style="font-size:20px"></i>
@@ -96,7 +96,10 @@
             </div>
           </div>
 
-        <div class="row">
+          <div class="row">
+            <div class="col-md-5" >
+                <%= f.submit "Preview your code!", :class => "form-control btn-primary"%>
+            </div>
             <div class="col-md-5" >
                 <%= f.submit "Generate your code!", :class => "form-control btn-primary"%>
             </div>
@@ -106,6 +109,7 @@
 
         <% end %>
       </div>
+    <%= link_to 'or click here to learn more about formatting your widget manually!', embed_tutorial_path, title: "CSS tutorial for your ThinQ widget" %>
     </div>
   </div>
 </div>
