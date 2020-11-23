@@ -1,14 +1,5 @@
 class EmbedCodesController < ApplicationController
 
-  @@tempBorder = " "
-  @@tempBorderColor = " "
-  @@tempBorderWidth = " "
-  @@tempWidth = " "
-  @@tempHeight = " "
-  @@tempBottom = -2
-  @@tempRight = -2
-  @@tempPosition = " "
-
   # GET /embed_codes/new
   def new
     @embed_code = EmbedCode.new
@@ -16,93 +7,96 @@ class EmbedCodesController < ApplicationController
 
   # GET /embed_code
   def show
-    @editBorder = @@tempBorder
-    @editBorderColor = @@tempBorderColor
-    @editWidth = @@tempWidth
-    @editHeight = @@tempHeight
-    @editBottom = @@tempBottom
-    @editRight = @@tempRight
-    @editPosition = @@tempPosition
-    @editBorderWidth = @@tempBorderWidth
+    if session[:embed_height].nil?
+      redirect_to new_embed_codes_path, danger: "Error: Appropriate embed code data could not be detected in sessionStorage.\nIf this problem persists, please consider using our manual tutorial."
+    end
 
-    @fullCode = EmbedCode.generate(@@tempBorder, @@tempBorderColor, @@tempWidth, @@tempHeight, @@tempBottom, @@tempRight, @@tempPosition, @@tempBorderWidth)
+    @fullCode = generate
   end
 
   # POST /embed_codes
   def create
+    convert_input
+    redirect_to new_embed_code_confirm_path, success: "Your code has been crafted!"
+  end
 
-      newHeight = ""
-      newWidth = ""
-      case embed_code_params["size"]
+  def convert_input
+    case embed_code_params["size"]
       when "A small portion of the screen"
-        newHeight = "200px"
-        newWidth = "400px"
+        session[:embed_height] = "200px"
+        session[:embed_width] = "400px"
       when "A decent portion of the screen"
-        newHeight = "400px"
-        newWidth = "800px"
+        session[:embed_height] = "400px"
+        session[:embed_width] = "800px"
       when "A large portion of the screen"
-        newHeight = "800px"
-        newWidth = "1000px"
+        session[:embed_height] = "800px"
+        session[:embed_width] = "1000px"
       else
-        newHeight = "400px"
-        newWidth = "800px"
-      end
+        session[:embed_height] = "400px"
+        session[:embed_width] = "800px"
+    end
 
-      @@tempHeight = newHeight
-      @@tempWidth = newWidth
+    session[:embed_border] = embed_code_params["border"]
+    session[:embed_borderColor] = embed_code_params["border_color"]
 
-      @@tempBorder = embed_code_params["border"]
-      @@tempBorderColor = embed_code_params["border_color"]
-
-      newPosition = "";
-      case embed_code_params["position"]
-        when "according to where it is placed in the HTML file"
-          newPosition = "default"
-        when "in a corner of the page"
-          newPosition = "absolute"
-        when "in a corner of the user's screen"
-          newPosition = "fixed"
-        else
-          raise "Error: Position option \"" + embed_code_params["position"] + "\" not expected by the controller."
-      end
-      @@tempPosition = newPosition
-
-      newBottom = 0
-      newRight = 1
-      unless newPosition == "default" then
-        case embed_code_params["location"]
-        when "The lower left corner"
-          newBottom = 0
-          newRight = 1
-        when "The upper left corner"
-          newBottom = 1
-          newRight = 1
-        when "The upper right corner"
-          newBottom = 1
-          newRight = 0
-        when "The lower right corner"
-          newBottom = 0
-          newRight = 0
-        else
-          newBottom = -1
-          newRight = -1
-        end
-      end
-      @@tempBottom = newBottom
-      @@tempRight = newRight
-
-      newBorderWidth = "";
-      case embed_code_params["border_size"]
+    case embed_code_params["border_size"]
       when "Thin"
-        newBorderWidth = "1px"
+        session[:embed_borderWidth] = "1px"
       when "Medium"
-        newBorderWidth = "5px"
+        session[:embed_borderWidth] = "5px"
       else # "Especially Wide"
-        newBorderWidth = "10px"
-      end
-      @@tempBorderWidth = newBorderWidth
+        session[:embed_borderWidth] = "10px"
+    end
 
-      redirect_to new_embed_code_confirm_path, success: "Your code has been crafted!"
+    case embed_code_params["position"]
+      when "according to where it is placed in the HTML file"
+        session[:embed_position] = "default"
+      when "in a corner of the page"
+        session[:embed_position] = "absolute"
+      when "in a corner of the user's screen"
+        session[:embed_position] = "fixed"
+      else
+        raise "Error: Position option \"" + embed_code_params["position"] + "\" not expected by the controller."
+    end
+
+    unless session[:embed_position] == "default" then
+      case embed_code_params["location_input"]
+        when "The lower left corner"
+          session[:embed_bottom] = 0
+          session[:embed_right] = 1
+        when "The upper left corner"
+          session[:embed_bottom] = 1
+          session[:embed_right] = 1
+        when "The upper right corner"
+          session[:embed_bottom] = 1
+          session[:embed_right] = 0
+        when "The lower right corner"
+          session[:embed_bottom] = 0
+          session[:embed_right] = 0
+        else
+          session[:embed_bottom] = -1
+          session[:embed_right] = -1
+      end
+    end
+  end
+
+  def generate
+
+    firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + session[:embed_height] + " " + "width=" + session[:embed_width]
+
+    secondPartPosition = " style=\"position: " + session[:embed_position]
+
+    thirdPartAlignment = ""
+    unless session[:embed_position] == "default" then
+      thirdPartAlignment = "; z-index:99; bottom: " + session[:embed_bottom].to_s + "; right: " + session[:embed_right].to_s
+    end
+
+    fourthPartBorder = ";\"></iframe>"
+    if session[:embed_border].downcase == "yes"
+      fourthPartBorder = "; border: " + session[:embed_borderWidth] + " solid " + session[:embed_borderColor]  + fourthPartBorder
+    end
+
+    return firstPartBasic + secondPartPosition + thirdPartAlignment + fourthPartBorder
   end
 
   def edit

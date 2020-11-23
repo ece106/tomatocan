@@ -18,23 +18,4 @@ class EmbedCode
       false
     end
 
-
-  def EmbedCode.generate(editBorder, editBorderColor, editWidth, editHeight, editBottom, editRight, editPosition, editBorderWidth)
-    firstPartBasic = "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=" + editHeight + " " + "width=" + editWidth
-
-    secondPartPosition = " style=\"position: " + editPosition
-
-    thirdPartAlignment = ""
-    unless editPosition == "default" then
-      thirdPartAlignment = "; z-index:99; bottom: " + editBottom.to_s + "; right: " + editRight.to_s
-    end
-
-    if editBorder == "No"
-      fourthPartBorder = ";\"></iframe>"
-    else
-      fourthPartBorder = "; border: " + editBorderWidth + " solid " + editBorderColor  + ";\"></iframe>"
-    end
-    return firstPartBasic + secondPartPosition + thirdPartAlignment + fourthPartBorder
-  end
-  
-  end
+end
