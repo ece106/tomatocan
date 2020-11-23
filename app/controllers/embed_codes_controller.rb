@@ -72,11 +72,11 @@ class EmbedCodesController < ApplicationController
 
       newPosition = "";
       case embed_code_params["position"]
-        when "according to where it is placed in the HTML file"
+        when "According to where it is placed in the HTML file"
           newPosition = "default"
-        when "in a corner of the page"
+        when "In a corner of the page"
           newPosition = "absolute"
-        when "in a corner of the user's screen"
+        when "In a corner of the user's window"
           newPosition = "fixed"
         else
           raise "Error: Position option \"" + embed_code_params["position"] + "\" not expected by the controller."
