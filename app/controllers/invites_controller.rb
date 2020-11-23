@@ -11,6 +11,12 @@ class InvitesController < ApplicationController
   # GET /invite/:referer_id
   def invite_received
     id = params[:referer_id]
+    create_referer_cookie(id)
+    # redirect to homepage
+    redirect_to home_path
+  end
+# line 18
+  def create_referer_cookie( id )
     # The if statement checks for valid integer in String format.
     if id.to_i.to_s == id
       # create cookie
@@ -18,9 +24,9 @@ class InvitesController < ApplicationController
         value: id,
         expires: 1.month.from_now
       }
+    else
+      raise "Error: Invalid referer_id \"" + id.to_s + "\". referer_id must be an int."
     end
-    # redirect to homepage
-    redirect_to home_path
   end
 
   # POST /invites
@@ -52,8 +58,7 @@ class InvitesController < ApplicationController
   def get_phone_number(phone_number, country_code)
     countryAb = country_code
     countryCode = IsoCountryCodes.find(countryAb).calling
-    phoneNum = phone_number
-    return countryCode + phoneNum
+    return countryCode + phone_number
   end
 
   def get_invite_url
