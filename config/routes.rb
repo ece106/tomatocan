@@ -45,7 +45,8 @@ Rails.application.routes.draw do
 
   match 'embed', to: 'static_pages#embed', via: 'get'
   resources :embed_codes
-  get 'embed_code',    to: 'embed_codes#show', :as => :new_embed_code_confirm
+  get 'embed_code',       to: 'embed_codes#show', :as => :new_embed_code_confirm
+  get 'embed_tutorial',   to: 'static_pages#embed_tutorial'
 
   resources :merchandises
   resources :rsvpqs
