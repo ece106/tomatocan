@@ -274,6 +274,17 @@ module Api
             status 401
           end
         end
+
+        desc "get a list of the user's available merchandise"
+        get '/merchandise' do
+          @user = User.find_by(permalink: params[:target_permalink])
+          if @user
+            status 200
+            @user.merchandises
+          else
+            status 404
+          end
+        end
       end
     end
 
@@ -403,6 +414,59 @@ module Api
             end
           else
             status 401
+          end
+        end
+      end
+    end
+
+    resource :merchandise do
+      params do
+        requires :buttontype, type: String
+        requires :name, type: String
+        requires :price, type: Float
+        optional :desc, type: String
+        requires :deadline, type: String
+      end
+      post '/' do
+        if logged_in?
+          merch = current_user.merchandises.build(declared(params, include_missing: false))
+          if merch.save
+            status 201
+            {}
+          else
+            status 409
+            { "errors": merch.errors }
+          end
+        else
+          status 401
+        end
+      end
+
+      route_param :merchandise_id do
+        desc 'Update specified merch.'
+        params do
+          requires :name, type: String
+          requires :buttontype, type: String
+          requires :price, type: Float
+          optional :desc, type: String
+          requires :deadline, type: String
+        end
+        put '/' do
+          @merch = Merchandise.find_by(id: params[:merchandise_id])
+          if @merch
+            if logged_in? && current_user.id == @merch.user_id
+              if @merch.update(declared(params, include_missing: false).except(:merchandise_id))
+                status 200
+                {}
+              else
+                status 409
+                { "errors": @merch.errors.messages }
+              end
+            else
+              status 401
+            end
+          else
+            status 404
           end
         end
       end
