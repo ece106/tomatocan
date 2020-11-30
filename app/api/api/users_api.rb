@@ -63,7 +63,7 @@ module Api
       end
       def event_info(event)
         user = User.find_by(id: event.user_id)
-        info = { "name": event.name, "start_at": event.start_at, "end_at": event.end_at, "topic": event.topic,
+        info = { "name": event.name, "start_at": event.start_at + 1.hours, "end_at": event.end_at, "topic": event.topic,
           "permalink": user.permalink, "username": user.name, "id": event.id, "chatroom": event.chatroom }
         if event.users
           info[:users] = event.users.pluck(:permalink)
@@ -280,7 +280,7 @@ module Api
     resource :events do
       desc 'Get all upcoming events.'
       get '/' do
-        events_info(Event.where('end_at > ?', Time.now - 7.hours))
+        events_info(Event.where('end_at > ?', Time.now - 8.hours))
       end
       
       desc 'Create a new event.'
@@ -294,6 +294,7 @@ module Api
         if logged_in?
           @event = current_user.events.build(declared(params, include_missing: false))
           if @event.start_at
+            @event.start_at = @event.start_at - 1.hours
             @event.end_at = @event.start_at + 1.hours
           end
           @event.topic = "Conversation"
