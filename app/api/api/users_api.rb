@@ -63,7 +63,7 @@ module Api
       end
       def event_info(event)
         user = User.find_by(id: event.user_id)
-        info = { "name": event.name, "start_at": event.start_at, "end_at": event.end_at, "topic": event.topic,
+        info = { "name": event.name, "start_at": event.start_at + 1.hours, "end_at": event.end_at, "topic": event.topic,
           "permalink": user.permalink, "username": user.name, "id": event.id, "chatroom": event.chatroom }
         if event.users
           info[:users] = event.users.pluck(:permalink)
@@ -274,13 +274,24 @@ module Api
             status 401
           end
         end
+
+        desc "get a list of the user's available merchandise"
+        get '/merchandise' do
+          @user = User.find_by(permalink: params[:target_permalink])
+          if @user
+            status 200
+            @user.merchandises
+          else
+            status 404
+          end
+        end
       end
     end
 
     resource :events do
       desc 'Get all upcoming events.'
       get '/' do
-        events_info(Event.where('end_at > ?', Time.now - 7.hours))
+        events_info(Event.where('end_at > ?', Time.now - 8.hours))
       end
       
       desc 'Create a new event.'
@@ -294,6 +305,7 @@ module Api
         if logged_in?
           @event = current_user.events.build(declared(params, include_missing: false))
           if @event.start_at
+            @event.start_at = @event.start_at - 1.hours
             @event.end_at = @event.start_at + 1.hours
           end
           @event.topic = "Conversation"
@@ -402,6 +414,143 @@ module Api
             end
           else
             status 401
+          end
+        end
+      end
+    end
+    
+    resource :stripe do
+      desc 'connect a user to stripe by providing an id.'
+      params do
+        requires :stripeid, type: String
+      end
+      post 'connect' do
+        if logged_in?
+          if !current_user.stripeid
+            customer = Stripe::Customer.create({})
+            current_user.stripe_customer_token = customer.id
+            current_user.stripeid = params[:stripeid]
+            if (current_user.save)
+              status 201
+              {}
+            else
+              status 400
+              { "errors": current_user.errors }
+            end
+          else
+            status 409
+            { "errors": "Current user is already registered" }
+          end
+        else
+          status 401
+        end
+      end
+
+      post 'disconnect' do
+        if logged_in?
+          current_user.stripeid = nil
+          current_user.stripe_customer_token = nil
+          if (current_user.save)
+            status 201
+            {}
+          else
+            status 400
+            { "errors": current_user.errors }
+          end
+        else
+          status 401
+        end
+      end
+
+      post '/ephemeral-key' do
+        if logged_in? && current_user.stripeid
+          key = Stripe::EphemeralKey.create(
+            { customer: current_user.stripe_customer_token },
+            { stripe_version: params[:api_version] })
+        else
+          customer = Stripe::Customer.create({})
+          key = Stripe::EphemeralKey.create(
+            { customer: customer.id },
+            { stripe_version: params[:api_version] })
+        end
+        status 201
+        { "key": key }
+      end
+
+      params do
+        requires :merchandise_id, type: String
+        requires :customer_id, type: String
+      end
+      post '/create_payment_intent' do
+        @merch = Merchandise.find_by(id: params[:merchandise_id])
+        if @merch
+          intent = Stripe::PaymentIntent.create({
+            amount: (@merch.price * 100).to_i,
+            currency: 'usd',
+            customer: params[:customer_id],
+            application_fee_amount: (@merch.price * 5).to_i,
+            transfer_data: {
+              destination: User.find_by(id: @merch.user_id).stripeid
+            }
+          })
+          client_secret = intent['client_secret']
+
+          status 201
+          { "client_secret": client_secret }
+        else
+          status 404
+        end
+      end
+    end
+
+    resource :merchandise do
+      params do
+        requires :buttontype, type: String
+        requires :name, type: String
+        requires :price, type: Float
+        optional :desc, type: String
+        requires :deadline, type: String
+      end
+      post '/' do
+        if logged_in?
+          merch = current_user.merchandises.build(declared(params, include_missing: false))
+          if merch.save
+            status 201
+            {}
+          else
+            status 409
+            { "errors": merch.errors }
+          end
+        else
+          status 401
+        end
+      end
+
+      route_param :merchandise_id do
+        desc 'Update specified merch.'
+        params do
+          requires :name, type: String
+          requires :buttontype, type: String
+          requires :price, type: Float
+          optional :desc, type: String
+          requires :deadline, type: String
+        end
+        put '/' do
+          @merch = Merchandise.find_by(id: params[:merchandise_id])
+          if @merch
+            if logged_in? && current_user.id == @merch.user_id
+              if @merch.update(declared(params, include_missing: false).except(:merchandise_id))
+                status 200
+                {}
+              else
+                status 409
+                { "errors": @merch.errors.messages }
+              end
+            else
+              status 401
+            end
+          else
+            status 404
           end
         end
       end

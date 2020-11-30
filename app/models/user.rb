@@ -47,6 +47,7 @@ class User < ApplicationRecord
 
   before_save { |user| user.permalink = permalink.downcase }
   before_save { |user| user.email = email.downcase }
+  before_save :include_resume
 
   # Helper methods for Relationships
 
@@ -88,6 +89,11 @@ class User < ApplicationRecord
     purchase = Purchase.find(purchid)
     purchase.fulfillstatus = "sent"
     purchase.save
+  end
+  def include_resume
+    if !self.resume?
+      self.resume = nil
+    end
   end
 
   def calcdashboard # Poll users for desired metrics
