@@ -418,6 +418,90 @@ module Api
         end
       end
     end
+    
+    resource :stripe do
+      desc 'connect a user to stripe by providing an id.'
+      params do
+        requires :stripeid, type: String
+      end
+      post 'connect' do
+        if logged_in?
+          if !current_user.stripeid
+            customer = Stripe::Customer.create({})
+            current_user.stripe_customer_token = customer.id
+            current_user.stripeid = params[:stripeid]
+            if (current_user.save)
+              status 201
+              {}
+            else
+              status 400
+              { "errors": current_user.errors }
+            end
+          else
+            status 409
+            { "errors": "Current user is already registered" }
+          end
+        else
+          status 401
+        end
+      end
+
+      post 'disconnect' do
+        if logged_in?
+          current_user.stripeid = nil
+          current_user.stripe_customer_token = nil
+          if (current_user.save)
+            status 201
+            {}
+          else
+            status 400
+            { "errors": current_user.errors }
+          end
+        else
+          status 401
+        end
+      end
+
+      post '/ephemeral-key' do
+        if logged_in? && current_user.stripeid
+          key = Stripe::EphemeralKey.create(
+            { customer: current_user.stripe_customer_token },
+            { stripe_version: params[:api_version] })
+        else
+          customer = Stripe::Customer.create({})
+          key = Stripe::EphemeralKey.create(
+            { customer: customer.id },
+            { stripe_version: params[:api_version] })
+        end
+        status 201
+        { "key": key }
+      end
+
+      params do
+        requires :merchandise_id, type: String
+        requires :customer_id, type: String
+      end
+      post '/create_payment_intent' do
+        @merch = Merchandise.find_by(id: params[:merchandise_id])
+        if @merch
+          intent = Stripe::PaymentIntent.create({
+            amount: (@merch.price * 100).to_i,
+            currency: 'usd',
+            customer: params[:customer_id],
+            application_fee_amount: (@merch.price * 5).to_i,
+            transfer_data: {
+              destination: User.find_by(id: @merch.user_id).stripeid
+            }
+          })
+          client_secret = intent['client_secret']
+
+          status 201
+          { "client_secret": client_secret }
+        else
+          status 404
+        end
+      end
+    end
 
     resource :merchandise do
       params do
