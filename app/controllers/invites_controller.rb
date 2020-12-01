@@ -40,7 +40,7 @@ class InvitesController < ApplicationController
         session[:invite_phone_number] = Invite.get_phone_number(invite_params["phone_number"], invite_params["country_code"])
         session[:invite_message] = Invite.get_message(invite_params["relationship"], invite_params["interest"], current_user.name, current_user.id)
 
-        redirect_to new_invite_confirm_path, success: "Your invite has been crafted!" + "\nCountry Code: " + invite_params["country_code"] + "\nPhone number: " + session[:invite_phone_number] + "\n Message:\n" + session[:invite_message]
+        redirect_to new_invite_confirm_path, success: "Your invite has been crafted!"
       else
         redirect_to new_invite_path, danger: "Please check the captcha box!"
       end
