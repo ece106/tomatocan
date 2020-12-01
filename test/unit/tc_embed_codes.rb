@@ -21,7 +21,6 @@ class TestEmbedCodes < ActionController::TestCase
   end
 
   def test_convert_border_size
-    # Note to Vaughn: You don't need totest every input combination. But you *should* try to test at least most of the different types of input for each option.
     border_size = EmbedCode.convert_border_size("Thin")
     assert_equal(border_size, "1px")
 
@@ -33,7 +32,7 @@ class TestEmbedCodes < ActionController::TestCase
   end
 
   def test_convert_position
-    position = EmbedCode.convert_position("according to where it is placed in the html file")
+    position = EmbedCode.convert_position("according to where it is placed in the HTML file")
     assert_equal(position, "default")
     
     position = EmbedCode.convert_position("in a corner of the page")
@@ -61,10 +60,6 @@ class TestEmbedCodes < ActionController::TestCase
     location = EmbedCode.convert_location("The lower right corner")
     assert_equal(location[0], 0)
     assert_equal(location[1], 0)
-
-    location = EmbedCode.convert_location("else test")
-    assert_equal(location[0], -1)
-    assert_equal(location[1], -1)
   end
 
 
@@ -78,16 +73,11 @@ class TestEmbedCodes < ActionController::TestCase
     code2 = EmbedCode.generate( "200px", "400px", "Yes", "\#F00", "5px", "default", -2, -2)
     assert_equal( code1, code2 )
 
-    # Note to Vaughn: Write at least one assertion where default isn't used for position.
-    code3 = EmbedCode.generate( "400px", "800px", "Yes", "\#F00", "1px", "absolute", 0, 1)   
-    assert_equal( code3, "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=400px width=800px style=\"position: absolute; z-index:99; bottom: 0; right: 1; border: 1px solid \#F00;\"></iframe>" )
+    code2 = EmbedCode.generate( "400px", "800px", "Yes", "\#F00", "1px", "absolute", 0, 1)   
+    assert_equal( code2, "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=400px width=800px style=\"position: absolute; z-index:99; bottom: 0; right: 1; border: 1px solid \#F00;\"></iframe>" )
 
-    code4 = EmbedCode.generate( "800px", "1000px", "Yes", "\#F00", "10px", "fixed", 1, 1)   
-    assert_equal( code4, "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=800px width=1000px style=\"position: fixed; z-index:99; bottom: 1; right: 1; border: 10px solid \#F00;\"></iframe>" )
-
-    code5 = EmbedCode.generate( "400px", "800px", "no", "\#F00", "1px", "absolute", 0, 1)   
-    assert_equal( code5, "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=400px width=800px style=\"position: absolute; z-index:99; bottom: 0; right: 1;\"></iframe>" )
-    # Note to Vaughn: You could use other methods of expressing colors (e.g. colorname, #RRGGBB, rgba(), etc.) in other test cases
+    code2 = EmbedCode.generate( "400px", "800px", "no", "\#F00", "1px", "absolute", 0, 1)   
+    assert_equal( code2, "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=400px width=800px style=\"position: absolute; z-index:99; bottom: 0; right: 1;\"></iframe>" )
   end
 
 end
