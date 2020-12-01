@@ -84,6 +84,9 @@ class TestEmbedCodes < ActionController::TestCase
 
     code4 = EmbedCode.generate( "800px", "1000px", "Yes", "\#F00", "10px", "fixed", 1, 1)   
     assert_equal( code4, "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=800px width=1000px style=\"position: fixed; z-index:99; bottom: 1; right: 1; border: 10px solid \#F00;\"></iframe>" )
+
+    code5 = EmbedCode.generate( "400px", "800px", "no", "\#F00", "1px", "absolute", 0, 1)   
+    assert_equal( code5, "<iframe src=\"https://thinq.tv/embed\" title=\"ThinQ.tv: Join in with tech industry tips!\" height=400px width=800px style=\"position: absolute; z-index:99; bottom: 0; right: 1;\"></iframe>" )
     # Note to Vaughn: You could use other methods of expressing colors (e.g. colorname, #RRGGBB, rgba(), etc.) in other test cases
   end
 
