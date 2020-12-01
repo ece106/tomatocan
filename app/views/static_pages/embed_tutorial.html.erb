@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="./ThinQ_FAQ_files/all.css">
+<div class="jumbotron">
+  <h3 class = "text-center">EMBED THINQ.TV ON YOUR WEBSITE</h3>
+  <p>
+    Do you own a blog or website of your own? Are you interested in referring people to our STEMinist community? If so, you can include part of our website on your page by embedding it! Once it has been included, the embedded widget will update on its own as we make changes to our site. No maintenance will be required on your end.
+    <br><br>
+    <h5>Instructions:</h5>
+    To embed Thinq.tv onto your own website, simply copy the HTML code below and insert it into your webpage's HTML document!
+  </p>
+  <div style="background-color: white; margin: 1rem 3rem; padding: 1rem; font-size:115%;">
+    <code>
+      &#60;iframe src="https://thinq.tv/embed" title="ThinQ.tv: Join in with tech industry tips!" height=400px width=600px style="border: 10px solid #FEC427;"&#62;&#60;/iframe&#62;
+    </code>
+  </div>
+  <br><br>
+  <h3 class = "text-center">Additional Formatting Options</h3>
+  <p style="margin-bottom:1em;">
+    Are you interested in adjusting the way our embedded widget looks on your site? If so, you can edit the formatting properties included in the HTML code above in order to achieve a variety of effects.
+  </p>
+  <ul>
+    <li style="margin:0.5em 0;"><strong>Widget Size</strong><p style="margin: 0 0.5em;">The default height and width of the widget is 400 pixels by 600 pixels, and is specified using the "height" and "width" attributes.
+      <br>Rather than expressing the dimensions of the widget by length, you can also express them as a proportion of the size of the container it's placed in. For example, <code>height=100% width=25%</code> will set it to be as tall as the container it's in, but only 1/4 as wide.
+      <br>You can also set it proportional to the size of the browser viewport! The "vh" unit is 1% of its height, while the "vw" unit is 1% of its width.
+      <br>Here is a diagram with these units being used to define width:
+      <div align=left style="margin: 0 25%; border:1px solid black; background-color: white; color:gray;">Webpage
+        <div style="border:1px solid black; margin: 0.4rem 20% 1rem;">Container<br>
+          <div height=1.5em style="display:inline-block; width:400px; background-color: gold; margin: 0.1em 0.2em; color:black;">&nbsp;width=400px</div>
+          <div height=1.5em style="display:inline-block; width:50%; background-color: gold; margin: 0.1em 0.2em; color:black;">&nbsp;width=50%</div>
+          <div height=1.5em style="display:inline-block; width:20vw; background-color: gold; margin: 0.1em 0.2em; color:black;">&nbsp;width=20vw</div>
+        </div>
+        <div height=1.5em style="display:inline-block; width:400px; background-color: gold; margin: 0.1em 0.2em; color:black;">&nbsp;width=400px</div><br>
+        <div height=1.5em style="display:inline-block; width:50%; background-color: gold; margin: 0.1em 0.2em; color:black;">&nbsp;width=50%</div><br>
+        <div height=1.5em style="display:inline-block; width:20vw; background-color: gold; margin: 0.1em 0.2em 0.3em; color:black;">&nbsp;width=20vw</div>
+      </div>
+    </li>
+    <li style="margin:0.5em 0;"><strong>Border</strong>
+      <p style="margin: 0 0.5em;">The border property is used to place a border around the widget's content. The three values following "border:" in the code represent its width, style, and color respectively. To see more information on styling borders, <a href="https://www.w3schools.com/cssref/pr_border.asp">click here</a>.</p>
+    </li>
+    <li style="margin:0.5em 0;"><strong>Positioning</strong>
+      <p style="margin: 0 0.5em;">By default, the widget will be positioned according to the other HTML elements in your webpage depending on where in your code you place it.
+      <br>In order to get it to stay fixed in a certain position on the user's screen as they scroll through your webpage, add "<code>position: fixed; z-index: 99;</code>" to the "style" attribute of the widget. By default, a fixed-position element will appear in the top-left of the screen, but you can set the location of a fixed-position element by using the top, bottom, left, and right properties. The length specified will determine how far from the edge in question that the widget appears. For example, <code>style="border: 10px solid #FEC427; position: fixed; z-index: 99; bottom: 0; right: 0;"</code> will set it to appear in the bottom-right corner of the screen.
+      <br>One method of getting your HTML element to position itself outside of the normal page flow, but to still maintain its position relative to the other elements on your page is by using "<code>position: absolute;</code>" in the element's "style" attribute. It will be positioned relative to its most closely-related ancestor which isn't statically-positioned. In the same way as a fixed-position element, you can adjust its positioning using the top, bottom, left, and right properties.</p>
+    </li>
+  </ul>
+</div>
+<form method="post" action="mailto:info@ThinQ.tv"></form>

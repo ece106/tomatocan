@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   get "settings/payment-info/users/auth/stripe_connect/callback", to: "users#stripe_callback"
 
   match 'home',                     to: 'static_pages#home',                via: 'get'
-  get 'monthCalendar',              to: 'static_pages#monthCalendar', :as => :update_month_calendar
-  match 'aboutus',                  to: 'static_pages#aboutus',             via: 'get'
+  get 'monthCalendar',              to: 'static_pages#monthCalendar',       :as => :update_month_calendar
+  match 'calendar_view',            to: 'static_pages#calendar_view',       via: 'get'
+  match 'aboutus',                  to: 'static_pages#aboutus',             via: 'get' 
   match 'faq',                      to: 'static_pages#faq',                 via: 'get'
   match 'boardofdirectors',         to: 'static_pages#boardofdirectors',    via: 'get'
   match 'tos',                      to: 'static_pages#tos',                 via: 'get'
@@ -35,6 +36,16 @@ Rails.application.routes.draw do
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
   match '/merchandises/new' => 'merchandises#new',                          :as => :createperk,       via: 'get'
+
+  resources :invites
+  get "invite/confirm",         to: 'invites#confirm', :as => :new_invite_confirm
+  get '/invite/:referer_id',    to: 'invites#invite_received'
+  get 'invite_error',           to: 'invites#error'
+
+  match 'embed', to: 'static_pages#embed', via: 'get'
+  resources :embed_codes
+  get 'embed_code',       to: 'embed_codes#show', :as => :new_embed_code_confirm
+  get 'embed_tutorial',   to: 'static_pages#embed_tutorial'
 
   resources :merchandises
   resources :rsvpqs
@@ -97,4 +108,17 @@ Rails.application.routes.draw do
       get 'buy'
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      devise_for :users
+      resources :users
+      resources :sessions
+      resources :events
+    end
+  end
+
+  # request to send text:
+  post '/ajax/sendText' => 'invites#ajax_sendText'
+
 end

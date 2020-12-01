@@ -1,3 +1,6 @@
+<!-- links to pagination.js file-->
+<%= javascript_include_tag "pagination"%>
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
@@ -6,23 +9,26 @@
 <%i = 0%>
 <br>
 
-<div class="row">
+<div id="convoCal">
     <% if @conversations.count != 0 %>
       <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
+        <div class="row">
           <% user = User.find(event.user_id) %>
-          <div class = "col-3" style="text-align: left; padding-left: 50px">
-            <%= link_to event.topic, event_path(event.id), class: "h4", style: "font-weight:700", title: event.desc %><br>
+          <div class = "eventInfo col-3" style="text-align: left; padding-left: 50px">
+            <%= link_to event.topic, event_path(event.id), class: "h4", style: "font-weight:700", title: event.desc %>
             <div style= "color:black" >
-              <%= event.name %><br>
+              <p><%= event.name %></p>
             </div>
             <%= link_to user.name, user.permalink %>
             <% if user_signed_in? %>
               <% if event.user_id == current_user.id %>
-                <br><%= link_to '(Edit Conversation)', edit_event_path(event.id) %>
+                <div>
+                  <%= link_to '(Edit Conversation)', edit_event_path(event.id) %>
+                </div>
               <% end %>
             <% end %>
           </div>
-          <div class = "col-3" style="color:#000" >
+          <div class="timeAndDate col-3" style="color:#000" >
             <span style="font-size:125%;" id=convocalendar-time-day<%=i%>></span>
             <br>
             <span style="font-size:90%;" id=convocalendar-time<%=i%>></span>
@@ -56,6 +62,12 @@
                 liveCount()
               </script>
             <% else %>
+                <% host = false %>
+                <% if user_signed_in? %>
+                  <% if event.user_id == current_user.id %>
+                    <% host = true %>
+                  <% end %>
+                <% end %>
                 <%= form_for(@rsvp) do |f| %>
                   <% if @rsvp.errors.any? %>
                     <div id="error_explanation">
@@ -77,10 +89,14 @@
                   </script>
                   <% if user_signed_in? %>
                     <%= f.hidden_field :user_id, :value => current_user.id %>
-                    <% flag = true %>
-                    <% event.rsvpqs.each do |rsvp| %>
-                      <% if rsvp.user_id == current_user.id %>
-                        <% flag = false %>
+                    <% flag = false %>
+                    <% if !host %>
+                      <% flag = true %>
+
+                      <% event.rsvpqs.each do |rsvp| %>
+                        <% if rsvp.user_id == current_user.id %>
+                          <% flag = false %>
+                        <% end %>
                       <% end %>
                     <% end %>
 
@@ -90,18 +106,18 @@
                   <% else %>
                     <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
                     <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
-                  <!-- disable until ssl working 
+                    <!-- disable until ssl working 
                     <div align="center"><br><%= recaptcha_tags :style => "transform:scale(0.85);transform-origin:5 0" %></div>
-                  -->
+                    -->
                   <% end %>
                 <% end %>
             <% end %>
           </div>
 
           <!-- Share Buttons -->
-          <div class = "col-3">
+          <div class = "shareButtons col-3">
             <% domainurl = "http://www.thinq.tv/"%>
-
+            <p style="color: black;">Share to</p>
             <!-- Facebook Share -->
             <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"
               onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>',
@@ -135,7 +151,7 @@
           <div style="width: 96%;">
             <hr>
           </div>
-
+        </div>
         <% i += 1 %>  
       <% end %>
     <% end %>

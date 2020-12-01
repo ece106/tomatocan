@@ -56,9 +56,9 @@ class StaticPagesController < ApplicationController
       @selectedMonth = currentTime.to_date
     end
     if @type == 0
-      conversations = Event.where( "start_at > ? AND topic = ?", currentTime, 'Conversation' ).order('start_at ASC')
+      conversations = Event.where( "start_at > ?", currentTime ).order('start_at ASC')
     else
-      conversations = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", currentTime, 'DropIn', 'Group Problem Solving' ).order('start_at ASC')
+      conversations = Event.where( "start_at > ?", currentTime ).order('start_at ASC')
     end
 
     @selectedMonth = @selectedMonth.to_date

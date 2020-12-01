@@ -44,8 +44,11 @@ gem 'popper_js', '~> 1.16.0'
 gem 'recurring_select'
 gem 'recaptcha', require: "recaptcha/rails"
 gem "grape"
+gem 'iso_country_codes'
 gem 'grape-active_model_serializers'
 gem 'jwt'
+gem 'rack-mini-profiler'
+gem 'whenever', require: false
 
 group :test, :development do
   gem 'minitest'

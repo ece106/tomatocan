@@ -9,6 +9,7 @@ class Event < ApplicationRecord
 #  validates :start_at, uniqueness: { scope: :topic, message: "can't be the same as another event" }
   validates :user_id, presence: true
 
+  validates :name, presence: true
   validates :start_at, presence: true
   validates :end_at, presence: true
   validates :name, format: { without: /http|\.co|\.com|\.org|\.net|\.tv|\.uk|\.ly|\.me|\.biz|\.mobi|\.cn|kickstarter|barnesandnoble|smashwords|itunes|amazon|eventbrite|rsvpify|evite|meetup/i, message: "s
@@ -75,6 +76,14 @@ class Event < ApplicationRecord
       hash["permalink"] = @user.permalink
       hash["username"] = @user.name
     end
+  end
+
+  # class method that checks if there is a conversation that ended within 2 minutes of the current time
+  def self.conversation_ended
+    # converting to utc timezone because end_at column in events table is in this timezone
+    currTime = (Time.now.in_time_zone.utc) - 7.hours 
+    convo = Event.find_by( "end_at < ? AND end_at > ?", currTime, currTime - 2.minutes)
+    return convo
   end
   
 end
