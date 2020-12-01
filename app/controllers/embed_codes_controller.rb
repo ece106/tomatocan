@@ -21,19 +21,21 @@ class EmbedCodesController < ApplicationController
   end
 
   def convert_input
-    case embed_code_params["size"]
-      when "A small portion of the screen"
+    case embed_code_params["size"].downcase
+      when "a small portion of the screen"
         session[:embed_height] = "200px"
         session[:embed_width] = "400px"
-      when "A decent portion of the screen"
+      when "a decent portion of the screen"
         session[:embed_height] = "400px"
         session[:embed_width] = "800px"
-      when "A large portion of the screen"
+      when "a large portion of the screen"
         session[:embed_height] = "800px"
         session[:embed_width] = "1000px"
       else
-        session[:embed_height] = "400px"
-        session[:embed_width] = "800px"
+        # An unexpected option is selected.
+        # Keep the values set here distinct from those of expected options to make code mistakes more noticeable & identifiable.
+        session[:embed_height] = "500px"
+        session[:embed_width] = "500px"
     end
 
     session[:embed_border] = embed_code_params["border"]
@@ -49,14 +51,14 @@ class EmbedCodesController < ApplicationController
     end
 
     case embed_code_params["position"].downcase
-      when "according to where it is placed in the HTML file"
+      when "according to where it is placed in the html file"
         session[:embed_position] = "default"
       when "in a corner of the page"
         session[:embed_position] = "absolute"
       when "in a corner of the user's screen"
         session[:embed_position] = "fixed"
       else
-        raise "Error: Position option \"" + embed_code_params["position"] + "\" not expected by the controller."
+        session[:embed_position] = "default"
     end
 
     unless session[:embed_position] == "default" then
