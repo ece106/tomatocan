@@ -1,3 +1,6 @@
+<!-- links to pagination.js file-->
+<%= javascript_include_tag "pagination" %>
+
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
@@ -15,31 +18,29 @@
 
           <% @calendar_events.sort_by{|t| t.start_at}.each do |event| %>
             <% user = User.find(event.user_id) %>
-            <% i += 1 %>
-            <tr>
 
-              <td class="col-sm-4 text-center">
-                                                                
+            <tr>
+              <td class="col-sm-4 text-center">                                               
                 <div id="calendar-event" style="text-align: left; font-size: 23px">
                   <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
                 </div>
-
+              </td>
 
               <td class="col-sm-2" style="min-width: 125px;">
                 <% rsvpeople = "" %>
                 <% rsvpusers = event.users %>
                 <span style="font-size:90%;" id=calendar-time-day<%=i%>></span>
                 <br>
-                <span style="font-size:100%;"id=calendar-time-hour<%=i%>></span>
+                <span style="font-size:100%;" id=calendar-time-hour<%=i%>></span>
               </td>
 
               <script>
                   var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
-                  date.setHours(date.getHours() + parseInt("<%=offset%>"))
+                  date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
                   var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
-                  var optionsHour = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+                  var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long' };
                   document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
-                  document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsHour);
+                  document.getElementById('calendar-time-hour<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
               </script>
 
               <td class=col-sm-2>
@@ -52,14 +53,6 @@
                   <% end %>
                 <% end %>
               </td>
-              <script>
-                  var date = new Date(Date.parse("<%= event.start_at.strftime("%FT%T%:z") %>"));
-                  date.setHours(date.getHours() + parseInt("<%=offset%>")) // the 7 is for daylight savings time
-                  var optionsDay = { weekday: 'short', month: 'long', day: 'numeric' };
-                  var optionsTime = { hour: '2-digit', minute: '2-digit', timeZoneName: 'long'};
-                  document.getElementById('calendar-time-day<%=i%>').innerHTML = date.toLocaleString(undefined, optionsDay);
-                  document.getElementById('calendar-time<%=i%>').innerHTML = date.toLocaleString(undefined, optionsTime);
-              </script>
 
               <td class="col-sm-2 overflow-visible">
                 <% rsvps = event.rsvpqs %>
@@ -111,53 +104,49 @@
                   <% end_time = event.end_at.strftime("%B %d %Y") + ' ' + event.end_at.strftime("%T") %>
 
                   <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-                  <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary text-white fa fa-video-camera", style: "padding: 2px 20px; margin-left: 10px"%>
-
+                    <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary text-white fa fa-video-camera", style: "padding: 2px 20px; margin-left: 10px"%>
                   <% else %>
-                  <%= form_for(@rsvp) do |f| %>
-                  <% if @rsvp.errors.any? %>
-                  <div id="error_explanation">
-                      <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-                      <ul>
-                          <% @rsvp.errors.full_messages.each do |msg| %>
-                          <li><%= msg %></li>
+                    <%= form_for(@rsvp) do |f| %>
+                      <% if @rsvp.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                          <ul>
+                            <% @rsvp.errors.full_messages.each do |msg| %>
+                              <li><%= msg %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                        <input type="hidden" id="timeZone<%=i%>" name="timeZone">
+                        <script>
+                          var date = new Date(Date.parse("<%= event.start_at.strftime(" % FT % T %: z") %>"))
+                          date.setHours(date.getHours() + parseInt("<%=offset%>"))
+                          var optionsTime = { hour: '2-digit', minute: '2-digit' };
+                          document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)
+                        </script> 
+                        <%= f.hidden_field :event_id, :value => event.id %>
+                        <% if user_signed_in? %>
+                          <%= f.hidden_field :user_id, :value => current_user.id %>
+
+                          <% flag = true %>
+                          <% event.rsvpqs.each do |rsvp| %>
+                            <% if rsvp.user_id == current_user.id %>
+                              <% flag = false %>
+                            <% end %>
                           <% end %>
-                      </ul>
-                  </div>
-                  <input type="hidden" id="timeZone<%=i%>" name="timeZone">
-                  <%= f.hidden_field :event_id, :value => event.id %>
-                  <% if user_signed_in? %>
-                  <%= f.hidden_field :user_id, :value => current_user.id %>
-
-                  <% flag = true %>
-                  <% event.rsvpqs.each do |rsvp| %>
-                  <% if rsvp.user_id == current_user.id %>
-                  <% flag = false %>
-                  <% end %>
-                  <% end %>
-
-                  <% if flag %>
-                  <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px" %>
-                  <% end %>
-
-                  <% end %>
-                  <% end %>
-
-
-                  <script>var date = new Date(Date.parse("<%= event.start_at.strftime(" % FT % T %: z") %>"))
-                      date.setHours(date.getHours() + parseInt("<%=offset%>"))
-                      var optionsTime = { hour: '2-digit', minute: '2-digit' };
-                      document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)</script>
-                  <% if user_signed_in? %>
-                  <% if @user.id != current_user.id %>
-                  <%= f.hidden_field :user_id, :value => current_user.id %>
-                  <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px"%>
-                  <% end %>
-                  <% end %>
-                  <% end %>
+                          <% if flag %>
+                            <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px" %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                      <% if user_signed_in? %>
+                        <% if @user.id != current_user.id %>
+                          <%= f.hidden_field :user_id, :value => current_user.id %>
+                          <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px"%>
+                        <% end %>
+                      <% end %>
+                    <% end %>
                   <% end %>
               </td>
-
 
               <!-- Share Buttons -->
               <td class=col-sm-2>
@@ -193,6 +182,7 @@
 
               </td>
             </tr>
+            <% i += 1 %>
           <% end %>
           </tbody>
         </table>

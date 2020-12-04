@@ -7,12 +7,13 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <div  class="container-fluid pl-5 ml-5">
+    <div class="container-fluid pl-5 ml-5">
       <div class="row pl-5" id="footer">
         <div class="col-sm-2">
           <p class="f-header text-left">SITE</p>
           <%= link_to "FAQ", '/faq', :class => "f-link"  %> <br>
           <%= link_to "Invite Us To Speak", "/drschaeferspeaking", :class => "f-link"%> <br>
+          <%= link_to "Embed ThinQ On Your Site", new_embed_code_path, :class => "f-link"%> <br>
           <%= link_to "Terms of Service", "/tos", :class => "f-link" %> <br>
           <%= link_to "Privacy Policy", "/privacy", :class => "f-link"%><br><br>
         </div>
@@ -20,7 +21,7 @@
         <div class="col-sm-2">
           <p class="f-header text-left">CONTACT</p>
           <a href="mailto:info@thinq.tv" alt="Email" target="_blank" class="f-link">info@ThinQ.tv</a><br>
-          <a class="f-link">602-888-3089</a><br>
+          <a class="f-link">602-888-3089</a><br><br>
 
         </div>
         <br class="visible-lg-block">
@@ -51,14 +52,13 @@
             <a href="mailto:?subject=Check out ThinQ.TV! Conversations to Make you ThinQ&amp;body=You are invited to check out <%= domainurl %>!%0D%0A%0D%0A<%= desc %>%0D%0A%0D%0AHost your own Live Video office hours on thought-provoking topics!%0D%0A%0D%0A%0D%0A%0D%0A">
               <%= image_tag("email_icon.png", :style => "margin-left: 5px; width:25px; height:25px;") %>
             </a>
-
           </div>
         </div>
         <div class="col-sm-6">
-      <div class="pull-right pr-5 mr-1 pb-1" id="copyright">
-        <small>&copy; 2020 RoleModel Enterprises, LLC</small><br><br>
+          <div class="pull-right pr-5 mr-1 pb-1" id="copyright">
+            <small>&copy; 2020 RoleModel Enterprises, LLC</small><br><br>
+          </div>
+        </div>
       </div>
-       </div>
     </div>
-  </div>
 </footer>

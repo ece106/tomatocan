@@ -14,10 +14,10 @@
 <% end %>
 
 <!-- TOP HALF -->
-<div class="pt-5 pb-3">
+<div id="eventPageTop" class="pt-5 pb-3">
   <h1 class="maroon text-center pb-1"> Come Join the <%= @event.topic.upcase %> </h1>
   <h2 class="text-center mb-2"><%= @event.name %>! </h2>
-  <p class="text-center"> <small> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </small></p>
+  <p class="text-center"> Hosted by <%= link_to @user.name, user_profile_path(@user.permalink) %> </p>
 </div>
 
 <div class="px-4" id="event-page-layout">
@@ -26,7 +26,7 @@
         <div class="aboutHeader row">
             <div class="mt-4 ml-md-4 ml-sm-4 ml-xs-0 col-lg-4 col-md-5 col-sm-6 col-xs-4">
                 <!-- WHEN -->
-                <p class="text-white text-left">
+                <p id="timeInfo" class="text-white text-left">
                     <b>
                         <% edt = @event.start_at + 3.hours %>
                         <%= @event.start_at.strftime("%A, %B %d") %> <br>
@@ -36,9 +36,9 @@
                 </p>
 
                 <!-- PROFILE PICTURE -->
-                <div class="text-sm-center text-md-left text-lg-left">
+                <div id="profilePic" class="text-sm-center text-md-left text-lg-left">
                     <% if @user.profilepic.present? && @user.profilepic != '' %>
-                    <%= image_tag @user.profilepic.url.to_s, height: "300"%>
+                        <%= image_tag @user.profilepic.url.to_s, height: "300"%>
 
                     <% else %>
                     <%= image_tag "yellow brain.png", height: "250"%>
@@ -56,45 +56,59 @@
 
             <!-- RSVP -->
             <div class="mt-4 col-lg-7 col-md-6 col-sm-5 col-xs-5">
+                <!-- Checks if the current user is the host of the conversation-->
+                <% host = false %>
+                <% if user_signed_in? %>
+                    <% if @event.user_id == current_user.id %>
+                        <% host = true %>
+                    <% end %>
+                <% end %>
                 <% @title="ThinQ.tv" %>
                 <div class="text-right mt-0">
-                    <%= form_for(@rsvp) do |f| %>
-                    <% if @rsvp.errors.any? %>
-                    <div id="error_explanation">
-                        <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
-                        <ul>
-                            <% @rsvp.errors.full_messages.each do |msg| %>
-                            <li><%= msg %></li>
+                    <div id="eventPageRsvp">
+                        <%= form_for(@rsvp) do |f| %>
+                            <% if @rsvp.errors.any? %>
+                                <div id="error_explanation">
+                                    <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
+                                    <ul>
+                                        <% @rsvp.errors.full_messages.each do |msg| %>
+                                            <li><%= msg %></li>
+                                        <% end %>
+                                    </ul>
+                                </div>
                             <% end %>
-                        </ul>
-                    </div>
-                    <% end %>
 
-                    <%= f.hidden_field :event_id, :value => @event.id %>
+                            <%= f.hidden_field :event_id, :value => @event.id %>
 
-                    <% flag = true %>
-                    <% if user_signed_in? %>
-                        <%= f.hidden_field :user_id, :value => current_user.id %>
-                        <% @rsvps.each do |rsvp| %>
-                        <% if rsvp.user_id == current_user.id %>
                             <% flag = false %>
+                            <% if user_signed_in? %>
+                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <% if !host %>
+                                    <% flag = true %>
+                                    <% @rsvps.each do |rsvp| %>
+                                        <% if rsvp.user_id == current_user.id %>
+                                            <% flag = false %>
+                                        <% end %>
+                                    <% end %>
+                                <% end %>
+                            <% else %>
+                                <% flag = true %>
+                                <%= f.text_field :email, placeholder: "Enter email" %>
+                            <% end %>
+                            
+                            <!-- Only show the RSVP button if the user is not the host or if the user hasn't already RSVP'd to this conversation -->
+                            <% if flag %>
+                                <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
+                            <% end %>
                         <% end %>
-                    <% end %>
-                    <% else %>
-                    <%= f.text_field :email, placeholder: "Enter email" %>
-                    <% end %>
-
-                        <% if flag %>
-                            <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
+                        <% if user_signed_in? %>
+                            <% if @event.user_id == current_user.id %>
+                                <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn btn-primary btn-sm border-warning text-warning mt-3 mb-3" %>
+                            <% end %>
                         <% end %>
-                    <% end %>
-                    <% if user_signed_in? %>
-                        <% if @event.user_id == current_user.id %>
-                            <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn btn-primary btn-sm border-warning text-warning mt-3 mb-3" %>
-                        <% end %>
-                    <% end %>
+                    </div>
                     <!-- EVENT DESCRIPTION -->
-                    <div class="pt-5 pb-5 pl-0 pr-0">
+                    <div id="eventDesc" class="pt-5 pb-5 pl-0 pr-0">
                         <div class="p2">
                             <% if @event.desc.present? %>
                             <p class="text-left text-white"> <%= @event.desc.gsub(/\n/, '<br>').html_safe %> </p>
@@ -105,7 +119,7 @@
                     <br>
                     <!-- Default dropleft button -->
                     <% if @rsvps.count > 0 %>
-                    <div class="btn-group">
+                    <div id="dropLeftButton" class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle btn-sm border-warning text-body bg-warning pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true">
                             <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
                         </button>

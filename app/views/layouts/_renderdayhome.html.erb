@@ -57,6 +57,12 @@
                     liveCount()
                   </script>
                 <% else %>
+                    <% host = false %>
+                    <% if user_signed_in? %>
+                      <% if event.user_id == current_user.id %>
+                        <% host = true %>
+                      <% end %>
+                    <% end %>
                     <%= form_for(@rsvp) do |f| %>
                       <% if @rsvp.errors.any? %>
                         <div id="error_explanation">
@@ -78,7 +84,20 @@
                       </script>
                       <% if user_signed_in? %>
                         <%= f.hidden_field :user_id, :value => current_user.id %>
-                        <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
+                        <% flag = false %>
+                        <% if !host %>
+                          <% flag = true %>
+
+                          <% event.rsvpqs.each do |rsvp| %>
+                            <% if rsvp.user_id == current_user.id %>
+                              <% flag = false %>
+                            <% end %>
+                          <% end %>
+                        <% end %>
+
+                        <% if flag %>
+                          <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
+                        <% end %>
                       <% else %>
                         <%= f.text_field :email, :style => "border: 1px solid grey; border-radius: 0px;", placeholder: "Enter email", :class =>"enter_email" %>
                         <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; border-radius:0px;", :id => "RSVPsubmit" %>
@@ -93,7 +112,7 @@
               <!-- Share Buttons -->
               <td class=col-xs-2>
                 <% domainurl = "http://www.thinq.tv/"%>
-
+                <p style="color: black;">Share to</p>
                 <!-- Facebook Share -->
                 <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"
                   onclick="window.open('http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>',

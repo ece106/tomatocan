@@ -51,6 +51,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html #show.html.erb
       format.json { render json: @user }
+      format.js 
     end
   end
 
@@ -169,22 +170,28 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    #@recaptcha_checked = verify_recaptcha(model: @user)
-    #if @recaptcha_checked 
-      if @user.save
-        sign_in @user
-        redirect_to user_profileinfo_path(current_user.permalink) 
-        #email confirmation not really helpful, more of an annoyance. Seems to be broken on new heroku
-        #redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
-        #UserMailer.with(user: @user).welcome_email.deliver_later
-      else
-        redirect_to new_user_signup_path, danger: signup_error_message
-        @user.errors.clear
+    # @recaptcha_checked = verify_recaptcha(model: @user)
+
+    if @user.save
+      sign_in @user
+      redirect_to user_profileinfo_path(current_user.permalink)
+      #email confirmation not really helpful, more of an annoyance. Seems to be broken on new heroku
+      #redirect_to new_user_session_path, success: "You have successfully signed up! An email has been sent for you to confirm your account."
+      #UserMailer.with(user: @user).welcome_email.deliver_later
+
+      # Checks for cookie and increases reputation score of the user who invited them if applicable.
+      referer_id = cookies[:referer_id]
+      unless referer_id.nil? then
+        ref_user = User.find_by_id(referer_id)
+        if ref_user
+          User.update(ref_user.id, reputation_score: ref_user.reputation_score + 10)
+        end
+        cookies.delete :referer_id
       end
-    #else 
-    #  redirect_to new_user_signup_path, danger: signup_error_message + "Please check the captcha box!"
-    #  @user.errors.clear
-    #end
+    else
+      redirect_to new_user_signup_path, danger: signup_error_message
+      @user.errors.clear
+    end
   end
 
   # PUT /users/1.json

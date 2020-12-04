@@ -1,4 +1,7 @@
-<div class="col">
+<!-- links to newEvent.js file-->
+<%= javascript_include_tag "newEvent" %>
+
+<div id="eventForm" class="col">
   <%= f.hidden_field :user_id, value: current_user.id %>
   <input type="hidden" id="timeZone" name="timeZone">
 
@@ -10,10 +13,12 @@
   <div class="form-group">
     <h3><%= f.label :buttontype, "*Type of Conversation" %></h3>
     <p class="help-block">Which category most closely reflects the type of conversation you intend </p>
-    <%= f.select(:topic, ['Career Support Group', 'Job Fair/Networking', 'Parents of STEM girls', 'Mentor Office Hour', 'STEM student hangout', 'STEM Organization Meet & Network', 'Book Club'], {}) %><p>
+    <%= f.select(:topic, ['Career Support Group', 'Job Fair/Networking', 'Parents of STEM girls', 'Mentor Office Hour', 'STEM student hangout', 'STEM Organization Meet & Network', 'Book Club'], {}) %>
+    <div id="topicDesc" class="text-white">
+      <%= image_tag "yellow brain.png", height: "75"%>
+      <p></p>
+    </div>
   </div>
-<br>
-
   <div class="form-group">
     <h3><%= f.label :buttontype, "Start Time" %></h3>
     <p class="help-block" id="hb1"></p>
