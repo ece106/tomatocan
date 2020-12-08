@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <% current_user.update_column(:last_viewed, params[:id]) %>
-  <% attendrecord = Attendance.new(:user_id => current_user.id, :event_id => params[:event], :time_in => (Time.now - 7.hours)) %>
+  <% attendrecord = Attendance.new(:user_id => current_user.id, :time_in => (Time.now - 7.hours)) %>
   <% attendrecord.save %>
 
   <!-- Update list of users attending the conversation -->

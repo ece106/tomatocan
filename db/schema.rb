@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.string "guest2_name"
     t.string "guest2_email"
     t.string "topic"
+    t.text "attending", default: [], array: true
     t.text "recurring"
     t.string "chatroom", default: "thinqtv"
     t.index ["start_at", "topic"], name: "index_events_on_start_at_and_topic", unique: true
@@ -235,8 +236,8 @@ ActiveRecord::Schema.define(version: 201309200000000) do
     t.text "blockedBy", default: [], array: true
     t.text "BlockedUsers", default: [], array: true
     t.integer "last_viewed", default: [], array: true
-    t.integer "reputation_score", default: 0
     t.string "resume"
+    t.integer "reputation_score", default: 0
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["permalink"], name: "index_users_on_permalink", unique: true
