@@ -63,7 +63,7 @@ module Api
       end
       def event_info(event)
         user = User.find_by(id: event.user_id)
-        info = { "name": event.name, "start_at": event.start_at + 1.hours, "end_at": event.end_at, "topic": event.topic,
+        info = { "name": event.name, "start_at": event.start_at + 1.hours, "end_at": event.end_at + 1.hours, "topic": event.topic,
           "permalink": user.permalink, "username": user.name, "id": event.id, "chatroom": event.chatroom }
         if event.users
           info[:users] = event.users.pluck(:permalink)
