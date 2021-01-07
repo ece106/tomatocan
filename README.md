@@ -41,6 +41,8 @@ c. To CLONE the repository: In a terminal, in the directory you would like to st
 
 2. Files To Check/Change/Create:
 
+DO NOT EVER EVER EVER PUT THESE FILES ON GITHUB!!! THEY WILL HAVE YOUR PASSWORDS IN THEM!!!
+
 * config/initializers/aakeys.rb:
     Create this file DO NOT CHANGE THE NAME (note that it is listed in .gitignore) & paste the following into it:
 
@@ -192,6 +194,8 @@ or
 ```
 git push https://github.com/YOUR-GITHUB_USERNAME/YOUR-TOMATOCAN-REPOSITORY master
 ```
+DO NOT EVER EVER EVER EDIT ANY FILES THROUGH THE GITHUB INTERFACE!!! THE ONLY WAY TO CHANGE FILES ON GITHUB IS BY GIT PUSH ORIGIN MASTER IN YOUR TERMINAL!!!
+
 
 *. Pulling changes from tomatocan master into your local machine
 

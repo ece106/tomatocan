@@ -25,7 +25,7 @@
       </h2>
 
       <h1 class="text-center maroon">
-        GRIT: Female + Tech = Activism
+        Female + STEM = Activism
       </h1>
       <h2 class="maroon pl-4 pr-4" style="font-size: 1.5em; text-shadow: 0.05em 0.05em #EEE, -0.05em 0.05em #EEE, 0.05em -0.05em #EEE, -0.05em -0.05em #EEE, 0 -0.05em #EEE, -0.05em 0 #EEE, 0.05em 0 #EEE, 0 0.05em #EEE;">
         Book coming soon!
@@ -56,15 +56,11 @@
 
 <div class="tabContainer text-center pl-2 pr-2 pb-2" style="background-color: #8C1D40" >
   <div class="buttonContainer mx-auto pb-1" >
-    <button onclick="showPanel(0,'#4caf50')">List View</button>
-    <button onclick="showPanel(1,'#4caf50')">Daily View</button>
-    <button onclick="showPanel(2,'#4caf50')">Monthly View</button>
+    <button onclick="showPanel(0,'#4caf50')">Daily View</button>
+    <button onclick="showPanel(1,'#4caf50')">Monthly View</button>
   </div>
 
   <div class="listView tabPanel">
-    <%= render 'layouts/convocalendar', collection: @conversations %>
-  </div>
-  <div class="tabPanel container-fluid">
     <%= render 'layouts/weeklycalendar', eventPartial: "layouts/renderdayhome"%>
   </div>
   <div class="tabPanel container-fluid">
