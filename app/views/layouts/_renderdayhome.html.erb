@@ -11,18 +11,22 @@
             <% user = User.find(event.user_id) %>
             <tr>
               <td class=col-xs-3>
-                <div id = "calendar-event">
-                  <%= link_to event.name, event_path(event.id), id: "calendar-event", title: event.desc %>
+          <div class = "eventInfo" style="text-align: left; ">
+            <%= link_to event.topic, event_path(event.id), class: "h4", style: "font-weight:700", title: event.desc %>
+            <div style= "color:black" >
+              <%= event.name %>
+            </div>
+            <%= link_to user.name, user.permalink %>
+            <% if user_signed_in? %>
+              <% if event.user_id == current_user.id %>
+                <div>
+                  <%= link_to '(Edit Conversation)', edit_event_path(event.id) %>
                 </div>
-                <%= link_to user.name, user.permalink%>
-                <% if user_signed_in? %>
-                  <% if event.user_id == current_user.id %>
-                    <%= link_to '(Edit Conversation)', edit_event_path(event.id), id: "calendar-host" %>
-                  <% end %>
-                <% end %>
+              <% end %>
+            <% end %>
+          </div>
               </td>
               <td class=col-xs-3>
-                <% edt = event.start_at + 3.hours %>
                 <% dayId = "week-day-#{currentDate.strftime('%A')}-#{i}"%>
                 <% timeId = "week-time-#{currentDate.strftime('%A')}-#{i}"%>
                 <span style="font-size:125%;" id="<%=dayId%>"></span>
@@ -44,18 +48,6 @@
 
                 <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
                   <%= link_to " Join Conversation NOW ", user_viewer_path(user.permalink, chatrm: event.topic , event: event.id), class: "btn btn-primary btn-sm fa fa-video-camera" %>
-                  <div id="live<%=eventCount%>"></div>
-                  <script>
-                    function liveCount() {
-                      $.get("/conversations/livecounter", {id: "<%=event.id%>"}, function(data) {
-                        if (data.success == true)
-                          $('#live<%=eventCount%>').html(data.html)
-                      })
-                      setTimeout(liveCount, 8000);
-                    }
-
-                    liveCount()
-                  </script>
                 <% else %>
                     <% host = false %>
                     <% if user_signed_in? %>
@@ -111,7 +103,7 @@
 
               <!-- Share Buttons -->
               <td class=col-xs-2>
-                <% domainurl = "http://www.thinq.tv/"%>
+                <% domainurl = "https://www.thinq.tv/"%>
                 <p style="color: black;">Share to</p>
                 <!-- Facebook Share -->
                 <a href="http://www.facebook.com/sharer.php?u=<%= domainurl %><%= user.permalink %>%"

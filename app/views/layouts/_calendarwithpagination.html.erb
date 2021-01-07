@@ -1,5 +1,5 @@
 <!-- links to pagination.js file-->
-<%= javascript_include_tag "pagination"%>
+<%= javascript_include_tag "pagination" %>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
@@ -17,7 +17,7 @@
           <div class = "eventInfo col-3" style="text-align: left; padding-left: 50px">
             <%= link_to event.topic, event_path(event.id), class: "h4", style: "font-weight:700", title: event.desc %>
             <div style= "color:black" >
-              <p><%= event.name %></p>
+              <%= event.name %>
             </div>
             <%= link_to user.name, user.permalink %>
             <% if user_signed_in? %>
