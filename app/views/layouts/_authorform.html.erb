@@ -42,10 +42,12 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 			</h3>
 		<% end %>
 		<!-- User reputation score -->
-		<div class="col-sm-12 text-primary pt-6">
+		<% if @user.reputation_score > 0 %>
+          <div class="col-sm-12 text-primary pt-6">
 			<p class="" style="margin-bottom: 0;">Reputation</p>
 			<p class="" style="margin-bottom: 0; font-size: 2em;"><%= @user.reputation_score %></p>
-		</div>
+          </div>
+        <% end %>
 	</div>
 	
 	

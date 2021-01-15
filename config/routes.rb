@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   match 'jointheteam',              to: 'static_pages#jointheteam',         via: 'get'
   match 'bystanderguidelines',      to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',       to: 'static_pages#drschaeferspeaking',  via: 'get'
-  match 'studyhall',                to: 'static_pages#studyhall',           via: 'get'
+  match 'store',                    to: 'static_pages#store',           via: 'get'
   match 'blocked',                  to: 'static_pages#blocked',             via: 'get'
   match 'privacy',                  to: 'static_pages#privacy_policy',      via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks',      :as => :standardperks,  via: 'get'
