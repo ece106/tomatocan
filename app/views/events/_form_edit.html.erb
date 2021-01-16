@@ -5,23 +5,15 @@
   <input type="hidden" id="timeZone" name="timeZone">
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "Title of Conversation" %></h3>
-    <p class="help-block"><i>Enter a few words about what you expect will be discussed &/or the name of the organization committing to being in the chatroom during the time slot:</i></p>
+    <h3><%= f.label :buttontype, "Title of Office Hour" %></h3>
+    <p class="help-block"><i>Enter a few words about what you will be working on in the chatroom during the time slot:</i></p>
     <%= f.text_field :name, size: 82 %><p>
   </div>
   <div class="form-group">
-    <h3><%= f.label :buttontype, "*Type of Conversation" %></h3>
-    <p class="help-block">Which category most closely reflects the type of conversation you intend </p>
-    <%= f.select(:topic, ['Career Support Group', 'Job Fair/Networking', 'Parents of STEM girls', 'Mentor Office Hour', 'STEM student hangout', 'STEM Organization Meet & Network', 'Book Club'], {}) %><p>
+    <h3><%= f.label :buttontype, "*Type of Office Hour" %></h3>
+    <p class="help-block">Which category most closely reflects the type of office hour you intend </p>
+    <%= f.select(:topic, ['Outreach & Marketing', 'Building STEM Product', 'Job Fair/Networking' ], {}) %><p>
   </div>
-
-<!-- Should make a dropdown for title above: Early Career Support Group, Job Fair, Parents of STEM girls, 
-  <div class="form-group">
-    <h3><%= f.label :buttontype, "*Topic" %></h3>
-    <p class="help-block">Will your event be a Drop-In Hour or a Conversation</p>
-    <%= f.select(:topic, ['DropIn', 'Conversation', 'Group Problem Solving'], {}) %><p>
-  </div>
--->
 
   <div class="form-group">
     <h3><%= f.label :buttontype, "Start Time" %></h3>
@@ -30,8 +22,8 @@
   </div>
 
   <div class="form-group">
-    <h3><%= f.label :buttontype, "Details about Conversation" %></h3>
-    <p class="help-block"><i>Your goal for the conversation, a little about your background. NOTE: Descriptions containing URLs will not be saved. Paste all the info attendees need here.</i></p>
+    <h3><%= f.label :buttontype, "Details about Office Hour" %></h3>
+    <p class="help-block"><i>What you'll be working on, what others might want to know about your area of study. </i></p>
     <%= f.text_area :desc, cols: 82, rows: 7 %><p>
   </div>
 </div>

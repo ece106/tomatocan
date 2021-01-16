@@ -1,8 +1,8 @@
 <div id="newEventPage" class="container pt-3 mt-3">
   <div id="pageHeader" class="row">
-    <h1>Post a time to host live video Conversation</h1>
+    <h1>Post a time to host video chat Office Hour</h1>
     <p>
-      By entering a time for a Conversation below, your Mentor Hour will be posted on our home page schedule. 
+      By entering a time below, your Office Hour will be posted on our home page schedule. 
     </p>
   </div>
   <% if @event.errors.any? %>
@@ -20,7 +20,7 @@
     <%= form_for @event do |f| %>
       <%= render "events/form", f: f, event: @event %>
 
-      <%= f.submit "Post Conversation", class: "btn btn-lg btn-primary create-event-btn", id: "eventSubmit" %>
+      <%= f.submit "Post Office Hour", class: "btn btn-lg btn-primary create-event-btn", id: "eventSubmit" %>
     <% end %>
   </div>
 </div>
