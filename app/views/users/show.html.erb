@@ -1,86 +1,73 @@
 <div class="container">
 
-    <!-- Meta Tags for Facebook Share -->
-    <% content_for :head do %>
+    <!-- Meta Tags for Facebook Share 
+      SOMEONE CRAPPED WAYYYYYYYYYY TOO MUCH WHITE SPACE IN THE INDENTATIONS IN THIS FILE!!!!!!!!
+    -->
+  <% content_for :head do %>
     <meta property="og:url" content="<%= " https: //www.thinq.tv" + user_profile_path(@user.permalink) %>" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="View <%= @user.name %>'s profile on ThinQ.tv" />
     <meta property="og:description" content="Mentorship with <%= @user.permalink %> on <%= @user.genre1 %>, <%= @user.genre2 %>, <%= @user.genre3 %> through small group conversations" />
     <% if @user.profilepic.present? %>
-    <meta property="og:image" content="<%= @user.profilepic.url.to_s %>" />
+      <meta property="og:image" content="<%= @user.profilepic.url.to_s %>" />
     <% else %>
-    <meta property="og:image" content="https://www.thinq.tv/logoDigitalHollow300.png" />
+      <meta property="og:image" content="https://www.thinq.tv/logoDigitalHollow300.png" />
     <% end %>
-    <% end %>
+  <% end %>
 
+  <div class="container mt-5 mb-4 pb-3 border shadow">
+    <%= render 'layouts/authorform' %>
+  </div>
     
-        <div class="container mt-5 mb-4 pb-3 border shadow">
-            <%= render 'layouts/authorform' %>
-        </div>
-    
+  <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
+    <div class="container px-0 py-0 mb-4 border shadow">
+      <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center; border-radius: 0">
+        <h3>
+          We're talking about <%= @displayconvo.name %>  right NOW!
+          <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+        </h3>
+      </div>
+    </div>
+  <% end %>
+  <% if user_signed_in? %>
+    <% if current_user.id == @user.id %>
+      <% progress = 0 %>    
+    <!-- Calculations should NOT be here!!! They should be in the users controller! NEVER do your math in views!  -->
+        <% if @user.about.present? %>
+          <% progress += 20 %>
+        <% end %>
+        <% if @user.profilepic.present? %>
+          <% progress += 20 %>
+        <% end %>
+        <% if (@user.genre1.present? || @user.genre2.present?) %>
+          <% progress += 20 %>
+        <% end %>
+        <% if @user.bannerpic.present? %>
+          <% progress += 20 %>
+        <% end %>
+        <% if @user.genre3.present?  %>
+          <% progress += 20 %>
+        <% end %>
+        <% if progress < 100 %>
+          <div class="container px-0 py-0 mb-4 border shadow">
+            <div class="alert alert-primary fade show my-0 py-3" role="alert" style="text-align:center; border-radius: 0">
+              <% if progress==0 %>
+                <p><b> Welcome!
+                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
+                  to fill out your profile</b></p>
 
-    <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
-           
-            <% if current_user.nil? %>
-                <div class="container px-0 py-0 mb-4 border shadow">
-                    <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center; border-radius: 0">
-                        <h3>
-                            We're talking about <%= @displayconvo.name %>  right NOW!
-                            <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
-                        </h3>
-                    </div>
+                <div class="progress" style="height: 20px">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                  </div>
+              <% end %>
+              <% if progress==20 %>
+                <p><b> Your profile still needs work,
+                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
+                to set it up</b></p>
+                <div class="progress" style="height: 20px">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
                 </div>
-            <% elsif current_user.id != @user.id %>
-                <div class="container px-0 py-0 mb-4 border shadow">
-                    <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center; border-radius: 0">
-                        <h3>
-                            We're talking about <%= @displayconvo.name %>  right NOW!
-                            <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
-                        </h3>
-                    </div>
-                </div>
-            <% end %>
-     
-    <% end %>
-    <% if user_signed_in? %>
-        <% if current_user.id == @user.id %>
-            <% progress = 0 %>    
-
-                <% if @user.about.present? %>
-                    <% progress += 20 %>
-                <% end %>
-                <% if @user.profilepic.present? %>
-                    <% progress += 20 %>
-                <% end %>
-                <% if (@user.genre1.present? || @user.genre2.present?) %>
-                    <% progress += 20 %>
-                <% end %>
-                <% if @user.bannerpic.present? %>
-                    <% progress += 20 %>
-                <% end %>
-                <% if @user.genre3.present?  %>
-                    <% progress += 20 %>
-                <% end %>
-                <% if progress < 100 %>
-                <div class="container px-0 py-0 mb-4 border shadow">
-                    <div class="alert alert-primary fade show my-0 py-3" role="alert" style="text-align:center; border-radius: 0">
-                        <% if progress==0 %>
-                            <p><b> Welcome!
-                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
-                            to fill out your profile</b></p>
-
-                            <div class="progress" style="height: 20px">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-                            </div>
-                        <% end %>
-                        <% if progress==20 %>
-                            <p><b> Your profile still needs work,
-                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
-                            to set it up</b></p>
-                            <div class="progress" style="height: 20px">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                            </div>
-                        <% end %>
+              <% end %>
                         <% if progress==40 %>
                              <p><b> Your profile still needs work,
                                 <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
@@ -177,7 +164,7 @@
             </div>
            
             <div class="container mb-4 border shadow">
-                <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Conversations Attending" %> </h1>
+                <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Office Hours Attending" %> </h1>
                 <% if @calendar_events.present? %>
                     <div class="listView">
                         <%= render 'layouts/maincalendar', collection: @calendar_events %><br>
@@ -186,15 +173,15 @@
                 <% else %>
                         <% if current_user.nil? %>
                             <div class="text-center pb-4" style="font-family: Helvetica;">
-                                <%= @user.name %> <%= " has no conversations scheduled." %>
+                                <%= @user.name %> <%= " has no office hours scheduled." %>
                             </div>
                         <% elsif current_user.id == @user.id %>
                             <div class="text-center pb-4" style="font-family: Helvetica;">
-                                <%= "You have no conversations scheduled."%>
+                                <%= "You have no office hours scheduled."%>
                             </div>
                         <% else %>
                             <div class="text-center pb-4" style="font-family: Helvetica;">
-                                <%= @user.name %> <%= " has no conversations scheduled." %>
+                                <%= @user.name %> <%= " has no office hours scheduled." %>
                             </div>
                         <% end %>
                 <% end %>
