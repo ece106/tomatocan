@@ -132,6 +132,9 @@ class StaticPagesController < ApplicationController
   def drschaeferspeaking
     @message = Message.new
   end
+  def beourguest
+    @message = Message.new
+  end
   def bystanderguidelines
   end
   def livestream

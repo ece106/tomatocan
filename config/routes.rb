@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   match 'chat',                     to: 'static_pages#chat',                via: 'get'
   match 'vieweronhost',             to: 'static_pages#vieweronhost',        via: 'get'
   match 'jointheteam',              to: 'static_pages#jointheteam',         via: 'get'
+  match 'beourguest',               to: 'static_pages#beourguest',         via: 'get'
   match 'bystanderguidelines',      to: 'static_pages#bystanderguidelines', via: 'get'
   match 'drschaeferspeaking',       to: 'static_pages#drschaeferspeaking',  via: 'get'
   match 'store',                    to: 'static_pages#store',           via: 'get'

@@ -5,7 +5,7 @@ class MessageMailer < ApplicationMailer
   end
 
   def message_reminder
-    mail(to: "lisa@thinq.tv", subject: "Invitation for Dr Lisa to speak")
+    mail(to: "lisa@thinq.tv", subject: "Message from Thinq.TV site")
   end
 
 end

@@ -83,7 +83,7 @@
                     <% buyPrice = ("Buy for $" + sprintf('%.2f', merch.price) + "!") %>
                     <% end %>
 
-                    <% if @user.stripeid.present? || @user.id == 143 %>
+                    <% if @user.stripeid.present? || @user.id == 1 %>
                     <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "btn btn-warning text-black", :target => "_blank", :style=> "font-size: 1.0em; padding: 10px; width: 80px;"  %>
                     <% end %>
                 </div>
@@ -95,7 +95,7 @@
             <% else %>
             <!--This is where the Default Donate button are displayed-->
             <!--To add or modify Default Donation buttons and prices, it should be done through the code below only-->
-                <% if @user.stripeid.present? || @user.id == 1337 || @user.id == 1345 %>
+                <% if @user.stripeid.present? %>
 
                 <div class="mr-3 text-center" style=" padding-right: 2px; font-family: Helvetica;">
                     <% btnTxt = ("Donate $" + sprintf('%.2f',25) + "!") %>

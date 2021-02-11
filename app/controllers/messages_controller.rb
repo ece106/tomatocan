@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
       @message = Message.new(message_params)
     if @message.save
       MessageMailer.with(message: @message).message_reminder.deliver_later
-      flash[:success] = "Message was succesfully sent"
-      redirect_to drschaeferspeaking_path
+      flash[:success] = "Message was succesfully sent. We will get back to you via your email address shortly."
+      redirect_back(fallback_location: root_path)
     else
       flash[:error] = message_error_message
       redirect_back(fallback_location: root_path)
