@@ -52,48 +52,44 @@
           <div class="container px-0 py-0 mb-4 border shadow">
             <div class="alert alert-primary fade show my-0 py-3" role="alert" style="text-align:center; border-radius: 0">
               <% if progress==0 %>
-                <p><b> Welcome!
-                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
-                  to fill out your profile</b></p>
+                <p> Welcome!
+                <b><%= link_to " Fill out your profile", user_controlpanel_url(current_user.permalink), method: :get, class: "brandprimary"%>
+                  </b></p>
 
                 <div class="progress" style="height: 20px">
                   <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                   </div>
               <% end %>
               <% if progress==20 %>
-                <p><b> Your profile still needs work,
-                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
-                to set it up</b></p>
+                <p> Your profile is incomplete.
+                <b><%= link_to " Add more info", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
                 <div class="progress" style="height: 20px">
                   <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
                 </div>
               <% end %>
                         <% if progress==40 %>
-                             <p><b> Your profile still needs work,
-                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
-                            to set it up</b></p>
+                          <p> Your profile is incomplete.
+                          <b><%= link_to " Add more info", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
                             <div class="progress" style="height: 20px">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
                             </div>
                         <% end %>
                         <% if progress==60 %>
-                            <p><b> Your profile is almost done,
-                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
-                            to add the final touches</b></p>
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
-                            </div>
+                          <p> Your profile is almost done,
+                          <b><%= link_to " Complete your profile", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
+                          <div class="progress" style="height: 20px;">
+                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                          </div>
                         <% end %>
                         <% if progress==80 %>
-                            <p><b> Your profile is almost done,
-                                <%= link_to " click here", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%>
-                            to add the final touches</b></p>
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                            </div>
+                          <p>Your profile is almost done,
+                          <b><%= link_to " Complete your profile", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
+                          <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                          </div>
                         <% end %>
                          <% if progress==100 %>
-                            <p><b> Congradulations! Your profile is all done!</b></p>
+                            <p>Your profile is complete!</p>
                             <div class="progress" style="height: 20px;">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>

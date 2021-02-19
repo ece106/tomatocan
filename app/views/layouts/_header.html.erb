@@ -40,14 +40,14 @@
             </li>
             <li>
               <p class="navbar-btn pt-1">
-                <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-primary border-warning text-warning" %>
+                <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-primary borderbrand brandsecondary" %>
               </p>
             </li>
           <% else %>
             <li>
               <p class="navbar-btn pt-1">
                 <%= link_to "Sign Up", '/signup', class: "btn btn-primary border border-light" %>
-                <%= link_to 'Sign In', "/login", class: "btn btn-primary border border-warning text-warning" %>
+                <%= link_to 'Sign In', "/login", class: "btn btn-primary border borderbrand brandsecondary" %>
               </p>
             </li>
           <% end %>

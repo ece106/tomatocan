@@ -45,6 +45,6 @@ class NonuserNavbar < ActionDispatch::IntegrationTest
     assert_equal '/login', current_path
     user_sign_in @confirmedUser
     assert_equal '/', current_path
-    click_on class: 'btn btn-primary border-warning text-warning', match: :first
+    click_on class: 'btn btn-primary borderbrand brandsecondary', match: :first
   end
 end

@@ -49,7 +49,7 @@
                     <% start_time = @event.start_at.strftime("%B %d %Y") + ' ' + @event.start_at.strftime("%T") %>
                     <% end_time = @event.end_at.strftime("%B %d %Y") + ' ' + @event.end_at.strftime("%T") %>
                     <% if ((Time.current - offset.hours) > Time.find_zone("UTC").parse(start_time) ) && ((Time.current - offset.hours) < Time.find_zone("UTC").parse(end_time)) %>
-                    <%= link_to " Join " + @event.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-primary border-warning text-warning btn-md mt-2 mb-2" %>
+                    <%= link_to " Join " + @event.topic + " NOW! ", user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-primary borderbrand brandsecondary btn-md mt-2 mb-2" %>
                     <% end %>
                 </div>
             </div>
@@ -98,12 +98,12 @@
                             
                             <!-- Only show the RSVP button if the user is not the host or if the user hasn't already RSVP'd to this conversation -->
                             <% if flag %>
-                                <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body border-warning pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
+                                <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body borderbrand pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
                             <% end %>
                         <% end %>
                         <% if user_signed_in? %>
                             <% if @event.user_id == current_user.id %>
-                                <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn btn-primary btn-sm border-warning text-warning mt-3 mb-3" %>
+                                <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn btn-primary btn-sm borderbrand brandsecondary mt-3 mb-3" %>
                             <% end %>
                         <% end %>
                     </div>
@@ -120,7 +120,7 @@
                     <!-- Default dropleft button -->
                     <% if @rsvps.count > 0 %>
                     <div id="dropLeftButton" class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm border-warning text-body bg-warning pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm borderbrand text-body bg-warning pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true">
                             <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">
@@ -170,7 +170,7 @@
                 </div>
                 <div>
                   <p class="mb-0 mt-0"> <small> Go to <%= link_to "ThinQ.tv", root_path %> and
-                    click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-sm btn-primary text-warning fa fa-video-camera" %>
+                    click </small> <%= link_to " Join " +  @event.topic.upcase , user_viewer_path(@user.permalink, chatrm: @event.topic ), class: "btn btn-sm btn-primary brandsecondary fa fa-video-camera" %>
                   </p>
                 </div>
                 <div>

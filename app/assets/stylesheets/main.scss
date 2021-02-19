@@ -1,6 +1,6 @@
 //VARIABLES.SCSS: This is where we redefine the bootstrap default settings to better represent ThinqTV
-$brand-primary: #8C1D40; //ASU Maroon
-$brand-secondary: #FFB704; //ASU Gold
+$brand-primary: #00003F; //space blue
+$brand-secondary: #FFBBFF; //fuchsia
 $brand-gray: #DADADA; // light grey
 $brand-white: #F0F0F0;
 $brand-black: #222222;
@@ -85,7 +85,7 @@ h1.white {
 }
 
 h1.maroon {
-  color: #8C1D40;
+  color: $brand-primary;
   font-family: Helvetica;
   font-style: normal;
   font-weight: bold;
@@ -251,7 +251,23 @@ ul li a.toggle:hover {
   margin-left: 5px;
 }
 
-//HOME.SCSS: This is all the css specific to the HOME page
+.brandsecondary {
+  color: $brand-secondary;
+}
+
+.borderbrand {
+  border-color: $brand-secondary;
+}
+
+.backgroundbrand {
+  background-color: $brand-secondary;
+}
+
+.backgroundprimary {
+  background-color: $brand-primary;
+}
+
+// Countdown clock
 
 #clockdiv {
   color: #fff;
@@ -261,7 +277,7 @@ ul li a.toggle:hover {
 }
 
 #clockdiv>div {
-  background: #8C1D40;
+  background: $brand-primary;
   border-radius: 10px;
   display: inline-block;
   height: 80px;
@@ -282,7 +298,7 @@ ul li a.toggle:hover {
 }
 
 #clockdivstudy>div {
-  background: #8C1D40;
+  background: $brand-primary;
   border-radius: 10px;
   display: inline-block;
   height: 80px;
@@ -358,7 +374,7 @@ th {
   font-size: 1em;
   padding: 6px;
   border: 1px solid #999;
-  background: #8C1D40;
+  background: $brand-primary;
   text-align: center;
   width: 14.2857142857143%;
 }
@@ -394,7 +410,7 @@ td {
   padding: 10px;
   font-family: sans-serif;
   font-weight: bold;
-  background-color: #8C1D40;
+  background-color: $brand-primary;
   color: white;
 }
 
@@ -497,7 +513,7 @@ td {
   border-radius: 1em;
   width: 100%;
   margin-top: 2.5%;
-  background-color: #8C1D40;
+  background-color: $brand-primary;
   overflow: hidden;
 }
 #topicDesc img {
@@ -623,8 +639,8 @@ td {
 	padding: 0px;
 }
 #hollowMaroonButton {
-    border-color: #8d1d40;
-    color: #8d1d40;
+    border-color: $brand-primary;
+    color: $brand-primary;
     font-family: Helvetica;
 }
 #merchSidebar {
@@ -648,7 +664,7 @@ td {
 //MAIN.SCSS: General settings to import bootstrap and change some more default settings
 
 //Overrides Bootstrap-defined variables
-$primary: #8C1D40;
+$primary: $brand-primary;
 $baseFontFamily: Helvetica !default;
 //Bootstrap files
 //@import "bootstrap-sprockets";

@@ -89,7 +89,7 @@ class UserCreatesDonationPurchase < ActionDispatch::IntegrationTest
 
   def teardown 
     @user_two.update_attribute :stripe_customer_token, ""
-    click_on class: 'btn btn-primary border-warning text-warning'
+    click_on class: 'btn btn-primary borderbrand brandsecondary'
   end
 
   private 

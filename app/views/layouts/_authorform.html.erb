@@ -26,11 +26,11 @@ if @user.genre3 ; @genrethree = "," + @user.genre3.gsub(/ +/, '-') else @genreth
 	<div class="col-sm-12 text-primary pt-6">
 		<h1 class="maroon pt-3" id="profileName"><%= @user.name %></h1>
 			<% if @user.genre1.blank? == false && @user.genre1 != 'Other'%>
-				<span style="font-size: 35px; font-family: helvetica; color: #FFB704">
+				<span style="font-size: 35px; font-family: helvetica; color: #FF00FF">
 					<%= @user.genre1 %>
 				</span>
 			<% elsif @user.genre2.blank? == false %>
-				<span style="font-size: 35px; font-family: helvetica; color: #FFB704">
+				<span style="font-size: 35px; font-family: helvetica; color: #FF00FF">
 					<%= @user.genre2 %>
 				</span>
 			<% end %>
