@@ -2,13 +2,6 @@ class MerchandisesController < ApplicationController
   before_action :set_merchandise, only: [:show, :edit, :update]
   layout :resolve_layout
 
-  # GET /merchandises
-  def index
-    @merchandiselisa = Merchandise.joins(:user).where("user_id = 143 AND itempic IS NOT NULL")
-    @merchandisepic = Merchandise.joins(:user).where("stripeid IS NOT NULL AND itempic IS NOT NULL")
-    @merchandisenopic = Merchandise.joins(:user).where("stripeid IS NOT NULL AND itempic IS NULL")
-  end
-
   # GET /merchandises/1
   def show
     @author = User.find(@merchandise.user_id)
@@ -17,13 +10,8 @@ class MerchandisesController < ApplicationController
   # GET /merchandises/new
   def new
     @merchandise = Merchandise.new
-end
-
-  def standardperks
-    @merchandise = Merchandise.new
   end
 
-  # GET /merchandises/1/edit
   def edit
     #inside body taken care of by before_action
   end

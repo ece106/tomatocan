@@ -1,4 +1,4 @@
-<!-- Button trigger modal -->
+<!-- Button trigger modal I dont thinq this is used anymore-->
 <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#exampleModalCenter">
   <%= buy_price %>
 </button>
@@ -13,7 +13,6 @@
         </div>
         <div class="modal-body new-purchase-modal">
           <%= form.hidden_field :stripe_card_token %>
-          <%= form.hidden_field :group_id, value: params[:group_id] %>
           <%= form.hidden_field :pricesold, value: params[:pricesold] %>
           <%= form.hidden_field :author_id, value: params[:author_id] %>
           <%= form.hidden_field :merchandise_id, value: merch.id %>

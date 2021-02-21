@@ -121,6 +121,9 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def store
+    @merches = Merchandise.where("user_id = ? OR user_id = ?", 1, 553 )
+  end
   def faq
   end
   def privacy_policy

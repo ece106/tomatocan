@@ -56,7 +56,7 @@ class PurchasesController < ApplicationController
       @seller                        = User.find(@merchandise.user_id)
       @purchase_mailer_hash[:seller] = @seller
       case @merchandise.buttontype
-      when 'Donate'
+      when 'Donate' #for user definded donation
         assign_user_id
         case @purchase.save_with_payment
         when true
@@ -67,7 +67,7 @@ class PurchasesController < ApplicationController
         when false
           redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
         end
-      when 'Buy'
+      when 'Buy' #for user definded product
         assign_user_id
         case @purchase.save_with_payment
         when true
@@ -105,11 +105,8 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.require(:purchase).permit(:stripe_customer_token, :bookfiletype,
-                                     :groupcut, :shipaddress, :book_id,
-                                     :stripe_card_token,:pricesold, :user_id,
-                                     :author_id, :merchandise_id, :group_id,
-                                     :email)
+    params.require(:purchase).permit(:stripe_customer_token, :bookfiletype, :email,
+      :shipaddress, :book_id, :stripe_card_token,:pricesold, :user_id, :author_id, :merchandise_id)
   end
 
 end

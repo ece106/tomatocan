@@ -114,7 +114,7 @@ footer {
   text-align: left;
   background-color: $brand-primary;
   font-family: Helvetica;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 #copyright {
@@ -134,11 +134,11 @@ footer a.f-link {
 
 footer p.f-header {
   color: $brand-secondary;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 footer div.col-sm-3 {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 footer small {
@@ -166,9 +166,15 @@ footer small {
   .btn-primary {
     color: $brand-gray;
     background-color: $brand-primary;
-    ;
     border-color: #771936;
-    font: "Helvetica"
+    font: "Helvetica";
+  }
+  .btn-secondary {
+    color: #000;
+    background-color: $brand-secondary;
+    border-color: #771936;
+    font: "Helvetica";
+    padding: 10px;
   }
 
   .btn-default {

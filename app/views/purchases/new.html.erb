@@ -11,7 +11,6 @@
       <% end %>
 
       <%= f.hidden_field :stripe_card_token %>
-      <%= f.hidden_field :group_id, value: params[:group_id] %>
       <%= f.hidden_field :pricesold, value: params[:pricesold] %>
       <%= f.hidden_field :author_id, value: params[:author_id] %>
       <%= f.hidden_field :merchandise_id, value: params[:merchandise_id] %>
@@ -23,17 +22,11 @@
       <% end %>
 
       <div class="field">
-        <% if params[:group_id].present? %>
-          <% groupsupported = Group.find(params[:group_id]) %>
-          5% of purchase will go to <b><%= groupsupported.name %></b><br><br>
-        <% end %>
-
         <h1 class="maroon"> <strong> Complete Purchase </strong></h1><br>
 
-        <h4>Instructions for Receiving Reward</h4>
-        <p>If you are purchasing a physical item to be mailed, enter entire Shipping Address where the item is to be sent
-        <br><br>
-        If purchasing a consultation, a mention in a book or movie, or any other Reward that the seller will arrange by text or voice, enter phone number, email address, or other contact info
+        <h4>Shipping Address</h4>
+        <p>Enter entire Shipping Address where the item is to be sent. Other relevant instructions may also be entered.
+        <br>
         (You may leave this box blank if you are making a donation or purchasing a download) </p>
         <%= f.text_area :shipaddress, cols: 100, rows: 4 %><br><br>
 

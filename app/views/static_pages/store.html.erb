@@ -9,10 +9,38 @@
 </div>
 
 <div class="row" style="margin-top: 50px">
+  <% @merches.each do |merch| %>
+    <% collapsenum = "c" + merch.id.to_s %>
+    <div class="col-md-4 col-sm-6 col-xs-12 pr-0 pl-5">
+      <div class="container-fluid text-center">
+        <div style = "height: 280px;">
+          <% if merch.itempic.present? %>
+            <%= image_tag(merch.itempic.to_s , :style => "height: 280px;")%>
+          <% end %>  
+        </div>
+        <div class="card-body pr-5 pl-1">
+          <h4>
+            <a class="btn btn-primary btn-lg btn-block mb-3" data-toggle="collapse" href="#<%=collapsenum%>" role="button" aria-expanded="false" aria-controls="<%=collapsenum%>">
+            <%= merch.name %> <br>
+            </a>
+          <%= link_to " Buy Now $" + merch.price.to_s , new_purchase_path(pricesold: merch.price, author_id: 2), method: :get, :class => "backgroundbrand text-black", :target => "_blank", :style=> "padding: 10px;"  %>
+          </h4>
+          <div class="collapse" id="<%=collapsenum%>" style="text-align: left">
+            <% if merch.desc.present? %>
+              <%= merch.desc %>
+            <% end %>  
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>  
+</div>
+
+<div class="row" style="margin-top: 50px">
   <div class="col-md-4 pr-0 pl-5">
     <div class="container-fluid">
       <div>
-        <%= image_tag("convo_photo.png" , :style => "height: 280px;  min-width: auto; width:90%;")%>
+        <%= image_tag("convo_photo.png" , :style => "height: 280px;")%>
                 <!-- marketing: https://unsplash.com/photos/wD1LRb9OeEo   -->
       </div>
 
@@ -65,7 +93,7 @@
             Women's Pockets necklace<br>
           </a>
         </h4>
-          <%= link_to "Buy Now $30", new_purchase_path(:pricesold => 30, :author_id => 1), method: :get, :class => "btn btn-warning text-black", :target => "_blank", :style=> "font-size: 1.0em; padding: 10px; width: 180px;"  %>
+          <%= link_to " Buy Now $30 ", new_purchase_path(:pricesold => 30, :author_id => 1), method: :get, :class => "backgroundbrand text-black", :target => "_blank", :style=> "font-size: 1.0em; padding: 10px; "  %>
         <div class="collapse" id="collapseTwo">
           Need a handy place to store your credit cards, business cards, car key, and cash but have no pocket to put them in? This space-design Venn diagram pocket comes on a beaded chain to wear as a necklace. The text glows in the dark! <br><br>
         </div>
