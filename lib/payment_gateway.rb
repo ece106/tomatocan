@@ -33,11 +33,7 @@ module PaymentGateway
     if purchase.merchandise_id.present?
       merch = Merchandise.find(purchase.merchandise_id)
       if merch.user_id == 1 || merch.user_id == 553
-        Stripe::Token.create(
-        {
-          customer: returning_customer.id
-        },
-        )
+              puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
       else
         Stripe::Token.create(
         {
@@ -99,44 +95,49 @@ module PaymentGateway
     )
   end
 
+  def self.create_charge(purchase)
+    if purchase.merchandise_id.present?
+      merch = Merchandise.find(purchase.merchandise_id)
+      puts "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+      puts merch.user_id
+      if merch.user_id == 1 || merch.user_id == 553
+        lisasale_userloggedin(purchase)
+      else
+        sale_userloggedin(purchase)
+      end
+    else
+      sale_userloggedin(purchase)
+    end
+  end
+
   def self.lisasale_userloggedin(purchase)
-    puts "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     puts purchase.amount
     puts purchase.currency
-    puts purchase.token.id
+#    puts purchase.token.id
+    puts purchase.stripe_card_token
     puts purchase.shipaddress
+
+
+    buyer = User.find(purchase.user_id)
+    if buyer.stripe_customer_token.present? 
+    else
+      customer = self.create_customer(purchase)
+      buyer.update_attribute(:stripe_customer_token, customer.id)
+    end
+
     Stripe::Charge.create(
       {
         amount: purchase.amount,
         currency: purchase.currency,
-        source: purchase.token.id,
+        customer: buyer.stripe_customer_token,
         description: purchase.shipaddress
       },
      )
-    puts "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"
-  end
-
-  def self.create_charge(purchase)
-    puts "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK"
-    if purchase.merchandise_id.present?
-      puts "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
-      merch = Merchandise.find(purchase.merchandise_id)
-      if merch.user_id == 1 || merch.user_id == 553
-        puts "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
-        lisasale_userloggedin(purchase)
-        puts "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"
-      else
-        sale_userloggedin(purchase)
-      end
-      puts "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-    else
-      sale_userloggedin(purchase)
-    end
-    puts "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
   end
 
   def self.sale_userloggedin(purchase)
-    puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+    puts "??????????????????????????????????????????????????????"
     Stripe::Charge.create(
       {
         amount: purchase.amount,

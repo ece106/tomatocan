@@ -36,14 +36,13 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
 
-    # For Default Donation
-    if !@purchase.merchandise_id.present?
+    if !@purchase.merchandise_id.present? #donation from default buttons
       @purchase_mailer_hash          = { purchase: @purchase }
       @seller                        = User.find(@purchase.author_id)
       @purchase_mailer_hash[:seller] = @seller
       assign_user_id
       if @purchase.save_with_payment
-        flash[:notice] = 'You successfully donated $' + @purchase.pricesold.to_s + ' . Thank you for being a donor of ' + @seller.name
+        flash[:success] = 'You successfully donated $' + @purchase.pricesold.to_s + ' . Thank you for supporting ' + @seller.name
         redirect_to user_profile_path(@seller.permalink) 
         PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
@@ -60,7 +59,7 @@ class PurchasesController < ApplicationController
         assign_user_id
         case @purchase.save_with_payment
         when true
-          flash[:notice] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for being a donor of ' + @seller.name
+          flash[:success] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for supporting ' + @seller.name
           redirect_to user_profile_path(@seller.permalink)
           PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
           PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
@@ -72,12 +71,14 @@ class PurchasesController < ApplicationController
         case @purchase.save_with_payment
         when true
           @purchase_mailer_hash[:merchandise] = @merchandise
-          filename_and_data = @merchandise.get_filename_and_data
-          filename = filename_and_data[:filename]
-          data = filename_and_data[:data]
-          send_data_to_buyer data, filename and return
+          #what the hell is all this. What if not selling a download!!????
+          #filename_and_data = @merchandise.get_filename_and_data
+          #filename = filename_and_data[:filename] 
+          #data = filename_and_data[:data]
+          #send_data_to_buyer data, filename and return
           redirect_to user_profile_path(@seller.permalink) 
           flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
+        #we really need to send email to the seller so they know they have an order to fulfill
           PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
           PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
         when false

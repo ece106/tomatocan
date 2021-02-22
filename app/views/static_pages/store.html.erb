@@ -23,7 +23,7 @@
             <a class="btn btn-primary btn-lg btn-block mb-3" data-toggle="collapse" href="#<%=collapsenum%>" role="button" aria-expanded="false" aria-controls="<%=collapsenum%>">
             <%= merch.name %> <br>
             </a>
-          <%= link_to " Buy Now $" + merch.price.to_s , new_purchase_path(pricesold: merch.price, author_id: 2), method: :get, :class => "backgroundbrand text-black", :target => "_blank", :style=> "padding: 10px;"  %>
+          <%= link_to " Buy Now $" + merch.price.to_s , new_purchase_path(merchandise_id: merch.id), method: :get, :class => "backgroundbrand text-black", :target => "_blank", :style=> "padding: 10px;"  %>
           </h4>
           <div class="collapse" id="<%=collapsenum%>" style="text-align: left">
             <% if merch.desc.present? %>
