@@ -98,12 +98,12 @@
                             
                             <!-- Only show the RSVP button if the user is not the host or if the user hasn't already RSVP'd to this conversation -->
                             <% if flag %>
-                                <%= f.submit "RSVP NOW", :class => "btn-sm bg-warning text-body borderbrand pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
+                                <%= f.submit "RSVP NOW", :class => "text-body backgroundbrand pt-1 pb-1 pl-5 pr-5", :id => "RSVPsubmit" %>
                             <% end %>
                         <% end %>
                         <% if user_signed_in? %>
                             <% if @event.user_id == current_user.id %>
-                                <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn btn-primary btn-sm borderbrand brandsecondary mt-3 mb-3" %>
+                                <%= link_to "Edit " + @event.topic , edit_event_path(@event), class: "btn-sm backgroundbrand p-2 mt-3 mb-3" %>
                             <% end %>
                         <% end %>
                     </div>
@@ -120,7 +120,7 @@
                     <!-- Default dropleft button -->
                     <% if @rsvps.count > 0 %>
                     <div id="dropLeftButton" class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm borderbrand text-body bg-warning pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm backgroundbrand text-body pt-2 pb-2 pl-5 pr-5" data-toggle="dropdown" aria-haspopup="true">
                             <span class="caret"></span> &nbsp; Who will be there &nbsp; <span><%= @rsvps.count %></span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right rsvp-dropdown">

@@ -134,14 +134,14 @@
                             <% end %>
                           <% end %>
                           <% if flag %>
-                            <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px" %>
+                            <%= f.submit "RSVP", class: "backgroundbrand", style: "padding: 2px 20px; font-weight: normal; margin-left: 10px" %>
                           <% end %>
                         <% end %>
                       <% end %>
                       <% if user_signed_in? %>
                         <% if @user.id != current_user.id %>
                           <%= f.hidden_field :user_id, :value => current_user.id %>
-                          <%= f.submit "RSVP", :style => "color: #fff; background-color: #880f42; padding: 2px 20px; font-weight: normal; margin-left: 10px"%>
+                          <%= f.submit "RSVP", class: "backgroundbrand", style: "padding: 2px 20px; font-weight: normal; margin-left: 10px"%>
                         <% end %>
                       <% end %>
                     <% end %>
