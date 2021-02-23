@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def show
     # @redirecturl = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=" + STRIPE_CONNECT_CLIENT_ID + "&scope=read_write"
-    pdtnow = Time.now - 7.hours + 5.minutes
+    pdtnow = Time.now - 8.hours
     id = @user.id
     currconvo = Event.where( "start_at < ? AND end_at > ? AND user_id = ?", pdtnow, pdtnow, id ).first
     if currconvo.present?

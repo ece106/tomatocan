@@ -4,8 +4,6 @@ class User < ApplicationRecord
   :purchasesinfo, :on_password_reset
 
   has_many :books
-  has_many :movies
-  has_many :movieroles
   has_many :reviews
 #  has_many :groups
   has_many :purchases

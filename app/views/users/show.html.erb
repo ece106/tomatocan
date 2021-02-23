@@ -16,13 +16,13 @@
   <div class="container mt-5 mb-4 pb-3 border shadow">
     <%= render 'layouts/authorform' %>
   </div>
-    
+    <%= @currconvo %>
   <% if @displayconvo.present? && @displayconvo.user_id == @user.id %>
     <div class="container px-0 py-0 mb-4 border shadow">
-      <div class="alert alert-warning fade show my-0 pt-3" role="alert" style="text-align: center; border-radius: 0">
+      <div class="alert fade show my-0 pt-3" role="alert" style="text-align: center; border-radius: 0">
         <h3>
           We're talking about <%= @displayconvo.name %>  right NOW!
-          <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "btn btn-warning text-black" %>
+          <%= link_to " Join " + @displayconvo.topic, user_viewer_path(@user.permalink, chatrm: @displayconvo.topic, event: @displayconvo.id ), class: "backgroundbrand p-2 text-black" %>
         </h3>
       </div>
     </div>
@@ -62,41 +62,41 @@
                   </b></p>
 
                 <div class="progress" style="height: 20px">
-                  <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                  <div class="progress-bar-secondary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                   </div>
               <% end %>
               <% if progress==20 %>
                 <p> Your profile is incomplete.
                 <b><%= link_to " Add more info", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
                 <div class="progress" style="height: 20px">
-                  <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                  <div class="progress-bar-secondary" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
                 </div>
               <% end %>
                         <% if progress==40 %>
                           <p> Your profile is incomplete.
                           <b><%= link_to " Add more info", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
                             <div class="progress" style="height: 20px">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                                <div class="progress-bar-secondary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
                             </div>
                         <% end %>
                         <% if progress==60 %>
                           <p> Your profile is almost done,
                           <b><%= link_to " Complete your profile", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
                           <div class="progress" style="height: 20px;">
-                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                            <div class="progress-bar-secondary" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
                           </div>
                         <% end %>
                         <% if progress==80 %>
                           <p>Your profile is almost done,
                           <b><%= link_to " Complete your profile", user_controlpanel_url(current_user.permalink), method: :get, :class => "text-red"%></b></p>
                           <div class="progress" style="height: 20px;">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                            <div class="progress-bar-secondary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
                           </div>
                         <% end %>
                          <% if progress==100 %>
                             <p>Your profile is complete!</p>
                             <div class="progress" style="height: 20px;">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                <div class="progress-bar-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>
                         <% end %>
                     </div>
@@ -126,14 +126,16 @@
                                     <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Donations & Rewards" %> </h1>
 
                                     <div class="media pt-2">
-                                        <div class="mr-3">
-                                            <span class="btn btn-warning" style="font-size: 1.0em; padding: 10px; width: 100px; font-family: Helvetica;">
-                                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPECONNECTCLIENTID %>&scope=read_write" target="_blank" class="text-black" style="font-family: Helvetica; color: black">Connect to Stripe <%= image_tag("social-share-button/stripe.png")%></a>
+                                        <div class="mr-3 backgroundbrand p-2">
+                                            <span style="font-size: 1.0em; padding: 10px; width: 100px; font-family: Helvetica;">
+                                                <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= STRIPECONNECTCLIENTID %>&scope=read_write" target="_blank" class="text-black" style="font-family: Helvetica; color: black">
+                                                  Connect to<br> Stripe <%= image_tag("social-share-button/stripe.png")%></a>
                                             </span>
                                         </div>
                                         <div class="media-body" style="font-family: Helvetica; padding-right: 10px;">
                                             <p class="pt-1" style="font-family: Helvetica;">If you would like to receive donations or sell downloads on ThinQ.tv, you need to sign up for Stripe. We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
-                                            to allow users to seamlessly collect and process payments. Stripe is used by thousands of ecommerce sites such as Target, UNICEF, Amazon and Uber.<a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
+                                            to allow users to seamlessly collect and process payments. Stripe is used by thousands of ecommerce sites such as Target, UNICEF, Amazon and Uber.</p>
+                                            <p><a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
                                             connects to your bank account to directly deposit any financial support you obtain from fellow ThinQers. It only takes a few minutes to create an account.
                                             </p>
                                             <br />

@@ -21,7 +21,7 @@ class MerchandisesController < ApplicationController
     @merchandise = current_user.merchandises.build(merchandise_params)
     if @merchandise.save 
       @merchandise.get_youtube_id
-      redirect_to user_profile_path(current_user.permalink), notice: 'Patron Perk was successfully created.'
+      redirect_to user_profile_path(current_user.permalink), notice: 'Reward was successfully created.'
     else
       flash.now[:notice] = "Your merchandise was not saved. Check the required info (*), filetypes, or character counts."
       render :new
@@ -33,7 +33,7 @@ class MerchandisesController < ApplicationController
     @merchandise = Merchandise.find(params[:id])
     if @merchandise.update(merchandise_params)
       @merchandise.get_youtube_id
-      redirect_to @merchandise, notice: 'Patron Perk was successfully updated.'
+      redirect_to @merchandise, notice: 'Reward was successfully updated.'
     else 
       render action: 'edit'
     end

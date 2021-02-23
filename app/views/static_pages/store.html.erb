@@ -27,7 +27,7 @@
           </h4>
           <div class="collapse" id="<%=collapsenum%>" style="text-align: left">
             <% if merch.desc.present? %>
-              <%= merch.desc %>
+              <%= simple_format merch.desc.gsub(/\n/, '<br>') %>
             <% end %>  
           </div>
         </div>

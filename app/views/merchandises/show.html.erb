@@ -3,7 +3,10 @@
 <div class="text-center">
   <h1 class="maroon mt-2 pb-2"><%= @merchandise.name %> </h1>
   <% deadline = Date.parse(@merchandise.deadline.to_s)%>
-  <h2 class="mt-3 text-center text-dark"><small>Last Day to Purchase: <%= deadline.strftime('%B %d, %Y') %></small></h2>
+  <% if deadline < Time.now + 7.days %>
+    <h2 class="mt-3 text-center text-dark"><small>Last Day to Purchase: <%= deadline.strftime('%B %d, %Y') %></small>
+    </h2>
+  <% end %>  
   <br>
   <% if @merchandise.itempic.present? && @merchandise.itempic != '' %>
     <%= image_tag(@merchandise.itempic.url.to_s, height: '400') %>
@@ -13,13 +16,13 @@
 
     <% if @merchandise.price.present? %>
       <br>
-      <h2 class="pt-0 maroon text-center text-dark"> <small><strong> Price: $<%= sprintf('%.2f', @merchandise.price) %> USD </strong></small></h2>
+      <h2 class="pt-0 maroon text-center text-dark"> <small><strong> $<%= sprintf('%.2f', @merchandise.price) %> USD </strong></small></h2><br>
     <% end %>
 
     <%if @merchandise.buttontype == 'Donate'%>
-      <%= link_to "Donate Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "btn btn-lg bg-warning" %>
+      <%= link_to "Donate Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "backgroundbrand p-3" %>
     <%else%>
-      <%= link_to "Buy Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "btn btn-lg bg-warning" %>
+      <%= link_to "Buy Now", new_purchase_path(:merchandise_id => @merchandise.id, :group_id => params[:groupid]), :class => "backgroundbrand p-3" %>
     <%end%>
 
   <% else %>
@@ -29,10 +32,9 @@
 
 <br>
 <div class="bg-primary row px-4 ml-lg-5 mr-lg-5">
-  <div class="py-4 col-lg-9 col-mg-8 col-sm-12 com-xs-12 text-white text-left font-weight-normal">
+  <div class="py-4 col-lg-9 col-mg-8 col-sm-12 text-white ">
     <% if @merchandise.desc.present? %>
-      <h3 class="white">
-        <%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %> </h3>
+        <%= simple_format @merchandise.desc.gsub(/\n/, '<br>') %> 
     <% end %>
 
     <% if @merchandise.audio.present? || @merchandise.merchepub.present? || @merchandise.merchmobi.present? || @merchandise.merchpdf.present? || @merchandise.graphic.present? || @merchandise.video.present? %>
