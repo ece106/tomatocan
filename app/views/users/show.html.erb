@@ -110,21 +110,17 @@
             <div class="container pb-5 mb-4 border shadow" id="appBackground">
                 <%= render 'layouts/streamButton' %>
             </div>
-             <% if @user.genre3.present? %>
+            <% if @user.genre3.present? %>
                 <div class="container pb-4 mb-4 border shadow">
                     <h1 class="pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Skills & Interests" %> </h1>
                     <h6 class="pt-1" style="padding-left: 35px; padding-right: 30px;"> <%= @user.genre3 %> </h6>
                 </div>
             <% end %>
-            <% if current_user.nil? %>
-                <%= render 'layouts/merchsidebar' %>
-             <% else %>
-                    <% if current_user.id == @user.id %>
-                        <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
+            <% if user_signed_in? %>
+              <% if current_user.id == @user.id %>
+                <% if !current_user.stripeid.present? || current_user.stripeid == '' %>
                             <div class="mb-4">
                                 <div class="container border shadow">
-                                    <h1 class=" pt-3 text-center" id="profileName" style="font-size: 2.0em; color: #404040"> <%= "Donations & Rewards" %> </h1>
-
                                     <div class="media pt-2">
                                         <div class="mr-3 backgroundbrand p-2">
                                             <span style="font-size: 1.0em; padding: 10px; width: 100px; font-family: Helvetica;">
@@ -133,24 +129,20 @@
                                             </span>
                                         </div>
                                         <div class="media-body" style="font-family: Helvetica; padding-right: 10px;">
-                                            <p class="pt-1" style="font-family: Helvetica;">If you would like to receive donations or sell downloads on ThinQ.tv, you need to sign up for Stripe. We are partnering with <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
-                                            to allow users to seamlessly collect and process payments. Stripe is used by thousands of ecommerce sites such as Target, UNICEF, Amazon and Uber.</p>
-                                            <p><a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
-                                            connects to your bank account to directly deposit any financial support you obtain from fellow ThinQers. It only takes a few minutes to create an account.
+                                            <p class="pt-1" style="font-family: Helvetica;">Sign up for Stripe to receive donations or sell items on ThinQ.tv! <a href="https://stripe.com/" target="_blank" style="color: #635cff"> Stripe </a>
+                                            payment processor is used by ecommerce sites such as Target, UNICEF, Amazon and Uber. It only takes a few minutes to create a Stripe account.
                                             </p>
                                             <br />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        <% else %>
-                            <%= render 'layouts/merchsidebar' %>
-                        <% end %>
-                    <% else %>
-                        <%= render 'layouts/merchsidebar' %>
-                    <% end %>
+                <% end %>
+              <% end %>
             <% end %>
+          <%= render 'layouts/merchsidebar' %>
         </div>
+
         <div class="col-lg-7 col-md-7 col-sm-12">
             <% if @user.about.present? %>
                 <div class="container pb-4 mb-4 border shadow">

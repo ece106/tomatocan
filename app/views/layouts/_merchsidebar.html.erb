@@ -58,7 +58,7 @@
                 <% if user_signed_in? %>
                     <% if current_user.id == @user.id %>
                     <!--Links to seperate edit Reward page-->
-                    <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "backgroundbrand p-2 text-black", :target => "_blank", :style=> " padding: 4px;" %>
+                    <%= button_to "Edit Reward", edit_merchandise_path(merch.id), method: :get, class: "btn-sm backgroundbrand p-2 mt-3 mb-3", :target => "_blank", :style=> " padding: 4px;" %>
 
                     <% end %>
 
@@ -75,7 +75,7 @@
                     </b>
                 <% end %>
               </div>
-              <div class="media-body backgroundbrand p-2" style="font-family: Helvetica; text-align: right;">
+              <div class="btn-sm backgroundbrand p-2 mt-3" style="font-family: Helvetica; text-align: center;">
                   <% if (merch.buttontype) == 'Donate' %>
                     <% buyPrice = ("Donate $" + sprintf('%.2f', merch.price) + "!") %>
                   <% else %>
@@ -83,7 +83,7 @@
                   <% end %>
 
                   <% if @user.stripeid.present? || @user.id == 1 || @user.id == 553 %>
-                    <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "text-black", :target => "_blank", :style=> "font-size: 1.0em;"  %>
+                    <%= link_to buyPrice, new_purchase_path(:merchandise_id => merch.id), method: :get, :class => "text-black", :target => "_blank" %>
                   <% end %>
               </div>
 

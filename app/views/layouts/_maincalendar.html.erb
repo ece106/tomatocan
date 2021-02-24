@@ -107,6 +107,7 @@
                     <%= link_to " Join " + event.topic, user.permalink + "/viewer?chatrm=" + event.topic, class: "btn btn-primary text-white fa fa-video-camera", style: "padding: 2px 20px; margin-left: 10px"%>
                   <% else %>
                     <%= form_for(@rsvp) do |f| %>
+                      <%= f.hidden_field :event_id, :value => event.id %>
                       <% if @rsvp.errors.any? %>
                         <div id="error_explanation">
                           <h2><%= pluralize(@rsvp.errors.count, "error") %> prohibited this rsvp from being saved:</h2>
@@ -123,7 +124,6 @@
                           var optionsTime = { hour: '2-digit', minute: '2-digit' };
                           document.getElementById("timeZone<%=i%>").value = date.toLocaleString(undefined, optionsTime)
                         </script> 
-                        <%= f.hidden_field :event_id, :value => event.id %>
                         <% if user_signed_in? %>
                           <%= f.hidden_field :user_id, :value => current_user.id %>
 
