@@ -29,11 +29,9 @@ module PaymentGateway
   end
 
   def self.create_token(purchase, returning_customer)
-    puts "TOOOOOOOOOOOKKKKKKKKKKKKKKKEEEEEEEEEEn"
     if purchase.merchandise_id.present?
       merch = Merchandise.find(purchase.merchandise_id)
       if merch.user_id == 1 || merch.user_id == 553
-              puts "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
       else
         Stripe::Token.create(
         {
@@ -98,8 +96,6 @@ module PaymentGateway
   def self.create_charge(purchase)
     if purchase.merchandise_id.present?
       merch = Merchandise.find(purchase.merchandise_id)
-      puts "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
-      puts merch.user_id
       if merch.user_id == 1 || merch.user_id == 553
         lisasale_userloggedin(purchase)
       else
@@ -111,14 +107,6 @@ module PaymentGateway
   end
 
   def self.lisasale_userloggedin(purchase)
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    puts purchase.amount
-    puts purchase.currency
-#    puts purchase.token.id
-    puts purchase.stripe_card_token
-    puts purchase.shipaddress
-
-
     buyer = User.find(purchase.user_id)
     if buyer.stripe_customer_token.present? 
     else
@@ -137,7 +125,6 @@ module PaymentGateway
   end
 
   def self.sale_userloggedin(purchase)
-    puts "??????????????????????????????????????????????????????"
     Stripe::Charge.create(
       {
         amount: purchase.amount,

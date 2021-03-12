@@ -1,0 +1,37 @@
+<div class="container">
+  <%= render 'layouts/flash_messages'%>
+  <h1 class="maroon " ><strong>Women in STEM: Submit a Question for our Advice Column </strong></h1>
+  <hr class="one" >
+  <%= form_for(@message) do |form| %>
+    <div class="row" style="padding-left: 0px; padding-right: 0px;">
+      <div class="col-lg-6 col-md-6">
+        <div class="form-group">
+            Name
+            <%= form.text_field :fullname, class: "form-control" %>
+        </div>       
+      </div>
+       <div class="col-lg-6 col-md-6">
+        <div class="form-group">
+            Phone number
+            <%= form.text_field :phone_number, class: "form-control" %>
+        </div>        
+        
+      </div>
+    </div>  
+  <div class="form-group">
+    Email address
+    <%= form.text_field :email , class: "form-control" %>
+  </div>
+  <div class="form-group">
+    Subject
+    <%= form.text_field :subject, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    Question<br>
+    <%= form.text_area :message, cols: 100, rows: 20 %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Send Message' %>
+  </div>
+  <% end %>
+</div>
