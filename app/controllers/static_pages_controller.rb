@@ -17,14 +17,15 @@ class StaticPagesController < ApplicationController
 
     @eventsAll = Event.where( "start_at > ?", showrecentconvo ).order('start_at ASC') 
 
-    pstnow = Time.now - 8.hours
-    pstnext = Time.now - 9.hours
-    currconvo = Event.where( "start_at < ? AND start_at > ?", pstnow, pstnext ).first
-    nextconvo = Event.where( "start_at > ? ", pstnow ).order('start_at ASC').first
-#    pdtnow = Time.now - 7.hours
-#    pdtnext = Time.now - 8.hours
-#    currconvo = Event.where( "start_at < ? AND start_at > ?", pdtnow, pdtnext ).first
-#    nextconvo = Event.where( "start_at > ? ", pdtnow ).order('start_at ASC').first
+#    pstnow = Time.now - 8.hours
+#    pstnext = Time.now - 9.hours
+#    currconvo = Event.where( "start_at < ? AND start_at > ?", pstnow, pstnext ).first
+#    nextconvo = Event.where( "start_at > ? ", pstnow ).order('start_at ASC').first
+# This is where to change for daylight fooling
+    pdtnow = Time.now - 7.hours
+    pdtnext = Time.now - 8.hours
+    currconvo = Event.where( "start_at < ? AND start_at > ?", pdtnow, pdtnext ).first
+    nextconvo = Event.where( "start_at > ? ", pdtnow ).order('start_at ASC').first
 
     if currconvo.present?
       @displayconvo = currconvo
@@ -35,8 +36,9 @@ class StaticPagesController < ApplicationController
     if @displayconvo.present?
       @name = @displayconvo.name
       @description = @displayconvo.desc
-      @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PST"
-      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PST"
+#Also change to PST/PDT here for daylight fooling
+      @start_time = @displayconvo.start_at.strftime("%B %d %Y") + ' ' + @displayconvo.start_at.strftime("%T") + " PDT"
+      @end_time = @displayconvo.end_at.strftime("%B %d %Y") + ' ' + @displayconvo.end_at.strftime("%T") + " PDT"
       @host = User.find(@displayconvo.user_id)
     end
 
@@ -72,55 +74,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def studyhall
-    showrecentconvo = Time.now - 10.hours
-
-    @events = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'DropIn', 'Group Problem Solving' )
-    @eventsAll = Event.where( "start_at > ? AND (topic = ? OR topic = ?)", showrecentconvo, 'DropIn', 'Group Problem Solving' )
-    @monthforCalendar = Date.today
-    @calendar_events = @events.flat_map{ |e| e.calendar_events(e.start_at)}
-    @calendar_events = @calendar_events.sort_by {|event| event.start_at}
-    @calendar_events_all = @calendar_events
-    @calendar_events = @calendar_events.paginate(page: params[:page], :per_page => 9)
-
-    pdtnow = Time.now - 7.hours
-    pdtnext = Time.now - 8.hours
-
-    currstudy = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'DropIn' ).order('start_at ASC').first
-    nextstudy = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'DropIn' ).order('start_at ASC').first
-    curresearch = Event.where( "start_at < ? AND start_at > ? AND (topic = ?)", pdtnow, pdtnext, 'Group Problem Solving' ).order('start_at ASC').first
-    nextresearch = Event.where( "start_at > ? AND (topic = ?)", pdtnow, 'Group Problem Solving' ).order('start_at ASC').first
-
-    if currstudy.present?
-      @displaystudy = currstudy
-    else
-      @displaystudy = nextstudy
-    end
-    if curresearch.present?
-      @displayresearch = curresearch
-    else
-      @displayresearch = nextresearch
-    end
-
-    if @displaystudy.present?
-      @namestudy = @displaystudy.name
-      @descriptionstudy = @displaystudy.desc
-      @start_timestudy = @displaystudy.start_at.strftime("%B %d %Y") + ' ' + @displaystudy.start_at.strftime("%T") + " PDT"
-      @end_timestudy = @displaystudy.end_at.strftime("%B %d %Y") + ' ' + @displaystudy.end_at.strftime("%T") + " PDT"
-      @hoststudy = User.find(@displaystudy.user_id)
-    end
-
-    if @displayresearch.present?
-      @nameresearch = @displayresearch.name
-      @start_timeresearch = @displayresearch.start_at.strftime("%B %d %Y") + ' ' + @displayresearch.start_at.strftime("%T") + " PDT"
-      @hostresearch = User.find(@displayresearch.user_id)
-    end
-
-    if user_signed_in?
-      @user = User.find(current_user.id)
-    end
-  end
-
   def store
     @merches = Merchandise.where("user_id = ? OR user_id = ?", 1, 553 )
   end
@@ -136,6 +89,9 @@ class StaticPagesController < ApplicationController
     @message = Message.new
   end
   def beourguest
+    @message = Message.new
+  end
+  def submitquestion
     @message = Message.new
   end
   def bystanderguidelines
