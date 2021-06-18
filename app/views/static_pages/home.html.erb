@@ -14,18 +14,13 @@
     <% end %>
 
     <div style="background-color: rgba(255, 255, 255, 0.4); border-radius: 7%">
-      <h1 class="text-center maroon mt-5 pl-2 pt-5" style="font-size: 50px">
-        <strong>Women in STEM advice column to inspire society to </strong>
+      <h1 class="text-center maroon mt-5 pl-2 pt-5" style="font-size: 50px; line-height: 50px;">
+        <strong>Drop in to video chat with people who are making the world a better place. </strong>
         <%= image_tag("thinqMaroon.png", style: "height: 80px; margin-top: 10px") %>
       </h1>
     
       <h2 class="maroon pl-4 pr-4" style="font-size: 1.5em; text-shadow: 0.05em 0.05em #EEE, -0.05em 0.05em #EEE, 0.05em -0.05em #EEE, -0.05em -0.05em #EEE, 0 -0.05em #EEE, -0.05em 0 #EEE, 0.05em 0 #EEE, 0 0.05em #EEE;">
-        Women & Girls in STEM, their parents, and their teachers: Get your questions featured in our column! Send your advice questions to Ask Dr. Lisa at STEMadvice@Thinq.TV
       </h2>
-
-      <h1 class="text-center maroon">
-        Women + STEM = Activism
-      </h1>
 
       <div class="text-center">
         <%= render 'layouts/countdown_clock' %>
@@ -41,7 +36,7 @@
     <div id="scheduleStart"></div>
 
     <!-- col-lg-3 col-md-6 -->
-    <h1 class="white">Women in STEM Virtual Office</h1>
+    <h1 class="white">Virtual Office</h1>
     <div class="pb-3" id="button">
       <%= link_to 'Schedule an Office Hour', new_event_path, class: "backgroundbrand", style: "padding: 10px;", title: "Host drop-in conversation sessions or invite people to ask questions about your area of expertise" %>
     </div>
